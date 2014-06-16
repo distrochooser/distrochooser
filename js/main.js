@@ -36,7 +36,7 @@ var distros = [];
 /**
 * The systems version
 */
-var Version = "1.3";
+var Version = "1.4";
 /**
 * The index to display the current answered question percentage
 */
@@ -69,10 +69,10 @@ $(document).ready(function(){
 			$("#StoredDistros").text(Language["StoredDistros"]);
 			$("#StatusTitle").text(Language["StatusTitle"]);
 			$("#UsedThirdPartyThings").html(Language["UsedThirdPartyThings"]);
+			SetStatistics();	
+			SetOnClickHandler();
 		}	
-	);
-	SetStatistics();	
-	SetOnClickHandler();
+	);	
 });
 function AddWarning(){
 	$("#content").append("<div class='alert alert-danger'>"+Language["MaintWarning"]+"</div>")
