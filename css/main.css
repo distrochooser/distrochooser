@@ -1,0 +1,113 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+.links{
+	font-size:1.2em;
+}
+.vendor{
+	padding-left:5px;
+}
+.github{
+	color:gray;
+}
+.gplus{
+	color:red;
+}
+.xmpp{
+	color:#FFDE05;
+}
+.link{
+	color:black;
+}
+.email{
+	color:darkorange;
+}
+.share{
+	color:orangered;
+}
+.twitter{
+	color:#55ACEE;
+}
+#answerpanel{
+	padding-bottom:15px;
+	font-size:larger;
+}
+.logo{
+	height:50px;
+	padding-right: 10px;	
+	vertical-align: middle;
+	float:left;
+}
+.largelogo : logo{
+	height:100px;
+}
+.logotext{
+	height:50px;
+	padding-right: 10px;	
+	vertical-align: middle;
+}
+.distrologo{
+	width:200px;
+	float: left;
+	padding: 30px;
+	clear:both;
+}
+.ChoosedBy{
+	text-align: right;
+	font-style: italic;
+}
+.properties{
+	margin-left:200px;
+	padding-bottom:25px;
+}
+.description{
+	padding-left: 155px;
+	margin-left:47px;
+}
+.footer{
+	width:100%;
+	position: fixed;
+	bottom: 0px;
+	
+	padding-top: 14px;
+	//border-top: 1px solid lightgray;
+	left: 0px;
+	padding-left: 20px;
+}
+footer a:after
+{
+    color: rgba(255,255,255,0.25);
+
+  content: ' | ';
+}
+footer a:last-child:after
+{
+  content: '';
+}
+.socialicons{
+	text-align:center;
+	color:lightgray;
+	padding-bottom:15px;
+}
+.socialicons a{
+	padding: 15px;
+}
+#parentContainer{
+	padding-left:10px;
+	padding-right:10px;
+}
+.subTitle{
+	color: #4F4F4F;
+	display: initial;
+}
+#showDistros{
+	margin-left:20px;
+}
+.progress{
+	margin-top: 20px;
+}
