@@ -11,9 +11,11 @@
 	
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="google-site-verification" content="KQKS29stsQHDt0zBfiMCxjiyHzopHyGovKGbZNPGmgo" />
 	<link rel="shortcut icon" type="image/x-icon" href="img/0fury.ico">
         <title>Linux Distribution Chooser</title>
-        <meta name="description" content="">
+        <meta name="description" content="Die Linux Auswahlhilfe soll Anfängern helfen, die am besten geeignete Distribution zu finden. Dabei werden einfache Fragen gestellt, welche die Auswahl an geeigneten Distributionen einschränken.">
+<meta name="keywords" content="Linux,Linux Auswahl,Auswahlhilfe,Linux Distribution Chooser,passendes Linux,Linux Distribution finden,Open Source,MIT,Linux Hilfe,Distribution finden,Distributionshelfer">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="css/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/superhero.min.css">
@@ -86,18 +88,18 @@
     </div> </div><!-- /container -->    
 	
 	 <footer class="footer hidden-xs" >
-        <p class="hidden-xs links vendorSubTitle">Made by <img class="vendor" src= "./img/0fury.ico"/> <a target= "_blank"  href="http://0fury.de">0fury.de</a>
+        <p class="hidden-xs links vendorSubTitle">Ein Projekt von <img class="vendor" src= "./img/0fury.ico"/> <a target= "_blank"  href="http://0fury.de">0fury.de</a>
 <a class ="contact" href="./content/contact.inc.php"></a>
 <a class ="privacy" href="./content/privacy.inc.php"></a><a class ="status" href="#">Status</a>		
  <a class = "shareButton "></a>
 	</p>
       </footer>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/vendor/jquery-1.11.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
 
         <script src="js/main.js"></script>
-       
+        <script src="js/vendor/raty/jquery.raty.js"></script>
     </body>
 </html>

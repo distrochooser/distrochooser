@@ -36,7 +36,7 @@ var distros = [];
 /**
 * The systems version
 */
-var Version = "1.4";
+var Version = "1.4_update11082014";
 /**
 * The index to display the current answered question percentage
 */
@@ -49,9 +49,10 @@ var Debug = false;
 * Presenting a object which is the last answered question.
 */
 var lastAnsweredQuestion = null;
-
+var IsTestEnd = false;
 var Language = [];
 $(document).ready(function(){
+	$.ajaxSetup({async:false});
 	$.get( "./content/language.inc.php")
 		.done(function( data ) {	  
 		  	var obj = JSON.parse(data);			
@@ -159,9 +160,20 @@ function DisplayResult(){
 	$("#content").html('');
 	$("#content").append("<div class='page-header'><h1>"+Language["Analysis"]+"</h1></div>");
 	$("#content").append("<ul id='answerpanel'></ul>");
+	var noAnswersGiven = 0;
 	for (var i = 0; i < answers.length;i++){
-		$("#answerpanel").append("<li>"+answers[i].Question+": " + answers[i].SelectedAnswer.Text+ "</li>");
+		var text = "";
+		if (answers[i].SelectedAnswer == null){
+			text ="<b>"+Language["NoAnswer"]+"</b>";
+			noAnswersGiven++;
+		}else
+			text = answers[i].SelectedAnswer.Text;
+		$("#answerpanel").append("<li>"+answers[i].Question+": " + text+ "</li>");
 	}	
+	
+	if (noAnswersGiven == answers.length){
+		$("#content").append("<div class=\"alert alert-danger\" role=\"alert\">"+Language["NoAnswersWarning"]+"</div");
+	}
 	$("#content").append("<a id =\"backToLastQuestion\" class='btn btn-primary btn-lg' role='button'>Zurück</a>");
 	$("#backToLastQuestion").click(function(){
 		$("#answerpanel").fadeOut(function(){
@@ -170,6 +182,7 @@ function DisplayResult(){
 				LoadQuestion(--lastAnsweredQuestion.Id);	
   		});
 	});
+	if (noAnswersGiven != answers.length)
 	$("#content").append("<a id='showDistros' class='btn btn-success btn-lg' role='button'>"+Language["ShowResults"]+"</a>");
 	$("#showDistros").click(function(){
 		LoadDistributionByAnswer();
@@ -221,11 +234,16 @@ function IsLastQuestion(id){
 * Display the result of the test
 */
 function DisplayDistributions(){
-	if (!Debug)
-		$.get( "datalayer.php", { task: "IncreaseTestCount"} );
+	if (!Debug){
+		if (!IsTestEnd)
+			$.get( "datalayer.php", { task: "IncreaseTestCount"} );
+		IsTestEnd = true;
+	}
 	$("#content").html('');
 	$("#content").append("<div class='page-header'><h1>"+Language["YourLinux"]+"</h1></div>");
 	$("#content").append("<div class='well'>"+Language["ResultOrderHint"]+"</div>")
+	//Display the rating box
+	$("#content").append("<div class=\"panel panel-default\"><div class=\"panel-heading\">"+Language["ResultRating"]+"</div><div class=\"panel-body\"> <div id =\"ResultRating\"></div></div></div>");
 	for (var i = 0; i < distros.length;i++){
 		//Anzeige für normal
 		
@@ -234,7 +252,18 @@ function DisplayDistributions(){
 			$("#"+ distros[i].Id).append("<div class='ChoosedBy'>" + distros[i].ChoosedBy + " " + Language["AnswersFit"] + distros[i].Name + " " + Language["To"] +".</div></hr>");
 		else
 			$("#"+ distros[i].Id).append("<div class='ChoosedBy'>" + distros[i].ChoosedBy + " " +Language["AnswerFit"] + distros[i].Name + " " + Language["To"] +".</div></hr>");
-	}
+	}	
+	$.fn.raty.defaults.hints = [Language["Rating0"], Language["Rating1"], Language["Rating2"], Language["Rating3"], Language["Rating4"]];
+	$("#ResultRating").raty({
+	  click: function(score, evt) {	
+		var rating = SaveRating(score);		
+		$("#ResultRating").html(Language["ThanksForRating"]);
+	  },
+	  path: './js/vendor/raty/images'
+	});
+}
+function SaveRating(value){
+	$.get( "datalayer.php", { task: "SaveRating", rating: value} );
 }
 /**
 * Load the distributions by the given answers and init the Display 
@@ -242,28 +271,32 @@ function DisplayDistributions(){
 function LoadDistributionByAnswer(){
 	
 	for (var i = 0; i < answers.length;i++){
-		var answerid = answers[i].SelectedAnswer.Id;
-		$.get( "datalayer.php", { task: "LoadDistributionByAnswer", id: answerid} )
-			.done(function( data ) {	
-				var obj = JSON.parse(data);
-				for (var x = 0; x < obj.length;x++){
-					var found = false;
-					for (var y = 0; y < distros.length;y++){
-						if (distros[y].Name == obj[x].Name){
-							distros[y].ChoosedBy++;
-							found = true;
-							console.log(obj[x]);
-						}		
+		if (answers[i].SelectedAnswer != null)
+		{
+			var answerid = answers[i].SelectedAnswer.Id;
+			
+			$.get( "datalayer.php", { task: "LoadDistributionByAnswer", id: answerid} )
+				.done(function( data ) {	
+					var obj = JSON.parse(data);
+					for (var x = 0; x < obj.length;x++){
+						var found = false;
+						for (var y = 0; y < distros.length;y++){
+							if (distros[y].Name == obj[x].Name){
+								distros[y].ChoosedBy++;
+								found = true;
+								console.log(obj[x]);
+							}		
+						}
+						if (!found){
+							obj[x].ChoosedBy = 1;
+							distros.push(obj[x]);
+						}	
 					}
-					if (!found){
-						obj[x].ChoosedBy = 1;
-						distros.push(obj[x]);
-					}	
-				}
-				SortDistributionsByRank();
-				DisplayDistributions();
-		    	}
-		);
+					SortDistributionsByRank();
+					DisplayDistributions();
+					}
+			);
+		}
 	}
 	
 }
@@ -300,14 +333,26 @@ function LoadQuestion(questionid){
 			if (!question.IsFirstQuestion)
 				$("#content").append("<a id =\"back\" class='btn btn-primary btn-lg' role='button'>"+Language["Back"]+"</a>");
 			else
-				$("#answerpanel").css("padding-bottom","0px");
+				$("#answerpanel").css("padding-bottom","0px");				
+			
+			if (!question.isLastQuestion)
+				$("#content").append("<a id =\"skip\" class='skip btn btn-default btn-lg' role='button'>"+Language["Skip"]+"</a>");
+			
 			$("#back").click(function(){
 				$("#answerpanel").fadeOut(function(){
 		  				$("#answerpanel").html('');
 						QuestionIndex--;
 						LoadQuestion(question.Id -1);	
 		  		});
-			});			
+			});
+			$("#skip").click(function(){
+				answers[question.Id] = question;		 
+				$("#answerpanel").fadeOut(function(){
+		  				$("#answerpanel").html('');
+						QuestionIndex++;
+						LoadQuestion(++question.Id);	
+		  		});
+			});				
 			for (var i = 0; i < question.Answers.length;i++){
 				$("#answerpanel").append("<li><a id = '"+question.Answers[i].Id+"' href='#'>"+question.Answers[i].Text+"</a></li>");
 				$("#"+question.Answers[i].Id).click(function(e){

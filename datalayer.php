@@ -1,5 +1,5 @@
 <?php
-	//For Debugging only: error_reporting(E_ALL);
+	error_reporting(E_ALL);
 	include "./classes.php";
 	$connect = mysqli_connect("localhost", "username", "password") or die("Error: 005 ".mysqli_error());
 	mysqli_select_db($connect,"database") or die("Error: 006 ".mysqli_error()); 	
@@ -33,7 +33,9 @@
 			case 'GetTestCount':	
 				echo json_encode(GetTestCount($connect));
 				break;	
-			
+			case 'SaveRating':	
+				echo json_encode(SaveRating($connect,$_GET["rating"]));
+				break;	
 		}
 	}
 	function isLastQuestion($connect,$id){
@@ -134,5 +136,12 @@
 			return $row->Amount;
 		}
 	}
-	
+	function SaveRating($connect,$rating){
+		$rating = mysqli_real_escape_string($connect,$rating);
+		$result = mysqli_query($connect,"Update Rating Set Amount = Amount + 1 where Rating = '$rating'");
+		if (!$result)
+			return false;
+		else
+			return true;
+	}	
 ?>

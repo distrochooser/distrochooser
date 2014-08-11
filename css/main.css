@@ -33,6 +33,9 @@
 .twitter{
 	color:#55ACEE;
 }
+.facebook{
+	color:#3B5998 ;	
+}
 #answerpanel{
 	padding-bottom:15px;
 	font-size:larger;
@@ -110,4 +113,19 @@ footer a:last-child:after
 }
 .progress{
 	margin-top: 20px;
+}
+#panicButton{
+	font-size:initial;
+}
+#thanksforrating{
+	display:inline;
+}
+#ResultRating{
+	text-align:center;
+}
+#skip{
+	margin-left:20px;
+}
+#back{
+	margin-left:20px;
 }

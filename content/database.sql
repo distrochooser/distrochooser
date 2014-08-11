@@ -1,39 +1,16 @@
--- phpMyAdmin SQL Dump
--- version 4.2.2
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Erstellungszeit: 16. Jun 2014 um 06:23
--- Server Version: 5.2.14-MariaDB-mariadb122~squeeze-log
--- PHP-Version: 5.3.28-1~dotdeb.0
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Datenbank: `scribblesql23`
---
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `Answer`
---
 
 CREATE TABLE IF NOT EXISTS `Answer` (
 `ID` int(11) NOT NULL,
   `Text` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=60 ;
-
---
--- Daten für Tabelle `Answer`
---
 
 INSERT INTO `Answer` (`ID`, `Text`) VALUES
 (36, 'Es sollte kostenlos sein.'),
@@ -44,7 +21,7 @@ INSERT INTO `Answer` (`ID`, `Text`) VALUES
 (41, 'Ich möchte das System nur über eine CD/ DVD starten, um z. B. mein System zu reparieren oder Viren zu entfernen.'),
 (42, 'Mein PC ist noch durchaus aktuell.'),
 (43, 'Etwas älter'),
-(44, 'Ich habe bereits Probleme, aktuelle Software auf dem System zu nutzen.'),
+(44, 'Mein Rechner ist schon sehr alt; Ich habe bereits Probleme, aktuelle Software auf dem System zu nutzen.'),
 (45, 'Ich bevorzuge eine grafische Benutzeroberfläche zur Verwaltung der Programme.'),
 (46, 'Ich bevorzuge das aus Debian bekannte Aptitude/ APT'),
 (47, 'Ich bevorzuge den aus Arch bekannten Pacman.'),
@@ -61,21 +38,11 @@ INSERT INTO `Answer` (`ID`, `Text`) VALUES
 (58, 'Ja.'),
 (59, 'Nein.');
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `AnswerDistributionRelation`
---
-
 CREATE TABLE IF NOT EXISTS `AnswerDistributionRelation` (
 `ID` int(11) NOT NULL,
   `AID` int(11) NOT NULL,
   `DID` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=149 ;
-
---
--- Daten für Tabelle `AnswerDistributionRelation`
---
 
 INSERT INTO `AnswerDistributionRelation` (`ID`, `AID`, `DID`) VALUES
 (1, 36, 1),
@@ -205,12 +172,6 @@ INSERT INTO `AnswerDistributionRelation` (`ID`, `AID`, `DID`) VALUES
 (147, 57, 15),
 (148, 54, 15);
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `Distribution`
---
-
 CREATE TABLE IF NOT EXISTS `Distribution` (
 `ID` int(11) NOT NULL,
   `Name` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -222,10 +183,6 @@ CREATE TABLE IF NOT EXISTS `Distribution` (
   `ImageSource` text COLLATE utf8_bin NOT NULL,
   `TextSource` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=16 ;
-
---
--- Daten für Tabelle `Distribution`
---
 
 INSERT INTO `Distribution` (`ID`, `Name`, `Manufacturer`, `ImageLink`, `Description`, `License`, `Website`, `ImageSource`, `TextSource`) VALUES
 (1, 'Arch Linux', 'Aaron Griffin', './img/linux/arch.png', 'Arch Linux ist eine i686- und AMD64-optimierte Linux-Distribution nach dem KISS-Prinzip. Aufgrund dieses minimalistischen Ansatzes ist Arch Linux als Distribution für fortgeschrittene Benutzer zu sehen, da auf grafische Installations- und Konfigurationshilfen zu Gunsten der Einfachheit verzichtet wird.', '<a href="http://de.wikipedia.org/wiki/GNU_General_Public_License" title="GNU General Public License">GPL</a> und andere Lizenzen', 'http://archlinux.org', 'https://www.archlinux.org/art/', 'Zitat https://de.wikipedia.org/wiki/Arch_Linux'),
@@ -244,47 +201,27 @@ INSERT INTO `Distribution` (`ID`, `Name`, `Manufacturer`, `ImageLink`, `Descript
 (14, 'Gentoo Linux', 'Gentoo Foundation Inc.', './img/linux/gentoo.png', 'Gentoo Linux ist eine quellbasierte Linux-Distribution für fortgeschrittene Linux-Benutzer, die ihr System komplett individuell einrichten möchten. Voraussetzung dafür ist die Bereitschaft, sich mit den Abläufen eines Linux-Systems und der ausführlichen Dokumentation auseinanderzusetzen. Gentoo ist ein Warenzeichen der Gentoo Foundation, Inc., einer Non-Profit-Organisation.', '<a href="http://de.wikipedia.org/wiki/GNU_General_Public_License" title="GNU General Public License">GPL</a> und andere Lizenzen', 'http://www.gentoo.org/', 'http://www.gentoo.org/main/en/name-logo.xml', 'https://de.wikipedia.org/wiki/Gentoo_Linux'),
 (15, 'Antergos', 'Alexandre Filgueira und Weitere', './img/linux/antergos.png', 'Antergos (ehemals Cinnarch) ist eine Linux-Distribution aus Galicien, die auf dem Betriebssystem Arch Linux basiert. Es wird die Arbeitsumgebung Gnome als Standard eingerichtet, aber es kann auch mit Cinnamon, MATE, Openbox oder Xfce installiert werden.', '<a href="http://de.wikipedia.org/wiki/GNU_General_Public_License" title="GNU General Public License">GPL</a> und andere Lizenzen', 'http://www.antergos.com/', 'https://en.wikipedia.org/wiki/File:Antergos_logo_github.png', 'https://de.wikipedia.org/wiki/Antergos');
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `Question`
---
-
 CREATE TABLE IF NOT EXISTS `Question` (
 `ID` int(11) NOT NULL,
   `Title` text COLLATE utf8_bin NOT NULL,
   `Subtitle` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=12 ;
 
---
--- Daten für Tabelle `Question`
---
-
 INSERT INTO `Question` (`ID`, `Title`, `Subtitle`) VALUES
-(4, 'Lizenzmodelle: Welche Lizenz bevorzugst Du bei der Wahl eines Betriebssystems?', 'Oft wird bei Linux von "quelloffener" oder "freier" Software gesprochen. Dabei handelt es sich um Software, deren Quelltext frei, ohne Restriktionen eingesehen und verändert werden darf. </br>Eine Distribution stellt dabei kein einzelnes Produkt, sondern ein "Bündel" verschiedener Programme dar. Z. B. besteht eine klassische Distribution stark vereinfacht aus dem Linux-Kernel und einer Oberfläche.</br>Viele Distributionen bieten Support über ihre Communities an. So findet man häufig dort Antworten auf die meisten Probleme. Es gibt aber auch manche Distributionen, die auch hierzu kostenpflichtigen Support anbieten. Dieser Support ist häufig für den professionellen Einsatz, z. B. im Betrieb, gedacht.'),
+(4, 'Lizenzmodelle: Welche Lizenz bevorzugst Du bei der Wahl eines Betriebssystems?', 'Oft wird bei Linux von "quelloffener" oder "freier" Software gesprochen. Dabei handelt es sich um Software, deren Quelltext frei, ohne Restriktionen eingesehen und verändert werden darf. Außerdem darf diese Software auch für jeden Zweck verwendet werden, was dem Benutzer natürlich sehr viel Spielfraum gibt.</br></br>Eine Distribution stellt dabei kein einzelnes Produkt, sondern ein "Bündel" verschiedener Programme dar. Z. B. besteht eine klassische Distribution stark vereinfacht aus dem Linux-Kernel und einer Oberfläche.</br></br>Viele Distributionen bieten Support über ihre Communities an. So findet man häufig dort Antworten auf die meisten Probleme. Es gibt aber auch manche Distributionen, die auch hierzu kostenpflichtigen Support anbieten. Dieser Support ist häufig für den professionellen Einsatz, z. B. im Betrieb, gedacht.'),
 (5, 'Installation: Wie möchte ich Linux auf meinem PC installieren?', 'Eine Distribution wird häufig klassisch auf der Festplatte des Computers installiert. Es ist aber auch möglich, Linux von einem USB-Stick zu nutzen. Es gibt Distributionen, die genau für diesen Betrieb geeignet sind, z. B. durch niedrigen Ressourcenverbrauch. </br></br>Bei Linux wird man auch auf den Begriff "Live Modus" stoßen. Der "Live Modus" dient dazu, ein Betriebssystem zuerst von inem Datenträger (CD/DVD, USB-Stick) zu testen, bevor man es auf dem Computer installiert. Viele Distributionen verfügen über diesen Live-Modus, der auch oft zur Datenrettung eingesetzt wird.'),
-(6, 'Hardware: Mein PC ist...?', 'Die PC-Technik verändert sich von Tag zu Tag. So müssen auch die Linux-Entwickler sich an diese Gegebenheiten anpassen. So ist es unausweichlich, dass die Unterstützung für alte Hardware entfernt wird, sonst würde die Linux-Basis immer klobiger werden und schließlich könnte man den Code kaum noch warten. </br>Da Linux jedoch eine freie Software ist, entwickeln Menschen so genannte <i>Forks</i>. Ein Fork ist ein Zweig einer Software, der von der Hauptentwicklung abweicht. In diesen Forks sind dann z. B. die Unterstützung für alte Hardware noch enthalten und diese finden dann Einsatz in speziellen Distributionen, die für ältere Hardware gedacht sind.'),
+(6, 'Hardware: Mein PC ist...?', 'Die PC-Technik verändert sich von Tag zu Tag. So müssen auch die Linux-Entwickler sich an diese Gegebenheiten anpassen. So ist es unausweichlich, dass die Unterstützung für alte Hardware entfernt wird, sonst würde die Linux-Basis immer klobiger werden und schließlich könnte man den Code kaum noch warten. </br>Da Linux jedoch eine freie Software ist, entwickeln Menschen so genannte <i>Forks</i>. Ein Fork ist ein Zweig einer Software, der von der Hauptentwicklung abweicht. In diesen Forks sind dann z. B. die Unterstützung für alte Hardware noch enthalten und diese finden dann Einsatz in speziellen Distributionen, die für ältere Hardware gedacht sind.</br>Für diese Frage kannst Du deine Antworten an folgender Werten orientieren:</br><ul><li>Neu: 1-2 Jahre alt</li><li>Mittel: 3-4 Jahre</li><li>Alt: Ab 4 Jahre</li></ul>'),
 (7, 'Softwaremanagement: Wie möchte ich neue Programme installieren, verwalten und ggf. entfernen?', 'Unter Linux ist es möglich, Programme auf unterschiedliche Arten zu installieren. Zunächst kann man sich diese aus dem Programmquelltext selbst "übersetzen", sodass man das Programm ausführen kann. Diese Methode richtet sich aber zunächst an erfahrene Benutzer.</br>Nahezu jede Distribution ist mit einem so genannten Paketmanagement ausgestattet. Durch dieses ist es Möglich, Programme in Form so genannter Pakete zu installieren. Beispielsweise gibt es so für den Browser "Firefox" das Paket "firefox".</br>Es existieren unterschiedliche Ansätze für Paketmanagments, bekannte Vertreter sind "apt" bei Debian/ Ubuntu, "yum" bei Fedora oder "pacman" bei Arch/ Manjaro bzw. "zypper" bei openSuse. Häufig ist es möglich, die Paketverwaltung über ein grafisches Programm durchzuführen, um die Verwendung Einsteigerfreundlich gestalten zu können.'),
 (8, 'Ich beschreibe meine Linux-Kenntnisse wie folgt:', 'Linux-Distributionen unterscheiden sich teils massiv in ihren Anforderungen an die Kenntnisse der Benutzer.'),
-(9, 'Betriebssystemoberfläche: Wie soll die Oberfläche auf dem System installiert werden?', 'Linux Distributionen können mit verschiedenen Oberflächen betrieben werden. Oft werden Oberflächen mit der Distribution mitgeliefert, bei anderen Distributionen wird diese per Hand installiert.'),
-(10, 'Installationsumfang: Soll nur ein Minimalumfang installiert werden oder soll das System direkt nach der Installation samt aller Programme direkt einsatzbereit sein?', 'Viele Linux - Distributionen umfassen alle notwendigen Programme, ob direkt nach der Installation damit arbeiten zu können.Andere beschränken den Umfang auf ein Minimum, um dem Benutzer die freie Wahl zu lassen. Letzteres benötigt jedoch mehr Zeit.'),
-(11, 'Systemverwaltung: Ich setze viel Wert darauf, bei der Administration meines Systems ein zentrales Programm zu verwenden.', 'Manche Distributionen bieten zentrale Verwaltungstools an, mit denen das System verwaltet wird.');
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `QuestionAnswerRelation`
---
+(9, 'Betriebssystemoberfläche: Wie soll die Oberfläche auf dem System installiert werden?', 'Der Begriff "Linux" beschreibt nur den Betriebssytemkern, den so genannten <i>Kernel</i>. Eine Distribution besteht aus diesem und vielen anderen Programmen, darunter auch die Oberfläche. Daher gibt es verschiedenste Oberflächen für jede Distribution.</br>Viele Distributionen liefern eine grafische Oberfläche mit, andere nicht. Wenn Du direkt mit deiner Linux-Distribution arbeiten willst, solltest du eine Distribution mit Standardoberfläche nutzen'),
+(10, 'Vorinstallierte Programme: Minimalumfang oder umfangreich Programme vorinstalliert?', 'Die meisten Linux-Distributionen installieren viele Programme direkt mit, sodass Du direkt nach der Installation damit arbeiten kannst. Andere installieren bewusst nur den Standardumfang, damit dem Benutzer möglichst viel Freiheiten bei der Programmauswahl gegeben werden können. Für Anfänger empfiehlt sich natürlich, Programme vorinstallieren zu lassen.'),
+(11, 'Systemverwaltung: Ich setze viel Wert darauf, bei der Administration meines Systems <b>ein</b> zentrales Programm zu verwenden.', 'Manche Distributionen bieten zentrale Verwaltungstools an, mit denen das System verwaltet wird.');
 
 CREATE TABLE IF NOT EXISTS `QuestionAnswerRelation` (
 `ID` int(11) NOT NULL,
   `QID` int(11) NOT NULL,
   `AID` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=29 ;
-
---
--- Daten für Tabelle `QuestionAnswerRelation`
---
 
 INSERT INTO `QuestionAnswerRelation` (`ID`, `QID`, `AID`) VALUES
 (1, 4, 36),
@@ -312,101 +249,64 @@ INSERT INTO `QuestionAnswerRelation` (`ID`, `QID`, `AID`) VALUES
 (27, 11, 58),
 (28, 11, 59);
 
--- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Rating` (
+`Id` int(11) NOT NULL,
+  `Rating` int(11) NOT NULL DEFAULT '0',
+  `Amount` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
 
---
--- Tabellenstruktur für Tabelle `Stats`
---
+INSERT INTO `Rating` (`Id`, `Rating`, `Amount`) VALUES
+(1, 1, 0),
+(2, 2, 0),
+(3, 3, 0),
+(4, 4, 0),
+(5, 5, 0);
 
 CREATE TABLE IF NOT EXISTS `Stats` (
   `TestsMade` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Daten für Tabelle `Stats`
---
-
 INSERT INTO `Stats` (`TestsMade`) VALUES
-(743);
+(0);
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `Answer`
---
 ALTER TABLE `Answer`
  ADD PRIMARY KEY (`ID`);
 
---
--- Indexes for table `AnswerDistributionRelation`
---
 ALTER TABLE `AnswerDistributionRelation`
  ADD PRIMARY KEY (`ID`), ADD KEY `AID` (`AID`), ADD KEY `DID` (`DID`);
 
---
--- Indexes for table `Distribution`
---
 ALTER TABLE `Distribution`
  ADD PRIMARY KEY (`ID`);
 
---
--- Indexes for table `Question`
---
 ALTER TABLE `Question`
  ADD PRIMARY KEY (`ID`);
 
---
--- Indexes for table `QuestionAnswerRelation`
---
 ALTER TABLE `QuestionAnswerRelation`
  ADD PRIMARY KEY (`ID`), ADD KEY `AID` (`AID`), ADD KEY `QID` (`QID`);
 
---
--- AUTO_INCREMENT for dumped tables
---
+ALTER TABLE `Rating`
+ ADD PRIMARY KEY (`Id`);
 
---
--- AUTO_INCREMENT for table `Answer`
---
+
 ALTER TABLE `Answer`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
---
--- AUTO_INCREMENT for table `AnswerDistributionRelation`
---
 ALTER TABLE `AnswerDistributionRelation`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=149;
---
--- AUTO_INCREMENT for table `Distribution`
---
 ALTER TABLE `Distribution`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT for table `Question`
---
 ALTER TABLE `Question`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT for table `QuestionAnswerRelation`
---
 ALTER TABLE `QuestionAnswerRelation`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
---
--- Constraints der exportierten Tabellen
---
+ALTER TABLE `Rating`
+MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 
---
--- Constraints der Tabelle `AnswerDistributionRelation`
---
 ALTER TABLE `AnswerDistributionRelation`
 ADD CONSTRAINT `AnswerDistributionRelation_ibfk_1` FOREIGN KEY (`AID`) REFERENCES `Answer` (`ID`),
 ADD CONSTRAINT `AnswerDistributionRelation_ibfk_2` FOREIGN KEY (`DID`) REFERENCES `Distribution` (`ID`),
 ADD CONSTRAINT `FK_Answer` FOREIGN KEY (`AID`) REFERENCES `Answer` (`ID`);
 
---
--- Constraints der Tabelle `QuestionAnswerRelation`
---
 ALTER TABLE `QuestionAnswerRelation`
 ADD CONSTRAINT `QuestionAnswerRelation_ibfk_1` FOREIGN KEY (`AID`) REFERENCES `Answer` (`ID`),
 ADD CONSTRAINT `QuestionAnswerRelation_ibfk_2` FOREIGN KEY (`QID`) REFERENCES `Question` (`ID`);
