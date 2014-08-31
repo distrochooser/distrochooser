@@ -41,6 +41,8 @@
 		include "./content/privacy.inc.php";
 		include "./content/share.inc.php";
 		include "./content/status.inc.php";
+		include "./content/faq.inc.php";
+		include "./content/resultdetail.inc.php";
 	?>
 		
     <div class="navbar navbar-header navbar-inverse navbar-fixed-top" role="navigation">
@@ -60,6 +62,7 @@
           <ul class="nav navbar-nav navbar-right">
 	<li class="visible-xs"><a href="#" class="contact"></a></li>
 	<li class="visible-xs"><a href="#" class="privacy"></a></li>
+	<li class="visible-xs"><a href="#" class="faq"></a></li>
         </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -72,12 +75,11 @@
     <div class="container"  >
       <!-- Example row of columns -->
        <div id ="content"> 
-	     
-        <div class="jumbotron">
+	     <div class="jumbotron">
           <div class="container">
 		
-            <h1 id="StartWelcomeTitle"></h1>
-            <p id ="StartText"></p>
+            <h1 id="StartWelcomeTitle">Willkommen!</h1>
+            <p id ="StartText">Dieser Test soll Dir helfen, die für Deine Zwecke am besten geeignete Linux-Distribution zu finden. <br> Dabei stellt Dir der Test einfache Fragen, um z. B. ungeeignete Distributionen auszuschließen.</p>
             <p style="text-align:center"><a id = "startButton" class="btn btn-primary btn-lg" role="button"></a> </p>
           </div>
         </div>
@@ -88,10 +90,11 @@
     </div> </div><!-- /container -->    
 	
 	 <footer class="footer hidden-xs" >
-        <p class="hidden-xs links vendorSubTitle">Ein Projekt von <img class="vendor" src= "./img/0fury.ico"/> <a target= "_blank"  href="http://0fury.de">0fury.de</a>
+        <p class="hidden-xs links vendorSubTitle"><p id="branding">Ein Projekt von </p><img class="vendor" src= "./img/0fury.ico"/> <a target= "_blank"  href="http://0fury.de">0fury.de</a>
 <a class ="contact" href="./content/contact.inc.php"></a>
-<a class ="privacy" href="./content/privacy.inc.php"></a><a class ="status" href="#">Status</a>		
+<a class ="privacy" href="./content/privacy.inc.php"></a><a class ="status" href="#">Status</a>			
  <a class = "shareButton "></a>
+<a class ="faq" href="./content/faq.inc.php">FAQ</a>	
 	</p>
       </footer>
     <script src="js/vendor/jquery-1.11.0.min.js"></script>
