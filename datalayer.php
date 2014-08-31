@@ -1,22 +1,29 @@
 <?php
 	error_reporting(E_ALL);
-	include "./classes.php";
-	$connect = mysqli_connect("localhost", "username", "password") or die("Error: 005 ".mysqli_error());
-	mysqli_select_db($connect,"database") or die("Error: 006 ".mysqli_error()); 	
+	include "./classes.php";	
+	$lng = "de";
+	$connect = mysqli_connect("localhost", "scribblesql23", "cb2613c7") or die("Error: 005 ".mysqli_error());
+	mysqli_select_db($connect,"scribblesql23") or die("Error: 006 ".mysqli_error()); 	
 	
 	mysqli_query($connect,"SET NAMES 'utf8'");
 	mysqli_query($connect,"SET CHARACTER SET 'utf8'");
-				
+	if (isset($_GET["language"]))
+	{
+		if ($_GET["language"] == "en"){
+			$lng = "En";
+		}
+			
+	}				
 	if (!isset($_GET["task"])){
 		die(json_encode("No task given"));
 	}
 	else{
 		switch ($_GET["task"]) {
 			case 'loadQuestion':	
-				echo loadQuestion($connect,$_GET["id"]);
+				echo loadQuestion($lng,$connect,$_GET["id"]);
 				break;					
 			case 'LoadDistributionByAnswer':	
-				echo GetDistributionByAnswer($connect,$_GET["id"]);
+				echo GetDistributionByAnswer($lng,$connect,$_GET["id"]);
 				break;		
 			case 'isLastQuestion':	
 				echo json_encode(isLastQuestion($connect,$_GET["id"]));
@@ -60,49 +67,59 @@
 		}
 		return true;
 	}
-	function loadQuestion($connect,$id){
+	function loadQuestion($lng,$connect,$id){
 		$found =false;
 		$id = mysqli_real_escape_string($connect,$id);	
+		$columnPrefix = "";
+		if ($lng != "de")
+			$columnPrefix = $lng;
+	
 		if ($id == -1)
-			$dbresult = mysqli_query($connect,"Select Id,Title,Subtitle from Question");
+			$dbresult = mysqli_query($connect,"Select Id,".$columnPrefix."Title,".$columnPrefix."Subtitle from Question");
 		else		
-			$dbresult = mysqli_query($connect,"Select Id,Title,Subtitle   from Question where ID >=$id") or die(mysqli_error($connect));
+			$dbresult = mysqli_query($connect,"Select Id,".$columnPrefix."Title,".$columnPrefix."Subtitle   from Question where ID >=$id") or die(mysqli_error($connect));
 		while ($row = mysqli_fetch_object($dbresult)) {
 			$question = new Question();
 			$question->Id = $row->Id;
-			$question->Question = $row->Title;
+			$question->Question = $row->{$columnPrefix."Title"};
 			if (isLastQuestion($connect,$row->Id))
 				$question->IsLastQuestion = true;
-			$question->Answers = GetAnswersOfQuestion($connect,$question->Id);
-			$question->SubTitle = $row->Subtitle;	
+			$question->Answers = GetAnswersOfQuestion($lng,$connect,$question->Id);
+			$question->SubTitle = $row->{$columnPrefix."Subtitle"};;	
 			$question->IsFirstQuestion = isFirstQuestion($connect,$row->Id);
 			$question->IsLastQuestion = isLastQuestion($connect,$row->Id);		
 			return json_encode($question);
 		}
 		return null;
 	}
-	function GetAnswersOfQuestion($connect,$id){
+	function GetAnswersOfQuestion($lng,$connect,$id){
 		$result = array();
 		$questionid = mysqli_real_escape_string($connect,$id);
-		$dbresult = mysqli_query($connect,"Select AID,Text from QuestionAnswerRelation  inner join Answer a on a.ID = AID where QID = $questionid");
+		$columnPrefix = "";
+		if ($lng != "de")
+			$columnPrefix = $lng;
+		$dbresult = mysqli_query($connect,"Select AID,".$columnPrefix."Text from QuestionAnswerRelation  inner join Answer a on a.ID = AID where QID = $questionid");
 		while ($row = mysqli_fetch_object($dbresult)) {
 			$answer = new Answer();
-			$answer->Text = $row->Text;
+			$answer->Text = $row->{$columnPrefix."Text"};
 			$answer->Id = $row->AID;
 			$answer->Question = $id;
 			$result[] = $answer;
 		}
 		return $result;
 	}
-	function GetDistributionByAnswer($connect,$id){
+	function GetDistributionByAnswer($lng,$connect,$id){
 		$result = array();
 		$id = mysqli_real_escape_string($connect,$id);
-		$dbresult = mysqli_query($connect,"Select d.ID, Name,d.Description,d.ImageLink,d.License,d.Website,d.TextSource,d.ImageSource from AnswerDistributionRelation inner join Distribution d on d.Id = DID where AID = $id order by d.Name");
+		$columnPrefix = "";
+		if ($lng != "de")
+			$columnPrefix = $lng;
+		$dbresult = mysqli_query($connect,"Select d.ID, Name,d.".$columnPrefix."Description,d.ImageLink,d.License,d.Website,d.TextSource,d.ImageSource from AnswerDistributionRelation inner join Distribution d on d.Id = DID where AID = $id order by d.Name");
 		while ($row = mysqli_fetch_object($dbresult)) {
 			$distro = new Distribution();
 			$distro->Id = $row->ID;
 			$distro->Name = $row->Name;
-			$distro->Description = $row->Description;
+			$distro->Description = $row->{$columnPrefix."Description"};
 			$distro->ImageLink = $row->ImageLink;
 			$distro->License = $row->License;
 			$distro->Website = $row->Website;

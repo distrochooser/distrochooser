@@ -36,7 +36,7 @@ var distros = [];
 /**
 * The systems version
 */
-var Version = "1.4_update11082014";
+var Version = "1.5_update29082014";
 /**
 * The index to display the current answered question percentage
 */
@@ -51,30 +51,58 @@ var Debug = false;
 var lastAnsweredQuestion = null;
 var IsTestEnd = false;
 var Language = [];
-$(document).ready(function(){
+var SystemLanguage = "de";
+
+
+$(document).ready(function(){	
 	$.ajaxSetup({async:false});
-	$.get( "./content/language.inc.php")
-		.done(function( data ) {	  
-		  	var obj = JSON.parse(data);			
-			Language = obj;
-			$("#SystemTitle").html(Language["SystemTitle"]);
-			$("Title").html(Language["SystemTitle"]);	
-			$(".contact").text(Language["Imprint"]);
-			$(".privacy").text(Language["Privacy"]);
-			$(".shareButton").text(Language["Share"]);
-			$("#StartWelcomeTitle").html(Language["StartWelcomeTitle"]);
-			$("#StartText").html(Language["StartText"]);
-			$("#startButton").text(Language["StartTest"]);
-			$("#shareLinkTitle").text(Language["shareTitle"]);
-			$("#ShareDialogTitle").text(Language["Share"]);
-			$("#StoredDistros").text(Language["StoredDistros"]);
-			$("#StatusTitle").text(Language["StatusTitle"]);
-			$("#UsedThirdPartyThings").html(Language["UsedThirdPartyThings"]);
-			SetStatistics();	
-			SetOnClickHandler();
-		}	
-	);	
+	
+	SetLanguage(GetLanguage());
 });
+function GetLanguage(){
+	if (location.href.match("en$")=="en")
+		return "en";
+	else
+		return "de";
+}
+function SetLanguage(language){
+	var requestURI = "./content/language.inc.php";
+	if (language == "en"){
+		requestURI  = "./content/language-en.inc.php";
+		SystemLanguage = language;
+	}
+	else{
+		requestURI  = "./content/language.inc.php";
+	}	
+	$.get( requestURI)
+		.done(function( data ) {	
+				
+			  	var obj = JSON.parse(data);	
+						
+				Language = obj;			
+
+
+				$("#SystemTitle").html(Language["SystemTitle"]);
+				$("Title").html(Language["SystemTitle"]);	
+				$(".contact").text(Language["Imprint"]);
+				$(".privacy").text(Language["Privacy"]);
+				$(".shareButton").text(Language["Share"]);
+				$("#StartWelcomeTitle").html(Language["StartWelcomeTitle"]);
+				$("#StartText").html(Language["StartText"]);
+				$("#startButton").text(Language["StartTest"]);
+				$("#shareLinkTitle").text(Language["shareTitle"]);
+				$("#ShareDialogTitle").text(Language["Share"]);				
+				$("#StoredDistros").text(Language["StoredDistros"]);
+				$("#StatusTitle").text(Language["StatusTitle"]);
+				$("#UsedThirdPartyThings").html(Language["UsedThirdPartyThings"]);
+				$("#branding").text(Language["VendorSubTitle"]);
+				$(".faq").html(Language["FAQ"]);
+				$("#faqbody").html(Language["FAQContent"]);				
+				SetStatistics();	
+				SetOnClickHandler();
+			}	
+		);	
+}
 function AddWarning(){
 	$("#content").append("<div class='alert alert-danger'>"+Language["MaintWarning"]+"</div>")
 }
@@ -83,8 +111,11 @@ function AddWarning(){
 */
 function SetStatistics(){
 	$("#version").html("Linux Distribution Chooser " + Version);
+	$("#info").html(Language["StartText"]);
 	$.get( "datalayer.php", { task: "GetListOfDistributions"} )
-		.done(function( data ) {	  
+		.done(function( data ) {
+			
+			$("#DistroList").html("");
 		  	var obj = JSON.parse(data);
 			for (var i = 0; i < obj.length;i++){
 				$("#DistroList").append("<li>"+obj[i]+"</li>");
@@ -93,14 +124,16 @@ function SetStatistics(){
 	);
 	$.get( "datalayer.php", { task: "GetQuestionCount"} )
 		.done(function( data ) {	  
-		  	var obj = JSON.parse(data);			
+		  	var obj = JSON.parse(data);
+			$("#amount").html("");			
 			$("#amount").append(Language["AmountOfQuestions"]);
 			$("#amount").append(obj);
 		}	
 	);
 	$.get( "datalayer.php", { task: "GetTestCount"} )
 		.done(function( data ) {	  
-		  	var obj = JSON.parse(data);			
+		  	var obj = JSON.parse(data);
+			$("#amountOfTests").html("");					
 			$("#amountOfTests").append(Language["AmountOfTests"]);
 			$("#amountOfTests").append(obj);
 		}	
@@ -135,6 +168,15 @@ function SetOnClickHandler(){
 	$(".shareButton").click(function(){
 		$("#shareDialog").modal();
 	});
+	$(".faq").click(function(e){	
+		e.preventDefault();
+		$("#faqdialog").modal();
+	});
+	$(".switchToEn").click(function(){
+		 SetLanguage("en");
+	});
+	
+	
 }
 /**
 * Display the informations before the test.
@@ -248,10 +290,27 @@ function DisplayDistributions(){
 		//Anzeige für normal
 		
 		$("#content").append("<div class=\"panel panel-default\"><div class=\"panel-heading\">"+distros[i].Place+ ". "+ distros[i].Name+"</div><div class=\"panel-body\" id =\""+distros[i].Id+"\"><img class='distrologo hidden-xs' src='"+distros[i].ImageLink+"'/>"+distros[i].Description+"</div><div class=\"panel-footer properties hidden-xs\"><a target='_blank' href='"+distros[i].Website+"'>Website</a> | "+Language["License"]+": "+distros[i].License+" | <a target='_blank' href='"+distros[i].TextSource+"'>"+Language["TextSource"]+"</a> | <a target='_blank' href='"+distros[i].ImageSource+"'>"+Language["ImageSource"]+"</a></div></div>");
+		var answerText = "";
 		if (distros[i].ChoosedBy > 1)
-			$("#"+ distros[i].Id).append("<div class='ChoosedBy'>" + distros[i].ChoosedBy + " " + Language["AnswersFit"] + distros[i].Name + " " + Language["To"] +".</div></hr>");
+			$("#"+ distros[i].Id).append("<div class='ChoosedBy'><a href='#' class='"+ i+"Detail'>" + distros[i].ChoosedBy + " " + Language["AnswersFit"] + distros[i].Name + " " + Language["To"] +".</a></div></hr>");
 		else
-			$("#"+ distros[i].Id).append("<div class='ChoosedBy'>" + distros[i].ChoosedBy + " " +Language["AnswerFit"] + distros[i].Name + " " + Language["To"] +".</div></hr>");
+			$("#"+ distros[i].Id).append("<div class='ChoosedBy'><a href='#' class='"+ i+"Detail'>" + distros[i].ChoosedBy + " " +Language["AnswerFit"] + distros[i].Name + " " + Language["To"] +".</a></div></hr>");
+				
+		$("."+i+"Detail").click(function(e){
+		
+			e.preventDefault();
+			var name = e.toElement.className.replace("Detail","");
+			$(".resultdetail").text("Zutreffende Antworten");
+			$(".resultDetailHeader").text(Language["SuitableAnswers"]);
+			var resultDetailBody = "<ul>";		
+			for (var q = 0; q < distros[name].ChoosedByQuestion.length;q++){
+				resultDetailBody = resultDetailBody + "<li>"+distros[name].ChoosedByQuestion[q].Question+" - <b>"+distros[name].ChoosedByQuestion[q].SelectedAnswer.Text+"</b></li>";
+			}
+			resultDetailBody = resultDetailBody + "</ul>";
+			
+			$("#resultdetailBody").html(resultDetailBody);			
+			$("#resultdetaildialog").modal();
+		});
 	}	
 	$.fn.raty.defaults.hints = [Language["Rating0"], Language["Rating1"], Language["Rating2"], Language["Rating3"], Language["Rating4"]];
 	$("#ResultRating").raty({
@@ -275,7 +334,7 @@ function LoadDistributionByAnswer(){
 		{
 			var answerid = answers[i].SelectedAnswer.Id;
 			
-			$.get( "datalayer.php", { task: "LoadDistributionByAnswer", id: answerid} )
+			$.get( "datalayer.php", { task: "LoadDistributionByAnswer", id: answerid,language: SystemLanguage} )
 				.done(function( data ) {	
 					var obj = JSON.parse(data);
 					for (var x = 0; x < obj.length;x++){
@@ -283,12 +342,19 @@ function LoadDistributionByAnswer(){
 						for (var y = 0; y < distros.length;y++){
 							if (distros[y].Name == obj[x].Name){
 								distros[y].ChoosedBy++;
-								found = true;
-								console.log(obj[x]);
+								if (distros[y].ChoosedByQuestion.length == 0){
+									distros[y].ChoosedByQuestion = [];									
+								}
+								distros[y].ChoosedByQuestion.push(answers[i]);
+								found = true;							
 							}		
 						}
-						if (!found){
+						if (!found){							
 							obj[x].ChoosedBy = 1;
+							if (obj[x].ChoosedByQuestion.length == 0){
+									obj[x].ChoosedByQuestion = [];									
+							}
+							obj[x].ChoosedByQuestion.push(answers[i]);
 							distros.push(obj[x]);
 						}	
 					}
@@ -307,13 +373,15 @@ function LoadDistributionByAnswer(){
 function LoadQuestion(questionid){
 	var question = null;
 	var prefix = "";
-	$.get( "datalayer.php", { task: "loadQuestion", id: questionid } )
+	$.get( "datalayer.php", { task: "loadQuestion", id: questionid ,language: SystemLanguage} )
 	  .done(function( data ) {
+		
 		if (!data)
 			DisplayResult();
 		else{	
 		   	question = JSON.parse(data);
 			lastAnsweredQuestion = question;
+		
 			//Antwort darstellen
 			$("#content").html('');
 			
@@ -328,6 +396,7 @@ function LoadQuestion(questionid){
 			.done(function( data ) {
 				$("#content").append(data);
 				$("#panicDialogContent").html(question.SubTitle)
+				$("#PanicTitle").text(Language["HelpButton"]);
 			});			
 			$("#content").append("<ul id='answerpanel'></ul>");
 			if (!question.IsFirstQuestion)
@@ -374,7 +443,7 @@ function LoadQuestion(questionid){
 			}
 			$.get( "datalayer.php", { task: "GetQuestionCount"} )
 				.done(function( data ) {
-				  	var obj = 100/(JSON.parse(data)/QuestionIndex);
+				  	var obj = Math.round(100/(JSON.parse(data)/QuestionIndex));
 					DisplayProgressBar(obj);
 				}	
 			);

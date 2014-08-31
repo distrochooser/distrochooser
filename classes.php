@@ -7,6 +7,7 @@
 		public $SubTitle;
 		public $IsLastQuestion;
 		public $IsFirstQuestion;
+		public $IsImportant;
 	}
 	class Answer{
 		public $Id;
@@ -17,6 +18,7 @@
 		public $Id;
 		public $Name;
 		public $ChoosedBy = 0;
+		public $ChoosedByQuestion = array();
 		public $Description;
 		public $License;
 		public $Website;
