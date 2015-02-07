@@ -27,7 +27,7 @@
 			$result = array();
 			$query = "Select d.Id,d.Name,d.Homepage,d.Image, (
 			Select dd.Description from dictDistribution dd where  dd.DistributionId = d.Id and dd.LanguageId = ".$this->lang."
-			) as Description from Distribution d";
+			) as Description,d.ImageSource,d.TextSource from Distribution d";
 			$stmt = $this->db->conn->query($query);
 
 			$distros = $stmt->fetchAll(PDO::FETCH_CLASS);			
@@ -38,6 +38,8 @@
 				$distro->Homepage = $value->Homepage;
 				$distro->Image = $value->Image;
 				$distro->Description = $value->Description;
+				$distro->ImageSource = $value->ImageSource;
+				$distro->TextSource = $value->TextSource;
 				//Find out Answers for this distro
 				$query = "Select * from AnswerDistributionRelation adr where adr.DistributionId = ".$distro->Id;
 				$relations = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS);
@@ -56,7 +58,7 @@
 		public function GetQuestions(){
 			$result = array();
 			$query = "Select q.Id,q.OrderIndex, dq.Text,dq.Help from Question q INNER JOIN dictQuestion dq
-			ON LanguageId = ".$this->lang." and QuestionId= q.Id";
+			ON LanguageId = ".$this->lang." and QuestionId= q.Id order by q.OrderIndex";
 			$stmt = $this->db->conn->query($query);
 			$questions = $stmt->fetchAll(PDO::FETCH_CLASS);			
 			foreach ($questions as $key => $value) {

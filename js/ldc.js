@@ -19,6 +19,7 @@ function LDC(systemVars,language){
 	this.Exclude = Exclude;
 	this.Include = Include;
 	this.PostAnswerClick = PostAnswerClick;
+	this.GetResult = GetResult;
 	//Go!
 	this.Init();
 }
@@ -40,6 +41,9 @@ function SetUpUI(){
 	});
 	$("#answeredCount").text("0");
 	$("#welcomeTextHeader").trigger("click");
+	$("#getresult").click(function(){
+		GetResult();
+	});
 }
 function ApplyTitle(){
 	document.title = this.GetSystemValue("Title");
@@ -47,6 +51,23 @@ function ApplyTitle(){
 function SwitchLanguage(language){
 	ldc.language = language;
 	ldc.Init();
+}
+function GetResult(){
+	$("#ResultContent").empty();
+	for (var i = 0; i < ldc.distributionsAfterAnswer.length; i++) {
+		var item = "";
+		item = "<div class='panel panel-default'>";
+		item = item + "<div class='panel-heading'>"+ldc.distributionsAfterAnswer[i].Name+"</div>";
+		item = item + "<div class='panel-body'>"+ldc.distributionsAfterAnswer[i].Description+"</div>";
+
+		item = item + "<div class='panel-footer properties hidden-xs'><a target='_blank' href='"+ldc.distributionsAfterAnswer[i].Homepage+"'>Website</a></div>";
+		item = item + "</div>";
+		$("#ResultContent").append(item);
+	};	
+	if (ldc.distributionsAfterAnswer.length == 0){
+		$("#ResultContent").text(ldc.GetSystemValue("NoResults"));
+	}
+	$("#modal").modal();
 }
 function PostAnswerClick(){
 	$("#answeredCount").text(ldc.answers.length);
@@ -80,8 +101,16 @@ function FilterByAnswer(answer){
 		if ($("#Question_1 ul a[ldc_selected]").length == 0){
 			ldc.answers.push(id);
 			//Mark the answer
-			$("#"+answer+" li").append(" <span class='glyphicon glyphicon-ok'></span>");
-			$("#"+answer).attr("ldc_selected","true");			
+			$("#"+answer+" li").append(" <span id='"+answer+"_Selection' class='glyphicon glyphicon-ok'></span>");
+			$("#"+answer).attr("ldc_selected","true");	
+			$("#"+answer+"_Selection").hover(function(){
+				$(this).removeClass("glyphicon-ok");
+				$(this).addClass("glyphicon-remove");
+			});
+			$("#"+answer+"_Selection").mouseout(function(){
+				$(this).removeClass("glyphicon-remove");
+				$(this).addClass("glyphicon-ok");
+			});
 		}		
 	}else{
 		$("#"+answer+" li span").remove();
@@ -132,11 +161,11 @@ function InsertQuestions(){
 		var element= ldc.questions[i];
 		console.log(element);
 		var html = htmlInject.replace(new RegExp("{{ID}}", "g"),element.Id);	
-		html = html.replace(new RegExp("{{TITLE}}", "g"),element.Text);
+		html = html.replace(new RegExp("{{TITLE}}", "g"),(i+1)+". "+element.Text);
 		html = html.replace(new RegExp("{{QUESTION}}", "g"),element.Help);
-		var subHtml = "<ul>";
+		var subHtml = "<ul >";
 		for (var x = 0; x < element.Answers.length; x++) {
-			subHtml = subHtml + "<a href = '#' id='Answer_"+element.Answers[x].Id+"'><li>"+element.Answers[x].Text+"</li></a>";
+			subHtml = subHtml + "<a  href = '#' id='Answer_"+element.Answers[x].Id+"'><li>"+element.Answers[x].Text+"</li></a>";
 		}
 		subHtml = subHtml + "</ul>";
 		html = html.replace(new RegExp("{{CONTENT}}", "g"),subHtml)

@@ -1,8 +1,8 @@
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./Lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/ldc.css">
-
 <script src="./Lib/jquery.min.js"></script>
 <script src="https://www.promisejs.org/polyfills/promise-done-6.1.0.min.js"></script>
 <script src="./Lib/bootstrap/js/bootstrap.min.js"></script>
@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="row">
-				<img src="./assets/ldc2.png"></img>
+				<a href="index.php"><img src="./assets/ldc2.png"></img></a>
 			</div>
 		</div>
 		<div class="col-lg-6">
@@ -71,5 +71,31 @@
 	"</div>" + 
 "</div>";
 </script>
+<!-- Dialogs -->
+<div class="modal fade" id="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title ldcui" id="Result"></h4>
+      </div>
+      <div class="modal-body">
+        <p id="ResultContent">
+        	
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<footer class="footer hidden-xs">
+	<img class="vendor" src="./assets/0fury.ico"><span class="ldcui" id="Vendor"></span> <a target="_blank" href="http://0fury.de">0fury.de</a>
+	<a class="ldcui" id="contact" href="./content/contact.inc.php"></a>
+	<a class="ldcui" id="privacy" href="./content/privacy.inc.php">Datenschutz</a>		
+	<a class="ldcui" id="share"></a>
+	<a class="ldcui"  id="faq" href="./content/faq.inc.php">Häufig gestellte Fragen</a>	
+</footer>
 </body>
 </html>
