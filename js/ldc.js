@@ -177,6 +177,15 @@ function InsertQuestions(){
 			});
 		}
 	};	
+	$("[data-parent='#accordion']").click(function(){
+		if ($(this).attr("href") == "#collapseOne"){
+			$("#homelink").fadeOut();
+		}
+		else{
+			$("#homelink").fadeIn();
+		}
+		
+	});
 }
 function Init(){
 	console.clear();

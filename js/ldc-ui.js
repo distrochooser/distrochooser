@@ -29,4 +29,6 @@ $(document).ready(function(){
 	$("#share").click(function(){
 		DisplayShareDialog();
 	});
+	$("#homelink").css("display","none");	
+
 });

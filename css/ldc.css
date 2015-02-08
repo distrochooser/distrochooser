@@ -4,6 +4,12 @@
 li{
 	list-style-type:none;
 }
+body{
+	background: url(../assets/bg.jpg)
+}
+.largelogo{
+	max-width: 60%;
+}
 .list{
 	list-style-type:disc;
 }

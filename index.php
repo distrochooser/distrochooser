@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./Lib/bootstrap/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="./Lib/bootstrap/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="./Lib/bootstrap/css/lumen.css">
 <link  href="./Lib/font-awesome/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/ldc.css">
 <script src="./Lib/jquery.min.js"></script>
@@ -16,7 +17,7 @@
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="row">
-				<a href="index.php"><img src="./assets/ldc2.png"></img></a>				
+				<a id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>				
 			</div>
 		</div>
 		<div class="col-lg-6">
