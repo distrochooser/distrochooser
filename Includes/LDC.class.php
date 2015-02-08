@@ -29,8 +29,7 @@
 			Select dd.Description from dictDistribution dd where  dd.DistributionId = d.Id and dd.LanguageId = ".$this->lang."
 			) as Description,d.ImageSource,d.TextSource from Distribution d";
 			$stmt = $this->db->conn->query($query);
-
-			$distros = $stmt->fetchAll(PDO::FETCH_CLASS);			
+			$distros = $stmt->fetchAll(PDO::FETCH_CLASS);				
 			foreach ($distros as $key => $value) {
 				$distro = new \StdClass();
 				$distro->Id = $value->Id;
@@ -60,9 +59,10 @@
 			$query = "Select q.Id,q.OrderIndex, dq.Text,dq.Help from Question q INNER JOIN dictQuestion dq
 			ON LanguageId = ".$this->lang." and QuestionId= q.Id order by q.OrderIndex";
 			$stmt = $this->db->conn->query($query);
-			$questions = $stmt->fetchAll(PDO::FETCH_CLASS);			
+			$questions = $stmt->fetchAll(PDO::FETCH_CLASS);		
+			//return $this->Output($questions);	
 			foreach ($questions as $key => $value) {
-				$distro = new \StdClass();
+				$question = new \StdClass();
 				$question->Id = $value->Id;
 				$question->OrderIndex = $value->OrderIndex;
 				$question->Text = $value->Text;
@@ -75,6 +75,28 @@
 				$result[] = $question;						
 			}
 			return $this->Output($result);
+		}
+		public function AddResult($distros){		
+			if (count($distros) == 0)
+				return;
+			$query = "Insert into Result (Date) Values(CURRENT_TIMESTAMP)";
+			$stmt = $this->db->conn->prepare($query);
+			$stmt->execute();
+			$id = $this->db->conn->lastInsertId();	
+			foreach ($distros as $key => $value) {				
+				$query = "Insert into ResultDistro (DistroId,ResultId) Values(?,?)";
+				$stmt = $this->db->conn->prepare($query);
+				$distroId = $value->Id;
+				$stmt->bindParam(1,$distroId,PDO::PARAM_INT);
+				$stmt->bindParam(2,$id);
+				$stmt->execute();
+			}	
+		}
+		public function NewVisitor($referrer){
+			$query = "Insert into Visitor (Date,Referrer) Values(CURRENT_TIMESTAMP,?)";
+			$stmt = $this->db->conn->prepare($query);
+			$stmt->bindParam(1,$referrer);
+			$stmt->execute();
 		}
 	}
 ?>

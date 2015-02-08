@@ -37,7 +37,7 @@
 	 	$ldc->Abort();
 	}
 	else{
-		echo call_user_func_array(array($ldc,$method), $args);
+		echo call_user_func_array(array($ldc,$method), array($args));
 	}
 	
 ?>

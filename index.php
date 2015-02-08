@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./Lib/bootstrap/css/bootstrap.min.css">
+<link  href="./Lib/font-awesome/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/ldc.css">
 <script src="./Lib/jquery.min.js"></script>
-<script src="https://www.promisejs.org/polyfills/promise-done-6.1.0.min.js"></script>
 <script src="./Lib/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./js/ldc.js"></script>
 <script type="text/javascript" src="./js/ldc-ui.js"></script>
@@ -15,7 +16,7 @@
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="row">
-				<a href="index.php"><img src="./assets/ldc2.png"></img></a>
+				<a href="index.php"><img src="./assets/ldc2.png"></img></a>				
 			</div>
 		</div>
 		<div class="col-lg-6">
@@ -45,7 +46,10 @@
 				    <span class="badge"><span id="answeredCount" class="ldcui">X</span>/ <span class="ldcui" id="answerCount">Y</span></span>
 				    <span class="ldcui" id="answered">Beantwortet</span>
 				  </li>
-
+				  <li class="list-group-item">
+				    <span class="badge"><span id="hitCount" class="ldcui">X</span>/ <span class="ldcui" id="allCount">Y</span></span>
+				    <span class="ldcui" id="Suitable"></span>
+				  </li>
 				   <li class="list-group-item">
 				   	<a class="btn btn-primary ldcui" id="getresult">Auswerten</a>
 				   </li>
@@ -65,7 +69,7 @@
 	"</div>" + 
 	"<div id ='collapse{{ID}}' class='panel-collapse collapse' role='tabpanel' aria-labelledby='Heading{{ID}}'>" + 
 	  "<div id = 'Question_{{ID}}' class='panel-body'>" + 
-	   "<h1>{{QUESTION}}</h1>" +
+	   "<h3>{{QUESTION}}</h3>" +
 	  "{{CONTENT}}" + 
 	  "</div>" + 
 	"</div>" + 
@@ -83,6 +87,38 @@
         <p id="ResultContent">
         	
         </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id ="shareDialog" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title ldcui" id="shareTitle">Modal title</h4>
+      </div>
+      <div class="modal-body" id="shareDialogContent">  
+      <div class="socialicons">     
+        <a href="https://twitter.com/home?status=http://distrochooser.0fury.de?r=tw" target="_blank">
+        	<i class="fa fa-twitter fa-2x twitter"></i>
+        </a>
+        <a href="https://plus.google.com/share?url=http://distrochooser.0fury.de?r=gp" target="_blank">
+        	<i class="fa fa-google-plus  fa-2x gplus"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://distrochooser.0fury.de&r=fb" target="_blank">
+        	<i class="fa fa-facebook fa-2x facebook"></i>
+        </a>
+        <a href="mailto:?subject=Distro%20Chooser">
+        	<i class="fa fa-envelope fa-2x email"></i>
+        </a>
+        <a href="https://github.com/squarerootfury/distrochooser" target="_blank">
+        	<i class="fa fa-github fa-2x github"></i>
+        </a>
+       </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
