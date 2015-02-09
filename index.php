@@ -17,16 +17,45 @@
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="row">
-				<a id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>				
+				<!--<a class ="hidden-xs" id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>-->					
+					<div class="hidden-xs hidden-sm">
+					<button class="btn btn-primary buttonBright" type="button">
+					  <a class="ldcui" class="share" id="share"></a>	
+					</button>
+					<span class="spacer"></span>
+					<button class="btn btn-primary buttonBright" type="button">
+					  <a class="ldcui "  class="privacy" id="privacy" href="./static/privacy.php"></a>					  
+					</button>
+					<span class="spacer"></span>
+					<button class="btn btn-primary buttonBright" type="button">
+					  <a class="ldcui " class="contact"  id="contact" href="./static/contact.php"></a>					  
+					</button>
+					<span class="spacer"></span>
+					<button class="btn btn-primary buttonBright" type="button">
+					  <a class="ldcui " class="contact"  id="about"></a>					  
+					</button>
+					<span class="spacer"></span>
+					<button class="btn btn-primary buttonBright" type="button">					
+						<a target="_blank" href="http://0fury.de"> <img class="vendor" src="./assets/0fury.ico"><span class="ldcui" id="Vendor"></span>  0fury.de</a>				  
+					</button>
+
+					</div>
+					<div class="visible-xs visible-sm">					
+						<ul class="nav nav-pills" role="tablist">
+						  <li role="presentation"> <a class="ldcui" href="#" class="sshare" id="share"></a>	</li>
+						  <li role="presentation"> <a class="ldcui" class="sprivacy" id="privacy" href="./static/privacy.php"></a>	</li>
+						  <li role="presentation"> <a class="ldcui" class="scontact" id="contact" href="./static/contact.php"></a></li>
+						</ul>
+					</div>
 			</div>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-6 main">
 			<div class="row">
 				<div class="panel-group" id="accordion">
 					<div class="panel panel-default">
-						<div class="panel-heading">
+						<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
 							<h4 class="panel-title">
-								<a id="welcomeTextHeader" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed ldcui">Collapsible Group Item #1</a>
+								<a id="welcomeTextHeader"  class="collapsed ldcui">Collapsible Group Item #1</a>
 							</h4>
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse">
@@ -43,6 +72,9 @@
 		<div class="col-lg-2">
 			<div class="row">				
 				<ul class="list-group"  id='rightBar'>
+				  <li class="list-group-item"><a class="hidden-xs" id="homelink" href="index.php" style="display: inline;"><img src="./assets/ldc2alpha.png" style="
+					    width: 100%;
+					"></a></li>
 				  <li class="list-group-item">
 				    <span class="badge"><span id="answeredCount" class="ldcui">X</span>/ <span class="ldcui" id="answerCount">Y</span></span>
 				    <span class="ldcui" id="answered">Beantwortet</span>
@@ -61,16 +93,16 @@
 </div>
 <script type="text/javascript">
 	var htmlInject = "<div class='panel panel-default'>" + 
-	"<div class='panel-heading' role='tab' id='Heading{{ID}}'>" + 
+	"<div class='panel-heading' role='tab' id='Heading{{ID}}' data-toggle='collapse' data-parent='#accordion' href='#collapse{{ID}}' aria-expanded='false' aria-controls='collapse{{ID}}'>" + 
 	"  <h4 class='panel-title'>" + 
-	   " <a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#collapse{{ID}}' aria-expanded='false' aria-controls='collapse{{ID}}'>" + 
+	   " <a class='collapsed' >" + 
 	     " {{TITLE}}" + 
 	    "</a>" + 
 	 " </h4>" + 
 	"</div>" + 
 	"<div id ='collapse{{ID}}' class='panel-collapse collapse' role='tabpanel' aria-labelledby='Heading{{ID}}'>" + 
 	  "<div id = 'Question_{{ID}}' class='panel-body'>" + 
-	   "<h3>{{QUESTION}}</h3>" +
+	   "<p>{{QUESTION}}</p>" +
 	  "{{CONTENT}}" + 
 	  "</div>" + 
 	"</div>" + 
@@ -127,12 +159,57 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<footer class="footer hidden-xs">
-	<img class="vendor" src="./assets/0fury.ico"><span class="ldcui" id="Vendor"></span> <a target="_blank" href="http://0fury.de">0fury.de</a>
-	<a class="ldcui" id="contact" href="./content/contact.inc.php"></a>
-	<a class="ldcui" id="privacy" href="./content/privacy.inc.php">Datenschutz</a>		
-	<a class="ldcui" id="share"></a>
-	<a class="ldcui"  id="faq" href="./content/faq.inc.php">Häufig gestellte Fragen</a>	
-</footer>
+<!-- imprint-->
+<div class="modal fade" id="modalImprint">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p id="imprint" class="ldcui">
+        	
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalPrivacy">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p id="privacyText" class="ldcui">
+        	
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalAbout">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p id="aboutText" class="ldcui">
+        	
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

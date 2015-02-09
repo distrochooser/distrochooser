@@ -85,7 +85,7 @@ function PostAnswerClick(){
 			}			
 		}else{
 			$("#zerodistros").remove();
-				$("#getresult").removeClass("btn-danger");
+			$("#getresult").removeClass("btn-danger");
 			$("#getresult").removeClass("btn-primary");
 			$("#getresult").addClass("btn-success");
 		}	
@@ -107,6 +107,8 @@ function FilterByAnswer(answer){
 		if ($("#Question_"+questionId+" ul a[ldc_selected]").length == 0){
 			ldc.answers.push(id);
 			//Mark the answer
+			var header = $("#Question_"+questionId).parent().parent()[0].children[0].id;
+			$("#"+header).append("<h4 class='answered'>"+ldc.GetSystemValue("questionanswered").toUpperCase()+"</h4>");
 			$("#"+answer+" li").append(" <span id='"+answer+"_Selection' class='glyphicon glyphicon-ok'></span>");
 			$("#"+answer).attr("ldc_selected","true");	
 			$("#"+answer+"_Selection").hover(function(){
@@ -122,7 +124,8 @@ function FilterByAnswer(answer){
 		}		
 	}else{
 		//TODO: Das verwirft alte antwroten...
-
+		var header = $("#Question_"+questionId).parent().parent()[0].children[0].id;
+		$("#"+header+" h4").last().remove();
 		$("#"+answer+" li span").remove();
 		$("#"+answer).removeAttr("ldc_selected");
 		ldc.answers.splice(ldc.answers.indexOf(id),1);
@@ -180,9 +183,11 @@ function InsertQuestions(){
 	$("[data-parent='#accordion']").click(function(){
 		if ($(this).attr("href") == "#collapseOne"){
 			$("#homelink").fadeOut();
+			$("#rightBar").fadeOut();
 		}
 		else{
 			$("#homelink").fadeIn();
+			$("#rightBar").fadeIn();
 		}
 		
 	});

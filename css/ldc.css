@@ -7,6 +7,22 @@ li{
 body{
 	background: url(../assets/bg.jpg)
 }
+.spacer{
+	display: block;
+	height: 7px;
+}
+.buttonBright a{
+	color:white;	
+}
+.buttonBright{
+	color:white;	
+	display: block;
+	width: 70%;
+}
+.vendor{
+	margin-right:5px;
+	margin-bottom: 4px;
+}
 .largelogo{
 	max-width: 60%;
 }
@@ -54,4 +70,25 @@ body{
 }
 .fa{
 	display: initial !important;
+}
+ .main ul{
+	padding-left: 0;
+}
+.main ul a:hover{
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+.panel-heading{
+	cursor: pointer;	
+	position: relative;
+}
+ .panel-heading a{
+	text-decoration: none;
+}
+ .answered{
+	position: absolute;
+	top: 0;
+	right: 0.5em;
+	color: #D5D5D5;
 }

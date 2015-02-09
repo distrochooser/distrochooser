@@ -24,11 +24,26 @@ $(document).ready(function(){
 	$.post( "./rest.php", { method: "GetSystemVars", args: "[]",lang: lang})
 	.done(function( data ) {		
 		ldc = new LDC($.parseJSON(data),lang);
+
 	});
 	$.post( "./rest.php", { method: "NewVisitor", args: "\""+document.referrer+"\"",lang: lang});
-	$("#share").click(function(){
+	$("#share,.sshare").click(function(){
 		DisplayShareDialog();
 	});
+	$("#contact,.scontact").click(function(e){
+		$("#modalImprint").modal();
+		e.preventDefault();
+	});
+	$("#privacy,.sprivacy").click(function(e){
+		$("#modalPrivacy").modal();
+		e.preventDefault();
+	});
+	$("#about").click(function(e){
+		$("#modalAbout").modal();
+		e.preventDefault();
+	});
+	
+	
 	$("#homelink").css("display","none");	
-
+	$("#rightBar").css("display","none");
 });
