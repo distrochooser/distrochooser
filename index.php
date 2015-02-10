@@ -201,9 +201,16 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <p id="aboutText" class="ldcui">
-        	
-        </p>
+        <h3 id="Title" class="ldcui"></h3>
+        <p id="aboutText" class="ldcui"></p>
+        <h3 id="installedDistros" class="ldcui"></h3>
+        <ul id="distros">
+        </ul>
+        <h3 id="stats" class="ldcui"></h3>
+        <span id="testCount" class="ldcui"></span><span  id="tc" class="badge"></span>
+         <h4 id="rankedDistros" class="ldcui"></h4>
+        <ul id="ranks">
+        </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>

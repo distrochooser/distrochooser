@@ -1,9 +1,6 @@
 .container{
 	padding-top:40px;
 }
-li{
-	list-style-type:none;
-}
 body{
 	background: url(../assets/bg.jpg)
 }
@@ -70,9 +67,6 @@ body{
 }
 .fa{
 	display: initial !important;
-}
- .main ul{
-	padding-left: 0;
 }
 .main ul a:hover{
 	text-decoration: none;

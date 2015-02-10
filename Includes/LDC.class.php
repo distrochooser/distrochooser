@@ -98,5 +98,23 @@
 			$stmt->bindParam(1,$referrer);
 			$stmt->execute();
 		}
+		public function GetTestCount(){
+			$query = "Select count(Id) as count from ResultDistro";
+			$count = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS)[0];
+			return $this->Output($count->count);
+		}
+		public function GetInstalledDistros(){
+			$query = "Select Name,Homepage  from Distribution";
+			$distros = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS);
+			return $this->Output($distros);
+		}
+		public function GetStats(){
+			$query="Select Name,Homepage, (
+			 Select count(r.Id) from ResultDistro r where r.DistroId = d.Id
+			) as count from Distribution d 
+			order by count desc;";
+			$distros = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS);
+			return $this->Output($distros);
+		}
 	}
 ?>

@@ -39,10 +39,29 @@ $(document).ready(function(){
 		e.preventDefault();
 	});
 	$("#about").click(function(e){
-		$("#modalAbout").modal();
-		e.preventDefault();
-	});
-	
+		$.post( "./rest.php", { method: "GetInstalledDistros", args: "[]",lang: lang})
+		.done(function( data ) {				
+			var distros = $.parseJSON(data);
+			$("#distros").empty();
+			for (var i = 0; i < distros.length; i++) {
+				$("#distros").append("<li><a href='"+distros[i].Homepage+"'>"+distros[i].Name+"</a></li>");
+			};
+		});	
+		$.post( "./rest.php", { method: "GetStats", args: "[]",lang: lang})
+		.done(function( data ) {				
+			var distros = $.parseJSON(data);
+			$("#ranks").empty();
+			for (var i = 0; i < distros.length; i++) {
+				$("#ranks").append("<li><a href='"+distros[i].Homepage+"'>"+distros[i].Name+"</a> ("+distros[i].count+"x)</li>");
+			};
+		});	
+		$.post( "./rest.php", { method: "GetTestCount", args: "[]",lang: lang})
+		.done(function( data ) {				
+			$("#modalAbout").modal();
+			e.preventDefault();
+			$("#tc").text($.parseJSON(data));
+		});		
+	});	
 	
 	$("#homelink").css("display","none");	
 	$("#rightBar").css("display","none");

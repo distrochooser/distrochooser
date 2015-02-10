@@ -168,7 +168,7 @@ function InsertQuestions(){
 		html = html.replace(new RegExp("{{QUESTION}}", "g"),element.Help);
 		var subHtml = "<ul >";
 		for (var x = 0; x < element.Answers.length; x++) {
-			subHtml = subHtml + "<a   id='Answer_"+element.Answers[x].Id+"'><li>"+(x+1)+". "+element.Answers[x].Text+"</li></a>";
+			subHtml = subHtml + "<a   id='Answer_"+element.Answers[x].Id+"'><li>"+element.Answers[x].Text+"</li></a>";
 		}
 		subHtml = subHtml + "</ul>";
 		html = html.replace(new RegExp("{{CONTENT}}", "g"),subHtml)
