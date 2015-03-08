@@ -86,3 +86,46 @@ body{
 	right: 0.5em;
 	color: #D5D5D5;
 }
+.ok{
+	color:darkgreen;
+}
+.no{
+	color:darkred;
+}
+#matrix th
+{
+    background-color: grey;
+    color: white;
+    text-align: center;
+    vertical-align: bottom;
+    height: 150px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.verticalText
+{
+    text-align: center;
+    vertical-align: middle;
+    width: 20px;
+    margin: 0px;
+    padding: 0px;
+    padding-right: 3px;
+	padding-top: 10px;
+	padding-bottom: 17px;
+    white-space: nowrap;
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg);                 
+}
+.linuxlogo{
+	width: 200px;
+	float: left;
+	padding: 30px;
+	clear: both;
+	margin-bottom: 20px;
+}
+.smalllinuxlogo{
+	width: 40px;
+	margin: 7px;
+}

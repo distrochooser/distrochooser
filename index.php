@@ -49,21 +49,30 @@
 					</div>
 			</div>
 		</div>
-		<div class="col-lg-6 main">
+		<div class="col-lg-6 main">   
 			<div class="row">
+        <noscript>
+          <div class="alert alert-danger">
+            Die Linux-Auswahlhilfe benötigt JavaScript für essentielle Funktionen. 
+            JavaScript ist nicht böse. Ich nutze JavaScript für eine bessere Benutzbarkeit des Dienstes.
+            Du kannst dir auf <a href="https://github.com/squarerootfury/distrochooser/tree/ldc2/">Github</a> gerne ansehen, was der Distrochooser im Hintergrund macht und das es sich um ein vertrauenswürdiges Projekt handelt.
+            <hr>
+            The Linux-Distrochooser requires JavaScript to improve the user expierience. 
+            JavaScript ist not evil. You can look on <a href="https://github.com/squarerootfury/distrochooser/tree/ldc2/">Github</a> what the Distrochooser does with JavaScript.
+          </div>
+        </noscript>
 				<div class="panel-group" id="accordion">
 					<div class="panel panel-default">
 						<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
 							<h4 class="panel-title">
-								<a id="welcomeTextHeader"  class="collapsed ldcui">Collapsible Group Item #1</a>
+								<a id="welcomeTextHeader"  class="collapsed ldcui"></a>
 							</h4>
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse">
 							<div class="panel-body ldcui" id="welcomeText">
 							</div>
 						</div>
-					</div>	
-
+					</div>
 				</div>
 			</div>
 		</div>
@@ -83,9 +92,12 @@
 				    <span class="badge"><span id="hitCount" class="ldcui">X</span>/ <span class="ldcui" id="allCount">Y</span></span>
 				    <span class="ldcui" id="Suitable"></span>
 				  </li>
+          <li class="list-group-item">
+              <div id="icons"></div>
+           </li>
 				   <li class="list-group-item">
 				   	<a class="btn btn-primary ldcui" id="getresult">Auswerten</a>
-				   </li>
+				   </li>           
 				</ul>
 			</div>
 		</div>
@@ -117,9 +129,11 @@
         <h4 class="modal-title ldcui" id="Result"></h4>
       </div>
       <div class="modal-body">
-        <p id="ResultContent">
-        	
+        <p id="ResultContent">        	
         </p>
+        <h4 class="ldcui" id="MatrixHeader"></h4>
+        <table style="table-layout:fixed;" id="matrix" class="table table-hover table-condensed">
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
@@ -127,38 +141,6 @@
     </div>
   </div>
 </div>
-<div id ="shareDialog" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title ldcui" id="shareTitle">Modal title</h4>
-      </div>
-      <div class="modal-body" id="shareDialogContent">  
-      <div class="socialicons">     
-        <a href="https://twitter.com/home?status=http://distrochooser.0fury.de?r=tw" target="_blank">
-        	<i class="fa fa-twitter fa-2x twitter"></i>
-        </a>
-        <a href="https://plus.google.com/share?url=http://distrochooser.0fury.de?r=gp" target="_blank">
-        	<i class="fa fa-google-plus  fa-2x gplus"></i>
-        </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://distrochooser.0fury.de&r=fb" target="_blank">
-        	<i class="fa fa-facebook fa-2x facebook"></i>
-        </a>
-        <a href="mailto:?subject=Distro%20Chooser">
-        	<i class="fa fa-envelope fa-2x email"></i>
-        </a>
-        <a href="https://github.com/squarerootfury/distrochooser" target="_blank">
-        	<i class="fa fa-github fa-2x github"></i>
-        </a>
-       </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 <!-- imprint-->
 <div class="modal fade" id="modalImprint">
   <div class="modal-dialog">
@@ -218,5 +200,37 @@
     </div>
   </div>
 </div>
+<div id ="shareDialog" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title ldcui" id="shareTitle">Modal title</h4>
+      </div>
+      <div class="modal-body" id="shareDialogContent">  
+      <div class="socialicons">     
+        <a href="https://twitter.com/home?status=http://distrochooser.0fury.de?r=tw" target="_blank">
+          <i class="fa fa-twitter fa-2x twitter"></i>
+        </a>
+        <a href="https://plus.google.com/share?url=http://distrochooser.0fury.de?r=gp" target="_blank">
+          <i class="fa fa-google-plus  fa-2x gplus"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://distrochooser.0fury.de&r=fb" target="_blank">
+          <i class="fa fa-facebook fa-2x facebook"></i>
+        </a>
+        <a href="mailto:?subject=Distro%20Chooser">
+          <i class="fa fa-envelope fa-2x email"></i>
+        </a>
+        <a href="https://github.com/squarerootfury/distrochooser" target="_blank">
+          <i class="fa fa-github fa-2x github"></i>
+        </a>
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </body>
 </html>

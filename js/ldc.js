@@ -20,6 +20,7 @@ function LDC(systemVars,language){
 	this.PostAnswerClick = PostAnswerClick;
 	this.GetResult = GetResult;
 	this.ApplyFilterResults = ApplyFilterResults;
+	this.CreateResultMatrix = CreateResultMatrix;
 	//Go!
 	this.Init();
 }
@@ -61,7 +62,8 @@ function GetResult(){
 		var item = "";
 		item = "<div class='panel panel-default'>";
 		item = item + "<div class='panel-heading'>"+ldc.distributionsAfterAnswer[i].Name+"</div>";
-		item = item + "<div class='panel-body'>"+ldc.distributionsAfterAnswer[i].Description+"</div>";
+		item = item + "<div class='panel-body'>";
+		item = item + "<img class='linuxlogo' src='"+ldc.distributionsAfterAnswer[i].Image+"'></img>"+ldc.distributionsAfterAnswer[i].Description+"</div>";
 
 		item = item + "<div class='panel-footer properties hidden-xs'><a target='_blank' href='"+ldc.distributionsAfterAnswer[i].Homepage+"'>Website</a></div>";
 		item = item + "</div>";
@@ -70,6 +72,33 @@ function GetResult(){
 	if (ldc.distributionsAfterAnswer.length == 0){
 		$("#ResultContent").text(ldc.GetSystemValue("NoResults"));
 	}
+	var matrix = ldc.CreateResultMatrix();
+	$("#matrix").empty();
+	var header = "<tr><th></th>";
+	for (var i = ldc.distributions.length - 1; i >= 0; i--) {
+		header += "<th><div class='verticalText'>"+ldc.distributions[i].Name+"</div></th>";
+	};
+	header += "</th>";
+	$('#matrix').append(header);	
+	for (var key in matrix) {
+		var row = "<tr>";
+		var tooltip = '<a href="#" type="button" class="questionbtn" data-toggle="popover" title="" data-content="'+key+'" data-trigger="focus" tabindex="0"><i class="glyphicon glyphicon-question-sign"></i></a>';		
+		row +="<td>"+tooltip+"</td>";	
+		var horIndex = 2;	
+		for (var i = ldc.distributions.length - 1; i >= 0; i--) {	
+			var name = $('#matrix th:nth-child('+horIndex+') div').first().html();
+			if (matrix[key][i] == name)	
+				row +="<td><i class=\"ok glyphicon glyphicon-ok\"></td>";
+			else
+				row +="<td><i class=\"no glyphicon glyphicon-remove\"></i></td>";
+			horIndex++;
+		};
+		row += "</tr>";
+		$('#matrix').append(row);
+	}	
+	var html = $("#matrix").html();
+	$(".questionbtn").popover();
+	//TODO: Display
 	$("#modal").modal();
 }
 function PostAnswerClick(){
@@ -159,6 +188,12 @@ function ApplySearch(id){
 function ApplyFilterResults(){
 	$("#hitCount").html(ldc.distributionsAfterAnswer.length);
 	$("#allCount").html(ldc.distributions.length);
+	$("#icons").html("");
+	var icons = "";
+	for (var i = ldc.distributionsAfterAnswer.length - 1; i >= 0; i--) {
+		icons += "<a href='"+ldc.distributionsAfterAnswer[i].Homepage+"' target='_blank'><img class='smalllinuxlogo' title='"+ldc.distributionsAfterAnswer[i].Name+"'src='"+ldc.distributionsAfterAnswer[i].Image+"'></img></a>";
+	};
+$("#icons").html(icons);
 }
 function InsertQuestions(){
 	for (var i = 0; i < ldc.questions.length; i++) {
@@ -230,4 +265,25 @@ function GetQuestions(){
 		$("#answerCount").text(ldc.questions.length);
 		ldc.InsertQuestions();
 	});
+}
+function CreateResultMatrix(){
+	var matrix = {};
+	for (var i = ldc.questions.length - 1; i >= 0; i--) {
+		var row = ldc.questions[i];	
+		for (var y = row.Answers.length - 1; y >= 0; y--) {
+			var fittingDistros = [];
+			var answer = row.Answers[y].Id;
+			if (ldc.answers.indexOf(answer) != -1 || ldc.answers.length == 0){
+				for (var x = ldc.distributions.length - 1; x >= 0; x--) {
+					var answersDistro = ldc.distributions[x].Answers;					
+					if (answersDistro.indexOf(answer) != -1){					
+						if (fittingDistros.indexOf(ldc.distributions[x].Name) == -1)
+							fittingDistros[ldc.distributions.indexOf(ldc.distributions[x])] = (ldc.distributions[x].Name);
+					}
+					matrix[row.Text + ": " + row.Answers[y].Text] = fittingDistros;					
+				};
+			}			
+		};		
+	};
+	return matrix;	
 }
