@@ -99,7 +99,7 @@
 			$stmt->execute();
 		}
 		public function GetTestCount(){
-			$query = "Select count(Id) as count from ResultDistro";
+			$query = "Select count(Id) as count from Result";
 			$count = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS)[0];
 			return $this->Output($count->count);
 		}
