@@ -92,9 +92,6 @@
 				    <span class="badge"><span id="hitCount" class="ldcui">X</span>/ <span class="ldcui" id="allCount">Y</span></span>
 				    <span class="ldcui" id="Suitable"></span>
 				  </li>
-          <li class="list-group-item">
-              <div id="icons"></div>
-           </li>
 				   <li class="list-group-item">
 				   	<a class="btn btn-primary ldcui" id="getresult">Auswerten</a>
 				   </li>           

@@ -70,7 +70,7 @@ function GetResult(){
 		$("#ResultContent").append(item);
 	};	
 	if (ldc.distributionsAfterAnswer.length == 0){
-		$("#ResultContent").text(ldc.GetSystemValue("NoResults"));
+		$("#ResultContent").html("<div class='alert alert-info'>"+ldc.GetSystemValue("NoResults")+"</div>");
 	}
 	var matrix = ldc.CreateResultMatrix();
 	$("#matrix").empty();
@@ -187,13 +187,7 @@ function ApplySearch(id){
 }
 function ApplyFilterResults(){
 	$("#hitCount").html(ldc.distributionsAfterAnswer.length);
-	$("#allCount").html(ldc.distributions.length);
-	$("#icons").html("");
-	var icons = "";
-	for (var i = ldc.distributionsAfterAnswer.length - 1; i >= 0; i--) {
-		icons += "<a href='"+ldc.distributionsAfterAnswer[i].Homepage+"' target='_blank'><img class='smalllinuxlogo' title='"+ldc.distributionsAfterAnswer[i].Name+"'src='"+ldc.distributionsAfterAnswer[i].Image+"'></img></a>";
-	};
-$("#icons").html(icons);
+	$("#allCount").html(ldc.distributions.length);	
 }
 function InsertQuestions(){
 	for (var i = 0; i < ldc.questions.length; i++) {
@@ -227,8 +221,8 @@ function InsertQuestions(){
 		
 	});
 }
-function Init(){
-	console.clear();
+function Init(){	
+	console.log("(╯ಠ_ಠ）╯︵ ┻━┻)	");
 	console.log("Nothing to do here!");
 	$.post( "./rest.php", { method: "GetSystemVars", args: "[]",lang: this.language })
 	.done(function( data ) {
