@@ -2,7 +2,10 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<link rel="stylesheet" href="./Lib/bootstrap/css/bootstrap.min.css">-->
+<meta charset="UTF-8">
+<meta name="description" lang = "de"  content ="Die Linux Auswahlhilfe hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.">
+<meta name="description" lang = "en"  content ="The Linux Distribution Chooser helps you to find the suitable Distribution for you!">
+<meta name="keywords" content="Linux, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows">
 <link rel="stylesheet" href="./Lib/bootstrap/css/lumen.css">
 <link  href="./Lib/font-awesome/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/ldc.css">
@@ -18,59 +21,64 @@
 		<div class="col-lg-3">
 			<div class="row">
 				<!--<a class ="hidden-xs" id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>-->					
-					<div class="hidden-xs hidden-sm">
-					<button class="btn btn-primary buttonBright" type="button">
-					  <a class="ldcui" class="share" id="share"></a>	
-					</button>
+					<div class="hidden-xs hidden-sm">			
+					<a class="btn btn-primary buttonBright ldcui share" id="shareMenuEntry"></a>					
 					<span class="spacer"></span>
-					<button class="btn btn-primary buttonBright" type="button">
-					  <a class="ldcui "  class="privacy" id="privacy" href="./static/privacy.php"></a>					  
-					</button>
+					<a class="btn btn-primary buttonBright ldcui privacy" id="privacyMenuEntry" href="./static/privacy.php"></a>					  
 					<span class="spacer"></span>
-					<button class="btn btn-primary buttonBright" type="button">
-					  <a class="ldcui " class="contact"  id="contact" href="./static/contact.php"></a>					  
-					</button>
-					<span class="spacer"></span>
-					<button class="btn btn-primary buttonBright" type="button">
-					  <a class="ldcui " class="contact"  id="about"></a>					  
-					</button>
-					<span class="spacer"></span>
-					<button class="btn btn-primary buttonBright" type="button">					
-						<a target="_blank" href="http://0fury.de"> <img class="vendor" src="./assets/0fury.ico"><span class="ldcui" id="Vendor"></span>  0fury.de</a>				  
-					</button>
+					<a class="btn btn-primary buttonBright ldcui contact" id="contactMenuEntry" href="./static/contact.php"></a>					  
+					<span class="spacer"></span>				
+          <a class="btn btn-primary buttonBright ldcui contact" id="about"></a>     
+					<span class="spacer"></span>				
+					<a class="btn btn-primary buttonBright" target="_blank" href="http://0fury.de"><img class="vendor" alt="0fury.de" src="./assets/0fury.ico"><span class="ldcui" id="Vendor"></span>  0fury.de</a>				  
+				
 
 					</div>
 					<div class="visible-xs visible-sm">					
 						<ul class="nav nav-pills" role="tablist">
-						  <li role="presentation"> <a class="ldcui" href="#" class="sshare" id="share"></a>	</li>
-						  <li role="presentation"> <a class="ldcui" class="sprivacy" id="privacy" href="./static/privacy.php"></a>	</li>
-						  <li role="presentation"> <a class="ldcui" class="scontact" id="contact" href="./static/contact.php"></a></li>
+						  <li role="presentation"> <a class="ldcui sshare" href="#" id="share"></a></li>
+						  <li role="presentation"> <a class="ldcui sprivacy" id="privacy" href="./static/privacy.php"></a></li>
+						  <li role="presentation"> <a class="ldcui scontact" id="contact" href="./static/contact.php"></a></li>
 						</ul>
 					</div>
 			</div>
 		</div>
 		<div class="col-lg-6 main">   
-			<div class="row">
-        <noscript>
-          <div class="alert alert-danger">
-            Die Linux-Auswahlhilfe benötigt JavaScript für essentielle Funktionen. 
-            JavaScript ist nicht böse. Ich nutze JavaScript für eine bessere Benutzbarkeit des Dienstes.
-            Du kannst dir auf <a href="https://github.com/squarerootfury/distrochooser/tree/ldc2/">Github</a> gerne ansehen, was der Distrochooser im Hintergrund macht und das es sich um ein vertrauenswürdiges Projekt handelt.
-            <hr>
-            The Linux-Distrochooser requires JavaScript to improve the user expierience. 
-            JavaScript ist not evil. You can look on <a href="https://github.com/squarerootfury/distrochooser/tree/ldc2/">Github</a> what the Distrochooser does with JavaScript.
-          </div>
-        </noscript>
+			<div class="row"> 
+       
 				<div class="panel-group" id="accordion">
 					<div class="panel panel-default">
-						<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						<div class="panel-heading">
 							<h4 class="panel-title">
-								<a id="welcomeTextHeader"  class="collapsed ldcui"></a>
+								<a id="welcomeTextHeader" class="collapsed ldcui"  data-toggle="collapse" data-parent="#accordion" href="#collapseOne">#</a>
 							</h4>
 						</div>
-						<div id="collapseOne" class="panel-collapse collapse">
+						<div id="collapseOne" class="panel-collapse ">
 							<div class="panel-body ldcui" id="welcomeText">
-							</div>
+              <div class="remarks">
+               <h1 >
+                  Willkommen beim Linux Distribution Chooser! Welcome to the Linux Distribution Chooser!
+                </h1>
+                <div class="alert alert-info">
+                Dieser Test soll Dir helfen, die für Deine Zwecke am besten geeignete Linux-Distribution zu finden. 
+                Dabei stellt Dir der Test einfache Fragen, um z. B. ungeeignete Distributionen auszuschließen. 
+                </br>
+                 </br>
+                This Service should help you to find a suitable linux distribution which fits your needs. 
+                The test will ask you simple questions to select the correct distributions.
+                </div>
+      					<noscript>
+                <div class="alert alert-danger">
+                  Die Linux-Auswahlhilfe benötigt JavaScript für essentielle Funktionen. 
+                  JavaScript ist nicht böse. Ich nutze JavaScript für eine bessere Benutzbarkeit des Dienstes.
+                  Du kannst dir auf <a href="https://github.com/squarerootfury/distrochooser/tree/ldc2/">Github</a> gerne ansehen, was der Distrochooser im Hintergrund macht und das es sich um ein vertrauenswürdiges Projekt handelt.
+                  <hr>
+                  The Linux-Distrochooser requires JavaScript to improve the user expierience. 
+                  JavaScript ist not evil. You can look on <a href="https://github.com/squarerootfury/distrochooser/tree/ldc2/">Github</a> what the Distrochooser does with JavaScript.
+                </div>
+              </noscript>
+              </div>
+            	</div>
 						</div>
 					</div>
 				</div>
@@ -81,7 +89,7 @@
 		<div class="col-lg-2">
 			<div class="row">				
 				<ul class="list-group"  id='rightBar'>
-				  <li class="list-group-item"><a class="hidden-xs" id="homelink" href="index.php" style="display: inline;"><img src="./assets/ldc2alpha.png" style="
+				  <li class="list-group-item"><a class="hidden-xs" id="homelink" href="index.php" style="display: inline;"><img src="./assets/ldc2alpha.png" alt="Linux Distribution Chooser" style="
 					    width: 100%;
 					"></a></li>
 				  <li class="list-group-item">
@@ -123,12 +131,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title ldcui" id="Result"></h4>
+        <h4 class="modal-title ldcui" id="Result">#</h4>
       </div>
       <div class="modal-body">
         <p id="ResultContent">        	
         </p>
-        <h4 class="ldcui" id="MatrixHeader"></h4>
+        <h4 class="ldcui" id="MatrixHeader">#</h4>
         <table style="table-layout:fixed;" id="matrix" class="table table-hover table-condensed">
         </table>
       </div>
@@ -180,14 +188,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <h3 id="Title" class="ldcui"></h3>
+        <h3 id="Title" class="ldcui">#</h3>
         <p id="aboutText" class="ldcui"></p>
-        <h3 id="installedDistros" class="ldcui"></h3>
+        <h3 id="installedDistros" class="ldcui">#</h3>
         <ul id="distros">
         </ul>
-        <h3 id="stats" class="ldcui"></h3>
+        <h3 id="stats" class="ldcui">#</h3>
         <span id="testCount" class="ldcui"></span><span  id="tc" class="badge"></span>
-         <h4 id="rankedDistros" class="ldcui"></h4>
+         <h4 id="rankedDistros" class="ldcui">#</h4>
         <ul id="ranks">
         </ul>
       </div>
@@ -212,7 +220,7 @@
         <a href="https://plus.google.com/share?url=http://distrochooser.0fury.de?r=gp" target="_blank">
           <i class="fa fa-google-plus  fa-2x gplus"></i>
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://distrochooser.0fury.de&r=fb" target="_blank">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://distrochooser.0fury.de?r=fb" target="_blank">
           <i class="fa fa-facebook fa-2x facebook"></i>
         </a>
         <a href="mailto:?subject=Distro%20Chooser">

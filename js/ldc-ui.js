@@ -27,14 +27,14 @@ $(document).ready(function(){
 
 	});
 	$.post( "./rest.php", { method: "NewVisitor", args: "\""+document.referrer+"\"",lang: lang});
-	$("#share,.sshare").click(function(){
+	$("#share,.sshare,#shareMenuEntry").click(function(){
 		DisplayShareDialog();
 	});
-	$("#contact,.scontact").click(function(e){
+	$("#contact,.scontact,#contactMenuEntry").click(function(e){
 		$("#modalImprint").modal();
 		e.preventDefault();
 	});
-	$("#privacy,.sprivacy").click(function(e){
+	$("#privacy,.sprivacy,#privacyMenuEntry").click(function(e){
 		$("#modalPrivacy").modal();
 		e.preventDefault();
 	});

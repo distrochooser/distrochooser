@@ -37,6 +37,13 @@ function SetUpUI(){
 	$(".ldcui").each(function(index, value) { 
 	    var id = $(this).attr('id'); 
 	    var value = ldc.GetSystemValue(id);
+	    if (id == undefined || value == "")
+	    {
+	    	//for elements with duplicate context
+	    	var classes = $(this).attr("class").split(' ');
+	    	id = classes[classes.length -1];
+	    	value = ldc.GetSystemValue(id);
+	    }	 
 	    if (value != "")
 			$(this).html(value);
 	});
