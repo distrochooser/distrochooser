@@ -72,7 +72,7 @@ function GetResult(){
 		item = item + "<div class='panel-body'>";
 		item = item + "<img class='linuxlogo' src='"+ldc.distributionsAfterAnswer[i].Image+"'></img>"+ldc.distributionsAfterAnswer[i].Description+"</div>";
 
-		item = item + "<div class='panel-footer properties hidden-xs'><a target='_blank' href='"+ldc.distributionsAfterAnswer[i].Homepage+"'>Website</a></div>";
+		item = item + "<div class='panel-footer properties hidden-xs'><a class='detail' target='_blank' href='"+ldc.distributionsAfterAnswer[i].Homepage+"'>Website</a><a target='_blank' class='detail'  href='./detail.php?id="+ldc.distributionsAfterAnswer[i].Id+"&lang="+ldc.language+"'>Details</a></div>";
 		item = item + "</div>";
 		$("#ResultContent").append(item);
 	};	

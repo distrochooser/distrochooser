@@ -6,6 +6,7 @@
 <meta name="description" lang = "de"  content ="Die Linux Auswahlhilfe hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.">
 <meta name="description" lang = "en"  content ="The Linux Distribution Chooser helps you to find the suitable Distribution for you!">
 <meta name="keywords" content="Linux, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows">
+<meta name="generator" = "LDC 2015">
 <link rel="stylesheet" href="./Lib/bootstrap/css/lumen.css">
 <link  href="./Lib/font-awesome/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/ldc.css">

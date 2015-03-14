@@ -5,7 +5,8 @@
 		private $lang;
 		public function __construct($lang){
 			$this->db = new \DB();
-			$this->lang = $lang;
+
+			$this->lang = trim($this->db->conn->quote($lang),"'");//$lang;
 		}
 		public function GetVersion(){
 			return $this->Output(__LDC_VERSION__);
@@ -26,7 +27,7 @@
 		public function GetDistributions(){
 			$result = array();
 			$query = "Select d.Id,d.Name,d.Homepage,d.Image, (
-			Select dd.Description from dictDistribution dd where  dd.DistributionId = d.Id and dd.LanguageId = ".$this->lang."
+			Select dd.Description from dictDistribution dd where  dd.DistributionId = d.Id and dd.LanguageId = ".$this->lang." limit 1
 			) as Description,d.ImageSource,d.TextSource from Distribution d";
 			$stmt = $this->db->conn->query($query);
 			$distros = $stmt->fetchAll(PDO::FETCH_CLASS);				
@@ -50,6 +51,16 @@
 				else{
 					$distro->Answers = array();
 				}		
+				$query = "Select * from Media med where med.DistroId = ".$distro->Id;
+				$mediaArray = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS);
+				if (!empty($mediaArray)){
+					foreach ($mediaArray as $k => $media) {
+						$distro->Media[] = $media;
+					}
+				}
+				else{
+					$distro->Media = array();
+				}	
 				$result[] = $distro;		
 			}
 			return $this->Output($result);
