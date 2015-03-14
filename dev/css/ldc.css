@@ -1,0 +1,88 @@
+.container{
+	padding-top:40px;
+}
+body{
+	background: url(../assets/bg.jpg)
+}
+.spacer{
+	display: block;
+	height: 7px;
+}
+.buttonBright a{
+	color:white;	
+}
+.buttonBright{
+	color:white;	
+	display: block;
+	width: 70%;
+}
+.vendor{
+	margin-right:5px;
+	margin-bottom: 4px;
+}
+.largelogo{
+	max-width: 60%;
+}
+.list{
+	list-style-type:disc;
+}
+.footer{
+	position: fixed;
+	bottom:0px;
+}
+.links{
+	font-size:1.2em;
+}
+.github{
+	color:gray;
+}
+.gplus{
+	color:red;
+}
+.twitter{
+	color:#55ACEE;
+}
+.facebook{
+	color:#3B5998 ;	
+}
+.xmpp{
+	color:#FFDE05;
+}
+.link{
+	color:black;
+}
+.email{
+	color:darkorange;
+}
+.share{
+	color:orangered;
+}
+.socialicons{
+	text-align:center;
+	color:lightgray;
+	padding-bottom:15px;
+}
+.socialicons a{
+	padding: 15px;
+}
+.fa{
+	display: initial !important;
+}
+.main ul a:hover{
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+.panel-heading{
+	cursor: pointer;	
+	position: relative;
+}
+ .panel-heading a{
+	text-decoration: none;
+}
+ .answered{
+	position: absolute;
+	top: 0;
+	right: 0.5em;
+	color: #D5D5D5;
+}
