@@ -232,15 +232,9 @@ function InsertQuestions(){
 		
 	});
 }
-function Init(){	
-	var css = "background-image: url('http://192.168.178.72/ldc2/assets/kitteh_smile.jpg');" +
-            "background-repeat: no-repeat;" +
-            "display: block;" +
-            "background-size: 15px 15px;" +
-            "padding-left: 20px;" +
-            "margin-left: 5px;",
-      text = "There are no easter eggs..or maybe..it's classified";
-   console.log(text + '%c', css);
+function Init(){		
+    var text = "There are no easter eggs..or maybe..it's classified"; 
+    console.log(text);
 	$.post( "./rest.php", { method: "GetSystemVars", args: "[]",lang: this.language })
 	.done(function( data ) {
 		ldc.systemVars = $.parseJSON(data);		
