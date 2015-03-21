@@ -54,9 +54,6 @@ body{
 .email{
 	color:darkorange;
 }
-.share{
-	color:orangered;
-}
 .socialicons{
 	text-align:center;
 	color:lightgray;
@@ -128,4 +125,26 @@ body{
 .smalllinuxlogo{
 	width: 40px;
 	margin: 7px;
+}
+.detail{
+	padding:5px;
+}
+.detailLogo{
+	max-width:250px;
+}
+.screenshot{
+	width:50%;
+}
+.screenshotContainer{
+	text-align: center;
+}
+.screenShotContainer div{
+	text-align: left;
+}
+#shareMyResultText{
+	color:black;
+	padding-left: 5px;
+}
+#reset{
+	margin-left:26px;
 }

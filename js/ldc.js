@@ -21,6 +21,9 @@ function LDC(systemVars,language){
 	this.GetResult = GetResult;
 	this.ApplyFilterResults = ApplyFilterResults;
 	this.CreateResultMatrix = CreateResultMatrix;
+	this.SerializeResult = SerializeResult;
+	this.UnserializeResult = UnserializeResult;
+	this.NotAnEasterEgg = NotAnEasterEgg;
 	//Go!
 	this.Init();
 }
@@ -49,6 +52,7 @@ function SetUpUI(){
 	});
 	$("#answeredCount").text("0");
 	$("#welcomeTextHeader").trigger("click");
+	$("#twitterlink").attr("href","https://twitter.com/share?text="+ldc.GetSystemValue("FindTheRightLinux")+"&url=http://distrochooser.0fury.de/?r=tw&hashtags=distrochooser,linux") ;
 	$("#getresult").click(function(){
 		$.post( "./rest.php", { method: "AddResult", args: JSON.stringify(ldc.distributionsAfterAnswer),lang: ldc.language})
 		.done(function( data ) {		
@@ -72,7 +76,7 @@ function GetResult(){
 		item = item + "<div class='panel-body'>";
 		item = item + "<img class='linuxlogo' src='"+ldc.distributionsAfterAnswer[i].Image+"'></img>"+ldc.distributionsAfterAnswer[i].Description+"</div>";
 
-		item = item + "<div class='panel-footer properties hidden-xs'><a class='detail' target='_blank' href='"+ldc.distributionsAfterAnswer[i].Homepage+"'>Website</a><a target='_blank' class='detail'  href='./detail.php?id="+ldc.distributionsAfterAnswer[i].Id+"&lang="+ldc.language+"'>Details</a></div>";
+		item = item + "<div class='panel-footer properties hidden-xs'><a class='detail' target='_blank' href='"+ldc.distributionsAfterAnswer[i].Homepage+"'>Website</a><a target='_blank' class='detail'  href='./detail.php?id="+ldc.distributionsAfterAnswer[i].Id+"&l="+ldc.language+"'>Details</a></div>";
 		item = item + "</div>";
 		$("#ResultContent").append(item);
 	};	
@@ -83,7 +87,7 @@ function GetResult(){
 	$("#matrix").empty();
 	var header = "<tr><th></th>";
 	for (var i = ldc.distributions.length - 1; i >= 0; i--) {
-		header += "<th><div class='verticalText'>"+ldc.distributions[i].Name+"</div></th>";
+		header += "<th><div class='verticalText'><a href='./detail.php?id="+ldc.distributions[i].Id+"'>"+ldc.distributions[i].Name+"</a></div></th>";
 	};
 	header += "</th>";
 	$('#matrix').append(header);	
@@ -229,8 +233,14 @@ function InsertQuestions(){
 	});
 }
 function Init(){	
-	console.log("(╯ಠ_ಠ）╯︵ ┻━┻)	");
-	console.log("Nothing to do here!");
+	var css = "background-image: url('http://192.168.178.72/ldc2/assets/kitteh_smile.jpg');" +
+            "background-repeat: no-repeat;" +
+            "display: block;" +
+            "background-size: 15px 15px;" +
+            "padding-left: 20px;" +
+            "margin-left: 5px;",
+      text = "There are no easter eggs..or maybe..it's classified";
+   console.log(text + '%c', css);
 	$.post( "./rest.php", { method: "GetSystemVars", args: "[]",lang: this.language })
 	.done(function( data ) {
 		ldc.systemVars = $.parseJSON(data);		
@@ -238,6 +248,11 @@ function Init(){
 		ldc.GetQuestions();
 		ldc.SetUpUI();	
 	});	
+}
+function NotAnEasterEgg()
+{
+	$("#homelink").children().first().attr("src","./assets/0002.gif");
+	$(".largelogo").attr("src","./assets/0002.gif");
 }
 function GetDistros(){
 	$.post( "./rest.php", { method: "GetDistributions", args: "[]",lang: this.language })
@@ -250,6 +265,7 @@ function GetDistros(){
 		ldc.distributions = distributions;
 		ldc.distributionsAfterAnswer = ldc.distributions.slice();
 		ldc.ApplyFilterResults();
+		ldc.UnserializeResult();	
 	});
 }
 function GetQuestions(){
@@ -264,7 +280,7 @@ function GetQuestions(){
 		ldc.questions = questions;
 		//console.log(ldc.questions);
 		$("#answerCount").text(ldc.questions.length);
-		ldc.InsertQuestions();
+		ldc.InsertQuestions();		
 	});
 }
 function CreateResultMatrix(){
@@ -287,4 +303,44 @@ function CreateResultMatrix(){
 		};		
 	};
 	return matrix;	
+}
+function SerializeResult(){
+	var result = "";
+	for (var i = 0; i < ldc.answers.length; i++) {
+		result += ldc.answers[i]; 
+		if (i != ldc.answers.length -1)
+			result += ",";
+	};
+	return result;
+}
+function UnserializeResult(){
+	var answers = getUrlVars("answers");
+	if (answers.answers === undefined){
+		ldc.answers =  [];
+	}
+	else{
+		ldc.answers = answers.answers.split(",");
+	}
+	for (var i = 0; i < ldc.answers.length; i++) {		
+		var answer = "Answer_"+ldc.answers[i];
+		var id =/\d+/.exec(answer)[0];
+		var questionId = /\d+/.exec($("#"+answer).parent().parent().attr("id"))[0];
+		var header = $("#Question_"+questionId).parent().parent()[0].children[0].id;
+		$("#"+header).append("<h4 class='answered'>"+ldc.GetSystemValue("questionanswered").toUpperCase()+"</h4>");
+		$("#"+answer+" li").append(" <span id='"+answer+"_Selection' class='glyphicon glyphicon-ok'></span>");
+		$("#"+answer).attr("ldc_selected","true");	
+		$("#"+answer+"_Selection").hover(function(){
+			$(this).css("color","darkred");
+			$(this).removeClass("glyphicon-ok");
+			$(this).addClass("glyphicon-remove");
+		});
+		$("#"+answer+"_Selection").mouseout(function(){
+			$(this).removeClass("glyphicon-remove");
+			$(this).addClass("glyphicon-ok");
+			$(this).css("color","");
+		});
+		ldc.ApplySearch(id);
+	};	
+	ldc.PostAnswerClick();
+	ldc.ApplyFilterResults();
 }

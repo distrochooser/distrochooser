@@ -16,19 +16,25 @@ function DisplayShareDialog(){
 }
 $(document).ready(function(){
 	var lang = getUrlVars()["l"];
-	var ref = getUrlVars()["r"];
+	var ref = getUrlVars()["r"];	
 	if (lang == null)
 		lang = 1;
 	if (ref == null)
 		ref = "";
+	
+
 	$.post( "./rest.php", { method: "GetSystemVars", args: "[]",lang: lang})
 	.done(function( data ) {		
-		ldc = new LDC($.parseJSON(data),lang);
-
+		ldc = new LDC($.parseJSON(data),lang);		
 	});
 	$.post( "./rest.php", { method: "NewVisitor", args: "\""+document.referrer+"\"",lang: lang});
 	$("#share,.sshare,#shareMenuEntry").click(function(){
 		DisplayShareDialog();
+		var result = ldc.SerializeResult();	
+		if (result != "")			
+			$("#shareMyResult").val("http://distrochooser.0fury.de/?r=l&answers="+result);
+		else
+			$("#shareMyResult").val("http://distrochooser.0fury.de/?r=l");
 	});
 	$("#contact,.scontact,#contactMenuEntry").click(function(e){
 		$("#modalImprint").modal();
@@ -37,7 +43,7 @@ $(document).ready(function(){
 	$("#privacy,.sprivacy,#privacyMenuEntry").click(function(e){
 		$("#modalPrivacy").modal();
 		e.preventDefault();
-	});
+	});	
 	$("#about").click(function(e){
 		$.post( "./rest.php", { method: "GetInstalledDistros", args: "[]",lang: lang})
 		.done(function( data ) {				
