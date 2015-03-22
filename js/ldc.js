@@ -24,6 +24,7 @@ function LDC(systemVars,language){
 	this.SerializeResult = SerializeResult;
 	this.UnserializeResult = UnserializeResult;
 	this.NotAnEasterEgg = NotAnEasterEgg;
+	this.ApplyRelativeResults = ApplyRelativeResults;
 	//Go!
 	this.Init();
 }
@@ -69,10 +70,17 @@ function SwitchLanguage(language){
 }
 function GetResult(){
 	$("#ResultContent").empty();
+	if (ldc.distributionsAfterAnswer[0].percentage){
+		$("#ResultContent").html("<div class='alert alert-info'>"+ldc.GetSystemValue("RelativeResults")+"</div>");
+	}
 	for (var i = 0; i < ldc.distributionsAfterAnswer.length; i++) {
 		var item = "";
 		item = "<div class='panel panel-default'>";
-		item = item + "<div class='panel-heading'>"+ldc.distributionsAfterAnswer[i].Name+"</div>";
+		item = item + "<div class='panel-heading'>"+ldc.distributionsAfterAnswer[i].Name;	
+		if (ldc.distributionsAfterAnswer[i].percentage) 
+			item = item +  ": " + ldc.distributionsAfterAnswer[i].percentage + "%";
+
+		item = item +"</div>";
 		item = item + "<div class='panel-body'>";
 		item = item + "<img class='linuxlogo' src='"+ldc.distributionsAfterAnswer[i].Image+"'></img>"+ldc.distributionsAfterAnswer[i].Description+"</div>";
 
@@ -97,7 +105,7 @@ function GetResult(){
 		row +="<td>"+tooltip+"</td>";	
 		var horIndex = 2;	
 		for (var i = ldc.distributions.length - 1; i >= 0; i--) {	
-			var name = $('#matrix th:nth-child('+horIndex+') div').first().html();
+			var name = $('#matrix th:nth-child('+horIndex+') div').first().text();
 			if (matrix[key][i] == name)	
 				row +="<td><i class=\"ok glyphicon glyphicon-ok\"></td>";
 			else
@@ -195,8 +203,45 @@ function ApplySearch(id){
 		}
 	}
 	ldc.distributionsAfterAnswer = newArray.slice();
+	if (ldc.distributionsAfterAnswer.length == 0){
+		console.log("Entering relative mode");	
+		ldc.distributionsAfterAnswer = [];
+		ldc.distributionsAfterAnswer = ldc.ApplyRelativeResults();
+	}
+	else{
+		console.log("Entering absolute mode");	
+	}
 }
-function ApplyFilterResults(){
+function ApplyRelativeResults(){
+	//This methods calculates relative results, when there are no 100 % results
+	var results = [];
+	var count = ldc.answers.length;
+	for (var i = ldc.distributions.length - 1; i >= 0; i--) {
+		var hits = 0;
+		var distro = ldc.distributions[i];
+		for (var x = 0; x< distro.Answers.length; x++) {			
+			if (ldc.answers.indexOf(distro.Answers[x]) != -1){
+				hits++;
+			}			
+		};	
+		if (hits != 0){
+			var percentage = Math.round(100/(count/hits),2);
+			var copiedObject = jQuery.extend({}, distro)
+			copiedObject.percentage = percentage;			
+			results.push(copiedObject);						
+		}
+	};
+	results.sort(compare);
+	return results;
+}
+function compare(a,b) {
+  if (a.percentage < b.percentage)
+     return 1;
+  if (a.percentage > b.percentage)
+    return -1;
+  return 0;
+}
+function ApplyFilterResults(){	
 	$("#hitCount").html(ldc.distributionsAfterAnswer.length);
 	$("#allCount").html(ldc.distributions.length);	
 }
