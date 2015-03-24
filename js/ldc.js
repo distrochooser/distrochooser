@@ -58,7 +58,10 @@ function SetUpUI(){
 		$.post( "./rest.php", { method: "AddResult", args: JSON.stringify(ldc.distributionsAfterAnswer),lang: ldc.language})
 		.done(function( data ) {		
 			GetResult();
-		});	
+		});			
+	});
+	$("#startTest").click(function(){
+		$("#Heading1").trigger("click");
 	});
 }
 function ApplyTitle(){
@@ -147,17 +150,17 @@ function PostAnswerClick(){
 }
 function FilterByAnswer(answer){
 	var id =/\d+/.exec(answer)[0];
-	var questionId = /\d+/.exec($("#"+answer).parent().parent().attr("id"))[0];
+	var questionId = /\d+/.exec($("#"+answer).parent().parent().parent().attr("id"))[0];
 	//Search if an question was already answered
 	//console.log(answer);
 	//TODO: funzr noch nicht richtig apt-get problematik
 	if (ldc.answers.indexOf(id) == -1){
-		if ($("#Question_"+questionId+" ul a[ldc_selected]").length == 0){
+		if ($("#Question_"+questionId+" ul li a[ldc_selected]").length == 0){
 			ldc.answers.push(id);
 			//Mark the answer
 			var header = $("#Question_"+questionId).parent().parent()[0].children[0].id;
 			$("#"+header).append("<h4 class='answered'>"+ldc.GetSystemValue("questionanswered").toUpperCase()+"</h4>");
-			$("#"+answer+" li").append(" <span id='"+answer+"_Selection' class='glyphicon glyphicon-ok'></span>");
+			$("#"+answer+"").append(" <span id='"+answer+"_Selection' class='glyphicon glyphicon-ok'></span>");
 			$("#"+answer).attr("ldc_selected","true");	
 			$("#"+answer+"_Selection").hover(function(){
 				$(this).css("color","darkred");
@@ -169,12 +172,24 @@ function FilterByAnswer(answer){
 				$(this).addClass("glyphicon-ok");
 				$(this).css("color","");
 			});
+		}
+		else{
+			//deselect old question					
+			$("#Question_"+questionId+" ul li a[ldc_selected] span").remove();				
+			$("#Question_"+questionId+" ul li a[ldc_selected]").removeAttr("ldc_selected");
+			ldc.answers.splice(ldc.answers.indexOf(id),1);
+			//select new one
+			ldc.answers.push(id);
+			var header = $("#Question_"+questionId).parent().parent()[0].children[0].id;
+			$("#"+header).append("<h4 class='answered'>"+ldc.GetSystemValue("questionanswered").toUpperCase()+"</h4>");
+			$("#"+answer+"").append(" <span id='"+answer+"_Selection' class='glyphicon glyphicon-ok'></span>");
+			$("#"+answer).attr("ldc_selected","true");	
 		}		
 	}else{
 		//TODO: Das verwirft alte antwroten...
 		var header = $("#Question_"+questionId).parent().parent()[0].children[0].id;
 		$("#"+header+" h4").last().remove();
-		$("#"+answer+" li span").remove();
+		$("#"+answer+" span").remove();
 		$("#"+answer).removeAttr("ldc_selected");
 		ldc.answers.splice(ldc.answers.indexOf(id),1);
 	}
@@ -253,11 +268,20 @@ function InsertQuestions(){
 		html = html.replace(new RegExp("{{QUESTION}}", "g"),element.Help);
 		var subHtml = "<ul >";
 		for (var x = 0; x < element.Answers.length; x++) {
-			subHtml = subHtml + "<a   id='Answer_"+element.Answers[x].Id+"'><li>"+element.Answers[x].Text+"</li></a>";
+			subHtml = subHtml + "<li><a id='Answer_"+element.Answers[x].Id+"'>"+element.Answers[x].Text+"</a></li>";
 		}
+		var lastQuestion = (i < ldc.questions.length -1) ? false : true;
 		subHtml = subHtml + "</ul>";
+		if (!lastQuestion)
+			subHtml += "<a href='#' class='btn btn-primary next ldcui' id='nextQuestion'>"+ldc.GetSystemValue("nextQuestion")+"</a>";
 		html = html.replace(new RegExp("{{CONTENT}}", "g"),subHtml)
+		
 		$("#accordion").append(html);
+		if (!lastQuestion){
+			$(".next").click(function(){						
+				$(this).parent().parent().parent().next().children().first().trigger("click")
+			});
+		}		
 		for (var x = 0; x < element.Answers.length; x++) {
 			$("#Answer_"+element.Answers[x].Id).click(function(){				
 				ldc.FilterByAnswer($(this).attr("id"));
@@ -360,13 +384,14 @@ function UnserializeResult(){
 	else{
 		ldc.answers = answers.answers.split(",");
 	}
-	for (var i = 0; i < ldc.answers.length; i++) {		
-		var answer = "Answer_"+ldc.answers[i];
-		var id =/\d+/.exec(answer)[0];
-		var questionId = /\d+/.exec($("#"+answer).parent().parent().attr("id"))[0];
+	for (var i = 0; i < ldc.answers.length; i++) {	
+		var id =/\d+/.exec(ldc.answers[i])[0];	
+		var answer = "Answer_"+id;
+	
+		var questionId = /\d+/.exec($("#"+answer).parent().parent().parent().attr("id"))[0];
 		var header = $("#Question_"+questionId).parent().parent()[0].children[0].id;
 		$("#"+header).append("<h4 class='answered'>"+ldc.GetSystemValue("questionanswered").toUpperCase()+"</h4>");
-		$("#"+answer+" li").append(" <span id='"+answer+"_Selection' class='glyphicon glyphicon-ok'></span>");
+		$("#"+answer+"").append(" <span id='"+answer+"_Selection' class='glyphicon glyphicon-ok'></span>");
 		$("#"+answer).attr("ldc_selected","true");	
 		$("#"+answer+"_Selection").hover(function(){
 			$(this).css("color","darkred");

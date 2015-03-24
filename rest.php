@@ -29,9 +29,14 @@
 	}
 	$method = $_POST["method"];
 	$args = json_decode($_POST["args"]);
-	$l = $_POST["lang"];
+	$l = -1;
 	if (!isset($_POST["lang"]))
 		exit();
+	else{
+		$matches = array();
+		preg_match("/(?<id>\d+)/", $_POST["lang"],$matches);
+		$l = $matches["id"];
+	}
 	$ldc = new \LDC($l);
 	if (!method_exists($ldc,$method) || empty($method)){
 	 	$ldc->Abort();

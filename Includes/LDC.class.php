@@ -1,8 +1,10 @@
 <?php
 	define("__LDC_VERSION__","2.0");
+	define("__LDC_HOME__","http://distrochooser.0fury.de");
 	class LDC{		
 		private $db;
 		private $lang;
+
 		public function __construct($lang){
 			$this->db = new \DB();
 
@@ -126,6 +128,18 @@
 			order by count desc;";
 			$distros = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS);
 			return $this->Output($distros);
+		}
+		private function GenerateSitemapsXML(){
+			header("Content-Type: text/xml");
+			$xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">';
+			$distros = json_decode($this->GetDistributions());
+			$date = date("Y-m-d",time());
+			$xml .="<url>\n<loc>".__LDC_HOME__."/</loc>\n<lastmod>".$date."</lastmod>\n<changefreq>monthly</changefreq><priority>0.9</priority></url>";
+			foreach ($distros as $key => $value) {
+				$xml .="<url>\n<loc>".__LDC_HOME__."/detail.php?id=".$value->Id."</loc>\n<lastmod>".$date."</lastmod>\n<changefreq>monthly</changefreq><priority>0.9</priority></url>";
+			}
+			$xml .="</urlset>";
+			file_put_contents("sitemap.xml", $xml);
 		}
 	}
 ?>

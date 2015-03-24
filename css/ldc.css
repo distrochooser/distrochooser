@@ -90,8 +90,7 @@ body{
 	color:darkred;
 }
 #matrix th
-{
-    background-color: grey;
+{   
     color: white;
     text-align: center;
     vertical-align: bottom;
@@ -147,4 +146,7 @@ body{
 }
 #reset{
 	margin-left:26px;
+}
+.socialicons a:hover{
+	text-decoration: none;
 }
