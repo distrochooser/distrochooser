@@ -15,10 +15,11 @@
   <script src="./Lib/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./js/ldc.js"></script>
   <script type="text/javascript" src="./js/ldc-ui.js"></script>
+  <script type="text/javascript" src="./Lib/chart.min.js"></script>
   <title>Linux Distribution Chooser</title>
 </head>
 <body>
-  <div class="container"
+  <div class="container">
    <div class="row">
     <?php include "./static/sidebar.php";?>
     <div class="col-lg-6 main">   
@@ -42,6 +43,32 @@
           <br/>
           This Service should help you to find a suitable linux distribution which fits your needs. 
           The test will ask you simple questions to select the correct distributions.
+        </div>
+        <h2>Linux Distros:</h2>
+        <div class="linux">
+          <?php
+            //SEO HACK
+            $lang = 1;
+            if (isset($_GET["l"]) && is_int((int)$_GET["l"]))
+            {
+              $lang = $_GET["l"];
+            }
+            $postdata = http_build_query(array("method" => "GetDistributions","lang"=> $lang,"args"=>""));           
+            $opts = array('http' =>
+                array(
+                    'method'  => 'POST',
+                    'header'  => 'Content-type: application/x-www-form-urlencoded',
+                    'content' => $postdata,
+                )
+            );
+            $context = stream_context_create($opts);
+            $distros = json_decode(file_get_contents("http://distrochooser2.0fury.de/rest.php", false, $context));          
+          ?>
+          <ul>
+            <?php foreach ($distros as $value) :?>
+              <li><a target="_blank" href="./detail.php?id=<?php echo $value->Id."&amp;l=".$lang;?>"><?php echo $value->Name;?></a></li>
+            <?php endforeach;?>
+          </ul>
         </div>
         <noscript>
           <div class="alert alert-danger">

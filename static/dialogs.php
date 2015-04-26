@@ -16,7 +16,7 @@
 "</div>";
 </script>
 <!-- Dialogs -->
-<div class="modal fade" id="modal">
+<div class="modal" id="modal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -37,7 +37,7 @@
   </div>
 </div>
 <!-- imprint-->
-<div class="modal fade" id="modalImprint">
+<div class="modal" id="modalImprint">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -55,7 +55,7 @@
   </div>
 </div>
 <!-- Privacy -->
-<div class="modal fade" id="modalPrivacy">
+<div class="modal" id="modalPrivacy">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -73,7 +73,7 @@
   </div>
 </div>
 <!-- about -->
-<div class="modal fade" id="modalAbout">
+<div class="modal" id="modalAbout">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -86,10 +86,81 @@
         <ul id="distros">
         </ul>
         <h3 id="stats" class="ldcui">#</h3>
-        <span id="testCount" class="ldcui"></span><span  id="tc" class="badge"></span>
-         <h4 id="rankedDistros" class="ldcui">#</h4>
-        <ul id="ranks">
-        </ul>
+        <h4 id="testCountCanvasTitle" class="ldcui">#</h4>
+        <!-- chart -->
+        <canvas id="testCountCanvas" width="598" height="400"></canvas>
+        <br>
+        <script type="text/javascript">
+        	$(document).ready(function(){        		
+        		$('#modalAbout').on('shown.bs.modal', function () {
+				  	$("canvas").each(function(){
+	        			$(this).attr("width","500");
+	        			$(this).attr("height","240");  
+	        			$(this).removeAttr("style");
+	        		});
+	        		var label = [];
+	        		var labelData = [];
+	        		$.post( "./rest.php", { method: "GetMonthStats", args: "",lang: 1 })
+					.done(function( data ) {					
+						var stats = $.parseJSON(data);		
+						for (var i = stats.length - 1; i >= 0; i--) {
+							label.push(stats[i].MONTH + "/" +new Date().getFullYear());
+							labelData.push(parseInt(stats[i].count));
+						};
+						var chartData = {
+						labels : label,
+						datasets : [
+							{
+								
+								fillColor : "#158cba",
+								strokeColor : "#127ba3",
+								pointColor : "#fff",
+								pointStrokeColor : "#9DB86D",
+								data : labelData,
+							}
+						]
+					};
+					 var buyers = document.getElementById('testCountCanvas').getContext('2d');
+	    			new Chart(buyers).Line(chartData);
+					});	
+	        		
+				}); 			
+        	});        	
+        </script>         
+       <h4 class="ldcui" id="distroResultStats">#</h4>
+        <canvas id="distroCountCanvas" width="598" height="400"></canvas>       
+         <script type="text/javascript">
+        	$(document).ready(function(){        		
+        		$('#modalAbout').on('shown.bs.modal', function () {        		
+	        		var labelData = [];
+	        		$.post( "./rest.php", { method: "GetStats", args: "",lang: 1 })
+					.done(function( data ) {					
+						var stats = $.parseJSON(data);								
+						for (var i = stats.length - 1; i >= 0; i--) {							
+							labelData.push({ color:stats[i].ColorCode,value: parseInt(stats[i].count),label:stats[i].Name});
+						};		
+						console.log(labelData);				
+						var buyers = document.getElementById('distroCountCanvas').getContext('2d');
+		    			new Chart(buyers).Pie(labelData,{animationSteps:80});
+					});	
+	        		
+				}); 			
+        	});        	
+        </script>
+        <h4 id="uses" class="ldcui">Usage</h4>
+      
+        	<ul>
+        	<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+        	<li><a href="https://bootswatch.com/lumen/">Bootswatch Theme Lumen</a></li>
+        	<li><a href="https://jquery.com/">jQuery</a></li>
+        	<li><a href="http://www.chartjs.org/">Chart.js</a></li>
+        	<li><a href="https://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a></li>
+        	<li><a href="http://www.deviantart.com/art/Tondo-F-Icon-Set-OS-327759704">Tux Icon von P3T3B3</a></li>
+        	<li><a href="http://phishy.de">Phis</a> (Design)</li>
+          	<li><a href="http://www.famfamfam.com/lab/icons/flags/">famfamfam flag icons</a></li>
+		<li>Lenny (Manjaro Screenshots)</li>
+        	</ul>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
@@ -98,7 +169,7 @@
   </div>
 </div>
 <!-- Share -->
-<div id ="shareDialog" class="modal fade">
+<div id ="shareDialog" class="modal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -107,7 +178,7 @@
       </div>
       <div class="modal-body" id="shareDialogContent">  
       <div class="socialicons">    
-        <a id="twitterlink" href="https://twitter.com/share?text=Distrochooser: &url=http://distrochooser.0fury.de/?r=tw&hashtags=distrochooser,linux" target="_blank">
+        <a id="twitterlink" href="https://twitter.com/share?text=Distrochooser+&amp;url=http://distrochooser.0fury.de/?r=tw&amp;hashtags=distrochooser,linux" target="_blank">
           <i class="fa fa-twitter fa-2x twitter"></i>
         </a>
         <a href="https://plus.google.com/share?url=http://distrochooser.0fury.de/?r=gp" target="_blank">
@@ -129,7 +200,12 @@
         <div class="input-group">
           <span class="input-group-addon ldcui" id="shareMyResultText">Weitersagen per Link</span>
           <input type="text" class="form-control" id="shareMyResult">
-        </div>         
+        </div>  
+        <script>
+        	$("#shareMyResult").click(function(){
+        		$(this).select();
+        	});
+        </script>      
        </div>
       </div>
       <div class="modal-footer">

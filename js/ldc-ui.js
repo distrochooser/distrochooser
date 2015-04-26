@@ -36,11 +36,11 @@ $(document).ready(function(){
 		else
 			$("#shareMyResult").val("http://distrochooser.0fury.de/?r=l");
 	});
-	$("#contact,.scontact,#contactMenuEntry").click(function(e){
+	$("#contact,.scontact,#contactMenuEntry").mousedown(function(e){
 		$("#modalImprint").modal();
 		e.preventDefault();
 	});
-	$("#privacy,.sprivacy,#privacyMenuEntry").click(function(e){
+	$("#privacy,.sprivacy,#privacyMenuEntry").mousedown(function(e){
 		$("#modalPrivacy").modal();
 		e.preventDefault();
 	});	
@@ -52,15 +52,7 @@ $(document).ready(function(){
 			for (var i = 0; i < distros.length; i++) {
 				$("#distros").append("<li><a href='"+distros[i].Homepage+"'>"+distros[i].Name+"</a></li>");
 			};
-		});	
-		$.post( "./rest.php", { method: "GetStats", args: "[]",lang: lang})
-		.done(function( data ) {				
-			var distros = $.parseJSON(data);
-			$("#ranks").empty();
-			for (var i = 0; i < distros.length; i++) {
-				$("#ranks").append("<li><a href='"+distros[i].Homepage+"'>"+distros[i].Name+"</a> ("+distros[i].count+"x)</li>");
-			};
-		});	
+		});			
 		$.post( "./rest.php", { method: "GetTestCount", args: "[]",lang: lang})
 		.done(function( data ) {				
 			$("#modalAbout").modal();
@@ -70,5 +62,6 @@ $(document).ready(function(){
 	});	
 	
 	$("#homelink").css("display","none");	
-	$("#rightBar").css("display","none");
+	$("#rightBar").css("display","none");	
+	
 });

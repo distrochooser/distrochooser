@@ -122,12 +122,25 @@
 			return $this->Output($distros);
 		}
 		public function GetStats(){
-			$query="Select Name,Homepage, (
+			$query="Select Name,Homepage,ColorCode, (
 			 Select count(r.Id) from ResultDistro r where r.DistroId = d.Id
 			) as count from Distribution d 
 			order by count desc;";
 			$distros = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS);
 			return $this->Output($distros);
+		}
+		public function GetMonthStats(){
+			//$query="SELECT COUNT( Id ) as count , MONTH( DATE ) AS 
+			//MONTH FROM Result
+			//WHERE YEAR( DATE ) = YEAR( CURDATE( ) ) 
+			//GROUP BY MONTH desc";
+			$query="SELECT COUNT( Id ) as count , DATE_FORMAT(DATE, '%d/%m') AS
+			 MONTH FROM Result
+			WHERE YEAR( DATE ) = YEAR( CURDATE( ) )
+			and MONTH(DATE) = MONTH(CURDATE())
+			GROUP BY DATE_FORMAT(DATE, '%d.%m.%Y') desc";
+			$result = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS);
+			return $this->Output($result);
 		}
 		private function GenerateSitemapsXML(){
 			header("Content-Type: text/xml");

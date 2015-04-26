@@ -36,12 +36,14 @@
 <meta name="generator" content="LDC 2015">
 <link rel="stylesheet" href="./Lib/bootstrap/css/lumen.css">
 <link  href="./Lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="./css/ldc.css">
+<link rel="stylesheet" href="./css/ldc.min.css">
 <link rel="icon" href="./assets/0fury.ico">
 <script src="./Lib/jquery.min.js"></script>
 <script src="./Lib/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="./js/ldc.js"></script>
-<script type="text/javascript" src="./js/ldc-ui.js"></script>
+<script type="text/javascript" src="./js/ldc.min.js"></script>
+<script type="text/javascript" src="./js/ldc-ui.min.js"></script>
+<script type="text/javascript" src="./Lib/chart.min.js"></script>
+
 <title><?php echo $distro->Name;?> - <?php echo GetSystemVar($ldc,"Title");?></title>
 </head>
 <body>

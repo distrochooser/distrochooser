@@ -53,9 +53,17 @@ function SetUpUI(){
 	});
 	$("#answeredCount").text("0");
 	$("#welcomeTextHeader").trigger("click");
-	$("#twitterlink").attr("href","https://twitter.com/share?text="+ldc.GetSystemValue("FindTheRightLinux")+"&url=http://distrochooser.0fury.de/?r=tw&hashtags=distrochooser,linux") ;
+	$("#twitterlink").attr("href","https://twitter.com/share?text="+ldc.GetSystemValue("FindTheRightLinux")+"&url=http://distrochooser.0fury.de/?r=tw&hashtags=distrochooser,linux&via=distrochooser") ;
 	$("#getresult").click(function(){
-		$.post( "./rest.php", { method: "AddResult", args: JSON.stringify(ldc.distributionsAfterAnswer),lang: ldc.language})
+		 // Add only the distros to the stats if the result was absolute or the percentage was above 20 %
+                 var relevantDistros = [];
+                 for(var d=0;d < ldc.distributionsAfterAnswer.length;d++){
+                        if (!ldc.distributionsAfterAnswer[d].percentage)
+                                     relevantDistros.push(ldc.distributionsAfterAnswer[d]);
+                        else if (ldc.distributionsAfterAnswer[d].percentage > 20)
+                                        relevantDistros.push(ldc.distributionsAfterAnswer[d]);
+                }
+		$.post( "./rest.php", { method: "AddResult", args: JSON.stringify(relevantDistros),lang: ldc.language})
 		.done(function( data ) {		
 			GetResult();
 		});			
@@ -104,7 +112,7 @@ function GetResult(){
 	$('#matrix').append(header);	
 	for (var key in matrix) {
 		var row = "<tr>";
-		var tooltip = '<a href="#" type="button" class="questionbtn" data-toggle="popover" title="" data-content="'+key+'" data-trigger="focus" tabindex="0"><i class="glyphicon glyphicon-question-sign"></i></a>';		
+		var tooltip = '<a href="#" type="button" class="questionbtn" data-toggle="popover" title="" data-content=\''+key+'\' data-trigger="focus" tabindex="0"><i class="glyphicon glyphicon-question-sign"></i></a>';		
 		row +="<td>"+tooltip+"</td>";	
 		var horIndex = 2;	
 		for (var i = ldc.distributions.length - 1; i >= 0; i--) {	
@@ -216,6 +224,9 @@ function ApplySearch(id){
 		if (keepDistro){
 			newArray.push(distro);			
 		}
+		else{
+			console.log(distro.Name + " will not be added");
+		}
 	}
 	ldc.distributionsAfterAnswer = newArray.slice();
 	if (ldc.distributionsAfterAnswer.length == 0){
@@ -240,6 +251,7 @@ function ApplyRelativeResults(){
 			}			
 		};	
 		if (hits != 0){
+			//TODO: OFF by one error
 			var percentage = Math.round(100/(count/hits),2);
 			var copiedObject = jQuery.extend({}, distro)
 			copiedObject.percentage = percentage;			
@@ -272,16 +284,39 @@ function InsertQuestions(){
 		}
 		var lastQuestion = (i < ldc.questions.length -1) ? false : true;
 		subHtml = subHtml + "</ul>";
-		if (!lastQuestion)
-			subHtml += "<a href='#' class='btn btn-primary next ldcui' id='nextQuestion'>"+ldc.GetSystemValue("nextQuestion")+"</a>";
+		if (!lastQuestion){
+			var href ="#";
+
+			subHtml += "<a href='#collapse"+i+"' class='btn btn-primary next ldcui' id='nextQuestion'>"+ldc.GetSystemValue("nextQuestion")+"</a>";
+		}
+		else{
+			subHtml +="<a href='#collapse"+i+"' class='btn btn-success ldcui' id='finishTest'>"+ldc.GetSystemValue("getresult")+"</a>";
+		}
 		html = html.replace(new RegExp("{{CONTENT}}", "g"),subHtml)
 		
 		$("#accordion").append(html);
 		if (!lastQuestion){
-			$(".next").click(function(){						
-				$(this).parent().parent().parent().next().children().first().trigger("click")
+			$(".next").click(function(){				
+				$(this).parent().parent().parent().next().children().first().trigger("click");
 			});
 		}		
+		else{
+			$("#finishTest").click(function(){
+			// Add only the distros to the stats if the result was absolute or the percentage was above 20 %
+			var relevantDistros = [];
+			for(var d=0;d < ldc.distributionsAfterAnswer.length;d++){
+				if (!ldc.distributionsAfterAnswer[d].percentage)
+					relevantDistros.push(ldc.distributionsAfterAnswer[d]);
+				else if (ldc.distributionsAfterAnswer[d].percentage > 20)
+					relevantDistros.push(ldc.distributionsAfterAnswer[d]);
+			}
+                	$.post( "./rest.php", { method: "AddResult", args: JSON.stringify(relevantDistros),lang: ldc.language})
+                		.done(function( data ) {
+                        		GetResult();
+                		});
+		        });
+
+		}
 		for (var x = 0; x < element.Answers.length; x++) {
 			$("#Answer_"+element.Answers[x].Id).click(function(){				
 				ldc.FilterByAnswer($(this).attr("id"));
@@ -303,7 +338,6 @@ function InsertQuestions(){
 }
 function Init(){		
     var text = "There are no easter eggs..or maybe..it's classified"; 
-    console.log(text);
 	$.post( "./rest.php", { method: "GetSystemVars", args: "[]",lang: this.language })
 	.done(function( data ) {
 		ldc.systemVars = $.parseJSON(data);		

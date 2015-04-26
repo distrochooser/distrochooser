@@ -115,7 +115,7 @@ body{
     -moz-transform: rotate(-90deg);                 
 }
 .linuxlogo{
-	width: 200px;
+	max-width: 50%;
 	float: left;
 	padding: 30px;
 	clear: both;
@@ -149,4 +149,14 @@ body{
 }
 .socialicons a:hover{
 	text-decoration: none;
+}
+.brand{
+	width: 160px;
+  	height: 24px;
+}
+.close{
+	margin-top: -11px !important;
+}
+.modal{
+	word-wrap: break-word;
 }
