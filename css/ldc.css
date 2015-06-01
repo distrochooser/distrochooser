@@ -54,12 +54,12 @@ body{
 .email{
 	color:darkorange;
 }
-.socialicons{
+.socialicons,.shareMenu{
 	text-align:center;
 	color:lightgray;
 	padding-bottom:15px;
 }
-.socialicons a{
+.socialicons a,.shareMenu a{
 	padding: 15px;
 }
 .fa{

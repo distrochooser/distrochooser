@@ -24,6 +24,30 @@
         <h4 class="modal-title ldcui" id="Result">#</h4>
       </div>
       <div class="modal-body">
+      	<!-- Share -->
+      	<!-- TODO: Personal result share-->
+      	<div class ="shareMenu">
+      		<a id="twitterlink" href="https://twitter.com/share?text=Distrochooser+&amp;url=http://distrochooser.de/?r=tw&amp;hashtags=distrochooser,linux" target="_blank">
+          <i class="fa fa-twitter fa-2x twitter"></i>
+        </a>
+        <a href="https://plus.google.com/share?url=http://distrochooser.de/?r=gp" target="_blank">
+          <i class="fa fa-google-plus  fa-2x gplus"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://distrochooser.de/?r=fb" target="_blank">
+          <i class="fa fa-facebook fa-2x facebook"></i>
+        </a>
+        <a href="mailto:?subject=Distro%20Chooser">
+          <i class="fa fa-envelope fa-2x email"></i>
+        </a>
+        <a href="http://distrochooser.de/?r=l" target="_blank">
+          <i class="fa fa-link fa-2x link"></i>
+        </a>
+        <a href="https://github.com/squarerootfury/distrochooser" target="_blank">
+          <i class="fa fa-github fa-2x github"></i>
+        </a>  
+        <hr>         		
+
+      	</div>
         <p id="ResultContent">          
         </p>
         <h4 class="ldcui" id="MatrixHeader">#</h4>
@@ -178,19 +202,19 @@
       </div>
       <div class="modal-body" id="shareDialogContent">  
       <div class="socialicons">    
-        <a id="twitterlink" href="https://twitter.com/share?text=Distrochooser+&amp;url=http://distrochooser.0fury.de/?r=tw&amp;hashtags=distrochooser,linux" target="_blank">
+        <a id="twitterlink" href="https://twitter.com/share?text=Distrochooser+&amp;url=http://distrochooser.de/?r=tw&amp;hashtags=distrochooser,linux" target="_blank">
           <i class="fa fa-twitter fa-2x twitter"></i>
         </a>
-        <a href="https://plus.google.com/share?url=http://distrochooser.0fury.de/?r=gp" target="_blank">
+        <a href="https://plus.google.com/share?url=http://distrochooser.de/?r=gp" target="_blank">
           <i class="fa fa-google-plus  fa-2x gplus"></i>
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://distrochooser.0fury.de/?r=fb" target="_blank">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://distrochooser.de/?r=fb" target="_blank">
           <i class="fa fa-facebook fa-2x facebook"></i>
         </a>
         <a href="mailto:?subject=Distro%20Chooser">
           <i class="fa fa-envelope fa-2x email"></i>
         </a>
-        <a href="http://distrochooser.0fury.de/?r=l" target="_blank">
+        <a href="http://distrochooser.de/?r=l" target="_blank">
           <i class="fa fa-link fa-2x link"></i>
         </a>
         <a href="https://github.com/squarerootfury/distrochooser" target="_blank">

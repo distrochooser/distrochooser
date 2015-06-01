@@ -53,7 +53,7 @@ function SetUpUI(){
 	});
 	$("#answeredCount").text("0");
 	$("#welcomeTextHeader").trigger("click");
-	$("#twitterlink").attr("href","https://twitter.com/share?text="+ldc.GetSystemValue("FindTheRightLinux")+"&url=http://distrochooser.0fury.de/?r=tw&hashtags=distrochooser,linux&via=distrochooser") ;
+	$("#twitterlink").attr("href","https://twitter.com/share?text="+ldc.GetSystemValue("FindTheRightLinux")+"&url=http://distrochooser.de/?r=tw&hashtags=distrochooser,linux&via=distrochooser") ;
 	$("#getresult").click(function(){
 		 // Add only the distros to the stats if the result was absolute or the percentage was above 20 %
                  var relevantDistros = [];
@@ -81,6 +81,8 @@ function SwitchLanguage(language){
 }
 function GetResult(){
 	$("#ResultContent").empty();
+	$(".shareMenu a ").attr("style","display:initial !important");
+    $(".shareMenu a i").attr("style","display:initial !important");
 	if (ldc.distributionsAfterAnswer[0].percentage){
 		$("#ResultContent").html("<div class='alert alert-info'>"+ldc.GetSystemValue("RelativeResults")+"</div>");
 	}

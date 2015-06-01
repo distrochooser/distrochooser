@@ -32,9 +32,9 @@ $(document).ready(function(){
 		DisplayShareDialog();
 		var result = ldc.SerializeResult();	
 		if (result != "")			
-			$("#shareMyResult").val("http://distrochooser.0fury.de/?r=l&answers="+result);
+			$("#shareMyResult").val("http://distrochooser.de/?r=l&answers="+result);
 		else
-			$("#shareMyResult").val("http://distrochooser.0fury.de/?r=l");
+			$("#shareMyResult").val("http://distrochooser.de/?r=l");
 	});
 	$("#contact,.scontact,#contactMenuEntry").mousedown(function(e){
 		$("#modalImprint").modal();

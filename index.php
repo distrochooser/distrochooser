@@ -62,7 +62,7 @@
                 )
             );
             $context = stream_context_create($opts);
-            $distros = json_decode(file_get_contents("http://distrochooser2.0fury.de/rest.php", false, $context));          
+            $distros = json_decode(file_get_contents("http://distrochooser.de/rest.php", false, $context));          
           ?>
           <ul>
             <?php foreach ($distros as $value) :?>
