@@ -117,7 +117,7 @@
 			return $this->Output($count->count);
 		}
 		public function GetInstalledDistros(){
-			$query = "Select Name,Homepage  from Distribution";
+			$query = "Select Name,Homepage  from Distribution order by Name";
 			$distros = $this->db->conn->query($query)->fetchAll(PDO::FETCH_CLASS);
 			return $this->Output($distros);
 		}
