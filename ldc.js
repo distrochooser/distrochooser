@@ -1,5 +1,6 @@
 var ldc = function(){
 	this.backend = "https://distrochooser.de/rest.php";
+  this.Title = "Linux Auswahlhilfe",
 	this.distributions = [
 		{
 			"Name":"Ubuntu",
@@ -41,6 +42,7 @@ var ldc = function(){
       "Text":"Anfänger",
       "HelpText":"",
       "Important":false,
+      "SingleAnswer":false,
       "Answers":[
         {
           "Id":"xf61b",
@@ -56,6 +58,7 @@ var ldc = function(){
       "Text":"Shell oder GUI",
       "HelpText":"",
       "Important":false,
+      "SingleAnswer":false,
       "Answers":[
         {
           "Id":"xf61bxxx",
@@ -80,6 +83,7 @@ var ldc = function(){
       "Text":"Administrationserfahrung",
       "HelpText":"",
       "Important":false,
+      "SingleAnswer":true,
       "Answers":[
         {
           "Id":"xf261b",
@@ -203,6 +207,16 @@ vm = new Vue({
   		}
   		return null;
   	},
+    getQuestionByAnswer : function(id){
+      for (var i = 0; i < ldc.questions.length;i++){
+        for(var x = 0;  x < ldc.questions[i].Answers.length;x++){
+          if (ldc.questions[i].Answers[x].Id === id){
+            return ldc.questions[i];
+          }
+        }
+      }
+      return null;
+    },
     getQuestion : function(id){
       for (var i = 0; i < ldc.questions.length;i++){
         if (ldc.questions[i].Id === id){
@@ -239,10 +253,22 @@ vm = new Vue({
       }
     },
   	addAnswer : function(args){
-  		var answer = this.selectAnswer(args.srcElement.attributes[1].value);
-  		if (this.debug && answer){
-  			console.log("Selected: "+answer);
-  		}
-  	}
+      var id = args.srcElement.attributes[2].value;
+      //prevent multiple answers on singleanswer question
+      var parent = this.getQuestionByAnswer(id);
+      if (parent !== null && parent.SingleAnswer === true){
+        for(var a = 0; a < parent.Answers.length;a++){
+            if (parent.Answers[a].Selected === true && parent.Answers[a].Id !== id){
+              this.nomultipleAnswersAllowed();
+              return false;
+            }
+        }
+      }
+  		var answer = this.selectAnswer(args.srcElement.attributes[2].value);
+  		return answer;
+  	},
+    nomultipleAnswersAllowed : function(){
+      alert("das ist nicht erlaubt");
+    }
   }
 })
