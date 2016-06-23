@@ -1,113 +1,75 @@
+function GetDistros(ldc){
+  $.post( ldc.backend, { method: "GetDistributions", args: "[]",lang: TranslateLanguage(ldc.lang) })
+	.done(function( result ) {
+		//var result = $.parseJSON(data);
+    ldc.distributions = [];
+		for(var i = 0; i < result.length;i++){
+      //translate the 2.x API for 3.x
+      var distro = {};
+      distro.Name = result[i].Name;
+      distro.Color = result[i].Color;
+      distro.Description = result[i].Description;
+      distro.Percentage = 0;
+      distro.Tags = [];
+      distro.Tags = result[i].Tags;
+      ldc.distributions.push(distro);
+    }
+	});
+}
+function GetQuestions(ldc){
+  $.post( ldc.backend, { method: "GetQuestions", args: "[]",lang: TranslateLanguage(ldc.lang) })
+	.done(function( result ) {
+		//var result = $.parseJSON(data);
+		for(var i = 0; i < result.length;i++){
+      //translate the 2.x API for 3.x
+      var question = {};
+      question.Id = "q"+result[i].Id;
+      question.Text = result[i].Text;
+      question.HelpText = result[i].Help;
+      question.Important = false; //TODO: Insert into DB
+      question.SingleAnswer = true; //TODO: Insert into DB
+      question.Answers = [];
+      for(var x=0;x < result[i].Answers.length;x++){
+        var answer = {};
+        answer.Id = "a"+result[i].Answers[x].Id;
+        answer.Text = result[i].Answers[x].Text;
+        answer.Tags = []; //TODO: Insert into DB
+        answer.Selected = false;
+        question.Answers.push(answer);
+      }
+      ldc.questions.push(question);
+    }
+	});
+}
+function TranslateLanguage(lang){
+    if (lang === "de"){
+      return 1;
+    }
+    return 2;
+}
 var ldc = function(){
 	this.backend = "https://distrochooser.de/rest.php";
   this.Title = "Linux Auswahlhilfe",
-	this.distributions = [
-		{
-			"Name":"Ubuntu",
-			"Description":{
-				"de":"foobar",
-				"en":"foobar en"
-			},
-			"Color":"orange",
-			"Homepage":{
-				"de":"fjlaksf",
-				"en":"jklfasjlf"
-			},
-			"Tags":[
-				"beginner",
-        "guinstall"
-			],
-      "Percentage":0
-		},
-    {
-      "Name":"Arch",
-      "Description":{
-        "de":"foobar",
-        "en":"foobar en"
-      },
-      "Color":"orange",
-      "Homepage":{
-        "de":"fjlaksf",
-        "en":"jklfasjlf"
-      },
-      "Tags":[
-        "expert","shellinstall"
-      ],
-      "Percentage":0
-    }
-	];
+  this.version = "3.0 (2016)";
+  this.lang = "de";
+	this.distributions = [];
 	this.questions = [
-		{
-      "Id":"5ab",
-      "Text":"Anfänger",
-      "HelpText":"",
-      "Important":false,
-      "SingleAnswer":false,
-      "Answers":[
-        {
-          "Id":"xf61b",
-          "Text":"Ja",
-          "Tags":[
-            "beginner"
-          ],
-          "Selected":false
-        }
-      ]
-    },{
-      "Id":"5ab2",
-      "Text":"Shell oder GUI",
-      "HelpText":"",
-      "Important":false,
-      "SingleAnswer":false,
-      "Answers":[
-        {
-          "Id":"xf61bxxx",
-          "Text":"GUI",
-          "Tags":[
-            "guinstall"
-          ],
-          "Selected":false
-        },
-         {
-          "Id":"xf61bxx2x",
-          "Text":"Shell",
-          "Tags":[
-            "shellinstall"
-          ],
-          "Selected":false
-        }
-      ]
-    },
     {
-      "Id":"5a2b",
-      "Text":"Administrationserfahrung",
-      "HelpText":"BLa bla bla",
+      "Id":"welcome",
+      "Text":"Willkommen",
+      "HelpText":"Wilkommen bla bla",
       "Important":false,
-      "SingleAnswer":true,
+      "SingleAnswer":false,
       "Answers":[
-        {
-          "Id":"xf261b",
-          "Text":"Ja, ich kenne mich aus",
-          "Tags":[
-            "expert"
-          ],
-          "Selected":false
-        },
-        {
-          "Id":"xf261b2",
-          "Text":"Nein, brutaler Noob",
-          "Tags":[
-            "beginner"
-          ],
-          "Selected":false
-        }
       ]
     }
 	];
 };
 //Do some init stuff
 ldc = new ldc();
-
+//TODO: Promises
+GetDistros(ldc);
+GetQuestions(ldc);
 vm = new Vue({
   el: '#app',
   data: {
@@ -123,7 +85,13 @@ vm = new Vue({
       return this.answered.length;
     },
     questionsCount: function(){
-      return ldc.questions.length;
+      var count = 0;
+      for(var i = 0; i < ldc.questions.length;i++){
+        if (ldc.questions[i].Answers.length !== 0){
+          count++;
+        }
+      }
+      return count;
     },
     currentTags: function(){
       //get the currently answered tags

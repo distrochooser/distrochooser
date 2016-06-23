@@ -9,6 +9,12 @@
 	text-decoration: none !important;
 	font-weight: bold;
 }
+.hidden{
+	display:none;
+}
+.distribution{
+	margin-bottom: 1em !important;
+}
 .panel-title{
 	display:inline;
 }
