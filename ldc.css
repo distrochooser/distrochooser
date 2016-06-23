@@ -1,3 +1,37 @@
 .selected{
 	font-weight:bold;
 }
+.mark-important,.mark-important:hover{
+	text-decoration: none;
+}
+.important{
+	color:orange !important;
+	text-decoration: none !important;
+	font-weight: bold;
+}
+.panel-title{
+	display:inline;
+}
+.row{
+	margin-left:-15px;
+	margin-right: -15px;
+}
+.container{
+	padding-top: 40px;
+}
+body{
+	background: url(./assets/bg.jpg);
+}
+.button-left-nav{
+	color: white;
+    display: block;
+    width: 70%;
+}
+.spacer{
+	display: block;
+	height: 7px;
+}
+.flag{
+	padding-top: 7px;
+    width: 40px;
+}

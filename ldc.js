@@ -81,7 +81,7 @@ var ldc = function(){
     {
       "Id":"5a2b",
       "Text":"Administrationserfahrung",
-      "HelpText":"",
+      "HelpText":"BLa bla bla",
       "Important":false,
       "SingleAnswer":true,
       "Answers":[
@@ -105,8 +105,9 @@ var ldc = function(){
     }
 	];
 };
-
+//Do some init stuff
 ldc = new ldc();
+
 vm = new Vue({
   el: '#app',
   data: {
@@ -120,6 +121,9 @@ vm = new Vue({
     answeredQuestionsCount: function(){
       this.answered =  this.answeredQuestions();
       return this.answered.length;
+    },
+    questionsCount: function(){
+      return ldc.questions.length;
     },
     currentTags: function(){
       //get the currently answered tags
@@ -144,6 +148,12 @@ vm = new Vue({
         }
       }
       return this.tags;
+    },
+    distributionsCount : function (){
+      return this.distributions.length;
+    },
+    allDistributionsCount : function (){
+      return ldc.distributions.length;
     },
     distributions : function(){
       //Reset percentages if needed
@@ -240,7 +250,7 @@ vm = new Vue({
       }
   	},
     makeImportant : function (args){
-      var question = this.getQuestion(args.srcElement.attributes[1].value);
+      var question = this.getQuestion(args.srcElement.attributes[2].value);
       if (question !== null){
           if (question.Important){
             question.Important = false;
