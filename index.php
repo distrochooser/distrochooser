@@ -66,7 +66,7 @@
 	<div v-for="question in ldc.questions" class="panel panel-default">
 		<div class="panel-heading" role="tab" id="header{{question.Id}}">
 			<h4 class="panel-title">
-				<a class="question-header" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.Id}}" aria-expanded="true" aria-controls="collapse{{question.Id}}">
+				<a class="question-header"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.Id}}" aria-expanded="true" aria-controls="collapse{{question.Id}}">
 					{{ question.Text }} 
 				</a>
 			</h4>	
@@ -99,7 +99,7 @@
 							<div class="panel panel-default distribution" style="border-color:{{ distro.Color }}">
 								<div class="panel-heading" style="background-color:{{ distro.Color }}">{{ distro.Name }}: {{ distro.Percentage }}%</div>
 								<div class="panel-body">
-								  {{{ distro.Description }}}
+								  <img class="distro-logo" src="{{ distro.Image }}"/>{{{ distro.Description }}}
 								</div>
 							</div>
 					</div>
@@ -112,7 +112,7 @@
 <div class="col-md-1">
 </div>
 <div class="col-lg-2">
-<div class="row">				
+<div class="row right-box">				
   <ul class="list-group"  v-bind:class="{'hidden':answeredQuestionsCount==0}">
     <li class="list-group-item"><a class="hidden-xs" id="homelink" href="index.php"><img src="./assets/ldc2alpha.png" alt="Linux Distribution Chooser" style="
      width: 100%;

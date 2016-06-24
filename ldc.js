@@ -1,17 +1,22 @@
 function GetDistros(ldc){
   $.post( ldc.backend, { method: "GetDistributions", args: "[]",lang: TranslateLanguage(ldc.lang) })
 	.done(function( result ) {
-		//var result = $.parseJSON(data);
     ldc.distributions = [];
 		for(var i = 0; i < result.length;i++){
       //translate the 2.x API for 3.x
       var distro = {};
       distro.Name = result[i].Name;
+      distro.Image = result[i].Image;
       distro.Color = result[i].Color;
       distro.Description = result[i].Description;
       distro.Percentage = 0;
       distro.Tags = [];
-      distro.Tags = result[i].Tags;
+      try {
+        distro.Tags = $.parseJSON(result[i].Tags);
+      } catch (error) {
+        console.log(distro);
+      }
+      
       ldc.distributions.push(distro);
     }
 	});
@@ -19,7 +24,6 @@ function GetDistros(ldc){
 function GetQuestions(ldc){
   $.post( ldc.backend, { method: "GetQuestions", args: "[]",lang: TranslateLanguage(ldc.lang) })
 	.done(function( result ) {
-		//var result = $.parseJSON(data);
 		for(var i = 0; i < result.length;i++){
       //translate the 2.x API for 3.x
       var question = {};
@@ -33,7 +37,10 @@ function GetQuestions(ldc){
         var answer = {};
         answer.Id = "a"+result[i].Answers[x].Id;
         answer.Text = result[i].Answers[x].Text;
-        answer.Tags = []; //TODO: Insert into DB
+        try {
+          answer.Tags = $.parseJSON(result[i].Answers[x].Tags);
+        } catch (error) {
+        }
         answer.Selected = false;
         question.Answers.push(answer);
       }
@@ -48,7 +55,7 @@ function TranslateLanguage(lang){
     return 2;
 }
 var ldc = function(){
-	this.backend = "https://distrochooser.de/rest.php";
+	this.backend = "https://distrochooser.de/rest.php?json&ldc3";
   this.Title = "Linux Auswahlhilfe",
   this.version = "3.0 (2016)";
   this.lang = "de";
@@ -115,9 +122,11 @@ vm = new Vue({
           }
         }
       }
+      console.log(this.tags);
       return this.tags;
     },
     distributionsCount : function (){
+      
       return this.distributions.length;
     },
     allDistributionsCount : function (){
@@ -218,6 +227,7 @@ vm = new Vue({
       }
   	},
     makeImportant : function (args){
+      args.preventDefault();
       var question = this.getQuestion(args.srcElement.attributes[2].value);
       if (question !== null){
           if (question.Important){
@@ -231,6 +241,7 @@ vm = new Vue({
       }
     },
   	addAnswer : function(args){
+      args.preventDefault();
       var id = args.srcElement.attributes[2].value;
       //prevent multiple answers on singleanswer question
       var parent = this.getQuestionByAnswer(id);
@@ -249,4 +260,4 @@ vm = new Vue({
       alert("das ist nicht erlaubt");
     }
   }
-})
+});

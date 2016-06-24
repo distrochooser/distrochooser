@@ -41,3 +41,15 @@ body{
 	padding-top: 7px;
     width: 40px;
 }
+.right-box{
+	position: fixed;
+    padding-right: 6em;
+}
+.distro-logo{
+	max-width: 19%;
+    max-height: 50%;
+    margin-right: 1em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    float: left;
+}
