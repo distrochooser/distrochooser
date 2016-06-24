@@ -2,7 +2,7 @@
 <head>
 <title>{{ ldc.Title }}</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
+<link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
 </head>
 <body>
 <noscript>
@@ -10,17 +10,17 @@
 </noscript>
 <div class="container">
 <div class="row">
+
+<?php include "./static/about.php";?>
 <div class="col-lg-3">
 	<div class="row">
 		<!--<a class ="hidden-xs" id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>-->					
 			<div class="visible-lg">			
-			<a class="btn btn-primary button-left-nav ldcui share" id="shareMenuEntry">Teilen</a>					
-			<span class="spacer"></span>
 			<a class="btn btn-primary button-left-nav ldcui privacy" id="privacyMenuEntry" href="./static/privacy.php">Datenschutz</a>					  
 			<span class="spacer"></span>
 			<a class="btn btn-primary button-left-nav ldcui contact" id="contactMenuEntry" href="./static/contact.php">Kontakt</a>					  
 			<span class="spacer"></span>				
-  <a class="btn btn-primary button-left-nav ldcui contact" id="about">Über den Distrochooser</a>     
+  		<a class="btn btn-primary button-left-nav ldcui contact" id="about"  data-toggle="modal" data-target="#myModal">Über den Distrochooser</a>     
 			<span class="spacer"></span>	
 
 			<a class="btn btn-primary button-left-nav" target="_blank" href="http://0fury.de"><img class="vendor" alt="0fury.de" src="./assets/0fury.ico"><span class="ldcui" id="Vendor">Ein Projekt von</span>  0fury.de</a>				  
@@ -95,6 +95,15 @@
 		 </div>
 			<div id="collapse-result" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header-result">
 				<div class="panel-body">
+				<div class="rating" v-if="commentSent==false">
+					<p class="ldcui rating-text">Wie zufrieden bist Du mit dem Ergebnis?</p>
+					 <div id="rating-stars"></div>
+					<textarea v-model="comment" debounce="300" class="form-control"></textarea>
+					 <button id="submit-comment" v-on:click="publishRating($event)" >Absenden</button>
+				</div>
+				<div class="rating-sent" v-if="commentSent==true">
+					Danke für die Bewertung!
+				</div>
 					<div v-for="distro in distributions | orderBy 'Percentage' -1">
 							<div class="panel panel-default distribution" style="border-color:{{ distro.Color }}">
 								<div class="panel-heading" style="background-color:{{ distro.Color }}">{{ distro.Name }}: {{ distro.Percentage }}%</div>
@@ -133,9 +142,15 @@
 </div>
 </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css">
 <script 
 src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
 <script src="./ldc.js"></script>
@@ -144,9 +159,16 @@ src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
 	$(document).ready(function(){
 		$('.question-header:first').trigger("click");
 		$("#getresult").click(function(){
-			$(".result-header").trigger("click");
-				$(".result-header").focus();
+			$(".question:last").collapse("show")
+			location.href="#collapse-result";
 		});
+		$("#rating-stars").rateYo({
+			rating: 0.0
+		});
+		$('#myModal').on('show.bs.modal', function (e) {
+			TestCount();
+		})
+		
 	});
 </script>
 

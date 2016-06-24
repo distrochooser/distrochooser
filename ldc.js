@@ -48,11 +48,49 @@ function GetQuestions(ldc){
     }
 	});
 }
+function GetSystemVars(ldc){
+   $.post( ldc.backend, { method: "GetSystemVars", args: "[]",lang: TranslateLanguage(ldc.lang)  })
+  .done(function( data ) {
+      ldc.systemVars = data;
+      UI();
+  });
+}
+function TestCount(){
+   $.post( ldc.backend, { method: "GetTestCount", args: "[]",lang: TranslateLanguage(ldc.lang)  })
+  .done(function( data ) {
+		var clock = $('#counter').FlipClock(data, {
+			clockFace: 'Counter'
+		});
+  });
+}
 function TranslateLanguage(lang){
     if (lang === "de"){
       return 1;
     }
     return 2;
+}
+function GetSystemValue(ldc,needle){
+        for (var i = 0; i < ldc.systemVars.length; i++) {
+                if (ldc.systemVars[i].Val == needle){
+                        return ldc.systemVars[i].Text;
+                }
+       	}
+        return "";
+}
+function UI(){
+   $(".ldcui").each(function(index, value) {
+          var id = $(this).attr('id');
+          var value = GetSystemValue(ldc,id);
+          if (id == undefined || value == "")
+          {
+              //for elements with duplicate context
+              var classes = $(this).attr("class").split(' ');
+              id = classes[classes.length -1];
+              value = GetSystemValue(ldc,id);
+          }
+          if (value != "")
+                      $(this).html(value);
+      });
 }
 var ldc = function(){
 	this.backend = "https://distrochooser.de/rest.php?json&ldc3";
@@ -60,6 +98,7 @@ var ldc = function(){
   this.version = "3.0 (2016)";
   this.lang = "de";
 	this.distributions = [];
+  this.systemVars = null;
 	this.questions = [
     {
       "Id":"welcome",
@@ -77,6 +116,7 @@ ldc = new ldc();
 //TODO: Promises
 GetDistros(ldc);
 GetQuestions(ldc);
+GetSystemVars(ldc);
 vm = new Vue({
   el: '#app',
   data: {
@@ -84,9 +124,14 @@ vm = new Vue({
     debug: true, //debug mode?
     answered: 0, //the count of answered questions
     tags: {}, //the answered tags
-    results: ldc.distributions //the resulting distros
+    results: ldc.distributions, //the resulting distros
+    comment: "", //the user's comment for the result
+    commentSent: false
   },
   computed: {
+    ratingSent : function (){
+        return false;
+    },
     answeredQuestionsCount: function(){
       this.answered =  this.answeredQuestions();
       return this.answered.length;
@@ -258,6 +303,15 @@ vm = new Vue({
   	},
     nomultipleAnswersAllowed : function(){
       alert("das ist nicht erlaubt");
+    },
+    publishRating : function(args){
+      var rating = $("#rating-stars").rateYo().rateYo("rating");
+      var _this = this;
+      var c = this.comment;
+        $.post( ldc.backend, { method: "NewRatingWithComment", args: "["+rating+",\""+c+"\"]",lang: TranslateLanguage(ldc.lang) })
+        .done(function( result ) {
+        	_this.commentSent = true;
+        });
     }
   }
 });

@@ -53,3 +53,17 @@ body{
     margin-bottom: 2em;
     float: left;
 }
+.rating{
+	text-align: center;
+    padding-bottom: 1em;
+}
+#rating-stars{
+	margin: 0 auto;
+    padding-bottom: 1em;
+}
+.rating textarea{
+	width: 73%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1em;
+}
