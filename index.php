@@ -8,7 +8,10 @@
 <noscript>
 	jkfalsf
 </noscript>
-<div class="container">
+<div class="loader" v-bind:class="{'hidden':loaded}">
+		<p>text</p>
+</div>
+<div class="container"  v-bind:class="{'hidden':!loaded}">
 <div class="row">
 
 <?php include "./static/about.php";?>
@@ -93,8 +96,9 @@
 				</a>
 			</h4>	
 		 </div>
-			<div id="collapse-result" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header-result">
+			<div id="collapse-result" class="panel-collapse collapse question result-collapse" role="tabpanel" aria-labelledby="header-result">
 				<div class="panel-body">
+				<a href="#" id="rating-anchor"></a>
 				<div class="rating" v-if="commentSent==false">
 					<p class="ldcui rating-text">Wie zufrieden bist Du mit dem Ergebnis?</p>
 					 <div id="rating-stars"></div>
@@ -149,10 +153,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css">
 <script 
 src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/vue.resource/0.9.1/vue-resource.min.js"></script>
 <script src="./ldc.js"></script>
 <link href="./ldc.css" rel='stylesheet' type='text/css'>
 <script>
@@ -160,14 +163,14 @@ src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
 		$('.question-header:first').trigger("click");
 		$("#getresult").click(function(){
 			$(".question:last").collapse("show")
-			location.href="#collapse-result";
+			
+		});
+		$(".question:last").on('shown.bs.collapse', function () {
+			window.scrollTo(0, $("#rating-anchor").position().top);
 		});
 		$("#rating-stars").rateYo({
 			rating: 0.0
 		});
-		$('#myModal').on('show.bs.modal', function (e) {
-			TestCount();
-		})
 		
 	});
 </script>

@@ -67,3 +67,16 @@ body{
     margin: 0 auto;
     margin-bottom: 1em;
 }
+.result-collapse { 
+	 transition: height 0.01s;
+}
+.loader{
+	height: 100%;
+    width: 100%;
+}
+.loader p{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+	font-size: x-large;
+}

@@ -1,68 +1,3 @@
-function GetDistros(ldc){
-  $.post( ldc.backend, { method: "GetDistributions", args: "[]",lang: TranslateLanguage(ldc.lang) })
-	.done(function( result ) {
-    ldc.distributions = [];
-		for(var i = 0; i < result.length;i++){
-      //translate the 2.x API for 3.x
-      var distro = {};
-      distro.Name = result[i].Name;
-      distro.Image = result[i].Image;
-      distro.Color = result[i].Color;
-      distro.Description = result[i].Description;
-      distro.Percentage = 0;
-      distro.Tags = [];
-      try {
-        distro.Tags = $.parseJSON(result[i].Tags);
-      } catch (error) {
-        console.log(distro);
-      }
-      
-      ldc.distributions.push(distro);
-    }
-	});
-}
-function GetQuestions(ldc){
-  $.post( ldc.backend, { method: "GetQuestions", args: "[]",lang: TranslateLanguage(ldc.lang) })
-	.done(function( result ) {
-		for(var i = 0; i < result.length;i++){
-      //translate the 2.x API for 3.x
-      var question = {};
-      question.Id = "q"+result[i].Id;
-      question.Text = result[i].Text;
-      question.HelpText = result[i].Help;
-      question.Important = false; //TODO: Insert into DB
-      question.SingleAnswer = true; //TODO: Insert into DB
-      question.Answers = [];
-      for(var x=0;x < result[i].Answers.length;x++){
-        var answer = {};
-        answer.Id = "a"+result[i].Answers[x].Id;
-        answer.Text = result[i].Answers[x].Text;
-        try {
-          answer.Tags = $.parseJSON(result[i].Answers[x].Tags);
-        } catch (error) {
-        }
-        answer.Selected = false;
-        question.Answers.push(answer);
-      }
-      ldc.questions.push(question);
-    }
-	});
-}
-function GetSystemVars(ldc){
-   $.post( ldc.backend, { method: "GetSystemVars", args: "[]",lang: TranslateLanguage(ldc.lang)  })
-  .done(function( data ) {
-      ldc.systemVars = data;
-      UI();
-  });
-}
-function TestCount(){
-   $.post( ldc.backend, { method: "GetTestCount", args: "[]",lang: TranslateLanguage(ldc.lang)  })
-  .done(function( data ) {
-		var clock = $('#counter').FlipClock(data, {
-			clockFace: 'Counter'
-		});
-  });
-}
 function TranslateLanguage(lang){
     if (lang === "de"){
       return 1;
@@ -92,6 +27,11 @@ function UI(){
                       $(this).html(value);
       });
 }
+function loadingText(){
+    var texts = ["something","foobar","bla","foo","some","shit"];
+    var index = Math.floor((Math.random() * texts.length) );
+    $(".loader p").text(texts[index]+"...");
+}
 var ldc = function(){
 	this.backend = "https://distrochooser.de/rest.php?json&ldc3";
   this.Title = "Linux Auswahlhilfe",
@@ -113,10 +53,7 @@ var ldc = function(){
 };
 //Do some init stuff
 ldc = new ldc();
-//TODO: Promises
-GetDistros(ldc);
-GetQuestions(ldc);
-GetSystemVars(ldc);
+Vue.http.options.emulateJSON = true;
 vm = new Vue({
   el: '#app',
   data: {
@@ -126,7 +63,83 @@ vm = new Vue({
     tags: {}, //the answered tags
     results: ldc.distributions, //the resulting distros
     comment: "", //the user's comment for the result
-    commentSent: false
+    commentSent: false,
+    testCount: 0,
+    loaded: false
+  },
+  created: function(){
+     this.$http.post(ldc.backend,{method:'GetDistributions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+        loadingText();
+        var result = JSON.parse(data.body);
+          ldc.distributions = [];
+          for(var i = 0; i < result.length;i++){
+            //translate the 2.x API for 3.x
+            var distro = {};
+            distro.Id = result[i].Id;
+            distro.Name = result[i].Name;
+            distro.Image = result[i].Image;
+            distro.Color = result[i].Color;
+            distro.Description = result[i].Description;
+            distro.Percentage = 0;
+            distro.Tags = [];
+            try {
+              distro.Tags = JSON.parse(result[i].Tags);
+            } catch (error) {
+              console.log(distro);
+            }
+            ldc.distributions.push(distro);
+          }
+      }).then(
+       function(){
+          this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+            loadingText();
+            var result = JSON.parse(data.body);
+            for(var i = 0; i < result.length;i++){
+                //translate the 2.x API for 3.x
+                var question = {};
+                question.Id = "q"+result[i].Id;
+                question.Text = result[i].Text;
+                question.HelpText = result[i].Help;
+                question.Important = false; //TODO: Insert into DB
+                question.SingleAnswer = true; //TODO: Insert into DB
+                question.Answers = [];
+                for(var x=0;x < result[i].Answers.length;x++){
+                  var answer = {};
+                  answer.Id = "a"+result[i].Answers[x].Id;
+                  answer.Text = result[i].Answers[x].Text;
+                  try {
+                    answer.Tags = JSON.parse(result[i].Answers[x].Tags);
+                  } catch (error) {
+
+                  }
+                  answer.Selected = false;
+                  question.Answers.push(answer);
+                }
+                ldc.questions.push(question);
+              }
+          })
+       }
+      ).then(
+        function(){
+             this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+                    loadingText();
+                    ldc.systemVars = JSON.parse(data.body);
+                    UI();
+             });
+        } 
+      ).then(
+        function(){
+             this.$http.post(ldc.backend,{method:'GetTestCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+                  loadingText();
+                  this.testCount = data.body;
+             });
+             this.testCount = parseInt(this.testCount );
+        }
+      ).then(
+        function(){
+           this.loaded = true;
+        }
+      );
   },
   computed: {
     ratingSent : function (){
@@ -308,10 +321,14 @@ vm = new Vue({
       var rating = $("#rating-stars").rateYo().rateYo("rating");
       var _this = this;
       var c = this.comment;
-        $.post( ldc.backend, { method: "NewRatingWithComment", args: "["+rating+",\""+c+"\"]",lang: TranslateLanguage(ldc.lang) })
-        .done(function( result ) {
-        	_this.commentSent = true;
-        });
+      this.$http.post(ldc.backend,{method:'NewRatingWithComment',args: "["+rating+",\""+c+"\"]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+          this.commentSent = true;
+      });
+    },
+    addResult: function (args){
+      this.$http.post(ldc.backend,{method:'AddResult',args: JSON.stringify(ldc.distributions), lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+        console.log("Stored result");
+      });
     }
   }
 });
