@@ -1,5 +1,6 @@
 <html  id="app">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ ldc.Title }}</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
@@ -79,12 +80,13 @@
 				<div class="panel-body">
 					{{ question.HelpText }}
 					<div v-if="question.Answers.lenght != 0">
-					<ul>
-						<li v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected}">
+					<ul v-bind:class="{'multi':!question.SingleAnswer,'single':question.SingleAnswer }">
+						<li v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected }">
 							<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">{{ answer.Text }}</a>
 						</li>
 						</div>
 					</ul>
+					<a href="#collapse2" class="btn btn-primary next ldcui" >Weiter</a>
 				</div>
 			</div>
 		</div>
@@ -139,7 +141,7 @@
       <span class="ldcui" id="Suitable">Passend</span>
     </li>
     <li class="list-group-item">
-      <a class="btn btn-primary ldcui" id="getresult">Auswerten</a>
+      <a class="btn btn-primary ldcui" id="getresult" v-on:click="addResult" >Auswerten</a>
     </li>        
   </ul>
 </div>

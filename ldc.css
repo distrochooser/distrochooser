@@ -80,3 +80,14 @@ body{
     right: 50%;
 	font-size: x-large;
 }
+.vendor{
+	margin-right: 5px;
+    margin-bottom: 4px;
+}
+.navbar-brand>img {
+    display: block;
+}
+.brand{
+	width: 160px;
+    height: 24px;
+}
