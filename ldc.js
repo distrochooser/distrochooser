@@ -65,6 +65,7 @@ vm = new Vue({
     comment: "", //the user's comment for the result
     commentSent: false,
     testCount: 0,
+    visitorCount: 0,
     loaded: false
   },
   created: function(){
@@ -80,6 +81,7 @@ vm = new Vue({
             distro.Image = result[i].Image;
             distro.Color = result[i].Color;
             distro.Description = result[i].Description;
+            distro.Website = result[i].Homepage;
             distro.Percentage = 0;
             distro.Tags = [];
             try {
@@ -134,6 +136,14 @@ vm = new Vue({
                   this.testCount = data.body;
              });
              this.testCount = parseInt(this.testCount );
+        }
+      ).then(
+         function(){
+             this.$http.post(ldc.backend,{method:'GetVisitorCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+                  loadingText();
+                  this.visitorCount = data.body;
+             });
+             this.visitorCount = parseInt(this.visitorCount );
         }
       ).then(
         function(){

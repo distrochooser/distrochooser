@@ -9,6 +9,9 @@
 	text-decoration: none !important;
 	font-weight: bold;
 }
+.main-container{
+	display:none;
+}
 .hidden{
 	display:none;
 }
@@ -70,7 +73,11 @@ body{
 .result-collapse { 
 	 transition: height 0.01s;
 }
+.visible{
+	display:block;
+}
 .loader{
+	display: none;
 	height: 100%;
     width: 100%;
 }

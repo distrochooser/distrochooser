@@ -3,16 +3,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ ldc.Title }}</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
+<link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
 </head>
 <body>
 <noscript>
-	jkfalsf
+	The Distrochooser needs <code>JavaScript</code> to work properly.
+	<br>
+	Der Distrochooser funktioniert ohne <code>JavaScript</code> nicht. 
 </noscript>
-<div class="loader" v-bind:class="{'hidden':loaded}">
+<div class="loader" v-bind:class="{'visible':!loaded,'hidden':loaded}">
 		<p>text</p>
 </div>
-<div class="container"  v-bind:class="{'hidden':!loaded}">
+<div class="container main-container"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 <div class="row">
 
 <?php include "./static/about.php";?>
@@ -32,7 +34,6 @@
 			<a title="Zur deutschen Version wechseln" href="?l=1"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 			<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
 			<p>
-		{{ ldc.version }}
 </p>
 						</div>
 			<div class="hidden-lg">					
