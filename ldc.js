@@ -55,7 +55,9 @@ var ldc = function(){
       "Important":false,
       "SingleAnswer":false,
       "Answers":[
-      ]
+      ],
+      "Number":-1,
+      "ButtonText":""
     }
 	];
 };
@@ -80,7 +82,28 @@ vm = new Vue({
   created: function(){
     this.init();
   },
+  ready: function(){
+    this.nextTrigger();
+  },
   computed: {
+    firstQuestionNumber : function(){
+      return 1;
+    },
+    lastQuestionNumber : function(){
+      return ldc.questions.length -1;
+    },
+    startTestButtonText: function(){
+      var text =  GetSystemValue(this.ldc,"StartTest");
+      return text;
+    },
+    nextButtonText: function(){
+      var text =  GetSystemValue(this.ldc,"nextQuestion");
+      return text;
+    },
+    getResultButtonText : function(){
+      var text =  GetSystemValue(this.ldc,"getresult");
+      return text;
+    },
     ratingSent : function (){
         return false;
     },
@@ -198,6 +221,7 @@ vm = new Vue({
        function(){
           this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
             loadingText();
+            ldc.questions[0].ButtonText = this.startTestButtonText;
             var result = JSON.parse(data.body);
             for(var i = 0; i < result.length;i++){
                 //translate the 2.x API for 3.x
@@ -221,6 +245,12 @@ vm = new Vue({
                   }
                   answer.Selected = false;
                   question.Answers.push(answer);
+                }
+                if (question.Number === this.firstQuestionNumber){
+                  question.ButtonText = this.nextButtonText;
+                }
+                else{
+                  question.ButtonText = this.getResultButtonText;
                 }
                 ldc.questions.push(question);
               }
@@ -383,6 +413,16 @@ vm = new Vue({
         langcode = parts["l"];
       }
       ldc.lang = TranslateLanguageCode(parseInt(langcode));
+    },
+    nextTrigger: function(args){
+      console.log(args.srcElement.attributes);
+      var id = args.srcElement.attributes[2].value;
+      if ($("."+id).text().trim() === GetSystemValue(ldc,"getresult")){
+        $("#getresult").trigger("click");
+      }else{
+        var target =  $("."+id).parent().parent().parent().next().find(".question-header");
+        target.trigger("click");
+      }
     }
   }
 });

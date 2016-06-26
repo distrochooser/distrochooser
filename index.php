@@ -72,7 +72,7 @@
 		<div class="panel-heading" role="tab" id="header{{question.Id}}">
 			<h4 class="panel-title">
 				<a class="question-header"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.Id}}" aria-expanded="true" aria-controls="collapse{{question.Id}}" v-bind:class="{'answered':question.Answered}" >
-					{{ question.Number }}. {{ question.Text }} 
+					<span v-if="question.Number !== -1">{{ question.Number }}. </span>{{ question.Text }} 
 				</a>
 			</h4>	
 			<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length == 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event)"></a>
@@ -87,7 +87,9 @@
 						</li>
 						</div>
 					</ul>
-					<a href="#collapse2" class="btn btn-primary next ldcui" ></a>
+					<a href="#" class="btn btn-primary {{ question.Id }}-next" data-id="{{ question.Id }}-next" v-on:click="nextTrigger($event)" >
+						{{ question.ButtonText }}
+					</a>
 				</div>
 			</div>
 		</div>
@@ -166,7 +168,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
 		$('.question-header:first').trigger("click");
 		$("#getresult").click(function(){
 			$(".question:last").collapse("show")
-			
 		});
 		$(".question:last").on('shown.bs.collapse', function () {
 			window.scrollTo(0, $("#rating-anchor").position().top);
