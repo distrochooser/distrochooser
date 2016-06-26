@@ -295,14 +295,13 @@ vm = new Vue({
             });
             this.$http.post(ldc.backend,{method:'GetTestCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
                   loadingText();
-                  this.testCount = data.body;
+                  this.testCount = parseInt(data.body);
              });
              this.testCount = parseInt(this.testCount );
                this.$http.post(ldc.backend,{method:'GetVisitorCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
                   loadingText();
-                  this.visitorCount = data.body;
+                  this.visitorCount = parseInt(data.body);
              });
-             this.visitorCount = parseInt(this.visitorCount );
         }
     },
     NewVisitor: function(){
