@@ -98,3 +98,32 @@ body{
 .answered{
 	text-decoration: line-through;
 }
+.social{
+	right: 0px;
+    padding-left:54%;
+    margin-top: -34px;
+    padding-bottom: 1em;
+}
+.social a{
+	font-size:x-large;
+	padding-right:0.1em;
+}
+.share-link{
+	padding-bottom: 0.7em;
+}
+.share-link input{
+	width: 73%;
+	margin: 0 auto;
+}
+.fa-twitter{
+	color: #55ACEE;
+}
+.fa-google-plus{
+	color: red;
+}
+.fa-facebook{
+	color: #3B5998;
+}
+.fa-github{
+	color:grey;
+}

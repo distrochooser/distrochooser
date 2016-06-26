@@ -89,6 +89,14 @@ vm = new Vue({
     this.loaded = true;
   },
   computed: {
+    shareLink : function(){
+      var baseUrl = "https://distrochooser.de/?l="+TranslateLanguage(ldc.lang);
+
+      if (this.currentTest === -1){
+        return baseUrl;
+      }
+      return baseUrl+ "&test="+this.currentTest;
+    },
     startTestButtonText: function(){
       var text =  GetSystemValue(this.ldc,"StartTest");
       return text;
@@ -189,6 +197,7 @@ vm = new Vue({
     }
   },
   methods: {
+
     init: function(){
         //set language first
         this.getLanguage();
@@ -263,7 +272,23 @@ vm = new Vue({
                 }
                 ldc.questions.push(question);
               }
-          })
+          }).then(
+              function (){
+                //if test is present
+                var parts = this.getUrlParts();
+                if (typeof parts["test"] !== 'undefined'){
+                  var test = parseInt(parts["test"]);
+                  //Load old test results
+                    this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+                          var obj = JSON.parse(data.body);
+                          var answers = JSON.parse(obj.Answers);
+                          for(var a =0; a < answers.length;a++){
+                            this.selectAnswer(answers[a]);
+                          }
+                  });
+                }
+              }
+            )
        }
       ).then(
         function(){
@@ -390,7 +415,16 @@ vm = new Vue({
       });
     },
     addResult: function (args){
-      this.$http.post(ldc.backend,{method:'AddResult',args: JSON.stringify(ldc.distributions), lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+      var answers  = [];
+      for(var i = 0; i < this.answered.length;i++){
+          var question = this.answered[i];
+          for(var x = 0; x < question.Answers.length;x++){
+              if (question.Answers[x].Selected){
+                answers.push(question.Answers[x].Id);
+              }
+          }
+      }
+      this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+"]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
         
         this.currentTest = parseInt(data.body);
       });

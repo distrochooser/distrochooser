@@ -107,9 +107,20 @@
 				<a href="#" id="rating-anchor"></a>
 				<div class="rating" v-if="commentSent==false">
 					<p class="ldcui rating-text">Wie zufrieden bist Du mit dem Ergebnis?</p>
+					 <div class="share-link">
+					 		<input type="text" class="form-control" value="{{shareLink}}">
+					 </div>
 					 <div id="rating-stars"></div>
 					<textarea v-model="comment" debounce="300" class="form-control"></textarea>
-					 <button id="submit-comment" v-on:click="publishRating($event)" >Absenden</button>
+					 <button id="submit-comment" v-on:click="publishRating($event)" class="btn btn-primary">Absenden</button>
+					 <div class="social">
+					 		<a href="https://twitter.com/share?url={{shareLink}}&hashtags=distrochooser,linux&via=distrochooser"><i class="fa fa-twitter"></i></a>
+							 <a href="https://www.facebook.com/sharer/sharer.php?u={{shareLink}}"><i class="fa fa-facebook"></i></a>
+							 <a href="https://plus.google.com/share?url={{shareLink}}"><i class="fa fa-google-plus"></i></a>
+							 <a href="https://github.com/squarerootfury/distrochooser"><i class="fa fa-github"></i></a>
+					 </div>
+				</div>
+				<div>
 				</div>
 				<div class="rating-sent" v-if="commentSent==true">
 					Danke für die Bewertung!
@@ -162,6 +173,7 @@
 <script 
 src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/vue.resource/0.9.1/vue-resource.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="./ldc.js"></script>
 
 <script>
