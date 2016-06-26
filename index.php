@@ -71,8 +71,8 @@
 	<div v-for="question in ldc.questions" class="panel panel-default">
 		<div class="panel-heading" role="tab" id="header{{question.Id}}">
 			<h4 class="panel-title">
-				<a class="question-header"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.Id}}" aria-expanded="true" aria-controls="collapse{{question.Id}}">
-					{{ question.Text }} 
+				<a class="question-header"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.Id}}" aria-expanded="true" aria-controls="collapse{{question.Id}}" v-bind:class="{'answered':question.Answered}" >
+					{{ question.Number }}. {{ question.Text }} 
 				</a>
 			</h4>	
 			<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length == 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event)"></a>
@@ -87,7 +87,7 @@
 						</li>
 						</div>
 					</ul>
-					<a href="#collapse2" class="btn btn-primary next ldcui" >Weiter</a>
+					<a href="#collapse2" class="btn btn-primary next ldcui" ></a>
 				</div>
 			</div>
 		</div>

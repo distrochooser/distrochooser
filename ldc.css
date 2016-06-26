@@ -44,10 +44,6 @@ body{
 	padding-top: 7px;
     width: 40px;
 }
-.right-box{
-	position: fixed;
-    padding-right: 6em;
-}
 .distro-logo{
 	max-width: 19%;
     max-height: 50%;
@@ -97,4 +93,7 @@ body{
 .brand{
 	width: 160px;
     height: 24px;
+}
+.answered{
+	text-decoration: line-through;
 }
