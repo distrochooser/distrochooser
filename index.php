@@ -26,10 +26,7 @@
 	<div class="row">
 		<!--<a class ="hidden-xs" id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>-->					
 			<div class="visible-lg">			
-			<a class="btn btn-primary button-left-nav ldcui privacy" id="privacyMenuEntry" href="./static/privacy.php">Datenschutz</a>					  
-			<span class="spacer"></span>
-			<a class="btn btn-primary button-left-nav ldcui contact" id="contactMenuEntry" href="./static/contact.php">Kontakt</a>					  
-			<span class="spacer"></span>				
+			
   		<a class="btn btn-primary button-left-nav ldcui contact" id="about"  data-toggle="modal" data-target="#myModal">Über den Distrochooser</a>     
 			<span class="spacer"></span>	
 
@@ -37,8 +34,11 @@
 				
 			<a title="Zur deutschen Version wechseln" href="?l=1"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 			<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
-			<p>
-</p>
+
+	<footer class="visible-lg">
+				<a class="ldcui privacy" id="privacyMenuEntry" href="./static/privacy.php">Datenschutz</a>	
+				<a class="ldcui contact" id="contactMenuEntry" href="./static/contact.php">Kontakt</a>		
+	</footer>
 						</div>
 			<div class="hidden-lg">					
 				<!--<ul class="nav nav-pills" role="tablist">				 
@@ -58,9 +58,8 @@
 				    </div>	
 				      <div class="collapse navbar-collapse" id="example-navbar-collapse">
 				      <ul class="nav navbar-nav">
-				         <li role="presentation"> <a class="ldcui sshare" href="#" id="share">Teilen</a></li>
-						 <li role="presentation"> <a class="ldcui sprivacy" id="privacy" href="./static/privacy.php">Datenschutz</a></li>
-						 <li role="presentation"> <a class="ldcui scontact" id="contact" href="./static/contact.php">Kontakt</a></li>
+								<li role="presentation"> <a class="ldcui sprivacy" id="privacy" href="./static/privacy.php">Datenschutz</a></li>
+								<li role="presentation"> <a class="ldcui scontact" id="contact" href="./static/contact.php">Kontakt</a></li>
 				      </ul>
 				   </div> 				
 				  </div>

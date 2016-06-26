@@ -130,3 +130,7 @@ body{
 .largelogo{
 	max-width: 60%;
 }
+footer{
+	position: fixed;
+    bottom: 1em;
+}
