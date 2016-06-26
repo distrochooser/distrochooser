@@ -77,7 +77,9 @@ vm = new Vue({
     testCount: 0,
     visitorCount: 0,
     loaded: false,
-    i18n: null
+    i18n: null,
+    firstQuestionNumber:1,
+    lastQuestionNumber: -1
   },
   created: function(){
     this.init();
@@ -86,12 +88,6 @@ vm = new Vue({
     this.nextTrigger();
   },
   computed: {
-    firstQuestionNumber : function(){
-      return 1;
-    },
-    lastQuestionNumber : function(){
-      return ldc.questions.length -1;
-    },
     startTestButtonText: function(){
       var text =  GetSystemValue(this.ldc,"StartTest");
       return text;
@@ -222,7 +218,9 @@ vm = new Vue({
           this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
             loadingText();
             ldc.questions[0].ButtonText = this.startTestButtonText;
+     
             var result = JSON.parse(data.body);
+            this.lastQuestionNumber = result.length;
             for(var i = 0; i < result.length;i++){
                 //translate the 2.x API for 3.x
                 var question = {};
@@ -246,7 +244,8 @@ vm = new Vue({
                   answer.Selected = false;
                   question.Answers.push(answer);
                 }
-                if (question.Number === this.firstQuestionNumber){
+                console.log(question.Number);
+                if (question.Number < this.lastQuestionNumber){
                   question.ButtonText = this.nextButtonText;
                 }
                 else{
