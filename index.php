@@ -4,6 +4,7 @@
 <title>{{ ldc.Title }}</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
+<link href="./ldc.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
 <noscript>
@@ -12,7 +13,7 @@
 	Der Distrochooser funktioniert ohne <code>JavaScript</code> nicht. 
 </noscript>
 <div class="loader" v-bind:class="{'visible':!loaded,'hidden':loaded}">
-		<p>text</p>
+		<p>Doing magic...</p>
 </div>
 <div class="container main-container"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 <div class="row">
@@ -162,7 +163,7 @@
 src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/vue.resource/0.9.1/vue-resource.min.js"></script>
 <script src="./ldc.js"></script>
-<link href="./ldc.css" rel='stylesheet' type='text/css'>
+
 <script>
 	$(document).ready(function(){
 		$('.question-header:first').trigger("click");

@@ -70,7 +70,7 @@ body{
 	 transition: height 0.01s;
 }
 .visible{
-	display:block;
+	display:block !important;
 }
 .loader{
 	display: none;
@@ -78,9 +78,10 @@ body{
     width: 100%;
 }
 .loader p{
-    position: absolute;
-    top: 50%;
-    right: 50%;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 25%;
 	font-size: x-large;
 }
 .vendor{

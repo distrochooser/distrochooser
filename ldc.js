@@ -36,7 +36,7 @@ function UI(){
       });
 }
 function loadingText(){
-    var texts = ["something","foobar","bla","foo","some","shit"];
+    var texts = ["Feeding penguins","Fixing Windows","loading","Rearanging molecules"];
     var index = Math.floor((Math.random() * texts.length) );
     $(".loader p").text(texts[index]+"...");
 }
@@ -79,13 +79,14 @@ vm = new Vue({
     loaded: false,
     i18n: null,
     firstQuestionNumber:1,
-    lastQuestionNumber: -1
+    lastQuestionNumber: -1,
+    currentTest: -1
   },
   created: function(){
     this.init();
   },
-  ready: function(){
-    this.nextTrigger();
+  ready:function(){
+    this.loaded = true;
   },
   computed: {
     startTestButtonText: function(){
@@ -213,8 +214,17 @@ vm = new Vue({
             }
             ldc.distributions.push(distro);
           }
-      }).then(
+      }).then(      
        function(){
+             this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+                    loadingText();
+                    ldc.systemVars = JSON.parse(data.body);
+                    this.i18n = ldc.systemVars; 
+                    UI();
+             });
+        } 
+      ).then(
+         function(){
           this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
             loadingText();
             ldc.questions[0].ButtonText = this.startTestButtonText;
@@ -257,15 +267,6 @@ vm = new Vue({
        }
       ).then(
         function(){
-             this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-                    loadingText();
-                    ldc.systemVars = JSON.parse(data.body);
-                    this.i18n = ldc.systemVars; 
-                    UI();
-             });
-        } 
-      ).then(
-        function(){
              this.$http.post(ldc.backend,{method:'GetTestCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
                   loadingText();
                   this.testCount = data.body;
@@ -279,10 +280,6 @@ vm = new Vue({
                   this.visitorCount = data.body;
              });
              this.visitorCount = parseInt(this.visitorCount );
-        }
-      ).then(
-        function(){
-           this.loaded = true;
         }
       );
     },
@@ -394,7 +391,8 @@ vm = new Vue({
     },
     addResult: function (args){
       this.$http.post(ldc.backend,{method:'AddResult',args: JSON.stringify(ldc.distributions), lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-        console.log("Stored result");
+        
+        this.currentTest = parseInt(data.body);
       });
     },
     getUrlParts: function(){
@@ -414,7 +412,6 @@ vm = new Vue({
       ldc.lang = TranslateLanguageCode(parseInt(langcode));
     },
     nextTrigger: function(args){
-      console.log(args.srcElement.attributes);
       var id = args.srcElement.attributes[2].value;
       if ($("."+id).text().trim() === GetSystemValue(ldc,"getresult")){
         $("#getresult").trigger("click");
