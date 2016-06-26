@@ -80,10 +80,11 @@ vm = new Vue({
     i18n: null,
     firstQuestionNumber:1,
     lastQuestionNumber: -1,
+    currentTestLoading: false,
     currentTest: -1
   },
   created: function(){
-    this.init();
+    this.StartInit();
   },
   ready:function(){
     this.loaded = true;
@@ -147,7 +148,6 @@ vm = new Vue({
           }
         }
       }
-      console.log(this.tags);
       return this.tags;
     },
     distributionsCount : function (){
@@ -197,10 +197,8 @@ vm = new Vue({
     }
   },
   methods: {
-
-    init: function(){
-        //set language first
-        this.getLanguage();
+    StartInit : function(){
+        this.loaded = false;
         this.$http.post(ldc.backend,{method:'GetDistributions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
         loadingText();
         var result = JSON.parse(data.body);
@@ -223,21 +221,23 @@ vm = new Vue({
             }
             ldc.distributions.push(distro);
           }
-      }).then(      
-       function(){
-             this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-                    loadingText();
-                    ldc.systemVars = JSON.parse(data.body);
-                    this.i18n = ldc.systemVars; 
-                    UI();
-             });
-        } 
-      ).then(
-         function(){
-          this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+          this.GetSystemVars();
+      });
+    },
+    GetSystemVars : function(){
+        this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+              loadingText();
+              ldc.systemVars = JSON.parse(data.body);
+              this.i18n = ldc.systemVars; 
+              UI();
+              this.GetQuestionsFromAPI();
+        });
+    },
+    GetQuestionsFromAPI : function(){
+       this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
             loadingText();
             ldc.questions[0].ButtonText = this.startTestButtonText;
-     
+            ldc.questions[0].HelpText = GetSystemValue(ldc,"welcomeText");
             var result = JSON.parse(data.body);
             this.lastQuestionNumber = result.length;
             for(var i = 0; i < result.length;i++){
@@ -263,7 +263,6 @@ vm = new Vue({
                   answer.Selected = false;
                   question.Answers.push(answer);
                 }
-                console.log(question.Number);
                 if (question.Number < this.lastQuestionNumber){
                   question.ButtonText = this.nextButtonText;
                 }
@@ -272,41 +271,33 @@ vm = new Vue({
                 }
                 ldc.questions.push(question);
               }
-          }).then(
-              function (){
-                //if test is present
-                var parts = this.getUrlParts();
-                if (typeof parts["test"] !== 'undefined'){
-                  var test = parseInt(parts["test"]);
-                  //Load old test results
-                    this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-                          var obj = JSON.parse(data.body);
-                          var answers = JSON.parse(obj.Answers);
-                          for(var a =0; a < answers.length;a++){
-                            this.selectAnswer(answers[a]);
-                          }
-                  });
-                }
-              }
-            )
-       }
-      ).then(
-        function(){
-             this.$http.post(ldc.backend,{method:'GetTestCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+              this.GetOldTest();
+          });
+    },
+    GetOldTest: function(){
+       //if test is present
+        var parts = this.getUrlParts();
+        if (typeof parts["test"] !== 'undefined'){
+          var test = parseInt(parts["test"]);
+          //Load old test results
+            this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+                  var obj = JSON.parse(data.body);
+                  var answers = JSON.parse(obj.Answers);
+                  for(var a =0; a < answers.length;a++){
+                    this.selectAnswer(answers[a]);
+                  }
+            });
+            this.$http.post(ldc.backend,{method:'GetTestCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
                   loadingText();
                   this.testCount = data.body;
              });
              this.testCount = parseInt(this.testCount );
-        }
-      ).then(
-         function(){
-             this.$http.post(ldc.backend,{method:'GetVisitorCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+               this.$http.post(ldc.backend,{method:'GetVisitorCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
                   loadingText();
                   this.visitorCount = data.body;
              });
              this.visitorCount = parseInt(this.visitorCount );
         }
-      );
     },
     answeredQuestions: function(){
       var answered = [];
@@ -424,9 +415,12 @@ vm = new Vue({
               }
           }
       }
+      this.currentTestLoading = true;
       this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+"]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
         
         this.currentTest = parseInt(data.body);
+        this.currentTestLoading = false;
+        $("#rating-stars").rateYo();
       });
     },
     getUrlParts: function(){

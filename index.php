@@ -7,15 +7,10 @@
 <link href="./ldc.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
-<noscript>
-	The Distrochooser needs <code>JavaScript</code> to work properly.
-	<br>
-	Der Distrochooser funktioniert ohne <code>JavaScript</code> nicht. 
-</noscript>
-<div class="loader" v-bind:class="{'visible':!loaded,'hidden':loaded}">
-		<p>Doing magic...</p>
+<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
+		<p>Doing magic (needs JavaScript)...</p>
 </div>
-<div class="container main-container"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
+<div class="container main-container hidden"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 <div class="row">
 
 <?php include "./static/about.php";?>
@@ -80,7 +75,7 @@
 			</div>
 			<div id="collapse{{question.Id}}" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header{{question.Id}}">
 				<div class="panel-body">
-					{{ question.HelpText }}
+					{{{ question.HelpText }}}
 					<div v-if="question.Answers.lenght != 0">
 					<ul v-bind:class="{'multi':!question.SingleAnswer,'single':question.SingleAnswer }">
 						<li v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected }">
@@ -97,29 +92,38 @@
 		<div class="panel panel-default" v-bind:class="{'hidden':answeredQuestionsCount==0}">
 		<div class="panel-heading" role="tab" id="header-result">
 			<h4 class="panel-title">
-				<a class="result-header" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-result" aria-expanded="true" aria-controls="collapse-result">
+				<a class="result-header" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-result" aria-expanded="true" aria-controls="collapse-result" v-on:click="addResult">
 				Ergebnis
 				</a>
 			</h4>	
 		 </div>
 			<div id="collapse-result" class="panel-collapse collapse question result-collapse" role="tabpanel" aria-labelledby="header-result">
 				<div class="panel-body">
-				<a href="#" id="rating-anchor"></a>
-				<div class="rating" v-if="commentSent==false">
-					<p class="ldcui rating-text">Wie zufrieden bist Du mit dem Ergebnis?</p>
-					 <div class="share-link">
-					 		<input type="text" class="form-control" value="{{shareLink}}">
-					 </div>
-					 <div id="rating-stars"></div>
-					<textarea v-model="comment" debounce="300" class="form-control"></textarea>
-					 <button id="submit-comment" v-on:click="publishRating($event)" class="btn btn-primary">Absenden</button>
-					 <div class="social">
-					 		<a href="https://twitter.com/share?url={{shareLink}}&hashtags=distrochooser,linux&via=distrochooser"><i class="fa fa-twitter"></i></a>
-							 <a href="https://www.facebook.com/sharer/sharer.php?u={{shareLink}}"><i class="fa fa-facebook"></i></a>
-							 <a href="https://plus.google.com/share?url={{shareLink}}"><i class="fa fa-google-plus"></i></a>
-							 <a href="https://github.com/squarerootfury/distrochooser"><i class="fa fa-github"></i></a>
-					 </div>
-				</div>
+					<a href="#" id="rating-anchor"></a>
+				
+					<div class="rating" v-if="commentSent==false">
+						<p class="ldcui rating-text">Wie zufrieden bist Du mit dem Ergebnis?</p>
+						<div class="share-link" v-if="currentTestLoading">
+								<i class="fa fa-spin fa-circle-o-notch"></i>
+						</div>
+						<div class="share-link" v-if="!currentTestLoading">
+								<input type="text" class="form-control" value="{{shareLink}}">
+						</div>
+						<div id="rating-stars"></div>
+						<textarea v-model="comment" debounce="300" class="form-control"></textarea>
+						<button id="submit-comment" v-on:click="publishRating($event)" class="btn btn-primary">Absenden</button>
+						<div class="social" v-if="currentTestLoading">
+								<i class="fa fa-spin fa-circle-o-notch"></i>
+						</div>
+						<div class="social" v-if="!currentTestLoading">
+								<div>
+									<a href="https://twitter.com/share?url={{shareLink}}&hashtags=distrochooser,linux&via=distrochooser"><i class="fa fa-twitter"></i></a>
+									<a href="https://www.facebook.com/sharer/sharer.php?u={{shareLink}}"><i class="fa fa-facebook"></i></a>
+									<a href="https://plus.google.com/share?url={{shareLink}}"><i class="fa fa-google-plus"></i></a>
+									<a href="https://github.com/squarerootfury/distrochooser"><i class="fa fa-github"></i></a>
+								</div>
+						</div>
+					</div>
 				<div>
 				</div>
 				<div class="rating-sent" v-if="commentSent==true">

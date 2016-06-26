@@ -127,3 +127,6 @@ body{
 .fa-github{
 	color:grey;
 }
+.largelogo{
+	max-width: 60%;
+}
