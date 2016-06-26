@@ -50,8 +50,8 @@ var ldc = function(){
 	this.questions = [
     {
       "Id":"welcome",
-      "Text":"Willkommen",
-      "HelpText":"Wilkommen bla bla",
+      "Text":"",
+      "HelpText":"",
       "Important":false,
       "SingleAnswer":false,
       "Answers":[
@@ -84,7 +84,11 @@ vm = new Vue({
     currentTest: -1
   },
   created: function(){
+    console.log("Starting Linux Distribution Chooser "+ldc.version);
+    console.log("Started: " + new Date());
     this.StartInit();
+    this.NewVisitor();
+    console.log("Finished: " + new Date());
   },
   ready:function(){
     this.loaded = true;
@@ -198,6 +202,7 @@ vm = new Vue({
   },
   methods: {
     StartInit : function(){
+        this.getLanguage();
         this.loaded = false;
         this.$http.post(ldc.backend,{method:'GetDistributions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
         loadingText();
@@ -237,6 +242,7 @@ vm = new Vue({
        this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
             loadingText();
             ldc.questions[0].ButtonText = this.startTestButtonText;
+            ldc.questions[0].Text = GetSystemValue(ldc,"welcomeTextHeader");
             ldc.questions[0].HelpText = GetSystemValue(ldc,"welcomeText");
             var result = JSON.parse(data.body);
             this.lastQuestionNumber = result.length;
@@ -298,6 +304,11 @@ vm = new Vue({
              });
              this.visitorCount = parseInt(this.visitorCount );
         }
+    },
+    NewVisitor: function(){
+      this.$http.post(ldc.backend,{method:'NewVisitor',args: "\""+document.referrer+"\"", lang:  TranslateLanguage(ldc.lang)}).then(function(response){
+          console.log("Hello #"+response.body);
+      });
     },
     answeredQuestions: function(){
       var answered = [];

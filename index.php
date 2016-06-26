@@ -92,8 +92,8 @@
 		<div class="panel panel-default" v-bind:class="{'hidden':answeredQuestionsCount==0}">
 		<div class="panel-heading" role="tab" id="header-result">
 			<h4 class="panel-title">
-				<a class="result-header" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-result" aria-expanded="true" aria-controls="collapse-result" v-on:click="addResult">
-				Ergebnis
+				<a class="result-header ldcui" id="Result" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-result" aria-expanded="true" aria-controls="collapse-result" v-on:click="addResult">
+
 				</a>
 			</h4>	
 		 </div>
@@ -102,7 +102,7 @@
 					<a href="#" id="rating-anchor"></a>
 				
 					<div class="rating" v-if="commentSent==false">
-						<p class="ldcui rating-text">Wie zufrieden bist Du mit dem Ergebnis?</p>
+						<p class="ldcui rating-text" id="ResultRatingHeader">Wie zufrieden bist Du mit dem Ergebnis?</p>
 						<div class="share-link" v-if="currentTestLoading">
 								<i class="fa fa-spin fa-circle-o-notch"></i>
 						</div>
@@ -111,7 +111,7 @@
 						</div>
 						<div id="rating-stars"></div>
 						<textarea v-model="comment" debounce="300" class="form-control"></textarea>
-						<button id="submit-comment" v-on:click="publishRating($event)" class="btn btn-primary">Absenden</button>
+						<button id="submit-comment" v-on:click="publishRating($event)" class="btn btn-primary ldcui"></button>
 						<div class="social" v-if="currentTestLoading">
 								<i class="fa fa-spin fa-circle-o-notch"></i>
 						</div>

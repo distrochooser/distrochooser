@@ -96,7 +96,7 @@ body{
     height: 24px;
 }
 .answered{
-	text-decoration: line-through;
+	font-weight: bold;
 }
 .social{
 	right: 0px;
