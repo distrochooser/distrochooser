@@ -9,7 +9,7 @@
 <meta name="msvalidate.01" content="8165DC81CC6E5D6805201B58C5596403" />
 <meta name="generator" content="LDC 2016">
 
-<title>{{ ldc.Title }}</title>
+<title>Distrochooser</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
 <link href="./ldc.css" rel='stylesheet' type='text/css'>
@@ -36,8 +36,8 @@
 			<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
 
 	<footer class="visible-lg">
-				<a class="ldcui privacy" id="privacyMenuEntry" href="./static/privacy.php">Datenschutz</a>	
-				<a class="ldcui contact" id="contactMenuEntry" href="./static/contact.php">Kontakt</a>		
+				<a class="ldcui privacy" id="privacyMenuEntry" href="./static/privacy.php"></a>	
+				<a class="ldcui contact" id="contactMenuEntry" href="./static/contact.php"></a>		
 	</footer>
 						</div>
 			<div class="hidden-lg">					
@@ -58,8 +58,8 @@
 				    </div>	
 				      <div class="collapse navbar-collapse" id="example-navbar-collapse">
 				      <ul class="nav navbar-nav">
-								<li role="presentation"> <a class="ldcui sprivacy" id="privacy" href="./static/privacy.php">Datenschutz</a></li>
-								<li role="presentation"> <a class="ldcui scontact" id="contact" href="./static/contact.php">Kontakt</a></li>
+								<li role="presentation"> <a class="ldcui sprivacy" id="privacy" href="./static/privacy.php"></a></li>
+								<li role="presentation"> <a class="ldcui scontact" id="contact" href="./static/contact.php"></a></li>
 				      </ul>
 				   </div> 				
 				  </div>
@@ -105,7 +105,7 @@
 			</h4>	
 		 </div>
 			<div id="collapse-result" class="panel-collapse collapse question result-collapse" role="tabpanel" aria-labelledby="header-result">
-				<div class="panel-body">
+				<div class="panel-body" v-if="distributionsCount > 0">
 					<a href="#" id="rating-anchor"></a>
 				
 					<div class="rating" v-if="commentSent==false">
@@ -145,6 +145,10 @@
 							</div>
 					</div>
 				</div>
+			</div>
+			<div class="panel-body" v-if="distributionsCount == 0">
+				<a href="#" id="rating-anchor"></a>
+					<p>{{ noResultText }}</p>
 			</div>
 		</div>
 	</div>

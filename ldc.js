@@ -81,7 +81,8 @@ vm = new Vue({
     firstQuestionNumber:1,
     lastQuestionNumber: -1,
     currentTestLoading: false,
-    currentTest: -1
+    currentTest: -1,
+    deniedWhy: []
   },
   created: function(){
     console.log("Starting Linux Distribution Chooser "+ldc.version);
@@ -101,6 +102,10 @@ vm = new Vue({
         return baseUrl;
       }
       return baseUrl+ "&test="+this.currentTest;
+    },
+    noResultText : function(){
+      var text =  GetSystemValue(this.ldc,"NoResults");
+      return text;
     },
     startTestButtonText: function(){
       var text =  GetSystemValue(this.ldc,"StartTest");
@@ -137,9 +142,22 @@ vm = new Vue({
         var q = ldc.questions[i];
         for(var x = 0;  x < q.Answers.length;x++){
           if (q.Answers[x].Selected === true){
+            //save tags
             for(var y = 0 ; y < q.Answers[x].Tags.length; y++){
               var weight = 1;
               var tag = q.Answers[x].Tags[y];
+              if (Object.keys(this.tags).indexOf(tag) === -1){
+                this.tags[tag] = weight;
+              }else{
+                this.tags[tag]++;
+              }
+              if (q.Important){
+                this.tags[tag] *=2;
+              }
+            }
+            for(var y = 0 ; y < q.Answers[x].NoTags.length; y++){
+              var weight = 1;
+              var tag = "!"+q.Answers[x].NoTags[y];
               if (Object.keys(this.tags).indexOf(tag) === -1){
                 this.tags[tag] = weight;
               }else{
@@ -170,10 +188,14 @@ vm = new Vue({
         return ldc.distributions;
       }
       this.results = [];
+      this.deniedWhy = {};
       var pointSum = 0;
        for (var tag in this.currentTags) {
           var weight = this.currentTags[tag];
-          pointSum += weight;
+          var isNoTag = tag.indexOf("!") !== -1;
+          if (!isNoTag){
+            pointSum += weight; //Do not count no-tags
+          }
         }
       for (var i = 0; i < ldc.distributions.length;i++){
         var distro = ldc.distributions[i];
@@ -181,8 +203,21 @@ vm = new Vue({
         var hittedTags = 0;
         for (var tag in this.currentTags) {
           var weight = this.currentTags[tag];
+          var isNoTag = tag.indexOf("!") !== -1;
+          var needle = tag.replace("!","");
+          
           //get percentage
-          if (distro.Tags.indexOf(tag) !== -1){
+          if (distro.Tags.indexOf(needle) !== -1){
+            if (isNoTag){
+              console.log(distro.Name + " denied because of tag: "+needle+ " (at least)");
+              if (Object.keys(this.deniedWhy).indexOf(needle) === -1){
+                this.deniedWhy[needle] = 1;
+              }else{
+                this.deniedWhy[needle]++;
+              }
+              points = 0;
+              break;
+            }
             points += weight;
             hittedTags++;
           }
@@ -233,6 +268,7 @@ vm = new Vue({
         this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
               loadingText();
               ldc.systemVars = JSON.parse(data.body);
+              document.title = GetSystemValue(this.ldc,"Title");
               this.i18n = ldc.systemVars; 
               UI();
               this.GetQuestionsFromAPI();
@@ -259,12 +295,21 @@ vm = new Vue({
                 question.Answers = [];
                 for(var x=0;x < result[i].Answers.length;x++){
                   var answer = {};
+                  var current = result[i].Answers[x]; 
                   answer.Id = "a"+result[i].Answers[x].Id;
                   answer.Text = result[i].Answers[x].Text;
                   try {
-                    answer.Tags = JSON.parse(result[i].Answers[x].Tags);
+                    var tags = result[i].Answers[x].Tags;
+                    var noTags = result[i].Answers[x].NoTags;
+                    answer.Tags = JSON.parse(tags);
+                    if (noTags === ""){
+                        answer.NoTags = [];
+                    }
+                    else{
+                        answer.NoTags = JSON.parse(noTags); //tags which deny inpossible results, e.g hddinstall and live cd
+                    }
                   } catch (error) {
-
+                      console.log(error);
                   }
                   answer.Selected = false;
                   question.Answers.push(answer);
