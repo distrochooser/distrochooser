@@ -420,7 +420,8 @@ vm = new Vue({
   	},
     makeImportant : function (args){
       args.preventDefault();
-      var question = this.getQuestion(args.srcElement.attributes[2].value);
+      console.log(args);
+      var question = this.getQuestion(this.getTarget(args));
       if (question !== null){
           if (question.Important){
             question.Important = false;
@@ -434,7 +435,7 @@ vm = new Vue({
     },
   	addAnswer : function(args){
       args.preventDefault();
-      var id = args.srcElement.attributes[2].value;
+      var id = this.getTarget(args);
       //prevent multiple answers on singleanswer question
       var parent = this.getQuestionByAnswer(id);
       if (parent !== null && parent.SingleAnswer === true){
@@ -445,7 +446,7 @@ vm = new Vue({
             }
         }
       }
-  		var answer = this.selectAnswer(args.srcElement.attributes[2].value);
+  		var answer = this.selectAnswer(id);
   		return answer;
   	},
     nomultipleAnswersAllowed : function(){
@@ -495,13 +496,35 @@ vm = new Vue({
       ldc.lang = TranslateLanguageCode(parseInt(langcode));
     },
     nextTrigger: function(args){
-      var id = args.srcElement.attributes[2].value;
+      var id = this.getClickId(args);
       if ($("."+id).text().trim() === GetSystemValue(ldc,"getresult")){
         $("#getresult").trigger("click");
       }else{
         var target =  $("."+id).parent().parent().parent().next().find(".question-header");
         target.trigger("click");
       }
+    },
+    getClickId : function (args){
+      if (args.srcElement){
+        //Chrome
+        return args.srcElement.attributes[2].value;
+      }
+      else{
+        //Firefox
+        return args.target.attributes[1].value;
+      }
+    },
+    getTarget : function(args){
+      var target = null;
+       if (args.srcElement){
+        //Chrome
+        target = args.srcElement;
+      }
+      else{
+        //Firefox
+        target = args.target;
+      }
+      return target.attributes[2].value;
     }
   }
 });
