@@ -293,6 +293,7 @@ vm = new Vue({
                 question.Answered = false;
                 question.SingleAnswer = true; //TODO: Insert into DB
                 question.Answers = [];
+                question.IsText = result[i].IsText;
                 for(var x=0;x < result[i].Answers.length;x++){
                   var answer = {};
                   var current = result[i].Answers[x]; 
@@ -312,6 +313,7 @@ vm = new Vue({
                       console.log(error);
                   }
                   answer.Selected = false;
+                  answer.IsText = result[i].Answers[x].IsText === "1";
                   question.Answers.push(answer);
                 }
                 if (question.Number < this.lastQuestionNumber){

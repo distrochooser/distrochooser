@@ -84,9 +84,17 @@
 				<div class="panel-body">
 					{{{ question.HelpText }}}
 					<div v-if="question.Answers.lenght != 0">
-					<ul v-bind:class="{'multi':!question.SingleAnswer,'single':question.SingleAnswer }">
-						<li v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected }">
-							<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">{{ answer.Text }}</a>
+					<ul v-bind:class="{'multi':!question.SingleAnswer,'single':question.SingleAnswer,'image':!question.IsText }">
+						<li v-if="!question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">
+										
+							<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">				
+								<img v-if="answer.IsText == false" src="./assets/answers/{{answer.Id}}.png" class="image" data-id="{{answer.Id}}"  v-bind:class="{ 'selected': answer.Selected }">				
+							</a>
+						</li>
+						<li v-if="question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">				
+							<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">				
+								{{ answer.Text }}
+							</a>
 						</li>
 						</div>
 					</ul>
