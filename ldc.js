@@ -89,6 +89,7 @@ vm = new Vue({
     console.log("Started: " + new Date());
     this.StartInit();
     this.NewVisitor();
+    this.GetStatistics();
     console.log("Finished: " + new Date());
   },
   ready:function(){
@@ -274,6 +275,18 @@ vm = new Vue({
               this.GetQuestionsFromAPI();
         });
     },
+    GetStatistics: function(){
+    	this.$http.post(ldc.backend,{method:'GetTestCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){       
+    		console.log("Grabbing statistics...");     
+            this.testCount = parseInt(data.body);
+        });
+        this.testCount = parseInt(this.testCount );
+           this.$http.post(ldc.backend,{method:'GetVisitorCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+            loadingText();
+            this.visitorCount = parseInt(data.body);
+            console.log("Statistics grabbed.");     
+        });
+    },
     GetQuestionsFromAPI : function(){
        this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
             loadingText();
@@ -339,16 +352,7 @@ vm = new Vue({
                   for(var a =0; a < answers.length;a++){
                     this.selectAnswer(answers[a]);
                   }
-            });
-            this.$http.post(ldc.backend,{method:'GetTestCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-                  loadingText();
-                  this.testCount = parseInt(data.body);
-             });
-             this.testCount = parseInt(this.testCount );
-               this.$http.post(ldc.backend,{method:'GetVisitorCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-                  loadingText();
-                  this.visitorCount = parseInt(data.body);
-             });
+            });            
         }
     },
     NewVisitor: function(){
@@ -478,6 +482,7 @@ vm = new Vue({
         
         this.currentTest = parseInt(data.body);
         this.currentTestLoading = false;
+    	this.GetStatistics();
         $("#rating-stars").rateYo();
       });
     },
