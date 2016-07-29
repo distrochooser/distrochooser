@@ -173,8 +173,7 @@ vm = new Vue({
       }
       return this.tags;
     },
-    distributionsCount : function (){
-      
+    distributionsCount : function (){      
       return this.distributions.length;
     },
     allDistributionsCount : function (){
@@ -233,7 +232,37 @@ vm = new Vue({
           this.results.push(distro);
         } 
       }
+      this.commentSent = false; 
       return this.results;
+    },
+    text:function(){
+    	//TODO: Sprache
+    	var text =  "";
+    	var translations = {};
+    	var negated = 0;
+    	var connectionWords = ["auch ","ebenfalls "];
+    	translations["linux-advanced"] = "Du kennst Dich %negation% mit Linux aus";    	
+    	translations["anonymous"] = "Distributionen zur Anonymisierung willst du %negation%";
+    	translations["rescue"] = "Rettungsdistributionen willst du %negation%";
+    	for (var key in this.currentTags) {
+    	   var needle = key.replace("!","");
+    	   var tagNegated =key.replace("!","") != key;
+    	   var connectionWord = "";
+    	   if (tagNegated){
+    	   		connectionWord = negated > 0 ?  connectionWords[Math.floor((Math.random() * connectionWords.length) )] : "";    	   		
+    	   		negated++;
+    	   }
+		   var val = this.currentTags[key];
+		   if (translations[needle] !== undefined){
+		   	   text +="<p>";
+		   	   text += key.indexOf("!") != -1 ? translations[needle].replace("%negation%",connectionWord + "nicht") : translations[needle].replace("%negation%","");
+		   	   if (val > 1){
+		   	   		text += " (das ist dir wichtig)";
+		   	   }
+		   	   text +=".</p>";
+		   }
+		}
+    	return text;
     }
   },
   methods: {

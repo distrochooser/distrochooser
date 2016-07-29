@@ -56,6 +56,11 @@ body{
 	text-align: center;
     padding-bottom: 1em;
 }
+.rating-sent{
+	text-align: center;
+    padding-bottom: 1em;
+    font-size: large;
+}
 #rating-stars{
 	margin: 0 auto;
     padding-bottom: 1em;
