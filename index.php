@@ -70,6 +70,11 @@
 
 </div>
 <div class="col-lg-6 main">
+<div class="alert alert-danger">
+	Diese Distrochooser Version ist eine Vorschau. Die Ergebnisse werden ungenau ausfallen!
+	<hr>
+	This version of the Distrochooser is a preview. The results will be inaccurate!
+</div>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
 	<div v-for="question in ldc.questions" class="panel panel-default">
 		<div class="panel-heading" role="tab" id="header{{question.Id}}">
@@ -141,14 +146,26 @@
 					</div>
 				<div>
 				</div>
+				<div class="you" style="display:none;">
+					{{{ text }}}
+				</div>				
 				<div class="rating-sent" v-if="commentSent==true">
 					Danke für die Bewertung!
 				</div>
 					<div v-for="distro in distributions | orderBy 'Percentage' -1">
-							<div class="panel panel-default distribution" style="border-color:{{ distro.Color }}">
-								<div class="panel-heading" style="background-color:{{ distro.Color }}">{{ distro.Name }}: {{ distro.Percentage }}%</div>
+							<div class="panel panel-default distribution" v-bind:style="{'border-color': distro.Color}">
+								<div class="panel-heading" v-bind:style="{'background-color': distro.Color}">{{ distro.Name }}: {{ distro.Percentage }}%</div>
 								<div class="panel-body">
-								  <img class="distro-logo" src="{{ distro.Image }}"/>{{{ distro.Description }}}
+								  <p>
+								  	<img class="distro-logo" v-bind:src = "distro.Image" />{{{ distro.Description }}}
+								  </p>
+								  <p class="tags">
+								  	<span v-for="tag in distro.Tags" track-by="$index">
+										  <i class="fa" v-bind:class="{'fa-question':!isTagChoosed(tag)}" title="Unsure/ Not suitable" aria-hidden="true"></i>
+										  <i class="fa" v-bind:class="{'fa-check':isTagChoosed(tag)}" aria-hidden="true"></i>
+										  {{ getTagTranslation(tag)}}
+									</span>
+								  <p>
 								</div>
 							</div>
 					</div>
@@ -194,7 +211,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script>
 <script 
-src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
+src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/vue.resource/0.9.1/vue-resource.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="./ldc.js"></script>
@@ -211,7 +228,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
 		$("#rating-stars").rateYo({
 			rating: 0.0
 		});
-		
 	});
 </script>
 

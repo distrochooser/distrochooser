@@ -13,6 +13,9 @@ function TranslateLanguageCode(lang){
   }
 }
 function GetSystemValue(ldc,needle){
+        if (ldc.systemVars === null){
+          return "";
+        }
         for (var i = 0; i < ldc.systemVars.length; i++) {
                 if (ldc.systemVars[i].Val == needle){
                         return ldc.systemVars[i].Text;
@@ -122,6 +125,9 @@ vm = new Vue({
     },
     ratingSent : function (){
         return false;
+    },
+    resultText : function(){
+        return GetSystemValue(this.ldc,"Result");
     },
     answeredQuestionsCount: function(){
       this.answered =  this.answeredQuestions();
@@ -234,38 +240,18 @@ vm = new Vue({
       }
       this.commentSent = false; 
       return this.results;
-    },
-    text:function(){
-    	//TODO: Sprache
-    	var text =  "";
-    	var translations = {};
-    	var negated = 0;
-    	var connectionWords = ["auch ","ebenfalls "];
-    	translations["linux-advanced"] = "Du kennst Dich %negation% mit Linux aus";    	
-    	translations["anonymous"] = "Distributionen zur Anonymisierung willst du %negation%";
-    	translations["rescue"] = "Rettungsdistributionen willst du %negation%";
-    	for (var key in this.currentTags) {
-    	   var needle = key.replace("!","");
-    	   var tagNegated =key.replace("!","") != key;
-    	   var connectionWord = "";
-    	   if (tagNegated){
-    	   		connectionWord = negated > 0 ?  connectionWords[Math.floor((Math.random() * connectionWords.length) )] : "";    	   		
-    	   		negated++;
-    	   }
-		   var val = this.currentTags[key];
-		   if (translations[needle] !== undefined){
-		   	   text +="<p>";
-		   	   text += key.indexOf("!") != -1 ? translations[needle].replace("%negation%",connectionWord + "nicht") : translations[needle].replace("%negation%","");
-		   	   if (val > 1){
-		   	   		text += " (das ist dir wichtig)";
-		   	   }
-		   	   text +=".</p>";
-		   }
-		}
-    	return text;
-    }
+    } 
   },
   methods: {
+
+    isTagChoosed:function(tag){
+       for (var key in this.currentTags) {
+         if (key === tag){
+           return true;
+         }
+      }
+      return false;
+    },
     StartInit : function(){
         this.getLanguage();
         this.loaded = false;
@@ -561,6 +547,10 @@ vm = new Vue({
         target = args.target;
       }
       return target.attributes[2].value;
+    },
+    getTagTranslation : function(value){
+      var text =  GetSystemValue(this.ldc,value);
+      return text !== "" ? text : value;
     }
   }
 });

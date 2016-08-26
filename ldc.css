@@ -156,3 +156,12 @@ ul.image{
 .image.selected{
 	border: 2px solid #337ab7;
 }
+.tags{
+	display: block;
+    width: 100%;
+    margin-top: 1em;
+}
+.tags span{
+	font-family: Courier New;
+    font-weight: bold;
+}
