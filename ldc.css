@@ -43,9 +43,15 @@ body{
 .flag{
 	padding-top: 7px;
     width: 40px;
+
+	margin-top:0.4em !important;
+}
+.flags{
+	display:inline !important;
+	padding-right: 0px !important;
 }
 .distro-logo{
-	max-width: 19%;
+	max-width: 12%;
     max-height: 50%;
     margin-right: 1em;
     margin-top: 2em;
@@ -104,14 +110,12 @@ body{
 	font-weight: bold;
 }
 .social{
-	right: 0px;
-    padding-left:54%;
-    margin-top: -34px;
-    padding-bottom: 1em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 .social a{
 	font-size:x-large;
-	padding-right:0.1em;
+	padding-right:0.5em;
 }
 .share-link{
 	padding-bottom: 0.7em;
@@ -119,6 +123,10 @@ body{
 .share-link input{
 	width: 73%;
 	margin: 0 auto;
+}
+.link{
+	margin-left:1em;
+
 }
 .fa-twitter{
 	color: #55ACEE;
@@ -164,4 +172,14 @@ ul.image{
 .tags span{
 	font-family: Courier New;
     font-weight: bold;
+	display:block;
+}
+.tags span i{
+	width:3%; 
+}
+.fa-check{
+	color:green;
+}
+.fa-question{
+	color:#2c8fe4;
 }

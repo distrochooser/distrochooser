@@ -96,7 +96,7 @@ vm = new Vue({
     console.log("Finished: " + new Date());
   },
   ready:function(){
-    this.loaded = true;
+    window.title = GetSystemValue(this.ldc,"Title");
   },
   computed: {
     shareLink : function(){
@@ -104,7 +104,7 @@ vm = new Vue({
 
       if (this.currentTest === -1){
         return baseUrl;
-      }
+      }      
       return baseUrl+ "&test="+this.currentTest;
     },
     noResultText : function(){
@@ -243,7 +243,12 @@ vm = new Vue({
     } 
   },
   methods: {
-
+    preventDefault:function($event){
+      $event.preventDefault();
+    },
+    text:function(value){
+      return GetSystemValue(this.ldc,value);
+    },
     isTagChoosed:function(tag){
        for (var key in this.currentTags) {
          if (key === tag){
@@ -269,6 +274,8 @@ vm = new Vue({
             distro.Description = result[i].Description;
             distro.Website = result[i].Homepage;
             distro.Percentage = 0;
+            distro.TextSource = result[i].TextSource;
+            distro.ImageSource = result[i].ImageSource;
             distro.Tags = [];
             try {
               distro.Tags = JSON.parse(result[i].Tags);
@@ -288,6 +295,7 @@ vm = new Vue({
               this.i18n = ldc.systemVars; 
               UI();
               this.GetQuestionsFromAPI();
+              
         });
     },
     GetStatistics: function(){
@@ -299,7 +307,7 @@ vm = new Vue({
            this.$http.post(ldc.backend,{method:'GetVisitorCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
             loadingText();
             this.visitorCount = parseInt(data.body);
-            console.log("Statistics grabbed.");     
+            console.log("Statistics grabbed.");   
         });
     },
     GetQuestionsFromAPI : function(){
@@ -353,6 +361,9 @@ vm = new Vue({
                 ldc.questions.push(question);
               }
               this.GetOldTest();
+
+                
+            this.loaded = true;
           });
     },
     GetOldTest: function(){
@@ -510,12 +521,16 @@ vm = new Vue({
         return vars;
     },
     getLanguage: function(){
+      var langcode = this.getLanguageKey();
+      ldc.lang = TranslateLanguageCode(parseInt(langcode));
+    },
+    getLanguageKey: function(){
       var parts = this.getUrlParts();
       var langcode = 1;
       if (typeof parts["l"] !== 'undefined'){
         langcode = parts["l"];
       }
-      ldc.lang = TranslateLanguageCode(parseInt(langcode));
+      return langcode;
     },
     nextTrigger: function(args){
       var id = this.getClickId(args);
