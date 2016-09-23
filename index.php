@@ -16,7 +16,9 @@
 </head>
 <body>
 	<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
-		<p>Doing magic (needs JavaScript)...</p>
+		<p class="text">			
+			Doing magic (needs JavaScript)...
+		</p>
 	</div>
 	<div class="container main-container hidden"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 		<div class="row">
@@ -27,10 +29,11 @@
 					<!--<a class ="hidden-xs" id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>-->					
 					<div class="visible-lg">			
 
-						<a class="btn btn-primary button-left-nav ldcui contact" id="about"  data-toggle="modal" data-target="#myModal">{{ text('About') }}r</a>     
+						<a class="btn btn-primary button-left-nav ldcui contact" id="about"  data-toggle="modal" data-target="#about">{{ text('About') }}r</a>     
 						<span class="spacer"></span>	
 
-						<a class="btn btn-primary button-left-nav" target="_blank" href="http://0fury.de"><img class="vendor" alt="0fury.de" src="./assets/0fury.ico"><span class="ldcui" id="Vendor">Ein Projekt von</span>  0fury.de</a>				  
+						<a class="btn btn-primary button-left-nav" target="_blank" href="http://0fury.de"><img class="vendor" alt="0fury.de" src="./assets/0fury.ico">
+						<span class="ldcui" id="Vendor">Ein Projekt von</span>  0fury.de</a>				  
 
 						<a title="Zur deutschen Version wechseln" href="?l=1"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 						<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
@@ -232,10 +235,11 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script>
 	<script 
 	src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/vue.resource/0.9.1/vue-resource.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<script src="./ldc.js"></script>
-
+	<script src="./ui.js"></script>
 	<script>
 		$(document).ready(function(){
 			$('.question-header:first').trigger("click");

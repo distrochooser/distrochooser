@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="about" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -14,8 +14,11 @@
           </li>
         </ul>
         <h3 id="stats" class="ldcui">Statistiken</h3>
-        <p>Tests: {{ testCount }}</p>
-        <p>Hits: {{ visitorCount }}</p>
+         <canvas id="testCountCanvas" width="598" height="400"></canvas>
+        <br>
+        <script type="text/javascript">
+               	
+        </script>         
         <h4 id="uses" class="ldcui">Distrochooser wird ermöglicht durch</h4>
         <ul>
           <li><a href="http://getbootstrap.com/">Bootstrap</a></li>
@@ -27,7 +30,7 @@
           <li><a href="https://dribbble.com/shots/1211759-Free-195-Flat-Flags">Flat flag icons -  Muharrem Şenyıl</a></li>
           <li>Lenny (Manjaro Screenshots)</li>
           <li><a href="https://prrashi.github.io/rateYo/">rateYo</a></li>
-
+          <li><a href="http://www.chartjs.org/">Chart.js</a></li>
         </ul>
       </div>
     </div><!-- /.modal-content -->

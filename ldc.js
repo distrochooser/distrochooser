@@ -41,7 +41,7 @@ function UI(){
 function loadingText(){
     var texts = ["Feeding penguins","Fixing Windows","loading","Rearanging molecules"];
     var index = Math.floor((Math.random() * texts.length) );
-    $(".loader p").text(texts[index]+"...");
+    $(".loader p .text").text(texts[index]+"...");
 }
 var ldc = function(){
 	this.backend = "https://distrochooser.de/rest.php?json&ldc3";
@@ -100,7 +100,7 @@ vm = new Vue({
   },
   computed: {
     shareLink : function(){
-      var baseUrl = "https://distrochooser.de/?l="+TranslateLanguage(ldc.lang);
+      var baseUrl = "https://beta.distrochooser.de/?l="+TranslateLanguage(ldc.lang);
 
       if (this.currentTest === -1){
         return baseUrl;
@@ -299,15 +299,10 @@ vm = new Vue({
         });
     },
     GetStatistics: function(){
-    	this.$http.post(ldc.backend,{method:'GetTestCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){       
-    		console.log("Grabbing statistics...");     
-            this.testCount = parseInt(data.body);
-        });
-        this.testCount = parseInt(this.testCount );
-           this.$http.post(ldc.backend,{method:'GetVisitorCount',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-            loadingText();
-            this.visitorCount = parseInt(data.body);
-            console.log("Statistics grabbed.");   
+    	this.$http.post(ldc.backend,{method:'AllMonthStats',args: "", lang:  TranslateLanguage(ldc.lang)}).then(function(data){       
+    		  console.log("Grabbing statistics...");     
+          this.testCount = JSON.parse(data.body);
+          console.log("Statistics grabbed.");   
         });
     },
     GetQuestionsFromAPI : function(){
