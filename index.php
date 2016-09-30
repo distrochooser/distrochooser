@@ -159,6 +159,14 @@
 								<a href="https://github.com/squarerootfury/distrochooser"><i class="fa fa-github"></i></a>
 							</div>
 						</div>
+						<div class="donation" v-if="!currentTestLoading">
+							<span>
+								{{ text("donation") }} <i class="fa fa-heart" style="color:#ca1717"></i>
+							</span>
+							<a >
+								<?php include "./static/donate.php";?>
+							</a>
+						</div>
 					</div>
 					<div>
 					</div>
