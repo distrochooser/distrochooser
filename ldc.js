@@ -41,7 +41,7 @@ function UI(){
 function loadingText(){
     var texts = ["Feeding penguins","Fixing Windows","loading","Rearanging molecules"];
     var index = Math.floor((Math.random() * texts.length) );
-    $(".loader p .text").text(texts[index]+"...");
+    $(".loader p span .text").text(texts[index]+"...");
 }
 var ldc = function(){
 	this.backend = "https://distrochooser.de/rest.php?json&ldc3";
@@ -85,7 +85,8 @@ vm = new Vue({
     lastQuestionNumber: -1,
     currentTestLoading: false,
     currentTest: -1,
-    deniedWhy: []
+    deniedWhy: [],
+    isOldTest:false
   },
   created: function(){
     console.log("Starting Linux Distribution Chooser "+ldc.version);
@@ -280,6 +281,8 @@ vm = new Vue({
             try {
               distro.Tags = JSON.parse(result[i].Tags);
             } catch (error) {
+              console.log(result[i].Tags);
+              console.log(error);
               console.log(distro);
             }
             ldc.distributions.push(distro);
@@ -345,6 +348,7 @@ vm = new Vue({
                   }
                   answer.Selected = false;
                   answer.IsText = result[i].Answers[x].IsText === "1";
+                  answer.Image =  answer.IsText ? '' : './assets/answers/'+answer.Id+'.png';
                   question.Answers.push(answer);
                 }
                 if (question.Number < this.lastQuestionNumber){
@@ -364,17 +368,22 @@ vm = new Vue({
     GetOldTest: function(){
        //if test is present
         var parts = this.getUrlParts();
-        if (typeof parts["test"] !== 'undefined'){
-          var test = parseInt(parts["test"]);
-          //Load old test results
-            this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-                  var obj = JSON.parse(data.body);
-                  var answers = JSON.parse(obj.Answers);
-                  for(var a =0; a < answers.length;a++){
-                    this.selectAnswer(answers[a]);
-                  }
-            });            
-        }
+        if (typeof parts["answers"] !== 'undefined'){
+          this.isOldTest = true;
+
+        }else{
+          if (typeof parts["test"] !== 'undefined'){
+            var test = parseInt(parts["test"]);
+            //Load old test results
+              this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+                    var obj = JSON.parse(data.body);
+                    var answers = JSON.parse(obj.Answers);
+                    for(var a =0; a < answers.length;a++){
+                      this.selectAnswer(answers[a]);
+                    }
+              });            
+          }
+        }        
     },
     NewVisitor: function(){
       this.$http.post(ldc.backend,{method:'NewVisitor',args: "\""+document.referrer+"\"", lang:  TranslateLanguage(ldc.lang)}).then(function(response){
@@ -447,7 +456,6 @@ vm = new Vue({
   	},
     makeImportant : function (args){
       args.preventDefault();
-      console.log(args);
       var question = this.getQuestion(this.getTarget(args));
       if (question !== null){
           if (question.Important){
@@ -500,12 +508,13 @@ vm = new Vue({
       }
       this.currentTestLoading = true;
       this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+"]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-        
         this.currentTest = parseInt(data.body);
         this.currentTestLoading = false;
-    	this.GetStatistics();
+    	  this.GetStatistics();
         $("#rating-stars").rateYo();
       });
+       //Jump to the result collapse 
+       window.scroll(0, $("#Result").offset().top);
     },
     getUrlParts: function(){
         var vars = {};
@@ -529,11 +538,18 @@ vm = new Vue({
     },
     nextTrigger: function(args){
       var id = this.getClickId(args);
-      if ($("."+id).text().trim() === GetSystemValue(ldc,"getresult")){
-        $("#getresult").trigger("click");
+      var needleIndex = -1;
+      var needle = id.replace("-next","");
+      for(var i=0;i<ldc.questions.length;i++){
+            if (i < ldc.questions.length && ldc.questions[i].Id === needle){            
+              needleIndex = i;
+              break;
+            }  
+      }
+      if (needleIndex === ldc.questions.length -1){
+          $("#getresult").trigger("click");
       }else{
-        var target =  $("."+id).parent().parent().parent().next().find(".question-header");
-        target.trigger("click");
+          $("[ldc-header='"+ldc.questions[i+1].Id+"']").trigger("click");
       }
     },
     getClickId : function (args){

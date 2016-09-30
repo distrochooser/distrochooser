@@ -16,8 +16,10 @@
 </head>
 <body>
 	<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
-		<p class="text">			
-			Doing magic (needs JavaScript)...
+		<p>	
+			<span  class="text">	
+				<?php echo (isset($_GET["l"]) && $_GET["l"] === "en") ? "The Linux Distribution Chooser helps you to find the suitable Distribution for you!": "Die Linux Auswahlhilfe hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden." ;?>	
+			</span>
 		</p>
 	</div>
 	<div class="container main-container hidden"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
@@ -85,11 +87,14 @@
 
 </div>
 <div class="col-lg-6 main">
+	<div class="alert alert-danger" v-if="isOldTest">
+		{{ text("oldTest"); }}
+	</div>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
 		<div v-for="question in ldc.questions" class="panel panel-default">
 			<div class="panel-heading" role="tab" id="header{{question.Id}}">
 				<h4 class="panel-title">
-					<a class="question-header"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.Id}}" aria-expanded="true" aria-controls="collapse{{question.Id}}" v-bind:class="{'answered':question.Answered}" >
+					<a class="question-header" ldc-header="{{question.Id}}" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.Id}}" aria-expanded="true" aria-controls="collapse{{question.Id}}" v-bind:class="{'answered':question.Answered}" >
 						<span v-if="question.Number !== -1">{{ question.Number }}. </span>{{ question.Text }} 
 					</a>
 				</h4>	
@@ -103,7 +108,7 @@
 							<li v-if="!question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">
 
 								<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">				
-									<img v-if="answer.IsText == false" src="./assets/answers/{{answer.Id}}.png" class="image" data-id="{{answer.Id}}"  v-bind:class="{ 'selected': answer.Selected }"  title="{{ answer.Text }}">				
+									<img v-if="answer.IsText == false" v-bind:src="answer.Image" class="image" data-id="{{answer.Id}}"  v-bind:class="{ 'selected': answer.Selected }"  title="{{ answer.Text }}">				
 								</a>
 							</li>
 							<li v-if="question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">				
@@ -118,8 +123,9 @@
 					</a>
 				</div>
 			</div>
-		</div>
-		<div class="panel panel-default" v-bind:class="{'hidden':answeredQuestionsCount==0}">
+		</div>			
+		<a href="ResultAnchor"></a>
+		<div class="panel panel-default">
 			<div class="panel-heading" role="tab" id="header-result">
 				<h4 class="panel-title">
 					<a class="result-header ldcui" id="Result" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-result" aria-expanded="true" aria-controls="collapse-result" v-on:click="addResult">

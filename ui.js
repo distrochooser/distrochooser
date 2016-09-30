@@ -5,7 +5,7 @@ $('#about').on('shown.bs.modal', function () {
 
     var stats = vm.testCount;		
     for (var i = stats.length - 1; i >= 0; i--) {
-        label.push(stats[i].MONTH + "/" +new Date().getFullYear());
+        label.push(stats[i].MONTH);
         testData.push(parseInt(stats[i].count));
         hitData.push(parseInt(stats[i].hits));
     };
@@ -23,7 +23,9 @@ $('#about').on('shown.bs.modal', function () {
             pointHoverBorderColor: "rgba(220,220,220,1)",
             pointHoverBorderWidth: 2,
             pointRadius: 1,
-            pointHitRadius: 10
+            pointHitRadius: 10,
+            borderColor:"#CC8400",
+            borderWidth: "3px"
         },{
             data : hitData,
             label: "Hits",
