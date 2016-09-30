@@ -41,7 +41,7 @@ function UI(){
 function loadingText(){
     var texts = ["Feeding penguins","Fixing Windows","loading","Rearanging molecules"];
     var index = Math.floor((Math.random() * texts.length) );
-    $(".loader p span .text").text(texts[index]+"...");
+    $(".text").text(texts[index]+"...");
 }
 var ldc = function(){
 	this.backend = "https://distrochooser.de/rest.php?json&ldc3";

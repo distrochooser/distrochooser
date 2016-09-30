@@ -1,4 +1,4 @@
-<html  id="app">
+<html id="app">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
@@ -8,7 +8,6 @@
 	<meta name="google-site-verification" content="nqtoKAtXX7xTNyddaEGkkYtgpc0pc0b-wigel0Acy5c" />
 	<meta name="msvalidate.01" content="8165DC81CC6E5D6805201B58C5596403" />
 	<meta name="generator" content="LDC 2016">
-
 	<title>Distrochooser</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
@@ -18,13 +17,12 @@
 	<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
 		<p>	
 			<span  class="text">	
-				<?php echo (isset($_GET["l"]) && $_GET["l"] === "en") ? "The Linux Distribution Chooser helps you to find the suitable Distribution for you!": "Die Linux Auswahlhilfe hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden." ;?>	
+					>> doing #justwebappthings <<
 			</span>
 		</p>
 	</div>
 	<div class="container main-container hidden"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 		<div class="row">
-
 			<?php include "./static/about.php";?>
 			<div class="col-lg-3">
 				<div class="row">
@@ -268,6 +266,5 @@
 			});
 		});
 	</script>
-
 </body>
 </html>
