@@ -86,7 +86,9 @@ vm = new Vue({
     currentTestLoading: false,
     currentTest: -1,
     deniedWhy: [],
-    isOldTest:false
+    isOldTest:false,
+    donationEnabled:false,
+    displayExcluded:true
   },
   created: function(){
     console.log("Starting Linux Distribution Chooser "+ldc.version);
@@ -181,10 +183,20 @@ vm = new Vue({
       return this.tags;
     },
     distributionsCount : function (){      
-      return this.distributions.length;
+      return ldc.distributions.length - this.excludedDistros.length
     },
     allDistributionsCount : function (){
       return ldc.distributions.length;
+    },
+    excludedDistros : function(){
+      var distros =  [];
+      for(var i=0;i<ldc.distributions.length;i++){
+        console.log(ldc.distributions[i].Excluded)
+        if (ldc.distributions[i].Excluded){
+          distros.push(ldc.distributions[i]);          
+        }
+      }
+      return distros;
     },
     distributions : function(){
       //Reset percentages if needed
@@ -208,6 +220,7 @@ vm = new Vue({
         var distro = ldc.distributions[i];
         var points = 0;
         var hittedTags = 0;
+        ldc.distributions[i].Excluded = false; //reset flag
         for (var tag in this.currentTags) {
           var weight = this.currentTags[tag];
           var isNoTag = tag.indexOf("!") !== -1;
@@ -217,13 +230,14 @@ vm = new Vue({
           if (distro.Tags.indexOf(needle) !== -1){
             if (isNoTag){
               console.log(distro.Name + " denied because of tag: "+needle+ " (at least)");
+              ldc.distributions[i].Excluded = true;        
               if (Object.keys(this.deniedWhy).indexOf(needle) === -1){
                 this.deniedWhy[needle] = 1;
               }else{
                 this.deniedWhy[needle]++;
               }
               points = 0;
-              break;
+              //break;
             }
             points += weight;
             hittedTags++;
@@ -278,6 +292,7 @@ vm = new Vue({
             distro.TextSource = result[i].TextSource;
             distro.ImageSource = result[i].ImageSource;
             distro.Tags = [];
+            distro.Excluded = result[i].Excluded;
             try {
               distro.Tags = JSON.parse(result[i].Tags);
             } catch (error) {

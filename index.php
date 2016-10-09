@@ -17,7 +17,7 @@
 	<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
 		<p>	
 			<span  class="text">	
-					>> doing #justwebappthings <<
+					doing #justwebappthings
 			</span>
 		</p>
 	</div>
@@ -157,13 +157,11 @@
 								<a href="https://github.com/squarerootfury/distrochooser"><i class="fa fa-github"></i></a>
 							</div>
 						</div>
-						<div class="donation" v-if="!currentTestLoading">
+						<div class="donation" v-if="!currentTestLoading && donationEnabled">
 							<span>
 								{{ text("donation") }} <i class="fa fa-heart" style="color:#ca1717"></i>
-							</span>
-							<a >
-								<?php include "./static/donate.php";?>
-							</a>
+							</span>							
+							<?php include "./static/donate.php";?>
 						</div>
 					</div>
 					<div>
@@ -187,7 +185,7 @@
 								</p>
 								<div class="form-group">
 									<h4 class="panel-title">
-										Warum {{ distro.Name }}?
+										 {{ text('why') }} {{ distro.Name }}?
 									</h4>
 									<p class="tags">
 										<span v-for="tag in distro.Tags" track-by="$index">
@@ -201,6 +199,35 @@
 							<div class="panel-footer">
 								<a class="link" href="{{ distro.TextSource }}">Text</a>
 								<a class="link" href="{{ distro.ImageSource }}">Logo</a>
+							</div>
+						</div>
+					</div>
+					<div v-for="excluded in excludedDistros" v-if="displayExcluded">
+						<div class="panel panel-default distribution">
+							<div class="panel-heading" >
+								{{ excluded.Name }}: {{ text('excluded') }}
+								<a class="link" href="{{ excluded.Website }}">Website</a>
+								<a class="link" href="./detail.php?id={{excluded.Id}}&l={{ getLanguageKey() }}">Details</a>
+							</div>
+							<div class="panel-body">
+								<p>
+									<img class="distro-logo" v-bind:src = "excluded.Image" />{{{ excluded.Description }}}
+								</p>
+								<div class="form-group">
+									<h4 class="panel-title">
+										{{ text('why') }} {{ text('not') }} {{ excluded.Name }}?
+									</h4>
+									<p class="tags">
+										<span v-for="tag in excluded.Tags" track-by="$index">
+											<i class="fa fa-times" v-bind:title="text('doesntfit')"></i>
+											{{ getTagTranslation(tag)}}													
+										</span>
+									</p>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<a class="link" href="{{ excluded.TextSource }}">Text</a>
+								<a class="link" href="{{ excluded.ImageSource }}">Logo</a>
 							</div>
 						</div>
 					</div>
@@ -230,6 +257,13 @@
 							<span class="badge"><span id="hitCount" class="ldcui">{{ distributionsCount }}</span>/ <span class="ldcui" id="allCount">{{ allDistributionsCount }}</span></span>
 							<span class="ldcui" id="Suitable">Passend</span>
 						</li>
+						<li class="list-group-item">
+							<div class="checkbox">
+								<label>
+								<input type="checkbox" v-model="displayExcluded">  {{ text('displayExcluded') }}
+								</label>
+							</div>							
+						</li> 
 						<li class="list-group-item">
 							<a class="btn btn-primary ldcui" id="getresult" v-on:click="addResult" >{{ text('getresult') }}</a>
 						</li>        
