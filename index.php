@@ -15,8 +15,8 @@
 </head>
 <body>
 	<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
-		<p>	
-			<span  class="text">	
+		<p>
+			<span  class="text">
 					doing #justwebappthings
 			</span>
 		</p>
@@ -26,43 +26,52 @@
 			<?php include "./static/about.php";?>
 			<div class="col-lg-3">
 				<div class="row">
-					<!--<a class ="hidden-xs" id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>-->					
-					<div class="visible-lg">			
+					<!--<a class ="hidden-xs" id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>-->
+					<div class="visible-lg">
 
-						<a class="btn btn-primary button-left-nav ldcui contact" id="about"  data-toggle="modal" data-target="#about">{{ text('About') }}r</a>     
-						<span class="spacer"></span>	
+						<a class="btn btn-primary button-left-nav ldcui contact" id="about"  data-toggle="modal" data-target="#about">{{ text('About') }}r</a>
+						<span class="spacer"></span>
 
 						<a class="btn btn-primary button-left-nav" target="_blank" href="http://0fury.de"><img class="vendor" alt="0fury.de" src="./assets/0fury.ico">
-						<span class="ldcui" id="Vendor">Ein Projekt von</span>  0fury.de</a>				  
+						<span class="ldcui" id="Vendor">Ein Projekt von</span>  0fury.de</a>
 
 						<a title="Zur deutschen Version wechseln" href="?l=1"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 						<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
-
+						<ul class="list-group col-lg-9 other-users">
+								<li class="list-group-item" v-for="result in otherUserResults">
+									<div>
+											<i class="fa fa-user"></i> {{ text('a') }} {{result.os}}-User {{ text('comments') }}:
+									</div>
+									<i v-for="star in result.stars"class="fa fa-star" aria-hidden="true"></i>
+									<span class="result-comment">{{ result.comment === "" ? "" : "“" + result.comment + "“"}}</span>
+								</li>
+								</li>
+						</ul>
 						<footer class="visible-lg">
-							<a class="ldcui privacy" id="privacyMenuEntry" href="./static/privacy.php"></a>	
-							<a class="ldcui contact" id="contactMenuEntry" href="./static/contact.php"></a>		
+							<a class="ldcui privacy" id="privacyMenuEntry" href="./static/privacy.php"></a>
+							<a class="ldcui contact" id="contactMenuEntry" href="./static/contact.php"></a>
 
 						</footer>
 					</div>
-					<div class="hidden-lg">					
-				<!--<ul class="nav nav-pills" role="tablist">				 
+					<div class="hidden-lg">
+				<!--<ul class="nav nav-pills" role="tablist">
 			</ul>-->
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="index.php">
-							<img alt="Brand" src="./assets/mobile.png" class="brand"> 
-						</a>		
+							<img alt="Brand" src="./assets/mobile.png" class="brand">
+						</a>
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
-						</button>		  			      
-					</div>	
+						</button>
+					</div>
 					<div class="collapse navbar-collapse" id="example-navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li role="presentation"> 
+							<li role="presentation">
 								<a class="flags" title="Zur deutschen Version wechseln" href="?l=1">
 									<img class="flag" src="./assets/langs/de.png" alt="Deutsch">
 								</a>
@@ -71,12 +80,12 @@
 									<img class="flag" src="./assets/langs/gb.png" alt="English">
 								</a>
 							</li>
-							<li role="presentation"> 
+							<li role="presentation">
 							</li>
 							<li role="presentation"> <a class="ldcui sprivacy" id="privacy" href="./static/privacy.php"></a></li>
 							<li role="presentation"> <a class="ldcui scontact" id="contact" href="./static/contact.php"></a></li>
 						</ul>
-					</div> 				
+					</div>
 				</div>
 			</nav>
 		</div>
@@ -93,9 +102,9 @@
 			<div class="panel-heading" role="tab" id="header{{question.Id}}">
 				<h4 class="panel-title">
 					<a class="question-header" ldc-header="{{question.Id}}" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.Id}}" aria-expanded="true" aria-controls="collapse{{question.Id}}" v-bind:class="{'answered':question.Answered}" >
-						<span v-if="question.Number !== -1">{{ question.Number }}. </span>{{ question.Text }} 
+						<span v-if="question.Number !== -1">{{ question.Number }}. </span>{{ question.Text }}
 					</a>
-				</h4>	
+				</h4>
 				<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length == 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event)"></a>
 			</div>
 			<div id="collapse{{question.Id}}" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header{{question.Id}}">
@@ -105,12 +114,12 @@
 						<ul v-bind:class="{'multi':!question.SingleAnswer,'single':question.SingleAnswer,'image':!question.IsText }">
 							<li v-if="!question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">
 
-								<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">				
-									<img v-if="answer.IsText == false" v-bind:src="answer.Image" class="image" data-id="{{answer.Id}}"  v-bind:class="{ 'selected': answer.Selected }"  title="{{ answer.Text }}">				
+								<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">
+									<img v-if="answer.IsText == false" v-bind:src="answer.Image" class="image" data-id="{{answer.Id}}"  v-bind:class="{ 'selected': answer.Selected }"  title="{{ answer.Text }}">
 								</a>
 							</li>
-							<li v-if="question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">				
-								<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">				
+							<li v-if="question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">
+								<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">
 									{{ answer.Text }}
 								</a>
 							</li>
@@ -121,7 +130,7 @@
 					</a>
 				</div>
 			</div>
-		</div>			
+		</div>
 		<a href="ResultAnchor"></a>
 		<div class="panel panel-default">
 			<div class="panel-heading" role="tab" id="header-result">
@@ -129,7 +138,7 @@
 					<a class="result-header ldcui" id="Result" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-result" aria-expanded="true" aria-controls="collapse-result" v-on:click="addResult">
 
 					</a>
-				</h4>	
+				</h4>
 			</div>
 			<div id="collapse-result" class="panel-collapse collapse question result-collapse" role="tabpanel" aria-labelledby="header-result">
 				<div class="panel-body" v-if="distributionsCount > 0">
@@ -160,7 +169,7 @@
 						<div class="donation" v-if="!currentTestLoading && donationEnabled">
 							<span>
 								{{ text("donation") }} <i class="fa fa-heart" style="color:#ca1717"></i>
-							</span>							
+							</span>
 							<?php include "./static/donate.php";?>
 						</div>
 					</div>
@@ -168,7 +177,7 @@
 					</div>
 					<div class="you" style="display:none;">
 						{{{ text }}}
-					</div>				
+					</div>
 					<div class="rating-sent" v-if="commentSent==true">
 						Danke für die Bewertung!
 					</div>
@@ -191,7 +200,7 @@
 										<span v-for="tag in distro.Tags" track-by="$index">
 											<i class="fa" v-bind:class="{'fa-question':!isTagChoosed(tag),'fa-check':isTagChoosed(tag)}" v-bind:title="text('doesntfit')"  v-if="!isTagChoosed(tag)"></i>
 											<i class="fa" v-bind:class="{'fa-check':isTagChoosed(tag)}" v-if="isTagChoosed(tag)" v-bind:title="text('fits')"></i>
-											{{ getTagTranslation(tag)}}													
+											{{ getTagTranslation(tag)}}
 										</span>
 									</p>
 								</div>
@@ -220,7 +229,7 @@
 									<p class="tags">
 										<span v-for="tag in excluded.Tags" track-by="$index">
 											<i class="fa fa-times" v-bind:title="text('doesntfit')"></i>
-											{{ getTagTranslation(tag)}}													
+											{{ getTagTranslation(tag)}}
 										</span>
 									</p>
 								</div>
@@ -244,7 +253,7 @@
 		<div class="col-md-1">
 		</div>
 		<div class="col-lg-2">
-			<div class="row right-box">				
+			<div class="row right-box">
 				<ul class="list-group"  v-bind:class="{'hidden':answeredQuestionsCount==0}">
 					<li class="list-group-item"><a class="hidden-xs" id="homelink" href="index.php"><img src="./assets/ldc2alpha.png" alt="Linux Distribution Chooser" style="
 						width: 100%;v
@@ -262,11 +271,11 @@
 								<label>
 								<input type="checkbox" v-model="displayExcluded">  {{ text('displayExcluded') }}
 								</label>
-							</div>							
-						</li> 
+							</div>
+						</li>
 						<li class="list-group-item">
 							<a class="btn btn-primary ldcui" id="getresult" v-on:click="addResult" >{{ text('getresult') }}</a>
-						</li>        
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -279,7 +288,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.css">
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script>
-	<script 
+	<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/vue.resource/0.9.1/vue-resource.min.js"></script>

@@ -77,7 +77,7 @@ body{
     margin: 0 auto;
     margin-bottom: 1em;
 }
-.result-collapse { 
+.result-collapse {
 	 transition: height 0.01s;
 }
 .visible{
@@ -175,7 +175,7 @@ ul.image{
 	display:block;
 }
 .tags span i{
-	width:3%; 
+	width:3%;
 }
 .fa-check{
 	color:green;
@@ -188,4 +188,17 @@ ul.image{
 }
 .donateButton{
 	margin-top: 0.7em;
+}
+.result-comment{
+	text-overflow: ellipsis;
+	font-style: italic;
+}
+.fa-star{
+	color:orange;
+}
+.other-users{
+	margin-top:1em;
+//	position: fixed;
+	//top: 17%;
+//	width: 12%;
 }

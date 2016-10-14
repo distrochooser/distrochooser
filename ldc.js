@@ -88,7 +88,8 @@ vm = new Vue({
     deniedWhy: [],
     isOldTest:false,
     donationEnabled:false,
-    displayExcluded:true
+    displayExcluded:true,
+    otherUserResults:[]
   },
   created: function(){
     console.log("Starting Linux Distribution Chooser "+ldc.version);
@@ -96,6 +97,8 @@ vm = new Vue({
     this.StartInit();
     this.NewVisitor();
     this.GetStatistics();
+    this.GetRatings();
+    setTimeout(this.GetRatings, 5000);
     console.log("Finished: " + new Date());
   },
   ready:function(){
@@ -107,7 +110,7 @@ vm = new Vue({
 
       if (this.currentTest === -1){
         return baseUrl;
-      }      
+      }
       return baseUrl+ "&test="+this.currentTest;
     },
     noResultText : function(){
@@ -182,7 +185,7 @@ vm = new Vue({
       }
       return this.tags;
     },
-    distributionsCount : function (){      
+    distributionsCount : function (){
       return ldc.distributions.length - this.excludedDistros.length
     },
     allDistributionsCount : function (){
@@ -193,14 +196,14 @@ vm = new Vue({
       for(var i=0;i<ldc.distributions.length;i++){
         console.log(ldc.distributions[i].Excluded)
         if (ldc.distributions[i].Excluded){
-          distros.push(ldc.distributions[i]);          
+          distros.push(ldc.distributions[i]);
         }
       }
       return distros;
     },
     distributions : function(){
       //Reset percentages if needed
-      if (Object.keys(this.currentTags).length === 0){  
+      if (Object.keys(this.currentTags).length === 0){
         for (var i = 0; i < ldc.distributions.length;i++){
           ldc.distributions[i].Percentage = 0;
         }
@@ -225,12 +228,12 @@ vm = new Vue({
           var weight = this.currentTags[tag];
           var isNoTag = tag.indexOf("!") !== -1;
           var needle = tag.replace("!","");
-          
+
           //get percentage
           if (distro.Tags.indexOf(needle) !== -1){
             if (isNoTag){
               console.log(distro.Name + " denied because of tag: "+needle+ " (at least)");
-              ldc.distributions[i].Excluded = true;        
+              ldc.distributions[i].Excluded = true;
               if (Object.keys(this.deniedWhy).indexOf(needle) === -1){
                 this.deniedWhy[needle] = 1;
               }else{
@@ -248,14 +251,14 @@ vm = new Vue({
         }else{
           distro.Percentage = 0;
         }
-      
+
         if (distro.Percentage > 0){
           this.results.push(distro);
-        } 
+        }
       }
-      this.commentSent = false; 
+      this.commentSent = false;
       return this.results;
-    } 
+    }
   },
   methods: {
     preventDefault:function($event){
@@ -310,17 +313,41 @@ vm = new Vue({
               loadingText();
               ldc.systemVars = JSON.parse(data.body);
               document.title = GetSystemValue(this.ldc,"Title");
-              this.i18n = ldc.systemVars; 
+              this.i18n = ldc.systemVars;
               UI();
               this.GetQuestionsFromAPI();
-              
+
         });
     },
     GetStatistics: function(){
-    	this.$http.post(ldc.backend,{method:'AllMonthStats',args: "", lang:  TranslateLanguage(ldc.lang)}).then(function(data){       
-    		  console.log("Grabbing statistics...");     
+    	this.$http.post(ldc.backend,{method:'AllMonthStats',args: "", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+    		  console.log("Grabbing statistics...");
           this.testCount = JSON.parse(data.body);
-          console.log("Statistics grabbed.");   
+          console.log("Statistics grabbed.");
+        });
+    },
+    GetRatings: function(){
+      this.$http.post(ldc.backend,{method:'GetLastRatings',args: "", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+          this.otherUserResults = [];
+          var got =  JSON.parse(data.body).reverse();
+          for(var rating in got){
+            var tuple = {};
+            tuple.comment = got[rating].Comment;
+            tuple.stars = Math.ceil(got[rating].Rating);
+            tuple.os = "Windows";
+            if (got[rating].UserAgent.indexOf("Linux") !== -1){
+              tuple.os = "Linux";
+            }else if (got[rating].UserAgent.indexOf("ac") !== -1){
+              tuple.os = "macOS";
+            }else if (got[rating].UserAgent.indexOf("unix") !== -1){
+              tuple.os = "Unix";
+            }else if (got[rating].UserAgent.indexOf("Android") !== -1){
+              tuple.os = "Android";
+            }else if (got[rating].UserAgent.indexOf("iPhone") !== -1){
+              tuple.os = "iPhone";
+            }
+            this.otherUserResults.unshift(tuple);
+          }
         });
     },
     GetQuestionsFromAPI : function(){
@@ -345,7 +372,7 @@ vm = new Vue({
                 question.IsText = result[i].IsText;
                 for(var x=0;x < result[i].Answers.length;x++){
                   var answer = {};
-                  var current = result[i].Answers[x]; 
+                  var current = result[i].Answers[x];
                   answer.Id = "a"+result[i].Answers[x].Id;
                   answer.Text = result[i].Answers[x].Text;
                   try {
@@ -376,7 +403,7 @@ vm = new Vue({
               }
               this.GetOldTest();
 
-                
+
             this.loaded = true;
           });
     },
@@ -396,9 +423,9 @@ vm = new Vue({
                     for(var a =0; a < answers.length;a++){
                       this.selectAnswer(answers[a]);
                     }
-              });            
+              });
           }
-        }        
+        }
     },
     NewVisitor: function(){
       this.$http.post(ldc.backend,{method:'NewVisitor',args: "\""+document.referrer+"\"", lang:  TranslateLanguage(ldc.lang)}).then(function(response){
@@ -440,7 +467,7 @@ vm = new Vue({
     getQuestion : function(id){
       for (var i = 0; i < ldc.questions.length;i++){
         if (ldc.questions[i].Id === id){
-            return ldc.questions[i]   
+            return ldc.questions[i]
         }
       }
       return null;
@@ -448,7 +475,7 @@ vm = new Vue({
   	selectAnswer : function (id){
   		var answer = this.getAnswer(id);
       var question = this.getQuestionByAnswer(id);
-      
+
   		if (answer !== null && !answer.Selected){
   			answer.Selected = true;
         question.Answered = true;
@@ -509,6 +536,7 @@ vm = new Vue({
       var c = this.comment;
       this.$http.post(ldc.backend,{method:'NewRatingWithComment',args: "["+rating+",\""+c+"\"]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
           this.commentSent = true;
+          this.GetRatings();
       });
     },
     addResult: function (args){
@@ -528,12 +556,12 @@ vm = new Vue({
     	  this.GetStatistics();
         $("#rating-stars").rateYo();
       });
-       //Jump to the result collapse 
+       //Jump to the result collapse
        window.scroll(0, $("#Result").offset().top);
     },
     getUrlParts: function(){
         var vars = {};
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
         function(m,key,value) {
           vars[key] = value;
         });
@@ -556,10 +584,10 @@ vm = new Vue({
       var needleIndex = -1;
       var needle = id.replace("-next","");
       for(var i=0;i<ldc.questions.length;i++){
-            if (i < ldc.questions.length && ldc.questions[i].Id === needle){            
+            if (i < ldc.questions.length && ldc.questions[i].Id === needle){
               needleIndex = i;
               break;
-            }  
+            }
       }
       if (needleIndex === ldc.questions.length -1){
           $("#getresult").trigger("click");
