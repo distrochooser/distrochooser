@@ -1,7 +1,7 @@
 .selected{
 	font-weight:bold;
 }
-.mark-important,.mark-important:hover{
+.mark-important,.mark-important:hover,.glyphicon-erase,.glyphicon-erase:hover{
 	text-decoration: none;
 }
 .important{

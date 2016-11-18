@@ -106,14 +106,18 @@
 					</a>
 				</h4>
 				<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length == 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event)"></a>
+				<a href="#" class="glyphicon glyphicon-erase" v-if="question.Answered" v-on:click="removeAnswers($event,question)"></a>
 			</div>
 			<div id="collapse{{question.Id}}" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header{{question.Id}}">
 				<div class="panel-body">
 					{{{ question.HelpText }}}
-					<div v-if="question.Answers.lenght != 0">
-						<ul v-bind:class="{'multi':!question.SingleAnswer,'single':question.SingleAnswer,'image':!question.IsText }">
+					<div v-if="question.Answers.length != 0">
+						<p v-for="answer in question.Answers">
+							<input v-if="question.IsText" name="{{ question.Id }}" :type="question.SingleAnswer ? 'radio' : 'checkbox'"  v-on:click="addAnswer($event,answer,question)" :checked='answer.Selected && question.Answered'>
+							<span v-if="question.IsText"  v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">	{{ answer.Text }} </span>
+						</p>
+						<ul v-if="false" v-bind:class="{'multi':!question.SingleAnswer,'single':question.SingleAnswer,'image':!question.IsText }">
 							<li v-if="!question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">
-
 								<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">
 									<img v-if="answer.IsText == false" v-bind:src="answer.Image" class="image" data-id="{{answer.Id}}"  v-bind:class="{ 'selected': answer.Selected }"  title="{{ answer.Text }}">
 								</a>
@@ -197,7 +201,7 @@
 										 {{ text('why') }} {{ distro.Name }}?
 									</h4>
 									<p class="tags">
-										<span v-for="tag in distro.Tags" track-by="$index">
+										<span v-for="tag in distro.Tags" track-by="$index" v-if="getTagTranslation(tag) != tag">
 											<i class="fa" v-bind:class="{'fa-question':!isTagChoosed(tag),'fa-check':isTagChoosed(tag)}" v-bind:title="text('doesntfit')"  v-if="!isTagChoosed(tag)"></i>
 											<i class="fa" v-bind:class="{'fa-check':isTagChoosed(tag)}" v-if="isTagChoosed(tag)" v-bind:title="text('fits')"></i>
 											{{ getTagTranslation(tag)}}
@@ -227,8 +231,8 @@
 										{{ text('why') }} {{ text('not') }} {{ excluded.Name }}?
 									</h4>
 									<p class="tags">
-										<span v-for="tag in excluded.Tags" track-by="$index">
-											<i class="fa fa-times" v-bind:title="text('doesntfit')"></i>
+										<span v-for="tag in excluded.Tags" track-by="$index" v-if="getTagTranslation(tag) != tag">
+											<i class="fa fa-times" v-bind:title="text('doesntfit')" ></i>
 											{{ getTagTranslation(tag)}}
 										</span>
 									</p>

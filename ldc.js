@@ -332,7 +332,15 @@ vm = new Vue({
           var got =  JSON.parse(data.body).reverse();
           for(var rating in got){
             var tuple = {};
-            tuple.comment = got[rating].Comment;
+            tuple.comment = "";
+            /**
+            SPAM.... :(
+            got[rating].Comment;
+            var commentNoTags = tuple.comment.replace(/(<([^>]+)>)/ig,"");
+            if (tuple.comment != commentNoTags){
+              tuple.comment = "";
+            }
+            */
             tuple.stars = Math.ceil(got[rating].Rating);
             tuple.os = "Windows";
             if (got[rating].UserAgent.indexOf("Linux") !== -1){
@@ -510,26 +518,28 @@ vm = new Vue({
         return false;
       }
     },
-  	addAnswer : function(args){
-      args.preventDefault();
-      var id = this.getTarget(args);
-      //prevent multiple answers on singleanswer question
-      var parent = this.getQuestionByAnswer(id);
+    removeAnswers: function(event,question){
+      event.preventDefault();
+      for(var i=0;i<question.Answers.length;i++){
+        question.Answers[i].Selected = false;
+      }
+      question.Answered = false;
+    },
+  	addAnswer : function(args,answer,question){
+      var parent = question;
       if (parent !== null && parent.SingleAnswer === true){
         for(var a = 0; a < parent.Answers.length;a++){
-            if (parent.Answers[a].Selected === true && parent.Answers[a].Id !== id){
-              this.nomultipleAnswersAllowed();
-              return false;
+            if (parent.Answers[a].Selected === true && parent.Answers[a].Id !== answer.Id){
+              parent.Answers[a].Selected = false;
+            }
+            if (parent.Answers[a] === answer){
+              parent.Answers[a].Selected = true;
             }
         }
       }
-  		var answer = this.selectAnswer(id);
+      question.Answered = true;
   		return answer;
   	},
-    nomultipleAnswersAllowed : function(){
-      var text = GetSystemValue(ldc,"NotAllowed");
-      alert(text);
-    },
     publishRating : function(args){
       var rating = $("#rating-stars").rateYo().rateYo("rating");
       var _this = this;
