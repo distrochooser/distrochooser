@@ -73,7 +73,7 @@ vm = new Vue({
     ldc: ldc, //ldc data instance
     debug: true, //debug mode?
     answered: 0, //the count of answered questions
-    tags: {}, //the answered tags
+    currentTags: {}, //the answered tags
     results: ldc.distributions, //the resulting distros
     comment: "", //the user's comment for the result
     commentSent: false,
@@ -89,7 +89,7 @@ vm = new Vue({
     isOldTest:false,
     donationEnabled:false,
     displayExcluded:true,
-    otherUserResults:[]
+    otherUserResults:[],
   },
   created: function(){
     console.log("Starting Linux Distribution Chooser "+ldc.version);
@@ -147,50 +147,7 @@ vm = new Vue({
         }
       }
       return count;
-    },
-    currentTags: function(){
-      //get the currently answered tags
-      this.tags = {};
-      for (var i = 0; i < ldc.questions.length;i++){
-        var q = ldc.questions[i];
-        for(var x = 0;  x < q.Answers.length;x++){
-          if (q.Answers[x].Selected === true){
-            //save tags
-            for(var y = 0 ; y < q.Answers[x].Tags.length; y++){
-              var weight = 1;
-              var tag = q.Answers[x].Tags[y];
-              if (Object.keys(this.tags).indexOf(tag) === -1){
-                this.tags[tag] = weight;
-              }else{
-                this.tags[tag]++;
-              }
-              if (q.Important){
-                this.tags[tag] *=2;
-              }
-            }
-            for(var y = 0 ; y < q.Answers[x].NoTags.length; y++){
-              var weight = 1;
-              var tag = "!"+q.Answers[x].NoTags[y];
-              if (Object.keys(this.tags).indexOf(tag) === -1){
-                this.tags[tag] = weight;
-              }else{
-                this.tags[tag]++;
-              }
-              if (q.Important){
-                this.tags[tag] *=2;
-              }
-            }
-          }
-        }
-      }
-      return this.tags;
-    },
-    distributionsCount : function (){
-      return ldc.distributions.length - this.excludedDistros.length
-    },
-    allDistributionsCount : function (){
-      return ldc.distributions.length;
-    },
+    },   
     excludedDistros : function(){
       var distros =  [];
       for(var i=0;i<ldc.distributions.length;i++){
@@ -257,6 +214,7 @@ vm = new Vue({
         }
       }
       this.commentSent = false;
+
       return this.results;
     }
   },
@@ -274,6 +232,43 @@ vm = new Vue({
          }
       }
       return false;
+    },
+    updateCurrentTags: function(){
+      //get the currently answered tags
+      this.currentTags = {};
+      for (var i = 0; i < ldc.questions.length;i++){
+        var q = ldc.questions[i];
+        for(var x = 0;  x < q.Answers.length;x++){
+          if (q.Answers[x].Selected === true){
+            //save tags
+            for(var y = 0 ; y < q.Answers[x].Tags.length; y++){
+              var weight = 1;
+              var tag = q.Answers[x].Tags[y];
+              if (Object.keys(this.currentTags).indexOf(tag) === -1){
+                this.currentTags[tag] = weight;
+              }else{
+                this.currentTags[tag]++;
+              }
+              if (q.Important){
+                this.currentTags[tag] *=2;
+              }
+            }
+            for(var y = 0 ; y < q.Answers[x].NoTags.length; y++){
+              var weight = 1;
+              var tag = "!"+q.Answers[x].NoTags[y];
+              if (Object.keys(this.currentTags).indexOf(tag) === -1){
+                this.currentTags[tag] = weight;
+              }else{
+                this.currentTags[tag]++;
+              }
+              if (q.Important){
+                this.currentTags[tag] *=2;
+              }
+            }
+          }
+        }
+      }
+      return this.currentTags;
     },
     StartInit : function(){
         this.getLanguage();
@@ -551,6 +546,7 @@ vm = new Vue({
     },
     addResult: function (args){
       var answers  = [];
+      this.updateCurrentTags()
       for(var i = 0; i < this.answered.length;i++){
           var question = this.answered[i];
           for(var x = 0; x < question.Answers.length;x++){

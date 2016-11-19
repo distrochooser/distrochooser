@@ -112,23 +112,12 @@
 				<div class="panel-body">
 					{{{ question.HelpText }}}
 					<div v-if="question.Answers.length != 0">
-						<p v-for="answer in question.Answers">
-							<input v-if="question.IsText" name="{{ question.Id }}" :type="question.SingleAnswer ? 'radio' : 'checkbox'"  v-on:click="addAnswer($event,answer,question)" :checked='answer.Selected && question.Answered'>
-							<span v-if="question.IsText"  v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">	{{ answer.Text }} </span>
-						</p>
-						<ul v-if="false" v-bind:class="{'multi':!question.SingleAnswer,'single':question.SingleAnswer,'image':!question.IsText }">
-							<li v-if="!question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">
-								<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">
-									<img v-if="answer.IsText == false" v-bind:src="answer.Image" class="image" data-id="{{answer.Id}}"  v-bind:class="{ 'selected': answer.Selected }"  title="{{ answer.Text }}">
-								</a>
-							</li>
-							<li v-if="question.IsText" v-for="answer in question.Answers" v-bind:class="{ 'selected': answer.Selected,'imageAnswer':!question.IsText }">
-								<a href="#" data-id="{{answer.Id}}" v-on:click="addAnswer($event)" v-bind:class="{'singleanswer': question.SingleAnswer,'mutlianswer': !question.SingleAnswer}">
-									{{ answer.Text }}
-								</a>
-							</li>
+						 <div :class="question.SingleAnswer ? 'radio' : 'checkbox'" v-for="answer in question.Answers">
+							<label>
+								<input :checked='answer.Selected ' name="{{ question.Id }}_a" :type="question.SingleAnswer ? 'radio' : 'checkbox'" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
+							</label>
 						</div>
-					</ul>
+					</div>
 					<a href="#" class="btn btn-primary {{ question.Id }}-next" data-id="{{ question.Id }}-next" v-on:click="nextTrigger($event)" >
 						{{ question.ButtonText }}
 					</a>
@@ -145,7 +134,7 @@
 				</h4>
 			</div>
 			<div id="collapse-result" class="panel-collapse collapse question result-collapse" role="tabpanel" aria-labelledby="header-result">
-				<div class="panel-body" v-if="distributionsCount > 0">
+				<div class="panel-body">
 					<a href="#" id="rating-anchor"></a>
 
 					<div class="rating" v-if="commentSent==false">
@@ -265,10 +254,6 @@
 						<li class="list-group-item">
 							<span class="badge"><span id="answeredCount" class="ldcui">{{ answeredQuestionsCount }}</span>/ <span class="ldcui" id="answerCount">{{ questionsCount }}</span></span>
 							<span class="ldcui" id="answered">Beantwortet</span>
-						</li>
-						<li class="list-group-item">
-							<span class="badge"><span id="hitCount" class="ldcui">{{ distributionsCount }}</span>/ <span class="ldcui" id="allCount">{{ allDistributionsCount }}</span></span>
-							<span class="ldcui" id="Suitable">Passend</span>
 						</li>
 						<li class="list-group-item">
 							<div class="checkbox">
