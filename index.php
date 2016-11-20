@@ -14,10 +14,11 @@
 	<link href="./ldc.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
-		<p>
+	<div class="loader visible " v-bind:class="{'visible':!loaded,'hidden':loaded}">
+		<p class="hidden-xs">
+			<img src="./assets/mobile.png">
 			<span  class="text">
-					doing #justwebappthings
+				JavaScript is not evil
 			</span>
 		</p>
 	</div>
@@ -26,7 +27,6 @@
 			<?php include "./static/about.php";?>
 			<div class="col-lg-3">
 				<div class="row">
-					<!--<a class ="hidden-xs" id ="homelink" href="index.php"><img src="./assets/ldc2.png"></img></a>-->
 					<div class="visible-lg">
 
 						<a class="btn btn-primary button-left-nav ldcui contact" id="about"  data-toggle="modal" data-target="#about">{{ text('About') }}r</a>
@@ -105,7 +105,7 @@
 						<span v-if="question.Number !== -1">{{ question.Number }}. </span>{{ question.Text }}
 					</a>
 				</h4>
-				<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length == 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event)"></a>
+				<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length == 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event,question)"></a>
 				<a href="#" class="glyphicon glyphicon-erase" v-if="question.Answered" v-on:click="removeAnswers($event,question)"></a>
 			</div>
 			<div id="collapse{{question.Id}}" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header{{question.Id}}">
@@ -175,7 +175,7 @@
 						Danke für die Bewertung!
 					</div>
 					<div v-for="distro in distributions | orderBy 'Percentage' -1">
-						<div class="panel panel-default distribution">
+						<div class="panel panel-default distribution" v-if="!distro.Excluded">
 							<div class="panel-heading" >
 								{{ distro.Name }}: {{ distro.Percentage }}%
 								<a class="link" href="{{ distro.Website }}">Website</a>
@@ -186,7 +186,7 @@
 									<img class="distro-logo" v-bind:src = "distro.Image" />{{{ distro.Description }}}
 								</p>
 								<div class="form-group">
-									<h4 class="panel-title">
+									<h4 class="panel-title full-width-header">
 										 {{ text('why') }} {{ distro.Name }}?
 									</h4>
 									<p class="tags">
@@ -198,7 +198,7 @@
 									</p>
 								</div>
 							</div>
-							<div class="panel-footer">
+							<div class="panel-footer panel-distro-footer">
 								<a class="link" href="{{ distro.TextSource }}">Text</a>
 								<a class="link" href="{{ distro.ImageSource }}">Logo</a>
 							</div>
@@ -220,14 +220,14 @@
 										{{ text('why') }} {{ text('not') }} {{ excluded.Name }}?
 									</h4>
 									<p class="tags">
-										<span v-for="tag in excluded.Tags" track-by="$index" v-if="getTagTranslation(tag) != tag">
+										<span v-for="tag in excluded.Tags" track-by="$index" v-if="(typeof currentTags['!' + tag] !== 'undefined')">
 											<i class="fa fa-times" v-bind:title="text('doesntfit')" ></i>
 											{{ getTagTranslation(tag)}}
 										</span>
 									</p>
 								</div>
 							</div>
-							<div class="panel-footer">
+							<div class="panel-footer panel-distro-footer">
 								<a class="link" href="{{ excluded.TextSource }}">Text</a>
 								<a class="link" href="{{ excluded.ImageSource }}">Logo</a>
 							</div>
@@ -294,7 +294,9 @@
 				window.scrollTo(0, $("#rating-anchor").position().top);
 			});
 			$("#rating-stars").rateYo({
-				rating: 0.0
+				rating: 0.0,
+				halfStar: false,
+    			fullStar: true
 			});
 		});
 	</script>

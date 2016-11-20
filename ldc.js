@@ -38,10 +38,14 @@ function UI(){
                       $(this).html(value);
       });
 }
-function loadingText(){
-    var texts = ["Feeding penguins","Fixing Windows","loading","Rearanging molecules"];
-    var index = Math.floor((Math.random() * texts.length) );
-    $(".text").text(texts[index]+"...");
+function loadingText(preset){
+    if (typeof preset !== 'undefined'){
+      $(".text").text(preset);
+    }else{
+      var texts = ["Feeding penguins","Did I left the oven on?","Loading distributions","Blaming Windows","Installing Xorg","Running apt-get","Cloning sourcecode","Eating cookies"];
+      var index = Math.floor((Math.random() * texts.length) );
+      $(".text").text(texts[index]);
+    }
 }
 var ldc = function(){
 	this.backend = "https://distrochooser.de/rest.php?json&ldc3";
@@ -273,11 +277,13 @@ vm = new Vue({
     StartInit : function(){
         this.getLanguage();
         this.loaded = false;
+        loadingText();
         this.$http.post(ldc.backend,{method:'GetDistributions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
         loadingText();
         var result = JSON.parse(data.body);
           ldc.distributions = [];
           for(var i = 0; i < result.length;i++){
+            loadingText(result[i].Name);
             //translate the 2.x API for 3.x
             var distro = {};
             distro.Id = result[i].Id;
@@ -304,6 +310,7 @@ vm = new Vue({
       });
     },
     GetSystemVars : function(){
+        loadingText();
         this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
               loadingText();
               ldc.systemVars = JSON.parse(data.body);
@@ -311,14 +318,15 @@ vm = new Vue({
               this.i18n = ldc.systemVars;
               UI();
               this.GetQuestionsFromAPI();
-
         });
     },
     GetStatistics: function(){
-    	this.$http.post(ldc.backend,{method:'AllMonthStats',args: "", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
-    		  console.log("Grabbing statistics...");
+      loadingText();
+    	this.$http.post(ldc.backend,{method:'AllMonthStats',args: "", lang:  TranslateLanguage(ldc.lang)}).then(function(data){    	
+          console.log("Grabbing statistics...");
           this.testCount = JSON.parse(data.body);
           console.log("Statistics grabbed.");
+          loadingText();
         });
     },
     GetRatings: function(){
@@ -326,6 +334,7 @@ vm = new Vue({
           this.otherUserResults = [];
           var got =  JSON.parse(data.body).reverse();
           for(var rating in got){
+            loadingText();
             var tuple = {};
             tuple.comment = "";
             /**
@@ -362,6 +371,7 @@ vm = new Vue({
             var result = JSON.parse(data.body);
             this.lastQuestionNumber = result.length;
             for(var i = 0; i < result.length;i++){
+                loadingText();
                 //translate the 2.x API for 3.x
                 var question = {};
                 question.Id = "q"+result[i].Id;
@@ -404,10 +414,9 @@ vm = new Vue({
                 }
                 ldc.questions.push(question);
               }
+              loadingText();
+              this.loaded = true;
               this.GetOldTest();
-
-
-            this.loaded = true;
           });
     },
     GetOldTest: function(){
@@ -433,6 +442,7 @@ vm = new Vue({
     NewVisitor: function(){
       this.$http.post(ldc.backend,{method:'NewVisitor',args: "\""+document.referrer+"\"", lang:  TranslateLanguage(ldc.lang)}).then(function(response){
           console.log("Hello #"+response.body);
+          loadingText("Hello #"+response.body);
       });
     },
     answeredQuestions: function(){
@@ -499,9 +509,8 @@ vm = new Vue({
         return false;
       }
   	},
-    makeImportant : function (args){
+    makeImportant : function (args,question){
       args.preventDefault();
-      var question = this.getQuestion(this.getTarget(args));
       if (question !== null){
           if (question.Important){
             question.Important = false;
@@ -611,21 +620,10 @@ vm = new Vue({
         return args.target.attributes[1].value;
       }
     },
-    getTarget : function(args){
-      var target = null;
-       if (args.srcElement){
-        //Chrome
-        target = args.srcElement;
-      }
-      else{
-        //Firefox
-        target = args.target;
-      }
-      return target.attributes[2].value;
-    },
     getTagTranslation : function(value){
-      var text =  GetSystemValue(this.ldc,value);
-      return text !== "" ? text : value;
+      var anti = value.indexOf("!") !== -1;
+      var text =  GetSystemValue(this.ldc,value.replace("!",""));
+      return text !== "" ? (anti ? GetSystemValue(this.ldc,"NotComplied") +": " : "") + text : value;
     }
   }
 });

@@ -85,8 +85,10 @@ body{
 }
 .loader{
 	display: none;
-	height: 100%;
+	position: fixed;
+    top: -27%;
     width: 100%;
+    text-align: center;
 }
 .loader p{
     width: 50%;
@@ -94,6 +96,16 @@ body{
     text-align: center;
     margin-top: 25%;
 	font-size: x-large;
+}
+.loader p img{
+	display: block;
+    margin: 0 auto;
+    margin-bottom: 1em;
+	background-color: #999999;
+    border-radius: 1.7em;
+    padding: 0.7em;
+    padding-right: 1.4em;
+    padding-left: 1.1em;
 }
 .vendor{
 	margin-right: 5px;
@@ -201,4 +213,12 @@ ul.image{
 //	position: fixed;
 	//top: 17%;
 //	width: 12%;
+}
+.full-width-header{
+	display: block;
+    width: 100%;
+    margin-top: 2em;
+}
+.panel-distro-footer{
+	padding-left:0px;
 }
