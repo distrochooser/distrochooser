@@ -4,6 +4,11 @@
 .mark-important,.mark-important:hover,.glyphicon-erase,.glyphicon-erase:hover{
 	text-decoration: none;
 }
+.glyphicon-erase,.glyphicon-erase:hover{
+	margin-left:1em;
+	color: #ff4136;
+    text-decoration: none;
+}
 .important{
 	color:orange !important;
 	text-decoration: none !important;
@@ -216,9 +221,17 @@ ul.image{
 }
 .full-width-header{
 	display: block;
-    width: 100%;
-    margin-top: 2em;
+  width: 100%;
 }
 .panel-distro-footer{
 	padding-left:0px;
+}
+.clear-answer{
+	text-decoration: none;
+	color:#a94442;
+	padding-left: 0.5em;
+}
+hr{
+	display:block;
+	width:100%;
 }

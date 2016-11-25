@@ -29,11 +29,11 @@
 				<div class="row">
 					<div class="visible-lg">
 
-						<a class="btn btn-primary button-left-nav ldcui contact" id="about"  data-toggle="modal" data-target="#about">{{ text('About') }}r</a>
+						<a class="btn btn-primary button-left-nav contact" id="about"  data-toggle="modal" data-target="#about">{{ text('about') }}</a>
 						<span class="spacer"></span>
 
 						<a class="btn btn-primary button-left-nav" target="_blank" href="http://0fury.de"><img class="vendor" alt="0fury.de" src="./assets/0fury.ico">
-						<span class="ldcui" id="Vendor">Ein Projekt von</span>  0fury.de</a>
+						<span>{{ text('Vendor') }}</span>  0fury.de</a>
 
 						<a title="Zur deutschen Version wechseln" href="?l=1"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 						<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
@@ -48,9 +48,8 @@
 								</li>
 						</ul>
 						<footer class="visible-lg">
-							<a class="ldcui privacy" id="privacyMenuEntry" href="./static/privacy.php"></a>
-							<a class="ldcui contact" id="contactMenuEntry" href="./static/contact.php"></a>
-
+							<a href="./static/privacy.php">{{ text('privacy') }}</a>
+							<a href="./static/contact.php">{{ text('concact') }}</a>
 						</footer>
 					</div>
 					<div class="hidden-lg">
@@ -82,8 +81,8 @@
 							</li>
 							<li role="presentation">
 							</li>
-							<li role="presentation"> <a class="ldcui sprivacy" id="privacy" href="./static/privacy.php"></a></li>
-							<li role="presentation"> <a class="ldcui scontact" id="contact" href="./static/contact.php"></a></li>
+							<li role="presentation"> <a class="sprivacy" id="privacy" href="./static/privacy.php">{{ text('privacy') }}</a></li>
+							<li role="presentation"> <a class="scontact" id="contact" href="./static/contact.php">{{ text('contact') }}</a></li>
 						</ul>
 					</div>
 				</div>
@@ -106,7 +105,6 @@
 					</a>
 				</h4>
 				<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length == 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event,question)"></a>
-				<a href="#" class="glyphicon glyphicon-erase" v-if="question.Answered" v-on:click="removeAnswers($event,question)"></a>
 			</div>
 			<div id="collapse{{question.Id}}" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header{{question.Id}}">
 				<div class="panel-body">
@@ -121,6 +119,8 @@
 					<a href="#" class="btn btn-primary {{ question.Id }}-next" data-id="{{ question.Id }}-next" v-on:click="nextTrigger($event)" >
 						{{ question.ButtonText }}
 					</a>
+
+					<a href="#" class="clear-answer" v-if="question.Answered" v-on:click="removeAnswers($event,question)">{{ text("clear"); }}</a>
 				</div>
 			</div>
 		</div>
@@ -128,8 +128,8 @@
 		<div class="panel panel-default">
 			<div class="panel-heading" role="tab" id="header-result">
 				<h4 class="panel-title">
-					<a class="result-header ldcui" id="Result" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-result" aria-expanded="true" aria-controls="collapse-result" v-on:click="addResult">
-
+					<a class="result-header" id="Result" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-result" aria-expanded="true" aria-controls="collapse-result" v-on:click="addResult">
+						{{ text('Result') }}
 					</a>
 				</h4>
 			</div>
@@ -138,7 +138,7 @@
 					<a href="#" id="rating-anchor"></a>
 
 					<div class="rating" v-if="commentSent==false">
-						<p class="ldcui rating-text" id="ResultRatingHeader">Wie zufrieden bist Du mit dem Ergebnis?</p>
+						<p class="rating-text" id="ResultRatingHeader">{{ text('ResultRatingHeader') }}</p>
 						<div class="share-link" v-if="currentTestLoading">
 							<i class="fa fa-spin fa-circle-o-notch"></i>
 						</div>
@@ -147,7 +147,7 @@
 						</div>
 						<div id="rating-stars"></div>
 						<textarea v-model="comment" debounce="300" class="form-control" placeholder="{{ text('comment') }}"></textarea>
-						<button id="submit-comment" v-on:click="publishRating($event)" class="btn btn-primary ldcui"></button>
+						<button id="submit-comment" v-on:click="publishRating($event)" class="btn btn-primary">{{ text('submit-comment') }}</button>
 						<div class="social" v-if="currentTestLoading">
 							<i class="fa fa-spin fa-circle-o-notch"></i>
 						</div>
@@ -183,7 +183,9 @@
 							</div>
 							<div class="panel-body">
 								<p>
-									<img class="distro-logo" v-bind:src = "distro.Image" />{{{ distro.Description }}}
+									<img class="distro-logo" v-bind:src = "distro.Image" />
+									<p>{{{ distro.Description }}}</p>
+									<hr>
 								</p>
 								<div class="form-group">
 									<h4 class="panel-title full-width-header">
@@ -252,8 +254,8 @@
 						width: 100%;v
 						"></a></li>
 						<li class="list-group-item">
-							<span class="badge"><span id="answeredCount" class="ldcui">{{ answeredQuestionsCount }}</span>/ <span class="ldcui" id="answerCount">{{ questionsCount }}</span></span>
-							<span class="ldcui" id="answered">Beantwortet</span>
+							<span class="badge"><span id="answeredCount">{{ answeredQuestionsCount }}</span>/ <span id="answerCount">{{ questionsCount }}</span></span>
+							<span id="answered">{{ text('answered') }}</span>
 						</li>
 						<li class="list-group-item">
 							<div class="checkbox">
@@ -263,7 +265,7 @@
 							</div>
 						</li>
 						<li class="list-group-item">
-							<a class="btn btn-primary ldcui" id="getresult" v-on:click="addResult" >{{ text('getresult') }}</a>
+							<a class="btn btn-primary" id="getresult" v-on:click="addResult" >{{ text('getresult') }}</a>
 						</li>
 					</ul>
 				</div>

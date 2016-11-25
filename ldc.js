@@ -1,48 +1,8 @@
-function TranslateLanguage(lang){
-    if (lang === "de"){
-      return 1;
-    }
-    return 2;
-}
-function TranslateLanguageCode(lang){
-  if (lang === 1){
-    return "de";
-  }
-  else{
-    return "en";
-  }
-}
-function GetSystemValue(ldc,needle){
-        if (ldc.systemVars === null){
-          return "";
-        }
-        for (var i = 0; i < ldc.systemVars.length; i++) {
-                if (ldc.systemVars[i].Val == needle){
-                        return ldc.systemVars[i].Text;
-                }
-       	}
-        return "";
-}
-function UI(){
-   $(".ldcui").each(function(index, value) {
-          var id = $(this).attr('id');
-          var value = GetSystemValue(ldc,id);
-          if (id == undefined || value == "")
-          {
-              //for elements with duplicate context
-              var classes = $(this).attr("class").split(' ');
-              id = classes[classes.length -1];
-              value = GetSystemValue(ldc,id);
-          }
-          if (value != "")
-                      $(this).html(value);
-      });
-}
 function loadingText(preset){
     if (typeof preset !== 'undefined'){
       $(".text").text(preset);
     }else{
-      var texts = ["Feeding penguins","Did I left the oven on?","Loading distributions","Blaming Windows","Installing Xorg","Running apt-get","Cloning sourcecode","Eating cookies"];
+      var texts = ["Feeding penguins","Did I left the oven on?","Loading distributions","Blaming Windows","Installing Xorg","Running apt-get","Cloning sourcecode","Eating cookies","Disabling UEFI","Loading translation"];
       var index = Math.floor((Math.random() * texts.length) );
       $(".text").text(texts[index]);
     }
@@ -106,11 +66,14 @@ vm = new Vue({
     console.log("Finished: " + new Date());
   },
   ready:function(){
-    window.title = GetSystemValue(this.ldc,"Title");
+    window.title = this.text("Title");
   },
   computed: {
+    langCode: function(){
+      return ldc.lang === "de" ? 1 : 2;
+    },
     shareLink : function(){
-      var baseUrl = "https://beta.distrochooser.de/?l="+TranslateLanguage(ldc.lang);
+      var baseUrl = "https://beta.distrochooser.de/?l="+this.langCode;
 
       if (this.currentTest === -1){
         return baseUrl;
@@ -118,26 +81,26 @@ vm = new Vue({
       return baseUrl+ "&test="+this.currentTest;
     },
     noResultText : function(){
-      var text =  GetSystemValue(this.ldc,"NoResults");
+      var text =  this.text("NoResults");
       return text;
     },
     startTestButtonText: function(){
-      var text =  GetSystemValue(this.ldc,"StartTest");
+      var text =  this.text("StartTest");
       return text;
     },
     nextButtonText: function(){
-      var text =  GetSystemValue(this.ldc,"nextQuestion");
+      var text =  this.text("nextQuestion");
       return text;
     },
     getResultButtonText : function(){
-      var text =  GetSystemValue(this.ldc,"getresult");
+      var text =  this.text("getresult");
       return text;
     },
     ratingSent : function (){
         return false;
     },
     resultText : function(){
-        return GetSystemValue(this.ldc,"Result");
+        return this.text("Result");
     },
     answeredQuestionsCount: function(){
       this.answered =  this.answeredQuestions();
@@ -151,11 +114,10 @@ vm = new Vue({
         }
       }
       return count;
-    },   
+    },
     excludedDistros : function(){
       var distros =  [];
       for(var i=0;i<ldc.distributions.length;i++){
-        console.log(ldc.distributions[i].Excluded)
         if (ldc.distributions[i].Excluded){
           distros.push(ldc.distributions[i]);
         }
@@ -227,7 +189,15 @@ vm = new Vue({
       $event.preventDefault();
     },
     text:function(value){
-      return GetSystemValue(this.ldc,value);
+      if (ldc.systemVars === null){
+        return "";
+      }
+      for (var i = 0; i < ldc.systemVars.length; i++) {
+          if (ldc.systemVars[i].Val == value){
+              return ldc.systemVars[i].Text;
+          }
+      }
+      return "";
     },
     isTagChoosed:function(tag){
        for (var key in this.currentTags) {
@@ -278,7 +248,7 @@ vm = new Vue({
         this.getLanguage();
         this.loaded = false;
         loadingText();
-        this.$http.post(ldc.backend,{method:'GetDistributions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+        this.$http.post(ldc.backend,{method:'GetDistributions',args: "[]", lang:  this.langCode}).then(function(data){
         loadingText();
         var result = JSON.parse(data.body);
           ldc.distributions = [];
@@ -311,18 +281,17 @@ vm = new Vue({
     },
     GetSystemVars : function(){
         loadingText();
-        this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+        this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  this.langCode}).then(function(data){
               loadingText();
               ldc.systemVars = JSON.parse(data.body);
-              document.title = GetSystemValue(this.ldc,"Title");
+              document.title = this.text("Title");
               this.i18n = ldc.systemVars;
-              UI();
               this.GetQuestionsFromAPI();
         });
     },
     GetStatistics: function(){
       loadingText();
-    	this.$http.post(ldc.backend,{method:'AllMonthStats',args: "", lang:  TranslateLanguage(ldc.lang)}).then(function(data){    	
+    	this.$http.post(ldc.backend,{method:'AllMonthStats',args: "", lang:  this.langCode}).then(function(data){
           console.log("Grabbing statistics...");
           this.testCount = JSON.parse(data.body);
           console.log("Statistics grabbed.");
@@ -330,7 +299,7 @@ vm = new Vue({
         });
     },
     GetRatings: function(){
-      this.$http.post(ldc.backend,{method:'GetLastRatings',args: "", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+      this.$http.post(ldc.backend,{method:'GetLastRatings',args: "", lang:  this.langCode}).then(function(data){
           this.otherUserResults = [];
           var got =  JSON.parse(data.body).reverse();
           for(var rating in got){
@@ -363,11 +332,11 @@ vm = new Vue({
         });
     },
     GetQuestionsFromAPI : function(){
-       this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+       this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  this.langCode}).then(function(data){
             loadingText();
             ldc.questions[0].ButtonText = this.startTestButtonText;
-            ldc.questions[0].Text = GetSystemValue(ldc,"welcomeTextHeader");
-            ldc.questions[0].HelpText = GetSystemValue(ldc,"welcomeText");
+            ldc.questions[0].Text = this.text("welcomeTextHeader");
+            ldc.questions[0].HelpText = this.text("welcomeText");
             var result = JSON.parse(data.body);
             this.lastQuestionNumber = result.length;
             for(var i = 0; i < result.length;i++){
@@ -429,7 +398,7 @@ vm = new Vue({
           if (typeof parts["test"] !== 'undefined'){
             var test = parseInt(parts["test"]);
             //Load old test results
-              this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+              this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  this.langCode}).then(function(data){
                     var obj = JSON.parse(data.body);
                     var answers = JSON.parse(obj.Answers);
                     for(var a =0; a < answers.length;a++){
@@ -440,7 +409,7 @@ vm = new Vue({
         }
     },
     NewVisitor: function(){
-      this.$http.post(ldc.backend,{method:'NewVisitor',args: "\""+document.referrer+"\"", lang:  TranslateLanguage(ldc.lang)}).then(function(response){
+      this.$http.post(ldc.backend,{method:'NewVisitor',args: "\""+document.referrer+"\"", lang:  this.langCode}).then(function(response){
           console.log("Hello #"+response.body);
           loadingText("Hello #"+response.body);
       });
@@ -548,7 +517,7 @@ vm = new Vue({
       var rating = $("#rating-stars").rateYo().rateYo("rating");
       var _this = this;
       var c = this.comment;
-      this.$http.post(ldc.backend,{method:'NewRatingWithComment',args: "["+rating+",\""+c+"\"]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+      this.$http.post(ldc.backend,{method:'NewRatingWithComment',args: "["+rating+",\""+c+"\"]", lang:  this.langCode}).then(function(data){
           this.commentSent = true;
           this.GetRatings();
       });
@@ -565,7 +534,7 @@ vm = new Vue({
           }
       }
       this.currentTestLoading = true;
-      this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+"]", lang:  TranslateLanguage(ldc.lang)}).then(function(data){
+      this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+"]", lang:  this.langCode}).then(function(data){
         this.currentTest = parseInt(data.body);
         this.currentTestLoading = false;
     	  this.GetStatistics();
@@ -584,7 +553,7 @@ vm = new Vue({
     },
     getLanguage: function(){
       var langcode = this.getLanguageKey();
-      ldc.lang = TranslateLanguageCode(parseInt(langcode));
+      ldc.lang = parseInt(langcode) === 1 ? 'de' : 'en';
     },
     getLanguageKey: function(){
       var parts = this.getUrlParts();
@@ -622,8 +591,8 @@ vm = new Vue({
     },
     getTagTranslation : function(value){
       var anti = value.indexOf("!") !== -1;
-      var text =  GetSystemValue(this.ldc,value.replace("!",""));
-      return text !== "" ? (anti ? GetSystemValue(this.ldc,"NotComplied") +": " : "") + text : value;
+      var text =  this.text(value.replace("!",""));
+      return text !== "" ? (anti ? this.text("NotComplied") +": " : "") + text : value;
     }
   }
 });
