@@ -25,7 +25,7 @@
 	</div>
 	<div class="container main-container hidden"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 		<div class="row">
-			<?php include "./static/about.php";?>
+			<?php include "./static/about.html";?>
 			<div class="col-lg-3">
 				<div class="row">
 					<div class="visible-lg">
