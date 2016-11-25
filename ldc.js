@@ -1,3 +1,4 @@
+loadingText();
 function loadingText(preset){
     if (typeof preset !== 'undefined'){
       $(".text").text(preset);
@@ -193,7 +194,7 @@ vm = new Vue({
         return "";
       }
       for (var i = 0; i < ldc.systemVars.length; i++) {
-          if (ldc.systemVars[i].Val == value){
+          if (ldc.systemVars[i].Val === value){
               return ldc.systemVars[i].Text;
           }
       }

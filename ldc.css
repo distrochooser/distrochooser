@@ -102,15 +102,23 @@ body{
     margin-top: 25%;
 	font-size: x-large;
 }
-.loader p img{
-	display: block;
-    margin: 0 auto;
-    margin-bottom: 1em;
-	background-color: #999999;
-    border-radius: 1.7em;
-    padding: 0.7em;
-    padding-right: 1.4em;
-    padding-left: 1.1em;
+.loader-image-wrapper{
+		display: inline-block;
+		margin: 0 auto;
+		margin-bottom: 1em;
+		background-color: #999999;
+		border-radius: 1.7em;
+		padding: 0.7em;
+		padding-right: 1.4em;
+		padding-left: 1.1em;
+}
+.beta{
+	color: white;
+	font-weight: bold;
+	font-family: courier new;
+	text-transform: uppercase;
+	margin-top: 0em;
+	letter-spacing: 2px;
 }
 .vendor{
 	margin-right: 5px;

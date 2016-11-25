@@ -16,7 +16,8 @@
 <body>
 	<div class="loader visible " v-bind:class="{'visible':!loaded,'hidden':loaded}">
 		<p class="hidden-xs">
-			<img src="./assets/mobile.png">
+			<span class="loader-image-wrapper"><img src="./assets/mobile.png"> <sup class="beta">beta</sup></span>
+			<br>
 			<span  class="text">
 				JavaScript is not evil
 			</span>
@@ -38,7 +39,7 @@
 						<a title="Zur deutschen Version wechseln" href="?l=1"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 						<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
 						<ul class="list-group col-lg-9 other-users">
-								<li class="list-group-item" v-for="result in otherUserResults">
+								<li class="list-group-item" v-for="result in otherUserResults" v-if="result.stars > 0">
 									<div>
 											<i class="fa fa-user"></i> {{ text('a') }} {{result.os}}-User {{ text('comments') }}:
 									</div>
@@ -104,12 +105,12 @@
 						<span v-if="question.Number !== -1">{{ question.Number }}. </span>{{ question.Text }}
 					</a>
 				</h4>
-				<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length == 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event,question)"></a>
+				<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length=== 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event,question)"></a>
 			</div>
 			<div id="collapse{{question.Id}}" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header{{question.Id}}">
 				<div class="panel-body">
 					{{{ question.HelpText }}}
-					<div v-if="question.Answers.length != 0">
+					<div v-if="question.Answers.length !== 0">
 						 <div :class="question.SingleAnswer ? 'radio' : 'checkbox'" v-for="answer in question.Answers">
 							<label>
 								<input :checked='answer.Selected ' name="{{ question.Id }}_a" :type="question.SingleAnswer ? 'radio' : 'checkbox'" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
@@ -192,7 +193,7 @@
 										 {{ text('why') }} {{ distro.Name }}?
 									</h4>
 									<p class="tags">
-										<span v-for="tag in distro.Tags" track-by="$index" v-if="getTagTranslation(tag) != tag">
+										<span v-for="tag in distro.Tags" track-by="$index" v-if="getTagTranslation(tag) !== tag">
 											<i class="fa" v-bind:class="{'fa-question':!isTagChoosed(tag),'fa-check':isTagChoosed(tag)}" v-bind:title="text('doesntfit')"  v-if="!isTagChoosed(tag)"></i>
 											<i class="fa" v-bind:class="{'fa-check':isTagChoosed(tag)}" v-if="isTagChoosed(tag)" v-bind:title="text('fits')"></i>
 											{{ getTagTranslation(tag)}}
@@ -235,7 +236,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="panel-body" v-if="distributionsCount == 0">
+					<div class="panel-body" v-if="distributionsCount=== 0">
 						<a href="#" id="rating-anchor"></a>
 						<p>{{ noResultText }}</p>
 					</div>
