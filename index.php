@@ -5,17 +5,17 @@
 	<meta name="description" lang = "de"  content ="Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.">
 	<meta name="description" lang = "en"  content ="The distrochooser helps you to find the suitable Distribution for you!">
 	<meta name="keywords" content="Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows">
-	<?php
-		$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
-	?>
 	<meta property="og:title" content="Distrochooser" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://distrochooser.de" />
 	<meta property="og:image" content="https://beta.distrochooser.de/assets/tux.png" />
-	<meta property="og:description" content="<?php echo $description;?>" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="500" />
+	<meta property="og:image:height" content="253" />
+	<meta property="og:description" content="<?php echo  isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";?>" />
 	<meta property="og:locale" content="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'en_GB' : 'de_DE';?>" />
 	<meta property="og:locale:alternate" content="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'de_DE' : 'en_GB';?>" />
-	
+
 	<meta name="google-site-verification" content="nqtoKAtXX7xTNyddaEGkkYtgpc0pc0b-wigel0Acy5c" />
 	<meta name="msvalidate.01" content="8165DC81CC6E5D6805201B58C5596403" />
 	<meta name="generator" content="LDC 2016">
