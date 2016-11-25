@@ -2,9 +2,20 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-	<meta name="description" lang = "de"  content ="Die Linux Auswahlhilfe hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.">
-	<meta name="description" lang = "en"  content ="The Linux Distribution Chooser helps you to find the suitable Distribution for you!">
-	<meta name="keywords" content="Linux, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows">
+	<meta name="description" lang = "de"  content ="Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.">
+	<meta name="description" lang = "en"  content ="The distrochooser helps you to find the suitable Distribution for you!">
+	<meta name="keywords" content="Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows">
+	<?php
+		$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
+	?>
+	<meta property="og:title" content="Distrochooser" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://distrochooser.de" />
+	<meta property="og:image" content="https://beta.distrochooser.de/assets/tux.png" />
+	<meta property="og:description" content="<?php echo $description;?>" />
+	<meta property="og:locale" content="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'en_GB' : 'de_DE';?>" />
+	<meta property="og:locale:alternate" content="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'de_DE' : 'en_GB';?>" />
+	
 	<meta name="google-site-verification" content="nqtoKAtXX7xTNyddaEGkkYtgpc0pc0b-wigel0Acy5c" />
 	<meta name="msvalidate.01" content="8165DC81CC6E5D6805201B58C5596403" />
 	<meta name="generator" content="LDC 2016">
@@ -22,6 +33,17 @@
 				JavaScript is not evil
 			</span>
 		</p>
+		<noscript>
+			<div class="well noscript">
+				Der Distrochooser benutzt JavaScript, um zu funktionieren. JavaScript ist ein integraler Bestandteil des Internets (geworden). Ohne JavaScript ist eine Software wie der Distrochooser schlicht nicht möglich.
+				<hr>
+				The Distrochooser needs enabled JavaScript. JavaScript had become an important part of web technologies. A software like the Distrochooser is not possible without JavaScript.
+				<hr>
+				<a href="https://distrochooser.de/static/privacy.php">Datenschutz | Privacy</a>
+				<br>
+				<a href="https://distrochooser.de/static/contact.php">Kontakt | Contact</a>
+			</div>
+		</noscript>
 	</div>
 	<div class="container main-container hidden"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 		<div class="row">
@@ -50,7 +72,7 @@
 						</ul>
 						<footer class="visible-lg">
 							<a href="./static/privacy.php">{{ text('privacy') }}</a>
-							<a href="./static/contact.php">{{ text('concact') }}</a>
+							<a href="./static/contact.php">{{ text('contact') }}</a>
 						</footer>
 					</div>
 					<div class="hidden-lg">
