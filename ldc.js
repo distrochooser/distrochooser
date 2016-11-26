@@ -390,11 +390,9 @@ vm = new Vue({
           });
     },
     GetOldTest: function(){
-       //if test is present
         var parts = this.getUrlParts();
         if (typeof parts["answers"] !== 'undefined'){
           this.isOldTest = true;
-
         }else{
           if (typeof parts["test"] !== 'undefined'){
             var test = parseInt(parts["test"]);
@@ -402,8 +400,15 @@ vm = new Vue({
               this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  this.langCode}).then(function(data){
                     var obj = JSON.parse(data.body);
                     var answers = JSON.parse(obj.Answers);
+                    var important = JSON.parse(obj.Important);
                     for(var a =0; a < answers.length;a++){
                       this.selectAnswer(answers[a]);
+                    }
+                    for (var i = 0; i < ldc.questions.length;i++){
+                      var count = important.filter(function(q){
+                        return q === ldc.questions[i].Id;
+                      });
+                      ldc.questions[i].Important = count.length !== 0;
                     }
               });
           }
@@ -534,8 +539,14 @@ vm = new Vue({
               }
           }
       }
+      var important = [];
+      for(var i = 0; i < this.answered.length;i++){
+        if (this.answered[i].Important){
+          important.push(this.answered[i].Id)
+        }
+      }
       this.currentTestLoading = true;
-      this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+"]", lang:  this.langCode}).then(function(data){
+      this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+","+JSON.stringify(important) +"]", lang:  this.langCode}).then(function(data){
         this.currentTest = parseInt(data.body);
         this.currentTestLoading = false;
     	  this.GetStatistics();

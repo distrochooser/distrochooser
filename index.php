@@ -153,7 +153,7 @@
 			</div>
 		</div>
 		<a href="ResultAnchor"></a>
-		<div class="panel panel-default">
+		<div class="panel panel-default" v-show="answered.length > 0">
 			<div class="panel-heading" role="tab" id="header-result">
 				<h4 class="panel-title">
 					<a class="result-header" id="Result" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-result" aria-expanded="true" aria-controls="collapse-result" v-on:click="addResult">
