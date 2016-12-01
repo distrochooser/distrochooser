@@ -306,15 +306,7 @@ vm = new Vue({
           for(var rating in got){
             loadingText();
             var tuple = {};
-            tuple.comment = "";
-            /**
-            SPAM.... :(
-            got[rating].Comment;
-            var commentNoTags = tuple.comment.replace(/(<([^>]+)>)/ig,"");
-            if (tuple.comment != commentNoTags){
-              tuple.comment = "";
-            }
-            */
+            tuple.comment = got[rating].Comment;
             tuple.stars = Math.ceil(got[rating].Rating);
             tuple.os = "Windows";
             if (got[rating].UserAgent.indexOf("Linux") !== -1){
@@ -523,7 +515,7 @@ vm = new Vue({
       var rating = $("#rating-stars").rateYo().rateYo("rating");
       var _this = this;
       var c = this.comment;
-      this.$http.post(ldc.backend,{method:'NewRatingWithComment',args: "["+rating+",\""+c+"\"]", lang:  this.langCode}).then(function(data){
+      this.$http.post(ldc.backend,{method:'NewRatingWithComment',args: "["+rating+",\""+c+"\","+(this.currentTest != -1 ? this.currentTest : "")+"]", lang:  this.langCode}).then(function(data){
           this.commentSent = true;
           this.GetRatings();
       });
@@ -586,9 +578,9 @@ vm = new Vue({
             }
       }
       if (needleIndex === ldc.questions.length -1){
-          $("#getresult").trigger("click");
+        this.addResult();
       }else{
-          $("[ldc-header='"+ldc.questions[i+1].Id+"']").trigger("click");
+        $("[ldc-header='"+ldc.questions[i+1].Id+"']").trigger("click");
       }
     },
     getClickId : function (args){

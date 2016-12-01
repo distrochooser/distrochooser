@@ -66,12 +66,12 @@
 						<a title="Zur deutschen Version wechseln" href="?l=1"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 						<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
 						<ul class="list-group col-lg-9 other-users">
-								<li class="list-group-item" v-for="result in otherUserResults" v-if="result.stars > 0">
+								<li class="list-group-item" v-for="result in otherUserResults" v-if="result.stars > 0 || result.comment !== ''">
 									<div>
 											<i class="fa fa-user"></i> {{ text('a') }} {{result.os}}-User {{ text('comments') }}:
 									</div>
 									<i v-for="star in result.stars"class="fa fa-star" aria-hidden="true"></i>
-									<span class="result-comment">{{ result.comment === "" ? "" : "“" + result.comment + "“"}}</span>
+									<span class="result-comment" :title="result.comment ">{{ result.comment === "" ? "" : "“" + (result.comment >= 200 ? result.comment.substring(0,200) +"..." : result.comment )+ "“"}}</span>
 								</li>
 								</li>
 						</ul>
@@ -202,7 +202,7 @@
 					<div class="rating-sent" v-if="commentSent==true">
 						Danke für die Bewertung!
 					</div>
-					<div v-for="distro in distributions | orderBy 'Percentage' -1">
+					<div v-for="distro in distributions | orderBy 'Percentage' -1" >
 						<div class="panel panel-default distribution" v-if="!distro.Excluded">
 							<div class="panel-heading" >
 								{{ distro.Name }}: {{ distro.Percentage }}%
