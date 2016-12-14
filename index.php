@@ -25,14 +25,16 @@
 	<meta name="msvalidate.01" content="8165DC81CC6E5D6805201B58C5596403" />
 	<meta name="generator" content="LDC 2016">
 	<title>Distrochooser</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+	 <link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
 	<link href="./ldc.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<div class="loader visible " v-bind:class="{'visible':!loaded,'hidden':loaded}">
 		<p class="hidden-xs">
 			<span class="loader-image-wrapper"><img src="./assets/mobile.png"> <sup class="beta">beta</sup></span>
+			<br>
+			<b>TEST VERSION: USE WITH CAUTION</b>
 			<br>
 			<span  class="text">
 				JavaScript is not evil
@@ -123,6 +125,8 @@
 <div class="col-lg-6 main">
 	<div class="alert alert-danger" v-if="isOldTest">
 		{{ text("oldTest"); }}
+	</div><div class="alert alert-danger" >
+		TEST VERSION. Use <a href="https://distrochooser.de">distrochooser.de</a> for regular use.
 	</div>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
 		<div v-for="question in ldc.questions" class="panel panel-default">
@@ -139,8 +143,11 @@
 					{{{ question.HelpText }}}
 					<div v-if="question.Answers.length !== 0">
 						 <div :class="question.SingleAnswer ? 'radio' : 'checkbox'" v-for="answer in question.Answers">
-							<label>
-								<input :checked='answer.Selected ' name="{{ question.Id }}_a" :type="question.SingleAnswer ? 'radio' : 'checkbox'" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
+							<label v-if="question.SingleAnswer">
+								<input  :checked='answer.Selected ' name="{{ question.Id }}_a" type="radio" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
+							</label>
+							<label v-if="!question.SingleAnswer">
+								<input v-model="answer.Selected" :checked='answer.Selected ' name="{{ question.Id }}_a" type="checkbox" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
 							</label>
 						</div>
 					</div>
@@ -302,7 +309,7 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.css">
 	<!-- Latest compiled and minified JavaScript -->
@@ -311,7 +318,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/vue.resource/0.9.1/vue-resource.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<script src="./ldc.js"></script>
 	<script src="./ui.js"></script>
 	<script>
