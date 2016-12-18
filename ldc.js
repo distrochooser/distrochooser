@@ -57,6 +57,11 @@ vm = new Vue({
     otherUserResults:[],
   },
   created: function(){
+    console.log("  _     ___     ___   ____"); 
+    console.log(" | |   |   \\   / __| |__ /");  
+    console.log(" | |__ | |) | |(__    |_ \\ ");  
+    console.log(" |____ |___/   \\___| |___/ ");     
+    console.log("Nice to see you! You are a developer? Contribute to https://github.com/cmllr/ldc.js and start improving the project.")   
     console.log("Starting Linux Distribution Chooser "+ldc.version);
     console.log("Started: " + new Date());
     this.StartInit();
@@ -64,7 +69,6 @@ vm = new Vue({
     this.GetStatistics();
     this.GetRatings();
     setTimeout(this.GetRatings, 5000);
-    console.log("Finished: " + new Date());
   },
   ready:function(){
     window.title = this.text("Title");
@@ -290,9 +294,7 @@ vm = new Vue({
     GetStatistics: function(){
       loadingText();
     	this.$http.post(ldc.backend,{method:'AllMonthStats',args: "", lang:  this.langCode}).then(function(data){
-          console.log("Grabbing statistics...");
           this.testCount = JSON.parse(data.body);
-          console.log("Statistics grabbed.");
           loadingText();
         });
     },
@@ -375,6 +377,7 @@ vm = new Vue({
               }
               loadingText();
               this.loaded = true;
+              console.log("Finished: " + new Date());
               this.GetOldTest();
           });
     },
@@ -517,7 +520,14 @@ vm = new Vue({
           this.GetRatings();
       });
     },
-    addResult: function (args){
+    displayResults: function(){
+      if ($("#Result").attr("aria-expanded") !== "true"){ //no recalculation if already open
+        $("#Result").trigger("click");
+        this.addResult();
+      }
+      window.scroll(0, $("#Result").offset().top);
+    },
+    addResult: function (){
       var answers  = [];
       var important = [];
       this.updateCurrentTags()
@@ -539,13 +549,6 @@ vm = new Vue({
     	  this.GetStatistics();
         $("#rating-stars").rateYo();
       });
-      //Jump to the result collapse
-      if ($("#Result").attr("aria-expanded") === "false"){
-        $("#Result").trigger("click");
-        window.scroll(0, $("#Result").offset().top);
-      }else{
-        window.scroll(0, $("#Result").offset().top);
-      }
     },
     getUrlParts: function(){
         var vars = {};
@@ -577,10 +580,10 @@ vm = new Vue({
             }
       }
       if (needleIndex === ldc.questions.length -1){
-        this.addResult();
+        this.displayResults();
       }else{
-        $("[ldc-header='"+ldc.questions[i+1].Id+"']").trigger("click",function(){
-          window.scroll(0,$("[ldc-header='"+ldc.questions[i+1].Id+"']").top);
+        $("[ldc-header='"+ldc.questions[needleIndex+1].Id+"']").trigger("click",function(){
+          window.scroll(0,$("[ldc-header='"+ldc.questions[needleIndex+1].Id+"']").top);
         });
       }
     },

@@ -160,7 +160,7 @@
 				</div>
 			</div>
 		</div>
-		<a href="ResultAnchor"></a>
+		<a href="#" id="result"></a>
 		<div class="panel panel-default" v-show="answered.length > 0">
 			<div class="panel-heading" role="tab" id="header-result">
 				<h4 class="panel-title">
@@ -220,7 +220,7 @@
 							<div class="panel-body">
 								<p>
 									<img class="distro-logo" v-bind:src = "distro.Image" />
-									<p>{{{ distro.Description }}}</p>
+									<p v-html="distro.Description"></p>
 									<hr>
 								</p>
 								<div class="form-group">
@@ -250,9 +250,9 @@
 								<a class="link" href="./detail.php?id={{excluded.Id}}&l={{ getLanguageKey() }}">Details</a>
 							</div>
 							<div class="panel-body">
-								<p>
-									<img class="distro-logo" v-bind:src = "excluded.Image" />{{{ excluded.Description }}}
-								</p>
+								<img class="distro-logo" v-bind:src = "excluded.Image" />
+								<p v-html="excluded.Description"></p>
+								<hr>
 								<div class="form-group">
 									<h4 class="panel-title">
 										{{ text('why') }} {{ text('not') }} {{ excluded.Name }}?
@@ -301,7 +301,7 @@
 							</div>
 						</li>
 						<li class="list-group-item">
-							<a class="btn btn-primary" id="getresult" v-on:click="addResult" >{{ text('getresult') }}</a>
+							<a class="btn btn-primary" id="getresult" v-on:click="displayResults" >{{ text('getresult') }}</a>
 						</li>
 						<li class="list-group-item" v-if="currentTestLoading">
 							<i class="fa fa-cog fa-spin fa-fw"></i>  {{ text('calculating') }}
@@ -328,12 +328,6 @@
 	<script>
 		$(document).ready(function(){
 			$('.question-header:first').trigger("click");
-			$("#getresult").click(function(){
-				$(".question:last").collapse("show")
-			});
-			$(".question:last").on('shown.bs.collapse', function () {
-				window.scrollTo(0, $("#rating-anchor").position().top);
-			});
 			$("#rating-stars").rateYo({
 				rating: 0.0,
 				halfStar: false,
