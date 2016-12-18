@@ -177,6 +177,7 @@ body{
 footer{
 	position: fixed;
     bottom: 1em;
+    right: 7em;
 }
 .imageAnswer img{
 	width: 30%;

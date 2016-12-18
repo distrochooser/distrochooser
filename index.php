@@ -123,9 +123,10 @@
 
 </div>
 <div class="col-lg-6 main">
-	<div class="alert alert-danger" v-if="isOldTest">
+	<div class="alert alert-warning" v-if="isOldTest">
 		{{ text("oldTest"); }}
-	</div><div class="alert alert-danger" >
+	</div>
+	<div class="alert alert-warning" >
 		TEST VERSION. Use <a href="https://distrochooser.de">distrochooser.de</a> for regular use.
 	</div>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
@@ -144,14 +145,14 @@
 					<div v-if="question.Answers.length !== 0">
 						 <div :class="question.SingleAnswer ? 'radio' : 'checkbox'" v-for="answer in question.Answers">
 							<label v-if="question.SingleAnswer">
-								<input  :checked='answer.Selected ' name="{{ question.Id }}_a" type="radio" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
+								<input  :checked='answer.Selected ' name="{{ question.Id }}_a" data-id="{{answer.Id}}" type="radio" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
 							</label>
 							<label v-if="!question.SingleAnswer">
-								<input v-model="answer.Selected" :checked='answer.Selected ' name="{{ question.Id }}_a" type="checkbox" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
+								<input v-model="answer.Selected" :checked='answer.Selected' data-id="{{answer.Id}}" name="{{ question.Id }}_a" type="checkbox" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
 							</label>
 						</div>
 					</div>
-					<a href="#" class="btn btn-primary {{ question.Id }}-next" data-id="{{ question.Id }}-next" v-on:click="nextTrigger($event)" >
+					<a href="#" class="btn btn-primary {{ question.Id }}-next" data-id="{{ question.Id }}-next" v-on:click.prevent="nextTrigger(question.Id)" >
 						{{ question.ButtonText }}
 					</a>
 
@@ -301,6 +302,9 @@
 						</li>
 						<li class="list-group-item">
 							<a class="btn btn-primary" id="getresult" v-on:click="addResult" >{{ text('getresult') }}</a>
+						</li>
+						<li class="list-group-item" v-if="currentTestLoading">
+							<i class="fa fa-cog fa-spin fa-fw"></i>  {{ text('calculating') }}
 						</li>
 					</ul>
 				</div>

@@ -156,7 +156,6 @@ vm = new Vue({
           //get percentage
           if (distro.Tags.indexOf(needle) !== -1){
             if (isNoTag){
-              console.log(distro.Name + " denied because of tag: "+needle+ " (at least)");
               ldc.distributions[i].Excluded = true;
               if (Object.keys(this.deniedWhy).indexOf(needle) === -1){
                 this.deniedWhy[needle] = 1;
@@ -211,16 +210,15 @@ vm = new Vue({
     updateCurrentTags: function(){
       //get the currently answered tags
       this.currentTags = {};
-      for (var i = 0; i < ldc.questions.length;i++){
-        var q = ldc.questions[i];
+      for (var i = 0; i < vm.answered.length;i++){
+        var q = vm.answered[i];
         for(var x = 0;  x < q.Answers.length;x++){
           if (q.Answers[x].Selected === true){
             //save tags
             for(var y = 0 ; y < q.Answers[x].Tags.length; y++){
-              var weight = 1;
               var tag = q.Answers[x].Tags[y];
               if (Object.keys(this.currentTags).indexOf(tag) === -1){
-                this.currentTags[tag] = weight;
+                this.currentTags[tag] = 1;
               }else{
                 this.currentTags[tag]++;
               }
@@ -229,10 +227,9 @@ vm = new Vue({
               }
             }
             for(var y = 0 ; y < q.Answers[x].NoTags.length; y++){
-              var weight = 1;
               var tag = "!"+q.Answers[x].NoTags[y];
               if (Object.keys(this.currentTags).indexOf(tag) === -1){
-                this.currentTags[tag] = weight;
+                this.currentTags[tag] = 1;
               }else{
                 this.currentTags[tag]++;
               }
@@ -340,9 +337,9 @@ vm = new Vue({
                 question.Number = i+1;
                 question.Text = result[i].Text;
                 question.HelpText = result[i].Help;
-                question.Important = false; //TODO: Insert into DB
+                question.Important = false; 
                 question.Answered = false;
-                question.SingleAnswer = true; //TODO: Insert into DB
+                question.SingleAnswer = result[i].IsSingle;
                 question.Answers = [];
                 question.IsText = result[i].IsText;
                 for(var x=0;x < result[i].Answers.length;x++){
@@ -383,26 +380,28 @@ vm = new Vue({
     },
     GetOldTest: function(){
         var parts = this.getUrlParts();
+        loadingText();
         if (typeof parts["answers"] !== 'undefined'){
           this.isOldTest = true;
         }else{
           if (typeof parts["test"] !== 'undefined'){
             var test = parseInt(parts["test"]);
             //Load old test results
-              this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  this.langCode}).then(function(data){
-                    var obj = JSON.parse(data.body);
-                    var answers = JSON.parse(obj.Answers);
-                    var important = JSON.parse(obj.Important);
-                    for(var a =0; a < answers.length;a++){
-                      this.selectAnswer(answers[a]);
-                    }
-                    for (var i = 0; i < ldc.questions.length;i++){
-                      var count = important.filter(function(q){
-                        return q === ldc.questions[i].Id;
-                      });
-                      ldc.questions[i].Important = count.length !== 0;
-                    }
-              });
+            this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  this.langCode}).then(function(data){
+                  var obj = JSON.parse(data.body);
+                  var answers = JSON.parse(obj.Answers);
+                  var important = JSON.parse(obj.Important);
+                  for(var a =0; a < answers.length;a++){
+                    this.selectAnswer(answers[a]);
+                  }
+                  for (var i = 0; i < ldc.questions.length;i++){
+                    var count = important.filter(function(q){
+                      return q === ldc.questions[i].Id;
+                    });
+                    ldc.questions[i].Important = count.length !== 0;
+                  }
+                  loadingText();
+            });
           }
         }
     },
@@ -498,15 +497,13 @@ vm = new Vue({
     },
   	addAnswer : function(args,answer,question){
       var parent = question;
-      if (parent !== null && parent.SingleAnswer === true){
-        for(var a = 0; a < parent.Answers.length;a++){
-            if (parent.Answers[a].Selected === true && parent.Answers[a].Id !== answer.Id){
-              parent.Answers[a].Selected = false;
-            }
-            if (parent.Answers[a] === answer){
-              parent.Answers[a].Selected = true;
-            }
-        }
+      if (question.SingleAnswer && question.Answered){
+        question.Answers.forEach(function(a){
+          a.Selected = false;
+        });
+        answer.Selected = true;
+      }else{
+        answer.Selected = true;
       }
       question.Answered = true;
   		return answer;
@@ -522,6 +519,7 @@ vm = new Vue({
     },
     addResult: function (args){
       var answers  = [];
+      var important = [];
       this.updateCurrentTags()
       for(var i = 0; i < this.answered.length;i++){
           var question = this.answered[i];
@@ -530,12 +528,9 @@ vm = new Vue({
                 answers.push(question.Answers[x].Id);
               }
           }
-      }
-      var important = [];
-      for(var i = 0; i < this.answered.length;i++){
-        if (this.answered[i].Important){
-          important.push(this.answered[i].Id)
-        }
+          if (this.answered[i].Important){
+            important.push(this.answered[i].Id)
+          }
       }
       this.currentTestLoading = true;
       this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+","+JSON.stringify(important) +"]", lang:  this.langCode}).then(function(data){
@@ -544,8 +539,13 @@ vm = new Vue({
     	  this.GetStatistics();
         $("#rating-stars").rateYo();
       });
-       //Jump to the result collapse
-       window.scroll(0, $("#Result").offset().top);
+      //Jump to the result collapse
+      if ($("#Result").attr("aria-expanded") === "false"){
+        $("#Result").trigger("click");
+        window.scroll(0, $("#Result").offset().top);
+      }else{
+        window.scroll(0, $("#Result").offset().top);
+      }
     },
     getUrlParts: function(){
         var vars = {};
@@ -567,10 +567,9 @@ vm = new Vue({
       }
       return langcode;
     },
-    nextTrigger: function(args){
-      var id = this.getClickId(args);
+    nextTrigger: function(id){
       var needleIndex = -1;
-      var needle = id.replace("-next","");
+      var needle = id;
       for(var i=0;i<ldc.questions.length;i++){
             if (i < ldc.questions.length && ldc.questions[i].Id === needle){
               needleIndex = i;
@@ -580,17 +579,9 @@ vm = new Vue({
       if (needleIndex === ldc.questions.length -1){
         this.addResult();
       }else{
-        $("[ldc-header='"+ldc.questions[i+1].Id+"']").trigger("click");
-      }
-    },
-    getClickId : function (args){
-      if (args.srcElement){
-        //Chrome
-        return args.srcElement.attributes[2].value;
-      }
-      else{
-        //Firefox
-        return args.target.attributes[1].value;
+        $("[ldc-header='"+ldc.questions[i+1].Id+"']").trigger("click",function(){
+          window.scroll(0,$("[ldc-header='"+ldc.questions[i+1].Id+"']").top);
+        });
       }
     },
     getTagTranslation : function(value){
