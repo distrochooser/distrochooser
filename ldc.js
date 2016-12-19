@@ -57,11 +57,11 @@ vm = new Vue({
     otherUserResults:[],
   },
   created: function(){
-    console.log("  _     ___     ___   ____"); 
-    console.log(" | |   |   \\   / __| |__ /");  
-    console.log(" | |__ | |) | |(__    |_ \\ ");  
-    console.log(" |____ |___/   \\___| |___/ ");     
-    console.log("Nice to see you! You are a developer? Contribute to https://github.com/cmllr/ldc.js and start improving the project.")   
+    console.log("  _     ___     ___   ____");
+    console.log(" | |   |   \\   / __| |__ /");
+    console.log(" | |__ | |) | |(__    |_ \\ ");
+    console.log(" |____ |___/   \\___| |___/ ");
+    console.log("Nice to see you! You are a developer? Contribute to https://github.com/cmllr/ldc.js and start improving the project.")
     console.log("Starting Linux Distribution Chooser "+ldc.version);
     console.log("Started: " + new Date());
     this.StartInit();
@@ -339,7 +339,7 @@ vm = new Vue({
                 question.Number = i+1;
                 question.Text = result[i].Text;
                 question.HelpText = result[i].Help;
-                question.Important = false; 
+                question.Important = false;
                 question.Answered = false;
                 question.SingleAnswer = result[i].IsSingle;
                 question.Answers = [];
@@ -525,7 +525,7 @@ vm = new Vue({
         $("#Result").trigger("click");
         this.addResult();
       }
-      window.scroll(0, $("#Result").offset().top);
+      window.scroll(0, $("#Result").offset().top - 50);
     },
     addResult: function (){
       var answers  = [];
@@ -560,6 +560,7 @@ vm = new Vue({
     },
     getLanguage: function(){
       var langcode = this.getLanguageKey();
+      var installed = ["de","en"];
       ldc.lang = parseInt(langcode) === 1 ? 'de' : 'en';
     },
     getLanguageKey: function(){
