@@ -32,7 +32,7 @@
 <body>
 	<div class="loader visible " v-bind:class="{'visible':!loaded,'hidden':loaded}">
 		<p class="hidden-xs">
-			<span class="loader-image-wrapper"><img src="./assets/mobile.png"> <sup class="beta">beta</sup></span>
+			<span class="loader-image-wrapper"><img src="./assets/mobile.png"></span>
 			<br>
 			<b>TEST VERSION: USE WITH CAUTION</b>
 			<br>
@@ -126,9 +126,6 @@
 	<div class="alert alert-warning" v-if="isOldTest">
 		{{ text("oldTest"); }}
 	</div>
-	<div class="alert alert-warning" >
-		TEST VERSION. Use <a href="https://distrochooser.de">distrochooser.de</a> for regular use.
-	</div>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
 		<div v-for="question in ldc.questions" class="panel panel-default">
 			<div class="panel-heading" role="tab" id="header{{question.Id}}">
@@ -160,7 +157,6 @@
 				</div>
 			</div>
 		</div>
-		<a href="#" id="result"></a>
 		<div class="panel panel-default" v-show="answered.length > 0">
 			<div class="panel-heading" role="tab" id="header-result">
 				<h4 class="panel-title">
@@ -210,7 +206,7 @@
 					<div class="rating-sent" v-if="commentSent==true">
 						Danke für die Bewertung!
 					</div>
-					<div v-for="distro in distributions | orderBy 'Percentage' -1" >
+					<div v-for="distro in distributions | orderBy 'Percentage' -1 " >
 						<div class="panel panel-default distribution" v-if="!distro.Excluded">
 							<div class="panel-heading" >
 								{{ distro.Name }}: {{ distro.Percentage }}%
