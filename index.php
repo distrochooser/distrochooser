@@ -26,8 +26,10 @@
 	<meta name="generator" content="LDC 2017">
 	<link rel="icon" href=favicon.ico type="image/x-icon" >
 	<title>Distrochooser</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-	 <link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
+	<?php
+		$what = "head";
+		include "./style.php";
+	?>
 	<link href="./ldc.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -308,18 +310,10 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.css">
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js"></script>
-	<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/vue.resource/0.9.1/vue-resource.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<?php
+		$what = "foot";
+		include "./style.php";
+	?>
 	<script src="./ldc.js"></script>
 	<script src="./ui.js"></script>
 	<script>
