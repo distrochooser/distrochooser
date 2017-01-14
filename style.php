@@ -5,7 +5,8 @@
 ?>
 <?php if ($what === "head" && $local) :?>
     <link rel="stylesheet" href="./3rdparty/bootstrap.min.css" />
-	<link rel="stylesheet" href="./3rdparty/bootstrap.min.css">
+	<link rel="stylesheet" href="./3rdparty/bootstrap.min.css.1">
+	<link rel="stylesheet" href="./3rdparty/gfonts.css">
 <?php endif;?>
 
 <?php if ($what === "foot" &&  $local) :?>
