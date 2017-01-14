@@ -36,10 +36,19 @@ a:hover{
 	margin-left:-15px;
 	margin-right: -15px;
 }
-.fixed-box{
-	position: fixed;
-    right: 7em;
-    width: 15%;
+@media screen and (max-device-width: 1600px){
+	.fixed-box{
+		position: fixed;
+		right: 11%;
+		max-width: 12%;
+	}
+}
+@media screen and (min-device-width: 1600px){
+	.fixed-box{
+		position: fixed;
+		right: 19%;
+		max-width: 11%;
+	}
 }
 .container{
 	padding-top: 40px;
