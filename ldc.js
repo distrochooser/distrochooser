@@ -498,18 +498,19 @@ vm = new Vue({
       }
       question.Answered = false;
     },
-  	addAnswer : function(args,answer,question){
-      var parent = question;
-      if (question.SingleAnswer && question.Answered){
+  	updateAnsweredFlag : function(args,answer,question){
+      if (question.SingleAnswer){
         question.Answers.forEach(function(a){
           a.Selected = false;
         });
         answer.Selected = true;
+        question.Answered = answer.Selected;
       }else{
-        answer.Selected = true;
+        var answered = question.Answers.filter(function(a){
+          return a.Selected;
+        });
+        question.Answered =  answered.length >0;
       }
-      question.Answered = true;
-  		return answer;
   	},
     publishRating : function(args){
       var rating = $("#rating-stars").rateYo().rateYo("rating");

@@ -142,10 +142,10 @@
 					<div v-if="question.Answers.length !== 0">
 						 <div :class="question.SingleAnswer ? 'radio' : 'checkbox'" v-for="answer in question.Answers">
 							<label v-if="question.SingleAnswer">
-								<input  :checked='answer.Selected ' name="{{ question.Id }}_a" data-id="{{answer.Id}}" type="radio" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
+								<input  :checked='answer.Selected ' name="{{ question.Id }}_a" data-id="{{answer.Id}}" type="radio" v-on:click="updateAnsweredFlag($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
 							</label>
 							<label v-if="!question.SingleAnswer">
-								<input v-model="answer.Selected" :checked='answer.Selected' data-id="{{answer.Id}}" name="{{ question.Id }}_a" type="checkbox" v-on:click="addAnswer($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
+								<input v-model="answer.Selected" data-id="{{answer.Id}}" name="{{ question.Id }}_a" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
 							</label>
 						</div>
 					</div>
