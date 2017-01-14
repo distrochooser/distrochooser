@@ -587,11 +587,11 @@ vm = new Vue({
             important.push(question.Id)
           }
       }
+      $("#rating-stars").rateYo();
+      this.currentTestLoading = false;
       this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+","+JSON.stringify(important) +"]", lang:  this.langCode}).then(function(data){
         this.currentTest = parseInt(data.body);
     	  this.GetStatistics();
-        $("#rating-stars").rateYo();
-        this.currentTestLoading = false;
       });
     },
     getUrlParts: function(){
