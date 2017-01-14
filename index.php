@@ -206,7 +206,7 @@
 					<div class="rating-sent" v-if="commentSent==true">
 						Danke für die Bewertung!
 					</div>
-					<div v-for="distro in distributions | orderBy 'Percentage' -1 " >
+					<div v-for="distro in distributions | orderBy 'Percentage' -1 " v-show="!currentTestLoading">
 						<div class="panel panel-default distribution" v-if="!distro.Excluded">
 							<div class="panel-heading" >
 								{{ distro.Name }}: {{ distro.Percentage }}%
@@ -238,7 +238,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-for="excluded in excludedDistros" v-if="displayExcluded">
+					<div v-for="excluded in excludedDistros" v-if="displayExcluded && !currentTestLoading">
 						<div class="panel panel-default distribution">
 							<div class="panel-heading" >
 								{{ excluded.Name }}: {{ text('excluded') }}
@@ -281,7 +281,7 @@
 		</div>
 		<div class="col-lg-2">
 			<div class="row right-box">
-				<ul class="list-group"  v-bind:class="{'hidden':answeredQuestionsCount==0}">
+				<ul class="list-group fixed-box"  v-bind:class="{'hidden':answeredQuestionsCount==0}">
 					<li class="list-group-item"><a class="hidden-xs" id="homelink" href="index.php"><img src="./assets/ldc2alpha.png" alt="Linux Distribution Chooser" style="
 						width: 100%;v
 						"></a></li>
@@ -300,7 +300,7 @@
 							<a class="btn btn-primary" id="getresult" v-on:click="displayResults" >{{ text('getresult') }}</a>
 						</li>
 						<li class="list-group-item" v-if="currentTestLoading">
-							<i class="fa fa-cog fa-spin fa-fw"></i>  {{ text('calculating') }}
+							<i class="fa fa-cog fa-spin fa-fw"></i>  {{ this.text("calculating"); }}
 						</li>
 					</ul>
 				</div>

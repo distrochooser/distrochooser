@@ -55,6 +55,7 @@ vm = new Vue({
     donationEnabled:false,
     displayExcluded:true,
     otherUserResults:[],
+    givenAnswers:[] //stores the currently given answers to avoid double iteration at getCurrentTags()
   },
   created: function(){
     console.log("  _     ___     ___   ____");
@@ -214,35 +215,30 @@ vm = new Vue({
     updateCurrentTags: function(){
       //get the currently answered tags
       this.currentTags = {};
-      for (var i = 0; i < vm.answered.length;i++){
-        var q = vm.answered[i];
-        for(var x = 0;  x < q.Answers.length;x++){
-          if (q.Answers[x].Selected === true){
-            //save tags
-            for(var y = 0 ; y < q.Answers[x].Tags.length; y++){
-              var tag = q.Answers[x].Tags[y];
-              if (Object.keys(this.currentTags).indexOf(tag) === -1){
-                this.currentTags[tag] = 1;
-              }else{
-                this.currentTags[tag]++;
-              }
-              if (q.Important){
-                this.currentTags[tag] *=2;
-              }
+      for (var i = 0; i < this.givenAnswers.length;i++){
+         var answer = this.givenAnswers[i];
+         for(var y = 0 ; y < answer.Tags.length; y++){
+            var tag = answer.Tags[y];
+            if (Object.keys(this.currentTags).indexOf(tag) === -1){
+              this.currentTags[tag] = 1;
+            }else{
+              this.currentTags[tag]++;
             }
-            for(var y = 0 ; y < q.Answers[x].NoTags.length; y++){
-              var tag = "!"+q.Answers[x].NoTags[y];
-              if (Object.keys(this.currentTags).indexOf(tag) === -1){
-                this.currentTags[tag] = 1;
-              }else{
-                this.currentTags[tag]++;
-              }
-              if (q.Important){
-                this.currentTags[tag] *=2;
-              }
+            if (answer.Important){
+              this.currentTags[tag] *=2;
             }
           }
-        }
+          for(var y = 0 ; y < answer.NoTags.length; y++){
+            var tag = "!"+answer.NoTags[y];
+            if (Object.keys(this.currentTags).indexOf(tag) === -1){
+              this.currentTags[tag] = 1;
+            }else{
+              this.currentTags[tag]++;
+            }
+            if (answer.Important){
+              this.currentTags[tag] *=2;
+            }
+          }
       }
       return this.currentTags;
     },
@@ -481,11 +477,12 @@ vm = new Vue({
     makeImportant : function (args,question){
       args.preventDefault();
       if (question !== null){
-          if (question.Important){
-            question.Important = false;
-          }else{
-            question.Important = true;
-          }
+        if (question.Important){
+          question.Important = false;
+        }else{
+          question.Important = true;
+        }
+        this.setGivenAnswerImportantFlag(question,question.Important);
         return question.Important;
       }else{
         return false;
@@ -495,21 +492,66 @@ vm = new Vue({
       event.preventDefault();
       for(var i=0;i<question.Answers.length;i++){
         question.Answers[i].Selected = false;
+        this.removeAnswerFromList(question.Answers[i]);
       }
       question.Answered = false;
     },
+    getGivenAnswerIndex: function(answer){
+      var index = -1;
+      this.givenAnswers.forEach(function(a,i,array){
+        if (a.Id === answer.Id){
+          index = i;
+        }
+      });
+      return index;
+    },
+    removeAnswerFromList: function(answer){
+      var index = this.getGivenAnswerIndex(answer);
+      if (index !== -1){
+        this.givenAnswers.splice(index,1);
+      }
+    },
+    addAnswerToList: function(answer,important){
+      var index = this.getGivenAnswerIndex(answer);
+      if (index === -1) {
+        //no duplicates
+        answer.Important = important;
+        this.givenAnswers.push(answer);
+      }
+    },
+    setGivenAnswerImportantFlag: function(question,state){
+      for (var i = 0; i < question.Answers.length;i++){
+        var index = this.getGivenAnswerIndex(question.Answers[i]);
+        if (index !== -1){
+          this.givenAnswers[index].Important = state;
+        }
+      }
+    },
   	updateAnsweredFlag : function(args,answer,question){
+      var _t = this;
       if (question.SingleAnswer){
         question.Answers.forEach(function(a){
-          a.Selected = false;
+          if (answer.Id !== a.Id){
+             a.Selected = false;
+          }
+          if (!a.Selected){
+            _t.removeAnswerFromList(a);
+          }
         });
         answer.Selected = true;
-        question.Answered = answer.Selected;
+        question.Answered = true;
+        this.addAnswerToList(answer,question.Important);
       }else{
-        var answered = question.Answers.filter(function(a){
-          return a.Selected;
+        var answered = 0;
+        question.Answers.forEach(function(a){
+          if (a.Selected){
+             answered++;
+            _t.addAnswerToList(a,question.Important);
+          }else{
+            _t.removeAnswerFromList(a);
+          }
         });
-        question.Answered =  answered.length >0;
+        question.Answered =  answered >0;
       }
   	},
     publishRating : function(args){
@@ -531,6 +573,8 @@ vm = new Vue({
     addResult: function (){
       var answers  = [];
       var important = [];
+
+      this.currentTestLoading = true;
       this.updateCurrentTags()
       for(var i = 0; i < this.answered.length;i++){
           var question = this.answered[i];
@@ -539,16 +583,15 @@ vm = new Vue({
                 answers.push(question.Answers[x].Id);
               }
           }
-          if (this.answered[i].Important){
-            important.push(this.answered[i].Id)
+          if (question.Important){
+            important.push(question.Id)
           }
       }
-      this.currentTestLoading = true;
       this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+","+JSON.stringify(important) +"]", lang:  this.langCode}).then(function(data){
         this.currentTest = parseInt(data.body);
-        this.currentTestLoading = false;
     	  this.GetStatistics();
         $("#rating-stars").rateYo();
+        this.currentTestLoading = false;
       });
     },
     getUrlParts: function(){
