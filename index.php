@@ -23,7 +23,8 @@
 	<meta name="twitter:image" content="https://beta.distrochooser.de/assets/tux.png" />
 	<meta name="google-site-verification" content="nqtoKAtXX7xTNyddaEGkkYtgpc0pc0b-wigel0Acy5c" />
 	<meta name="msvalidate.01" content="8165DC81CC6E5D6805201B58C5596403" />
-	<meta name="generator" content="LDC 2016">
+	<meta name="generator" content="LDC 2017">
+	<link rel="icon" href=favicon.ico type="image/x-icon" >
 	<title>Distrochooser</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 	 <link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
@@ -188,7 +189,7 @@
 								<a href="https://twitter.com/share?url={{shareLink}}&hashtags=distrochooser,linux&via=distrochooser"><i class="fa fa-twitter"></i></a>
 								<a href="https://www.facebook.com/sharer/sharer.php?u={{shareLink}}"><i class="fa fa-facebook"></i></a>
 								<a href="https://plus.google.com/share?url={{shareLink}}"><i class="fa fa-google-plus"></i></a>
-								<a href="https://github.com/squarerootfury/distrochooser"><i class="fa fa-github"></i></a>
+								<a href="https://github.com/cmllr/distrochooser"><i class="fa fa-github"></i></a>
 							</div>
 						</div>
 						<div class="donation" v-if="!currentTestLoading && donationEnabled">
