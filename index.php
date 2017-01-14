@@ -207,7 +207,7 @@
 						{{{ text }}}
 					</div>
 					<div class="rating-sent" v-if="commentSent==true">
-						Danke für die Bewertung!
+						{{ text("thanksForRating") }} 
 					</div>
 					<div v-for="distro in distributions | orderBy 'Percentage' -1 " v-show="!currentTestLoading">
 						<div class="panel panel-default distribution" v-if="!distro.Excluded">
