@@ -405,7 +405,7 @@ vm = new Vue({
         }
     },
     NewVisitor: function(){
-      this.$http.post(ldc.backend,{method:'NewVisitor',args: "\""+document.referrer+"\"", lang:  this.langCode}).then(function(response){
+      this.$http.post(ldc.backend,{method:'NewVisitor',args: "\""+document.referrer+"\"", lang:  this.langCode, dnt: navigator.doNotTrack !== null}).then(function(response){
           console.log("Hello #"+response.body);
           loadingText("Hello #"+response.body);
       });
