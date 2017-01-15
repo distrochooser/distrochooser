@@ -8,11 +8,9 @@
       <div class="modal-body">
         <p v-html="text('aboutText')"></p>
         <h3>{{ text('installedDistros') }}</h3>
-        <ul>
-          <li v-for="distro in ldc.distributions">
-            <a href="{{distro.Website}}">{{distro.Name}}</a>
-          </li>
-        </ul>
+        <span v-for="distro in ldc.distributions">
+          <a :href="distro.Website" target="_blank"><img :title="distro.Name + ' - ' + distro.ImageSource" class="listed-distro" :src="distro.Image"></a>
+        </span>
         <h3>{{ text('stats') }}</h3>
          <canvas id="testCountCanvas" width="598" height="400"></canvas>
         <br>

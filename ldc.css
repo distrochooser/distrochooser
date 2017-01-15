@@ -270,3 +270,7 @@ hr{
 	display:block;
 	width:100%;
 }
+.listed-distro{
+	max-width: 70px;
+    margin: 1em;
+}
