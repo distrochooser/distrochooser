@@ -274,3 +274,11 @@ hr{
 	max-width: 70px;
     margin: 1em;
 }
+.remove-answer{
+    font-size: smaller;
+}
+.glyphicon-question-sign{
+	position: absolute;
+    right: -7px;
+    color: rgba(56, 158, 72, 0.81);
+}

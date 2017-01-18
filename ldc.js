@@ -54,6 +54,7 @@ vm = new Vue({
     isOldTest:false,
     donationEnabled:false,
     displayExcluded:true,
+    displayFilters: true,
     otherUserResults:[],
     givenAnswers:[] //stores the currently given answers to avoid double iteration at getCurrentTags()
   },
@@ -192,6 +193,14 @@ vm = new Vue({
   methods: {
     preventDefault:function($event){
       $event.preventDefault();
+    },
+    translateExcludedTags:function(answer){
+      var result = this.text('excludes') +": \n";
+      var _t = this;
+      answer.NoTags.forEach(function(t){
+        result += _t.text(t) + "\n";
+      });
+      return result.trim();
     },
     text:function(value){
       if (ldc.systemVars === null){
@@ -453,7 +462,7 @@ vm = new Vue({
   	selectAnswer : function (id){
   		var answer = this.getAnswer(id);
       var question = this.getQuestionByAnswer(id);
-
+      this.addAnswerToList(answer);
   		if (answer !== null && !answer.Selected){
   			answer.Selected = true;
         question.Answered = true;

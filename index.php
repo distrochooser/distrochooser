@@ -141,22 +141,36 @@
 			</div>
 			<div id="collapse{{question.Id}}" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header{{question.Id}}">
 				<div class="panel-body">
-					{{{ question.HelpText }}}
+					{{{ question.Number === -1 ? "" : question.HelpText }}}
+					<img class="largelogo" src="./assets/tux.png" v-if="question.Id === 'welcome'">
+					<div id="StartText" v-if="question.Id === 'welcome'">
+						<span v-html="text('introText')"></span>
+						<ul class="list">
+							<li>{{ text('can-skip-questions') }} </li>
+							<li>{{ text('can-get-result-anytime') }} </li>
+							<li>{{ text('can-get-result-anyorder') }}</li>
+							<li v-html="text('can-delete')"></li>
+							<li v-html="text('can-mark-important')"></li>
+						</ul>
+					</div>
 					<div v-if="question.Answers.length !== 0">
 						 <div :class="question.SingleAnswer ? 'radio' : 'checkbox'" v-for="answer in question.Answers">
 							<label v-if="question.SingleAnswer">
 								<input  :checked='answer.Selected ' name="{{ question.Id }}_a" data-id="{{answer.Id}}" type="radio" v-on:click="updateAnsweredFlag($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
+								<i v-if="displayFilters && answer.NoTags.length > 0" class="glyphicon glyphicon-question-sign" title = "{{ translateExcludedTags(answer)  }}"></i>
 							</label>
 							<label v-if="!question.SingleAnswer">
 								<input v-model="answer.Selected" data-id="{{answer.Id}}" name="{{ question.Id }}_a" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
+								<i v-if="displayFilters && answer.NoTags.length > 0" class="glyphicon glyphicon-question-sign" title = "{{ translateExcludedTags(answer) }}"></i>
 							</label>
+							
 						</div>
 					</div>
 					<a href="#" class="btn btn-primary {{ question.Id }}-next" data-id="{{ question.Id }}-next" v-on:click.prevent="nextTrigger(question.Id)" >
 						{{ question.ButtonText }}
 					</a>
 
-					<a href="#" class="clear-answer" v-if="question.Answered" v-on:click="removeAnswers($event,question)">{{ text("clear"); }}</a>
+					<a href="#" class="clear-answer" v-if="question.Answered" v-on:click="removeAnswers($event,question)"><i class="glyphicon glyphicon-remove remove-answer"></i> {{ text("clear"); }}</a>
 				</div>
 			</div>
 		</div>
@@ -172,7 +186,7 @@
 				<div class="panel-body">
 					<a href="#" id="rating-anchor"></a>
 
-					<div class="rating" v-if="commentSent==false">
+					<div class="rating" v-if="commentSent==false && !currentTestLoading">
 						<p class="rating-text" id="ResultRatingHeader">{{ text('ResultRatingHeader') }}</p>
 						<div class="share-link" v-if="currentTestLoading">
 							<i class="fa fa-spin fa-circle-o-notch"></i>
@@ -295,7 +309,12 @@
 						<li class="list-group-item">
 							<div class="checkbox">
 								<label>
-								<input type="checkbox" v-model="displayExcluded">  {{ text('displayExcluded') }}
+									<input type="checkbox" v-model="displayExcluded">  {{ text('displayExcluded') }}
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" v-model="displayFilters">  {{ text('displayFilters') }}
 								</label>
 							</div>
 						</li>
