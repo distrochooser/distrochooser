@@ -1,4 +1,5 @@
-$('#about').on('shown.bs.modal', function () {     		
+$('#about').on('shown.bs.modal', function () {
+    vm.modalOpen = true;
     var label = [];
     var testData = [];
     var hitData = [];	
@@ -47,3 +48,6 @@ $('#about').on('shown.bs.modal', function () {
         data:chartData
     });	        				
 }); 
+$('#about').on('hidden.bs.modal', function () {
+    vm.modalOpen = true;
+});

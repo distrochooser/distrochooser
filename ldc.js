@@ -9,7 +9,7 @@ function loadingText(preset){
     }
 }
 var ldc = function(){
-	this.backend = "https://distrochooser.de/rest.php?json&ldc3";
+	this.backend = "https://beta.distrochooser.de/rest.php?json&ldc3";
   this.Title = "Linux Auswahlhilfe",
   this.version = "3.0 (2016)";
   this.lang = "de";
@@ -56,7 +56,8 @@ vm = new Vue({
     displayExcluded:true,
     displayFilters: true,
     otherUserResults:[],
-    givenAnswers:[] //stores the currently given answers to avoid double iteration at getCurrentTags()
+    givenAnswers:[], //stores the currently given answers to avoid double iteration at getCurrentTags()
+    modalOpen:false
   },
   created: function(){
     console.log("  _     ___     ___   ____");
@@ -67,9 +68,7 @@ vm = new Vue({
     console.log("Starting Linux Distribution Chooser "+ldc.version);
     console.log("Started: " + new Date());
     this.StartInit();
-    this.NewVisitor();
     this.GetStatistics();
-    this.GetRatings();
     setTimeout(this.GetRatings, 5000);
   },
   ready:function(){
@@ -251,140 +250,140 @@ vm = new Vue({
       }
       return this.currentTags;
     },
+    getDistros(raw){
+      ldc.distributions = [];
+      for(var i = 0; i < raw.length;i++){
+        var d =  raw[i];
+        loadingText(d.Name);
+        //translate the 2.x API for 3.x
+        var distro = {};
+        distro.Id = d.Id;
+        distro.Name = d.Name;
+        distro.Image = d.Image;
+        distro.Color = d.Color;
+        distro.Description = d.Description;
+        distro.Website = d.Homepage;
+        distro.Percentage = 0;
+        distro.TextSource = d.TextSource;
+        distro.ImageSource = d.ImageSource;
+        distro.Tags = [];
+        distro.Excluded = d.Excluded;
+        try {
+          distro.Tags = JSON.parse(d.Tags);
+        } catch (error) {
+          console.log(d.Id);
+        }
+        ldc.distributions.push(distro);
+      }
+    },
+    getQuestions(raw){
+      ldc.questions[0].ButtonText = this.startTestButtonText;
+      ldc.questions[0].Text = this.text("welcomeTextHeader");
+      ldc.questions[0].HelpText = this.text("welcomeText");      
+      this.lastQuestionNumber = raw.length;
+      for(var i = 0; i < raw.length;i++){
+        var q = raw[i];
+        loadingText();
+        var question = {};
+        question.Id = "q"+q.Id;
+        question.Number = i+1;
+        question.Text = q.Text;
+        question.HelpText = q.Help;
+        question.Important = false;
+        question.Answered = false;
+        question.SingleAnswer = q.IsSingle;
+        question.Answers = [];
+        question.IsText = q.IsText;
+        for(var x=0;x < q.Answers.length;x++){
+          var answer = {};
+          var current = q.Answers[x];
+          answer.Id = "a"+q.Answers[x].Id;
+          answer.Text = q.Answers[x].Text;
+          try {
+            var tags = q.Answers[x].Tags;
+            var noTags = q.Answers[x].NoTags;
+            answer.Tags = JSON.parse(tags);
+            if (noTags === ""){
+                answer.NoTags = [];
+            }
+            else{
+                answer.NoTags = JSON.parse(noTags); //tags which deny inpossible results, e.g hddinstall and live cd
+            }
+          } catch (error) {
+              console.log(error);
+          }
+          answer.Selected = false;
+          answer.IsText = q.Answers[x].IsText === "1";
+          answer.Image =  answer.IsText ? '' : './assets/answers/'+answer.Id+'.png';
+          question.Answers.push(answer);
+        }
+        if (question.Number < this.lastQuestionNumber){
+          question.ButtonText = this.nextButtonText;
+        }
+        else{
+          question.ButtonText = this.getResultButtonText;
+        }
+        ldc.questions.push(question);
+      }
+    },
     StartInit : function(){
         this.getLanguage();
         this.loaded = false;
         loadingText();
-        this.$http.post(ldc.backend,{method:'GetDistributions',args: "[]", lang:  this.langCode}).then(function(data){
-        loadingText();
-        var result = JSON.parse(data.body);
-          ldc.distributions = [];
-          for(var i = 0; i < result.length;i++){
-            loadingText(result[i].Name);
-            //translate the 2.x API for 3.x
-            var distro = {};
-            distro.Id = result[i].Id;
-            distro.Name = result[i].Name;
-            distro.Image = result[i].Image;
-            distro.Color = result[i].Color;
-            distro.Description = result[i].Description;
-            distro.Website = result[i].Homepage;
-            distro.Percentage = 0;
-            distro.TextSource = result[i].TextSource;
-            distro.ImageSource = result[i].ImageSource;
-            distro.Tags = [];
-            distro.Excluded = result[i].Excluded;
-            try {
-              distro.Tags = JSON.parse(result[i].Tags);
-            } catch (error) {
-              console.log(result[i].Tags);
-              console.log(error);
-              console.log(distro);
-            }
-            ldc.distributions.push(distro);
-          }
-          this.GetSystemVars();
-      });
-    },
-    GetSystemVars : function(){
-        loadingText();
-        this.$http.post(ldc.backend,{method:'GetSystemVars',args: "[]", lang:  this.langCode}).then(function(data){
-              loadingText();
-              ldc.systemVars = JSON.parse(data.body);
-              document.title = this.text("Title");
-              this.i18n = ldc.systemVars;
-              this.GetQuestionsFromAPI();
+        var _t = this;
+        this.$http.post(ldc.backend,{method:'get',args: "[]", lang:  this.langCode}).then(function(data){
+          loadingText();
+          var result = JSON.parse(data.body);
+          console.log("Hello #"+result.visitor);
+          loadingText("Hello #"+result.visitor);
+          _t.getDistros(result.distributions);
+          loadingText();
+          ldc.systemVars = result.systemVars;
+          document.title = this.text("Title");
+          this.i18n = ldc.systemVars;
+          loadingText();
+          _t.getQuestions(result.questions);
+          loadingText();
+          this.displayRatings(result.lastRatings);
+          loadingText();
+          this.loaded = true;
+          console.log("Finished: " + new Date());
+          this.GetOldTest();
         });
     },
     GetStatistics: function(){
-      loadingText();
-    	this.$http.post(ldc.backend,{method:'AllMonthStats',args: "", lang:  this.langCode}).then(function(data){
+    	this.$http.post(ldc.backend,{method:'GetMonthStats',args: "", lang:  this.langCode}).then(function(data){
           this.testCount = JSON.parse(data.body);
-          loadingText();
         });
     },
     GetRatings: function(){
+      var _t = this;
       this.$http.post(ldc.backend,{method:'GetLastRatings',args: "", lang:  this.langCode}).then(function(data){
           this.otherUserResults = [];
           var got =  JSON.parse(data.body).reverse();
-          for(var rating in got){
+          _t.displayRatings(got);
+        });
+    },
+    displayRatings(ratings){
+      for(var rating in ratings){
             loadingText();
             var tuple = {};
-            tuple.comment = got[rating].Comment;
-            tuple.stars = Math.ceil(got[rating].Rating);
+            tuple.comment = ratings[rating].Comment;
+            tuple.stars = Math.ceil(ratings[rating].Rating);
             tuple.os = "Windows";
-            if (got[rating].UserAgent.indexOf("Linux") !== -1){
+            if (ratings[rating].UserAgent.indexOf("Linux") !== -1){
               tuple.os = "Linux";
-            }else if (got[rating].UserAgent.indexOf("ac") !== -1){
+            }else if (ratings[rating].UserAgent.indexOf("ac") !== -1){
               tuple.os = "macOS";
-            }else if (got[rating].UserAgent.indexOf("unix") !== -1){
+            }else if (ratings[rating].UserAgent.indexOf("unix") !== -1){
               tuple.os = "Unix";
-            }else if (got[rating].UserAgent.indexOf("Android") !== -1){
+            }else if (ratings[rating].UserAgent.indexOf("Android") !== -1){
               tuple.os = "Android";
-            }else if (got[rating].UserAgent.indexOf("iPhone") !== -1){
+            }else if (ratings[rating].UserAgent.indexOf("iPhone") !== -1){
               tuple.os = "iPhone";
             }
             this.otherUserResults.unshift(tuple);
-          }
-        });
-    },
-    GetQuestionsFromAPI : function(){
-       this.$http.post(ldc.backend,{method:'GetQuestions',args: "[]", lang:  this.langCode}).then(function(data){
-            loadingText();
-            ldc.questions[0].ButtonText = this.startTestButtonText;
-            ldc.questions[0].Text = this.text("welcomeTextHeader");
-            ldc.questions[0].HelpText = this.text("welcomeText");
-            var result = JSON.parse(data.body);
-            this.lastQuestionNumber = result.length;
-            for(var i = 0; i < result.length;i++){
-                loadingText();
-                //translate the 2.x API for 3.x
-                var question = {};
-                question.Id = "q"+result[i].Id;
-                question.Number = i+1;
-                question.Text = result[i].Text;
-                question.HelpText = result[i].Help;
-                question.Important = false;
-                question.Answered = false;
-                question.SingleAnswer = result[i].IsSingle;
-                question.Answers = [];
-                question.IsText = result[i].IsText;
-                for(var x=0;x < result[i].Answers.length;x++){
-                  var answer = {};
-                  var current = result[i].Answers[x];
-                  answer.Id = "a"+result[i].Answers[x].Id;
-                  answer.Text = result[i].Answers[x].Text;
-                  try {
-                    var tags = result[i].Answers[x].Tags;
-                    var noTags = result[i].Answers[x].NoTags;
-                    answer.Tags = JSON.parse(tags);
-                    if (noTags === ""){
-                        answer.NoTags = [];
-                    }
-                    else{
-                        answer.NoTags = JSON.parse(noTags); //tags which deny inpossible results, e.g hddinstall and live cd
-                    }
-                  } catch (error) {
-                      console.log(error);
-                  }
-                  answer.Selected = false;
-                  answer.IsText = result[i].Answers[x].IsText === "1";
-                  answer.Image =  answer.IsText ? '' : './assets/answers/'+answer.Id+'.png';
-                  question.Answers.push(answer);
-                }
-                if (question.Number < this.lastQuestionNumber){
-                  question.ButtonText = this.nextButtonText;
-                }
-                else{
-                  question.ButtonText = this.getResultButtonText;
-                }
-                ldc.questions.push(question);
-              }
-              loadingText();
-              this.loaded = true;
-              console.log("Finished: " + new Date());
-              this.GetOldTest();
-          });
+      }
     },
     GetOldTest: function(){
         var parts = this.getUrlParts();
@@ -392,6 +391,7 @@ vm = new Vue({
         if (typeof parts["answers"] !== 'undefined'){
           this.isOldTest = true;
         }else{
+          loadingText();
           if (typeof parts["test"] !== 'undefined'){
             var test = parseInt(parts["test"]);
             //Load old test results
@@ -412,12 +412,6 @@ vm = new Vue({
             });
           }
         }
-    },
-    NewVisitor: function(){
-      this.$http.post(ldc.backend,{method:'NewVisitor',args: "\""+document.referrer+"\"", lang:  this.langCode, dnt: navigator.doNotTrack !== null}).then(function(response){
-          console.log("Hello #"+response.body);
-          loadingText("Hello #"+response.body);
-      });
     },
     answeredQuestions: function(){
       var answered = [];

@@ -6,9 +6,9 @@
         <h4 class="modal-title"> {{ text('about') }}</h4>
       </div>
       <div class="modal-body">
-        <p v-html="text('aboutText')"></p>
+        <p v-html="text('aboutText') + '.'"></p>
         <h3>{{ text('installedDistros') }}</h3>
-        <span v-for="distro in ldc.distributions">
+        <span v-for="distro in ldc.distributions" v-if="modalOpen">
           <a :href="distro.Website" target="_blank"><img :title="distro.Name + ' - ' + distro.ImageSource" class="listed-distro" :src="distro.Image"></a>
         </span>
         <h3>{{ text('stats') }}</h3>

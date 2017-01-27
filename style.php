@@ -4,8 +4,7 @@
    $local =  $dnt || $nocdn;
 ?>
 <?php if ($what === "head" && $local) :?>
-    <link rel="stylesheet" href="./3rdparty/bootstrap.min.css" />
-	<link rel="stylesheet" href="./3rdparty/bootstrap.min.css.1">
+	<link rel="stylesheet" href="./3rdparty/bootstrap.min.css">
 	<link rel="stylesheet" href="./3rdparty/gfonts.css">
 <?php endif;?>
 
@@ -24,8 +23,7 @@
 <?php endif;?>
 
 <?php if ($what === "head" && !$local) :?>
-    <!-- You don't have a DNT header present, so i will use CDN's -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!-- You don't have a DNT header present, so i will use CDN's -->    
 	<link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
 <?php endif;?>
 
