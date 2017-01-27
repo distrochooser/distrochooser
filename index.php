@@ -232,7 +232,7 @@
 							</div>
 							<div class="panel-body">
 								<p>
-									<img class="distro-logo" v-bind:src = "distro.Image" />
+									<img class="distro-logo" v-bind:src = "distro.Image" v-if="currentTest !== -1"/>
 									<p v-html="distro.Description"></p>
 									<hr>
 								</p>
@@ -263,7 +263,7 @@
 								<a class="link" href="./detail.php?id={{excluded.Id}}&l={{ getLanguageKey() }}">Details</a>
 							</div>
 							<div class="panel-body">
-								<img class="distro-logo" v-bind:src = "excluded.Image" />
+								<img class="distro-logo" v-bind:src = "excluded.Image" v-if="currentTest !== -1" />
 								<p v-html="excluded.Description"></p>
 								<hr>
 								<div class="form-group">
