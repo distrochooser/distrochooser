@@ -7,11 +7,10 @@ a:hover{
 .selected{
 	font-weight:bold;
 }
-.mark-important,.mark-important:hover,.glyphicon-erase,.glyphicon-erase:hover{
+.mark-important,.mark-important:hover,.fa-trash,.fa-trash:hover{
 	text-decoration: none;
 }
-.glyphicon-erase,.glyphicon-erase:hover{
-	margin-left:1em;
+.fa-trash,.fa-trash:hover{
 	color: #ff4136;
     text-decoration: none;
 }
@@ -245,14 +244,8 @@ ul.image{
 	text-overflow: ellipsis;
 	font-style: italic;
 }
-.fa-star{
-	color:orange;
-}
 .other-users{
 	margin-top:1em;
-//	position: fixed;
-	//top: 17%;
-//	width: 12%;
 }
 .full-width-header{
 	display: block;
@@ -277,7 +270,8 @@ hr{
 .remove-answer{
     font-size: smaller;
 }
-.glyphicon-question-sign{
+.fa-question-circle{
+	top:0px;
 	position: absolute;
     right: -7px;
     color: rgba(56, 158, 72, 0.81);

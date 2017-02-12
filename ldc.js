@@ -1,13 +1,3 @@
-loadingText();
-function loadingText(preset){
-    if (typeof preset !== 'undefined'){
-      $(".text").text(preset);
-    }else{
-      var texts = ["Feeding penguins","Did I left the oven on?","Loading distributions","Blaming Windows","Installing Xorg","Running apt-get","Cloning sourcecode","Eating cookies","Disabling UEFI","Loading translation"];
-      var index = Math.floor((Math.random() * texts.length) );
-      $(".text").text(texts[index]);
-    }
-}
 var ldc = function(){
 	this.backend = "https://beta.distrochooser.de/rest.php?json&ldc3";
   this.Title = "Linux Auswahlhilfe",
@@ -57,7 +47,8 @@ vm = new Vue({
     displayFilters: true,
     otherUserResults:[],
     givenAnswers:[], //stores the currently given answers to avoid double iteration at getCurrentTags()
-    modalOpen:false
+    modalOpen:false,
+    loadingSentence:"" //for the loading screen
   },
   created: function(){
     console.log("  _     ___     ___   ____");
@@ -190,6 +181,11 @@ vm = new Vue({
     }
   },
   methods: {
+    loaderText: function(){
+      var texts = ["Feeding penguins","Did I left the oven on?","Loading distributions","Blaming Windows","Installing Xorg","Running apt-get","Cloning sourcecode","Eating cookies","Disabling UEFI","Loading translation"];
+      var index = Math.floor((Math.random() * texts.length) );
+      this.loadingSentence =  texts[index];
+    },
     preventDefault:function($event){
       $event.preventDefault();
     },
@@ -250,32 +246,6 @@ vm = new Vue({
       }
       return this.currentTags;
     },
-    getDistros(raw){
-      ldc.distributions = [];
-      for(var i = 0; i < raw.length;i++){
-        var d =  raw[i];
-        loadingText(d.Name);
-        //translate the 2.x API for 3.x
-        var distro = {};
-        distro.Id = d.Id;
-        distro.Name = d.Name;
-        distro.Image = d.Image;
-        distro.Color = d.Color;
-        distro.Description = d.Description;
-        distro.Website = d.Homepage;
-        distro.Percentage = 0;
-        distro.TextSource = d.TextSource;
-        distro.ImageSource = d.ImageSource;
-        distro.Tags = [];
-        distro.Excluded = d.Excluded;
-        try {
-          distro.Tags = JSON.parse(d.Tags);
-        } catch (error) {
-          console.log(d.Id);
-        }
-        ldc.distributions.push(distro);
-      }
-    },
     getQuestions(raw){
       ldc.questions[0].ButtonText = this.startTestButtonText;
       ldc.questions[0].Text = this.text("welcomeTextHeader");
@@ -283,72 +253,36 @@ vm = new Vue({
       this.lastQuestionNumber = raw.length;
       for(var i = 0; i < raw.length;i++){
         var q = raw[i];
-        loadingText();
-        var question = {};
-        question.Id = "q"+q.Id;
-        question.Number = i+1;
-        question.Text = q.Text;
-        question.HelpText = q.Help;
-        question.Important = false;
-        question.Answered = false;
-        question.SingleAnswer = q.IsSingle;
-        question.Answers = [];
-        question.IsText = q.IsText;
-        for(var x=0;x < q.Answers.length;x++){
-          var answer = {};
-          var current = q.Answers[x];
-          answer.Id = "a"+q.Answers[x].Id;
-          answer.Text = q.Answers[x].Text;
-          try {
-            var tags = q.Answers[x].Tags;
-            var noTags = q.Answers[x].NoTags;
-            answer.Tags = JSON.parse(tags);
-            if (noTags === ""){
-                answer.NoTags = [];
-            }
-            else{
-                answer.NoTags = JSON.parse(noTags); //tags which deny inpossible results, e.g hddinstall and live cd
-            }
-          } catch (error) {
-              console.log(error);
-          }
-          answer.Selected = false;
-          answer.IsText = q.Answers[x].IsText === "1";
-          answer.Image =  answer.IsText ? '' : './assets/answers/'+answer.Id+'.png';
-          question.Answers.push(answer);
-        }
-        if (question.Number < this.lastQuestionNumber){
-          question.ButtonText = this.nextButtonText;
+        if (q.Number < this.lastQuestionNumber){
+          q.ButtonText = this.nextButtonText;
         }
         else{
-          question.ButtonText = this.getResultButtonText;
+          q.ButtonText = this.getResultButtonText;
         }
-        ldc.questions.push(question);
+        ldc.questions.push(q);
       }
     },
     StartInit : function(){
         this.getLanguage();
         this.loaded = false;
-        loadingText();
+        this.loaderText();
         var _t = this;
         this.$http.post(ldc.backend,{method:'get',args: "[]", lang:  this.langCode}).then(function(data){
-          loadingText();
-          var result = JSON.parse(data.body);
+          _t.loaderText();
+          var result = data.json();
           console.log("Hello #"+result.visitor);
-          loadingText("Hello #"+result.visitor);
-          _t.getDistros(result.distributions);
-          loadingText();
+          ldc.distributions = result.distributions;
+          _t.loaderText();
           ldc.systemVars = result.systemVars;
-          document.title = this.text("Title");
-          this.i18n = ldc.systemVars;
-          loadingText();
+          _t.loaderText();
+          document.title = _t.text("Title");
+          _t.i18n = ldc.systemVars;
+          _t.loaderText();
           _t.getQuestions(result.questions);
-          loadingText();
-          this.displayRatings(result.lastRatings);
-          loadingText();
-          this.loaded = true;
+          _t.loaded = true;
+          _t.displayRatings(result.lastRatings);
           console.log("Finished: " + new Date());
-          this.GetOldTest();
+          _t.GetOldTest();
         });
     },
     GetStatistics: function(){
@@ -366,7 +300,6 @@ vm = new Vue({
     },
     displayRatings(ratings){
       for(var rating in ratings){
-            loadingText();
             var tuple = {};
             tuple.comment = ratings[rating].Comment;
             tuple.stars = Math.ceil(ratings[rating].Rating);
@@ -387,11 +320,9 @@ vm = new Vue({
     },
     GetOldTest: function(){
         var parts = this.getUrlParts();
-        loadingText();
         if (typeof parts["answers"] !== 'undefined'){
           this.isOldTest = true;
         }else{
-          loadingText();
           if (typeof parts["test"] !== 'undefined'){
             var test = parseInt(parts["test"]);
             //Load old test results
@@ -408,7 +339,6 @@ vm = new Vue({
                     });
                     ldc.questions[i].Important = count.length !== 0;
                   }
-                  loadingText();
             });
           }
         }

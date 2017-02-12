@@ -33,14 +33,14 @@
 	<link href="./ldc.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<div class="loader visible " v-bind:class="{'visible':!loaded,'hidden':loaded}">
+	<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
 		<p class="hidden-xs">
 			<span class="loader-image-wrapper"><img src="./assets/mobile.png"></span>
 			<br>
 			<b>TEST VERSION: USE WITH CAUTION</b>
 			<br>
 			<span  class="text">
-				JavaScript is not evil
+				{{ loadingSentence }}
 			</span>
 		</p>
 		<noscript>
@@ -137,7 +137,7 @@
 						<span v-if="question.Number !== -1">{{ question.Number }}. </span>{{ question.Text }}
 					</a>
 				</h4>
-				<a href="#" class="glyphicon glyphicon-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length=== 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event,question)"></a>
+				<a href="#" class="fa fa-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length=== 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event,question)"></a>
 			</div>
 			<div id="collapse{{question.Id}}" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header{{question.Id}}">
 				<div class="panel-body">
@@ -157,11 +157,11 @@
 						 <div :class="question.SingleAnswer ? 'radio' : 'checkbox'" v-for="answer in question.Answers">
 							<label v-if="question.SingleAnswer">
 								<input  :checked='answer.Selected ' name="{{ question.Id }}_a" data-id="{{answer.Id}}" type="radio" v-on:click="updateAnsweredFlag($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
-								<i v-if="displayFilters && answer.NoTags.length > 0" class="glyphicon glyphicon-question-sign" title = "{{ translateExcludedTags(answer)  }}"></i>
+								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle" title = "{{ translateExcludedTags(answer)  }}"></i>
 							</label>
 							<label v-if="!question.SingleAnswer">
 								<input v-model="answer.Selected" data-id="{{answer.Id}}" name="{{ question.Id }}_a" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
-								<i v-if="displayFilters && answer.NoTags.length > 0" class="glyphicon glyphicon-question-sign" title = "{{ translateExcludedTags(answer) }}"></i>
+								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle" title = "{{ translateExcludedTags(answer) }}"></i>
 							</label>
 							
 						</div>
@@ -170,7 +170,7 @@
 						{{ question.ButtonText }}
 					</a>
 
-					<a href="#" class="clear-answer" v-if="question.Answered" v-on:click="removeAnswers($event,question)"><i class="glyphicon glyphicon-remove remove-answer"></i> {{ text("clear"); }}</a>
+					<a href="#" class="clear-answer" v-if="question.Answered" v-on:click="removeAnswers($event,question)"><i class="fa fa-trash remove-answer"></i> {{ text("clear"); }}</a>
 				</div>
 			</div>
 		</div>
