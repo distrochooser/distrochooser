@@ -81,18 +81,6 @@ vm = new Vue({
       var text =  this.text("NoResults");
       return text;
     },
-    startTestButtonText: function(){
-      var text =  this.text("StartTest");
-      return text;
-    },
-    nextButtonText: function(){
-      var text =  this.text("nextQuestion");
-      return text;
-    },
-    getResultButtonText : function(){
-      var text =  this.text("getresult");
-      return text;
-    },
     ratingSent : function (){
         return false;
     },
@@ -246,22 +234,6 @@ vm = new Vue({
       }
       return this.currentTags;
     },
-    getQuestions(raw){
-      ldc.questions[0].ButtonText = this.startTestButtonText;
-      ldc.questions[0].Text = this.text("welcomeTextHeader");
-      ldc.questions[0].HelpText = this.text("welcomeText");      
-      this.lastQuestionNumber = raw.length;
-      for(var i = 0; i < raw.length;i++){
-        var q = raw[i];
-        if (q.Number < this.lastQuestionNumber){
-          q.ButtonText = this.nextButtonText;
-        }
-        else{
-          q.ButtonText = this.getResultButtonText;
-        }
-        ldc.questions.push(q);
-      }
-    },
     StartInit : function(){
         this.getLanguage();
         this.loaded = false;
@@ -278,7 +250,10 @@ vm = new Vue({
           document.title = _t.text("Title");
           _t.i18n = ldc.systemVars;
           _t.loaderText();
-          _t.getQuestions(result.questions);
+          ldc.questions = ldc.questions.concat(result.questions);
+          ldc.questions[0].Text = this.text("welcomeTextHeader");
+          ldc.questions[0].HelpText = this.text("welcomeText");      
+          _t.lastQuestionNumber = result.questions.length;
           _t.loaded = true;
           _t.displayRatings(result.lastRatings);
           console.log("Finished: " + new Date());

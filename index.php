@@ -167,7 +167,7 @@
 						</div>
 					</div>
 					<a href="#" class="btn btn-primary {{ question.Id }}-next" data-id="{{ question.Id }}-next" v-on:click.prevent="nextTrigger(question.Id)" >
-						{{ question.ButtonText }}
+						{{ lastQuestionNumber=== question.Number ? text("getresult") : (question.Number === -1 ? text("StartTest")   :text("nextQuestion"))}}
 					</a>
 
 					<a href="#" class="clear-answer" v-if="question.Answered" v-on:click="removeAnswers($event,question)"><i class="fa fa-trash remove-answer"></i> {{ text("clear"); }}</a>
