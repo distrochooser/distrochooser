@@ -65,15 +65,8 @@ vm = new Vue({
       }
       return baseUrl+ "&test="+this.currentTest;
     },
-    noResultText : function(){
-      var text =  this.text("NoResults");
-      return text;
-    },
     ratingSent : function (){
         return false;
-    },
-    resultText : function(){
-        return this.text("Result");
     },
     answeredQuestionsCount: function(){
       this.answered =  this.answeredQuestions();
@@ -454,7 +447,6 @@ vm = new Vue({
     addResult: function (){
       var answers  = [];
       var important = [];
-      this.currentTestLoading = true;
       this.updateCurrentTags()
       for(var i = 0; i < this.answered.length;i++){
           var question = this.answered[i];

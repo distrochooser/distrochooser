@@ -219,8 +219,8 @@
 					<div class="rating-sent" v-if="commentSent==true">
 						{{ text("thanksForRating") }} 
 					</div>
-					<div v-for="distro in distributions | orderBy 'Percentage' -1 " v-show="!currentTestLoading">
-						<div class="panel panel-default distribution" v-if="!distro.Excluded">
+					<div v-for="distro in distributions | orderBy 'Percentage' -1 ">
+						<div class="panel panel-default distribution" v-show="!distro.Excluded">
 							<div class="panel-heading" >
 								{{ distro.Name }}: {{ distro.Percentage }}%
 								<a class="link" href="{{ distro.Website }}">Website</a>
@@ -251,7 +251,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-for="excluded in excludedDistros" v-if="displayExcluded && !currentTestLoading">
+					<div v-for="excluded in excludedDistros" v-if="displayExcluded">
 						<div class="panel panel-default distribution">
 							<div class="panel-heading" >
 								{{ excluded.Name }}: {{ text('excluded') }}
@@ -282,7 +282,7 @@
 					</div>
 					<div class="panel-body" v-if="distributionsCount=== 0">
 						<a href="#" id="rating-anchor"></a>
-						<p>{{ noResultText }}</p>
+						<p>{{ text("NoResults") }}</p>
 					</div>
 				</div>
 			</div>
