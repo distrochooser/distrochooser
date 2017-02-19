@@ -38,10 +38,6 @@
 			<span class="loader-image-wrapper"><img src="./assets/mobile.png"></span>
 			<br>
 			<b>TEST VERSION: USE WITH CAUTION</b>
-			<br>
-			<span  class="text">
-				{{ loadingSentence }}
-			</span>
 		</p>
 		<noscript>
 			<div class="well noscript">
@@ -137,7 +133,7 @@
 						<span v-if="question.Number !== -1">{{ question.Number }}. </span>{{ question.Text }}
 					</a>
 				</h4>
-				<a href="#" class="fa fa-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length=== 0}" data-id="{{question.Id}}" v-on:click="makeImportant($event,question)"></a>
+				<a href="#" class="fa fa-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length=== 0}" data-id="{{question.Id}}" v-on:click.prevent="makeImportant(question)"></a>
 			</div>
 			<div id="collapse{{question.Id}}" class="panel-collapse collapse question" role="tabpanel" aria-labelledby="header{{question.Id}}">
 				<div class="panel-body">
@@ -170,7 +166,7 @@
 						{{ lastQuestionNumber=== question.Number ? text("getresult") : (question.Number === -1 ? text("StartTest")   :text("nextQuestion"))}}
 					</a>
 
-					<a href="#" class="clear-answer" v-if="question.Answered" v-on:click="removeAnswers($event,question)"><i class="fa fa-trash remove-answer"></i> {{ text("clear"); }}</a>
+					<a href="#" class="clear-answer" v-if="question.Answered" v-on:click.prevent="removeAnswers(question)"><i class="fa fa-trash remove-answer"></i> {{ text("clear"); }}</a>
 				</div>
 			</div>
 		</div>

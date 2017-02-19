@@ -47,8 +47,7 @@ vm = new Vue({
     displayFilters: true,
     otherUserResults:[],
     givenAnswers:[], //stores the currently given answers to avoid double iteration at getCurrentTags()
-    modalOpen:false,
-    loadingSentence:"" //for the loading screen
+    modalOpen:false
   },
   created: function(){
     console.log("  _     ___     ___   ____");
@@ -169,14 +168,6 @@ vm = new Vue({
     }
   },
   methods: {
-    loaderText: function(){
-      var texts = ["Feeding penguins","Did I left the oven on?","Loading distributions","Blaming Windows","Installing Xorg","Running apt-get","Cloning sourcecode","Eating cookies","Disabling UEFI","Loading translation"];
-      var index = Math.floor((Math.random() * texts.length) );
-      this.loadingSentence =  texts[index];
-    },
-    preventDefault:function($event){
-      $event.preventDefault();
-    },
     translateExcludedTags:function(answer){
       var result = this.text('excludes') +": \n";
       var _t = this;
@@ -237,24 +228,20 @@ vm = new Vue({
     StartInit : function(){
         this.getLanguage();
         this.loaded = false;
-        this.loaderText();
         var _t = this;
         this.$http.post(ldc.backend,{method:'get',args: "[]", lang:  this.langCode}).then(function(data){
-          _t.loaderText();
           var result = data.json();
           console.log("Hello #"+result.visitor);
           ldc.distributions = result.distributions;
-          _t.loaderText();
           ldc.systemVars = result.systemVars;
-          _t.loaderText();
           document.title = _t.text("Title");
           _t.i18n = ldc.systemVars;
-          _t.loaderText();
           ldc.questions = ldc.questions.concat(result.questions);
           ldc.questions[0].Text = this.text("welcomeTextHeader");
-          ldc.questions[0].HelpText = this.text("welcomeText");      
+          ldc.questions[0].HelpText = this.text("welcomeText");
+          
+          _t.loaded = true;      
           _t.lastQuestionNumber = result.questions.length;
-          _t.loaded = true;
           _t.displayRatings(result.lastRatings);
           console.log("Finished: " + new Date());
           _t.GetOldTest();
@@ -382,8 +369,7 @@ vm = new Vue({
         return false;
       }
   	},
-    makeImportant : function (args,question){
-      args.preventDefault();
+    makeImportant : function (question){
       if (question !== null){
         if (question.Important){
           question.Important = false;
@@ -396,8 +382,7 @@ vm = new Vue({
         return false;
       }
     },
-    removeAnswers: function(event,question){
-      event.preventDefault();
+    removeAnswers: function(question){
       for(var i=0;i<question.Answers.length;i++){
         question.Answers[i].Selected = false;
         this.removeAnswerFromList(question.Answers[i]);
