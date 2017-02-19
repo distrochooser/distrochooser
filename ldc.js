@@ -159,15 +159,7 @@ vm = new Vue({
       return result.trim();
     },
     text:function(value){
-      if (this.i18n === null){
-        return "";
-      }
-      for (var i = 0; i < this.i18n.length; i++) {
-          if (this.i18n[i].Val === value){
-              return this.i18n[i].Text;
-          }
-      }
-      return "";
+      return this.i18n !== null &&typeof this.i18n[value] !== 'undefined'? this.i18n[value].Text:'';
     },
     isTagChoosed:function(tag){
        for (var key in this.currentTags) {
