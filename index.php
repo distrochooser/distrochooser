@@ -77,8 +77,8 @@
 								</li>
 						</ul>
 						<footer class="visible-lg">
-							<a href="./static/privacy.php">{{ text('privacy') }}</a>
-							<a href="./static/contact.php">{{ text('contact') }}</a>
+							<a href="./static/privacy.html">{{ text('privacy') }}</a>
+							<a href="./static/contact.html">{{ text('contact') }}</a>
 						</footer>
 					</div>
 					<div class="hidden-lg">
