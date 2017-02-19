@@ -45,9 +45,9 @@
 				<hr>
 				The Distrochooser needs enabled JavaScript. JavaScript had become an important part of web technologies. A software like the Distrochooser is not possible without JavaScript.
 				<hr>
-				<a href="https://distrochooser.de/static/privacy.php">Datenschutz | Privacy</a>
+				<a href="https://distrochooser.de/static/privacy.html">Datenschutz | Privacy</a>
 				<br>
-				<a href="https://distrochooser.de/static/contact.php">Kontakt | Contact</a>
+				<a href="https://distrochooser.de/static/contact.html">Kontakt | Contact</a>
 			</div>
 		</noscript>
 	</div>
@@ -208,7 +208,7 @@
 							<span>
 								{{ text("donation") }} <i class="fa fa-heart" style="color:#ca1717"></i>
 							</span>
-							<?php include "./static/donate.php";?>
+							<?php include "./static/donate.html";?>
 						</div>
 					</div>
 					<div>
