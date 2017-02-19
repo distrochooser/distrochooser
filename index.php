@@ -99,8 +99,6 @@
 	<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
 		<p class="hidden-xs">
 			<span class="loader-image-wrapper"><img src="./assets/mobile.png"></span>
-			<br>
-			<b>TEST VERSION: USE WITH CAUTION</b>
 		</p>
 		<noscript>
 			<div class="well noscript">
