@@ -1,35 +1,11 @@
-var ldc = function(){
-	this.backend = "https://beta.distrochooser.de/rest.php?json&ldc3";
-  this.Title = "Linux Auswahlhilfe",
-  this.version = "3.0 (2016)";
-  this.lang = "de";
-	this.distributions = [];
-  this.systemVars = null;
-	this.questions = [
-    {
-      "Id":"welcome",
-      "Text":"",
-      "HelpText":"",
-      "Important":false,
-      "SingleAnswer":false,
-      "Answers":[
-      ],
-      "Number":-1,
-      "ButtonText":""
-    }
-	];
-};
-//Do some init stuff
-ldc = new ldc();
 Vue.http.options.emulateJSON = true;
 vm = new Vue({
   el: '#app',
   data: {
-    ldc: ldc, //ldc data instance
     debug: true, //debug mode?
     answered: 0, //the count of answered questions
     currentTags: {}, //the answered tags
-    results: ldc.distributions, //the resulting distros
+    results: null, //the resulting distros
     comment: "", //the user's comment for the result
     commentSent: false,
     testCount: 0,
@@ -47,26 +23,39 @@ vm = new Vue({
     displayFilters: true,
     otherUserResults:[],
     givenAnswers:[], //stores the currently given answers to avoid double iteration at getCurrentTags()
-    modalOpen:false
+    modalOpen:false,
+    version: "3.0 (2016)",
+    backend:"https://beta.distrochooser.de/rest.php?json&ldc3",
+    lang:"de",
+    rawDistros: [],
+    questions: [
+      {
+        "Id":"welcome",
+        "Text":"",
+        "HelpText":"",
+        "Important":false,
+        "SingleAnswer":false,
+        "Answers":[
+        ],
+        "Number":-1,
+        "ButtonText":""
+      }
+    ]
   },
   created: function(){
     console.log("  _     ___     ___   ____");
     console.log(" | |   |   \\   / __| |__ /");
     console.log(" | |__ | |) | |(__    |_ \\ ");
     console.log(" |____ |___/   \\___| |___/ ");
-    console.log("Nice to see you! You are a developer? Contribute to https://github.com/cmllr/ldc.js and start improving the project.")
-    console.log("Starting Linux Distribution Chooser "+ldc.version);
+    console.log("Starting Linux Distribution Chooser "+this.version);
     console.log("Started: " + new Date());
-    this.StartInit();
-    this.GetStatistics();
-    setTimeout(this.GetRatings, 5000);
-  },
-  ready:function(){
-    window.title = this.text("Title");
+    this.init();
+    this.getStatistics();
+    setTimeout(this.getRatings, 10000);
   },
   computed: {
     langCode: function(){
-      return ldc.lang === "de" ? 1 : 2;
+      return this.lang === "de" ? 1 : 2;
     },
     shareLink : function(){
       var baseUrl = "https://beta.distrochooser.de/?l="+this.langCode;
@@ -92,8 +81,8 @@ vm = new Vue({
     },
     questionsCount: function(){
       var count = 0;
-      for(var i = 0; i < ldc.questions.length;i++){
-        if (ldc.questions[i].Answers.length !== 0){
+      for(var i = 0; i < this.questions.length;i++){
+        if (this.questions[i].Answers.length !== 0){
           count++;
         }
       }
@@ -101,9 +90,9 @@ vm = new Vue({
     },
     excludedDistros : function(){
       var distros =  [];
-      for(var i=0;i<ldc.distributions.length;i++){
-        if (ldc.distributions[i].Excluded){
-          distros.push(ldc.distributions[i]);
+      for(var i=0;i<this.rawDistros.length;i++){
+        if (this.rawDistros[i].Excluded){
+          distros.push(this.rawDistros[i]);
         }
       }
       return distros;
@@ -111,10 +100,10 @@ vm = new Vue({
     distributions : function(){
       //Reset percentages if needed
       if (Object.keys(this.currentTags).length === 0){
-        for (var i = 0; i < ldc.distributions.length;i++){
-          ldc.distributions[i].Percentage = 0;
+        for (var i = 0; i < this.rawDistros.length;i++){
+          this.rawDistros[i].Percentage = 0;
         }
-        return ldc.distributions;
+        return this.rawDistros;
       }
       this.results = [];
       this.deniedWhy = {};
@@ -126,11 +115,11 @@ vm = new Vue({
             pointSum += weight; //Do not count no-tags
           }
         }
-      for (var i = 0; i < ldc.distributions.length;i++){
-        var distro = ldc.distributions[i];
+      for (var i = 0; i < this.rawDistros.length;i++){
+        var distro = this.rawDistros[i];
         var points = 0;
         var hittedTags = 0;
-        ldc.distributions[i].Excluded = false; //reset flag
+        this.rawDistros[i].Excluded = false; //reset flag
         for (var tag in this.currentTags) {
           var weight = this.currentTags[tag];
           var isNoTag = tag.indexOf("!") !== -1;
@@ -139,7 +128,7 @@ vm = new Vue({
           //get percentage
           if (distro.Tags.indexOf(needle) !== -1){
             if (isNoTag){
-              ldc.distributions[i].Excluded = true;
+              this.rawDistros[i].Excluded = true;
               if (Object.keys(this.deniedWhy).indexOf(needle) === -1){
                 this.deniedWhy[needle] = 1;
               }else{
@@ -177,12 +166,12 @@ vm = new Vue({
       return result.trim();
     },
     text:function(value){
-      if (ldc.systemVars === null){
+      if (this.i18n === null){
         return "";
       }
-      for (var i = 0; i < ldc.systemVars.length; i++) {
-          if (ldc.systemVars[i].Val === value){
-              return ldc.systemVars[i].Text;
+      for (var i = 0; i < this.i18n.length; i++) {
+          if (this.i18n[i].Val === value){
+              return this.i18n[i].Text;
           }
       }
       return "";
@@ -225,36 +214,34 @@ vm = new Vue({
       }
       return this.currentTags;
     },
-    StartInit : function(){
+    init : function(){
         this.getLanguage();
         this.loaded = false;
         var _t = this;
-        this.$http.post(ldc.backend,{method:'get',args: "[]", lang:  this.langCode}).then(function(data){
+        this.$http.post(this.backend,{method:'get',args: "[]", lang:  this.langCode}).then(function(data){
           var result = data.json();
           console.log("Hello #"+result.visitor);
-          ldc.distributions = result.distributions;
-          ldc.systemVars = result.systemVars;
-          document.title = _t.text("Title");
-          _t.i18n = ldc.systemVars;
-          ldc.questions = ldc.questions.concat(result.questions);
-          ldc.questions[0].Text = this.text("welcomeTextHeader");
-          ldc.questions[0].HelpText = this.text("welcomeText");
-          
+          _t.rawDistros = result.distributions;
+          _t.results = result.distributions;
+          _t.i18n = result.systemVars;
+          _t.questions = _t.questions.concat(result.questions);
+          _t.questions[0].Text = _t.text("welcomeTextHeader");
+          _t.questions[0].HelpText = _t.text("welcomeText");
           _t.loaded = true;      
           _t.lastQuestionNumber = result.questions.length;
           _t.displayRatings(result.lastRatings);
           console.log("Finished: " + new Date());
-          _t.GetOldTest();
+          _t.getOldTest();
         });
     },
-    GetStatistics: function(){
-    	this.$http.post(ldc.backend,{method:'GetMonthStats',args: "", lang:  this.langCode}).then(function(data){
+    getStatistics: function(){
+    	this.$http.post(this.backend,{method:'GetMonthStats',args: "", lang:  this.langCode}).then(function(data){
           this.testCount = JSON.parse(data.body);
         });
     },
-    GetRatings: function(){
+    getRatings: function(){
       var _t = this;
-      this.$http.post(ldc.backend,{method:'GetLastRatings',args: "", lang:  this.langCode}).then(function(data){
+      this.$http.post(this.backend,{method:'GetLastRatings',args: "", lang:  this.langCode}).then(function(data){
           this.otherUserResults = [];
           var got =  JSON.parse(data.body).reverse();
           _t.displayRatings(got);
@@ -280,7 +267,7 @@ vm = new Vue({
             this.otherUserResults.unshift(tuple);
       }
     },
-    GetOldTest: function(){
+    getOldTest: function(){
         var parts = this.getUrlParts();
         if (typeof parts["answers"] !== 'undefined'){
           this.isOldTest = true;
@@ -288,18 +275,19 @@ vm = new Vue({
           if (typeof parts["test"] !== 'undefined'){
             var test = parseInt(parts["test"]);
             //Load old test results
-            this.$http.post(ldc.backend,{method:'GetTest',args: test, lang:  this.langCode}).then(function(data){
+            var _t = this;
+            this.$http.post(this.backend,{method:'GetTest',args: test, lang:  this.langCode}).then(function(data){
                   var obj = JSON.parse(data.body);
                   var answers = JSON.parse(obj.Answers);
                   var important = JSON.parse(obj.Important);
                   for(var a =0; a < answers.length;a++){
                     this.selectAnswer(answers[a]);
                   }
-                  for (var i = 0; i < ldc.questions.length;i++){
+                  for (var i = 0; i < _t.questions.length;i++){
                     var count = important.filter(function(q){
-                      return q === ldc.questions[i].Id;
+                      return q === _t.questions[i].Id;
                     });
-                    ldc.questions[i].Important = count.length !== 0;
+                    _t.questions[i].Important = count.length !== 0;
                   }
             });
           }
@@ -307,10 +295,10 @@ vm = new Vue({
     },
     answeredQuestions: function(){
       var answered = [];
-      for (var i = 0; i < ldc.questions.length;i++){
-        for(var x = 0;  x < ldc.questions[i].Answers.length;x++){
-          if (ldc.questions[i].Answers[x].Selected){
-            answered.push(ldc.questions[i]);
+      for (var i = 0; i < this.questions.length;i++){
+        for(var x = 0;  x < this.questions[i].Answers.length;x++){
+          if (this.questions[i].Answers[x].Selected){
+            answered.push(this.questions[i]);
             break;
           }
         }
@@ -318,29 +306,29 @@ vm = new Vue({
       return answered;
     },
   	getAnswer : function(id){
-  		for (var i = 0; i < ldc.questions.length;i++){
-  			for(var x = 0;  x < ldc.questions[i].Answers.length;x++){
-  				if (ldc.questions[i].Answers[x].Id === id){
-  					return ldc.questions[i].Answers[x];
+  		for (var i = 0; i < this.questions.length;i++){
+  			for(var x = 0;  x < this.questions[i].Answers.length;x++){
+  				if (this.questions[i].Answers[x].Id === id){
+  					return this.questions[i].Answers[x];
   				}
   			}
   		}
   		return null;
   	},
     getQuestionByAnswer : function(id){
-      for (var i = 0; i < ldc.questions.length;i++){
-        for(var x = 0;  x < ldc.questions[i].Answers.length;x++){
-          if (ldc.questions[i].Answers[x].Id === id){
-            return ldc.questions[i];
+      for (var i = 0; i < this.questions.length;i++){
+        for(var x = 0;  x < this.questions[i].Answers.length;x++){
+          if (this.questions[i].Answers[x].Id === id){
+            return this.questions[i];
           }
         }
       }
       return null;
     },
     getQuestion : function(id){
-      for (var i = 0; i < ldc.questions.length;i++){
-        if (ldc.questions[i].Id === id){
-            return ldc.questions[i]
+      for (var i = 0; i < this.questions.length;i++){
+        if (this.questions[i].Id === id){
+            return this.questions[i]
         }
       }
       return null;
@@ -451,9 +439,9 @@ vm = new Vue({
       var rating = $("#rating-stars").rateYo().rateYo("rating");
       var _this = this;
       var c = this.comment;
-      this.$http.post(ldc.backend,{method:'NewRatingWithComment',args: "["+rating+",\""+c+"\","+(this.currentTest != -1 ? this.currentTest : "")+"]", lang:  this.langCode}).then(function(data){
+      this.$http.post(this.backend,{method:'NewRatingWithComment',args: "["+rating+",\""+c+"\","+(this.currentTest != -1 ? this.currentTest : "")+"]", lang:  this.langCode}).then(function(data){
           this.commentSent = true;
-          this.GetRatings();
+          this.getRatings();
       });
     },
     displayResults: function(){
@@ -466,7 +454,6 @@ vm = new Vue({
     addResult: function (){
       var answers  = [];
       var important = [];
-
       this.currentTestLoading = true;
       this.updateCurrentTags()
       for(var i = 0; i < this.answered.length;i++){
@@ -482,9 +469,9 @@ vm = new Vue({
       }
       $("#rating-stars").rateYo();
       this.currentTestLoading = false;
-      this.$http.post(ldc.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(ldc.distributions)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+","+JSON.stringify(important) +"]", lang:  this.langCode}).then(function(data){
+      this.$http.post(this.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(this.rawDistros)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+","+JSON.stringify(important) +"]", lang:  this.langCode}).then(function(data){
         this.currentTest = parseInt(data.body);
-    	  this.GetStatistics();
+    	  this.getStatistics();
       });
     },
     getUrlParts: function(){
@@ -498,7 +485,7 @@ vm = new Vue({
     getLanguage: function(){
       var langcode = this.getLanguageKey();
       var installed = ["de","en"];
-      ldc.lang = parseInt(langcode) === 1 ? 'de' : 'en';
+      this.lang = parseInt(langcode) === 1 ? 'de' : 'en';
     },
     getLanguageKey: function(){
       var parts = this.getUrlParts();
@@ -511,17 +498,17 @@ vm = new Vue({
     nextTrigger: function(id){
       var needleIndex = -1;
       var needle = id;
-      for(var i=0;i<ldc.questions.length;i++){
-            if (i < ldc.questions.length && ldc.questions[i].Id === needle){
+      for(var i=0;i<this.questions.length;i++){
+            if (i < this.questions.length && this.questions[i].Id === needle){
               needleIndex = i;
               break;
             }
       }
-      if (needleIndex === ldc.questions.length -1){
+      if (needleIndex === this.questions.length -1){
         this.displayResults();
       }else{
-        $("[ldc-header='"+ldc.questions[needleIndex+1].Id+"']").trigger("click",function(){
-          window.scroll(0,$("[ldc-header='"+ldc.questions[needleIndex+1].Id+"']").top);
+        $("[ldc-header='"+this.questions[needleIndex+1].Id+"']").trigger("click",function(){
+          window.scroll(0,$("[ldc-header='"+this.questions[needleIndex+1].Id+"']").top);
         });
       }
     },

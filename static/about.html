@@ -8,7 +8,7 @@
       <div class="modal-body">
         <p v-html="text('aboutText') + '.'"></p>
         <h3>{{ text('installedDistros') }}</h3>
-        <span v-for="distro in ldc.distributions" v-if="modalOpen">
+        <span v-for="distro in rawDistros" v-if="modalOpen">
           <a :href="distro.Website" target="_blank"><img :title="distro.Name + ' - ' + distro.ImageSource" class="listed-distro" :src="distro.Image"></a>
         </span>
         <h3>{{ text('stats') }}</h3>

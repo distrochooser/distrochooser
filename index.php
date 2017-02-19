@@ -126,7 +126,7 @@
 		{{ text("oldTest"); }}
 	</div>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-		<div v-for="question in ldc.questions" class="panel panel-default">
+		<div v-for="question in questions" class="panel panel-default">
 			<div class="panel-heading" role="tab" id="header{{question.Id}}">
 				<h4 class="panel-title">
 					<a class="question-header" ldc-header="{{question.Id}}" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.Id}}" aria-expanded="true" aria-controls="collapse{{question.Id}}" v-bind:class="{'answered':question.Answered}" >
