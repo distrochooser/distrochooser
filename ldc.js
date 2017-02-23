@@ -145,7 +145,13 @@ vm = new Vue({
         }
       }
       this.commentSent = false;
-
+      this.results.sort( function compare(a,b) {
+        if (a.Percentage > b.Percentage)
+          return -1;
+        if (a.Percentage < b.Percentage)
+          return 1;
+        return 0;
+      });
       return this.results;
     }
   },
