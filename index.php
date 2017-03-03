@@ -43,7 +43,7 @@
 		]
 	];
 	function echoStyles($data){
-		$source = ((isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1) || isset($_GET["nocdn"])) ? "local" : "cdn" ;
+		$source = "local";//((isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1) || isset($_GET["nocdn"])) ? "local" : "cdn" ;
 		$jsPattern = "<script src=\"%s\"></script>\n";
 		$cssPattern = "<link rel=\"stylesheet\" href=\"%s\">\n";
 		foreach($data[$source] as $prop => $files){
@@ -69,6 +69,7 @@
 	<meta name="description" lang = "de"  content ="Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.">
 	<meta name="description" lang = "en"  content ="The distrochooser helps you to find the suitable Distribution for you!">
 	<meta name="keywords" content="Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows">
+	<meta name="theme-color" content="#158cba">
 	<meta property="og:title" content="Distrochooser" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://distrochooser.de" />
