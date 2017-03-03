@@ -213,16 +213,22 @@
 							<li v-html="text('can-mark-important')"></li>
 						</ul>
 					</div>
-					<div v-if="question.Answers.length !== 0">
+					<div v-if="question.Answers.length !== 0" class="answer-parent">
 						 <div :class="question.SingleAnswer ? 'radio' : 'checkbox'" v-for="answer in question.Answers">
-							<label v-if="question.SingleAnswer">
-								<input  :checked='answer.Selected ' :name="question.Id + '_a'" :data-id="answer.Id" type="radio" v-on:click="updateAnsweredFlag($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
-								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle" :title = "translateExcludedTags(answer)"></i>
-							</label>
-							<label v-if="!question.SingleAnswer">
-								<input v-model="answer.Selected" :data-id="answer.Id":name="question.Id + '_a'" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> <span  v-bind:class="{ 'selected': answer.Selected }">{{ answer.Text }}</span>
-								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle" :title = "translateExcludedTags(answer)"></i>
-							</label>
+							<p v-if="question.SingleAnswer">
+								<input :id="answer.Id" :checked='answer.Selected ' :name="question.Id + '_a'" :data-id="answer.Id" type="radio" v-on:click="updateAnsweredFlag($event,answer,question)"> 
+								<label  class="answer-text"  :for="answer.Id" v-bind:class="{ 'selected': answer.Selected }">
+									{{ answer.Text }}
+								</label>
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle" :title = "translateExcludedTags(answer)"></i>				
+							</p>
+							<p v-if="!question.SingleAnswer">
+								<input :id="answer.Id" v-model="answer.Selected" :data-id="answer.Id" :name="question.Id + '_a'" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> 
+								<label class="answer-text" :for="answer.Id" v-bind:class="{ 'selected': answer.Selected }">
+									{{ answer.Text }}
+								</label>
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle" :title = "translateExcludedTags(answer)"></i>
+							</p>
 							
 						</div>
 					</div>

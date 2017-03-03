@@ -156,6 +156,9 @@ vm = new Vue({
     }
   },
   methods: {
+    showTooltip:function(tooltip){
+      alert(tooltip);
+    },
     translateExcludedTags:function(answer){
       var result = this.text('excludes') +": \n";
       var _t = this;

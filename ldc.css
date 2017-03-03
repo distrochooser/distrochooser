@@ -5,7 +5,7 @@ a:hover{
 	color: #98978b;
 }
 .selected{
-	font-weight:bold;
+	font-weight:bold !important;
 }
 .mark-important,.mark-important:hover,.fa-trash,.fa-trash:hover{
 	text-decoration: none;
@@ -271,8 +271,19 @@ hr{
     font-size: smaller;
 }
 .fa-question-circle{
-	top:0px;
+	top:2px;
+	padding-left:2px;
 	position: absolute;
     right: -7px;
     color: rgba(56, 158, 72, 0.81);
+    font-size: 16px;
+	cursor: help;
+	padding-right: 2px
+}
+.answer-parent{
+    padding-left: 2em;
+}
+.answer-text{
+	padding-left:0px !important;    
+	width: 95%;
 }
