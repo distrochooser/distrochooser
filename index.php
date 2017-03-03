@@ -220,16 +220,17 @@
 								<label  class="answer-text"  :for="answer.Id" v-bind:class="{ 'selected': answer.Selected }">
 									{{ answer.Text }}
 								</label>
-								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle" :title = "translateExcludedTags(answer)"></i>				
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle visible-xs visible-sm" :title = "translateExcludedTags(answer)"></i>				
+								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm" :title = "translateExcludedTags(answer)"></i>				
 							</p>
 							<p v-if="!question.SingleAnswer">
 								<input :id="answer.Id" v-model="answer.Selected" :data-id="answer.Id" :name="question.Id + '_a'" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> 
 								<label class="answer-text" :for="answer.Id" v-bind:class="{ 'selected': answer.Selected }">
 									{{ answer.Text }}
 								</label>
-								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle" :title = "translateExcludedTags(answer)"></i>
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle visible-xs visible-sm" :title = "translateExcludedTags(answer)"></i>
+								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm" :title = "translateExcludedTags(answer)"></i>
 							</p>
-							
 						</div>
 					</div>
 					<a href="#" :class="'btn btn-primary ' +question.Id + '-next'" :data-id="question.Id + '-next'" v-on:click.prevent="nextTrigger(question.Id)" >
