@@ -294,7 +294,6 @@
 							<div class="panel-heading" >
 								{{ distro.Name }}: {{ distro.Percentage }}%
 								<a class="link" :href="distro.Website">Website</a>
-								<a class="link" :href="'./detail.php?id=' + distro.Id + '&l=' + getLanguageKey()">Details</a>
 							</div>
 							<div class="panel-body">
 								<p>
@@ -327,7 +326,6 @@
 							<div class="panel-heading" >
 								{{ excluded.Name }}: {{ text('excluded') }}
 								<a class="link" :href="excluded.Website">Website</a>
-								<a class="link" :href="'./detail.php?id=' + excluded.Id + '&l=' + getLanguageKey()">Details</a>
 							</div>
 							<div class="panel-body">
 								<img class="distro-logo" v-bind:src = "excluded.Image" v-if="currentTest !== -1" />
