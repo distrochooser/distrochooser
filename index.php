@@ -310,7 +310,8 @@
 										<span v-for="tag in distro.Tags" track-by="$index" v-if="getTagTranslation(tag) !== tag">
 											<i class="fa" v-bind:class="{'fa-question':!isTagChoosed(tag),'fa-check':isTagChoosed(tag)}" v-bind:title="text('doesntfit')"  v-if="!isTagChoosed(tag)"></i>
 											<i class="fa" v-bind:class="{'fa-check':isTagChoosed(tag)}" v-if="isTagChoosed(tag)" v-bind:title="text('fits')"></i>
-											{{ getTagTranslation(tag)}}
+									
+											{{ getTagTranslation(tag)}}		
 										</span>
 									</p>
 								</div>
@@ -340,6 +341,9 @@
 										<span v-for="tag in excluded.Tags" track-by="$index" v-if="(typeof currentTags['!' + tag] !== 'undefined')">
 											<i class="fa fa-times" v-bind:title="text('doesntfit')" ></i>
 											{{ getTagTranslation(tag)}}
+											<span class="exclude-reason">
+												<b>{{ text('why') }}?</b> "{{  getExcludingAnswer(tag) }}"
+											</span>
 										</span>
 									</p>
 								</div>

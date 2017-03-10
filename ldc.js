@@ -178,6 +178,32 @@ vm = new Vue({
       }
       return false;
     },
+    getExcludingAnswer: function(tag){
+      if (this.givenAnswers.length === 0){
+        return "";
+      }
+      var tag = tag.replace("!","");
+      var text = "";
+      var question ="";
+      for(var a in this.givenAnswers){
+        var answer = this.givenAnswers[a];
+       /* answer.Tags.forEach(function(t){
+          if (t === tag){
+            text = answer.Text;
+          }
+        });*/
+        answer.NoTags.forEach(function(t){
+          if (t === tag && text === ""){
+            text = answer.Text;
+          }
+        });
+        if (text !== ""){
+            question = this.getQuestionByAnswer(answer.Id);
+            break;
+        }
+      }
+      return question.Number+ ". " + question.Text + ": " + text;
+    },
     updateCurrentTags: function(){
       //get the currently answered tags
       this.currentTags = {};
