@@ -366,7 +366,7 @@
 		</div>
 		<div class="col-lg-2">
 			<div class="row right-box">
-				<ul class="list-group fixed-box"  v-bind:class="{'hidden':answeredQuestionsCount==0}">
+				<ul class="list-group"  v-bind:class="{'hidden':answeredQuestionsCount==0}">
 					<li class="list-group-item"><a class="hidden-xs" id="homelink" href="index.php"><img src="./assets/ldc2alpha.png" alt="Linux Distribution Chooser" style="
 						width: 100%;v
 						"></a></li>
