@@ -40,7 +40,8 @@ vm = new Vue({
         "Number":-1,
         "ButtonText":""
       }
-    ]
+    ],
+    langs: ["de","en"]
   },
   created: function(){
     console.log("  _     ___     ___   ____");
@@ -55,7 +56,8 @@ vm = new Vue({
   },
   computed: {
     langCode: function(){
-      return this.lang === "de" ? 1 : 2;
+      var index = this.langs.indexOf(this.lang);
+      return index !== -1 ? index + 1 : 1; 
     },
     shareLink : function(){
       var baseUrl = "https://beta.distrochooser.de/?l="+this.langCode;
@@ -503,16 +505,24 @@ vm = new Vue({
     },
     getLanguage: function(){
       var langcode = this.getLanguageKey();
-      var installed = ["de","en"];
-      this.lang = parseInt(langcode) === 1 ? 'de' : 'en';
+      var browserLang = navigator.language || navigator.userLanguage; 
+      if (this.langs.indexOf(browserLang) !== -1 && langcode === null){
+        this.lang = browserLang;
+      }else{
+        if (langcode === null){
+          this.lang = "en"; //falback if the browser language is not currently configured and there is no language key given
+        }else{
+          this.lang = parseInt(langcode) === 1 ? 'de' : 'en';
+        }
+      }
     },
     getLanguageKey: function(){
       var parts = this.getUrlParts();
       var langcode = 1;
       if (typeof parts["l"] !== 'undefined'){
-        langcode = parts["l"];
+        return parts["l"];
       }
-      return langcode;
+      return null;
     },
     nextTrigger: function(id){
       var needleIndex = -1;
