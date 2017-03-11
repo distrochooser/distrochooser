@@ -212,6 +212,7 @@
 							<li>{{ text('can-get-result-anyorder') }}</li>
 							<li v-html="text('can-delete')"></li>
 							<li v-html="text('can-mark-important')"></li>
+							<li v-html="text('get-exclusion')"></li>
 						</ul>
 					</div>
 					<div v-if="question.Answers.length !== 0" class="answer-parent">
@@ -221,15 +222,15 @@
 								<label  class="answer-text"  :for="answer.Id" v-bind:class="{ 'selected': answer.Selected }">
 									{{ answer.Text }}
 								</label>
-								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle visible-xs visible-sm" :title = "translateExcludedTags(answer)"></i>				
-								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm" :title = "translateExcludedTags(answer)"></i>				
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle visible-xs visible-sm fa-question-exclude" :title = "translateExcludedTags(answer)"></i>				
+								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm fa-question-exclude" :title = "translateExcludedTags(answer)"></i>				
 							</p>
 							<p v-if="!question.SingleAnswer">
 								<input :id="answer.Id" v-model="answer.Selected" :data-id="answer.Id" :name="question.Id + '_a'" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> 
 								<label class="answer-text" :for="answer.Id" v-bind:class="{ 'selected': answer.Selected }">
 									{{ answer.Text }}
 								</label>
-								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle visible-xs visible-sm" :title = "translateExcludedTags(answer)"></i>
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle fa-question-exclude visible-xs visible-sm" :title = "translateExcludedTags(answer)"></i>
 								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm" :title = "translateExcludedTags(answer)"></i>
 							</p>
 						</div>
@@ -338,6 +339,7 @@
 									<p class="tags">
 										<span v-for="tag in excluded.Tags" track-by="$index" v-if="(typeof currentTags['!' + tag] !== 'undefined')">
 											<i class="fa fa-times" v-bind:title="text('doesntfit')" ></i>
+											{{ text('NotComplied') }}:
 											{{ getTagTranslation(tag)}}
 											<span class="exclude-reason">
 												<b>{{ text('why') }}?</b> "{{  getExcludingAnswer(tag) }}"

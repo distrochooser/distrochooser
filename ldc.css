@@ -221,7 +221,8 @@ ul.image{
 .tags{
 	display: block;
     width: 100%;
-    margin-top: 2em;
+    margin-top: 1em;
+    margin-bottom: -1em;
 }
 .tags span{
     font-weight: bold;
@@ -274,6 +275,12 @@ hr{
     font-size: smaller;
 }
 .fa-question-circle{
+	padding-left:2px;
+    color: rgba(56, 158, 72, 0.81);
+    font-size: 16px;
+	padding-right: 2px
+}
+.fa-question-exclude{
 	top:2px;
 	padding-left:2px;
 	position: absolute;
@@ -291,7 +298,7 @@ hr{
 	width: 95%;
 }
 .exclude-reason{
-	margin-left: 1.35em;
+	font-size: 11pt;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     font-weight: 500 !important;

@@ -61,7 +61,6 @@ vm = new Vue({
     },
     shareLink : function(){
       var baseUrl = "https://beta.distrochooser.de/?l="+this.langCode;
-
       if (this.currentTest === -1){
         return baseUrl;
       }
@@ -189,11 +188,6 @@ vm = new Vue({
       var question ="";
       for(var a in this.givenAnswers){
         var answer = this.givenAnswers[a];
-       /* answer.Tags.forEach(function(t){
-          if (t === tag){
-            text = answer.Text;
-          }
-        });*/
         answer.NoTags.forEach(function(t){
           if (t === tag && text === ""){
             text = answer.Text;
