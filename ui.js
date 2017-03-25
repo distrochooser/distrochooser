@@ -3,7 +3,7 @@ $('#about').on('shown.bs.modal', function () {
     var label = [];
     var testData = [];
     var hitData = [];	
-    var stats = vm.testCount;		
+    var stats = vm.statistics;		
     for (var i = stats.length - 1; i >= 0; i--) {
         label.push(stats[i].MONTH);
         testData.push(parseInt(stats[i].count));

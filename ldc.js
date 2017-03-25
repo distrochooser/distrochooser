@@ -8,7 +8,7 @@ vm = new Vue({
     results: null, //the resulting distros
     comment: "", //the user's comment for the result
     commentSent: false,
-    testCount: 0,
+    statistics: null,
     visitorCount: 0,
     loaded: false,
     i18n: null,
@@ -51,6 +51,7 @@ vm = new Vue({
     console.log("Started: " + new Date());
     this.init();
     this.getStatistics();
+    this.getRatings();
     setTimeout(this.getRatings, 10000);
   },
   computed: {
@@ -250,13 +251,13 @@ vm = new Vue({
         });
     },
     getStatistics: function(){
-    	this.$http.post(this.backend,{method:'GetMonthStats',args: "", lang:  this.langCode}).then(function(data){
-          this.testCount = JSON.parse(data.body);
+    	this.$http.get(this.backend + "/getstats/").then(function(data){
+          this.statistics = data.json();
         });
     },
     getRatings: function(){
       var _t = this;
-      this.$http.post(this.backend,{method:'GetLastRatings',args: "", lang:  this.langCode}).then(function(data){
+      this.$http.get(this.backend + "/getratings/" + this.lang +"/").then(function(data){
           this.otherUserResults = [];
           var got =  JSON.parse(data.body).reverse();
           _t.displayRatings(got);
