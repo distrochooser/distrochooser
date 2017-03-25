@@ -426,7 +426,7 @@ vm = new Vue({
     },
   	updateAnsweredFlag : function(args,answer,question){
       var _t = this;
-      if (question.SingleAnswer){
+      if (question.single){
         question.answers.forEach(function(a){
           if (answer.id !== a.id){
              a.selected = false;
