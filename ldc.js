@@ -292,8 +292,8 @@ vm = new Vue({
             var test = parseInt(parts["test"]);
             //Load old test results
             var _t = this;
-            this.$http.post(this.backend,{method:'GetTest',args: test, lang:  this.langCode}).then(function(data){
-                  var obj = JSON.parse(data.body);
+            this.$http.get(this.backend +"/test/" + test +"/").then(function(data){
+                  var obj = data.json();
                   var answers = JSON.parse(obj.answers);
                   var important = JSON.parse(obj.important);
                   for(var a =0; a < answers.length;a++){
@@ -454,8 +454,11 @@ vm = new Vue({
     publishRating : function(args){
       var rating = $("#rating-stars").rateYo().rateYo("rating");
       var _this = this;
-      var c = this.comment;
-      this.$http.post(this.backend,{method:'NewRatingWithComment',args: "["+rating+",\""+c+"\","+(this.currentTest != -1 ? this.currentTest : "")+"]", lang:  this.langCode}).then(function(data){
+      this.$http.post(this.backend + "/addrating/"+this.lang + "/",{
+        test: _this.currentTest,
+        rating: rating,
+        comment: _this.comment
+      }).then(function(data){
           this.commentSent = true;
           this.getRatings();
       });
