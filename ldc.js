@@ -25,7 +25,12 @@ vm = new Vue({
     givenAnswers:[], //stores the currently given answers to avoid double iteration at getCurrentTags()
     modalOpen:false,
     version: "3.0 (2017)",
-    backend:"https://beta.distrochooser.de/distrochooser-backend-php",
+    allowDifferentBackends: false,
+    backends: {
+      "waldorf": "https://waldorf.distrochooser.de",
+      "stetler": "https://beta.distrochooser.de/distrochooser-backend-php",
+    },
+    backend: null,
     lang:"de",
     rawDistros: [],
     questions: [
@@ -49,6 +54,7 @@ vm = new Vue({
     console.log(" |____ |___/   \\___| |___/ ");
     console.log("Starting Linux Distribution Chooser "+this.version);
     console.log("Started: " + new Date());
+    this.chooseBackend();
     this.init();
     this.getStatistics();
     this.getRatings();
@@ -157,6 +163,21 @@ vm = new Vue({
     }
   },
   methods: {
+    chooseBackend:function(){
+      if (this.allowDifferentBackends){
+        var backends = Object.keys(this.backends);
+        var index = Math.floor((Math.random() * 100));
+        if (index > 2){
+          this.backend = this.backends.stetler;
+          console.log("Backend: stetler");
+        }else{
+          this.backend = this.backends.waldorf;
+          console.log("Backend: waldorf");
+        }
+      }else{
+        this.backend = this.backends.stetler;
+      }
+    },
     showTooltip:function(tooltip){
       alert(tooltip);
     },
