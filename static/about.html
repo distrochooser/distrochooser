@@ -9,7 +9,7 @@
         <p v-html="text('aboutText') + '.'"></p>
         <h3>{{ text('installedDistros') }}</h3>
         <span v-for="distro in rawDistros" v-if="modalOpen">
-          <a :href="distro.Website" target="_blank"><img :title="distro.Name + ' - ' + distro.ImageSource" class="listed-distro" :src="distro.Image"></a>
+          <a :href="distro.homepage" target="_blank"><img :title="distro.name + ' - ' + distro.imagesource" class="listed-distro" :src="distro.image"></a>
         </span>
         <h3>{{ text('stats') }}</h3>
          <canvas id="testCountCanvas" width="598" height="400"></canvas>

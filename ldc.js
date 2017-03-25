@@ -24,21 +24,20 @@ vm = new Vue({
     otherUserResults:[],
     givenAnswers:[], //stores the currently given answers to avoid double iteration at getCurrentTags()
     modalOpen:false,
-    version: "3.0 (2016)",
-    backend:"https://beta.distrochooser.de/rest.php?json&ldc3",
+    version: "3.0 (2017)",
+    backend:"https://beta.distrochooser.de/distrochooser-backend-php",
     lang:"de",
     rawDistros: [],
     questions: [
       {
-        "Id":"welcome",
-        "Text":"",
-        "HelpText":"",
-        "Important":false,
-        "SingleAnswer":false,
-        "Answers":[
+        "id":"welcome",
+        "text":"",
+        "help":"",
+        "important":false,
+        "single":false,
+        "answers":[
         ],
-        "Number":-1,
-        "ButtonText":""
+        "number":-1
       }
     ],
     langs: ["de","en"]
@@ -76,7 +75,7 @@ vm = new Vue({
     questionsCount: function(){
       var count = 0;
       for(var i = 0; i < this.questions.length;i++){
-        if (this.questions[i].Answers.length !== 0){
+        if (this.questions[i].answers.length !== 0){
           count++;
         }
       }
@@ -85,7 +84,7 @@ vm = new Vue({
     excludedDistros : function(){
       var distros =  [];
       for(var i=0;i<this.rawDistros.length;i++){
-        if (this.rawDistros[i].Excluded){
+        if (this.rawDistros[i].excluded){
           distros.push(this.rawDistros[i]);
         }
       }
@@ -95,7 +94,7 @@ vm = new Vue({
       //Reset percentages if needed
       if (Object.keys(this.currentTags).length === 0){
         for (var i = 0; i < this.rawDistros.length;i++){
-          this.rawDistros[i].Percentage = 0;
+          this.rawDistros[i].percentage = 0;
         }
         return this.rawDistros;
       }
@@ -113,16 +112,16 @@ vm = new Vue({
         var distro = this.rawDistros[i];
         var points = 0;
         var hittedTags = 0;
-        this.rawDistros[i].Excluded = false; //reset flag
+        this.rawDistros[i].excluded = false; //reset flag
         for (var tag in this.currentTags) {
           var weight = this.currentTags[tag];
           var isNoTag = tag.indexOf("!") !== -1;
           var needle = tag.replace("!","");
 
           //get percentage
-          if (distro.Tags.indexOf(needle) !== -1){
+          if (distro.tags.indexOf(needle) !== -1){
             if (isNoTag){
-              this.rawDistros[i].Excluded = true;
+              this.rawDistros[i].excluded = true;
               if (Object.keys(this.deniedWhy).indexOf(needle) === -1){
                 this.deniedWhy[needle] = 1;
               }else{
@@ -136,20 +135,20 @@ vm = new Vue({
           }
         }
         if (points > 0){
-          distro.Percentage = Math.round(100 / (pointSum/points),2);
+          distro.percentage = Math.round(100 / (pointSum/points),2);
         }else{
-          distro.Percentage = 0;
+          distro.percentage = 0;
         }
 
-        if (distro.Percentage > 0){
+        if (distro.percentage > 0){
           this.results.push(distro);
         }
       }
       this.commentSent = false;
       this.results.sort( function compare(a,b) {
-        if (a.Percentage > b.Percentage)
+        if (a.percentage > b.percentage)
           return -1;
-        if (a.Percentage < b.Percentage)
+        if (a.percentage < b.percentage)
           return 1;
         return 0;
       });
@@ -163,13 +162,13 @@ vm = new Vue({
     translateExcludedTags:function(answer){
       var result = this.text('excludes') +": \n";
       var _t = this;
-      answer.NoTags.forEach(function(t){
+      answer.notags.forEach(function(t){
         result += _t.text(t) + "\n";
       });
       return result.trim();
     },
     text:function(value){
-      return this.i18n !== null &&typeof this.i18n[value] !== 'undefined'? this.i18n[value].Text:'';
+      return this.i18n !== null &&typeof this.i18n[value] !== 'undefined'? this.i18n[value].val:'';
     },
     isTagChoosed:function(tag){
        for (var key in this.currentTags) {
@@ -188,42 +187,42 @@ vm = new Vue({
       var question ="";
       for(var a in this.givenAnswers){
         var answer = this.givenAnswers[a];
-        answer.NoTags.forEach(function(t){
+        answer.notags.forEach(function(t){
           if (t === tag && text === ""){
-            text = answer.Text;
+            text = answer.text;
           }
         });
         if (text !== ""){
-            question = this.getQuestionByAnswer(answer.Id);
+            question = this.getQuestionByAnswer(answer.id);
             break;
         }
       }
-      return question.Number+ ". " + question.Text + ": " + text;
+      return question.number+ ". " + question.text + ": " + text;
     },
     updateCurrentTags: function(){
       //get the currently answered tags
       this.currentTags = {};
       for (var i = 0; i < this.givenAnswers.length;i++){
          var answer = this.givenAnswers[i];
-         for(var y = 0 ; y < answer.Tags.length; y++){
-            var tag = answer.Tags[y];
+         for(var y = 0 ; y < answer.tags.length; y++){
+            var tag = answer.tags[y];
             if (Object.keys(this.currentTags).indexOf(tag) === -1){
               this.currentTags[tag] = 1;
             }else{
               this.currentTags[tag]++;
             }
-            if (answer.Important){
+            if (answer.important){
               this.currentTags[tag] *=2;
             }
           }
-          for(var y = 0 ; y < answer.NoTags.length; y++){
-            var tag = "!"+answer.NoTags[y];
+          for(var y = 0 ; y < answer.notags.length; y++){
+            var tag = "!"+answer.notags[y];
             if (Object.keys(this.currentTags).indexOf(tag) === -1){
               this.currentTags[tag] = 1;
             }else{
               this.currentTags[tag]++;
             }
-            if (answer.Important){
+            if (answer.important){
               this.currentTags[tag] *=2;
             }
           }
@@ -234,15 +233,15 @@ vm = new Vue({
         this.getLanguage();
         this.loaded = false;
         var _t = this;
-        this.$http.post(this.backend,{method:'get',args: "[]", lang:  this.langCode}).then(function(data){
+        this.$http.get(this.backend + "/get/"+this.lang+"/").then(function(data){
           var result = data.json();
           console.log("Hello #"+result.visitor);
-          _t.rawDistros = result.distributions;
-          _t.results = result.distributions;
-          _t.i18n = result.systemVars;
+          _t.rawDistros = result.distros;
+          _t.results = result.distros;
+          _t.i18n = result.i18n;
           _t.questions = _t.questions.concat(result.questions);
-          _t.questions[0].Text = _t.text("welcomeTextHeader");
-          _t.questions[0].HelpText = _t.text("welcomeText");
+          _t.questions[0].text = _t.text("welcomeTextHeader");
+          _t.questions[0].help = _t.text("welcomeText");
           _t.loaded = true;      
           _t.lastQuestionNumber = result.questions.length;
           _t.displayRatings(result.lastRatings);
@@ -294,16 +293,16 @@ vm = new Vue({
             var _t = this;
             this.$http.post(this.backend,{method:'GetTest',args: test, lang:  this.langCode}).then(function(data){
                   var obj = JSON.parse(data.body);
-                  var answers = JSON.parse(obj.Answers);
-                  var important = JSON.parse(obj.Important);
+                  var answers = JSON.parse(obj.answers);
+                  var important = JSON.parse(obj.important);
                   for(var a =0; a < answers.length;a++){
                     this.selectAnswer(answers[a]);
                   }
                   for (var i = 0; i < _t.questions.length;i++){
                     var count = important.filter(function(q){
-                      return q === _t.questions[i].Id;
+                      return q === _t.questions[i].id;
                     });
-                    _t.questions[i].Important = count.length !== 0;
+                    _t.questions[i].important = count.length !== 0;
                   }
             });
           }
@@ -312,8 +311,8 @@ vm = new Vue({
     answeredQuestions: function(){
       var answered = [];
       for (var i = 0; i < this.questions.length;i++){
-        for(var x = 0;  x < this.questions[i].Answers.length;x++){
-          if (this.questions[i].Answers[x].Selected){
+        for(var x = 0;  x < this.questions[i].answers.length;x++){
+          if (this.questions[i].answers[x].selected){
             answered.push(this.questions[i]);
             break;
           }
@@ -323,9 +322,9 @@ vm = new Vue({
     },
   	getAnswer : function(id){
   		for (var i = 0; i < this.questions.length;i++){
-  			for(var x = 0;  x < this.questions[i].Answers.length;x++){
-  				if (this.questions[i].Answers[x].Id === id){
-  					return this.questions[i].Answers[x];
+  			for(var x = 0;  x < this.questions[i].answers.length;x++){
+  				if (this.questions[i].answers[x].id === id){
+  					return this.questions[i].answers[x];
   				}
   			}
   		}
@@ -333,8 +332,8 @@ vm = new Vue({
   	},
     getQuestionByAnswer : function(id){
       for (var i = 0; i < this.questions.length;i++){
-        for(var x = 0;  x < this.questions[i].Answers.length;x++){
-          if (this.questions[i].Answers[x].Id === id){
+        for(var x = 0;  x < this.questions[i].answers.length;x++){
+          if (this.questions[i].answers[x].id === id){
             return this.questions[i];
           }
         }
@@ -343,7 +342,7 @@ vm = new Vue({
     },
     getQuestion : function(id){
       for (var i = 0; i < this.questions.length;i++){
-        if (this.questions[i].Id === id){
+        if (this.questions[i].id === id){
             return this.questions[i]
         }
       }
@@ -353,21 +352,21 @@ vm = new Vue({
   		var answer = this.getAnswer(id);
       var question = this.getQuestionByAnswer(id);
       this.addAnswerToList(answer);
-  		if (answer !== null && !answer.Selected){
-  			answer.Selected = true;
-        question.Answered = true;
-  			return answer.Selected;
+  		if (answer !== null && !answer.selected){
+  			answer.selected = true;
+        question.answered = true;
+  			return answer.selected;
   		}
-  		else if (answer.Selected){
-        answer.Selected = false;
-        question.Answered = false;
-        for (var i=0;i<question.Answers.length;i++){
-          if (question.Answers[i].Selected === true){
-            question.Answered = true;
+  		else if (answer.selected){
+        answer.selected = false;
+        question.answered = false;
+        for (var i=0;i<question.answers.length;i++){
+          if (question.answers[i].selected === true){
+            question.answered = true;
             break;
           }
         }
-  			return answer.Selected;
+  			return answer.selected;
   		}
       else{
         return false;
@@ -375,28 +374,28 @@ vm = new Vue({
   	},
     makeImportant : function (question){
       if (question !== null){
-        if (question.Important){
-          question.Important = false;
+        if (question.important){
+          question.important = false;
         }else{
-          question.Important = true;
+          question.important = true;
         }
-        this.setGivenAnswerImportantFlag(question,question.Important);
-        return question.Important;
+        this.setGivenAnswerImportantFlag(question,question.important);
+        return question.important;
       }else{
         return false;
       }
     },
     removeAnswers: function(question){
-      for(var i=0;i<question.Answers.length;i++){
-        question.Answers[i].Selected = false;
-        this.removeAnswerFromList(question.Answers[i]);
+      for(var i=0;i<question.answers.length;i++){
+        question.answers[i].selected = false;
+        this.removeAnswerFromList(question.answers[i]);
       }
-      question.Answered = false;
+      question.answered = false;
     },
     getGivenAnswerIndex: function(answer){
       var index = -1;
       this.givenAnswers.forEach(function(a,i,array){
-        if (a.Id === answer.Id){
+        if (a.id === answer.id){
           index = i;
         }
       });
@@ -412,43 +411,43 @@ vm = new Vue({
       var index = this.getGivenAnswerIndex(answer);
       if (index === -1) {
         //no duplicates
-        answer.Important = important;
+        answer.important = important;
         this.givenAnswers.push(answer);
       }
     },
     setGivenAnswerImportantFlag: function(question,state){
-      for (var i = 0; i < question.Answers.length;i++){
-        var index = this.getGivenAnswerIndex(question.Answers[i]);
+      for (var i = 0; i < question.answers.length;i++){
+        var index = this.getGivenAnswerIndex(question.answers[i]);
         if (index !== -1){
-          this.givenAnswers[index].Important = state;
+          this.givenAnswers[index].important = state;
         }
       }
     },
   	updateAnsweredFlag : function(args,answer,question){
       var _t = this;
       if (question.SingleAnswer){
-        question.Answers.forEach(function(a){
-          if (answer.Id !== a.Id){
-             a.Selected = false;
+        question.answers.forEach(function(a){
+          if (answer.id !== a.id){
+             a.selected = false;
           }
-          if (!a.Selected){
+          if (!a.selected){
             _t.removeAnswerFromList(a);
           }
         });
-        answer.Selected = true;
-        question.Answered = true;
-        this.addAnswerToList(answer,question.Important);
+        answer.selected = true;
+        question.answered = true;
+        this.addAnswerToList(answer,question.important);
       }else{
         var answered = 0;
-        question.Answers.forEach(function(a){
-          if (a.Selected){
+        question.answers.forEach(function(a){
+          if (a.selected){
              answered++;
-            _t.addAnswerToList(a,question.Important);
+            _t.addAnswerToList(a,question.important);
           }else{
             _t.removeAnswerFromList(a);
           }
         });
-        question.Answered =  answered >0;
+        question.answered =  answered >0;
       }
   	},
     publishRating : function(args){
@@ -473,18 +472,23 @@ vm = new Vue({
       this.updateCurrentTags()
       for(var i = 0; i < this.answered.length;i++){
           var question = this.answered[i];
-          for(var x = 0; x < question.Answers.length;x++){
-              if (question.Answers[x].Selected){
-                answers.push(question.Answers[x].Id);
+          for(var x = 0; x < question.answers.length;x++){
+              if (question.answers[x].selected){
+                answers.push(question.answers[x].id);
               }
           }
-          if (question.Important){
-            important.push(question.Id)
+          if (question.important){
+            important.push(question.id)
           }
       }
       $("#rating-stars").rateYo();
       this.currentTestLoading = false;
-      this.$http.post(this.backend,{method:'AddResultWithTags',args: "["+JSON.stringify(this.rawDistros)+","+JSON.stringify(this.currentTags)+","+JSON.stringify(answers)+","+JSON.stringify(important) +"]", lang:  this.langCode}).then(function(data){
+      this.$http.post(this.backend + "/addresult/",{
+          distros: JSON.stringify(this.rawDistros),
+          tags: JSON.stringify(this.currentTags),
+          answers: JSON.stringify(answers),
+          important: JSON.stringify(important) 
+        }).then(function(data){
         this.currentTest = parseInt(data.body);
     	  this.getStatistics();
       });
@@ -522,7 +526,7 @@ vm = new Vue({
       var needleIndex = -1;
       var needle = id;
       for(var i=0;i<this.questions.length;i++){
-            if (i < this.questions.length && this.questions[i].Id === needle){
+            if (i < this.questions.length && this.questions[i].id === needle){
               needleIndex = i;
               break;
             }
@@ -530,8 +534,8 @@ vm = new Vue({
       if (needleIndex === this.questions.length -1){
         this.displayResults();
       }else{
-        $("[ldc-header='"+this.questions[needleIndex+1].Id+"']").trigger("click",function(){
-          window.scroll(0,$("[ldc-header='"+this.questions[needleIndex+1].Id+"']").top);
+        $("[ldc-header='"+this.questions[needleIndex+1].id+"']").trigger("click",function(){
+          window.scroll(0,$("[ldc-header='"+this.questions[needleIndex+1].id+"']").top);
         });
       }
     },

@@ -1,4 +1,15 @@
 <?php
+	if (isset($_GET["answers"])){
+		$get = "?answers=".$_GET["answers"];
+		if (isset($_GET["l"])){
+			$get .="&l=".$_GET["l"];
+		}
+		header("HTTP/1.1 301 Moved Permanently"); 
+		header("Location: ./2/".$get);
+		die();
+	}
+?>
+<?php
 	$header = [
 		"cdn" => [
 			"js" => [],
@@ -189,22 +200,23 @@
 <div class="col-lg-6 main">
 	<div class="alert alert-warning" v-if="isOldTest">
 		{{ text("oldTest"); }}
+
 	</div>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
 		<div v-for="question in questions" class="panel panel-default">
-			<div class="panel-heading" role="tab" :id="'header' + question.Id">
+			<div class="panel-heading" role="tab" :id="'header' + question.id">
 				<h4 class="panel-title">
-					<a class="question-header" :ldc-header="question.Id" role="button" data-toggle="collapse" data-parent="#accordion" :href="'#collapse' + question.Id" aria-expanded="true" :aria-controls="'collapse' +question.Id" v-bind:class="{'answered':question.Answered}" >
-						<span v-if="question.Number !== -1">{{ question.Number }}. </span>{{ question.Text }}
+					<a class="question-header" :ldc-header="question.id" role="button" data-toggle="collapse" data-parent="#accordion" :href="'#collapse' + question.id" aria-expanded="true" :aria-controls="'collapse' +question.id" v-bind:class="{'answered':question.answered}" >
+						<span v-if="question.number !== -1">{{ question.number }}. </span>{{ question.text }}
 					</a>
 				</h4>
-				<a href="#" class="fa fa-star mark-important" v-bind:class="{'important':question.Important,'hidden':question.Answers.length=== 0}" :data-id="question.Id" v-on:click.prevent="makeImportant(question)"></a>
+				<a href="#" class="fa fa-star mark-important" v-bind:class="{'important':question.important,'hidden':question.answers.length=== 0}" :data-id="question.id" v-on:click.prevent="makeImportant(question)"></a>
 			</div>
-			<div :id="'collapse' + question.Id" class="panel-collapse collapse question" role="tabpanel" :aria-labelledby="'header' +question.Id">
+			<div :id="'collapse' + question.id" class="panel-collapse collapse question" role="tabpanel" :aria-labelledby="'header' +question.id">
 				<div class="panel-body">
-					<p v-html = "question.Number === -1 ? '' : question.HelpText"></p>
-					<img class="largelogo" src="./assets/tux.png" v-if="question.Id === 'welcome'">
-					<div id="StartText" v-if="question.Id === 'welcome'">
+					<p v-html = "question.number === -1 ? '' : question.help"></p>
+					<img class="largelogo" src="./assets/tux.png" v-if="question.id === 'welcome'">
+					<div id="StartText" v-if="question.id === 'welcome'">
 						<span v-html="text('introText')"></span>
 						<ul class="list">
 							<li>{{ text('can-skip-questions') }} </li>
@@ -215,31 +227,31 @@
 							<li v-html="text('get-exclusion')"></li>
 						</ul>
 					</div>
-					<div v-if="question.Answers.length !== 0" class="answer-parent">
-						 <div :class="question.SingleAnswer ? 'radio' : 'checkbox'" v-for="answer in question.Answers">
-							<p v-if="question.SingleAnswer">
-								<input :id="answer.Id" :checked='answer.Selected ' :name="question.Id + '_a'" :data-id="answer.Id" type="radio" v-on:click="updateAnsweredFlag($event,answer,question)"> 
-								<label  class="answer-text"  :for="answer.Id" v-bind:class="{ 'selected': answer.Selected }">
-									{{ answer.Text }}
+					<div v-if="question.answers.length !== 0" class="answer-parent">
+						 <div :class="question.single ? 'radio' : 'checkbox'" v-for="answer in question.answers">
+							<p v-if="question.single">
+								<input :id="answer.id" :checked='answer.selected ' :name="question.id + '_a'" :data-id="answer.id" type="radio" v-on:click="updateAnsweredFlag($event,answer,question)"> 
+								<label  class="answer-text"  :for="answer.id" v-bind:class="{ 'selected': answer.selected }">
+									{{ answer.text }}
 								</label>
-								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle visible-xs visible-sm fa-question-exclude" :title = "translateExcludedTags(answer)"></i>				
-								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm fa-question-exclude" :title = "translateExcludedTags(answer)"></i>				
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle visible-xs visible-sm fa-question-exclude" :title = "translateExcludedTags(answer)"></i>				
+								<i v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm fa-question-exclude" :title = "translateExcludedTags(answer)"></i>				
 							</p>
-							<p v-if="!question.SingleAnswer">
-								<input :id="answer.Id" v-model="answer.Selected" :data-id="answer.Id" :name="question.Id + '_a'" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> 
-								<label class="answer-text" :for="answer.Id" v-bind:class="{ 'selected': answer.Selected }">
-									{{ answer.Text }}
+							<p v-if="!question.single">
+								<input :id="answer.id" v-model="answer.selected" :data-id="answer.id" :name="question.id + '_a'" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> 
+								<label class="answer-text" :for="answer.id" v-bind:class="{ 'selected': answer.selected }">
+									{{ answer.text }}
 								</label>
-								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle fa-question-exclude visible-xs visible-sm" :title = "translateExcludedTags(answer)"></i>
-								<i v-if="displayFilters && answer.NoTags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm" :title = "translateExcludedTags(answer)"></i>
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle fa-question-exclude visible-xs visible-sm" :title = "translateExcludedTags(answer)"></i>
+								<i v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm" :title = "translateExcludedTags(answer)"></i>
 							</p>
 						</div>
 					</div>
-					<a href="#" :class="'btn btn-primary ' +question.Id + '-next'" :data-id="question.Id + '-next'" v-on:click.prevent="nextTrigger(question.Id)" >
-						{{ lastQuestionNumber=== question.Number ? text("getresult") : (question.Number === -1 ? text("StartTest")   :text("nextQuestion"))}}
+					<a href="#" :class="'btn btn-primary ' +question.id + '-next'" :data-id="question.id + '-next'" v-on:click.prevent="nextTrigger(question.id)" >
+						{{ lastQuestionNumber=== question.number ? text("getresult") : (question.number === -1 ? text("StartTest")   :text("nextQuestion"))}}
 					</a>
 
-					<a href="#" class="clear-answer" v-if="question.Answered" v-on:click.prevent="removeAnswers(question)"><i class="fa fa-trash remove-answer"></i> {{ text("clear"); }}</a>
+					<a href="#" class="clear-answer" v-if="question.answered" v-on:click.prevent="removeAnswers(question)"><i class="fa fa-trash remove-answer"></i> {{ text("clear"); }}</a>
 				</div>
 			</div>
 		</div>
@@ -291,23 +303,23 @@
 						{{ text("thanksForRating") }} 
 					</div>
 					<div v-for="distro in distributions">
-						<div class="panel panel-default distribution" v-show="!distro.Excluded">
+						<div class="panel panel-default distribution" v-show="!distro.excluded">
 							<div class="panel-heading" >
-								{{ distro.Name }}: {{ distro.Percentage }}%
-								<a class="link" :href="distro.Website">Website</a>
+								{{ distro.name }}: {{ distro.percentage }}%
+								<a class="link" :href="distro.homepage">Website</a>
 							</div>
 							<div class="panel-body">
 								<p>
-									<img class="distro-logo" v-bind:src = "distro.Image" v-if="currentTest !== -1"/>
-									<p v-html="distro.Description"></p>
+									<img class="distro-logo" v-bind:src = "distro.image" v-if="currentTest !== -1"/>
+									<p v-html="distro.description"></p>
 									<hr>
 								</p>
 								<div class="form-group">
 									<h4 class="panel-title full-width-header">
-										 {{ text('why') }} {{ distro.Name }}?
+										 {{ text('why') }} {{ distro.name }}?
 									</h4>
 									<p class="tags">
-										<span v-for="tag in distro.Tags" track-by="$index" v-if="getTagTranslation(tag) !== tag">
+										<span v-for="tag in distro.tags" track-by="$index" v-if="getTagTranslation(tag) !== tag">
 											<i class="fa" v-bind:class="{'fa-question':!isTagChoosed(tag),'fa-check':isTagChoosed(tag)}" v-bind:title="text('doesntfit')"  v-if="!isTagChoosed(tag)"></i>
 											<i class="fa" v-bind:class="{'fa-check':isTagChoosed(tag)}" v-if="isTagChoosed(tag)" v-bind:title="text('fits')"></i>
 									
@@ -317,27 +329,27 @@
 								</div>
 							</div>
 							<div class="panel-footer panel-distro-footer">
-								<a class="link" :href="distro.TextSource">Text</a>
-								<a class="link" :href="distro.ImageSource">Logo</a>
+								<a class="link" :href="distro.textsource">Text</a>
+								<a class="link" :href="distro.imagesource">Logo</a>
 							</div>
 						</div>
 					</div>
 					<div v-for="excluded in excludedDistros" v-if="displayExcluded">
 						<div class="panel panel-default distribution">
 							<div class="panel-heading" >
-								{{ excluded.Name }}: {{ text('excluded') }}
-								<a class="link" :href="excluded.Website">Website</a>
+								{{ excluded.name }}: {{ text('excluded') }}
+								<a class="link" :href="excluded.homepage">Website</a>
 							</div>
 							<div class="panel-body">
-								<img class="distro-logo" v-bind:src = "excluded.Image" v-if="currentTest !== -1" />
-								<p v-html="excluded.Description"></p>
+								<img class="distro-logo" v-bind:src = "excluded.image" v-if="currentTest !== -1" />
+								<p v-html="excluded.description"></p>
 								<hr>
 								<div class="form-group">
 									<h4 class="panel-title">
-										{{ text('why') }} {{ text('not') }} {{ excluded.Name }}?
+										{{ text('why') }} {{ text('not') }} {{ excluded.name }}?
 									</h4>
 									<p class="tags">
-										<span v-for="tag in excluded.Tags" track-by="$index" v-if="(typeof currentTags['!' + tag] !== 'undefined')">
+										<span v-for="tag in excluded.tags" track-by="$index" v-if="(typeof currentTags['!' + tag] !== 'undefined')">
 											<i class="fa fa-times" v-bind:title="text('doesntfit')" ></i>
 											{{ text('NotComplied') }}:
 											{{ getTagTranslation(tag)}}
@@ -349,8 +361,8 @@
 								</div>
 							</div>
 							<div class="panel-footer panel-distro-footer">
-								<a class="link" :href="excluded.TextSource">Text</a>
-								<a class="link" :href="excluded.ImageSource">Logo</a>
+								<a class="link" :href="excluded.textsource">Text</a>
+								<a class="link" :href="excluded.imagesource">Logo</a>
 							</div>
 						</div>
 					</div>
