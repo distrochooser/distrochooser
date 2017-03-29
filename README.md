@@ -7,7 +7,7 @@ This repository contains the sourcecode of Distrochooser from
 [distrochooser.de](http://distrochooser.de) for developing purposes.
 
 > Under development warning: I'm currently changing a lot of features of the software. 
-I'm open to contributions and/ or suggestions. The sourcecode has still some flaws, for example.
+I'm open to contributions and/ or suggestions. The sourcecode has still some flaws, for example the bootstrapping is not perfect.
 
 ## Contents of this repository
 
