@@ -7,11 +7,12 @@ This repository contains the sourcecode of Distrochooser from
 [distrochooser.de](http://distrochooser.de) for developing purposes.
 
 > Under development warning: I'm currently changing a lot of features of the software. 
-I'm open to contributions and/ or suggestions. The sourcecode has still some flaws, for example the bootstrapping is not perfect.
+I'm open to contributions and/ or suggestions. The sourcecode has still some flaws, for example the bootstrapping is not perfect. This software version is deployed on [beta.distrochooser.de](http://beta.distrochooser.de), the main site is still on the jquery pyramid of doom-version.
 
 ## Contents of this repository
 
 - Frontend of [distrochooser.de](http://distrochooser.de)
+
 
 ## Third party libraries
 
