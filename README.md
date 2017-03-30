@@ -1,5 +1,7 @@
 ## distrochooser
 
+
+[![](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/vuejs/awesome-vue)
 [![Join the chat at https://gitter.im/squarerootfury/distrochooser][gitter-image]][gitter-url]
 [![](https://img.shields.io/badge/vue-1.x-brightgreen.svg)](https://vuejs.org)
 
