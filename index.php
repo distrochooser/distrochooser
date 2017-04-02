@@ -115,6 +115,10 @@
 		<p class="hidden-xs">
 			<span class="loader-image-wrapper"><img src="./assets/mobile.png"></span>
 		</p>
+		<p class="visible-xs">
+			<span class="mobile-loader-image-wrapper"><img src="./assets/round.png"></span>
+		</p>
+		<span class="loader-text"></span>
 		<noscript>
 			<div class="well noscript">
 				Der Distrochooser benutzt JavaScript, um zu funktionieren. JavaScript ist ein integraler Bestandteil des Internets (geworden). Ohne JavaScript ist eine Software wie der Distrochooser schlicht nicht möglich.
@@ -127,6 +131,10 @@
 			</div>
 		</noscript>
 	</div>
+		
+	<iframe class="advertisment" src="https://chmr.eu/ad.html">
+
+	</iframe>
 	<div class="container main-container hidden"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 		<div class="row">
 			<?php include "./static/about.html";?>
@@ -136,9 +144,16 @@
 
 						<a class="btn btn-primary button-left-nav contact" id="about"  data-toggle="modal" data-target="#about">{{ text('about') }}</a>
 						<span class="spacer"></span>
+						
+						<a class="btn btn-primary button-left-nav contact" href="./static/privacy.html">{{ text('privacy') }}</a>
+						<span class="spacer"></span>
+
+						<a class="btn btn-primary button-left-nav contact" href="./static/contact.html">{{ text('contact') }}</a>
+						<span class="spacer"></span>
 
 						<a class="btn btn-primary button-left-nav" target="_blank" href="http://0fury.de"><img class="vendor" alt="0fury.de" src="./assets/0fury.ico">
 						<span>{{ text('Vendor') }}</span>  0fury.de</a>
+						<span class="spacer"></span>
 
 						<a title="Zur deutschen Version wechseln" href="?l=1"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 						<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
@@ -152,10 +167,6 @@
 								</li>
 								</li>
 						</ul>
-						<footer class="visible-lg">
-							<a href="./static/privacy.html">{{ text('privacy') }}</a>
-							<a href="./static/contact.html">{{ text('contact') }}</a>
-						</footer>
 					</div>
 					<div class="hidden-lg">
 				<!--<ul class="nav nav-pills" role="tablist">
@@ -407,7 +418,7 @@
 							<i class="fa fa-cog fa-spin fa-fw"></i>  {{ this.text("calculating"); }}
 						</li>
 					</ul>
-				</div>
+				</div>		
 			</div>
 		</div>
 	</div>

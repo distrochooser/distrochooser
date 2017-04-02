@@ -45,16 +45,34 @@ vm = new Vue({
         "number":-1
       }
     ],
-    langs: ["de","en"]
+    langs: ["de","en"],
+    loadingTexts: [
+      "sending pencil to space...",
+      "feeding penguins...",
+      "purchase gaffer tape..",
+      "rearraning molecules...",
+      "sending TCP packages via airmail...",
+      "installing Linux Kernel on Windows...",
+      "feeding USB mouse...",
+      "das Pferd frisst keinen Kartoffelsalat!",
+      "wombel wombel...",
+      "früher war mehr Lametta!",
+      "I'm older than three years!",
+      "this is a loading text!",
+      "what is this 'Windows' you talk about?"
+    ]
   },
   created: function(){
+    this.loadText();
     console.log("  _     ___     ___   ____");
     console.log(" | |   |   \\   / __| |__ /");
     console.log(" | |__ | |) | |(__    |_ \\ ");
     console.log(" |____ |___/   \\___| |___/ ");
     console.log("Starting Linux Distribution Chooser "+this.version);
     console.log("Started: " + new Date());
+    this.loadText();
     this.chooseBackend();
+    this.loadText();
     this.init();
     this.getStatistics();
     this.getRatings();
@@ -163,7 +181,12 @@ vm = new Vue({
     }
   },
   methods: {
+    loadText: function(){
+      var index = Math.floor(Math.random() * this.loadingTexts.length);
+      $(".loader-text").text(this.loadingTexts[index]);
+    },
     chooseBackend:function(){
+      this.loadText();
       if (this.allowDifferentBackends){
         var backends = Object.keys(this.backends);
         var index = Math.floor((Math.random() * 100));
@@ -252,10 +275,12 @@ vm = new Vue({
       return this.currentTags;
     },
     init : function(){
+        this.loadText();
         this.getLanguage();
         this.loaded = false;
         var _t = this;
-        this.$http.get(this.backend + "/get/"+this.lang+"/").then(function(data){
+        var isAdblockerOn = $(".advertisment").is(":hidden");
+        this.$http.post(this.backend + "/get/"+this.lang+"/",{'adblocker': isAdblockerOn}).then(function(data){
           var result = data.json();
           console.log("Hello #"+result.visitor);
           _t.rawDistros = result.distros;
@@ -269,20 +294,25 @@ vm = new Vue({
           _t.displayRatings(result.lastRatings);
           console.log("Finished: " + new Date());
           _t.getOldTest();
+          this.loadText();
         });
     },
     getStatistics: function(){
+      this.loadText();
     	this.$http.get(this.backend + "/getstats/").then(function(data){
           this.statistics = data.json();
-        });
+          this.loadText();
+      });
     },
     getRatings: function(){
+      this.loadText();
       var _t = this;
       this.$http.get(this.backend + "/getratings/" + this.lang +"/").then(function(data){
           this.otherUserResults = [];
           var got =  JSON.parse(data.body).reverse();
           _t.displayRatings(got);
-        });
+          this.loadText();
+      });
     },
     displayRatings(ratings){
       for(var rating in ratings){
@@ -527,6 +557,7 @@ vm = new Vue({
         return vars;
     },
     getLanguage: function(){
+      this.loadText();
       var langcode = this.getLanguageKey();
       var browserLang = navigator.language || navigator.userLanguage; 
       if (this.langs.indexOf(browserLang) !== -1 && langcode === null){
