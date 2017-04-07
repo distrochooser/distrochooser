@@ -239,7 +239,10 @@
 							<span>
 								{{ text("donation") }} <i class="fa fa-heart" style="color:#ca1717"></i>
 							</span>
-							<?php include "./static/donate.html";?>
+							<p>	
+								<!-- its disabled -->
+								<a href=""><img class="donateButton" src="./assets/btn_donate_SM.gif"></a>
+							</p>
 						</div>
 					</div>
 					<div>
