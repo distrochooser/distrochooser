@@ -1,13 +1,10 @@
 <?php
 	if (isset($_GET["answers"])){
-		$get = "?answers=".$_GET["answers"];
-		if (isset($_GET["l"])){
-			$get .="&l=".$_GET["l"];
-		}
 		header("HTTP/1.1 301 Moved Permanently"); 
-		header("Location: ./2/".$get);
+		header("Location: ./2/?answers=".$_GET["answers"].(isset($_GET["l"])?"&l=".$_GET["l"] : ""));
 		die();
 	}
+	$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
 ?>
 <html id="app">
 <head>
@@ -24,7 +21,7 @@
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="500" />
 	<meta property="og:image:height" content="253" />
-	<meta property="og:description" content="<?php echo  isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";?>" />
+	<meta property="og:description" content="<?php echo $description; ?>" />
 	<meta property="og:locale" content="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'en_GB' : 'de_DE';?>" />
 	<meta property="og:locale:alternate" content="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'de_DE' : 'en_GB';?>" />
 
