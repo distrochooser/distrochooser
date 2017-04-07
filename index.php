@@ -9,70 +9,6 @@
 		die();
 	}
 ?>
-<?php
-	$header = [
-		"cdn" => [
-			"js" => [],
-			"css" => [
-				"https://bootswatch.com/lumen/bootstrap.min.css",
-				"https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.css",
-				"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-			]
-		],
-		"local" => [
-			"js" => [],
-			"css" => [
-				"./3rdparty/bootstrap.min.css",
-				"./3rdparty/gfonts.css",
-				"./3rdparty/font-awesome.min.css",
-				"./3rdparty/jquery.rateyo.min.css"
-			]
-		]
-	];
-	$footer = [
-		"cdn" => [
-			"js" => [
-				"https://code.jquery.com/jquery-2.2.4.min.js",
-				"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js",
-				"https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.1.1/jquery.rateyo.min.js",
-				"https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js",
-				"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js",
-				"https://cdn.jsdelivr.net/vue.resource/0.9.1/vue-resource.min.js"
-			],
-			"css" => []
-		],
-		"local" => [
-			"js" => [
-				"./3rdparty/jquery-2.2.4.min.js",
-				"./3rdparty/bootstrap.min.js",
-				"./3rdparty/jquery.rateyo.min.js",
-				"./3rdparty/vue.js",
-				"./3rdparty/Chart.min.js",
-				"./3rdparty/vue-resource.min.js"
-			],
-			"css" => []
-		]
-	];
-	function echoStyles($data){
-		$source = "local";//((isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1) || isset($_GET["nocdn"])) ? "local" : "cdn" ;
-		$jsPattern = "<script src=\"%s\"></script>\n";
-		$cssPattern = "<link rel=\"stylesheet\" href=\"%s\">\n";
-		foreach($data[$source] as $prop => $files){
-			if (count($files) > 0){
-				if ($prop === "js"){
-					foreach($files as $file){
-						echo sprintf($jsPattern,$file);
-					}
-				}else{
-					foreach($files as $file){
-						echo sprintf($cssPattern,$file);
-					}
-				}
-			}
-		}
-	}
-
-?>
 <html id="app">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,10 +37,11 @@
 	<meta name="msvalidate.01" content="8165DC81CC6E5D6805201B58C5596403" />
 	<meta name="generator" content="LDC 2017">
 	<link rel="icon" href=favicon.ico type="image/x-icon" >
+	<link rel="stylesheet" href="./3rdparty/bootstrap.min.css">
+	<link rel="stylesheet" href="./3rdparty/gfonts.css">
+	<link rel="stylesheet" href="./3rdparty/font-awesome.min.css">
+	<link rel="stylesheet" href="./3rdparty/jquery.rateyo.min.css">
 	<title>Distrochooser</title>
-	<?php
-		echoStyles($header);
-	?>
 	<script>
 		window.vm = null;
 	</script>
@@ -420,9 +357,12 @@
 			</div>
 		</div>
 	</div>
-	<?php
-		echoStyles($footer);
-	?>
+	<script src="./3rdparty/jquery-2.2.4.min.js"></script>
+	<script src="./3rdparty/bootstrap.min.js"></script>
+	<script src="./3rdparty/jquery.rateyo.min.js"></script>
+	<script src="./3rdparty/vue.js"></script>
+	<script src="./3rdparty/Chart.min.js"></script>
+	<script src="./3rdparty/vue-resource.min.js"></script>
 	<script src="./ldc.js"></script>
 	<script src="./ui.js"></script>
 	<script>
