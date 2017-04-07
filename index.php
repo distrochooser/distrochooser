@@ -19,12 +19,10 @@
 	<meta property="og:image:height" content="253" />
 	<meta property="og:description" content="<?php echo $description; ?>" />
 	<meta property="og:locale" content="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'en_GB' : 'de_DE';?>" />
-	<meta property="og:locale:alternate" content="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'de_DE' : 'en_GB';?>" />
-
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@distrochooser" />
 	<meta name="twitter:title" content="Distrochooser" />
-	<meta name="twitter:description" content="<?php echo  isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";?>" />
+	<meta name="twitter:description" content="<?php echo $description;?>" />
 	<meta name="twitter:image" content="https://distrochooser.de/assets/tux.png" />
 	<meta name="google-site-verification" content="nqtoKAtXX7xTNyddaEGkkYtgpc0pc0b-wigel0Acy5c" />
 	<meta name="msvalidate.01" content="8165DC81CC6E5D6805201B58C5596403" />
