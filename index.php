@@ -245,23 +245,21 @@
 								<label  class="answer-text"  :for="answer.id" v-bind:class="{ 'selected': answer.selected }">
 									{{ answer.text }}
 								</label>
-								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle visible-xs visible-sm fa-question-exclude" :title = "translateExcludedTags(answer)"></i>				
-								<i v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm fa-question-exclude" :title = "translateExcludedTags(answer)"></i>				
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer),$event)" v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle fa-question-exclude" data-placement='left' data-html="true" :data-title = "translateExcludedTags(answer)"></i>				
 							</p>
 							<p v-if="!question.single">
 								<input :id="answer.id" v-model="answer.selected" :data-id="answer.id" :name="question.id + '_a'" type="checkbox" v-on:change="updateAnsweredFlag($event,answer,question)"> 
 								<label class="answer-text" :for="answer.id" v-bind:class="{ 'selected': answer.selected }">
 									{{ answer.text }}
 								</label>
-								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer))" v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle fa-question-exclude visible-xs visible-sm" :title = "translateExcludedTags(answer)"></i>
-								<i v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle hidden-xs hidden-sm" :title = "translateExcludedTags(answer)"></i>
+								<i v-on:click.prevent="showTooltip(translateExcludedTags(answer),$event)" v-if="displayFilters && answer.notags.length > 0" class="fa fa-question-circle" data-placement='left' data-html="true" :data-title = "translateExcludedTags(answer)"></i>
 							</p>
 						</div>
 					</div>
 					<a href="#" :class="'btn btn-primary ' +question.id + '-next'" :data-id="question.id + '-next'" v-on:click.prevent="nextTrigger(question.id)" >
 						{{ lastQuestionNumber=== question.number ? text("getresult") : (question.number === -1 ? text("StartTest")   :text("nextQuestion"))}}
 					</a>
-
+					<a v-if="lastQuestionNumber !== question.number && question.number !== -1" href="#" class="skip-question hidden-xs" v-on:click.prevent="nextTrigger(question.id)"><i class="fa fa-mail-forward"></i> {{ text("skip-question"); }}</a>
 					<a href="#" class="clear-answer" v-if="question.answered" v-on:click.prevent="removeAnswers(question)"><i class="fa fa-trash remove-answer"></i> {{ text("clear"); }}</a>
 				</div>
 			</div>

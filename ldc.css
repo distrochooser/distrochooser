@@ -293,7 +293,8 @@ hr{
 	padding-left:2px;
     color: rgba(56, 158, 72, 0.81);
     font-size: 16px;
-	padding-right: 2px
+	padding-right: 2px;
+	cursor: pointer;
 }
 .fa-question-exclude{
 	top:2px;
@@ -302,7 +303,7 @@ hr{
     right: -7px;
     color: rgba(56, 158, 72, 0.81);
     font-size: 16px;
-	cursor: help;
+	cursor: pointer;
 	padding-right: 2px
 }
 .answer-parent{
@@ -371,4 +372,8 @@ hr{
 		right: 30.5em;
 		width: 14em
 	}
+}
+
+.skip-question{
+	padding-left: 1em;
 }

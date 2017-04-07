@@ -60,7 +60,8 @@ vm = new Vue({
       "I'm older than three years!",
       "this is a loading text!",
       "what is this 'Windows' you talk about?"
-    ]
+    ],
+    i18nused: []
   },
   created: function(){
     this.loadText();
@@ -201,18 +202,24 @@ vm = new Vue({
         this.backend = this.backends.stetler;
       }
     },
-    showTooltip:function(tooltip){
-      alert(tooltip);
+    showTooltip:function(tooltip,event){
+      $(event.target).tooltip('show');
     },
     translateExcludedTags:function(answer){
-      var result = this.text('excludes') +": \n";
+      var result = this.text('excludes') +": <br>";
       var _t = this;
       answer.notags.forEach(function(t){
-        result += _t.text(t) + "\n";
+        var text = _t.text(t);
+        if (text !== ''){
+          result += _t.text(t) + "<br>";
+        }
       });
       return result.trim();
     },
     text:function(value){
+      if (this.i18nused.indexOf(value) === -1){
+        this.i18nused.push(value);
+      }
       return this.i18n !== null &&typeof this.i18n[value] !== 'undefined'? this.i18n[value].val:'';
     },
     isTagChoosed:function(tag){
