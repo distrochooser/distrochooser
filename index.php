@@ -1,9 +1,5 @@
 <?php
-	if (isset($_GET["answers"])){
-		header("HTTP/1.1 301 Moved Permanently"); 
-		header("Location: ./2/?answers=".$_GET["answers"].(isset($_GET["l"])?"&l=".$_GET["l"] : ""));
-		die();
-	}
+	include "./bridge.php";
 	$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
 ?>
 <html id="app">
