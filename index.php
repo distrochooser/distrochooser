@@ -155,8 +155,8 @@
 						<span>{{ text('Vendor') }}</span>  0fury.de</a>
 						<span class="spacer"></span>
 
-						<a title="Zur deutschen Version wechseln" href="?l=1"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
-						<a title="Switch to english version" href="?l=2"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
+						<a title="Zur deutschen Version wechseln" href="?l=1" v-on:click.prevent="changeLanguage('de')"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
+						<a title="Switch to english version" href="?l=2" v-on:click.prevent="changeLanguage('en')"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
 						<ul class="list-group col-lg-9 other-users">
 								<li class="list-group-item" v-for="result in otherUserResults" v-if="result.stars > 0 || result.comment !== ''">
 									<div>

@@ -182,6 +182,38 @@ vm = new Vue({
     }
   },
   methods: {
+    changeLanguage: function(id){
+      if (vm.lang !== id){
+        this.lang = id;
+        var _t = this;
+        var isAdblockerOn = $(".advertisment").is(":hidden");
+        var oldQuestions = this.questions;
+        this.$http.post(this.backend + "/get/"+this.lang+"/",{'adblocker': isAdblockerOn}).then(function(data){
+            var result = data.json();
+            _t.rawDistros = result.distros;
+            _t.results = result.distros;
+            _t.i18n = result.i18n;
+            result.questions.splice( 0, 0, _t.questions[0] );
+            _t.questions = result.questions;
+            _t.questions[0].text = _t.text("welcomeTextHeader");
+            _t.questions[0].help = _t.text("welcomeText");
+            _t.lastQuestionNumber = result.questions.length;
+            _t.getRatings();
+            for(var i=0;i<oldQuestions.length;i++){
+              var q = oldQuestions[i];
+              _t.questions[i].important = q.important;
+              var wasAnswered = false;
+              for (var a=0;a<q.answers.length;a++){
+                _t.questions[i].answers[a].selected = q.answers[a].selected;
+                wasAnswered = q.answers[a].selected;
+                if (wasAnswered){
+                  _t.questions[i].answered = true;
+                }
+              }
+            }
+        });
+      }
+    },
     loadText: function(){
       var index = Math.floor(Math.random() * this.loadingTexts.length);
       $(".loader-text").text(this.loadingTexts[index]);
@@ -298,7 +330,7 @@ vm = new Vue({
           _t.questions[0].help = _t.text("welcomeText");
           _t.loaded = true;      
           _t.lastQuestionNumber = result.questions.length;
-          _t.displayRatings(result.lastRatings);
+          _t.getRatings();
           console.log("Finished: " + new Date());
           _t.getOldTest();
           this.loadText();
