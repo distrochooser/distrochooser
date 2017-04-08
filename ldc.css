@@ -173,8 +173,7 @@ body{
     height: 1em;
 }
 .brand{
-	width: 160px;
-    height: 24px;
+	text-transform: uppercase;
 }
 .answered{
 	font-weight: bold;

@@ -11,7 +11,12 @@ var scripts = ['./ldc.js','./ui.js'];
 
 var styles = ['./ldc.css'];
 
-// task
+var thirdparty = [
+    "./3rdparty/bootstrap.min.css",
+    "./3rdparty/gfonts.css",
+    "./3rdparty/font-awesome.min.css",
+    "./3rdparty/jquery.rateyo.min.css",
+];
 
 var getCopyright = function () {
     return fs.readFileSync('./header.txt');
@@ -29,6 +34,10 @@ gulp.task('build', function () {
     .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
     .pipe(concat('ldc.min.css'))
     .pipe(header(getCopyright()))
+    .pipe(gulp.dest('built'));
+     gulp.src(thirdparty) 
+    .pipe(minifyCss())
+    .pipe(concat('3rdparty.min.css'))
     .pipe(gulp.dest('built'));
 });
 
