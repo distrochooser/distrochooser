@@ -11,6 +11,9 @@ a:hover{
 {
 	text-decoration: none;
 }
+.fa-star{
+	color:rgba(255, 153, 0, 0.77) !important;
+}
 .fa-trash,.fa-trash:hover{
 	color: #ff4136;
     text-decoration: none;

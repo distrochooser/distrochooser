@@ -3,12 +3,11 @@
 	$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
 ?>
 <!DOCTYPE html>
-<html id="app">
+<html id="app" lang="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'en' : 'de';?>">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-	<meta name="description" lang = "de"  content ="Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.">
-	<meta name="description" lang = "en"  content ="The distrochooser helps you to find the suitable Distribution for you!">
+	<meta name="description" lang = "<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'en' : 'de';?>"  content ="<?php echo $description;?>">
 	<meta name="keywords" content="Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows">
 	<meta name="theme-color" content="#158cba">
 	<meta property="og:title" content="Distrochooser" />
@@ -147,7 +146,7 @@
 						<span v-if="question.number !== -1">{{ question.number }}. </span>{{ question.text }}
 					</a>
 				</h4>
-				<a href="#" class="fa fa-star mark-important" v-bind:class="{'important':question.important,'hidden':question.answers.length=== 0}" :data-id="question.id" v-on:click.prevent="makeImportant(question)"></a>
+				<a href="#" class="fa fa-exclamation-circle mark-important" v-bind:class="{'important':question.important,'hidden':question.answers.length=== 0}" :data-id="question.id" v-on:click.prevent="makeImportant(question)"></a>
 			</div>
 			<div :id="'collapse' + question.id" class="panel-collapse collapse question" role="tabpanel" :aria-labelledby="'header' +question.id">
 				<div class="panel-body">
