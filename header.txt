@@ -1,0 +1,4 @@
+/*
+Distrochooser.de - https://github.com/cmllr/distrochooser
+MIT License, https://github.com/cmllr/distrochooser/blob/master/LICENSE
+*/

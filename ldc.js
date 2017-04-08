@@ -353,7 +353,7 @@ vm = new Vue({
           this.loadText();
       });
     },
-    displayRatings(ratings){
+    displayRatings: function(ratings){
       for(var rating in ratings){
             var tuple = {};
             tuple.comment = ratings[rating].Comment;
