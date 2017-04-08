@@ -213,7 +213,7 @@
 							<input type="text" class="form-control" :value="shareLink">
 						</div>
 						<div id="rating-stars"></div>
-						<textarea v-model="comment" class="form-control" :placeholder="text('comment')"></textarea>
+						<textarea data-selector="zero-stars" data-placement="top" :data-title="text('zerostars')" v-model="comment" class="form-control" :placeholder="text('comment')"></textarea>
 						<button id="submit-comment" v-on:click="publishRating($event)" class="btn btn-primary">{{ text('submit-comment') }}</button>
 						<div class="social" v-if="currentTestLoading">
 							<i class="fa fa-spin fa-circle-o-notch"></i>

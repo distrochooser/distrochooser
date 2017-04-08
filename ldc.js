@@ -543,15 +543,25 @@ vm = new Vue({
   	},
     publishRating : function(args){
       var rating = $("#rating-stars").rateYo().rateYo("rating");
-      var _this = this;
-      this.$http.post(this.backend + "/addrating/"+this.lang + "/",{
-        test: _this.currentTest,
-        rating: rating,
-        comment: _this.comment
-      }).then(function(data){
-          this.commentSent = true;
-          this.getRatings();
-      });
+      if (rating === 0 && this.comment === ""){
+        $("textarea").tooltip('show');
+        $('#zero-stars').on('hidden.bs.tooltip', function () {
+          $("textarea").tooltip('destroy');
+        });
+        $('textarea').on('focus', function () {
+          $("textarea").tooltip('destroy');
+        });
+      }else{
+        var _this = this;
+        this.$http.post(this.backend + "/addrating/"+this.lang + "/",{
+          test: _this.currentTest,
+          rating: rating,
+          comment: _this.comment
+        }).then(function(data){
+            this.commentSent = true;
+            this.getRatings();
+        });
+      }
     },
     displayResults: function(){
       if ($("#Result").attr("aria-expanded") !== "true"){ //no recalculation if already open
