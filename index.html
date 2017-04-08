@@ -2,6 +2,7 @@
 	include "./bridge.php";
 	$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
 ?>
+<!DOCTYPE html>
 <html id="app">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,11 +29,11 @@
 	<meta name="msvalidate.01" content="8165DC81CC6E5D6805201B58C5596403" />
 	<meta name="generator" content="LDC 2017">
 	<link rel="icon" href=favicon.ico type="image/x-icon" >
-	<link rel="stylesheet" href="./built/3rdparty.min.css">
 	<title>Distrochooser</title>
 	<script>
 		window.vm = null;
 	</script>
+	<link rel="stylesheet" href="./built/3rdparty.min.css">
 	<link href="./built/ldc.min.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -348,12 +349,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="./3rdparty/jquery-2.2.4.min.js"></script>
-	<script src="./3rdparty/bootstrap.min.js"></script>
-	<script src="./3rdparty/jquery.rateyo.min.js"></script>
-	<script src="./3rdparty/vue.js"></script>
-	<script src="./3rdparty/Chart.min.js"></script>
-	<script src="./3rdparty/vue-resource.min.js"></script>
+	<script src="./built/3rdparty.min.js"></script>
 	<script src="./built/ldc.min.js"></script>
 	<script>
 		$(document).ready(function(){
