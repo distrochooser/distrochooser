@@ -67,7 +67,7 @@
 				<div class="row">
 					<div class="visible-lg">
 
-						<a class="btn btn-primary button-left-nav contact" id="about"  data-toggle="modal" data-target="#about">{{ text('about') }}</a>
+						<a href="about" class="btn btn-primary button-left-nav contact" data-toggle="modal" data-target="#about">{{ text('about') }}</a>
 						<span class="spacer"></span>
 						
 						<a class="btn btn-primary button-left-nav contact" href="./static/privacy.html">{{ text('privacy') }}</a>
@@ -358,6 +358,10 @@
 				halfStar: false,
     			fullStar: true
 			});
+			if (window.location.hash.indexOf("about") !== -1){
+				$("#about").modal();
+				vm.modalOpen = true;
+			}
 		});
 	</script>
 </body>
