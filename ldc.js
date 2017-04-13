@@ -28,7 +28,7 @@ vm = new Vue({
     allowDifferentBackends: false,
     backends: {
       "waldorf": "https://waldorf.distrochooser.de",
-      "stetler": "https://beta.distrochooser.de/distrochooser-backend-php",
+      "stetler": "https://distrochooser.de/distrochooser-backend-php",
     },
     backend: null,
     lang:"de",
@@ -85,7 +85,7 @@ vm = new Vue({
       return index !== -1 ? index + 1 : 1; 
     },
     shareLink : function(){
-      var baseUrl = "https://beta.distrochooser.de/?l="+this.langCode;
+      var baseUrl = "https://distrochooser.de/?l="+this.langCode;
       if (this.currentTest === -1){
         return baseUrl;
       }
@@ -187,8 +187,9 @@ vm = new Vue({
         this.lang = id;
         var _t = this;
         var isAdblockerOn = $(".advertisment").is(":hidden");
+        var dnt = navigator.doNotTrack == 1 ? "true" : "false";
         var oldQuestions = this.questions;
-        this.$http.post(this.backend + "/get/"+this.lang+"/",{'adblocker': isAdblockerOn}).then(function(data){
+        this.$http.post(this.backend + "/get/"+this.lang+"/",{'adblocker': isAdblockerOn,'dnt':dnt,'referrer':document.referrer}).then(function(data){
             var result = data.json();
             _t.rawDistros = result.distros;
             _t.results = result.distros;
@@ -319,7 +320,8 @@ vm = new Vue({
         this.loaded = false;
         var _t = this;
         var isAdblockerOn = $(".advertisment").is(":hidden");
-        this.$http.post(this.backend + "/get/"+this.lang+"/",{'adblocker': isAdblockerOn}).then(function(data){
+        var dnt = navigator.doNotTrack == 1 ? "true" : "false";
+        this.$http.post(this.backend + "/get/"+this.lang+"/",{'adblocker': isAdblockerOn,'dnt':dnt,'referrer':document.referrer}).then(function(data){
           var result = data.json();
           console.log("Hello #"+result.visitor);
           _t.rawDistros = result.distros;
