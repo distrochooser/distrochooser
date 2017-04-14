@@ -226,9 +226,6 @@ footer{
     margin-top: 1em;
     float: left;
 }
-.imageAnswer{
-	display-list-style:none;
-}
 ul.image{
 	display:inline;
 	list-style: none;
@@ -262,7 +259,6 @@ ul.image{
 	margin-top: 0.7em;
 }
 .result-comment{	
-    word-break: break-word;
 	text-overflow: ellipsis;
 	font-style: italic;
 }
