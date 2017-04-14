@@ -83,11 +83,11 @@
 						<a title="Zur deutschen Version wechseln" href="?l=1" v-on:click.prevent="changeLanguage('de')"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 						<a title="Switch to english version" href="?l=2" v-on:click.prevent="changeLanguage('en')"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
 						<ul class="list-group col-lg-9 other-users">
-								<li class="list-group-item" v-for="result in otherUserResults" v-if="result.stars > 0 || result.comment !== ''">
+								<li class="list-group-item" v-for="result in otherUserResults" v-if="result.stars > 0">
 									<div>
 											<i class="fa fa-user"></i> {{ text('a') }} {{result.os}}-User {{ text('comments') }}:
 									</div>
-									<i v-for="star in result.stars"class="fa fa-star" aria-hidden="true"></i>
+									<i v-for="star in result.stars" class="fa fa-star" aria-hidden="true"></i>
 									<span class="result-comment" :title="result.comment ">{{ result.comment === "" ? "" : "“" + (result.comment >= 200 ? result.comment.substring(0,200) +"..." : result.comment )+ "“"}}</span>
 								</li>
 								</li>
@@ -138,6 +138,14 @@
 		{{ text("oldTest"); }}
 
 	</div>
+	<div class="alert alert-info">
+		<span v-if="lang === 'de'">
+			Wir testen am 13.04.2017 die neue Version des Distrochoosers direkt auf der Hauptseite. Bitte benutze die Bewertungsfunktion. Danke!
+		</span>
+		<span v-if="lang === 'en'">
+			We are testing today the new version. Please use the comment and rate function at your result and give vote. Thank you!
+		</span>
+	</div>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
 		<div v-for="question in questions" class="panel panel-default">
 			<div class="panel-heading" role="tab" :id="'header' + question.id">
@@ -146,7 +154,7 @@
 						<span v-if="question.number !== -1">{{ question.number }}. </span>{{ question.text }}
 					</a>
 				</h4>
-				<a href="#" class="fa fa-exclamation-circle mark-important" v-bind:class="{'important':question.important,'hidden':question.answers.length=== 0}" :data-id="question.id" v-on:click.prevent="makeImportant(question)"></a>
+				<a href="#" class="fa fa-exclamation-circle mark-important" v-bind:class="{'important':question.important,'hidden':question.answers.length=== 0}" :data-id="question.id" v-on:click.prevent="makeImportant(question)"  :title="text('important-button')"></a>
 			</div>
 			<div :id="'collapse' + question.id" class="panel-collapse collapse question" role="tabpanel" :aria-labelledby="'header' +question.id">
 				<div class="panel-body">
