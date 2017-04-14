@@ -88,7 +88,11 @@
 											<i class="fa fa-user"></i> {{ text('a') }} {{result.os}}-User {{ text('comments') }}:
 									</div>
 									<i v-for="star in result.stars" class="fa fa-star" aria-hidden="true"></i>
-									<span class="result-comment" :title="result.comment ">{{ result.comment === "" ? "" : "“" + (result.comment >= 200 ? result.comment.substring(0,200) +"..." : result.comment )+ "“"}}</span>
+									<span class="result-comment" :title="result.comment">
+										{{ 
+											result.comment === "" ? "" : "“" + (result.comment.length > 100 ? result.comment.substring(0,100) +"..." : result.comment )+ "“"
+										}}
+									</span>
 								</li>
 								</li>
 						</ul>
@@ -140,7 +144,7 @@
 	</div>
 	<div class="alert alert-info">
 		<span v-if="lang === 'de'">
-			Wir testen am 13.04.2017 die neue Version des Distrochoosers direkt auf der Hauptseite. Bitte benutze die Bewertungsfunktion. Danke!
+			Wir testen heute die neue Version des Distrochoosers direkt auf der Hauptseite. Bitte benutze die Bewertungsfunktion. Danke!
 		</span>
 		<span v-if="lang === 'en'">
 			We are testing today the new version. Please use the comment and rate function at your result and give vote. Thank you!
@@ -219,6 +223,7 @@
 						</div>
 						<div id="rating-stars"></div>
 						<textarea data-selector="zero-stars" data-placement="top" :data-title="text('zerostars')" v-model="comment" class="form-control" :placeholder="text('comment')"></textarea>
+						<input class="form-control email" type="email" :placeholder="text('email')" v-model="email" v-if="comment !== ''">
 						<button id="submit-comment" v-on:click="publishRating($event)" class="btn btn-primary">{{ text('submit-comment') }}</button>
 						<div class="social" v-if="currentTestLoading">
 							<i class="fa fa-spin fa-circle-o-notch"></i>

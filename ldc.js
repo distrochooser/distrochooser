@@ -7,6 +7,7 @@ vm = new Vue({
     currentTags: {}, //the answered tags
     results: null, //the resulting distros
     comment: "", //the user's comment for the result
+    email: "",
     commentSent: false,
     statistics: null,
     visitorCount: 0,
@@ -558,10 +559,12 @@ vm = new Vue({
         this.$http.post(this.backend + "/addrating/"+this.lang + "/",{
           test: _this.currentTest,
           rating: rating,
-          comment: _this.comment
+          comment: _this.comment,
+          email: _this.email
         }).then(function(data){
-            this.commentSent = true;
-            this.getRatings();
+            _this.commentSent = true;
+            _this.email = "";
+            _this.getRatings();
         });
       }
     },

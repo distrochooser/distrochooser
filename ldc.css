@@ -376,3 +376,9 @@ hr{
 .skip-question{
 	padding-left: 1em;
 }
+.email{
+    width: 13em;
+    height: 12pt;
+    margin: 0 auto;
+    margin-bottom: 1em;
+}
