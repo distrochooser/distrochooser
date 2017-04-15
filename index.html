@@ -142,14 +142,6 @@
 		{{ text("oldTest"); }}
 
 	</div>
-	<div class="alert alert-info">
-		<span v-if="lang === 'de'">
-			Wir testen heute die neue Version des Distrochoosers direkt auf der Hauptseite. Bitte benutze die Bewertungsfunktion. Danke!
-		</span>
-		<span v-if="lang === 'en'">
-			We are testing today the new version. Please use the comment and rate function at your result and give vote. Thank you!
-		</span>
-	</div>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
 		<div v-for="question in questions" class="panel panel-default">
 			<div class="panel-heading" role="tab" :id="'header' + question.id">
