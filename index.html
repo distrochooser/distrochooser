@@ -83,7 +83,7 @@
 						<a title="Zur deutschen Version wechseln" href="?l=1" v-on:click.prevent="changeLanguage('de')"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
 						<a title="Switch to english version" href="?l=2" v-on:click.prevent="changeLanguage('en')"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
 						<ul class="list-group col-lg-9 other-users">
-								<li class="list-group-item" v-for="result in otherUserResults" v-if="result.stars > 0 && result.comment != ''">
+								<li class="list-group-item" v-for="result in otherUserResults">
 									<div>
 											<i class="fa fa-user"></i> {{ text('a') }} {{result.os}}-User {{ text('comments') }}:
 									</div>
@@ -103,7 +103,7 @@
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<a class="navbar-brand brand" href="index.php">
+						<a class="navbar-brand brand" href="index.html">
 							Distrochooser
 						</a>
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
@@ -143,11 +143,11 @@
 
 	</div>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-		<div v-for="question in questions" class="panel panel-default">
+		<div v-for="question in questions" v-if="isQuestionAllowed(question)" class="panel panel-default">
 			<div class="panel-heading" role="tab" :id="'header' + question.id">
 				<h4 class="panel-title">
 					<a class="question-header" :ldc-header="question.id" role="button" data-toggle="collapse" data-parent="#accordion" :href="'#collapse' + question.id" aria-expanded="true" :aria-controls="'collapse' +question.id" v-bind:class="{'answered':question.answered}" >
-						<span v-if="question.number !== -1">{{ question.number }}. </span>{{ question.text }}
+						<span v-if="question.number !== -1">{{ getNumber(question) }}. </span>{{ question.text }}
 					</a>
 				</h4>
 				<a href="#" class="fa fa-exclamation-circle mark-important" v-bind:class="{'important':question.important,'hidden':question.answers.length=== 0}" :data-id="question.id" v-on:click.prevent="makeImportant(question)"  :title="text('important-button')"></a>

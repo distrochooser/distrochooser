@@ -43,6 +43,7 @@ vm = new Vue({
         "single":false,
         "answers":[
         ],
+        exclusiontags:null,
         "number":-1
       }
     ],
@@ -183,6 +184,28 @@ vm = new Vue({
     }
   },
   methods: {
+    isQuestionAllowed: function(question){
+      if (question.exclusiontags === null || Object.keys(this.currentTags).length === 0){
+        return true;
+      }
+      for (var p in this.currentTags){
+        if (question.exclusiontags.indexOf(p) !== -1){
+          return false;
+        }
+      }     
+      return true;
+    },
+    getNumber: function(question){
+      var number=-1;
+      for(var i in this.questions){
+        if (this.isQuestionAllowed(this.questions[i])){
+          number++;
+        }              
+        if (this.questions[i].id === question.id){
+          return number;
+        }  
+      }
+    },
     changeLanguage: function(id){
       if (vm.lang !== id){
         this.lang = id;
@@ -484,6 +507,7 @@ vm = new Vue({
         question.answers[i].selected = false;
         this.removeAnswerFromList(question.answers[i]);
       }
+      this.updateCurrentTags();
       question.answered = false;
     },
     getGivenAnswerIndex: function(answer){
@@ -543,6 +567,7 @@ vm = new Vue({
         });
         question.answered =  answered >0;
       }
+      this.updateCurrentTags();
   	},
     publishRating : function(args){
       var rating = $("#rating-stars").rateYo().rateYo("rating");
