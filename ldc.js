@@ -382,7 +382,6 @@ vm = new Vue({
     displayRatings: function(ratings){
       for(var rating in ratings){
             var tuple = {};
-            tuple.comment = ratings[rating].Comment;
             tuple.stars = Math.ceil(ratings[rating].Rating);
             tuple.os = "Windows";
             if (ratings[rating].UserAgent.indexOf("Linux") !== -1){

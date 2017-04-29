@@ -88,11 +88,6 @@
 											<i class="fa fa-user"></i> {{ text('a') }} {{result.os}}-User {{ text('comments') }}:
 									</div>
 									<i v-for="star in result.stars" class="fa fa-star" aria-hidden="true"></i>
-									<span class="result-comment" :title="result.comment">
-										{{ 
-											result.comment.length > 100 ? result.comment.substring(0,100) +"..." : result.comment 
-										}}
-									</span>
 								</li>
 								</li>
 						</ul>
