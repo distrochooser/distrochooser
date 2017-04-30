@@ -56,10 +56,11 @@
 			</div>
 		</noscript>
 	</div>
-		
-	<iframe class="advertisment" src="https://chmr.eu/ad.html">
+	<?php if (!isset($_SERVER["HTTP_DNT"])) :?>
+		<iframe class="advertisment" src="https://chmr.eu/ad.html">
 
-	</iframe>
+		</iframe>
+	<?php endif;?>
 	<div class="container main-container hidden"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 		<div class="row">
 			<?php include "./static/about.html";?>
