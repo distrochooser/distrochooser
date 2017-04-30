@@ -56,7 +56,7 @@
 			</div>
 		</noscript>
 	</div>
-	<?php if (!isset($_SERVER["HTTP_DNT"])) :?>
+	<?php if (!isset($_SERVER["HTTP_DNT"]) || (isset($_SERVER["HTTP_DNT"]) && $_SERVER["HTTP_DNT"] === "0") ) :?>
 		<iframe class="advertisment" src="https://chmr.eu/ad.html">
 
 		</iframe>
