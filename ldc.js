@@ -29,6 +29,7 @@ vm = new Vue({
     allowDifferentBackends: true,
     backends: {
       "waldorf": "https://waldorf.distrochooser.de",
+      "stetler": "https://distrochooser.de/distrochooser-backend-php",
     },
     backend: null,
     lang:"de",
@@ -658,7 +659,14 @@ vm = new Vue({
       if (needleIndex === this.questions.length -1){
         this.displayResults();
       }else{
-        $("[ldc-header='"+this.questions[needleIndex+1].id+"']").trigger("click",function(){
+        //get next question
+        for (var i=needleIndex +1;i<this.questions.length;i++){
+              if (this.isQuestionAllowed(this.questions[i])){
+                needleIndex = this.questions.indexOf(this.questions[i]);
+                break;
+              }
+        }
+        $("[ldc-header='"+this.questions[needleIndex].id+"']").trigger("click",function(){
           window.scroll(0,$("[ldc-header='"+this.questions[needleIndex+1].id+"']").top);
         });
       }

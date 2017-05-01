@@ -4,6 +4,7 @@
 	#exit();
 	include "./bridge.php";
 	$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
+	$ads = false;
 ?>
 <!DOCTYPE html>
 <html id="app" lang="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'en' : 'de';?>">
@@ -93,8 +94,8 @@
 								</li>
 								</li>
 						</ul>	
-						<?php if (!isset($_SERVER["HTTP_DNT"]) || (isset($_SERVER["HTTP_DNT"]) && $_SERVER["HTTP_DNT"] === "0") ) :?>
-							<div class="advertisment-left col-lg-9">							
+						<?php if ($ads && (!isset($_SERVER["HTTP_DNT"]) || (isset($_SERVER["HTTP_DNT"]) && $_SERVER["HTTP_DNT"] === "0") ) ):?>
+							<div class="advertisment advertisment-left col-lg-9">							
 								<small>{{ text('advertisment') }}</small>
 								<iframe class="col-lg-9" src="https://chmr.eu/ad.html">
 
@@ -321,8 +322,8 @@
 			</div>
 		</div>
 		</div>
-			<?php if (!isset($_SERVER["HTTP_DNT"]) || (isset($_SERVER["HTTP_DNT"]) && $_SERVER["HTTP_DNT"] === "0") ) :?>
-				<div class="advertisment-middle col-lg-">							
+			<?php if ($ads &&(!isset($_SERVER["HTTP_DNT"]) || (isset($_SERVER["HTTP_DNT"]) && $_SERVER["HTTP_DNT"] === "0") )) :?>
+				<div class="advertisment advertisment-middle col-lg-">							
 					<small>{{ text('advertisment') }}</small>
 					<iframe src="https://chmr.eu/ad.html">
 
