@@ -26,10 +26,9 @@ vm = new Vue({
     givenAnswers:[], //stores the currently given answers to avoid double iteration at getCurrentTags()
     modalOpen:false,
     version: "3.0 (2017)",
-    allowDifferentBackends: false,
+    allowDifferentBackends: true,
     backends: {
       "waldorf": "https://waldorf.distrochooser.de",
-      "stetler": "https://distrochooser.de/distrochooser-backend-php",
     },
     backend: null,
     lang:"de",
@@ -245,19 +244,8 @@ vm = new Vue({
     },
     chooseBackend:function(){
       this.loadText();
-      if (this.allowDifferentBackends){
-        var backends = Object.keys(this.backends);
-        var index = Math.floor((Math.random() * 100));
-        if (index > 2){
-          this.backend = this.backends.stetler;
-          console.log("Backend: stetler");
-        }else{
-          this.backend = this.backends.waldorf;
-          console.log("Backend: waldorf");
-        }
-      }else{
-        this.backend = this.backends.stetler;
-      }
+      this.backend = this.backends.waldorf;
+      console.log("Backend: waldorf");
     },
     showTooltip:function(tooltip,event){
       $(event.target).tooltip('show');
@@ -409,13 +397,11 @@ vm = new Vue({
             var _t = this;
             this.$http.get(this.backend +"/test/" + test +"/").then(function(data){
                   var obj = data.json();
-                  var answers = JSON.parse(obj.answers);
-                  var important = JSON.parse(obj.important);
-                  for(var a =0; a < answers.length;a++){
-                    this.selectAnswer(answers[a]);
+                  for(var a =0; a < obj.answers.length;a++){
+                    this.selectAnswer(obj.answers[a]);
                   }
                   for (var i = 0; i < _t.questions.length;i++){
-                    var count = important.filter(function(q){
+                    var count = obj.important.filter(function(q){
                       return q === _t.questions[i].id;
                     });
                     _t.questions[i].important = count.length !== 0;
@@ -616,8 +602,12 @@ vm = new Vue({
       }
       $("#rating-stars").rateYo();
       this.currentTestLoading = false;
+      var resultIdSet = [];
+      for(var d in this.rawDistros){
+        resultIdSet.push(this.rawDistros[d].id);
+      }
       this.$http.post(this.backend + "/addresult/",{
-          distros: JSON.stringify(this.rawDistros),
+          distros: JSON.stringify(resultIdSet),
           tags: JSON.stringify(this.currentTags),
           answers: JSON.stringify(answers),
           important: JSON.stringify(important) 

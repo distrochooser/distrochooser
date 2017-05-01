@@ -1,4 +1,7 @@
 <?php
+	#header("301 Moved permanentely");
+	#header("Location: https://distrochooser.de");
+	#exit();
 	include "./bridge.php";
 	$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
 ?>
@@ -37,6 +40,9 @@
 </head>
 <body>
 	<div class="loader visible" v-bind:class="{'visible':!loaded,'hidden':loaded}">
+		<p class="advertisment">
+			<!-- for statistic purposes -->
+		</p>
 		<p class="hidden-xs">
 			<span class="loader-image-wrapper"><img src="./assets/mobile.png"></span>
 		</p>
@@ -56,11 +62,6 @@
 			</div>
 		</noscript>
 	</div>
-	<?php if (!isset($_SERVER["HTTP_DNT"]) || (isset($_SERVER["HTTP_DNT"]) && $_SERVER["HTTP_DNT"] === "0") ) :?>
-		<iframe class="advertisment" src="https://chmr.eu/ad.html">
-
-		</iframe>
-	<?php endif;?>
 	<div class="container main-container hidden"  v-bind:class="{'hidden':!loaded,'visible':loaded}">
 		<div class="row">
 			<?php include "./static/about.html";?>
@@ -91,7 +92,15 @@
 									<i v-for="star in result.stars" class="fa fa-star" aria-hidden="true"></i>
 								</li>
 								</li>
-						</ul>
+						</ul>	
+						<?php if (!isset($_SERVER["HTTP_DNT"]) || (isset($_SERVER["HTTP_DNT"]) && $_SERVER["HTTP_DNT"] === "0") ) :?>
+							<div class="advertisment-left col-lg-9">							
+								<small>{{ text('advertisment') }}</small>
+								<iframe class="col-lg-9" src="https://chmr.eu/ad.html">
+
+								</iframe>
+							</div>
+						<?php endif;?>
 					</div>
 					<div class="hidden-lg">
 				<!--<ul class="nav nav-pills" role="tablist">
@@ -310,9 +319,16 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		</div>
+			<?php if (!isset($_SERVER["HTTP_DNT"]) || (isset($_SERVER["HTTP_DNT"]) && $_SERVER["HTTP_DNT"] === "0") ) :?>
+				<div class="advertisment-middle col-lg-">							
+					<small>{{ text('advertisment') }}</small>
+					<iframe src="https://chmr.eu/ad.html">
 
-		</div>
-		</div>
+					</iframe>
+				</div>
+			<?php endif;?>
 		</div>
 		<div class="col-md-1">
 		</div>

@@ -71,7 +71,7 @@ body{
 .flag{
 	padding-top: 7px;
     width: 40px;
-
+    padding-right: 7px;
 	margin-top:0.4em !important;
 }
 .flags{
@@ -323,55 +323,6 @@ hr{
     padding-right: 1em;
 }
 
-@media screen and (min-device-width: 1009px){
-	.main{
-		margin-left: -3.7em;
-	}
-	.navbar{
-		margin-left: -2.2em;
-		margin-right: 1em;
-	}
-	.advertisment{
-		border:0px;
-		position: absolute;
-		top: 25em;
-		right: 10.5em;
-		width: 14em
-	}
-}
-
-@media screen and (max-device-width: 1300px){
-	.advertisment{
-		display:none;
-	}
-}
-
-@media screen and (min-device-width: 1300px){
-	.main{
-		margin-left: -3.7em;
-	}
-	.navbar{
-		margin-left: -2.2em;
-		margin-right: 1em;
-	}
-	.advertisment{
-		border:0px;
-		position: absolute;
-		top: 25em;
-		right: 10.5em;
-		width: 14em
-	}
-}
-
-@media screen and (min-device-width: 1400px){
-	.advertisment{
-		border:0px;
-		position: absolute;
-		top: 25em;
-		right: 30.5em;
-		width: 14em
-	}
-}
 
 .skip-question{
 	padding-left: 1em;
@@ -381,4 +332,20 @@ hr{
     height: 12pt;
     margin: 0 auto;
     margin-bottom: 1em;
+}
+.advertisment-left{
+	padding-left:0px !important;
+}
+.advertisment-left *{
+    border: 0px;
+    width: 100%;
+    padding-left: 0px;
+}
+.advertisment-middle small{
+	display: block;
+}
+.advertisment-middle iframe{
+	width:100%;
+	border: 0px;
+	height:90px;
 }
