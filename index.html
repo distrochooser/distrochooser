@@ -84,16 +84,7 @@
 						<span class="spacer"></span>
 
 						<a title="Zur deutschen Version wechseln" href="?l=1" v-on:click.prevent="changeLanguage('de')"><img class="flag" src="./assets/langs/de.png" alt="Deutsch"></a>
-						<a title="Switch to english version" href="?l=2" v-on:click.prevent="changeLanguage('en')"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>
-						<ul class="list-group col-lg-9 other-users">
-								<li class="list-group-item" v-for="result in otherUserResults">
-									<div>
-											<i class="fa fa-user"></i> {{ text('a') }} {{result.os}}-User {{ text('comments') }}:
-									</div>
-									<i v-for="star in result.stars" class="fa fa-star" aria-hidden="true"></i>
-								</li>
-								</li>
-						</ul>	
+						<a title="Switch to english version" href="?l=2" v-on:click.prevent="changeLanguage('en')"><img class="flag" src="./assets/langs/gb.png" alt="English"></a>					
 						<?php if ($ads && (!isset($_SERVER["HTTP_DNT"]) || (isset($_SERVER["HTTP_DNT"]) && $_SERVER["HTTP_DNT"] === "0") ) ):?>
 							<div class="advertisment advertisment-left col-lg-9">							
 								<small>{{ text('advertisment') }}</small>

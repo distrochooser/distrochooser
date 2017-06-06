@@ -22,7 +22,6 @@ vm = new Vue({
     donationEnabled:false,
     displayExcluded:true,
     displayFilters: true,
-    otherUserResults:[],
     givenAnswers:[], //stores the currently given answers to avoid double iteration at getCurrentTags()
     modalOpen:false,
     version: "3.0 (2017)",
@@ -78,8 +77,6 @@ vm = new Vue({
     this.loadText();
     this.init();
     this.getStatistics();
-    this.getRatings();
-    setTimeout(this.getRatings, 10000);
   },
   computed: {
     langCode: function(){
@@ -223,7 +220,6 @@ vm = new Vue({
             _t.questions[0].text = _t.text("welcomeTextHeader");
             _t.questions[0].help = _t.text("welcomeText");
             _t.lastQuestionNumber = result.questions.length;
-            _t.getRatings();
             for(var i=0;i<oldQuestions.length;i++){
               var q = oldQuestions[i];
               _t.questions[i].important = q.important;
@@ -245,8 +241,8 @@ vm = new Vue({
     },
     chooseBackend:function(){
       this.loadText();
-      this.backend = this.backends.waldorf;
-      console.log("Backend: waldorf");
+      this.backend = this.backends.stetler;
+      console.log("Backend: stetler");
     },
     showTooltip:function(tooltip,event){
       $(event.target).tooltip('show');
@@ -345,7 +341,6 @@ vm = new Vue({
           _t.questions[0].help = _t.text("welcomeText");
           _t.loaded = true;      
           _t.lastQuestionNumber = result.questions.length;
-          _t.getRatings();
           console.log("Finished: " + new Date());
           _t.getOldTest();
           this.loadText();
@@ -357,35 +352,6 @@ vm = new Vue({
           this.statistics = data.json();
           this.loadText();
       });
-    },
-    getRatings: function(){
-      this.loadText();
-      var _t = this;
-      this.$http.get(this.backend + "/getratings/" + this.lang +"/").then(function(data){
-          this.otherUserResults = [];
-          var got =  JSON.parse(data.body).reverse();
-          _t.displayRatings(got);
-          this.loadText();
-      });
-    },
-    displayRatings: function(ratings){
-      for(var rating in ratings){
-            var tuple = {};
-            tuple.stars = Math.ceil(ratings[rating].Rating);
-            tuple.os = "Windows";
-            if (ratings[rating].UserAgent.indexOf("Linux") !== -1){
-              tuple.os = "Linux";
-            }else if (ratings[rating].UserAgent.indexOf("ac") !== -1){
-              tuple.os = "macOS";
-            }else if (ratings[rating].UserAgent.indexOf("unix") !== -1){
-              tuple.os = "Unix";
-            }else if (ratings[rating].UserAgent.indexOf("Android") !== -1){
-              tuple.os = "Android";
-            }else if (ratings[rating].UserAgent.indexOf("iPhone") !== -1){
-              tuple.os = "iPhone";
-            }
-            this.otherUserResults.unshift(tuple);
-      }
     },
     getOldTest: function(){
         var parts = this.getUrlParts();
@@ -575,7 +541,6 @@ vm = new Vue({
         }).then(function(data){
             _this.commentSent = true;
             _this.email = "";
-            _this.getRatings();
         });
       }
     },
