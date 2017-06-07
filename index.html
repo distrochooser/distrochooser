@@ -1,11 +1,3 @@
-<?php
-	#header("301 Moved permanentely");
-	#header("Location: https://distrochooser.de");
-	#exit();
-	include "./bridge.php";
-	$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
-	$ads = false;
-?>
 <!DOCTYPE html>
 <html id="app" lang="<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'en' : 'de';?>">
 <head>
