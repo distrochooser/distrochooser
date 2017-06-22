@@ -10,6 +10,7 @@
 <script>
     import navigation from '../components/navigation'
     import questions from '../components/questions'
+    import i18n from '../mixins/i18n'
     export default {
       data () {
         return {}
@@ -17,7 +18,8 @@
       components: {
         navigation,
         questions
-      }
+      },
+      mixins: [i18n]
     }
 </script>
 
