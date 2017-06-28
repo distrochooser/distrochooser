@@ -3,7 +3,7 @@
 	#header("Location: https://distrochooser.de");
 	#exit();
 	include "./bridge.php";
-	$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.";
+	$description = isset($_GET["l"]) && $_GET["l"] === "2" ? "The distrochooser helps you to find the suitable Distribution for you!" : "Welches Linux soll ich benutzen? Der Distrochooser hilft beim Vergleich von Linux-Distributionen und der Frage, welche Distribution man benutzen sollte.";
 	$ads = false;
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 	<meta name="description" lang = "<?php echo isset($_GET["l"]) && $_GET["l"] === "2" ? 'en' : 'de';?>"  content ="<?php echo $description;?>">
-	<meta name="keywords" content="Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows">
+	<meta name="keywords" content="Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows, Linux Distributionen Vergleich">
 	<meta name="theme-color" content="#158cba">
 	<meta property="og:title" content="Distrochooser" />
 	<meta property="og:type" content="website" />
@@ -44,13 +44,9 @@
 		<p class="advertisment">
 			<!-- for statistic purposes -->
 		</p>
-		<p class="hidden-xs">
-			<span class="loader-image-wrapper"><img src="./assets/mobile.png"></span>
+		<p>
+			<span class="loader-image-wrapper loader-text"></span>
 		</p>
-		<p class="visible-xs">
-			<span class="mobile-loader-image-wrapper"><img src="./assets/round.png"></span>
-		</p>
-		<span class="loader-text"></span>
 		<noscript>
 			<div class="well noscript">
 				Der Distrochooser benutzt JavaScript, um zu funktionieren. JavaScript ist ein integraler Bestandteil des Internets (geworden). Ohne JavaScript ist eine Software wie der Distrochooser schlicht nicht möglich.
