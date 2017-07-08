@@ -57,14 +57,15 @@
         <!-- result part -->
         <div>
           <div class="form-group">
-            <div class="columns">
-                <div class="column col-3">
-                  descr. 
-                  <span>unwichtig</span>
+            <div class="columns" v-for="(tag,key) in tags" v-bind:key="key">
+                <div class="column col-5">
+                  {{ text(key) }}
                 </div>
-                <div class="column col-9">
-                  <input class="slider" type="range" min="0" max="5" value="1">
+                <i class="icon icon-minus col-1"></i> 
+                <div class="column col-4">
+                  <input class="slider" type="range" min="-2" max="2" value="0" v-model="tag.weight">
                 </div>
+                <i class="icon icon-plus col-1"></i> 
             </div>
           </div>
         </div>
@@ -123,6 +124,25 @@ export default {
       return this.globals.questions.filter(function (q) {
         return q.answered
       })
+    },
+    tags: function () {
+      var result = {}
+      for (var i = 0; i < this.answered.length; i++) {
+        this.answered[i].answers.forEach(function (element) {
+          var tag = element.tags
+          tag.forEach(function (t) {
+            if (typeof result[t] === 'undefined') {
+              result[t] = {
+                amount: 1,
+                weight: 1
+              }
+            } else {
+              result[t].amount++
+            }
+          })
+        }, this)
+      }
+      return result
     }
   },
   methods: {
