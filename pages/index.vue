@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div class="row" v-if="nuxt.globals.distrochooser.loaded">
+      <div class="columns" v-if="nuxt.globals.distrochooser.loaded">
           <navigation></navigation>
           <questions></questions>
       </div>
