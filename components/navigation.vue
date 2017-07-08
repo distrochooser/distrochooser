@@ -5,9 +5,9 @@
 				<div class="visible-lg">
 					<a href="about" class="btn btn-primary button-left-nav contact" data-toggle="modal" data-target="#about">Über den Distrochooser</a>
 					<span class="spacer"></span>
-					<a class="btn btn-primary button-left-nav contact" href="./static/privacy.html">Datenschutz</a>
+					<a class="btn btn-primary button-left-nav contact" href="./static/privacy.html"> {{ text("privacy") }}</a>
 					<span class="spacer"></span>
-					<a class="btn btn-primary button-left-nav contact" href="./static/contact.html">Kontakt</a>
+					<a class="btn btn-primary button-left-nav contact" href="./static/contact.html"> {{ text("contact") }} </a>
 					<span class="spacer"></span>
 					<a class="btn btn-primary button-left-nav" target="_blank" href="http://0fury.de">
 						<img class="vendor" alt="0fury.de" src="https://distrochooser.de/assets/0fury.ico">
@@ -64,7 +64,13 @@
 </template>
  
 <script>
+import i18n from '../mixins/i18n'
+import nuxt from '../mixins/nuxt-wrapper'
 export default {
+  mixins: [i18n, nuxt],
+  created: function () {
+    console.log(this)
+  }
 }
 </script>
  
@@ -78,6 +84,5 @@ export default {
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 0.5em;
-
 }
 </style>

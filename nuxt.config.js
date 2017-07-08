@@ -1,4 +1,4 @@
-let l = 2;
+let l = 2
 
 let locales = {
   1: 'de',
@@ -13,6 +13,13 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  globals: {
+    i18n: null,
+    distrochooser: null,
+    questions: null,
+    backend: 'https://distrochooser.de/distrochooser-backend-php/',
+    lang: 'de'
+  },
   head: {
     title: 'Distrochooser',
     meta: [
@@ -108,9 +115,9 @@ module.exports = {
       }
     ],
     script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' }, 
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
       { src: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' }
-    ],
+    ]
   },
   /*
   ** Customize the progress-bar color
