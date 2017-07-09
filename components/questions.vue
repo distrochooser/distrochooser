@@ -135,7 +135,8 @@ export default {
   data: function () {
     return {
       weigthActive: false,
-      resultWayChoosed: false
+      resultWayChoosed: false,
+      tags: {}
     }
   },
   mixins: [
@@ -157,7 +158,48 @@ export default {
         return q.answered
       })
     },
-    tags: function () {
+    distros: function () {
+      // var raw =  this.globals.distros
+      var results = []
+      var _t = this
+      this.globals.distros.forEach(function (d) {
+        var hits = []
+        var antihits = []
+        for (var k in _t.tags) {
+          if (d.tags.indexOf(k) !== -1 && hits.indexOf(k) === -1) {
+            hits.push(k)
+          }
+          if (d.tags.indexOf('!' + k) !== -1 && antihits.indexOf(k) === -1) {
+            antihits.push(k)
+          }
+        }
+        var distroPoints = 0
+        // calculate sum with weight
+        hits.forEach(function (t) {
+          var weight = _t.tags[t].weight
+          var amount = _t.tags[t].amount // a tag can be given more than one times, causes "heavier" weight
+          var sum = amount * weight
+          distroPoints += sum
+        })
+        // calculate sum with weight
+        antihits.forEach(function (t) {
+          var weight = _t.tags[t].weight
+          var amount = _t.tags[t].amount // a tag can be given more than one times, causes "heavier" weight
+          var sum = amount * weight
+          distroPoints -= sum
+        })
+        console.log(d.name + 'hat ' + distroPoints)
+        // calculate percentage
+        d.points = distroPoints
+        results.push(d)
+      })
+      return results.sort(function (a, b) {
+        return a.points < b.points
+      })
+    }
+  },
+  methods: {
+    computeTags: function () {
       var result = {}
       for (var i = 0; i < this.answered.length; i++) {
         this.answered[i].answers.forEach(function (element) {
@@ -174,30 +216,8 @@ export default {
           })
         }, this)
       }
-      return result
+      this.tags = result
     },
-    distros: function () {
-      // var raw =  this.globals.distros
-      var results = []
-      var _t = this
-      this.globals.distros.forEach(function (d) {
-        var hits = []
-        var antihits = []
-        for (var k in _t.tags) {
-          if (d.tags.indexOf(k) !== -1) {
-            hits.push(k)
-          }
-          if (d.tags.indexOf('!' + k) !== -1) {
-            antihits.push(k)
-          }
-        }
-        console.log(d.name)
-        console.log(hits)
-      })
-      return results
-    }
-  },
-  methods: {
     nextTrigger: function (q) {
       var index = this.globals.questions.indexOf(q)
       if (index === this.lastQuestionNumber) { // eslint-disable-line space-infix-ops
@@ -231,8 +251,12 @@ export default {
     },
     toggleWeighting: function () {
       this.weigthActive = !this.weigthActive
+      this.computeTags()
     },
     toggleResult: function () {
+      if (this.weigthActive) {
+        this.toggleWeighting()
+      }
       this.resultWayChoosed = !this.resultWayChoosed
     }
   }

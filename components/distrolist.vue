@@ -2,7 +2,7 @@
 <div class="timeline">
   <div class="timeline-item" id="timeline-example-2" v-for="(d,key) in distros" v-bind:key="key">
     <div class="timeline-left">
-      <a class="badge" href="#timeline-example-1" data-badge="8%"></a>
+      <a class="badge" href="#timeline-example-1" :data-badge="d.points"></a>
     </div>
     <div class="timeline-content">
       <div class="tile-content">
