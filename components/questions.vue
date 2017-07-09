@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div class="btn-group btn-group-block" v-if="q.number !== -1">
-                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ lastQuestionNumber=== q.number ? text("getresult") :text("nextQuestion") }}</a>
+                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ lastQuestionNumber=== q.number ? text("toggleResult") :text("nextQuestion") }}</a>
                   <a v-if="!q.answered && lastQuestionNumber !== q.number && q.number !== -1" class="btn" v-on:click.prevent="nextTrigger(q)"> <i class="icon icon-cross"></i> {{ text("skip-question") }} </a>
                   <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("clear") }} </a>
                 </div>
@@ -55,7 +55,19 @@
         </div>
 
         <!-- result part -->
-        <div>
+        <div class="columns" v-if="!resultWayChoosed">
+          <h3> {{ text("choiceweightorresult") }} </h3>
+          <div class="column col-5">
+            <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("choiceresult") }}</a>
+          </div>    
+          <div class="column col-2">
+            {{ text("or") }}
+          </div> 
+          <div class="column col-5">
+            <a class="btn" href="#" v-on:click.prevent="toggleWeighting">{{ text("choiceweight") }}</a>
+          </div>
+        </div>
+        <div v-if="weigthActive">
           <div class="form-group">
             <div class="columns" v-for="(tag,key) in tags" v-bind:key="key">
                 <div class="column col-5">
@@ -63,11 +75,21 @@
                 </div>
                 <i class="icon icon-minus col-1"></i> 
                 <div class="column col-4">
-                  <input class="slider" type="range" min="-2" max="2" value="0" v-model="tag.weight">
+                  <input class="slider" type="range" min="-3" max="3" value="0" v-model="tag.weight">
                 </div>
                 <i class="icon icon-plus col-1"></i> 
             </div>
           </div>
+          <div class="btn-group columns">
+            <a class="btn" v-on:click.prevent="toggleWeighting" href="#"> {{ text("abort") }}</a>
+            <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("getresult") }}</a>
+          </div>
+        </div>
+        <div class="results" v-if="resultWayChoosed">
+          <div class="columns">
+            <a class="btn" v-on:click.prevent="toggleResult"> {{ text("back") }} </a>
+          </div>
+          <distrolist :distros="distros"></distrolist>
         </div>
       </div>
       <div class="column col-2">
@@ -95,7 +117,7 @@
                 </label>
               </div>
               <div class="panel-footer">
-                <button class="btn btn-primary">{{ text('getresult') }}</button>
+                <button class="btn btn-primary">{{ text('toggleResult') }}</button>
               </div>
             </div>
           </div>
@@ -108,11 +130,21 @@
 import Vue from 'vue' // eslint-disable-line no-unused-vars
 import i18n from '../mixins/i18n'
 import nuxt from '../mixins/nuxt-wrapper'
+import distrolist from './distrolist'
 export default {
+  data: function () {
+    return {
+      weigthActive: false,
+      resultWayChoosed: false
+    }
+  },
   mixins: [
     i18n,
     nuxt
   ],
+  components: {
+    distrolist
+  },
   mounted: function () {
     jQuery('#headerwelcome').trigger('click') // eslint-disable-line no-undef
   },
@@ -143,6 +175,26 @@ export default {
         }, this)
       }
       return result
+    },
+    distros: function () {
+      // var raw =  this.globals.distros
+      var results = []
+      var _t = this
+      this.globals.distros.forEach(function (d) {
+        var hits = []
+        var antihits = []
+        for (var k in _t.tags) {
+          if (d.tags.indexOf(k) !== -1) {
+            hits.push(k)
+          }
+          if (d.tags.indexOf('!' + k) !== -1) {
+            antihits.push(k)
+          }
+        }
+        console.log(d.name)
+        console.log(hits)
+      })
+      return results
     }
   },
   methods: {
@@ -176,6 +228,12 @@ export default {
         q.answers[i].selected = false
       }
       q.answered = false
+    },
+    toggleWeighting: function () {
+      this.weigthActive = !this.weigthActive
+    },
+    toggleResult: function () {
+      this.resultWayChoosed = !this.resultWayChoosed
     }
   }
 }

@@ -18,7 +18,8 @@ module.exports = {
     distrochooser: null,
     questions: null,
     backend: 'https://distrochooser.de/distrochooser-backend-php/',
-    lang: 'de'
+    lang: 'de',
+    distros: []
   },
   head: {
     title: 'Distrochooser',

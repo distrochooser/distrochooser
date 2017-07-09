@@ -19,6 +19,7 @@ export default {
         _t.nuxt.globals.i18n = response.data.i18n
         _t.nuxt.globals.questions = response.data.questions
         _t.nuxt.globals.distrochooser.questions = nuxt.globals.questions
+        _t.nuxt.globals.distros = response.data.distros
         for (var d in response.data) {
           _t[d] = response.data[d]
         }
