@@ -71,10 +71,10 @@
           <div class="form-group">
             <div class="columns" v-for="(tag,key) in tags" v-bind:key="key">
                 <div class="column col-5">
-                  {{ text(key) }}
+                  {{ text(key) }} is: <pre>{{ tag.negative }}</pre>
                 </div>
                 <i class="icon icon-minus col-1"></i> 
-                <div class="column col-4">
+                <div class="column col-4"> {{ tag.weight }}
                   <input class="slider" type="range" min="-3" max="3" value="0" v-model="tag.weight">
                 </div>
                 <i class="icon icon-plus col-1"></i> 
@@ -87,7 +87,7 @@
         </div>
         <div class="results" v-if="resultWayChoosed">
           <div class="columns">
-            <a class="btn" v-on:click.prevent="toggleResult"> {{ text("back") }} </a>
+            <a class="btn back-button" v-on:click.prevent="toggleResult"> {{ text("back") }} </a>
           </div>
           <distrolist :distros="distros"></distrolist>
         </div>
@@ -117,7 +117,7 @@
                 </label>
               </div>
               <div class="panel-footer">
-                <button class="btn btn-primary">{{ text('toggleResult') }}</button>
+                <button class="btn btn-primary">{{ text('getresult') }}</button>
               </div>
             </div>
           </div>
@@ -166,8 +166,18 @@ export default {
         var hits = []
         var antihits = []
         for (var k in _t.tags) {
+          /**
+           * Case I : tag 'foo' -> tag (distro) 'foo'
+           * Case II : tag 'foo' -> tag (distro) '!foo'
+           * Case III : tag 'foo', negative
+           * */
+
           if (d.tags.indexOf(k) !== -1 && hits.indexOf(k) === -1) {
-            hits.push(k)
+            if (_t.tags[k].negative) {
+              antihits.push(k)
+            } else {
+              hits.push(k)
+            }
           }
           if (d.tags.indexOf('!' + k) !== -1 && antihits.indexOf(k) === -1) {
             antihits.push(k)
@@ -188,13 +198,12 @@ export default {
           var sum = amount * weight
           distroPoints -= sum
         })
-        console.log(d.name + 'hat ' + distroPoints)
         // calculate percentage
         d.points = distroPoints
         results.push(d)
       })
       return results.sort(function (a, b) {
-        return a.points < b.points
+        return a.points < b.points ? 1 : -1
       })
     }
   },
@@ -203,17 +212,33 @@ export default {
       var result = {}
       for (var i = 0; i < this.answered.length; i++) {
         this.answered[i].answers.forEach(function (element) {
-          var tag = element.tags
-          tag.forEach(function (t) {
-            if (typeof result[t] === 'undefined') {
-              result[t] = {
-                amount: 1,
-                weight: 1
+          if (element.selected) {
+            var tag = element.tags
+            tag.forEach(function (t) {
+              if (typeof result[t] === 'undefined') {
+                result[t] = {
+                  amount: 1,
+                  weight: 1,
+                  negative: false
+                }
+              } else {
+                result[t].amount++
               }
-            } else {
-              result[t].amount++
-            }
-          })
+            })
+            tag = element.notags
+            tag.forEach(function (t) {
+              var name = t.replace('!', '')
+              if (typeof result[name] === 'undefined') {
+                result[name] = {
+                  amount: 1,
+                  weight: 1,
+                  negative: true
+                }
+              } else {
+                result[name].amount++
+              }
+            })
+          }
         }, this)
       }
       this.tags = result
@@ -228,6 +253,8 @@ export default {
       jQuery('#header' + next.id).trigger('click') // eslint-disable-line no-undef
     },
     answer: function (q, a) {
+      this.resultWayChoosed = false
+      this.weigthActive = false
       var answered = 0
       if (q.single) {
         this.removeAnswers(q)
@@ -272,5 +299,9 @@ export default {
   }
   .selected{
     font-weight: bold;
+  }
+  .back-button{
+    display: block;
+    margin-bottom: 1em;
   }
 </style>

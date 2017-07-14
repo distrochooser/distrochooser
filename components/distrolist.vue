@@ -1,6 +1,6 @@
 <template>
 <div class="timeline">
-  <div class="timeline-item" id="timeline-example-2" v-for="(d,key) in distros" v-bind:key="key">
+  <div class="timeline-item" id="timeline-example-2" v-for="(d,key) in distros" v-bind:key="key" v-if="d.points > 0 || globals.distrochooser.options.displayExcluded">
     <div class="timeline-left">
       <a class="badge" href="#timeline-example-1" :data-badge="d.points"></a>
     </div>
@@ -21,9 +21,13 @@
 </div>
 </template>
 <script>
+import nuxt from '../mixins/nuxt-wrapper'
 export default {
   props: [
     'distros'
+  ],
+  mixins: [
+    nuxt
   ]
 }
 </script>
