@@ -55,8 +55,8 @@
         </div>
 
         <!-- result part -->
-        <div class="columns" v-if="!resultWayChoosed">
-          <h3> {{ text("choiceweightorresult") }} </h3>
+        <div class="columns" v-if="!resultWayChoosed && this.answered.length > 0">
+          <h3 id="weighting"> {{ text("choiceweightorresult") }} </h3>
           <div class="column col-5">
             <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("choiceresult") }}</a>
           </div>    
@@ -117,7 +117,7 @@
                 </label>
               </div>
               <div class="panel-footer">
-                <button class="btn btn-primary">{{ text('getresult') }}</button>
+                <button class="btn btn-primary" :class="{'disabled':this.answered.length === 0}" v-on:click.prevent="jumpToWeighting">{{ text('getresult') }}</button>
               </div>
             </div>
           </div>
@@ -269,6 +269,7 @@ export default {
         }
       }
       q.answered = answered > 0
+      this.computeTags()
     },
     removeAnswers: function (q) {
       for (var i in q.answers) {
@@ -278,13 +279,15 @@ export default {
     },
     toggleWeighting: function () {
       this.weigthActive = !this.weigthActive
-      this.computeTags()
     },
     toggleResult: function () {
       if (this.weigthActive) {
         this.toggleWeighting()
       }
       this.resultWayChoosed = !this.resultWayChoosed
+    },
+    jumpToWeighting: function () {
+      jQuery('html, body').animate({ scrollTop: jQuery('#weighting').offset().top }, 10) // eslint-disable-line no-undef
     }
   }
 }

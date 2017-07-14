@@ -1,21 +1,52 @@
 <template>
 	<div class="column col-3">
-		<a href="about" class="btn btn-primary button-left-nav contact" data-toggle="modal" data-target="#about">{{ text("about") }}</a>
-		<span class="spacer"></span>
-		<a class="btn btn-primary button-left-nav contact" href="./static/privacy.html"> {{ text("privacy") }}</a>
-		<span class="spacer"></span>
-		<a class="btn btn-primary button-left-nav contact" href="./static/contact.html"> {{ text("contact") }} </a>
-		<span class="spacer"></span>
-		<a class="btn btn-primary button-left-nav" target="_blank" href="http://0fury.de">
-			<img class="vendor" alt="0fury.de" src="https://distrochooser.de/assets/0fury.ico">
-			<span>{{ text("Vendor") }}</span> 0fury.de</a>
-		<span class="spacer"></span>
-		<a class="flag" title="Zur deutschen Version wechseln" href="?l=1">
-			<img src="https://distrochooser.de/assets/langs/de.png" alt="Deutsch">
-		</a>
-		<a class="flag" title="Switch to english version" href="?l=2">
-			<img src="https://distrochooser.de/assets/langs/gb.png" alt="English">
-		</a>
+		<div class="column col-11">
+			<ul class="menu">
+				<!-- menu header text -->
+				<li class="divider" :data-content="text('links')">
+				</li>
+				<li class="menu-item">
+					<a href="about">
+						<i class="icon icon-link"></i> {{ text("about") }}
+					</a>
+				</li>
+				<li class="menu-item">
+					<a href="privacy">
+						<i class="icon icon-link"></i> {{ text("privacy") }}
+					</a>
+				</li>
+				<li class="menu-item">
+					<a href="contact">
+						<i class="icon icon-link"></i> {{ text("contact") }}
+					</a>
+				</li>
+				<li class="menu-item">
+					<a target="_blank" href="http://0fury.de">
+					<img class="vendor" alt="0fury.de" src="https://distrochooser.de/assets/0fury.ico">
+					{{ text("Vendor") }} <span class="0fury">0fury.de</span>
+					</a>
+				</li>
+				<!-- menu divider -->
+				<li class="divider" :data-content="text('lang')">
+				</li>
+				<!-- menu item with badge -->
+				<li class="menu-item">
+					<div class="menu-badge">
+						<a class="flag" title="Zur deutschen Version wechseln" href="?l=1">
+							<img src="https://distrochooser.de/assets/langs/de.png" alt="Deutsch">
+						</a>
+						<a class="flag" title="Switch to english version" href="?l=2">
+							<img src="https://distrochooser.de/assets/langs/gb.png" alt="English">
+						</a>
+					</div>
+					<a href="#">
+						<i class="icon icon-link"></i> 
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-1">
+		</div>
 	</div>
 </template>
  
@@ -43,6 +74,8 @@ export default {
 }
 .vendor{
     float: left;
+    margin-right: 0.2em;
+    margin-left: -0.1em;
 }
 .flag{
     margin-right: 0.5em;
