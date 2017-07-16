@@ -105,7 +105,7 @@ module.exports = {
       },
       {
         name: 'generator',
-        content: 'LDC 2017 (4.0)'
+        content: 'LDC 2018'
       }
     ],
     link: [

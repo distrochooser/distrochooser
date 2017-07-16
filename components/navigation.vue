@@ -40,7 +40,7 @@
 						</a>
 					</div>
 					<a href="#">
-						<i class="icon icon-link"></i> 
+						<i class="icon"></i> 
 					</a>
 				</li>
 			</ul>

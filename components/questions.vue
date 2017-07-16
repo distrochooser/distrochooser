@@ -71,7 +71,7 @@
           <div class="form-group">
             <div class="columns" v-for="(tag,key) in tags" v-bind:key="key">
                 <div class="column col-5">
-                  {{ text(key) }} is: <pre>{{ tag.negative }}</pre>
+                  {{ text(key) }} 
                 </div>
                 <i class="icon icon-minus col-1"></i> 
                 <div class="column col-4"> {{ tag.weight }}
@@ -165,13 +165,13 @@ export default {
       this.globals.distros.forEach(function (d) {
         var hits = []
         var antihits = []
+        d.results = {}
         for (var k in _t.tags) {
           /**
            * Case I : tag 'foo' -> tag (distro) 'foo'
            * Case II : tag 'foo' -> tag (distro) '!foo'
            * Case III : tag 'foo', negative
            * */
-
           if (d.tags.indexOf(k) !== -1 && hits.indexOf(k) === -1) {
             if (_t.tags[k].negative) {
               antihits.push(k)
@@ -190,13 +190,20 @@ export default {
           var amount = _t.tags[t].amount // a tag can be given more than one times, causes "heavier" weight
           var sum = amount * weight
           distroPoints += sum
+          d.results[t] = _t.tags[t]
         })
         // calculate sum with weight
         antihits.forEach(function (t) {
+          /*
           var weight = _t.tags[t].weight
           var amount = _t.tags[t].amount // a tag can be given more than one times, causes "heavier" weight
           var sum = amount * weight
-          distroPoints -= sum
+          */
+          distroPoints = 0
+          console.log('nhit')
+          console.log(d)
+          console.log(t)
+          d.results[t] = _t.tags[t]
         })
         // calculate percentage
         d.points = distroPoints
