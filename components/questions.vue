@@ -1,7 +1,36 @@
 <template>
-  <div class="column col-9">
+  <div class="column col-9 col-xs-12">
     <div class="columns">
-      <div class="column col-6" id="accordion">
+      <div class="column col-6 col-xs-12" id="accordion">
+        <div class="panel col-xs-12 show-xs mobile-header">
+          <div class="panel-header text-center">
+            <figure class="avatar avatar-lg">
+              <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
+            </figure>
+          </div>
+          <nav class="panel-nav">
+            <ul class="tab tab-block">
+              <li class="tab-item">
+                <a href="#panels">
+                  About
+                </a>
+              </li>
+              <li class="tab-item">
+                <a href="#panels">
+                  Privacy
+                </a>
+              </li>
+              <li class="tab-item">
+                <a href="#panels">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="toast toast-warning">
+          I'm still not finished ;)
+        </div>
         <div class="accordion">
           <div class="accordion-item" v-for="(q,qindex) in this.globals.distrochooser.questions" v-bind:key="q.id" >
             <input type="radio" :id="'header' + q.id" name="accordion-radio" hidden="">
@@ -92,9 +121,9 @@
           <distrolist :distros="distros"></distrolist>
         </div>
       </div>
-      <div class="column col-2">
+      <div class="column col-2 hide-xs">
       </div>
-      <div class="column col-3">
+      <div class="column col-3 hide-xs right-box fixed">
           <div class="panel">
             <div class="panel-header text-center">
               <figure class="avatar avatar-lg">
@@ -313,5 +342,12 @@ export default {
   .back-button{
     display: block;
     margin-bottom: 1em;
+  }
+  .right-box{
+    right: 4em;
+    width: 20%;
+  }
+  .mobile-header{
+    margin-top: -2em;
   }
 </style>

@@ -1,5 +1,12 @@
 <template>
 <div class="timeline">
+  <div class="empty" v-if="isDistroListEmpty">
+    <div class="empty-icon">
+      <i class="icon icon-cross"></i>
+    </div>
+    <h4 class="empty-title">{{ text("nodistros") }}</h4>
+    <p class="empty-subtitle">{{ text("nodistrostext") }}</p>
+  </div>
   <div class="timeline-item" v-for="(d,key) in distros" v-bind:key="key" v-if="d.points > 0 || globals.distrochooser.options.displayExcluded">
     <div class="timeline-left">
       <a class="timeline-icon icon-lg tooltip" :data-tooltip="distros.indexOf(d) + 1">
@@ -43,7 +50,21 @@ export default {
   mixins: [
     nuxt,
     i18n
-  ]
+  ],
+  computed: {
+    isDistroListEmpty: function () {
+      if (!this.globals.distrochooser.options.displayExcluded) {
+        var nonEmpty = 0
+        for (var i in this.distros) {
+          if (this.distros[i].points >= 0) {
+            nonEmpty++
+          }
+        }
+        return nonEmpty !== this.distros.length
+      }
+      return false
+    }
+  }
 }
 </script>
 <style scoped>

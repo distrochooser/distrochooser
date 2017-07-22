@@ -1,7 +1,7 @@
 <template>
-	<div class="column col-3">
+	<div class="column col-3 hide-xs">
 		<div class="column col-11">
-			<ul class="menu">
+			<ul class="menu left-box hide-xs fixed">
 				<!-- menu header text -->
 				<li class="divider" :data-content="text('links')">
 				</li>
@@ -79,5 +79,8 @@ export default {
 }
 .flag{
     margin-right: 0.5em;
+}
+.left-box{
+    width: 20%;
 }
 </style>
