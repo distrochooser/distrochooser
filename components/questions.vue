@@ -31,9 +31,9 @@
         <div class="toast toast-warning">
           I'm still not finished ;)
         </div>
-        <div class="accordion">
+        <div class="accordion" :class="{'accordeon-disabled disabled': weigthActive || resultWayChoosed}">
           <div class="accordion-item" v-for="(q,qindex) in this.globals.distrochooser.questions" v-bind:key="q.id" >
-            <input type="radio" :id="'header' + q.id" name="accordion-radio" hidden="">
+            <input type="radio" :id="'header' + q.id" name="accordion-radio" hidden="" v-on:click="hideResults">
             <label class="accordion-header hand" :class="{'answered':q.answered}" :for="'header' + q.id">
                <span v-if="q.number !== -1"> {{ qindex }}. </span>{{ q.text }}
             </label>
@@ -285,6 +285,7 @@ export default {
         }, this)
       }
       this.tags = result
+      this.hideResults()
     },
     nextTrigger: function (q) {
       var index = this.globals.questions.indexOf(q)
@@ -334,6 +335,10 @@ export default {
     },
     jumpToWeighting: function () {
       jQuery('html, body').animate({ scrollTop: jQuery('#weighting').offset().top }, 10) // eslint-disable-line no-undef
+    },
+    hideResults: function () {
+      this.weigthActive = false
+      this.resultWayChoosed = false
     }
   }
 }
@@ -379,5 +384,8 @@ export default {
   } 
   .important{
     font-weight: bold;
+  }
+  .accordeon-disabled{
+    opacity: 0.5;
   }
 </style>
