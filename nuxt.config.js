@@ -50,7 +50,7 @@ module.exports = {
         content: 'https://distrochooser.de'
       },
       {
-        property: 'og:url',
+        property: 'og:image',
         content: 'https://distrochooser.de/assets/tux.png'
       },
       {
