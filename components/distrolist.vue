@@ -21,7 +21,7 @@
         <p class="tile-subtitle">{{ d.name }} </p>
         <p class="tile-title" v-html="d.description"></p>
           <div class="timeline tags">
-            <div class="timeline-item" v-for="(value,key) in d.results">
+            <div class="timeline-item" v-bind:key="key" v-for="(value,key) in d.results">
               <div class="timeline-left">
                 <i class="icon" :class="{'icon-check icon-hit':!value.negative,' icon-cross icon-nohit':value.negative}"></i> {{ text(key) }}
                 <span class="important" v-if="parseInt(value.weight) > 1 ">{{ text("important") }}</span>
@@ -56,11 +56,11 @@ export default {
       if (!this.globals.distrochooser.options.displayExcluded) {
         var nonEmpty = 0
         for (var i in this.distros) {
-          if (this.distros[i].points >= 0) {
+          if (this.distros[i].points > 0) {
             nonEmpty++
           }
         }
-        return nonEmpty !== this.distros.length
+        return nonEmpty === 0
       }
       return false
     }

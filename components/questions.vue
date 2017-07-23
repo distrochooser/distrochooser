@@ -40,6 +40,9 @@
             <div class="accordion-body">
               <div class="panel-body">
                 <p v-html="q.number === -1 ? '' : q.help"></p>
+                <div class="toast toast-warning exclusion-warning" v-if="q.exclusiontags !== null && isTagMatch(q.exclusiontags)">
+                  {{ text('excludedbytag') }}
+                </div>
                 <img class="largelogo" v-if="q.id === 'welcome'">
                 <div id="StartText" v-if="q.id === 'welcome'">
                   <span v-html="text('introText')"></span>
@@ -71,7 +74,7 @@
                   </div>
                 </div>
                 <div class="btn-group btn-group-block" v-if="q.number !== -1">
-                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ lastQuestionNumber=== q.number ? text("toggleResult") :text("nextQuestion") }}</a>
+                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ lastQuestionNumber=== q.number ? text("getresult") :text("nextQuestion") }}</a>
                   <a v-if="!q.answered && lastQuestionNumber !== q.number && q.number !== -1" class="btn" v-on:click.prevent="nextTrigger(q)"> <i class="icon icon-cross"></i> {{ text("skip-question") }} </a>
                   <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("clear") }} </a>
                 </div>
@@ -84,12 +87,12 @@
         </div>
 
         <!-- result part -->
-        <div class="columns" v-if="!resultWayChoosed && this.answered.length > 0">
+        <div class="columns preresult" v-if="!resultWayChoosed && this.answered.length > 0 && !weigthActive">
           <h3 id="weighting"> {{ text("choiceweightorresult") }} </h3>
           <div class="column col-5">
             <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("choiceresult") }}</a>
           </div>    
-          <div class="column col-2">
+          <div class="column col-2 or">
             {{ text("or") }}
           </div> 
           <div class="column col-5">
@@ -97,16 +100,17 @@
           </div>
         </div>
         <div v-if="weigthActive">
+          <h4>{{ text("weightingheader") }}</h4>
           <div class="form-group">
-            <div class="columns" v-for="(tag,key) in tags" v-bind:key="key">
+            <div class="columns" v-for="(tag,key) in tags" v-bind:key="key" v-if="!tag.negative">
                 <div class="column col-5">
-                  {{ text(key) }} 
+                  {{ text(key) }}
                 </div>
-                <i class="icon icon-minus col-1"></i> 
-                <div class="column col-4"> {{ tag.weight }}
-                  <input class="slider" type="range" min="-3" max="3" value="0" v-model="tag.weight">
+                <span class="notimportant">{{ text('notimportant') }}</span>
+                <div class="column col-4"> 
+                  <input class="slider" type="range" min="0" max="2" step="1" value="1" v-model="tag.weight">
                 </div>
-                <i class="icon icon-plus col-1"></i> 
+                <span class="important">{{ text('important') }}</span>
             </div>
           </div>
           <div class="btn-group columns">
@@ -238,6 +242,15 @@ export default {
     }
   },
   methods: {
+    isTagMatch: function (tags) {
+      for (var i = 0; i < tags.length; i++) {
+        var tag = tags[i]
+        if (typeof (this.tags[tag]) !== 'undefined') {
+          return true
+        }
+      }
+      return false
+    },
     computeTags: function () {
       var result = {}
       for (var i = 0; i < this.answered.length; i++) {
@@ -342,13 +355,29 @@ export default {
   }
   .right-box{
     right: 4em;
-    width: 20%;
+    max-width: 14%;
   }
   .mobile-header{
     margin-top: -2em;
   }
-  .weighting{
+  #weighting{
     display: block;
     width: 100%;
+  }
+  .exclusion-warning{
+    margin-bottom: 0.6em;
+  }
+  .preresult{
+    text-align: center;
+  }
+  .or{
+    font-size: large;
+    font-weight: 400;
+  }
+  .notimportant{
+    font-weight: 300;
+  } 
+  .important{
+    font-weight: bold;
   }
 </style>
