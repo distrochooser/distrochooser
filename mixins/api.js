@@ -9,6 +9,14 @@ export default {
     nuxt.globals.useragent = typeof navigator === 'undefined' ? null : navigator.userAgent
     nuxt.globals.referrer = typeof document === 'undefined' ? null : document.referrer
     nuxt.globals.dnt = typeof navigator === 'undefined' ? false : navigator.doNotTrack === 1
+    if (this.$route.params.lang !== undefined) {
+      nuxt.globals.lang = this.$route.params.lang
+    } else {
+      nuxt.globals.lang = 'de'
+    }
+    if (this.$route.params.test !== undefined) {
+      nuxt.globals.test = this.$route.params.test
+    }
     this.init()
   },
   methods: {

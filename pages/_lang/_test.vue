@@ -8,11 +8,11 @@
 </template>
 
 <script>
-    import navigation from '../components/navigation'
-    import questions from '../components/questions'
-    import i18n from '../mixins/i18n'
-    import api from '../mixins/api'
-    import nuxt from '../nuxt.config'
+    import navigation from '../../components/navigation'
+    import questions from '../../components/questions'
+    import i18n from '../../mixins/i18n'
+    import api from '../../mixins/api'
+    import nuxt from '../../nuxt.config'
     export default {
       data: function () {
         return {
