@@ -47,6 +47,29 @@
         nuxt: function () {
           return nuxt
         }
+      },
+      head: function () {
+        return {
+          meta: [
+            {
+              hid: 'description',
+              name: 'description',
+              content: nuxt.globals.descriptions[nuxt.globals.lang]
+            },
+            {
+              property: 'og:description',
+              content: nuxt.globals.descriptions[nuxt.globals.lang]
+            },
+            {
+              property: 'og:locale',
+              content: nuxt.globals.lang
+            },
+            {
+              name: 'twitter:description',
+              content: nuxt.globals.descriptions[nuxt.globals.lang]
+            }
+          ]
+        }
       }
     }
 </script>

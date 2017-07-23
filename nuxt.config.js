@@ -1,9 +1,7 @@
-let l = 2
-
 let locales = ['de', 'en']
 let descriptions = {
-  1: 'Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.',
-  2: 'The distrochooser helps you to find the suitable Distribution for you!'
+  'de': 'Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.',
+  'en': 'The distrochooser helps you to find the suitable Distribution for you!'
 }
 
 module.exports = {
@@ -22,7 +20,9 @@ module.exports = {
     dnt: false,
     visitor: -1,
     test: -1,
-    locales: locales
+    locales: locales,
+    descriptions: descriptions,
+    description: null
   },
   head: {
     title: 'Distrochooser',
@@ -30,13 +30,8 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        hid: 'description',
-        name: 'description',
-        content: descriptions[l]
-      },
-      {
         name: 'keywords',
-        content: 'inux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows'
+        content: 'Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows'
       },
       {
         name: 'theme-color',
@@ -71,14 +66,6 @@ module.exports = {
         content: '253'
       },
       {
-        property: 'og:description',
-        content: descriptions[l]
-      },
-      {
-        property: 'og:locale',
-        content: locales[l]
-      },
-      {
         name: 'twitter:card',
         content: 'summary'
       },
@@ -89,10 +76,6 @@ module.exports = {
       {
         name: 'twitter:title',
         content: 'Distrochooser'
-      },
-      {
-        name: 'twitter:description',
-        content: descriptions[l]
       },
       {
         name: 'twitter:image',
