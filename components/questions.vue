@@ -139,12 +139,6 @@
                   <i class="form-icon"></i> {{ text('displayExcluded') }}
                 </label>
               </div>
-              <div class="form-group">
-                <label class="form-switch">
-                  <input type="checkbox" v-model="globals.distrochooser.options.displayFilters">
-                  <i class="form-icon"></i> {{ text('displayFilters') }}
-                </label>
-              </div>
               <div class="panel-footer">
                 <button class="btn btn-primary" :class="{'disabled':this.answered.length === 0}" v-on:click.prevent="jumpToWeighting">{{ text('getresult') }}</button>
               </div>

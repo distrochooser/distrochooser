@@ -54,10 +54,7 @@
 import i18n from '../mixins/i18n'
 import nuxt from '../mixins/nuxt-wrapper'
 export default {
-  mixins: [i18n, nuxt],
-  created: function () {
-    console.log(this)
-  }
+  mixins: [i18n, nuxt]
 }
 </script>
  
@@ -79,6 +76,9 @@ export default {
 }
 .flag{
     margin-right: 0.5em;
+}
+.flag img{
+    height: 1.3em;
 }
 .left-box{
     width: 20%;
