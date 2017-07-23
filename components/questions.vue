@@ -1,7 +1,7 @@
 <template>
   <div class="column col-9 col-xs-12">
     <div class="columns">
-      <div class="column col-6 col-xs-12" id="accordion">
+      <div class="column col-7 col-xs-12" id="accordion">
         <div class="panel col-xs-12 show-xs mobile-header">
           <div class="panel-header text-center">
             <figure class="avatar avatar-lg">
@@ -281,6 +281,7 @@ export default {
       jQuery('#header' + q.id).trigger('click') // eslint-disable-line no-undef
       var next = this.globals.questions[index + 1]
       jQuery('#header' + next.id).trigger('click') // eslint-disable-line no-undef
+      jQuery('#header' + next.id).animate({ scrollTop: jQuery('#header' + next.id).offset().top }, 10) // eslint-disable-line no-undef
       this.resultWayChoosed = false
       this.weigthActive = false
     },
@@ -345,5 +346,9 @@ export default {
   }
   .mobile-header{
     margin-top: -2em;
+  }
+  .weighting{
+    display: block;
+    width: 100%;
   }
 </style>

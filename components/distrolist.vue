@@ -15,7 +15,7 @@
     </div>
     <div class="timeline-content">
       <div class="tile-content">
-        <div class="logo-parent">
+        <div class="logo-parent hide-xs">
           <img :src="'https://distrochooser.de' + d.image.replace('./','/')">
         </div>
         <p class="tile-subtitle">{{ d.name }} </p>
@@ -73,12 +73,13 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 .logo-parent img{
-    max-height: 6em;
+    max-width: 8em;
+    max-height: 4em;
     position: absolute;
-    right: 0px;
+    right: 2em;
     bottom: 0px;
 }
 .icon-hit{
