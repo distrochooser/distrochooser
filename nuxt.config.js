@@ -1,9 +1,6 @@
 let l = 2
 
-let locales = {
-  1: 'de',
-  2: 'en'
-}
+let locales = ['de', 'en']
 let descriptions = {
   1: 'Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.',
   2: 'The distrochooser helps you to find the suitable Distribution for you!'
@@ -18,13 +15,14 @@ module.exports = {
     distrochooser: null,
     questions: null,
     backend: 'https://distrochooser.de/distrochooser-backend-php/',
-    lang: locales[l],
+    lang: locales[0],
     distros: [],
     useragent: null,
     referrer: null,
     dnt: false,
     visitor: -1,
-    test: -1
+    test: -1,
+    locales: locales
   },
   head: {
     title: 'Distrochooser',

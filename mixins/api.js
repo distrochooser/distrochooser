@@ -10,7 +10,12 @@ export default {
     nuxt.globals.referrer = typeof document === 'undefined' ? null : document.referrer
     nuxt.globals.dnt = typeof navigator === 'undefined' ? false : navigator.doNotTrack === 1
     if (this.$route.params.lang !== undefined) {
-      nuxt.globals.lang = this.$route.params.lang
+      var p = this.$route.params.lang
+      if (nuxt.globals.locales.indexOf(p) !== -1) {
+        nuxt.globals.lang = this.$route.params.lang
+      } else {
+        nuxt.globals.lang = 'en'
+      }
     } else {
       nuxt.globals.lang = 'de'
     }

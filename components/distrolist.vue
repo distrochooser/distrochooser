@@ -76,8 +76,7 @@ export default {
     opacity: 0.5;
 }
 .logo-parent img{
-    max-width: 30%;
-    max-height: 30%;
+    max-height: 6em;
     position: absolute;
     right: 0px;
     bottom: 0px;

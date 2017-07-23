@@ -281,6 +281,8 @@ export default {
       jQuery('#header' + q.id).trigger('click') // eslint-disable-line no-undef
       var next = this.globals.questions[index + 1]
       jQuery('#header' + next.id).trigger('click') // eslint-disable-line no-undef
+      this.resultWayChoosed = false
+      this.weigthActive = false
     },
     answer: function (q, a) {
       this.resultWayChoosed = false
