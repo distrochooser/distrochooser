@@ -6,14 +6,18 @@ export default {
     return {}
   },
   created: function () {
+    nuxt.globals.useragent = typeof navigator === 'undefined' ? null : navigator.userAgent
+    nuxt.globals.referrer = typeof document === 'undefined' ? null : document.referrer
+    nuxt.globals.dnt = typeof navigator === 'undefined' ? false : navigator.doNotTrack === 1
     this.init()
   },
   methods: {
     init: function () {
       var _t = this
       axios.post(nuxt.globals.backend + 'get/' + nuxt.globals.lang + '/', {
-        'useragent': 'foo',
-        'dnt': true
+        'useragent': nuxt.globals.useragent,
+        'dnt': nuxt.globals.dnt,
+        'referrer': nuxt.globals.referrer
       })
       .then(function (response) {
         _t.nuxt.globals.i18n = response.data.i18n
@@ -26,7 +30,8 @@ export default {
         nuxt.globals.questions.forEach(function (element) {
           element.open = false
         }, this)
-
+        _t.nuxt.globals.visitor = response.data.visitor
+        console.log('Hello #' + _t.nuxt.globals.visitor)
         nuxt.globals.questions.splice(0, 0, _t.introMessage)
         nuxt.globals.questions[0].text = _t.text('welcomeTextHeader')
         nuxt.globals.questions[0].help = _t.text('welcomeText')
