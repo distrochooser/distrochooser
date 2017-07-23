@@ -32,10 +32,10 @@
 				<!-- menu item with badge -->
 				<li class="menu-item">
 					<div class="menu-badge">
-						<a class="flag" title="Zur deutschen Version wechseln" href="?l=1">
+						<a class="flag" title="Zur deutschen Version wechseln" href="/">
 							<img src="https://distrochooser.de/assets/langs/de.png" alt="Deutsch">
 						</a>
-						<a class="flag" title="Switch to english version" href="?l=2">
+						<a class="flag" title="Switch to english version" href="/en/">
 							<img src="https://distrochooser.de/assets/langs/gb.png" alt="English">
 						</a>
 					</div>
