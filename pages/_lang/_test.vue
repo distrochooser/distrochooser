@@ -42,6 +42,7 @@
       mixins: [api, i18n],
       created: function () {
         nuxt.globals.distrochooser = this
+        this.init()
       },
       computed: {
         nuxt: function () {

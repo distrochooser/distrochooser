@@ -7,6 +7,26 @@
     <h4 class="empty-title">{{ text("nodistros") }}</h4>
     <p class="empty-subtitle">{{ text("nodistrostext") }}</p>
   </div>
+  <div class="share centered">
+    <div class="tile">
+      <div class="tile-icon">
+        <figure class="avatar avatar-lg">
+          <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
+        </figure>
+      </div>
+      <div class="tile-content">
+        <p class="tile-title">{{ text('share') }}</p>
+        <p class="tile-subtitle">
+          <a :href="'https://distrochooser.de/' + globals.lang + '/' + globals.test">{{ 'https://distrochooser.de/' + globals.lang + '/' + globals.test }}</a>
+        </p>
+        <p>
+          <a class="btn btn-sm">Twitter</a>
+          <a class="btn btn-sm">Facebook</a>
+          <a class="btn btn-sm">G+</a>
+        </p>
+      </div>
+    </div>
+  </div>
   <div class="timeline-item" v-for="(d,key) in distros" v-bind:key="key" v-if="d.points > 0 || globals.distrochooser.options.displayExcluded">
     <div class="timeline-left">
       <a class="timeline-icon icon-lg tooltip" :data-tooltip="distros.indexOf(d) + 1">

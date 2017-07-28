@@ -22,7 +22,8 @@ module.exports = {
     test: -1,
     locales: locales,
     descriptions: descriptions,
-    description: null
+    description: null,
+    mainInstance: null
   },
   head: {
     title: 'Distrochooser',

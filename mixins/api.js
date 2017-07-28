@@ -2,9 +2,6 @@ import axios from 'axios'
 import nuxt from '../nuxt.config'
 
 export default {
-  data () {
-    return {}
-  },
   created: function () {
     nuxt.globals.useragent = typeof navigator === 'undefined' ? null : navigator.userAgent
     nuxt.globals.referrer = typeof document === 'undefined' ? null : document.referrer
@@ -22,7 +19,6 @@ export default {
     if (this.$route.params.test !== undefined) {
       nuxt.globals.test = this.$route.params.test
     }
-    this.init()
   },
   methods: {
     init: function () {
@@ -53,6 +49,40 @@ export default {
       .catch(function (error) {
         console.log(error)
       })
+    },
+    addResult: function () {
+      var distros = [] // eslint-disable-line no-unused-vars
+      var tags = this.globals.mainInstance.tags // eslint-disable-line no-unused-vars
+      var answers = [] // eslint-disable-line no-unused-vars
+      this.globals.mainInstance.distros.forEach(function (distro) {
+        if (distro.points > 0) {
+          distros.push(distro.id)
+        }
+      })
+
+      this.globals.mainInstance.answered[0].answers.forEach(function (answer) {
+        if (answer.selected) {
+          answers.push(answer.id)
+        }
+      })
+      this.globals.test = 'jfklsalfsjak'
+      // difference against ldc3: no questions, but tags! -> field important is empty until api is overhauled
+      /*
+      var data = new URLSearchParams()
+      data.set('distros', JSON.stringify(distros))
+      data.set('tags', JSON.stringify(tags))
+      data.set('answers', JSON.stringify(answers))
+      data.set('important', JSON.stringify([]))
+      axios.post(nuxt.globals.backend + 'addresult/', {
+        data
+      })
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+      */
     }
   }
 }

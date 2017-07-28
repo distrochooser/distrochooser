@@ -173,6 +173,9 @@ export default {
   components: {
     distrolist
   },
+  created: function () {
+    this.globals.mainInstance = this
+  },
   mounted: function () {
     jQuery('#headerwelcome').trigger('click') // eslint-disable-line no-undef
   },
@@ -332,6 +335,9 @@ export default {
         this.toggleWeighting()
       }
       this.resultWayChoosed = !this.resultWayChoosed
+      if (this.resultWayChoosed) {
+        this.globals.distrochooser.addResult()
+      }
     },
     jumpToWeighting: function () {
       jQuery('html, body').animate({ scrollTop: jQuery('#weighting').offset().top }, 10) // eslint-disable-line no-undef
