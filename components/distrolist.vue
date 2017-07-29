@@ -7,23 +7,29 @@
     <h4 class="empty-title">{{ text("nodistros") }}</h4>
     <p class="empty-subtitle">{{ text("nodistrostext") }}</p>
   </div>
-  <div class="share centered">
-    <div class="tile">
-      <div class="tile-icon">
-        <figure class="avatar avatar-lg">
-          <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
-        </figure>
-      </div>
-      <div class="tile-content">
-        <p class="tile-title">{{ text('share') }}</p>
-        <p class="tile-subtitle">
-          <a :href="'https://distrochooser.de/' + globals.lang + '/' + globals.test">{{ 'https://distrochooser.de/' + globals.lang + '/' + globals.test }}</a>
-        </p>
-        <p>
-          <a class="btn btn-sm">Twitter</a>
-          <a class="btn btn-sm">Facebook</a>
-          <a class="btn btn-sm">G+</a>
-        </p>
+  <div class="share-mobile show-xs" v-if="!isDistroListEmpty">
+    <a class="btn centered" :href="'https://distrochooser.de/' + globals.lang + '/' + globals.test">{{ text('share') }}: {{ 'https://distrochooser.de/' + globals.lang + '/' + globals.test }}</a>
+  </div>
+  <div class="share columns hide-xs" v-if="!isDistroListEmpty">
+    <div class="column col-4"></div>
+    <div class="column col-6">
+      <div class="tile">
+        <div class="tile-icon">
+          <figure class="avatar avatar-lg">
+            <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
+          </figure>
+        </div>
+        <div class="tile-content">
+          <p class="tile-title">{{ text('share') }}</p>
+          <p class="tile-subtitle">
+            <a :href="'https://distrochooser.de/' + globals.lang + '/' + globals.test">{{ 'https://distrochooser.de/' + globals.lang + '/' + globals.test }}</a>
+          </p>
+          <p>
+            <a class="btn btn-sm">Twitter</a>
+            <a class="btn btn-sm">Facebook</a>
+            <a class="btn btn-sm">G+</a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -113,6 +119,9 @@ export default {
 }
 .tags{
   margin-bottom: 3em;
+}
+.share-mobile{
+  margin-bottom: 1em;
 }
 </style>
 

@@ -120,7 +120,7 @@
         </div>
         <div class="results" v-if="resultWayChoosed">
           <div class="columns">
-            <a class="btn back-button" v-on:click.prevent="toggleResult"> {{ text("back") }} </a>
+            <a class="btn btn-primary centered back-button" v-on:click.prevent="toggleResult"> {{ text("back") }} </a>
           </div>
           <distrolist :distros="distros"></distrolist>
         </div>
