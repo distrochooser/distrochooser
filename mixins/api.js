@@ -23,11 +23,7 @@ export default {
   methods: {
     init: function () {
       var _t = this
-      axios.post(nuxt.globals.backend + 'get/' + nuxt.globals.lang + '/', {
-        'useragent': nuxt.globals.useragent,
-        'dnt': nuxt.globals.dnt,
-        'referrer': nuxt.globals.referrer
-      })
+      axios.get(nuxt.globals.backend + 'get/' + nuxt.globals.lang + '/1/1/')
       .then(function (response) {
         _t.nuxt.globals.i18n = response.data.i18n
         _t.nuxt.globals.questions = response.data.questions
@@ -39,7 +35,7 @@ export default {
         nuxt.globals.questions.forEach(function (element) {
           element.open = false
         }, this)
-        _t.nuxt.globals.visitor = response.data.visitor
+        _t.nuxt.globals.visitor = response.data.id
         console.log('Hello #' + _t.nuxt.globals.visitor)
         nuxt.globals.questions.splice(0, 0, _t.introMessage)
         nuxt.globals.questions[0].text = _t.text('welcomeTextHeader')
@@ -51,38 +47,32 @@ export default {
       })
     },
     addResult: function () {
-      var distros = [] // eslint-disable-line no-unused-vars
       var tags = this.globals.mainInstance.tags // eslint-disable-line no-unused-vars
       var answers = [] // eslint-disable-line no-unused-vars
-      this.globals.mainInstance.distros.forEach(function (distro) {
-        if (distro.points > 0) {
-          distros.push(distro.id)
-        }
-      })
 
       this.globals.mainInstance.answered[0].answers.forEach(function (answer) {
         if (answer.selected) {
           answers.push(answer.id)
         }
       })
-      this.globals.test = 'jfklsalfsjak'
-      // difference against ldc3: no questions, but tags! -> field important is empty until api is overhauled
-      /*
-      var data = new URLSearchParams()
-      data.set('distros', JSON.stringify(distros))
-      data.set('tags', JSON.stringify(tags))
-      data.set('answers', JSON.stringify(answers))
-      data.set('important', JSON.stringify([]))
-      axios.post(nuxt.globals.backend + 'addresult/', {
-        data
+      var tagsToSubmit = []
+      for (var tag in tags) {
+        var element = {
+          'name': tag,
+          'weight': tags[tag].weight,
+          'negative': tags[tag].negative,
+          'amount': tags[tag].amount
+        }
+        tagsToSubmit.push(element)
+      }
+      var _t = this
+      axios.post(nuxt.globals.backend + 'addresult/' + nuxt.globals.lang + '/1/' + nuxt.globals.visitor + '/', {
+        'answers': answers,
+        'tags': tagsToSubmit
       })
       .then(function (response) {
-        console.log(response)
+        _t.globals.test = response.data
       })
-      .catch(function (error) {
-        console.log(error)
-      })
-      */
     }
   }
 }

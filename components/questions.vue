@@ -35,12 +35,12 @@
           <div class="accordion-item" v-for="(q,qindex) in this.globals.distrochooser.questions" v-bind:key="q.id" >
             <input type="radio" :id="'header' + q.id" name="accordion-radio" hidden="" v-on:click="hideResults">
             <label class="accordion-header hand" :class="{'answered':q.answered}" :for="'header' + q.id">
-               <span v-if="q.number !== -1"> {{ qindex }}. </span>{{ q.text }}
+               <span v-if="q.numbber !== -1"> {{ qindex }}. </span>{{ q.text }}
             </label>
             <div class="accordion-body">
               <div class="panel-body">
                 <p v-html="q.number === -1 ? '' : q.help"></p>
-                <div class="toast toast-warning exclusion-warning" v-if="q.exclusiontags !== null && isTagMatch(q.exclusiontags)">
+                <div class="toast toast-warning exclusion-warning" v-if="q.excludedBy !== null && isTagMatch(q.excludedBy)">
                   {{ text('excludedbytag') }}
                 </div>
                 <img class="largelogo" v-if="q.id === 'welcome'">
@@ -56,20 +56,20 @@
                   </ul>
                 </div>
                 <div v-if="q.answers.length !== 0" class="answer-parent">
-                  <div :class="q.single ? 'radio' : 'checkbox'" v-for="(a,aindex) in q.answers" v-bind:key="a.id">
-                    <p v-if="q.single">
+                  <div :class="q.isSingle ? 'radio' : 'checkbox'" v-for="(a,aindex) in q.answers" v-bind:key="a.id">
+                    <p v-if="q.isSingle">
                       <label class="form-radio" :for="a.id" v-bind:class="{ 'selected': a.selected }">
                         <input :id="a.id" :checked='a.selected ' :name="q.id + '_a'" :data-id="a.id" type="radio" v-on:click="answer(q, a)">
                         <i class="form-icon"></i> {{ a.text }}
                       </label>
-                      <i v-on:click.prevent="showTooltip(translateExcludedTags(a),$event)" v-if="a.notags.length > 0" class="fa fa-question-circle fa-question-exclude" data-placement='left' data-html="true" :data-title="translateExcludedTags(a)"></i>
+                      <i v-on:click.prevent="showTooltip(translateExcludedTags(a),$event)" v-if="a.excludeTags.length > 0" class="fa fa-question-circle fa-question-exclude" data-placement='left' data-html="true" :data-title="translateExcludedTags(a)"></i>
                     </p>
-                    <p v-if="!q.single">
+                    <p v-if="!q.isSingle">
                       <label class="form-checkbox" :for="a.id" v-bind:class="{ 'selected': a.selected }">
                         <input :id="a.id" :checked='a.selected ' :name="q.id + '_a'" :data-id="a.id" type="checkbox" v-on:click="answer(q, a)">
                         <i class="form-icon"></i> {{ a.text }}
                       </label>
-                      <i v-on:click.prevent="showTooltip(translateExcludedTags(a),$event)" v-if="a.notags.length > 0" class="fa fa-question-circle" data-placement='left' data-html="true" :data-title="translateExcludedTags(a)"></i>
+                      <i v-on:click.prevent="showTooltip(translateExcludedTags(a),$event)" v-if="a.excludeTags.length > 0" class="fa fa-question-circle" data-placement='left' data-html="true" :data-title="translateExcludedTags(a)"></i>
                     </p>
                   </div>
                 </div>
@@ -271,7 +271,7 @@ export default {
                 result[t].amount++
               }
             })
-            tag = element.notags
+            tag = element.excludeTags
             tag.forEach(function (t) {
               var name = t.replace('!', '')
               if (typeof result[name] === 'undefined') {
@@ -305,8 +305,7 @@ export default {
     answer: function (q, a) {
       this.resultWayChoosed = false
       this.weigthActive = false
-      var answered = 0
-      if (q.single) {
+      if (q.isSingle) {
         this.removeAnswers(q)
       }
       for (var i in q.answers) {
@@ -315,10 +314,9 @@ export default {
           q.answers[i].selected = !q.answers[i].selected
         }
         if (q.answers[i].selected) {
-          answered++
+          q.answered = true
         }
       }
-      q.answered = answered > 0
       this.computeTags()
     },
     removeAnswers: function (q) {

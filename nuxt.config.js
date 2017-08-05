@@ -12,7 +12,7 @@ module.exports = {
     i18n: null,
     distrochooser: null,
     questions: null,
-    backend: 'https://waldorf.distrochooser.de/',
+    backend: 'http://127.0.0.1:8181/',
     lang: locales[0],
     distros: [],
     useragent: null,

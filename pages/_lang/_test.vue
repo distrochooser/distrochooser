@@ -24,13 +24,13 @@
           introMessage: {
             'id': 'welcome',
             'text': '',
-            'help': '',
-            'important': false,
-            'single': false,
+            'title': '',
+            'isSingle': false,
             'answers': [
             ],
-            exclusiontags: null,
-            'number': -1
+            excludedBy: null,
+            'number': -1,
+            'answered': false
           },
           loaded: false
         }
