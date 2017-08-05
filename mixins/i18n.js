@@ -5,7 +5,7 @@ export default {
   ],
   methods: {
     text: function (value) {
-      return this.globals.i18n !== null && typeof this.globals.i18n[value] !== 'undefined' ? this.globals.i18n[value].val : value
+      return this.globals.i18n !== null && typeof this.globals.i18n[value] !== 'undefined' ? this.globals.i18n[value].translation : value
     },
     translateExcludedTags: function (answer) {
       var result = this.text('excludes') + ': <br>'

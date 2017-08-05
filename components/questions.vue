@@ -35,11 +35,11 @@
           <div class="accordion-item" v-for="(q,qindex) in this.globals.distrochooser.questions" v-bind:key="q.id" >
             <input type="radio" :id="'header' + q.id" name="accordion-radio" hidden="" v-on:click="hideResults">
             <label class="accordion-header hand" :class="{'answered':q.answered}" :for="'header' + q.id">
-               <span v-if="q.numbber !== -1"> {{ qindex }}. </span>{{ q.text }}
+               <span v-if="q.numbber !== -1"> {{ qindex }}. </span>{{ q.title }}
             </label>
             <div class="accordion-body">
               <div class="panel-body">
-                <p v-html="q.number === -1 ? '' : q.help"></p>
+                <p v-html="q.number === -1 ? '' : q.text"></p>
                 <div class="toast toast-warning exclusion-warning" v-if="q.excludedBy !== null && isTagMatch(q.excludedBy)">
                   {{ text('excludedbytag') }}
                 </div>
@@ -74,9 +74,9 @@
                   </div>
                 </div>
                 <div class="btn-group btn-group-block" v-if="q.number !== -1">
-                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ lastQuestionNumber=== q.number ? text("getresult") :text("nextQuestion") }}</a>
-                  <a v-if="!q.answered && lastQuestionNumber !== q.number && q.number !== -1" class="btn" v-on:click.prevent="nextTrigger(q)"> <i class="icon icon-cross"></i> {{ text("skip-question") }} </a>
-                  <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("clear") }} </a>
+                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ lastQuestionNumber=== q.number ? text("sys.getresult") :text("sys.next") }}</a>
+                  <a v-if="!q.answered && lastQuestionNumber !== q.number && q.number !== -1" class="btn" v-on:click.prevent="nextTrigger(q)"> <i class="icon icon-cross"></i> {{ text("sys.skip") }} </a>
+                  <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("sys.clear") }} </a>
                 </div>
                 <a class="btn btn-primary" href="#" v-if="q.number === -1" v-on:click.prevent="nextTrigger(q)">
                   {{ text("StartTest") }}
@@ -88,39 +88,39 @@
 
         <!-- result part -->
         <div class="columns preresult" v-if="!resultWayChoosed && this.answered.length > 0 && !weigthActive">
-          <h3 id="weighting"> {{ text("choiceweightorresult") }} </h3>
+          <h3 id="weighting"> {{ text("sys.weightorresult") }} </h3>
           <div class="column col-5">
-            <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("choiceresult") }}</a>
+            <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("sys.getresult") }}</a>
           </div>    
           <div class="column col-2 or">
-            {{ text("or") }}
+            {{ text("sys.or") }}
           </div> 
           <div class="column col-5">
-            <a class="btn" href="#" v-on:click.prevent="toggleWeighting">{{ text("choiceweight") }}</a>
+            <a class="btn" href="#" v-on:click.prevent="toggleWeighting">{{ text("sys.weight") }}</a>
           </div>
         </div>
         <div v-if="weigthActive">
-          <h4>{{ text("weightingheader") }}</h4>
+          <h4>{{ text("sys.weight") }}</h4>
           <div class="form-group">
             <div class="columns" v-for="(tag,key) in tags" v-bind:key="key" v-if="!tag.negative">
                 <div class="column col-5">
                   {{ text(key) }}
                 </div>
-                <span class="notimportant">{{ text('notimportant') }}</span>
+                <span class="notimportant">{{ text('sys.notimportant') }}</span>
                 <div class="column col-4"> 
                   <input class="slider" type="range" min="0" max="2" step="1" value="1" v-model="tag.weight">
                 </div>
-                <span class="important">{{ text('important') }}</span>
+                <span class="important">{{ text('sys.important') }}</span>
             </div>
           </div>
           <div class="btn-group columns">
-            <a class="btn" v-on:click.prevent="toggleWeighting" href="#"> {{ text("abort") }}</a>
-            <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("getresult") }}</a>
+            <a class="btn" v-on:click.prevent="toggleWeighting" href="#"> {{ text("sys.abort") }}</a>
+            <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("sys.getresult") }}</a>
           </div>
         </div>
         <div class="results" v-if="resultWayChoosed">
           <div class="columns">
-            <a class="btn btn-primary centered back-button" v-on:click.prevent="toggleResult"> {{ text("back") }} </a>
+            <a class="btn btn-primary centered back-button" v-on:click.prevent="toggleResult"> {{ text("sys.back") }} </a>
           </div>
           <distrolist :distros="distros"></distrolist>
         </div>
@@ -133,18 +133,18 @@
               <figure class="avatar avatar-lg">
                 <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
               </figure>
-              <div class="panel-subtitle">{{ answered.length + "/" + (this.globals.questions.length - 1) + " " + text('answered') }}</div>
+              <div class="panel-subtitle">{{ answered.length + "/" + (this.globals.questions.length - 1) + " " + text('sys.answered') }}</div>
               <progress class="progress" :value="answered.length" :max="this.globals.questions.length - 1"></progress>
             </div>
             <div class="panel-body">
               <div class="form-group">
                 <label class="form-switch">
                   <input type="checkbox" v-model="globals.distrochooser.options.displayExcluded">
-                  <i class="form-icon"></i> {{ text('displayExcluded') }}
+                  <i class="form-icon"></i> {{ text('sys.displayexcluded') }}
                 </label>
               </div>
               <div class="panel-footer">
-                <button class="btn btn-primary" :class="{'disabled':this.answered.length === 0}" v-on:click.prevent="jumpToWeighting">{{ text('getresult') }}</button>
+                <button class="btn btn-primary" :class="{'disabled':this.answered.length === 0}" v-on:click.prevent="jumpToWeighting">{{ text('sys.getresult') }}</button>
               </div>
             </div>
           </div>
