@@ -7,22 +7,22 @@
     <h4 class="empty-title">{{ text("nodistros") }}</h4>
     <p class="empty-subtitle">{{ text("nodistrostext") }}</p>
   </div>
-  <div class="share-mobile show-xs" v-if="!isDistroListEmpty">
-    <a class="btn centered" :href="'https://distrochooser.de/' + globals.lang + '/' + globals.test">{{ text('share') }}: {{ 'https://distrochooser.de/' + globals.lang + '/' + globals.test }}</a>
+  <div class="share-mobile show-xs" v-if="!isDistroListEmpty && globals.test != -1">
+    <a class="btn centered" :href="shareLink">{{ text('share') }}: {{ shareLink }}</a>
   </div>
   <div class="share columns hide-xs" v-if="!isDistroListEmpty">
     <div class="column col-4"></div>
     <div class="column col-6">
-      <div class="tile">
+      <div class="tile" v-if="globals.test != -1">
         <div class="tile-icon">
           <figure class="avatar avatar-lg">
             <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
           </figure>
         </div>
-        <div class="tile-content">
+        <div class="tile-content" >
           <p class="tile-title">{{ text('share') }}</p>
           <p class="tile-subtitle">
-            <a :href="'https://distrochooser.de/' + globals.lang + '/' + globals.test">{{ 'https://distrochooser.de/' + globals.lang + '/' + globals.test }}</a>
+            <a :href="shareLink">{{ shareLink }}</a>
           </p>
           <p>
             <a class="btn btn-sm">Twitter</a>
@@ -78,6 +78,9 @@ export default {
     i18n
   ],
   computed: {
+    shareLink: function () {
+      return 'https://distrochooser.de/' + this.globals.lang + '/' + this.globals.test
+    },
     isDistroListEmpty: function () {
       if (!this.globals.distrochooser.options.displayExcluded) {
         var nonEmpty = 0

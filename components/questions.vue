@@ -28,14 +28,11 @@
             </ul>
           </nav>
         </div>
-        <div class="toast toast-warning">
-          I'm still not finished ;)
-        </div>
         <div class="accordion" :class="{'accordeon-disabled disabled': weigthActive || resultWayChoosed}">
           <div class="accordion-item" v-for="(q,qindex) in this.globals.distrochooser.questions" v-bind:key="q.id" >
             <input type="radio" :id="'header' + q.id" name="accordion-radio" hidden="" v-on:click="hideResults">
             <label class="accordion-header hand" :class="{'answered':q.answered}" :for="'header' + q.id">
-               <span v-if="q.numbber !== -1"> {{ qindex }}. </span>{{ q.title }}
+               <span v-if="q.number !== -1"> {{ qindex }}. </span>{{ q.title }}
             </label>
             <div class="accordion-body">
               <div class="panel-body">
@@ -45,14 +42,13 @@
                 </div>
                 <img class="largelogo" v-if="q.id === 'welcome'">
                 <div id="StartText" v-if="q.id === 'welcome'">
-                  <span v-html="text('introText')"></span>
+                  <span v-html="text('sys.intro')"></span>
                   <ul class="list">
-                    <li>{{ text('can-skip-questions') }} </li>
-                    <li>{{ text('can-get-result-anytime') }} </li>
-                    <li>{{ text('can-get-result-anyorder') }}</li>
-                    <li v-html="text('can-delete')"></li>
-                    <li v-html="text('can-mark-important')"></li>
-                    <li v-html="text('get-exclusion')"></li>
+                    <li>{{ text('sys.can-skip-questions') }} </li>
+                    <li>{{ text('sys.can-get-result-anytime') }} </li>
+                    <li>{{ text('sys.can-get-result-anyorder') }}</li>
+                    <li v-html="text('sys.can-delete')"></li>
+                    <li v-html="text('sys.can-mark-important')"></li>
                   </ul>
                 </div>
                 <div v-if="q.answers.length !== 0" class="answer-parent">
@@ -79,7 +75,7 @@
                   <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("sys.clear") }} </a>
                 </div>
                 <a class="btn btn-primary" href="#" v-if="q.number === -1" v-on:click.prevent="nextTrigger(q)">
-                  {{ text("StartTest") }}
+                  {{ text("sys.start") }}
                 </a>
               </div>  
             </div>

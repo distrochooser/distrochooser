@@ -3,31 +3,31 @@
 		<div class="column col-11">
 			<ul class="menu left-box hide-xs fixed">
 				<!-- menu header text -->
-				<li class="divider" :data-content="text('links')">
+				<li class="divider" :data-content="text('sys.links')">
 				</li>
 				<li class="menu-item">
 					<a href="about">
-						<i class="icon icon-link"></i> {{ text("about") }}
+						<i class="icon icon-link"></i> {{ text("sys.about") }}
 					</a>
 				</li>
 				<li class="menu-item">
 					<a href="privacy">
-						<i class="icon icon-link"></i> {{ text("privacy") }}
+						<i class="icon icon-link"></i> {{ text("sys.privacy") }}
 					</a>
 				</li>
 				<li class="menu-item">
 					<a href="contact">
-						<i class="icon icon-link"></i> {{ text("contact") }}
+						<i class="icon icon-link"></i> {{ text("sys.contact") }}
 					</a>
 				</li>
 				<li class="menu-item">
 					<a target="_blank" href="http://0fury.de">
 					<img class="vendor" alt="0fury.de" src="https://distrochooser.de/assets/0fury.ico">
-					{{ text("Vendor") }} <span class="0fury">0fury.de</span>
+					{{ text("sys.vendor") }} <span class="0fury">0fury.de</span>
 					</a>
 				</li>
 				<!-- menu divider -->
-				<li class="divider" :data-content="text('lang')">
+				<li class="divider" :data-content="text('sys.lang')">
 				</li>
 				<!-- menu item with badge -->
 				<li class="menu-item">

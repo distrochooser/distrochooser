@@ -10,7 +10,7 @@ export default {
     translateExcludedTags: function (answer) {
       var result = this.text('excludes') + ': <br>'
       var _t = this
-      answer.notags.forEach(function (t) {
+      answer.excludeTags.forEach(function (t) {
         var text = _t.text(t)
         if (text !== '') {
           result += _t.text(t) + '<br>'

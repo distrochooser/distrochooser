@@ -38,8 +38,8 @@ export default {
         _t.nuxt.globals.visitor = response.data.id
         console.log('Hello #' + _t.nuxt.globals.visitor)
         nuxt.globals.questions.splice(0, 0, _t.introMessage)
-        nuxt.globals.questions[0].text = _t.text('welcomeTextHeader')
-        nuxt.globals.questions[0].help = _t.text('welcomeText')
+        nuxt.globals.questions[0].text = _t.text('sys.welcometext')
+        nuxt.globals.questions[0].title = _t.text('sys.welcometitle')
         nuxt.globals.distrochooser.loaded = true
       })
       .catch(function (error) {
