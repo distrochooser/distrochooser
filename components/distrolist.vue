@@ -7,13 +7,14 @@
     <h4 class="empty-title">{{ text("nodistros") }}</h4>
     <p class="empty-subtitle">{{ text("nodistrostext") }}</p>
   </div>
-  <div class="share-mobile show-xs" v-if="!isDistroListEmpty && globals.test != -1">
+  <div class="share-mobile show-xs" v-if="!isDistroListEmpty && this.parent.displayTest != -1">
     <a class="btn centered" :href="shareLink">{{ text('share') }}: {{ shareLink }}</a>
   </div>
   <div class="share columns hide-xs" v-if="!isDistroListEmpty">
     <div class="column col-4"></div>
     <div class="column col-6">
-      <div class="tile" v-if="globals.test != -1">
+      <div class="loading" v-if="this.parent.displayTest == -1"></div>
+      <div class="tile" v-if="this.parent.displayTest != -1">
         <div class="tile-icon">
           <figure class="avatar avatar-lg">
             <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
@@ -71,7 +72,8 @@ import nuxt from '../mixins/nuxt-wrapper'
 import i18n from '../mixins/i18n'
 export default {
   props: [
-    'distros'
+    'distros',
+    'parent'
   ],
   mixins: [
     nuxt,
@@ -79,7 +81,7 @@ export default {
   ],
   computed: {
     shareLink: function () {
-      return 'https://distrochooser.de/' + this.globals.lang + '/' + this.globals.test
+      return 'https://distrochooser.de/' + this.globals.lang + '/' + this.parent.displayTest
     },
     isDistroListEmpty: function () {
       if (!this.globals.distrochooser.options.displayExcluded) {

@@ -118,7 +118,7 @@
           <div class="columns">
             <a class="btn btn-primary centered back-button" v-on:click.prevent="toggleResult"> {{ text("sys.back") }} </a>
           </div>
-          <distrolist :distros="distros"></distrolist>
+          <distrolist :distros="distros" :parent="this"></distrolist>
         </div>
       </div>
       <div class="column col-2 hide-xs">
@@ -159,7 +159,8 @@ export default {
     return {
       weigthActive: false,
       resultWayChoosed: false,
-      tags: {}
+      tags: {},
+      displayTest: -1
     }
   },
   mixins: [
@@ -226,9 +227,6 @@ export default {
           var sum = amount * weight
           */
           distroPoints = 0
-          console.log('nhit')
-          console.log(d)
-          console.log(t)
           d.results[t] = _t.tags[t]
         })
         // calculate percentage
@@ -301,6 +299,7 @@ export default {
     answer: function (q, a) {
       this.resultWayChoosed = false
       this.weigthActive = false
+      this.globals.preloadInfos = null // we do not need them anymore if something is answered
       if (q.isSingle) {
         this.removeAnswers(q)
       }
@@ -323,6 +322,14 @@ export default {
     },
     toggleWeighting: function () {
       this.weigthActive = !this.weigthActive
+      if (this.globals.preloadInfos !== null) {
+        this.globals.preloadInfos.tags.forEach(function (tag) {
+          this.tags[tag.name] = tag
+        }, this)
+        this.globals.preloadInfos = null
+        this.weigthActive = true
+        this.resultWayChoosed = false
+      }
     },
     toggleResult: function () {
       if (this.weigthActive) {
@@ -330,7 +337,13 @@ export default {
       }
       this.resultWayChoosed = !this.resultWayChoosed
       if (this.resultWayChoosed) {
-        this.globals.distrochooser.addResult()
+        if (this.globals.preloadInfos !== null) {
+          this.computeTags()
+          this.globals.preloadInfos = null
+          this.weigthActive = false
+          this.resultWayChoosed = true
+        }
+        this.globals.distrochooser.addResult(this)
       }
     },
     jumpToWeighting: function () {

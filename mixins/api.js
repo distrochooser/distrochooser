@@ -41,12 +41,28 @@ export default {
         nuxt.globals.questions[0].text = _t.text('sys.welcometext')
         nuxt.globals.questions[0].title = _t.text('sys.welcometitle')
         nuxt.globals.distrochooser.loaded = true
+        if (_t.nuxt.globals.test !== -1) {
+          axios.get(nuxt.globals.backend + 'getresult/' + nuxt.globals.test + '/')
+          .then(function (response) {
+            _t.globals.preloadInfos = response.data
+            nuxt.globals.questions.forEach(function (element) {
+              var selected = false
+              element.answers.forEach(function (answer) {
+                if (_t.globals.preloadInfos.answers.indexOf(answer.id) !== -1) {
+                  answer.selected = true
+                  selected = true
+                }
+              }, this)
+              element.answered = selected
+            }, this)
+          })
+        }
       })
       .catch(function (error) {
         console.log(error)
       })
     },
-    addResult: function () {
+    addResult: function (instance) {
       var tags = this.globals.mainInstance.tags // eslint-disable-line no-unused-vars
       var answers = [] // eslint-disable-line no-unused-vars
 
@@ -72,6 +88,7 @@ export default {
       })
       .then(function (response) {
         _t.globals.test = response.data
+        instance.displayTest = _t.globals.test
       })
     }
   }
