@@ -6,17 +6,17 @@
 				<li class="divider" :data-content="text('sys.links')">
 				</li>
 				<li class="menu-item">
-					<a href="about">
+					<a :href="'/info/'+this.globals.lang+'/about'">
 						<i class="icon icon-link"></i> {{ text("sys.about") }}
 					</a>
 				</li>
 				<li class="menu-item">
-					<a href="privacy">
+					<a :href="'/info/'+this.globals.lang+'/privacy'">
 						<i class="icon icon-link"></i> {{ text("sys.privacy") }}
 					</a>
 				</li>
 				<li class="menu-item">
-					<a href="contact">
+					<a :href="'/info/'+this.globals.lang+'/contact'">
 						<i class="icon icon-link"></i> {{ text("sys.contact") }}
 					</a>
 				</li>
