@@ -26,9 +26,9 @@
             <a :href="shareLink">{{ shareLink }}</a>
           </p>
           <p>
-            <a class="btn btn-sm">Twitter</a>
-            <a class="btn btn-sm">Facebook</a>
-            <a class="btn btn-sm">G+</a>
+            <a class="btn btn-sm twitter" :href="'https://twitter.com/share?url='+shareLink+'&hashtags=distrochooser,linux&via=distrochooser'">Twitter</a>
+            <a class="btn btn-sm facebook" :href="'https://www.facebook.com/sharer/sharer.php?u='+shareLink">Facebook</a>
+            <a class="btn btn-sm google-plus" :href="'https://plus.google.com/share?url='+shareLink">G+</a>
           </p>
         </div>
       </div>
@@ -127,6 +127,24 @@ export default {
 }
 .share-mobile{
   margin-bottom: 1em;
+}
+.twitter{
+  background-color: #00aced;
+  color: white;
+  border: 1px solid #00aced;
+  margin-right: 0.2em;
+}
+.facebook{
+  background-color: 	#3b5998;
+  border: 1px solid 	#3b5998;
+  color: white;
+  margin-right: 0.2em;
+}
+.google-plus{
+  background-color: #ea4335;
+  border: 1px solid #ea4335;
+  color: white;
+  margin-right: 0.2em;
 }
 </style>
 

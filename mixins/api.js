@@ -75,7 +75,7 @@ export default {
       for (var tag in tags) {
         var element = {
           'name': tag,
-          'weight': tags[tag].weight,
+          'weight': parseInt(tags[tag].weight),
           'negative': tags[tag].negative,
           'amount': tags[tag].amount
         }
