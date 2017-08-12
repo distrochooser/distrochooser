@@ -11,18 +11,18 @@
           <nav class="panel-nav">
             <ul class="tab tab-block">
               <li class="tab-item">
-                <a href="#panels">
-                  About
+                <a :href="'/info/'+this.globals.lang+'/about'">
+                  {{ text("sys.about") }}
                 </a>
               </li>
               <li class="tab-item">
-                <a href="#panels">
-                  Privacy
+                <a :href="'/info/'+this.globals.lang+'/privacy'">
+                  {{ text("sys.privacy") }}
                 </a>
               </li>
               <li class="tab-item">
-                <a href="#panels">
-                  Contact
+                <a :href="'/info/'+this.globals.lang+'/contact'">
+                  {{ text("sys.contact") }}
                 </a>
               </li>
             </ul>
