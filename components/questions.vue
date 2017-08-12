@@ -70,7 +70,7 @@
                   </div>
                 </div>
                 <div class="btn-group btn-group-block" v-if="q.number !== -1">
-                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ lastQuestionNumber=== q.number ? text("sys.getresult") :text("sys.next") }}</a>
+                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ lastQuestionNumber=== qindex ? text("sys.getresult") :text("sys.next") }}</a>
                   <a v-if="!q.answered && lastQuestionNumber !== q.number && q.number !== -1" class="btn" v-on:click.prevent="nextTrigger(q)"> <i class="icon icon-cross"></i> {{ text("sys.skip") }} </a>
                   <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("sys.clear") }} </a>
                 </div>
