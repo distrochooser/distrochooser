@@ -283,7 +283,35 @@ $variables = [
   "important" => [
     "wichtig!",
     "important!"
-  ]
+  ],
+  "notimportant" => [
+    "unwichtig",
+    "less important"
+  ],
+  "share" => [
+    "Mein Ergebnis teilen",
+    "Share my result"
+  ],
+  "sys.imagesource" => [
+    "Bildquelle",
+    "Image source"
+  ],
+  "sys.textsource" => [
+    "Textquelle",
+    "Text source"
+  ],
+  "sys.notags" => [
+    "Wir konnten keine Übereinstimmung anhand deiner Anforderungen finden",
+    "We could not find any matches based on your requirements"
+  ],
+  "sys.excludedbytag" => [
+    "Diese Frage entspricht nicht Deinem Anforderungsprofil. Du kannst Sie beantworten, aber gerne auch überspringen",
+    "This question is too far away from your requirement profile. You can answer it, but you can safely skip it."
+  ],
+  "sys.weightinfo" => [
+    "Bewege den Schieberegler nach rechts, um eine Eigenschaft als wichtig zu vermerken. Links markiert ihn als unwichtig",
+    "Move the slider to mark a property as important (right) or less important (left)"
+  ],
 
 ];
 
@@ -325,11 +353,15 @@ foreach ($distros as $key => $distro) {
     }
   }
   foreach ($translations as $key => $value) {
-    $query = "Insert into i18n (val, langCode, translation) VALUES (?,?,'$value')";
+    $query = "Insert into i18n (val, langCode, translation) VALUES (?,?,?)";
     $stmt = $pdo->prepare($query);
     $stmt->bindValue(1,"d.$id.description");
     $stmt->bindValue(2,$key);
-    $stmt->execute();
+    $stmt->bindValue(3,$value);
+    if(!$stmt->execute()){
+      var_dump($translations);
+      die();
+    }
   }
 }
 $cleanUp = "Delete from Answer";
@@ -364,17 +396,17 @@ foreach ($questions as $key => $question) {
       $translations[$dict->LanguageId === "1" ? "de":"en"] = [$dict->Text,$dict->Help]; //title | text
     }
   }
-  
   foreach ($translations as $key => $value) {
     $query = "Insert into i18n (val, langCode, translation) VALUES (?,?,'".$value[0]."')";
     $stmt = $pdo->prepare($query);
     $stmt->bindValue(1,"q.$id.title");
     $stmt->bindValue(2,$key);
     $stmt->execute();
-    $query = "Insert into i18n (val, langCode, translation) VALUES (?,?,'".$value[1]."')";
+    $query = "Insert into i18n (val, langCode, translation) VALUES (?,?,?)";
     $stmt = $pdo->prepare($query);
     $stmt->bindValue(1,"q.$id.text");
     $stmt->bindValue(2,$key);
+    $stmt->bindValue(3,$value[1]);
     $stmt->execute();
   }
 }
@@ -397,14 +429,11 @@ foreach ($answers as $key => $answer) {
     }
   }
   foreach ($translations as $key => $value) {
-    $query = "Insert into i18n (val, langCode, translation) VALUES (?,?,'$value')";
+    $query = "Insert into i18n (val, langCode, translation) VALUES (?,?,?)";
     $stmt = $pdo->prepare($query);
     $stmt->bindValue(1,"a.$id.text");
     $stmt->bindValue(2,$key);
+    $stmt->bindValue(3,$value);
     $stmt->execute();
   }
 }
-
-
-
-var_dump($tagsToTranslate);

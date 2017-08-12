@@ -38,7 +38,7 @@
               <div class="panel-body">
                 <p v-html="q.number === -1 ? '' : q.text"></p>
                 <div class="toast toast-warning exclusion-warning" v-if="q.excludedBy !== null && isTagMatch(q.excludedBy)">
-                  {{ text('excludedbytag') }}
+                  {{ text('sys.excludedbytag') }}
                 </div>
                 <img class="largelogo" v-if="q.id === 'welcome'">
                 <div id="StartText" v-if="q.id === 'welcome'">
@@ -97,16 +97,23 @@
         </div>
         <div v-if="weigthActive">
           <h4>{{ text("sys.weight") }}</h4>
+          <div class="toast toast-success weight-info">
+            {{ text("sys.weightinfo") }}
+          </div>
           <div class="form-group">
-            <div class="columns" v-for="(tag,key) in tags" v-bind:key="key" v-if="!tag.negative">
-                <div class="column col-5">
-                  {{ text(key) }}
+            <div v-for="(tag,key) in tags" v-bind:key="key" v-if="!tag.negative">
+                <div>
+                  {{ text(key) }} 
+                  <span class="important" v-if="parseInt(tag.weight) > 1 ">{{ text("important") }}</span>
+                  <span class="notimportant" v-if="parseInt(tag.weight) <1 ">{{ text("notimportant") }}</span>
                 </div>
-                <span class="notimportant">{{ text('sys.notimportant') }}</span>
-                <div class="column col-4"> 
-                  <input class="slider" type="range" min="0" max="2" step="1" value="1" v-model="tag.weight">
+                <div class="columns">
+                  <span class="column col-4 notimportant">{{ text('sys.notimportant') }}</span>
+                  <div class="column col-4"> 
+                    <input class="slider" type="range" min="0" max="2" step="1" value="1" v-model="tag.weight">
+                  </div>
+                  <span class="column col-4 important">{{ text('sys.important') }}</span>
                 </div>
-                <span class="important">{{ text('sys.important') }}</span>
             </div>
           </div>
           <div class="btn-group columns">
@@ -250,6 +257,7 @@ export default {
     },
     computeTags: function () {
       var result = {}
+      var _t = this
       for (var i = 0; i < this.answered.length; i++) {
         this.answered[i].answers.forEach(function (element) {
           if (element.selected) {
@@ -258,7 +266,7 @@ export default {
               if (typeof result[t] === 'undefined') {
                 result[t] = {
                   amount: 1,
-                  weight: 1,
+                  weight: typeof _t.tags[t] !== 'undefined' ? _t.tags[t].weight : 1,
                   negative: false
                 }
               } else {
@@ -271,7 +279,7 @@ export default {
               if (typeof result[name] === 'undefined') {
                 result[name] = {
                   amount: 1,
-                  weight: 1,
+                  weight: typeof _t.tags[t] !== 'undefined' ? _t.tags[t].weight : 1,
                   negative: true
                 }
               } else {
@@ -394,11 +402,18 @@ export default {
   }
   .notimportant{
     font-weight: 300;
+    font-style: italic;
   } 
   .important{
     font-weight: bold;
   }
   .accordeon-disabled{
     opacity: 0.5;
+  }
+  .avatar{
+    background: white !important;
+  }
+  .weight-info{
+    margin-bottom: 0.8em;
   }
 </style>

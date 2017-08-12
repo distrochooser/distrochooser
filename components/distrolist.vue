@@ -48,20 +48,25 @@
         <p class="tile-subtitle">{{ d.name }} </p>
         <p class="tile-title" v-html="d.description"></p>
           <div class="timeline tags">
+            <div class="toast" v-if="Object.keys(d.results).length ===0">
+              {{ text("sys.notags") }}
+            </div>
             <div class="timeline-item" v-bind:key="key" v-for="(value,key) in d.results">
               <div class="timeline-left">
-                <i class="icon" :class="{'icon-check icon-hit':!value.negative,' icon-cross icon-nohit':value.negative}"></i> {{ text(key) }}
-                <span class="important" v-if="parseInt(value.weight) > 1 ">{{ text("important") }}</span>
-                <span class="important" v-if="parseInt(value.weight) < 0 ">{{ text("notimportant") }}</span>
+                <i class="icon" :class="{'icon-check icon-hit':!value.negative,' icon-cross icon-nohit':value.negative}"></i> 
               </div>
               <div class="timeline-content">
-                <!-- tiles structure -->
+                {{ text(key) }}
+                <span class="important" v-if="parseInt(value.weight) > 1 ">{{ text("important") }}</span>
+                <span class="notimportant" v-if="parseInt(value.weight) < 0 ">{{ text("notimportant") }}</span>
               </div>
             </div>
           </div>
         </div>
       <div class="tile-action">
-        <a class="btn" :href="d.homepage" target="_blank">Website</a>
+        <a class="btn" :href="d.website" target="_blank">Website</a>
+        <a class="source" :href="d.textSource" target="_blank">{{ text("sys.textsource") }}</a>
+        <a class="source" :href="d.imageSource" target="_blank">{{ text("sys.imagesource") }}</a>
       </div>
     </div>
   </div>
@@ -122,6 +127,10 @@ export default {
 .important{
   font-weight: bold;
 }
+.notimportant{
+  font-weight: 300;
+  font-style: italic;
+} 
 .tags{
   margin-bottom: 3em;
 }
@@ -145,6 +154,12 @@ export default {
   border: 1px solid #ea4335;
   color: white;
   margin-right: 0.2em;
+}
+.source{
+  margin-left: 0.4em;
+}
+.tag-description{
+  margin-left:0.2em;
 }
 </style>
 
