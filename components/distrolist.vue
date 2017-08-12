@@ -17,7 +17,7 @@
       <div class="tile" v-if="this.parent.displayTest != -1">
         <div class="tile-icon">
           <figure class="avatar avatar-lg">
-            <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
+            <img src="/logo.png">
           </figure>
         </div>
         <div class="tile-content" >
@@ -160,6 +160,9 @@ export default {
 }
 .tag-description{
   margin-left:0.2em;
+}
+.avatar{
+  background: white !important;
 }
 </style>
 
