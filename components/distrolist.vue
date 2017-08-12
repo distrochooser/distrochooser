@@ -8,7 +8,10 @@
     <p class="empty-subtitle">{{ text("nodistrostext") }}</p>
   </div>
   <div class="share-mobile show-xs" v-if="!isDistroListEmpty && this.parent.displayTest != -1">
-    <a class="btn centered" :href="shareLink">{{ text('share') }}: {{ shareLink }}</a>
+    <p>
+      {{ text('share') }}
+    </p>
+    <a class="btn centered" :href="shareLink">{{ shareLink }}</a>
   </div>
   <div class="share columns hide-xs" v-if="!isDistroListEmpty">
     <div class="column col-4"></div>

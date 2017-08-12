@@ -4,6 +4,14 @@
       <div class="column col-7 col-xs-12" id="accordion">
         <div class="panel col-xs-12 show-xs mobile-header">
           <div class="panel-header text-center">
+            <div class="mobile-flag-parent">
+              <a class="mobile-flag" title="Zur deutschen Version wechseln" href="/">
+                <img src="https://distrochooser.de/assets/langs/de.png" alt="Deutsch">
+              </a>
+              <a class="mobile-flag" title="Switch to english version" href="/en/">
+                <img src="https://distrochooser.de/assets/langs/gb.png" alt="English">
+              </a>
+            </div>
             <figure class="avatar avatar-lg">
               <img src="/logo.png">
             </figure>
@@ -84,11 +92,12 @@
 
         <!-- result part -->
         <div class="columns preresult" v-if="!resultWayChoosed && this.answered.length > 0 && !weigthActive">
-          <h3 id="weighting"> {{ text("sys.weightorresult") }} </h3>
+          <h3 id="weighting" class="hide-xs"> {{ text("sys.weightorresult") }} </h3>
+          <h4 id="weighting" class="show-xs"> {{ text("sys.weightorresult") }}</h4>
           <div class="column col-5">
             <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("sys.getresult") }}</a>
           </div>    
-          <div class="column col-2 or">
+          <div class="column col-2 or hide-xs">
             {{ text("sys.or") }}
           </div> 
           <div class="column col-5">
@@ -415,5 +424,16 @@ export default {
   }
   .weight-info{
     margin-bottom: 0.8em;
+  }
+  .mobile-flag{
+    margin-left: 1em;
+  }
+  .mobile-flag img{
+    height: 1.5em;
+  }
+  .mobile-flag-parent{
+    margin-top: -12px;
+    text-align: left;
+    margin-left: -27px;
   }
 </style>
