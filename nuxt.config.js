@@ -100,15 +100,15 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         'rel': 'stylesheet',
-        'href': 'https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.2.14/spectre-exp.min.css'
+        'href': '/spectre-exp.min.css'
       },
       {
         'rel': 'stylesheet',
-        'href': 'https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.2.14/spectre.min.css'
+        'href': '/spectre.min.css'
       },
       {
         'rel': 'stylesheet',
-        'href': 'https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.2.14/spectre-icons.min.css'
+        'href': '/spectre-icons.min.css'
       }
     ],
     script: [
