@@ -5,7 +5,7 @@
         <div class="panel col-xs-12 show-xs mobile-header">
           <div class="panel-header text-center">
             <figure class="avatar avatar-lg">
-              <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
+              <img src="/logo.png">
             </figure>
           </div>
           <nav class="panel-nav">
@@ -134,7 +134,7 @@
           <div class="panel">
             <div class="panel-header text-center">
               <figure class="avatar avatar-lg">
-                <img src="https://distrochooser.de/assets/%5btondo%5d%5bf%5dLinux.png">
+                <img src="/logo.png">
               </figure>
               <div class="panel-subtitle">{{ answered.length + "/" + (this.globals.questions.length - 1) + " " + text('sys.answered') }}</div>
               <progress class="progress" :value="answered.length" :max="this.globals.questions.length - 1"></progress>
