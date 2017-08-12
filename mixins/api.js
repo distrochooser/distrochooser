@@ -3,9 +3,8 @@ import nuxt from '../nuxt.config'
 
 export default {
   created: function () {
-    nuxt.globals.useragent = typeof navigator === 'undefined' ? null : navigator.userAgent
-    nuxt.globals.referrer = typeof document === 'undefined' ? null : document.referrer
-    nuxt.globals.dnt = typeof navigator === 'undefined' ? false : navigator.doNotTrack === 1
+    nuxt.globals.useragent = typeof navigator === 'undefined' ? '' : navigator.userAgent
+    nuxt.globals.referrer = typeof document === 'undefined' ? '' : document.referrer
     if (this.$route.params.lang !== undefined) {
       var p = this.$route.params.lang
       if (nuxt.globals.locales.indexOf(p) !== -1) {
@@ -21,9 +20,12 @@ export default {
     }
   },
   methods: {
-    init: function () {
+    init: function (userAgent, referrer) {
       var _t = this
-      axios.get(nuxt.globals.backend + 'get/' + nuxt.globals.lang + '/1/1/')
+      axios.post(nuxt.globals.backend + 'get/' + nuxt.globals.lang + '/', {
+        'useragent': userAgent,
+        'referrer': referrer
+      })
       .then(function (response) {
         _t.nuxt.globals.i18n = response.data.i18n
         _t.nuxt.globals.questions = response.data.questions

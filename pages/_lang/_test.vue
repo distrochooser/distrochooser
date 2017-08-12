@@ -42,7 +42,7 @@
       mixins: [api, i18n],
       created: function () {
         nuxt.globals.distrochooser = this
-        this.init()
+        this.init(nuxt.globals.useragent, nuxt.globals.referrer)
       },
       computed: {
         nuxt: function () {
