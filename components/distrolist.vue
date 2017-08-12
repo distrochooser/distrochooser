@@ -43,7 +43,7 @@
     <div class="timeline-content">
       <div class="tile-content">
         <div class="logo-parent hide-xs">
-          <img :src="'https://distrochooser.de' + d.image.replace('./','/')">
+          <img :src="d.image.replace('./','/')">
         </div>
         <p class="tile-subtitle">{{ d.name }} </p>
         <p class="tile-title" v-html="d.description"></p>
