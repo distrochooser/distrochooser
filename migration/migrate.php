@@ -312,7 +312,18 @@ $variables = [
     "Bewege den Schieberegler nach rechts, um eine Eigenschaft als wichtig zu vermerken. Links markiert ihn als unwichtig",
     "Move the slider to mark a property as important (right) or less important (left)"
   ],
-
+  "sys.3" => [
+    "Der von Dir angegeben Text gehört zu einer alten Version von distrochooser.de. Du findest Dein altes Ergebnis #link#",
+    "This links contains an old test, created with a previous version of distrochooser.de. You can access this old test #link#"
+  ],
+  "sys.3link" => [
+    "hier",
+    "here"
+  ],
+  "sys.warning" => [
+    "Achtung",
+    "Attention"
+  ]
 ];
 
 foreach ($variables as $key => $value) {

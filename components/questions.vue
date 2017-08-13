@@ -36,6 +36,7 @@
             </ul>
           </nav>
         </div>
+        <bridge></bridge>
         <div class="accordion" :class="{'accordeon-disabled disabled': weigthActive || resultWayChoosed}">
           <div class="accordion-item" v-for="(q,qindex) in this.globals.distrochooser.questions" v-bind:key="q.id" >
             <input type="radio" :id="'header' + q.id" name="accordion-radio" hidden="" v-on:click="hideResults">
@@ -170,6 +171,7 @@ import Vue from 'vue' // eslint-disable-line no-unused-vars
 import i18n from '../mixins/i18n'
 import nuxt from '../mixins/nuxt-wrapper'
 import distrolist from './distrolist'
+import bridge from './bridge'
 export default {
   data: function () {
     return {
@@ -184,7 +186,8 @@ export default {
     nuxt
   ],
   components: {
-    distrolist
+    distrolist,
+    bridge
   },
   created: function () {
     this.globals.mainInstance = this

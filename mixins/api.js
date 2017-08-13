@@ -15,6 +15,10 @@ export default {
     } else {
       nuxt.globals.lang = 'de'
     }
+    if (typeof this.$route.query['l'] !== 'undefined') {
+      var raw = parseInt(this.$route.query['l'])
+      nuxt.globals.lang = raw === 1 ? 'de' : 'en'
+    }
     if (this.$route.params.test !== undefined) {
       nuxt.globals.test = this.$route.params.test
     }
