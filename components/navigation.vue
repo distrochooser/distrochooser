@@ -22,7 +22,7 @@
 				</li>
 				<li class="menu-item">
 					<a target="_blank" href="http://0fury.de">
-					<img class="vendor" alt="0fury.de" src="https://distrochooser.de/assets/0fury.ico">
+					<img class="vendor" alt="0fury.de" src="/0fury.ico">
 					{{ text("sys.vendor") }} <span class="0fury">0fury.de</span>
 					</a>
 				</li>
@@ -33,10 +33,10 @@
 				<li class="menu-item">
 					<div class="menu-badge">
 						<a class="flag" title="Zur deutschen Version wechseln" href="/">
-							<img src="https://distrochooser.de/assets/langs/de.png" alt="Deutsch">
+							<img src="/de.png" alt="Deutsch">
 						</a>
 						<a class="flag" title="Switch to english version" href="/en/">
-							<img src="https://distrochooser.de/assets/langs/gb.png" alt="English">
+							<img src="/gb.png" alt="English">
 						</a>
 					</div>
 					<a href="#">

@@ -6,10 +6,10 @@
           <div class="panel-header text-center">
             <div class="mobile-flag-parent">
               <a class="mobile-flag" title="Zur deutschen Version wechseln" href="/">
-                <img src="https://distrochooser.de/assets/langs/de.png" alt="Deutsch">
+                <img src="/de.png" alt="Deutsch">
               </a>
               <a class="mobile-flag" title="Switch to english version" href="/en/">
-                <img src="https://distrochooser.de/assets/langs/gb.png" alt="English">
+                <img src="/gb.png" alt="English">
               </a>
             </div>
             <figure class="avatar avatar-lg">
