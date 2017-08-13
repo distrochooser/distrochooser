@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /info/de/privacy
+Disallow: /info/en/privacy
+Disallow: /info/de/contact
+Disallow: /info/en/contact
