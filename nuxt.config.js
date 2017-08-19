@@ -1,4 +1,10 @@
 let locales = ['de', 'en']
+
+let welcomeHeader = {
+  'de': 'Willkommen beim Distrochooser',
+  'en': 'Welcome to Distrochooser!'
+}
+
 let descriptions = {
   'de': 'Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Linux-Distribution zu finden.',
   'en': 'The Distrochooser helps you to find the suitable Linux distribution for you!'
@@ -30,7 +36,8 @@ module.exports = {
     description: null,
     mainInstance: null,
     preloadInfos: null,
-    longDescriptions: longDescriptions
+    longDescriptions: longDescriptions,
+    welcomeHeader: welcomeHeader
   },
   head: {
     title: 'Distrochooser',

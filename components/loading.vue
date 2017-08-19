@@ -6,12 +6,14 @@
       <img src="/logo.png">
     </div>
     <div class="column col-6 loader-text hide-xs">
+     <h1>{{ this.nuxt.globals.welcomeHeader[this.nuxt.globals.lang] }} </h1>
      <p v-html="this.nuxt.globals.longDescriptions[this.nuxt.globals.lang]"></p>
     </div>
     <div class="column show-xs mobile-text">
       <div class="centered mobile-logo">
         <img src="/logo.png">
       </div>
+      <h1>{{ this.nuxt.globals.welcomeHeader[this.nuxt.globals.lang] }} </h1>
       <p v-html="this.nuxt.globals.longDescriptions[this.nuxt.globals.lang]"></p>
     </div>
     <div class="footer">
@@ -68,5 +70,9 @@ export default {
   }
   .footer *:last-child:after {
     content: ""
+  }
+  h1{
+    font-size: 2em;
+    text-align: left;
   }
 </style>
