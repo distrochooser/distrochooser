@@ -1,7 +1,12 @@
 let locales = ['de', 'en']
 let descriptions = {
-  'de': 'Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Distribution zu finden.',
-  'en': 'The distrochooser helps you to find the suitable Distribution for you!'
+  'de': 'Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Linux-Distribution zu finden.',
+  'en': 'The Distrochooser helps you to find the suitable Linux distribution for you!'
+}
+
+let longDescriptions = {
+  'de': descriptions['de'] + '<br> <br>Dabei musst Du lediglich einfache Fragen über Deine Anforderungen und Wünsche in unserer Linux-Auswahlhilfe beantworten. Anschließend ermitteln wir für Dich, welches Linux für Deine Anforderungen geeignet sein könnte.',
+  'en': descriptions['en'] + '<br> <br>You only have to answer our questions about your requirements for a Linux distribution. After you finished, we will calculate a list of Linux distributions which will fit your needs.'
 }
 
 module.exports = {
@@ -25,10 +30,7 @@ module.exports = {
     description: null,
     mainInstance: null,
     preloadInfos: null,
-    jsWarning: {
-      'de': 'Sollte diese Seite länger angezeigt werden, könnte dies an deaktiviertem JavaScript liegen',
-      'en': 'This service is based on JavaScript, please enable this browser feature!'
-    }
+    longDescriptions: longDescriptions
   },
   head: {
     title: 'Distrochooser',
@@ -116,7 +118,7 @@ module.exports = {
       }
     ],
     script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' }
+      { src: '/jquery.min.js' }
     ]
   },
   /*

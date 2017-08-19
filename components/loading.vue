@@ -3,16 +3,16 @@
     <div class="column col-3 hide-xs">
     </div>
     <div class="column col-1 loader-image hide-xs">
-      <img src="~/static/logo.png">
+      <img src="/logo.png">
     </div>
     <div class="column col-6 loader-text hide-xs">
-     {{ this.nuxt.globals.descriptions[this.nuxt.globals.lang] }}
+     <p v-html="this.nuxt.globals.longDescriptions[this.nuxt.globals.lang]"></p>
     </div>
     <div class="column show-xs mobile-text">
       <div class="centered mobile-logo">
-        <img src="~/static/logo.png">
+        <img src="/logo.png">
       </div>
-     {{ this.nuxt.globals.descriptions[this.nuxt.globals.lang] }}
+      <p v-html="this.nuxt.globals.longDescriptions[this.nuxt.globals.lang]"></p>
     </div>
     <div class="footer">
      <a :href="'/info/'+this.nuxt.globals.lang+'/contact/'"> {{ this.nuxt.globals.lang === 'de'? 'Impressum' : 'Contact'}}</a>
@@ -36,11 +36,11 @@ export default {
   .loader-text{
     border-left: 1px solid #50596c;
     padding-top: 1.6em;
-    margin-top: 20%;
+    margin-top: 15%;
     text-align: justify;
   }
   .loader-image{
-    margin-top: 20%;
+    margin-top: 18%;
   }
   .loader-indicator{
     margin-top:1em;
