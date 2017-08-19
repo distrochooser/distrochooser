@@ -24,7 +24,11 @@ module.exports = {
     descriptions: descriptions,
     description: null,
     mainInstance: null,
-    preloadInfos: null
+    preloadInfos: null,
+    jsWarning: {
+      'de': 'Sollte diese Seite länger angezeigt werden, könnte dies an deaktiviertem JavaScript liegen',
+      'en': 'This service is based on JavaScript, please enable this browser feature!'
+    }
   },
   head: {
     title: 'Distrochooser',

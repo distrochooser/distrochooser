@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+      <loading></loading>
       <div class="columns" v-if="nuxt.globals.distrochooser.loaded">
           <navigation></navigation>
           <questions></questions>
@@ -9,6 +10,7 @@
 
 <script>
     import navigation from '../../components/navigation'
+    import loading from '../../components/loading'
     import questions from '../../components/questions'
     import i18n from '../../mixins/i18n'
     import api from '../../mixins/api'
@@ -42,7 +44,8 @@
       },
       components: {
         navigation,
-        questions
+        questions,
+        loading
       },
       mixins: [api, i18n],
       created: function () {
