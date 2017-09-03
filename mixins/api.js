@@ -28,7 +28,8 @@ export default {
       var _t = this
       axios.post(nuxt.globals.backend + 'get/' + nuxt.globals.lang + '/', {
         'useragent': userAgent,
-        'referrer': referrer
+        'referrer': referrer,
+        'prerender': process.server
       })
       .then(function (response) {
         _t.nuxt.globals.i18n = response.data.i18n

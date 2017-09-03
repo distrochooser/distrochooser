@@ -17,8 +17,8 @@
       <p v-html="this.nuxt.globals.longDescriptions[this.nuxt.globals.lang]"></p>
     </div>
     <div class="footer">
-     <a :href="'/info/'+this.nuxt.globals.lang+'/contact/'"> {{ this.nuxt.globals.lang === 'de'? 'Impressum' : 'Contact'}}</a>
-     <a :href="'/info/'+this.nuxt.globals.lang+'/privacy/'"> {{ this.nuxt.globals.lang === 'de'? 'Datenschutz' : 'Privacy'}}</a>
+     <a :title = "this.nuxt.globals.lang === 'de'? 'Impressum' : 'Contact'" :href="'/info/'+this.nuxt.globals.lang+'/contact/'"> {{ this.nuxt.globals.lang === 'de'? 'Impressum' : 'Contact'}}</a>
+     <a :title = "this.nuxt.globals.lang === 'de'? 'Datenschutz' : 'Privacy'" :href="'/info/'+this.nuxt.globals.lang+'/privacy/'"> {{ this.nuxt.globals.lang === 'de'? 'Datenschutz' : 'Privacy'}}</a>
     </div>
   </div>
 </template>
