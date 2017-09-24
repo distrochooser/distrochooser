@@ -69,6 +69,15 @@ export default {
         console.log(error)
       })
     },
+    setRating: function (rating, test) {
+      var _t = this
+      axios.get(nuxt.globals.backend + 'addrating/' + test + '/' + rating)
+      .then(function (response) {
+        _t.nuxt.globals.ratingSent = response.data === 1
+      }).catch(function (response) {
+        console.log(response)
+      })
+    },
     addResult: function (instance) {
       var tags = this.globals.mainInstance.tags // eslint-disable-line no-unused-vars
       var answers = [] // eslint-disable-line no-unused-vars

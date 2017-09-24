@@ -4,8 +4,8 @@
     <div class="empty-icon">
       <i class="icon icon-cross"></i>
     </div>
-    <h4 class="empty-title">{{ text("nodistros") }}</h4>
-    <p class="empty-subtitle">{{ text("nodistrostext") }}</p>
+    <h4 class="empty-title">{{ text("sys.nodistros") }}</h4>
+    <p class="empty-subtitle">{{ text("sys.nodistrostext") }}</p>
   </div>
   <div class="share-mobile show-xs" v-if="!isDistroListEmpty && this.parent.displayTest != -1">
     <p>
@@ -33,6 +33,7 @@
             <a class="btn btn-sm facebook" :href="'https://www.facebook.com/sharer/sharer.php?u='+shareLink">Facebook</a>
             <a class="btn btn-sm google-plus" :href="'https://plus.google.com/share?url='+shareLink">G+</a>
           </p>
+          <rating :parent="this"></rating>
         </div>
       </div>
     </div>
@@ -78,11 +79,16 @@
 <script>
 import nuxt from '../mixins/nuxt-wrapper'
 import i18n from '../mixins/i18n'
+
+import rating from '../components/rating'
 export default {
   props: [
     'distros',
     'parent'
   ],
+  components: {
+    rating
+  },
   mixins: [
     nuxt,
     i18n
