@@ -40,12 +40,14 @@
         <div class="accordion" :class="{'accordeon-disabled disabled': weigthActive || resultWayChoosed}">
           <div class="accordion-item" v-for="(q,qindex) in this.globals.distrochooser.questions" v-bind:key="q.id" >
             <input type="radio" :id="'header' + q.id" name="accordion-radio" hidden="" v-on:click="hideResults">
-            <label class="accordion-header hand" :class="{'answered':q.answered}" :for="'header' + q.id">
-               <span v-if="q.number !== -1"> {{ qindex }}. </span>{{ q.title }}
+            <label class="accordion-header hand columns" :class="{'answered':q.answered}"  :for="'header' + q.id">
+               <span class="col-1" v-if="q.number !== -1"> {{ qindex }}. </span>{{ q.title }}
+               <i v-if="q.number !== -1 && q.answered" class="icon icon-check answered-check" ></i>
             </label>
+            
             <div class="accordion-body">
               <div class="panel-body">
-                <p v-html="q.number === -1 ? '' : q.text"></p>
+                <p class="question-text" v-html="q.number === -1 ? '' : q.text"></p>
                 <div class="toast toast-warning exclusion-warning" v-if="q.excludedBy !== null && isTagMatch(q.excludedBy)">
                   {{ text('sys.excludedbytag') }}
                 </div>
@@ -323,6 +325,7 @@ export default {
       if (q.isSingle) {
         this.removeAnswers(q)
       }
+      q.answered = false
       for (var i in q.answers) {
         // input[type='radio'] needs to be set per code that we can handle it the same way as input[type='checkbox']
         if (q.answers[i] === a) {
@@ -438,5 +441,24 @@ export default {
     margin-top: -12px;
     text-align: left;
     margin-left: -27px;
+  }
+  .question-text{
+    margin-top: 0.4em;
+    font-size: 12pt;
+  }
+  .accordion-header{
+    margin-left: 0.0em;
+    margin-right: 0.0em;
+  }
+  .accordion .accordion-item input:checked~.accordion-body{
+    border-left:2px solid #f8f9fa;
+    border-right: 2px solid #f8f9fa;
+    border-bottom: 2px solid #f8f9fa;
+    padding-bottom: 0.7em;
+  }
+  .answered-check{
+    margin-bottom: 0.3em;    
+    margin-left: 0.3em;
+    color: #32b643;
   }
 </style>
