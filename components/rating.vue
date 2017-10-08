@@ -5,7 +5,7 @@
         </p>
         <p class="star-parent" v-if="selectedRating == 0">
             <span class="star" v-for="(icon, key) in icons">
-                <a class="face" :class="{'active': selectedRating == key }"  v-on:click.prevent="setRating(key)">
+                <a class="face tooltip tooltip-bottom" :data-tooltip="nuxt.globals.distrochooser.text('sys.rating-'+key)" :class="{'active': selectedRating == key }"  v-on:click.prevent="setRating(key)">
                     {{ icon }}
                 </a>
             </span>
