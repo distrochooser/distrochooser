@@ -5,14 +5,9 @@
 </template>
 
 <style>
+
 </style>
 
 <script>
-export default {
-  data () {
-    return {
-      foobar: 'test'
-    }
-  }
-}
+export default {}
 </script>
