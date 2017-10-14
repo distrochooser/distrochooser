@@ -134,7 +134,10 @@
                 </div>
             </div>
           </div>
-          <div class="btn-group columns">
+          <div class="toast toast-error weight-info" v-if="isDangerousTagCondition()">
+            {{ text("sys.weighterror") }}
+          </div>
+          <div class="btn-group columns" v-if="!isDangerousTagCondition()">
             <a class="btn" v-on:click.prevent="toggleWeighting" href="#"> {{ text("sys.abort") }}</a>
             <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("sys.getresult") }}</a>
           </div>
@@ -148,7 +151,7 @@
       </div>
       <div class="column col-2 hide-xs">
       </div>
-      <button class="btn btn-primary show-xs mobile-result-button" :class="{'disabled':this.answered.length === 0 || this.weigthActive || this.resultWayChoosed}" v-on:click.prevent="jumpToBottom">
+      <button class="btn btn-primary show-xs mobile-result-button" v-if="this.answered.length > 0" :class="{'disabled': this.weigthActive || this.resultWayChoosed}" v-on:click.prevent="jumpToBottom">
         {{ text('sys.getresult') }}
       </button>
       <div class="column col-3 hide-xs right-box fixed">
@@ -390,6 +393,22 @@ export default {
     hideResults: function () {
       this.weigthActive = false
       this.resultWayChoosed = false
+    },
+    isDangerousTagCondition: function () {
+      if (!this.weigthActive) {
+        return false
+      }
+      var negativeTags = 0
+      var tagCount = 0
+      for (var p in this.tags) {
+        // the check is only for tags the user can weight. If all of the positive tags are "downweighted", we cannot calculate any results
+        var isNegative = this.tags[p].negative === false && parseInt(this.tags[p].weight) === 0
+        if (isNegative) {
+          negativeTags++
+        }
+        tagCount++
+      }
+      return negativeTags === tagCount
     }
   }
 }
