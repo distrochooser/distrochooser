@@ -20,6 +20,12 @@
 						<i class="icon icon-link"></i> {{ text("sys.contact") }}
 					</a>
 				</li>
+
+				<li class="menu-item">
+					<a target="_blank" href="https://blog.distrochooser.de">
+						<i class="icon icon-link"></i> Blog
+					</a>
+				</li>
 				<li class="menu-item">
 					<a target="_blank" href="http://0fury.de">
 					<img class="vendor" alt="0fury.de" src="/0fury.ico">

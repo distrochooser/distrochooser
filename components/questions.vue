@@ -20,7 +20,13 @@
             <ul class="tab tab-block">
               <li class="tab-item">
                 <a :href="'/info/'+this.globals.lang+'/about'">
-                  {{ text("sys.about") }}
+                  {{ text("sys.about.short") }}
+                </a>
+              </li>
+
+              <li class="tab-item">
+                <a href="https://blog.distrochooser.de">
+                  Blog
                 </a>
               </li>
               <li class="tab-item">
