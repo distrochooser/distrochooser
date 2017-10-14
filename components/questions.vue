@@ -142,6 +142,9 @@
       </div>
       <div class="column col-2 hide-xs">
       </div>
+      <button class="btn btn-primary show-xs mobile-result-button" :class="{'disabled':this.answered.length === 0 || this.weigthActive || this.resultWayChoosed}" v-on:click.prevent="jumpToBottom">
+        {{ text('sys.getresult') }}
+      </button>
       <div class="column col-3 hide-xs right-box fixed">
           <div class="panel">
             <div class="panel-header text-center">
@@ -353,6 +356,9 @@ export default {
         this.weigthActive = true
         this.resultWayChoosed = false
       }
+      if (this.weigthActive) {
+        this.jumpToBottom()
+      }
     },
     toggleResult: function () {
       if (this.weigthActive) {
@@ -371,6 +377,9 @@ export default {
     },
     jumpToWeighting: function () {
       jQuery('html, body').animate({ scrollTop: jQuery('#weighting').offset().top }, 10) // eslint-disable-line no-undef
+    },
+    jumpToBottom: function () {
+      jQuery('html,body').animate({scrollTop: document.body.scrollHeight}, 10) // eslint-disable-line no-undef
     },
     hideResults: function () {
       this.weigthActive = false
@@ -460,5 +469,15 @@ export default {
     margin-bottom: 0.3em;    
     margin-left: 0.3em;
     color: #32b643;
+  }
+  .mobile-result-button{
+    position: fixed;
+    top: 50%;
+    right: -2.2em;
+     transform:rotate(270deg);
+    -ms-transform:rotate(270deg); /* IE 9 */
+    -moz-transform:rotate(270deg); /* Firefox */
+    -webkit-transform:rotate(270deg); /* Safari and Chrome */
+    -o-transform:rotate(270deg); /* Opera */
   }
 </style>

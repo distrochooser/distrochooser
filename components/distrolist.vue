@@ -7,11 +7,12 @@
     <h4 class="empty-title">{{ text("sys.nodistros") }}</h4>
     <p class="empty-subtitle">{{ text("sys.nodistrostext") }}</p>
   </div>
-  <div class="share-mobile show-xs" v-if="!isDistroListEmpty && this.parent.displayTest != -1">
-    <p>
+  <div class="share-mobile show-xs" v-if="!isDistroListEmpty && this.parent.displayTest != -1">    
+    <p class="mobile-share-text">
       {{ text('share') }}
     </p>
-    <a class="btn centered" :href="shareLink">{{ shareLink }}</a>
+    <input onClick="this.select();" class="share-link-mobile form-input" :value="shareLink"/>
+    <rating class="mobile-rating" :parent="this"></rating>
   </div>
   <div class="share columns hide-xs" v-if="!isDistroListEmpty">
     <div class="column col-4"></div>
@@ -172,6 +173,18 @@ export default {
 }
 .avatar{
   background: white !important;
+}
+.mobile-rating{
+    text-align: center;
+    margin-top: 1em;
+}
+.mobile-share-text{
+    text-align: center;
+}
+.share-link-mobile{
+    width: 74%;
+    margin: 0 auto;
+    text-align: center;
 }
 </style>
 
