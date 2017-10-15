@@ -54,7 +54,7 @@
             <div class="accordion-body">
               <div class="panel-body">
                 <p class="question-text" v-html="q.number === -1 ? '' : q.text"></p>
-                <div class="toast toast-warning exclusion-warning" v-if="q.excludedBy !== null && isTagMatch(q.excludedBy)">
+                <div class="toast toast-warning exclusion-warning" v-if="q.excludedBy !== null && isTagMatchOnlyPositives(q.excludedBy)">
                   {{ text('sys.excludedbytag') }}
                 </div>
                 <img class="largelogo" v-if="q.id === 'welcome'">
@@ -86,9 +86,13 @@
                     </p>
                   </div>
                 </div>
-                <div class="btn-group btn-group-block" v-if="q.number !== -1">
-                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ lastQuestionNumber=== qindex ? text("sys.getresult") :text("sys.next") }}</a>
+                <div class="btn-group btn-group-block" v-if="q.number !== -1 && lastQuestionNumber !== qindex">
+                  <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ text("sys.next") }}</a>
                   <a v-if="!q.answered && lastQuestionNumber !== q.number && q.number !== -1" class="btn" v-on:click.prevent="nextTrigger(q)"> <i class="icon icon-cross"></i> {{ text("sys.skip") }} </a>
+                  <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("sys.clear") }} </a>
+                </div>
+
+                <div class="btn-group btn-group-block" v-if="lastQuestionNumber === qindex">
                   <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("sys.clear") }} </a>
                 </div>
                 <a class="btn btn-primary" href="#" v-if="q.number === -1" v-on:click.prevent="nextTrigger(q)">
@@ -134,10 +138,10 @@
                 </div>
             </div>
           </div>
-          <div class="toast toast-error weight-info" v-if="isDangerousTagCondition()">
+          <div class="toast toast-error weight-info" v-if="isDangerousTagCondition">
             {{ text("sys.weighterror") }}
           </div>
-          <div class="btn-group columns" v-if="!isDangerousTagCondition()">
+          <div class="btn-group columns" v-if="!isDangerousTagCondition">
             <a class="btn" v-on:click.prevent="toggleWeighting" href="#"> {{ text("sys.abort") }}</a>
             <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("sys.getresult") }}</a>
           </div>
@@ -210,6 +214,22 @@ export default {
     jQuery('#headerwelcome').trigger('click') // eslint-disable-line no-undef
   },
   computed: {
+    isDangerousTagCondition: function () {
+      if (!this.weigthActive) {
+        return false
+      }
+      var negativeTags = 0
+      var tagCount = 0
+      for (var p in this.tags) {
+        // the check is only for tags the user can weight. If all of the positive tags are "downweighted", we cannot calculate any results
+        var isNegative = this.tags[p].negative === false && parseInt(this.tags[p].weight) === 0
+        if (isNegative) {
+          negativeTags++
+        }
+        tagCount++
+      }
+      return negativeTags === tagCount
+    },
     lastQuestionNumber: function () {
       return this.globals.questions.length - 1
     },
@@ -272,6 +292,15 @@ export default {
     }
   },
   methods: {
+    isTagMatchOnlyPositives: function (tags) {
+      for (var i = 0; i < tags.length; i++) {
+        var tag = tags[i]
+        if (typeof (this.tags[tag]) !== 'undefined' && !this.tags[tag].negative) {
+          return true
+        }
+      }
+      return false
+    },
     isTagMatch: function (tags) {
       for (var i = 0; i < tags.length; i++) {
         var tag = tags[i]
@@ -393,22 +422,6 @@ export default {
     hideResults: function () {
       this.weigthActive = false
       this.resultWayChoosed = false
-    },
-    isDangerousTagCondition: function () {
-      if (!this.weigthActive) {
-        return false
-      }
-      var negativeTags = 0
-      var tagCount = 0
-      for (var p in this.tags) {
-        // the check is only for tags the user can weight. If all of the positive tags are "downweighted", we cannot calculate any results
-        var isNegative = this.tags[p].negative === false && parseInt(this.tags[p].weight) === 0
-        if (isNegative) {
-          negativeTags++
-        }
-        tagCount++
-      }
-      return negativeTags === tagCount
     }
   }
 }
