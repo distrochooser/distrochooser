@@ -17,7 +17,7 @@
             </figure>
           </div>
           <nav class="panel-nav">
-            <ul class="tab tab-block">
+            <ul class="tab tab-block mobile-navigation">
               <li class="tab-item">
                 <a :href="'/info/'+this.globals.lang+'/about'">
                   {{ text("sys.about.short") }}
@@ -57,9 +57,8 @@
                 <div class="toast toast-warning exclusion-warning" v-if="q.excludedBy !== null && isTagMatchOnlyPositives(q.excludedBy)">
                   {{ text('sys.excludedbytag') }}
                 </div>
-                <img class="largelogo" v-if="q.id === 'welcome'">
                 <div id="StartText" v-if="q.id === 'welcome'">
-                  <span v-html="text('sys.intro')"></span>
+                  <p class="question-text" v-html="text('sys.intro')"></p>
                   <ul class="list">
                     <li>{{ text('sys.can-skip-questions') }} </li>
                     <li>{{ text('sys.can-get-result-anytime') }} </li>
@@ -95,7 +94,7 @@
                 <div class="btn-group btn-group-block" v-if="lastQuestionNumber === qindex">
                   <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("sys.clear") }} </a>
                 </div>
-                <a class="btn btn-primary" href="#" v-if="q.number === -1" v-on:click.prevent="nextTrigger(q)">
+                <a class="btn btn-primary btn-start" href="#" v-if="q.number === -1" v-on:click.prevent="nextTrigger(q)">
                   {{ text("sys.start") }}
                 </a>
               </div>  
@@ -428,6 +427,9 @@ export default {
 </script>
  
 <style scoped>
+  .answer-parent {
+    margin-left: 1em;
+  }
   .answer-parent input[type='checkbox'],.answer-parent input[type='radio']{
     margin-left: 0.1em;
   }
@@ -444,9 +446,6 @@ export default {
   .right-box{
     right: 4em;
     max-width: 14%;
-  }
-  .mobile-header{
-    margin-top: -2em;
   }
   #weighting{
     display: block;
@@ -490,10 +489,15 @@ export default {
     margin-left: -27px;
   }
   .question-text{
-    margin-top: 0.4em;
+    margin-top: .7em;
+    margin-right: 1em;
+    margin-left: 1em;
     font-size: 12pt;
   }
   .accordion-header{
+    background-color: #fbfafa;
+    padding-top: .5em;
+    padding-bottom: .5em;
     margin-left: 0.0em;
     margin-right: 0.0em;
   }
@@ -501,12 +505,19 @@ export default {
     border-left:2px solid #f8f9fa;
     border-right: 2px solid #f8f9fa;
     border-bottom: 2px solid #f8f9fa;
-    padding-bottom: 0.7em;
+  }
+  .accordion .accordion-item .accordion-body{      
+    margin-bottom: .8rem;
   }
   .answered-check{
     margin-bottom: 0.3em;    
     margin-left: 0.3em;
-    color: #32b643;
+    color: #32b643;    
+    height: 100%;
+    padding-bottom: .5em;
+  }
+  .accordion input:checked~.accordion-header .icon {
+    transform: rotate(0deg) !important;
   }
   .mobile-result-button{
     position: fixed;
@@ -517,5 +528,24 @@ export default {
     -moz-transform:rotate(270deg); /* Firefox */
     -webkit-transform:rotate(270deg); /* Safari and Chrome */
     -o-transform:rotate(270deg); /* Opera */
+  }
+  .accordion-header{
+    background-color: #f8f9fa;    
+    padding-top: .5em;
+    padding-bottom: .5em;
+  }
+  .btn-start{
+    margin-left: 1em;
+    margin-bottom: 1em;
+  }
+  .preresult{
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .mobile-header{
+    margin-bottom: 1em;
+  }
+  .mobile-navigation{
+    border-bottom:0px solid red;
   }
 </style>

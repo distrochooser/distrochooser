@@ -14,7 +14,6 @@ let longDescriptions = {
   'de': descriptions['de'] + '<br> <br>Dabei musst Du lediglich einfache Fragen über Deine Anforderungen und Wünsche in unserer Linux-Auswahlhilfe beantworten. Anschließend ermitteln wir für Dich, welches Linux für Deine Anforderungen geeignet sein könnte.',
   'en': descriptions['en'] + '<br> <br>You only have to answer our questions about your requirements for a Linux distribution. After you finished, we will calculate a list of Linux distributions which will fit your needs.'
 }
-
 module.exports = {
   /*
   ** Headers of the page
@@ -23,7 +22,7 @@ module.exports = {
     i18n: null,
     distrochooser: null,
     questions: null,
-    backend: 'http://127.0.0.1:8181/',
+    backend: 'https://waldorf.distrochooser.de/',
     lang: locales[0],
     distros: [],
     useragent: null,
@@ -110,44 +109,10 @@ module.exports = {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        'rel': 'stylesheet',
-        'href': '/spectre-exp.min.css'
-      },
-      {
-        'rel': 'stylesheet',
-        'href': '/spectre.min.css'
-      },
-      {
-        'rel': 'stylesheet',
-        'href': '/spectre-icons.min.css'
-      }
-    ],
-    script: [
-      { src: '/jquery.min.js' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
   loading: { color: '#3B8070' },
-  /*
-  ** Build configuration
-  */
-  build: {
-    /*
-    ** Run ESLINT on save
-    */
-    extend (config, ctx) {
-      if (ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
-  }
+  plugins: ['~plugins/frontend.js'],
+  css: ['spectre.css/dist/spectre.min.css', 'spectre.css/dist/spectre-icons.min.css', 'spectre.css/dist/spectre-exp.min.css'],
 }

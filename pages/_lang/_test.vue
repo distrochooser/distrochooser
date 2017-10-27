@@ -87,4 +87,7 @@
   .container{
     padding-top: 1em;
   }
+  body{
+    font-size: .7rem !important;
+  }
 </style>

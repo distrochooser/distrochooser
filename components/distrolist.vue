@@ -186,5 +186,8 @@ export default {
     margin: 0 auto;
     text-align: center;
 }
+.timeline-icon .icon{
+    margin-top: 0.3em;
+}
 </style>
 
