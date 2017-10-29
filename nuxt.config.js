@@ -6,8 +6,8 @@ let welcomeHeader = {
 }
 
 let descriptions = {
-  'de': 'Der Distrochooser hilft, im Dschungel der Linux-Distributionen die persönlich passende Linux-Distribution zu finden.',
-  'en': 'The Distrochooser helps you to find the suitable Linux distribution for you!'
+  'de': 'Der Distrochooser hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die persönlich passende Linux-Distribution zu finden.',
+  'en': 'The Distrochooser helps you to find the suitable Linux distribution based on your needs!'
 }
 
 let longDescriptions = {
