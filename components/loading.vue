@@ -3,7 +3,7 @@
     <div class="column col-3 hide-xs">
     </div>
     <div class="column col-1 loader-image hide-xs">
-      <img src="/logo.png">
+      <img alt="Distrochooser Logo" title="Distrochooser Logo" src="/logo.png">
     </div>
     <div class="column col-6 loader-text hide-xs">
      <h1>{{ this.nuxt.globals.welcomeHeader[this.nuxt.globals.lang] }} </h1>
@@ -11,7 +11,7 @@
     </div>
     <div class="column show-xs mobile-text">
       <div class="centered mobile-logo">
-        <img src="/logo.png">
+        <img alt="Distrochooser Logo" title="Distrochooser Logo" src="/logo.png">
       </div>
       <h1>{{ this.nuxt.globals.welcomeHeader[this.nuxt.globals.lang] }} </h1>
       <p v-html="this.nuxt.globals.longDescriptions[this.nuxt.globals.lang]"></p>

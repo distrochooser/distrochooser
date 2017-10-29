@@ -6,7 +6,7 @@ let welcomeHeader = {
 }
 
 let descriptions = {
-  'de': 'Der Distrochooser hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die persönlich passende Linux-Distribution zu finden.',
+  'de': 'Die Linux Auswahlhilfe auf distrochooser.de hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die persönlich passende Linux-Distribution zu finden.',
   'en': 'The Distrochooser helps you to find the suitable Linux distribution based on your needs!'
 }
 
@@ -109,7 +109,10 @@ module.exports = {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'canonical', href: 'https://distrochooser.de'},
+      { rel: 'alternate', hreflang: 'de', href: 'https://distrochooser.de/'},
+      { rel: 'alternate', hreflang: 'en', href: 'https://distrochooser.de/en'},
     ]
   },
   loading: { color: '#3B8070' },
