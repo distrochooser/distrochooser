@@ -46,14 +46,17 @@ export default {
 </script>
 
 <style scoped>
+    .star-parent{
+        margin-top: -0.5em;
+    }
     .star{
         margin-right: 1em;
     }
     .face{
-        font-size: xx-large;
         text-decoration: none;
         color: rgba(69, 77, 93, 0.5);
-        cursor: pointer;
+        cursor: pointer;    
+        font-size: 2.3em;
     }
     .active{
         color: #5764c6;

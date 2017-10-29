@@ -21,7 +21,7 @@
       <div class="tile" v-if="this.parent.displayTest != -1">
         <div class="tile-icon">
           <figure class="avatar avatar-lg">
-            <img src="/logo.png">
+            <img class="share-logo" src="/logo.png">
           </figure>
         </div>
         <div class="tile-content" >
@@ -188,6 +188,10 @@ export default {
 }
 .timeline-icon .icon{
     margin-top: 0.3em;
+}
+
+.share-logo{  
+    margin-top: 45%;
 }
 </style>
 

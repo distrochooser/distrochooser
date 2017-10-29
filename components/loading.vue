@@ -40,9 +40,12 @@ export default {
     padding-top: 1.6em;
     margin-top: 15%;
     text-align: justify;
+    padding-left: 2em;
   }
   .loader-image{
-    margin-top: 18%;
+    margin-top: 17%;    
+    text-align: right;
+    margin-right: 1em;
   }
   .loader-indicator{
     margin-top:1em;

@@ -88,6 +88,12 @@
     padding-top: 1em;
   }
   body{
-    font-size: .7rem !important;
+    font-size: .65rem !important;
+  }
+  p{
+    margin-bottom: 0.5em;
+  }
+  .btn{
+    font-size: .6rem !important;
   }
 </style>

@@ -2,9 +2,6 @@
 	<div class="column col-3 hide-xs">
 		<div class="column col-11">
 			<ul class="menu left-box hide-xs fixed">
-				<!-- menu header text -->
-				<li class="divider" :data-content="text('sys.links')">
-				</li>
 				<li class="menu-item">
 					<a :href="'/info/'+this.globals.lang+'/about'">
 						<i class="icon icon-link"></i> {{ text("sys.about") }}
@@ -31,9 +28,6 @@
 					<img class="vendor" alt="0fury.de" src="/0fury.ico">
 					{{ text("sys.vendor") }} <span class="0fury">0fury.de</span>
 					</a>
-				</li>
-				<!-- menu divider -->
-				<li class="divider" :data-content="text('sys.lang')">
 				</li>
 				<!-- menu item with badge -->
 				<li class="menu-item">

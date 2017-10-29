@@ -69,14 +69,14 @@
                 </div>
                 <div v-if="q.answers.length !== 0" class="answer-parent">
                   <div :class="q.isSingle ? 'radio' : 'checkbox'" v-for="(a,aindex) in q.answers" v-bind:key="a.id">
-                    <p v-if="q.isSingle">
+                    <p class="answer-input" v-if="q.isSingle">
                       <label class="form-radio" :for="a.id" v-bind:class="{ 'selected': a.selected }">
                         <input :id="a.id" :checked='a.selected ' :name="q.id + '_a'" :data-id="a.id" type="radio" v-on:click="answer(q, a)">
                         <i class="form-icon"></i> {{ a.text }}
                       </label>
                       <i v-on:click.prevent="showTooltip(translateExcludedTags(a),$event)" v-if="a.excludeTags.length > 0" class="fa fa-question-circle fa-question-exclude" data-placement='left' data-html="true" :data-title="translateExcludedTags(a)"></i>
                     </p>
-                    <p v-if="!q.isSingle">
+                    <p class="answer-input" v-if="!q.isSingle">
                       <label class="form-checkbox" :for="a.id" v-bind:class="{ 'selected': a.selected }">
                         <input :id="a.id" :checked='a.selected ' :name="q.id + '_a'" :data-id="a.id" type="checkbox" v-on:click="answer(q, a)">
                         <i class="form-icon"></i> {{ a.text }}
@@ -85,7 +85,7 @@
                     </p>
                   </div>
                 </div>
-                <div class="btn-group btn-group-block" v-if="q.number !== -1 && lastQuestionNumber !== qindex">
+                <div class="btn-group btn-group-block answer-buttons" v-if="q.number !== -1 && lastQuestionNumber !== qindex">
                   <a v-on:click.prevent="nextTrigger(q)" class="btn"> <i class="icon icon-check"></i> {{ text("sys.next") }}</a>
                   <a v-if="!q.answered && lastQuestionNumber !== q.number && q.number !== -1" class="btn" v-on:click.prevent="nextTrigger(q)"> <i class="icon icon-cross"></i> {{ text("sys.skip") }} </a>
                   <a v-if="q.answered" class="btn danger" v-on:click.prevent="removeAnswers(q)"> <i class="icon icon-delete"></i> {{ text("sys.clear") }} </a>
@@ -104,7 +104,7 @@
 
         <!-- result part -->
         <div class="columns preresult" v-if="!resultWayChoosed && this.answered.length > 0 && !weigthActive">
-          <h3 id="weighting" class="hide-xs"> {{ text("sys.weightorresult") }} </h3>
+          <h4 id="weighting" class="hide-xs"> {{ text("sys.weightorresult") }} </h4>
           <h4 id="weighting" class="show-xs"> {{ text("sys.weightorresult") }}</h4>
           <div class="column col-5">
             <a class="btn" v-on:click.prevent="toggleResult" href="#">{{ text("sys.getresult") }}</a>
@@ -112,11 +112,13 @@
           <div class="column col-2 or hide-xs">
             {{ text("sys.or") }}
           </div> 
+
+          <div class="column col-1 or show-xs"></div> 
           <div class="column col-5">
             <a class="btn" href="#" v-on:click.prevent="toggleWeighting">{{ text("sys.weight") }}</a>
           </div>
         </div>
-        <div v-if="weigthActive">
+        <div class="weight-active" v-if="weigthActive">
           <h4>{{ text("sys.weight") }}</h4>
           <div class="toast toast-success weight-info">
             {{ text("sys.weightinfo") }}
@@ -456,6 +458,7 @@ export default {
   }
   .preresult{
     text-align: center;
+    margin-bottom: 2em;
   }
   .or{
     font-size: large;
@@ -491,8 +494,9 @@ export default {
   .question-text{
     margin-top: .7em;
     margin-right: 1em;
-    margin-left: 1em;
-    font-size: 12pt;
+    margin-left: 0.7em;
+    font-size: 10.3pt;
+    margin-bottom: 0.5em;
   }
   .accordion-header{
     background-color: #fbfafa;
@@ -507,7 +511,7 @@ export default {
     border-bottom: 2px solid #f8f9fa;
   }
   .accordion .accordion-item .accordion-body{      
-    margin-bottom: .8rem;
+    margin-bottom: .6rem;
   }
   .answered-check{
     margin-bottom: 0.3em;    
@@ -522,7 +526,7 @@ export default {
   .mobile-result-button{
     position: fixed;
     top: 50%;
-    right: -2.2em;
+    right: -2.6em;
      transform:rotate(270deg);
     -ms-transform:rotate(270deg); /* IE 9 */
     -moz-transform:rotate(270deg); /* Firefox */
@@ -534,18 +538,32 @@ export default {
     padding-top: .5em;
     padding-bottom: .5em;
   }
+  .btn{ 
+    font-size: 10pt;
+    height: 2.5em;
+    padding-top: .3em;
+  }
   .btn-start{
     margin-left: 1em;
     margin-bottom: 1em;
   }
   .preresult{
     margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
   }
   .mobile-header{
     margin-bottom: 1em;
   }
   .mobile-navigation{
     border-bottom:0px solid red;
+  }
+  .answer-input{
+    margin-bottom: 0px;
+  }
+  .answer-buttons{
+    margin-top: 0.9em;
+  }
+  .weight-active{
+    margin-bottom: 2em;
   }
 </style>
