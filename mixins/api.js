@@ -81,12 +81,14 @@ export default {
     addResult: function (instance) {
       var tags = this.globals.mainInstance.tags // eslint-disable-line no-unused-vars
       var answers = [] // eslint-disable-line no-unused-vars
-
-      this.globals.mainInstance.answered[0].answers.forEach(function (answer) {
-        if (answer.selected) {
-          answers.push(answer.id)
-        }
-      })
+      for (var i in this.globals.mainInstance.answered) {
+        var answer = this.globals.mainInstance.answered[i]
+        answer.answers.forEach(function (answer) {
+          if (answer.selected) {
+            answers.push(answer.id)
+          }
+        })
+      }
       var tagsToSubmit = []
       for (var tag in tags) {
         var element = {
