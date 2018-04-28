@@ -1,18 +1,24 @@
-let locales = ['de', 'en']
+let locales = ['de', 'en', 'fr', 'zh-cn']
 
 let welcomeHeader = {
   'de': 'Willkommen beim Distrochooser',
-  'en': 'Welcome to Distrochooser!'
+  'en': 'Welcome to Distrochooser!',
+  'fr': 'Bienvenue!',
+  'zh-cn': '欢迎'
 }
 
 let descriptions = {
   'de': 'Die Linux Auswahlhilfe hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die passende Linux-Distribution zu finden.',
-  'en': 'The Distrochooser helps you to find the suitable Linux distribution based on your needs!'
+  'en': 'The Distrochooser helps you to find the suitable Linux distribution based on your needs!',
+  'fr': 'Le Distrochooser vous aide à trouver le linux distribution approprié en fonction de vos besoins',
+  'zh-cn': '您好！本问卷测试将帮助您选择最适合您使用的 Linux 发行版'
 }
 
 let longDescriptions = {
   'de': descriptions['de'] + '<br> <br>Dabei musst Du lediglich einfache Fragen über Deine Anforderungen und Wünsche in unserer Linux-Auswahlhilfe beantworten. Anschließend ermitteln wir für Dich, welches Linux für Deine Anforderungen geeignet sein könnte.',
-  'en': descriptions['en'] + '<br> <br>You only have to answer our questions about your requirements for a Linux distribution. After you finished, we will calculate a list of Linux distributions which will fit your needs.'
+  'en': descriptions['en'] + '<br> <br>You only have to answer our questions about your requirements for a Linux distribution. After you finished, we will calculate a list of Linux distributions which will fit your needs.',
+  'fr': descriptions['fr'],
+  'zh-cn': descriptions['zh-cn']
 }
 module.exports = {
   /*
@@ -37,6 +43,24 @@ module.exports = {
     preloadInfos: null,
     longDescriptions: longDescriptions,
     welcomeHeader: welcomeHeader
+  },
+  modules: [
+   '@nuxtjs/sitemap'
+  ],
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https:/distrochooser.de',
+    cacheTime: 1000 * 60 * 15,
+    generate: true,
+    exclude: [
+      '/info/**'
+    ],
+    routes: [
+      '/',
+      '/de/',
+      '/en/',
+      '/zh-cn/'
+    ]
   },
   head: {
     title: 'Distrochooser',

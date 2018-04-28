@@ -38,6 +38,10 @@
 						<a class="flag" title="Switch to english version" href="/en/">
 							<img src="/gb.png" alt="English">
 						</a>
+						<a class="flag" title="Switch to chinese (simplified) version" href="/zh-cn/">
+                                                        <img src="/zh-cn.png" alt="Chinese (simplified)">
+                                                </a>
+
 					</div>
 					<a href="#">
 						<i class="icon"></i> 

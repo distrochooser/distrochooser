@@ -11,6 +11,11 @@
               <a class="mobile-flag" title="Switch to english version" href="/en/">
                 <img src="/gb.png" alt="English">
               </a>
+		
+              <a class="mobile-flag" title="Switch to chinese (simplified) version" href="/zh-cn/">
+                <img src="/zh-cn.png" alt="Chinese (simplified)">
+              </a>
+
             </div>
             <figure class="avatar avatar-lg">
               <img src="/logo.png">
