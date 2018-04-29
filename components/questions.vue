@@ -48,6 +48,7 @@
           </nav>
         </div>
         <bridge></bridge>
+        <lang></lang>
         <div class="accordion" :class="{'accordeon-disabled disabled': weigthActive || resultWayChoosed}">
           <div class="accordion-item" v-for="(q,qindex) in this.globals.distrochooser.questions" v-bind:key="q.id" >
             <input type="radio" :id="'header' + q.id" name="accordion-radio" hidden="" v-on:click="hideResults">
@@ -196,6 +197,7 @@ import i18n from '../mixins/i18n'
 import nuxt from '../mixins/nuxt-wrapper'
 import distrolist from './distrolist'
 import bridge from './bridge'
+import lang from './lang'
 export default {
   data: function () {
     return {
@@ -211,7 +213,8 @@ export default {
   ],
   components: {
     distrolist,
-    bridge
+    bridge,
+    lang
   },
   created: function () {
     this.globals.mainInstance = this
@@ -248,6 +251,7 @@ export default {
       // var raw =  this.globals.distros
       var results = []
       var _t = this
+      console.log(this.globals)
       this.globals.distros.forEach(function (d) {
         var hits = []
         var antihits = []
