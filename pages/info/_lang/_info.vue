@@ -140,7 +140,9 @@ export default {
         en: "back",
         fr: "back",
         "zh-cn": "回去吧"
-      }
+      },
+      tests: 0,
+      visitors: 0
     };
   },
   created: function() {
