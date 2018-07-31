@@ -17,7 +17,7 @@
     import nuxt from '../../nuxt.config'
     export default {
       validate ({ params }) {
-        var langOk = typeof params.lang === 'undefined' || /^.{2}$/.test(params.lang)
+        var langOk = typeof params.lang === 'undefined' || /^.{2,5}$/.test(params.lang)
         var testOk = typeof params.test === 'undefined' || /^\d+$/.test(params.test)
         return testOk && langOk
       },

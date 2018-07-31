@@ -19,11 +19,6 @@
 				</li>
 
 				<li class="menu-item">
-					<a target="_blank" href="https://blog.distrochooser.de">
-						<i class="icon icon-link"></i> Blog
-					</a>
-				</li>
-				<li class="menu-item">
 					<a target="_blank" href="http://0fury.de">
 					<img class="vendor" alt="0fury.de" src="/0fury.ico">
 					{{ text("sys.vendor") }} <span class="0fury">0fury.de</span>
@@ -41,6 +36,12 @@
 						<a class="flag" title="Switch to chinese (simplified) version" href="/zh-cn/">
                                                         <img src="/zh-cn.png" alt="Chinese (simplified)">
                                                 </a>
+						
+                                                <a class="flag" title="Switch to french version" href="/fr/">
+                                                        <img src="/fr.png" alt="French">
+                                                </a>
+
+
 
 					</div>
 					<a href="#">
@@ -49,6 +50,11 @@
 				</li>
 			</ul>
 		</div>
+		<div class="a" style="width: 200px;margin-top: 17em;margin-left: 1em;position: fixed;">
+			<span class="a-title" style="font-size: smaller;">Advertisement</span>
+			<a target="_blank" rel="nofollow" href="https://rf2-racingleague.com/?from=distrochooser"><img src="/ads/rf2_summer.png" class="column col-11" style="/*! position: absolute; *//*! width: 200px; *//*! top: 19em; */padding-left: 0px;margin-top: 0.2em;padding-left: 0px;"></a>
+		</div>
+
 		<div class="col-1">
 		</div>
 	</div>

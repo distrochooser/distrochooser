@@ -15,7 +15,9 @@
               <a class="mobile-flag" title="Switch to chinese (simplified) version" href="/zh-cn/">
                 <img src="/zh-cn.png" alt="Chinese (simplified)">
               </a>
-
+              <a class="mobile-flag" title="Switch to french version" href="/fr/">
+                <img src="/fr.png" alt="French">
+              </a>
             </div>
             <figure class="avatar avatar-lg">
               <img src="/logo.png">
@@ -29,11 +31,6 @@
                 </a>
               </li>
 
-              <li class="tab-item">
-                <a href="https://blog.distrochooser.de">
-                  Blog
-                </a>
-              </li>
               <li class="tab-item">
                 <a :href="'/info/'+this.globals.lang+'/privacy'">
                   {{ text("sys.privacy") }}
