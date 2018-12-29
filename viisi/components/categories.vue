@@ -43,8 +43,8 @@ export default {}
   padding-right: 1em;
 }
 .progressbar li:before {
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   counter-increment: step;
   line-height: 14;
   border: 2px solid $lightAccent;
@@ -71,7 +71,7 @@ export default {}
   content: '';
   position: absolute;
   background-color: $lightAccent;
-  top: 7px;
+  top: 9px;
   left: -50%;
   z-index: -1;
 }

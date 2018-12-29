@@ -3,18 +3,24 @@
     div.top-logo-container
       img.top-logo(src='~/assets/logo.png')
     categories
+    question
+
 </template>
 <script>
 import categories from '~/components/categories'
+import question from '~/components/question'
 export default {
   components: {
-    categories
+    categories,
+    question
   }
 }
 </script>
 <style lang="scss">
 @import '~/scss/variables.scss';
-
+body {
+  background: $background;
+}
 @media only screen and (max-width: $mobileWidth) {
   .distrochooser {
     width: 100%;

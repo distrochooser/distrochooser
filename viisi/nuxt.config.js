@@ -18,6 +18,11 @@ module.exports = {
       {
         rel: 'stylesheet',
         href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css'
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css?family=Karla|Raleway:300,300i,400'
       }
     ]
   },
