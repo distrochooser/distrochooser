@@ -1,10 +1,23 @@
 <template lang="pug">
   div.question
+    div.skip-container
+      a.skip-step.fa.fa-share
     div.question-text lorem ipsum
+    div.answer-remark
+      span Multiple answers possible
     div.answers
-      div.answer fooooo
-      div.answer.answer-selected bar
-      div.answer barz
+      div.answer 
+        span.answer-text fooooo
+        div.mark-important
+          i.fa.fa-exclamation
+      div.answer.answer-selected 
+        span.answer-text bar
+        div.mark-important.is-important
+          i.fa.fa-exclamation
+      div.answer
+        span.answer-text  barz 
+        div.mark-important
+          i.fa.fa-exclamation
     div.actions
       button.next-step next
 </template>
@@ -26,6 +39,12 @@ export default {}
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
+  }
+  .answer-remark {
+    left: 53% !important;
+  }
+  .next-step {
+    left: 80% !important;
   }
 }
 .question-text {
@@ -55,10 +74,31 @@ export default {}
   color: $nextButtonForeground;
   position: relative;
   left: 89%;
-  bottom: -2.5em;
   height: 30px;
   width: 60px;
   border: 0px;
   cursor: pointer;
+}
+.skip-step {
+  position: relative;
+  left: 95%;
+  top: 0.5em;
+  display: inline;
+  color: $skipButtonColor;
+}
+.answer-remark {
+  font-family: karla;
+  font-style: italic;
+  font-size: 9pt;
+  position: relative;
+  left: 73%;
+  bottom: 1em;
+}
+.mark-important {
+  display: inline-block;
+  margin-left: 1em;
+}
+.is-important {
+  color: $markImportantSelectedColor;
 }
 </style>
