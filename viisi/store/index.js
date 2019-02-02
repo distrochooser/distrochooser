@@ -14,10 +14,7 @@ const indexStore = new Vapi({
         title: 'category2'
       }
     ],
-    category: {
-      id: 'cat1',
-      title: 'category'
-    },
+    category: null,
     question: {
       id: 'somestupidid',
       title: 'This is a test question',
@@ -71,6 +68,21 @@ indexStore.actions.selectCategory = (store, payload) => {
   store.state.category = category
   //TODO: trigger question change
   //TODO: load the question
+}
+
+indexStore.actions.startTest = store => {
+  // do stuff
+  //TODO: load question
+  store.dispatch('selectCategory', {
+    selectedCategory: store.state.categories[0]
+  })
+}
+indexStore.actions.nextQuestion = store => {
+  var categoryIndex = store.state.categories.indexOf(store.state.category)
+  store.dispatch('selectCategory', {
+    selectedCategory:
+      store.state.categories[categoryIndex < 0 ? 0 : ++categoryIndex]
+  })
 }
 
 const createStore = () => {

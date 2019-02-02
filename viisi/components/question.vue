@@ -1,23 +1,37 @@
 <template lang="pug">
   div.question
-    div.skip-container
+    div.skip-container(v-if="!isAtWelcomeScreen")
       a.skip-step.fa.fa-share
-    div.question-text lorem ipsum
-    div.answer-remark
-      span Multiple answers possible
-    div.answers
-      div.answer(v-for="(answer, a_key) in question.answers", :key="a_key",:class="{'answer-selected animated pulse fast': answer.isAnswered}", @click='answerQuestion(answer)')
-        span.answer-text {{ answer.text }}
-        div.mark-important(:class="{'is-important': answer.isImportant}")
-          i.fa.fa-exclamation
-    div.actions
-      button.next-step next
+    div(v-if="isAtWelcomeScreen")
+      div.welcome-text 
+        b welcome text
+        ul
+          li stuff
+          li stuff 
+          li stuff
+        blockquote even more stuff
+      div.actions
+        button.next-step(@click="startTest") start
+    div(v-else)
+      div.question-text {{ question.title }}
+      div.answer-remark(v-if="question.isMultipleChoice")
+        span Multiple answers possible
+      div.answers
+        div.answer(v-for="(answer, a_key) in question.answers", :key="a_key",:class="{'answer-selected animated pulse fast': answer.isAnswered}", @click='answerQuestion(answer)')
+          span.answer-text {{ answer.text }}
+          div.mark-important(:class="{'is-important': answer.isImportant}")
+            i.fa.fa-exclamation
+      div.actions
+        button.next-step(@click="nextQuestion") {{ isAtLastQuestion() ? "get result" : "next" }}
 </template>
 <script>
 export default {
   computed: {
     question() {
       return this.$store.state.question
+    },
+    isAtWelcomeScreen() {
+      return this.$store.state.category === null
     }
   },
   methods: {
@@ -25,6 +39,22 @@ export default {
       this.$store.dispatch('answerQuestion', {
         selectedAnswer: answer
       })
+    },
+    startTest() {
+      this.$store.dispatch('startTest')
+    },
+    nextQuestion() {
+      if (!this.isAtLastQuestion()) {
+        this.$store.dispatch('nextQuestion')
+      } else {
+        console.log('ende')
+      }
+    },
+    isAtLastQuestion() {
+      var categoryIndex = this.$store.state.categories.indexOf(
+        this.$store.state.category
+      )
+      return categoryIndex == this.$store.state.categories.length - 1
     }
   }
 }
@@ -61,7 +91,8 @@ export default {
     margin-right: 5%;
   }
 }
-.question-text {
+.question-text,
+.welcome-text {
   font-family: 'Raleway', sans-serif;
   padding: 2em;
   font-size: 13pt;

@@ -1,6 +1,6 @@
 <template lang="pug">
   ul.progressbar
-    li(v-for="(category, c_k) in $store.state.categories" v-bind:key="c_k", :class="{'active': isActive(category)}") {{ category.title }}
+    li(v-for="(category, c_k) in $store.state.categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)") {{ category.title }}
   </ul>
 </template>
 
@@ -8,7 +8,15 @@
 export default {
   methods: {
     isActive(category) {
-      return this.$store.state.category.id == category.id
+      return (
+        this.$store.state.category &&
+        this.$store.state.category.id == category.id
+      )
+    },
+    selectCategory(category) {
+      this.$store.dispatch('selectCategory', {
+        selectedCategory: category
+      })
     }
   }
 }
@@ -78,6 +86,9 @@ export default {
 }
 .active:before {
   border-color: $activeStepForeground !important;
+}
+.active {
+  color: $activeStepForeground !important;
 }
 .progressbar li:hover:before {
   border: 2px solid $activeStepForeground;
