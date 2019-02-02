@@ -1,11 +1,17 @@
 <template lang="pug">
   ul.progressbar
-    li(v-for="(category, c_k) in $store.state.categories" v-bind:key="c_k") {{ category }}
+    li(v-for="(category, c_k) in $store.state.categories" v-bind:key="c_k", :class="{'active': isActive(category)}") {{ category.title }}
   </ul>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    isActive(category) {
+      return this.$store.state.category.id == category.id
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
@@ -27,9 +33,23 @@ export default {}
     width: 10% !important;
   }
 }
-.progressbar {
-  counter-reset: step;
-  padding-left: 14em; //very ugly: FIXME
+@media only screen and (max-width: $desktopWidth) {
+  .progressbar {
+    counter-reset: step;
+    padding-left: 0em; //very ugly: FIXME
+  }
+  .progressbar li {
+    width: 10% !important;
+  }
+}
+@media only screen and (min-width: $desktopMinWidth) and (max-width: $desktopWidth) {
+  .progressbar {
+    counter-reset: step;
+    padding-left: 0em; //very ugly: FIXME
+  }
+  .progressbar li {
+    width: 10% !important;
+  }
 }
 .progressbar li {
   list-style-type: none;
@@ -55,6 +75,9 @@ export default {}
   background-color: white;
   background: white;
   content: '';
+}
+.active:before {
+  border-color: $activeStepForeground !important;
 }
 .progressbar li:hover:before {
   border: 2px solid $activeStepForeground;

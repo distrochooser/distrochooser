@@ -6,26 +6,32 @@
     div.answer-remark
       span Multiple answers possible
     div.answers
-      div.answer 
-        span.answer-text fooooo
-        div.mark-important
-          i.fa.fa-exclamation
-      div.answer.answer-selected 
-        span.answer-text bar
-        div.mark-important.is-important
-          i.fa.fa-exclamation
-      div.answer
-        span.answer-text  barz 
-        div.mark-important
+      div.answer(v-for="(answer, a_key) in question.answers", :key="a_key",:class="{'answer-selected animated pulse fast': answer.isAnswered}", @click='answerQuestion(answer)')
+        span.answer-text {{ answer.text }}
+        div.mark-important(:class="{'is-important': answer.isImportant}")
           i.fa.fa-exclamation
     div.actions
       button.next-step next
 </template>
 <script>
-export default {}
+export default {
+  computed: {
+    question() {
+      return this.$store.state.question
+    }
+  },
+  methods: {
+    answerQuestion(answer) {
+      this.$store.dispatch('answerQuestion', {
+        selectedAnswer: answer
+      })
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
+@import '~/node_modules/animate.css/animate.min.css';
 .question {
   margin-top: 4em;
   width: 70%;
@@ -45,6 +51,14 @@ export default {}
   }
   .next-step {
     left: 80% !important;
+  }
+}
+
+@media only screen and (max-width: $desktopMinWidth) {
+  .question {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 }
 .question-text {
@@ -91,7 +105,7 @@ export default {}
   font-style: italic;
   font-size: 9pt;
   position: relative;
-  left: 73%;
+  left: 5%;
   bottom: 1em;
 }
 .mark-important {
