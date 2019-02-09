@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Question, Answer, GivenAnswer, Result, ResultDistroSelection, Distribution, SelectionReason
+from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason
 
 [admin.site.register(*models) for models in [
   (Question,),
   (Answer,),
   (GivenAnswer,),
-  (Result,),
+  (UserSession,),
   (ResultDistroSelection,),
   (Distribution,),
   (SelectionReason,),
