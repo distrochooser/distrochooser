@@ -3,10 +3,15 @@ from datetime import datetime
 import string
 class Translateable(models.Model):
   msgid = models.CharField(max_length=100, default="new-value",blank=False, null=False)
-  class Meta:
+  class Meta: 
     abstract = True
+    
+
+class Category(Translateable):
+  index = models.IntegerField(default=0)
 
 class Question(Translateable):
+  category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
   def __str__(self):
     return self.msgid
 

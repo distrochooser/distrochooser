@@ -13,6 +13,9 @@ export default {
   components: {
     categories,
     question
+  },
+  mounted() {
+    this.$store.dispatch('start')
   }
 }
 </script>

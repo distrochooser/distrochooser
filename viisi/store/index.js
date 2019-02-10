@@ -2,7 +2,7 @@ import Vapi from 'vuex-rest-api'
 import Vuex from 'vuex'
 
 const indexStore = new Vapi({
-  baseURL: 'MISSING',
+  baseURL: 'https://localhost:8000/',
   state: {
     categories: [
       {
@@ -39,13 +39,14 @@ const indexStore = new Vapi({
           isAnswered: false
         }
       ]
-    }
+    },
+    data: null
   }
 })
   .get({
-    action: 'getCategories',
-    property: 'categories',
-    path: () => `/categories`
+    action: 'start',
+    property: 'data',
+    path: () => `start/de-de`
   })
   .getStore()
 

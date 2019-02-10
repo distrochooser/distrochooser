@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason
+from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category
 
 [admin.site.register(*models) for models in [
   (Question,),
@@ -9,4 +9,5 @@ from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSele
   (ResultDistroSelection,),
   (Distribution,),
   (SelectionReason,),
+  (Category,),
 ]]
