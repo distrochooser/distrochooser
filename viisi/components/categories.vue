@@ -1,16 +1,24 @@
 <template lang="pug">
-  ul.progressbar
-    li(v-for="(category, c_k) in $store.state.categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)") {{ category.title }}
+  ul.progressbar(v-if="isLoaded")
+    li(v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)") {{ category.msgid }}
   </ul>
 </template>
 
 <script>
 export default {
+  computed: {
+    isLoaded() {
+      return this.$store.state.categories !== null
+    },
+    categories() {
+      return this.$store.state.categories
+    }
+  },
   methods: {
     isActive(category) {
       return (
-        this.$store.state.category &&
-        this.$store.state.category.id == category.id
+        this.$store.state.currentCategory !== null &&
+        this.$store.state.currentCategory.msgid === category.msgid
       )
     },
     selectCategory(category) {

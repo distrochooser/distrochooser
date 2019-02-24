@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.question
+  div.question(v-if="isLoaded")
     div.skip-container(v-if="!isAtWelcomeScreen")
       a.skip-step.fa.fa-share
     div(v-if="isAtWelcomeScreen")
@@ -13,12 +13,12 @@
       div.actions
         button.next-step(@click="startTest") start
     div(v-else)
-      div.question-text {{ question.title }}
+      div.question-text {{ question.msgid }}
       div.answer-remark(v-if="question.isMultipleChoice")
         span Multiple answers possible
       div.answers
-        div.answer(v-for="(answer, a_key) in question.answers", :key="a_key",:class="{'answer-selected animated pulse fast': answer.isAnswered}", @click='answerQuestion(answer)')
-          span.answer-text {{ answer.text }}
+        div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}", @click='answerQuestion(answer)')
+          span.answer-text {{ answer.msgid }}
           div.mark-important(:class="{'is-important': answer.isImportant}")
             i.fa.fa-exclamation
       div.actions
@@ -27,11 +27,17 @@
 <script>
 export default {
   computed: {
+    isLoaded() {
+      return this.$store.state !== null
+    },
     question() {
       return this.$store.state.question
     },
+    answers() {
+      return this.$store.state.answers
+    },
     isAtWelcomeScreen() {
-      return this.$store.state.category === null
+      return !this.$store.state.isStarted
     }
   },
   methods: {
@@ -41,7 +47,7 @@ export default {
       })
     },
     startTest() {
-      this.$store.dispatch('startTest')
+      this.$store.dispatch('nextQuestion')
     },
     nextQuestion() {
       if (!this.isAtLastQuestion()) {
@@ -51,10 +57,20 @@ export default {
       }
     },
     isAtLastQuestion() {
-      var categoryIndex = this.$store.state.categories.indexOf(
-        this.$store.state.category
+      var currentIndex = this.$store.state.currentCategory.index
+      var maximumIndex = Math.max.apply(
+        Math,
+        this.$store.state.categories.map(function(c) {
+          return c.index
+        })
       )
-      return categoryIndex == this.$store.state.categories.length - 1
+      return currentIndex === maximumIndex
+    },
+    isAnswerSelected(answer) {
+      return (
+        this.$store.state.givenAnswers.filter(a => a.msgid === answer.msgid)
+          .length === 1
+      )
     }
   }
 }

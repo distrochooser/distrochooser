@@ -2,87 +2,111 @@ import Vapi from 'vuex-rest-api'
 import Vuex from 'vuex'
 
 const indexStore = new Vapi({
-  baseURL: 'https://localhost:8000/',
+  baseURL: 'http://localhost:8000/',
   state: {
-    categories: [
-      {
-        id: 'cat1',
-        title: 'category'
-      },
-      {
-        id: 'cat2',
-        title: 'category2'
-      }
-    ],
-    category: null,
-    question: {
-      id: 'somestupidid',
-      title: 'This is a test question',
-      isMultipleChoice: true,
-      answers: [
-        {
-          id: 'jfaklsfjxla1',
-          text: 'foo',
-          isImportant: false,
-          isAnswered: false
-        },
-        {
-          id: 'jfaklsfjxla3',
-          text: 'bar',
-          isImportant: false,
-          isAnswered: false
-        },
-        {
-          id: 'jfaklsfjxla2',
-          text: 'barz',
-          isImportant: false,
-          isAnswered: false
-        }
-      ]
-    },
-    data: null
+    data: null, //for initial bulk loading
+    question: null,
+    answers: null,
+    categories: null,
+    currentCategory: null,
+    givenAnswers: [],
+    token: null, //session token
+    isStarted: false
   }
 })
   .get({
     action: 'start',
     property: 'data',
-    path: () => `start/de-de`
+    path: () => `start/de-de/`
+  })
+  .get({
+    action: 'loadQuestion',
+    property: 'data',
+    path: ({ index, token }) => `question/de-de/${index}/${token}/`
   })
   .getStore()
 
 indexStore.actions.answerQuestion = (store, payload) => {
+  var answer = payload.selectedAnswer
+  var answer = {
+    msgid: answer.msgid,
+    answered: true,
+    important: false
+  }
+  var isAnswered =
+    store.state.givenAnswers.filter(a => answer.msgid === a.msgid).length === 1
+  if (!isAnswered) {
+    store.commit('setAnswerQuestion', answer)
+  } else {
+    store.commit('removeAnswerQuestion', answer)
+  }
   // TODO: push answer to server
   // TODO: Read result
-  var answer = payload.selectedAnswer
-  store.state.question.answers.forEach(a => {
-    a.isAnswered =
-      a.id === answer.id
-        ? !a.isAnswered
-        : !store.state.question.isMultipleChoice
-          ? false
-          : a.isAnswered
-  })
 }
 
-indexStore.actions.selectCategory = (store, payload) => {
+indexStore.mutations.setAnswerQuestion = (state, answer) => {
+  state.givenAnswers.push(answer)
+}
+
+indexStore.mutations.removeAnswerQuestion = (state, answer) => {
+  state.givenAnswers.splice(state.givenAnswers.indexOf(answer), 1)
+}
+
+indexStore.actions.selectCategory = async (store, payload) => {
   var category = payload.selectedCategory
-  store.state.category = category
+  store.commit('setSelectCategory', category)
   //TODO: trigger question change
   //TODO: load the question
+  console.log(category)
+  await store.dispatch('loadQuestion', {
+    params: {
+      index: category.index,
+      token: store.state.token
+    }
+  })
+  store.commit('setCurrentQuestionData', store.state.data)
 }
 
-indexStore.actions.startTest = store => {
-  // do stuff
-  //TODO: load question
-  store.dispatch('selectCategory', {
-    selectedCategory: store.state.categories[0]
-  })
+indexStore.mutations.setSelectCategory = (state, category) => {
+  state.currentCategory = category
 }
+
+indexStore.actions.startTest = async store => {
+  await store.dispatch('start')
+  store.commit('setCurrentDisplayData', store.state.data)
+  store.commit('setCurrentQuestionData', store.state.data)
+}
+
+indexStore.mutations.setCurrentDisplayData = (state, data) => {
+  state.categories = data.categories
+  state.token = data.token
+}
+
+indexStore.mutations.setCurrentQuestionData = (state, data) => {
+  state.question = data.question
+  state.answers = data.answers
+}
+
+indexStore.mutations.setStarted = state => {
+  state.isStarted = true
+}
+
 indexStore.actions.nextQuestion = store => {
-  var categoryIndex = store.state.categories.indexOf(store.state.category)
+  store.commit('setStarted') //make sure the test is active
+  const currentCategory = store.state.currentCategory
+  var nextCategory = null
+  if (currentCategory === null) {
+    nextCategory = store.state.categories[0]
+  } else {
+    store.state.categories.forEach(c => {
+      if (c.index > currentCategory.index) {
+        nextCategory = c
+        return
+      }
+    })
+  }
   store.dispatch('selectCategory', {
-    selectedCategory:
-      store.state.categories[categoryIndex < 0 ? 0 : ++categoryIndex]
+    selectedCategory: nextCategory
   })
 }
 

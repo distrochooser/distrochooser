@@ -14,8 +14,8 @@ export default {
     categories,
     question
   },
-  mounted() {
-    this.$store.dispatch('start')
+  async mounted() {
+    await this.$store.dispatch('startTest')
   }
 }
 </script>
