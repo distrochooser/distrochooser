@@ -1,5 +1,5 @@
 <template lang="pug">
-  ul.progressbar(v-if="isLoaded")
+  ul.progressbar(v-if="isLoaded",v-show="!isAtWelcomeScreen")
     li(v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)") {{ category.msgid }}
   </ul>
 </template>
@@ -12,6 +12,9 @@ export default {
     },
     categories() {
       return this.$store.state.categories
+    },
+    isAtWelcomeScreen() {
+      return !this.$store.state.isStarted
     }
   },
   methods: {

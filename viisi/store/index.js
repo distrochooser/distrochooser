@@ -11,7 +11,8 @@ const indexStore = new Vapi({
     currentCategory: null,
     givenAnswers: [],
     token: null, //session token
-    isStarted: false
+    isStarted: false,
+    result: null
   }
 })
   .get({
@@ -24,6 +25,11 @@ const indexStore = new Vapi({
     property: 'data',
     path: ({ index, token }) => `question/de-de/${index}/${token}/`
   })
+  .post({
+    action: 'submitAnswers',
+    property: 'result',
+    path: ({ token }) => `submit/de-de/${token}/`
+  })
   .getStore()
 
 indexStore.actions.answerQuestion = (store, payload) => {
@@ -33,13 +39,8 @@ indexStore.actions.answerQuestion = (store, payload) => {
     answered: true,
     important: false
   }
-  var isAnswered =
-    store.state.givenAnswers.filter(a => answer.msgid === a.msgid).length === 1
-  if (!isAnswered) {
-    store.commit('setAnswerQuestion', answer)
-  } else {
-    store.commit('removeAnswerQuestion', answer)
-  }
+
+  store.commit('setAnswerQuestion', answer)
   // TODO: push answer to server
   // TODO: Read result
 }
@@ -57,7 +58,6 @@ indexStore.actions.selectCategory = async (store, payload) => {
   store.commit('setSelectCategory', category)
   //TODO: trigger question change
   //TODO: load the question
-  console.log(category)
   await store.dispatch('loadQuestion', {
     params: {
       index: category.index,

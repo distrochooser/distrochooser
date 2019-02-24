@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest, JsonResponse
-from distrochooser.models import UserSession, Question, Category, Answer
+from distrochooser.models import UserSession, Question, Distribution, Category, Answer, ResultDistroSelection, SelectionReason, GivenAnswer
 import secrets
 from distrochooser.constants import TRANSLATIONS
 from backend.settings import LOCALES
 from django.forms.models import model_to_dict
-from json import dumps
+from json import dumps, loads
+from django.views.decorators.csrf import csrf_exempt
 
 def jumpToQuestion(index: int) -> Question:
   results = Question.objects.filter(category__index=index)
@@ -16,7 +17,7 @@ def jumpToQuestion(index: int) -> Question:
 def getJSONCORSResponse(data):
   response = JsonResponse(data)
   response["Access-Control-Allow-Origin"] = "*"
-  response["Access-Control-Allow-Methods"] = "GET, POST"
+  response["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
   response["Access-Control-Max-Age"] = "1000"
   response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
   return response
@@ -63,4 +64,51 @@ def loadQuestion(request: HttpRequest, langCode: str, index: int, token: str):
   return getJSONCORSResponse({
     "question": questionAndCategoryData["question"],
     "answers": questionAndCategoryData["answers"]
+  })
+
+@csrf_exempt #TODO: I don't want to disable security features, but the client does not have the CSRF-Cookie?
+def submitAnswers(request: HttpRequest, langCode: str, token: str):
+  #TODO: Do something with the token
+
+  userSession = UserSession.objects.get(token=token)
+  #TODO: Store answers
+  """
+  class GivenAnswer(models.Model):
+  session = models.ForeignKey(UserSession, on_delete=models.CASCADE)
+  answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
+  isImportant = models.BooleanField(default=False)
+  """
+  data = loads(request.body)
+
+  for answer in data['answers']:
+    givenAnswer = GivenAnswer()
+    givenAnswer.session = userSession
+    givenAnswer.answer = Answer.objects.get(msgid=answer['msgid'])
+    givenAnswer.isImportant = False
+    givenAnswer.save()
+
+
+  #TODO: Add decision process here
+  
+  #TODO: After the decision: Add session to distribution map (e. g. session XY -> Debian, XY -> Ubuntu) -> ResultDistroSelection
+  userSession = UserSession.objects.first()
+  selection = ResultDistroSelection()
+  selection.distro = Distribution.objects.first()
+  selection.session = userSession
+  selection.save()
+
+  #TODO: Add the reasons why Distribution XY was selected -> SelectionReason
+  reason = SelectionReason()
+  reason.resultSelection = selection
+  reason.description = "Because this is a test tuple"
+  reason.save()
+
+  # Build Result Data
+
+  selections = [
+    
+  ]
+
+  return getJSONCORSResponse({
+    "foo": "bar"
   })

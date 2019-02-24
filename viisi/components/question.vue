@@ -42,9 +42,13 @@ export default {
   },
   methods: {
     answerQuestion(answer) {
-      this.$store.dispatch('answerQuestion', {
-        selectedAnswer: answer
-      })
+      if (this.isAnswerSelected(answer)) {
+        this.$store.commit('removeAnswerQuestion', answer)
+      } else {
+        this.$store.dispatch('answerQuestion', {
+          selectedAnswer: answer
+        })
+      }
     },
     startTest() {
       this.$store.dispatch('nextQuestion')
@@ -53,7 +57,14 @@ export default {
       if (!this.isAtLastQuestion()) {
         this.$store.dispatch('nextQuestion')
       } else {
-        console.log('ende')
+        this.$store.dispatch('submitAnswers', {
+          params: {
+            token: this.$store.state.token
+          },
+          data: {
+            answers: this.$store.state.givenAnswers
+          }
+        })
       }
     },
     isAtLastQuestion() {

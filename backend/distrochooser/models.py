@@ -38,10 +38,10 @@ class GivenAnswer(models.Model):
 class Distribution(models.Model):
   pass
 
-class SelectionReason(models.Model):
-  pass
-
 class ResultDistroSelection(models.Model):
-  distro = models.ForeignKey(Distribution, on_delete=models.CASCADE)
-  reason = models.ForeignKey(SelectionReason, on_delete=models.CASCADE)
-  session = models.ForeignKey(UserSession, on_delete=models.CASCADE)
+  distro = models.ForeignKey(Distribution, on_delete=models.CASCADE, default=None)
+  session = models.ForeignKey(UserSession, on_delete=models.CASCADE, default=None)
+
+class SelectionReason(models.Model):
+  resultSelection = models.ForeignKey(ResultDistroSelection, on_delete=models.CASCADE, default=None)
+  description = models.CharField(default='', max_length=300, blank=False)
