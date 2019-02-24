@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from distrochooser.views import start
+from distrochooser.views import start, loadQuestion
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('start/<str:langCode>/', start, name='start'),
+    path('question/<str:langCode>/<int:index>/<str:token>/', loadQuestion, name='loadQuestion'),
 ]
