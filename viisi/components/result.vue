@@ -7,7 +7,7 @@
         i.fab.fa-twitter
       div.link
         a(:href="$store.state.result.url") {{ $store.state.result.url }}
-    distribution
+    distribution(v-for="(selection, selection_key) in $store.state.result.selections", :key="selection_key", :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons")
 </template>
 <script>
 import distribution from '~/components/distribution'

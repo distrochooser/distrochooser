@@ -103,6 +103,19 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
   reason.resultSelection = selection
   reason.description = "Because this is a test tuple"
   reason.save()
+  reason2 = SelectionReason()
+
+  reason2.resultSelection = selection
+  reason2.description = "Because this is a test tuple"
+  reason2.isBlockingHit = True
+  reason2.save()
+
+  reason3 = SelectionReason()
+  reason3.resultSelection = selection
+  reason3.description = "Because this is a test tuple"
+  reason3.isBlockingHit = False
+  reason3.isPositiveHit = False
+  reason3.save()
 
   # Build Result Data
 
@@ -110,7 +123,17 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
     {
       "distro": model_to_dict(selection.distro),
       "reasons": [
-        model_to_dict(reason,fields=["description","isPositiveHit", "isBlockingHit"])
+        model_to_dict(reason,fields=["description","isPositiveHit", "isBlockingHit"]),
+        model_to_dict(reason2,fields=["description","isPositiveHit", "isBlockingHit"]),
+        model_to_dict(reason3,fields=["description","isPositiveHit", "isBlockingHit"])
+      ]
+    },
+    {
+      "distro": model_to_dict(selection.distro),
+      "reasons": [
+        model_to_dict(reason,fields=["description","isPositiveHit", "isBlockingHit"]),
+        model_to_dict(reason2,fields=["description","isPositiveHit", "isBlockingHit"]),
+        model_to_dict(reason3,fields=["description","isPositiveHit", "isBlockingHit"])
       ]
     }
   ]
