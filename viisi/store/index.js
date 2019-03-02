@@ -49,6 +49,14 @@ indexStore.mutations.setAnswerQuestion = (state, answer) => {
   state.givenAnswers.push(answer)
 }
 
+indexStore.mutations.toggleImportanceState = (state, answer) => {
+  state.givenAnswers.forEach(a => {
+    if (a.msgid === answer.msgid) {
+      a.important = !a.important
+    }
+  })
+}
+
 indexStore.mutations.removeAnswerQuestion = (state, answer) => {
   state.givenAnswers.splice(state.givenAnswers.indexOf(answer), 1)
 }
@@ -65,6 +73,7 @@ indexStore.actions.selectCategory = async (store, payload) => {
     }
   })
   store.commit('setCurrentQuestionData', store.state.data)
+  store.commit('resetResult')
 }
 
 indexStore.mutations.setSelectCategory = (state, category) => {
@@ -89,6 +98,14 @@ indexStore.mutations.setCurrentQuestionData = (state, data) => {
 
 indexStore.mutations.setStarted = state => {
   state.isStarted = true
+}
+
+indexStore.mutations.resetStarted = state => {
+  state.isStarted = false
+}
+
+indexStore.mutations.resetResult = state => {
+  state.result = null
 }
 
 indexStore.actions.nextQuestion = store => {

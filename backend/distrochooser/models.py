@@ -36,12 +36,16 @@ class GivenAnswer(models.Model):
   isImportant = models.BooleanField(default=False)
 
 class Distribution(models.Model):
-  pass
+  name = models.CharField(max_length=200, null=True, blank=True, default="")
 
 class ResultDistroSelection(models.Model):
   distro = models.ForeignKey(Distribution, on_delete=models.CASCADE, default=None)
   session = models.ForeignKey(UserSession, on_delete=models.CASCADE, default=None)
+  isApprovedByUser = models.BooleanField(default=False)
+  isDisApprovedByuser = models.BooleanField(default=False)
 
 class SelectionReason(models.Model):
   resultSelection = models.ForeignKey(ResultDistroSelection, on_delete=models.CASCADE, default=None)
   description = models.CharField(default='', max_length=300, blank=False)
+  isPositiveHit = models.BooleanField(default=True)
+  isBlockingHit = models.BooleanField(default=False) # "No-go"

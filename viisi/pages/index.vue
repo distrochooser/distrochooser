@@ -3,16 +3,26 @@
     div.top-logo-container
       img.top-logo(src='~/assets/logo.png')
     categories
-    question
+    div(v-if="!isFinished")
+      question
+    div(v-if="isFinished")
+      result
 
 </template>
 <script>
 import categories from '~/components/categories'
 import question from '~/components/question'
+import result from '~/components/result'
 export default {
   components: {
     categories,
-    question
+    question,
+    result
+  },
+  computed: {
+    isFinished: function() {
+      return this.$store.state.result !== null
+    }
   },
   async mounted() {
     await this.$store.dispatch('startTest')
@@ -46,5 +56,11 @@ body {
 }
 .top-logo-container {
   text-align: center;
+}
+.fa-facebook {
+  color: #3b5998;
+}
+.fa-twitter {
+  color: #1da1f2;
 }
 </style>

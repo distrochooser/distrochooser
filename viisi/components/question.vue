@@ -17,9 +17,9 @@
       div.answer-remark(v-if="question.isMultipleChoice")
         span Multiple answers possible
       div.answers
-        div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}", @click='answerQuestion(answer)')
-          span.answer-text {{ answer.msgid }}
-          div.mark-important(:class="{'is-important': answer.isImportant}")
+        div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}")
+          span.answer-text(@click='answerQuestion(answer)') {{ answer.msgid }}
+          div.mark-important(v-if="isAnswerSelected(answer)",:class="{'is-important': answer.isImportant}", @click="markImportant(answer)")
             i.fa.fa-exclamation
       div.actions
         button.next-step(@click="nextQuestion") {{ isAtLastQuestion() ? "get result" : "next" }}
@@ -82,6 +82,9 @@ export default {
         this.$store.state.givenAnswers.filter(a => a.msgid === answer.msgid)
           .length === 1
       )
+    },
+    markImportant(answer) {
+      this.$store.commit('toggleImportanceState', answer)
     }
   }
 }

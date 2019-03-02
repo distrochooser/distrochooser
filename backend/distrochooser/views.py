@@ -92,9 +92,10 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
   
   #TODO: After the decision: Add session to distribution map (e. g. session XY -> Debian, XY -> Ubuntu) -> ResultDistroSelection
   userSession = UserSession.objects.first()
+
   selection = ResultDistroSelection()
   selection.distro = Distribution.objects.first()
-  selection.session = userSession
+  selection.session = userSession #todo: userfeedback
   selection.save()
 
   #TODO: Add the reasons why Distribution XY was selected -> SelectionReason
@@ -106,9 +107,15 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
   # Build Result Data
 
   selections = [
-    
+    {
+      "distro": model_to_dict(selection.distro),
+      "reasons": [
+        model_to_dict(reason,fields=["description","isPositiveHit", "isBlockingHit"])
+      ]
+    }
   ]
 
   return getJSONCORSResponse({
-    "foo": "bar"
+    "url": "https://distrochooser.de/somecrypticshit",
+    "selections": selections
   })
