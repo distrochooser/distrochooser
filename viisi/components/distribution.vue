@@ -10,7 +10,7 @@
           span {{ reason.description }}
       div.blocking-list.list
         div(v-if="blocking.length > 0")
-          b.block-title We don't recommend {{ name }} to you because of this reasons:
+          b.block-title {{ __i("reason-list-header".replace("%s",name)) }}
           div(v-for="(reason, reason_key) in blocking", :key="reason_key") 
             i.fa.fa-thumbs-down
             span {{ reason.description }}
@@ -21,13 +21,15 @@
         a.action(href="#")
           i.fa.fa-thumbs-down
         a.action(href="#", @click="flipped=!flipped")
-          span(v-if="!flipped") Why {{ name }}?
-          span(v-if="flipped") Hide
+          span(v-if="!flipped") {{ __i("reason-header".replace("%s",name)) }}
+          span(v-if="flipped") {{ __i("hide-reasons")}}
       div.logo
         img(:src="logo")
 </template>
 <script>
+import i18n from '~/mixins/i18n'
 export default {
+  mixins: [i18n],
   props: {
     name: {
       type: String,

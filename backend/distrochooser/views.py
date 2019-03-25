@@ -22,6 +22,18 @@ def getJSONCORSResponse(data):
   response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
   return response
 
+def getUnsafeJSONCORSResponse(data):
+  response = JsonResponse(data, safe=False)
+  response["Access-Control-Allow-Origin"] = "*"
+  response["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+  response["Access-Control-Max-Age"] = "1000"
+  response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+  return response
+
+
+def getLocales(request):
+  return getUnsafeJSONCORSResponse(list(LOCALES.keys()))
+
 def goToStep(categoryIndex: int) -> dict:
   results = Question.objects.filter(category__index=categoryIndex)
   if results.count() == 0:
@@ -51,7 +63,7 @@ def start(request: HttpRequest, langCode: str):
   questionAndCategoryData = goToStep(0)
   return getJSONCORSResponse({
     "token": session.token,
-    "translation": TRANSLATIONS["de-de"],
+    "translations": TRANSLATIONS[langCode],
     "question": questionAndCategoryData["question"],
     "category": questionAndCategoryData["category"],
     "categories": list(Category.objects.all().values()),

@@ -34,6 +34,7 @@ class GivenAnswer(models.Model):
   session = models.ForeignKey(UserSession, on_delete=models.CASCADE)
   answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
   isImportant = models.BooleanField(default=False)
+  # TODO: IMPORTANCE FLAG
 
 class Distribution(models.Model):
   name = models.CharField(max_length=200, null=True, blank=True, default="")
@@ -42,7 +43,7 @@ class ResultDistroSelection(models.Model):
   distro = models.ForeignKey(Distribution, on_delete=models.CASCADE, default=None)
   session = models.ForeignKey(UserSession, on_delete=models.CASCADE, default=None)
   isApprovedByUser = models.BooleanField(default=False)
-  isDisApprovedByuser = models.BooleanField(default=False)
+  isDisApprovedByUser = models.BooleanField(default=False)
 
 class SelectionReason(models.Model):
   resultSelection = models.ForeignKey(ResultDistroSelection, on_delete=models.CASCADE, default=None)

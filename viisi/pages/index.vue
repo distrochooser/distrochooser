@@ -2,11 +2,11 @@
   div.distrochooser
     div.top-logo-container
       img.top-logo(src='~/assets/logo.png')
-    categories
+    categories(:language="language")
     div(v-if="!isFinished")
-      question
+      question(:language="language")
     div(v-if="isFinished")
-      result
+      result(:language="language")
 
 </template>
 <script>
@@ -19,13 +19,24 @@ export default {
     question,
     result
   },
+  data: function() {
+    return {
+      language: 'en'
+    }
+  },
   computed: {
     isFinished: function() {
       return this.$store.state.result !== null
     }
   },
   async mounted() {
-    await this.$store.dispatch('startTest')
+    const _t = this
+    await this.$store.dispatch('getLocales')
+    await this.$store.dispatch('startTest', {
+      params: {
+        language: _t.language
+      }
+    })
   }
 }
 </script>

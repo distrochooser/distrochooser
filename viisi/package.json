@@ -17,6 +17,7 @@
     "animate.css": "^3.7.0",
     "cross-env": "^5.2.0",
     "express": "^4.16.3",
+    "flag-icon-css": "^3.3.0",
     "nuxt": "^2.0.0",
     "vuex-rest-api": "^2.10.0"
   },

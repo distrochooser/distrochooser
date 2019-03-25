@@ -4,28 +4,39 @@
       a.skip-step.fa.fa-share
     div(v-if="isAtWelcomeScreen")
       div.welcome-text 
-        b welcome text
+        b {{ __i("welcome-text-title") }}
         ul
-          li stuff
-          li stuff 
-          li stuff
-        blockquote even more stuff
+          li {{ __i("welcome-text-paragraph-foo") }}
+        blockquote {{ __i("welcome-text-paragraph-bar") }}
+      div.languages
+        div(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key")
+          span(:class="'flag-icon-' + locale").flag-icon
+          span.locale-text {{ __i("locale-link-"+locale) }}
       div.actions
-        button.next-step(@click="startTest") start
+        button.next-step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
-      div.question-text {{ question.msgid }}
+      div.question-text {{ __i(question.msgid) }}
       div.answer-remark(v-if="question.isMultipleChoice")
-        span Multiple answers possible
+        span {{ __i("question-is-multiplechoice") }}
       div.answers
         div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}")
-          span.answer-text(@click='answerQuestion(answer)') {{ answer.msgid }}
+          span.answer-text(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
           div.mark-important(v-if="isAnswerSelected(answer)",:class="{'is-important': answer.isImportant}", @click="markImportant(answer)")
             i.fa.fa-exclamation
       div.actions
-        button.next-step(@click="nextQuestion") {{ isAtLastQuestion() ? "get result" : "next" }}
+        button.next-step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
 </template>
 <script>
+import i18n from '~/mixins/i18n'
 export default {
+  mixins: [i18n],
+  props: {
+    language: {
+      type: String,
+      required: true,
+      default: 'en'
+    }
+  },
   computed: {
     isLoaded() {
       return this.$store.state !== null
@@ -51,15 +62,26 @@ export default {
       }
     },
     startTest() {
-      this.$store.dispatch('nextQuestion')
+      var _t = this
+      this.$store.dispatch('nextQuestion', {
+        params: {
+          language: _t.language
+        }
+      })
     },
     nextQuestion() {
+      var _t = this
       if (!this.isAtLastQuestion()) {
-        this.$store.dispatch('nextQuestion')
+        this.$store.dispatch('nextQuestion', {
+          params: {
+            language: _t.language
+          }
+        })
       } else {
         this.$store.dispatch('submitAnswers', {
           params: {
-            token: this.$store.state.token
+            token: this.$store.state.token,
+            language: _t.language
           },
           data: {
             answers: this.$store.state.givenAnswers
@@ -92,6 +114,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
 @import '~/node_modules/animate.css/animate.min.css';
+@import '~/node_modules/flag-icon-css/css/flag-icon.min.css';
 .question {
   margin-top: 4em;
   width: 70%;
@@ -175,5 +198,9 @@ export default {
 }
 .is-important {
   color: $markImportantSelectedColor;
+}
+// Flag addition
+.flag-icon-en {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJmbGFnLWljb24tY3NzLWdiIiB2aWV3Qm94PSIwIDAgNjQwIDQ4MCI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImEiPgogICAgICA8cGF0aCBmaWxsLW9wYWNpdHk9Ii43IiBkPSJNLTg1LjMgMGg2ODIuNnY1MTJILTg1LjN6Ii8+CiAgICA8L2NsaXBQYXRoPgogIDwvZGVmcz4KICA8ZyBjbGlwLXBhdGg9InVybCgjYSkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDgwKSBzY2FsZSguOTQpIj4KICAgIDxnIHN0cm9rZS13aWR0aD0iMXB0Ij4KICAgICAgPHBhdGggZmlsbD0iIzAxMjE2OSIgZD0iTS0yNTYgMEg3Njh2NTEySC0yNTZ6Ii8+CiAgICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0tMjU2IDB2NTcuMkw2NTMuNSA1MTJINzY4di01Ny4yTC0xNDEuNSAwSC0yNTZ6TTc2OCAwdjU3LjJMLTE0MS41IDUxMkgtMjU2di01Ny4yTDY1My41IDBINzY4eiIvPgogICAgICA8cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTcwLjcgMHY1MTJoMTcwLjZWMEgxNzAuN3pNLTI1NiAxNzAuN3YxNzAuNkg3NjhWMTcwLjdILTI1NnoiLz4KICAgICAgPHBhdGggZmlsbD0iI2M4MTAyZSIgZD0iTS0yNTYgMjA0Ljh2MTAyLjRINzY4VjIwNC44SC0yNTZ6TTIwNC44IDB2NTEyaDEwMi40VjBIMjA0Ljh6TS0yNTYgNTEyTDg1LjMgMzQxLjNoNzYuNEwtMTc5LjcgNTEySC0yNTZ6bTAtNTEyTDg1LjMgMTcwLjdIOUwtMjU2IDM4LjJWMHptNjA2LjQgMTcwLjdMNjkxLjcgMEg3NjhMNDI2LjcgMTcwLjdoLTc2LjN6TTc2OCA1MTJMNDI2LjcgMzQxLjNINTAzbDI2NSAxMzIuNVY1MTJ6Ii8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K);
 }
 </style>

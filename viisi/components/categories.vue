@@ -1,12 +1,21 @@
 <template lang="pug">
   ul.progressbar(v-if="isLoaded",v-show="!isAtWelcomeScreen")
-    li(@click="restart",:class="{'active': isAtWelcomeScreen }") Welcome
-    li(v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)") {{ category.msgid }}
-    li(@click="submit",:class="{'active': $store.state.result !== null }") Your recommendation
+    li(@click="restart",:class="{'active': isAtWelcomeScreen }") {{ __i("category-welcome") }}
+    li(v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)") {{ __i(category.msgid) }}
+    li(@click="submit",:class="{'active': $store.state.result !== null }") {{ __i("category-recommendation") }}
 </template>
 
 <script>
+import i18n from '~/mixins/i18n'
 export default {
+  mixins: [i18n],
+  props: {
+    language: {
+      type: String,
+      required: true,
+      default: 'en'
+    }
+  },
   computed: {
     isLoaded() {
       return this.$store.state.categories !== null
@@ -27,7 +36,9 @@ export default {
       )
     },
     selectCategory(category) {
+      const _t = this
       this.$store.dispatch('selectCategory', {
+        language: _t.language,
         selectedCategory: category
       })
     },

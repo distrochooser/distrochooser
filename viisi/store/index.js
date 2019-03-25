@@ -12,23 +12,31 @@ const indexStore = new Vapi({
     givenAnswers: [],
     token: null, //session token
     isStarted: false,
-    result: null
+    result: null,
+    translations: null,
+    locales: null
   }
 })
   .get({
+    action: 'getLocales',
+    property: 'locales',
+    path: () => `locales`
+  })
+  .get({
     action: 'start',
     property: 'data',
-    path: () => `start/de-de/`
+    path: ({ language }) => `start/${language}/`
   })
   .get({
     action: 'loadQuestion',
     property: 'data',
-    path: ({ index, token }) => `question/de-de/${index}/${token}/`
+    path: ({ language, index, token }) =>
+      `question/${language}/${index}/${token}/`
   })
   .post({
     action: 'submitAnswers',
     property: 'result',
-    path: ({ token }) => `submit/de-de/${token}/`
+    path: ({ language, token }) => `submit/${language}/${token}/`
   })
   .getStore()
 
@@ -68,6 +76,7 @@ indexStore.actions.selectCategory = async (store, payload) => {
   //TODO: load the question
   await store.dispatch('loadQuestion', {
     params: {
+      language: payload.language,
       index: category.index,
       token: store.state.token
     }
@@ -80,8 +89,8 @@ indexStore.mutations.setSelectCategory = (state, category) => {
   state.currentCategory = category
 }
 
-indexStore.actions.startTest = async store => {
-  await store.dispatch('start')
+indexStore.actions.startTest = async (store, payload) => {
+  await store.dispatch('start', payload)
   store.commit('setCurrentDisplayData', store.state.data)
   store.commit('setCurrentQuestionData', store.state.data)
 }
@@ -89,6 +98,7 @@ indexStore.actions.startTest = async store => {
 indexStore.mutations.setCurrentDisplayData = (state, data) => {
   state.categories = data.categories
   state.token = data.token
+  state.translations = data.translations
 }
 
 indexStore.mutations.setCurrentQuestionData = (state, data) => {
@@ -108,7 +118,7 @@ indexStore.mutations.resetResult = state => {
   state.result = null
 }
 
-indexStore.actions.nextQuestion = store => {
+indexStore.actions.nextQuestion = (store, payload) => {
   store.commit('setStarted') //make sure the test is active
   const currentCategory = store.state.currentCategory
   var nextCategory = null
@@ -123,6 +133,7 @@ indexStore.actions.nextQuestion = store => {
     })
   }
   store.dispatch('selectCategory', {
+    language: payload.params.language,
     selectedCategory: nextCategory
   })
 }
