@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest, JsonResponse
-from distrochooser.models import UserSession, Question, Distribution, Category, Answer, ResultDistroSelection, SelectionReason, GivenAnswer
+from distrochooser.models import UserSession, Question, Distribution, Category, Answer, ResultDistroSelection, SelectionReason, GivenAnswer, AnswerDistributionMatrix
 import secrets
 from distrochooser.constants import TRANSLATIONS
 from backend.settings import LOCALES
@@ -66,7 +66,7 @@ def start(request: HttpRequest, langCode: str):
     "translations": TRANSLATIONS[langCode],
     "question": questionAndCategoryData["question"],
     "category": questionAndCategoryData["category"],
-    "categories": list(Category.objects.all().values()),
+    "categories": list(Category.objects.all().order_by("index").values()),
     "answers": questionAndCategoryData["answers"]
   })
 
@@ -83,15 +83,11 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
   #TODO: Do something with the token
 
   userSession = UserSession.objects.get(token=token)
+  # TODO: Delete old given answers
+  GivenAnswer.objects.filter(session=userSession).delete()
+  ResultDistroSelection.objects.filter(session=userSession).delete()
   #TODO: Store answers
-  """
-  class GivenAnswer(models.Model):
-  session = models.ForeignKey(UserSession, on_delete=models.CASCADE)
-  answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
-  isImportant = models.BooleanField(default=False)
-  """
   data = loads(request.body)
-
   for answer in data['answers']:
     givenAnswer = GivenAnswer()
     givenAnswer.session = userSession
@@ -101,56 +97,66 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
 
 
   #TODO: Add decision process here
-  
-  #TODO: After the decision: Add session to distribution map (e. g. session XY -> Debian, XY -> Ubuntu) -> ResultDistroSelection
-  userSession = UserSession.objects.first()
 
-  selection = ResultDistroSelection()
-  selection.distro = Distribution.objects.first()
-  selection.session = userSession #todo: userfeedback
-  selection.save()
+  givenAnswers = GivenAnswer.objects.filter(session=userSession)
+  distros = Distribution.objects.all()
+  selections = []
+  for distro in distros:
+    # create selection
+    # even 0 matches have a selection, with the reason..0 matches
+    selection = ResultDistroSelection()
+    selection.distro = Distribution.objects.first()
+    selection.session = userSession #todo: userfeedback
+    selection.save()
+    reasons = []
+    answerDistributionMatrixTuples = AnswerDistributionMatrix.objects.filter(distro=distro)
+    score = 0
+    for matrix in answerDistributionMatrixTuples:
+      print("checking rule: ", matrix)
+      # check if there is an 1:1 mapping
+      if givenAnswers.filter(answer=matrix.answer).count() == 1:
+        print("Rule has a 1:1 match. Blocking: ", matrix.isBlockingHit)
 
-  #TODO: Add the reasons why Distribution XY was selected -> SelectionReason
-  reason = SelectionReason()
-  reason.resultSelection = selection
-  reason.description = "Because this is a test tuple"
-  reason.save()
-  reason2 = SelectionReason()
-
-  reason2.resultSelection = selection
-  reason2.description = "Because this is a test tuple"
-  reason2.isBlockingHit = True
-  reason2.save()
-
-  reason3 = SelectionReason()
-  reason3.resultSelection = selection
-  reason3.description = "Because this is a test tuple"
-  reason3.isBlockingHit = False
-  reason3.isPositiveHit = False
-  reason3.save()
-
-  # Build Result Data
-
-  selections = [
-    {
+        # check if the selected answer is blocked by another one
+        # should prevent answers like beginner + professional in one session
+        isRelatedBlocked = False
+        print(matrix.answer.msgid)
+        description = TRANSLATIONS["en"][matrix.answer.question.category.msgid] if matrix.answer.question.category.msgid in TRANSLATIONS["en"] else matrix.answer.question.category.msgid
+        blockedQuestionTexts = []
+        for blockedAnswer in matrix.blockedAnswers.all():
+          if blockedAnswer.pk in givenAnswers.all().values_list("answer",flat=True):
+            print(blockedAnswer, "blocks", matrix.answer)
+            isRelatedBlocked = True
+            textToAdd = TRANSLATIONS["en"][blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in TRANSLATIONS["en"] else blockedAnswer.question.category.msgid
+            if textToAdd not in blockedQuestionTexts:
+              blockedQuestionTexts.append( TRANSLATIONS["en"][blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in TRANSLATIONS["en"] else blockedAnswer.question.category.msgid)
+      
+        reason = SelectionReason()
+        reason.resultSelection = selection
+        # TODO: CHECK TRANSLATION
+        if isRelatedBlocked:
+          reason.isBlockingHit = True
+          reason.isPositiveHit = False
+          reason.isRelatedBlocked = isRelatedBlocked
+          reason.description = TRANSLATIONS["en"]["reason-blocked-by-others-entry"].format(description, "\" and \"".join(blockedQuestionTexts) )
+          
+        else:
+          reason.isBlockingHit = matrix.isBlockingHit
+          reason.isPositiveHit = not matrix.isBlockingHit
+          reason.description =  TRANSLATIONS["en"][matrix.description] if matrix.description in TRANSLATIONS["en"] else matrix.description 
+        if reason.isBlockingHit or reason.isRelatedBlocked:
+          score = score - 1
+        else:
+          score = score + 1
+        reason.save()
+        reasons.append(reason)
+    selections.append({
       "distro": model_to_dict(selection.distro),
-      "reasons": [
-        model_to_dict(reason,fields=["description","isPositiveHit", "isBlockingHit"]),
-        model_to_dict(reason2,fields=["description","isPositiveHit", "isBlockingHit"]),
-        model_to_dict(reason3,fields=["description","isPositiveHit", "isBlockingHit"])
-      ]
-    },
-    {
-      "distro": model_to_dict(selection.distro),
-      "reasons": [
-        model_to_dict(reason,fields=["description","isPositiveHit", "isBlockingHit"]),
-        model_to_dict(reason2,fields=["description","isPositiveHit", "isBlockingHit"]),
-        model_to_dict(reason3,fields=["description","isPositiveHit", "isBlockingHit"])
-      ]
-    }
-  ]
-
+      "reasons": list(map(lambda r: model_to_dict(r), reasons)),
+      "score": score
+    })
+ 
   return getJSONCORSResponse({
-    "url": "https://distrochooser.de/somecrypticshit",
+    "url": "https://distrochooser.de/{0}".format(userSession.publicUrl),
     "selections": selections
   })

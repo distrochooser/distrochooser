@@ -5,13 +5,12 @@
     div(v-if="isAtWelcomeScreen")
       div.welcome-text 
         b {{ __i("welcome-text-title") }}
-        ul
-          li {{ __i("welcome-text-paragraph-foo") }}
-        blockquote {{ __i("welcome-text-paragraph-bar") }}
+        p(v-html="__i('welcome-text')")
       div.languages
-        div(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key")
+        div(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", class="locale-container")
           span(:class="'flag-icon-' + locale").flag-icon
-          span.locale-text {{ __i("locale-link-"+locale) }}
+          span.locale-text 
+            a(href="#") {{ __i("locale-link-"+locale) }}
       div.actions
         button.next-step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
@@ -19,10 +18,9 @@
       div.answer-remark(v-if="question.isMultipleChoice")
         span {{ __i("question-is-multiplechoice") }}
       div.answers
-        div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}")
-          span.answer-text(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
-          div.mark-important(v-if="isAnswerSelected(answer)",:class="{'is-important': answer.isImportant}", @click="markImportant(answer)")
-            i.fa.fa-exclamation
+        div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
+          span.answer-text {{ __i(answer.msgid) }}
+          a.mark-important(v-if="isAnswerSelected(answer)",:class="{'is-important': answer.isImportant}", @click="markImportant(answer)") important for me!
       div.actions
         button.next-step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
 </template>
@@ -116,7 +114,7 @@ export default {
 @import '~/node_modules/animate.css/animate.min.css';
 @import '~/node_modules/flag-icon-css/css/flag-icon.min.css';
 .question {
-  margin-top: 4em;
+  margin-top: 3em;
   width: 70%;
   margin-right: 15%;
   margin-left: 15%;
@@ -146,11 +144,24 @@ export default {
 }
 .question-text,
 .welcome-text {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Heebo', sans-serif;
   padding: 2em;
   font-size: 13pt;
   font-weight: 300;
   height: 40%;
+}
+.welcome-text {
+  padding-bottom: 0.5em;
+}
+.welcome-text b {
+  margin-bottom: 1em;
+  display: block;
+  padding-bottom: 0.5em;
+  display: block;
+  color: #4484ce;
+}
+ul {
+  padding-top: 0.5em;
 }
 .answer {
   background: $unselectedAnswerBackground !important;
@@ -170,12 +181,13 @@ export default {
 .next-step {
   background: $nextButtonBackground;
   color: $nextButtonForeground;
-  position: relative;
-  left: 89%;
-  height: 30px;
-  width: 60px;
+  position: fixed;
+  height: 40px;
+  width: 80px;
   border: 0px;
   cursor: pointer;
+  left: 62%;
+  border-radius: 4px;
 }
 .skip-step {
   position: relative;
@@ -193,8 +205,7 @@ export default {
   bottom: 1em;
 }
 .mark-important {
-  display: inline-block;
-  margin-left: 1em;
+  display: none; // it's disabled until I find a proper solution
 }
 .is-important {
   color: $markImportantSelectedColor;
@@ -202,5 +213,19 @@ export default {
 // Flag addition
 .flag-icon-en {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJmbGFnLWljb24tY3NzLWdiIiB2aWV3Qm94PSIwIDAgNjQwIDQ4MCI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImEiPgogICAgICA8cGF0aCBmaWxsLW9wYWNpdHk9Ii43IiBkPSJNLTg1LjMgMGg2ODIuNnY1MTJILTg1LjN6Ii8+CiAgICA8L2NsaXBQYXRoPgogIDwvZGVmcz4KICA8ZyBjbGlwLXBhdGg9InVybCgjYSkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDgwKSBzY2FsZSguOTQpIj4KICAgIDxnIHN0cm9rZS13aWR0aD0iMXB0Ij4KICAgICAgPHBhdGggZmlsbD0iIzAxMjE2OSIgZD0iTS0yNTYgMEg3Njh2NTEySC0yNTZ6Ii8+CiAgICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0tMjU2IDB2NTcuMkw2NTMuNSA1MTJINzY4di01Ny4yTC0xNDEuNSAwSC0yNTZ6TTc2OCAwdjU3LjJMLTE0MS41IDUxMkgtMjU2di01Ny4yTDY1My41IDBINzY4eiIvPgogICAgICA8cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTcwLjcgMHY1MTJoMTcwLjZWMEgxNzAuN3pNLTI1NiAxNzAuN3YxNzAuNkg3NjhWMTcwLjdILTI1NnoiLz4KICAgICAgPHBhdGggZmlsbD0iI2M4MTAyZSIgZD0iTS0yNTYgMjA0Ljh2MTAyLjRINzY4VjIwNC44SC0yNTZ6TTIwNC44IDB2NTEyaDEwMi40VjBIMjA0Ljh6TS0yNTYgNTEyTDg1LjMgMzQxLjNoNzYuNEwtMTc5LjcgNTEySC0yNTZ6bTAtNTEyTDg1LjMgMTcwLjdIOUwtMjU2IDM4LjJWMHptNjA2LjQgMTcwLjdMNjkxLjcgMEg3NjhMNDI2LjcgMTcwLjdoLTc2LjN6TTc2OCA1MTJMNDI2LjcgMzQxLjNINTAzbDI2NSAxMzIuNVY1MTJ6Ii8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K);
+}
+.languages {
+  padding: 2em;
+  padding-top: 0em;
+}
+.flag-icon {
+  margin-right: 0.5em;
+}
+.locale-container {
+  margin-top: 0.5em;
+}
+a {
+  color: $linkColor;
+  text-decoration: none;
 }
 </style>

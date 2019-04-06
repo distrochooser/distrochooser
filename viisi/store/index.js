@@ -126,7 +126,7 @@ indexStore.actions.nextQuestion = (store, payload) => {
     nextCategory = store.state.categories[0]
   } else {
     store.state.categories.forEach(c => {
-      if (c.index > currentCategory.index) {
+      if (c.index === currentCategory.index + 1) {
         nextCategory = c
         return
       }

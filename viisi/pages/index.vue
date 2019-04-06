@@ -1,24 +1,30 @@
 <template lang="pug">
   div.distrochooser
     div.top-logo-container
-      img.top-logo(src='~/assets/logo.png')
+      a(href="/")
+        img.top-logo(src='~/assets/logo.png')
     categories(:language="language")
     div(v-if="!isFinished")
       question(:language="language")
     div(v-if="isFinished")
       result(:language="language")
-
+    div.footer 
+      a(href="/imprint")  {{ __i("imprint") }}
+      a(href="/privacy") {{ __i("privacy") }}
+      a(href="/about") {{ __i("about") }}
 </template>
 <script>
 import categories from '~/components/categories'
 import question from '~/components/question'
 import result from '~/components/result'
+import i18n from '~/mixins/i18n'
 export default {
   components: {
     categories,
     question,
     result
   },
+  mixins: [i18n],
   data: function() {
     return {
       language: 'en'
@@ -73,5 +79,19 @@ body {
 }
 .fa-twitter {
   color: #1da1f2;
+}
+.footer {
+  position: absolute;
+  bottom: 0px;
+  padding-bottom: 1em;
+  text-align: left;
+  width: 100%;
+  left: 0px;
+  padding-left: 1em;
+}
+.footer a {
+  color: #4484ce;
+  text-decoration: none;
+  padding-right: 1em;
 }
 </style>

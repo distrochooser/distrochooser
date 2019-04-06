@@ -6,14 +6,21 @@
         i.fab.fa-facebook
         i.fab.fa-twitter
       div.link
-        a(:href="$store.state.result.url") {{ $store.state.result.url }}
-    distribution(v-for="(selection, selection_key) in $store.state.result.selections", :key="selection_key", :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons")
+        input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
+    distribution(v-for="(selection, selection_key) in selections", :key="selection_key", :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor")
 </template>
 <script>
 import distribution from '~/components/distribution'
 export default {
   components: {
     distribution
+  },
+  computed: {
+    selections: function() {
+      return this.$store.state.result.selections.concat().sort(function(a, b) {
+        return a > b
+      })
+    }
   }
 }
 </script>
@@ -30,6 +37,12 @@ export default {
 }
 .link {
   margin-top: 1em;
+  font-family: Karla, sans-serif;
+}
+.link input {
+  width: 50%;
+  text-align: center;
+  padding: 0.7em;
 }
 .result-link {
   text-align: center;

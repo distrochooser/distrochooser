@@ -1,13 +1,27 @@
 from django.contrib import admin
-from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category
+from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category, AnswerDistributionMatrix
 
 [admin.site.register(*models) for models in [
   (Question,),
-  (Answer,),
   (GivenAnswer,),
   (UserSession,),
   (ResultDistroSelection,),
   (Distribution,),
   (SelectionReason,),
-  (Category,),
 ]]
+
+
+class CategoryAdmin(admin.ModelAdmin):
+  def get_ordering(self, request):
+     return ['index']
+admin.site.register(Category, CategoryAdmin)
+
+class AnswerAdmin(admin.ModelAdmin):
+  def get_ordering(self, request):
+     return ['question']
+admin.site.register(Answer, AnswerAdmin)
+
+class AnswerDistributionMatrixAdmin(admin.ModelAdmin):
+  def get_ordering(self, request):
+     return ['distro']
+admin.site.register(AnswerDistributionMatrix, AnswerDistributionMatrixAdmin)

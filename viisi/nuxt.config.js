@@ -23,6 +23,10 @@ module.exports = {
         rel: 'stylesheet',
         href:
           'https://fonts.googleapis.com/css?family=Karla|Raleway:300,300i,400'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Heebo'
       }
     ]
   },

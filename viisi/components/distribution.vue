@@ -1,18 +1,30 @@
 <template lang="pug">
   div.distribution
-    div.title {{ name }}
+    div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor") 
+      span {{ name }}
+      a.show-reasons(href="#", @click.prevent="flipped=!flipped", :style="'color: ' + fgColor")
+        span(v-if="!flipped") {{ __i("reason-header".replace("%s",name)) }}
+        span(v-if="flipped") {{ __i("hide-reasons")}}
     div.description(v-html="description", v-if="!flipped")
     div.description.reasons(v-if="flipped")
       div.reason-list.list
-        div(v-for="(reason, reason_key) in reasons", :key="reason_key") 
-          i.fa.fa-thumbs-up(v-if="reason.isPositiveHit")
-          i.fa.fa-thumbs-down(v-if="!reason.isPositiveHit")
-          span {{ reason.description }}
+        div(v-if="nonBlocking.length > 0")
+          b.block-title {{ __i("reason-list-header").replace("%s",name) }}
+          div(v-for="(reason, reason_key) in nonBlocking", :key="reason_key") 
+            i.fas.fa-plus(v-if="reason.isPositiveHit")
+            i.fas.fa-minus(v-if="!reason.isPositiveHit")
+            span {{ reason.description }}
       div.blocking-list.list
         div(v-if="blocking.length > 0")
-          b.block-title {{ __i("reason-list-header".replace("%s",name)) }}
+          b.block-title {{ __i("reason-list-header-negative").replace("%s",name) }}
           div(v-for="(reason, reason_key) in blocking", :key="reason_key") 
-            i.fa.fa-thumbs-down
+            i.fas.fa-ban
+            span {{ reason.description }}
+      div.blocking-list.list
+        div(v-if="blockedByOtherQuestion.length > 0")
+          b.block-title {{ __i("reason-list-header-blocked-by-others").replace("%s",name) }}
+          div(v-for="(reason, reason_key) in blockedByOtherQuestion", :key="reason_key") 
+            i.fas.fa-question
             span {{ reason.description }}
     div.meta
       div.actions
@@ -20,9 +32,6 @@
           i.fa.fa-heart
         a.action(href="#")
           i.fa.fa-thumbs-down
-        a.action(href="#", @click="flipped=!flipped")
-          span(v-if="!flipped") {{ __i("reason-header".replace("%s",name)) }}
-          span(v-if="flipped") {{ __i("hide-reasons")}}
       div.logo
         img(:src="logo")
 </template>
@@ -43,6 +52,14 @@ export default {
       type: String,
       default: 'https://distrochooser.de/assets/linux/ubuntu.png'
     },
+    bgColor: {
+      type: String,
+      default: 'red'
+    },
+    fgColor: {
+      type: String,
+      default: 'white'
+    },
     reasons: {
       type: Array,
       default: function() {
@@ -58,8 +75,25 @@ export default {
   computed: {
     blocking: function() {
       return this.reasons.filter(r => {
-        return r.isBlockingHit
+        return r.isBlockingHit && !r.isRelatedBlocked
       })
+    },
+    nonBlocking: function() {
+      return this.reasons.filter(r => {
+        return !r.isBlockingHit && !r.isRelatedBlocked
+      })
+    },
+    blockedByOtherQuestion: function() {
+      return this.reasons.filter(r => {
+        return r.isRelatedBlocked
+      })
+    },
+    score: function() {
+      return (
+        this.nonBlocking.length -
+        this.blockedByOtherQuestion.length -
+        this.blocking.length
+      )
     }
   }
 }
@@ -70,11 +104,9 @@ export default {
 .distribution {
   background: $questionBackground;
   padding-top: 1em;
-  margin-bottom: 3em;
+  margin-bottom: 2em;
 }
 .title {
-  background: #dd4814 !important;
-  color: white !important;
   margin-right: -0.5em;
   margin-left: -0.5em;
   height: 40px;
@@ -83,8 +115,7 @@ export default {
   margin-bottom: 1em;
 }
 .description {
-  margin: 1em;
-  padding-bottom: 1em;
+  margin-left: 1em;
 }
 .meta .actions {
   width: 50%;
@@ -92,7 +123,7 @@ export default {
   padding: 1em;
 }
 .action {
-  margin-right: 1em;
+  margin-right: 0.5em;
 }
 .meta .logo {
   width: 50%;
@@ -100,24 +131,43 @@ export default {
   text-align: right;
 }
 .meta .logo img {
-  height: 5em;
+  height: 4em;
   vertical-align: middle;
 }
 .fa-heart {
-  color: #fe2424;
+  color: #e40404;
 }
-.fa-heart {
+.fa-like {
   color: #0e2bff;
 }
+.fa-plus {
+  color: #1f8c1f;
+}
+.fa-minus {
+  color: #f00;
+}
+.fa-ban {
+  color: #d40000;
+}
+.fa-thumbs-down {
+  color: #ff8f00;
+}
 .list {
-  margin-bottom: 1em;
   margin-top: 1em;
 }
 i {
   margin-right: 0.5em;
 }
 .block-title {
-  padding-top: 1em;
-  bottom-top: 1em;
+  padding-bottom: 0.5em;
+  display: block;
+  color: #4484ce;
+}
+.show-reasons {
+  text-decoration: underline;
+  margin-left: 0.2em;
+}
+.reason-list div {
+  margin-bottom: 0.3em;
 }
 </style>

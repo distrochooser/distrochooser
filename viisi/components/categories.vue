@@ -1,8 +1,8 @@
 <template lang="pug">
-  ul.progressbar(v-if="isLoaded",v-show="!isAtWelcomeScreen")
+  ul.progressbar(:class="{'disabled': !isLoaded}")
     li(@click="restart",:class="{'active': isAtWelcomeScreen }") {{ __i("category-welcome") }}
     li(v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)") {{ __i(category.msgid) }}
-    li(@click="submit",:class="{'active': $store.state.result !== null }") {{ __i("category-recommendation") }}
+    li(@click="submit",:class="{'active': $store.state.result !== null }") {{ __i("recommendation-category") }}
 </template>
 
 <script>
@@ -36,6 +36,9 @@ export default {
       )
     },
     selectCategory(category) {
+      if (this.isAtWelcomeScreen) {
+        return
+      }
       const _t = this
       this.$store.dispatch('selectCategory', {
         language: _t.language,
@@ -46,6 +49,9 @@ export default {
       this.$store.commit('resetStarted')
     },
     submit() {
+      if (this.isAtWelcomeScreen) {
+        return
+      }
       this.$store.dispatch('submitAnswers', {
         params: {
           token: this.$store.state.token
@@ -63,10 +69,10 @@ export default {
 @media only screen and (min-width: $mobileWidth) {
   .progressbar {
     counter-reset: step;
-    padding-left: 20em; //very ugly: FIXME
+    padding-left: 9em;
   }
   .progressbar li {
-    width: 12%;
+    width: 7%;
   }
 }
 @media only screen and (max-width: $mobileWidth) {
