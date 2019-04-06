@@ -23,5 +23,5 @@ admin.site.register(Answer, AnswerAdmin)
 
 class AnswerDistributionMatrixAdmin(admin.ModelAdmin):
   def get_ordering(self, request):
-     return ['distro']
+     return ['answer__question']
 admin.site.register(AnswerDistributionMatrix, AnswerDistributionMatrixAdmin)

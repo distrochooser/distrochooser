@@ -1,11 +1,11 @@
 <template lang="pug">
-  div.distribution
+  div.distribution(v-if="!hasNoMatch")
     div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor") 
       span {{ name }}
       a.show-reasons(href="#", @click.prevent="flipped=!flipped", :style="'color: ' + fgColor")
         span(v-if="!flipped") {{ __i("reason-header".replace("%s",name)) }}
         span(v-if="flipped") {{ __i("hide-reasons")}}
-    div.description(v-html="description", v-if="!flipped")
+    div.description(v-if="!flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
       div.reason-list.list
         div(v-if="nonBlocking.length > 0")
@@ -44,9 +44,9 @@ export default {
       type: String,
       default: 'bratwurst'
     },
-    description: {
-      type: String,
-      default: '<p>bla</p><p>bla</p>'
+    id: {
+      type: Number,
+      default: 0
     },
     logo: {
       type: String,
@@ -94,6 +94,9 @@ export default {
         this.blockedByOtherQuestion.length -
         this.blocking.length
       )
+    },
+    hasNoMatch: function() {
+      return this.reasons.length === 0
     }
   }
 }
@@ -131,8 +134,10 @@ export default {
   text-align: right;
 }
 .meta .logo img {
-  height: 4em;
+  max-height: 2.2em;
   vertical-align: middle;
+  margin-right: 1em;
+  margin-bottom: 1em;
 }
 .fa-heart {
   color: #e40404;

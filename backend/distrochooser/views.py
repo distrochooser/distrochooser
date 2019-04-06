@@ -105,11 +105,11 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
     # create selection
     # even 0 matches have a selection, with the reason..0 matches
     selection = ResultDistroSelection()
-    selection.distro = Distribution.objects.first()
+    selection.distro = distro
     selection.session = userSession #todo: userfeedback
     selection.save()
     reasons = []
-    answerDistributionMatrixTuples = AnswerDistributionMatrix.objects.filter(distro=distro)
+    answerDistributionMatrixTuples = AnswerDistributionMatrix.objects.filter(distros__in=[distro])
     score = 0
     for matrix in answerDistributionMatrixTuples:
       print("checking rule: ", matrix)
@@ -120,10 +120,9 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
         # check if the selected answer is blocked by another one
         # should prevent answers like beginner + professional in one session
         isRelatedBlocked = False
-        print(matrix.answer.msgid)
         description = TRANSLATIONS["en"][matrix.answer.question.category.msgid] if matrix.answer.question.category.msgid in TRANSLATIONS["en"] else matrix.answer.question.category.msgid
         blockedQuestionTexts = []
-        for blockedAnswer in matrix.blockedAnswers.all():
+        for blockedAnswer in matrix.answer.blockedAnswers.all():
           if blockedAnswer.pk in givenAnswers.all().values_list("answer",flat=True):
             print(blockedAnswer, "blocks", matrix.answer)
             isRelatedBlocked = True
@@ -142,7 +141,7 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
           
         else:
           reason.isBlockingHit = matrix.isBlockingHit
-          reason.isPositiveHit = not matrix.isBlockingHit
+          reason.isPositiveHit = not matrix.isNegativeHit
           reason.description =  TRANSLATIONS["en"][matrix.description] if matrix.description in TRANSLATIONS["en"] else matrix.description 
         if reason.isBlockingHit or reason.isRelatedBlocked:
           score = score - 1

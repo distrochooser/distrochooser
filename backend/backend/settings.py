@@ -104,7 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LOCALES = {
-    'en': os.path.join(os.path.join(BASE_DIR, 'locale'), "en.po")
+    'en': os.path.join(os.path.join(BASE_DIR, 'locale'), "en.po"),
+    'de': os.path.join(os.path.join(BASE_DIR, 'locale'), "en.po"),
 }
 
 # Internationalization

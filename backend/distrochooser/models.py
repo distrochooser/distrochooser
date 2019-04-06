@@ -22,6 +22,7 @@ class Question(Translateable):
 
 class Answer(Translateable):
   question = models.ForeignKey(Question, on_delete=models.CASCADE)
+  blockedAnswers =  models.ManyToManyField(to="Answer", related_name="blockedAnswersFromAnswer",blank=True)
   def __str__(self):
     return "{0}: {1}".format(self.question, self.msgid)
 
@@ -47,6 +48,7 @@ class GivenAnswer(models.Model):
 
 class Distribution(models.Model):
   name = models.CharField(max_length=200, null=True, blank=True, default="")
+  identifier = models.CharField(max_length=200, null=True, blank=True, default="")
   fgColor = models.CharField(max_length=200, null=True, blank=True, default="")
   bgColor = models.CharField(max_length=200, null=True, blank=True, default="")
   def __str__(self):
@@ -66,10 +68,10 @@ class SelectionReason(models.Model):
   isRelatedBlocked =  models.BooleanField(default=False)
 
 class AnswerDistributionMatrix(models.Model):
-  distro = models.ForeignKey(Distribution, on_delete=models.CASCADE, default=None)
   answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
   isBlockingHit = models.BooleanField(default=False)
+  isNegativeHit = models.BooleanField(default=False)
   description = models.CharField(default='', max_length=300, blank=False)
-  blockedAnswers =  models.ManyToManyField(to=Answer, related_name="blockedAnswers",blank=True)
+  distros =  models.ManyToManyField(to=Distribution, related_name="answerMatrixDistros",blank=True)
   def __str__(self):
-    return "Blocking: {0}, {1}: {2}".format(self.isBlockingHit, self.description, self.distro)
+    return "Blocking: {0}, {1} ({2})".format(self.isBlockingHit, self.answer, self.distros.all().values_list("name",flat=True))
