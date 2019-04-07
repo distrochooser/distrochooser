@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest, JsonResponse
 from distrochooser.models import UserSession, Question, Distribution, Category, Answer, ResultDistroSelection, SelectionReason, GivenAnswer, AnswerDistributionMatrix
 import secrets
-from distrochooser.constants import TRANSLATIONS
+from distrochooser.constants import TRANSLATIONS, TESTOFFSET
 from backend.settings import LOCALES
 from django.forms.models import model_to_dict
 from json import dumps, loads
@@ -61,8 +61,11 @@ def start(request: HttpRequest, langCode: str):
 
 
   questionAndCategoryData = goToStep(0)
+  testCount = TESTOFFSET + UserSession.objects.all().count()
   return getJSONCORSResponse({
     "token": session.token,
+    "language": langCode,
+    "testCount": testCount,
     "translations": TRANSLATIONS[langCode],
     "question": questionAndCategoryData["question"],
     "category": questionAndCategoryData["category"],
@@ -83,6 +86,7 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
   #TODO: Do something with the token
 
   userSession = UserSession.objects.get(token=token)
+  translationToUse = TRANSLATIONS[userSession.language] if userSession.language in TRANSLATIONS else TRANSLATIONS["en"]
   # TODO: Delete old given answers
   GivenAnswer.objects.filter(session=userSession).delete()
   ResultDistroSelection.objects.filter(session=userSession).delete()
@@ -120,15 +124,15 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
         # check if the selected answer is blocked by another one
         # should prevent answers like beginner + professional in one session
         isRelatedBlocked = False
-        description = TRANSLATIONS["en"][matrix.answer.question.category.msgid] if matrix.answer.question.category.msgid in TRANSLATIONS["en"] else matrix.answer.question.category.msgid
+        description = translationToUse[matrix.answer.question.category.msgid] if matrix.answer.question.category.msgid in translationToUse else matrix.answer.question.category.msgid
         blockedQuestionTexts = []
         for blockedAnswer in matrix.answer.blockedAnswers.all():
           if blockedAnswer.pk in givenAnswers.all().values_list("answer",flat=True):
             print(blockedAnswer, "blocks", matrix.answer)
             isRelatedBlocked = True
-            textToAdd = TRANSLATIONS["en"][blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in TRANSLATIONS["en"] else blockedAnswer.question.category.msgid
+            textToAdd = translationToUse[blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in translationToUse else blockedAnswer.question.category.msgid
             if textToAdd not in blockedQuestionTexts:
-              blockedQuestionTexts.append( TRANSLATIONS["en"][blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in TRANSLATIONS["en"] else blockedAnswer.question.category.msgid)
+              blockedQuestionTexts.append( translationToUse[blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in translationToUse else blockedAnswer.question.category.msgid)
       
         reason = SelectionReason()
         reason.resultSelection = selection
@@ -137,25 +141,40 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
           reason.isBlockingHit = True
           reason.isPositiveHit = False
           reason.isRelatedBlocked = isRelatedBlocked
-          reason.description = TRANSLATIONS["en"]["reason-blocked-by-others-entry"].format(description, "\" and \"".join(blockedQuestionTexts) )
+          reason.description = translationToUse["reason-blocked-by-others-entry"].format(description, "\" and \"".join(blockedQuestionTexts) )
           
         else:
           reason.isBlockingHit = matrix.isBlockingHit
           reason.isPositiveHit = not matrix.isNegativeHit
-          reason.description =  TRANSLATIONS["en"][matrix.description] if matrix.description in TRANSLATIONS["en"] else matrix.description 
+          reason.description =  translationToUse[matrix.description] if matrix.description in translationToUse else matrix.description 
         if reason.isBlockingHit or reason.isRelatedBlocked:
           score = score - 1
         else:
           score = score + 1
         reason.save()
         reasons.append(reason)
+    distro = model_to_dict(selection.distro, exclude="logo")
+    if selection.distro.logo:
+      distro["logo"] = selection.distro.logo.url
     selections.append({
-      "distro": model_to_dict(selection.distro),
+      "distro": distro,
       "reasons": list(map(lambda r: model_to_dict(r), reasons)),
-      "score": score
+      "score": score,
+      "selection": selection.id
     })
  
   return getJSONCORSResponse({
     "url": "https://distrochooser.de/{0}".format(userSession.publicUrl),
     "selections": selections
+  })
+
+@csrf_exempt #TODO: I don't want to disable security features, but the client does not have the CSRF-Cookie?
+def vote(request): 
+  data = loads(request.body)
+  id = int(data["selection"])
+  isPositive = data["positive"] == True
+  got = ResultDistroSelection.objects.filter(pk=id).update(isApprovedByUser=isPositive,isDisApprovedByUser= not isPositive)
+ 
+  return JsonResponse({
+    "count": got
   })

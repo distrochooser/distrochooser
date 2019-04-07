@@ -14,7 +14,10 @@ const indexStore = new Vapi({
     isStarted: false,
     result: null,
     translations: null,
-    locales: null
+    locales: null,
+    voteResult: null,
+    language: 'en',
+    testCount: 0
   }
 })
   .get({
@@ -38,6 +41,11 @@ const indexStore = new Vapi({
     property: 'result',
     path: ({ language, token }) => `submit/${language}/${token}/`
   })
+  .post({
+    action: 'voteSelection',
+    property: 'voteResult',
+    path: () => `vote/`
+  })
   .getStore()
 
 indexStore.actions.answerQuestion = (store, payload) => {
@@ -45,7 +53,8 @@ indexStore.actions.answerQuestion = (store, payload) => {
   var answer = {
     msgid: answer.msgid,
     answered: true,
-    important: false
+    important: false,
+    category: payload.currentCategory.msgid
   }
 
   store.commit('setAnswerQuestion', answer)
@@ -98,6 +107,8 @@ indexStore.actions.startTest = async (store, payload) => {
 indexStore.mutations.setCurrentDisplayData = (state, data) => {
   state.categories = data.categories
   state.token = data.token
+  state.language = data.language
+  state.testCount = data.testCount
   state.translations = data.translations
 }
 

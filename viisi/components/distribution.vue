@@ -28,10 +28,10 @@
             span {{ reason.description }}
     div.meta
       div.actions
-        a.action(href="#")
-          i.fa.fa-heart
-        a.action(href="#")
-          i.fa.fa-thumbs-down
+        a.action(href="#", v-on:click.prevent="vote(true)")
+          i.fa.fa-heart(v-bind:class="{'animated heartBeat voted': voted && positiveVote}")
+        a.action(href="#", v-on:click.prevent="vote(false)")
+          i.fa.fa-thumbs-down(v-bind:class="{'animated jello voted': voted && !positiveVote}")
       div.logo
         img(:src="logo")
 </template>
@@ -45,6 +45,10 @@ export default {
       default: 'bratwurst'
     },
     id: {
+      type: Number,
+      default: 0
+    },
+    selection: {
       type: Number,
       default: 0
     },
@@ -69,7 +73,9 @@ export default {
   },
   data: function() {
     return {
-      flipped: false
+      flipped: false,
+      positiveVote: false,
+      voted: false
     }
   },
   computed: {
@@ -98,12 +104,25 @@ export default {
     hasNoMatch: function() {
       return this.reasons.length === 0
     }
+  },
+  methods: {
+    vote: function(positive) {
+      this.$store.dispatch('voteSelection', {
+        data: {
+          positive: positive,
+          selection: this.selection
+        }
+      })
+      this.voted = true
+      this.positiveVote = positive
+    }
   }
 }
 </script>
 
 <style lang="scss">
 @import '~/scss/variables.scss';
+@import '~/node_modules/animate.css/animate.min.css';
 .distribution {
   background: $questionBackground;
   padding-top: 1em;
@@ -166,7 +185,7 @@ i {
 .block-title {
   padding-bottom: 0.5em;
   display: block;
-  color: #4484ce;
+  color: #000;
 }
 .show-reasons {
   text-decoration: underline;
@@ -174,5 +193,8 @@ i {
 }
 .reason-list div {
   margin-bottom: 0.3em;
+}
+.voted {
+  text-shadow: #1e1e1b 2px 2px 2pt;
 }
 </style>

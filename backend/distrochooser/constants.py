@@ -18,3 +18,5 @@ def parseTranslation(langCode: str) -> dict:
 TRANSLATIONS = {
   "en": parseTranslation("en")
 }
+
+TESTOFFSET = 623362 

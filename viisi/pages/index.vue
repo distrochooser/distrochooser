@@ -3,31 +3,37 @@
     div.top-logo-container
       a(href="/")
         img.top-logo(src='~/assets/logo.png')
-    categories(:language="language")
-    div(v-if="!isFinished")
+    categories(:language="language",v-if="!isSubPageShown")
+    div(v-if="!isFinished && !isSubPageShown")
       question(:language="language")
-    div(v-if="isFinished")
+    div(v-if="isFinished && !isSubPageShown")
       result(:language="language")
+    div(v-if="isSubPageShown")
+      page(:language="language", :content="content")
     div.footer 
-      a(href="/imprint")  {{ __i("imprint") }}
-      a(href="/privacy") {{ __i("privacy") }}
-      a(href="/about") {{ __i("about") }}
+      a(href="#", v-on:click.prevent="showSubPage('imprint')")  {{ __i("imprint") }}
+      a(href="/privacy", v-on:click.prevent="showSubPage('privacy')") {{ __i("privacy") }}
+      a(href="/about", v-on:click.prevent="showSubPage('about')") {{ __i("about") }}
 </template>
 <script>
 import categories from '~/components/categories'
 import question from '~/components/question'
 import result from '~/components/result'
 import i18n from '~/mixins/i18n'
+import page from '~/components/page'
 export default {
   components: {
     categories,
     question,
-    result
+    result,
+    page
   },
   mixins: [i18n],
   data: function() {
     return {
-      language: 'en'
+      language: 'en',
+      content: 'about', //about page content
+      isSubPageShown: false
     }
   },
   computed: {
@@ -43,6 +49,16 @@ export default {
         language: _t.language
       }
     })
+  },
+  methods: {
+    showSubPage: function(what) {
+      this.content = what
+      this.isSubPageShown = true
+    },
+    hideSubPage: function() {
+      this.content = 'about'
+      this.isSubPageShown = false
+    }
   }
 }
 </script>
@@ -81,7 +97,7 @@ body {
   color: #1da1f2;
 }
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   padding-bottom: 1em;
   text-align: left;

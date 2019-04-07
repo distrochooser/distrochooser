@@ -1,7 +1,5 @@
 <template lang="pug">
   div.question(v-if="isLoaded")
-    div.skip-container(v-if="!isAtWelcomeScreen")
-      a.skip-step.fa.fa-share
     div(v-if="isAtWelcomeScreen")
       div.welcome-text 
         b {{ __i("welcome-text-title") }}
@@ -55,7 +53,8 @@ export default {
         this.$store.commit('removeAnswerQuestion', answer)
       } else {
         this.$store.dispatch('answerQuestion', {
-          selectedAnswer: answer
+          selectedAnswer: answer,
+          currentCategory: this.$store.state.currentCategory
         })
       }
     },

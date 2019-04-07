@@ -1,8 +1,9 @@
 <template lang="pug">
-  ul.progressbar(:class="{'disabled': !isLoaded}")
-    li(@click="restart",:class="{'active': isAtWelcomeScreen }") {{ __i("category-welcome") }}
-    li(v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)") {{ __i(category.msgid) }}
-    li(@click="submit",:class="{'active': $store.state.result !== null }") {{ __i("recommendation-category") }}
+  div
+    ul.progressbar(:class="{'disabled': !isLoaded}")
+      li(@click="restart",:class="{'active': isAtWelcomeScreen }") {{ __i("category-welcome") }}
+      li(v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category), 'answered': isAnswered(category)}", @click="selectCategory(category)") {{ __i(category.msgid) }}
+      li(@click="submit",:class="{'active': $store.state.result !== null }",v-if="$store.state.givenAnswers.length > 0") {{ __i("recommendation-category") }}
 </template>
 
 <script>
@@ -28,6 +29,13 @@ export default {
     }
   },
   methods: {
+    isAnswered(category) {
+      return (
+        this.$store.state.givenAnswers.filter(function(a) {
+          return a.category === category.msgid
+        }).length === 1
+      )
+    },
     isActive(category) {
       return (
         this.$store.state.result === null &&
@@ -37,7 +45,7 @@ export default {
     },
     selectCategory(category) {
       if (this.isAtWelcomeScreen) {
-        return
+        this.start()
       }
       const _t = this
       this.$store.dispatch('selectCategory', {
@@ -47,6 +55,14 @@ export default {
     },
     restart() {
       this.$store.commit('resetStarted')
+    },
+    start() {
+      var _t = this
+      this.$store.dispatch('nextQuestion', {
+        params: {
+          language: _t.language
+        }
+      })
     },
     submit() {
       if (this.isAtWelcomeScreen) {
@@ -69,10 +85,9 @@ export default {
 @media only screen and (min-width: $mobileWidth) {
   .progressbar {
     counter-reset: step;
-    padding-left: 9em;
   }
   .progressbar li {
-    width: 7%;
+    width: 8%;
   }
 }
 @media only screen and (max-width: $mobileWidth) {
@@ -108,13 +123,13 @@ export default {
 .progressbar li {
   list-style-type: none;
   float: left;
-  font-size: 11px;
+  font-size: 13px;
   position: relative;
   text-align: center;
   text-transform: lowercase;
   color: $lightAccent;
-  word-wrap: break-word;
   padding-right: 1em;
+  word-wrap: initial;
 }
 .progressbar li:before {
   width: 20px;
@@ -133,8 +148,13 @@ export default {
 .active:before {
   border-color: $activeStepForeground !important;
 }
-.active {
+.active:before {
   color: $activeStepForeground !important;
+}
+.answered:before {
+  background: $activeStepForeground !important;
+  background-color: $activeStepForeground !important;
+  border-color: $activeStepForeground !important;
 }
 .progressbar li:hover:before {
   border: 2px solid $activeStepForeground;

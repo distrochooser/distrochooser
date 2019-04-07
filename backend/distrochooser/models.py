@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 import string
 from monsterurl import get_monster
+from backend.settings import MEDIA_ROOT
 class Translateable(models.Model):
   msgid = models.CharField(max_length=100, default="new-value",blank=False, null=False)
   class Meta: 
@@ -31,6 +32,8 @@ class UserSession(models.Model):
   userAgent = models.CharField(max_length=200, null=False, blank=False, default="")
   token = models.CharField(max_length=200, null=False, blank=False, default="")
   publicUrl = models.CharField(max_length=200, null=False, blank=False, default="")
+  language = models.CharField(max_length=10, null=False, blank=False, default="en")
+
   def __str__(self):
     return "{0} - {1}".format(self.dateTime, self.userAgent)
 
@@ -51,6 +54,7 @@ class Distribution(models.Model):
   identifier = models.CharField(max_length=200, null=True, blank=True, default="")
   fgColor = models.CharField(max_length=200, null=True, blank=True, default="")
   bgColor = models.CharField(max_length=200, null=True, blank=True, default="")
+  logo = models.FileField(null=True, blank=True) # TODO: Add url
   def __str__(self):
     return self.name
 
