@@ -8,18 +8,33 @@
       div.link
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
     distribution(v-for="(selection, selection_key) in selections", :key="selection_key", :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :logo="'/'+selection.distro.identifier+'.png'")
+  
+    div(v-if="isEmpty")
+      h1 {{ __i("no-results")}}
+      p {{ __i("no-results-text")}}
 </template>
 <script>
 import distribution from '~/components/distribution'
+import i18n from '~/mixins/i18n'
 export default {
   components: {
     distribution
   },
+  mixins: [i18n],
   computed: {
     selections: function() {
       return this.$store.state.result.selections.concat().sort(function(a, b) {
         return a.score < b.score
       })
+    },
+    isEmpty: function() {
+      var nonEmpty = 0
+      this.selections.forEach(element => {
+        if (element.reasons.length !== 0) {
+          nonEmpty++
+        }
+      })
+      return nonEmpty === 0
     }
   }
 }

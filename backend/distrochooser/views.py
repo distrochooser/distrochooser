@@ -178,3 +178,12 @@ def vote(request):
   return JsonResponse({
     "count": got
   })
+
+def getGivenAnswers(request, slug:str):
+  answers = GivenAnswer.objects.filter(session__publicUrl=slug) 
+  return JsonResponse(
+    {
+      "answers": list(answers.values_list("answer__msgid",flat=True)),
+      "categories": list(answers.values_list("answer__question__category__msgid",flat=True))
+    }
+  )

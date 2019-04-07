@@ -45,8 +45,8 @@ export default {
       default: 'bratwurst'
     },
     id: {
-      type: Number,
-      default: 0
+      type: String,
+      default: 'linux'
     },
     selection: {
       type: Number,

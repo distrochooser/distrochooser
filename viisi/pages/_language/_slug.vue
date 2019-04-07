@@ -44,6 +44,23 @@ export default {
   async mounted() {
     const _t = this
     await this.$store.dispatch('getLocales')
+    var lang =
+      typeof this.$route.params.language !== 'undefined' &&
+      this.$store.state.locales.indexOf(this.$route.params.language) !== -1
+        ? this.$route.params.language
+        : 'en'
+    var testSlug =
+      typeof this.$route.params.slug !== 'undefined'
+        ? this.$route.params.slug
+        : null
+    if (testSlug !== null) {
+      await this.$store.dispatch('getOldAnswers', {
+        params: {
+          slug: testSlug
+        }
+      })
+      this.$store.commit('setOldTestData')
+    }
     await this.$store.dispatch('startTest', {
       params: {
         language: _t.language

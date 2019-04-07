@@ -17,7 +17,8 @@ const indexStore = new Vapi({
     locales: null,
     voteResult: null,
     language: 'en',
-    testCount: 0
+    testCount: 0,
+    oldTestData: null
   }
 })
   .get({
@@ -45,6 +46,11 @@ const indexStore = new Vapi({
     action: 'voteSelection',
     property: 'voteResult',
     path: () => `vote/`
+  })
+  .get({
+    action: 'getOldAnswers',
+    property: 'oldTestData',
+    path: ({ slug }) => `answers/${slug}/`
   })
   .getStore()
 
@@ -127,6 +133,19 @@ indexStore.mutations.resetStarted = state => {
 
 indexStore.mutations.resetResult = state => {
   state.result = null
+}
+
+indexStore.mutations.setOldTestData = state => {
+  for (var i = 0; i < state.oldTestData.answers.length; i++) {
+    var answer = state.oldTestData.answers[i]
+    var category = state.oldTestData.categories[i]
+    state.givenAnswers.push({ //TODO: IS REDUNDANT
+      msgid: answer,
+      answered: true,
+      important: false,
+      category: category
+    })
+  }
 }
 
 indexStore.actions.nextQuestion = (store, payload) => {
