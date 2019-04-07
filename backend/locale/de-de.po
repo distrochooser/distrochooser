@@ -1,5 +1,0 @@
-msgid "start-title"
-msgstr "Hello world"
-
-msgid "question-new-value"
-msgstr "Hello world"
