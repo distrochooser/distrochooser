@@ -12,4 +12,4 @@ RUN chown distrochooser:distrochooser /app -R
 USER distrochooser
 RUN yarn install
 RUN yarn run build
-CMD ["npm", "start"]
+CMD ["yarn", "run", "start"]
