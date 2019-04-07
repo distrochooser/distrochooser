@@ -8,7 +8,7 @@
         div(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", class="locale-container")
           span(:class="'flag-icon-' + locale").flag-icon
           span.locale-text 
-            a(href="#") {{ __i("locale-link-"+locale) }}
+            a(:href="'/'+locale") {{ __i("locale-link-"+locale) }}
       div.actions
         button.next-step(@click="startTest") {{ __i("start-test") }}
     div(v-else)

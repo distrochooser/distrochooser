@@ -139,7 +139,8 @@ indexStore.mutations.setOldTestData = state => {
   for (var i = 0; i < state.oldTestData.answers.length; i++) {
     var answer = state.oldTestData.answers[i]
     var category = state.oldTestData.categories[i]
-    state.givenAnswers.push({ //TODO: IS REDUNDANT
+    state.givenAnswers.push({
+      //TODO: IS REDUNDANT
       msgid: answer,
       answered: true,
       important: false,

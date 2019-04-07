@@ -53,6 +53,7 @@ export default {
       typeof this.$route.params.slug !== 'undefined'
         ? this.$route.params.slug
         : null
+    _t.language = lang
     if (testSlug !== null) {
       await this.$store.dispatch('getOldAnswers', {
         params: {

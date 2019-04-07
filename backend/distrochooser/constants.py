@@ -16,7 +16,8 @@ def parseTranslation(langCode: str) -> dict:
 
 # Build the translation one time to prevent them from being generated on each request
 TRANSLATIONS = {
-  "en": parseTranslation("en")
+  "en": parseTranslation("en"),
+  "de": {}
 }
 
 TESTOFFSET = 623362 

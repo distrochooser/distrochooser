@@ -70,7 +70,8 @@ export default {
       }
       this.$store.dispatch('submitAnswers', {
         params: {
-          token: this.$store.state.token
+          token: this.$store.state.token,
+          language: this.language
         },
         data: {
           answers: this.$store.state.givenAnswers

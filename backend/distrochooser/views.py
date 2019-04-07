@@ -56,6 +56,7 @@ def start(request: HttpRequest, langCode: str):
   userAgent = request.META["HTTP_USER_AGENT"]
   session = UserSession()
   session.userAgent = userAgent
+  session.language = langCode
   session.token = secrets.token_hex(5) # generate a random token for the user
   session.save()
 
@@ -164,7 +165,7 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
     })
  
   return getJSONCORSResponse({
-    "url": "https://distrochooser.de/{0}".format(userSession.publicUrl),
+    "url": "https://distrochooser.de/{0}/{1}/".format(userSession.language, userSession.publicUrl),
     "selections": selections
   })
 
