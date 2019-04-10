@@ -3,12 +3,20 @@
     div.top-logo-container
       a(href="/")
         img.top-logo(src='~/assets/logo.png')
-    categories(:language="language",v-if="!isSubPageShown")
-    div(v-if="!isFinished && !isSubPageShown")
+    div.spin-parent(v-if="isLoading")
+      span {{ __i("loading") }}
+      div.spinner
+        div.rect1
+        div.rect2
+        div.rect3
+        div.rect4
+        div.rect5
+    categories(:language="language",v-if="!isLoading && !isSubPageShown")
+    div(v-if="!isLoading && !isFinished && !isSubPageShown")
       question(:language="language")
-    div(v-if="isFinished && !isSubPageShown")
+    div(v-if="!isLoading && isFinished && !isSubPageShown")
       result(:language="language")
-    div(v-if="isSubPageShown")
+    div(v-if="!isLoading && isSubPageShown")
       page(:language="language", :content="content")
     div.footer 
       a(href="#", v-on:click.prevent="showSubPage('imprint')")  {{ __i("imprint") }}
@@ -33,7 +41,8 @@ export default {
     return {
       language: 'en',
       content: 'about', //about page content
-      isSubPageShown: false
+      isSubPageShown: false,
+      isLoading: true
     }
   },
   computed: {
@@ -67,6 +76,7 @@ export default {
         language: _t.language
       }
     })
+    this.isLoading = false
   },
   methods: {
     showSubPage: function(what) {
@@ -82,6 +92,8 @@ export default {
 </script>
 <style lang="scss">
 @import '~/scss/variables.scss';
+@import '~/node_modules/spinkit/scss/spinners/3-wave.scss';
+
 body {
   background: $background;
 }
@@ -127,5 +139,72 @@ body {
   color: #4484ce;
   text-decoration: none;
   padding-right: 1em;
+}
+// loader
+.spinner {
+  margin: 100px auto;
+  width: 200px;
+  height: 14em;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: $spinColor;
+  height: 100%;
+  width: 10px;
+  display: inline-block;
+
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  margin: 1em;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+  }
+}
+
+@keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+  }
+}
+.spin-parent {
+  text-align: center;
+  margin-top: 3em;
 }
 </style>

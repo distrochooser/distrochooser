@@ -1,26 +1,29 @@
 <template lang="pug">
   div.question(v-if="isLoaded")
     div(v-if="isAtWelcomeScreen")
-      div.welcome-text 
-        b {{ __i("welcome-text-title") }}
-        p(v-html="__i('welcome-text')")
-      div.languages
-        div(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", class="locale-container")
-          span(:class="'flag-icon-' + locale").flag-icon
-          span.locale-text 
-            a(:href="'/'+locale") {{ __i("locale-link-"+locale) }}
+      div.question-content
+        div.welcome-text 
+          b {{ __i("welcome-text-title") }}
+          p(v-html="__i('welcome-text')")
+        div.languages
+          div(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", class="locale-container")
+            span(:class="'flag-icon-' + locale").flag-icon
+            span.locale-text 
+              a(:href="'/'+locale") {{ __i("locale-link-"+locale) }}
       div.actions
-        button.next-step(@click="startTest") {{ __i("start-test") }}
+        button.step.next-step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
-      div.question-text {{ __i(question.msgid) }}
-      div.answer-remark(v-if="question.isMultipleChoice")
-        span {{ __i("question-is-multiplechoice") }}
-      div.answers
-        div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
-          span.answer-text {{ __i(answer.msgid) }}
-          a.mark-important(v-if="isAnswerSelected(answer)",:class="{'is-important': answer.isImportant}", @click="markImportant(answer)") important for me!
+      div.question-content
+        div.question-text {{ __i(question.msgid) }}
+        div.answer-remark(v-if="question.isMultipleChoice")
+          span {{ __i("question-is-multiplechoice") }}
+        div.answers
+          div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
+            span.answer-text {{ __i(answer.msgid) }}
+            a.mark-important(v-if="isAnswerSelected(answer)",:class="{'is-important': answer.isImportant}", @click="markImportant(answer)") important for me!
       div.actions
-        button.next-step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
+        button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
+        button.next-step.step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
 </template>
 <script>
 import i18n from '~/mixins/i18n'
@@ -86,6 +89,14 @@ export default {
         })
       }
     },
+    prevQuestion() {
+      var _t = this
+      this.$store.dispatch('prevQuestion', {
+        params: {
+          language: _t.language
+        }
+      })
+    },
     isAtLastQuestion() {
       var currentIndex = this.$store.state.currentCategory.index
       var maximumIndex = Math.max.apply(
@@ -95,6 +106,16 @@ export default {
         })
       )
       return currentIndex === maximumIndex
+    },
+    isAtFirstQuestion() {
+      var currentIndex = this.$store.state.currentCategory.index
+      var minIndex = Math.min.apply(
+        Math,
+        this.$store.state.categories.map(function(c) {
+          return c.index
+        })
+      )
+      return currentIndex === minIndex
     },
     isAnswerSelected(answer) {
       return (
@@ -113,7 +134,7 @@ export default {
 @import '~/node_modules/animate.css/animate.min.css';
 @import '~/node_modules/flag-icon-css/css/flag-icon.min.css';
 .question {
-  margin-top: 3em;
+  margin-top: 1em;
   width: 70%;
   margin-right: 15%;
   margin-left: 15%;
@@ -147,7 +168,6 @@ export default {
   padding: 2em;
   font-size: 13pt;
   font-weight: 300;
-  height: 40%;
 }
 .welcome-text {
   padding-bottom: 0.5em;
@@ -177,16 +197,19 @@ ul {
   margin-right: -0.5em;
   margin-left: -0.5em;
 }
-.next-step {
+.actions {
+  display: flex;
+  padding-left: 1em;
+}
+.step {
   background: $nextButtonBackground;
   color: $nextButtonForeground;
-  position: fixed;
   height: 40px;
   width: 80px;
   border: 0px;
   cursor: pointer;
-  left: 62%;
   border-radius: 4px;
+  margin-right: 1em;
 }
 .skip-step {
   position: relative;
@@ -226,5 +249,8 @@ ul {
 a {
   color: $linkColor;
   text-decoration: none;
+}
+.question-content {
+  height: 21em;
 }
 </style>

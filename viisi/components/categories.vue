@@ -1,9 +1,18 @@
 <template lang="pug">
-  div
-    ul.progressbar(:class="{'disabled': !isLoaded}")
-      li(@click="restart",:class="{'active': isAtWelcomeScreen }") {{ __i("category-welcome") }}
-      li(v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category), 'answered': isAnswered(category)}", @click="selectCategory(category)") {{ __i(category.msgid) }}
-      li(@click="submit",:class="{'active': $store.state.result !== null }",v-if="$store.state.givenAnswers.length > 0") {{ __i("recommendation-category") }}
+  div.breadcrumb-container
+    div.breadcrumb(:class="{'disabled': !isLoaded}")
+      a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen }")
+        span.breadcrumb__inner
+          span.breadcrumb__title {{ __i("category-welcome") }}
+      a(href="#",v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)")
+        span.breadcrumb__inner
+          span.breadcrumb__title  
+            span.category-status {{ __i(category.msgid) }}
+            i(v-if="isAnswered(category)").fa.fa-check.animated.heartBeat
+      a(href="#",@click="submit",:class="{'active': $store.state.result !== null }")
+        span.breadcrumb__inner
+          span.breadcrumb__title {{ __i("recommendation-category") }}
+        
 </template>
 
 <script>
@@ -83,100 +92,129 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
-@media only screen and (min-width: $mobileWidth) {
-  .progressbar {
-    counter-reset: step;
-  }
-  .progressbar li {
-    width: 8%;
-  }
+@import '~/node_modules/animate.css/animate.min.css';
+$base: 30px;
+// https://codepen.io/iamglynnsmith/pen/BRGjgW
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-@media only screen and (max-width: $mobileWidth) {
-  .progressbar {
-    counter-reset: step;
-    padding-left: 0em !important; //very ugly: FIXME
-  }
-  .progressbar li {
-    width: 10% !important;
-  }
-}
-@media only screen and (max-width: $desktopWidth) {
-  .progressbar {
-    counter-reset: step;
-    padding-left: 0em; //very ugly: FIXME
-  }
-  .progressbar li {
-    width: 10% !important;
-  }
-}
-@media only screen and (min-width: $desktopMinWidth) and (max-width: $desktopWidth) {
-  .progressbar {
-    counter-reset: step;
-    padding-left: 0em; //very ugly: FIXME
-  }
-  .progressbar li {
-    width: 10% !important;
-  }
-}
-.progressbar {
-  height: 2em;
-}
-.progressbar li {
-  list-style-type: none;
-  float: left;
-  font-size: 13px;
-  position: relative;
-  text-align: center;
-  text-transform: lowercase;
-  color: $lightAccent;
-  padding-right: 1em;
-  word-wrap: initial;
-}
-.progressbar li:before {
-  width: 20px;
-  height: 20px;
-  counter-increment: step;
-  line-height: 14;
-  border: 2px solid $lightAccent;
-  display: block;
-  text-align: center;
-  margin: 0 auto 5px auto;
-  border-radius: 50%;
-  background-color: white;
-  background: white;
-  content: '';
-}
-.active:before {
-  border-color: $activeStepForeground !important;
-}
-.active:before {
-  color: $activeStepForeground !important;
-}
-.answered:before {
-  background: $activeStepForeground !important;
-  background-color: $activeStepForeground !important;
-  border-color: $activeStepForeground !important;
-}
-.progressbar li:hover:before {
-  border: 2px solid $activeStepForeground;
-  cursor: pointer;
-  color: $activeStepForeground;
-}
-.progressbar li:hover {
-  cursor: pointer;
-  color: $activeStepForeground;
-}
-.progressbar li:after {
+
+.breadcrumb-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 2px;
+  position: fixed;
+  top: 22px;
+  left: 0px;
+}
+
+.breadcrumb {
+  display: flex;
+  overflow: hidden;
+  margin: auto;
+  text-align: center;
+  top: 50%;
+  width: 100%;
+  // max-width: 1200px;
+  height: $base * 1.5;
+  transform: translateY(-50%);
+  z-index: 1;
+  background-color: #ddd;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  text-decoration: none;
+  margin: auto;
+  height: 100%;
+  padding-left: $base;
+  padding-right: 0;
+  color: #666;
+}
+
+.breadcrumb a:first-child {
+  padding-left: $base / 2.5;
+}
+
+.breadcrumb a:last-child {
+  padding-right: $base / 2.5;
+}
+
+.breadcrumb a:after {
   content: '';
   position: absolute;
-  background-color: $lightAccent;
-  top: 9px;
-  left: -50%;
-  z-index: -1;
+  display: inline-block;
+  width: $base * 1.5;
+  height: $base * 1.5;
+  top: 0;
+  right: $base / 1.35 * -1;
+  background-color: #ddd;
+  border-top-right-radius: 5px;
+  transform: scale(0.707) rotate(45deg);
+  box-shadow: 1px -1px rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
-.progressbar li:first-child:after {
+
+.breadcrumb a:last-child:after {
   content: none;
+}
+
+.breadcrumb__inner {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  z-index: 2;
+}
+
+.breadcrumb__title {
+  font-weight: bold;
+}
+
+.breadcrumb a.active,
+.breadcrumb a:hover {
+  background: $activeStepForeground;
+  color: white;
+}
+
+.breadcrumb a.active:after,
+.breadcrumb a:hover:after {
+  background: $activeStepForeground;
+  color: white;
+}
+
+// 1000px
+///////////////////////
+@media all and (max-width: 1000px) {
+  .breadcrumb {
+    font-size: 12px;
+  }
+}
+
+// 710px
+///////////////////////
+@media all and (max-width: 710px) {
+  .breadcrumb {
+    height: $base;
+  }
+
+  .breadcrumb a {
+    padding-left: $base / 1.5;
+  }
+
+  .breadcrumb a:after {
+    content: '';
+    width: $base * 1;
+    height: $base * 1;
+    right: $base / 2 * -1;
+    transform: scale(0.707) rotate(45deg);
+  }
+}
+.category-status {
+  padding-right: 0.5em;
 }
 </style>

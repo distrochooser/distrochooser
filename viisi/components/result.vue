@@ -43,7 +43,6 @@ export default {
 <style lang="scss">
 @import '~/scss/variables.scss';
 .result {
-  margin-top: 4em;
   width: 70%;
   margin-right: 15%;
   margin-left: 15%;
@@ -55,7 +54,7 @@ export default {
   font-family: Karla, sans-serif;
 }
 .link input {
-  width: 50%;
+  width: 60%;
   text-align: center;
   padding: 0.7em;
 }

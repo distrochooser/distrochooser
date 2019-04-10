@@ -169,6 +169,26 @@ indexStore.actions.nextQuestion = (store, payload) => {
   })
 }
 
+indexStore.actions.prevQuestion = (store, payload) => {
+  store.commit('setStarted') //make sure the test is active
+  const currentCategory = store.state.currentCategory
+  var nextCategory = null
+  if (currentCategory === null) {
+    nextCategory = store.state.categories[0]
+  } else {
+    store.state.categories.forEach(c => {
+      if (c.index === currentCategory.index - 1) {
+        nextCategory = c
+        return
+      }
+    })
+  }
+  store.dispatch('selectCategory', {
+    language: payload.params.language,
+    selectedCategory: nextCategory
+  })
+}
+
 const createStore = () => {
   return new Vuex.Store(indexStore)
 }

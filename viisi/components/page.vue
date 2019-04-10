@@ -10,6 +10,12 @@
       p {{ __i("about-licenses-source-text") }}
       h2 {{ __i("about-licenses-database") }}
       p {{ __i("about-licenses-database-text") }}
+    div(v-if="content=='imprint'")
+      h1 {{ __i("imprint-header") }}
+      p(v-html="__i('imprint-text')")
+    div(v-if="content=='privacy'")
+      h1 {{ __i("privacy-header") }}
+      p(v-html="__i('privacy-text')")
 </template>
 
 <script>
