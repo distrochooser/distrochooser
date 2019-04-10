@@ -2,7 +2,7 @@
   div.distrochooser
     div.top-logo-container
       a(href="/")
-        img.top-logo(src='~/assets/logo.png')
+        img.top-logo(src='~/assets/logo.min.svg')
     div.spin-parent(v-if="isLoading")
       span {{ __i("loading") }}
       div.spinner
@@ -22,6 +22,7 @@
       a(href="#", v-on:click.prevent="showSubPage('imprint')")  {{ __i("imprint") }}
       a(href="/privacy", v-on:click.prevent="showSubPage('privacy')") {{ __i("privacy") }}
       a(href="/about", v-on:click.prevent="showSubPage('about')") {{ __i("about") }}
+      a(href="0fury.de", v-on:click.prevent="showSubPage('about')") {{ __i("vendor-text") }}
 </template>
 <script>
 import categories from '~/components/categories'
