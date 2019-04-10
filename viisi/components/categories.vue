@@ -33,7 +33,7 @@ export default {
       return (
         this.$store.state.givenAnswers.filter(function(a) {
           return a.category === category.msgid
-        }).length === 1
+        }).length > 0
       )
     },
     isActive(category) {
