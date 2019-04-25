@@ -3,8 +3,10 @@
     div.result-link
       div.social-links
         span Share your result
-        i.fab.fa-facebook
-        i.fab.fa-twitter
+        a(:href="'https://www.facebook.com/sharer/sharer.php?u='+$store.state.result.url")
+          i.fab.fa-facebook
+        a(:href="'https://twitter.com/share?url='+$store.state.result.url+'&hashtags=distrochooser,linux&via=distrochooser'")
+          i.fab.fa-twitter
       div.link
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
     distribution(v-for="(selection, selection_key) in selections", :key="selection_key", :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :logo="'/'+selection.distro.identifier+'.png'")

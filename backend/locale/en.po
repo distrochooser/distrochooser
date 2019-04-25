@@ -1,5 +1,5 @@
 msgid "welcome-text-title"
-msgstr "Welcome to Distrochooser 5"
+msgstr "Welcome to the Distrochooser"
 
 msgid "welcome-text"
 msgstr "The Distrochooser will help you choose among a selection of Linux Distributions to use. Our goal is to give you an orientation help, not a definitive list.<br><ul><li>You can answer the test in any order</li><li>You can skip questions</li><li>You can resubmit your test if you want to correct answers</li></ul>"
@@ -22,6 +22,9 @@ msgstr "Welcome"
 
 msgid "next-question"
 msgstr "Continue"
+
+msgid "prev-question"
+msgstr "Back"
 
 msgid "get-result"
 msgstr "Get my result"
@@ -61,6 +64,15 @@ msgstr "about the Distrochooser"
 
 msgid "question-is-multiplechoice"
 msgstr "You can select multiple answers"
+
+msgid "vendor-text"
+msgstr "A project by chmr.eu"
+
+msgid "no-results"
+msgstr "No results"
+
+msgid "no-results-text"
+msgstr "We could not calculate a result :/"
 
 # question elements
 

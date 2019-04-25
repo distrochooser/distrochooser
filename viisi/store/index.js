@@ -18,7 +18,8 @@ const indexStore = new Vapi({
     voteResult: null,
     language: 'en',
     testCount: 0,
-    oldTestData: null
+    oldTestData: null,
+    isSubmitted: false
   }
 })
   .get({
@@ -70,6 +71,10 @@ indexStore.actions.answerQuestion = (store, payload) => {
 
 indexStore.mutations.setAnswerQuestion = (state, answer) => {
   state.givenAnswers.push(answer)
+}
+
+indexStore.mutations.toggleSubmitted = state => {
+  state.isSubmitted = !state.isSubmitted
 }
 
 indexStore.mutations.toggleImportanceState = (state, answer) => {

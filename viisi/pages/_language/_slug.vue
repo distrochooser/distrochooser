@@ -3,7 +3,7 @@
     div.top-logo-container
       a(href="/")
         img.top-logo(src='~/assets/logo.min.svg')
-    div.spin-parent(v-if="isLoading")
+    div.spin-parent(v-if="isLoading || isSubmitted()" )
       span {{ __i("loading") }}
       div.spinner
         div.rect1
@@ -11,12 +11,12 @@
         div.rect3
         div.rect4
         div.rect5
-    categories(:language="language",v-if="!isLoading && !isSubPageShown")
-    div(v-if="!isLoading && !isFinished && !isSubPageShown")
+    categories(:language="language",v-if="!isLoading && !isSubPageShown && !isSubmitted()")
+    div(v-if="!isLoading && !isFinished && !isSubPageShown && !isSubmitted()")
       question(:language="language")
-    div(v-if="!isLoading && isFinished && !isSubPageShown")
+    div(v-if="!isLoading && isFinished && !isSubPageShown && !isSubmitted()")
       result(:language="language")
-    div(v-if="!isLoading && isSubPageShown")
+    div(v-if="!isLoading && isSubPageShown && !isSubmitted()")
       page(:language="language", :content="content")
     div.footer 
       a(href="#", v-on:click.prevent="showSubPage('imprint')")  {{ __i("imprint") }}
@@ -87,6 +87,9 @@ export default {
     hideSubPage: function() {
       this.content = 'about'
       this.isSubPageShown = false
+    },
+    isSubmitted: function() {
+      return this.$store.state.isSubmitted
     }
   }
 }

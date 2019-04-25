@@ -1,5 +1,8 @@
 <template lang="pug">
   div.question(v-if="isLoaded")
+    div.beta-warning You are testing a preview version. The translation and decision tree are incomplete.<br>Not all distributions are included. The mobile view is missing. There will be a lot of 
+      i.fas.fa-bug
+      
     div(v-if="isAtWelcomeScreen")
       div.question-content
         div.welcome-text 
@@ -51,14 +54,27 @@ export default {
     }
   },
   methods: {
+    isQuestionAnswered() {
+      if (!this.$store.state.currentCategory) {
+        return false
+      }
+      const categoryId = this.$store.state.currentCategory.msgid
+      return (
+        this.$store.state.givenAnswers.filter(function(answer) {
+          return answer.category === categoryId
+        }).length > 0
+      )
+    },
     answerQuestion(answer) {
       if (this.isAnswerSelected(answer)) {
         this.$store.commit('removeAnswerQuestion', answer)
       } else {
-        this.$store.dispatch('answerQuestion', {
-          selectedAnswer: answer,
-          currentCategory: this.$store.state.currentCategory
-        })
+        if (this.question.isMultipleChoice || !this.isQuestionAnswered()) {
+          this.$store.dispatch('answerQuestion', {
+            selectedAnswer: answer,
+            currentCategory: this.$store.state.currentCategory
+          })
+        }
       }
     },
     startTest() {
@@ -252,5 +268,14 @@ a {
 }
 .question-content {
   height: 21em;
+}
+.beta-warning {
+  position: fixed;
+  top: 4em;
+  width: 50%;
+  background: red;
+  color: white;
+  padding: 1.5em;
+  left: 25%;
 }
 </style>

@@ -74,8 +74,9 @@ export default {
       })
     },
     submit() {
+      this.$store.commit('toggleSubmitted')
       if (this.isAtWelcomeScreen) {
-        return
+        this.start()
       }
       this.$store.dispatch('submitAnswers', {
         params: {
@@ -86,6 +87,7 @@ export default {
           answers: this.$store.state.givenAnswers
         }
       })
+      this.$store.commit('toggleSubmitted')
     }
   }
 }
