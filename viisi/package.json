@@ -19,6 +19,7 @@
     "express": "^4.16.3",
     "flag-icon-css": "^3.3.0",
     "nuxt": "^2.0.0",
+    "spinkit": "^1.2.5",
     "vuex-rest-api": "^2.10.0"
   },
   "devDependencies": {

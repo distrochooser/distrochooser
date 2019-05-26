@@ -120,7 +120,7 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
       print("checking rule: ", matrix)
       # check if there is an 1:1 mapping
       if givenAnswers.filter(answer=matrix.answer).count() == 1:
-        print("Rule has a 1:1 match. Blocking: ", matrix.isBlockingHit)
+        print("Rule has a 1:1 match. Blocking: ", matrix.isBlockingHit, "neutral", matrix.isNeutralHit)
 
         # check if the selected answer is blocked by another one
         # should prevent answers like beginner + professional in one session
@@ -147,13 +147,24 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
         else:
           reason.isBlockingHit = matrix.isBlockingHit
           reason.isPositiveHit = not matrix.isNegativeHit
-          reason.description =  translationToUse[matrix.description] if matrix.description in translationToUse else matrix.description 
+          reason.isNeutralHit = matrix.isNeutralHit
+          if not reason.isNeutralHit:
+            reason.description =  translationToUse[matrix.description] if matrix.description in translationToUse else matrix.description 
+          else:
+            reason.isPositiveHit = True
+            reason.description = translationToUse[matrix.description]
         if reason.isBlockingHit or reason.isRelatedBlocked:
           score = score - 1
         else:
-          score = score + 1
-        reason.save()
-        reasons.append(reason)
+          if not reason.isNeutralHit:
+            score = score + 1
+        # prevent that the same reason (got out of different answers) gets counted twice or more
+        if len(list(filter(lambda r: r.description ==  reason.description and r.isBlockingHit == reason.isBlockingHit and r.isPositiveHit == reason.isPositiveHit and r.isNeutralHit == reason.isNeutralHit, reasons))) == 1:
+          print("duplicate reason, ignoring this")
+          score = score -1 
+        else:
+          reason.save()
+          reasons.append(reason)
     distro = model_to_dict(selection.distro, exclude="logo")
     if selection.distro.logo:
       distro["logo"] = selection.distro.logo.url

@@ -4,7 +4,7 @@
       a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen }")
         span.breadcrumb__inner
           span.breadcrumb__title {{ __i("category-welcome") }}
-      a(href="#",v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category)}", @click="selectCategory(category)")
+      a(href="#",v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category), 'inactive': !isActive(category)}", @click="selectCategory(category)")
         span.breadcrumb__inner
           span.breadcrumb__title  
             span.category-status {{ __i(category.msgid) }}

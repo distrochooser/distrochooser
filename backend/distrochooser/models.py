@@ -70,11 +70,13 @@ class SelectionReason(models.Model):
   isPositiveHit = models.BooleanField(default=True)
   isBlockingHit = models.BooleanField(default=False) # "No-go"
   isRelatedBlocked =  models.BooleanField(default=False)
+  isNeutralHit = models.BooleanField(default=False) # e. g. "professional user" for ubuntu -> 
 
 class AnswerDistributionMatrix(models.Model):
   answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
   isBlockingHit = models.BooleanField(default=False)
   isNegativeHit = models.BooleanField(default=False)
+  isNeutralHit = models.BooleanField(default=False) # e. g. "professional user" for ubuntu -> 
   description = models.CharField(default='', max_length=300, blank=False)
   distros =  models.ManyToManyField(to=Distribution, related_name="answerMatrixDistros",blank=True)
   def __str__(self):

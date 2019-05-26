@@ -3,7 +3,8 @@
     div(v-if="content=='about'")
       h1 {{ __i("about-header") }}
       p(v-html="__i('about-intro-text')")
-      p {{ __i('about-intro-test-count').replace("%s", $store.state.testCount) }}
+      br
+      p {{ __i('about-intro-test-count').replace("%tests%", $store.state.testCount) }}
       h2 {{ __i("about-licenses") }}
       p {{ __i("about-licenses-text") }}
       h2 {{ __i("about-licenses-source") }}

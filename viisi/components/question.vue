@@ -1,20 +1,23 @@
 <template lang="pug">
   div.question(v-if="isLoaded")
-    div.beta-warning You are testing a preview version. The translation and decision tree are incomplete.<br>Not all distributions are included. The mobile view is missing. There will be a lot of 
-      i.fas.fa-bug
-      
     div(v-if="isAtWelcomeScreen")
       div.question-content
         div.welcome-text 
           b {{ __i("welcome-text-title") }}
-          p(v-html="__i('welcome-text')")
+          p {{ __i("welcome-text") }}
+          ul
+            li {{ __i("welcome-text-skip") }}
+            li {{ __i("welcome-text-result-get") }}
+            li {{ __i("welcome-text-order") }}
+            li {{ __i("welcome-text-remove") }}
+            li {{ __i("welcome-text-feedback") }}
         div.languages
           div(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", class="locale-container")
             span(:class="'flag-icon-' + locale").flag-icon
             span.locale-text 
               a(:href="'/'+locale") {{ __i("locale-link-"+locale) }}
-      div.actions
-        button.step.next-step(@click="startTest") {{ __i("start-test") }}
+        div.actions
+          button.start-test-button.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
       div.question-content
         div.question-text {{ __i(question.msgid) }}
@@ -201,7 +204,7 @@ ul {
 .answer {
   background: $unselectedAnswerBackground !important;
   color: $unselectedAnswerForeground !important;
-  height: 40px;
+  min-height: 40px;
   padding: 10px;
   font-family: Karla, sans-serif;
   margin-bottom: 1em;
@@ -214,8 +217,10 @@ ul {
   margin-left: -0.5em;
 }
 .actions {
-  display: flex;
-  padding-left: 1em;
+  background: $questionBackground;
+  padding: 0.5em;
+  text-align: right;
+  border-top: 1px solid $nextButtonBackground;
 }
 .step {
   background: $nextButtonBackground;
@@ -224,7 +229,7 @@ ul {
   width: 80px;
   border: 0px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 1px;
   margin-right: 1em;
 }
 .skip-step {
@@ -267,15 +272,11 @@ a {
   text-decoration: none;
 }
 .question-content {
-  height: 21em;
+  height: 25em;
 }
-.beta-warning {
-  position: fixed;
-  top: 4em;
-  width: 50%;
-  background: red;
-  color: white;
-  padding: 1.5em;
-  left: 25%;
+-test {
+  position: relative;
+  bottom: 22em;
+  text-align: right;
 }
 </style>

@@ -9,7 +9,6 @@
     div.description.reasons(v-if="flipped")
       div.reason-list.list
         div(v-if="nonBlocking.length > 0")
-          b.block-title {{ __i("reason-list-header").replace("%s",name) }}
           div(v-for="(reason, reason_key) in nonBlocking", :key="reason_key") 
             i.fas.fa-plus(v-if="reason.isPositiveHit")
             i.fas.fa-minus(v-if="!reason.isPositiveHit")
@@ -24,6 +23,12 @@
         div(v-if="blockedByOtherQuestion.length > 0")
           b.block-title {{ __i("reason-list-header-blocked-by-others").replace("%s",name) }}
           div(v-for="(reason, reason_key) in blockedByOtherQuestion", :key="reason_key") 
+            i.fas.fa-question
+            span {{ reason.description }}
+      div.reason-list.list
+        div(v-if="neutral.length > 0")
+          b.block-title {{ __i("reason-list-header-neutral") }}
+          div(v-for="(reason, reason_key) in neutral", :key="reason_key") 
             i.fas.fa-question
             span {{ reason.description }}
     div.meta
@@ -79,6 +84,11 @@ export default {
     }
   },
   computed: {
+    neutral: function() {
+      return this.reasons.filter(r => {
+        return r.isNeutralHit
+      })
+    },
     blocking: function() {
       return this.reasons.filter(r => {
         return r.isBlockingHit && !r.isRelatedBlocked
@@ -86,7 +96,7 @@ export default {
     },
     nonBlocking: function() {
       return this.reasons.filter(r => {
-        return !r.isBlockingHit && !r.isRelatedBlocked
+        return !r.isBlockingHit && !r.isRelatedBlocked && !r.isNeutralHit
       })
     },
     blockedByOtherQuestion: function() {
