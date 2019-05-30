@@ -11,6 +11,7 @@ class Translateable(models.Model):
 
 class Category(Translateable):
   index = models.IntegerField(default=0)
+  iconClass = models.TextField(default="far fa-circle")
   def __str__(self): 
     return "{0}: {1}".format(self.index, self.msgid)
 

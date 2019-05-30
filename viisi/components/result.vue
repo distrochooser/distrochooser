@@ -49,7 +49,7 @@ export default {
   margin-right: 15%;
   margin-left: 15%;
   height: 25em;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 .link {
   margin-top: 1em;

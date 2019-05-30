@@ -23,6 +23,11 @@
       a(href="/privacy", v-on:click.prevent="showSubPage('privacy')") {{ __i("privacy") }}
       a(href="/about", v-on:click.prevent="showSubPage('about')") {{ __i("about") }}
       a(href="https://chmr.eu") {{ __i("vendor-text") }}
+    
+    div.languages
+      a(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", :href="'/'+locale", class="language")
+        span(:class="'flag-icon-' + locale").flag-icon
+       
 </template>
 <script>
 import categories from '~/components/categories'
@@ -97,7 +102,7 @@ export default {
 <style lang="scss">
 @import '~/scss/variables.scss';
 @import '~/node_modules/spinkit/scss/spinners/3-wave.scss';
-
+@import '~/node_modules/flag-icon-css/css/flag-icon.min.css';
 body {
   background: $background;
 }
@@ -116,9 +121,11 @@ body {
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
+    margin-top: 2em;
   }
   .top-logo-container .top-logo {
     width: 25%;
+    margin-bottom: 2em;
   }
 }
 .top-logo-container {
@@ -210,5 +217,18 @@ body {
 .spin-parent {
   text-align: center;
   margin-top: 3em;
+}
+.languages {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+}
+.language {
+  margin-right: 1em;
+}
+.flag-icon {
+  width: 300px;
+  background-repeat: space;
+  height: 300px;
 }
 </style>

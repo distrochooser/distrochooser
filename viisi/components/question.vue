@@ -11,11 +11,6 @@
             li {{ __i("welcome-text-order") }}
             li {{ __i("welcome-text-remove") }}
             li {{ __i("welcome-text-feedback") }}
-        div.languages
-          div(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", class="locale-container")
-            span(:class="'flag-icon-' + locale").flag-icon
-            span.locale-text 
-              a(:href="'/'+locale") {{ __i("locale-link-"+locale) }}
         div.actions
           button.start-test-button.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
@@ -25,8 +20,7 @@
           span {{ __i("question-is-multiplechoice") }}
         div.answers
           div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
-            span.answer-text {{ __i(answer.msgid) }}
-            a.mark-important(v-if="isAnswerSelected(answer)",:class="{'is-important': answer.isImportant}", @click="markImportant(answer)") important for me!
+            div.answer-text {{ __i(answer.msgid) }}
       div.actions
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
         button.next-step.step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
@@ -151,14 +145,13 @@ export default {
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
 @import '~/node_modules/animate.css/animate.min.css';
-@import '~/node_modules/flag-icon-css/css/flag-icon.min.css';
 .question {
   margin-top: 1em;
-  width: 70%;
-  margin-right: 15%;
-  margin-left: 15%;
   background: $questionBackground;
-  height: 25em;
+  height: 50%;
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
 }
 @media only screen and (max-width: $mobileWidth) {
   .question {
@@ -181,12 +174,17 @@ export default {
     margin-right: 5%;
   }
 }
-.question-text,
 .welcome-text {
-  font-family: 'Heebo', sans-serif;
   padding: 2em;
   font-size: 13pt;
-  font-weight: 300;
+  font-family: 'Archivo', sans-serif;
+  line-height: 1.5;
+}
+.question-text {
+  padding: 2em;
+  font-size: 13pt;
+  font-family: 'Archivo', sans-serif;
+  line-height: 1.7;
 }
 .welcome-text {
   padding-bottom: 0.5em;
@@ -206,9 +204,14 @@ ul {
   color: $unselectedAnswerForeground !important;
   min-height: 40px;
   padding: 10px;
-  font-family: Karla, sans-serif;
+  font-family: Open Sans, sans-serif;
   margin-bottom: 1em;
   cursor: pointer;
+}
+.answer-text {
+  padding-left: 2em;
+  padding-right: 2em;
+  font-size: 11pt;
 }
 .answer-selected {
   background: $selectedAnswerBackground !important;
@@ -242,10 +245,11 @@ ul {
 .answer-remark {
   font-family: karla;
   font-style: italic;
-  font-size: 9pt;
+  font-size: 10pt;
   position: relative;
   left: 5%;
   bottom: 1em;
+  margin-bottom: 1em;
 }
 .mark-important {
   display: none; // it's disabled until I find a proper solution

@@ -23,7 +23,7 @@
         div(v-if="blockedByOtherQuestion.length > 0")
           b.block-title {{ __i("reason-list-header-blocked-by-others").replace("%s",name) }}
           div(v-for="(reason, reason_key) in blockedByOtherQuestion", :key="reason_key") 
-            i.fas.fa-question
+            i.fas.fa-exclamation-triangle
             span {{ reason.description }}
       div.reason-list.list
         div(v-if="neutral.length > 0")
@@ -185,6 +185,9 @@ export default {
 }
 .fa-thumbs-down {
   color: #ff8f00;
+}
+.fa-exclamation-triangle {
+  color: red;
 }
 .list {
   margin-top: 1em;

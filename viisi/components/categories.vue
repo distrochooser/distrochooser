@@ -1,17 +1,18 @@
 <template lang="pug">
-  div.breadcrumb-container
-    div.breadcrumb(:class="{'disabled': !isLoaded}")
-      a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen }")
-        span.breadcrumb__inner
-          span.breadcrumb__title {{ __i("category-welcome") }}
-      a(href="#",v-for="(category, c_k) in categories" v-bind:key="c_k", :class="{'active': isActive(category), 'inactive': !isActive(category)}", @click="selectCategory(category)")
-        span.breadcrumb__inner
-          span.breadcrumb__title  
-            span.category-status {{ __i(category.msgid) }}
-            i(v-if="isAnswered(category)").fa.fa-check.animated.heartBeat
-      a(href="#",@click="submit",:class="{'active': $store.state.result !== null }")
-        span.breadcrumb__inner
-          span.breadcrumb__title {{ __i("recommendation-category") }}
+    div.breadcrumb-horizontal 
+      ul
+        li
+          i.active-indicator.fas.fa-door-open
+          a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen,'inactive': !isAtWelcomeScreen  }") {{ __i("category-welcome") }}
+        li(v-for="(category, c_k) in categories" v-bind:key="c_k")
+
+          a(href="#", @click="selectCategory(category)")
+            i.active-indicator(:class="category.iconClass")
+            span(:class="{'active': isActive(category), 'inactive': !isActive(category)}") {{ __i(category.msgid) }}
+            i(v-if="isAnswered(category)").fa.fa-check.animated.heartBeat.isAnswered
+        li
+          i.active-indicator.far.fa-comment
+          a(href="#",@click.prevent="submit",:class="{'active': $store.state.result !== null }") {{ __i("recommendation-category") }}
         
 </template>
 
@@ -95,128 +96,40 @@ export default {
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
 @import '~/node_modules/animate.css/animate.min.css';
-$base: 30px;
-// https://codepen.io/iamglynnsmith/pen/BRGjgW
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.breadcrumb-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: fixed;
-  top: 22px;
-  left: 0px;
-}
-
-.breadcrumb {
-  display: flex;
-  overflow: hidden;
-  margin: auto;
-  text-align: center;
-  top: 50%;
-  width: 100%;
-  // max-width: 1200px;
-  height: $base * 1.5;
-  transform: translateY(-50%);
-  z-index: 1;
-  background-color: #ddd;
-  font-size: 14px;
-}
-
-.breadcrumb a {
-  position: relative;
-  display: flex;
-  flex-grow: 1;
-  text-decoration: none;
-  margin: auto;
-  height: 100%;
-  padding-left: $base;
-  padding-right: 0;
-  color: #666;
-}
-
-.breadcrumb a:first-child {
-  padding-left: $base / 2.5;
-}
-
-.breadcrumb a:last-child {
-  padding-right: $base / 2.5;
-}
-
-.breadcrumb a:after {
-  content: '';
+.breadcrumb-horizontal {
   position: absolute;
-  display: inline-block;
-  width: $base * 1.5;
-  height: $base * 1.5;
-  top: 0;
-  right: $base / 1.35 * -1;
-  background-color: #ddd;
-  border-top-right-radius: 5px;
-  transform: scale(0.707) rotate(45deg);
-  box-shadow: 1px -1px rgba(0, 0, 0, 0.25);
-  z-index: 1;
+  left: 1em;
+  top: 17%;
+}
+.breadcrumb-horizontal ul {
+  list-style-type: none;
+}
+.breadcrumb-horizontal ul li {
+  margin-bottom: 1em;
 }
 
-.breadcrumb a:last-child:after {
-  content: none;
+.breadcrumb-horizontal ul li i {
+  color: $categoryIconColor;
 }
-
-.breadcrumb__inner {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  z-index: 2;
+.breadcrumb-horizontal ul li a {
+  text-decoration: none;
 }
-
-.breadcrumb__title {
-  font-weight: bold;
+.inactive {
+  color: grey;
 }
-
-.breadcrumb a.active,
-.breadcrumb a:hover {
-  background: $activeStepForeground;
-  color: white;
+.active {
+  color: $linkColor;
+  border-bottom: 1px solid grey;
 }
-
-.breadcrumb a.active:after,
-.breadcrumb a:hover:after {
-  background: $activeStepForeground;
-  color: white;
+.answered {
+  color: $answeredColor !important;
 }
-
-// 1000px
-///////////////////////
-@media all and (max-width: 1000px) {
-  .breadcrumb {
-    font-size: 12px;
-  }
+.isAnswered {
+  // the check mark
+  color: $answeredColor !important;
+  margin-left: 0.5em;
 }
-
-// 710px
-///////////////////////
-@media all and (max-width: 710px) {
-  .breadcrumb {
-    height: $base;
-  }
-
-  .breadcrumb a {
-    padding-left: $base / 1.5;
-  }
-
-  .breadcrumb a:after {
-    content: '';
-    width: $base * 1;
-    height: $base * 1;
-    right: $base / 2 * -1;
-    transform: scale(0.707) rotate(45deg);
-  }
-}
-.category-status {
-  padding-right: 0.5em;
+.active-indicator {
+  width: 1.2em;
 }
 </style>
