@@ -1,5 +1,5 @@
 <template lang="pug">
-    div.breadcrumb-horizontal 
+    div.breadcrumb-horizontal
       ul
         li
           i.active-indicator.fas.fa-door-open
@@ -99,7 +99,9 @@ export default {
 .breadcrumb-horizontal {
   position: absolute;
   left: 1em;
-  top: 17%;
+  top: 24%;
+  font-family: Archivo;
+  letter-spacing: 0.5px;
 }
 .breadcrumb-horizontal ul {
   list-style-type: none;

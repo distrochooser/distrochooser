@@ -118,9 +118,9 @@ body {
 }
 @media only screen and (min-width: $mobileWidth) {
   .distrochooser {
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
     margin-top: 2em;
   }
   .top-logo-container .top-logo {
@@ -227,8 +227,8 @@ body {
   margin-right: 1em;
 }
 .flag-icon {
-  width: 300px;
+  width: 2em;
   background-repeat: space;
-  height: 300px;
+  height: 2em;
 }
 </style>

@@ -3,7 +3,7 @@
     div(v-if="isAtWelcomeScreen")
       div.question-content
         div.welcome-text 
-          b {{ __i("welcome-text-title") }}
+          h1 {{ __i("welcome-text-title") }}
           p {{ __i("welcome-text") }}
           ul
             li {{ __i("welcome-text-skip") }}
@@ -148,7 +148,7 @@ export default {
 .question {
   margin-top: 1em;
   background: $questionBackground;
-  height: 50%;
+  height: 60%;
   width: 80%;
   margin-right: 10%;
   margin-left: 10%;
@@ -178,16 +178,14 @@ export default {
   padding: 2em;
   font-size: 13pt;
   font-family: 'Archivo', sans-serif;
-  line-height: 1.5;
+  line-height: 2;
+  height: 23em;
 }
 .question-text {
   padding: 2em;
-  font-size: 13pt;
+  font-size: 14pt;
   font-family: 'Archivo', sans-serif;
   line-height: 1.7;
-}
-.welcome-text {
-  padding-bottom: 0.5em;
 }
 .welcome-text b {
   margin-bottom: 1em;
