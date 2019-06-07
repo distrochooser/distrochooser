@@ -20,7 +20,8 @@
           span {{ __i("question-is-multiplechoice") }}
         div.answers
           div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
-            div.answer-text {{ __i(answer.msgid) }}
+            input(:type="question.isMultipleChoice ? 'checkbox' : 'radio' ",:checked="isAnswerSelected(answer)")
+            label {{ __i(answer.msgid) }}
       div.actions
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
         button.next-step.step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
@@ -55,17 +56,27 @@ export default {
       if (!this.$store.state.currentCategory) {
         return false
       }
+      return this.getAnswers().length > 0
+    },
+    getAnswers() {
       const categoryId = this.$store.state.currentCategory.msgid
-      return (
-        this.$store.state.givenAnswers.filter(function(answer) {
-          return answer.category === categoryId
-        }).length > 0
-      )
+      return this.$store.state.givenAnswers.filter(function(answer) {
+        return answer.category === categoryId
+      })
     },
     answerQuestion(answer) {
+      console.log(answer.msgid)
       if (this.isAnswerSelected(answer)) {
         this.$store.commit('removeAnswerQuestion', answer)
       } else {
+        if (!this.question.isMultipleChoice && this.isQuestionAnswered()) {
+          // switch an answer in non multiple choice questions
+          var otherAnswers = this.getAnswers()
+          const _t = this
+          otherAnswers.forEach(function(a) {
+            _t.$store.commit('removeAnswerQuestion', a)
+          })
+        }
         if (this.question.isMultipleChoice || !this.isQuestionAnswered()) {
           this.$store.dispatch('answerQuestion', {
             selectedAnswer: answer,
@@ -280,5 +291,10 @@ a {
   position: relative;
   bottom: 22em;
   text-align: right;
+}
+.answer input {
+  vertical-align: middle;
+  margin-right: 1em;
+  margin-left: 1em;
 }
 </style>
