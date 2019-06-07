@@ -32,7 +32,7 @@
             i.fas.fa-question
             span {{ reason.description }}
     div.meta
-      div.actions
+      div.actions(:data-balloon-visible="isInitialBalloonOpen",:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
         a.action(href="#", v-on:click.prevent="vote(true)")
           i.fa.fa-heart(v-bind:class="{'animated heartBeat voted': voted && positiveVote}")
         a.action(href="#", v-on:click.prevent="vote(false)")
@@ -45,6 +45,10 @@ import i18n from '~/mixins/i18n'
 export default {
   mixins: [i18n],
   props: {
+    isInitialBalloonOpen: {
+      type: Boolean,
+      default: false
+    },
     name: {
       type: String,
       default: 'bratwurst'
@@ -117,6 +121,7 @@ export default {
   },
   methods: {
     vote: function(positive) {
+      this.isInitialBalloonOpen = false
       this.$store.dispatch('voteSelection', {
         data: {
           positive: positive,
@@ -133,6 +138,7 @@ export default {
 <style lang="scss">
 @import '~/scss/variables.scss';
 @import '~/node_modules/animate.css/animate.min.css';
+@import '~/node_modules/balloon-css/balloon.min.css';
 .distribution {
   background: $questionBackground;
   padding-top: 1em;

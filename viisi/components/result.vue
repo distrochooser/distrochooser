@@ -9,7 +9,7 @@
           i.fab.fa-twitter
       div.link
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
-    distribution(v-for="(selection, selection_key) in selections", :key="selection_key", :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :logo="'/'+selection.distro.identifier+'.png'")
+    distribution(v-for="(selection, selection_key) in selections", :key="selection_key", :isInitialBalloonOpen="selection_key === 0",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :logo="'/'+selection.distro.identifier+'.png'")
   
     div(v-if="isEmpty")
       h1 {{ __i("no-results")}}
