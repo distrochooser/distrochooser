@@ -86,7 +86,12 @@ indexStore.mutations.toggleImportanceState = (state, answer) => {
 }
 
 indexStore.mutations.removeAnswerQuestion = (state, answer) => {
-  state.givenAnswers.splice(state.givenAnswers.indexOf(answer), 1)
+  for (var i = 0; i < state.givenAnswers.length; i++) {
+    if (state.givenAnswers[i].msgid === answer.msgid) {
+      state.givenAnswers.splice(i, 1)
+      break
+    }
+  }
 }
 
 indexStore.actions.selectCategory = async (store, payload) => {
