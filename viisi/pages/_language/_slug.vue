@@ -25,8 +25,8 @@
       a(href="https://chmr.eu") {{ __i("vendor-text") }}
     
     div.languages
-      a(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", :href="'/'+locale", class="language")
-        span(:class="'flag-icon-' + locale").flag-icon
+      select
+        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)") {{ locale }}
        
 </template>
 <script>
@@ -85,6 +85,10 @@ export default {
     this.isLoading = false
   },
   methods: {
+    switchLanguage: function(locale) {
+      //TODO: Implement proper method with reloading the language data on the fly
+      window.location.href = '/' + locale
+    },
     showSubPage: function(what) {
       this.content = what
       this.isSubPageShown = true
@@ -219,16 +223,15 @@ body {
   margin-top: 3em;
 }
 .languages {
-  position: absolute;
+  position: fixed;
   right: 1em;
   bottom: 1em;
 }
 .language {
   margin-right: 1em;
 }
-.flag-icon {
-  width: 2em;
-  background-repeat: space;
-  height: 2em;
+.language select {
+  position: absolute;
+  bottom: 1em;
 }
 </style>
