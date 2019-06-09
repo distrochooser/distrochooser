@@ -17,6 +17,7 @@ class Category(Translateable):
 
 class Question(Translateable):
   category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
+  additionalInfo = models.CharField(max_length=200, null=True, blank=True, default=None)
   isMultipleChoice = models.BooleanField(default=False)
   def __str__(self):
     return self.msgid
@@ -81,4 +82,4 @@ class AnswerDistributionMatrix(models.Model):
   description = models.CharField(default='', max_length=300, blank=False)
   distros =  models.ManyToManyField(to=Distribution, related_name="answerMatrixDistros",blank=True)
   def __str__(self):
-    return "Blocking: {0}, {1} ({2})".format(self.isBlockingHit, self.answer, self.distros.all().values_list("name",flat=True))
+    return "Blocking: {0}, Negative: {1}, Neutral: {2}, {3} ({4})".format(self.isBlockingHit,self.isNegativeHit, self.isNeutralHit, self.answer, self.distros.all().values_list("name",flat=True))

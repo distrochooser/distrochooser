@@ -39,7 +39,7 @@ const indexStore = new Vapi({
       `question/${language}/${index}/${token}/`
   })
   .post({
-    action: 'submitAnswers',
+    action: 'submit',
     property: 'result',
     path: ({ language, token }) => `submit/${language}/${token}/`
   })
@@ -67,6 +67,12 @@ indexStore.actions.answerQuestion = (store, payload) => {
   store.commit('setAnswerQuestion', answer)
   // TODO: push answer to server
   // TODO: Read result
+}
+
+indexStore.actions.submitAnswers = async (store, payload) => {
+  store.commit('toggleSubmitted')
+  await store.dispatch('submit', payload)
+  store.commit('toggleSubmitted')
 }
 
 indexStore.mutations.setAnswerQuestion = (state, answer) => {

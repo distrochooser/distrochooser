@@ -31,6 +31,10 @@ module.exports = {
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Archivo|Open+Sans'
+      }, 
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Roboto+Slab:400'
       }
     ]
   },

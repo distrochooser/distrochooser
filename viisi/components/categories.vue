@@ -75,7 +75,6 @@ export default {
       })
     },
     submit() {
-      this.$store.commit('toggleSubmitted')
       if (this.isAtWelcomeScreen) {
         this.start()
       }
@@ -88,7 +87,6 @@ export default {
           answers: this.$store.state.givenAnswers
         }
       })
-      this.$store.commit('toggleSubmitted')
     }
   }
 }
@@ -97,7 +95,7 @@ export default {
 @import '~/scss/variables.scss';
 @import '~/node_modules/animate.css/animate.min.css';
 .breadcrumb-horizontal {
-  position: absolute;
+  position: fixed;
   left: 1em;
   top: 24%;
   font-family: Archivo;

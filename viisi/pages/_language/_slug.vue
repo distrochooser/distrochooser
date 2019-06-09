@@ -3,7 +3,7 @@
     div.top-logo-container
       a(href="/")
         img.top-logo(src='~/assets/logo.min.svg')
-    div.spin-parent(v-if="isLoading || isSubmitted()" )
+    div.spin-parent(v-if="isLoading" )
       span {{ __i("loading") }}
       div.spinner
         div.rect1
@@ -11,13 +11,16 @@
         div.rect3
         div.rect4
         div.rect5
-    categories(:language="language",v-if="!isLoading && !isSubPageShown && !isSubmitted()")
-    div(v-if="!isLoading && !isFinished && !isSubPageShown && !isSubmitted()")
+    div.spin-parent(v-if="$store.state.isSubmitted" )
+      h1 {{ __i("result-submitted-hint") }}
+    categories(:language="language",v-if="!isLoading && !isSubPageShown")
+    div(v-if="!isLoading && !isFinished && !isSubPageShown && !$store.state.isSubmitted")
       question(:language="language")
-    div(v-if="!isLoading && isFinished && !isSubPageShown && !isSubmitted()")
+    div(v-if="!isLoading && isFinished && !isSubPageShown")
       result(:language="language")
-    div(v-if="!isLoading && isSubPageShown && !isSubmitted()")
+    div(v-if="!isLoading && isSubPageShown")
       page(:language="language", :content="content")
+
     div.footer 
       a(href="#", v-on:click.prevent="showSubPage('imprint')")  {{ __i("imprint") }}
       a(href="/privacy", v-on:click.prevent="showSubPage('privacy')") {{ __i("privacy") }}
@@ -96,9 +99,6 @@ export default {
     hideSubPage: function() {
       this.content = 'about'
       this.isSubPageShown = false
-    },
-    isSubmitted: function() {
-      return this.$store.state.isSubmitted
     }
   }
 }
@@ -151,7 +151,7 @@ body {
   padding-left: 1em;
 }
 .footer a {
-  color: #4484ce;
+  color: $linkColor;
   text-decoration: none;
   padding-right: 1em;
 }

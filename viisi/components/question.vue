@@ -12,17 +12,30 @@
             li {{ __i("welcome-text-remove") }}
             li {{ __i("welcome-text-feedback") }}
         div.actions
-          button.start-test-button.step(@click="startTest") {{ __i("start-test") }}
+          button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
       div.question-content
-        div.question-text {{ __i(question.msgid) }}
+        div.additional-infos(v-if="additionalInfoShown")
+          div.additional-info-menu(v-on:click="flip")
+            span {{ __i("close-additional-info") }}
+            i.fas.fa-times-circle
+          h3 {{ __i("additional-info") }} | {{ __i($store.state.currentCategory.msgid) }}
+          div {{ __i(question.additionalInfo) }}
+        div.question-text(v-if="!additionalInfoShown")
+          span {{ __i(question.msgid) }}
         div.answer-remark(v-if="question.isMultipleChoice")
           span {{ __i("question-is-multiplechoice") }}
-        div.answers
-          div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected animated pulse fast': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
-            input(:type="question.isMultipleChoice ? 'checkbox' : 'radio' ",:checked="isAnswerSelected(answer)")
+        div.answers(:class="{'flipped': additionalInfoShown}")
+          div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
+            span(v-if="question.isMultipleChoice")
+              i.far.answer-box(:class="{'fa-check-square animated heartBeat': isAnswerSelected(answer), 'fa-square': !isAnswerSelected(answer)}")
+            span(v-else)
+              i.far.answer-box(:class="{'fa-check-circle animated heartBeat': isAnswerSelected(answer), 'fa-circle': !isAnswerSelected(answer)}")
             label {{ __i(answer.msgid) }}
-      div.actions
+      div.actions(v-if="!additionalInfoShown")
+        div.additional-remarks-action
+          span.additional-remarks-button(v-if="question.additionalInfo",:data-balloon="__i('additional-infos')",data-balloon-pos="left")
+            i.far.fa-question-circle.additional-info-icon(v-on:click="flip")
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
         button.next-step.step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
 </template>
@@ -35,6 +48,11 @@ export default {
       type: String,
       required: true,
       default: 'en'
+    }
+  },
+  data: function() {
+    return {
+      additionalInfoShown: false
     }
   },
   computed: {
@@ -52,6 +70,9 @@ export default {
     }
   },
   methods: {
+    flip() {
+      this.additionalInfoShown = !this.additionalInfoShown
+    },
     isQuestionAnswered() {
       if (!this.$store.state.currentCategory) {
         return false
@@ -156,9 +177,9 @@ export default {
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
 @import '~/node_modules/animate.css/animate.min.css';
+@import '~/node_modules/balloon-css/balloon.min.css';
 .question {
   margin-top: 1em;
-  background: $questionBackground;
   height: 60%;
   width: 80%;
   margin-right: 10%;
@@ -193,9 +214,12 @@ export default {
   height: 23em;
 }
 .question-text {
-  padding: 2em;
-  font-size: 14pt;
-  font-family: 'Archivo', sans-serif;
+  padding-top: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 1em;
+  font-family: 'Roboto Slab';
+  font-size: 21px;
   line-height: 1.7;
 }
 .welcome-text b {
@@ -208,13 +232,14 @@ export default {
 ul {
   padding-top: 0.5em;
 }
+.answers {
+  margin-left: 2em;
+}
 .answer {
-  background: $unselectedAnswerBackground !important;
   color: $unselectedAnswerForeground !important;
   min-height: 40px;
   padding: 10px;
   font-family: Open Sans, sans-serif;
-  margin-bottom: 1em;
   cursor: pointer;
 }
 .answer-text {
@@ -223,26 +248,25 @@ ul {
   font-size: 11pt;
 }
 .answer-selected {
-  background: $selectedAnswerBackground !important;
-  color: $selectedAnswerForeground !important;
-  margin-right: -0.5em;
-  margin-left: -0.5em;
+  color: $selectedAnswerBackground !important;
+  font-weight: bold;
 }
 .actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 1em;
   background: $questionBackground;
-  padding: 0.5em;
-  text-align: right;
-  border-top: 1px solid $nextButtonBackground;
+  padding-right: 1em;
 }
 .step {
-  background: $nextButtonBackground;
-  color: $nextButtonForeground;
-  height: 40px;
-  width: 80px;
-  border: 0px;
+  color: black;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid $nextButtonBackground;
+  margin-left: 1rem;
   cursor: pointer;
-  border-radius: 1px;
-  margin-right: 1em;
+  border-radius: 4px;
+  font-family: 'Karla';
+  font-size: 12pt;
 }
 .skip-step {
   position: relative;
@@ -251,14 +275,31 @@ ul {
   display: inline;
   color: $skipButtonColor;
 }
+.next-step {
+  background: $lightColor;
+  color: white;
+  border: 1px solid $nextButtonBackground;
+}
+.back-step:hover {
+  background: $lightColor;
+  color: white;
+  border: 1px solid $nextButtonBackground;
+}
+.next-step:hover {
+  color: black;
+  background: white;
+  border: 1px solid $nextButtonBackground;
+}
 .answer-remark {
   font-family: karla;
   font-style: italic;
-  font-size: 10pt;
+  font-size: 11pt;
   position: relative;
   left: 5%;
-  bottom: 1em;
-  margin-bottom: 1em;
+  bottom: 0.5em;
+  margin-left: -0.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 .mark-important {
   display: none; // it's disabled until I find a proper solution
@@ -285,7 +326,8 @@ a {
   text-decoration: none;
 }
 .question-content {
-  height: 25em;
+  background: $questionBackground;
+  padding-bottom: 1em;
 }
 -test {
   position: relative;
@@ -296,5 +338,45 @@ a {
   vertical-align: middle;
   margin-right: 1em;
   margin-left: 1em;
+}
+.fa-check-circle,
+.fa-check-square {
+  color: $answeredColor;
+}
+.answer-box {
+  font-size: 1.5em;
+  vertical-align: sub;
+}
+.additional-remarks-button {
+  margin-left: 0.5em;
+}
+.additional-infos {
+  width: 48%;
+  background: $additionalInfoBackground;
+  position: absolute;
+  z-index: 1000000;
+  padding: 1em;
+  color: white;
+  font-family: 'Roboto Slab';
+  font-size: 16pt;
+}
+.flipped {
+  filter: blur(5px);
+}
+.additional-info-menu {
+  text-align: right;
+  cursor: pointer;
+  margin-bottom: 0.5em;
+}
+.additional-info-menu span {
+  margin-right: 0.5em;
+}
+.additional-info-icon {
+  color: $additionalInfoIcon;
+  font-size: 17pt;
+}
+.additional-remarks-action {
+  margin-top: 0.6em;
+  margin-right: -0.5em;
 }
 </style>

@@ -41,7 +41,7 @@ def goToStep(categoryIndex: int) -> dict:
   question = results.first()
   answers = Answer.objects.filter(question=question)
   return {
-    "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice')),
+    "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice', 'additionalInfo')),
     "category": model_to_dict(question.category),
     "answers":  list(answers.values("msgid"))
   }
@@ -100,8 +100,7 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
     givenAnswer.isImportant = False
     givenAnswer.save()
 
-
-  #TODO: Add decision process here
+  blockingAnswers = []
 
   givenAnswers = GivenAnswer.objects.filter(session=userSession)
   distros = Distribution.objects.all()
