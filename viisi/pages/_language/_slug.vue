@@ -234,4 +234,29 @@ body {
   position: absolute;
   bottom: 1em;
 }
+select {
+  padding: 5px 5px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #1c105a;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #1c105a;
+  color: white;
+  border-radius: 2px;
+}
+
+/* CAUTION: IE hackery ahead */
+select::-ms-expand {
+  display: none; /* remove default arrow on ie10 and ie11 */
+}
+
+/* target Internet Explorer 9 to undo the custom arrow */
+@media screen and (min-width: 0\0) {
+  select {
+    background: none\9;
+    padding: 5px\9;
+  }
+}
 </style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.result
+  div.result(:class="{'compact-result': compactView}")
     div.result-link
       div.social-links
         span Share your result
@@ -9,8 +9,9 @@
           i.fab.fa-twitter
       div.link
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
-
-    distribution(v-for="(selection, selection_key) in selections", :key="selection_key", :isInitialBalloonOpen="selection_key === 0",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :logo="'/'+selection.distro.identifier+'.png'")
+    div.view-settings(v-if="!isEmpty")
+      a(href="#", v-on:click.prevent="compactView = !compactView") {{ __i(compactView ? "hide-compact-view" : "show-compact-view") }}
+    distribution(v-for="(selection, selection_key) in selections", :key="selection_key", :isInitialBalloonOpen="selection_key === 0",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
 
     div(v-if="isEmpty")
       h1 {{ __i("no-results")}}
@@ -19,15 +20,22 @@
 <script>
 import distribution from '~/components/distribution'
 import i18n from '~/mixins/i18n'
+import score from '~/mixins/score'
 export default {
   components: {
     distribution
   },
-  mixins: [i18n],
+  mixins: [i18n, score],
+  data: function() {
+    return {
+      compactView: false
+    }
+  },
   computed: {
     selections: function() {
+      const _t = this
       return this.$store.state.result.selections.concat().sort(function(a, b) {
-        return a.score < b.score
+        return _t.getScore(a.reasons) < _t.getScore(b.reasons)
       })
     },
     isEmpty: function() {
@@ -52,12 +60,16 @@ export default {
   height: 25em;
   font-family: 'Open Sans', sans-serif;
 }
+.compact-result {
+  width: unset;
+  margin-right: unset;
+}
 .link {
   margin-top: 1em;
   font-family: Karla, sans-serif;
 }
 .link input {
-  width: 60%;
+  width: 50%;
   text-align: center;
   padding: 0.7em;
 }
@@ -67,5 +79,20 @@ export default {
 }
 .social-links i {
   margin-left: 1em;
+}
+.compact-distribution {
+  display: inline-grid;
+  width: 30%;
+  height: auto;
+  margin-right: 3%;
+}
+.view-settings {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.view-settings a {
+  color: $linkColor;
+  text-decoration: none;
+  padding-right: 1em;
 }
 </style>

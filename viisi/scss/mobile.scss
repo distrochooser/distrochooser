@@ -1,0 +1,64 @@
+@media only screen and (max-width: $mobileWidth) {
+  .breadcrumb-horizontal {
+    left: -25px !important;
+    padding-left: 0px;
+    width: auto;
+    padding: 0px !important;
+  }
+  .breadcrumb-horizontal ul li span {
+    display: none;
+  }
+  .breadcrumb-horizontal ul li i.fa-check {
+    display: none;
+  }
+  .welcome-text h1 {
+    font-size: large;
+  }
+  .welcome-text {
+    font-size: 10pt !important;
+    margin-bottom: 3em;
+  }
+  .footer {
+    top: 1em;
+    font-size: 10pt;
+    text-align: center !important;
+    bottom: unset;
+    height: 1em;
+    width: 100%;
+  }
+  .answer-remark {
+    left: 3em !important;
+  }
+  .additional-infos {
+    width: 84% !important;
+    margin-right: 1em !important;
+  }
+  .languages {
+    bottom: unset;
+    top: 1em;
+  }
+  .view-settings {
+    display: none;
+  }
+  .question {
+    margin-bottom: 1em;
+    width: 84% !important;
+    margin-left: 10% !important;
+  }
+  .question-text {
+    font-size: 16px !important;
+  }
+  .mobile-active {
+    color: $activeStepForeground !important;
+    padding-left: 0.4em;
+    border-left: 2px solid $activeStepForeground;
+  }
+  .top-logo {
+    width: 40% !important;
+  }
+  .link input {
+    width: 100%;
+    font-size: 8pt;
+    padding: 1em;
+  }
+}

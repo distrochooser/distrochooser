@@ -1,4 +1,4 @@
-$mobileWidth: "600px";
+$mobileWidth: "1200px";
 $desktopMinWidth: "1200px";
 $desktopWidth: "1400px";
 
@@ -26,3 +26,6 @@ $categoryIconColor: #4d4d4d;;
 $lightColor: #1c105a;
 $additionalInfoBackground: #1c105a;
 $additionalInfoIcon: #e1760d;
+
+
+@import "mobile.scss"

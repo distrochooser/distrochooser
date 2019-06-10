@@ -24,6 +24,7 @@
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
     "spinkit": "^1.2.5",
+    "typeit": "^6.0.3",
     "vuex-rest-api": "^2.10.0"
   },
   "devDependencies": {

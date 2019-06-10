@@ -1,22 +1,27 @@
 <template lang="pug">
-  div.distribution(v-if="!hasNoMatch")
+  div.distribution(v-if="!hasNoMatch",:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
     div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor") 
       span {{ name }}
+      span.scores-summary
+        i.fas.fa-thumbs-up.summary(:style="'color: ' + fgColor")
+        span {{ nonBlocking(reasons).length }} 
+        i.fas.fa-thumbs-down.summary(:style="'color: ' + fgColor")
+        span {{ blocking(reasons).length }}
       a.show-reasons(href="#", @click.prevent="flipped=!flipped", :style="'color: ' + fgColor")
         span(v-if="!flipped") {{ __i("reason-header".replace("%s",name)) }}
         span(v-if="flipped") {{ __i("hide-reasons")}}
     div.description(v-if="!flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
       div.reason-list.list
-        div(v-if="nonBlocking.length > 0")
-          div(v-for="(reason, reason_key) in nonBlocking", :key="reason_key") 
+        div(v-if="nonBlocking(reasons).length > 0")
+          div(v-for="(reason, reason_key) in nonBlocking(reasons)", :key="reason_key") 
             i.fas.fa-plus(v-if="reason.isPositiveHit")
             i.fas.fa-minus(v-if="!reason.isPositiveHit")
             span {{ reason.description }}
       div.blocking-list.list
-        div(v-if="blocking.length > 0")
+        div(v-if="blocking(reasons).length > 0")
           b.block-title {{ __i("reason-list-header-negative").replace("%s",name) }}
-          div(v-for="(reason, reason_key) in blocking", :key="reason_key") 
+          div(v-for="(reason, reason_key) in blocking(reasons)", :key="reason_key") 
             i.fas.fa-ban
             span {{ reason.description }}
       div.blocking-list.list
@@ -32,18 +37,19 @@
             i.fas.fa-question
             span {{ reason.description }}
     div.meta
-      div.actions(:data-balloon-visible="isInitialBalloonOpen",:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
+      div.actions
         a.action(href="#", v-on:click.prevent="vote(true)")
-          i.fa.fa-heart(v-bind:class="{'animated heartBeat voted': voted && positiveVote}")
+          i.fa.fa-thumbs-up(v-bind:class="{'animated heartBeat voted': voted && positiveVote}")
         a.action(href="#", v-on:click.prevent="vote(false)")
           i.fa.fa-thumbs-down(v-bind:class="{'animated jello voted': voted && !positiveVote}")
-      div.logo
-        img(:src="logo")
+      div.url
+        a(v-if="url", target="_blank", :href="url") {{ __i("distribution-homepage") }}
 </template>
 <script>
 import i18n from '~/mixins/i18n'
+import score from '~/mixins/score'
 export default {
-  mixins: [i18n],
+  mixins: [i18n, score],
   props: {
     isInitialBalloonOpen: {
       type: Boolean,
@@ -64,6 +70,10 @@ export default {
     logo: {
       type: String,
       default: 'https://distrochooser.de/assets/linux/ubuntu.png'
+    },
+    url: {
+      type: String,
+      default: null
     },
     bgColor: {
       type: String,
@@ -93,27 +103,10 @@ export default {
         return r.isNeutralHit
       })
     },
-    blocking: function() {
-      return this.reasons.filter(r => {
-        return r.isBlockingHit && !r.isRelatedBlocked
-      })
-    },
-    nonBlocking: function() {
-      return this.reasons.filter(r => {
-        return !r.isBlockingHit && !r.isRelatedBlocked && !r.isNeutralHit
-      })
-    },
     blockedByOtherQuestion: function() {
       return this.reasons.filter(r => {
         return r.isRelatedBlocked
       })
-    },
-    score: function() {
-      return (
-        this.nonBlocking.length -
-        this.blockedByOtherQuestion.length -
-        this.blocking.length
-      )
     },
     hasNoMatch: function() {
       return this.reasons.length === 0
@@ -174,8 +167,8 @@ export default {
   margin-right: 1em;
   margin-bottom: 1em;
 }
-.fa-heart {
-  color: #e40404;
+.fa-thumbs-up {
+  color: $linkColor;
 }
 .fa-like {
   color: #0e2bff;
@@ -190,7 +183,7 @@ export default {
   color: #d40000;
 }
 .fa-thumbs-down {
-  color: #ff8f00;
+  color: #f03c82;
 }
 .fa-exclamation-triangle {
   color: red;
@@ -215,5 +208,31 @@ i {
 }
 .voted {
   text-shadow: #1e1e1b 2px 2px 2pt;
+}
+.url {
+  display: inline-block;
+  text-align: right;
+  width: 50%;
+  padding-right: 1em;
+}
+.url a {
+  text-decoration: none;
+  color: $linkColor;
+}
+.scores-summary {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+.summary {
+  color: white;
+  vertical-align: middle;
+  margin-left: 0.4em;
+  font-size: 9pt;
+}
+.summary.fa-thumbs-up {
+  margin-top: -0.5em;
+}
+.summary.fa-thumbs-down {
+  margin-left: 0.7em;
 }
 </style>

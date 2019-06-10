@@ -5,12 +5,25 @@
         div.welcome-text 
           h1 {{ __i("welcome-text-title") }}
           p {{ __i("welcome-text") }}
-          ul
-            li {{ __i("welcome-text-skip") }}
-            li {{ __i("welcome-text-result-get") }}
-            li {{ __i("welcome-text-order") }}
-            li {{ __i("welcome-text-remove") }}
-            li {{ __i("welcome-text-feedback") }}
+          p
+            div 
+              i.fas.fa-forward
+              span {{ __i("welcome-text-skip") }}
+            div
+              i.fas.fa-play
+              span {{ __i("welcome-text-result-get") }}
+            div
+              i.fas.fa-sort-amount-up
+              span {{ __i("welcome-text-order") }}
+            div
+              i.fas.fa-trash-alt
+              span {{ __i("welcome-text-remove") }}
+            div
+              i.fas.fa-heart
+              span {{ __i("welcome-text-feedback") }}
+            div
+              i.fas.fa-bug
+              span(style="color: red") This is an early version. Expect bugs and unfinished parts.
         div.actions
           button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
@@ -190,9 +203,6 @@ export default {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
-  }
-  .answer-remark {
-    left: 53% !important;
   }
   .next-step {
     left: 80% !important;

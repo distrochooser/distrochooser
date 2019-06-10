@@ -2,17 +2,18 @@
     div.breadcrumb-horizontal
       ul
         li
-          i.active-indicator.fas.fa-door-open
-          a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen,'inactive': !isAtWelcomeScreen  }") {{ __i("category-welcome") }}
+          a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen,'inactive': !isAtWelcomeScreen  }") 
+            i.active-indicator.fas.fa-door-open
+            span {{ __i("category-welcome") }}
         li(v-for="(category, c_k) in categories" v-bind:key="c_k")
-
           a(href="#", @click="selectCategory(category)")
-            i.active-indicator(:class="category.iconClass")
+            i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '')")
             span(:class="{'active': isActive(category), 'inactive': !isActive(category)}") {{ __i(category.msgid) }}
             i(v-if="isAnswered(category)").fa.fa-check.animated.heartBeat.isAnswered
         li
-          i.active-indicator.far.fa-comment
-          a(href="#",@click.prevent="submit",:class="{'active': $store.state.result !== null }") {{ __i("recommendation-category") }}
+          a.get-result(href="#",@click.prevent="submit",:class="{'active': $store.state.result !== null }") 
+            i.active-indicator.fas.fa-bullhorn
+            span {{ __i("recommendation-category") }}
         
 </template>
 
@@ -121,6 +122,9 @@ export default {
   color: $linkColor;
   border-bottom: 1px solid grey;
 }
+.mobile-answered {
+  color: $answeredColor !important;
+}
 .answered {
   color: $answeredColor !important;
 }
@@ -131,5 +135,8 @@ export default {
 }
 .active-indicator {
   width: 1.2em;
+}
+.get-result {
+  font-weight: bold;
 }
 </style>
