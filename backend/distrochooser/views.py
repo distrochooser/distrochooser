@@ -175,7 +175,7 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
     })
  
   return getJSONCORSResponse({
-    "url": "https://distrochooser.de/{0}/{1}/".format(userSession.language, userSession.publicUrl),
+    "url": "https://beta.distrochooser.de/{0}/{1}/".format(userSession.language, userSession.publicUrl),
     "selections": selections
   })
 

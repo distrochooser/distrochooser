@@ -56,7 +56,8 @@ class Distribution(models.Model):
   identifier = models.CharField(max_length=200, null=True, blank=True, default="")
   fgColor = models.CharField(max_length=200, null=True, blank=True, default="")
   bgColor = models.CharField(max_length=200, null=True, blank=True, default="")
-  logo = models.FileField(null=True, blank=True) # TODO: Add url
+  logo = models.FileField(null=True, blank=True)
+  url = models.URLField(null=True,blank=True)
   def __str__(self):
     return self.name
 
