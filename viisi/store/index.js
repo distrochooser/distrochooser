@@ -1,8 +1,8 @@
 import Vapi from 'vuex-rest-api'
 import Vuex from 'vuex'
-
+import viisiConfig from '~/viisi.json'
 const indexStore = new Vapi({
-  baseURL: 'http://localhost:8000/',
+  baseURL: viisiConfig.backendUrl,
   state: {
     data: null, //for initial bulk loading
     question: null,
@@ -21,7 +21,7 @@ const indexStore = new Vapi({
     testCount: 0,
     oldTestData: null,
     isSubmitted: false,
-    rootUrl: 'http://localhost:3000/'
+    rootUrl: viisiConfig.frontendUrl
   }
 })
   .get({

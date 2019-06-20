@@ -13,18 +13,15 @@
         div.rect5
     div.spin-parent(v-if="$store.state.isSubmitted" )
       i.fas.fa-cog.fa-5x.fa-spin
-    categories(:language="language",v-if="!isLoading && !isSubPageShown")
-    div(v-if="!isLoading && !isFinished && !isSubPageShown && !$store.state.isSubmitted")
+    categories(:language="language",v-if="!isLoading")
+    div(v-if="!isLoading && !isFinished && !$store.state.isSubmitted")
       question(:language="language")
-    div(v-if="!isLoading && isFinished && !isSubPageShown && !$store.state.isSubmitted")
+    div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
-    div(v-if="!isLoading && isSubPageShown")
-      page(:language="language", :content="content")
-
     div.footer 
-      a(href="#", v-on:click.prevent="showSubPage('imprint')")  {{ __i("imprint") }}
-      a(href="/privacy", v-on:click.prevent="showSubPage('privacy')") {{ __i("privacy") }}
-      a(href="/about", v-on:click.prevent="showSubPage('about')") {{ __i("about") }}
+      a(:href="'/info/imprint/'+ language" )  {{ __i("imprint") }}
+      a(:href="'/info/privacy/'+ language" ) {{ __i("privacy") }}
+      a(:href="'/info/about/'+ language" ) {{ __i("about") }}
       a(href="https://chmr.eu") {{ __i("vendor-text") }}
     
     div.languages
@@ -37,20 +34,16 @@ import categories from '~/components/categories'
 import question from '~/components/question'
 import result from '~/components/result'
 import i18n from '~/mixins/i18n'
-import page from '~/components/page'
 export default {
   components: {
     categories,
     question,
-    result,
-    page
+    result
   },
   mixins: [i18n],
   data: function() {
     return {
       language: 'en',
-      content: 'about', //about page content
-      isSubPageShown: false,
       isLoading: true
     }
   },
@@ -91,14 +84,6 @@ export default {
     switchLanguage: function(locale) {
       //TODO: Implement proper method with reloading the language data on the fly
       window.location.href = '/' + locale
-    },
-    showSubPage: function(what) {
-      this.content = what
-      this.isSubPageShown = true
-    },
-    hideSubPage: function() {
-      this.content = 'about'
-      this.isSubPageShown = false
     }
   },
   head: function() {
@@ -234,35 +219,6 @@ export default {
     /* Safari, Android, iOS */
       url('/fonts/OpenSans/open-sans-v16-latin-regular.svg#OpenSans')
       format('svg'); /* Legacy iOS */
-}
-
-body {
-  background: $background;
-}
-@media only screen and (max-width: $mobileWidth) {
-  .distrochooser {
-    width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-  .top-logo-container .top-logo {
-    width: 50%;
-  }
-}
-@media only screen and (min-width: $mobileWidth) {
-  .distrochooser {
-    width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 2em;
-  }
-  .top-logo-container .top-logo {
-    width: 25%;
-    margin-bottom: 2em;
-  }
-}
-.top-logo-container {
-  text-align: center;
 }
 .fa-facebook {
   color: #3b5998;

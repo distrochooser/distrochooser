@@ -34,10 +34,14 @@ def getUnsafeJSONCORSResponse(data):
 def getLocales(request):
   return getUnsafeJSONCORSResponse(list(LOCALES.keys()))
 
-def getTranslation(request,langCode: str):
+def getSSRData(request,langCode: str):
   if langCode not in TRANSLATIONS:
     raise Http404
-  return JsonResponse(TRANSLATIONS[langCode])
+    
+  testCount = TESTOFFSET + UserSession.objects.all().count()
+  responseData = TRANSLATIONS[langCode].copy()
+  responseData["testCount"] = testCount
+  return JsonResponse(responseData)
 
 def goToStep(categoryIndex: int) -> dict:
   results = Question.objects.filter(category__index=categoryIndex)
