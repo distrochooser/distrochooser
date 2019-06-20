@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.distribution(v-if="!hasNoMatch",:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
+  div.distribution(v-if="!hasNoMatch")
     div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor") 
       span {{ name }}
       span.scores-summary
@@ -37,11 +37,11 @@
             i.fas.fa-question
             span {{ reason.description }}
     div.meta
-      div.actions
-        a.action(href="#", v-on:click.prevent="vote(true)")
-          i.fa.fa-thumbs-up(v-bind:class="{'animated heartBeat voted': voted && positiveVote}")
-        a.action(href="#", v-on:click.prevent="vote(false)")
-          i.fa.fa-thumbs-down(v-bind:class="{'animated jello voted': voted && !positiveVote}")
+      div.actions(:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
+        a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)")
+          i.fa-thumbs-up(v-bind:class="{'fa animated heartBeat voted': voted && positiveVote, 'far': !voted || !positiveVote}")
+        a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)")
+          i.fa-thumbs-down(v-bind:class="{'fa animated jello voted': voted && !positiveVote, 'far': !voted || positiveVote}")
       div.url
         a(v-if="url", target="_blank", :href="url") {{ __i("distribution-homepage") }}
 </template>
@@ -121,8 +121,12 @@ export default {
           selection: this.selection
         }
       })
-      this.voted = true
-      this.positiveVote = positive
+      if (positive !== null) {
+        this.voted = true
+        this.positiveVote = positive
+      } else {
+        this.voted = false
+      }
     }
   }
 }
@@ -142,7 +146,7 @@ export default {
   margin-left: -0.5em;
   height: 40px;
   padding: 10px;
-  font-family: Karla, sans-serif;
+  font-family: Open Sans, sans-serif;
   margin-bottom: 1em;
 }
 .description {
@@ -167,8 +171,15 @@ export default {
   margin-right: 1em;
   margin-bottom: 1em;
 }
-.fa-thumbs-up {
+.action i {
   color: $linkColor;
+  font-size: 15pt;
+}
+.action .fa-thumbs-up.voted {
+  color: green !important;
+}
+.action .fa-thumbs-down.voted {
+  color: red !important;
 }
 .fa-like {
   color: #0e2bff;

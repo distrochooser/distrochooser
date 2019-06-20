@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "@nuxtjs/axios": "^5.0.0",
     "animate.css": "^3.7.0",
     "balloon-css": "^0.5.0",

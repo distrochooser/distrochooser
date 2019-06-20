@@ -28,7 +28,7 @@
           button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
       div.question-content
-        div.additional-infos(v-if="additionalInfoShown")
+        div.additional-infos.animated.fadeIn.fast(v-if="additionalInfoShown")
           div.additional-info-menu(v-on:click="flip")
             span {{ __i("close-additional-info") }}
             i.fas.fa-times-circle
@@ -41,9 +41,9 @@
         div.answers(:class="{'flipped': additionalInfoShown}")
           div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
             span(v-if="question.isMultipleChoice")
-              i.far.answer-box(:class="{'fa-check-square animated heartBeat': isAnswerSelected(answer), 'fa-square': !isAnswerSelected(answer)}")
+              i.far.answer-box(:class="{'fa-check-square': isAnswerSelected(answer), 'fa-square': !isAnswerSelected(answer)}")
             span(v-else)
-              i.far.answer-box(:class="{'fa-check-circle animated heartBeat': isAnswerSelected(answer), 'fa-circle': !isAnswerSelected(answer)}")
+              i.far.answer-box(:class="{'fa-check-circle': isAnswerSelected(answer), 'fa-circle': !isAnswerSelected(answer)}")
             label {{ __i(answer.msgid) }}
       div.actions(v-if="!additionalInfoShown")
         div.additional-remarks-action
@@ -275,7 +275,7 @@ ul {
   margin-left: 1rem;
   cursor: pointer;
   border-radius: 4px;
-  font-family: 'Karla';
+  font-family: 'Open Sans';
   font-size: 12pt;
 }
 .skip-step {
@@ -301,7 +301,7 @@ ul {
   border: 1px solid $nextButtonBackground;
 }
 .answer-remark {
-  font-family: karla;
+  font-family: Open Sans;
   font-style: italic;
   font-size: 11pt;
   position: relative;

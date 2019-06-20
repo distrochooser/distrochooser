@@ -19,9 +19,9 @@
     margin-bottom: 3em;
   }
   .footer {
-    top: 1em;
+    top: 1.9em;
     font-size: 10pt;
-    text-align: center !important;
+    text-align: right !important;
     bottom: unset;
     height: 1em;
     width: 100%;
@@ -34,8 +34,10 @@
     margin-right: 1em !important;
   }
   .languages {
-    bottom: unset;
-    top: 1em;
+    bottom: initial !important;
+    top: 1em !important;
+    left: 1em !important;
+    right: initial !important;
   }
   .view-settings {
     display: none;
@@ -60,5 +62,8 @@
     width: 100%;
     font-size: 8pt;
     padding: 1em;
+  }
+  .floating-button a span {
+    display: none;
   }
 }

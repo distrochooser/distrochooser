@@ -16,10 +16,12 @@ const indexStore = new Vapi({
     translations: null,
     locales: null,
     voteResult: null,
+    remarksAdded: false,
     language: 'en',
     testCount: 0,
     oldTestData: null,
-    isSubmitted: false
+    isSubmitted: false,
+    rootUrl: 'http://localhost:3000/'
   }
 })
   .get({
@@ -48,10 +50,20 @@ const indexStore = new Vapi({
     property: 'voteResult',
     path: () => `vote/`
   })
+  .post({
+    action: 'addRemarks',
+    property: 'remarksAdded',
+    path: () => `remarks/`
+  })
   .get({
     action: 'getOldAnswers',
     property: 'oldTestData',
     path: ({ slug }) => `answers/${slug}/`
+  })
+  .get({
+    action: 'loadTranslations',
+    property: 'translations',
+    path: ({ language }) => `translations/${language}/`
   })
   .getStore()
 

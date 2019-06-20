@@ -2,7 +2,7 @@
   div.distrochooser
     div.top-logo-container
       a(href="/")
-        img.top-logo(src='~/assets/logo.min.svg')
+        img.top-logo(src='/logo.min.svg')
     div.spin-parent(v-if="isLoading" )
       span {{ __i("loading") }}
       div.spinner
@@ -12,11 +12,11 @@
         div.rect4
         div.rect5
     div.spin-parent(v-if="$store.state.isSubmitted" )
-      h1 {{ __i("result-submitted-hint") }}
+      i.fas.fa-cog.fa-5x.fa-spin
     categories(:language="language",v-if="!isLoading && !isSubPageShown")
     div(v-if="!isLoading && !isFinished && !isSubPageShown && !$store.state.isSubmitted")
       question(:language="language")
-    div(v-if="!isLoading && isFinished && !isSubPageShown")
+    div(v-if="!isLoading && isFinished && !isSubPageShown && !$store.state.isSubmitted")
       result(:language="language")
     div(v-if="!isLoading && isSubPageShown")
       page(:language="language", :content="content")
@@ -29,7 +29,7 @@
     
     div.languages
       select
-        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)") {{ locale }}
+        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)") {{ __i('language') }}: {{ locale }}
        
 </template>
 <script>
@@ -100,6 +100,77 @@ export default {
       this.content = 'about'
       this.isSubPageShown = false
     }
+  },
+  head: function() {
+    return {
+      titleTemplate: 'Distrochooser',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.welcomeText(this.language)
+        },
+        {
+          name: 'keywords',
+          content:
+            'Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows'
+        },
+        {
+          name: 'theme-color',
+          content: '#158cba'
+        },
+        {
+          property: 'og:type',
+          content: 'website'
+        },
+        {
+          property: 'og:title',
+          content: 'Distrochooser'
+        },
+        {
+          property: 'og:url',
+          content: 'https://distrochooser.de'
+        },
+        {
+          property: 'og:image',
+          content: this.$store.state.rootUrl + 'logo.min.svg'
+        },
+        {
+          property: 'og:image:type',
+          content: 'image/png'
+        },
+        {
+          property: 'og:image:width',
+          content: '500'
+        },
+        {
+          property: 'og:image:height',
+          content: '253'
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary'
+        },
+        {
+          name: 'twitter:site',
+          content: '@distrochooser'
+        },
+        {
+          name: 'twitter:title',
+          content: 'Distrochooser'
+        },
+        {
+          name: 'twitter:image',
+          content: '/logo.min.svg'
+        },
+        {
+          name: 'generator',
+          content: 'LDC 2019'
+        }
+      ]
+    }
   }
 }
 </script>
@@ -107,6 +178,64 @@ export default {
 @import '~/scss/variables.scss';
 @import '~/node_modules/spinkit/scss/spinners/3-wave.scss';
 @import '~/node_modules/flag-icon-css/css/flag-icon.min.css';
+@import '~/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+/* roboto-slab-regular - latin */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Roboto/roboto-slab-v8-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'),
+    url('/fonts/Roboto/roboto-slab-v8-latin-regular.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('/fonts/Roboto/roboto-slab-v8-latin-regular.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */
+      url('/fonts/Roboto/roboto-slab-v8-latin-regular.woff') format('woff'),
+    /* Modern Browsers */ url('/fonts/Roboto/roboto-slab-v8-latin-regular.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('/fonts/Roboto/roboto-slab-v8-latin-regular.svg#RobotoSlab')
+      format('svg'); /* Legacy iOS */
+}
+/* archivo-regular - latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Archivo/archivo-v4-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Archivo Regular'), local('Archivo-Regular'),
+    url('/fonts/Archivo/archivo-v4-latin-regular.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('/fonts/Archivo/archivo-v4-latin-regular.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */
+      url('/fonts/Archivo/archivo-v4-latin-regular.woff') format('woff'),
+    /* Modern Browsers */ url('/fonts/Archivo/archivo-v4-latin-regular.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('/fonts/Archivo/archivo-v4-latin-regular.svg#Archivo') format('svg'); /* Legacy iOS */
+}
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/OpenSans/open-sans-v16-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+    url('/fonts/OpenSans/open-sans-v16-latin-regular.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('/fonts/OpenSans/open-sans-v16-latin-regular.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */
+      url('/fonts/OpenSans/open-sans-v16-latin-regular.woff') format('woff'),
+    /* Modern Browsers */ url('/fonts/OpenSans/open-sans-v16-latin-regular.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('/fonts/OpenSans/open-sans-v16-latin-regular.svg#OpenSans')
+      format('svg'); /* Legacy iOS */
+}
+
 body {
   background: $background;
 }
@@ -244,7 +373,7 @@ select {
   appearance: none;
   background-color: #1c105a;
   color: white;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* CAUTION: IE hackery ahead */

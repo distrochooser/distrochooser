@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpRequest, JsonResponse
+from django.http import HttpResponse, HttpRequest, JsonResponse, Http404
 from distrochooser.models import UserSession, Question, Distribution, Category, Answer, ResultDistroSelection, SelectionReason, GivenAnswer, AnswerDistributionMatrix
 import secrets
 from distrochooser.constants import TRANSLATIONS, TESTOFFSET
@@ -34,12 +34,18 @@ def getUnsafeJSONCORSResponse(data):
 def getLocales(request):
   return getUnsafeJSONCORSResponse(list(LOCALES.keys()))
 
+def getTranslation(request,langCode: str):
+  if langCode not in TRANSLATIONS:
+    raise Http404
+  return JsonResponse(TRANSLATIONS[langCode])
+
 def goToStep(categoryIndex: int) -> dict:
   results = Question.objects.filter(category__index=categoryIndex)
   if results.count() == 0:
     raise Exception("Question unknown")
   question = results.first()
   answers = Answer.objects.filter(question=question)
+  blocking = []
   return {
     "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice', 'additionalInfo')),
     "category": model_to_dict(question.category),
@@ -116,10 +122,8 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
     answerDistributionMatrixTuples = AnswerDistributionMatrix.objects.filter(distros__in=[distro])
     score = 0
     for matrix in answerDistributionMatrixTuples:
-      print("checking rule: ", matrix)
       # check if there is an 1:1 mapping
       if givenAnswers.filter(answer=matrix.answer).count() == 1:
-        print("Rule has a 1:1 match. Blocking: ", matrix.isBlockingHit, "neutral", matrix.isNeutralHit)
 
         # check if the selected answer is blocked by another one
         # should prevent answers like beginner + professional in one session
@@ -128,7 +132,6 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
         blockedQuestionTexts = []
         for blockedAnswer in matrix.answer.blockedAnswers.all():
           if blockedAnswer.pk in givenAnswers.all().values_list("answer",flat=True):
-            print(blockedAnswer, "blocks", matrix.answer)
             isRelatedBlocked = True
             textToAdd = translationToUse[blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in translationToUse else blockedAnswer.question.category.msgid
             if textToAdd not in blockedQuestionTexts:
@@ -159,7 +162,6 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
             score = score + 1
         # prevent that the same reason (got out of different answers) gets counted twice or more
         if len(list(filter(lambda r: r.description ==  reason.description and r.isBlockingHit == reason.isBlockingHit and r.isPositiveHit == reason.isPositiveHit and r.isNeutralHit == reason.isNeutralHit, reasons))) == 1:
-          print("duplicate reason, ignoring this")
           score = score -1 
         else:
           reason.save()
@@ -176,19 +178,37 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str):
  
   return getJSONCORSResponse({
     "url": "https://beta.distrochooser.de/{0}/{1}/".format(userSession.language, userSession.publicUrl),
-    "selections": selections
+    "selections": selections,
+    "token": token
   })
 
 @csrf_exempt #TODO: I don't want to disable security features, but the client does not have the CSRF-Cookie?
 def vote(request): 
   data = loads(request.body)
   id = int(data["selection"])
-  isPositive = data["positive"] == True
-  got = ResultDistroSelection.objects.filter(pk=id).update(isApprovedByUser=isPositive,isDisApprovedByUser= not isPositive)
- 
+  got = -1
+  if data["positive"] is not None:
+    isPositive = data["positive"] == True
+    got = ResultDistroSelection.objects.filter(pk=id).update(isApprovedByUser=isPositive,isDisApprovedByUser= not isPositive)
+  else:
+    got = ResultDistroSelection.objects.filter(pk=id).update(isApprovedByUser=False,isDisApprovedByUser= False)
+
   return JsonResponse({
     "count": got
   })
+
+@csrf_exempt #TODO: I don't want to disable security features, but the client does not have the CSRF-Cookie?
+def updateRemark(request): 
+  data = loads(request.body)
+  id = data["result"]
+  remark = data["remarks"]
+  oldSessionObject = UserSession.objects.get(token=id)
+  got = -1
+  # the remark can be changed once
+  # to prevent that it can be overwritten when somebody get's a shared link
+  if oldSessionObject.remarks is None:
+    got = UserSession.objects.filter(token=id).update(remarks=remark)
+  return HttpResponse(got)
 
 def getGivenAnswers(request, slug:str):
   answers = GivenAnswer.objects.filter(session__publicUrl=slug) 

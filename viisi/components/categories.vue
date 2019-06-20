@@ -10,10 +10,10 @@
             i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '')")
             span(:class="{'active': isActive(category), 'inactive': !isActive(category)}") {{ __i(category.msgid) }}
             i(v-if="isAnswered(category)").fa.fa-check.animated.heartBeat.isAnswered
-        li
-          a.get-result(href="#",@click.prevent="submit",:class="{'active': $store.state.result !== null }") 
-            i.active-indicator.fas.fa-bullhorn
-            span {{ __i("recommendation-category") }}
+      div.floating-button
+        a(href="#",@click.prevent="submit")
+          i.fas.fa-bullhorn
+          span {{ __i("recommendation-category") }}
         
 </template>
 
@@ -138,5 +138,20 @@ export default {
 }
 .get-result {
   font-weight: bold;
+}
+.floating-button-parent {
+  position: fixed;
+  right: 1em;
+  bottom: 15em;
+}
+.floating-button {
+  margin-left: 1.6em;
+  background: $linkColor;
+  padding: 1em;
+  border-radius: 4px;
+}
+.floating-button a {
+  text-decoration: none;
+  color: white;
 }
 </style>

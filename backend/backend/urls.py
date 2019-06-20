@@ -15,14 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from distrochooser.views import start, loadQuestion,submitAnswers, getLocales, vote, getGivenAnswers
+from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getTranslation
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('start/<str:langCode>/', start, name='start'),
     path('locales/', getLocales, name='locales'),
+    path('translations/<str:langCode>/', getTranslation, name='getTranslation'),
     path('question/<str:langCode>/<int:index>/<str:token>/', loadQuestion, name='loadQuestion'),
     path('submit/<str:langCode>/<str:token>/', submitAnswers, name='submitAnswers'),
     path('vote/', vote, name='voteSelection'),
+    path('remarks/', updateRemark, name='updateRemark'),
     path('answers/<str:slug>/', getGivenAnswers, name='getGivenAnswers'),
 ]
