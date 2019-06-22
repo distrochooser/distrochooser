@@ -82,6 +82,11 @@ export default {
       return !this.$store.state.isStarted
     }
   },
+  watch: {
+    question: function() {
+      this.additionalInfoShown = false
+    }
+  },
   methods: {
     flip() {
       this.additionalInfoShown = !this.additionalInfoShown
