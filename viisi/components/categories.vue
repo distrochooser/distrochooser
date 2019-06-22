@@ -10,7 +10,7 @@
             i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '')")
             span(:class="{'active': isActive(category), 'inactive': !isActive(category)}") {{ __i(category.msgid) }}
             i(v-if="isAnswered(category)").fa.fa-check.animated.heartBeat.isAnswered
-      div.floating-button
+      div.floating-button(:class="{'disabled': $store.state.givenAnswers.length === 0}",:data-balloon="__i($store.state.givenAnswers.length === 0 ? 'no-answers' : 'get-my-result')",data-balloon-pos="right")
         a(href="#",@click.prevent="submit")
           i.fas.fa-bullhorn
           span {{ __i("recommendation-category") }}
@@ -95,6 +95,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
 @import '~/node_modules/animate.css/animate.min.css';
+@import '~/node_modules/balloon-css/balloon.min.css';
 .breadcrumb-horizontal {
   position: fixed;
   left: 1em;
@@ -153,5 +154,14 @@ export default {
 .floating-button a {
   text-decoration: none;
   color: white;
+}
+.disabled {
+  cursor: no-drop;
+  background: white;
+  color: black;
+  border: 1px solid black;
+}
+.disabled * {
+  color: black;
 }
 </style>

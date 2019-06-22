@@ -4,15 +4,15 @@
       div.social-links
         span {{ __i("share-result")}}
         a(:href="'https://www.facebook.com/sharer/sharer.php?u='+$store.state.result.url")
-          i.fab.fa-facebook
+          i.fab.fa-facebook-square
         a(:href="'https://twitter.com/share?url='+$store.state.result.url+'&hashtags=distrochooser,linux&via=distrochooser'")
           i.fab.fa-twitter
       div.link
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
       div.remarks
-        div {{ __i("result-remarks")}}
         div(v-if="$store.state.remarksAdded") {{ __i("result-remarks-added")}}
-        textarea(v-model="remarks",maxlength="250",:placeholder="__i('remark-placeholder')",@keyup.enter="updateRemark",v-if="!$store.state.remarksAdded")
+        textarea(v-model="remarks",maxlength="250",:placeholder="__i('remark-placeholder')",v-if="!$store.state.remarksAdded")
+        button.add-remarks-button(:data-balloon="__i('no-remark')",data-balloon-pos="left", v-if="!$store.state.remarksAdded", v-on:click="updateRemark",:class="{'disabled': remarks.length === 0}")  {{ __i("result-remarks-button") }}
 
     distribution(v-for="(selection, selection_key) in selections", :key="selection_key", :isInitialBalloonOpen="selection_key === 0",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
 
@@ -32,7 +32,7 @@ export default {
   data: function() {
     return {
       compactView: false,
-      remarks: null
+      remarks: ''
     }
   },
   computed: {
@@ -70,6 +70,7 @@ export default {
 
 <style lang="scss">
 @import '~/scss/variables.scss';
+@import '~/node_modules/balloon-css/balloon.min.css';
 .result {
   width: 70%;
   margin-right: 15%;
@@ -119,5 +120,24 @@ export default {
 .remarks textarea {
   width: 50%;
   margin-top: 1em;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-bottom: 1em;
+  font-family: 'Open Sans', sans-serif;
+  resize: none;
+}
+.add-remarks-button {
+  border: 0px;
+  border-radius: 4px;
+  color: white;
+  padding: 0.5em;
+  background: $linkColor;
+  cursor: pointer;
+}
+.disabled {
+  cursor: no-drop;
+  background: white;
+  color: black;
+  border: 1px solid black;
 }
 </style>

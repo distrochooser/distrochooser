@@ -3,7 +3,7 @@
     div.top-logo-container
       a(href="/")
         img.top-logo(src='/logo.min.svg')
-    div.spin-parent(v-if="isLoading" )
+    div.spin-parent(v-if="isLoading || $store.state.isSubmitted" )
       span {{ __i("loading") }}
       div.spinner
         div.rect1
@@ -11,20 +11,18 @@
         div.rect3
         div.rect4
         div.rect5
-    div.spin-parent(v-if="$store.state.isSubmitted" )
-      i.fas.fa-cog.fa-5x.fa-spin
     categories(:language="language",v-if="!isLoading")
     div(v-if="!isLoading && !isFinished && !$store.state.isSubmitted")
       question(:language="language")
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
-    div.footer 
+    div.footer(v-if="!isLoading")
       a(:href="'/info/imprint/'+ language" )  {{ __i("imprint") }}
       a(:href="'/info/privacy/'+ language" ) {{ __i("privacy") }}
       a(:href="'/info/about/'+ language" ) {{ __i("about") }}
       a(href="https://chmr.eu") {{ __i("vendor-text") }}
     
-    div.languages
+    div.languages(v-if="!isLoading")
       select
         option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)") {{ __i('language') }}: {{ locale }}
        

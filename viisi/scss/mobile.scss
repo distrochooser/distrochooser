@@ -4,6 +4,7 @@
     padding-left: 0px;
     width: auto;
     padding: 0px !important;
+    top: unset !important;
   }
   .breadcrumb-horizontal ul li span {
     display: none;
@@ -16,18 +17,24 @@
   }
   .welcome-text {
     font-size: 10pt !important;
-    margin-bottom: 3em;
+    margin-bottom: 4em;
   }
   .footer {
-    top: 1.9em;
-    font-size: 10pt;
+    position: fixed !important;
     text-align: right !important;
-    bottom: unset;
-    height: 1em;
-    width: 100%;
+    font-size: small !important;
+    background: white !important;
+    padding: 0.5em !important;
+    text-align: center !important;
+    border-top: 1px solid $linkColor;
   }
   .answer-remark {
     left: 3em !important;
+  }
+  .remarks textarea {
+    width: 100%;
+    margin-left: unset !important;
+    margin-right: unset !important;
   }
   .additional-infos {
     width: 84% !important;
@@ -38,6 +45,7 @@
     top: 1em !important;
     left: 1em !important;
     right: initial !important;
+    position: absolute !important;
   }
   .view-settings {
     display: none;
@@ -45,10 +53,17 @@
   .question {
     margin-bottom: 1em;
     width: 84% !important;
-    margin-left: 10% !important;
+    margin-left: 13% !important;
+    margin-top: unset !important;
+  }
+  .top-logo-container {
+    margin-bottom: 1em !important;
   }
   .question-text {
-    font-size: 16px !important;
+    font-size: 15px !important;
+  }
+  .answer {
+    font-size: 13px !important;
   }
   .mobile-active {
     color: $activeStepForeground !important;
@@ -65,5 +80,13 @@
   }
   .floating-button a span {
     display: none;
+  }
+  .floating-button {
+    margin-left: 2.1em !important;
+    padding: 0.5em !important;
+    padding-right: 0.0 !important;
+  }
+  .step {
+    font-size: small !important;
   }
 }
