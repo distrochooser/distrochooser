@@ -44,11 +44,13 @@ body {
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
-    margin-top: 2em;
   }
   .top-logo-container .top-logo {
     width: 25%;
     margin-bottom: 2em;
+  }
+  .breadcrumb-horizontal {
+    width: 20%;
   }
 }
 .top-logo-container {

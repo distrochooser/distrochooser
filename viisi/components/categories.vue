@@ -99,9 +99,9 @@ export default {
 .breadcrumb-horizontal {
   position: fixed;
   left: 1em;
-  top: 24%;
   font-family: Archivo;
   letter-spacing: 0.5px;
+  padding-top: 1em;
 }
 .breadcrumb-horizontal ul {
   list-style-type: none;
