@@ -18,7 +18,7 @@ html {
   box-sizing: border-box;
 }
 body {
-  padding-top: 4em;
+  padding-top: 2em;
 }
 *,
 *:before,
@@ -36,7 +36,7 @@ body {
     margin-right: 0px;
   }
   .top-logo-container .top-logo {
-    width: 50%;
+    width: 200px;
   }
 }
 @media only screen and (min-width: $mobileWidth) {
@@ -46,8 +46,8 @@ body {
     margin-right: 20%;
   }
   .top-logo-container .top-logo {
-    width: 25%;
-    margin-bottom: 2em;
+    width: 200px;
+    margin-bottom: 1em;
   }
   .breadcrumb-horizontal {
     width: 20%;
