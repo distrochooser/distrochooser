@@ -11,7 +11,7 @@
         div.rect3
         div.rect4
         div.rect5
-    categories(:language="language",v-if="!isLoading")
+    categories(:language="language",v-if="!isLoading && !$store.state.isSubmitted")
     div(v-if="!isLoading && !isFinished && !$store.state.isSubmitted")
       question(:language="language")
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
