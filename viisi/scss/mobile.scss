@@ -1,3 +1,17 @@
+@media only screen and (max-width: $desktopWidth) and (min-width: $mobileWidth){
+  .footer {
+    bottom: unset !important;
+    top: 1em;
+    text-align: right !important;
+    position: absolute !important;
+  }
+  .breadcrumb-horizontal {
+    top: 3em;
+  }
+  body {
+    padding-top: 1em !important;
+  }
+}
 @media only screen and (max-width: $mobileWidth) {
   .breadcrumb-horizontal {
     left: -25px !important;
@@ -47,6 +61,9 @@
     right: initial !important;
     position: absolute !important;
   }
+  .languages select {
+    font-size: small;
+  }
   .view-settings {
     display: none;
   }
@@ -69,9 +86,6 @@
     color: $activeStepForeground !important;
     padding-left: 0.4em;
     border-left: 2px solid $activeStepForeground;
-  }
-  .top-logo {
-    width: 40% !important;
   }
   .link input {
     width: 100%;
