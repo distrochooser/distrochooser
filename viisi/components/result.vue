@@ -125,6 +125,7 @@ export default {
   margin-bottom: 1em;
   font-family: 'Open Sans', sans-serif;
   resize: none;
+  padding: 1em;
 }
 .add-remarks-button {
   border: 0px;

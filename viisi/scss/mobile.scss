@@ -6,7 +6,11 @@
     position: absolute !important;
   }
   .breadcrumb-horizontal {
-    top: 3em;
+    top: 0.5em;
+  }
+  .breadcrumb-horizontal ul li{
+    font-size: 11pt;
+    margin-bottom: 1em;
   }
   body {
     padding-top: 1em !important;
@@ -18,7 +22,7 @@
     padding-left: 0px;
     width: auto;
     padding: 0px !important;
-    top: unset !important;
+    top: 1em !important;
   }
   .breadcrumb-horizontal ul li span {
     display: none;
@@ -57,8 +61,8 @@
   .languages {
     bottom: initial !important;
     top: 1em !important;
-    left: 1em !important;
-    right: initial !important;
+    left: initial !important;
+    right: 1em !important;
     position: absolute !important;
   }
   .languages select {

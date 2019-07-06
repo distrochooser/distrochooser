@@ -36,7 +36,7 @@ body {
     margin-right: 0px;
   }
   .top-logo-container .top-logo {
-    width: 200px;
+    width: 250px;
   }
 }
 @media only screen and (min-width: $mobileWidth) {
@@ -46,7 +46,7 @@ body {
     margin-right: 20%;
   }
   .top-logo-container .top-logo {
-    width: 200px;
+    width: 250px;
     margin-bottom: 1em;
   }
   .breadcrumb-horizontal {

@@ -10,8 +10,8 @@
             i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '')")
             span(:class="{'active': isActive(category), 'inactive': !isActive(category)}") {{ __i(category.msgid) }}
             i(v-if="isAnswered(category)").fa.fa-check.animated.heartBeat.isAnswered
-      div.floating-button(:class="{'disabled': $store.state.givenAnswers.length === 0}",:data-balloon="__i($store.state.givenAnswers.length === 0 ? 'no-answers' : 'get-my-result')",data-balloon-pos="right")
-        a(href="#",@click.prevent="submit")
+      div.floating-button(:class="{'disabled': $store.state.givenAnswers.length === 0}",:data-balloon="__i($store.state.givenAnswers.length === 0 ? 'no-answers' : 'get-my-result')",data-balloon-pos="right",@click.prevent="submit")
+        a(href="#")
           i.fas.fa-bullhorn
           span {{ __i("recommendation-category") }}
         

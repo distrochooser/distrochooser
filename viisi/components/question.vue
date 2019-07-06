@@ -394,4 +394,7 @@ a {
   margin-top: 0.6em;
   margin-right: -0.5em;
 }
+.start-test-button {
+  margin-bottom: -1em;
+}
 </style>
