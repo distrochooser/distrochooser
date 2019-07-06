@@ -15,7 +15,7 @@ export default {
       var nonBlocking = this.nonBlocking(reasons).length
       var blocking = this.blocking(reasons).length
       if (blocking === 0) {
-        return 0
+        return nonBlocking
       }
       return -(blocking / nonBlocking)
     }
