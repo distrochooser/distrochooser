@@ -7,6 +7,7 @@ from backend.settings import LOCALES
 from django.forms.models import model_to_dict
 from json import dumps, loads
 from django.views.decorators.csrf import csrf_exempt
+from distrochooser.calculations.static import getSelections
 
 def jumpToQuestion(index: int) -> Question:
   results = Question.objects.filter(category__index=index)
@@ -94,92 +95,9 @@ def loadQuestion(request: HttpRequest, langCode: str, index: int, token: str):
 
 @csrf_exempt #TODO: I don't want to disable security features, but the client does not have the CSRF-Cookie?
 def submitAnswers(request: HttpRequest, langCode: str, token: str):
-  #TODO: Do something with the token
-
   userSession = UserSession.objects.get(token=token)
-  translationToUse = TRANSLATIONS[userSession.language] if userSession.language in TRANSLATIONS else TRANSLATIONS["en"]
-  # TODO: Delete old given answers
-  GivenAnswer.objects.filter(session=userSession).delete()
-  ResultDistroSelection.objects.filter(session=userSession).delete()
-  #TODO: Store answers
   data = loads(request.body)
-  for answer in data['answers']:
-    givenAnswer = GivenAnswer()
-    givenAnswer.session = userSession
-    givenAnswer.answer = Answer.objects.get(msgid=answer['msgid'])
-    givenAnswer.isImportant = False
-    givenAnswer.save()
-
-  blockingAnswers = []
-
-  givenAnswers = GivenAnswer.objects.filter(session=userSession)
-  distros = Distribution.objects.all()
-  selections = []
-  for distro in distros:
-    # create selection
-    # even 0 matches have a selection, with the reason..0 matches
-    selection = ResultDistroSelection()
-    selection.distro = distro
-    selection.session = userSession #todo: userfeedback
-    selection.save()
-    reasons = []
-    answerDistributionMatrixTuples = AnswerDistributionMatrix.objects.filter(distros__in=[distro])
-    score = 0
-    for matrix in answerDistributionMatrixTuples:
-      # check if there is an 1:1 mapping
-      if givenAnswers.filter(answer=matrix.answer).count() == 1:
-
-        # check if the selected answer is blocked by another one
-        # should prevent answers like beginner + professional in one session
-        isRelatedBlocked = False
-        description = translationToUse[matrix.answer.question.category.msgid] if matrix.answer.question.category.msgid in translationToUse else matrix.answer.question.category.msgid
-        blockedQuestionTexts = []
-        for blockedAnswer in matrix.answer.blockedAnswers.all():
-          if blockedAnswer.pk in givenAnswers.all().values_list("answer",flat=True):
-            isRelatedBlocked = True
-            textToAdd = translationToUse[blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in translationToUse else blockedAnswer.question.category.msgid
-            if textToAdd not in blockedQuestionTexts:
-              blockedQuestionTexts.append( translationToUse[blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in translationToUse else blockedAnswer.question.category.msgid)
-      
-        reason = SelectionReason()
-        reason.resultSelection = selection
-        # TODO: CHECK TRANSLATION
-        if isRelatedBlocked:
-          reason.isBlockingHit = True
-          reason.isPositiveHit = False
-          reason.isRelatedBlocked = isRelatedBlocked
-          reason.description = translationToUse["reason-blocked-by-others-entry"].format(description, "\" and \"".join(blockedQuestionTexts) )
-          
-        else:
-          reason.isBlockingHit = matrix.isBlockingHit
-          reason.isPositiveHit = not matrix.isNegativeHit
-          reason.isNeutralHit = matrix.isNeutralHit
-          if not reason.isNeutralHit:
-            reason.description =  translationToUse[matrix.description] if matrix.description in translationToUse else matrix.description 
-          else:
-            reason.isPositiveHit = True
-            reason.description = translationToUse[matrix.description]
-        if reason.isBlockingHit or reason.isRelatedBlocked:
-          score = score - 1
-        else:
-          if not reason.isNeutralHit:
-            score = score + 1
-        # prevent that the same reason (got out of different answers) gets counted twice or more
-        if len(list(filter(lambda r: r.description ==  reason.description and r.isBlockingHit == reason.isBlockingHit and r.isPositiveHit == reason.isPositiveHit and r.isNeutralHit == reason.isNeutralHit, reasons))) == 1:
-          score = score -1 
-        else:
-          reason.save()
-          reasons.append(reason)
-    distro = model_to_dict(selection.distro, exclude="logo")
-    if selection.distro.logo:
-      distro["logo"] = selection.distro.logo.url
-    selections.append({
-      "distro": distro,
-      "reasons": list(map(lambda r: model_to_dict(r), reasons)),
-      "score": score,
-      "selection": selection.id
-    })
- 
+  selections = getSelections(userSession, data)
   return getJSONCORSResponse({
     "url": "https://beta.distrochooser.de/{0}/{1}/".format(userSession.language, userSession.publicUrl),
     "selections": selections,
