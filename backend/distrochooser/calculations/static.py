@@ -15,17 +15,10 @@ def saveAnswers(userSession, rawAnswers):
 
 def saveReasonsForDistro(distro, givenAnswers, translationToUse, selection): 
   answerDistributionMatrixTuples = AnswerDistributionMatrix.objects.filter(distros__in=[distro])
-  tupleChunks = list(chunks(answerDistributionMatrixTuples, 2))
-  threads = []
-  for chunk in tupleChunks:
-    thread = reasonSelectionThread(selection, chunk, translationToUse, givenAnswers)
-    threads.append(thread)
-  for t in threads:
-    t.start()
-  for t in threads:
-    t.join()
+  return saveReasonForMatrixTuple(selection, answerDistributionMatrixTuples, translationToUse, givenAnswers)
 
 def saveReasonForMatrixTuple(selection, matrixTuples, translationToUse, givenAnswers):
+  reasons = []
   for matrix in matrixTuples:
     # check if there is an 1:1 mapping
     if givenAnswers.filter(answer=matrix.answer).count() == 1:
@@ -62,6 +55,8 @@ def saveReasonForMatrixTuple(selection, matrixTuples, translationToUse, givenAns
       # prevent that the same reason (got out of different answers) gets counted twice or more
       if SelectionReason.objects.filter(resultSelection=selection, description=reason.description, isBlockingHit=reason.isBlockingHit, isPositiveHit=reason.isPositiveHit,isNeutralHit=reason.isNeutralHit).count() == 0:
         reason.save()
+        reasons.append(reason)
+  return reasons
 
 def chunks(l, n):
     """Yield successive n-sized chunks from l."""
@@ -111,21 +106,9 @@ class selectingThread (threading.Thread):
       selection.session = self.userSession #todo: userfeedback
       selection.save()
 
-      saveReasonsForDistro(distro, self.givenAnswers, self.translationToUse, selection)
-      reasons = SelectionReason.objects.filter(resultSelection=selection)
+      reasons = saveReasonsForDistro(distro, self.givenAnswers, self.translationToUse, selection)
       self.selections.append({
         "distro": model_to_dict(selection.distro, exclude="logo"),
         "reasons": list(map(lambda r: model_to_dict(r), reasons)),
         "selection": selection.id
       })
-
-class reasonSelectionThread (threading.Thread):
-  def __init__(self, selection, answerDistributionMatrixTuples, translationToUse, givenAnswers):
-    threading.Thread.__init__(self)
-    self.answerDistributionMatrixTuples = answerDistributionMatrixTuples
-    self.givenAnswers = givenAnswers
-    self.translationToUse = translationToUse
-    self.selection = selection
-  def run(self):
-    for matrix in self.answerDistributionMatrixTuples:
-      saveReasonForMatrixTuple(self.selection, self.answerDistributionMatrixTuples, self.translationToUse, self.givenAnswers)
