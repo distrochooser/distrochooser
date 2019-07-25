@@ -13,27 +13,26 @@ def saveAnswers(userSession, rawAnswers):
     givenAnswer.isImportant = False
     givenAnswer.save()
 
-def saveReasonsForDistro(distro, givenAnswers, translationToUse, selection): 
-  answerDistributionMatrixTuples = AnswerDistributionMatrix.objects.filter(distros__in=[distro])
+def saveReasonsForDistro(givenAnswers, translationToUse, selection): 
+  answerDistributionMatrixTuples = AnswerDistributionMatrix.objects.filter(distros__in=[selection.distro])
   return saveReasonForMatrixTuple(selection, answerDistributionMatrixTuples, translationToUse, givenAnswers)
 
 def saveReasonForMatrixTuple(selection, matrixTuples, translationToUse, givenAnswers):
   reasons = []
-  for matrix in matrixTuples:
-    # check if there is an 1:1 mapping
-    if givenAnswers.filter(answer=matrix.answer).count() == 1:
-
-      # check if the selected answer is blocked by another one
-      # should prevent answers like beginner + professional in one session
+  flatGivenAnswersHaystack = givenAnswers.all().values_list("answer",flat=True)
+  for givenAnswer in givenAnswers:
+    answer = givenAnswer.answer
+    matchingMatrixTuple = matrixTuples.filter(answer=answer)
+    for matrixTuple in matchingMatrixTuple:
       isRelatedBlocked = False
-      description = translationToUse[matrix.answer.question.category.msgid] if matrix.answer.question.category.msgid in translationToUse else matrix.answer.question.category.msgid
+      description = translationToUse[answer.question.category.msgid] if answer.question.category.msgid in translationToUse else answer.question.category.msgid
       blockedQuestionTexts = []
-      for blockedAnswer in matrix.answer.blockedAnswers.all():
-        if blockedAnswer.pk in givenAnswers.all().values_list("answer",flat=True):
+      for blockedAnswer in matrixTuple.answer.blockedAnswers.all():
+        if blockedAnswer.pk in flatGivenAnswersHaystack:
           isRelatedBlocked = True
           textToAdd = translationToUse[blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in translationToUse else blockedAnswer.question.category.msgid
           if textToAdd not in blockedQuestionTexts:
-            blockedQuestionTexts.append( translationToUse[blockedAnswer.question.category.msgid] if blockedAnswer.question.category.msgid in translationToUse else blockedAnswer.question.category.msgid)
+            blockedQuestionTexts.append(textToAdd)
     
       reason = SelectionReason()
       reason.resultSelection = selection
@@ -43,19 +42,18 @@ def saveReasonForMatrixTuple(selection, matrixTuples, translationToUse, givenAns
         reason.isRelatedBlocked = isRelatedBlocked
         reason.description = translationToUse["reason-blocked-by-others-entry"].format(description, "\" and \"".join(blockedQuestionTexts) ) 
       else:
-        reason.isBlockingHit = matrix.isBlockingHit
-        reason.isPositiveHit = not matrix.isNegativeHit
-        reason.isNeutralHit = matrix.isNeutralHit
-        if not reason.isNeutralHit:
-          reason.description =  translationToUse[matrix.description] if matrix.description in translationToUse else matrix.description 
-        else:
+        reason.isBlockingHit = matrixTuple.isBlockingHit
+        reason.isPositiveHit = not matrixTuple.isNegativeHit
+        reason.isNeutralHit = matrixTuple.isNeutralHit
+        reason.description = translationToUse[matrixTuple.description] if matrixTuple.description in translationToUse else matrixTuple.description 
+        if reason.isNeutralHit:
           reason.isPositiveHit = True
-          reason.description = translationToUse[matrix.description]
       
       # prevent that the same reason (got out of different answers) gets counted twice or more
-      if SelectionReason.objects.filter(resultSelection=selection, description=reason.description, isBlockingHit=reason.isBlockingHit, isPositiveHit=reason.isPositiveHit,isNeutralHit=reason.isNeutralHit).count() == 0:
+      if len(list(filter(lambda r: r.description == reason.description and r.isBlockingHit == reason.isBlockingHit and r.isPositiveHit == reason.isPositiveHit and r.isNeutralHit==reason.isNeutralHit, reasons))) == 0:
         reason.save()
         reasons.append(reason)
+  
   return reasons
 
 def chunks(l, n):
@@ -75,7 +73,7 @@ def getSelections(userSession, data):
 
   distros = Distribution.objects.all()
 
-  distroChunks = list(chunks(distros, 2))
+  distroChunks = list(chunks(distros, 4))
   threads = []
   for chunk in distroChunks:
     thread = selectingThread(chunk, givenAnswers, translationToUse, userSession)
@@ -105,10 +103,10 @@ class selectingThread (threading.Thread):
       selection.distro = distro
       selection.session = self.userSession #todo: userfeedback
       selection.save()
-
-      reasons = saveReasonsForDistro(distro, self.givenAnswers, self.translationToUse, selection)
+      reasons = saveReasonsForDistro(self.givenAnswers, self.translationToUse, selection)
       self.selections.append({
         "distro": model_to_dict(selection.distro, exclude="logo"),
         "reasons": list(map(lambda r: model_to_dict(r), reasons)),
         "selection": selection.id
       })
+    
