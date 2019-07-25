@@ -62,3 +62,9 @@ typings/
 backend/backend/__pycache__
 backend/distrochooser/__pycache__
 backend/distrochooser/migrations/__pycache__
+
+*.pyc
+backend/locale/
+backend/db.sqlite3 
+no-git/
+viisi/yarn.lock
