@@ -41,7 +41,7 @@ class UserSession(models.Model):
     return "{0} - {1}".format(self.dateTime, self.userAgent)
 
   def save(self, *args, **kwargs):
-    self.publicUrl = get_monster()
+    self.publicUrl = self.token # get_monster() as I'm still unsure if monsters are not suitable for a general purpose page
     super(UserSession, self).save(*args, **kwargs)
 
 class GivenAnswer(models.Model):

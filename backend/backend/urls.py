@@ -26,5 +26,5 @@ urlpatterns = [
     path('submit/<str:langCode>/<str:token>/', submitAnswers, name='submitAnswers'),
     path('vote/', vote, name='voteSelection'),
     path('remarks/', updateRemark, name='updateRemark'),
-    path('answers/<str:slug>/', getGivenAnswers, name='getGivenAnswers'),
+    path('answers/<str:slug>/', getGivenAnswers, name='getGivenAnswers')
 ]

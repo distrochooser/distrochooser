@@ -50,11 +50,21 @@ def goToStep(categoryIndex: int) -> dict:
     raise Exception("Question unknown")
   question = results.first()
   answers = Answer.objects.filter(question=question)
+  responseAnswers = []
+  for answer in answers:
+    blockedAnswers = []
+    for blocked in answer.blockedAnswers.all():
+      blockedAnswers.append(blocked.msgid)
+    responseAnswers.append({
+      "msgid": answer.msgid,
+      "blockedAnswers": blockedAnswers
+    })
+      
   blocking = []
   return {
     "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice', 'additionalInfo')),
     "category": model_to_dict(question.category),
-    "answers":  list(answers.values("msgid"))
+    "answers":  responseAnswers
   }
 
 def start(request: HttpRequest, langCode: str):

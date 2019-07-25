@@ -45,6 +45,16 @@
             span(v-else)
               i.far.answer-box(:class="{'fa-check-circle': isAnswerSelected(answer), 'fa-circle': !isAnswerSelected(answer)}")
             label {{ __i(answer.msgid) }}
+            div.warning-alert.animated.fadeInUp.faster(v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
+              p {{ __i("answer-is-blocking") }}:
+              div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
+                i.fas.fa-times-circle
+                span "{{ __i(blockingAnswer.msgid) }}"
+            div.blocking-alert.animated.fadeInUp.faster(v-if="getBlockedAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
+              p {{ __i("answer-is-blocked") }}:
+              div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key") 
+                i.fas.fa-times-circle
+                span "{{ __i(blockingAnswer.msgid) }}"
       div.actions(v-if="!additionalInfoShown")
         div.additional-remarks-action
           span.additional-remarks-button(v-if="question.additionalInfo",:data-balloon="__i('additional-infos')",data-balloon-pos="left")
@@ -103,8 +113,23 @@ export default {
         return answer.category === categoryId
       })
     },
+    getBlockingAnswers(answer) {
+      // Case: A given answer is blocked because the current answer excludes them
+      return this.$store.state.givenAnswers.filter(function(givenAnswer) {
+        return answer.blockedAnswers.indexOf(givenAnswer.msgid) !== -1
+      })
+    },
+    getBlockedAnswers(answer) {
+      // Case: A given answer excludes a given answer
+      const category = this.$store.state.currentCategory.msgid
+      return this.$store.state.givenAnswers.filter(function(givenAnswer) {
+        if (givenAnswer.category === category) {
+          return false // ignore same category matches as they are already displayed by getBlockingAnswers()
+        }
+        return givenAnswer.blockedAnswers.indexOf(answer.msgid) !== -1
+      })
+    },
     answerQuestion(answer) {
-      console.log(answer.msgid)
       if (this.isAnswerSelected(answer)) {
         this.$store.commit('removeAnswerQuestion', answer)
       } else {
@@ -396,5 +421,27 @@ a {
 }
 .start-test-button {
   margin-bottom: -1em;
+}
+.blocking-alert {
+  border: 1px solid red;
+  border-radius: 3px;
+  padding: 1em;
+  font-weight: normal;
+  margin-top: 1em;
+  background: #ffb5b5;
+  color: black;
+}
+.blocking-alert p,
+.warning-alert p {
+  margin-bottom: 0.5em;
+}
+.warning-alert {
+  border: 1px solid #ffb180;
+  border-radius: 3px;
+  padding: 1em;
+  font-weight: normal;
+  margin-top: 1em;
+  background: #ffc300;
+  color: black;
 }
 </style>

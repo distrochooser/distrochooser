@@ -21,7 +21,8 @@ const indexStore = new Vapi({
     testCount: 0,
     oldTestData: null,
     isSubmitted: false,
-    rootUrl: viisiConfig.frontendUrl
+    rootUrl: viisiConfig.frontendUrl,
+    answerBlockedAnswers: []
   }
 })
   .get({
@@ -65,6 +66,11 @@ const indexStore = new Vapi({
     property: 'translations',
     path: ({ language }) => `translations/${language}/`
   })
+  .get({
+    action: 'getAnswerBlockedAnswers',
+    property: 'answerBlockedAnswers',
+    path: ({ msgid }) => `blockedanswers/${msgid}/`
+  })
   .getStore()
 
 indexStore.actions.answerQuestion = (store, payload) => {
@@ -73,7 +79,8 @@ indexStore.actions.answerQuestion = (store, payload) => {
     msgid: answer.msgid,
     answered: true,
     important: false,
-    category: payload.currentCategory.msgid
+    category: payload.currentCategory.msgid,
+    blockedAnswers: answer.blockedAnswers
   }
 
   store.commit('setAnswerQuestion', answer)
