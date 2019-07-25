@@ -1,8 +1,3 @@
 User-agent: *
-Disallow: /info/de/privacy
-Disallow: /info/en/privacy
-Disallow: /info/de/contact
-Disallow: /info/en/contact
-Disallow: /info/fr/contact
-Disallow: /info/es/contact
-Disallow: /info/*
+Disallow: /info/privacy/*
+Disallow: /info/imprint/*

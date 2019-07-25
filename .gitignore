@@ -68,3 +68,4 @@ backend/locale/
 backend/db.sqlite3 
 no-git/
 viisi/yarn.lock
+viisi/pages/info/_content/
