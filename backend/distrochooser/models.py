@@ -36,6 +36,8 @@ class UserSession(models.Model):
   publicUrl = models.CharField(max_length=200, null=False, blank=False, default="")
   language = models.CharField(max_length=10, null=False, blank=False, default="en")
   remarks = models.CharField(max_length=250,null=True, blank=True, default=None)
+  checksToDo = models.IntegerField(default=0)
+  checksDone = models.IntegerField(default=0)
 
   def __str__(self):
     return "{0} - {1}".format(self.dateTime, self.userAgent)

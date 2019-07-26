@@ -31,6 +31,15 @@ def getUnsafeJSONCORSResponse(data):
   response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
   return response
 
+def getStatus(request, slug: str): 
+  session = UserSession.objects.filter(token=slug).first()
+  if session is None:
+    raise Http404
+
+  return JsonResponse({
+    "toDo": session.checksToDo,
+    "done": session.checksDone
+  })
 
 def getLocales(request):
   return getUnsafeJSONCORSResponse(list(LOCALES.keys()))
@@ -79,6 +88,7 @@ def start(request: HttpRequest, langCode: str):
   session.userAgent = userAgent
   session.language = langCode
   session.token = secrets.token_hex(5) # generate a random token for the user
+  session.checksToDo = AnswerDistributionMatrix.objects.all().count()
   session.save()
 
 

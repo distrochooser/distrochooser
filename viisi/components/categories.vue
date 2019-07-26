@@ -28,6 +28,11 @@ export default {
       default: 'en'
     }
   },
+  data: function() {
+    return {
+      statusIntervalId: null
+    }
+  },
   computed: {
     isLoaded() {
       return this.$store.state.categories !== null
@@ -79,6 +84,22 @@ export default {
       if (this.isAtWelcomeScreen) {
         this.start()
       }
+      const _t = this
+      _t.$store.dispatch('getSessionStatus', {
+        params: {
+          token: _t.$store.state.token
+        }
+      })
+      this.statusIntervalId = window.setInterval(function() {
+        _t.$store.dispatch('getSessionStatus', {
+          params: {
+            token: _t.$store.state.token
+          }
+        })
+        if (!_t.$store.state.isSubmitted) {
+          window.clearInterval(_t.statusIntervalId)
+        }
+      }, 300)
       this.$store.dispatch('submitAnswers', {
         params: {
           token: this.$store.state.token,

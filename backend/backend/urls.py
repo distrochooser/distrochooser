@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getSSRData
+from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getSSRData, getStatus
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +26,6 @@ urlpatterns = [
     path('submit/<str:langCode>/<str:token>/', submitAnswers, name='submitAnswers'),
     path('vote/', vote, name='voteSelection'),
     path('remarks/', updateRemark, name='updateRemark'),
-    path('answers/<str:slug>/', getGivenAnswers, name='getGivenAnswers')
+    path('answers/<str:slug>/', getGivenAnswers, name='getGivenAnswers'),
+    path('status/<str:slug>/', getStatus, name='getStatus')
 ]

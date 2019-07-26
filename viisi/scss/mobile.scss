@@ -17,6 +17,9 @@
   }
 }
 @media only screen and (max-width: $mobileWidth) {
+  .calculation-loading {
+    margin-top: 50% !important;
+  }
   .breadcrumb-horizontal {
     left: -25px !important;
     padding-left: 0px;

@@ -22,13 +22,14 @@ const indexStore = new Vapi({
     oldTestData: null,
     isSubmitted: false,
     rootUrl: viisiConfig.frontendUrl,
-    answerBlockedAnswers: []
+    answerBlockedAnswers: [],
+    sessionStatus: null
   }
 })
   .get({
     action: 'getLocales',
     property: 'locales',
-    path: () => `locales`
+    path: () => `locales/`
   })
   .get({
     action: 'start',
@@ -70,6 +71,11 @@ const indexStore = new Vapi({
     action: 'getAnswerBlockedAnswers',
     property: 'answerBlockedAnswers',
     path: ({ msgid }) => `blockedanswers/${msgid}/`
+  })
+  .get({
+    action: 'getSessionStatus',
+    property: 'sessionStatus',
+    path: ({ token }) => `status/${token}/`
   })
   .getStore()
 

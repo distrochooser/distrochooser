@@ -3,14 +3,25 @@
     div.top-logo-container
       a(href="/")
         img.top-logo(src='/logo.min.svg')
-    div.spin-parent(v-if="isLoading || $store.state.isSubmitted" )
+    div.spin-parent(v-if="isLoading" )
       span {{ __i("loading") }}
       div.spinner
-        div.rect1
-        div.rect2
-        div.rect3
-        div.rect4
-        div.rect5
+        div.rect1(style="background-color: black")
+        div.rect2(style="background-color: #e4ae4c")
+        div.rect3(style="background-color: #1c105a")
+        div.rect4(style="background-color: #ebeef3; border-color: black") 
+        div.rect5(style="background-color: #39BA95")    
+    div.calculation-loading(v-if="$store.state.isSubmitted && $store.state.sessionStatus !== null") 
+      div.bookshelf_wrapper
+        ul.books_list
+          li.book_item.first(style="background-color: black")
+          li.book_item.second(style="background-color: #e4ae4c")
+          li.book_item.third(style="background-color: #1c105a")
+          li.book_item.fourth(style="background-color: #ebeef3; border-color: grey") 
+          li.book_item.sixth(style="background-color: #39BA95")  
+      
+      h1.calculation-header {{ __i("searching-criteria") }}
+      div.calculation-text {{ $store.state.sessionStatus.done }} {{ __i("checked-criteria-count") }}
     categories(:language="language",v-if="!isLoading && !$store.state.isSubmitted")
     div(v-if="!isLoading && !isFinished && !$store.state.isSubmitted")
       question(:language="language")
@@ -342,4 +353,255 @@ select::-ms-expand {
     padding: 5px\9;
   }
 }
+.calculation-loading {
+  text-align: center;
+  margin-top: 25%;
+  font-size: large;
+}
+div.calculation-text {
+  padding-top: 2em;
+}
+h1.calculation-header {
+  padding-top: 1em;
+}
+$thickness: 5px;
+$duration: 2500;
+$delay: $duration/6;
+
+@mixin polka($size, $dot, $base, $accent) {
+  background: $base;
+  background-image: radial-gradient($accent $dot, transparent 0);
+  background-size: $size $size;
+  background-position: 0 -2.5px;
+}
+
+.bookshelf_wrapper {
+  position: relative;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.books_list {
+  margin: 0 auto;
+  width: 300px;
+  padding: 0;
+}
+
+.book_item {
+  position: absolute;
+  top: -120px;
+  box-sizing: border-box;
+  list-style: none;
+  width: 40px;
+  height: 120px;
+  opacity: 0;
+  background-color: black;
+  border: $thickness solid white;
+  transform-origin: bottom left;
+  transform: translateX(300px);
+  animation: travel #{$duration}ms linear infinite;
+
+  &.first {
+    top: -140px;
+    height: 140px;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 100%;
+      height: $thickness;
+      background-color: white;
+    }
+
+    &:after {
+      top: initial;
+      bottom: 10px;
+    }
+  }
+
+  &.second,
+  &.fifth {
+    &:before,
+    &:after {
+      box-sizing: border-box;
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 100%;
+      height: $thickness * 3.5;
+      border-top: $thickness solid white;
+      border-bottom: $thickness solid white;
+    }
+
+    &:after {
+      top: initial;
+      bottom: 10px;
+    }
+  }
+
+  &.third {
+    &:before,
+    &:after {
+      box-sizing: border-box;
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 9px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: $thickness solid white;
+    }
+
+    &:after {
+      top: initial;
+      bottom: 10px;
+    }
+  }
+
+  &.fourth {
+    top: -130px;
+    height: 130px;
+
+    &:before {
+      box-sizing: border-box;
+      content: '';
+      position: absolute;
+      top: 46px;
+      left: 0;
+      width: 100%;
+      height: $thickness * 3.5;
+      border-top: $thickness solid white;
+      border-bottom: $thickness solid white;
+    }
+  }
+
+  &.fifth {
+    top: -100px;
+    height: 100px;
+  }
+
+  &.sixth {
+    top: -140px;
+    height: 140px;
+
+    &:before {
+      box-sizing: border-box;
+      content: '';
+      position: absolute;
+      bottom: 31px;
+      left: 0px;
+      width: 100%;
+      height: $thickness;
+      background-color: white;
+    }
+
+    &:after {
+      box-sizing: border-box;
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 9px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: $thickness solid white;
+    }
+  }
+
+  &:nth-child(2) {
+    animation-delay: #{$delay * 1}ms;
+  }
+
+  &:nth-child(3) {
+    animation-delay: #{$delay * 2}ms;
+  }
+
+  &:nth-child(4) {
+    animation-delay: #{$delay * 3}ms;
+  }
+
+  &:nth-child(5) {
+    animation-delay: #{$delay * 4}ms;
+  }
+
+  &:nth-child(6) {
+    animation-delay: #{$delay * 5}ms;
+  }
+}
+
+@keyframes move {
+  from {
+    background-position-x: 0;
+  }
+
+  to {
+    background-position-x: 10px;
+  }
+}
+
+@keyframes travel {
+  0% {
+    opacity: 0;
+    transform: translateX(300px) rotateZ(0deg) scaleY(1);
+  }
+
+  6.5% {
+    transform: translateX(279.5px) rotateZ(0deg) scaleY(1.1);
+  }
+
+  8.8% {
+    transform: translateX(273.6px) rotateZ(0deg) scaleY(1);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateX(270px) rotateZ(0deg);
+  }
+
+  17.6% {
+    transform: translateX(247.2px) rotateZ(-30deg);
+  }
+
+  45% {
+    transform: translateX(165px) rotateZ(-30deg);
+  }
+
+  49.5% {
+    transform: translateX(151.5px) rotateZ(-45deg);
+  }
+
+  61.5% {
+    transform: translateX(115.5px) rotateZ(-45deg);
+  }
+
+  67% {
+    transform: translateX(99px) rotateZ(-60deg);
+  }
+
+  76% {
+    transform: translateX(72px) rotateZ(-60deg);
+  }
+
+  83.5% {
+    opacity: 1;
+    transform: translateX(49.5px) rotateZ(-90deg);
+  }
+
+  90% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(0px) rotateZ(-90deg);
+  }
+}
+// bookstack based on https://codepen.io/ikoshowa/pen/qOMvpy/
+// based on https://dribbble.com/shots/2332418-Book-shelf-Loader-Icon
 </style>
