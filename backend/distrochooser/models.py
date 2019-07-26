@@ -1,7 +1,6 @@
 from django.db import models
 from datetime import datetime
 import string
-from monsterurl import get_monster
 from backend.settings import MEDIA_ROOT
 class Translateable(models.Model):
   msgid = models.CharField(max_length=100, default="new-value",blank=False, null=False)
