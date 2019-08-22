@@ -71,7 +71,7 @@ def goToStep(categoryIndex: int) -> dict:
       
   blocking = []
   return {
-    "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice', 'additionalInfo')),
+    "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice', 'additionalInfo', 'isMediaQuestion')),
     "category": model_to_dict(question.category),
     "answers":  responseAnswers
   }

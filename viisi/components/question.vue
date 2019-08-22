@@ -39,7 +39,11 @@
         div.answer-remark(v-if="question.isMultipleChoice")
           span {{ __i("question-is-multiplechoice") }}
         div.answers(:class="{'flipped': additionalInfoShown}")
-          div.answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
+          div.image-answer-parent(v-if="question.isMediaQuestion")
+            div.image-answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
+              img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)")
+              p {{ __i(answer.msgid) }}
+          div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
             span(v-if="question.isMultipleChoice")
               i.far.answer-box(:class="{'fa-check-square': isAnswerSelected(answer), 'fa-square': !isAnswerSelected(answer)}")
             span(v-else)
@@ -443,5 +447,17 @@ a {
   margin-top: 1em;
   background: #ffc300;
   color: black;
+}
+.image-answer {
+  display: inline-block;
+  margin-right: 1em;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+.image-answer-parent {
+  text-align: center;
+}
+.image-answer img {
+  width: 50%;
 }
 </style>

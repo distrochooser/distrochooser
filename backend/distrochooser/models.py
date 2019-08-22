@@ -18,6 +18,8 @@ class Question(Translateable):
   category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
   additionalInfo = models.CharField(max_length=200, null=True, blank=True, default=None)
   isMultipleChoice = models.BooleanField(default=False)
+  isMediaQuestion = models.BooleanField(default=False) # question with images instead of answers
+
   def __str__(self):
     return self.msgid
 
