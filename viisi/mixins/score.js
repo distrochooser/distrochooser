@@ -7,7 +7,17 @@ export default {
     },
     nonBlocking: function(reasons) {
       return reasons.filter(r => {
-        return !r.isBlockingHit && !r.isRelatedBlocked && !r.isNeutralHit
+        return (
+          !r.isBlockingHit &&
+          !r.isRelatedBlocked &&
+          !r.isNeutralHit &&
+          r.isPositiveHit
+        )
+      })
+    },
+    negative: function(reasons) {
+      return reasons.filter(r => {
+        return !r.isBlockingHit && !r.isPositiveHit && !r.isNeutralHit
       })
     },
     getScore: function(reasons) {

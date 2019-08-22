@@ -1,12 +1,12 @@
 <template lang="pug">
   div.distribution(v-if="!hasNoMatch")
-    div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor") 
+    div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
       span {{ name }}
       span.scores-summary
         i.fas.fa-thumbs-up.summary(:style="'color: ' + fgColor")
         span {{ nonBlocking(reasons).length }} 
         i.fas.fa-thumbs-down.summary(:style="'color: ' + fgColor")
-        span {{ blocking(reasons).length }}
+        span {{ negative(reasons).length + blocking(reasons).length }}
       a.show-reasons(href="#", @click.prevent="flipped=!flipped", :style="'color: ' + fgColor")
         span(v-if="!flipped") {{ __i("reason-header".replace("%s",name)) }}
         span(v-if="flipped") {{ __i("hide-reasons")}}
@@ -15,8 +15,11 @@
       div.reason-list.list
         div(v-if="nonBlocking(reasons).length > 0")
           div(v-for="(reason, reason_key) in nonBlocking(reasons)", :key="reason_key") 
-            i.fas.fa-plus(v-if="reason.isPositiveHit")
-            i.fas.fa-minus(v-if="!reason.isPositiveHit")
+            i.fas.fa-plus
+            span {{ reason.description }}
+        div(v-if="negative(reasons).length > 0")
+          div(v-for="(reason, reason_key) in negative(reasons)", :key="reason_key") 
+            i.fas.fa-minus
             span {{ reason.description }}
       div.blocking-list.list
         div(v-if="blocking(reasons).length > 0")
@@ -57,7 +60,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'bratwurst'
+      default: ''
     },
     id: {
       type: String,
@@ -245,5 +248,8 @@ i {
 }
 .summary.fa-thumbs-down {
   margin-left: 0.7em;
+}
+.downvoted-distro {
+  filter: opacity(50%);
 }
 </style>
