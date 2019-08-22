@@ -26,10 +26,10 @@
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
     div.footer(v-if="!isLoading")
-      a(:href="'/info/imprint/'+ language" )  {{ __i("imprint") }}
-      a(:href="'/info/privacy/'+ language" ) {{ __i("privacy") }}
-      a(:href="'/info/about/'+ language" ) {{ __i("about") }}
-      a(href="https://chmr.eu") {{ __i("vendor-text") }}
+      a(target="_blank", :href="'/info/imprint/'+ language" )  {{ __i("imprint") }}
+      a(target="_blank", :href="'/info/privacy/'+ language" ) {{ __i("privacy") }}
+      a(target="_blank", :href="'/info/about/'+ language" ) {{ __i("about") }}
+      a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
     
     div.languages(v-if="!isLoading")
       select
