@@ -185,7 +185,8 @@ indexStore.mutations.setOldTestData = state => {
       msgid: answer,
       answered: true,
       important: false,
-      category: category
+      category: category,
+      blockedAnswers: []
     })
   }
 }
