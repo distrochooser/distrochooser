@@ -19,6 +19,9 @@
               i.fas.fa-trash-alt
               span {{ __i("welcome-text-remove") }}
             div
+              i.fas.fa-star
+              span {{ __i("welcome-text-importance") }}
+            div
               i.fas.fa-heart
               span {{ __i("welcome-text-feedback") }}
             div
@@ -43,12 +46,16 @@
             div.image-answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
               img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)")
               p {{ __i(answer.msgid) }}
-          div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
+          div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
             span(v-if="question.isMultipleChoice")
-              i.far.answer-box(:class="{'fa-check-square': isAnswerSelected(answer), 'fa-square': !isAnswerSelected(answer)}")
-            span(v-else)
-              i.far.answer-box(:class="{'fa-check-circle': isAnswerSelected(answer), 'fa-circle': !isAnswerSelected(answer)}")
-            label {{ __i(answer.msgid) }}
+              i.far.answer-box(@click='answerQuestion(answer)', :class="{'fa-check-square': isAnswerSelected(answer), 'fa-square': !isAnswerSelected(answer)}")
+            span(v-else,)
+              i.far.answer-box(@click='answerQuestion(answer)', :class="{'fa-check-circle': isAnswerSelected(answer), 'fa-circle': !isAnswerSelected(answer)}")
+            label(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
+            span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="isAnswerSelected(answer) && !isAnswerImportant(answer)")
+              i.far.fa-star(:title='__i("make-important")')
+            span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
+              i.fas.fa-star.animated.jello(:title="__i('remove-important')")
             div.warning-alert.animated.fadeInUp.faster(v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
               p {{ __i("answer-is-blocking") }}:
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
@@ -215,7 +222,14 @@ export default {
           .length === 1
       )
     },
-    markImportant(answer) {
+    isAnswerImportant(answer) {
+      return (
+        this.$store.state.givenAnswers.filter(
+          a => a.msgid === answer.msgid && a.important
+        ).length === 1
+      )
+    },
+    toggleImportance(answer) {
       this.$store.commit('toggleImportanceState', answer)
     }
   }
@@ -459,5 +473,41 @@ a {
 }
 .image-answer img {
   width: 50%;
+}
+.importance-toggle {
+  margin-left: 0.5em;
+}
+.importance-toggle .far {
+  color: #ff7a00;
+}
+
+.importance-toggle .fas {
+  color: #ff7a00;
+}
+/*
+
+        div.rect1(style="background-color: black")
+        div.rect2(style="background-color: #e4ae4c")
+        div.rect3(style="background-color: #1c105a")
+        div.rect4(style="background-color: #ebeef3; border-color: black") 
+        div.rect5(style="background-color: #39BA95") 
+*/
+.welcome-text div .fa-forward {
+  color: #e4ae4c;
+}
+.welcome-text div .fa-play {
+  color: #1c105a;
+}
+.welcome-text div .fa-sort-amount-up {
+  color: #39ba95;
+}
+.welcome-text div .fa-trash-alt {
+  color: grey;
+}
+.welcome-text div .fa-star {
+  color: #ff7a00;
+}
+.welcome-text div .fa-heart {
+  color: #d50d0d;
 }
 </style>

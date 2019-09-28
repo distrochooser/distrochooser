@@ -24,6 +24,20 @@ export default {
       var allReasons = reasons.length
       var nonBlocking = this.nonBlocking(reasons).length
       var blocking = this.blocking(reasons).length
+      var nonBlockingImportanceOffset = 0
+      var blockingImportanceOffset = 0
+      this.nonBlocking(reasons).forEach(value => {
+        if (value.isImportant) {
+          nonBlockingImportanceOffset++
+        }
+      })
+      this.blocking(reasons).forEach(value => {
+        if (value.isImportant) {
+          blockingImportanceOffset++
+        }
+      })
+      blocking += blockingImportanceOffset
+      nonBlocking += nonBlockingImportanceOffset
       if (blocking === 0) {
         return nonBlocking
       }

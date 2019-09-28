@@ -17,16 +17,22 @@
           div(v-for="(reason, reason_key) in nonBlocking(reasons)", :key="reason_key") 
             i.fas.fa-plus
             span {{ reason.description }}
+            span.importance-toggle(v-if="reason.isImportant")
+              i.fas.fa-star(:title='__i("marked-as-important")')
         div(v-if="negative(reasons).length > 0")
           div(v-for="(reason, reason_key) in negative(reasons)", :key="reason_key") 
             i.fas.fa-minus
             span {{ reason.description }}
+            span.importance-toggle(v-if="reason.isImportant")
+              i.fas.fa-star(:title='__i("marked-as-important")')
       div.blocking-list.list
         div(v-if="blocking(reasons).length > 0")
           b.block-title {{ __i("reason-list-header-negative").replace("%s",name) }}
           div(v-for="(reason, reason_key) in blocking(reasons)", :key="reason_key") 
             i.fas.fa-ban
-            span {{ reason.description }}
+            span {{ reason.description }} 
+            span.importance-toggle(v-if="reason.isImportant")
+              i.fas.fa-star(:title='__i("marked-as-important")')
       div.blocking-list.list
         div(v-if="blockedByOtherQuestion.length > 0")
           b.block-title {{ __i("reason-list-header-blocked-by-others").replace("%s",name) }}
@@ -251,5 +257,9 @@ i {
 }
 .downvoted-distro {
   filter: opacity(50%);
+}
+.importance-toggle .fas {
+  color: #ff7a00;
+  margin-left: 0.5em;
 }
 </style>
