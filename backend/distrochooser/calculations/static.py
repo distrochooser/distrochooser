@@ -11,7 +11,7 @@ def saveAnswers(userSession, rawAnswers):
     givenAnswer = GivenAnswer()
     givenAnswer.session = userSession
     givenAnswer.answer = Answer.objects.get(msgid=answer['msgid'])
-    givenAnswer.isImportant = False
+    givenAnswer.isImportant = answer['important']
     givenAnswer.save()
 
 def saveReasonsForDistro(givenAnswers, translationToUse, selection): 
@@ -38,6 +38,7 @@ def saveReasonForMatrixTuple(selection, matrixTuples, translationToUse, givenAns
         if textToAdd not in blockedQuestionTexts:
           blockedQuestionTexts.append(textToAdd)
       reason = SelectionReason()
+      reason.isImportant = givenAnswer.isImportant
       reason.resultSelection = selection
       if isRelatedBlocked:
         reason.isBlockingHit = True
