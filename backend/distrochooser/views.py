@@ -8,6 +8,8 @@ from django.forms.models import model_to_dict
 from json import dumps, loads
 from django.views.decorators.csrf import csrf_exempt
 from distrochooser.calculations.static import getSelections
+from base64 import b64decode
+from distrochooser.importmatrix.importmatrix import readMatrix, generateMatrix
 
 def jumpToQuestion(index: int) -> Question:
   results = Question.objects.filter(category__index=index)
@@ -76,7 +78,7 @@ def goToStep(categoryIndex: int) -> dict:
     "answers":  responseAnswers
   }
 
-def start(request: HttpRequest, langCode: str):
+def start(request: HttpRequest, langCode: str, refLinkEncoded: str):
   """
   'Loggs' the visitor in, creates a session which will be used to store the user's action.
   """
@@ -90,8 +92,11 @@ def start(request: HttpRequest, langCode: str):
   session.token = secrets.token_hex(5) # generate a random token for the user
   session.checksToDo = AnswerDistributionMatrix.objects.all().count()
   session.save()
-
-
+  if refLinkEncoded != "-":
+    refLinkDecoded = b64decode(refLinkEncoded).decode("utf-8")
+    if refLinkDecoded is not None:
+      session.referrer = refLinkDecoded
+  session.save()
   questionAndCategoryData = goToStep(0)
   testCount = TESTOFFSET + UserSession.objects.all().count()
   return getJSONCORSResponse({

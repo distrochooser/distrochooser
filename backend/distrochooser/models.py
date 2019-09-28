@@ -39,6 +39,7 @@ class UserSession(models.Model):
   remarks = models.CharField(max_length=250,null=True, blank=True, default=None)
   checksToDo = models.IntegerField(default=0)
   checksDone = models.IntegerField(default=0)
+  referrer = models.URLField(null=True, blank=True, default=None)
 
   def __str__(self):
     return "{0} - {1}".format(self.dateTime, self.userAgent)
@@ -78,6 +79,7 @@ class SelectionReason(models.Model):
   isBlockingHit = models.BooleanField(default=False) # "No-go"
   isRelatedBlocked =  models.BooleanField(default=False)
   isNeutralHit = models.BooleanField(default=False) # e. g. "professional user" for ubuntu -> 
+  isImportant = models.BooleanField(default=False) # if answer was flagged as important
 
 class AnswerDistributionMatrix(models.Model):
   answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)

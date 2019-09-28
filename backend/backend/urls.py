@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getSSRData, getStatus
+from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getSSRData, getStatus, generateMatrix,readMatrix
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('start/<str:langCode>/', start, name='start'),
+    path('start/<str:langCode>/<str:refLinkEncoded>/', start, name='start'),
     path('locales/', getLocales, name='locales'),
     path('ssrdata/<str:langCode>/', getSSRData, name='getTranslation'),
     path('question/<str:langCode>/<int:index>/<str:token>/', loadQuestion, name='loadQuestion'),
@@ -27,5 +27,7 @@ urlpatterns = [
     path('vote/', vote, name='voteSelection'),
     path('remarks/', updateRemark, name='updateRemark'),
     path('answers/<str:slug>/', getGivenAnswers, name='getGivenAnswers'),
-    path('status/<str:slug>/', getStatus, name='getStatus')
+    path('status/<str:slug>/', getStatus, name='getStatus'),
+    path('generatematrix/', generateMatrix, name='generateMatrix'),
+    path('readmatrix/', readMatrix, name='readMatrix')
 ]

@@ -34,7 +34,8 @@ const indexStore = new Vapi({
   .get({
     action: 'start',
     property: 'data',
-    path: ({ language }) => `start/${language}/`
+    path: ({ language, refLinkEncoded }) =>
+      `start/${language}/${refLinkEncoded}/`
   })
   .get({
     action: 'loadQuestion',
