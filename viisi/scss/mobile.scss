@@ -45,6 +45,8 @@
     padding: 0.5em !important;
     text-align: center !important;
     border-top: 1px solid $linkColor;
+    bottom: 0px;
+    top: unset  !important;
   }
   .answer-remark {
     left: 3em !important;
