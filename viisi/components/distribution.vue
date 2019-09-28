@@ -60,10 +60,6 @@ import score from '~/mixins/score'
 export default {
   mixins: [i18n, score],
   props: {
-    isInitialBalloonOpen: {
-      type: Boolean,
-      default: false
-    },
     name: {
       type: String,
       default: ''
@@ -123,7 +119,6 @@ export default {
   },
   methods: {
     vote: function(positive) {
-      this.isInitialBalloonOpen = false
       this.$store.dispatch('voteSelection', {
         data: {
           positive: positive,
