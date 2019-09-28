@@ -82,7 +82,8 @@ export default {
     }
     await this.$store.dispatch('startTest', {
       params: {
-        language: _t.language
+        language: _t.language,
+        refLinkEncoded: document.referrer ? btoa(document.referrer) : '-'
       }
     })
     this.isLoading = false
@@ -235,12 +236,12 @@ export default {
 }
 .footer {
   position: fixed;
-  bottom: 0px;
+  top: 1em;
   padding-bottom: 1em;
-  text-align: left;
+  text-align: right;
   width: 100%;
   left: 0px;
-  padding-left: 1em;
+  padding-left: 2em;
 }
 .footer a {
   color: $linkColor;
