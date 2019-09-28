@@ -3,7 +3,7 @@
     div(v-if="isAtWelcomeScreen")
       div.question-content
         div.welcome-text 
-          h1 {{ __i("welcome-text-title") }}
+          h2 {{ __i("welcome-text-title") }}
           p {{ __i("welcome-text") }}
           p
             div 
@@ -24,9 +24,7 @@
             div
               i.fas.fa-heart
               span {{ __i("welcome-text-feedback") }}
-            div
-              i.fas.fa-bug
-              span(style="color: red") This is an early version. Expect bugs and unfinished parts.
+           
         div.actions
           button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
@@ -272,12 +270,12 @@ export default {
   height: 23em;
 }
 .question-text {
-  padding-top: 2em;
+  padding-top: 1em;
   padding-left: 2em;
-  padding-right: 2em;
+  padding-right: 1em;
   padding-bottom: 1em;
   font-family: 'Roboto Slab';
-  font-size: 21px;
+  font-size: 18px;
   line-height: 1.7;
 }
 .welcome-text b {
@@ -355,7 +353,6 @@ ul {
   position: relative;
   left: 5%;
   bottom: 0.5em;
-  margin-left: -0.5em;
   padding-top: 1em;
   padding-bottom: 1em;
 }
@@ -404,6 +401,7 @@ a {
 .answer-box {
   font-size: 1.5em;
   vertical-align: sub;
+  float: left;
 }
 .additional-remarks-button {
   margin-left: 0.5em;
@@ -474,24 +472,15 @@ a {
 .image-answer img {
   width: 50%;
 }
-.importance-toggle {
-  margin-left: 0.5em;
-}
 .importance-toggle .far {
   color: #ff7a00;
+  margin-left: 0.2em;
 }
 
 .importance-toggle .fas {
   color: #ff7a00;
+  margin-left: 0.2em;
 }
-/*
-
-        div.rect1(style="background-color: black")
-        div.rect2(style="background-color: #e4ae4c")
-        div.rect3(style="background-color: #1c105a")
-        div.rect4(style="background-color: #ebeef3; border-color: black") 
-        div.rect5(style="background-color: #39BA95") 
-*/
 .welcome-text div .fa-forward {
   color: #e4ae4c;
 }

@@ -33,7 +33,7 @@
     
     div.languages(v-if="!isLoading")
       select
-        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)") {{ __i('language') }}: {{ locale }}
+        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)") {{ __i('locale-'+locale) }}
        
 </template>
 <script>
@@ -247,6 +247,7 @@ export default {
   color: $linkColor;
   text-decoration: none;
   padding-right: 1em;
+  font-size: small;
 }
 // loader
 .spinner {
@@ -330,14 +331,15 @@ export default {
 select {
   padding: 5px 5px 5px 5px;
   font-size: 16px;
-  border: 1px solid #1c105a;
+  border: 1px solid $nextButtonBackground;
   height: 34px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: #1c105a;
+  background-color: $nextButtonBackground;
   color: white;
   border-radius: 4px;
+  text-align: center;
 }
 
 /* CAUTION: IE hackery ahead */

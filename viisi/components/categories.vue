@@ -137,12 +137,16 @@ export default {
 .breadcrumb-horizontal ul li a {
   text-decoration: none;
 }
+.breadcrumb-horizontal ul li a:focus {
+  outline: none;
+}
 .inactive {
   color: grey;
 }
 .active {
   color: $linkColor;
   border-bottom: 1px solid grey;
+  font-weight: bold;
 }
 .mobile-answered {
   color: $answeredColor !important;
