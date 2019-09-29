@@ -305,7 +305,6 @@ ul {
 }
 .answer-selected {
   color: $selectedAnswerBackground !important;
-  font-weight: bold;
 }
 .actions {
   display: flex;

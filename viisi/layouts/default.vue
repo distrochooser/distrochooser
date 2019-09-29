@@ -49,9 +49,6 @@ body {
     width: 250px;
     margin-bottom: 1em;
   }
-  .breadcrumb-horizontal {
-    width: 20%;
-  }
 }
 .top-logo-container {
   text-align: center;
