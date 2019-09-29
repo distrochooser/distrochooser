@@ -19,7 +19,7 @@
         div.rect4(style="background-color: #ebeef3; border-color: black") 
         div.rect5(style="background-color: #39BA95")    
       span.calculation-text {{ $store.state.sessionStatus.done }} {{ __i("checked-criteria-count") }}
-    categories(:language="language",v-if="!isLoading")
+    categories(:language="language",v-if="!isLoading && !$store.state.isSubmitted")
     div(v-if="!isLoading && !isFinished && !$store.state.isSubmitted")
       question(:language="language")
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
