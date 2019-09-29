@@ -604,7 +604,7 @@ msgid "matrix-avoids-systemd"
 msgstr "Vermeidet die Nutzung von systemd"
 
 msgid "matrix-uses-systemd"
-msgstr "uses systemd"
+msgstr "Verwendet systemd"
 
 msgid "built-for-anonymization"
 msgstr "Entwickelt für Zwecke der Anonymisierung"
