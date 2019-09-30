@@ -11,7 +11,7 @@ msgid "about"
 msgstr "about this project"
 
 msgid "question-is-multiplechoice"
-msgstr "You can give multiple answers here"
+msgstr "You may choose multiple answers"
 
 msgid "vendor-text"
 msgstr "A project by chmr.eu"
@@ -22,54 +22,41 @@ msgstr "Get result"
 msgid "category-welcome"
 msgstr "Welcome!"
 
-
 msgid "software-use-case"
 msgstr "Software: Use case"
-
 
 msgid "computer-knowledge-category"
 msgstr "Computer knowledge"
 
-
 msgid "linux-knowledge-category"
-msgstr "Linux and I"
-
+msgstr "Linux and you"
 
 msgid "presets-category"
 msgstr "Installation: Presets"
 
-
 msgid "hardware-category"
 msgstr "Hardware support"
-
 
 msgid "help-category"
 msgstr "Help source"
 
-
 msgid "ux-concept-category"
 msgstr "User experience"
-
 
 msgid "price-category"
 msgstr "Distributions: Price"
 
-
 msgid "scope-category"
 msgstr "Distributions: Scope"
-
 
 msgid "ideology-category"
 msgstr "Distributions: Ideology"
 
-
 msgid "privacy-category"
 msgstr "Distributions: Privacy"
 
-
 msgid "software-admin-category"
 msgstr "Administration"
-
 
 msgid "software-updates-category"
 msgstr "Software: Updates"
@@ -77,30 +64,28 @@ msgstr "Software: Updates"
 msgid "special-features-category"
 msgstr "Software: Special features"
 
-
 msgid "recommendation-category"
-msgstr "Your recommendation"
-
+msgstr "your recommendation"
 
 msgid "welcome-text-title"
-msgstr "Welcome to the distrochooser!"
-
+msgstr "Welcome to distrochooser.de!"
 
 msgid "welcome-text"
-msgstr "Welcome! This test will help you to choose a suitable Linux distribution for you."
+msgstr "Welcome! This test will help you choose a suitable Linux distribution."
 
 msgid "welcome-text-skip"
 msgstr "You can always skip questions"
 
 msgid "welcome-text-result-get"
-msgstr "You can always click on 'my recommendation' to receive your result"
+msgstr "You can always click on 'your recommendation' to receive your result"
 
 msgid "welcome-text-order"
-msgstr "You can answer in arbitrary order"
+msgstr "You may answer in arbitrary order"
 
 msgid "welcome-text-remove"
 msgstr "You can delete answers at any time"
 
+//TODO: Das kann man bestimmt so viel besser formulieren.
 msgid "welcome-text-feedback"
 msgstr "Please don't forget to like or give a result thumbs down if it does not fit your needs!"
 
@@ -109,7 +94,6 @@ msgstr "Mark answers as important to give them more weight"
 
 msgid "locale-link-en"
 msgstr "This text is available in english"
-
 
 msgid "locale-link-de"
 msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
@@ -133,13 +117,13 @@ msgid "vote-reminder"
 msgstr "You like this distribution? Give it a thumbs up!"
 
 msgid "about-intro-text"
-msgstr "The target of distrochooser.de is to help Linux beginners to orientate and should be a help while choosing a suitable Linux distribution.<br>The results are only suggetions based on your answers. Please note: There may be more complex answer combinations causing wrong/ unrealistic results"
+msgstr "distrochooser.de attempts to help Linux beginners to choose a Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers."
 
 msgid "about-intro-test-count"
-msgstr "Since 14th June 2014 distrochooser.de processed %tests% tests."
+msgstr "Since the 14th of June 2014 distrochooser.de processed %tests% tests."
 
 msgid "about-licenses"
-msgstr "Distrochooser is double licensed."
+msgstr "Distrochooser is dual-licensed."
 
 msgid "privacy-header"
 msgstr "Datenschutzerklärung"
@@ -150,17 +134,18 @@ msgstr "Impressum"
 msgid "about-licenses-source"
 msgstr "The sourcecode"
 
+//TODO: LICENSELICENSELICENSE
 msgid "about-licenses-source-text"
 msgstr "The sourcecode is licensed on the license written in LICENSE file, which is placed in the linked repository."
 
 msgid "about-licenses-database"
-msgstr "The data"
+msgstr "The data base"
 
 msgid "about-licenses-database-text"
-msgstr "The question/ answer structure, the result matrix and statistics are proprietary. You can use them only with our permission. The distribution logos and texts are excluded by this rule, because they are owned by their license owners."
+msgstr "The underlying data of the question/ answer structure, the result matrix and statistics are proprietary. You may use them only with our prior permission. The description texts and logos of the various distributions are subject to the licences of the respective copyright holders."
 
 msgid "no-results-text"
-msgstr "Distrochooser was not able to find a suitable result based on your answers. It would be great to drop us a note that we can investigate this."
+msgstr "Distrochooser was not able to find a suitable result based on your answers. It would be great help, if you would write us some feedback, so that we can investigate this."
 
 msgid "close-additional-info"
 msgstr "Close"
