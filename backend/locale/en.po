@@ -38,7 +38,7 @@ msgid "hardware-category"
 msgstr "Hardware support"
 
 msgid "help-category"
-msgstr "Help source"
+msgstr "Source for help"
 
 msgid "ux-concept-category"
 msgstr "User experience"
@@ -149,16 +149,16 @@ msgid "close-additional-info"
 msgstr "Close"
 
 msgid "no-answers"
-msgstr "You gave no answers"
+msgstr "You gave no answers."
 
 msgid "get-my-result"
-msgstr "Return my result!"
+msgstr "Shows you your results."
 
 msgid "additional-info"
 msgstr "Additional information"
 
 msgid "remark-placeholder"
-msgstr "Your feedback to us"
+msgstr "Your feedback (max 250 letters)"
 
 msgid "result-remarks-button"
 msgstr "Submit feedback"
@@ -167,7 +167,7 @@ msgid "distribution-homepage"
 msgstr "Distribution homepage"
 
 msgid "result-remarks-added"
-msgstr "Thank you for your feedback (250 letters)"
+msgstr "Thank you for your feedback!"
 
 msgid "share-result"
 msgstr "Share my result"
@@ -176,7 +176,7 @@ msgid "software-use-case-question"
 msgstr "Some distributions are made for a special purpose, some for daily use. What do you need?"
 
 msgid "software-use-case-answer-daily"
-msgstr "I want to use Linux for daily use."
+msgstr "I want a distribution for daily use."
 
 msgid "software-use-case-anonymous-answer"
 msgstr "I want to use Linux for anonymous web browsing."
@@ -186,125 +186,117 @@ msgstr "I prefer a distribution which is supported by game publishers."
 
 
 msgid "computer-knowledge-question"
-msgstr "How would I rate my knowledge using my computer?"
+msgstr "How would you rate your proficiency using a computer?"
 
 msgid "computer-knowledge-answer-beginner"
-msgstr "I often need help by other users troubleshooting problems with my computer"
+msgstr "I often need help from others to fix problems with my computer"
 
 msgid "computer-knowledge-answer-advanced"
-msgstr "I am already able to solve some problems with my computer by myself"
+msgstr "I am already able to solve some computer problems by myself"
 
 msgid "computer-knowledge-answer-professional"
-msgstr "I can troubleshoot problems with my computer by myself"
+msgstr "I can troubleshoot most or all computer problems by myself"
 
 
 msgid "linux-knowledge-question"
-msgstr "How would I rate my knowledge with Linux itself?"
+msgstr "How would you rate your knowledge of Linux itself?"
 
 msgid "linux-knowledge-answer-beginner"
-msgstr "I do not have any or just a little knowledge about Linux"
+msgstr "I do not have any or just little knowledge about Linux"
 
 msgid "linux-knowledge-answer-advanced"
-msgstr "I already used Linux for some purposes"
+msgstr "I have already used Linux for some purposes"
 
 msgid "linux-knowledge-answer-professional"
-msgstr "I have a good knowledge about the Linux operating system"
-
+msgstr "I have a good understanding about the Linux operating system"
 
 
 msgid "presets-question"
-msgstr "How many preferences do you wish to change by yourself during installation? How many configuration variables should be filled out with a default value?"
+msgstr "How many settings do you wish to tweak by yourself during installation? How many configuration variables should be filled with default values?"
 
 msgid "presets-question-answer-manypresets"
 msgstr "I want to use the default preset values in the installation assistant"
 
 msgid "presets-question-answer-ownselection"
-msgstr "I will do settings on myself"
+msgstr "I want to choose the settings by myself"
 
 msgid "presets-question-answer-guiselections"
 msgstr "I want to configure as much as possible using graphical applications"
 
 
-
 msgid "hardware-question"
-msgstr "It is important to know how old is the system because some distributions won't run on old computers."
+msgstr "It is important to know how old your computer hardware is, since some distributions won't run on old computers."
 
 msgid "additional-info-hardware"
-msgstr "For years, some distribution were using the 32 bit architecture, which allowed to allocate 4 gigabytes of memory. Newer distributions tend to ditch the 32 bit support. They are often offering 64 bit versions, which allow to use more than 4 gigabytes of memory. Computers since 2003 (AMD)/ 2005 (Intel) should support 64 bits."
-
-
+msgstr "For years, some distribution were using the 32 bit architecture, which allows to allocate up to 4 gigabytes of memory. Newer distributions tend to ditch the 32 bit in favour of the 64 bit support, which allows to allocate more than 4 gigabytes of memory. Since 2005 nearly all Computers should support 64 bit."
 
 msgid "hardware-question-oldpc"
-msgstr "I'm not sure about this and/ or my computer already has performance issues"
+msgstr "I'm not sure about this and/or my computer already has performance issues and/or only supports 32 bit"
 
 msgid "hardware-question-newpc"
-msgstr "The performance of my computer is good, I don't expierience performance issues yet."
-
+msgstr "The performance of my computer is good, I don't experience any performance issues, my hardware supports 64 bit"
 
 
 msgid "help-question"
-msgstr "Some distributions prefer articles in wikis for troubleshooting. What do I prefer?"
+msgstr "Some distributions prefer articles in wikis for troubleshooting. What do you prefer?"
 
 msgid "help-question-tutorials"
 msgstr "I am able to solve my problems using guides from wiki pages or tutorials"
 
 msgid "help-question-user-exchange"
-msgstr "I prefer asking other users for help"
-
+msgstr "I prefer asking others for help"
 
 
 msgid "ux-concept-question"
-msgstr "Linux can use a lot of different User Interfaces (\"Desktops\"). Many distributions ship one desktop as default. It is important to know if there are any preferences for a concept. You can switch and install new desktops at any time!"
+msgstr "Linux can use a lot of different User Interfaces (\"Desktops\"). Many distributions ship one desktop as default. It is important to know if you have any preferences for a desktop concept. You can switch and install new desktops at any time!"
 
 msgid "ux-concept-answer-windows-like"
-msgstr "I prefer a windows like user interface"
+msgstr "I prefer a windows-like user interface"
 
 msgid "ux-concept-answer-mac-like"
-msgstr "I prefer a macOS like user interface"
-
+msgstr "I prefer a macOS-like user interface"
 
 msgid "ux-concept-tiling"
-msgstr "I prefer a tile based window appearance"
+msgstr "I prefer a tile-based window appearance"
 
 msgid "ux-concept-closed-expierience"
-msgstr "I just prefer a closed expierience"
-
+msgstr "I prefer a closed experience"
 
 msgid "price-question"
-msgstr "Most distributions are free. Some distributions offer additional support for an (initial) fee."
+msgstr "Most distributions are free. Some distributions offer additional support for a one-time fee."
 
 msgid "price-answer-free"
 msgstr "I prefer a free-to-use distribution"
 
 msgid "price-answer-paid"
-msgstr "I can afford a fee to use the distribution"
+msgstr "I would be fine to pay a fee"
 
 
 msgid "scope-question"
-msgstr "Different Distributions install a different amount of programs. Some are installing a complete amount of programs to work \"out of the box\". Other distributions installing only a base install to let the user decide what software to use."
+msgstr "Different distributions pre-install different amounts of software. Some install a complete suite of basic programs to work \"out of the box\". Other distributions offer only a base install to then let the user install what programs they want to use."
 
 msgid "scope-answer-fullinstall"
-msgstr "I prefer a distribution shipping all the programs I need to start working immediate after installation"
+msgstr "I prefer a distribution shipping all the basic programs I need to start working immediately after installation"
 
 msgid "scope-answer-ownselection"
-msgstr "I want to select the programs to install by myself"
+msgstr "I want to chose the basic programs to install myself"
 
 
 msgid "ideology-question"
-msgstr "The (license) ideology of a distribution is always a contentious debate. There are distributions using mostly \"free-licenses\", others also use \"nonfree\" software."
+msgstr "The (license) ideology of a distribution is a contentious debate. There are distributions using mostly \"free-licenses\", others also use \"non-free\" software."
 
 msgid "additional-info-ideology"
-msgstr " Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for drivers. Nonfree software does not distribute it's sourcecode and modifications are not allowed. It is important to know if you have some preferences in a license model."
+msgstr "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute it's sourcecode and modifications are not allowed."
 
 msgid "ideology-answer-free"
 msgstr "I want to use free licenses as much as I can"
 
 msgid "ideology-answer-proprietary-ok"
-msgstr "I'm fine with unfree licenses as long as my system works"
+msgstr "I'm fine with non-free licenses as long as my system works"
 
 
 msgid "privacy-question"
-msgstr "Some distributions use online services to improve the user experience. This may affect the privacy of the user, the user can be tracked when using such online features."
+msgstr "Some distributions use online services to improve the user experience. This may affect the privacy of the user, i.e. the user can be tracked when using such online features."
 
 msgid "privacy-answer-highprivacy"
 msgstr "I do not want this"
@@ -332,6 +324,7 @@ msgstr "Many distributions use 'systemd' to start the operating system itself. S
 msgid "answer-isolation"
 msgstr "Applications should be executed in a isolated environment per default"
 
+
 msgid "software-updates-question"
 msgstr "Some distributions offer faster updates, which can affect system stability. What do you prefer?"
 
@@ -346,7 +339,7 @@ msgstr "I want to avoid systemd"
 
 
 msgid "result-submitted-hint"
-msgstr "Computing result"
+msgstr "Calculating result"
 
 msgid "reason-header"
 msgstr "Show reasons"
@@ -361,7 +354,7 @@ msgid "answer-is-blocking"
 msgstr "Following answers are excluding this answer"
 
 msgid "answer-is-blocked"
-msgstr "This answer contradicts following answer you have given"
+msgstr "This answer contradicts this former answer you have given"
 
 msgid "reason-blocked-by-others-entry"
 msgstr "\"{0}\" disagrees \"{1}\""
@@ -380,10 +373,10 @@ msgstr "Remove importance"
 
 
 msgid "reason-list-header-negative"
-msgstr "We cannot advice the distribution for you because of:"
+msgstr "We cannot recommend this distribution for you because:"
 
 msgid "reason-list-header-neutral"
-msgstr "Following critera do not clear the decision"
+msgstr "The following criteria were not factored into this"
 
 msgid "reason-list-header-blocked-by-others"
 msgstr "This answer is blocked by other answers you have given"
