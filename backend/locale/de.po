@@ -198,7 +198,7 @@ msgstr ""
 "allgemeiner Natur. Was benötige ich?"
 
 msgid "software-use-case-answer-daily"
-msgstr "Ich möchte Linux für den alltäglichen Gebrauch nutzen."
+msgstr "Ich möchte Linux für die tägliche Nutzung."
 
 msgid "software-use-case-anonymous-answer"
 msgstr "Ich möchte Linux für Zwecke der Anonymisierung nutzen."
@@ -212,7 +212,7 @@ msgstr "Wie bewerte ich meine Kenntnisse am PC?"
 
 msgid "computer-knowledge-answer-beginner"
 msgstr ""
-"Ich brauche sehr oft Hilfe von Dritten bei der Lösung von Problemen mit dem "
+"Ich benötige oft Hilfe von Dritten bei der Lösung von Problemen mit dem "
 "Computer."
 
 msgid "computer-knowledge-answer-advanced"
@@ -263,7 +263,7 @@ msgstr "Manche Distributionen laufen auf älteren Rechnern nicht, da zum Beispie
 
 msgid "hardware-question-oldpc"
 msgstr ""
-"Ich bin mir nicht sicher und/ oder mein Rechner hat bereits Probleme, "
+"Ich bin mir nicht sicher / mein Rechner hat bereits Probleme, "
 "Programme ausreichend schnell zu öffnen. "
 
 msgid "hardware-question-newpc"
@@ -279,21 +279,20 @@ msgstr ""
 
 msgid "help-question-tutorials"
 msgstr ""
-"Ich komme auch damit klar, Anleitungen und Tutorials aus Wikis zur "
-"Problemlösung heran zu ziehen. "
+"Ich ziehe gerne Anleitungen und Tutorials aus Wikis zur "
+"Problemlösung heran. "
 
 msgid "help-question-user-exchange"
 msgstr ""
-"Ich möchte mich lieber mit anderen Usern austauschen, die mir bei meinem "
+"Ich möchte mich mit anderen Benutzern austauschen, die mir bei meinem "
 "Problemen helfen. "
 
 msgid "ux-concept-question"
 msgstr ""
 "Für Linux gibt es verschiedene Oberflächen (\"Desktops\") mit verschiedenen "
 "Benutzungskonzepten. Manche Distributionen verwenden verschiedene Desktops "
-"als Standard. Es ist wichtig zu wissen, ob hier gewisse Konzepte bevorzugt "
-"werden. Es ist immer möglich, neue Desktops nachzuinstallieren bzw. zwischen "
-"diesen zu wechseln."
+"als Standard. Es ist immer möglich, neue Desktops nachzuinstallieren bzw. "
+"zwischen diesen zu wechseln. "
 
 msgid "ux-concept-answer-windows-like"
 msgstr "Ich bervorzuge eine an Windows erinnernde Oberfläche. "
@@ -308,8 +307,8 @@ msgstr "Ich habe kein bevorzugtes Benutzerkonzept. "
 
 msgid "price-question"
 msgstr ""
-"Ein Großteil der Distributionen ist kostenlos. Es gibt aber auch (Varianten "
-"von) Distributionen, die gegen einen Preis erworben werden, dafür aber z. B. "
+"Ein Großteil der Distributionen ist kostenlos. Es gibt aber auch "
+Distributionen, die gegen einen Preis erworben werden, dafür aber z. B. "
 "Support bieten."
 
 msgid "price-answer-free"
@@ -335,11 +334,9 @@ msgstr "Ich möchte die Programme selbst auswählen und installieren. "
 
 msgid "ideology-question"
 msgstr ""
-"Bei der \"Ideologie\" von Distributionen gibt es regelmäßig hitzige "
-"Diskussionen. Manche Distributionen verwenden vorwiegend oder ausschließlich "
+"Manche Distributionen verwenden vorwiegend oder ausschließlich "
 "Programme unter freien Lizenzen (z. B. \"GPL\"), welche den Quelltext "
-"freigeben und keine Nutzung oder Modifikation ausschließen, sofern bestimmte "
-"Bedingungen erfüllt werden."
+"freigeben und keine Nutzung oder Modifikation ausschließen. "
 
 msgid "additional-info-ideology"
 msgstr ""
@@ -356,7 +353,7 @@ msgstr ""
 
 msgid "ideology-answer-proprietary-ok"
 msgstr ""
-"Wenn mein System damit funktioniert, benutze ich auch geschlossene Treiber. "
+"Wenn mein System damit funktioniert, benutze ich auch unfreie Treiber. "
 
 msgid "privacy-question"
 msgstr ""
