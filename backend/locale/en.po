@@ -85,9 +85,8 @@ msgstr "You may answer in arbitrary order"
 msgid "welcome-text-remove"
 msgstr "You can delete answers at any time"
 
-//TODO: Das kann man bestimmt so viel besser formulieren.
 msgid "welcome-text-feedback"
-msgstr "Please don't forget to like or give a result thumbs down if it does not fit your needs!"
+msgstr "Please rate your results, depending on how well it fits your needs."
 
 msgid "welcome-text-importance"
 msgstr "Mark answers as important to give them more weight"
@@ -134,15 +133,14 @@ msgstr "Impressum"
 msgid "about-licenses-source"
 msgstr "The sourcecode"
 
-//TODO: LICENSELICENSELICENSE
 msgid "about-licenses-source-text"
-msgstr "The sourcecode is licensed on the license written in LICENSE file, which is placed in the linked repository."
+msgstr "The sourcecode is licensed under the license written in the 'LICENSE' file, which is placed in the linked repository."
 
 msgid "about-licenses-database"
 msgstr "The data base"
 
 msgid "about-licenses-database-text"
-msgstr "The underlying data of the question/ answer structure, the result matrix and statistics are proprietary. You may use them only with our prior permission. The description texts and logos of the various distributions are subject to the licences of the respective copyright holders."
+msgstr "The underlying data, including the question/answer structure, the result matrix and statistics, are proprietary. You may use them only with our prior permission. The description texts and logos of the various distributions are subject to the licences of the respective copyright holders."
 
 msgid "no-results-text"
 msgstr "Distrochooser was not able to find a suitable result based on your answers. It would be great help, if you would write us some feedback, so that we can investigate this."
