@@ -263,7 +263,7 @@ msgid "ux-concept-closed-expierience"
 msgstr "I prefer a closed experience"
 
 msgid "price-question"
-msgstr "Most distributions are free. Some distributions offer additional support for a (initial) fee."
+msgstr "Most distributions are free. Some distributions offer additional support for a one-time fee."
 
 msgid "price-answer-free"
 msgstr "I prefer a free-to-use distribution"
