@@ -27,7 +27,7 @@ msgid "question-is-multiplechoice"
 msgstr "Mehrere Antworten sind möglich"
 
 msgid "vendor-text"
-msgstr "Ein Projekt vom chmr.eu"
+msgstr "Ein Projekt von chmr.eu"
 
 msgid "get-result"
 msgstr "Zum Ergebnis"
@@ -85,7 +85,7 @@ msgstr "Willkommen beim Distrochooser"
 
 msgid "welcome-text"
 msgstr ""
-"Willkommen auf distrochooser.de. Dieser Test soll Dir helfen, dich in der "
+"Willkommen auf distrochooser.de. Dieser Test soll dir helfen, dich in der "
 "Welt der Linux-Distributionen zu orientieren."
 
 msgid "welcome-text-skip"
@@ -219,7 +219,7 @@ msgid "computer-knowledge-answer-advanced"
 msgstr "Ich kann einige Probleme selbstständig lösen."
 
 msgid "computer-knowledge-answer-professional"
-msgstr "Ich kann mir bei den meißten Problemen mit dem Computer selbst helfen."
+msgstr "Ich kann mir bei den meisten Problemen mit dem Computer selbst helfen."
 
 msgid "linux-knowledge-question"
 msgstr "Wie bewerte ich meine Kenntnisse rund um Linux?"
@@ -249,7 +249,7 @@ msgstr ""
 msgid "presets-question-answer-guiselections"
 msgstr ""
 "Ich bevorzuge viele Auswahlmöglichkeiten und möchte viele Dinge über die "
-"graphische Oberfläche konfigurieren können. "
+"grafische Oberfläche konfigurieren können. "
 
 msgid "hardware-question"
 msgstr ""
