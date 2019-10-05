@@ -385,7 +385,7 @@ msgid "matrix-supports-daily-usage"
 msgstr "Suitable for daily use"
 
 msgid "matrix-privacy-not-beneficial"
-msgstr "Distribution concept is not beneficial for anonymization purposes"
+msgstr "Distribution concept is not beneficial for anonymisation purposes"
 
 msgid "matrix-supports-gaming-usage"
 msgstr "Distribution is actively supported by game publishers"
@@ -400,36 +400,34 @@ msgid "matrix-professional-knowledge"
 msgstr "Suitable for professionals"
 
 msgid "matrix-linux-knowledge-higher"
-msgstr "Usage requires lower Linux knowledge than answered"
+msgstr "Usage requires less Linux knowledge than answered"
 
 msgid "matrix-computer-knowledge-higher"
-msgstr "Usage requires lower computer knowledge than answered"
+msgstr "Usage requires less computer knowledge than answered"
 
 msgid "matrix-linux-beginner"
 msgstr "Suitable for beginners in Linux"
 
-
 msgid "matrix-installation-presets-always-given"
-msgstr "The installation always sets presets which may need to be resetted after install"
-
+msgstr "The installation sets presets which may need to be reset after install"
 
 msgid "matrix-installation-presets-gui"
-msgstr "Many settings can be done using a system control application"
+msgstr "Many settings can be done via a graphical interface"
 
 msgid "matrix-installation-assistant-present"
-msgstr "Installation using a wizard with defaults"
+msgstr "The installation uses a installation 'wizard' with default settings"
 
 msgid "matrix-hardware-oldpc-ubuntu"
-msgstr "You may encounter window compositor effect lags and you have to disable them"
+msgstr "You may encounter window compositor effect lags. It may be necessary to disable animations."
 
 msgid "matrix-hardware-newpc"
 msgstr "Runs on latest hardware"
 
 msgid "matrix-user-exchange"
-msgstr "User community exists for knowledge exchange"
+msgstr "There are user communities for knowledge sharing"
 
 msgid "matrix-tutorial"
-msgstr "Tutorials for problem solving exists"
+msgstr "There are tutorials for troubleshooting and problem-solving"
 
 msgid "matrix-mac-like"
 msgstr "GUI concept has elements of macOS"
@@ -438,16 +436,16 @@ msgid "matrix-windows-like-not-fullfilled"
 msgstr "GUI concept differs from Windows a lot"
 
 msgid "matrix-closed-expierience"
-msgstr "Has own Wallpapers, icons and themes"
+msgstr "Has own wallpapers, icons and themes"
 
 msgid "matrix-has-windows-like-variant"
-msgstr "Has variants with a windows like user interface"
+msgstr "Has variants with a windows-like user interface"
 
 msgid "matrix-paid-version-existing"
-msgstr "Fee based version is existing"
+msgstr "There is a non-free version of this distribution"
 
 msgid "matrix-gaming-packages-stable-but-old"
-msgstr "Software versions are maybe not recent enough for gaming"
+msgstr "Software versions may not be recent enough for gaming"
 
 msgid "live-mode-only"
 msgstr "Can only be started using discs or usb sticks"
@@ -456,16 +454,16 @@ msgid "matrix-without-fee"
 msgstr "Usable without fee"
 
 msgid "matrix-paid"
-msgstr "Paid version existing"
+msgstr "There is a non-free version of this distribution"
 
 msgid "matrix-fullinstall"
 msgstr "Installs all needed programs"
 
 msgid "matrix-ownscope-install"
-msgstr "Programs have to be selected to install"
+msgstr "All programs to be used must be chosen by yourself"
 
 msgid "matrix-free-software-unfree-per-default"
-msgstr "Unfree programs are installed by default"
+msgstr "Non-free programs are installed by default"
 
 msgid "matrix-enforces-free"
 msgstr "Enforces usage of free software"
@@ -474,7 +472,7 @@ msgid "matrix-mostly-free"
 msgstr "Works mostly with free software"
 
 msgid "matrix-has-default-settings"
-msgstr "Has a set of default settings"
+msgstr "Has default settings"
 
 msgid "matrix-privacy-ok"
 msgstr "Beneficial for user privacy"
@@ -496,13 +494,13 @@ msgid "matrix-fast-updates"
 msgstr "Software updates are released as fast as possible, which makes them unstable"
 
 msgid "matrix-has-control-panel"
-msgstr "Contains a preinstalled control center"
+msgstr "Contains a pre-installed control center"
 
 msgid "matrix-user-selection-affects-privacy"
 msgstr "User has to select the software to use"
 
 msgid "matrix-selection-by-user"
-msgstr "Scope of preinstalled programs is decided by user"
+msgstr "Scope of pre-installed programs is decided by user"
 
 msgid "matrix-updates-fast"
 msgstr "Updates are fast, but can be unstable"
@@ -517,10 +515,10 @@ msgid "matrix-uses-systemd"
 msgstr "uses systemd"
 
 msgid "built-for-anonymization"
-msgstr "Build for anonymization purposes"
+msgstr "Build for anonymisation purposes"
 
 msgid "matrix-administration-shell"
-msgstr "Administration mostly using shell commands"
+msgstr "Administration is mostly done by using shell commands"
 
 msgid "matrix-oldpc-no-32bit"
 msgstr "Does not support old computers without 64 bit support"
