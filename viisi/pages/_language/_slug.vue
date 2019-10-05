@@ -85,13 +85,20 @@ export default {
   methods: {
     prepareLanguageData: async function() {
       await this.$store.dispatch('getLocales')
-      var lang =
-        typeof this.$route.params.language !== 'undefined' &&
-        this.$store.state.locales.indexOf(this.$route.params.language) !== -1
-          ? this.$route.params.language
-          : 'en'
-
-      this.language = lang
+      if (typeof this.$route.params.language === 'undefined') {
+        // only apply the browser language if no language flag is set
+        var browserLanguage = window.navigator.language.toLowerCase()
+        if (this.$store.state.locales.indexOf(browserLanguage) !== -1) {
+          this.language = browserLanguage
+        }
+      } else {
+        var lang =
+          typeof this.$route.params.language !== 'undefined' &&
+          this.$store.state.locales.indexOf(this.$route.params.language) !== -1
+            ? this.$route.params.language
+            : 'en'
+        this.language = lang
+      }
     },
     switchLanguage: async function(locale) {
       this.language = locale
