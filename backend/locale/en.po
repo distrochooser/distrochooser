@@ -202,7 +202,7 @@ msgid "linux-knowledge-question"
 msgstr "How would you rate your knowledge of Linux itself?"
 
 msgid "linux-knowledge-answer-beginner"
-msgstr "I do not have any or just little knowledge about Linux"
+msgstr "I have little or no knowledge about Linux"
 
 msgid "linux-knowledge-answer-advanced"
 msgstr "I have already used Linux for some purposes"
