@@ -170,9 +170,16 @@ def updateRemark(request):
 
 def getGivenAnswers(request, slug:str):
   answers = GivenAnswer.objects.filter(session__publicUrl=slug) 
+  answerList = []
+  importanceList = []
+  for answer in answers:
+    answerList.append(answer.answer.msgid)
+    if answer.isImportant:
+      importanceList.append(answer.answer.msgid)
   return JsonResponse(
     {
-      "answers": list(answers.values_list("answer__msgid",flat=True)),
+      "answers": answerList,
+      "important": importanceList,
       "categories": list(answers.values_list("answer__question__category__msgid",flat=True))
     }
   )

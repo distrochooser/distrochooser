@@ -199,7 +199,7 @@ indexStore.mutations.setOldTestData = state => {
       //TODO: IS REDUNDANT
       msgid: answer,
       answered: true,
-      important: false,
+      important: state.oldTestData.important.indexOf(answer) !== -1,
       category: category,
       blockedAnswers: []
     })
