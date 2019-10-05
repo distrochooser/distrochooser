@@ -71,3 +71,4 @@ viisi/pages/info/_content/
 backend/distrochooser/importmatrix/
 backend/db.sqlite*
 backend/data.json
+.vscode/
