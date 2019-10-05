@@ -17,6 +17,9 @@
   }
 }
 @media only screen and (max-width: $mobileWidth) {
+  .top-logo {
+    width: 30% !important;
+  }
   .breadcrumb-horizontal {
     left: -25px !important;
     padding-left: 0px;

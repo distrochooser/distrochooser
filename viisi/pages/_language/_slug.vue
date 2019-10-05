@@ -31,9 +31,9 @@
       a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
     
     div.languages(v-if="!isLoading")
-      select
-        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)") {{ __i('locale-'+locale) }}
-       
+      span(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)")
+        i.flag-icon(:class="'flag-icon-'+locale")
+   
 </template>
 <script>
 import categories from '~/components/categories'
@@ -345,22 +345,9 @@ export default {
 .language {
   margin-right: 1em;
 }
-.language select {
-  position: absolute;
-  bottom: 1em;
-}
-select {
-  padding: 5px 5px 5px 5px;
-  font-size: 16px;
-  border: 1px solid $nextButtonBackground;
-  height: 34px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: $nextButtonBackground;
-  color: white;
-  border-radius: 4px;
-  text-align: center;
+.flag-icon {
+  cursor: pointer;
+  font-size: 13pt;
 }
 
 /* CAUTION: IE hackery ahead */
