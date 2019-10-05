@@ -38,6 +38,11 @@ const indexStore = new Vapi({
       `start/${language}/${refLinkEncoded}/`
   })
   .get({
+    action: 'language',
+    property: 'data',
+    path: ({ language }) => `translation/${language}/`
+  })
+  .get({
     action: 'loadQuestion',
     property: 'data',
     path: ({ language, index, token }) =>
@@ -150,6 +155,15 @@ indexStore.actions.startTest = async (store, payload) => {
   await store.dispatch('start', payload)
   store.commit('setCurrentDisplayData', store.state.data)
   store.commit('setCurrentQuestionData', store.state.data)
+}
+
+indexStore.actions.switchLanguage = async (store, payload) => {
+  await store.dispatch('language', payload)
+  store.commit('setLanguageData', store.state.data)
+}
+
+indexStore.mutations.setLanguageData = (state, data) => {
+  state.translations = data.translations
 }
 
 indexStore.mutations.setCurrentDisplayData = (state, data) => {

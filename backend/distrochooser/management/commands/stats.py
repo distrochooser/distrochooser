@@ -8,7 +8,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
       visitors = UserSession.objects.filter(dateTime__gte=datetime.now()-timedelta(days=7)).order_by("dateTime")
       backlinks = UserSession.objects.filter(referrer__isnull=False, dateTime__gte=datetime.now()-timedelta(days=7)).values('referrer').annotate(total=Count('referrer')).order_by('total').values("referrer","total")
-      import asciichartpy
       data = {}
       finishedTests = {}
       for visitor in visitors:

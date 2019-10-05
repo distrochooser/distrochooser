@@ -59,18 +59,13 @@ export default {
     }
   },
   async mounted() {
-    const _t = this
-    await this.$store.dispatch('getLocales')
-    var lang =
-      typeof this.$route.params.language !== 'undefined' &&
-      this.$store.state.locales.indexOf(this.$route.params.language) !== -1
-        ? this.$route.params.language
-        : 'en'
+    await this.prepareLanguageData()
     var testSlug =
       typeof this.$route.params.slug !== 'undefined'
         ? this.$route.params.slug
         : null
-    _t.language = lang
+
+    const _t = this
     if (testSlug !== null) {
       await this.$store.dispatch('getOldAnswers', {
         params: {
@@ -88,9 +83,36 @@ export default {
     this.isLoading = false
   },
   methods: {
-    switchLanguage: function(locale) {
-      //TODO: Implement proper method with reloading the language data on the fly
-      window.location.href = '/' + locale
+    prepareLanguageData: async function() {
+      await this.$store.dispatch('getLocales')
+      var lang =
+        typeof this.$route.params.language !== 'undefined' &&
+        this.$store.state.locales.indexOf(this.$route.params.language) !== -1
+          ? this.$route.params.language
+          : 'en'
+
+      this.language = lang
+    },
+    switchLanguage: async function(locale) {
+      this.language = locale
+      await this.$store.dispatch('switchLanguage', {
+        params: {
+          language: this.language
+        }
+      })
+      console.log(this.$store.state.isSubmitted)
+      // resubmit result to get translated values (if needed)
+      if (this.isFinished) {
+        this.$store.dispatch('submitAnswers', {
+          params: {
+            token: this.$store.state.token,
+            language: this.language
+          },
+          data: {
+            answers: this.$store.state.givenAnswers
+          }
+        })
+      }
     }
   },
   head: function() {

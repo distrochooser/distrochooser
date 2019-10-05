@@ -67,8 +67,8 @@ def chunks(l, n):
 
 getTime = lambda: int(round(time.time() * 1000))
 
-def getSelections(userSession, data):
-  translationToUse = TRANSLATIONS[userSession.language] if userSession.language in TRANSLATIONS else TRANSLATIONS["en"]
+def getSelections(userSession, data, langCode):
+  translationToUse = TRANSLATIONS[langCode] if langCode in TRANSLATIONS else TRANSLATIONS["en"]
 
   ResultDistroSelection.objects.filter(session=userSession).delete()
   

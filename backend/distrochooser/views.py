@@ -110,6 +110,13 @@ def start(request: HttpRequest, langCode: str, refLinkEncoded: str):
     "answers": questionAndCategoryData["answers"]
   })
 
+def getLanguage(request, langCode: str):
+  if langCode not in LOCALES:
+    raise Exception("Language not installed")
+  return getJSONCORSResponse({
+    "translations": TRANSLATIONS[langCode]
+  })
+
 def loadQuestion(request: HttpRequest, langCode: str, index: int, token: str):
   # TODO: Do something with the token
   questionAndCategoryData = goToStep(index)
@@ -120,11 +127,15 @@ def loadQuestion(request: HttpRequest, langCode: str, index: int, token: str):
 
 @csrf_exempt #TODO: I don't want to disable security features, but the client does not have the CSRF-Cookie?
 def submitAnswers(request: HttpRequest, langCode: str, token: str):
+  if langCode not in LOCALES:
+    raise Exception("Language not installed")
+
+
   userSession = UserSession.objects.get(token=token)
   data = loads(request.body)
-  selections = getSelections(userSession, data)
+  selections = getSelections(userSession, data, langCode)
   return getJSONCORSResponse({
-    "url": "https://beta.distrochooser.de/{0}/{1}/".format(userSession.language, userSession.publicUrl),
+    "url": "https://beta.distrochooser.de/{0}/{1}/".format(langCode, userSession.publicUrl),
     "selections": selections,
     "token": token
   })
