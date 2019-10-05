@@ -263,6 +263,7 @@ export default {
   width: 100%;
   left: 0px;
   padding-left: 2em;
+  z-index: -9999;
 }
 .footer a {
   color: $linkColor;
