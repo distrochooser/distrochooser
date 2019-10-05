@@ -185,6 +185,9 @@ indexStore.mutations.setStarted = state => {
 
 indexStore.mutations.resetStarted = state => {
   state.isStarted = false
+  state.isSubmitted = false
+  state.result = null
+  state.currentCategory = null
 }
 
 indexStore.mutations.resetResult = state => {
