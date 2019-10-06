@@ -267,8 +267,7 @@ export default {
   top: 1em;
   padding-bottom: 1em;
   text-align: right;
-  width: 100%;
-  left: 0px;
+  right: 0px;
   padding-left: 2em;
   z-index: 0;
 }
