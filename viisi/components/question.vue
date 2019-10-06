@@ -10,6 +10,9 @@
               i.fas.fa-forward
               span {{ __i("welcome-text-skip") }}
             div
+              i.far.fa-question-circle.additional-info-icon
+              span {{ __i("welcome-text-additional-infos") }}
+            div
               i.fas.fa-play
               span {{ __i("welcome-text-result-get") }}
             div
@@ -37,6 +40,8 @@
           div {{ __i(question.additionalInfo) }}
         div.question-text(v-if="!additionalInfoShown")
           span {{ __i(question.msgid) }}
+          span.additional-remarks-button(v-if="question.additionalInfo",:data-balloon="__i('additional-infos')",data-balloon-pos="right")
+            i.far.fa-question-circle.additional-info-icon(v-on:click="flip")
         div.answer-remark(v-if="question.isMultipleChoice")
           span {{ __i("question-is-multiplechoice") }}
         div.answers(:class="{'flipped': additionalInfoShown}")
@@ -65,9 +70,6 @@
                 i.fas.fa-times-circle
                 span "{{ __i(blockingAnswer.msgid) }}"
       div.actions(v-if="!additionalInfoShown")
-        div.additional-remarks-action
-          span.additional-remarks-button(v-if="question.additionalInfo",:data-balloon="__i('additional-infos')",data-balloon-pos="left")
-            i.far.fa-question-circle.additional-info-icon(v-on:click="flip")
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
         button.next-step.step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
 </template>
@@ -428,7 +430,7 @@ a {
 }
 .additional-info-icon {
   color: $additionalInfoIcon;
-  font-size: 17pt;
+  font-size: 14pt;
 }
 .additional-remarks-action {
   margin-top: 0.6em;

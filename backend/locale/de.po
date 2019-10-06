@@ -82,6 +82,9 @@ msgstr "Du kannst jederzeit auf 'Unsere Empfehlung' klicken"
 msgid "welcome-text-order"
 msgstr "Du kannst die Fragen in beliebiger Reihenfolge beantworten"
 
+msgid "welcome-text-additional-infos"
+msgstr "Beziehe zusätzliche Informationen über das Fragezeichen-Icon"
+
 msgid "welcome-text-remove"
 msgstr "Du kannst Antworten jederzeit löschen"
 
