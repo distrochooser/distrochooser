@@ -25,9 +25,9 @@
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
     div.footer(v-if="!isLoading")
-      a(target="_blank", :href="'/info/imprint/'+ language" )  {{ __i("imprint") }}
-      a(target="_blank", :href="'/info/privacy/'+ language" ) {{ __i("privacy") }}
-      a(target="_blank", :href="'/info/about/'+ language" ) {{ __i("about") }}
+      a(target="_blank", :href="'/info/imprint/'+ infoPageLanguage" )  {{ __i("imprint") }}
+      a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
+      a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
       a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
     
     div.languages(v-if="!isLoading")
@@ -56,6 +56,10 @@ export default {
   computed: {
     isFinished: function() {
       return this.$store.state.result !== null
+    },
+    infoPageLanguage: function() {
+      // as the info pages are only available in de and en
+      return ['de', 'en'].indexOf(this.language) !== -1 ? this.language : 'en'
     }
   },
   async mounted() {
