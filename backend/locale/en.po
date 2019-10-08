@@ -82,14 +82,11 @@ msgstr "You can always click on 'your recommendation' to receive your result"
 msgid "welcome-text-order"
 msgstr "You may answer in arbitrary order"
 
-msgid "welcome-text-additional-infos"
-msgstr "You can receive additional informations using the question mark icon"
-
 msgid "welcome-text-remove"
 msgstr "You can delete answers at any time"
 
 msgid "welcome-text-feedback"
-msgstr "Please rate your results, depending on how well it fits your needs."
+msgstr "Please rate your results, depending on how well they fit your needs."
 
 msgid "welcome-text-importance"
 msgstr "Mark answers as important to give them more weight"
@@ -325,7 +322,7 @@ msgid "additional-info-special-features-qestion"
 msgstr "Many distributions use 'systemd' to start the operating system itself. Some distributions avoid systemd in favor of alternative and sometimes more lightweight solutions"
 
 msgid "answer-isolation"
-msgstr "Applications should be executed in a isolated environment per default"
+msgstr "Applications should be executed in a isolated environment by default"
 
 
 msgid "software-updates-question"
@@ -339,7 +336,6 @@ msgstr "I prefer stable updates"
 
 msgid "answer-avoid-systemd"
 msgstr "I want to avoid systemd"
-
 
 msgid "result-submitted-hint"
 msgstr "Calculating result"
@@ -373,7 +369,6 @@ msgstr "Marked as important"
 
 msgid "remove-important"
 msgstr "Remove importance"
-
 
 msgid "reason-list-header-negative"
 msgstr "We cannot recommend this distribution for you because:"
@@ -481,8 +476,7 @@ msgid "matrix-privacy-ok"
 msgstr "Beneficial for user privacy"
 
 msgid "matrix-privacy-thirdparty"
-msgstr "Connects to third party services per default"
-
+msgstr "Connects to third party services by default"
 
 msgid "matrix-appstore"
 msgstr "Software installation can be done using an app store"
@@ -533,7 +527,7 @@ msgid "matrix-requires-advanced-knowledge"
 msgstr "Requires reading up in manuals for usage"
 
 msgid "matrix-isolation-default"
-msgstr "Has a isolation concept per default"
+msgstr "Has a isolation concept by default"
 
 msgid "matrix-oldpc-supported"
 msgstr "Supports even older computers"
@@ -542,19 +536,19 @@ msgid "checked-criteria-count"
 msgstr "aspects checked"
 
 msgid "searching-criteria"
-msgstr "progressing the criteria library"
+msgstr "processing the criteria library"
 
 msgid "daily-usage-possibly-difficult"
 msgstr "Daily usage may result in major difficulties"
 
 msgid "matrix-supports-daily-usage-but-built-for-livemode"
-msgstr "Can be used for daily work, but is built for live mode"
+msgstr "Can be used for daily work, but is built for livemmode"
 
 msgid "matrix-packages-available"
-msgstr "Programs for anonymization are available"
+msgstr "Programs for anonymisation purposes are available"
 
 msgid "matrix-packages-may-too-old-gaming"
-msgstr "Program versions may be not recent enought for gaming"
+msgstr "Programs versions may not be up-to-date enough for gaming"
 
 msgid "matrix-gaming-may-require-additional-configuration"
 msgstr "May require additional configuration for gaming"
@@ -574,11 +568,8 @@ msgstr "Not suitable for beginners"
 msgid "matrix-installation-from-shell"
 msgstr "Installation is done using the terminal"
 
-msgid "matrix-has-default-settings"
-msgstr "Installation is done using the terminal"
-
 msgid "matrix-installs-range-of-programs"
-msgstr "Installs a range of program per default"
+msgstr "Installs a range of program by default"
 
 msgid "matrix-configuration-from-shell"
 msgstr "Majority of configuration is done using shell commands"
@@ -593,16 +584,16 @@ msgid "matrix-has-zorin-lite-version"
 msgstr "Has a 'Zorin Lite' version for older computers"
 
 msgid "matrix-has-windows-like-variant-cinnamon"
-msgstr "A variant ships cinnamon, a Windows like desktop"
+msgstr "A variant ships the 'cinnamon' desktop environment, which has a Windows-like appearance"
 
 msgid "systemd-is-avoidable-per-selection"
 msgstr "Systemd can be avoided per user selection"
 
 msgid "matrix-ships-systemd-but-disabled"
-msgstr "Systemd is shipped, but disabled per default"
+msgstr "Systemd is shipped, but disabled by default"
 
 msgid "matrix-supports-privacy"
-msgstr "Collects only data when online servies are used"
+msgstr "Only collects data when online services are used"
 
 msgid "matrix-lightweight"
 msgstr "Lightweight distribution"
@@ -610,44 +601,37 @@ msgstr "Lightweight distribution"
 msgid "matrix-free-userselection"
 msgstr "Usage of free software depends on user selection"
 
-
-
-
 # distribution descriptions
 
 msgid "description-manjaro"
-msgstr "Manjaro is a rolling release distribution focused on user friendlyness"
+msgstr "Manjaro is a rolling release distribution focused on user friendliness"
 
 msgid "description-ubuntu"
 msgstr "Ubuntu is a Distribution build by the company Canonical"
 
-
 msgid "description-mint"
-msgstr "Linux Mint is a Ubuntu based distribution with preinstalled proprietary components, such as multimedia codecs."
+msgstr "Linux Mint is a Ubuntu based distribution with pre-installed proprietary components, such as multimedia codecs."
 
 msgid "description-solus"
 msgstr "Solus OS is a rolling release distribution which started as a Chrome OS clone"
 
-
 msgid "description-arch"
-msgstr "Arch is a rolling release disrtribution based on the KISS principle"
+msgstr "Arch is a rolling release distribution based on the KISS principle"
 
 msgid "description-debian"
 msgstr "Debian is a distribution with high focus on stability"
 
 msgid "description-tails"
-msgstr "Anonymization is the main focus of Tails, which can be used from USB or optical discs"
+msgstr "Anonymisation is the main focus of Tails, which can be used from USB or optical discs"
 
 msgid "description-devuan"
-msgstr "Devuan is a Debian clone without usage of the systemd toolit"
-
+msgstr "Devuan is a Debian clone without usage of the systemd toolkit"
 
 msgid "description-opensuse"
-msgstr "OpenSuse aims to deliver an stable and user friendly distribution, mostly for end users"
+msgstr "OpenSuse aims to deliver a stable and user-friendly distribution, mostly for end users"
 
 msgid "description-pclinuxos"
-msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user friendly interface."
-
+msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface."
 
 msgid "description-rhel"
 msgstr "Red hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution"
@@ -656,19 +640,19 @@ msgid "description-centos"
 msgstr "CentOS is a free distribution based on RHEL"
 
 msgid "description-xubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powed by the lightweight XFCE desktop"
+msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment"
 
 msgid "description-lubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powed by the lightweight LXDE desktop"
+msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight LXDE desktop environment"
 
 msgid "description-ubuntumate"
-msgstr "Xubuntu is an Ubuntu-based distribution powed by the lightweight MATE desktop"
+msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"
 
 msgid "description-fedora"
 msgstr "Fedora is a Red hat backed distribution with a large focus on free software"
 
 msgid "description-qubes"
-msgstr "Qubes OS isolates applications using virtual maschines to improve security"
+msgstr "Qubes OS isolates applications using virtual machines to improve security"
 
 msgid "description-gentoo"
 msgstr "Gentoo is a flexible distribution for advanced users"
@@ -680,19 +664,19 @@ msgid "description-fedora"
 msgstr "Fedora is a distribution with focus on free software. Fedora is released without a long term support, shipping a new version every 6 months."
 
 msgid "description-knoppix"
-msgstr "Knoppix is a live mode focused operating system with a wide range of hardware support"
+msgstr "Knoppix is a live-mode focused operating system with a wide range of hardware support"
 
 msgid "description-cruxlinux"
 msgstr "Crux Linux is a lightweight 64 bit focused operating system with recent tools and libraries"
 
 msgid "description-zorinos"
-msgstr "Zorin OS is a beginner focused distribution with a windows like user interface"
+msgstr "Zorin OS is a beginner focused distribution with a windows-like user interface"
 
 msgid "description-elementaryos"
-msgstr "elementary OS is a ubuntu-based distribution, focused on a elegant and fast user expierience"
+msgstr "elementary OS is a ubuntu-based distribution, focused on an elegant and fast user experience"
 
 msgid "description-kubuntu"
-msgstr "Kubuntu is an ubuntu-based distribution with a preinstalled KDE as a desktop"
+msgstr "Kubuntu is an ubuntu-based distribution with a pre-installed KDE as a desktop"
 
 msgid "locale-en"
 msgstr "english"
