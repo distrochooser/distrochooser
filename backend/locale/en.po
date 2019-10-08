@@ -82,6 +82,9 @@ msgstr "You can always click on 'your recommendation' to receive your result"
 msgid "welcome-text-order"
 msgstr "You may answer in arbitrary order"
 
+msgid "welcome-text-additional-infos"
+msgstr "You can receive additional information using the question mark icon"
+
 msgid "welcome-text-remove"
 msgstr "You can delete answers at any time"
 
@@ -542,7 +545,7 @@ msgid "daily-usage-possibly-difficult"
 msgstr "Daily usage may result in major difficulties"
 
 msgid "matrix-supports-daily-usage-but-built-for-livemode"
-msgstr "Can be used for daily work, but is built for livemmode"
+msgstr "Can be used for daily work, but is built for live-mode"
 
 msgid "matrix-packages-available"
 msgstr "Programs for anonymisation purposes are available"
