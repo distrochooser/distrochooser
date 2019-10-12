@@ -1,26 +1,18 @@
-# viisi
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+## distrochooser
 
-> DC V
 
-## Build Setup
+[![](https://distrochooser.de/tux.png)](https://distrochooser.de)
 
-``` bash
-# install dependencies
-$ yarn install
+[![](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/vuejs/awesome-vue)
 
-# serve with hot reload at localhost:3000
-$ yarn run dev
+This repository contains the code of [distrochooser.de](http://distrochooser.de). 
 
-# build for production and launch server
-$ yarn run build
-$ yarn start
+The Distrochooser is a service to help Linux beginners to orientate. The service is not an oracle and can not calculate 100% accurate results, but it helps to orientate.
 
-# generate static project
-$ yarn run generate
-```
+## License
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+See LICENSE
+
 
 ## Contributors ✨
 
@@ -31,7 +23,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/christianmalek"><img src="https://avatars2.githubusercontent.com/u/2873986?v=4" width="100px;" alt="Christian Malek"/><br /><sub><b>Christian Malek</b></sub></a><br /><a href="#design-christianmalek" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/christianmalek"><img src="https://avatars2.githubusercontent.com/u/2873986?v=4" width="100px;" alt="Christian Malek"/><br /><sub><b>Christian Malek</b></sub></a><br /><a href="#design-christianmalek" title="Design">🎨</a> <a href="https://github.com/distrochooser/distrochooser/commits?author=christianmalek" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/PositiveKoodoo"><img src="https://avatars3.githubusercontent.com/u/48484929?v=4" width="100px;" alt="PositiveKoodoo"/><br /><sub><b>PositiveKoodoo</b></sub></a><br /><a href="#translation-PositiveKoodoo" title="Translation">🌍</a></td>
     <td align="center"><a href="https://maddosaurus.github.io"><img src="https://avatars1.githubusercontent.com/u/8026915?v=4" width="100px;" alt="Matthias"/><br /><sub><b>Matthias</b></sub></a><br /><a href="#translation-Maddosaurus" title="Translation">🌍</a></td>
     <td align="center"><a href="https://zmoazeni.github.io/gitspective/#/timeline/waldyrious"><img src="https://avatars2.githubusercontent.com/u/478237?v=4" width="100px;" alt="Waldir Pimenta"/><br /><sub><b>Waldir Pimenta</b></sub></a><br /><a href="#translation-waldyrious" title="Translation">🌍</a></td>
@@ -42,4 +34,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+This project follows the [all-contributors](https://allcontributors.org) specification.
+Contributions of any kind are welcome!
