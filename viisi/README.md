@@ -1,5 +1,5 @@
 # viisi
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 
 > DC V
 
@@ -32,6 +32,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/christianmalek"><img src="https://avatars2.githubusercontent.com/u/2873986?v=4" width="100px;" alt="Christian Malek"/><br /><sub><b>Christian Malek</b></sub></a><br /><a href="#design-christianmalek" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/PositiveKoodoo"><img src="https://avatars3.githubusercontent.com/u/48484929?v=4" width="100px;" alt="PositiveKoodoo"/><br /><sub><b>PositiveKoodoo</b></sub></a><br /><a href="#translation-PositiveKoodoo" title="Translation">🌍</a></td>
   </tr>
 </table>
 
