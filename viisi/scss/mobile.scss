@@ -48,6 +48,7 @@
     padding: 0.5em !important;
     text-align: center !important;
     bottom: 0px;
+    left: 0px;
     top: unset  !important;
   }
   .answer-remark {
@@ -78,17 +79,28 @@
   .question {
     margin-bottom: 1em;
     width: 84% !important;
-    margin-left: 13% !important;
+    margin-left: 14% !important;
     margin-top: unset !important;
   }
   .top-logo-container {
     margin-bottom: 1em !important;
   }
   .question-text {
-    font-size: 15px !important;
+    font-size: 14px !important;
+    padding-left: 1em !important;
+  }
+  .answer-remark {
+    left: 1em !important;
   }
   .answer {
     font-size: 13px !important;
+    display: flex;
+  }
+  .answers {
+    margin-left: 0.5em !important;
+  }
+  .answer label {
+    display: contents;
   }
   .mobile-active {
     color: $activeStepForeground !important;
@@ -96,7 +108,7 @@
     border-left: 2px solid $activeStepForeground;
   }
   .link input {
-    width: 100%;
+    width: 100% !important;
     font-size: 8pt;
     padding: 1em;
   }
@@ -110,5 +122,31 @@
   }
   .step {
     font-size: small !important;
+  }
+  .languages {
+    margin-top: 1.1em;
+  }
+  .languages span i {
+    font-size: 10pt;
+  }
+  .welcome-text {
+    font-size: 9pt !important;
+  }
+  .welcome-text-actions {
+    margin-top: 6em;
+  }
+  .result {
+    margin-right: unset !important;
+    width: 80% !important;
+  }
+  .distribution {
+    font-size: 11pt !important;
+  }
+  .distribution .meta .url {
+    font-size: 10pt !important;
+    width: 60%;
+  }
+  .distribution .meta .actions {
+    width: 40%;
   }
 }

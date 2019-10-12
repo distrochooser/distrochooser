@@ -13,7 +13,7 @@
               i.far.fa-question-circle.additional-info-icon
               span {{ __i("welcome-text-additional-infos") }}
             div
-              i.fas.fa-play
+              i.fas.fa-bullhorn
               span {{ __i("welcome-text-result-get") }}
             div
               i.fas.fa-sort-amount-up
@@ -28,7 +28,7 @@
               i.fas.fa-heart
               span {{ __i("welcome-text-feedback") }}
            
-        div.actions
+        div.actions.welcome-text-actions
           button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
       div.question-content

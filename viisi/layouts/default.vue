@@ -19,6 +19,7 @@ html {
 }
 body {
   padding-top: 2em;
+  padding-bottom: 2em;
 }
 *,
 *:before,
