@@ -1,0 +1,24 @@
+{
+  "projectName": "distrochooser",
+  "projectOwner": "distrochooser",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "christianmalek",
+      "name": "Christian Malek",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2873986?v=4",
+      "profile": "https://github.com/christianmalek",
+      "contributions": [
+        "design"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
