@@ -174,7 +174,7 @@ msgid "software-use-case-question"
 msgstr "Es gibt Distributionen für bestimmte Einsatzzwecke, andere sind eher allgemeiner Natur. Was benötige ich?"
 
 msgid "software-use-case-answer-daily"
-msgstr "Ich möchte Linux für die tägliche Nutzung."
+msgstr "Ich möchte Linux für die tägliche Nutzung verwenden."
 
 msgid "software-use-case-anonymous-answer"
 msgstr "Ich möchte Linux für Zwecke der Anonymisierung nutzen."
