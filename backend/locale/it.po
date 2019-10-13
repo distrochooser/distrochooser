@@ -1,0 +1,302 @@
+msgid "loading"
+msgstr "caricamento"
+
+msgid "imprint"
+msgstr "impronta"
+
+msgid "privacy"
+msgstr "privacy"
+
+msgid "about"
+msgstr "riguardo al progetto"
+
+msgid "question-is-multiplechoice"
+msgstr "Puoi scegliere piu' risposte"
+
+msgid "vendor-text"
+msgstr "Un progetto di chmr.eu"
+
+msgid "get-result"
+msgstr "Ottieni risultato"
+
+msgid "category-welcome"
+msgstr "Benvenuto!"
+
+msgid "software-use-case"
+msgstr "Software: Caso d'uso"
+
+msgid "computer-knowledge-category"
+msgstr "Conoscenza del computer"
+
+msgid "linux-knowledge-category"
+msgstr "Tu e Linux"
+
+msgid "presets-category"
+msgstr "Installazione: Preimpostazioni"
+
+msgid "hardware-category"
+msgstr "Supporto hardware"
+
+msgid "help-category"
+msgstr "Aiuto"
+
+msgid "ux-concept-category"
+msgstr "Esperienza utente"
+
+msgid "price-category"
+msgstr "Distribuzioni: Prezzo"
+
+msgid "scope-category"
+msgstr "Distribuzioni: Ambiente"
+
+msgid "ideology-category"
+msgstr "Distribuzioni: Ideologia"
+
+msgid "privacy-category"
+msgstr "Distribuzioni: Privacy"
+
+msgid "software-admin-category"
+msgstr "Amministrazione"
+
+msgid "software-updates-category"
+msgstr "Software: Aggiornamenti"
+
+msgid "special-features-category"
+msgstr "Software: Caratteristiche speciali"
+
+msgid "recommendation-category"
+msgstr "la tua raccomandazione"
+
+msgid "welcome-text-title"
+msgstr "Benvenuto su distrochooser.de!"
+
+msgid "welcome-text"
+msgstr "Benvenuto! Questo test ti permetterà di scegliere la distribuzione di Linux piu' adatta a te."
+
+msgid "welcome-text-skip"
+msgstr "Puoi sempre saltare le domande"
+
+msgid "welcome-text-result-get"
+msgstr "Puoi sempre cliccare su 'la tua raccomandazione' per ricevere il tuo risultato"
+
+msgid "welcome-text-order"
+msgstr "Puoi rispondere in ordine arbitrario"
+
+msgid "welcome-text-additional-infos"
+msgstr "Puoi ricevere informazioni addizionali usando l'icona del punto interrogativo"
+
+msgid "welcome-text-remove"
+msgstr "Puoi eliminare le risposte in ogni momento"
+
+msgid "welcome-text-feedback"
+msgstr "Per favore valuta il tuo risultato, in base a quanto corrisponda alle tue necessita'."
+
+msgid "welcome-text-importance"
+msgstr "Contrassegna le risposte come importanti per darle più peso"
+
+msgid "locale-link-en"
+msgstr "This text is available in english"
+
+msgid "locale-link-de"
+msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
+
+msgid "start-test"
+msgstr "Inizia il test"
+
+msgid "prev-question"
+msgstr "torna indietro"
+
+msgid "next-question"
+msgstr "procedi"
+
+msgid "no-results"
+msgstr "Scusa, mi sono perso"
+
+msgid "about-header"
+msgstr "Riguardo distrochooser.de"
+
+msgid "vote-reminder"
+msgstr "Ti piace questa distribuzione? Metti mi piace!"
+
+msgid "about-intro-text"
+msgstr "distrochooser.de cerca di aiutare i principianti di Linux a scegliere una distribuzione Linux adatta alle loro necessita'.<br>I risultati dati sono suggerimenti basati sulle tue risposte. A volte i risultati potrebbero essere non molto adatti, a causa delle complesse interazioni tra le risposte."
+
+msgid "about-intro-test-count"
+msgstr "Dal 14 Giugno 2014 distrochooser.de ha elaborato %tests% test."
+
+msgid "about-licenses"
+msgstr "Distrochooser ha una doppia licenza."
+
+msgid "privacy-header"
+msgstr "Datenschutzerklärung"
+
+msgid "imprint-header"
+msgstr "Impressum"
+
+msgid "about-licenses-source"
+msgstr "Il codice sorgente"
+
+msgid "about-licenses-source-text"
+msgstr "Il codice sorgente e' concesso sotto la licenza scritta in 'LICENSE' file, che e' posizionata nella repository collegata."
+
+msgid "about-licenses-database"
+msgstr "Il database"
+
+msgid "about-licenses-database-text"
+msgstr "I dati sottostanti, compresa la struttura di domande / risposte, la matrice dei risultati e le statistiche, sono proprietari. Puoi usarli solo con la nostra autorizzazione preventiva. I testi descrittivi e i loghi delle varie distribuzioni sono soggetti alle licenze dei rispettivi detentori del copyright."
+
+msgid "no-results-text"
+msgstr "Distrochooser non e' stato in grado di trovare un risultato adatto in base alle tue risposte. Sarebbe di grande aiuto, se ci scrivesti un feedback, cosi' da permetterci di investigare."
+
+msgid "close-additional-info"
+msgstr "Chiudi"
+
+msgid "no-answers"
+msgstr "Non hai dato alcuna risposta."
+
+msgid "get-my-result"
+msgstr "Mostra i tuoi risultati."
+
+msgid "additional-info"
+msgstr "Informazioni aggiuntive"
+
+msgid "remark-placeholder"
+msgstr "Il tuo feedback (massimo 250 caratteri)"
+
+msgid "result-remarks-button"
+msgstr "Invia feedback"
+
+msgid "distribution-homepage"
+msgstr "Homepage della distribuzione"
+
+msgid "result-remarks-added"
+msgstr "Grazie per il tuo feedback!"
+
+msgid "share-result"
+msgstr "Condividi il mio risultato"
+
+msgid "software-use-case-question"
+msgstr "Alcune distribuzioni sono state create per uno scopo specifico, altre per l'utilizzo giornaliero. Cosa ti serve?"
+
+msgid "software-use-case-answer-daily"
+msgstr "Voglio una distribuzione per l'uso giornaliero."
+
+msgid "software-use-case-anonymous-answer"
+msgstr "Voglio usare Linux per navigare privatamente."
+
+msgid "software-use-case-answer-gaming"
+msgstr "Preferisco una distribuzione che sia supportata dagli editori di giochi."
+
+
+msgid "computer-knowledge-question"
+msgstr "Come valuteresti le tue competenze nell'usare il computer?"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "Ho spesso bisogno di aiuto per risolvere problemi sul mio computer"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "Sono gia' in grado di risolvere alcuni problemi del computer da solo"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "Posso risolvere tutti o quasi tutti i problemi del computer da solo"
+
+
+msgid "linux-knowledge-question"
+msgstr "Come valuteresti la tua conoscenza di Linux?"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "Non ho nessuna conoscenza di Linux o solamente una conoscenza base"
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "Ho gia' utilizzato Linux per alcuni scopi"
+
+msgid "linux-knowledge-answer-professional"
+msgstr "Ho una buona conoscenza del sistema operativo Linux"
+
+
+msgid "presets-question"
+msgstr "How many settings do you wish to tweak by yourself during installation? How many configuration variables should be filled with default values?"
+
+msgid "presets-question-answer-manypresets"
+msgstr "I want to use the default preset values in the installation assistant"
+
+msgid "presets-question-answer-ownselection"
+msgstr "I want to choose the settings by myself"
+
+msgid "presets-question-answer-guiselections"
+msgstr "I want to configure as much as possible using graphical applications"
+
+
+msgid "hardware-question"
+msgstr "It is important to know how old your computer hardware is, since some distributions won't run on old computers."
+
+msgid "additional-info-hardware"
+msgstr "For years, some distribution were using the 32 bit architecture, which allows to allocate up to 4 gigabytes of memory. Newer distributions tend to ditch the 32 bit in favour of the 64 bit support, which allows to allocate more than 4 gigabytes of memory. Since 2005 nearly all Computers should support 64 bit."
+
+msgid "hardware-question-oldpc"
+msgstr "I'm not sure about this and/or my computer already has performance issues and/or only supports 32 bit"
+
+msgid "hardware-question-newpc"
+msgstr "The performance of my computer is good, I don't experience any performance issues, my hardware supports 64 bit"
+
+
+msgid "help-question"
+msgstr "Some distributions prefer articles in wikis for troubleshooting. What do you prefer?"
+
+msgid "help-question-tutorials"
+msgstr "I am able to solve my problems using guides from wiki pages or tutorials"
+
+msgid "help-question-user-exchange"
+msgstr "I prefer asking others for help"
+
+
+msgid "ux-concept-question"
+msgstr "Linux can use a lot of different User Interfaces (\"Desktops\"). Many distributions ship one desktop as default. It is important to know if you have any preferences for a desktop concept. You can switch and install new desktops at any time!"
+
+msgid "ux-concept-answer-windows-like"
+msgstr "I prefer a windows-like user interface"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "I prefer a macOS-like user interface"
+
+msgid "ux-concept-tiling"
+msgstr "I prefer a tile-based window appearance"
+
+msgid "ux-concept-closed-expierience"
+msgstr "I prefer a closed experience"
+
+msgid "price-question"
+msgstr "Most distributions are free. Some distributions offer additional support for a one-time fee."
+
+msgid "price-answer-free"
+msgstr "I prefer a free-to-use distribution"
+
+msgid "price-answer-paid"
+msgstr "I would be fine to pay a fee"
+
+
+msgid "scope-question"
+msgstr "Different distributions pre-install different amounts of software. Some install a complete suite of basic programs to work \"out of the box\". Other distributions offer only a base install to then let the user install what programs they want to use."
+
+msgid "scope-answer-fullinstall"
+msgstr "I prefer a distribution shipping all the basic programs I need to start working immediately after installation"
+
+msgid "scope-answer-ownselection"
+msgstr "I want to chose the basic programs to install myself"
+
+
+msgid "ideology-question"
+msgstr "The (license) ideology of a distribution is a contentious debate. There are distributions using mostly \"free-licenses\", others also use \"non-free\" software."
+
+msgid "additional-info-ideology"
+msgstr "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute it's sourcecode and modifications are not allowed."
+
+msgid "ideology-answer-free"
+msgstr "I want to use free licenses as much as I can"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "I'm fine with non-free licenses as long as my system works"
+
+
+msgid "privacy-question"
+msgstr "Some distributions use online services to improve the user experience. This may affect the privacy of the user, i.e. the user can be tracked when using such online features."
