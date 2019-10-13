@@ -208,95 +208,96 @@ msgid "linux-knowledge-answer-beginner"
 msgstr "Non ho nessuna conoscenza di Linux o solamente una conoscenza base"
 
 msgid "linux-knowledge-answer-advanced"
-msgstr "Ho gia' utilizzato Linux per alcuni scopi"
+msgstr "Ho gia' utilizzato Linux per alcuni motivi"
 
 msgid "linux-knowledge-answer-professional"
 msgstr "Ho una buona conoscenza del sistema operativo Linux"
 
 
 msgid "presets-question"
-msgstr "How many settings do you wish to tweak by yourself during installation? How many configuration variables should be filled with default values?"
+msgstr "Quante impostazioni desideri modificare da solo durante l'installazione? Quante variabili di configurazione devono essere riempite con valori predefiniti?"
 
 msgid "presets-question-answer-manypresets"
-msgstr "I want to use the default preset values in the installation assistant"
+msgstr "Voglio usare i valori predefiniti predefiniti nell'assistente all'installazione"
 
 msgid "presets-question-answer-ownselection"
-msgstr "I want to choose the settings by myself"
+msgstr "Voglio scegliere le impostazioni da solo"
 
 msgid "presets-question-answer-guiselections"
-msgstr "I want to configure as much as possible using graphical applications"
+msgstr "Voglio configurare il più possibile usando interfacce grafiche"
 
 
 msgid "hardware-question"
-msgstr "It is important to know how old your computer hardware is, since some distributions won't run on old computers."
+msgstr "E' importante sapere quanti anni ha l'hardware del tuo computer, visto che alcune distribuzioni non possono funzionare su vecchi computer."
 
 msgid "additional-info-hardware"
-msgstr "For years, some distribution were using the 32 bit architecture, which allows to allocate up to 4 gigabytes of memory. Newer distributions tend to ditch the 32 bit in favour of the 64 bit support, which allows to allocate more than 4 gigabytes of memory. Since 2005 nearly all Computers should support 64 bit."
+msgstr "Per anni, alcune distribuzioni usavano l'architettura 32 bit, che ti permette di allocare fino a 4 gigabytes di memoria. Le nuove distribuzioni tendono ad abbandonare i 32 bit a favore del supporto a 64 bit, che consente di allocare più di 4 gigabyte di memoria. Dal 2005 quasi tutti i computer dovrebbero supportare 64 bit."
 
 msgid "hardware-question-oldpc"
-msgstr "I'm not sure about this and/or my computer already has performance issues and/or only supports 32 bit"
+msgstr "Non sono sicuro e/o il mio computer ha gia' problemi di performance e/o supporta solo 32 bit"
 
 msgid "hardware-question-newpc"
-msgstr "The performance of my computer is good, I don't experience any performance issues, my hardware supports 64 bit"
+msgstr "Le performance del mio computer sono buone, non rilevo nessun problema di performance, il mio hardware supporta 64 bit"
 
 
 msgid "help-question"
-msgstr "Some distributions prefer articles in wikis for troubleshooting. What do you prefer?"
+msgstr "Alcune distribuzioni preferiscono articoli in pagine wiki per la risoluzione di problemi. Cosa preferisci?"
 
 msgid "help-question-tutorials"
-msgstr "I am able to solve my problems using guides from wiki pages or tutorials"
+msgstr "Sono in grado di risolvere problemi usando guide da pagine wiki o tutorial"
 
 msgid "help-question-user-exchange"
-msgstr "I prefer asking others for help"
+msgstr "Preferisco chiedere aiuto ad altri"
 
 
 msgid "ux-concept-question"
-msgstr "Linux can use a lot of different User Interfaces (\"Desktops\"). Many distributions ship one desktop as default. It is important to know if you have any preferences for a desktop concept. You can switch and install new desktops at any time!"
+msgstr "Linux puo' usare diverse Interfacce Utente (\"Desktops\"). Molte distribuzioni forniscono un desktop come predefinito. E' importante sapere se hai delle preferenze per un certo tipo di desktop. Puoi cambiare e installare nuovi desktop in qualsiasi momento!"
 
 msgid "ux-concept-answer-windows-like"
-msgstr "I prefer a windows-like user interface"
+msgstr "Preferisco una interfaccia utente simile a quella windows"
 
 msgid "ux-concept-answer-mac-like"
-msgstr "I prefer a macOS-like user interface"
+msgstr "Preferisco una interfaccia utente simile a quella macOS"
 
 msgid "ux-concept-tiling"
-msgstr "I prefer a tile-based window appearance"
+msgstr "Preferisco un aspetto finestra basato su piastrelle"
 
 msgid "ux-concept-closed-expierience"
-msgstr "I prefer a closed experience"
+msgstr "Preferisco un'esperienza chiusa"
 
 msgid "price-question"
-msgstr "Most distributions are free. Some distributions offer additional support for a one-time fee."
+msgstr "La maggior parte delle distribuzioni sono gratuite. Alcune distribuzioni offrono supporto aggiuntivo al costo di una tantum."
 
 msgid "price-answer-free"
-msgstr "I prefer a free-to-use distribution"
+msgstr "Preferisco una distribuzione gratuita"
 
 msgid "price-answer-paid"
-msgstr "I would be fine to pay a fee"
+msgstr "Mi starebbe bene pagare una tassa"
 
 
 msgid "scope-question"
-msgstr "Different distributions pre-install different amounts of software. Some install a complete suite of basic programs to work \"out of the box\". Other distributions offer only a base install to then let the user install what programs they want to use."
+msgstr "Distribuzioni diverse preinstallano diverse quantità di software. Alcuni installano una suite completa di programmi di base per funzionare \"fuori dalla scatola\". Altre distribuzioni offrono solo un'installazione di base per consentire all'utente di installare i programmi che desiderano utilizzare."
 
 msgid "scope-answer-fullinstall"
-msgstr "I prefer a distribution shipping all the basic programs I need to start working immediately after installation"
+msgstr "Preferisco una distribuzione che presenti tutti i programmi di base di cui ho bisogno per iniziare a lavorare subito dopo l'installazione"
 
 msgid "scope-answer-ownselection"
-msgstr "I want to chose the basic programs to install myself"
+msgstr "Voglio scegliere da solo i programmi di base da installare"
 
 
 msgid "ideology-question"
-msgstr "The (license) ideology of a distribution is a contentious debate. There are distributions using mostly \"free-licenses\", others also use \"non-free\" software."
+msgstr "L'ideologia (della licenza) di una distribuzione e' un dibattito continuo. Ci sono distribuzioni che usano principalmente \"licenze-libere\", altre usano anche software \"non-libero\"."
 
 msgid "additional-info-ideology"
-msgstr "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute it's sourcecode and modifications are not allowed."
+msgstr "Le licenze libere consentono all'utente di modificare, ridistribuire e utilizzare il software per qualsiasi scopo. Esistono situazioni in cui una distribuzione deve utilizzare software non-libero, ad esempio per i driver hardware. Il software non-libero non distribuisce il codice sorgente e non sono consentite modifiche."
 
 msgid "ideology-answer-free"
-msgstr "I want to use free licenses as much as I can"
+msgstr "Voglio usare le licenze libere il piu' possibile"
 
 msgid "ideology-answer-proprietary-ok"
-msgstr "I'm fine with non-free licenses as long as my system works"
+msgstr "Sto bene con le licenze non libere fintanto che il mio sistema funziona"
 
 
 msgid "privacy-question"
-msgstr "Some distributions use online services to improve the user experience. This may affect the privacy of the user, i.e. the user can be tracked when using such online features."
+msgstr "Alcune distribuzioni utilizzano servizi online per migliorare l'esperienza dell'utente. Cio'
+ può influire sulla privacy dell'utente, vale a dire che l'utente può essere monitorato quando utilizza tali funzionalità online."
