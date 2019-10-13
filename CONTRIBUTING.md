@@ -19,7 +19,7 @@ Basically, the distrochooser project splits into two modules, the frontend (`vii
 
 # Contributing translations 🌍
 
-You can find the file `backend/locale/en.po` in this repository. This file is the english translation. If you don't have a GitHub account and want to download it: (the direct link)[https://raw.githubusercontent.com/distrochooser/distrochooser/master/backend/locale/en.po]. 
+You can find the file `backend/locale/en.po` in this repository. This file is the english translation. If you don't have a GitHub account and want to download it: [the direct link](https://raw.githubusercontent.com/distrochooser/distrochooser/master/backend/locale/en.po). 
 
 The file names in `backend/locale` are following the [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard, wich means they are two letter codes.
 
