@@ -17,6 +17,14 @@ Basically, the distrochooser project splits into two modules, the frontend (`vii
 - 📦 Please use yarn while working with the frontend
 - 🐍 The backend is Python3 only
 
+## Viisi
+
+Viisi is a Nuxt.js 2 project. It heavily depends on [https://github.com/christianmalek/vuex-rest-api](https://github.com/christianmalek/vuex-rest-api) for communicating with the JSON backend. The frontend does not load all the required data at startup, it does only load the translations and the data required for the currently displayed data. If you switch a question, the data for the next question gets loaded.
+
+## Backend
+
+As mentioned, the backend is a django application. The majority of logic happens in the `views.py` file, the calculation methods are isolated in the `calculations/` folder.
+
 # Contributing translations 🌍
 
 You can find the file `backend/locale/en.po` in this repository. This file is the english translation. If you don't have a GitHub account and want to download it: [the direct link](https://raw.githubusercontent.com/distrochooser/distrochooser/master/backend/locale/en.po).
