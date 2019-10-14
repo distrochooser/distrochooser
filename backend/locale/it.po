@@ -449,237 +449,237 @@ msgid "matrix-gaming-packages-stable-but-old"
 msgstr "Le versioni del software potrebbero non essere abbastanza recenti per i giochi"
 
 msgid "live-mode-only"
-msgstr "Can only be started using discs or usb sticks"
+msgstr "Può essere avviato solo con dischi o chiavette USB"
 
 msgid "matrix-without-fee"
-msgstr "Usable without fee"
+msgstr "Utilizzabile senza spese"
 
 msgid "matrix-paid"
-msgstr "There is a non-free version of this distribution"
+msgstr "Esiste una versione non gratuita di questa distribuzione"
 
 msgid "matrix-fullinstall"
-msgstr "Installs all needed programs"
+msgstr "Installa tutti i programmi necessari"
 
 msgid "matrix-ownscope-install"
-msgstr "All programs to be used must be chosen by yourself"
+msgstr "Tutti i programmi da utilizzare devono essere scelti da te"
 
 msgid "matrix-free-software-unfree-per-default"
-msgstr "Non-free programs are installed by default"
+msgstr "I programmi non gratuiti sono installati per impostazione predefinita"
 
 msgid "matrix-enforces-free"
-msgstr "Enforces usage of free software"
+msgstr "Impone l'utilizzo del software gratuito"
 
 msgid "matrix-mostly-free"
-msgstr "Works mostly with free software"
+msgstr "Funziona principalmente con software gratuito"
 
 msgid "matrix-has-default-settings"
-msgstr "Has default settings"
+msgstr "Ha le impostazioni predefinite"
 
 msgid "matrix-privacy-ok"
-msgstr "Beneficial for user privacy"
+msgstr "Vantaggioso per la privacy degli utenti"
 
 msgid "matrix-privacy-thirdparty"
-msgstr "Connects to third party services by default"
+msgstr "Si collega a servizi di terzi per impostazione predefinita"
 
 msgid "matrix-appstore"
-msgstr "Software installation can be done using an app store"
+msgstr "L'installazione del software può essere eseguita utilizzando un app store"
 
 msgid "matrix-console"
-msgstr "Software installation can be done using the terminal"
+msgstr "L'installazione del software può essere eseguita utilizzando il terminale"
 
 msgid "matrix-stable-updates"
-msgstr "Updates are mostly stable when published"
+msgstr "Gli aggiornamenti sono per lo più stabili quando pubblicati"
 
 msgid "matrix-fast-updates"
-msgstr "Software updates are released as fast as possible, which makes them unstable"
+msgstr "Gli aggiornamenti del software vengono rilasciati il più rapidamente possibile, il che li rende instabili"
 
 msgid "matrix-has-control-panel"
-msgstr "Contains a pre-installed control center"
+msgstr "Contiene un centro di controllo preinstallato"
 
 msgid "matrix-user-selection-affects-privacy"
-msgstr "User has to select the software to use"
+msgstr "L'utente deve selezionare il software da utilizzare"
 
 msgid "matrix-selection-by-user"
-msgstr "Scope of pre-installed programs is decided by user"
+msgstr "L'ambito dei programmi preinstallati è deciso dall'utente"
 
 msgid "matrix-updates-fast"
-msgstr "Updates are fast, but can be unstable"
+msgstr "Gli aggiornamenti sono veloci, ma possono essere instabili"
 
 msgid "matrix-not-for-beginner"
-msgstr "Not suitable for beginners"
+msgstr "Non adatto ai principianti"
 
 msgid "matrix-avoids-systemd"
-msgstr "Avoids systemd"
+msgstr "Evita systemd"
 
 msgid "matrix-uses-systemd"
-msgstr "uses systemd"
+msgstr "usa systemd"
 
 msgid "built-for-anonymization"
-msgstr "Build for anonymisation purposes"
+msgstr "Usata per scopi di anonimizzazione"
 
 msgid "matrix-administration-shell"
-msgstr "Administration is mostly done by using shell commands"
+msgstr "L'amministrazione viene eseguita principalmente utilizzando i comandi della shell"
 
 msgid "matrix-oldpc-no-32bit"
-msgstr "Does not support old computers without 64 bit support"
+msgstr "Non supporta i vecchi computer senza supporto a 64 bit"
 
 msgid "matrix-requires-manual"
-msgstr "Requires reading of manuals and tutorials"
+msgstr "Richiede la lettura di manuali e tutorial"
 
 msgid "matrix-requires-advanced-knowledge"
-msgstr "Requires reading up in manuals for usage"
+msgstr "Richiede la lettura dei manuali per l'uso"
 
 msgid "matrix-isolation-default"
-msgstr "Has a isolation concept by default"
+msgstr "Ha un concetto di isolamento per impostazione predefinita"
 
 msgid "matrix-oldpc-supported"
-msgstr "Supports even older computers"
+msgstr "Supporta computer ancora più vecchi"
 
 msgid "checked-criteria-count"
-msgstr "aspects checked"
+msgstr "aspetti controllati"
 
 msgid "searching-criteria"
-msgstr "processing the criteria library"
+msgstr "elaborazione della libreria dei criteri"
 
 msgid "daily-usage-possibly-difficult"
-msgstr "Daily usage may result in major difficulties"
+msgstr "L'uso quotidiano può comportare gravi difficoltà"
 
 msgid "matrix-supports-daily-usage-but-built-for-livemode"
-msgstr "Can be used for daily work, but is built for live-mode"
+msgstr "Può essere utilizzato per il lavoro quotidiano, ma è costruito per la modalità live"
 
 msgid "matrix-packages-available"
-msgstr "Programs for anonymisation purposes are available"
+msgstr "Sono disponibili programmi per scopi di anonimizzazione"
 
 msgid "matrix-packages-may-too-old-gaming"
-msgstr "Programs versions may not be up-to-date enough for gaming"
+msgstr "Le versioni dei programmi potrebbero non essere abbastanza aggiornate per i giochi"
 
 msgid "matrix-gaming-may-require-additional-configuration"
-msgstr "May require additional configuration for gaming"
+msgstr "Potrebbe richiedere una configurazione aggiuntiva per i giochi"
 
 msgid "matrix-built-for-enterprise"
-msgstr "Primary goal is enterprise usage"
+msgstr "L'obiettivo principale è l'utilizzo aziendale"
 
 msgid "matrix-not-built-for-gaming"
-msgstr "Not optimized for gaming"
+msgstr "Non ottimizzato per i giochi"
 
 msgid "requires-some-computer-knowledge"
-msgstr "Requires further knowledge about computers"
+msgstr "Richiede ulteriori conoscenze sui computer"
 
 msgid "matrix-maybe-not-for-beginner"
-msgstr "Not suitable for beginners"
+msgstr "Non adatto ai principianti"
 
 msgid "matrix-installation-from-shell"
-msgstr "Installation is done using the terminal"
+msgstr "L'installazione avviene tramite il terminale"
 
 msgid "matrix-installs-range-of-programs"
-msgstr "Installs a range of program by default"
+msgstr "Installa una gamma di programmi per impostazione predefinita"
 
 msgid "matrix-configuration-from-shell"
-msgstr "Majority of configuration is done using shell commands"
+msgstr "La maggior parte della configurazione viene eseguita utilizzando i comandi della shell"
 
 msgid "matrix-middleweight"
-msgstr "Is a middleweight system, especially suitable for semi-recent computers"
+msgstr "È un sistema di peso medio, particolarmente adatto per computer semi-recenti"
 
 msgid "matrix-has-high-range-hardware-support"
-msgstr "Supports a wide range of hardware"
+msgstr "Supporta una vasta gamma di hardware"
 
 msgid "matrix-has-zorin-lite-version"
-msgstr "Has a 'Zorin Lite' version for older computers"
+msgstr "Ha una versione 'Zorin Lite' per computer più vecchi"
 
 msgid "matrix-has-windows-like-variant-cinnamon"
-msgstr "A variant ships the 'cinnamon' desktop environment, which has a Windows-like appearance"
+msgstr "Una variante include l'ambiente desktop 'cinnamon', che ha un aspetto simile a Windows"
 
 msgid "systemd-is-avoidable-per-selection"
-msgstr "Systemd can be avoided per user selection"
+msgstr "Systemd può essere evitato per selezione dell'utente"
 
 msgid "matrix-ships-systemd-but-disabled"
-msgstr "Systemd is shipped, but disabled by default"
+msgstr "Systemd è presente, ma disabilitato per impostazione predefinita"
 
 msgid "matrix-supports-privacy"
-msgstr "Only collects data when online services are used"
+msgstr "Raccoglie dati solo quando vengono utilizzati i servizi online"
 
 msgid "matrix-lightweight"
-msgstr "Lightweight distribution"
+msgstr "Distribuzione leggera"
 
 msgid "matrix-free-userselection"
-msgstr "Usage of free software depends on user selection"
+msgstr "L'uso del software gratuito dipende dalla selezione dell'utente"
 
 # distribution descriptions
 
 msgid "description-manjaro"
-msgstr "Manjaro is a rolling release distribution focused on user friendliness"
+msgstr "Manjaro è una distribuzione a rilascio continuo focalizzata sulla facilità d'uso"
 
 msgid "description-ubuntu"
-msgstr "Ubuntu is a Distribution build by the company Canonical"
+msgstr "Ubuntu è una distribuzione sviluppata dalla società Canonical"
 
 msgid "description-mint"
-msgstr "Linux Mint is a Ubuntu based distribution with pre-installed proprietary components, such as multimedia codecs."
+msgstr "Linux Mint è una distribuzione basata su Ubuntu con componenti proprietari preinstallati, come i codec multimediali."
 
 msgid "description-solus"
-msgstr "Solus OS is a rolling release distribution which started as a Chrome OS clone"
+msgstr "Solus OS è una distribuzione a rilascio continuo che è iniziata come un clone di Chrome OS"
 
 msgid "description-arch"
-msgstr "Arch is a rolling release distribution based on the KISS principle"
+msgstr "Arch è una distribuzione a rilascio continuo basata sul principio KISS"
 
 msgid "description-debian"
-msgstr "Debian is a distribution with high focus on stability"
+msgstr "Debian è una distribuzione con particolare attenzione alla stabilità"
 
 msgid "description-tails"
-msgstr "Anonymisation is the main focus of Tails, which can be used from USB or optical discs"
+msgstr "L'anonimizzazione è l'obiettivo principale di Tails, che può essere utilizzato da USB o dischi ottici"
 
 msgid "description-devuan"
-msgstr "Devuan is a Debian clone without usage of the systemd toolkit"
+msgstr "Devuan è un clone di Debian che non usa il toolkit systemd"
 
 msgid "description-opensuse"
-msgstr "OpenSuse aims to deliver a stable and user-friendly distribution, mostly for end users"
+msgstr "OpenSuse mira a fornire una distribuzione stabile e intuitiva, principalmente per gli utenti finali"
 
 msgid "description-pclinuxos"
-msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface."
+msgstr "PCLinuxOS è una distribuzione basata su Mandrake focalizzata su un'interfaccia user-friendly."
 
 msgid "description-rhel"
-msgstr "Red hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution"
+msgstr "Red Hat Enterprise Linux (RHEL) è una distribuzione focalizzata sull'impresa e sulla stabilità"
 
 msgid "description-centos"
-msgstr "CentOS is a free distribution based on RHEL"
+msgstr "CentOS è una distribuzione gratuita basata su RHEL"
 
 msgid "description-xubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment"
+msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop XFCE"
 
 msgid "description-lubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight LXDE desktop environment"
+msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop LXDE"
 
 msgid "description-ubuntumate"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"
+msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop MATE"
 
 msgid "description-fedora"
-msgstr "Fedora is a Red hat backed distribution with a large focus on free software"
+msgstr "Fedora è una distribuzione supportata da Red Hat con una grande attenzione al software libero"
 
 msgid "description-qubes"
-msgstr "Qubes OS isolates applications using virtual machines to improve security"
+msgstr "Qubes OS isola le applicazioni utilizzando macchine virtuali per migliorare la sicurezza"
 
 msgid "description-gentoo"
-msgstr "Gentoo is a flexible distribution for advanced users"
+msgstr "Gentoo è una distribuzione flessibile per utenti avanzati"
 
 msgid "description-mxlinux"
-msgstr "MX Linux is a middleweight resource usage distribution with focus on a efficient and elegant daily usage."
+msgstr "MX Linux è una distribuzione di utilizzo delle risorse di peso medio focalizzata su un uso quotidiano efficiente ed elegante."
 
 msgid "description-fedora"
-msgstr "Fedora is a distribution with focus on free software. Fedora is released without a long term support, shipping a new version every 6 months."
+msgstr "Fedora è una distribuzione focalizzata sul software libero. Fedora viene rilasciato senza un supporto a lungo termine, rilasciando una nuova versione ogni 6 mesi."
 
 msgid "description-knoppix"
-msgstr "Knoppix is a live-mode focused operating system with a wide range of hardware support"
+msgstr "Knoppix è un sistema operativo focalizzato in modalità live con una vasta gamma di supporto hardware"
 
 msgid "description-cruxlinux"
-msgstr "Crux Linux is a lightweight 64 bit focused operating system with recent tools and libraries"
+msgstr "Crux Linux è un leggero sistema operativo focalizzato a 64 bit con strumenti e librerie recenti"
 
 msgid "description-zorinos"
-msgstr "Zorin OS is a beginner focused distribution with a windows-like user interface"
+msgstr "Zorin OS è una distribuzione focalizzata per principianti con un'interfaccia utente simile a Windows"
 
 msgid "description-elementaryos"
-msgstr "elementary OS is a ubuntu-based distribution, focused on an elegant and fast user experience"
+msgstr "elementary OS è una distribuzione basata su Ubuntu, focalizzata su un'esperienza utente elegante e veloce"
 
 msgid "description-kubuntu"
-msgstr "Kubuntu is an ubuntu-based distribution with a pre-installed KDE as a desktop"
+msgstr "Kubuntu è una distribuzione basata su Ubuntu con un KDE preinstallato come desktop"
 
 msgid "locale-en"
 msgstr "english"
