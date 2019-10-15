@@ -71,7 +71,7 @@ msgid "welcome-text-title"
 msgstr "Benvenuto su distrochooser.de!"
 
 msgid "welcome-text"
-msgstr "Benvenuto! Questo test ti permetterà di scegliere la distribuzione di Linux piu' adatta a te."
+msgstr "Benvenuto! Questo test ti permetterà di scegliere la distribuzione di Linux più adatta a te."
 
 msgid "welcome-text-skip"
 msgstr "Puoi sempre saltare le domande"
@@ -89,7 +89,7 @@ msgid "welcome-text-remove"
 msgstr "Puoi eliminare le risposte in ogni momento"
 
 msgid "welcome-text-feedback"
-msgstr "Per favore valuta il tuo risultato, in base a quanto corrisponda alle tue necessita'."
+msgstr "Per favore valuta il tuo risultato, in base a quanto corrisponda alle tue necessità."
 
 msgid "welcome-text-importance"
 msgstr "Contrassegna le risposte come importanti per darle più peso"
@@ -119,7 +119,7 @@ msgid "vote-reminder"
 msgstr "Ti piace questa distribuzione? Metti mi piace!"
 
 msgid "about-intro-text"
-msgstr "distrochooser.de cerca di aiutare i principianti di Linux a scegliere una distribuzione Linux adatta alle loro necessita'.<br>I risultati dati sono suggerimenti basati sulle tue risposte. A volte i risultati potrebbero essere non molto adatti, a causa delle complesse interazioni tra le risposte."
+msgstr "distrochooser.de cerca di aiutare i principianti di Linux a scegliere una distribuzione Linux adatta alle loro necessità.<br>I risultati dati sono suggerimenti basati sulle tue risposte. A volte i risultati potrebbero essere non molto adatti, a causa delle complesse interazioni tra le risposte."
 
 msgid "about-intro-test-count"
 msgstr "Dal 14 Giugno 2014 distrochooser.de ha elaborato %tests% test."
@@ -128,16 +128,16 @@ msgid "about-licenses"
 msgstr "Distrochooser ha una doppia licenza."
 
 msgid "privacy-header"
-msgstr "Datenschutzerklärung"
+msgstr "Privacy Policy"
 
 msgid "imprint-header"
-msgstr "Impressum"
+msgstr "Impronta"
 
 msgid "about-licenses-source"
 msgstr "Il codice sorgente"
 
 msgid "about-licenses-source-text"
-msgstr "Il codice sorgente e' concesso sotto la licenza scritta in 'LICENSE' file, che e' posizionata nella repository collegata."
+msgstr "Il codice sorgente è concesso sotto la licenza scritta nel file 'LICENSE', che è posizionato nella repository collegata."
 
 msgid "about-licenses-database"
 msgstr "Il database"
@@ -146,7 +146,7 @@ msgid "about-licenses-database-text"
 msgstr "I dati sottostanti, compresa la struttura di domande / risposte, la matrice dei risultati e le statistiche, sono proprietari. Puoi usarli solo con la nostra autorizzazione preventiva. I testi descrittivi e i loghi delle varie distribuzioni sono soggetti alle licenze dei rispettivi detentori del copyright."
 
 msgid "no-results-text"
-msgstr "Distrochooser non e' stato in grado di trovare un risultato adatto in base alle tue risposte. Sarebbe di grande aiuto, se ci scrivesti un feedback, cosi' da permetterci di investigare."
+msgstr "Distrochooser non è stato in grado di trovare un risultato adatto in base alle tue risposte. Sarebbe di grande aiuto, se ci scrivesti un feedback, così da permetterci di investigare."
 
 msgid "close-additional-info"
 msgstr "Chiudi"
@@ -208,7 +208,7 @@ msgid "linux-knowledge-answer-beginner"
 msgstr "Non ho nessuna conoscenza di Linux o solamente una conoscenza base"
 
 msgid "linux-knowledge-answer-advanced"
-msgstr "Ho gia' utilizzato Linux per alcuni motivi"
+msgstr "Ho già utilizzato Linux per alcuni motivi"
 
 msgid "linux-knowledge-answer-professional"
 msgstr "Ho una buona conoscenza del sistema operativo Linux"
@@ -234,7 +234,7 @@ msgid "additional-info-hardware"
 msgstr "Per anni, alcune distribuzioni usavano l'architettura 32 bit, che ti permette di allocare fino a 4 gigabytes di memoria. Le nuove distribuzioni tendono ad abbandonare i 32 bit a favore del supporto a 64 bit, che consente di allocare più di 4 gigabyte di memoria. Dal 2005 quasi tutti i computer dovrebbero supportare 64 bit."
 
 msgid "hardware-question-oldpc"
-msgstr "Non sono sicuro e/o il mio computer ha gia' problemi di performance e/o supporta solo 32 bit"
+msgstr "Non sono sicuro e/o il mio computer ha già problemi di performance e/o supporta solo 32 bit"
 
 msgid "hardware-question-newpc"
 msgstr "Le performance del mio computer sono buone, non rilevo nessun problema di performance, il mio hardware supporta 64 bit"
@@ -251,7 +251,7 @@ msgstr "Preferisco chiedere aiuto ad altri"
 
 
 msgid "ux-concept-question"
-msgstr "Linux puo' usare diverse Interfacce Utente (\"Desktops\"). Molte distribuzioni forniscono un desktop come predefinito. E' importante sapere se hai delle preferenze per un certo tipo di desktop. Puoi cambiare e installare nuovi desktop in qualsiasi momento!"
+msgstr "Linux può usare diverse Interfacce Utente (\"Desktops\"). Molte distribuzioni forniscono un desktop come predefinito. E' importante sapere se hai delle preferenze per un certo tipo di desktop. Puoi cambiare e installare nuovi desktop in qualsiasi momento!"
 
 msgid "ux-concept-answer-windows-like"
 msgstr "Preferisco una interfaccia utente simile a quella windows"
@@ -286,7 +286,7 @@ msgstr "Voglio scegliere da solo i programmi di base da installare"
 
 
 msgid "ideology-question"
-msgstr "L'ideologia (della licenza) di una distribuzione e' un dibattito continuo. Ci sono distribuzioni che usano principalmente \"licenze-libere\", altre usano anche software \"non-libero\"."
+msgstr "L'ideologia (della licenza) di una distribuzione è un dibattito continuo. Ci sono distribuzioni che usano principalmente \"licenze-libere\", altre usano anche software \"non-libero\"."
 
 msgid "additional-info-ideology"
 msgstr "Le licenze libere consentono all'utente di modificare, ridistribuire e utilizzare il software per qualsiasi scopo. Esistono situazioni in cui una distribuzione deve utilizzare software non-libero, ad esempio per i driver hardware. Il software non-libero non distribuisce il codice sorgente e non sono consentite modifiche."
@@ -299,7 +299,7 @@ msgstr "Sto bene con le licenze non libere fintanto che il mio sistema funziona"
 
 
 msgid "privacy-question"
-msgstr "Alcune distribuzioni utilizzano servizi online per migliorare l'esperienza dell'utente. Cio' può influire sulla privacy dell'utente, vale a dire che l'utente può essere monitorato quando utilizza tali funzionalità online."
+msgstr "Alcune distribuzioni utilizzano servizi online per migliorare l'esperienza dell'utente. Ciò può influire sulla privacy dell'utente, vale a dire che l'utente può essere monitorato quando utilizza tali funzionalità online."
 
 msgid "privacy-answer-highprivacy"
 msgstr "Non lo voglio"
@@ -365,7 +365,7 @@ msgid "additional-infos"
 msgstr "dammi informazioni aggiuntive!"
 
 msgid "make-important"
-msgstr "Questo e' importante"
+msgstr "Questo è importante"
 
 msgid "marked-as-important"
 msgstr "Segnato come importante"
@@ -374,19 +374,19 @@ msgid "remove-important"
 msgstr "Rimuovi importanza"
 
 msgid "reason-list-header-negative"
-msgstr "Non possiamo raccomandarti questa distribuzione perche':"
+msgstr "Non possiamo raccomandarti questa distribuzione perchè:"
 
 msgid "reason-list-header-neutral"
 msgstr "I seguenti criteri non sono stati presi in considerazione"
 
 msgid "reason-list-header-blocked-by-others"
-msgstr "Questa risposta e' bloccata da altre risposte fornite"
+msgstr "Questa risposta è bloccata da altre risposte fornite"
 
 msgid "matrix-supports-daily-usage"
 msgstr "Adatto per uso giornaliero"
 
 msgid "matrix-privacy-not-beneficial"
-msgstr "Il concetto della distribuzione non e' utile ai fini dell'anonimizzazione"
+msgstr "Il concetto della distribuzione non è utile ai fini dell'anonimizzazione"
 
 msgid "matrix-supports-gaming-usage"
 msgstr "La distribuzione è attivamente supportata dagli editori di giochi"
@@ -464,13 +464,13 @@ msgid "matrix-ownscope-install"
 msgstr "Tutti i programmi da utilizzare devono essere scelti da te"
 
 msgid "matrix-free-software-unfree-per-default"
-msgstr "I programmi non gratuiti sono installati per impostazione predefinita"
+msgstr "I programmi non liberi sono installati per impostazione predefinita"
 
 msgid "matrix-enforces-free"
-msgstr "Impone l'utilizzo del software gratuito"
+msgstr "Impone l'utilizzo del software libero"
 
 msgid "matrix-mostly-free"
-msgstr "Funziona principalmente con software gratuito"
+msgstr "Funziona principalmente con software libero"
 
 msgid "matrix-has-default-settings"
 msgstr "Ha le impostazioni predefinite"
@@ -602,7 +602,7 @@ msgid "matrix-lightweight"
 msgstr "Distribuzione leggera"
 
 msgid "matrix-free-userselection"
-msgstr "L'uso del software gratuito dipende dalla selezione dell'utente"
+msgstr "L'uso del software libero dipende dalla selezione dell'utente"
 
 # distribution descriptions
 
