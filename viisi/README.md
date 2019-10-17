@@ -27,6 +27,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/PositiveKoodoo"><img src="https://avatars3.githubusercontent.com/u/48484929?v=4" width="100px;" alt="PositiveKoodoo"/><br /><sub><b>PositiveKoodoo</b></sub></a><br /><a href="#translation-PositiveKoodoo" title="Translation">🌍</a></td>
     <td align="center"><a href="https://maddosaurus.github.io"><img src="https://avatars1.githubusercontent.com/u/8026915?v=4" width="100px;" alt="Matthias"/><br /><sub><b>Matthias</b></sub></a><br /><a href="#translation-Maddosaurus" title="Translation">🌍</a></td>
     <td align="center"><a href="https://zmoazeni.github.io/gitspective/#/timeline/waldyrious"><img src="https://avatars2.githubusercontent.com/u/478237?v=4" width="100px;" alt="Waldir Pimenta"/><br /><sub><b>Waldir Pimenta</b></sub></a><br /><a href="#translation-waldyrious" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/jollypuppet"><img src="https://avatars0.githubusercontent.com/u/55812399?v=4" width="100px;" alt="Andrea"/><br /><sub><b>Andrea</b></sub></a><br /><a href="#translation-jollypuppet" title="Translation">🌍</a></td>
   </tr>
 </table>
 
