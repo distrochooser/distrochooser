@@ -19,7 +19,8 @@ TRANSLATIONS = {
   "en": parseTranslation("en"),
   "de": parseTranslation("de"),
   "us": parseTranslation("en"),
-  "gb": parseTranslation("en")
+  "gb": parseTranslation("en"),
+  "it": parseTranslation("it")
 }
 
 TESTOFFSET = 713037   

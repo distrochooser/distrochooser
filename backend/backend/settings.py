@@ -108,6 +108,7 @@ LOCALES = {
     'gb': os.path.join(os.path.join(BASE_DIR, 'locale'), "en.po"),
     'us': os.path.join(os.path.join(BASE_DIR, 'locale'), "en.po"),
     'de': os.path.join(os.path.join(BASE_DIR, 'locale'), "de.po"),
+    'it': os.path.join(os.path.join(BASE_DIR, 'locale'), "it.po"),
 }
 
 # Internationalization
