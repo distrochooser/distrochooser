@@ -143,6 +143,7 @@ export default {
     answerQuestion(answer) {
       if (this.isAnswerSelected(answer)) {
         this.$store.commit('removeAnswerQuestion', answer)
+        this.$store.dispatch('submitInterim')
       } else {
         if (!this.question.isMultipleChoice && this.isQuestionAnswered()) {
           // switch an answer in non multiple choice questions
@@ -151,6 +152,7 @@ export default {
           otherAnswers.forEach(function(a) {
             _t.$store.commit('removeAnswerQuestion', a)
           })
+          this.$store.dispatch('submitInterim')
         }
         if (this.question.isMultipleChoice || !this.isQuestionAnswered()) {
           this.$store.dispatch('answerQuestion', {
