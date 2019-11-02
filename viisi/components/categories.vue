@@ -81,8 +81,11 @@ export default {
       })
     },
     submit() {
-      if (this.isAtWelcomeScreen) {
-        this.start()
+      if (
+        this.$store.state.givenAnswers.length === 0 ||
+        this.isAtWelcomeScreen
+      ) {
+        return
       }
       const _t = this
       _t.$store.dispatch('getSessionStatus', {
