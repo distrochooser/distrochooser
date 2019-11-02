@@ -61,7 +61,7 @@ export default {
     },
     selectCategory(category) {
       if (this.isAtWelcomeScreen) {
-        this.start()
+        // this.start()
       }
       const _t = this
       this.$store.dispatch('selectCategory', {

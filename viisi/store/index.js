@@ -132,6 +132,7 @@ indexStore.mutations.removeAnswerQuestion = (state, answer) => {
 }
 
 indexStore.actions.selectCategory = async (store, payload) => {
+  store.commit('setStarted') //make sure the test is active
   var category = payload.selectedCategory
   store.commit('setSelectCategory', category)
   //TODO: trigger question change
