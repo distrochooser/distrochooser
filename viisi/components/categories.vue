@@ -14,6 +14,7 @@
         a(href="#")
           i.fas.fa-bullhorn
           span {{ __i("recommendation-category") }}
+          i.fas.fa-spinner.fa-pulse.pending-indicator(v-if="$store.state.openInterimResults != 0")
         
 </template>
 
@@ -60,9 +61,6 @@ export default {
       )
     },
     selectCategory(category) {
-      if (this.isAtWelcomeScreen) {
-        // this.start()
-      }
       const _t = this
       this.$store.dispatch('selectCategory', {
         language: _t.language,
@@ -83,7 +81,8 @@ export default {
     submit() {
       if (
         this.$store.state.givenAnswers.length === 0 ||
-        this.isAtWelcomeScreen
+        this.isAtWelcomeScreen ||
+        this.$store.state.openInterimResults != 0
       ) {
         return
       }
@@ -191,5 +190,8 @@ export default {
 }
 .disabled * {
   color: black;
+}
+.pending-indicator {
+  margin-left: 0.5em;
 }
 </style>

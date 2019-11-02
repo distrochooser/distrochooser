@@ -13,6 +13,8 @@ const indexStore = new Vapi({
     token: null, //session token
     isStarted: false,
     result: null,
+    interimResult: null,
+    openInterimResults: 0,
     translations: null,
     locales: null,
     voteResult: null,
@@ -54,6 +56,11 @@ const indexStore = new Vapi({
     path: ({ language, token }) => `submit/${language}/${token}/`
   })
   .post({
+    action: 'interimSubmit',
+    property: 'interimResult',
+    path: ({ language, token }) => `submit/${language}/${token}/`
+  })
+  .post({
     action: 'voteSelection',
     property: 'voteResult',
     path: () => `vote/`
@@ -85,7 +92,7 @@ const indexStore = new Vapi({
   })
   .getStore()
 
-indexStore.actions.answerQuestion = (store, payload) => {
+indexStore.actions.answerQuestion = async (store, payload) => {
   var answer = payload.selectedAnswer
   var answer = {
     msgid: answer.msgid,
@@ -96,13 +103,17 @@ indexStore.actions.answerQuestion = (store, payload) => {
   }
 
   store.commit('setAnswerQuestion', answer)
-  // TODO: push answer to server
-  // TODO: Read result
+  await store.dispatch('submitInterim')
 }
 
 indexStore.actions.submitAnswers = async (store, payload) => {
   store.commit('toggleSubmitted')
-  await store.dispatch('submit', payload)
+  if (store.state.interimResult) {
+    store.state.result = store.state.interimResult
+    store.state.interimResult = null
+  } else {
+    await store.dispatch('submit', payload)
+  }
   store.commit('toggleSubmitted')
 }
 
@@ -131,12 +142,24 @@ indexStore.mutations.removeAnswerQuestion = (state, answer) => {
   }
 }
 
+indexStore.actions.submitInterim = async store => {
+  store.state.openInterimResults++
+  await store.dispatch('interimSubmit', {
+    params: {
+      token: store.state.token,
+      language: store.state.language
+    },
+    data: {
+      answers: store.state.givenAnswers
+    }
+  })
+  store.state.openInterimResults--
+}
+
 indexStore.actions.selectCategory = async (store, payload) => {
   store.commit('setStarted') //make sure the test is active
   var category = payload.selectedCategory
   store.commit('setSelectCategory', category)
-  //TODO: trigger question change
-  //TODO: load the question
   await store.dispatch('loadQuestion', {
     params: {
       language: payload.language,

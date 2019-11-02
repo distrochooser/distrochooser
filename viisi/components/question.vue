@@ -229,8 +229,9 @@ export default {
         ).length === 1
       )
     },
-    toggleImportance(answer) {
+    async toggleImportance(answer) {
       this.$store.commit('toggleImportanceState', answer)
+      await this.$store.dispatch('submitInterim')
     }
   }
 }
