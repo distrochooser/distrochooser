@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getSSRData, getStatus, generateMatrix,readMatrix, getLanguage
+from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getSSRData, getStatus, generateMatrix,readMatrix, getLanguage, getStats
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,5 +30,6 @@ urlpatterns = [
     path('status/<str:slug>/', getStatus, name='getStatus'),
     path('generatematrix/', generateMatrix, name='generateMatrix'),
     path('readmatrix/', readMatrix, name='readMatrix'),
-    path('translation/<str:langCode>/', getLanguage, name="getLanguage")
+    path('translation/<str:langCode>/', getLanguage, name="getLanguage"),
+    path("stats/", getStats, name="getStats")
 ]
