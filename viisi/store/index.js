@@ -13,8 +13,6 @@ const indexStore = new Vapi({
     token: null, //session token
     isStarted: false,
     result: null,
-    interimResult: null,
-    openInterimResults: 0,
     translations: null,
     locales: null,
     voteResult: null,
@@ -54,12 +52,6 @@ const indexStore = new Vapi({
   .post({
     action: 'submit',
     property: 'result',
-    path: ({ language, token, method }) =>
-      `submit/${language}/${token}/${method}/`
-  })
-  .post({
-    action: 'interimSubmit',
-    property: 'interimResult',
     path: ({ language, token, method }) =>
       `submit/${language}/${token}/${method}/`
   })
@@ -104,19 +96,12 @@ indexStore.actions.answerQuestion = async (store, payload) => {
     category: payload.currentCategory.msgid,
     blockedAnswers: answer.blockedAnswers
   }
-
   store.commit('setAnswerQuestion', answer)
-  await store.dispatch('submitInterim')
 }
 
 indexStore.actions.submitAnswers = async (store, payload) => {
   store.commit('toggleSubmitted')
-  if (store.state.interimResult) {
-    store.state.result = store.state.interimResult
-    store.state.interimResult = null
-  } else {
-    await store.dispatch('submit', payload)
-  }
+  await store.dispatch('submit', payload)
   store.commit('toggleSubmitted')
 }
 
@@ -143,21 +128,6 @@ indexStore.mutations.removeAnswerQuestion = (state, answer) => {
       break
     }
   }
-}
-
-indexStore.actions.submitInterim = async store => {
-  store.state.openInterimResults++
-  await store.dispatch('interimSubmit', {
-    params: {
-      token: store.state.token,
-      language: store.state.language,
-      method: store.state.method
-    },
-    data: {
-      answers: store.state.givenAnswers
-    }
-  })
-  store.state.openInterimResults--
 }
 
 indexStore.actions.selectCategory = async (store, payload) => {

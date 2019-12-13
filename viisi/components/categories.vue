@@ -14,7 +14,6 @@
         a(href="#")
           i.fas.fa-bullhorn
           span {{ __i("recommendation-category") }}
-          i.fas.fa-spinner.fa-pulse.pending-indicator(v-if="$store.state.openInterimResults != 0")
         
 </template>
 
@@ -81,8 +80,7 @@ export default {
     submit() {
       if (
         this.$store.state.givenAnswers.length === 0 ||
-        this.isAtWelcomeScreen ||
-        this.$store.state.openInterimResults != 0
+        this.isAtWelcomeScreen
       ) {
         return
       }
@@ -105,7 +103,8 @@ export default {
       this.$store.dispatch('submitAnswers', {
         params: {
           token: this.$store.state.token,
-          language: this.language
+          language: this.language,
+          method: this.$store.state.method
         },
         data: {
           answers: this.$store.state.givenAnswers

@@ -45,6 +45,7 @@ class UserSession(models.Model):
   checksToDo = models.IntegerField(default=0)
   checksDone = models.IntegerField(default=0)
   referrer = models.URLField(null=True, blank=True, default=None)
+  isPending = models.BooleanField(default=False)
 
   def __str__(self):
     return "{0} - {1}".format(self.dateTime, self.userAgent)

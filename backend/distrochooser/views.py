@@ -140,6 +140,13 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str, method: str):
 
 
   userSession = UserSession.objects.get(token=token)
+
+  if userSession.isPending:
+    return HttpResponse('A result is pending', status=409)
+
+  userSession.isPending = True
+  userSession.save()
+
   data = loads(request.body)
   calculations = {
     "static": static.getSelections,
@@ -149,6 +156,8 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str, method: str):
     selections = calculations[method](userSession, data, langCode)
   else:
     raise Exception("Calculation method not known")
+  userSession.isPending = False
+  userSession.save()
   return getJSONCORSResponse({
     "url": "https://beta.distrochooser.de/{0}/{1}/".format(langCode, userSession.publicUrl),
     "selections": selections,
