@@ -25,7 +25,8 @@ const indexStore = new Vapi({
     isSubmitted: false,
     rootUrl: viisiConfig.frontend.frontendUrl,
     answerBlockedAnswers: [],
-    sessionStatus: null
+    sessionStatus: null,
+    method: 'refactored'
   }
 })
   .get({
@@ -53,12 +54,14 @@ const indexStore = new Vapi({
   .post({
     action: 'submit',
     property: 'result',
-    path: ({ language, token }) => `submit/${language}/${token}/`
+    path: ({ language, token, method }) =>
+      `submit/${language}/${token}/${method}/`
   })
   .post({
     action: 'interimSubmit',
     property: 'interimResult',
-    path: ({ language, token }) => `submit/${language}/${token}/`
+    path: ({ language, token, method }) =>
+      `submit/${language}/${token}/${method}/`
   })
   .post({
     action: 'voteSelection',
@@ -147,7 +150,8 @@ indexStore.actions.submitInterim = async store => {
   await store.dispatch('interimSubmit', {
     params: {
       token: store.state.token,
-      language: store.state.language
+      language: store.state.language,
+      method: store.state.method
     },
     data: {
       answers: store.state.givenAnswers

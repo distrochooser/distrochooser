@@ -7,9 +7,8 @@ from backend.settings import LOCALES
 from django.forms.models import model_to_dict
 from json import dumps, loads
 from django.views.decorators.csrf import csrf_exempt
-from distrochooser.calculations.static import getSelections
+from distrochooser.calculations import refactored, static
 from base64 import b64decode
-from distrochooser.importmatrix.importmatrix import readMatrix, generateMatrix
 
 def jumpToQuestion(index: int) -> Question:
   results = Question.objects.filter(category__index=index)
@@ -126,14 +125,21 @@ def loadQuestion(request: HttpRequest, langCode: str, index: int, token: str):
   })
 
 @csrf_exempt #TODO: I don't want to disable security features, but the client does not have the CSRF-Cookie?
-def submitAnswers(request: HttpRequest, langCode: str, token: str):
+def submitAnswers(request: HttpRequest, langCode: str, token: str, method: str):
   if langCode not in LOCALES:
     raise Exception("Language not installed")
 
 
   userSession = UserSession.objects.get(token=token)
   data = loads(request.body)
-  selections = getSelections(userSession, data, langCode)
+  calculations = {
+    "static": static.getSelections,
+    "refactored": refactored.getSelections
+  }
+  if method in calculations:
+    selections = calculations[method](userSession, data, langCode)
+  else:
+    raise Exception("Calculation method not known")
   return getJSONCORSResponse({
     "url": "https://beta.distrochooser.de/{0}/{1}/".format(langCode, userSession.publicUrl),
     "selections": selections,

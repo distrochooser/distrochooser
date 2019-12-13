@@ -15,20 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getSSRData, getStatus, generateMatrix,readMatrix, getLanguage
+from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getSSRData, getStatus, getLanguage
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    #path('admin/', admin.site.urls),
     path('start/<str:langCode>/<str:refLinkEncoded>/', start, name='start'),
     path('locales/', getLocales, name='locales'),
     path('ssrdata/<str:langCode>/', getSSRData, name='getTranslation'),
     path('question/<str:langCode>/<int:index>/<str:token>/', loadQuestion, name='loadQuestion'),
-    path('submit/<str:langCode>/<str:token>/', submitAnswers, name='submitAnswers'),
+    path('submit/<str:langCode>/<str:token>/<str:method>/', submitAnswers, name='submitAnswers'),
     path('vote/', vote, name='voteSelection'),
     path('remarks/', updateRemark, name='updateRemark'),
     path('answers/<str:slug>/', getGivenAnswers, name='getGivenAnswers'),
     path('status/<str:slug>/', getStatus, name='getStatus'),
-    path('generatematrix/', generateMatrix, name='generateMatrix'),
-    path('readmatrix/', readMatrix, name='readMatrix'),
     path('translation/<str:langCode>/', getLanguage, name="getLanguage")
 ]
