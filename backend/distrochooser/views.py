@@ -9,6 +9,7 @@ from json import dumps, loads
 from django.views.decorators.csrf import csrf_exempt
 from distrochooser.calculations import refactored, static
 from base64 import b64decode
+from django.db.models import Count
 
 def jumpToQuestion(index: int) -> Question:
   results = Question.objects.filter(category__index=index)
@@ -44,6 +45,13 @@ def getStatus(request, slug: str):
 
 def getLocales(request):
   return getUnsafeJSONCORSResponse(list(LOCALES.keys()))
+
+def getStats(request):
+  results = ResultDistroSelection.objects.all().values('session_id').annotate(total=Count('session_id')).filter(total__gt=0)
+  return JsonResponse({
+    "tests": results.count(),
+    "visitors": UserSession.objects.all().count()
+  })
 
 def getSSRData(request,langCode: str):
   if langCode not in TRANSLATIONS:
@@ -116,6 +124,7 @@ def getLanguage(request, langCode: str):
     "translations": TRANSLATIONS[langCode]
   })
 
+@csrf_exempt
 def loadQuestion(request: HttpRequest, langCode: str, index: int, token: str):
   # TODO: Do something with the token
   questionAndCategoryData = goToStep(index)

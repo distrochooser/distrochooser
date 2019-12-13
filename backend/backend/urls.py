@@ -28,5 +28,6 @@ urlpatterns = [
     path('remarks/', updateRemark, name='updateRemark'),
     path('answers/<str:slug>/', getGivenAnswers, name='getGivenAnswers'),
     path('status/<str:slug>/', getStatus, name='getStatus'),
-    path('translation/<str:langCode>/', getLanguage, name="getLanguage")
+    path('translation/<str:langCode>/', getLanguage, name="getLanguage"),
+    path("stats/", getStats, name="getStats")
 ]
