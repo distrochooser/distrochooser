@@ -14,7 +14,13 @@ SECRET_KEY = CONFIG["backend"]["SECRET_KEY"]
 DEBUG = CONFIG["backend"]["DEBUG"]
 ALLOWED_HOSTS = CONFIG["backend"]["ALLOWED_HOSTS"]
 
+
+CACHEOPS_REDIS = CONFIG["backend"]["CACHE"]["CACHEOPS_REDIS"]
+CACHEOPS = CONFIG["backend"]["CACHE"]["CACHEOPS"]
+
+
 INSTALLED_APPS = [
+    'cacheops',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

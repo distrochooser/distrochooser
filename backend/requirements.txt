@@ -3,3 +3,4 @@ polib==1.1.0
 gunicorn>=19.9.0
 django-cors-headers>=3.0.2
 mysqlclient==1.4.2.post1
+django-cacheops==4.2
