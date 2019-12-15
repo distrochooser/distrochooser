@@ -4,7 +4,10 @@ import string
 from backend.settings import MEDIA_ROOT
 class Translateable(models.Model):
   msgid = models.CharField(max_length=100, default="new-value",blank=False, null=False)
-  class Meta: 
+  class Meta(): 
+    indexes = [
+      models.Index(fields=['msgid'])
+    ]
     abstract = True
     
 
@@ -63,7 +66,6 @@ class GivenAnswer(models.Model):
   session = models.ForeignKey(UserSession, on_delete=models.CASCADE, db_index=True)
   answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
   isImportant = models.BooleanField(default=False)
-  # TODO: IMPORTANCE FLAG
   def __str__(self):
     return "{0}: {1}".format(self.session, self.answer)
 
@@ -110,7 +112,7 @@ class SelectionReason(models.Model):
 class AnswerDistributionMatrix(models.Model):
   class Meta():
     indexes = [
-      models.Index(fields=['answer']),
+      models.Index(fields=['answer'])
     ]
   answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
   isBlockingHit = models.BooleanField(default=False)
