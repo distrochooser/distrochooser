@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from distrochooser.calculations import refactored, static
 from base64 import b64decode
 from django.db.models import Count
+from ujson import dumps
 
 def jumpToQuestion(index: int) -> Question:
   results = Question.objects.filter(category__index=index)
@@ -18,7 +19,7 @@ def jumpToQuestion(index: int) -> Question:
   return results.get()
 
 def getJSONCORSResponse(data):
-  response = JsonResponse(data)
+  response = HttpResponse(dumps(data))
   response["Access-Control-Allow-Origin"] = "*"
   response["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
   response["Access-Control-Max-Age"] = "1000"
@@ -133,7 +134,10 @@ def loadQuestion(request: HttpRequest, langCode: str, index: int, token: str):
     "answers": questionAndCategoryData["answers"]
   })
 
+
+
 @csrf_exempt #TODO: I don't want to disable security features, but the client does not have the CSRF-Cookie?
+
 def submitAnswers(request: HttpRequest, langCode: str, token: str, method: str):
   if langCode not in LOCALES:
     raise Exception("Language not installed")
@@ -145,7 +149,7 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str, method: str):
     return HttpResponse('A result is pending', status=409)
 
   userSession.isPending = True
-  userSession.save()
+  userSession.save(update_fields=["isPending"])
 
   data = loads(request.body)
   calculations = {
@@ -157,7 +161,7 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str, method: str):
   else:
     raise Exception("Calculation method not known")
   userSession.isPending = False
-  userSession.save()
+  userSession.save(update_fields=["isPending"])
   return getJSONCORSResponse({
     "url": "https://beta.distrochooser.de/{0}/{1}/".format(langCode, userSession.publicUrl),
     "selections": selections,
