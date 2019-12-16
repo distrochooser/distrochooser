@@ -188,7 +188,7 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: '/logo.min.svg'
+          content: this.$store.state.rootUrl + '/logo.min.svg'
         },
         {
           name: 'generator',
