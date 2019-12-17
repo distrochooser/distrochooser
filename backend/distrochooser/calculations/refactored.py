@@ -1,76 +1,85 @@
+from collections import defaultdict
+import itertools
+
 from distrochooser.constants import TRANSLATIONS
-from distrochooser.models import GivenAnswer, ResultDistroSelection, ResultDistroSelection, Distribution, SelectionReason, Answer, AnswerDistributionMatrix, UserSession
+from distrochooser.models import GivenAnswer, ResultDistroSelection, Distribution, SelectionReason, Answer, AnswerDistributionMatrix
 from django.forms.models import model_to_dict
 
-def saveAnswers(userSession, rawAnswers):
-  # Delete old answers
-  GivenAnswer.objects.filter(session=userSession).delete()
-  allAnswers =  Answer.objects.all()
-  for answer in rawAnswers:
-    givenAnswer = GivenAnswer()
-    givenAnswer.session = userSession
-    givenAnswer.answer = allAnswers.get(msgid=answer['msgid'])
-    givenAnswer.isImportant = answer['important']
-    givenAnswer.save()
 
-from django.db import connection
-from silk.profiling.profiler import silk_profile
-@silk_profile()
-def getSelections(userSession, data, langCode):
-  translationToUse = TRANSLATIONS[langCode] if langCode in TRANSLATIONS else TRANSLATIONS["en"]
-  ResultDistroSelection.objects.filter(session=userSession).delete()
-  saveAnswers(userSession, data['answers'])
-  givenAnswers = GivenAnswer.objects.filter(session=userSession).prefetch_related('answer').values("answer","isImportant")
-  importantAnswers = list(map(lambda o: o["answer"], filter(lambda o: o["isImportant"], givenAnswers)))
-  distros = Distribution.objects.all()
-  matchingTuples = AnswerDistributionMatrix.objects.all().prefetch_related('distros', 'answer')
-  distroReasons = {}
-  createdSelections = {}
-  reasonsBySelection = {}
+def save_answers(user_session, raw_answers):
+    GivenAnswer.objects.filter(session=user_session).delete()
+    answer_map = dict(Answer.objects.filter(msgid__in=[a["msgid"] for a in raw_answers]).values_list('msgid', 'pk'))
 
-  for distro in distros:
-    selection = ResultDistroSelection()
-    selection.session = userSession
-    selection.distro = distro
-    selection.save()
-    createdSelections[distro.id] = selection
-    reasonsBySelection[selection.id] = []
-  
-  for matrixTuple in matchingTuples:
-    if matrixTuple.answer not in (o["answer"] for o in givenAnswers):
-      pass
-    selectedDescription = translationToUse[matrixTuple.description] if matrixTuple.description in translationToUse else matrixTuple.description 
+    given_answers_to_create = []
+
+    for answer in raw_answers:
+        given_answers_to_create.append(
+            GivenAnswer(
+                session=user_session,
+                answer_id=answer_map[answer['msgid']],
+                isImportant=answer['important']
+            )
+        )
+
+    GivenAnswer.objects.bulk_create(given_answers_to_create)
+
+    return given_answers_to_create
 
 
-    reason = SelectionReason()
-    reason.isImportant = matrixTuple.answer.pk in importantAnswers
-    reason.resultSelection = None
+def get_selections(user_session, data, lang_code):
+    translation_to_use = TRANSLATIONS.get(lang_code, TRANSLATIONS["en"])
+    ResultDistroSelection.objects.filter(session=user_session).delete()
+    given_answers = save_answers(user_session, data["answers"])
 
-    reason.isBlockingHit = matrixTuple.isBlockingHit
-    reason.isPositiveHit = not matrixTuple.isNegativeHit
-    reason.isNeutralHit = matrixTuple.isNeutralHit
-    reason.description = selectedDescription
+    important_answers = [ga.answer_id for ga in given_answers if ga.isImportant]
+    matching_tuples = AnswerDistributionMatrix.objects.prefetch_related("distros").all()
+    reasons_by_selection = defaultdict(list)
 
-    if reason.isNeutralHit:
-      reason.isPositiveHit = True
-      
-    for distro in matrixTuple.distros.all():
-      selection = createdSelections[distro.id]
-      # prevent that same descritptions appear multiple times
-      isDescriptionAlreadyInReasonList = len(list(filter(lambda r: r.description == reason.description,reasonsBySelection[selection.id]))) > 0
-      if not isDescriptionAlreadyInReasonList:
-        reason.resultSelection = selection
-        reasonsBySelection[selection.id].append(reason)
+    result_distro_selection = [
+        ResultDistroSelection(
+            session=user_session,
+            distro=distro
+        ) for distro in Distribution.objects.all()
+    ]
 
-  results = []
-  for _, selection in createdSelections.items():
-    reasons = reasonsBySelection[selection.id]
-    SelectionReason.objects.bulk_create(reasons)
-    results.append(
-      {
-        "distro": model_to_dict(selection.distro, exclude=["logo", "id"]),
-        "reasons": list(map(lambda r: model_to_dict(r,exclude=["id", "resultSelection"]), reasons)),
-        "selection": selection.id
-      }
-    )
-  return results
+    ResultDistroSelection.objects.bulk_create(result_distro_selection)
+
+    created_selections = {selection.distro_id: selection for selection in result_distro_selection}
+
+    for matrix_tupel in matching_tuples:
+        if matrix_tupel.answer_id not in [ga.answer_id for ga in given_answers]:
+            continue
+
+        selected_description = translation_to_use.get(matrix_tupel.description, matrix_tupel.description)
+
+        reason_base = {
+            "isImportant": matrix_tupel.answer_id in important_answers,
+            "isBlockingHit": matrix_tupel.isBlockingHit,
+            "isPositiveHit": matrix_tupel.isNeutralHit or not matrix_tupel.isNegativeHit,
+            "isNeutralHit": matrix_tupel.isNeutralHit,
+            "description": selected_description
+        }
+
+        for distro in matrix_tupel.distros.all():
+            selection = created_selections[distro.pk]
+
+            if reason_base["description"] not in [added_reason.description for added_reason in reasons_by_selection[selection.id]]:
+                reasons_by_selection[selection.id].append(
+                    SelectionReason(resultSelection=selection, **reason_base)
+                )
+
+    SelectionReason.objects.bulk_create(list(itertools.chain(*reasons_by_selection.values())))
+
+    results = []
+
+    for selection in created_selections.values():
+        reasons = reasons_by_selection[selection.id]
+        results.append(
+            {
+                "distro": model_to_dict(selection.distro, exclude=["logo", "id"]),
+                "reasons": [model_to_dict(r, exclude=["id", "resultSelection"]) for r in reasons],
+                "selection": selection.id
+            }
+        )
+
+    return results

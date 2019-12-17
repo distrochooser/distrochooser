@@ -154,7 +154,7 @@ def submitAnswers(request: HttpRequest, langCode: str, token: str, method: str):
   data = loads(request.body)
   calculations = {
     "static": static.getSelections,
-    "refactored": refactored.getSelections
+    "refactored": refactored.get_selections
   }
   if method in calculations:
     selections = calculations[method](userSession, data, langCode)
