@@ -343,11 +343,9 @@ msgstr "I want to avoid systemd"
 msgid "result-submitted-hint"
 msgstr "Calculating result"
 
-msgid "reason-header"
-msgstr "Show reasons"
 
-msgid "hide-reasons"
-msgstr "Hide reasons"
+msgid "reason-header-hint"
+msgstr "Click on the thumbs to see detailed reasons for this recommendation"
 
 msgid "reason-list-header"
 msgstr "Reason for/ against"

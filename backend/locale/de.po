@@ -322,15 +322,8 @@ msgstr "Ich möchte Aktualisierungen erst dann, wenn sie wirklich stabil sind, a
 msgid "answer-avoid-systemd"
 msgstr "Ich weiß was \"systemd\" ist und möchte dieses meiden. "
 
-
-
-msgid "reason-header"
-msgstr "Begründung zeigen"
-
-msgid "hide-reasons"
-msgstr "Begründung ausblenden"
-
-
+msgid "reason-header-hint"
+msgstr "Klicke auf die Daumen, um detailierte Gründe für eine Empfehlung zu sehen"
 
 msgid "answer-is-blocking"
 msgstr "Folgende Antworten widersprechen dieser Antwort"

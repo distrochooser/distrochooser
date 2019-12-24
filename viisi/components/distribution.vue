@@ -2,14 +2,14 @@
   div.distribution(v-if="!hasNoMatch")
     div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
       span {{ name }}
-      span.scores-summary
-        i.fas.fa-thumbs-up.summary(:style="'color: ' + fgColor")
-        span {{ nonBlocking(reasons).length }} 
-        i.fas.fa-thumbs-down.summary(:style="'color: ' + fgColor")
-        span {{ negative(reasons).length + blocking(reasons).length }}
-      a.show-reasons(href="#", @click.prevent="flipped=!flipped", :style="'color: ' + fgColor")
-        span(v-if="!flipped") {{ __i("reason-header".replace("%s",name)) }}
-        span(v-if="flipped") {{ __i("hide-reasons")}}
+      span.scores-summary(data-balloon-pos="up", :data-balloon="__i('reason-header-hint')")
+        a(href="#", @click.prevent="flipped=!flipped", :style="'color: ' + fgColor")
+          span(v-if="nonBlocking(reasons).length !== 0")
+            i.fas.fa-thumbs-up.summary(:style="'color: ' + fgColor")
+            span {{ nonBlocking(reasons).length }} 
+          span(v-if="negative(reasons).length !== 0")
+            i.fas.fa-thumbs-down.summary(:style="'color: ' + fgColor")
+            span {{ negative(reasons).length + blocking(reasons).length }}
     div.description(v-if="!flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
       div.reason-list.list
@@ -48,9 +48,9 @@
     div.meta
       div.actions(:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
         a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)")
-          i.fa-thumbs-up(v-bind:class="{'fa animated heartBeat voted': voted && positiveVote, 'far': !voted || !positiveVote}")
+          i.fa-heart(v-bind:class="{'fas animated heartBeat voted': voted && positiveVote, 'far': !voted || !positiveVote}")
         a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)")
-          i.fa-thumbs-down(v-bind:class="{'fa animated jello voted': voted && !positiveVote, 'far': !voted || positiveVote}")
+          i.fa-heart-broken(v-bind:class="{'fas animated swing voted': voted && !positiveVote, 'fas': !voted || positiveVote}")
       div.url
         a(v-if="url", target="_blank", :href="url") {{ __i("distribution-homepage") }}
 </template>
@@ -179,10 +179,10 @@ export default {
   color: $linkColor;
   font-size: 15pt;
 }
-.action .fa-thumbs-up.voted {
-  color: green !important;
+.action .fa-heart.voted {
+  color: #ff1128 !important;
 }
-.action .fa-thumbs-down.voted {
+.action .fa-heart-broken.voted {
   color: red !important;
 }
 .fa-like {
@@ -197,7 +197,7 @@ export default {
 .fa-ban {
   color: #d40000;
 }
-.fa-thumbs-down {
+.fa-heart-broken {
   color: #f03c82;
 }
 .fa-exclamation-triangle {
@@ -222,7 +222,7 @@ i {
   margin-bottom: 0.3em;
 }
 .voted {
-  text-shadow: #1e1e1b 2px 2px 2pt;
+  text-shadow: #1e1e1b57 2px 2px 2pt;
 }
 .url {
   display: inline-block;
@@ -237,6 +237,9 @@ i {
 .scores-summary {
   margin-left: 0.5em;
   margin-right: 0.5em;
+}
+.scores-summary a {
+  text-decoration: none;
 }
 .summary {
   color: white;
