@@ -2,6 +2,9 @@ from django.db import models
 from datetime import datetime
 import string
 from backend.settings import MEDIA_ROOT
+from django.utils.timezone import now
+
+
 class Translateable(models.Model):
   msgid = models.CharField(max_length=100, default="new-value",blank=False, null=False)
   class Meta(): 
@@ -39,7 +42,7 @@ class UserSession(models.Model):
       models.Index(fields=['token']),
       models.Index(fields=['publicUrl']),
     ]
-  dateTime = models.DateTimeField(default=datetime.now())
+  dateTime = models.DateTimeField(default=now)
   userAgent = models.CharField(max_length=200, null=False, blank=False, default="")
   token = models.CharField(max_length=200, null=False, blank=False, default="")
   publicUrl = models.CharField(max_length=200, null=False, blank=False, default="")
