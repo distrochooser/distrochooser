@@ -50,7 +50,7 @@ class UserSession(models.Model):
   remarks = models.CharField(max_length=250,null=True, blank=True, default=None)
   checksToDo = models.IntegerField(default=0)
   checksDone = models.IntegerField(default=0)
-  referrer = models.URLField(null=True, blank=True, default=None)
+  referrer = models.URLField(null=True, blank=True, default=None,max_length=1000)
   isPending = models.BooleanField(default=False)
 
   def __str__(self):
