@@ -345,7 +345,7 @@ msgstr "Calculating result"
 
 
 msgid "reason-header-hint"
-msgstr "Click on the thumbs to see detailed reasons for this recommendation"
+msgstr "Click on the distribution name to see detailed reasons for this recommendation"
 
 msgid "reason-list-header"
 msgstr "Reason for/ against"
@@ -690,7 +690,7 @@ msgstr "deutsch"
 msgid "debian-updates-slow"
 msgstr "Debian updates are usually slow in favor of stability"
 
-msgid "description-qubeos"
+msgid "description-qubesos"
 msgstr "Qubes OS executes processes in virtual machines in favor of security"
 
 msgid "software-use-case-isolation"

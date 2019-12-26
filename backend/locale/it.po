@@ -344,7 +344,7 @@ msgid "result-submitted-hint"
 msgstr "Calcolando il risultato"
 
 msgid "reason-header-hint"
-msgstr "Clicca sui pollici per vedere i motivi dettagliati di questa raccomandazione"
+msgstr "Cliccare sul nome della distribuzione per ottenere ulteriori informazioni"
 
 msgid "reason-list-header"
 msgstr "Motivo per/ contro"
@@ -689,7 +689,7 @@ msgstr "deutsch"
 msgid "debian-updates-slow"
 msgstr "Gli aggiornamenti sono lenti, ma di solito stabili"
 
-msgid "description-qubeos"
+msgid "description-qubesos"
 msgstr "Le applicazioni vengono eseguite in modo isolato"
 
 msgid "software-use-case-isolation"

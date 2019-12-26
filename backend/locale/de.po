@@ -323,7 +323,7 @@ msgid "answer-avoid-systemd"
 msgstr "Ich weiß was \"systemd\" ist und möchte dieses meiden. "
 
 msgid "reason-header-hint"
-msgstr "Klicke auf die Daumen, um detailierte Gründe für eine Empfehlung zu sehen"
+msgstr "Klicke auf den Distributionsnamen, um detailierte Gründe für eine Empfehlung zu sehen"
 
 msgid "answer-is-blocking"
 msgstr "Folgende Antworten widersprechen dieser Antwort"
@@ -661,7 +661,7 @@ msgstr "deutsch"
 msgid "debian-updates-slow"
 msgstr "Debian-Updates kommen gewöhnlich später, was der Stabilität zu Gute kommt."
 
-msgid "description-qubeos"
+msgid "description-qubesos"
 msgstr "QubesOS setzt einen hoheren Sicherheitsstandard durch Isolation der genutzten Programme"
 
 msgid "software-use-case-isolation"

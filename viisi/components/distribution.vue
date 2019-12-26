@@ -1,18 +1,20 @@
 <template lang="pug">
   div.distribution(v-if="!hasNoMatch")
-    div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
+    div.title(@click.prevent="flipped=!flipped", :style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
       span {{ name }}
-      span.scores-summary(data-balloon-pos="up", :data-balloon="__i('reason-header-hint')")
-        a(href="#", @click.prevent="flipped=!flipped", :style="'color: ' + fgColor")
-          span(v-if="nonBlocking(reasons).length !== 0")
-            i.fas.fa-thumbs-up.summary(:style="'color: ' + fgColor")
-            span {{ nonBlocking(reasons).length }} 
-          span(v-if="negative(reasons).length !== 0")
-            i.fas.fa-thumbs-down.summary(:style="'color: ' + fgColor")
-            span {{ negative(reasons).length  }}
-          span(v-if="blocking(reasons).length !== 0")
-            i.fas.fa-ban.summary(:style="'color: ' + fgColor")
-            span {{ blocking(reasons).length }}
+      span.scores-summary(, :style="'color: ' + fgColor")
+        span(v-if="nonBlocking(reasons).length !== 0")
+          i.fas.fa-thumbs-up.summary(:style="'color: ' + fgColor")
+          span {{ nonBlocking(reasons).length }} 
+        span(v-if="negative(reasons).length !== 0")
+          i.fas.fa-thumbs-down.summary(:style="'color: ' + fgColor")
+          span {{ negative(reasons).length  }}
+        span(v-if="blocking(reasons).length !== 0")
+          i.fas.fa-ban.summary(:style="'color: ' + fgColor")
+          span {{ blocking(reasons).length }}
+        span(v-if="neutral.length !== 0")
+          i.fas.fa-question.summary(:style="'color: ' + fgColor")
+          span {{ neutral.length }}
     div.description(v-if="!flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
       div.reason-list.list
@@ -155,6 +157,7 @@ export default {
   padding: 10px;
   font-family: Open Sans, sans-serif;
   margin-bottom: 1em;
+  cursor: pointer;
 }
 .description {
   margin-left: 1em;
