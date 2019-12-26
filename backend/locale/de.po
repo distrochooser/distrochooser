@@ -117,7 +117,7 @@ msgid "about-intro-text"
 msgstr "Das Ziel von Distrochooser ist es, Anfängern eine Orientierungshilfe in Linux zu geben. Das Ergebnis ist dabei lediglich eine Orientierungshilfe und ist kein Orakel"
 
 msgid "about-intro-test-count"
-msgstr "Seit dem 14.06.2014 hat Distrochooser %tests% tests durchgeführt."
+msgstr "Seit dem 14.06.2014 hat Distrochooser %tests% Tests durchgeführt."
 
 msgid "about-licenses"
 msgstr "Distrochooser.de unterliegt einer Doppellizenz"
