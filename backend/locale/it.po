@@ -683,3 +683,26 @@ msgstr "english"
 
 msgid "locale-de"
 msgstr "deutsch"
+
+# update pack 26th december 2019
+
+msgid "debian-updates-slow"
+msgstr "Gli aggiornamenti sono lenti, ma di solito stabili"
+
+msgid "description-qubeos"
+msgstr "Le applicazioni vengono eseguite in modo isolato"
+
+msgid "software-use-case-isolation"
+msgstr "Voglio che i programmi vengano eseguiti separatamente"
+
+msgid "matrix-runs-in-isolation"
+msgstr "Il software viene eseguito in modo isolato"
+
+msgid "software-use-case-blind"
+msgstr "L'utente ha una disabilità visiva"
+
+msgid "matrix-knoppix-adriane"
+msgstr "Il progetto ADRIANE offre aiuto ai non vedenti e agli ipovedenti"
+
+msgid "matrix-has-software-for-blind"
+msgstr "I lettori di schermo possono essere installati in un secondo momento (ad es. Orca)"

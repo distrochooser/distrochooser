@@ -684,3 +684,26 @@ msgstr "english"
 
 msgid "locale-de"
 msgstr "deutsch"
+
+# update pack 26th december 2019
+
+msgid "debian-updates-slow"
+msgstr "Debian updates are usually slow in favor of stability"
+
+msgid "description-qubeos"
+msgstr "Qubes OS executes processes in virtual machines in favor of security"
+
+msgid "software-use-case-isolation"
+msgstr "I want to execute all programs in an isolated area"
+
+msgid "matrix-runs-in-isolation"
+msgstr "Software execution happens in isolated environments"
+
+msgid "software-use-case-blind"
+msgstr "The user is visually impaired"
+
+msgid "matrix-knoppix-adriane"
+msgstr "The ADRIANE project offers tools and solutions for visually impaired people"
+
+msgid "matrix-has-software-for-blind"
+msgstr "Software for visually impaired people are installable (e. g. 'Orca')"

@@ -655,3 +655,26 @@ msgstr "english"
 
 msgid "locale-de"
 msgstr "deutsch"
+
+# update pack 26th december 2019
+
+msgid "debian-updates-slow"
+msgstr "Debian-Updates kommen gewöhnlich später, was der Stabilität zu Gute kommt."
+
+msgid "description-qubeos"
+msgstr "QubesOS setzt einen hoheren Sicherheitsstandard durch Isolation der genutzten Programme"
+
+msgid "software-use-case-isolation"
+msgstr "Ich möchte, dass Programme isoliert genutzt werden"
+
+msgid "matrix-runs-in-isolation"
+msgstr "Führt Programme per Standard in Isolation aus"
+
+msgid "software-use-case-blind"
+msgstr "Der Nutzer hat eine Sehbeeinträchtigung"
+
+msgid "matrix-knoppix-adriane"
+msgstr "Das ADRIANE-Projekt bietet Unterstützung für Sehbeeinträchtigte"
+
+msgid "matrix-has-software-for-blind"
+msgstr "Es können Programme wie Screenreader (z. B. 'Orca') nachinstalliert werden"
