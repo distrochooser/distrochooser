@@ -9,7 +9,10 @@
             span {{ nonBlocking(reasons).length }} 
           span(v-if="negative(reasons).length !== 0")
             i.fas.fa-thumbs-down.summary(:style="'color: ' + fgColor")
-            span {{ negative(reasons).length + blocking(reasons).length }}
+            span {{ negative(reasons).length  }}
+          span(v-if="blocking(reasons).length !== 0")
+            i.fas.fa-ban.summary(:style="'color: ' + fgColor")
+            span {{ blocking(reasons).length }}
     div.description(v-if="!flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
       div.reason-list.list
