@@ -26,6 +26,7 @@ export default {
       var blocking = this.blocking(reasons).length
       var nonBlockingImportanceOffset = 0
       var blockingImportanceOffset = 0
+      var negative = this.negative(reasons).length
       this.nonBlocking(reasons).forEach(value => {
         if (value.isImportant) {
           nonBlockingImportanceOffset++
@@ -39,9 +40,9 @@ export default {
       blocking += blockingImportanceOffset
       nonBlocking += nonBlockingImportanceOffset
       if (blocking === 0) {
-        return nonBlocking
+        return nonBlocking - negative
       }
-      return -(blocking / nonBlocking)
+      return -(blocking / nonBlocking) - negative
     }
   }
 }
