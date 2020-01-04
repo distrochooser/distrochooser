@@ -33,6 +33,8 @@ class Question(Translateable):
 class Answer(Translateable):
   question = models.ForeignKey(Question, on_delete=models.CASCADE)
   blockedAnswers =  models.ManyToManyField(to="Answer", related_name="blockedAnswersFromAnswer",blank=True)
+  mediaSourcePath = models.TextField(null=True, blank=True) # if null -> no image there!
+  isDisabled = models.BooleanField(default=False)
   def __str__(self):
     return "{0}: {1}".format(self.question, self.msgid)
 

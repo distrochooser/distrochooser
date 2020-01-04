@@ -64,7 +64,7 @@ def getStats(request):
   referrers = {}
   for referrer in referrersQuery:
     backlink = referrer["referrer"]
-    if backlink:
+    if backlink and "https://distrochooser.de" not in backlink and "https://beta.distrochooser.de" not in backlink:
       referrers[referrer["referrer"]] = referrer["amount"]
   
   return JsonResponse({
@@ -90,7 +90,7 @@ def goToStep(categoryIndex: int) -> dict:
   if results.count() == 0:
     raise Exception("Question unknown")
   question = results.first()
-  answers = Answer.objects.filter(question=question)
+  answers = Answer.objects.filter(question=question, isDisabled=False)
   responseAnswers = []
   for answer in answers:
     blockedAnswers = []
@@ -98,7 +98,8 @@ def goToStep(categoryIndex: int) -> dict:
       blockedAnswers.append(blocked.msgid)
     responseAnswers.append({
       "msgid": answer.msgid,
-      "blockedAnswers": blockedAnswers
+      "blockedAnswers": blockedAnswers,
+      "mediaSourcePath": answer.mediaSourcePath
     })
       
   blocking = []
