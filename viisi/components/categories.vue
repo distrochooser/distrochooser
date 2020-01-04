@@ -73,6 +73,9 @@ export default {
       })
     },
     submit() {
+      if (this.$store.state.oldTestData !== null) {
+        this.start()
+      }
       if (
         this.$store.state.givenAnswers.length === 0 ||
         this.isAtWelcomeScreen
