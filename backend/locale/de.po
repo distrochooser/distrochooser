@@ -248,10 +248,8 @@ msgstr "Ich bervorzuge eine an Windows erinnernde Oberfläche. "
 msgid "ux-concept-answer-mac-like"
 msgstr "Ich bervorzuge eine an macOS erinnernde Oberfläche. "
 
-
-
 msgid "ux-concept-closed-expierience"
-msgstr "Ich habe kein bevorzugtes Benutzerkonzept. "
+msgstr "Die Distribution sollte einen optisch geschlossenen Gesamteindruck machen"
 
 msgid "price-question"
 msgstr "Ein Großteil der Distributionen ist kostenlos. Es gibt aber auch Distributionen, die gegen einen Preis erworben werden, dafür aber z. B. Support bieten."
@@ -678,3 +676,12 @@ msgstr "Das ADRIANE-Projekt bietet Unterstützung für Sehbeeinträchtigte"
 
 msgid "matrix-has-software-for-blind"
 msgstr "Es können Programme wie Screenreader (z. B. 'Orca') nachinstalliert werden"
+
+msgid "source"
+msgstr "Bildquelle"
+
+msgid "description-void"
+msgstr "Void Linux ist eine auf Rolling Releases aufbauende Distribution, die auf systemd verzichtet"
+
+msgid "skip-question"
+msgstr "überspringen"

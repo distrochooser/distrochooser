@@ -707,3 +707,12 @@ msgstr "The ADRIANE project offers tools and solutions for visually impaired peo
 
 msgid "matrix-has-software-for-blind"
 msgstr "Software for visually impaired people are installable (e. g. 'Orca')"
+
+msgid "source"
+msgstr "Image source"
+
+msgid "description-void"
+msgstr "Void Linux is a rolling release distribution without systemd"
+
+msgid "skip-question"
+msgstr "skip question"

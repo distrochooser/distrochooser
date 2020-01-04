@@ -706,3 +706,13 @@ msgstr "Il progetto ADRIANE offre aiuto ai non vedenti e agli ipovedenti"
 
 msgid "matrix-has-software-for-blind"
 msgstr "I lettori di schermo possono essere installati in un secondo momento (ad es. Orca)"
+
+msgid "source"
+msgstr "Fonte"
+
+
+msgid "description-void"
+msgstr "Void Linux si basa sui rilasci a rotazione e non utilizza systemd"
+
+msgid "skip-question"
+msgstr "saltare"
