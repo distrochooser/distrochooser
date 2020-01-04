@@ -46,9 +46,17 @@
           span {{ __i("question-is-multiplechoice") }}
         div.answers(:class="{'flipped': additionalInfoShown}")
           div.image-answer-parent(v-if="question.isMediaQuestion")
-            div.image-answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
-              img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)")
-              p {{ __i(answer.msgid) }}
+            div.image-answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
+              img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)", @click='answerQuestion(answer)')
+              p.image-answer-options
+                a.source-link(target="_blank", :href="answer.mediaSourcePath", v-if="answer.mediaSourcePath") 
+                    i.fas.fa-external-link-alt(:title='__i("source")')
+                span
+                  span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="isAnswerSelected(answer) && !isAnswerImportant(answer)")
+                    i.far.fa-star(:title='__i("make-important")')
+                  span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
+                    i.fas.fa-star.animated.jello(:title="__i('remove-important')")
+              p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
           div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
             span(v-if="question.isMultipleChoice")
               i.far.answer-box(@click='answerQuestion(answer)', :class="{'fa-check-square': isAnswerSelected(answer), 'fa-square': !isAnswerSelected(answer)}")
@@ -70,6 +78,7 @@
                 i.fas.fa-times-circle
                 span "{{ __i(blockingAnswer.msgid) }}"
       div.actions(v-if="!additionalInfoShown")
+        button.skip-step.step(@click="nextQuestion",v-if="!isAtLastQuestion()") {{  __i("skip-question") }}
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
         button.next-step.step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
 </template>
@@ -306,6 +315,9 @@ ul {
   padding-right: 2em;
   font-size: 11pt;
 }
+.image-answer.answer-selected {
+  border: 2px solid $selectedAnswerBackground;
+}
 .answer-selected {
   color: $selectedAnswerBackground !important;
 }
@@ -318,7 +330,7 @@ ul {
 }
 .step {
   color: black;
-  padding: 0.7rem 1.4rem;
+  padding: 0.4rem 0.8rem;
   border: 1px solid $nextButtonBackground;
   margin-left: 1rem;
   cursor: pointer;
@@ -327,11 +339,7 @@ ul {
   font-size: 12pt;
 }
 .skip-step {
-  position: relative;
-  left: 95%;
-  top: 0.5em;
-  display: inline;
-  color: $skipButtonColor;
+  border: 1px solid $skipButtonColor;
 }
 .next-step {
   background: $lightColor;
@@ -467,12 +475,16 @@ a {
   margin-right: 1em;
   cursor: pointer;
   margin-bottom: 1em;
+  padding: 0.5em;
+  border: 2px solid white;
 }
 .image-answer-parent {
   text-align: center;
+  margin-left: -3em !important;
 }
 .image-answer img {
-  width: 50%;
+  height: 160px;
+  padding: 1em;
 }
 .importance-toggle .far {
   color: #ff7a00;
@@ -500,5 +512,12 @@ a {
 }
 .welcome-text div .fa-heart {
   color: #d50d0d;
+}
+.source-link {
+  font-size: 9pt;
+}
+.image-answer-options {
+  margin-bottom: 0.5em;
+  margin-top: -0.5em;
 }
 </style>
