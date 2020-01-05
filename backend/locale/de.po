@@ -623,7 +623,7 @@ msgstr "Ubuntu MATE ist eine auf Ubuntu basierende Distribution mit vorinstallie
 msgid "description-fedora"
 msgstr "Fedora ist eine von Red Hat unterstütze Distribution, die sich für die Nutzung von freier Software ausspricht"
 
-msgid "description-qubes"
+msgid "description-qubeos"
 msgstr "QubesOS startet Programme in virtuellen Maschinen, um die Sicherheit zu erhöhen"
 
 msgid "description-gentoo"
@@ -685,3 +685,6 @@ msgstr "Void Linux ist eine auf Rolling Releases aufbauende Distribution, die au
 
 msgid "skip-question"
 msgstr "überspringen"
+
+msgid "description-nixos"
+msgstr "NixOS baut auf dem gleichnamigen Paketmanager auf, der dem Prinzip deklarativer Systemkonfiguration folgt, um Aktualisierungen reproduzierbar zu machen."

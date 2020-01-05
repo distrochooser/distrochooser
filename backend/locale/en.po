@@ -652,7 +652,7 @@ msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight MATE 
 msgid "description-fedora"
 msgstr "Fedora is a Red hat backed distribution with a large focus on free software"
 
-msgid "description-qubes"
+msgid "description-qubeos"
 msgstr "Qubes OS isolates applications using virtual machines to improve security"
 
 msgid "description-gentoo"
@@ -716,3 +716,6 @@ msgstr "Void Linux is a rolling release distribution without systemd"
 
 msgid "skip-question"
 msgstr "skip question"
+
+msgid "description-nixos"
+msgstr "NixOS uses the Nix package manager.  It uses declarative configuration and allows reliable system upgrades."

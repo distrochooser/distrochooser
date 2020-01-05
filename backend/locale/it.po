@@ -651,7 +651,7 @@ msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero amb
 msgid "description-fedora"
 msgstr "Fedora è una distribuzione supportata da Red Hat con una grande attenzione al software libero"
 
-msgid "description-qubes"
+msgid "description-qubeos"
 msgstr "Qubes OS isola le applicazioni utilizzando macchine virtuali per migliorare la sicurezza"
 
 msgid "description-gentoo"
@@ -716,3 +716,6 @@ msgstr "Void Linux si basa sui rilasci a rotazione e non utilizza systemd"
 
 msgid "skip-question"
 msgstr "saltare"
+
+msgid "description-nixos"
+msgstr "NixOS utilizza il gestore di pacchetti Nix.  Utilizza una configurazione dichiarativa e consente aggiornamenti affidabili del sistema."
