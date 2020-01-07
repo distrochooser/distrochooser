@@ -55,6 +55,16 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "z1r0-",
+      "name": "Alex Sa",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6104256?v=4",
+      "profile": "https://github.com/z1r0-",
+      "contributions": [
+        "question",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
