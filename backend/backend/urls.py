@@ -15,19 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from distrochooser.views import start, loadQuestion, submitAnswers, getLocales, vote, getGivenAnswers, updateRemark,getSSRData, getStatus, getLanguage, getStats
+
+from distrochooser.views import start, load_question, submit_answers, get_locales, vote, get_given_answers, update_remark, get_ssr_data, get_language_values, getStats
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
-    path('start/<str:langCode>/<str:refLinkEncoded>/', start, name='start'),
-    path('locales/', getLocales, name='locales'),
-    path('ssrdata/<str:langCode>/', getSSRData, name='getTranslation'),
-    path('question/<str:langCode>/<int:index>/<str:token>/', loadQuestion, name='loadQuestion'),
-    path('submit/<str:langCode>/<str:token>/<str:method>/', submitAnswers, name='submitAnswers'),
+    path('admin/', admin.site.urls),
+    path('start/<str:lang_code>/<str:reflink_encoded>/', start, name='start'),
+    path('locales/', get_locales, name='locales'),
+    path('ssrdata/<str:lang_code>/', get_ssr_data, name='get_ssr_data'),
+    path('question/<int:index>/', load_question, name='loadQuestion'),
+    path('submit/<str:lang_code>/<str:token>/<str:method>/', submit_answers, name='submit_answers'),
     path('vote/', vote, name='voteSelection'),
-    path('remarks/', updateRemark, name='updateRemark'),
-    path('answers/<str:slug>/', getGivenAnswers, name='getGivenAnswers'),
-    path('status/<str:slug>/', getStatus, name='getStatus'),
-    path('translation/<str:langCode>/', getLanguage, name="getLanguage"),
+    path('remarks/', update_remark, name='update_remark'),
+    path('answers/<str:token>/', get_given_answers, name='get_given_answers'),
+    path('translation/<str:lang_code>/', get_language_values, name="get_language_values"),
     path("stats/", getStats, name="getStats")
 ]
+
+from django.conf.urls import include, url
+
+urlpatterns += [url(r'^silk/', include('silk.urls', namespace='silk'))]

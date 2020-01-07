@@ -75,27 +75,17 @@ paths:
         description: "Regular case"
         schema:
           $ref: '#/definitions/oldAnswers'
-  /question/{langcode}/{index}/{token}/:
+  /question/{index}/:
     get: 
       tags:
        - "question loading"
-      description: "Receive the question data for a given category. Questions and categories are connected 1:1"
+      description: "Receive the question data for a given category. Questions and categories are connected 1:1. The values are not translated and will be translated at client side"
       parameters:
-      - in: "path"
-        name: "langcode"
-        description: "The requested language to use. Needs to be in ISO-639-1."
-        required: true
-        type: string
       - in: "path"
         name: "index"
         description: "A 0-starting index of the category to load"
         required: true
         type: integer
-      - in: "path"
-        name: "token"
-        description: "The current session token"
-        required: true
-        type: string
       responses:
        404:
         description: "if one of the parameters are invalid"
