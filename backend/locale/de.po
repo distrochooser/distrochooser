@@ -694,3 +694,6 @@ msgstr "NixOS baut auf dem gleichnamigen Paketmanager auf, der dem Prinzip dekla
 
 msgid "reasons-hide"
 msgstr "Gründe ausblenden"
+
+msgid "description-artix"
+msgstr "Artix ist eine auf Arch Linux basierte Distribution, die allerdings OpenRC statt systemd nutzt."

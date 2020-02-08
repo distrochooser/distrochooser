@@ -725,3 +725,6 @@ msgstr "NixOS uses the Nix package manager.  It uses declarative configuration a
 
 msgid "reasons-hide"
 msgstr "Hide reasons"
+
+msgid "description-artix"
+msgstr "Artix is an Arch Linux based distribution which utilizes OpenRC instead of systemd."

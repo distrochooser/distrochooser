@@ -725,3 +725,6 @@ msgstr "NixOS utilizza il gestore di pacchetti Nix.  Utilizza una configurazione
 
 msgid "reasons-hide"
 msgstr "Nascondere le ragioni"
+
+msgid "description-artix"
+msgstr "Artix è una distribuzione basata su Arch Linux che utilizza OpenRC al posto di systemd."
