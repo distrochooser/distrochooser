@@ -15,10 +15,8 @@
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
       div.remarks
         div(v-if="$store.state.remarksAdded") {{ __i("result-remarks-added")}}
-        textarea(v-model="remarks",maxlength="250",:placeholder="__i('remark-placeholder')",v-if="!$store.state.remarksAdded")
+        textarea(v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder')",v-if="!$store.state.remarksAdded")
         button.add-remarks-button(:data-balloon="__i('no-remark')",data-balloon-pos="left", v-if="!$store.state.remarksAdded", v-on:click="updateRemark",:class="{'disabled': remarks.length === 0}")  {{ __i("result-remarks-button") }}
-    div.info-box
-      p {{ __i('reason-header-hint') }}
     distribution(v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
 
     div(v-if="isEmpty")
@@ -123,14 +121,13 @@ export default {
   padding-bottom: 1em;
 }
 .remarks textarea {
-  width: 50%;
+  width: 100%;
   margin-top: 1em;
-  margin-left: 25%;
-  margin-right: 25%;
   margin-bottom: 1em;
   font-family: 'Open Sans', sans-serif;
   resize: none;
   padding: 1em;
+  resize: vertical;
 }
 .add-remarks-button {
   border: 0px;
