@@ -49,7 +49,7 @@ class UserSession(models.Model):
   token = models.CharField(max_length=200, null=False, blank=False, default="")
   publicUrl = models.CharField(max_length=200, null=False, blank=False, default="")
   language = models.CharField(max_length=10, null=False, blank=False, default="en")
-  remarks = models.CharField(max_length=250,null=True, blank=True, default=None)
+  remarks = models.CharField(max_length=3000,null=True, blank=True, default=None)
   checksToDo = models.IntegerField(default=0)
   checksDone = models.IntegerField(default=0)
   referrer = models.URLField(null=True, blank=True, default=None,max_length=1000)
