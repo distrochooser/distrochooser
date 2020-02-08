@@ -40,12 +40,12 @@ def getSelections(userSession, data, langCode):
     newSelections.append(selection)
     createdSelections[distro.id] = selection
     createdReasons[distro.id] = []
-  
+
 
   for matrixTuple in matchingTuples:
     isInAnswerList = matrixTuple.answer.pk in (o["answer"] for o in givenAnswers)
     if isInAnswerList:
-      selectedDescription = translationToUse[matrixTuple.description] if matrixTuple.description in translationToUse else matrixTuple.description 
+      selectedDescription = translationToUse[matrixTuple.description] if matrixTuple.description in translationToUse else matrixTuple.description
 
 
       reason = SelectionReason()
@@ -59,7 +59,7 @@ def getSelections(userSession, data, langCode):
 
       if reason.isNeutralHit:
         reason.isPositiveHit = True
-        
+
       for distro in matrixTuple.distros.all():
         selection = list(filter(lambda s: s.distro == distro, newSelections))[0]
         if selection.pk is None:
@@ -69,11 +69,11 @@ def getSelections(userSession, data, langCode):
         if not isDescriptionAlreadyInReasonList:
           reason.resultSelection = selection
           createdReasons[distro.id].append(reason)
+          reason.save()
 
   results = []
   for distroId, selection in createdSelections.items():
     reasons = createdReasons[distroId]
-    SelectionReason.objects.bulk_create(reasons)
     results.append(
       {
         "distro": model_to_dict(selection.distro, exclude=["logo", "id"]),
