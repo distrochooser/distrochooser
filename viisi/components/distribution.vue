@@ -1,6 +1,6 @@
 <template lang="pug">
   div.distribution(v-if="!hasNoMatch")
-    div.title(@click.prevent="flipped=!flipped", :style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
+    div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
       span {{ name }}
       span.scores-summary(, :style="'color: ' + fgColor")
         span(v-if="nonBlocking(reasons).length !== 0")
@@ -15,7 +15,7 @@
         span(v-if="neutral.length !== 0")
           i.fas.fa-question.summary(:style="'color: ' + fgColor")
           span {{ neutral.length }}
-    div.description(v-if="!flipped") {{ __i("description-" + id) }}
+    div.description {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
       div.reason-list.list
         div(v-if="nonBlocking(reasons).length > 0")
@@ -51,11 +51,14 @@
             i.fas.fa-question
             span {{ reason.description }}
     div.meta
-      div.actions(:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
-        a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)")
-          i.fa-heart(v-bind:class="{'fas animated heartBeat voted': voted && positiveVote, 'far': !voted || !positiveVote}")
-        a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)")
-          i.fa-heart-broken(v-bind:class="{'fas animated swing voted': voted && !positiveVote, 'fas': !voted || positiveVote}")
+      div.actions
+        div.vote-actions(:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
+          a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)")
+            i.fa-heart(v-bind:class="{'fas animated heartBeat voted': voted && positiveVote, 'far': !voted || !positiveVote}")
+          a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)")
+            i.fa-heart-broken(v-bind:class="{'fas animated swing voted': voted && !positiveVote, 'fas': !voted || positiveVote}")
+        a.action(href="#", v-on:click.prevent="flipped=!flipped", :data-balloon="__i('reasons-hide')",data-balloon-pos="left")
+          i.fa-question(v-bind:class="{'fas animated swing voted': voted && !positiveVote, 'fas': !voted || positiveVote}")
       div.url
         a(v-if="url", target="_blank", :href="url") {{ __i("distribution-homepage") }}
 </template>
@@ -102,7 +105,7 @@ export default {
   },
   data: function() {
     return {
-      flipped: false,
+      flipped: true,
       positiveVote: false,
       voted: false
     }
@@ -265,5 +268,8 @@ i {
 .importance-toggle .fas {
   color: #ff7a00;
   margin-left: 0.5em;
+}
+.vote-actions {
+  display: inline;
 }
 </style>
