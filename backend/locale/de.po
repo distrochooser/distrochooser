@@ -419,7 +419,7 @@ msgid "matrix-gaming-packages-stable-but-old"
 msgstr "Softwarestand ist eventuell nicht aktuell genug für Spieleunterstützung"
 
 msgid "live-mode-only"
-msgstr "Can nur über CD/ DVD und USB-Stick gestartet werden (Live-Mode)"
+msgstr "Ich möchte die Distribution über CD/ DVD oder USB-Stick ausprobieren (Live-Mode)"
 
 msgid "matrix-without-fee"
 msgstr "Kann ohne Gebühren genutzt werden"
@@ -516,6 +516,9 @@ msgstr "Tägliche Nutzung ist mitunter mit großen Hürden verbunden"
 
 msgid "matrix-supports-daily-usage-but-built-for-livemode"
 msgstr "Kann für täglichen Gebrauch genutzt werden, ist aber für den Betrieb von CD/ DVD und USB Medien gedacht"
+
+msgid "matrix-has-live-mode"
+msgstr "Kann über CD/ DVD oder USB-Stick getestet werden"
 
 msgid "matrix-packages-available"
 msgstr "Programme für die Anonymisierung können nachinstalliert werden"
@@ -688,3 +691,6 @@ msgstr "überspringen"
 
 msgid "description-nixos"
 msgstr "NixOS baut auf dem gleichnamigen Paketmanager auf, der dem Prinzip deklarativer Systemkonfiguration folgt, um Aktualisierungen reproduzierbar zu machen."
+
+msgid "reasons-hide"
+msgstr "Gründe ausblenden"

@@ -161,7 +161,7 @@ msgid "additional-info"
 msgstr "Additional information"
 
 msgid "remark-placeholder"
-msgstr "Your feedback (max 250 letters)"
+msgstr "Your feedback (max 3000 chars)"
 
 msgid "result-remarks-button"
 msgstr "Submit feedback"
@@ -446,8 +446,11 @@ msgstr "There is a non-free version of this distribution"
 msgid "matrix-gaming-packages-stable-but-old"
 msgstr "Software versions may not be recent enough for gaming"
 
+msgid "matrix-has-live-mode"
+msgstr "Has a live mode which allows starting from disc"
+
 msgid "live-mode-only"
-msgstr "Can only be started using discs or usb sticks"
+msgstr "Has Live Mode: Can be started using discs or usb sticks to test it out (before installing)"
 
 msgid "matrix-without-fee"
 msgstr "Usable without fee"
@@ -719,3 +722,6 @@ msgstr "skip question"
 
 msgid "description-nixos"
 msgstr "NixOS uses the Nix package manager.  It uses declarative configuration and allows reliable system upgrades."
+
+msgid "reasons-hide"
+msgstr "Hide reasons"

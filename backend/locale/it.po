@@ -161,7 +161,7 @@ msgid "additional-info"
 msgstr "Informazioni aggiuntive"
 
 msgid "remark-placeholder"
-msgstr "Il tuo feedback (massimo 250 caratteri)"
+msgstr "Il tuo feedback (massimo 3000 caratteri)"
 
 msgid "result-remarks-button"
 msgstr "Invia feedback"
@@ -446,7 +446,7 @@ msgid "matrix-gaming-packages-stable-but-old"
 msgstr "Le versioni del software potrebbero non essere abbastanza recenti per i giochi"
 
 msgid "live-mode-only"
-msgstr "Può essere avviato solo con dischi o chiavette USB"
+msgstr "Può essere usato da cd/dvd o chiavetta usb"
 
 msgid "matrix-without-fee"
 msgstr "Utilizzabile senza spese"
@@ -543,6 +543,9 @@ msgstr "L'uso quotidiano può comportare gravi difficoltà"
 
 msgid "matrix-supports-daily-usage-but-built-for-livemode"
 msgstr "Può essere utilizzato per il lavoro quotidiano, ma è costruito per la modalità live"
+
+msgid "matrix-has-live-mode"
+msgstr "Può essere avviato da CD/DVD o chiavetta USB"
 
 msgid "matrix-packages-available"
 msgstr "Sono disponibili programmi per scopi di anonimizzazione"
@@ -719,3 +722,6 @@ msgstr "saltare"
 
 msgid "description-nixos"
 msgstr "NixOS utilizza il gestore di pacchetti Nix.  Utilizza una configurazione dichiarativa e consente aggiornamenti affidabili del sistema."
+
+msgid "reasons-hide"
+msgstr "Nascondere le ragioni"
