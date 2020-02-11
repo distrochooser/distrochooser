@@ -1,6 +1,7 @@
 from distrochooser.constants import TRANSLATIONS
 from distrochooser.models import GivenAnswer, ResultDistroSelection, ResultDistroSelection, Distribution, SelectionReason, Answer, AnswerDistributionMatrix, UserSession
 from django.forms.models import model_to_dict
+from django.db import transaction
 
 def saveAnswers(userSession, rawAnswers):
   # Delete old answers
@@ -17,6 +18,8 @@ def saveAnswers(userSession, rawAnswers):
     )
   GivenAnswer.objects.bulk_create(newAnswers)
 
+
+@transaction.atomic
 def getSelections(userSession, data, langCode):
   translationToUse = TRANSLATIONS[langCode] if langCode in TRANSLATIONS else TRANSLATIONS["en"]
   ResultDistroSelection.objects.filter(session=userSession).delete()
@@ -40,6 +43,7 @@ def getSelections(userSession, data, langCode):
     newSelections.append(selection)
     createdSelections[distro.id] = selection
     createdReasons[distro.id] = []
+    selection.save()
 
 
   for matrixTuple in matchingTuples:
@@ -59,12 +63,11 @@ def getSelections(userSession, data, langCode):
 
       if reason.isNeutralHit:
         reason.isPositiveHit = True
-
+      
       for distro in matrixTuple.distros.all():
         selection = list(filter(lambda s: s.distro == distro, newSelections))[0]
-        if selection.pk is None:
-          selection.save()
         # prevent that same descritptions appear multiple times
+        
         isDescriptionAlreadyInReasonList = len(list(filter(lambda r: r.description == reason.description, createdReasons[distro.id]))) > 0
         if not isDescriptionAlreadyInReasonList:
           reason.resultSelection = selection
