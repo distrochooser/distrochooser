@@ -5,6 +5,7 @@ Views of the API backend.
 from json import loads
 from secrets import token_hex
 from base64 import b64decode
+from urllib.parse import urlparse
 
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
@@ -54,8 +55,16 @@ def getStats(request):
     referrers = {}
     for referrer in referrersQuery:
         backlink = referrer["referrer"]
+        try:
+            backlink = urlparse(backlink)
+            backlink = backlink.netloc
+        except:
+            pass
         if backlink and "https://distrochooser.de" not in backlink and "https://beta.distrochooser.de" not in backlink:
-            referrers[referrer["referrer"]] = referrer["amount"]
+            if backlink not in referrers:
+                referrers[backlink] = referrer["amount"]
+            else:
+                referrers[backlink] = referrers[backlink] + referrer["amount"]
 
     return JsonResponse({
         "tests": results.count(),
