@@ -14,7 +14,7 @@ const indexStore = new Vapi({
     isStarted: false,
     result: null,
     translations: null,
-    locales: null,
+    locales: ['en', 'gb', 'us', 'de', 'it'],
     voteResult: null,
     remarksAdded: false,
     language: 'en',
@@ -27,11 +27,6 @@ const indexStore = new Vapi({
     method: 'refactored'
   }
 })
-  .get({
-    action: 'getLocales',
-    property: 'locales',
-    path: () => `locales/`
-  })
   .get({
     action: 'start',
     property: 'data',
@@ -46,8 +41,7 @@ const indexStore = new Vapi({
   .get({
     action: 'loadQuestion',
     property: 'data',
-    path: ({ language, index, token }) =>
-      `question/${language}/${index}/${token}/`
+    path: ({ index }) => `question/${index}/`
   })
   .post({
     action: 'submit',
@@ -136,9 +130,7 @@ indexStore.actions.selectCategory = async (store, payload) => {
   store.commit('setSelectCategory', category)
   await store.dispatch('loadQuestion', {
     params: {
-      language: payload.language,
-      index: category.index,
-      token: store.state.token
+      index: category.index
     }
   })
   store.commit('setCurrentQuestionData', store.state.data)

@@ -62,7 +62,7 @@ export default {
     }
   },
   async mounted() {
-    await this.prepareLanguageData()
+    this.prepareLanguageData()
     var testSlug =
       typeof this.$route.params.slug !== 'undefined'
         ? this.$route.params.slug
@@ -86,8 +86,7 @@ export default {
     this.isLoading = false
   },
   methods: {
-    prepareLanguageData: async function() {
-      await this.$store.dispatch('getLocales')
+    prepareLanguageData: function() {
       if (typeof this.$route.params.language === 'undefined') {
         // only apply the browser language if no language flag is set
         var browserLanguage = window.navigator.language.toLowerCase()
