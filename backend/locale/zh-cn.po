@@ -116,8 +116,12 @@ msgid "about-header"
 msgstr "关于 distrochooser.de"
 
 msgid "vote-reminder"
-msgstr "You like this distribution? Give it a thumbs up!" msgid "about-intro-text"
-msgstr "distrochooser.de attempts to help Linux beginners to choose a Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers." msgid "about-intro-test-count"
+msgstr "你喜欢这个发行版吗？给它点个赞吧！"
+
+msgid "about-intro-text"
+msgstr "distrochooser.de attempts to help Linux beginners to choose a Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers."
+
+msgid "about-intro-test-count"
 msgstr "Since the 14th of 6月2014日 distrochooser.de processed %tests% tests." msgid "about-licenses"
 msgstr "Distrochooser is dual-licensed." msgid "privacy-header"
 msgstr "Datenschutzerklärung" msgid "imprint-header"
