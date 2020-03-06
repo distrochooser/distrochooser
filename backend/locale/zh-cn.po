@@ -128,10 +128,18 @@ msgid "about-licenses"
 msgstr "Distrochooser 是双重许可的。"
 
 msgid "privacy-header"
-msgstr "Datenschutzerklärung" msgid "imprint-header"
-msgstr "Impressum" msgid "about-licenses-source"
-msgstr "The sourcecode" msgid "about-licenses-source-text"
-msgstr "The sourcecode is licensed under the license written in the 'LICENSE' file, which is placed in the linked repository." msgid "about-licenses-database"
+msgstr "Datenschutzerklärung"
+
+msgid "imprint-header"
+msgstr "信息"
+
+msgid "about-licenses-source"
+msgstr "源码"
+
+msgid "about-licenses-source-text"
+msgstr "源代码是在“LICENSE”文件中的许可证下获得许可的，该文件位于链接的存储库中。"
+
+msgid "about-licenses-database"
 msgstr "The data base" msgid "about-licenses-database-text"
 msgstr "The underlying data, including the question/answer structure, the result matrix and statistics, are proprietary. You may use them only with our prior permission. The description texts and logos of the various distributions are subject to the licences of the respective copyright holders." msgid "no-results-text"
 msgstr "Distrochooser was not able to find a suitable result based on your answers. It would be great help, if you would write us some feedback, so that we can investigate this." msgid "close-additional-info"
