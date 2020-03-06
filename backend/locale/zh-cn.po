@@ -80,18 +80,42 @@ msgid "welcome-text-result-get"
 msgstr "你可以随时点击 '你的结果' 来获取你的结果"
 
 msgid "welcome-text-order"
-msgstr "You may answer in arbitrary order" msgid "welcome-text-additional-infos"
-msgstr "You can receive additional information using the question mark icon" msgid "welcome-text-remove"
-msgstr "You can delete answers at any time" msgid "welcome-text-feedback"
-msgstr "Please rate your results, depending on how well they fit your needs." msgid "welcome-text-importance"
-msgstr "Mark answers as important to give them more weight" msgid "locale-link-en"
-msgstr "This text is available in english" msgid "locale-link-de"
-msgstr "Dieser Test steht auch in Deutsch zur Verfügung" msgid "start-test"
-msgstr "Start test" msgid "prev-question"
-msgstr "go back" msgid "next-question"
-msgstr "proceed" msgid "no-results"
-msgstr "Sorry, I'm lost" msgid "about-header"
-msgstr "About distrochooser.de" msgid "vote-reminder"
+msgstr "你可以以任意顺序回答问题"
+
+msgid "welcome-text-additional-infos"
+msgstr "你可以点击问号来获取额外的信息"
+
+msgid "welcome-text-remove"
+msgstr "你可以随时删除你的答案"
+
+msgid "welcome-text-feedback"
+msgstr "请根据你的结果是否和你的需求相符来打分"
+
+msgid "welcome-text-importance"
+msgstr "标记你所看中的答案"
+
+msgid "locale-link-en"
+msgstr "This text is available in english"
+
+msgid "locale-link-de"
+msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
+
+msgid "start-test"
+msgstr "开始测试"
+
+msgid "prev-question"
+msgstr "返回"
+
+msgid "next-question"
+msgstr "前进"
+
+msgid "no-results"
+msgstr "对不起，我迷失了方向"
+
+msgid "about-header"
+msgstr "关于 distrochooser.de"
+
+msgid "vote-reminder"
 msgstr "You like this distribution? Give it a thumbs up!" msgid "about-intro-text"
 msgstr "distrochooser.de attempts to help Linux beginners to choose a Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers." msgid "about-intro-test-count"
 msgstr "Since the 14th of 6月2014日 distrochooser.de processed %tests% tests." msgid "about-licenses"
