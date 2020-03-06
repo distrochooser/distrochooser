@@ -119,11 +119,15 @@ msgid "vote-reminder"
 msgstr "你喜欢这个发行版吗？给它点个赞吧！"
 
 msgid "about-intro-text"
-msgstr "distrochooser.de attempts to help Linux beginners to choose a Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers."
+msgstr "distrochooser.de 的目标是帮助Linux初学者选择他们需要的、适合自己的Linux发行版。<br>最后得到的结果是来源于用户答案的建议。有些时候结果可能并不合适，因为答案的相互作用过于复杂。"
 
 msgid "about-intro-test-count"
-msgstr "Since the 14th of 6月2014日 distrochooser.de processed %tests% tests." msgid "about-licenses"
-msgstr "Distrochooser is dual-licensed." msgid "privacy-header"
+msgstr "从2014年6月14日开始，distrochooser.de 已经完成了 %tests% 次测试。"
+
+msgid "about-licenses"
+msgstr "Distrochooser 是双重许可的。"
+
+msgid "privacy-header"
 msgstr "Datenschutzerklärung" msgid "imprint-header"
 msgstr "Impressum" msgid "about-licenses-source"
 msgstr "The sourcecode" msgid "about-licenses-source-text"
