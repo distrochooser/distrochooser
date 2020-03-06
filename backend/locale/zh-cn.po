@@ -140,10 +140,18 @@ msgid "about-licenses-source-text"
 msgstr "源代码是在“LICENSE”文件中的许可证下获得许可的，该文件位于链接的存储库中。"
 
 msgid "about-licenses-database"
-msgstr "The data base" msgid "about-licenses-database-text"
-msgstr "The underlying data, including the question/answer structure, the result matrix and statistics, are proprietary. You may use them only with our prior permission. The description texts and logos of the various distributions are subject to the licences of the respective copyright holders." msgid "no-results-text"
-msgstr "Distrochooser was not able to find a suitable result based on your answers. It would be great help, if you would write us some feedback, so that we can investigate this." msgid "close-additional-info"
-msgstr "Close" msgid "no-answers"
+msgstr "数据库"
+
+msgid "about-licenses-database-text"
+msgstr "底层数据(包括问题/答案结构、结果矩阵和数据统计)是专有的。只有得到我们的许可，你才能够使用它们。各发行版的说明及标志均须获得各版权持有人的授权。"
+
+msgid "no-results-text"
+msgstr "根据您的答案，Distrochooser无法找到合适的结果。我们将会很有帮助如果你能给我们写一些反馈，这样我们就能继续改进。"
+
+msgid "close-additional-info"
+msgstr "关闭"
+
+msgid "no-answers"
 msgstr "You gave no answers." msgid "get-my-result"
 msgstr "Shows you your results." msgid "additional-info"
 msgstr "Additional information" msgid "remark-placeholder"
