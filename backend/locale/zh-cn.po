@@ -203,21 +203,51 @@ msgid "linux-knowledge-question"
 msgstr "你使用Linux的熟练程度如何？"
 
 msgid "linux-knowledge-answer-beginner"
-msgstr "I have little or no knowledge about Linux" msgid "linux-knowledge-answer-advanced"
-msgstr "I have already used Linux for some purposes" msgid "linux-knowledge-answer-professional"
-msgstr "I have a good understanding about the Linux operating system" msgid "presets-question"
-msgstr "How many settings do you wish to tweak by yourself during installation? How many configuration variables should be filled with default values?" msgid "presets-question-answer-manypresets"
-msgstr "I want to use the default preset values in the installation assistant" msgid "presets-question-answer-ownselection"
-msgstr "I want to choose the settings by myself" msgid "presets-question-answer-guiselections"
-msgstr "I want to configure as much as possible using graphical applications" msgid "hardware-question"
-msgstr "It is important to know how old your computer hardware is, since some distributions won't run on old computers." msgid "additional-info-hardware"
-msgstr "For years, some distribution were using the 32 bit architecture, which allows to allocate up to 4 gigabytes of memory. Newer distributions tend to ditch the 32 bit in favour of the 64 bit support, which allows to allocate more than 4 gigabytes of memory. Since 2005 nearly all Computers should support 64 bit." msgid "hardware-question-oldpc"
-msgstr "I'm not sure about this and/or my computer already has performance issues and/or only supports 32 bit" msgid "hardware-question-newpc"
-msgstr "The performance of my computer is good, I don't experience any performance issues, my hardware supports 64 bit" msgid "help-question"
-msgstr "Some distributions prefer articles in wikis for troubleshooting. What do you prefer?" msgid "help-question-tutorials"
-msgstr "I am able to solve my problems using guides from wiki pages or tutorials" msgid "help-question-user-exchange"
-msgstr "I prefer asking others for help" msgid "ux-concept-question"
-msgstr "Linux can use a lot of different User Interfaces (\"Desktops\"). Many distributions ship one desktop as default. It is important to know if you have any preferences for a desktop concept. You can switch and install new desktops at any time!" msgid "ux-concept-answer-windows-like"
+msgstr "我几乎不了解Linux"
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "我正在使用 Linux 来完成一些工作"
+
+msgid "linux-knowledge-answer-professional"
+msgstr "我可以非常熟练地使用Linux"
+
+msgid "presets-question"
+msgstr "您希望在安装过程中自行调整多少？您希望自己默认填好的选项又有多少？"
+
+msgid "presets-question-answer-manypresets"
+msgstr "我想使用安装向导给出的所有默认设置"
+
+msgid "presets-question-answer-ownselection"
+msgstr "我想自己配置选项"
+
+msgid "presets-question-answer-guiselections"
+msgstr "我希望能够在图形化界面上完成尽可能多的设置"
+
+msgid "hardware-question"
+msgstr "了解您的计算机硬件的年龄是很重要的，因为有些发行版不会在旧的计算机上运行。"
+
+msgid "additional-info-hardware"
+msgstr "多年以来，一些发行版一直使用32位架构，允许分配4g的内存。而较新的发行版则倾向于抛弃32位架构，转而支持64位，这允许分配超过4g的内存。从2005年开始，几乎所有的计算机都应该支持64位。"
+
+msgid "hardware-question-oldpc"
+msgstr "我不确定 和/或 我的电脑已经有性能问题 和/或 我的电脑只支持32位"
+
+msgid "hardware-question-newpc"
+msgstr "的电脑性能很好，我没有遇到任何性能问题，我的硬件也支持64位"
+
+msgid "help-question"
+msgstr "有的发行版使用 wiki 文章帮用户解决问题。您更喜欢怎样获得帮助？"
+
+msgid "help-question-tutorials"
+msgstr "我可以根据网上的文章和 wiki 上的说明独自解决问题"
+
+msgid "help-question-user-exchange"
+msgstr "我更喜欢寻求他人的帮助"
+
+msgid "ux-concept-question"
+msgstr "Linux可以使用许多不同的用户界面 (\"桌面\")。许多发行版默认提供一个桌面。了解您是否对桌面的概念有任何喜好是很重要的。您可以随时切换和安装新的桌面！"
+
+msgid "ux-concept-answer-windows-like"
 msgstr "I prefer a windows-like user interface" msgid "ux-concept-answer-mac-like"
 msgstr "I prefer a macOS-like user interface" msgid "ux-concept-tiling"
 msgstr "I prefer a tile-based window appearance" msgid "ux-concept-closed-expierience"
