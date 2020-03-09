@@ -152,23 +152,57 @@ msgid "close-additional-info"
 msgstr "关闭"
 
 msgid "no-answers"
-msgstr "You gave no answers." msgid "get-my-result"
-msgstr "Shows you your results." msgid "additional-info"
-msgstr "Additional information" msgid "remark-placeholder"
-msgstr "Your feedback (max 3000 chars)" msgid "result-remarks-button"
-msgstr "Submit feedback" msgid "distribution-homepage"
-msgstr "Distribution homepage" msgid "result-remarks-added"
-msgstr "Thank you for your feedback!" msgid "share-result"
-msgstr "Share my result" msgid "software-use-case-question"
-msgstr "Some distributions are made for a special purpose, some for daily use. What do you need?" msgid "software-use-case-answer-daily"
-msgstr "I want a distribution for daily use." msgid "software-use-case-anonymous-answer"
-msgstr "I want to use Linux for anonymous web browsing." msgid "software-use-case-answer-gaming"
-msgstr "I prefer a distribution which is supported by game publishers." msgid "computer-knowledge-question"
-msgstr "How would you rate your proficiency using a computer?" msgid "computer-knowledge-answer-beginner"
-msgstr "I often need help from others to fix problems with my computer" msgid "computer-knowledge-answer-advanced"
-msgstr "I am already able to solve some computer problems by myself" msgid "computer-knowledge-answer-professional"
-msgstr "I can troubleshoot most or all computer problems by myself" msgid "linux-knowledge-question"
-msgstr "How would you rate your knowledge of Linux itself?" msgid "linux-knowledge-answer-beginner"
+msgstr "你没有给出任何答案。"
+
+msgid "get-my-result"
+msgstr "显示你的结果。"
+
+msgid "additional-info"
+msgstr "更多信息"
+
+msgid "remark-placeholder"
+msgstr "你的反馈（最多3000个字符）"
+
+msgid "result-remarks-button"
+msgstr "提交反馈"
+
+msgid "distribution-homepage"
+msgstr "发行版的主页"
+
+msgid "result-remarks-added"
+msgstr "感谢您的反馈！"
+
+msgid "share-result"
+msgstr "分享我的结果"
+
+msgid "software-use-case-question"
+msgstr "有些发行版被用于一些特殊的用途，有些被用于日常的使用。你需要什么呢？"
+
+msgid "software-use-case-answer-daily"
+msgstr "我想在日常生活中使用。"
+
+msgid "software-use-case-anonymous-answer"
+msgstr "我想用Linux进行匿名的网络浏览。"
+
+msgid "software-use-case-answer-gaming"
+msgstr "我更喜欢被游戏发行商支持的发行版。"
+
+msgid "computer-knowledge-question"
+msgstr "你使用电脑的熟练程度如何？"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "我经常需要他人的帮助来解决我电脑的问题"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "我可以独立解决一部分我电脑的问题"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "我可以解决大部分或全部的问题"
+
+msgid "linux-knowledge-question"
+msgstr "你使用Linux的熟练程度如何？"
+
+msgid "linux-knowledge-answer-beginner"
 msgstr "I have little or no knowledge about Linux" msgid "linux-knowledge-answer-advanced"
 msgstr "I have already used Linux for some purposes" msgid "linux-knowledge-answer-professional"
 msgstr "I have a good understanding about the Linux operating system" msgid "presets-question"
