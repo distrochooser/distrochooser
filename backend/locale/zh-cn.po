@@ -248,17 +248,39 @@ msgid "ux-concept-question"
 msgstr "Linux可以使用许多不同的用户界面 (\"桌面\")。许多发行版默认提供一个桌面。了解您是否对桌面的概念有任何喜好是很重要的。您可以随时切换和安装新的桌面！"
 
 msgid "ux-concept-answer-windows-like"
-msgstr "I prefer a windows-like user interface" msgid "ux-concept-answer-mac-like"
-msgstr "I prefer a macOS-like user interface" msgid "ux-concept-tiling"
-msgstr "I prefer a tile-based window appearance" msgid "ux-concept-closed-expierience"
-msgstr "I prefer a closed experience" msgid "price-question"
-msgstr "Most distributions are free. Some distributions offer additional support for a one-time fee." msgid "price-answer-free"
-msgstr "I prefer a free-to-use distribution" msgid "price-answer-paid"
-msgstr "I would be fine to pay a fee" msgid "scope-question"
-msgstr "Different distributions pre-install different amounts of software. Some install a complete suite of basic programs to work \"out of the box\". Other distributions offer only a base install to then let the user install what programs they want to use." msgid "scope-answer-fullinstall"
-msgstr "I prefer a distribution shipping all the basic programs I need to start working immediately after installation" msgid "scope-answer-ownselection"
-msgstr "I want to chose the basic programs to install myself" msgid "ideology-question"
-msgstr "The (license) ideology of a distribution is a contentious debate. There are distributions using mostly \"free-licenses\", others also use \"non-free\" software." msgid "additional-info-ideology"
+msgstr "我更喜欢 Windows 风格的用户界面"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "我更喜欢 macOS 风格的用户界面"
+
+msgid "ux-concept-tiling"
+msgstr "我更喜欢 tile-based 的窗口外观"
+
+msgid "ux-concept-closed-expierience"
+msgstr "我更喜欢封闭的体验"
+
+msgid "price-question"
+msgstr "大多数发行版都是免费的。而一些发行版提供了额外的、一次性的费用支持。"
+
+msgid "price-answer-free"
+msgstr "我更喜欢免费的发行版"
+
+msgid "price-answer-paid"
+msgstr "我愿意支付费用"
+
+msgid "scope-question"
+msgstr "不同的发行版会预先安装不同数量的软件。有些会安装一整套基本程序以达到“开箱即用”的目的。有些发行版只提供基本安装，然后让用户安装他们想要使用的程序。"
+
+msgid "scope-answer-fullinstall"
+msgstr "我更喜欢一个预先安装的所有基本程序，我需要在安装后立即开始工作"
+
+msgid "scope-answer-ownselection"
+msgstr "我想自己安装应用程序"
+
+msgid "ideology-question"
+msgstr "发行的(许可)意识形态非常有争论。有些发行版主要使用“自由的许可”，有些也使用“不自由”软件。"
+
+msgid "additional-info-ideology"
 msgstr "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute it's sourcecode and modifications are not allowed." msgid "ideology-answer-free"
 msgstr "I want to use free licenses as much as I can" msgid "ideology-answer-proprietary-ok"
 msgstr "I'm fine with non-free licenses as long as my system works" msgid "privacy-question"
