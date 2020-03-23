@@ -100,6 +100,9 @@ msgstr "This text is available in english"
 msgid "locale-link-de"
 msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
 
+msgid "locale-link-zh-cn"
+msgstr "该测试有中文版本"
+
 msgid "start-test"
 msgstr "开始测试"
 
@@ -122,13 +125,13 @@ msgid "about-intro-text"
 msgstr "distrochooser.de 的目标是帮助Linux初学者选择他们需要的、适合自己的Linux发行版。<br>最后得到的结果是来源于用户答案的建议。有些时候结果可能并不合适，因为答案的相互作用过于复杂。"
 
 msgid "about-intro-test-count"
-msgstr "从2014年6月14日开始，distrochooser.de 已经完成了 %tests% 次测试。"
+msgstr "从2014年6月14日开始，distrochooser.de 已经完成了%tests%次测试。"
 
 msgid "about-licenses"
 msgstr "Distrochooser 是双重许可的。"
 
 msgid "privacy-header"
-msgstr "Datenschutzerklärung"
+msgstr "隐私政策"
 
 msgid "imprint-header"
 msgstr "信息"
@@ -278,87 +281,243 @@ msgid "scope-answer-ownselection"
 msgstr "我想自己安装应用程序"
 
 msgid "ideology-question"
-msgstr "发行的(许可)意识形态非常有争论。有些发行版主要使用“自由的许可”，有些也使用“不自由”软件。"
+msgstr "发行的(许可)意识形态非常有争论。有些发行版主要使用「自由的许可」，有些也会使用「非自由许可」的软件。"
 
 msgid "additional-info-ideology"
-msgstr "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute it's sourcecode and modifications are not allowed." msgid "ideology-answer-free"
-msgstr "I want to use free licenses as much as I can" msgid "ideology-answer-proprietary-ok"
-msgstr "I'm fine with non-free licenses as long as my system works" msgid "privacy-question"
-msgstr "Some distributions use online services to improve the user experience. This may affect the privacy of the user, i.e. the user can be tracked when using such online features." msgid "privacy-answer-highprivacy"
-msgstr "I do not want this" msgid "privacy-answer-services-ok"
-msgstr "If it improves my user experience, I agree with using such online services" msgid "software-admin-question"
-msgstr "There are many ways to administrate a Linux distribution, e. g. to install software." msgid "software-admin-answer-appstore"
-msgstr "I want to install my programs using a kind of \"App store\"" msgid "software-admin-answer-console"
-msgstr "I want to install software mostly using terminal commands" msgid "special-features-qestion"
-msgstr "Some distributions have additional features for specific purposes. Do I need such features?" msgid "additional-info-special-features-qestion"
-msgstr "Many distributions use 'systemd' to start the operating system itself. Some distributions avoid systemd in favor of alternative and sometimes more lightweight solutions" msgid "answer-isolation"
-msgstr "Applications should be executed in a isolated environment by default" msgid "software-updates-question"
-msgstr "Some distributions offer faster updates, which can affect system stability. What do you prefer?" msgid "software-updates-answer-fast"
-msgstr "I prefer fast updates" msgid "software-updates-answer-slow"
-msgstr "I prefer stable updates" msgid "answer-avoid-systemd"
-msgstr "I want to avoid systemd" msgid "result-submitted-hint"
-msgstr "Calculating result" msgid "reason-header-hint"
-msgstr "Click on the distribution name to see detailed reasons for this recommendation" msgid "reason-list-header"
-msgstr "Reason for/ against" msgid "answer-is-blocking"
-msgstr "Following answers are excluding this answer" msgid "answer-is-blocked"
-msgstr "This answer contradicts this former answer you have given" msgid "reason-blocked-by-others-entry"
-msgstr "\"{0}\" disagrees \"{1}\"" msgid "additional-infos"
-msgstr "give me additional information!" msgid "make-important"
-msgstr "This is important!" msgid "marked-as-important"
-msgstr "Marked as important" msgid "remove-important"
-msgstr "Remove importance" msgid "reason-list-header-negative"
-msgstr "We cannot recommend this distribution for you because:" msgid "reason-list-header-neutral"
-msgstr "The following criteria were not factored into this" msgid "reason-list-header-blocked-by-others"
-msgstr "This answer is blocked by other answers you have given" msgid "matrix-supports-daily-usage"
-msgstr "Suitable for daily use" msgid "matrix-privacy-not-beneficial"
-msgstr "Distribution concept is not beneficial for anonymisation purposes" msgid "matrix-supports-gaming-usage"
-msgstr "Distribution is actively supported by game publishers" msgid "matrix-beginner-knowledge"
-msgstr "Suitable for beginners" msgid "matrix-advanced-knowledge"
-msgstr "Suitable for advanced users" msgid "matrix-professional-knowledge"
-msgstr "Suitable for professionals" msgid "matrix-linux-knowledge-higher"
-msgstr "Usage requires less Linux knowledge than answered" msgid "matrix-computer-knowledge-higher"
-msgstr "Usage requires less computer knowledge than answered" msgid "matrix-linux-beginner"
-msgstr "Suitable for beginners in Linux" msgid "matrix-installation-presets-always-given"
-msgstr "The installation sets presets which may need to be reset after install" msgid "matrix-installation-presets-gui"
-msgstr "Many settings can be done via a graphical interface" msgid "matrix-installation-assistant-present"
-msgstr "The installation uses a installation 'wizard' with default settings" msgid "matrix-hardware-oldpc-ubuntu"
-msgstr "You may encounter window compositor effect lags. It may be necessary to disable animations." msgid "matrix-hardware-newpc"
-msgstr "Runs on latest hardware" msgid "matrix-user-exchange"
-msgstr "There are user communities for knowledge sharing" msgid "matrix-tutorial"
-msgstr "There are tutorials for troubleshooting and problem-solving" msgid "matrix-mac-like"
-msgstr "GUI concept has elements of macOS" msgid "matrix-windows-like-not-fullfilled"
-msgstr "GUI concept differs from Windows a lot" msgid "matrix-closed-expierience"
-msgstr "Has own wallpapers, icons and themes" msgid "matrix-has-windows-like-variant"
-msgstr "Has variants with a windows-like user interface" msgid "matrix-paid-version-existing"
-msgstr "There is a non-free version of this distribution" msgid "matrix-gaming-packages-stable-but-old"
-msgstr "Software versions may not be recent enough for gaming" msgid "matrix-has-live-mode"
-msgstr "Has a live mode which allows starting from disc" msgid "live-mode-only"
-msgstr "Has Live Mode: Can be started using discs or usb sticks to test it out (before installing)" msgid "matrix-without-fee"
-msgstr "Usable without fee" msgid "matrix-paid"
-msgstr "There is a non-free version of this distribution" msgid "matrix-fullinstall"
-msgstr "Installs all needed programs" msgid "matrix-ownscope-install"
-msgstr "All programs to be used must be chosen by yourself" msgid "matrix-free-software-unfree-per-default"
-msgstr "Non-free programs are installed by default" msgid "matrix-enforces-free"
-msgstr "Enforces usage of free software" msgid "matrix-mostly-free"
-msgstr "Works mostly with free software" msgid "matrix-has-default-settings"
-msgstr "Has default settings" msgid "matrix-privacy-ok"
-msgstr "Beneficial for user privacy" msgid "matrix-privacy-thirdparty"
-msgstr "Connects to third party services by default" msgid "matrix-appstore"
-msgstr "Software installation can be done using an app store" msgid "matrix-console"
-msgstr "Software installation can be done using the terminal" msgid "matrix-stable-updates"
-msgstr "Updates are mostly stable when published" msgid "matrix-fast-updates"
-msgstr "Software updates are released as fast as possible, which makes them unstable" msgid "matrix-has-control-panel"
-msgstr "Contains a pre-installed control center" msgid "matrix-user-selection-affects-privacy"
-msgstr "User has to select the software to use" msgid "matrix-selection-by-user"
-msgstr "Scope of pre-installed programs is decided by user" msgid "matrix-updates-fast"
-msgstr "Updates are fast, but can be unstable" msgid "matrix-not-for-beginner"
-msgstr "Not suitable for beginners" msgid "matrix-avoids-systemd"
-msgstr "Avoids systemd" msgid "matrix-uses-systemd"
-msgstr "uses systemd" msgid "built-for-anonymization"
-msgstr "Build for anonymisation purposes" msgid "matrix-administration-shell"
-msgstr "Administration is mostly done by using shell commands" msgid "matrix-oldpc-no-32bit"
-msgstr "Does not support old computers without 64 bit support" msgid "matrix-requires-manual"
-msgstr "Requires reading of manuals and tutorials" msgid "matrix-requires-advanced-knowledge"
+msgstr "自由许可允许用户为任何目的修改、重新发布和使用其软件。然而在某些情况下，发行版必须使用非自由的软件，例如硬件驱动程序。非自由软件不会发布其源代码，不允许修改。"
+
+msgid "ideology-answer-free"
+msgstr "我想要尽可能地使用自由许可"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "只要我的系统正常工作，我可以使用非自由许可"
+
+msgid "privacy-question"
+msgstr "有的发行版使用在线服务来提高用户体验。使用这类服务的用户可能会被追踪，这会影响到用户的隐私。"
+
+msgid "privacy-answer-highprivacy"
+msgstr "我不想要这个"
+
+msgid "privacy-answer-services-ok"
+msgstr "如果可以提高我的使用体验，我同意使用这类服务。"
+
+msgid "software-admin-question"
+msgstr "管理Linux发行版有许多方法，例如安装软件。"
+
+msgid "software-admin-answer-appstore"
+msgstr "我想通过各种「软件商店」来安装程序。 "
+
+msgid "software-admin-answer-console"
+msgstr "我主要通过终端命令来安装"
+
+msgid "special-features-qestion"
+msgstr "有的发行版会为特殊目的增加特别的功能。您需要以下哪些功能？"
+
+msgid "additional-info-special-features-qestion"
+msgstr "许多发行版使用「systemd」来启动操作系统本身。有些发行版会避免使用systemd，并采用可选的、有时更轻量的解决方案"
+
+msgid "answer-isolation"
+msgstr "默认情况下，应用程序应该在互相隔离的环境中执行" 
+
+msgid "software-updates-question"
+msgstr "有的发行版会提供非常频繁的更新，这可能会影响系统稳定性。您想要怎样的更新？"
+
+msgid "software-updates-answer-fast"
+msgstr "我想要频繁的更新"
+
+msgid "software-updates-answer-slow"
+msgstr "我想要稳定的更新"
+
+msgid "answer-avoid-systemd"
+msgstr "我希望避免 systemd"
+
+msgid "result-submitted-hint"
+msgstr "计算结果"
+
+msgid "reason-header-hint"
+msgstr "点击发行版的名称以查看此建议的详细原因"
+
+msgid "reason-list-header"
+msgstr "Reason for/ against"
+
+msgid "answer-is-blocking"
+msgstr "以下的答案排除了该答案"
+
+msgid "answer-is-blocked"
+msgstr "该回答与你先前的回答相矛盾"
+
+msgid "reason-blocked-by-others-entry"
+msgstr "「{0}」 不同意 「{1}」"
+
+msgid "additional-infos"
+msgstr "请给我更多的信息！"
+
+msgid "make-important"
+msgstr "这很重要！"
+
+msgid "marked-as-important"
+msgstr "标为重要"
+
+msgid "remove-important"
+msgstr "移除重要标记"
+
+msgid "reason-list-header-negative"
+msgstr "我们无法为您推荐该发行版因为："
+
+msgid "reason-list-header-neutral"
+msgstr "以下标准没有考虑在内" 
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "这个答案与你给出的其他答案矛盾"
+
+msgid "matrix-supports-daily-usage"
+msgstr "适合日常使用"
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "发行版的概念不利于匿名使用" 
+
+msgid "matrix-supports-gaming-usage"
+msgstr "发行版被游戏发行商所支持"
+
+msgid "matrix-beginner-knowledge"
+msgstr "适合初学者"
+
+msgid "matrix-advanced-knowledge"
+msgstr "适合高级用户"
+
+msgid "matrix-professional-knowledge"
+msgstr "适合专业人士"
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "使用比回答所需要的需要更少的 Linux 知识"
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "使用比回答所需要的需要更少的计算机知识"
+
+msgid "matrix-linux-beginner"
+msgstr "适合 Linux 初学者"
+
+msgid "matrix-installation-presets-always-given"
+msgstr "安装设置的预置在安装后可能需要重置预置"
+
+msgid "matrix-installation-presets-gui"
+msgstr "可以通过图形界面完成许多设置"
+
+msgid "matrix-installation-assistant-present"
+msgstr "安装会使用带有默认设置的安装「向导」" 
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr "你或许会遇到窗口合成效果的滞后。有时可能需要禁用动画。"
+
+msgid "matrix-hardware-newpc"
+msgstr "可以在最新的硬件上运行"
+
+msgid "matrix-user-exchange"
+msgstr "有用于知识共享的用户社区"
+
+msgid "matrix-tutorial"
+msgstr "有故障排除和问题解决的教程"
+
+msgid "matrix-mac-like"
+msgstr "GUI 的概念具有 macOS 元素"
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "GUI 的概念与 Windows 有很大的不同"
+
+msgid "matrix-closed-expierience"
+msgstr "有自己的壁纸、图标和主题"
+
+msgid "matrix-has-windows-like-variant"
+msgstr "有不少类 Windows 的用户界面的变体"
+
+msgid "matrix-paid-version-existing"
+msgstr "该发行版有一个非自由版本"
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "软件版本对于游戏来说可能还不够新"
+
+msgid "matrix-has-live-mode"
+msgstr "有允许从光盘启动的 live 模式"
+
+msgid "live-mode-only"
+msgstr "有活动模式：可以使用光盘或U盘进行试用(安装前)"
+
+msgid "matrix-without-fee"
+msgstr "可以免费使用"
+
+msgid "matrix-paid"
+msgstr "该发行版有一个非免费版本"
+
+msgid "matrix-fullinstall"
+msgstr "会安装所有需要的程序"
+
+msgid "matrix-ownscope-install"
+msgstr "必须由您自己选择所有要使用的程序"
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "默认会安装非自由程序"
+
+msgid "matrix-enforces-free"
+msgstr "会强制使用自由软件"
+
+msgid "matrix-mostly-free"
+msgstr "Works mostly with free software"
+
+msgid "matrix-has-default-settings"
+msgstr "会默认设置"
+
+msgid "matrix-privacy-ok"
+msgstr "有利于保护用户隐私"
+
+msgid "matrix-privacy-thirdparty"
+msgstr "默认情况下会连接到第三方服务"
+
+msgid "matrix-appstore"
+msgstr "可以通过应用商店完成软件安装"
+
+msgid "matrix-console"
+msgstr "可以使用终端安装软件"
+
+msgid "matrix-stable-updates"
+msgstr "通常会发布稳定的更新"
+
+msgid "matrix-fast-updates"
+msgstr "会以最快的速度发布软件更新，这使得它们不稳定"
+
+msgid "matrix-has-control-panel"
+msgstr "包含预先安装的控制中心"
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "用户必须自己选择要使用的软件"
+
+msgid "matrix-selection-by-user"
+msgstr "预装程序的范围由用户决定"
+
+msgid "matrix-updates-fast"
+msgstr "更新速度很快，但可能不回很稳定"
+
+msgid "matrix-not-for-beginner"
+msgstr "不适合初学者"
+
+msgid "matrix-avoids-systemd"
+msgstr "避免 systemd"
+
+msgid "matrix-uses-systemd"
+msgstr "使用 systemd"
+
+msgid "built-for-anonymization"
+msgstr "为匿名而构建"
+
+msgid "matrix-administration-shell"
+msgstr "管理主要是通过使用 shell 命令来完成的"
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "不支持没有64位支持的旧计算机"
+
+msgid "matrix-requires-manual"
+msgstr "需要阅读手册和教程"
+
+msgid "matrix-requires-advanced-knowledge"
 msgstr "Requires reading up in manuals for usage" msgid "matrix-isolation-default"
 msgstr "Has a isolation concept by default" msgid "matrix-oldpc-supported"
 msgstr "Supports even older computers" msgid "checked-criteria-count"
