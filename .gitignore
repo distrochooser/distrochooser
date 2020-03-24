@@ -67,7 +67,6 @@ backend/distrochooser/__pycache__
 backend/distrochooser/migrations/__pycache__
 
 *.pyc
-backend/db.sqlite3 
 no-git/
 viisi/yarn.lock
 viisi/pages/info/_content/
@@ -75,3 +74,8 @@ backend/distrochooser/importmatrix/
 backend/db.sqlite*
 backend/data.json
 .vscode/
+plugins/
+backend/*.sqlite3
+viisi/distrochooser.json
+distrochooser.json
+viisi/static/
