@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from distrochooser.views import start, load_question, submit_answers, get_locales, vote, get_given_answers, update_remark, get_ssr_data, get_language_values, get_stats
+from backend.settings import CONFIG
 
-from distrochooser.views import start, load_question, submit_answers, get_locales, vote, get_given_answers, update_remark, get_ssr_data, get_language_values, getStats
+system_suffix = CONFIG["backend"]["SUFFIX"]
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin{0}/'.format(system_suffix), admin.site.urls),
     path('start/<str:lang_code>/<str:reflink_encoded>/', start, name='start'),
     path('locales/', get_locales, name='locales'),
     path('ssrdata/<str:lang_code>/', get_ssr_data, name='get_ssr_data'),
@@ -29,9 +31,5 @@ urlpatterns = [
     path('remarks/', update_remark, name='update_remark'),
     path('answers/<str:token>/', get_given_answers, name='get_given_answers'),
     path('translation/<str:lang_code>/', get_language_values, name="get_language_values"),
-    path("stats/", getStats, name="getStats")
+    path('stats{0}/'.format(system_suffix), get_stats, name="get_stats")
 ]
-
-from django.conf.urls import include, url
-
-urlpatterns += [url(r'^silk/', include('silk.urls', namespace='silk'))]
