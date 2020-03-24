@@ -31,8 +31,16 @@ def get_locales(request: HttpRequest) -> JsonResponse:
     return get_json_response(list(LOCALES.keys()))
 
 
-def getStats(request):
-    # this method is a stub and is not included in production.
+def get_stats(request):
+    """
+    Calculate some stats
+
+    Args:
+      request (HttpRequest): The request of the client
+
+    Returns:
+      JsonResponse: Some statistics
+    """
     results = ResultDistroSelection.objects.all().values(
         'session_id').annotate(total=Count('session_id')).filter(total__gt=0)
     approvedResults = ResultDistroSelection.objects.filter(
@@ -41,14 +49,11 @@ def getStats(request):
         isDisApprovedByUser=True)
     allVoteResultsCount = approvedResults.count() + disapprovedResults.count()
     approvedPercentage = 0
-    disApprovedPercentage = 0
     if allVoteResultsCount != 0:
         if approvedResults.count() != 0:
             approvedPercentage = round(
                 100/(allVoteResultsCount/approvedResults.count()))
-        if disapprovedResults.count() != 0:
-            disApprovedPercentage = round(
-                100/(allVoteResultsCount/disapprovedResults.count()))
+
 
     referrersQuery = UserSession.objects.values(
         "referrer").annotate(amount=Count('referrer'))
@@ -71,7 +76,6 @@ def getStats(request):
         "visitors": UserSession.objects.all().count(),
         "votedResults": allVoteResultsCount,
         "approvedPercentage": approvedPercentage,
-        "disApprovedPercentage": disApprovedPercentage,
         "referrers": referrers
     })
 
