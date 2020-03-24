@@ -18,6 +18,16 @@ basePath: "/"
 schemes:
 - "https"
 paths:
+  /stats/:
+    get:
+      tags:
+        - "statistics"
+      description: "Returns some statistics. As the production version also contains refferers, the route path consists out of '/stats/' and a suffix"
+      responses:
+        200:
+          description: "Regular case"
+          schema:
+            $ref: '#/definitions/stats'
   /locales/:
     get:
       tags:
@@ -134,6 +144,21 @@ paths:
         200:
           description: "Regular case"
 definitions:
+  stats:
+    type: "object"
+    properties:
+      tests:
+        type: "integer"
+      visitors:
+        type: "integer"
+      votedResults:
+        type: "integer"
+      approvedPercentage:
+        type: "integer"
+      referrers:
+        type: "array"
+        items:
+          type: string
   session:
     type: "object"
     properties:
