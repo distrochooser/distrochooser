@@ -3,21 +3,8 @@
     div.top-logo-container
       a(href="/")
         img.top-logo(src='/logo.min.svg')
-    div.spin-parent(v-if="isLoading" )
-      span {{ __i("loading") }}
+    div.calculation-loading(v-if="isLoading || $store.state.isSubmitted") 
       div.spinner
-        div.rect1(style="background-color: black")
-        div.rect2(style="background-color: #e4ae4c")
-        div.rect3(style="background-color: #1c105a")
-        div.rect4(style="background-color: #ebeef3; border-color: black") 
-        div.rect5(style="background-color: #39BA95")    
-    div.calculation-loading(v-if="$store.state.isSubmitted") 
-      div.spinner
-        div.rect1(style="background-color: black")
-        div.rect2(style="background-color: #e4ae4c")
-        div.rect3(style="background-color: #1c105a")
-        div.rect4(style="background-color: #ebeef3; border-color: black") 
-        div.rect5(style="background-color: #39BA95")    
     categories(:language="language",v-if="!isLoading && !$store.state.isSubmitted")
     div(v-if="!isLoading && !isFinished && !$store.state.isSubmitted")
       question(:language="language")
@@ -280,69 +267,6 @@ export default {
   padding-right: 1em;
   font-size: small;
 }
-// loader
-.spinner {
-  margin: 100px auto;
-  width: 200px;
-  height: 14em;
-  text-align: center;
-  font-size: 10px;
-}
-
-.spinner > div {
-  background-color: $spinColor;
-  height: 100%;
-  width: 10px;
-  display: inline-block;
-
-  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  margin: 1em;
-}
-
-.spinner .rect2 {
-  -webkit-animation-delay: -1.1s;
-  animation-delay: -1.1s;
-}
-
-.spinner .rect3 {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
-}
-
-.spinner .rect4 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
-
-.spinner .rect5 {
-  -webkit-animation-delay: -0.8s;
-  animation-delay: -0.8s;
-}
-
-@-webkit-keyframes sk-stretchdelay {
-  0%,
-  40%,
-  100% {
-    -webkit-transform: scaleY(0.4);
-  }
-  20% {
-    -webkit-transform: scaleY(1);
-  }
-}
-
-@keyframes sk-stretchdelay {
-  0%,
-  40%,
-  100% {
-    transform: scaleY(0.4);
-    -webkit-transform: scaleY(0.4);
-  }
-  20% {
-    transform: scaleY(1);
-    -webkit-transform: scaleY(1);
-  }
-}
 .spin-parent {
   text-align: center;
   margin-top: 3em;
@@ -379,5 +303,30 @@ select::-ms-expand {
 }
 .calculation-text {
   padding-top: 2em;
+}
+
+.spinner {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: 5px solid lightgray;
+  border-radius: 50%;
+  border-top-color: $spinColor;
+  animation: spin 1s infinite;
+  -webkit-animation: spin 1s infinite;
+  margin: 100px auto;
+  text-align: center;
+  font-size: 10px;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 </style>
