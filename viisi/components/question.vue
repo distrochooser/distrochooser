@@ -480,11 +480,12 @@ a {
 }
 .image-answer-parent {
   text-align: center;
-  margin-left: -3em !important;
+  margin-left: -3em;
 }
 .image-answer img {
-  height: 160px;
   padding: 1em;
+  max-width: 100%;
+  max-height: 160px;
 }
 .importance-toggle .far {
   color: #ff7a00;
