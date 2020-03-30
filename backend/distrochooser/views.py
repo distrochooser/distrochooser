@@ -6,6 +6,7 @@ from json import loads
 from secrets import token_hex
 from base64 import b64decode
 from urllib.parse import urlparse
+import datetime
 
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
@@ -13,7 +14,7 @@ from django.http import HttpResponse, HttpRequest, JsonResponse, Http404
 
 from backend.settings import LOCALES
 from distrochooser.util import get_json_response, get_step_data
-from distrochooser.calculations import refactored, static
+from distrochooser.calculations import default
 from distrochooser.models import UserSession, Category, ResultDistroSelection, GivenAnswer, AnswerDistributionMatrix
 from distrochooser.constants import TRANSLATIONS, TESTOFFSET
 
@@ -120,8 +121,7 @@ def start(request: HttpRequest, lang_code: str, reflink_encoded: str) -> JsonRes
     session = UserSession()
     session.userAgent = user_agent
     session.language = lang_code
-    session.token = token_hex(5)  # generate a random token for the user
-    session.checksToDo = AnswerDistributionMatrix.objects.all().count()
+    session.token = token_hex(5)
     session.save()
     if reflink_encoded != "-":
         reflink_decoded = b64decode(reflink_encoded).decode("utf-8")
@@ -200,23 +200,21 @@ def submit_answers(request: HttpRequest, lang_code: str, token: str, method: str
 
     userSession = UserSession.objects.get(token=token)
 
-    if userSession.isPending:
-        return HttpResponse('A result is pending', status=409)
-
-    userSession.isPending = True
-    userSession.save(update_fields=["isPending"])
+    start_time = datetime.datetime.now()
 
     data = loads(request.body)
     calculations = {
-        "static": static.getSelections,
-        "refactored": refactored.getSelections
+        "default": default.getSelections
     }
     if method in calculations:
         selections = calculations[method](userSession, data, lang_code)
     else:
         raise Exception("Calculation method not known")
-    userSession.isPending = False
-    userSession.save(update_fields=["isPending"])
+
+    end_time = datetime.datetime.now()
+    calculationTime = end_time - start_time
+    userSession.calculationTime = int(calculationTime.microseconds / 1000)
+    userSession.save(update_fields=["calculationTime"])
     return get_json_response({
         "url": "https://beta.distrochooser.de/{0}/{1}/".format(lang_code, userSession.publicUrl),
         "selections": selections,

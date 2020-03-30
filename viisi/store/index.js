@@ -24,7 +24,7 @@ const indexStore = new Vapi({
     rootUrl: viisiConfig.frontend.frontendUrl,
     answerBlockedAnswers: [],
     sessionStatus: null,
-    method: 'refactored'
+    method: 'default'
   }
 })
   .get({

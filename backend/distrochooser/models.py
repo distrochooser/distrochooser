@@ -50,10 +50,9 @@ class UserSession(models.Model):
   publicUrl = models.CharField(max_length=200, null=False, blank=False, default="")
   language = models.CharField(max_length=10, null=False, blank=False, default="en")
   remarks = models.CharField(max_length=3000,null=True, blank=True, default=None)
-  checksToDo = models.IntegerField(default=0)
-  checksDone = models.IntegerField(default=0)
   referrer = models.URLField(null=True, blank=True, default=None,max_length=1000)
-  isPending = models.BooleanField(default=False)
+  calculationTime = models.IntegerField(default=0)
+
 
   def __str__(self):
     return "{0} - {1}".format(self.dateTime, self.userAgent)
