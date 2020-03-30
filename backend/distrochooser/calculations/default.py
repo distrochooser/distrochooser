@@ -68,11 +68,11 @@ def getSelections(userSession, data, langCode):
           selection = createdSelections[distro.id]
           reason.resultSelection = selection
           createdReasons[distro.id].append(reason)
+          reason.save()
 
   results = []
   for distroId, selection in createdSelections.items():
     reasons = createdReasons[distroId]
-    SelectionReason.objects.bulk_create(reasons)
     results.append(
       {
         "distro": model_to_dict(selection.distro, exclude=["logo", "id"]),
