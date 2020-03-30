@@ -80,7 +80,7 @@
       div.actions(v-if="!additionalInfoShown")
         button.skip-step.step(@click="nextQuestion",v-if="!isAtLastQuestion()") {{  __i("skip-question") }}
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
-        button.next-step.step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
+        button.next-step.step(:class="{'disabled-step': isAtEndWithoutAnswers}" @click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
 </template>
 <script>
 import i18n from '~/mixins/i18n'
@@ -110,6 +110,11 @@ export default {
     },
     isAtWelcomeScreen() {
       return !this.$store.state.isStarted
+    },
+    isAtEndWithoutAnswers() {
+      return (
+        this.isAtLastQuestion() && this.$store.state.givenAnswers.length === 0
+      )
     }
   },
   watch: {
@@ -178,6 +183,9 @@ export default {
       })
     },
     nextQuestion() {
+      if (this.isAtEndWithoutAnswers) {
+        return
+      }
       var _t = this
       if (!this.isAtLastQuestion()) {
         this.$store.dispatch('nextQuestion', {
@@ -346,6 +354,12 @@ ul {
   color: white;
   border: 1px solid $nextButtonBackground;
 }
+.disabled-step {
+  background: white;
+  color: black;
+  cursor: no-drop;
+}
+
 .back-step:hover {
   background: $lightColor;
   color: white;
