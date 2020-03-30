@@ -119,6 +119,8 @@ export default {
 .remarks {
   margin-top: 1em;
   padding-bottom: 1em;
+  width: 50%;
+  margin-left: 25%;
 }
 .remarks textarea {
   width: 100%;
