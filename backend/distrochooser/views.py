@@ -7,8 +7,9 @@ from secrets import token_hex
 from base64 import b64decode
 from urllib.parse import urlparse
 import datetime
+from math import floor
 
-from django.db.models import Count
+from django.db.models import Count, Avg
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpRequest, JsonResponse, Http404
 
@@ -55,6 +56,7 @@ def get_stats(request):
             approvedPercentage = round(
                 100/(allVoteResultsCount/approvedResults.count()))
 
+    averageCalculationTime = (UserSession.objects.exclude(calculationTime=0)[:1000].aggregate(Avg('calculationTime'))["calculationTime__avg"])
 
     referrersQuery = UserSession.objects.values(
         "referrer").annotate(amount=Count('referrer'))
@@ -77,7 +79,8 @@ def get_stats(request):
         "visitors": UserSession.objects.all().count(),
         "votedResults": allVoteResultsCount,
         "approvedPercentage": approvedPercentage,
-        "referrers": referrers
+        "referrers": referrers,
+        "averageCalculationTime": averageCalculationTime
     })
 
 
