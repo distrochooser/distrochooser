@@ -14,7 +14,7 @@ msgid "question-is-multiplechoice"
 msgstr "你可以选择多个答案"
 
 msgid "vendor-text"
-msgstr "项目作者： chmr.eu"
+msgstr "项目作者：chmr.eu"
 
 msgid "get-result"
 msgstr "获取结果"
@@ -100,9 +100,6 @@ msgstr "This text is available in english"
 msgid "locale-link-de"
 msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
 
-msgid "locale-link-zh-cn"
-msgstr "该测试有中文版本"
-
 msgid "start-test"
 msgstr "开始测试"
 
@@ -140,7 +137,7 @@ msgid "about-licenses-source"
 msgstr "源码"
 
 msgid "about-licenses-source-text"
-msgstr "源代码是在“LICENSE”文件中的许可证下获得许可的，该文件位于链接的存储库中。"
+msgstr "源代码是在「LICENSE」文件中的许可证下获得许可的，该文件位于链接的存储库中。"
 
 msgid "about-licenses-database"
 msgstr "数据库"
@@ -302,7 +299,7 @@ msgid "privacy-answer-services-ok"
 msgstr "如果可以提高我的使用体验，我同意使用这类服务。"
 
 msgid "software-admin-question"
-msgstr "管理Linux发行版有许多方法，例如安装软件。"
+msgstr "管理 Linux 发行版有许多方法，例如安装软件。"
 
 msgid "software-admin-answer-appstore"
 msgstr "我想通过各种「软件商店」来安装程序。 "
@@ -314,7 +311,7 @@ msgid "special-features-qestion"
 msgstr "有的发行版会为特殊目的增加特别的功能。您需要以下哪些功能？"
 
 msgid "additional-info-special-features-qestion"
-msgstr "许多发行版使用「systemd」来启动操作系统本身。有些发行版会避免使用systemd，并采用可选的、有时更轻量的解决方案"
+msgstr "许多发行版使用「systemd」来启动操作系统本身。有些发行版会避免使用 systemd，并采用可选的、有时更轻量的解决方案"
 
 msgid "answer-isolation"
 msgstr "默认情况下，应用程序应该在互相隔离的环境中执行" 
@@ -518,69 +515,199 @@ msgid "matrix-requires-manual"
 msgstr "需要阅读手册和教程"
 
 msgid "matrix-requires-advanced-knowledge"
-msgstr "Requires reading up in manuals for usage" msgid "matrix-isolation-default"
-msgstr "Has a isolation concept by default" msgid "matrix-oldpc-supported"
-msgstr "Supports even older computers" msgid "checked-criteria-count"
-msgstr "aspects checked" msgid "searching-criteria"
-msgstr "processing the criteria library" msgid "daily-usage-possibly-difficult"
-msgstr "Daily usage may result in major difficulties" msgid "matrix-supports-daily-usage-but-built-for-livemode"
-msgstr "Can be used for daily work, but is built for live-mode" msgid "matrix-packages-available"
-msgstr "Programs for anonymisation purposes are available" msgid "matrix-packages-may-too-old-gaming"
-msgstr "Programs versions may not be up-to-date enough for gaming" msgid "matrix-gaming-may-require-additional-configuration"
-msgstr "May require additional configuration for gaming" msgid "matrix-built-for-enterprise"
-msgstr "Primary goal is enterprise usage" msgid "matrix-not-built-for-gaming"
-msgstr "Not optimized for gaming" msgid "requires-some-computer-knowledge"
-msgstr "Requires further knowledge about computers" msgid "matrix-maybe-not-for-beginner"
-msgstr "Not suitable for beginners" msgid "matrix-installation-from-shell"
-msgstr "Installation is done using the terminal" msgid "matrix-installs-range-of-programs"
-msgstr "Installs a range of program by default" msgid "matrix-configuration-from-shell"
-msgstr "Majority of configuration is done using shell commands" msgid "matrix-middleweight"
-msgstr "Is a middleweight system, especially suitable for semi-recent computers" msgid "matrix-has-high-range-hardware-support"
-msgstr "Supports a wide range of hardware" msgid "matrix-has-zorin-lite-version"
-msgstr "Has a 'Zorin Lite' version for older computers" msgid "matrix-has-windows-like-variant-cinnamon"
-msgstr "A variant ships the 'cinnamon' desktop environment, which has a Windows-like appearance" msgid "systemd-is-avoidable-per-selection"
-msgstr "Systemd can be avoided per user selection" msgid "matrix-ships-systemd-but-disabled"
-msgstr "Systemd is shipped, but disabled by default" msgid "matrix-supports-privacy"
-msgstr "Only collects data when online services are used" msgid "matrix-lightweight"
-msgstr "Lightweight distribution" msgid "matrix-free-userselection"
-msgstr "Usage of free software depends on user selection" # distribution descriptions msgid "description-manjaro"
-msgstr "Manjaro is a rolling release distribution focused on user friendliness" msgid "description-ubuntu"
-msgstr "Ubuntu is a Distribution build by the company Canonical" msgid "description-mint"
-msgstr "Linux Mint is a Ubuntu based distribution with pre-installed proprietary components, such as multimedia codecs." msgid "description-solus"
-msgstr "Solus OS is a rolling release distribution which started as a Chrome OS clone" msgid "description-arch"
-msgstr "Arch is a rolling release distribution based on the KISS principle" msgid "description-debian"
-msgstr "Debian is a distribution with high focus on stability" msgid "description-tails"
-msgstr "Anonymisation is the main focus of Tails, which can be used from USB or optical discs" msgid "description-devuan"
-msgstr "Devuan is a Debian clone without usage of the systemd toolkit" msgid "description-opensuse"
-msgstr "OpenSuse aims to deliver a stable and user-friendly distribution, mostly for end users" msgid "description-pclinuxos"
-msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface." msgid "description-rhel"
-msgstr "Red hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution" msgid "description-centos"
-msgstr "CentOS is a free distribution based on RHEL" msgid "description-xubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment" msgid "description-lubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight LXDE desktop environment" msgid "description-ubuntumate"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight MATE desktop environment" msgid "description-fedora"
-msgstr "Fedora is a Red hat backed distribution with a large focus on free software" msgid "description-qubeos"
-msgstr "Qubes OS isolates applications using virtual machines to improve security" msgid "description-gentoo"
-msgstr "Gentoo is a flexible distribution for advanced users" msgid "description-mxlinux"
-msgstr "MX Linux is a middleweight resource usage distribution with focus on a efficient and elegant daily usage." msgid "description-fedora"
-msgstr "Fedora is a distribution with focus on free software. Fedora is released without a long term support, shipping a new version every 6 months." msgid "description-knoppix"
-msgstr "Knoppix is a live-mode focused operating system with a wide range of hardware support" msgid "description-cruxlinux"
-msgstr "Crux Linux is a lightweight 64 bit focused operating system with recent tools and libraries" msgid "description-zorinos"
-msgstr "Zorin OS is a beginner focused distribution with a windows-like user interface" msgid "description-elementaryos"
-msgstr "elementary OS is a ubuntu-based distribution, focused on an elegant and fast user experience" msgid "description-kubuntu"
-msgstr "Kubuntu is an ubuntu-based distribution with a pre-installed KDE as a desktop" msgid "locale-en"
-msgstr "english" msgid "locale-de"
-msgstr "deutsch" # update pack 26th december 2019 msgid "debian-updates-slow"
-msgstr "Debian updates are usually slow in favor of stability" msgid "description-qubesos"
-msgstr "Qubes OS executes processes in virtual machines in favor of security" msgid "software-use-case-isolation"
-msgstr "I want to execute all programs in an isolated area" msgid "matrix-runs-in-isolation"
-msgstr "Software execution happens in isolated environments" msgid "software-use-case-blind"
-msgstr "The user is visually impaired" msgid "matrix-knoppix-adriane"
-msgstr "The ADRIANE project offers tools and solutions for visually impaired people" msgid "matrix-has-software-for-blind"
-msgstr "Software for visually impaired people are installable (e. g. 'Orca')" msgid "source"
-msgstr "Image source" msgid "description-void"
-msgstr "Void Linux is a rolling release distribution without systemd" msgid "skip-question"
-msgstr "skip question" msgid "description-nixos"
-msgstr "NixOS uses the Nix package manager. It uses declarative configuration and allows reliable system upgrades." msgid "reasons-hide"
-msgstr "Hide reasons" msgid "description-artix"
+msgstr "需要阅读使用手册"
+
+msgid "matrix-isolation-default"
+msgstr "默认会使用容器"
+
+msgid "matrix-oldpc-supported"
+msgstr "支持老旧的计算机"
+
+msgid "checked-criteria-count"
+msgstr "一些方面的检查"
+
+msgid "searching-criteria"
+msgstr "processing the criteria library"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "Daily usage may result in major difficulties"
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "Can be used for daily work, but is built for live-mode"
+
+msgid "matrix-packages-available"
+msgstr "Programs for anonymisation purposes are available"
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "Programs versions may not be up-to-date enough for gaming"
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "May require additional configuration for gaming"
+
+msgid "matrix-built-for-enterprise"
+msgstr "Primary goal is enterprise usage"
+
+msgid "matrix-not-built-for-gaming"
+msgstr "Not optimized for gaming"
+
+msgid "requires-some-computer-knowledge"
+msgstr "Requires further knowledge about computers"
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "Not suitable for beginners"
+
+msgid "matrix-installation-from-shell"
+msgstr "Installation is done using the terminal"
+
+msgid "matrix-installs-range-of-programs"
+msgstr "Installs a range of program by default"
+
+msgid "matrix-configuration-from-shell"
+msgstr "Majority of configuration is done using shell commands"
+
+msgid "matrix-middleweight"
+msgstr "Is a middleweight system, especially suitable for semi-recent computers"
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "Supports a wide range of hardware"
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "Has a 'Zorin Lite' version for older computers"
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr "A variant ships the 'cinnamon' desktop environment, which has a Windows-like appearance"
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "Systemd can be avoided per user selection"
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "Systemd is shipped, but disabled by default"
+
+msgid "matrix-supports-privacy"
+msgstr "Only collects data when online services are used"
+
+msgid "matrix-lightweight"
+msgstr "Lightweight distribution"
+
+msgid "matrix-free-userselection"
+msgstr "Usage of free software depends on user selection" # distribution descriptions
+
+msgid "description-manjaro"
+msgstr "Manjaro is a rolling release distribution focused on user friendliness"
+
+msgid "description-ubuntu"
+msgstr "Ubuntu is a Distribution build by the company Canonical"
+
+msgid "description-mint"
+msgstr "Linux Mint is a Ubuntu based distribution with pre-installed proprietary components, such as multimedia codecs."
+
+msgid "description-solus"
+msgstr "Solus OS is a rolling release distribution which started as a Chrome OS clone"
+
+msgid "description-arch"
+msgstr "Arch is a rolling release distribution based on the KISS principle"
+
+msgid "description-debian"
+msgstr "Debian is a distribution with high focus on stability"
+
+msgid "description-tails"
+msgstr "Anonymisation is the main focus of Tails, which can be used from USB or optical discs"
+
+msgid "description-devuan"
+msgstr "Devuan is a Debian clone without usage of the systemd toolkit"
+
+msgid "description-opensuse"
+msgstr "OpenSuse aims to deliver a stable and user-friendly distribution, mostly for end users"
+
+msgid "description-pclinuxos"
+msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface."
+
+msgid "description-rhel"
+msgstr "Red hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution"
+
+msgid "description-centos"
+msgstr "CentOS is a free distribution based on RHEL"
+
+msgid "description-xubuntu"
+msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment"
+
+msgid "description-lubuntu"
+msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight LXDE desktop environment"
+
+msgid "description-ubuntumate"
+msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"
+
+msgid "description-fedora"
+msgstr "Fedora is a Red hat backed distribution with a large focus on free software"
+
+msgid "description-qubeos"
+msgstr "Qubes OS isolates applications using virtual machines to improve security"
+
+msgid "description-gentoo"
+msgstr "Gentoo is a flexible distribution for advanced users"
+
+msgid "description-mxlinux"
+msgstr "MX Linux is a middleweight resource usage distribution with focus on a efficient and elegant daily usage."
+
+msgid "description-fedora"
+msgstr "Fedora is a distribution with focus on free software. Fedora is released without a long term support, shipping a new version every 6 months."
+
+msgid "description-knoppix"
+msgstr "Knoppix is a live-mode focused operating system with a wide range of hardware support"
+
+msgid "description-cruxlinux"
+msgstr "Crux Linux is a lightweight 64 bit focused operating system with recent tools and libraries"
+
+msgid "description-zorinos"
+msgstr "Zorin OS is a beginner focused distribution with a windows-like user interface"
+
+msgid "description-elementaryos"
+msgstr "elementary OS is a ubuntu-based distribution, focused on an elegant and fast user experience"
+
+msgid "description-kubuntu"
+msgstr "Kubuntu is an ubuntu-based distribution with a pre-installed KDE as a desktop"
+
+msgid "locale-en"
+msgstr "english"
+
+msgid "locale-de"
+msgstr "deutsch" # update pack 26th december 2019
+
+msgid "debian-updates-slow"
+msgstr "Debian updates are usually slow in favor of stability"
+
+msgid "description-qubesos"
+msgstr "Qubes OS executes processes in virtual machines in favor of security"
+
+msgid "software-use-case-isolation"
+msgstr "I want to execute all programs in an isolated area"
+
+msgid "matrix-runs-in-isolation"
+msgstr "Software execution happens in isolated environments"
+
+msgid "software-use-case-blind"
+msgstr "The user is visually impaired"
+
+msgid "matrix-knoppix-adriane"
+msgstr "The ADRIANE project offers tools and solutions for visually impaired people"
+
+msgid "matrix-has-software-for-blind"
+msgstr "Software for visually impaired people are installable (e. g. 'Orca')"
+
+msgid "source"
+msgstr "Image source"
+
+msgid "description-void"
+msgstr "Void Linux is a rolling release distribution without systemd"
+
+msgid "skip-question"
+msgstr "skip question"
+
+msgid "description-nixos"
+msgstr "NixOS uses the Nix package manager. It uses declarative configuration and allows reliable system upgrades."
+
+msgid "reasons-hide"
+msgstr "Hide reasons"
+
+msgid "description-artix"
 msgstr "Artix is an Arch Linux based distribution which utilizes OpenRC instead of systemd."
