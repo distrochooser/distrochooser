@@ -23,7 +23,7 @@ msgid "category-welcome"
 msgstr "欢迎!"
 
 msgid "software-use-case"
-msgstr "软件：使用场景" 
+msgstr "软件：使用场景"
 
 msgid "computer-knowledge-category"
 msgstr "计算机知识"
@@ -119,7 +119,10 @@ msgid "vote-reminder"
 msgstr "你喜欢这个发行版吗？给它点个赞吧！"
 
 msgid "about-intro-text"
-msgstr "distrochooser.de 的目标是帮助Linux初学者选择他们需要的、适合自己的Linux发行版。<br>最后得到的结果是来源于用户答案的建议。有些时候结果可能并不合适，因为答案的相互作用过于复杂。"
+msgstr ""
+"distrochooser.de 的目标是帮助Linux初学者选择他们需要的、适合自己的Linux发行"
+"版。<br>最后得到的结果是来源于用户答案的建议。有些时候结果可能并不合适，因为"
+"答案的相互作用过于复杂。"
 
 msgid "about-intro-test-count"
 msgstr "从2014年6月14日开始，distrochooser.de 已经完成了%tests%次测试。"
@@ -137,16 +140,21 @@ msgid "about-licenses-source"
 msgstr "源码"
 
 msgid "about-licenses-source-text"
-msgstr "源代码是在「LICENSE」文件中的许可证下获得许可的，该文件位于链接的存储库中。"
+msgstr ""
+"源代码是在「LICENSE」文件中的许可证下获得许可的，该文件位于链接的存储库中。"
 
 msgid "about-licenses-database"
 msgstr "数据库"
 
 msgid "about-licenses-database-text"
-msgstr "底层数据(包括问题/答案结构、结果矩阵和数据统计)是专有的。只有得到我们的许可，你才能够使用它们。各发行版的说明及标志均须获得各版权持有人的授权。"
+msgstr ""
+"底层数据(包括问题/答案结构、结果矩阵和数据统计)是专有的。只有得到我们的许可，"
+"你才能够使用它们。各发行版的说明及标志均须获得各版权持有人的授权。"
 
 msgid "no-results-text"
-msgstr "根据您的答案，Distrochooser无法找到合适的结果。我们将会很有帮助如果你能给我们写一些反馈，这样我们就能继续改进。"
+msgstr ""
+"根据您的答案，Distrochooser无法找到合适的结果。我们将会很有帮助如果你能给我们"
+"写一些反馈，这样我们就能继续改进。"
 
 msgid "close-additional-info"
 msgstr "关闭"
@@ -224,10 +232,14 @@ msgid "presets-question-answer-guiselections"
 msgstr "我希望能够在图形化界面上完成尽可能多的设置"
 
 msgid "hardware-question"
-msgstr "了解您的计算机硬件的年龄是很重要的，因为有些发行版不会在旧的计算机上运行。"
+msgstr ""
+"了解您的计算机硬件的年龄是很重要的，因为有些发行版不会在旧的计算机上运行。"
 
 msgid "additional-info-hardware"
-msgstr "多年以来，一些发行版一直使用32位架构，允许分配4g的内存。而较新的发行版则倾向于抛弃32位架构，转而支持64位，这允许分配超过4g的内存。从2005年开始，几乎所有的计算机都应该支持64位。"
+msgstr ""
+"多年以来，一些发行版一直使用32位架构，允许分配4g的内存。而较新的发行版则倾向"
+"于抛弃32位架构，转而支持64位，这允许分配超过4g的内存。从2005年开始，几乎所有"
+"的计算机都应该支持64位。"
 
 msgid "hardware-question-oldpc"
 msgstr "我不确定 和/或 我的电脑已经有性能问题 和/或 我的电脑只支持32位"
@@ -245,7 +257,9 @@ msgid "help-question-user-exchange"
 msgstr "我更喜欢寻求他人的帮助"
 
 msgid "ux-concept-question"
-msgstr "Linux可以使用许多不同的用户界面 (\"桌面\")。许多发行版默认提供一个桌面。了解您是否对桌面的概念有任何喜好是很重要的。您可以随时切换和安装新的桌面！"
+msgstr ""
+"Linux可以使用许多不同的用户界面 (\"桌面\")。许多发行版默认提供一个桌面。了解"
+"您是否对桌面的概念有任何喜好是很重要的。您可以随时切换和安装新的桌面！"
 
 msgid "ux-concept-answer-windows-like"
 msgstr "我更喜欢 Windows 风格的用户界面"
@@ -269,7 +283,9 @@ msgid "price-answer-paid"
 msgstr "我愿意支付费用"
 
 msgid "scope-question"
-msgstr "不同的发行版会预先安装不同数量的软件。有些会安装一整套基本程序以达到“开箱即用”的目的。有些发行版只提供基本安装，然后让用户安装他们想要使用的程序。"
+msgstr ""
+"不同的发行版会预先安装不同数量的软件。有些会安装一整套基本程序以达到“开箱即"
+"用”的目的。有些发行版只提供基本安装，然后让用户安装他们想要使用的程序。"
 
 msgid "scope-answer-fullinstall"
 msgstr "我更喜欢一个预先安装的所有基本程序，我需要在安装后立即开始工作"
@@ -278,10 +294,15 @@ msgid "scope-answer-ownselection"
 msgstr "我想自己安装应用程序"
 
 msgid "ideology-question"
-msgstr "发行的(许可)意识形态非常有争论。有些发行版主要使用「自由的许可」，有些也会使用「非自由许可」的软件。"
+msgstr ""
+"发行的(许可)意识形态非常有争论。有些发行版主要使用「自由的许可」，有些也会使"
+"用「非自由许可」的软件。"
 
 msgid "additional-info-ideology"
-msgstr "自由许可允许用户为任何目的修改、重新发布和使用其软件。然而在某些情况下，发行版必须使用非自由的软件，例如硬件驱动程序。非自由软件不会发布其源代码，不允许修改。"
+msgstr ""
+"自由许可允许用户为任何目的修改、重新发布和使用其软件。然而在某些情况下，发行"
+"版必须使用非自由的软件，例如硬件驱动程序。非自由软件不会发布其源代码，不允许"
+"修改。"
 
 msgid "ideology-answer-free"
 msgstr "我想要尽可能地使用自由许可"
@@ -290,7 +311,9 @@ msgid "ideology-answer-proprietary-ok"
 msgstr "只要我的系统正常工作，我可以使用非自由许可"
 
 msgid "privacy-question"
-msgstr "有的发行版使用在线服务来提高用户体验。使用这类服务的用户可能会被追踪，这会影响到用户的隐私。"
+msgstr ""
+"有的发行版使用在线服务来提高用户体验。使用这类服务的用户可能会被追踪，这会影"
+"响到用户的隐私。"
 
 msgid "privacy-answer-highprivacy"
 msgstr "我不想要这个"
@@ -311,13 +334,16 @@ msgid "special-features-qestion"
 msgstr "有的发行版会为特殊目的增加特别的功能。您需要以下哪些功能？"
 
 msgid "additional-info-special-features-qestion"
-msgstr "许多发行版使用「systemd」来启动操作系统本身。有些发行版会避免使用 systemd，并采用可选的、有时更轻量的解决方案"
+msgstr ""
+"许多发行版使用「systemd」来启动操作系统本身。有些发行版会避免使用 systemd，并"
+"采用可选的、有时更轻量的解决方案"
 
 msgid "answer-isolation"
-msgstr "默认情况下，应用程序应该在互相隔离的环境中执行" 
+msgstr "默认情况下，应用程序应该在互相隔离的环境中执行"
 
 msgid "software-updates-question"
-msgstr "有的发行版会提供非常频繁的更新，这可能会影响系统稳定性。您想要怎样的更新？"
+msgstr ""
+"有的发行版会提供非常频繁的更新，这可能会影响系统稳定性。您想要怎样的更新？"
 
 msgid "software-updates-answer-fast"
 msgstr "我想要频繁的更新"
@@ -362,7 +388,7 @@ msgid "reason-list-header-negative"
 msgstr "我们无法为您推荐该发行版因为："
 
 msgid "reason-list-header-neutral"
-msgstr "以下标准没有考虑在内" 
+msgstr "以下标准没有考虑在内"
 
 msgid "reason-list-header-blocked-by-others"
 msgstr "这个答案与你给出的其他答案矛盾"
@@ -371,7 +397,7 @@ msgid "matrix-supports-daily-usage"
 msgstr "适合日常使用"
 
 msgid "matrix-privacy-not-beneficial"
-msgstr "发行版的概念不利于匿名使用" 
+msgstr "发行版的概念不利于匿名使用"
 
 msgid "matrix-supports-gaming-usage"
 msgstr "发行版被游戏发行商所支持"
@@ -401,7 +427,7 @@ msgid "matrix-installation-presets-gui"
 msgstr "可以通过图形界面完成许多设置"
 
 msgid "matrix-installation-assistant-present"
-msgstr "安装会使用带有默认设置的安装「向导」" 
+msgstr "安装会使用带有默认设置的安装「向导」"
 
 msgid "matrix-hardware-oldpc-ubuntu"
 msgstr "你或许会遇到窗口合成效果的滞后。有时可能需要禁用动画。"
@@ -437,7 +463,7 @@ msgid "matrix-has-live-mode"
 msgstr "有允许从光盘启动的 live 模式"
 
 msgid "live-mode-only"
-msgstr "有活动模式：可以使用光盘或U盘进行试用(安装前)"
+msgstr "有活动模式：在安装前可以使用光盘或U盘进行试用"
 
 msgid "matrix-without-fee"
 msgstr "可以免费使用"
@@ -458,7 +484,7 @@ msgid "matrix-enforces-free"
 msgstr "会强制使用自由软件"
 
 msgid "matrix-mostly-free"
-msgstr "Works mostly with free software"
+msgstr "主要使用自由软件"
 
 msgid "matrix-has-default-settings"
 msgstr "会默认设置"
@@ -527,71 +553,72 @@ msgid "checked-criteria-count"
 msgstr "一些方面的检查"
 
 msgid "searching-criteria"
-msgstr "processing the criteria library"
+msgstr "处理标准库"
 
 msgid "daily-usage-possibly-difficult"
-msgstr "Daily usage may result in major difficulties"
+msgstr "日常使用的过程中可能会有很大的困难"
 
 msgid "matrix-supports-daily-usage-but-built-for-livemode"
-msgstr "Can be used for daily work, but is built for live-mode"
+msgstr "可以用于日常工作，但是是在 Live 模式下搭建的"
 
 msgid "matrix-packages-available"
-msgstr "Programs for anonymisation purposes are available"
+msgstr "可以使用为匿名目的的程序"
 
 msgid "matrix-packages-may-too-old-gaming"
-msgstr "Programs versions may not be up-to-date enough for gaming"
+msgstr "程序版本可能不足以进行游戏"
 
 msgid "matrix-gaming-may-require-additional-configuration"
-msgstr "May require additional configuration for gaming"
+msgstr "可能需要额外的游戏配置"
 
 msgid "matrix-built-for-enterprise"
-msgstr "Primary goal is enterprise usage"
+msgstr "主要为企业提供"
 
 msgid "matrix-not-built-for-gaming"
-msgstr "Not optimized for gaming"
+msgstr "没有针对游戏进行优化"
 
 msgid "requires-some-computer-knowledge"
-msgstr "Requires further knowledge about computers"
+msgstr "需要较多的的计算机知识"
 
 msgid "matrix-maybe-not-for-beginner"
-msgstr "Not suitable for beginners"
+msgstr "不适合初学者"
 
 msgid "matrix-installation-from-shell"
-msgstr "Installation is done using the terminal"
+msgstr "通过命令行安装"
 
 msgid "matrix-installs-range-of-programs"
-msgstr "Installs a range of program by default"
+msgstr "会默认安装一系列的程序"
 
 msgid "matrix-configuration-from-shell"
-msgstr "Majority of configuration is done using shell commands"
+msgstr "会通过 shell 完成大多数的配置"
 
 msgid "matrix-middleweight"
-msgstr "Is a middleweight system, especially suitable for semi-recent computers"
+msgstr "中量级系统，适合不那么新的计算机"
 
 msgid "matrix-has-high-range-hardware-support"
-msgstr "Supports a wide range of hardware"
+msgstr "支持多种硬件"
 
 msgid "matrix-has-zorin-lite-version"
-msgstr "Has a 'Zorin Lite' version for older computers"
+msgstr "有一个 “Zorin Lite” 版本适合老旧计算机"
 
 msgid "matrix-has-windows-like-variant-cinnamon"
-msgstr "A variant ships the 'cinnamon' desktop environment, which has a Windows-like appearance"
+msgstr "有一个版本提供 “cinnamon” 桌面环境，外观与 Windows 类似"
 
 msgid "systemd-is-avoidable-per-selection"
-msgstr "Systemd can be avoided per user selection"
+msgstr "每个用户都可以选择避免 Systemd"
 
 msgid "matrix-ships-systemd-but-disabled"
-msgstr "Systemd is shipped, but disabled by default"
+msgstr "Systemd 会被提供，但不会默认启用"
 
 msgid "matrix-supports-privacy"
-msgstr "Only collects data when online services are used"
+msgstr "只在使用网络服务时收集数据"
 
 msgid "matrix-lightweight"
-msgstr "Lightweight distribution"
+msgstr "轻量级发行版"
 
 msgid "matrix-free-userselection"
-msgstr "Usage of free software depends on user selection" # distribution descriptions
+msgstr "自由软件的使用取决于用户的选择"
 
+# distribution descriptions
 msgid "description-manjaro"
 msgstr "Manjaro is a rolling release distribution focused on user friendliness"
 
@@ -671,8 +698,9 @@ msgid "locale-en"
 msgstr "english"
 
 msgid "locale-de"
-msgstr "deutsch" # update pack 26th december 2019
+msgstr "deutsch"
 
+# update pack 26th december 2019
 msgid "debian-updates-slow"
 msgstr "Debian updates are usually slow in favor of stability"
 
@@ -710,4 +738,4 @@ msgid "reasons-hide"
 msgstr "Hide reasons"
 
 msgid "description-artix"
-msgstr "Artix is an Arch Linux based distribution which utilizes OpenRC instead of systemd."
+msgstr "Artix 是一个基于 Arch Linux 的发行版，它使用 OpenRC 而非 systemd。"
