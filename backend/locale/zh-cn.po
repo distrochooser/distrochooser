@@ -620,79 +620,80 @@ msgstr "自由软件的使用取决于用户的选择"
 
 # distribution descriptions
 msgid "description-manjaro"
-msgstr "Manjaro is a rolling release distribution focused on user friendliness"
+msgstr "Manjaro 是一个关注用户友好性的滚动发行版"
 
 msgid "description-ubuntu"
-msgstr "Ubuntu is a Distribution build by the company Canonical"
+msgstr "Ubuntu 是由 Canonical 公司发行的一个版本"
 
 msgid "description-mint"
-msgstr "Linux Mint is a Ubuntu based distribution with pre-installed proprietary components, such as multimedia codecs."
+msgstr "Linux Mint 是一个基于 Ubuntu 的发行版，且预装了专有组件，比如多媒体编解码器。"
 
 msgid "description-solus"
-msgstr "Solus OS is a rolling release distribution which started as a Chrome OS clone"
+msgstr "Solus OS 是一个滚动发行版，最开始基于 Chrome OS"
 
 msgid "description-arch"
-msgstr "Arch is a rolling release distribution based on the KISS principle"
+msgstr "Arch 一个基于 KISS 原则的滚动发行版"
 
 msgid "description-debian"
-msgstr "Debian is a distribution with high focus on stability"
+msgstr "Debian 是一个及其关注稳定性的发行版"
 
 msgid "description-tails"
-msgstr "Anonymisation is the main focus of Tails, which can be used from USB or optical discs"
+msgstr "Tails 对匿名化非常关注，它可以从 USB 设备或光盘上使用"
 
 msgid "description-devuan"
-msgstr "Devuan is a Debian clone without usage of the systemd toolkit"
+msgstr "Devuan 是一个没有使用 systemd 工具的基于 Debian 的发行版"
 
 msgid "description-opensuse"
-msgstr "OpenSuse aims to deliver a stable and user-friendly distribution, mostly for end users"
+msgstr "openSUSE 的目标是提供一个稳定的、用户友好的发行版，主要面向终端用户"
 
 msgid "description-pclinuxos"
-msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface."
+msgstr "PCLinuxOS是一个基于 Mandrake 的发行版，侧重于用户友好的界面"
 
 msgid "description-rhel"
-msgstr "Red hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution"
+msgstr "Red hat Enterprise Linux (RHEL)是一个面向企业和并专注于稳定性的发行版"
 
 msgid "description-centos"
-msgstr "CentOS is a free distribution based on RHEL"
+msgstr "CentOS 是基于 RHEL 的自由发行版"
 
 msgid "description-xubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment"
+msgstr "Xubuntu 是一个基于 Ubuntu 的发行版，使用轻量级 Xfce 桌面环境"
 
 msgid "description-lubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight LXDE desktop environment"
+msgstr "Lubuntu 是一个基于 Ubuntu 的发行版，使用轻量级 LXDE 桌面环境"
 
 msgid "description-ubuntumate"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"
+msgstr "Ubuntu MATE 是一个基于 Ubuntu 的发行版，使用轻量级 MATE 桌面环境"
 
 msgid "description-fedora"
-msgstr "Fedora is a Red hat backed distribution with a large focus on free software"
+msgstr "Fedora 是一个由 Red Hat 支持的发行版，主要关注自由软件"
+#小白鼠
 
 msgid "description-qubeos"
-msgstr "Qubes OS isolates applications using virtual machines to improve security"
+msgstr "Qube OS 使用虚拟机隔离应用程序，以提高安全性"
 
 msgid "description-gentoo"
-msgstr "Gentoo is a flexible distribution for advanced users"
+msgstr "Gentoo 是一个面向高级用户的允许自由定制的发行版"
 
 msgid "description-mxlinux"
-msgstr "MX Linux is a middleweight resource usage distribution with focus on a efficient and elegant daily usage."
+msgstr "MX Linux 是一个中量级的发行版，专注于高效且优雅的日常使用"
 
 msgid "description-fedora"
-msgstr "Fedora is a distribution with focus on free software. Fedora is released without a long term support, shipping a new version every 6 months."
+msgstr "Fedora 是一个专注于自由软件的发行版。版本没有长期支持，每6个月会发布一个新版本"
 
 msgid "description-knoppix"
-msgstr "Knoppix is a live-mode focused operating system with a wide range of hardware support"
+msgstr "Knoppix 是一个侧重于 live 模式的操作系统，并具有广泛的硬件支持"
 
 msgid "description-cruxlinux"
-msgstr "Crux Linux is a lightweight 64 bit focused operating system with recent tools and libraries"
+msgstr "Crux Linux 是一个轻量级的64位操作系统，拥有最新的工具和库"
 
 msgid "description-zorinos"
-msgstr "Zorin OS is a beginner focused distribution with a windows-like user interface"
+msgstr "Zorin OS 是一个面向初学者的发行版，具有类 Windows 的用户界面"
 
 msgid "description-elementaryos"
-msgstr "elementary OS is a ubuntu-based distribution, focused on an elegant and fast user experience"
+msgstr "elementary OS 是一个基于 Ubuntu的发行版，专注于优雅而快速的用户体验"
 
 msgid "description-kubuntu"
-msgstr "Kubuntu is an ubuntu-based distribution with a pre-installed KDE as a desktop"
+msgstr "Kubuntu 是一个基于 Ubuntu 的发行版，预装了 KDE 桌面"
 
 msgid "locale-en"
 msgstr "english"
