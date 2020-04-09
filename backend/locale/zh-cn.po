@@ -669,7 +669,7 @@ msgstr "Fedora 是一个由 Red Hat 支持的发行版，主要关注自由软�
 #小白鼠
 
 msgid "description-qubeos"
-msgstr "Qube OS 使用虚拟机隔离应用程序，以提高安全性"
+msgstr "Qubes OS 使用虚拟机隔离应用程序，以提高安全性"
 
 msgid "description-gentoo"
 msgstr "Gentoo 是一个面向高级用户的允许自由定制的发行版"
@@ -703,40 +703,40 @@ msgstr "deutsch"
 
 # update pack 26th december 2019
 msgid "debian-updates-slow"
-msgstr "Debian updates are usually slow in favor of stability"
+msgstr "Debian 的升级经常会很慢，但是很稳定。"
 
 msgid "description-qubesos"
-msgstr "Qubes OS executes processes in virtual machines in favor of security"
+msgstr "Qubes OS在虚拟机中执行进程，有利于安全"
 
 msgid "software-use-case-isolation"
-msgstr "I want to execute all programs in an isolated area"
+msgstr "我想把所有的地方程序隔离运行"
 
 msgid "matrix-runs-in-isolation"
-msgstr "Software execution happens in isolated environments"
+msgstr "软件在隔离的环境中运行"
 
 msgid "software-use-case-blind"
-msgstr "The user is visually impaired"
+msgstr "用户可视化程度降低"
 
 msgid "matrix-knoppix-adriane"
-msgstr "The ADRIANE project offers tools and solutions for visually impaired people"
+msgstr "ADRIANE项目为视障人士提供了工具和解决方案"
 
 msgid "matrix-has-software-for-blind"
-msgstr "Software for visually impaired people are installable (e. g. 'Orca')"
+msgstr "可安装为视障人士而设计的软件（例如：“Orca”）"
 
 msgid "source"
-msgstr "Image source"
+msgstr "图片来源"
 
 msgid "description-void"
-msgstr "Void Linux is a rolling release distribution without systemd"
+msgstr "Void Linux 是一个不使用 systemd 的滚动发行版"
 
 msgid "skip-question"
-msgstr "skip question"
+msgstr "跳过该问题"
 
 msgid "description-nixos"
-msgstr "NixOS uses the Nix package manager. It uses declarative configuration and allows reliable system upgrades."
+msgstr "NixOS 使用 Nix 包管理器。它使用声明性的配置并允许可靠的系统升级。"
 
 msgid "reasons-hide"
-msgstr "Hide reasons"
+msgstr "隐藏原因"
 
 msgid "description-artix"
 msgstr "Artix 是一个基于 Arch Linux 的发行版，它使用 OpenRC 而非 systemd。"
