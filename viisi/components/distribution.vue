@@ -2,63 +2,50 @@
   div.distribution(v-if="!hasNoMatch")
     div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
       span {{ name }}
-      span.scores-summary(, :style="'color: ' + fgColor")
-        span(v-if="nonBlocking(reasons).length !== 0")
-          i.fas.fa-thumbs-up.summary(:style="'color: ' + fgColor")
-          span {{ nonBlocking(reasons).length }} 
-        span(v-if="negative(reasons).length !== 0")
-          i.fas.fa-thumbs-down.summary(:style="'color: ' + fgColor")
-          span {{ negative(reasons).length  }}
-        span(v-if="blocking(reasons).length !== 0")
-          i.fas.fa-ban.summary(:style="'color: ' + fgColor")
-          span {{ blocking(reasons).length }}
-        span(v-if="neutral.length !== 0")
-          i.fas.fa-question.summary(:style="'color: ' + fgColor")
-          span {{ neutral.length }}
     div.description {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
       div.reason-list.list
         div(v-if="nonBlocking(reasons).length > 0")
           div(v-for="(reason, reason_key) in nonBlocking(reasons)", :key="reason_key") 
-            i.fas.fa-plus
+            i.w-icon-plus
             span {{ reason.description }}
             span.importance-toggle(v-if="reason.isImportant")
-              i.fas.fa-star(:title='__i("marked-as-important")')
+              i.w-icon-star-on(:title='__i("marked-as-important")')
         div(v-if="negative(reasons).length > 0")
           div(v-for="(reason, reason_key) in negative(reasons)", :key="reason_key") 
-            i.fas.fa-minus
+            i.w-icon-minus
             span {{ reason.description }}
             span.importance-toggle(v-if="reason.isImportant")
-              i.fas.fa-star(:title='__i("marked-as-important")')
+              i.w-icon-star-on(:title='__i("marked-as-important")')
       div.blocking-list.list
         div(v-if="blocking(reasons).length > 0")
           b.block-title {{ __i("reason-list-header-negative").replace("%s",name) }}
           div(v-for="(reason, reason_key) in blocking(reasons)", :key="reason_key") 
-            i.fas.fa-ban
+            i.w-icon-circle-close-o
             span {{ reason.description }} 
             span.importance-toggle(v-if="reason.isImportant")
-              i.fas.fa-star(:title='__i("marked-as-important")')
+              i.w-icon-star-on(:title='__i("marked-as-important")')
       div.blocking-list.list
         div(v-if="blockedByOtherQuestion.length > 0")
           b.block-title {{ __i("reason-list-header-blocked-by-others").replace("%s",name) }}
           div(v-for="(reason, reason_key) in blockedByOtherQuestion", :key="reason_key") 
-            i.fas.fa-exclamation-triangle
+            i.w-icon-warning
             span {{ reason.description }}
       div.reason-list.list
         div(v-if="neutral.length > 0")
           b.block-title {{ __i("reason-list-header-neutral") }}
           div(v-for="(reason, reason_key) in neutral", :key="reason_key") 
-            i.fas.fa-question
+            i.w-icon-question-circle-o
             span {{ reason.description }}
     div.meta
       div.actions
-        div.vote-actions(:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
-          a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)")
-            i.fa-heart(v-bind:class="{'fas animated heartBeat voted': voted && positiveVote, 'far': !voted || !positiveVote}")
-          a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)")
-            i.fa-heart-broken(v-bind:class="{'fas animated swing voted': voted && !positiveVote, 'fas': !voted || positiveVote}")
-        a.action(href="#", v-on:click.prevent="flipped=!flipped", :data-balloon="__i('reasons-hide')",data-balloon-pos="left")
-          i.fa-question(v-bind:class="{'fas animated swing voted': voted && !positiveVote, 'fas': !voted || positiveVote}")
+        div.vote-actions
+          a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)",:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
+            i.w-icon-heart-on(v-bind:class="{'animated heartBeat voted': voted && positiveVote}")
+          a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)", :data-balloon="__i('vote-reminder')",data-balloon-pos="left")
+            i.w-icon-heart-off(v-bind:class="{'animated swing voted': voted && !positiveVote}")
+          a.action(href="#", v-on:click.prevent="flipped=!flipped", :data-balloon="__i('reasons-hide')",data-balloon-pos="right")
+            i.w-icon-shrink
       div.url
         a(v-if="url", target="_blank", :href="url") {{ __i("distribution-homepage") }}
 </template>
@@ -160,7 +147,6 @@ export default {
   padding: 10px;
   font-family: Open Sans, sans-serif;
   margin-bottom: 1em;
-  cursor: pointer;
 }
 .description {
   margin-left: 1em;
@@ -188,28 +174,28 @@ export default {
   color: $linkColor;
   font-size: 15pt;
 }
-.action .fa-heart.voted {
+.action .w-icon-heart-on.voted {
   color: #ff1128 !important;
 }
-.action .fa-heart-broken.voted {
+.action .w-icon-heart-off.voted {
   color: red !important;
 }
 .fa-like {
   color: #0e2bff;
 }
-.fa-plus {
+.w-icon-plus {
   color: #1f8c1f;
 }
-.fa-minus {
+.w-icon-minus {
   color: #f00;
 }
-.fa-ban {
+.blocking-list div div .w-icon-circle-close-o {
   color: #d40000;
 }
 .fa-heart-broken {
   color: #f03c82;
 }
-.fa-exclamation-triangle {
+.w-icon-warning {
   color: red;
 }
 .list {
@@ -256,20 +242,17 @@ i {
   margin-left: 0.4em;
   font-size: 9pt;
 }
-.summary.fa-thumbs-up {
-  margin-top: -0.5em;
-}
-.summary.fa-thumbs-down {
-  margin-left: 0.7em;
-}
 .downvoted-distro {
   filter: opacity(50%);
 }
-.importance-toggle .fas {
+.importance-toggle .w-icon-star-on {
   color: #ff7a00;
   margin-left: 0.5em;
 }
 .vote-actions {
   display: inline;
+}
+.vote-actions a {
+  text-decoration: none;
 }
 </style>

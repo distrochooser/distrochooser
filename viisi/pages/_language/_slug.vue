@@ -22,6 +22,7 @@
    
 </template>
 <script>
+import '@uiw/icons/fonts/w-icon.css'
 import categories from '~/components/categories'
 import question from '~/components/question'
 import result from '~/components/result'
@@ -189,7 +190,6 @@ export default {
 @import '~/scss/variables.scss';
 @import '~/node_modules/spinkit/scss/spinners/3-wave.scss';
 @import '~/node_modules/flag-icon-css/css/flag-icon.min.css';
-@import '~/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 /* roboto-slab-regular - latin */
 @font-face {
   font-family: 'Roboto Slab';

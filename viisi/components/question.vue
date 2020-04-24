@@ -7,25 +7,25 @@
           p {{ __i("welcome-text") }}
           p
             div 
-              i.fas.fa-forward
+              i.w-icon-d-arrow-right
               span {{ __i("welcome-text-skip") }}
             div
-              i.far.fa-question-circle.additional-info-icon
+              i.w-icon-question-circle-o
               span {{ __i("welcome-text-additional-infos") }}
             div
-              i.fas.fa-bullhorn
+              i.w-icon-right-square-o
               span {{ __i("welcome-text-result-get") }}
             div
-              i.fas.fa-sort-amount-up
+              i.w-icon-swap
               span {{ __i("welcome-text-order") }}
             div
-              i.fas.fa-trash-alt
+              i.w-icon-minus-circle-o
               span {{ __i("welcome-text-remove") }}
             div
-              i.fas.fa-star
+              i.w-icon-star-off
               span {{ __i("welcome-text-importance") }}
             div
-              i.fas.fa-heart
+              i.w-icon-heart-off
               span {{ __i("welcome-text-feedback") }}
            
         div.actions.welcome-text-actions
@@ -35,13 +35,13 @@
         div.additional-infos.animated.fadeIn.fast(v-if="additionalInfoShown")
           div.additional-info-menu(v-on:click="flip")
             span {{ __i("close-additional-info") }}
-            i.fas.fa-times-circle
+            i.w-icon-circle-close-o
           h3 {{ __i("additional-info") }} | {{ __i($store.state.currentCategory.msgid) }}
           div {{ __i(question.additionalInfo) }}
         div.question-text(v-if="!additionalInfoShown")
           span {{ __i(question.msgid) }}
           span.additional-remarks-button(v-if="question.additionalInfo",:data-balloon="__i('additional-infos')",data-balloon-pos="right")
-            i.far.fa-question-circle.additional-info-icon(v-on:click="flip")
+            i.w-icon-question-circle-o.additional-info-icon(v-on:click="flip")
         div.answer-remark(v-if="question.isMultipleChoice")
           span {{ __i("question-is-multiplechoice") }}
         div.answers(:class="{'flipped': additionalInfoShown}")
@@ -50,32 +50,32 @@
               img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)", @click='answerQuestion(answer)')
               p.image-answer-options
                 a.source-link(target="_blank", :href="answer.mediaSourcePath", v-if="answer.mediaSourcePath") 
-                    i.fas.fa-external-link-alt(:title='__i("source")')
+                    i.w-icon-link(:title='__i("source")')
                 span
                   span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="isAnswerSelected(answer) && !isAnswerImportant(answer)")
-                    i.far.fa-star(:title='__i("make-important")')
+                    i.w-icon-star-off(:title='__i("make-important")')
                   span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
-                    i.fas.fa-star.animated.jello(:title="__i('remove-important')")
+                    i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
               p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
           div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
             span(v-if="question.isMultipleChoice")
-              i.far.answer-box(@click='answerQuestion(answer)', :class="{'fa-check-square': isAnswerSelected(answer), 'fa-square': !isAnswerSelected(answer)}")
+              i.answer-box(@click='answerQuestion(answer)', :class="{'w-icon-check-square-o': isAnswerSelected(answer), 'w-icon-close-square-o': !isAnswerSelected(answer)}")
             span(v-else,)
-              i.far.answer-box(@click='answerQuestion(answer)', :class="{'fa-check-circle': isAnswerSelected(answer), 'fa-circle': !isAnswerSelected(answer)}")
+              i.answer-box(@click='answerQuestion(answer)', :class="{'w-icon-circle-check-o': isAnswerSelected(answer), 'w-icon-circle-close-o': !isAnswerSelected(answer)}")
             label(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
             span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="isAnswerSelected(answer) && !isAnswerImportant(answer)")
-              i.far.fa-star(:title='__i("make-important")')
+              i.w-icon-star-off(:title='__i("make-important")')
             span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
-              i.fas.fa-star.animated.jello(:title="__i('remove-important')")
+              i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
             div.warning-alert.animated.fadeInUp.faster(v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
               p {{ __i("answer-is-blocking") }}:
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
-                i.fas.fa-times-circle
+                i.w-icon-circle-close-o
                 span "{{ __i(blockingAnswer.msgid) }}"
             div.blocking-alert.animated.fadeInUp.faster(v-if="getBlockedAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
               p {{ __i("answer-is-blocked") }}:
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key") 
-                i.fas.fa-times-circle
+                i.w-icon-circle-close-o
                 span "{{ __i(blockingAnswer.msgid) }}"
       div.actions(v-if="!additionalInfoShown")
         button.skip-step.step(@click="nextQuestion",v-if="!isAtLastQuestion()") {{  __i("skip-question") }}
@@ -501,31 +501,29 @@ a {
   max-width: 100%;
   max-height: 160px;
 }
-.importance-toggle .far {
+.importance-toggle .w-icon-star-off,
+.importance-toggle .w-icon-star-on {
   color: #ff7a00;
   margin-left: 0.2em;
+  font-size: 11pt;
 }
 
-.importance-toggle .fas {
-  color: #ff7a00;
-  margin-left: 0.2em;
-}
-.welcome-text div .fa-forward {
+.welcome-text div .w-icon-d-arrow-right {
   color: #e4ae4c;
 }
-.welcome-text div .fa-play {
+.welcome-text div .w-icon-question-circle-o {
   color: #1c105a;
 }
-.welcome-text div .fa-sort-amount-up {
+.welcome-text div .w-icon-right-square-o {
   color: #39ba95;
 }
-.welcome-text div .fa-trash-alt {
+.welcome-text div .w-icon-minus-circle-o {
   color: grey;
 }
-.welcome-text div .fa-star {
+.welcome-text div .w-icon-star-off {
   color: #ff7a00;
 }
-.welcome-text div .fa-heart {
+.welcome-text div .w-icon-heart-off {
   color: #d50d0d;
 }
 .source-link {

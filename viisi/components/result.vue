@@ -4,13 +4,11 @@
       div.social-links
         span {{ __i("share-result")}}
         a(:href="'https://www.facebook.com/sharer/sharer.php?u='+$store.state.result.url", target="_blank")
-          i.fab.fa-facebook-square
+          i.w-icon-facebook
         a(:href="'https://twitter.com/share?url='+$store.state.result.url+'&hashtags=distrochooser,linux&via=distrochooser'", target="_blank")
-          i.fab.fa-twitter
-        a(:href="'http://pinterest.com/pin/create/button/?url=' + encodeURI($store.state.result.url)", target="_blank")
-          i.fab.fa-pinterest
+          i.w-icon-twitter
         a(:href="'http://reddit.com/submit?url=' + $store.state.result.url + '&title=Distrochooser.de'", target="_blank")
-          i.fab.fa-reddit
+          i.w-icon-reddit
       div.link
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
       div.remarks
@@ -153,16 +151,16 @@ export default {
   background: $infoBoxBackground;
   color: white;
 }
-.fa-facebook-square {
+.social-links a {
+  text-decoration: none;
+}
+.w-icon-facebook {
   color: #4267b2;
 }
-.fa-twitter {
+.w-icon-twitter {
   color: #1da1f2;
 }
-.fa-pinterest {
-  color: #bd081c;
-}
-.fa-reddit {
+.w-icon-reddit {
   color: #ff4500;
 }
 </style>

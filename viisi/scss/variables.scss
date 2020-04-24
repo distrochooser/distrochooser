@@ -27,6 +27,8 @@ $lightColor: #05396b;
 $additionalInfoBackground: #05396b;
 $additionalInfoIcon: #e1760d;
 $infoBoxBackground: $additionalInfoBackground;
-
+*:focus {
+  outline: none;
+}
 
 @import "mobile.scss"
