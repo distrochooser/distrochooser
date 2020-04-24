@@ -666,7 +666,6 @@ msgstr "Ubuntu MATE 是一个基于 Ubuntu 的发行版，使用轻量级 MATE �
 
 msgid "description-fedora"
 msgstr "Fedora 是一个由 Red Hat 支持的发行版，主要关注自由软件"
-#小白鼠
 
 msgid "description-qubeos"
 msgstr "Qubes OS 使用虚拟机隔离应用程序，以提高安全性"
