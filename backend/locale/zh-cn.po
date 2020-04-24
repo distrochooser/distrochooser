@@ -1,0 +1,742 @@
+msgid "loading"
+msgstr "加载中"
+
+msgid "imprint"
+msgstr "信息"
+
+msgid "privacy"
+msgstr "隐私"
+
+msgid "about"
+msgstr "关于本项目"
+
+msgid "question-is-multiplechoice"
+msgstr "你可以选择多个答案"
+
+msgid "vendor-text"
+msgstr "项目作者：chmr.eu"
+
+msgid "get-result"
+msgstr "获取结果"
+
+msgid "category-welcome"
+msgstr "欢迎!"
+
+msgid "software-use-case"
+msgstr "软件：使用场景"
+
+msgid "computer-knowledge-category"
+msgstr "计算机知识"
+
+msgid "linux-knowledge-category"
+msgstr "Linux和你"
+
+msgid "presets-category"
+msgstr "安装：预先配置"
+
+msgid "hardware-category"
+msgstr "硬件支持"
+
+msgid "help-category"
+msgstr "帮助"
+
+msgid "ux-concept-category"
+msgstr "用户体验"
+
+msgid "price-category"
+msgstr "发行版：价格"
+
+msgid "scope-category"
+msgstr "发行版：软件范围"
+
+msgid "ideology-category"
+msgstr "发行版：理念"
+
+msgid "privacy-category"
+msgstr "发行版：隐私"
+
+msgid "software-admin-category"
+msgstr "管理"
+
+msgid "software-updates-category"
+msgstr "软件：升级"
+
+msgid "special-features-category"
+msgstr "软件：特殊功能"
+
+msgid "recommendation-category"
+msgstr "你的结果"
+
+msgid "welcome-text-title"
+msgstr "欢迎来到 distrochooser.de！"
+
+msgid "welcome-text"
+msgstr "欢迎！这项测试可以帮你选择一个适合你的发行版！"
+
+msgid "welcome-text-skip"
+msgstr "你可以随时跳过问题"
+
+msgid "welcome-text-result-get"
+msgstr "你可以随时点击 '你的结果' 来获取你的结果"
+
+msgid "welcome-text-order"
+msgstr "你可以以任意顺序回答问题"
+
+msgid "welcome-text-additional-infos"
+msgstr "你可以点击问号来获取额外的信息"
+
+msgid "welcome-text-remove"
+msgstr "你可以随时删除你的答案"
+
+msgid "welcome-text-feedback"
+msgstr "请根据你的结果是否和你的需求相符来打分"
+
+msgid "welcome-text-importance"
+msgstr "标记你所看中的答案"
+
+msgid "locale-link-en"
+msgstr "This text is available in english"
+
+msgid "locale-link-de"
+msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
+
+msgid "start-test"
+msgstr "开始测试"
+
+msgid "prev-question"
+msgstr "返回"
+
+msgid "next-question"
+msgstr "前进"
+
+msgid "no-results"
+msgstr "对不起，我迷失了方向"
+
+msgid "about-header"
+msgstr "关于 distrochooser.de"
+
+msgid "vote-reminder"
+msgstr "你喜欢这个发行版吗？给它点个赞吧！"
+
+msgid "about-intro-text"
+msgstr ""
+"distrochooser.de 的目标是帮助Linux初学者选择他们需要的、适合自己的Linux发行"
+"版。<br>最后得到的结果是来源于用户答案的建议。有些时候结果可能并不合适，因为"
+"答案的相互作用过于复杂。"
+
+msgid "about-intro-test-count"
+msgstr "从2014年6月14日开始，distrochooser.de 已经完成了%tests%次测试。"
+
+msgid "about-licenses"
+msgstr "Distrochooser 是双重许可的。"
+
+msgid "privacy-header"
+msgstr "隐私政策"
+
+msgid "imprint-header"
+msgstr "信息"
+
+msgid "about-licenses-source"
+msgstr "源码"
+
+msgid "about-licenses-source-text"
+msgstr ""
+"源代码是在「LICENSE」文件中的许可证下获得许可的，该文件位于链接的存储库中。"
+
+msgid "about-licenses-database"
+msgstr "数据库"
+
+msgid "about-licenses-database-text"
+msgstr ""
+"底层数据(包括问题/答案结构、结果矩阵和数据统计)是专有的。只有得到我们的许可，"
+"你才能够使用它们。各发行版的说明及标志均须获得各版权持有人的授权。"
+
+msgid "no-results-text"
+msgstr ""
+"根据您的答案，Distrochooser无法找到合适的结果。我们将会很有帮助如果你能给我们"
+"写一些反馈，这样我们就能继续改进。"
+
+msgid "close-additional-info"
+msgstr "关闭"
+
+msgid "no-answers"
+msgstr "你没有给出任何答案。"
+
+msgid "get-my-result"
+msgstr "显示你的结果。"
+
+msgid "additional-info"
+msgstr "更多信息"
+
+msgid "remark-placeholder"
+msgstr "你的反馈（最多3000个字符）"
+
+msgid "result-remarks-button"
+msgstr "提交反馈"
+
+msgid "distribution-homepage"
+msgstr "发行版的主页"
+
+msgid "result-remarks-added"
+msgstr "感谢您的反馈！"
+
+msgid "share-result"
+msgstr "分享我的结果"
+
+msgid "software-use-case-question"
+msgstr "有些发行版被用于一些特殊的用途，有些被用于日常的使用。你需要什么呢？"
+
+msgid "software-use-case-answer-daily"
+msgstr "我想在日常生活中使用。"
+
+msgid "software-use-case-anonymous-answer"
+msgstr "我想用Linux进行匿名的网络浏览。"
+
+msgid "software-use-case-answer-gaming"
+msgstr "我更喜欢被游戏发行商支持的发行版。"
+
+msgid "computer-knowledge-question"
+msgstr "你使用电脑的熟练程度如何？"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "我经常需要他人的帮助来解决我电脑的问题"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "我可以独立解决一部分我电脑的问题"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "我可以解决大部分或全部的问题"
+
+msgid "linux-knowledge-question"
+msgstr "你使用Linux的熟练程度如何？"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "我几乎不了解Linux"
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "我正在使用 Linux 来完成一些工作"
+
+msgid "linux-knowledge-answer-professional"
+msgstr "我可以非常熟练地使用Linux"
+
+msgid "presets-question"
+msgstr "您希望在安装过程中自行调整多少？您希望自己默认填好的选项又有多少？"
+
+msgid "presets-question-answer-manypresets"
+msgstr "我想使用安装向导给出的所有默认设置"
+
+msgid "presets-question-answer-ownselection"
+msgstr "我想自己配置选项"
+
+msgid "presets-question-answer-guiselections"
+msgstr "我希望能够在图形化界面上完成尽可能多的设置"
+
+msgid "hardware-question"
+msgstr ""
+"了解您的计算机硬件的年龄是很重要的，因为有些发行版不会在旧的计算机上运行。"
+
+msgid "additional-info-hardware"
+msgstr ""
+"多年以来，一些发行版一直使用32位架构，允许分配4g的内存。而较新的发行版则倾向"
+"于抛弃32位架构，转而支持64位，这允许分配超过4g的内存。从2005年开始，几乎所有"
+"的计算机都应该支持64位。"
+
+msgid "hardware-question-oldpc"
+msgstr "我不确定 和/或 我的电脑已经有性能问题 和/或 我的电脑只支持32位"
+
+msgid "hardware-question-newpc"
+msgstr "的电脑性能很好，我没有遇到任何性能问题，我的硬件也支持64位"
+
+msgid "help-question"
+msgstr "有的发行版使用 wiki 文章帮用户解决问题。您更喜欢怎样获得帮助？"
+
+msgid "help-question-tutorials"
+msgstr "我可以根据网上的文章和 wiki 上的说明独自解决问题"
+
+msgid "help-question-user-exchange"
+msgstr "我更喜欢寻求他人的帮助"
+
+msgid "ux-concept-question"
+msgstr ""
+"Linux可以使用许多不同的用户界面 (\"桌面\")。许多发行版默认提供一个桌面。了解"
+"您是否对桌面的概念有任何喜好是很重要的。您可以随时切换和安装新的桌面！"
+
+msgid "ux-concept-answer-windows-like"
+msgstr "我更喜欢 Windows 风格的用户界面"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "我更喜欢 macOS 风格的用户界面"
+
+msgid "ux-concept-tiling"
+msgstr "我更喜欢 tile-based 的窗口外观"
+
+msgid "ux-concept-closed-expierience"
+msgstr "我更喜欢封闭的体验"
+
+msgid "price-question"
+msgstr "大多数发行版都是免费的。而一些发行版提供了额外的、一次性的费用支持。"
+
+msgid "price-answer-free"
+msgstr "我更喜欢免费的发行版"
+
+msgid "price-answer-paid"
+msgstr "我愿意支付费用"
+
+msgid "scope-question"
+msgstr ""
+"不同的发行版会预先安装不同数量的软件。有些会安装一整套基本程序以达到“开箱即"
+"用”的目的。有些发行版只提供基本安装，然后让用户安装他们想要使用的程序。"
+
+msgid "scope-answer-fullinstall"
+msgstr "我更喜欢一个预先安装的所有基本程序，我需要在安装后立即开始工作"
+
+msgid "scope-answer-ownselection"
+msgstr "我想自己安装应用程序"
+
+msgid "ideology-question"
+msgstr ""
+"发行的(许可)意识形态非常有争论。有些发行版主要使用「自由的许可」，有些也会使"
+"用「非自由许可」的软件。"
+
+msgid "additional-info-ideology"
+msgstr ""
+"自由许可允许用户为任何目的修改、重新发布和使用其软件。然而在某些情况下，发行"
+"版必须使用非自由的软件，例如硬件驱动程序。非自由软件不会发布其源代码，不允许"
+"修改。"
+
+msgid "ideology-answer-free"
+msgstr "我想要尽可能地使用自由许可"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "只要我的系统正常工作，我可以使用非自由许可"
+
+msgid "privacy-question"
+msgstr ""
+"有的发行版使用在线服务来提高用户体验。使用这类服务的用户可能会被追踪，这会影"
+"响到用户的隐私。"
+
+msgid "privacy-answer-highprivacy"
+msgstr "我不想要这个"
+
+msgid "privacy-answer-services-ok"
+msgstr "如果可以提高我的使用体验，我同意使用这类服务。"
+
+msgid "software-admin-question"
+msgstr "管理 Linux 发行版有许多方法，例如安装软件。"
+
+msgid "software-admin-answer-appstore"
+msgstr "我想通过各种「软件商店」来安装程序。 "
+
+msgid "software-admin-answer-console"
+msgstr "我主要通过终端命令来安装"
+
+msgid "special-features-qestion"
+msgstr "有的发行版会为特殊目的增加特别的功能。您需要以下哪些功能？"
+
+msgid "additional-info-special-features-qestion"
+msgstr ""
+"许多发行版使用「systemd」来启动操作系统本身。有些发行版会避免使用 systemd，并"
+"采用可选的、有时更轻量的解决方案"
+
+msgid "answer-isolation"
+msgstr "默认情况下，应用程序应该在互相隔离的环境中执行"
+
+msgid "software-updates-question"
+msgstr ""
+"有的发行版会提供非常频繁的更新，这可能会影响系统稳定性。您想要怎样的更新？"
+
+msgid "software-updates-answer-fast"
+msgstr "我想要频繁的更新"
+
+msgid "software-updates-answer-slow"
+msgstr "我想要稳定的更新"
+
+msgid "answer-avoid-systemd"
+msgstr "我希望避免 systemd"
+
+msgid "result-submitted-hint"
+msgstr "计算结果"
+
+msgid "reason-header-hint"
+msgstr "点击发行版的名称以查看此建议的详细原因"
+
+msgid "reason-list-header"
+msgstr "Reason for/ against"
+
+msgid "answer-is-blocking"
+msgstr "以下的答案排除了该答案"
+
+msgid "answer-is-blocked"
+msgstr "该回答与你先前的回答相矛盾"
+
+msgid "reason-blocked-by-others-entry"
+msgstr "「{0}」 不同意 「{1}」"
+
+msgid "additional-infos"
+msgstr "请给我更多的信息！"
+
+msgid "make-important"
+msgstr "这很重要！"
+
+msgid "marked-as-important"
+msgstr "标为重要"
+
+msgid "remove-important"
+msgstr "移除重要标记"
+
+msgid "reason-list-header-negative"
+msgstr "我们无法为您推荐该发行版因为："
+
+msgid "reason-list-header-neutral"
+msgstr "以下标准没有考虑在内"
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "这个答案与你给出的其他答案矛盾"
+
+msgid "matrix-supports-daily-usage"
+msgstr "适合日常使用"
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "发行版的概念不利于匿名使用"
+
+msgid "matrix-supports-gaming-usage"
+msgstr "发行版被游戏发行商所支持"
+
+msgid "matrix-beginner-knowledge"
+msgstr "适合初学者"
+
+msgid "matrix-advanced-knowledge"
+msgstr "适合高级用户"
+
+msgid "matrix-professional-knowledge"
+msgstr "适合专业人士"
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "使用比回答所需要的需要更少的 Linux 知识"
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "使用比回答所需要的需要更少的计算机知识"
+
+msgid "matrix-linux-beginner"
+msgstr "适合 Linux 初学者"
+
+msgid "matrix-installation-presets-always-given"
+msgstr "安装设置的预置在安装后可能需要重置预置"
+
+msgid "matrix-installation-presets-gui"
+msgstr "可以通过图形界面完成许多设置"
+
+msgid "matrix-installation-assistant-present"
+msgstr "安装会使用带有默认设置的安装「向导」"
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr "你或许会遇到窗口合成效果的滞后。有时可能需要禁用动画。"
+
+msgid "matrix-hardware-newpc"
+msgstr "可以在最新的硬件上运行"
+
+msgid "matrix-user-exchange"
+msgstr "有用于知识共享的用户社区"
+
+msgid "matrix-tutorial"
+msgstr "有故障排除和问题解决的教程"
+
+msgid "matrix-mac-like"
+msgstr "GUI 的概念具有 macOS 元素"
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "GUI 的概念与 Windows 有很大的不同"
+
+msgid "matrix-closed-expierience"
+msgstr "有自己的壁纸、图标和主题"
+
+msgid "matrix-has-windows-like-variant"
+msgstr "有不少类 Windows 的用户界面的变体"
+
+msgid "matrix-paid-version-existing"
+msgstr "该发行版有一个非自由版本"
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "软件版本对于游戏来说可能还不够新"
+
+msgid "matrix-has-live-mode"
+msgstr "有允许从光盘启动的 live 模式"
+
+msgid "live-mode-only"
+msgstr "有活动模式：在安装前可以使用光盘或U盘进行试用"
+
+msgid "matrix-without-fee"
+msgstr "可以免费使用"
+
+msgid "matrix-paid"
+msgstr "该发行版有一个非免费版本"
+
+msgid "matrix-fullinstall"
+msgstr "会安装所有需要的程序"
+
+msgid "matrix-ownscope-install"
+msgstr "必须由您自己选择所有要使用的程序"
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "默认会安装非自由程序"
+
+msgid "matrix-enforces-free"
+msgstr "会强制使用自由软件"
+
+msgid "matrix-mostly-free"
+msgstr "主要使用自由软件"
+
+msgid "matrix-has-default-settings"
+msgstr "会默认设置"
+
+msgid "matrix-privacy-ok"
+msgstr "有利于保护用户隐私"
+
+msgid "matrix-privacy-thirdparty"
+msgstr "默认情况下会连接到第三方服务"
+
+msgid "matrix-appstore"
+msgstr "可以通过应用商店完成软件安装"
+
+msgid "matrix-console"
+msgstr "可以使用终端安装软件"
+
+msgid "matrix-stable-updates"
+msgstr "通常会发布稳定的更新"
+
+msgid "matrix-fast-updates"
+msgstr "会以最快的速度发布软件更新，这使得它们不稳定"
+
+msgid "matrix-has-control-panel"
+msgstr "包含预先安装的控制中心"
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "用户必须自己选择要使用的软件"
+
+msgid "matrix-selection-by-user"
+msgstr "预装程序的范围由用户决定"
+
+msgid "matrix-updates-fast"
+msgstr "更新速度很快，但可能不回很稳定"
+
+msgid "matrix-not-for-beginner"
+msgstr "不适合初学者"
+
+msgid "matrix-avoids-systemd"
+msgstr "避免 systemd"
+
+msgid "matrix-uses-systemd"
+msgstr "使用 systemd"
+
+msgid "built-for-anonymization"
+msgstr "为匿名而构建"
+
+msgid "matrix-administration-shell"
+msgstr "管理主要是通过使用 shell 命令来完成的"
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "不支持没有64位支持的旧计算机"
+
+msgid "matrix-requires-manual"
+msgstr "需要阅读手册和教程"
+
+msgid "matrix-requires-advanced-knowledge"
+msgstr "需要阅读使用手册"
+
+msgid "matrix-isolation-default"
+msgstr "默认会使用容器"
+
+msgid "matrix-oldpc-supported"
+msgstr "支持老旧的计算机"
+
+msgid "checked-criteria-count"
+msgstr "一些方面的检查"
+
+msgid "searching-criteria"
+msgstr "处理标准库"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "日常使用的过程中可能会有很大的困难"
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "可以用于日常工作，但是是在 Live 模式下搭建的"
+
+msgid "matrix-packages-available"
+msgstr "可以使用为匿名目的的程序"
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "程序版本可能不足以进行游戏"
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "可能需要额外的游戏配置"
+
+msgid "matrix-built-for-enterprise"
+msgstr "主要为企业提供"
+
+msgid "matrix-not-built-for-gaming"
+msgstr "没有针对游戏进行优化"
+
+msgid "requires-some-computer-knowledge"
+msgstr "需要较多的的计算机知识"
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "不适合初学者"
+
+msgid "matrix-installation-from-shell"
+msgstr "通过命令行安装"
+
+msgid "matrix-installs-range-of-programs"
+msgstr "会默认安装一系列的程序"
+
+msgid "matrix-configuration-from-shell"
+msgstr "会通过 shell 完成大多数的配置"
+
+msgid "matrix-middleweight"
+msgstr "中量级系统，适合不那么新的计算机"
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "支持多种硬件"
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "有一个 “Zorin Lite” 版本适合老旧计算机"
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr "有一个版本提供 “cinnamon” 桌面环境，外观与 Windows 类似"
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "每个用户都可以选择避免 Systemd"
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "Systemd 会被提供，但不会默认启用"
+
+msgid "matrix-supports-privacy"
+msgstr "只在使用网络服务时收集数据"
+
+msgid "matrix-lightweight"
+msgstr "轻量级发行版"
+
+msgid "matrix-free-userselection"
+msgstr "自由软件的使用取决于用户的选择"
+
+# distribution descriptions
+msgid "description-manjaro"
+msgstr "Manjaro 是一个关注用户友好性的滚动发行版"
+
+msgid "description-ubuntu"
+msgstr "Ubuntu 是由 Canonical 公司发行的一个版本"
+
+msgid "description-mint"
+msgstr "Linux Mint 是一个基于 Ubuntu 的发行版，且预装了专有组件，比如多媒体编解码器。"
+
+msgid "description-solus"
+msgstr "Solus OS 是一个滚动发行版，最开始基于 Chrome OS"
+
+msgid "description-arch"
+msgstr "Arch 一个基于 KISS 原则的滚动发行版"
+
+msgid "description-debian"
+msgstr "Debian 是一个及其关注稳定性的发行版"
+
+msgid "description-tails"
+msgstr "Tails 对匿名化非常关注，它可以从 USB 设备或光盘上使用"
+
+msgid "description-devuan"
+msgstr "Devuan 是一个没有使用 systemd 工具的基于 Debian 的发行版"
+
+msgid "description-opensuse"
+msgstr "openSUSE 的目标是提供一个稳定的、用户友好的发行版，主要面向终端用户"
+
+msgid "description-pclinuxos"
+msgstr "PCLinuxOS是一个基于 Mandrake 的发行版，侧重于用户友好的界面"
+
+msgid "description-rhel"
+msgstr "Red hat Enterprise Linux (RHEL)是一个面向企业和并专注于稳定性的发行版"
+
+msgid "description-centos"
+msgstr "CentOS 是基于 RHEL 的自由发行版"
+
+msgid "description-xubuntu"
+msgstr "Xubuntu 是一个基于 Ubuntu 的发行版，使用轻量级 Xfce 桌面环境"
+
+msgid "description-lubuntu"
+msgstr "Lubuntu 是一个基于 Ubuntu 的发行版，使用轻量级 LXDE 桌面环境"
+
+msgid "description-ubuntumate"
+msgstr "Ubuntu MATE 是一个基于 Ubuntu 的发行版，使用轻量级 MATE 桌面环境"
+
+msgid "description-fedora"
+msgstr "Fedora 是一个由 Red Hat 支持的发行版，主要关注自由软件"
+#小白鼠
+
+msgid "description-qubeos"
+msgstr "Qubes OS 使用虚拟机隔离应用程序，以提高安全性"
+
+msgid "description-gentoo"
+msgstr "Gentoo 是一个面向高级用户的允许自由定制的发行版"
+
+msgid "description-mxlinux"
+msgstr "MX Linux 是一个中量级的发行版，专注于高效且优雅的日常使用"
+
+msgid "description-fedora"
+msgstr "Fedora 是一个专注于自由软件的发行版。版本没有长期支持，每6个月会发布一个新版本"
+
+msgid "description-knoppix"
+msgstr "Knoppix 是一个侧重于 live 模式的操作系统，并具有广泛的硬件支持"
+
+msgid "description-cruxlinux"
+msgstr "Crux Linux 是一个轻量级的64位操作系统，拥有最新的工具和库"
+
+msgid "description-zorinos"
+msgstr "Zorin OS 是一个面向初学者的发行版，具有类 Windows 的用户界面"
+
+msgid "description-elementaryos"
+msgstr "elementary OS 是一个基于 Ubuntu的发行版，专注于优雅而快速的用户体验"
+
+msgid "description-kubuntu"
+msgstr "Kubuntu 是一个基于 Ubuntu 的发行版，预装了 KDE 桌面"
+
+msgid "locale-en"
+msgstr "english"
+
+msgid "locale-de"
+msgstr "deutsch"
+
+# update pack 26th december 2019
+msgid "debian-updates-slow"
+msgstr "Debian 的升级经常会很慢，但是很稳定。"
+
+msgid "description-qubesos"
+msgstr "Qubes OS在虚拟机中执行进程，有利于安全"
+
+msgid "software-use-case-isolation"
+msgstr "我想把所有的地方程序隔离运行"
+
+msgid "matrix-runs-in-isolation"
+msgstr "软件在隔离的环境中运行"
+
+msgid "software-use-case-blind"
+msgstr "用户可视化程度降低"
+
+msgid "matrix-knoppix-adriane"
+msgstr "ADRIANE项目为视障人士提供了工具和解决方案"
+
+msgid "matrix-has-software-for-blind"
+msgstr "可安装为视障人士而设计的软件（例如：“Orca”）"
+
+msgid "source"
+msgstr "图片来源"
+
+msgid "description-void"
+msgstr "Void Linux 是一个不使用 systemd 的滚动发行版"
+
+msgid "skip-question"
+msgstr "跳过该问题"
+
+msgid "description-nixos"
+msgstr "NixOS 使用 Nix 包管理器。它使用声明性的配置并允许可靠的系统升级。"
+
+msgid "reasons-hide"
+msgstr "隐藏原因"
+
+msgid "description-artix"
+msgstr "Artix 是一个基于 Arch Linux 的发行版，它使用 OpenRC 而非 systemd。"
