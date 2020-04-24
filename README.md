@@ -29,6 +29,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://zmoazeni.github.io/gitspective/#/timeline/waldyrious"><img src="https://avatars2.githubusercontent.com/u/478237?v=4" width="100px;" alt=""/><br /><sub><b>Waldir Pimenta</b></sub></a><br /><a href="#translation-waldyrious" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/jollypuppet"><img src="https://avatars0.githubusercontent.com/u/55812399?v=4" width="100px;" alt=""/><br /><sub><b>Andrea</b></sub></a><br /><a href="#translation-jollypuppet" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/z1r0-"><img src="https://avatars2.githubusercontent.com/u/6104256?v=4" width="100px;" alt=""/><br /><sub><b>Alex Sa</b></sub></a><br /><a href="#question-z1r0-" title="Answering Questions">💬</a> <a href="https://github.com/distrochooser/distrochooser/commits?author=z1r0-" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/xingjiapeng"><img src="https://avatars0.githubusercontent.com/u/47733616?v=4" width="100px;" alt=""/><br /><sub><b>邢家朋</b></sub></a><br /><a href="#translation-xingjiapeng" title="Translation">🌍</a></td>
   </tr>
 </table>
 
