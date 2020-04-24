@@ -65,6 +65,15 @@
         "question",
         "code"
       ]
+    },
+    {
+      "login": "xingjiapeng",
+      "name": "邢家朋",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/47733616?v=4",
+      "profile": "https://github.com/xingjiapeng",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
