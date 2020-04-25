@@ -14,7 +14,7 @@
       div.remarks
         div(v-if="$store.state.remarksAdded") {{ __i("result-remarks-added")}}
         textarea(v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder')",v-if="!$store.state.remarksAdded")
-        button.add-remarks-button(:data-balloon="__i('no-remark')",data-balloon-pos="left", v-if="!$store.state.remarksAdded", v-on:click="updateRemark",:class="{'disabled': remarks.length === 0}")  {{ __i("result-remarks-button") }}
+        button.add-remarks-button(v-if="!$store.state.remarksAdded && remarks.length > 0", v-on:click="updateRemark",:class="{'disabled': remarks.length === 0}")  {{ __i("result-remarks-button") }}
     distribution(v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
 
     div(v-if="isEmpty")

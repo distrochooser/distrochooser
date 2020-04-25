@@ -5,11 +5,10 @@
           a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen,'inactive': !isAtWelcomeScreen  }") 
             i.active-indicator.w-icon-login
             span {{ __i("category-welcome") }}
-        li(v-for="(category, c_k) in categories" v-bind:key="c_k")
+        li(v-for="(category, c_k) in categories" v-bind:key="c_k", )
           a(href="#", @click="selectCategory(category)")
             i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '')")
-            span(:class="{'active': isActive(category), 'inactive': !isActive(category)}") {{ __i(category.msgid) }}
-            i(v-if="isAnswered(category)").fa.fa-check.animated.heartBeat.isAnswered
+            span(:class="{'active': isActive(category), 'inactive': !isActive(category), 'mobile-answered': isAnswered(category)}") {{ __i(category.msgid) }}
       div.floating-button(:class="{'disabled': $store.state.givenAnswers.length === 0}",:data-balloon="__i($store.state.givenAnswers.length === 0 ? 'no-answers' : 'get-my-result')",data-balloon-pos="right",@click.prevent="submit")
         a(href="#")
           i.w-icon-right-square-o
@@ -117,6 +116,7 @@ export default {
 
 .breadcrumb-horizontal ul li i {
   color: $categoryIconColor;
+  vertical-align: text-bottom;
 }
 .breadcrumb-horizontal ul li a {
   text-decoration: none;
@@ -158,14 +158,13 @@ export default {
   margin-left: 1.6em;
   background: $linkColor;
   padding: 1em;
-  border-radius: 4px;
 }
 .floating-button a {
   text-decoration: none;
   color: white;
 }
 .floating-button a i {
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 .disabled {
   cursor: no-drop;

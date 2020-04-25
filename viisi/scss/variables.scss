@@ -21,14 +21,19 @@ $nextButtonBackground: #05396b;
 $nextButtonForeground: white;
 $linkColor: #05396b;
 $spinColor: #05396b;
-$answeredColor: #389583;
+$answeredColor: #05396b;
 $categoryIconColor: #4d4d4d;;
 $lightColor: #05396b;
 $additionalInfoBackground: #05396b;
 $additionalInfoIcon: #e1760d;
 $infoBoxBackground: $additionalInfoBackground;
+
+//Resets
 *:focus {
   outline: none;
 }
 
+i{
+  vertical-align: top;
+}
 @import "mobile.scss"

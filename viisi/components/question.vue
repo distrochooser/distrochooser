@@ -58,11 +58,9 @@
                     i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
               p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
           div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
-            span(v-if="question.isMultipleChoice")
-              i.answer-box(@click='answerQuestion(answer)', :class="{'w-icon-check-square-o': isAnswerSelected(answer), 'w-icon-close-square-o': !isAnswerSelected(answer)}")
-            span(v-else,)
-              i.answer-box(@click='answerQuestion(answer)', :class="{'w-icon-circle-check-o': isAnswerSelected(answer), 'w-icon-circle-close-o': !isAnswerSelected(answer)}")
-            label(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
+            label.container(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
+              input(:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
+              span.checkmark
             span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="isAnswerSelected(answer) && !isAnswerImportant(answer)")
               i.w-icon-star-off(:title='__i("make-important")')
             span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
@@ -255,6 +253,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
+@import '~/scss/checkboxes.scss';
 @import '~/node_modules/animate.css/animate.min.css';
 @import '~/node_modules/balloon-css/balloon.min.css';
 .question {
@@ -342,7 +341,6 @@ ul {
   border: 1px solid $nextButtonBackground;
   margin-left: 1rem;
   cursor: pointer;
-  border-radius: 4px;
   font-family: 'Open Sans';
   font-size: 12pt;
 }
@@ -417,10 +415,6 @@ a {
   vertical-align: middle;
   margin-right: 1em;
   margin-left: 1em;
-}
-.fa-check-circle,
-.fa-check-square {
-  color: $answeredColor;
 }
 .answer-box {
   font-size: 1.5em;
@@ -505,7 +499,7 @@ a {
 .importance-toggle .w-icon-star-on {
   color: #ff7a00;
   margin-left: 0.2em;
-  font-size: 11pt;
+  font-size: 13pt;
 }
 
 .welcome-text div .w-icon-d-arrow-right {

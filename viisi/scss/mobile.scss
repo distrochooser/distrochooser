@@ -30,9 +30,6 @@
   .breadcrumb-horizontal ul li span {
     display: none;
   }
-  .breadcrumb-horizontal ul li i.fa-check {
-    display: none;
-  }
   .welcome-text h1 {
     font-size: large;
   }
@@ -158,5 +155,11 @@
   }
   .image-answer-parent {
     margin-left: unset !important;
+  }
+  .checkmark {
+    display: none;
+  }
+  .answer-selected:not(.image-answer){
+    font-weight: bold;
   }
 }

@@ -246,12 +246,6 @@ export default {
       url('/fonts/OpenSans/open-sans-v16-latin-regular.svg#OpenSans')
       format('svg'); /* Legacy iOS */
 }
-.fa-facebook {
-  color: #3b5998;
-}
-.fa-twitter {
-  color: #1da1f2;
-}
 .footer {
   position: fixed;
   top: 1em;

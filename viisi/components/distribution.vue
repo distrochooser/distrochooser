@@ -43,7 +43,7 @@
           a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)",:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
             i.w-icon-heart-on(v-bind:class="{'animated heartBeat voted': voted && positiveVote}")
           a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)", :data-balloon="__i('vote-reminder')",data-balloon-pos="left")
-            i.w-icon-heart-off(v-bind:class="{'animated swing voted': voted && !positiveVote}")
+            i.w-icon-dislike-o(v-bind:class="{'animated swing voted': voted && !positiveVote}")
           a.action(href="#", v-on:click.prevent="flipped=!flipped", :data-balloon="__i('reasons-hide')",data-balloon-pos="right")
             i.w-icon-shrink
       div.url
@@ -174,14 +174,15 @@ export default {
   color: $linkColor;
   font-size: 15pt;
 }
+.action .w-icon-heart-on,
+.action .w-icon-dislike-o {
+  color: grey;
+}
 .action .w-icon-heart-on.voted {
   color: #ff1128 !important;
 }
-.action .w-icon-heart-off.voted {
-  color: red !important;
-}
-.fa-like {
-  color: #0e2bff;
+.action .w-icon-dislike-o.voted {
+  color: black !important;
 }
 .w-icon-plus {
   color: #1f8c1f;
@@ -191,12 +192,6 @@ export default {
 }
 .blocking-list div div .w-icon-circle-close-o {
   color: #d40000;
-}
-.fa-heart-broken {
-  color: #f03c82;
-}
-.w-icon-warning {
-  color: red;
 }
 .list {
   margin-top: 1em;
