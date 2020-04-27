@@ -29,7 +29,7 @@ msgid "computer-knowledge-category"
 msgstr "计算机知识"
 
 msgid "linux-knowledge-category"
-msgstr "Linux 和您"
+msgstr "Linux 与您"
 
 msgid "presets-category"
 msgstr "安装：预先配置"
