@@ -77,9 +77,9 @@ msgid "welcome-text-skip"
 msgstr "您可以随时跳过问题"
 
 msgid "welcome-text-result-get"
-msgstr "您可以随时点击 '您的结果' 来获取您的结果"
+msgstr "您可以随时点击“您的结果”来获取您的结果"
 
-msgid "welcome-text-order"
+msgid welcome-text-order"
 msgstr "您可以以任意顺序回答问题"
 
 msgid "welcome-text-additional-infos"
@@ -258,7 +258,7 @@ msgstr "我更喜欢寻求他人的帮助"
 
 msgid "ux-concept-question"
 msgstr ""
-"Linux 可以使用许多不同的用户界面 (\"桌面\")。许多发行版默认提供一个桌面。了解"
+"Linux 可以使用许多不同的用户界面（“桌面”）。许多发行版默认提供一个桌面。了解"
 "您是否对桌面的概念有任何喜好是很重要的。您可以随时切换和安装新的桌面！"
 
 msgid "ux-concept-answer-windows-like"
