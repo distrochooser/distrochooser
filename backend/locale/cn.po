@@ -11,7 +11,7 @@ msgid "about"
 msgstr "关于本项目"
 
 msgid "question-is-multiplechoice"
-msgstr "你可以选择多个答案"
+msgstr "您可以选择多个答案"
 
 msgid "vendor-text"
 msgstr "项目作者：chmr.eu"
@@ -29,7 +29,7 @@ msgid "computer-knowledge-category"
 msgstr "计算机知识"
 
 msgid "linux-knowledge-category"
-msgstr "Linux和你"
+msgstr "Linux 与您"
 
 msgid "presets-category"
 msgstr "安装：预先配置"
@@ -65,34 +65,34 @@ msgid "special-features-category"
 msgstr "软件：特殊功能"
 
 msgid "recommendation-category"
-msgstr "你的结果"
+msgstr "您的结果"
 
 msgid "welcome-text-title"
 msgstr "欢迎来到 distrochooser.de！"
 
 msgid "welcome-text"
-msgstr "欢迎！这项测试可以帮你选择一个适合你的发行版！"
+msgstr "欢迎！这项测试会帮您选择一个适合您的发行版！"
 
 msgid "welcome-text-skip"
-msgstr "你可以随时跳过问题"
+msgstr "您可以随时跳过问题"
 
 msgid "welcome-text-result-get"
-msgstr "你可以随时点击 '你的结果' 来获取你的结果"
+msgstr "您可以随时点击“您的结果”来获取您的结果"
 
-msgid "welcome-text-order"
-msgstr "你可以以任意顺序回答问题"
+msgid welcome-text-order"
+msgstr "您可以以任意顺序回答问题"
 
 msgid "welcome-text-additional-infos"
-msgstr "你可以点击问号来获取额外的信息"
+msgstr "您可以点击问号来获取额外的信息"
 
 msgid "welcome-text-remove"
-msgstr "你可以随时删除你的答案"
+msgstr "您可以随时删除您的答案"
 
 msgid "welcome-text-feedback"
-msgstr "请根据你的结果是否和你的需求相符来打分"
+msgstr "请根据您的结果是否和您的需求相符来打分"
 
 msgid "welcome-text-importance"
-msgstr "标记你所看中的答案"
+msgstr "标记您所看中的答案"
 
 msgid "locale-link-en"
 msgstr "This text is available in english"
@@ -116,11 +116,11 @@ msgid "about-header"
 msgstr "关于 distrochooser.de"
 
 msgid "vote-reminder"
-msgstr "你喜欢这个发行版吗？给它点个赞吧！"
+msgstr "您喜欢这个发行版吗？给它点个赞吧！"
 
 msgid "about-intro-text"
 msgstr ""
-"distrochooser.de 的目标是帮助Linux初学者选择他们需要的、适合自己的Linux发行"
+"distrochooser.de 的目标是帮助初学者选择他们需要的、适合自己的 Linux 发行"
 "版。<br>最后得到的结果是来源于用户答案的建议。有些时候结果可能并不合适，因为"
 "答案的相互作用过于复杂。"
 
@@ -149,27 +149,27 @@ msgstr "数据库"
 msgid "about-licenses-database-text"
 msgstr ""
 "底层数据(包括问题/答案结构、结果矩阵和数据统计)是专有的。只有得到我们的许可，"
-"你才能够使用它们。各发行版的说明及标志均须获得各版权持有人的授权。"
+"您才能够使用它们。各发行版的说明及标志均须获得各版权持有人的授权。"
 
 msgid "no-results-text"
 msgstr ""
-"根据您的答案，Distrochooser无法找到合适的结果。我们将会很有帮助如果你能给我们"
+"根据您的答案，Distrochooser 无法找到合适的结果。我们将会很有帮助如果您能给我们"
 "写一些反馈，这样我们就能继续改进。"
 
 msgid "close-additional-info"
 msgstr "关闭"
 
 msgid "no-answers"
-msgstr "你没有给出任何答案。"
+msgstr "您没有给出任何答案。"
 
 msgid "get-my-result"
-msgstr "显示你的结果。"
+msgstr "显示您的结果。"
 
 msgid "additional-info"
 msgstr "更多信息"
 
 msgid "remark-placeholder"
-msgstr "你的反馈（最多3000个字符）"
+msgstr "您的反馈（最多3000个字符）"
 
 msgid "result-remarks-button"
 msgstr "提交反馈"
@@ -184,19 +184,19 @@ msgid "share-result"
 msgstr "分享我的结果"
 
 msgid "software-use-case-question"
-msgstr "有些发行版被用于一些特殊的用途，有些被用于日常的使用。你需要什么呢？"
+msgstr "有些发行版被用于一些特殊的用途，有些被用于日常的使用。您需要什么呢？"
 
 msgid "software-use-case-answer-daily"
 msgstr "我想在日常生活中使用。"
 
 msgid "software-use-case-anonymous-answer"
-msgstr "我想用Linux进行匿名的网络浏览。"
+msgstr "我想用 Linux 进行匿名的网络浏览。"
 
 msgid "software-use-case-answer-gaming"
 msgstr "我更喜欢被游戏发行商支持的发行版。"
 
 msgid "computer-knowledge-question"
-msgstr "你使用电脑的熟练程度如何？"
+msgstr "您使用电脑的熟练程度如何？"
 
 msgid "computer-knowledge-answer-beginner"
 msgstr "我经常需要他人的帮助来解决我电脑的问题"
@@ -208,16 +208,16 @@ msgid "computer-knowledge-answer-professional"
 msgstr "我可以解决大部分或全部的问题"
 
 msgid "linux-knowledge-question"
-msgstr "你使用Linux的熟练程度如何？"
+msgstr "您使用 Linux 的熟练程度如何？"
 
 msgid "linux-knowledge-answer-beginner"
-msgstr "我几乎不了解Linux"
+msgstr "我几乎不了解 Linux "
 
 msgid "linux-knowledge-answer-advanced"
 msgstr "我正在使用 Linux 来完成一些工作"
 
 msgid "linux-knowledge-answer-professional"
-msgstr "我可以非常熟练地使用Linux"
+msgstr "我可以非常熟练地使用 Linux"
 
 msgid "presets-question"
 msgstr "您希望在安装过程中自行调整多少？您希望自己默认填好的选项又有多少？"
@@ -258,7 +258,7 @@ msgstr "我更喜欢寻求他人的帮助"
 
 msgid "ux-concept-question"
 msgstr ""
-"Linux可以使用许多不同的用户界面 (\"桌面\")。许多发行版默认提供一个桌面。了解"
+"Linux 可以使用许多不同的用户界面（“桌面”）。许多发行版默认提供一个桌面。了解"
 "您是否对桌面的概念有任何喜好是很重要的。您可以随时切换和安装新的桌面！"
 
 msgid "ux-concept-answer-windows-like"
@@ -367,7 +367,7 @@ msgid "answer-is-blocking"
 msgstr "以下的答案排除了该答案"
 
 msgid "answer-is-blocked"
-msgstr "该回答与你先前的回答相矛盾"
+msgstr "该回答与您先前的回答相矛盾"
 
 msgid "reason-blocked-by-others-entry"
 msgstr "「{0}」 不同意 「{1}」"
@@ -391,7 +391,7 @@ msgid "reason-list-header-neutral"
 msgstr "以下标准没有考虑在内"
 
 msgid "reason-list-header-blocked-by-others"
-msgstr "这个答案与你给出的其他答案矛盾"
+msgstr "这个答案与您给出的其他答案矛盾"
 
 msgid "matrix-supports-daily-usage"
 msgstr "适合日常使用"
@@ -430,7 +430,7 @@ msgid "matrix-installation-assistant-present"
 msgstr "安装会使用带有默认设置的安装「向导」"
 
 msgid "matrix-hardware-oldpc-ubuntu"
-msgstr "你或许会遇到窗口合成效果的滞后。有时可能需要禁用动画。"
+msgstr "您或许会遇到窗口合成效果的滞后。有时可能需要禁用动画。"
 
 msgid "matrix-hardware-newpc"
 msgstr "可以在最新的硬件上运行"
@@ -647,7 +647,7 @@ msgid "description-opensuse"
 msgstr "openSUSE 的目标是提供一个稳定的、用户友好的发行版，主要面向终端用户"
 
 msgid "description-pclinuxos"
-msgstr "PCLinuxOS是一个基于 Mandrake 的发行版，侧重于用户友好的界面"
+msgstr "PCLinuxOS 是一个基于 Mandrake 的发行版，侧重于用户友好的界面"
 
 msgid "description-rhel"
 msgstr "Red hat Enterprise Linux (RHEL)是一个面向企业和并专注于稳定性的发行版"
