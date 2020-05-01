@@ -728,3 +728,6 @@ msgstr "Hide reasons"
 
 msgid "description-artix"
 msgstr "Artix is an Arch Linux based distribution which utilizes OpenRC instead of systemd."
+
+msgid "link-copied"
+msgstr "Pasted to clipboard"
