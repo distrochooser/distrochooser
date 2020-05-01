@@ -238,7 +238,10 @@ i {
   font-size: 9pt;
 }
 .downvoted-distro {
-  filter: opacity(50%);
+  filter: opacity(30%);
+}
+.downvoted-distro * {
+  color: grey;
 }
 .importance-toggle .w-icon-star-on {
   color: #ff7a00;

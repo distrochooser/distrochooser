@@ -109,7 +109,7 @@
     border-left: 2px solid $activeStepForeground;
   }
   .link input {
-    width: 100% !important;
+    width: 65% !important;
     font-size: 8pt;
     padding: 1em;
   }
@@ -125,10 +125,12 @@
     font-size: small !important;
   }
   .languages {
-    margin-top: 1.1em;
+    margin-top: 0px;
+    width: 90px;
   }
   .languages span i {
-    font-size: 10pt;
+    font-size: 12pt;
+    margin-bottom: 0.5em;
   }
   .welcome-text {
     font-size: 9pt !important;

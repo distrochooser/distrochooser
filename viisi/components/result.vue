@@ -9,7 +9,8 @@
           i.w-icon-twitter
         a(:href="'http://reddit.com/submit?url=' + $store.state.result.url + '&title=Distrochooser.de'", target="_blank")
           i.w-icon-reddit
-      div.link
+      div.link(:data-balloon-visible="copyTooltipShown", :data-balloon="copyTooltipShown ? __i('link-copied') : false", data-balloon-pos="down", @click="toggleCopyTooltip(false)", @mouseleave="toggleCopyTooltip(true)")
+        i.w-icon-paper-clip
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
       div.remarks
         div(v-if="$store.state.remarksAdded") {{ __i("result-remarks-added")}}
@@ -33,7 +34,8 @@ export default {
   data: function() {
     return {
       compactView: false,
-      remarks: ''
+      remarks: '',
+      copyTooltipShown: false
     }
   },
   computed: {
@@ -64,6 +66,13 @@ export default {
           remarks: remarks
         }
       })
+    },
+    toggleCopyTooltip: function(forceHide) {
+      const shouldBeShown = !this.copyTooltipShown && !forceHide
+      if (shouldBeShown) {
+        navigator.clipboard.writeText(this.$store.state.result.url)
+      }
+      this.copyTooltipShown = !this.copyTooltipShown && !forceHide
     }
   }
 }
@@ -90,7 +99,11 @@ export default {
 .link input {
   width: 50%;
   text-align: center;
-  padding: 0.7em;
+  height: 36px;
+  padding-top: 0px;
+  padding-bottom: 3px;
+  border: 0px;
+  cursor: pointer;
 }
 .result-link {
   text-align: center;
@@ -115,10 +128,8 @@ export default {
   padding-right: 1em;
 }
 .remarks {
-  margin-top: 1em;
-  padding-bottom: 1em;
-  width: 50%;
-  margin-left: 25%;
+  margin-top: 1.5em;
+  padding-bottom: 0.5em;
 }
 .remarks textarea {
   width: 100%;
@@ -128,12 +139,12 @@ export default {
   resize: none;
   padding: 1em;
   resize: vertical;
+  border: 0px;
 }
 .add-remarks-button {
   border: 0px;
-  border-radius: 4px;
   color: white;
-  padding: 0.5em;
+  padding: 0.7em;
   background: $linkColor;
   cursor: pointer;
 }
@@ -162,5 +173,13 @@ export default {
 }
 .w-icon-reddit {
   color: #ff4500;
+}
+.w-icon-paper-clip {
+  padding: 10px;
+  margin-right: 0px;
+  color: white;
+  background: $linkColor;
+  vertical-align: middle;
+  cursor: pointer;
 }
 </style>
