@@ -23,6 +23,7 @@ const indexStore = new Vapi({
     oldTestData: null,
     isSubmitted: false,
     rootUrl: viisiConfig.frontend.frontendUrl,
+    socialNetworks: viisiConfig.frontend.socialNetworks,
     answerBlockedAnswers: [],
     sessionStatus: null,
     method: 'default'

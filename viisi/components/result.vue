@@ -3,12 +3,8 @@
     div.result-link
       div.social-links
         span {{ __i("share-result")}}
-        a(:href="'https://www.facebook.com/sharer/sharer.php?u='+$store.state.result.url", target="_blank")
-          i.w-icon-facebook
-        a(:href="'https://twitter.com/share?url='+$store.state.result.url+'&hashtags=distrochooser,linux&via=distrochooser'", target="_blank")
-          i.w-icon-twitter
-        a(:href="'http://reddit.com/submit?url=' + $store.state.result.url + '&title=Distrochooser.de'", target="_blank")
-          i.w-icon-reddit
+        a(v-for="(value, key) in $store.state.socialNetworks", :key="key", :href="value.replace('$link$',$store.state.result.url)" , target="_blank")
+          i(:class="key")
       div.link(:data-balloon-visible="copyTooltipShown", :data-balloon="copyTooltipShown ? __i('link-copied') : false", data-balloon-pos="down", @click="toggleCopyTooltip(false)", @mouseleave="toggleCopyTooltip(true)")
         i.w-icon-paper-clip
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
