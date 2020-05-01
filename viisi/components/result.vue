@@ -13,9 +13,9 @@
         i.w-icon-paper-clip
         input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
       div.remarks
-        div(v-if="$store.state.remarksAdded") {{ __i("result-remarks-added")}}
-        textarea(v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder')",v-if="!$store.state.remarksAdded")
-        button.add-remarks-button(v-if="!$store.state.remarksAdded && remarks.length > 0", v-on:click="updateRemark",:class="{'disabled': remarks.length === 0}")  {{ __i("result-remarks-button") }}
+        div.remarks-header {{ __i('remark-placeholder') }}
+          span(v-if="$store.state.remarksAdded && remarks.length > 0") {{ " - " + __i('result-remarks-added') }}
+        textarea(v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder-saving')", @blur="updateRemark", @mouseleave="updateRemark", @input="resetRemarksAdded")
     distribution(v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
 
     div(v-if="isEmpty")
@@ -56,12 +56,19 @@ export default {
     }
   },
   methods: {
+    resetRemarksAdded: function() {
+      this.$store.commit('resetRemarksAdded')
+    },
     updateRemark: function() {
       const resultToken = this.$store.state.result.token
+      const sessionToken = this.$store.state.sessionToken
       const remarks = this.remarks
-      console.log(this.$store.state.result)
+      if (this.$store.state.remarksAdded || remarks.length === 0) {
+        return
+      }
       this.$store.dispatch('addRemarks', {
         data: {
+          sessionToken: sessionToken,
           result: resultToken,
           remarks: remarks
         }
@@ -130,6 +137,8 @@ export default {
 .remarks {
   margin-top: 1.5em;
   padding-bottom: 0.5em;
+  border-bottom: 1px solid $lightAccent;
+  margin-bottom: 1.5em;
 }
 .remarks textarea {
   width: 100%;
@@ -140,6 +149,7 @@ export default {
   padding: 1em;
   resize: vertical;
   border: 0px;
+  padding-top: 5em;
 }
 .add-remarks-button {
   border: 0px;
@@ -181,5 +191,23 @@ export default {
   background: $linkColor;
   vertical-align: middle;
   cursor: pointer;
+}
+.remarks-header {
+  border: 1px solid black;
+  width: 103%;
+  margin-left: -1.5%;
+  padding: 0.6em;
+  margin-bottom: -4.7em;
+  z-index: 100000000000;
+  position: relative;
+  background: #05396b;
+  color: white;
+  text-align: left;
+  margin-top: 2.5em;
+}
+.w-icon-check-square {
+  vertical-align: middle;
+  margin-left: 0.4em;
+  font-size: 11pt;
 }
 </style>

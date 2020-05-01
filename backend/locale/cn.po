@@ -742,3 +742,6 @@ msgstr "Artix 是一个基于 Arch Linux 的发行版，它使用 OpenRC 而非 
 
 msgid "link-copied"
 msgstr "粘贴到剪贴板"
+
+msgid "remark-placeholder-saving"
+msgstr "文字会自动保存"

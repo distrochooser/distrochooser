@@ -125,6 +125,7 @@ def start(request: HttpRequest, lang_code: str, reflink_encoded: str) -> JsonRes
     session.userAgent = user_agent
     session.language = lang_code
     session.token = token_hex(5)
+    session.sessionToken = token_hex(5)
     session.save()
     if reflink_encoded != "-":
         reflink_decoded = b64decode(reflink_encoded).decode("utf-8")
@@ -135,6 +136,7 @@ def start(request: HttpRequest, lang_code: str, reflink_encoded: str) -> JsonRes
     test_count = TESTOFFSET + UserSession.objects.all().count()
     return get_json_response({
         "token": session.token,
+        "sessionToken": session.sessionToken,
         "language": lang_code,
         "testCount": test_count,
         "translations": TRANSLATIONS[lang_code],
@@ -271,12 +273,8 @@ def update_remark(request: HttpRequest) -> JsonResponse:
     data = loads(request.body)
     id = data["result"]
     remark = data["remarks"]
-    oldSessionObject = UserSession.objects.get(token=id)
-    got = -1
-    # the remark can be changed once
-    # to prevent that it can be overwritten when somebody get's a shared link
-    if oldSessionObject.remarks is None:
-        got = UserSession.objects.filter(token=id).update(remarks=remark)
+    sessionToken = data["sessionToken"]
+    got = UserSession.objects.filter(token=id, sessionToken=sessionToken).update(remarks=remark)
     return get_json_response(got)
 
 

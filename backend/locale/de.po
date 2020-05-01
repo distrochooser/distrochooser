@@ -700,3 +700,6 @@ msgstr "Artix ist eine auf Arch Linux basierte Distribution, die allerdings Open
 
 msgid "link-copied"
 msgstr "In Zwischenablage eingefügt"
+
+msgid "remark-placeholder-saving"
+msgstr "Der Text wird automatisch gespeichert"

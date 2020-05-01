@@ -731,3 +731,6 @@ msgstr "Artix è una distribuzione basata su Arch Linux che utilizza OpenRC al p
 
 msgid "link-copied"
 msgstr "incollato negli appunti"
+
+msgid "remark-placeholder-saving"
+msgstr "Il testo verrà salvato automaticamente"

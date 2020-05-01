@@ -46,6 +46,7 @@ class UserSession(models.Model):
     ]
   dateTime = models.DateTimeField(default=now)
   userAgent = models.CharField(max_length=200, null=False, blank=False, default="")
+  sessionToken = models.CharField(max_length=200, null=False, blank=False, default="") # is used that only the initial user can edit feedback
   token = models.CharField(max_length=200, null=False, blank=False, default="")
   publicUrl = models.CharField(max_length=200, null=False, blank=False, default="")
   language = models.CharField(max_length=10, null=False, blank=False, default="en")
@@ -58,7 +59,7 @@ class UserSession(models.Model):
     return "{0} - {1}".format(self.dateTime, self.userAgent)
 
   def save(self, *args, **kwargs):
-    self.publicUrl = self.token # get_monster() as I'm still unsure if monsters are not suitable for a general purpose page
+    self.publicUrl = self.token
     super(UserSession, self).save(*args, **kwargs)
 
 class GivenAnswer(models.Model):

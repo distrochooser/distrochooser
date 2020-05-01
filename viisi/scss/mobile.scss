@@ -17,6 +17,9 @@
   }
 }
 @media only screen and (max-width: $mobileWidth) {
+  body {
+    padding-top: 1em !important;
+  }
   .top-logo {
     width: 30% !important;
   }
@@ -54,6 +57,8 @@
   .remarks {
     width: 100% !important;
     margin-left: unset !important;
+    margin-bottom: 1.5em;
+    border-bottom: 1px solid $categoryIconColor;
   }
   .remarks textarea {
     width: 100%;

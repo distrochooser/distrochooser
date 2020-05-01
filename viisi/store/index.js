@@ -11,6 +11,7 @@ const indexStore = new Vapi({
     currentCategory: null,
     givenAnswers: [],
     token: null, //session token
+    sessionToken: null, //private session token
     isStarted: false,
     result: null,
     translations: null,
@@ -159,6 +160,7 @@ indexStore.mutations.setLanguageData = (state, data) => {
 indexStore.mutations.setCurrentDisplayData = (state, data) => {
   state.categories = data.categories
   state.token = data.token
+  state.sessionToken = data.sessionToken
   state.language = data.language
   state.testCount = data.testCount
   state.translations = data.translations
@@ -182,6 +184,10 @@ indexStore.mutations.resetStarted = state => {
 
 indexStore.mutations.resetResult = state => {
   state.result = null
+}
+
+indexStore.mutations.resetRemarksAdded = state => {
+  state.remarksAdded = false
 }
 
 indexStore.mutations.setOldTestData = state => {
