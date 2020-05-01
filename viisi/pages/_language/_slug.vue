@@ -18,7 +18,7 @@
     
     div.languages(v-if="!isLoading")
       span(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)")
-        i.flag-icon(:class="'flag-icon-'+locale")
+        i.flag-icon(:class="'flag-icon-'+locale", v-if="locale !== 'en'")
    
 </template>
 <script>
