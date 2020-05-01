@@ -158,9 +158,6 @@ msgstr "Zusätzliche Informationen"
 msgid "remark-placeholder"
 msgstr "Dein Feedback"
 
-msgid "result-remarks-button"
-msgstr "Feedback übermitteln"
-
 msgid "distribution-homepage"
 msgstr "Webseite der Distribution"
 

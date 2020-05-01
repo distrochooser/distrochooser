@@ -163,9 +163,6 @@ msgstr "Informazioni aggiuntive"
 msgid "remark-placeholder"
 msgstr "Il tuo feedback (massimo 3000 caratteri)"
 
-msgid "result-remarks-button"
-msgstr "Invia feedback"
-
 msgid "distribution-homepage"
 msgstr "Homepage della distribuzione"
 

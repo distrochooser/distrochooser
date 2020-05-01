@@ -171,9 +171,6 @@ msgstr "更多信息"
 msgid "remark-placeholder"
 msgstr "您的反馈（最多3000个字符）"
 
-msgid "result-remarks-button"
-msgstr "提交反馈"
-
 msgid "distribution-homepage"
 msgstr "发行版的主页"
 
