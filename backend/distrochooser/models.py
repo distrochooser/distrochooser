@@ -3,7 +3,7 @@ from datetime import datetime
 import string
 from backend.settings import MEDIA_ROOT
 from django.utils.timezone import now
-
+from distrochooser.constants import COMMIT
 
 class Translateable(models.Model):
   msgid = models.CharField(max_length=100, default="new-value",blank=False, null=False)
@@ -53,13 +53,14 @@ class UserSession(models.Model):
   remarks = models.CharField(max_length=3000,null=True, blank=True, default=None)
   referrer = models.URLField(null=True, blank=True, default=None,max_length=1000)
   calculationTime = models.IntegerField(default=0)
-
+  commit = models.CharField(max_length=200, null=True, blank=True, default="")
 
   def __str__(self):
     return "{0} - {1}".format(self.dateTime, self.userAgent)
 
   def save(self, *args, **kwargs):
     self.publicUrl = self.token
+    self.commit = COMMIT
     super(UserSession, self).save(*args, **kwargs)
 
 class GivenAnswer(models.Model):

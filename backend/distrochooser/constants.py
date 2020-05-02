@@ -1,4 +1,4 @@
-from os.path import join
+from os.path import join, exists
 from backend.settings import CONFIG, LOCALES
 # not using django's translation model b/c of dynamical content instead of values taken out of the sourcecode
 import polib
@@ -18,4 +18,10 @@ for key, value in LOCALES.items():
   TRANSLATIONS[key] = parseTranslation(key, value)
 
 
-TESTOFFSET = 713037   
+TESTOFFSET = 713037
+COMMIT = None
+if exists("commit"):
+  with open("commit", "r") as file:
+    COMMIT = file.read()
+
+print("distrochooser5", COMMIT)
