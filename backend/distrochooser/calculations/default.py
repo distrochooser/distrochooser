@@ -3,6 +3,8 @@ from distrochooser.models import GivenAnswer, ResultDistroSelection, ResultDistr
 from django.forms.models import model_to_dict
 from django.db import transaction
 
+from threading import Thread, current_thread
+
 def saveAnswers(userSession, rawAnswers):
   # Delete old answers
   GivenAnswer.objects.filter(session=userSession).delete()
@@ -20,16 +22,32 @@ def saveAnswers(userSession, rawAnswers):
 
 
 @transaction.atomic
+def saveSelections(selections, reasons, session):
+  #  Saves the selections and reasons for a session
+  # cleanup old infos -> have no relevance, only the _final_ result is wanted
+  ResultDistroSelection.objects.filter(session=session).delete()
+  for distro_id, selection in selections.items():
+    got = selection.save()
+    key = selection.pk
+    if key is None:
+      raise Exception("Invalid selection id for ", selection.session, "distro", distro_id)
+    reasons_list = reasons[distro_id]
+    for reason in reasons_list:
+      reason.resultSelection = ResultDistroSelection.objects.get(pk=key)
+      reason.save()
+  
+
+@transaction.atomic
 def getSelections(userSession, data, langCode):
   translationToUse = TRANSLATIONS[langCode] if langCode in TRANSLATIONS else TRANSLATIONS["en"]
   ResultDistroSelection.objects.filter(session=userSession).delete()
   saveAnswers(userSession, data['answers'])
 
   givenAnswers = GivenAnswer.objects.filter(session=userSession).prefetch_related('answer').values("answer","isImportant")
-  importantAnswers = list(map(lambda o: o["answer"], filter(lambda o: o["isImportant"], givenAnswers)))
+  importantAnswersIds = list(map(lambda o: o["answer"], filter(lambda o: o["isImportant"], givenAnswers)))
+  givenAnswerIds = list(map(lambda o: o["answer"], givenAnswers))
   distros = Distribution.objects.all()
-  matchingTuples = AnswerDistributionMatrix.objects.all().prefetch_related('distros', 'answer')
-
+  matchingTuples = AnswerDistributionMatrix.objects.filter(answer_id__in=givenAnswerIds).prefetch_related('distros', 'answer')
 
   createdSelections = {}
   createdReasons = {}
@@ -44,31 +62,27 @@ def getSelections(userSession, data, langCode):
     newSelections.append(selection)
     createdSelections[distro.id] = selection
     createdReasons[distro.id] = []
-    selection.save()
+    #selection.save()
 
   for matrixTuple in matchingTuples:
-    isInAnswerList = matrixTuple.answer.pk in (o["answer"] for o in givenAnswers)
-    if isInAnswerList:
-      selectedDescription = translationToUse[matrixTuple.description] if matrixTuple.description in translationToUse else matrixTuple.description
+    selectedDescription = translationToUse[matrixTuple.description] if matrixTuple.description in translationToUse else matrixTuple.description
 
-      reason = SelectionReason(
-        isImportant = matrixTuple.answer.pk in importantAnswers,
-        resultSelection = None,
-        isBlockingHit = matrixTuple.isBlockingHit,
-        isPositiveHit = not matrixTuple.isNegativeHit if not matrixTuple.isNeutralHit else True,
-        isNeutralHit = matrixTuple.isNeutralHit,
-        description = selectedDescription
-      )
-
+    reason = SelectionReason(
+      isImportant = matrixTuple.answer.pk in importantAnswersIds,
+      resultSelection = None,
+      isBlockingHit = matrixTuple.isBlockingHit,
+      isPositiveHit = not matrixTuple.isNegativeHit if not matrixTuple.isNeutralHit else True,
+      isNeutralHit = matrixTuple.isNeutralHit,
+      description = selectedDescription
+    )
+    for distro in matrixTuple.distros.all():
       # prevent that same descritptions appear multiple times
       isReasonUnique = not len(list(filter(lambda r: r.description == reason.description, createdReasons[distro.id]))) > 0
-      
-      for distro in matrixTuple.distros.all():
-        if isReasonUnique:
-          selection = createdSelections[distro.id]
-          reason.resultSelection = selection
-          createdReasons[distro.id].append(reason)
-          reason.save()
+      if isReasonUnique:
+        selection = createdSelections[distro.id]
+        reason.resultSelection = selection
+        createdReasons[distro.id].append(reason)
+        #reason.save()
 
   results = []
   for distroId, selection in createdSelections.items():
@@ -80,4 +94,8 @@ def getSelections(userSession, data, langCode):
         "selection": selection.id
       }
     )
+  # Selections and reasons have no usage in the frontend itself.
+  # It's meant to be used for later usage
+  t = Thread(target=saveSelections, args=[createdSelections, createdReasons, userSession], daemon=True)
+  t.start()
   return results
