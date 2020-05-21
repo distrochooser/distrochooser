@@ -56,7 +56,7 @@ class UserSession(models.Model):
   commit = models.CharField(max_length=200, null=True, blank=True, default="")
 
   def __str__(self):
-    return "{0} - {1}".format(self.dateTime, self.userAgent)
+    return "{0} - {1}".format(self.dateTime, self.publicUrl)
 
   def save(self, *args, **kwargs):
     self.publicUrl = self.token
@@ -99,6 +99,8 @@ class ResultDistroSelection(models.Model):
   session = models.ForeignKey(UserSession, on_delete=models.CASCADE, default=None, db_index=True)
   isApprovedByUser = models.BooleanField(default=False)
   isDisApprovedByUser = models.BooleanField(default=False)
+  def __str__(self):
+    return "{0:} {1}".format(self.session, self.distro)
 
 class SelectionReason(models.Model):
   class Meta():
