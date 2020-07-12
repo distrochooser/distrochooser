@@ -79,7 +79,7 @@ def get_stats(request):
             backlink = backlink.netloc
         except:
             pass
-        if backlink and "https://distrochooser.de" not in backlink and "https://beta.distrochooser.de" not in backlink:
+        if backlink and "distrochooser.de" not in backlink:
             if backlink not in referrers:
                 referrers[backlink] = referrer["amount"]
             else:
