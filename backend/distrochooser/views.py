@@ -56,7 +56,18 @@ def get_stats(request):
             approvedPercentage = round(
                 100/(allVoteResultsCount/approvedResults.count()))
 
-    averageCalculationTime = (UserSession.objects.exclude(calculationTime=0)[:1000].aggregate(Avg('calculationTime'))["calculationTime__avg"])
+    sessions = UserSession.objects.filter(calculationTime__gt=0)
+
+    sumCalculationTime = 0
+    sumStayTime = 0
+    for session in sessions:
+        if session.calculationTime > 0 and session.calculationEndTime:
+            sumCalculationTime = sumCalculationTime + session.calculationTime
+            sumStayTime = sumStayTime + (session.calculationEndTime - session.dateTime).seconds
+
+    averageCalculationTime = floor(sumCalculationTime / sessions.count())
+    averageStayTime = floor(sumStayTime  / sessions.count())
+
 
     referrersQuery = UserSession.objects.values(
         "referrer").annotate(amount=Count('referrer'))
@@ -80,7 +91,8 @@ def get_stats(request):
         "votedResults": allVoteResultsCount,
         "approvedPercentage": approvedPercentage,
         "referrers": referrers,
-        "averageCalculationTime": averageCalculationTime
+        "averageCalculationTime": averageCalculationTime,
+        "averageStayTime": averageStayTime
     })
 
 
@@ -126,6 +138,7 @@ def start(request: HttpRequest, lang_code: str, reflink_encoded: str) -> JsonRes
     session.language = lang_code
     session.token = token_hex(5)
     session.sessionToken = token_hex(5)
+    session.dateTime = datetime.datetime.now()
     session.save()
     if reflink_encoded != "-":
         reflink_decoded = b64decode(reflink_encoded).decode("utf-8")
@@ -219,7 +232,8 @@ def submit_answers(request: HttpRequest, lang_code: str, token: str, method: str
     end_time = datetime.datetime.now()
     calculationTime = end_time - start_time
     userSession.calculationTime = int(calculationTime.microseconds / 1000)
-    userSession.save(update_fields=["calculationTime"])
+    userSession.calculationEndTime = end_time;
+    userSession.save(update_fields=["calculationTime", "calculationEndTime"])
     return get_json_response({
         "url": "https://beta.distrochooser.de/{0}/{1}/".format(lang_code, userSession.publicUrl),
         "selections": selections,

@@ -54,6 +54,7 @@ class UserSession(models.Model):
   referrer = models.URLField(null=True, blank=True, default=None,max_length=1000)
   calculationTime = models.IntegerField(default=0)
   commit = models.CharField(max_length=200, null=True, blank=True, default="")
+  calculationEndTime = models.DateTimeField(null=True, blank=True, default=None)
 
   def __str__(self):
     return "{0} - {1}".format(self.dateTime, self.publicUrl)
