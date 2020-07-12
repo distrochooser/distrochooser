@@ -79,7 +79,7 @@ msgstr "您可以随时跳过问题"
 msgid "welcome-text-result-get"
 msgstr "您可以随时点击“您的结果”来获取您的结果"
 
-msgid welcome-text-order"
+msgid "welcome-text-order"
 msgstr "您可以以任意顺序回答问题"
 
 msgid "welcome-text-additional-infos"
