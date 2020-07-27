@@ -12,12 +12,13 @@ from math import floor
 from django.db.models import Count, Avg
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpRequest, JsonResponse, Http404
+from django.shortcuts import render, redirect
 
 from backend.settings import LOCALES
 from distrochooser.util import get_json_response, get_step_data
 from distrochooser.calculations import default
 from distrochooser.models import UserSession, Category, ResultDistroSelection, GivenAnswer, AnswerDistributionMatrix
-from distrochooser.constants import TRANSLATIONS, TESTOFFSET
+from distrochooser.constants import TRANSLATIONS, TESTOFFSET, CONFIG
 
 
 def get_locales(request: HttpRequest) -> JsonResponse:
@@ -292,6 +293,19 @@ def update_remark(request: HttpRequest) -> JsonResponse:
     sessionToken = data["sessionToken"]
     got = UserSession.objects.filter(token=id, sessionToken=sessionToken).update(remarks=remark)
     return get_json_response(got)
+
+def get_feedback(request: HttpRequest) -> HttpResponse:
+    sessions = UserSession.objects.exclude(remarks__isnull=True)
+    system_suffix = CONFIG["backend"]["SUFFIX"]
+    return render(request,"feedback.html", context={
+        "sessions": sessions,
+        "system_suffix": system_suffix
+    })
+
+def process_feedback(request: HttpRequest, token: str) -> HttpResponse:
+    session = UserSession.objects.get(token=token)
+    UserSession.objects.filter(token=token).update(remarksProcessed = not session.remarksProcessed)
+    return redirect("get_feedback")
 
 
 def get_given_answers(request: HttpRequest, token: str) -> JsonResponse:

@@ -55,7 +55,7 @@ class UserSession(models.Model):
   calculationTime = models.IntegerField(default=0)
   commit = models.CharField(max_length=200, null=True, blank=True, default="")
   calculationEndTime = models.DateTimeField(null=True, blank=True, default=None)
-
+  remarksProcessed = models.BooleanField(default=False)
   def __str__(self):
     return "{0} - {1}".format(self.dateTime, self.publicUrl)
 
