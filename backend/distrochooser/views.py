@@ -60,13 +60,15 @@ def get_stats(request):
 
     sumCalculationTime = 0
     sumStayTime = 0
+    countedSessions = 0
     for session in sessions:
         if session.calculationTime > 0 and session.calculationEndTime:
+            countedSessions = countedSessions + 1 
             sumCalculationTime = sumCalculationTime + session.calculationTime
             sumStayTime = sumStayTime + (session.calculationEndTime - session.dateTime).seconds
 
-    averageCalculationTime = floor(sumCalculationTime / sessions.count())
-    averageStayTime = floor(sumStayTime  / sessions.count())
+    averageCalculationTime = sumCalculationTime / countedSessions
+    averageStayTime = sumStayTime  / countedSessions
 
 
     referrersQuery = UserSession.objects.values(
