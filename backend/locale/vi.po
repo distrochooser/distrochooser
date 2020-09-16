@@ -1,0 +1,733 @@
+msgid "loading"
+msgstr "đang tải"
+
+msgid "imprint"
+msgstr "liên hệ"
+
+msgid "privacy"
+msgstr "quyền riêng tư"
+
+msgid "about"
+msgstr "thông tin dự án"
+
+msgid "question-is-multiplechoice"
+msgstr "Bạn có thể chọn nhiều đáp áp"
+
+msgid "vendor-text"
+msgstr "Một dự án bởi chmr.eu"
+
+msgid "get-result"
+msgstr "Nhận kết quả"
+
+msgid "category-welcome"
+msgstr "Chào mừng!"
+
+msgid "software-use-case"
+msgstr "Phần mềm: Mục đích sử dụng"
+
+msgid "computer-knowledge-category"
+msgstr "Kiến thức máy tính"
+
+msgid "linux-knowledge-category"
+msgstr "Linux và bạn"
+
+msgid "presets-category"
+msgstr "Cài đặt: Có sẵn"
+
+msgid "hardware-category"
+msgstr "Hỗ trợ phần cứng"
+
+msgid "help-category"
+msgstr "Nguồn hỗ trợ"
+
+msgid "ux-concept-category"
+msgstr "Trải nghiệm người dùng"
+
+msgid "price-category"
+msgstr "Giá cả"
+
+msgid "scope-category"
+msgstr "Kích thước"
+
+msgid "ideology-category"
+msgstr "Quan điểm"
+
+msgid "privacy-category"
+msgstr "Quyền riêng tư"
+
+msgid "software-admin-category"
+msgstr "Quản lí"
+
+msgid "software-updates-category"
+msgstr "Phần mềm: Cập nhật"
+
+msgid "special-features-category"
+msgstr "Tính năng đặc biệt"
+
+msgid "recommendation-category"
+msgstr "tiến cử cho bạn"
+
+msgid "welcome-text-title"
+msgstr "Chào mừng đến distrochooser.de!"
+
+msgid "welcome-text"
+msgstr "Chào mừng! Khảo sát này sẽ giúp bạn chọn một bản phân phối phù hợp."
+
+msgid "welcome-text-skip"
+msgstr "Bạn luôn có thể bỏ qua câu hỏi"
+
+msgid "welcome-text-result-get"
+msgstr "Bạn luôn có thể nhấn vào 'tiến cử cho bạn' để nhận kết quả"
+
+msgid "welcome-text-order"
+msgstr "Bạn có thể trả lời theo thứ tự bất kỳ"
+
+msgid "welcome-text-additional-infos"
+msgstr "Bạn có thể xem thêm thông tin bổ sung bằng biểu tượng dấu chấm hỏi"
+
+msgid "welcome-text-remove"
+msgstr "Bạn có thể xóa câu trả lời bất cứ lúc nào"
+
+msgid "welcome-text-feedback"
+msgstr "Vui lòng đánh giá kết quả, tùy thuộc vào mức độ phù hợp với nhu cầu của bạn."
+
+msgid "welcome-text-importance"
+msgstr "Đánh dấu câu trả lời là quan trọng để thêm trọng lượng cho chúng"
+
+msgid "locale-link-en"
+msgstr "This text is available in english"
+
+msgid "locale-link-de"
+msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
+
+msgid "start-test"
+msgstr "Làm khảo sát"
+
+msgid "prev-question"
+msgstr "quay về"
+
+msgid "next-question"
+msgstr "tiếp"
+
+msgid "no-results"
+msgstr "Xin lỗi, tôi bị lạc lối"
+
+msgid "about-header"
+msgstr "Về distrochooser.de"
+
+msgid "vote-reminder"
+msgstr "Bạn thích bản phân phối này? Hãy cho nó một lượt thích!"
+
+msgid "about-intro-text"
+msgstr "distrochooser.de cố gắng giúp những người mới bắt đầu sử dụng Linux chọn một bản phân phối phù hợp với nhu cầu của họ.<br>Kết quả đưa ra là gợi ý dựa trên câu trả lời của bạn. Đôi khi kết quả có thể không phù hợp vì sự ảnh hưởng phức tạp giữa các câu trả lời."
+
+msgid "about-intro-test-count"
+msgstr "Kể từ ngày 14 tháng 6 năm 2014, distrochooser.de đã xử lý %tests% khảo sát."
+
+msgid "about-licenses"
+msgstr "Distrochooser được cấp phép kép."
+
+msgid "privacy-header"
+msgstr "Datenschutzerklärung"
+
+msgid "imprint-header"
+msgstr "Liên hệ"
+
+msgid "about-licenses-source"
+msgstr "Mã nguồn"
+
+msgid "about-licenses-source-text"
+msgstr "Mã nguồn được cấp phép theo giấy phép được viết trong tệp 'LICENSE', đặt trong repository được liên kết."
+
+msgid "about-licenses-database"
+msgstr "Kho dữ liệu"
+
+msgid "about-licenses-database-text"
+msgstr "Dữ liệu cơ bản, bao gồm cấu trúc câu hỏi / câu trả lời, ma trận kết quả và thống kê, là độc quyền. Bạn chỉ có thể sử dụng chúng khi có sự cho phép trước của chúng tôi. Văn bản mô tả và logo biểu trưng của các bản phân phối khác nhau phải tuân theo giấy phép của các chủ sở hữu bản quyền tương ứng."
+
+msgid "no-results-text"
+msgstr "Distrochooser không thể tìm thấy kết quả phù hợp dựa trên câu trả lời của bạn. Sẽ rất hữu ích nếu bạn viết cho chúng tôi một số phản hồi để chúng tôi có thể nghiên cứu vấn đề này."
+
+msgid "close-additional-info"
+msgstr "Đóng"
+
+msgid "no-answers"
+msgstr "Bạn chưa đưa ra câu trả lời."
+
+msgid "get-my-result"
+msgstr "Hiển thị kết quả."
+
+msgid "additional-info"
+msgstr "Thông tin bổ sung"
+
+msgid "remark-placeholder"
+msgstr "Phản hồi của bạn (tối đa 3000 ký tự)"
+
+msgid "distribution-homepage"
+msgstr "Trang chủ bản phân phối"
+
+msgid "result-remarks-added"
+msgstr "Cảm ơn phản hồi của bạn!"
+
+msgid "share-result"
+msgstr "Chia sẻ kết quả"
+
+msgid "software-use-case-question"
+msgstr "Một số bản phân phối được thực hiện cho một mục đích đặc biệt, một số để sử dụng hàng ngày. Bạn cần gì?"
+
+msgid "software-use-case-answer-daily"
+msgstr "Tôi muốn một bản phân phối để sử dụng hàng ngày."
+
+msgid "software-use-case-anonymous-answer"
+msgstr "Tôi muốn sử dụng Linux để duyệt web ẩn danh."
+
+msgid "software-use-case-answer-gaming"
+msgstr "Tôi thích một bản phân phối được hỗ trợ bởi các nhà sản xuất games."
+
+
+msgid "computer-knowledge-question"
+msgstr "Bạn đánh giá mức độ thành thạo dùng máy tính của mình như thế nào?"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "Tôi thường cần người khác giúp đỡ để khắc phục sự cố với máy tính của mình"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "Tôi đã có thể tự giải quyết một số vấn đề của máy tính"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "Tôi có thể tự mình khắc phục hầu hết hoặc tất cả các sự cố máy tính"
+
+
+msgid "linux-knowledge-question"
+msgstr "Bạn đánh giá về kiến thức Linux của mình thế nào?"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "Tôi có ít hoặc không có kiến thức về Linux"
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "Tôi đã sử dụng Linux cho một số mục đích"
+
+msgid "linux-knowledge-answer-professional"
+msgstr "Tôi có hiểu biết rõ về hệ điều hành Linux"
+
+
+msgid "presets-question"
+msgstr "Bạn muốn tự mình điều chỉnh bao nhiêu thiết lập trong khi cài đặt? Có bao nhiêu thông số cấu hình nên được đặt giá trị mặc định?"
+
+msgid "presets-question-answer-manypresets"
+msgstr "Tôi muốn sử dụng các giá trị mặc định được thiết lập sẵn trong trình hỗ trợ cài đặt"
+
+msgid "presets-question-answer-ownselection"
+msgstr "Tôi muốn tự mình chọn các thiết lập tùy chỉnh"
+
+msgid "presets-question-answer-guiselections"
+msgstr "Tôi muốn có càng nhiều các thiết lập càng tốt bằng các ứng dụng có giao diện đồ họa"
+
+
+msgid "hardware-question"
+msgstr "Điều quan trọng là phải biết tuổi phần cứng máy tính của bạn như thế nào, vì một số bản phân phối sẽ không chạy trên máy tính cũ."
+
+msgid "additional-info-hardware"
+msgstr "Trong nhiều năm trước, một số bản phân phối đã sử dụng kiến trúc 32 bit, cho phép cấp tới 4 gigabyte bộ nhớ. Các bản phân phối mới có xu hướng bỏ 32 bit để chuyển sang hỗ trợ 64 bit, cho phép cấp hơn 4 gigabyte bộ nhớ. Kể từ năm 2005, gần như tất cả các máy tính đều hỗ trợ 64 bit."
+
+msgid "hardware-question-oldpc"
+msgstr "Tôi không chắc về điều này và/hoặc máy tính của tôi đã có vấn đề về hiệu năng và/hoặc chỉ hỗ trợ 32 bit"
+
+msgid "hardware-question-newpc"
+msgstr "Hiệu năng máy tính của tôi tốt, tôi không gặp bất kỳ vấn đề nào về hiệu năng, phần cứng của tôi hỗ trợ 64 bit"
+
+
+msgid "help-question"
+msgstr "Một số bản phân phối ưu tiên các bài viết trong wiki để khắc phục sự cố. Bạn thích thế nào hơn?"
+
+msgid "help-question-tutorials"
+msgstr "Tôi có thể giải quyết vấn đề của mình bằng cách sử dụng các trang wiki hoặc các hướng dẫn"
+
+msgid "help-question-user-exchange"
+msgstr "Tôi thích nhờ người khác giúp đỡ"
+
+
+msgid "ux-concept-question"
+msgstr "Linux có thể sử dụng nhiều Giao diện Người dùng (\"Desktops\") khác nhau. Nhiều bản phân phối cung cấp một Desktops làm mặc định. Quan trọng là bạn biết được mình thích kiểu ý tưởng Desktops nào. Bạn có thể chuyển đổi và cài đặt Desktops mới bất kỳ lúc nào!"
+
+msgid "ux-concept-answer-windows-like"
+msgstr "Tôi thích giao diện người dùng giống như windows"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "Tôi thích giao diện người dùng giống như macOS"
+
+msgid "ux-concept-tiling"
+msgstr "Tôi thích giao diện tile-based window"
+
+msgid "ux-concept-closed-expierience"
+msgstr "Tôi thích trải nghiệm khép kín hơn"
+
+msgid "price-question"
+msgstr "Hầu hết các bản phân phối đều miễn phí. Một số bản phân phối cung cấp các hỗ trợ bổ sung với khoản phí trả một lần."
+
+msgid "price-answer-free"
+msgstr "Tôi thích một bản phân phối được sử dụng miễn phí "
+
+msgid "price-answer-paid"
+msgstr "Tôi ổn nếu cần trả một khoản phí"
+
+
+msgid "scope-question"
+msgstr "Các bản phân phối khác nhau cài đặt sẵn lượng phần mềm khác nhau. Một số cài đặt bộ chương trình cơ bản hoàn chỉnh dùng được ngay sau khi cài. Các bản phân phối khác chỉ cung cấp một bản cài đặt cơ bản để sau đó cho phép người dùng cài đặt những chương trình họ muốn sử dụng."
+
+msgid "scope-answer-fullinstall"
+msgstr "Tôi thích một bản phân phối cài tất cả các chương trình cơ bản mà tôi cần để bắt đầu hoạt động ngay sau khi cài đặt"
+
+msgid "scope-answer-ownselection"
+msgstr "Tôi muốn chọn các chương trình cơ bản để tự cài đặt"
+
+
+msgid "ideology-question"
+msgstr "Quan điểm về các giấy phép trên một bản phân phối là một cuộc bàn luận gây tranh cãi. Có những bản phân phối chủ yếu sử dụng \"giấy phép phần mềm tự do\", những bản khác thì cũng sử dụng các phần mềm  \"không tự do\"."
+
+msgid "additional-info-ideology"
+msgstr "Giấy phép tự do cho phép người dùng sửa đổi, phân phối lại và sử dụng phần mềm cho bất kỳ mục đích nào. Có những tình huống mà bản phân phối phải sử dụng phần mềm không tự do, ví dụ như cho trình điều khiển phần cứng. Phần mềm không tự do sẽ không phát hành mã nguồn và không được phép sửa đổi."
+
+msgid "ideology-answer-free"
+msgstr "Tôi muốn sử dụng giấy phép tự do nhiều nhất có thể"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "Tôi ổn với giấy phép không tự do, miễn là hệ thống của tôi hoạt động"
+
+
+msgid "privacy-question"
+msgstr "Một số bản phân phối sử dụng các dịch vụ trực tuyến để cải thiện trải nghiệm người dùng. Điều này có thể ảnh hưởng đến quyền riêng tư của người dùng, tức là người dùng có thể bị theo dõi khi sử dụng các tính năng trực tuyến đó."
+
+msgid "privacy-answer-highprivacy"
+msgstr "tôi không muốn như thế"
+
+msgid "privacy-answer-services-ok"
+msgstr "Nếu nó cải thiện trải nghiệm người dùng của tôi, tôi đồng ý với việc sử dụng các dịch vụ trực tuyến như vậy"
+
+
+msgid "software-admin-question"
+msgstr "Có nhiều cách để quản lý bản phân phối Linux, vd. để cài đặt phần mềm."
+
+msgid "software-admin-answer-appstore"
+msgstr "Tôi muốn cài đặt các chương trình của mình bằng một loại \"Cửa hàng ứng dụng\""
+
+msgid "software-admin-answer-console"
+msgstr "Tôi muốn cài đặt phần mềm chủ yếu bằng lệnh trên terminal"
+
+
+msgid "special-features-qestion"
+msgstr "Một số bản phân phối có các tính năng bổ sung cho các mục đích cụ thể. Tôi có cần các tính năng như vậy không?"
+
+msgid "additional-info-special-features-qestion"
+msgstr "Nhiều bản phân phối sử dụng 'systemd' để tự khởi động hệ điều hành. Một số bản phân phối tránh systemd để ủng hộ các giải pháp thay thế và đôi khi nhẹ hơn"
+
+msgid "answer-isolation"
+msgstr "Các ứng dụng phải được mặc định thực thi trong một môi trường biệt lập"
+
+
+msgid "software-updates-question"
+msgstr "Một số bản phân phối cung cấp các bản cập nhật nhanh hơn, điều này có thể ảnh hưởng đến sự ổn định của hệ thống. Bạn thích thế nào hơn?"
+
+msgid "software-updates-answer-fast"
+msgstr "Tôi thích cập nhật nhanh"
+
+msgid "software-updates-answer-slow"
+msgstr "Tôi thích các bản cập nhật đã ổn định"
+
+msgid "answer-avoid-systemd"
+msgstr "Tôi muốn tránh systemd"
+
+msgid "result-submitted-hint"
+msgstr "Đang tính toán kết quả"
+
+
+msgid "reason-header-hint"
+msgstr "Nhấp vào tên bản phân phối để xem lý do chi tiết cho đề xuất này"
+
+msgid "reason-list-header"
+msgstr "Lý do cho/ xung đột"
+
+msgid "answer-is-blocking"
+msgstr "Các câu trả lời sau không loại trừ câu trả lời này"
+
+msgid "answer-is-blocked"
+msgstr "Câu trả lời này mâu thuẫn với câu trả lời trước đây mà bạn đã đưa ra"
+
+msgid "reason-blocked-by-others-entry"
+msgstr "\"{0}\" không hợp \"{1}\""
+
+msgid "additional-infos"
+msgstr "cung cấp cho tôi thông tin bổ sung!"
+
+msgid "make-important"
+msgstr "Điều này quan trọng!"
+
+msgid "marked-as-important"
+msgstr "Được đánh dấu là quan trọng"
+
+msgid "remove-important"
+msgstr "Xóa tầm quan trọng"
+
+msgid "reason-list-header-negative"
+msgstr "Chúng tôi không thể tiến cử bản phân phối này cho bạn vì:"
+
+msgid "reason-list-header-neutral"
+msgstr "Các tiêu chí sau không được tính vào điều này"
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "Câu trả lời này bị chặn bởi các câu trả lời khác mà bạn đã đưa ra"
+
+msgid "matrix-supports-daily-usage"
+msgstr "Thích hợp sử dụng hàng ngày"
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "Khái niệm phân phối không có lợi cho mục đích ẩn danh"
+
+msgid "matrix-supports-gaming-usage"
+msgstr "Bản phân phối được hỗ trợ tích cực bởi các nhà sản xuất games"
+
+msgid "matrix-beginner-knowledge"
+msgstr "Thích hợp cho người mới bắt đầu"
+
+msgid "matrix-advanced-knowledge"
+msgstr "Thích hợp cho người dùng nâng cao"
+
+msgid "matrix-professional-knowledge"
+msgstr "Thích hợp cho các chuyên gia"
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "Việc sử dụng yêu cầu ít kiến thức về Linux hơn so với câu trả lời"
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "Việc sử dụng yêu cầu ít kiến thức máy tính hơn so với câu trả lời"
+
+msgid "matrix-linux-beginner"
+msgstr "Thích hợp cho người mới bắt đầu với Linux"
+
+msgid "matrix-installation-presets-always-given"
+msgstr "Các giá trị cấu hình, thiết lập sẵn bởi Bộ cài, có thể cần được đặt lại sau khi cài đặt"
+
+msgid "matrix-installation-presets-gui"
+msgstr "Nhiều cài đặt có thể được thực hiện thông qua giao diện đồ họa"
+
+msgid "matrix-installation-assistant-present"
+msgstr "Việc cài đặt sử dụng một 'thuật sĩ' cài đặt với các thiết lập mặc định"
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr "Window compositor có thể bị trễ, giật. Có thể cần phải tắt hoạt ảnh."
+
+msgid "matrix-hardware-newpc"
+msgstr "Chạy trên phần cứng mới nhất"
+
+msgid "matrix-user-exchange"
+msgstr "Có cộng đồng người dùng để chia sẻ kiến thức"
+
+msgid "matrix-tutorial"
+msgstr "Có các hướng dẫn để khắc phục sự cố và giải quyết vấn đề"
+
+msgid "matrix-mac-like"
+msgstr "GUI có các thành phần giống macOS"
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "GUI khác rất nhiều so với Windows"
+
+msgid "matrix-closed-expierience"
+msgstr "Có hình nền, biểu tượng và chủ đề riêng"
+
+msgid "matrix-has-windows-like-variant"
+msgstr "Có các biến thể với giao diện người dùng giống như Windows"
+
+msgid "matrix-paid-version-existing"
+msgstr "Có một phiên bản không miễn phí của bản phân phối này"
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "Các phiên bản phần mềm có thể không đủ cập nhật để chơi game"
+
+msgid "matrix-has-live-mode"
+msgstr "Có chế độ Live cho phép khởi động từ đĩa"
+
+msgid "live-mode-only"
+msgstr "Có Chế độ Live: Có thể khởi động bằng đĩa hoặc thẻ USB để kiểm tra (trước khi cài đặt)"
+
+msgid "matrix-without-fee"
+msgstr "Có thể sử dụng mà không mất phí"
+
+msgid "matrix-paid"
+msgstr "Có một phiên bản không miễn phí của bản phân phối này"
+
+msgid "matrix-fullinstall"
+msgstr "Cài đặt tất cả các chương trình cần thiết"
+
+msgid "matrix-ownscope-install"
+msgstr "Tất cả chương trình được sử dụng phải do chính bạn chọn"
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "Các chương trình không tự do được cài đặt theo mặc định"
+
+msgid "matrix-enforces-free"
+msgstr "Bắt buộc sử dụng phần mềm tự do"
+
+msgid "matrix-mostly-free"
+msgstr "Hoạt động chủ yếu với phần mềm tự do"
+
+msgid "matrix-has-default-settings"
+msgstr "Có thiết lập mặc định"
+
+msgid "matrix-privacy-ok"
+msgstr "Có lợi cho quyền riêng tư của người dùng"
+
+msgid "matrix-privacy-thirdparty"
+msgstr "Mặc định có kết nối với các dịch vụ của bên thứ ba"
+
+msgid "matrix-appstore"
+msgstr "Cài đặt phần mềm có thể được thực hiện bằng cửa hàng ứng dụng"
+
+msgid "matrix-console"
+msgstr "Cài đặt phần mềm có thể được thực hiện bằng terminal"
+
+msgid "matrix-stable-updates"
+msgstr "Các bản cập nhật hầu hết ổn định khi được phát hành"
+
+msgid "matrix-fast-updates"
+msgstr "Các bản cập nhật phần mềm được phát hành càng nhanh càng tốt, điều này khiến chúng có thể không ổn định"
+
+msgid "matrix-has-control-panel"
+msgstr "Chứa một trung tâm điều khiển được cài đặt sẵn"
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "Người dùng phải chọn phần mềm để sử dụng"
+
+msgid "matrix-selection-by-user"
+msgstr "Lượng các chương trình được cài đặt sẵn do người dùng quyết định"
+
+msgid "matrix-updates-fast"
+msgstr "Cập nhật nhanh nhưng có thể không ổn định"
+
+msgid "matrix-not-for-beginner"
+msgstr "Không thích hợp cho người mới bắt đầu"
+
+msgid "matrix-avoids-systemd"
+msgstr "Tránh systemd"
+
+msgid "matrix-uses-systemd"
+msgstr "Sử dụng systemd"
+
+msgid "built-for-anonymization"
+msgstr "Xây dựng cho mục đích ẩn danh"
+
+msgid "matrix-administration-shell"
+msgstr "Quản trị chủ yếu được thực hiện bằng cách sử dụng các lệnh trên shell"
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "Không hỗ trợ máy tính cũ không hỗ trợ 64 bit"
+
+msgid "matrix-requires-manual"
+msgstr "Yêu cầu đọc sách hướng dẫn và chỉ dẫn"
+
+msgid "matrix-requires-advanced-knowledge"
+msgstr "Yêu cầu đọc sách hướng dẫn sử dụng"
+
+msgid "matrix-isolation-default"
+msgstr "Mặc định có môi trường biệt lập"
+
+msgid "matrix-oldpc-supported"
+msgstr "Hỗ trợ cả những máy tính cũ hơn"
+
+msgid "checked-criteria-count"
+msgstr "các tiêu chí đã xem xét"
+
+msgid "searching-criteria"
+msgstr "đang xử lý thư viện các tiêu chí"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "Việc sử dụng hàng ngày có thể dẫn đến những khó khăn lớn"
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "Có thể được sử dụng cho công việc hàng ngày, nhưng được xây dựng cho live-mode"
+
+msgid "matrix-packages-available"
+msgstr "Có sẵn các chương trình cho mục đích ẩn danh"
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "Các phiên bản chương trình có thể không đủ cập nhật để chơi game"
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "Có thể yêu cầu thiết lập bổ sung để chơi game"
+
+msgid "matrix-built-for-enterprise"
+msgstr "Mục tiêu chính là sử dụng cho doanh nghiệp"
+
+msgid "matrix-not-built-for-gaming"
+msgstr "Không được tối ưu hóa để chơi game"
+
+msgid "requires-some-computer-knowledge"
+msgstr "Yêu cầu thêm kiến thức về máy tính"
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "Không thích hợp cho người mới bắt đầu"
+
+msgid "matrix-installation-from-shell"
+msgstr "Cài đặt được thực hiện bằng terminal"
+
+msgid "matrix-installs-range-of-programs"
+msgstr "Cài đặt một loạt chương trình theo mặc định"
+
+msgid "matrix-configuration-from-shell"
+msgstr "Phần lớn cấu hình được thực hiện bằng lệnh trên shell"
+
+msgid "matrix-middleweight"
+msgstr "Một hệ thống nặng trung bình, đặc biệt thích hợp cho các máy tính phát hành gần đây"
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "Hỗ trợ nhiều loại phần cứng"
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "Có phiên bản 'Zorin Lite' cho máy tính cũ hơn"
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr "Một biến thể phát hành với môi trường desktop 'cinnamon', có giao diện giống Windows"
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "Systemd có thể được loại bỏ tùy lựa chọn của mỗi người dùng"
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "Systemd được có sẵn, nhưng mặc định bị tắt"
+
+msgid "matrix-supports-privacy"
+msgstr "Chỉ thu thập dữ liệu khi các dịch vụ trực tuyến được sử dụng"
+
+msgid "matrix-lightweight"
+msgstr "Bản phân phối nhẹ"
+
+msgid "matrix-free-userselection"
+msgstr "Việc sử dụng phần mềm tự do phụ thuộc vào lựa chọn của người dùng"
+
+# distribution descriptions
+
+msgid "description-manjaro"
+msgstr "Manjaro là một bản phân phối phát hành luân phiên, tập trung vào sự thân thiện với người dùng"
+
+msgid "description-ubuntu"
+msgstr "Ubuntu là một bản phân phối được xây dựng bởi công ty Canonical"
+
+msgid "description-mint"
+msgstr "Linux Mint là bản phân phối dựa trên Ubuntu với các thành phần độc quyền được cài đặt sẵn, chẳng hạn như codec đa phương tiện."
+
+msgid "description-solus"
+msgstr "Solus OS là bản phân phối phát hành luân phiên, bắt đầu dưới dạng clone Chrome OS"
+
+msgid "description-arch"
+msgstr "Arch là bản phân phối phát hành luân phiên dựa trên nguyên tắc KISS"
+
+msgid "description-debian"
+msgstr "Debian là bản phân phối tập trung cao vào tính ổn định"
+
+msgid "description-tails"
+msgstr "Ẩn danh là trọng tâm chính của Tails, có thể được sử dụng từ USB hoặc đĩa quang"
+
+msgid "description-devuan"
+msgstr "Devuan là một bản sao của Debian mà không sử dụng bộ công cụ systemd"
+
+msgid "description-opensuse"
+msgstr "OpenSuse nhằm mục đích cung cấp một bản phân phối ổn định và thân thiện với người dùng, chủ yếu dành cho người dùng cuối"
+
+msgid "description-pclinuxos"
+msgstr "PCLinuxOS là bản phân phối dựa trên Mandrake tập trung vào giao diện thân thiện với người dùng."
+
+msgid "description-rhel"
+msgstr "Red hat Enterprise Linux (RHEL) là một bản phân phối tập trung vào doanh nghiệp và sự ổn định"
+
+msgid "description-centos"
+msgstr "CentOS là bản phân phối miễn phí dựa trên RHEL"
+
+msgid "description-xubuntu"
+msgstr "Xubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là XFCE"
+
+msgid "description-lubuntu"
+msgstr "Lubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là LXDE"
+
+msgid "description-ubuntumate"
+msgstr "Ubuntu MATE là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là MATE"
+
+msgid "description-fedora"
+msgstr "Fedora là một bản phân phối được ủng hộ bởi Red hat tập trung lớn vào phần mềm tự do"
+
+msgid "description-qubeos"
+msgstr "Hệ điều hành Qubes sử dụng máy ảo biệt lập các ứng dụng để tăng cường bảo mật"
+
+msgid "description-gentoo"
+msgstr "Gentoo là một bản phân phối linh hoạt cho người dùng nâng cao"
+
+msgid "description-mxlinux"
+msgstr "MX Linux là bản phân phối nặng trung bình, tập trung vào việc sử dụng hàng ngày hiệu quả và đơn giản."
+
+msgid "description-fedora"
+msgstr "Fedora là một bản phân phối tập trung vào phần mềm tự do. Fedora được phát hành phiên bản mới sau mỗi 6 tháng mà không có bản lts."
+
+msgid "description-knoppix"
+msgstr "Knoppix là một hệ điều hành tập trung vào chế độ live-mode và hỗ trợ nhiều phần cứng"
+
+msgid "description-cruxlinux"
+msgstr "Crux Linux là một hệ điều hành tập trung vào 64 bit, nhẹ, với các công cụ và thư viện gần đây"
+
+msgid "description-zorinos"
+msgstr "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows"
+
+msgid "description-elementaryos"
+msgstr "elementary OS là bản phân phối dựa trên ubuntu, tập trung vào trải nghiệm người dùng nhanh và đơn giản"
+
+msgid "description-kubuntu"
+msgstr "Kubuntu là bản phân phối dựa trên ubuntu với KDE được cài đặt sẵn là một môi trường desktop"
+
+msgid "locale-en"
+msgstr "english"
+
+msgid "locale-de"
+msgstr "deutsch"
+
+# update pack 26th december 2019
+
+msgid "debian-updates-slow"
+msgstr "Cập nhật Debian thường chậm vì tập trung vào sự ổn định"
+
+msgid "description-qubesos"
+msgstr "Qubes OS thực thi các quy trình trong máy ảo cho mục đích bảo mật"
+
+msgid "software-use-case-isolation"
+msgstr "Tôi muốn thực hiện tất cả các chương trình trong một khu vực biệt lập"
+
+msgid "matrix-runs-in-isolation"
+msgstr "Thực thi phần mềm trong môi trường biệt lập"
+
+msgid "software-use-case-blind"
+msgstr "Người dùng khiếm thị"
+
+msgid "matrix-knoppix-adriane"
+msgstr "Dự án ADRIANE cung cấp các công cụ và giải pháp cho người khiếm thị"
+
+msgid "matrix-has-software-for-blind"
+msgstr "Phần mềm dành cho người khiếm thị có thể cài đặt được (vd. 'Orca')"
+
+msgid "source"
+msgstr "Nguồn"
+
+msgid "description-void"
+msgstr "Void Linux là bản phân phối phát hành luân phiên không có systemd"
+
+msgid "skip-question"
+msgstr "Bỏ qua câu hỏi"
+
+msgid "description-nixos"
+msgstr "NixOS sử dụng trình quản lý gói Nix. Nó sử dụng cấu hình được khai báo và cho phép nâng cấp hệ thống xác thực."
+
+msgid "reasons-hide"
+msgstr "Ẩn lí do"
+
+msgid "description-artix"
+msgstr "Artix là bản phân phối dựa trên Arch Linux sử dụng OpenRC thay vì systemd."
+
+msgid "link-copied"
+msgstr "Dán vào clipboard"
+
+msgid "remark-placeholder-saving"
+msgstr "Văn bản sẽ được tự động lưu"
