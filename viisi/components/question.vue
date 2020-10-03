@@ -5,7 +5,7 @@
         div.welcome-text 
           h2 {{ __i("welcome-text-title") }}
           p {{ __i("welcome-text") }}
-          p
+          div
             div 
               i.w-icon-d-arrow-right
               span {{ __i("welcome-text-skip") }}
@@ -27,9 +27,8 @@
             div
               i.w-icon-heart-off
               span {{ __i("welcome-text-feedback") }}
-           
-        div.actions.welcome-text-actions
-          button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
+            div
+              button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
       div.question-content
         div.additional-infos.animated.fadeIn.fast(v-if="additionalInfoShown")
@@ -282,11 +281,10 @@ export default {
   }
 }
 .welcome-text {
-  padding: 2em;
+  padding-left: 1em;
   font-size: 13pt;
   font-family: 'Archivo', sans-serif;
   line-height: 2;
-  height: 23em;
 }
 .question-text {
   padding-top: 1em;
@@ -454,7 +452,8 @@ a {
   margin-right: -0.5em;
 }
 .start-test-button {
-  margin-bottom: -1em;
+  margin-top: 0.5em;
+  margin-left: unset;
 }
 .blocking-alert {
   border: 1px solid red;

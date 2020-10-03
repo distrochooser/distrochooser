@@ -1,4 +1,4 @@
-@media only screen and (max-width: $desktopWidth) and (min-width: $mobileWidth){
+@media only screen and (max-width: $desktopWidth) and (min-width: $mobileWidth) {
   .footer {
     bottom: unset !important;
     top: 1em;
@@ -7,10 +7,10 @@
   }
   .breadcrumb-horizontal {
     top: 0.5em;
-  }
-  .breadcrumb-horizontal ul li{
-    font-size: 11pt;
-    margin-bottom: 1.5em !important;
+    ul li {
+      font-size: 11pt;
+      margin-bottom: 1.5em !important;
+    }
   }
   body {
     padding-top: 1em !important;
@@ -29,16 +29,16 @@
     width: auto;
     padding: 0px !important;
     top: 1em !important;
-  }
-  .breadcrumb-horizontal ul li span {
-    display: none;
-  }
-  .welcome-text h1 {
-    font-size: large;
+    ul li span {
+      display: none;
+    }
   }
   .welcome-text {
     font-size: 10pt !important;
-    margin-bottom: 4em;
+    height: unset !important;
+    h2 {
+      display: none;
+    }
   }
   .footer {
     position: fixed !important;
@@ -49,7 +49,7 @@
     text-align: center !important;
     bottom: 0px;
     left: 0px;
-    top: unset  !important;
+    top: unset !important;
   }
   .answer-remark {
     left: 3em !important;
@@ -59,11 +59,11 @@
     margin-left: unset !important;
     margin-bottom: 1.5em;
     border-bottom: 1px solid $categoryIconColor;
-  }
-  .remarks textarea {
-    width: 100%;
-    margin-left: unset !important;
-    margin-right: unset !important;
+    textarea {
+      width: 100%;
+      margin-left: unset !important;
+      margin-right: unset !important;
+    }
   }
   .additional-infos {
     width: 84% !important;
@@ -75,9 +75,9 @@
     left: initial !important;
     right: 1em !important;
     position: absolute !important;
-  }
-  .languages select {
-    font-size: small;
+    select {
+      font-size: small;
+    }
   }
   .view-settings {
     display: none;
@@ -104,9 +104,9 @@
   }
   .answers {
     margin-left: 0.5em !important;
-  }
-  .answer label {
-    display: contents;
+    label {
+      display: contents;
+    }
   }
   .mobile-active {
     color: $activeStepForeground !important;
@@ -118,13 +118,13 @@
     font-size: 8pt;
     padding: 1em;
   }
-  .floating-button a span {
-    display: none;
-  }
   .floating-button {
     margin-left: 2.1em !important;
     padding: 0.5em !important;
-    padding-right: 0.0 !important;
+    padding-right: 0 !important;
+    a span {
+      display: none;
+    }
   }
   .step {
     font-size: small !important;
@@ -132,16 +132,13 @@
   .languages {
     margin-top: 0px;
     width: 90px;
-  }
-  .languages span i {
-    font-size: 12pt;
-    margin-bottom: 0.5em;
+    span i {
+      font-size: 12pt;
+      margin-bottom: 0.5em;
+    }
   }
   .welcome-text {
     font-size: 9pt !important;
-  }
-  .welcome-text-actions {
-    margin-top: 6em;
   }
   .result {
     margin-right: unset !important;
@@ -149,13 +146,15 @@
   }
   .distribution {
     font-size: 11pt !important;
-  }
-  .distribution .meta .url {
-    font-size: 10pt !important;
-    width: 60%;
-  }
-  .distribution .meta .actions {
-    width: 40%;
+    .meta {
+      .url {
+        font-size: 10pt !important;
+        width: 60%;
+      }
+      .actions {
+        width: 40%;
+      }
+    }
   }
   .image-answer {
     display: block !important;
@@ -166,7 +165,7 @@
   .checkmark {
     display: none;
   }
-  .answer-selected:not(.image-answer){
+  .answer-selected:not(.image-answer) {
     font-weight: bold;
   }
 }
