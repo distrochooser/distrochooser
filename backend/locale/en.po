@@ -453,7 +453,7 @@ msgid "matrix-without-fee"
 msgstr "Usable without fee"
 
 msgid "matrix-paid"
-msgstr "There is a non-free version of this distribution"
+msgstr "There is a fee-based version of this distribution"
 
 msgid "matrix-fullinstall"
 msgstr "Installs all needed programs"
@@ -462,7 +462,7 @@ msgid "matrix-ownscope-install"
 msgstr "All programs to be used must be chosen by yourself"
 
 msgid "matrix-free-software-unfree-per-default"
-msgstr "Non-free programs are installed by default"
+msgstr "Closed source programs are installed by default"
 
 msgid "matrix-enforces-free"
 msgstr "Enforces usage of free software"
