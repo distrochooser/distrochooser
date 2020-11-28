@@ -42,3 +42,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://allcontributors.org) specification.
 Contributions of any kind are welcome!
+
+## Third party elements
+
+We are using following elements from a third party:
+
+- https://en.wikipedia.org/wiki/MacOS_Catalina#/media/File:MacOS_Catalina_Desktop.png
+- https://de.wikipedia.org/wiki/Microsoft_Windows_10#/media/Datei:Windows10abstract.png

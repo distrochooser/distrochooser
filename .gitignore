@@ -78,6 +78,5 @@ plugins/
 backend/*.sqlite3
 viisi/distrochooser.json
 distrochooser.json
-viisi/static/
 backend/commit
 update.sh
