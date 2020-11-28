@@ -452,10 +452,10 @@ msgid "matrix-appstore"
 msgstr "Installation neuer Programme ist über einen Appstore möglich"
 
 msgid "matrix-console"
-msgstr "Die meissten Programme werden über das Terminal installiert"
+msgstr "Die meissen Programme werden über das Terminal installiert"
 
 msgid "matrix-stable-updates"
-msgstr "Programmupdates sind meisstens stabil "
+msgstr "Programmupdates sind gewöhnlich stabil"
 
 msgid "matrix-fast-updates"
 msgstr "Programmupdates werden schnell veröffentlicht"
