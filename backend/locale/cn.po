@@ -742,3 +742,6 @@ msgstr "粘贴到剪贴板"
 
 msgid "remark-placeholder-saving"
 msgstr "文字会自动保存"
+
+msgid "slow-release-model"
+msgstr "由于发布模式的原因，软件可能只有在最新版本中才会有延迟。"

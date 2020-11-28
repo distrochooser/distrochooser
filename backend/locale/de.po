@@ -700,3 +700,6 @@ msgstr "In Zwischenablage eingefügt"
 
 msgid "remark-placeholder-saving"
 msgstr "Der Text wird automatisch gespeichert"
+
+msgid "slow-release-model"
+msgstr "Software durch Releasemodell ggf. nur in verzögert in neuster Version verfügbar"

@@ -731,3 +731,6 @@ msgstr "incollato negli appunti"
 
 msgid "remark-placeholder-saving"
 msgstr "Il testo verrà salvato automaticamente"
+
+msgid "slow-release-model"
+msgstr "Le versioni software disponibili possono essere più vecchie dell'ultima versione del fornitore"

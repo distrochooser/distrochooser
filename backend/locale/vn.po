@@ -731,3 +731,6 @@ msgstr "Dán vào clipboard"
 
 msgid "remark-placeholder-saving"
 msgstr "Văn bản sẽ được tự động lưu"
+
+msgid "slow-release-model"
+msgstr "Các phiên bản phần mềm có sẵn có thể cũ hơn phiên bản mới nhất từ nhà cung cấp"

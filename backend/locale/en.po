@@ -731,3 +731,6 @@ msgstr "Pasted to clipboard"
 
 msgid "remark-placeholder-saving"
 msgstr "The text will be saved automatically"
+
+msgid "slow-release-model"
+msgstr "Available software versions may be older than latest version from vendor"
