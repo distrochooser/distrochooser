@@ -4,7 +4,6 @@ Views of the API backend.
 
 from json import loads
 from secrets import token_hex
-from base64 import b64decode
 from urllib.parse import urlparse
 import datetime
 from math import floor
@@ -64,13 +63,13 @@ def get_stats(request):
     countedSessions = 0
     for session in sessions:
         if session.calculationTime > 0 and session.calculationEndTime:
-            countedSessions = countedSessions + 1 
+            countedSessions = countedSessions + 1
             sumCalculationTime = sumCalculationTime + session.calculationTime
-            sumStayTime = sumStayTime + (session.calculationEndTime - session.dateTime).seconds
+            sumStayTime = sumStayTime + \
+                (session.calculationEndTime - session.dateTime).seconds
 
     averageCalculationTime = sumCalculationTime / countedSessions
-    averageStayTime = sumStayTime  / countedSessions
-
+    averageStayTime = sumStayTime / countedSessions
 
     referrersQuery = UserSession.objects.values(
         "referrer").annotate(amount=Count('referrer'))
@@ -119,14 +118,14 @@ def get_ssr_data(request: HttpRequest, lang_code: str) -> HttpResponse:
     return JsonResponse(responseData)
 
 
-def start(request: HttpRequest, lang_code: str, reflink_encoded: str) -> JsonResponse:
+@csrf_exempt
+def start(request: HttpRequest, lang_code: str) -> JsonResponse:
     """
     'Loggs' the visitor in, creates a session which will be used to store the user's action.
 
     Args:
       request (HttpRequest): The client request
       lang_code (str): The ISO-639-1 encoded language to use
-      reflink_encoded (str): The base64 encoded referrer or "-"
 
     Returns:
       A JSON HTTP response containing 
@@ -135,6 +134,9 @@ def start(request: HttpRequest, lang_code: str, reflink_encoded: str) -> JsonRes
     if lang_code not in LOCALES:
         raise Http404("Language not installed")
 
+    data = loads(request.body)
+    referrer = data["referrer"] if "referrer" in data else null
+
     user_agent = request.META["HTTP_USER_AGENT"]
     session = UserSession()
     session.userAgent = user_agent
@@ -142,11 +144,7 @@ def start(request: HttpRequest, lang_code: str, reflink_encoded: str) -> JsonRes
     session.token = token_hex(5)
     session.sessionToken = token_hex(5)
     session.dateTime = datetime.datetime.now()
-    session.save()
-    if reflink_encoded != "-":
-        reflink_decoded = b64decode(reflink_encoded).decode("utf-8")
-        if reflink_decoded is not None:
-            session.referrer = reflink_decoded
+    session.referrer = referrer
     session.save()
     view_bag_data = get_step_data(0)
     test_count = TESTOFFSET + UserSession.objects.all().count()
@@ -235,7 +233,7 @@ def submit_answers(request: HttpRequest, lang_code: str, token: str, method: str
     end_time = datetime.datetime.now()
     calculationTime = end_time - start_time
     userSession.calculationTime = int(calculationTime.microseconds / 1000)
-    userSession.calculationEndTime = end_time;
+    userSession.calculationEndTime = end_time
     userSession.save(update_fields=["calculationTime", "calculationEndTime"])
     return get_json_response({
         "url": "https://beta.distrochooser.de/{0}/{1}/".format(lang_code, userSession.publicUrl),
@@ -291,20 +289,24 @@ def update_remark(request: HttpRequest) -> JsonResponse:
     id = data["result"]
     remark = data["remarks"]
     sessionToken = data["sessionToken"]
-    got = UserSession.objects.filter(token=id, sessionToken=sessionToken).update(remarks=remark)
+    got = UserSession.objects.filter(
+        token=id, sessionToken=sessionToken).update(remarks=remark)
     return get_json_response(got)
+
 
 def get_feedback(request: HttpRequest) -> HttpResponse:
     sessions = UserSession.objects.exclude(remarks__isnull=True)
     system_suffix = CONFIG["backend"]["SUFFIX"]
-    return render(request,"feedback.html", context={
+    return render(request, "feedback.html", context={
         "sessions": sessions,
         "system_suffix": system_suffix
     })
 
+
 def process_feedback(request: HttpRequest, token: str) -> HttpResponse:
     session = UserSession.objects.get(token=token)
-    UserSession.objects.filter(token=token).update(remarksProcessed = not session.remarksProcessed)
+    UserSession.objects.filter(token=token).update(
+        remarksProcessed=not session.remarksProcessed)
     return redirect("get_feedback")
 
 

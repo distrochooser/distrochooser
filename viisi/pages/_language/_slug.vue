@@ -67,8 +67,10 @@ export default {
     }
     await this.$store.dispatch('startTest', {
       params: {
-        language: _t.language,
-        refLinkEncoded: document.referrer ? btoa(document.referrer) : '-'
+        language: _t.language
+      },
+      data: {
+        referrer: document.referrer ? document.referrer : null
       }
     })
     this.isLoading = false

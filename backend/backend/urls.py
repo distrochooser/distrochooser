@@ -22,17 +22,21 @@ system_suffix = CONFIG["backend"]["SUFFIX"]
 
 urlpatterns = [
     path('admin{0}/'.format(system_suffix), admin.site.urls),
-    path('start/<str:lang_code>/<str:reflink_encoded>/', start, name='start'),
+    path('start/<str:lang_code>/', start, name='start'),
     path('locales/', get_locales, name='locales'),
     path('ssrdata/<str:lang_code>/', get_ssr_data, name='get_ssr_data'),
     path('question/<int:index>/', load_question, name='loadQuestion'),
-    path('submit/<str:lang_code>/<str:token>/<str:method>/', submit_answers, name='submit_answers'),
+    path('submit/<str:lang_code>/<str:token>/<str:method>/',
+         submit_answers, name='submit_answers'),
     path('vote/', vote, name='voteSelection'),
     path('remarks/', update_remark, name='update_remark'),
     path('answers/<str:token>/', get_given_answers, name='get_given_answers'),
-    path('translation/<str:lang_code>/', get_language_values, name="get_language_values"),
+    path('translation/<str:lang_code>/',
+         get_language_values, name="get_language_values"),
     path('stats{0}/'.format(system_suffix), get_stats, name="get_stats"),
-    path('feedback{0}/'.format(system_suffix), get_feedback, name="get_feedback"),
-    path('process_feedback{0}/<str:token>/'.format(system_suffix), process_feedback, name="process_feedback")
-    
+    path('feedback{0}/'.format(system_suffix),
+         get_feedback, name="get_feedback"),
+    path('process_feedback{0}/<str:token>/'.format(system_suffix),
+         process_feedback, name="process_feedback")
+
 ]

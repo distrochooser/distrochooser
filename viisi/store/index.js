@@ -29,11 +29,10 @@ const indexStore = new Vapi({
     method: 'default'
   }
 })
-  .get({
+  .post({
     action: 'start',
     property: 'data',
-    path: ({ language, refLinkEncoded }) =>
-      `start/${language}/${refLinkEncoded}/`
+    path: ({ language }) => `start/${language}/`
   })
   .get({
     action: 'language',
