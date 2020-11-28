@@ -279,7 +279,7 @@ msgid "scope-answer-fullinstall"
 msgstr "I prefer a distribution shipping all the basic programs I need to start working immediately after installation"
 
 msgid "scope-answer-ownselection"
-msgstr "I want to chose the basic programs to install myself"
+msgstr "I want to choose the basic programs to install myself"
 
 
 msgid "ideology-question"
@@ -734,3 +734,6 @@ msgstr "The text will be saved automatically"
 
 msgid "slow-release-model"
 msgstr "Available software versions may be older than latest version from vendor"
+
+msgid "requires-payment"
+msgstr "Long term usage requires payment"

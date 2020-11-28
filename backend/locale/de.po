@@ -703,3 +703,6 @@ msgstr "Der Text wird automatisch gespeichert"
 
 msgid "slow-release-model"
 msgstr "Software durch Releasemodell ggf. nur in verzögert in neuster Version verfügbar"
+
+msgid "requires-payment"
+msgstr "Kostenpflichtige Nutzung"

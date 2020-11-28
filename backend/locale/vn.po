@@ -734,3 +734,6 @@ msgstr "Văn bản sẽ được tự động lưu"
 
 msgid "slow-release-model"
 msgstr "Các phiên bản phần mềm có sẵn có thể cũ hơn phiên bản mới nhất từ nhà cung cấp"
+
+msgid "requires-payment"
+msgstr "Sử dụng trả phí"

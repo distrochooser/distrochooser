@@ -734,3 +734,6 @@ msgstr "Il testo verrà salvato automaticamente"
 
 msgid "slow-release-model"
 msgstr "Le versioni software disponibili possono essere più vecchie dell'ultima versione del fornitore"
+
+msgid "requires-payment"
+msgstr "Uso a pagamento"
