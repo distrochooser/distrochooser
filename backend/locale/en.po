@@ -65,7 +65,7 @@ msgid "special-features-category"
 msgstr "Software: Special features"
 
 msgid "recommendation-category"
-msgstr "your recommendation"
+msgstr "Show your results"
 
 msgid "welcome-text-title"
 msgstr "Welcome to distrochooser.de!"
