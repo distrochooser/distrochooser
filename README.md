@@ -33,19 +33,14 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://koji00.me/"><img src="https://avatars3.githubusercontent.com/u/43900679?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Minh Ngo</b></sub></a><br /><a href="#translation-streetsamurai00mi" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/igwigg"><img src="https://avatars2.githubusercontent.com/u/5790079?v=4?s=100" width="100px;" alt=""/><br /><sub><b>igwigg</b></sub></a><br /><a href="#translation-igwigg" title="Translation">🌍</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://allcontributors.org) specification.
 Contributions of any kind are welcome!
-
-## Third party elements
-
-We are using following elements from a third party:
-
-- https://en.wikipedia.org/wiki/MacOS_Catalina#/media/File:MacOS_Catalina_Desktop.png
-- https://de.wikipedia.org/wiki/Microsoft_Windows_10#/media/Datei:Windows10abstract.png
