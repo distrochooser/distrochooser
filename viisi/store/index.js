@@ -15,7 +15,7 @@ const indexStore = new Vapi({
     isStarted: false,
     result: null,
     translations: null,
-    locales: ['en', 'gb', 'us', 'de', 'it', 'cn', 'vn'],
+    locales: ['en', 'gb', 'us', 'de', 'it', 'cn', 'vn', 'ch'],
     voteResult: null,
     remarksAdded: false,
     language: 'en',
