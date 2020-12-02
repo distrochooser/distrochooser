@@ -33,6 +33,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://koji00.me/"><img src="https://avatars3.githubusercontent.com/u/43900679?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Minh Ngo</b></sub></a><br /><a href="#translation-streetsamurai00mi" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/igwigg"><img src="https://avatars2.githubusercontent.com/u/5790079?v=4?s=100" width="100px;" alt=""/><br /><sub><b>igwigg</b></sub></a><br /><a href="#translation-igwigg" title="Translation">🌍</a></td>
   </tr>
 </table>
 
