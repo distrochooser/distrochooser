@@ -1,1 +1,750 @@
+msgid "loading"
+msgstr "加载中"
 
+msgid "imprint"
+msgstr "訊息"
+
+msgid "privacy"
+msgstr "隱私"
+
+msgid "about"
+msgstr "關於"
+
+msgid "question-is-multiplechoice"
+msgstr "您可以選擇多個選項"
+
+msgid "vendor-text"
+msgstr "作者：chmr.eu"
+
+msgid "get-result"
+msgstr "查看結果"
+
+msgid "category-welcome"
+msgstr "歡迎!"
+
+msgid "software-use-case"
+msgstr "軟體：使用情況"
+
+msgid "computer-knowledge-category"
+msgstr "對電腦了解的程度"
+
+msgid "linux-knowledge-category"
+msgstr "Linux 和你"
+
+msgid "presets-category"
+msgstr "安裝：預設設定"
+
+msgid "hardware-category"
+msgstr "硬體支援"
+
+msgid "help-category"
+msgstr "尋求幫助"
+
+msgid "ux-concept-category"
+msgstr "使用者體驗"
+
+msgid "price-category"
+msgstr "發行版：價格"
+
+msgid "scope-category"
+msgstr "發行版：軟體範圍"
+
+msgid "ideology-category"
+msgstr "發行版：核心理念"
+
+msgid "privacy-category"
+msgstr "發行版：隱私"
+
+msgid "software-admin-category"
+msgstr "系統管理"
+
+msgid "software-updates-category"
+msgstr "軟體：升級"
+
+msgid "special-features-category"
+msgstr "軟體：特殊需求"
+
+msgid "recommendation-category"
+msgstr "顯示您的結果"
+
+msgid "welcome-text-title"
+msgstr "歡迎来到 distrochooser.de！"
+
+msgid "welcome-text"
+msgstr "歡迎！這個小測驗會幫您選擇一個適合您的發行版！"
+
+msgid "welcome-text-skip"
+msgstr "您隨時可以跳過問題"
+
+msgid "welcome-text-result-get"
+msgstr "您可以隨時可以點擊“您的結果”來查看结果"
+
+msgid "welcome-text-order"
+msgstr "您可以隨機順序回答問題"
+
+msgid "welcome-text-additional-infos"
+msgstr "您可以點擊問號來得到額外的提示"
+
+msgid "welcome-text-remove"
+msgstr "您可以隨時移除您的答案"
+
+msgid "welcome-text-feedback"
+msgstr "請根據結果是否符合您的需求來評分"
+
+msgid "welcome-text-importance"
+msgstr "標記所看中的答案"
+
+msgid "locale-link-en"
+msgstr "This text is available in English"
+
+msgid "locale-link-de"
+msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
+
+msgid "start-test"
+msgstr "開始問卷"
+
+msgid "prev-question"
+msgstr "返回"
+
+msgid "next-question"
+msgstr "前進"
+
+msgid "no-results"
+msgstr "對不起，我迷失了方向"
+
+msgid "about-header"
+msgstr "關於 distrochooser.de"
+
+msgid "vote-reminder"
+msgstr "您喜歡這個發行版嗎? 給它一個讚吧！"
+
+msgid "about-intro-text"
+msgstr ""
+"distrochooser.de 的目標是幫助初學者選擇需要的並符合自己需求的 Linux 發行"
+"版。<br>最後結果是根據您所選擇的答案。因為答案之間的相互關係是很複雜的，"
+"因此結果可能不符合您的需求。"
+
+msgid "about-intro-test-count"
+msgstr "自從2014年6月14日開始，distrochooser.de 已經完成了%tests%次測驗。"
+
+msgid "about-licenses"
+msgstr "Distrochooser 是雙重授權的。"
+
+msgid "privacy-header"
+msgstr "隱私權政策"
+
+msgid "imprint-header"
+msgstr "訊息"
+
+msgid "about-licenses-source"
+msgstr "程式碼"
+
+msgid "about-licenses-source-text"
+msgstr ""
+"程式碼是在「LICENSE」文件中的授權書下取得授權的，該文件位於連結的組件儲存庫中。"
+
+msgid "about-licenses-database"
+msgstr "資料庫"
+
+msgid "about-licenses-database-text"
+msgstr ""
+"背後的資料，包括問題/答案結構、結果方陣和數據統計，是 distrochooser.de 專有的。只有得到"
+"我們的許可，您才能夠使用。各發行版的說明及標誌均需獲得該版權持有人的同意。"
+
+msgid "no-results-text"
+msgstr ""
+"根據您的答案，Distrochooser 無法找到合適的結果。若您能夠撰寫一些回饋給我們，"
+"將會對我們來說很有幫助，讓我們繼續改善。"
+
+msgid "close-additional-info"
+msgstr "關閉"
+
+msgid "no-answers"
+msgstr "您沒有點選任何答案。"
+
+msgid "get-my-result"
+msgstr "顯示您的結果。"
+
+msgid "additional-info"
+msgstr "更多資訊"
+
+msgid "remark-placeholder"
+msgstr "您的回饋（最多3000個字）"
+
+msgid "distribution-homepage"
+msgstr "發行版的主頁"
+
+msgid "result-remarks-added"
+msgstr "感謝您的回饋！"
+
+msgid "share-result"
+msgstr "分享我的結果"
+
+msgid "software-use-case-question"
+msgstr "有些發行版適用於特殊情況，其他則適合日常的使用。您需要什麼呢？"
+
+msgid "software-use-case-answer-daily"
+msgstr "我想在日常生活中使用。"
+
+msgid "software-use-case-anonymous-answer"
+msgstr "我想用 Linux 進行匿名的網路瀏覽。"
+
+msgid "software-use-case-answer-gaming"
+msgstr "我想要用遊戲開發商支援的發行版。"
+
+msgid "computer-knowledge-question"
+msgstr "您對電腦的熟悉程度如何呢？"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "我經常需要他人來協助我解決電腦的問題"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "我可以獨自解決電腦一部分的問題"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "我可以解決大部分或全部的問題"
+
+msgid "linux-knowledge-question"
+msgstr "您使用 Linux 的了解程度如何呢？"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "我幾乎或完全不了解 Linux "
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "我已經使用過 Linux 來完成一些工作"
+
+msgid "linux-knowledge-answer-professional"
+msgstr "我相當了解如何使用 Linux"
+
+msgid "presets-question"
+msgstr "您希望在安裝過程中自行調整多少系統設定？您希望使用預設的設定又有多少呢？"
+
+msgid "presets-question-answer-manypresets"
+msgstr "我想使用安裝精靈提供的所有預設設定值"
+
+msgid "presets-question-answer-ownselection"
+msgstr "我想自己選擇電腦設定"
+
+msgid "presets-question-answer-guiselections"
+msgstr "我希望盡可能在圖像化介面上完成設定"
+
+msgid "hardware-question"
+msgstr ""
+"了解您的電腦硬體年齡是重要的，因為有些發行版不能在老舊的電腦上運行。"
+
+msgid "additional-info-hardware"
+msgstr ""
+"多年來，一些發行版一直使用32位元結構，只最多允許分配4G的記憶體。而較新的發行版則傾向"
+"32位元結構，轉而支援64位元，這允許分配超過4G的記憶體。從2005年以來，幾乎所有"
+"的電腦都應該支援64位元。"
+
+msgid "hardware-question-oldpc"
+msgstr "我並不確定電腦是否為64位元/我的電腦目前已有性能問題"
+
+msgid "hardware-question-newpc"
+msgstr "我的電腦性能良好，没有遇到任何性能問題，電腦也支援64位元"
+
+msgid "help-question"
+msgstr "有些發行版使用 wiki 文章協助使用者解決問題。您偏好如何取得協助呢？"
+
+msgid "help-question-tutorials"
+msgstr "我可以根據網路上的文章和 wiki 上的說明獨自解決問題"
+
+msgid "help-question-user-exchange"
+msgstr "我偏好尋求他人的協助"
+
+msgid "ux-concept-question"
+msgstr ""
+"Linux 可以使用許多不同的使用者介面（“桌面”）。許多發行版會提供一個預設桌面。了解"
+"您是否對桌面的概念有任何喜好是很重要的。您可以隨時切換和安裝新的桌面！"
+
+msgid "ux-concept-answer-windows-like"
+msgstr "我偏好 Windows 風格的使用者介面"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "我偏好 macOS 風格的使用者介面"
+
+msgid "ux-concept-tiling"
+msgstr "我偏好 tile-based 的視窗外觀"
+
+msgid "ux-concept-closed-expierience"
+msgstr "我偏好封閉的使用體驗"
+
+msgid "price-question"
+msgstr "大多數的發行版都是免費的。然而一些發行版提供額外、一次性的付費支持。"
+
+msgid "price-answer-free"
+msgstr "我偏好免費的發行版"
+
+msgid "price-answer-paid"
+msgstr "我願意付費使用"
+
+msgid "scope-question"
+msgstr ""
+"不同的發行版會有不同數量的內建程式。有些會安裝一整套基本程式來達到“開箱即"
+"用”的目的。有些發行版只提供基本安裝，然後讓使用者自己安裝想要使用的應用程式。"
+
+msgid "scope-answer-fullinstall"
+msgstr "我偏好一個預先安裝所有基本的程式，讓我能在安裝後立即開始使用"
+
+msgid "scope-answer-ownselection"
+msgstr "我想自行安裝應用程式"
+
+msgid "ideology-question"
+msgstr ""
+"發行版的(授權)發行理念時常有爭議。有些發行版主要使用「自由授權」，有些也會使"
+"用「非自由授權」的軟體。"
+
+msgid "additional-info-ideology"
+msgstr ""
+"自由授權允許使用者為任何目的修改、重新散布和使用軟體。然而在某些情況下，發行"
+"版必須使用非自由的軟體，例如硬體驅動程式。非自由軟體不會公開其程式碼，不允許"
+"任何形式的修改。"
+
+msgid "ideology-answer-free"
+msgstr "我想要盡可能的使用自由授權"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "只要我的系統正常工作，我能接受非自由授權"
+
+msgid "privacy-question"
+msgstr ""
+"有些發行版使用線上服務來提升使用者體驗。使用這類服務可能使用者被追蹤，進而影"
+"響到使用者的隱私。"
+
+msgid "privacy-answer-highprivacy"
+msgstr "我不想要這類服務"
+
+msgid "privacy-answer-services-ok"
+msgstr "如果可以提升我的使用體驗，我同意使用這類服務"
+
+msgid "software-admin-question"
+msgstr "管理 Linux 發行版有許多方法，比如說安裝軟體。"
+
+msgid "software-admin-answer-appstore"
+msgstr "我想使用「應用程式商店」來安裝軟體。 "
+
+msgid "software-admin-answer-console"
+msgstr "我想主要透過終端指令來安裝"
+
+msgid "special-features-qestion"
+msgstr ""
+"許多發行版使用「systemd」來啟動作業系統。有些發行版則會避免使用 systemd，並"
+"採用可替代的、有時更輕量的替代方法"
+
+msgid "additional-info-special-features-qestion"
+msgstr "一些發行版會為特殊目的設計。您需要以下哪些功能呢？"
+
+msgid "answer-isolation"
+msgstr "預設情況下，我想讓應用程式在互相隔離的環境中執行"
+
+msgid "software-updates-question"
+msgstr ""
+"有的發行版會提供較頻繁的更新，這可能會影響系統穩定性。您想要怎麼樣的更新呢？"
+
+msgid "software-updates-answer-fast"
+msgstr "我想要頻繁的更新"
+
+msgid "software-updates-answer-slow"
+msgstr "我想要穩定的更新"
+
+msgid "answer-avoid-systemd"
+msgstr "我希望避免使用 systemd"
+
+msgid "result-submitted-hint"
+msgstr "計算結果"
+
+msgid "reason-header-hint"
+msgstr "點擊發行版的名稱來查看此建議的詳細原因"
+
+msgid "reason-list-header"
+msgstr "符合/不符合的理由"
+
+msgid "answer-is-blocking"
+msgstr "以下的答案排除了該答案"
+
+msgid "answer-is-blocked"
+msgstr "該回答與您先前的回答相互矛盾"
+
+msgid "reason-blocked-by-others-entry"
+msgstr "「{0}」 不同意 「{1}」"
+
+msgid "additional-infos"
+msgstr "請給我更多的訊息！"
+
+msgid "make-important"
+msgstr "這很重要！"
+
+msgid "marked-as-important"
+msgstr "標示為重要"
+
+msgid "remove-important"
+msgstr "移除重要標記"
+
+msgid "reason-list-header-negative"
+msgstr "我們無法為您推薦該發行版因為："
+
+msgid "reason-list-header-neutral"
+msgstr "以下需求並没有考慮在內"
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "這個答案與您選擇的其他答案矛盾"
+
+msgid "matrix-supports-daily-usage"
+msgstr "適合日常使用"
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "發行版的概念不利於匿名使用"
+
+msgid "matrix-supports-gaming-usage"
+msgstr "發行版被遊戲開發商所支援"
+
+msgid "matrix-beginner-knowledge"
+msgstr "適合初學者"
+
+msgid "matrix-advanced-knowledge"
+msgstr "適合進階使用者"
+
+msgid "matrix-professional-knowledge"
+msgstr "適合專業使用者"
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "需要具備的 Linux 知識比回答的答案少"
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "需要具備的電腦知識比回答的答案少"
+
+msgid "matrix-linux-beginner"
+msgstr "適合 Linux 初學者"
+
+msgid "matrix-installation-presets-always-given"
+msgstr "安裝時選擇的設定選項可能在安裝後需要重新設定"
+
+msgid "matrix-installation-presets-gui"
+msgstr "可以通過圖像化介面完成大多設定"
+
+msgid "matrix-installation-assistant-present"
+msgstr "安裝時會使用安裝"精靈"中的預設設定"
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr "您也許會遇到視窗效果的延遲。有可能需要停用視覺動畫。"
+
+msgid "matrix-hardware-newpc"
+msgstr "可以在最新的硬體上運作"
+
+msgid "matrix-user-exchange"
+msgstr "有知識共享、互相幫助的使用者社群"
+
+msgid "matrix-tutorial"
+msgstr "有故障排除和問題解決的教學"
+
+msgid "matrix-mac-like"
+msgstr "使用者介面具有 macOS 元素"
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "使用者介面與 Windows 有很大的不同"
+
+msgid "matrix-closed-expierience"
+msgstr "擁有自己的桌布、圖示和主題"
+
+msgid "matrix-has-windows-like-variant"
+msgstr "擁有不少類似 Windows 介面的變化"
+
+msgid "matrix-paid-version-existing"
+msgstr "該發行版有一個非自由的版本"
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "軟體版本對遊戲來說可能還不夠新"
+
+msgid "matrix-has-live-mode"
+msgstr "有可從光碟開啟作業系統的 Live 模式"
+
+msgid "live-mode-only"
+msgstr "Live 模式：在安裝前透過使用光碟或 USB 試用系統"
+
+msgid "matrix-without-fee"
+msgstr "可免費使用"
+
+msgid "matrix-paid"
+msgstr "該發行版有一個非免費版本"
+
+msgid "matrix-fullinstall"
+msgstr "系統會安裝所有需要的程式"
+
+msgid "matrix-ownscope-install"
+msgstr "必須由您自行選擇所有要使用的應用程式"
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "系統會預設安裝非自由軟體"
+
+msgid "matrix-enforces-free"
+msgstr "系統會只能使用自由軟體"
+
+msgid "matrix-mostly-free"
+msgstr "系統會大部份使用自由軟體"
+
+msgid "matrix-has-default-settings"
+msgstr "系統會有預設設定"
+
+msgid "matrix-privacy-ok"
+msgstr "有利於保護使用者隱私"
+
+msgid "matrix-privacy-thirdparty"
+msgstr "預設狀況下會連結到第三方服務"
+
+msgid "matrix-appstore"
+msgstr "可以透過應用程式商店安裝軟體"
+
+msgid "matrix-console"
+msgstr "可以使用終端機(Terminal)安裝軟體"
+
+msgid "matrix-stable-updates"
+msgstr "通常會提供穩定的更新"
+
+msgid "matrix-fast-updates"
+msgstr "會以最快的速度推出軟體更新，但使得軟體較不穩定"
+
+msgid "matrix-has-control-panel"
+msgstr "會包含預先安裝的系統控制中心"
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "使用者必須自行選擇要使用的軟體"
+
+msgid "matrix-selection-by-user"
+msgstr "預先安裝的軟體由使用者決定"
+
+msgid "matrix-updates-fast"
+msgstr "更新速度較快，但可能較不穩定"
+
+msgid "matrix-not-for-beginner"
+msgstr "不適合初學者"
+
+msgid "matrix-avoids-systemd"
+msgstr "避免使用 systemd"
+
+msgid "matrix-uses-systemd"
+msgstr "使用 systemd"
+
+msgid "built-for-anonymization"
+msgstr "以為達到匿名性為基礎"
+
+msgid "matrix-administration-shell"
+msgstr "系統管理主要透過使用 shell 指令命令"
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "不支援32位元的電腦"
+
+msgid "matrix-requires-manual"
+msgstr "需閱讀使用手冊和教學"
+
+msgid "matrix-requires-advanced-knowledge"
+msgstr "需閱讀使用手冊"
+
+msgid "matrix-isolation-default"
+msgstr "系統以隔離原則為預設"
+
+msgid "matrix-oldpc-supported"
+msgstr "支援老舊電腦"
+
+msgid "checked-criteria-count"
+msgstr "面向檢查"
+
+msgid "searching-criteria"
+msgstr "正處理各發行版數據"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "作為日常使用可能會有很大的困難"
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "可用於日常工作情況，但以 Live 模式為基礎"
+
+msgid "matrix-packages-available"
+msgstr "有提供為達到匿名性的應用程式"
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "程式版本可能不足以執行遊戲"
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "可能需額外的遊戲設置"
+
+msgid "matrix-built-for-enterprise"
+msgstr "主要提供給企業使用"
+
+msgid "matrix-not-built-for-gaming"
+msgstr "沒有針對遊戲進行最佳化"
+
+msgid "requires-some-computer-knowledge"
+msgstr "需要較多的的電腦知識"
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "不適合初學者"
+
+msgid "matrix-installation-from-shell"
+msgstr "通過 shell 指令安裝"
+
+msgid "matrix-installs-range-of-programs"
+msgstr "系統會內建一系列的應用程式"
+
+msgid "matrix-configuration-from-shell"
+msgstr "大多數的設定是透過 shell 指令完成"
+
+msgid "matrix-middleweight"
+msgstr "中量級系統，適合沒那麼新的電腦"
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "支援多種硬體"
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "有個 “Zorin Lite” 版本，適合老舊電腦"
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr "有提供 “Cinnamon” 桌面環境的版本，外觀與 Windows 類似"
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "每個使用者都可以避免使用 systemd"
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "Systemd 會被提供在系統內，但不會預設啟用"
+
+msgid "matrix-supports-privacy"
+msgstr "只在使用網路服務時收集使用數據"
+
+msgid "matrix-lightweight"
+msgstr "輕量級發行版"
+
+msgid "matrix-free-userselection"
+msgstr "自由軟體的使用取決於使用者的選擇"
+
+# distribution descriptions
+msgid "description-manjaro"
+msgstr "Manjaro 是一個注重易於使用的滾動式發行版"
+
+msgid "description-ubuntu"
+msgstr "Ubuntu 是由 Canonical 公司開發的一個發行版"
+
+msgid "description-mint"
+msgstr "Linux Mint 是一個基於 Ubuntu 的發行版，預先安裝了非自由程式，比如多媒體編解碼器。"
+
+msgid "description-solus"
+msgstr "Solus OS 是一個滾動式發行版，最開始是基於 Chrome OS"
+
+msgid "description-arch"
+msgstr "Arch 一個遵守 KISS 原則的滾動式發行版"
+
+msgid "description-debian"
+msgstr "Debian 是一個注重穩定性的發行版"
+
+msgid "description-tails"
+msgstr "Tails 強調匿名化功能，可從 USB 隨身碟或光碟上使用"
+
+msgid "description-devuan"
+msgstr "Devuan 是一個不使用 systemd 工具的基於 Debian 發行版"
+
+msgid "description-opensuse"
+msgstr "openSUSE 的目標是提供一個穩定的、易於使用的發行版，主要提供給一般使用者"
+
+msgid "description-pclinuxos"
+msgstr "PCLinuxOS 是一個基於 Mandrake 的發行版，強調易於使用的界面"
+
+msgid "description-rhel"
+msgstr "Red hat Enterprise Linux (RHEL) 是一個企業導向和注重穩定性的發行版"
+
+msgid "description-centos"
+msgstr "CentOS 是基於 RHEL 的自由發行版"
+
+msgid "description-xubuntu"
+msgstr "Xubuntu 是一個基於 Ubuntu 的發行版，使用輕量级 Xfce 桌面環境"
+
+msgid "description-lubuntu"
+msgstr "Lubuntu 是一個基於 Ubuntu 的發行版，使用輕量级 LXDE 桌面環境"
+
+msgid "description-ubuntumate"
+msgstr "Ubuntu MATE 是一個基於 Ubuntu 發行版，使用輕量級 MATE 桌面環境"
+
+msgid "description-fedora"
+msgstr "Fedora 是一個由 Red Hat 支援的發行版，主要強調自由軟體"
+
+msgid "description-qubeos"
+msgstr "Qubes OS 使用虛擬機器隔離應用程式，以增加安全性"
+
+msgid "description-gentoo"
+msgstr "Gentoo 是一個較彈性並以進階使用者導向的發行版"
+
+msgid "description-mxlinux"
+msgstr "MX Linux 是一個中量級發行版，注重效率以及優雅的日常使用"
+
+msgid "description-fedora"
+msgstr "Fedora 是一個注重自由軟體的發行版。没有長期支援版本(LTS)，每6個月會發布新版本"
+
+msgid "description-knoppix"
+msgstr "Knoppix 是一個注重 Live 模式的作業系統，並有廣泛的硬體支援"
+
+msgid "description-cruxlinux"
+msgstr "Crux Linux 是一個輕量級的64位元作業系統，擁有最新的工具以及程式庫"
+
+msgid "description-zorinos"
+msgstr "Zorin OS 是一個初學者導向的發行版，具有類似 Windows 的使用者界面"
+
+msgid "description-elementaryos"
+msgstr "elementary OS 是一個基於 Ubuntu 的發行版，注重優雅而快速的使用者體驗"
+
+msgid "description-kubuntu"
+msgstr "Kubuntu 是一個以 Ubuntu 作為基礎的發行版，內建了 KDE 桌面環境"
+
+msgid "locale-en"
+msgstr "English"
+
+msgid "locale-de"
+msgstr "Deutsch"
+
+# update pack 26th december 2019
+msgid "debian-updates-slow"
+msgstr "Debian 的升级通常會很慢，但是很穩定"
+
+msgid "description-qubesos"
+msgstr "Qubes OS 在虛擬機器中運作，有助於安全性"
+
+msgid "software-use-case-isolation"
+msgstr "我想把所有的程式隔離執行"
+
+msgid "matrix-runs-in-isolation"
+msgstr "軟體在隔離的環境中執行"
+
+msgid "software-use-case-blind"
+msgstr "使用族群為視障者"
+
+msgid "matrix-knoppix-adriane"
+msgstr "ADRIANE 計劃為視障者提供了工具和解決方案"
+
+msgid "matrix-has-software-for-blind"
+msgstr "可安裝為視障者所設計的軟體（例如：“Orca”）"
+
+msgid "source"
+msgstr "圖片來源"
+
+msgid "description-void"
+msgstr "Void Linux 是一個不使用 systemd 的滾動發行版"
+
+msgid "skip-question"
+msgstr "跳過該問題"
+
+msgid "description-nixos"
+msgstr "NixOS 使用 Nix 套裝軟體管理器。使用陳述型設定並允許可靠的系統升級。"
+
+msgid "reasons-hide"
+msgstr "隱藏原因"
+
+msgid "description-artix"
+msgstr "Artix 是一個基於 Arch Linux 的發行版，使用 OpenRC 而非 systemd。"
+
+msgid "link-copied"
+msgstr "儲存到剪貼簿"
+
+msgid "remark-placeholder-saving"
+msgstr "文字會自動保存"
+
+msgid "slow-release-model"
+msgstr "由於發布模式的原因，軟體可能只有在最新版本中會有延遲。"
+
+msgid "requires-payment"
+msgstr "需付費使用"
