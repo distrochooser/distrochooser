@@ -56,11 +56,11 @@ export default {
       if (nonBlockingA < nonBlockingB) return 1
       if (nonBlockingA > nonBlockingB) return -1
 
-      if (negativeA > negativeB) return 1
-      if (negativeA < negativeB) return -1
-
       if (blockingA > blockingB) return 1
       if (blockingA < blockingB) return -1
+
+      if (negativeA > negativeB) return 1
+      if (negativeA < negativeB) return -1
 
       return 0
     }
