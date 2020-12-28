@@ -15,6 +15,8 @@
       a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
       a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
       a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
+      a(target="_blank", href="https://github.com/distrochooser/distrochooser" ) 
+        i.w-icon-github
     
     div.languages(v-if="!isLoading")
       span(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)")
@@ -262,6 +264,10 @@ export default {
   text-decoration: none;
   padding-right: 1em;
   font-size: small;
+
+  .w-icon-github {
+    vertical-align: text-top;
+  }
 }
 .spin-parent {
   text-align: center;
