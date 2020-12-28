@@ -37,9 +37,13 @@ export default {
   computed: {
     selections: function() {
       const _t = this
-      return this.$store.state.result.selections.concat().sort(function(a, b) {
-        return _t.getScore(a.reasons) < _t.getScore(b.reasons)
-      })
+      const sortedSelections = this.$store.state.result.selections
+        .concat()
+        .sort(function(a, b) {
+          return _t.scoreCompare(a.reasons, b.reasons)
+        })
+      console.log(sortedSelections)
+      return sortedSelections
     },
     isEmpty: function() {
       var nonEmpty = 0
