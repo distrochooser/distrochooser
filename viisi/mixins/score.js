@@ -48,10 +48,7 @@ export default {
       blocking += blockingImportanceOffset
       nonBlocking += nonBlockingImportanceOffset
       negative += negativeImportanceOffset
-      if (blocking === 0) {
-        return nonBlocking - negative
-      }
-      return -(blocking / nonBlocking) - negative
+      return nonBlocking - 0.075 * negative - 0.09 * blocking
     }
   }
 }
