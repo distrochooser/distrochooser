@@ -34,12 +34,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://koji00.me/"><img src="https://avatars3.githubusercontent.com/u/43900679?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Minh Ngo</b></sub></a><br /><a href="#translation-streetsamurai00mi" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/igwigg"><img src="https://avatars2.githubusercontent.com/u/5790079?v=4?s=100" width="100px;" alt=""/><br /><sub><b>igwigg</b></sub></a><br /><a href="#translation-igwigg" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://nathanbonnemains.squill.fr/"><img src="https://avatars.githubusercontent.com/u/45366162?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nathan Bonnemains</b></sub></a><br /><a href="#translation-NathanBnm" title="Translation">🌍</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-restore -->
+<!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://allcontributors.org) specification.
