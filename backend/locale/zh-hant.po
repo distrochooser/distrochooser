@@ -424,7 +424,7 @@ msgid "matrix-installation-presets-gui"
 msgstr "可以通過圖像化介面完成大多設定"
 
 msgid "matrix-installation-assistant-present"
-msgstr "安裝時會使用安裝"精靈"中的預設設定"
+msgstr "安裝時會使用安裝\"精靈\"中的預設設定"
 
 msgid "matrix-hardware-oldpc-ubuntu"
 msgstr "您也許會遇到視窗效果的延遲。有可能需要停用視覺動畫。"

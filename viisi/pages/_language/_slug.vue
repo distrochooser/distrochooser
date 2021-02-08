@@ -19,8 +19,8 @@
         i.w-icon-github
     
     div.languages(v-if="!isLoading")
-      span(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)")
-        i.flag-icon(:class="'flag-icon-'+locale", v-if="locale !== 'en'")
+      select
+        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale_key)",:selected="$store.state.language===locale_key") {{locale}}
    
 </template>
 <script>
@@ -79,16 +79,17 @@ export default {
   },
   methods: {
     prepareLanguageData: function() {
+      var allLocales = Object.keys(this.$store.state.locales)
       if (typeof this.$route.params.language === 'undefined') {
         // only apply the browser language if no language flag is set
         var browserLanguage = window.navigator.language.toLowerCase()
-        if (this.$store.state.locales.indexOf(browserLanguage) !== -1) {
+        if (allLocales.indexOf(browserLanguage) !== -1) {
           this.language = browserLanguage
         }
       } else {
         var lang =
           typeof this.$route.params.language !== 'undefined' &&
-          this.$store.state.locales.indexOf(this.$route.params.language) !== -1
+          allLocales.indexOf(this.$route.params.language) !== -1
             ? this.$route.params.language
             : 'en'
         this.language = lang
@@ -273,11 +274,7 @@ export default {
   text-align: center;
   margin-top: 3em;
 }
-.languages {
-  position: fixed;
-  right: 1em;
-  bottom: 1em;
-}
+
 .language {
   margin-right: 1em;
 }
