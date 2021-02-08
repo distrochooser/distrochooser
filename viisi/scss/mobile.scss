@@ -51,6 +51,10 @@
     left: 0px;
     top: unset !important;
   }
+
+  .footer select {
+    margin-right: unset !important;
+  }
   .answer-remark {
     left: 3em !important;
   }
@@ -68,16 +72,6 @@
   .additional-infos {
     width: 84% !important;
     margin-right: 1em !important;
-  }
-  .languages {
-    bottom: initial !important;
-    top: 1em !important;
-    left: initial !important;
-    right: 1em !important;
-    position: absolute !important;
-    select {
-      font-size: small;
-    }
   }
   .view-settings {
     display: none;
@@ -128,11 +122,6 @@
   }
   .step {
     font-size: small !important;
-  }
-  .languages {
-    margin-top: 0px;
-    width: 90px;
-    margin-right: 1em;
   }
   .welcome-text {
     font-size: 9pt !important;

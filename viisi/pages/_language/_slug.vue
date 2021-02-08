@@ -17,9 +17,8 @@
       a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
       a(target="_blank", href="https://github.com/distrochooser/distrochooser" ) 
         i.w-icon-github
-    
-    div.languages(v-if="!isLoading")
-      select
+      br
+      select(v-if="!isLoading")
         option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale_key)",:selected="$store.state.language===locale_key") {{locale}}
    
 </template>
@@ -270,14 +269,17 @@ export default {
     vertical-align: text-top;
   }
 }
+
+.footer select {
+  margin-top: 0.5em;
+  vertical-align: baseline;
+  margin-right: 1.5em;
+}
 .spin-parent {
   text-align: center;
   margin-top: 3em;
 }
 
-.language {
-  margin-right: 1em;
-}
 .flag-icon {
   cursor: pointer;
   font-size: 13pt;
