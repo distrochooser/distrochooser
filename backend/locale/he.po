@@ -1,0 +1,848 @@
+# Header entry was created by Lokalize.
+#
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
+"PO-Revision-Date: 2021-03-11 16:07+0200\n"
+"Project-Id-Version: \n"
+"Language-Team: Hebrew <kde-i18n-he@kde.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+msgid "loading"
+msgstr "כעת בטעינה"
+
+msgid "imprint"
+msgstr "imprint"
+
+msgid "privacy"
+msgstr "פרטיות"
+
+msgid "about"
+msgstr "על מיזם זה"
+
+msgid "question-is-multiplechoice"
+msgstr "You may choose multiple answers"
+
+msgid "vendor-text"
+msgstr "מיזם מאת chmr.eu"
+
+msgid "get-result"
+msgstr "קבלת התוצאות"
+
+msgid "category-welcome"
+msgstr "ברוך בואך!"
+
+msgid "software-use-case"
+msgstr "Software: Use case"
+
+msgid "computer-knowledge-category"
+msgstr "ידע במחשבים"
+
+msgid "linux-knowledge-category"
+msgstr "לינוקס ואני"
+
+msgid "presets-category"
+msgstr "Installation: Presets"
+
+msgid "hardware-category"
+msgstr "תמיכה בחומרה"
+
+msgid "help-category"
+msgstr "Source for help"
+
+msgid "ux-concept-category"
+msgstr "חוויית המשתמש"
+
+msgid "price-category"
+msgstr "הפצות: מחיר"
+
+msgid "scope-category"
+msgstr "הפצות: היקף"
+
+msgid "ideology-category"
+msgstr "הפצות: אידאולוגיה"
+
+msgid "privacy-category"
+msgstr "הפצות: פרטיות"
+
+msgid "software-admin-category"
+msgstr "Administration"
+
+msgid "software-updates-category"
+msgstr "תוכנה: עדכונים"
+
+msgid "special-features-category"
+msgstr "תוכנה: תכונות מיוחדות"
+
+msgid "recommendation-category"
+msgstr "הצגת התוצאות שלך"
+
+msgid "welcome-text-title"
+msgstr "ברוך בואך אל distrochooser.de!"
+
+msgid "welcome-text"
+msgstr "ברוך בואך! שאלון זה יעזור לך לבחור הפצת לינוקס מתאימה עבורך."
+
+msgid "welcome-text-skip"
+msgstr "תמיד אפשר לדלג על שאלות"
+
+msgid "welcome-text-result-get"
+msgstr "You can always click on 'your recommendation' to receive your result"
+
+msgid "welcome-text-order"
+msgstr "You may answer in arbitrary order"
+
+msgid "welcome-text-additional-infos"
+msgstr "You can receive additional information using the question mark icon"
+
+msgid "welcome-text-remove"
+msgstr "You can delete answers at any time"
+
+msgid "welcome-text-feedback"
+msgstr "נא לדרג את התוצאות שלך, לפי התאמתן לצרכים שלך."
+
+msgid "welcome-text-importance"
+msgstr "Mark answers as important to give them more weight"
+
+msgid "locale-link-en"
+msgstr "This text is available in english"
+
+msgid "locale-link-de"
+msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
+
+msgid "start-test"
+msgstr "התחלת השאלון"
+
+msgid "prev-question"
+msgstr "אחורה"
+
+msgid "next-question"
+msgstr "המשך"
+
+msgid "no-results"
+msgstr "סליחה, תעיתי בדרך"
+
+msgid "about-header"
+msgstr "על distrochooser.de"
+
+msgid "vote-reminder"
+msgstr "You like this distribution? Give it a thumbs up!"
+
+msgid "about-intro-text"
+msgstr ""
+"distrochooser.de attempts to help Linux beginners to choose a Linux"
+" distribution suited to their needs.<br>The given results are suggestions"
+" based on your answers. Sometimes results may be not as fitting, because of"
+" complex interactions between answers."
+
+msgid "about-intro-test-count"
+msgstr "Since the 14th of June 2014 distrochooser.de processed %tests% tests."
+
+msgid "about-licenses"
+msgstr "Distrochooser is dual-licensed."
+
+msgid "privacy-header"
+msgstr "Datenschutzerklärung"
+
+msgid "imprint-header"
+msgstr "Impressum"
+
+msgid "about-licenses-source"
+msgstr "קוד המקור"
+
+msgid "about-licenses-source-text"
+msgstr ""
+"The sourcecode is licensed under the license written in the 'LICENSE' file,"
+" which is placed in the linked repository."
+
+msgid "about-licenses-database"
+msgstr "מסד הנתונים"
+
+msgid "about-licenses-database-text"
+msgstr ""
+"The underlying data, including the question/answer structure, the result"
+" matrix and statistics, are proprietary. You may use them only with our prior"
+" permission. The description texts and logos of the various distributions are"
+" subject to the licences of the respective copyright holders."
+
+msgid "no-results-text"
+msgstr ""
+"Distrochooser was not able to find a suitable result based on your answers."
+" It would be great help, if you would write us some feedback, so that we can"
+" investigate this."
+
+msgid "close-additional-info"
+msgstr "סגירה"
+
+msgid "no-answers"
+msgstr "לא ענית על השאלות."
+
+msgid "get-my-result"
+msgstr "להצגת התוצאות שלך."
+
+msgid "additional-info"
+msgstr "מידע נוסף"
+
+msgid "remark-placeholder"
+msgstr "המשוב שלך (עד 3000 תווים)"
+
+msgid "distribution-homepage"
+msgstr "דף הבית של ההפצה"
+
+msgid "result-remarks-added"
+msgstr "תודה רבה על המשוב שלך!"
+
+msgid "share-result"
+msgstr "שיתוף התוצאות שלי"
+
+msgid "software-use-case-question"
+msgstr ""
+"Some distributions are made for a special purpose, some for daily use. What"
+" do you need?"
+
+msgid "software-use-case-answer-daily"
+msgstr "אני רוצה הפצה לשימוש יומיומי."
+
+msgid "software-use-case-anonymous-answer"
+msgstr "I want to use Linux for anonymous web browsing."
+
+msgid "software-use-case-answer-gaming"
+msgstr "I prefer a distribution which is supported by game publishers."
+
+msgid "computer-knowledge-question"
+msgstr "How would you rate your proficiency using a computer?"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "לעיתים קרובות יש לי צורך בעזרה מאחרים לתיקון הבעיות במחשב שלי"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "I am already able to solve some computer problems by myself"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "ביכולתי לפתור את רב או כל הבעיות במחשב בעצמי"
+
+msgid "linux-knowledge-question"
+msgstr "How would you rate your knowledge of Linux itself?"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "I have little or no knowledge about Linux"
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "I have already used Linux for some purposes"
+
+msgid "linux-knowledge-answer-professional"
+msgstr "I have a good understanding about the Linux operating system"
+
+msgid "presets-question"
+msgstr ""
+"How many settings do you wish to tweak by yourself during installation? How"
+" many configuration variables should be filled with default values?"
+
+msgid "presets-question-answer-manypresets"
+msgstr "I want to use the default preset values in the installation assistant"
+
+msgid "presets-question-answer-ownselection"
+msgstr "I want to choose the settings by myself"
+
+msgid "presets-question-answer-guiselections"
+msgstr "I want to configure as much as possible using graphical applications"
+
+msgid "hardware-question"
+msgstr ""
+"It is important to know how old your computer hardware is, since some"
+" distributions won't run on old computers."
+
+msgid "additional-info-hardware"
+msgstr ""
+"For years, some distribution were using the 32 bit architecture, which allows"
+" to allocate up to 4 gigabytes of memory. Newer distributions tend to ditch"
+" the 32 bit in favour of the 64 bit support, which allows to allocate more"
+" than 4 gigabytes of memory. Since 2005 nearly all Computers should support"
+" 64 bit."
+
+msgid "hardware-question-oldpc"
+msgstr ""
+"לא החלטתי לגבי זה ו/או למחשב שלי כבר יש בעיות בביצועים ו/או תומך ב־32 סיביות"
+" בלבד"
+
+msgid "hardware-question-newpc"
+msgstr ""
+"The performance of my computer is good, I don't experience any performance"
+" issues, my hardware supports 64 bit"
+
+msgid "help-question"
+msgstr ""
+"Some distributions prefer articles in wikis for troubleshooting. What do you"
+" prefer?"
+
+msgid "help-question-tutorials"
+msgstr ""
+"I am able to solve my problems using guides from wiki pages or tutorials"
+
+msgid "help-question-user-exchange"
+msgstr "עדיף לי לבקש עזרה מאחרים"
+
+msgid "ux-concept-question"
+msgstr ""
+"Linux can use a lot of different User Interfaces (\"Desktops\"). Many"
+" distributions ship one desktop as default. It is important to know if you"
+" have any preferences for a desktop concept. You can switch and install new"
+" desktops at any time!"
+
+msgid "ux-concept-answer-windows-like"
+msgstr "עדיף לי ממשק משתמש שדומה לזה של Windows"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "I prefer a macOS-like user interface"
+
+msgid "ux-concept-tiling"
+msgstr "I prefer a tile-based window appearance"
+
+msgid "ux-concept-closed-expierience"
+msgstr "עדיפה לי חווייה סגורה"
+
+msgid "price-question"
+msgstr ""
+"Most distributions are free. Some distributions offer additional support for"
+" a one-time fee."
+
+msgid "price-answer-free"
+msgstr "עדיפה לי הפצה חינמית לשימוש"
+
+msgid "price-answer-paid"
+msgstr "I would be fine to pay a fee"
+
+msgid "scope-question"
+msgstr ""
+"Different distributions pre-install different amounts of software. Some"
+" install a complete suite of basic programs to work \"out of the box\". Other"
+" distributions offer only a base install to then let the user install what"
+" programs they want to use."
+
+msgid "scope-answer-fullinstall"
+msgstr ""
+"I prefer a distribution shipping all the basic programs I need to start"
+" working immediately after installation"
+
+msgid "scope-answer-ownselection"
+msgstr "I want to choose the basic programs to install myself"
+
+msgid "ideology-question"
+msgstr ""
+"The (license) ideology of a distribution is a contentious debate. There are"
+" distributions using mostly \"free-licenses\", others also use \"non-free\""
+" software."
+
+msgid "additional-info-ideology"
+msgstr ""
+"Free licenses allow the user to modify, redistribute and use the software for"
+" any purpose. There are situations where a distribution has to use non-free"
+" software, for example for hardware drivers. Non-free software does not"
+" distribute it's sourcecode and modifications are not allowed."
+
+msgid "ideology-answer-free"
+msgstr "ברצוני להשתמש ברישיונות חופשיים ככל יכולתי"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "I'm fine with non-free licenses as long as my system works"
+
+msgid "privacy-question"
+msgstr ""
+"Some distributions use online services to improve the user experience. This"
+" may affect the privacy of the user, i.e. the user can be tracked when using"
+" such online features."
+
+msgid "privacy-answer-highprivacy"
+msgstr "אני לא רוצה את זה"
+
+msgid "privacy-answer-services-ok"
+msgstr ""
+"If it improves my user experience, I agree with using such online services"
+
+msgid "software-admin-question"
+msgstr ""
+"There are many ways to administrate a Linux distribution, e. g. to install"
+" software."
+
+msgid "software-admin-answer-appstore"
+msgstr "ברצוני להתקין את התכניות שלי בעזרת סוג של \"חנות יישומים\""
+
+msgid "software-admin-answer-console"
+msgstr "I want to install software mostly using terminal commands"
+
+msgid "special-features-qestion"
+msgstr ""
+"Some distributions have additional features for specific purposes. Do I need"
+" such features?"
+
+msgid "additional-info-special-features-qestion"
+msgstr ""
+"Many distributions use 'systemd' to start the operating system itself. Some"
+" distributions avoid systemd in favor of alternative and sometimes more"
+" lightweight solutions"
+
+msgid "answer-isolation"
+msgstr "Applications should be executed in a isolated environment by default"
+
+msgid "software-updates-question"
+msgstr ""
+"Some distributions offer faster updates, which can affect system stability."
+" What do you prefer?"
+
+msgid "software-updates-answer-fast"
+msgstr "עדיפים לי עדכונים מהירים"
+
+msgid "software-updates-answer-slow"
+msgstr "עדיפים לי עדכונים יציבים"
+
+msgid "answer-avoid-systemd"
+msgstr "ברצוני להימנע מ־systemd"
+
+msgid "result-submitted-hint"
+msgstr "כעת בחישוב התוצאות"
+
+msgid "reason-header-hint"
+msgstr ""
+"Click on the distribution name to see detailed reasons for this recommendation"
+
+msgid "reason-list-header"
+msgstr "סיבות בעד/נגד"
+
+msgid "answer-is-blocking"
+msgstr "Following answers are excluding this answer"
+
+msgid "answer-is-blocked"
+msgstr "This answer contradicts this former answer you have given"
+
+msgid "reason-blocked-by-others-entry"
+msgstr "\"{0}\" disagrees \"{1}\""
+
+msgid "additional-infos"
+msgstr "give me additional information!"
+
+msgid "make-important"
+msgstr "זה חשוב!"
+
+msgid "marked-as-important"
+msgstr "Marked as important"
+
+msgid "remove-important"
+msgstr "Remove importance"
+
+msgid "reason-list-header-negative"
+msgstr "We cannot recommend this distribution for you because:"
+
+msgid "reason-list-header-neutral"
+msgstr "The following criteria were not factored into this"
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "This answer is blocked by other answers you have given"
+
+msgid "matrix-supports-daily-usage"
+msgstr "מתאימה לשימוש יומיומי"
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "Distribution concept is not beneficial for anonymisation purposes"
+
+msgid "matrix-supports-gaming-usage"
+msgstr "Distribution is actively supported by game publishers"
+
+msgid "matrix-beginner-knowledge"
+msgstr "מתאימה למתחילים"
+
+msgid "matrix-advanced-knowledge"
+msgstr "מתאימה למשתמשים מתקדמים"
+
+msgid "matrix-professional-knowledge"
+msgstr "מתאימה למומחים"
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "Usage requires less Linux knowledge than answered"
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "Usage requires less computer knowledge than answered"
+
+msgid "matrix-linux-beginner"
+msgstr "מתאימה למתחילים בלינוקס"
+
+msgid "matrix-installation-presets-always-given"
+msgstr "The installation sets presets which may need to be reset after install"
+
+msgid "matrix-installation-presets-gui"
+msgstr "Many settings can be done via a graphical interface"
+
+msgid "matrix-installation-assistant-present"
+msgstr "The installation uses a installation 'wizard' with default settings"
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr ""
+"You may encounter window compositor effect lags. It may be necessary to"
+" disable animations."
+
+msgid "matrix-hardware-newpc"
+msgstr "Runs on latest hardware"
+
+msgid "matrix-user-exchange"
+msgstr "There are user communities for knowledge sharing"
+
+msgid "matrix-tutorial"
+msgstr "There are tutorials for troubleshooting and problem-solving"
+
+msgid "matrix-mac-like"
+msgstr "GUI concept has elements of macOS"
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "GUI concept differs from Windows a lot"
+
+msgid "matrix-closed-expierience"
+msgstr "עם רקעים, סמלים וערכות נושא משלה"
+
+msgid "matrix-has-windows-like-variant"
+msgstr "Has variants with a windows-like user interface"
+
+msgid "matrix-paid-version-existing"
+msgstr "There is a non-free version of this distribution"
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "Software versions may not be recent enough for gaming"
+
+msgid "matrix-has-live-mode"
+msgstr "Has a live mode which allows starting from disc"
+
+msgid "live-mode-only"
+msgstr ""
+"Has Live Mode: Can be started using discs or usb sticks to test it out"
+" (before installing)"
+
+msgid "matrix-without-fee"
+msgstr "Usable without fee"
+
+msgid "matrix-paid"
+msgstr "There is a fee-based version of this distribution"
+
+msgid "matrix-fullinstall"
+msgstr "מותקנת עם כל התכניות הנחוצות"
+
+msgid "matrix-ownscope-install"
+msgstr "All programs to be used must be chosen by yourself"
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "Closed source programs are installed by default"
+
+msgid "matrix-enforces-free"
+msgstr "Enforces usage of free software"
+
+msgid "matrix-mostly-free"
+msgstr "Works mostly with free software"
+
+msgid "matrix-has-default-settings"
+msgstr "Has default settings"
+
+msgid "matrix-privacy-ok"
+msgstr "Beneficial for user privacy"
+
+msgid "matrix-privacy-thirdparty"
+msgstr "Connects to third party services by default"
+
+msgid "matrix-appstore"
+msgstr "אפשר להתקין תוכנה בעזרת חנות יישומים"
+
+msgid "matrix-console"
+msgstr "Software installation can be done using the terminal"
+
+msgid "matrix-stable-updates"
+msgstr "Updates are mostly stable when published"
+
+msgid "matrix-fast-updates"
+msgstr ""
+"Software updates are released as fast as possible, which makes them unstable"
+
+msgid "matrix-has-control-panel"
+msgstr "Contains a pre-installed control center"
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "על המשתמשים לבחור באיזו תוכנה להשתמש"
+
+msgid "matrix-selection-by-user"
+msgstr "Scope of pre-installed programs is decided by user"
+
+msgid "matrix-updates-fast"
+msgstr "Updates are fast, but can be unstable"
+
+msgid "matrix-not-for-beginner"
+msgstr "לא מתאימה למתחילים"
+
+msgid "matrix-avoids-systemd"
+msgstr "רוצה להימנע מ־systemd"
+
+msgid "matrix-uses-systemd"
+msgstr "uses systemd"
+
+msgid "built-for-anonymization"
+msgstr "Build for anonymisation purposes"
+
+msgid "matrix-administration-shell"
+msgstr "Administration is mostly done by using shell commands"
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "Does not support old computers without 64 bit support"
+
+msgid "matrix-requires-manual"
+msgstr "Requires reading of manuals and tutorials"
+
+msgid "matrix-requires-advanced-knowledge"
+msgstr "Requires reading up in manuals for usage"
+
+msgid "matrix-isolation-default"
+msgstr "Has a isolation concept by default"
+
+msgid "matrix-oldpc-supported"
+msgstr "Supports even older computers"
+
+msgid "checked-criteria-count"
+msgstr "aspects checked"
+
+msgid "searching-criteria"
+msgstr "processing the criteria library"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "Daily usage may result in major difficulties"
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "Can be used for daily work, but is built for live-mode"
+
+msgid "matrix-packages-available"
+msgstr "Programs for anonymisation purposes are available"
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "Programs versions may not be up-to-date enough for gaming"
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "May require additional configuration for gaming"
+
+msgid "matrix-built-for-enterprise"
+msgstr "Primary goal is enterprise usage"
+
+msgid "matrix-not-built-for-gaming"
+msgstr "Not optimized for gaming"
+
+msgid "requires-some-computer-knowledge"
+msgstr "Requires further knowledge about computers"
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "לא מתאימה למתחילים"
+
+msgid "matrix-installation-from-shell"
+msgstr "Installation is done using the terminal"
+
+msgid "matrix-installs-range-of-programs"
+msgstr "Installs a range of program by default"
+
+msgid "matrix-configuration-from-shell"
+msgstr "Majority of configuration is done using shell commands"
+
+msgid "matrix-middleweight"
+msgstr ""
+"Is a middleweight system, especially suitable for semi-recent computers"
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "Supports a wide range of hardware"
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "Has a 'Zorin Lite' version for older computers"
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr ""
+"A variant ships the 'cinnamon' desktop environment, which has a Windows-like"
+" appearance"
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "Systemd can be avoided per user selection"
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "Systemd is shipped, but disabled by default"
+
+msgid "matrix-supports-privacy"
+msgstr "Only collects data when online services are used"
+
+msgid "matrix-lightweight"
+msgstr "הפצה קלילה"
+
+msgid "matrix-free-userselection"
+msgstr "Usage of free software depends on user selection"
+
+# distribution descriptions
+msgid "description-manjaro"
+msgstr "Manjaro היא הפצה רציפה ששמה דגש על ידידותיות למשתמשים"
+
+msgid "description-ubuntu"
+msgstr "Ubuntu is a Distribution build by the company Canonical"
+
+msgid "description-mint"
+msgstr ""
+"Linux Mint is a Ubuntu based distribution with pre-installed proprietary"
+" components, such as multimedia codecs."
+
+msgid "description-solus"
+msgstr "Solus OS היא הפצה רציפה שהחלה כחיקוי ל־Chrome OS"
+
+msgid "description-arch"
+msgstr "Arch is a rolling release distribution based on the KISS principle"
+
+msgid "description-debian"
+msgstr "Debian is a distribution with high focus on stability"
+
+msgid "description-tails"
+msgstr ""
+"Anonymisation is the main focus of Tails, which can be used from USB or"
+" optical discs"
+
+msgid "description-devuan"
+msgstr "Devuan is a Debian clone without usage of the systemd toolkit"
+
+msgid "description-opensuse"
+msgstr ""
+"OpenSuse aims to deliver a stable and user-friendly distribution, mostly for"
+" end users"
+
+msgid "description-pclinuxos"
+msgstr ""
+"PCLinuxOS is a Mandrake-based distribution focused on a user-friendly"
+" interface."
+
+msgid "description-rhel"
+msgstr ""
+"Red hat Enterprise Linux (RHEL) is a enterprise and stability focused"
+" distribution"
+
+msgid "description-centos"
+msgstr "CentOS היא הפצה חופשית המבוססת על RHEL"
+
+msgid "description-xubuntu"
+msgstr ""
+"Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE"
+" desktop environment"
+
+msgid "description-lubuntu"
+msgstr ""
+"Lubuntu is an Ubuntu-based distribution powered by the lightweight LXDE"
+" desktop environment"
+
+msgid "description-ubuntumate"
+msgstr ""
+"Ubuntu MATE is an Ubuntu-based distribution powered by the lightweight MATE"
+" desktop environment"
+
+msgid "description-fedora"
+msgstr ""
+"Fedora is a Red hat backed distribution with a large focus on free software"
+
+msgid "description-qubeos"
+msgstr ""
+"Qubes OS isolates applications using virtual machines to improve security"
+
+msgid "description-gentoo"
+msgstr "Gentoo is a flexible distribution for advanced users"
+
+msgid "description-mxlinux"
+msgstr ""
+"MX Linux is a middleweight resource usage distribution with focus on a"
+" efficient and elegant daily usage."
+
+msgid "description-fedora"
+msgstr ""
+"Fedora is a distribution with focus on free software. Fedora is released"
+" without a long term support, shipping a new version every 6 months."
+
+msgid "description-knoppix"
+msgstr ""
+"Knoppix is a live-mode focused operating system with a wide range of hardware"
+" support"
+
+msgid "description-cruxlinux"
+msgstr ""
+"Crux Linux is a lightweight 64 bit focused operating system with recent tools"
+" and libraries"
+
+msgid "description-zorinos"
+msgstr ""
+"Zorin OS is a beginner focused distribution with a windows-like user interface"
+
+msgid "description-elementaryos"
+msgstr ""
+"elementary OS is a ubuntu-based distribution, focused on an elegant and fast"
+" user experience"
+
+msgid "description-kubuntu"
+msgstr ""
+"Kubuntu is an ubuntu-based distribution with a pre-installed KDE as a desktop"
+
+msgid "locale-en"
+msgstr "english"
+
+msgid "locale-de"
+msgstr "deutsch"
+
+# update pack 26th december 2019
+msgid "debian-updates-slow"
+msgstr "Debian updates are usually slow in favor of stability"
+
+msgid "description-qubesos"
+msgstr "Qubes OS executes processes in virtual machines in favor of security"
+
+msgid "software-use-case-isolation"
+msgstr "I want to execute all programs in an isolated area"
+
+msgid "matrix-runs-in-isolation"
+msgstr "Software execution happens in isolated environments"
+
+msgid "software-use-case-blind"
+msgstr "The user is visually impaired"
+
+msgid "matrix-knoppix-adriane"
+msgstr ""
+"The ADRIANE project offers tools and solutions for visually impaired people"
+
+msgid "matrix-has-software-for-blind"
+msgstr "Software for visually impaired people are installable (e. g. 'Orca')"
+
+msgid "source"
+msgstr "מקור התמונה"
+
+msgid "description-void"
+msgstr "Void Linux היא הפצה רציפה ללא systemd"
+
+msgid "skip-question"
+msgstr "דילוג על השאלה"
+
+msgid "description-nixos"
+msgstr ""
+"NixOS uses the Nix package manager.  It uses declarative configuration and"
+" allows reliable system upgrades."
+
+msgid "reasons-hide"
+msgstr "הצגת הסיבות"
+
+msgid "description-artix"
+msgstr ""
+"Artix is an Arch Linux based distribution which utilizes OpenRC instead of"
+" systemd."
+
+msgid "link-copied"
+msgstr "Pasted to clipboard"
+
+msgid "remark-placeholder-saving"
+msgstr "The text will be saved automatically"
+
+msgid "slow-release-model"
+msgstr ""
+"Available software versions may be older than latest version from vendor"
+
+msgid "requires-payment"
+msgstr "Long term usage requires payment"
