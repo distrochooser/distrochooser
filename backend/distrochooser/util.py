@@ -6,6 +6,7 @@ from django.http import JsonResponse, Http404
 from django.forms.models import model_to_dict
 from distrochooser.models import Question, Answer
 
+
 def get_json_response(data) -> JsonResponse:
     """
     Returns a HTTP Response with Content-Type application/JSON from the given data parameter
@@ -39,7 +40,8 @@ def get_step_data(category_index: int) -> dict:
         raise Http404("Question unknown")
 
     question = results.first()
-    answers = Answer.objects.filter(question=question, isDisabled=False)
+    answers = Answer.objects.filter(
+        question=question, isDisabled=False).order_by("orderIndex")
     response_answers = []
     for answer in answers:
         blocked_answers = []
@@ -51,7 +53,7 @@ def get_step_data(category_index: int) -> dict:
             "mediaSourcePath": answer.mediaSourcePath
         })
     return {
-      "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice', 'additionalInfo', 'isMediaQuestion')),
-      "category": model_to_dict(question.category),
-      "answers":  response_answers
+        "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice', 'additionalInfo', 'isMediaQuestion')),
+        "category": model_to_dict(question.category),
+        "answers":  response_answers
     }
