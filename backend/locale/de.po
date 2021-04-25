@@ -112,6 +112,9 @@ msgstr "Über distrochooser.de"
 msgid "vote-reminder"
 msgstr "Dir gefällt diese Distribution? Gib uns Feedback!"
 
+msgid "vote-reminder-negative"
+msgstr "Dir gefällt diese Distribution nicht? Gib uns Feedback!"
+
 msgid "about-intro-text"
 msgstr "Das Ziel von Distrochooser ist es, Anfängern eine Orientierungshilfe in Linux zu geben. Das Ergebnis ist dabei lediglich eine Orientierungshilfe und ist kein Orakel"
 

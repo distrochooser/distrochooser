@@ -118,6 +118,9 @@ msgstr "关于 distrochooser.de"
 msgid "vote-reminder"
 msgstr "您喜欢这个发行版吗？给它点个赞吧！"
 
+msgid "vote-reminder-negative"
+msgstr "你不喜欢这个发行版吗？ 单击拇指向下！ !"
+
 msgid "about-intro-text"
 msgstr ""
 "distrochooser.de 的目标是帮助初学者选择他们需要的、适合自己的 Linux 发行"

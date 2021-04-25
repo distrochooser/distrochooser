@@ -116,7 +116,10 @@ msgid "about-header"
 msgstr "About distrochooser.de"
 
 msgid "vote-reminder"
-msgstr "You like this distribution? Give it a thumbs up!"
+msgstr "You like this distribution? Give it a heart!"
+
+msgid "vote-reminder-negative"
+msgstr "You don't like this distribution? Give it a thumbs down!"
 
 msgid "about-intro-text"
 msgstr "distrochooser.de attempts to help Linux beginners to choose a Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers."

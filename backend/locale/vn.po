@@ -118,6 +118,9 @@ msgstr "Về distrochooser.de"
 msgid "vote-reminder"
 msgstr "Bạn thích bản phân phối này? Hãy cho nó một lượt thích!"
 
+msgid "vote-reminder-negative"
+msgstr "Bạn không thích bản phân phối này? Nhấp vào không thích!"
+
 msgid "about-intro-text"
 msgstr "distrochooser.de cố gắng giúp những người mới bắt đầu sử dụng Linux chọn một bản phân phối phù hợp với nhu cầu của họ.<br>Kết quả đưa ra là gợi ý dựa trên câu trả lời của bạn. Đôi khi kết quả có thể không phù hợp vì sự ảnh hưởng phức tạp giữa các câu trả lời."
 

@@ -113,6 +113,9 @@ msgstr "Über distrochooser.de"
 msgid "vote-reminder"
 msgstr "Gfaut dir die Distribution? De gib üs doch es Feedback!"
 
+msgid "vote-reminder-negative"
+msgstr "Gfaut dir die Distribution nit? De gib üs doch es Feedback!"
+
 msgid "about-intro-text"
 msgstr "Ds Zieu vo Distrochooser isches, Afänger ä Orientierigshiuf bi Linux z gäh. Z Ergäbnis isch nur ä Orientierigshiuf u kes Orakel"
 

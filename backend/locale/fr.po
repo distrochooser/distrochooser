@@ -118,6 +118,9 @@ msgstr "À propos de distrochooser.de"
 msgid "vote-reminder"
 msgstr "Vous aimez cette distribution ? Mettez-lui un pouce en l'air !"
 
+msgid "vote-reminder-negative"
+msgstr "Vous n'aimez pas cette distribution ? Cliquez sur les pouces en bas !"
+
 msgid "about-intro-text"
 msgstr "distrochooser.de tente d'aider les débutants à choisir une distribution Linux adaptée à leurs besoins.<br>Les résultats donnés sont des suggestions basées sur vos réponses. Les résultats peuvent parfois ne pas être aussi pertinents, en raison des interactions complexes entre les réponses."
 
