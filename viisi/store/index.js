@@ -16,14 +16,14 @@ const indexStore = new Vapi({
     result: null,
     translations: null,
     locales: {
-      en: 'english',
-      de: 'deutsch',
-      it: 'italiano',
-      zh: '中文',
-      'zh-hant': '中國傳統的）',
+      en: 'English',
+      de: 'Deutsch',
+      it: 'Italiano',
+      'zh-hans': '简体中文',
+      'zh-hant': '繁體中文',
       vn: 'Tiếng Việt',
-      ch: 'schwizerdütsch',
-      fr: 'français'
+      ch: 'Schwizerdütsch',
+      fr: 'Français'
     },
     voteResult: null,
     remarksAdded: false,
