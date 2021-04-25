@@ -24,7 +24,7 @@
     "express": "^4.16.3",
     "flag-icon-css": "^3.4.2",
     "node-sass": "4.14.1",
-    "nuxt": "2.3.4",
+    "nuxt": "2.15.2",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
     "spinkit": "^1.2.5",
@@ -41,7 +41,7 @@
     "node-sass": "4.14.1",
     "nodemon": "^1.11.0",
     "prettier": "1.14.3",
-    "pug": "^2.0.3",
+    "pug": ">=3.0.1",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0"
   }
