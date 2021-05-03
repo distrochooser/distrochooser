@@ -6,7 +6,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
-"PO-Revision-Date: 2021-05-03 19:50+0300\n"
+"PO-Revision-Date: 2021-05-03 20:10+0300\n"
 "Project-Id-Version: \n"
 "Language-Team: Hebrew <>\n"
 "Language: he_IL\n"
@@ -36,7 +36,7 @@ msgid "get-result"
 msgstr "הצג תוצאות"
 
 msgid "category-welcome"
-msgstr "ברוך הבא!"
+msgstr "ברוך בואך!"
 
 msgid "software-use-case"
 msgstr "תוכנה: מטרת השימוש"
@@ -84,7 +84,7 @@ msgid "recommendation-category"
 msgstr "להצגת התוצאות שלך"
 
 msgid "welcome-text-title"
-msgstr "ברוך הבא אל distrochooser.de!"
+msgstr "ברוך בואך אל distrochooser.de!"
 
 msgid "welcome-text"
 msgstr "ברוך בואך! שאלון זה יעזור לך לבחור הפצת לינוקס מתאימה עבורך."
@@ -227,10 +227,10 @@ msgid "computer-knowledge-answer-advanced"
 msgstr "I am already able to solve some computer problems by myself"
 
 msgid "computer-knowledge-answer-professional"
-msgstr "באפשרותי לפתור את רוב או את כל הבעיות במחשב בעצמי"
+msgstr "ביכולתי לפתור את רוב או את כל הבעיות במחשב בעצמי"
 
 msgid "linux-knowledge-question"
-msgstr "How would you rate your knowledge of Linux itself?"
+msgstr "איך היית מדרג/ת את הידע שלך בלינוקס עצמה?"
 
 msgid "linux-knowledge-answer-beginner"
 msgstr "יש לי ידע קטן או אפסי בנוגע ללינוקס"
@@ -284,7 +284,7 @@ msgstr ""
 " prefer?"
 
 msgid "help-question-tutorials"
-msgstr "באפשרותי לתקן את הבעיות במחשבי בעזרת הנחיות מדפי ויקי או מדריכים"
+msgstr "ביכולתי לתקן את הבעיות במחשבי בעזרת הנחיות מדפי ויקי או מדריכים"
 
 msgid "help-question-user-exchange"
 msgstr "אני מעדיף/ה לבקש עזרה מאחרים"
@@ -370,7 +370,7 @@ msgstr ""
 " software."
 
 msgid "software-admin-answer-appstore"
-msgstr "אני רוצה להתקין את התכניות שלי בעזרת \"חנות אפליקציות\""
+msgstr "אני רוצה להתקין את התכניות שלי בעזרת \"חנות יישומים\""
 
 msgid "software-admin-answer-console"
 msgstr "אני רוצה להתקין תוכנה באמצעות פקודות במסוף ברוב הפעמים"
@@ -431,7 +431,7 @@ msgid "marked-as-important"
 msgstr "סומן כחשוב"
 
 msgid "remove-important"
-msgstr "הסר חשיבות"
+msgstr "הסרת החשיבות"
 
 msgid "reason-list-header-negative"
 msgstr "איננו ממליצים לך על ההפצה הזאת בגלל:"
@@ -440,7 +440,7 @@ msgid "reason-list-header-neutral"
 msgstr "The following criteria were not factored into this"
 
 msgid "reason-list-header-blocked-by-others"
-msgstr "תשובה זו נחסמה על ידי תשובות אחרות שנתת"
+msgstr "תשובה זו נחסמה בגלל תשובות אחרות שנתת"
 
 msgid "matrix-supports-daily-usage"
 msgstr "מתאימה לשימוש יומיומי"
@@ -525,7 +525,7 @@ msgid "matrix-paid"
 msgstr "There is a fee-based version of this distribution"
 
 msgid "matrix-fullinstall"
-msgstr "מתקינה את כל התכניות הנחוצות"
+msgstr "מותקנת עם כל התכניות הנחוצות"
 
 msgid "matrix-ownscope-install"
 msgstr "All programs to be used must be chosen by yourself"
@@ -549,7 +549,7 @@ msgid "matrix-privacy-thirdparty"
 msgstr "מתחברת לשירותי צד שלישי כברירת מחדל"
 
 msgid "matrix-appstore"
-msgstr "Software installation can be done using an app store"
+msgstr "אפשר להתקין תוכנה בעזרת חנות יישומים"
 
 msgid "matrix-console"
 msgstr "Software installation can be done using the terminal"
@@ -574,10 +574,10 @@ msgid "matrix-updates-fast"
 msgstr "העדכונים מהירים, אך עלולים להיות בלתי־יציבים"
 
 msgid "matrix-not-for-beginner"
-msgstr "לא מתאימה למתקדמים"
+msgstr "לא מתאימה למתחילים"
 
 msgid "matrix-avoids-systemd"
-msgstr "Avoids systemd"
+msgstr "ללא systemd"
 
 msgid "matrix-uses-systemd"
 msgstr "משתמשת ב־systemd"
@@ -634,13 +634,13 @@ msgid "requires-some-computer-knowledge"
 msgstr "Requires further knowledge about computers"
 
 msgid "matrix-maybe-not-for-beginner"
-msgstr "לא מתאימה למתקדמים"
+msgstr "לא מתאימה למתחילים"
 
 msgid "matrix-installation-from-shell"
 msgstr "ההתקנה נעשית באמצעות המסוף"
 
 msgid "matrix-installs-range-of-programs"
-msgstr "מתקינה מגוון תוכניות כברירת מחדל"
+msgstr "מותקנת עם מגוון תוכניות כברירת מחדל"
 
 msgid "matrix-configuration-from-shell"
 msgstr "Majority of configuration is done using shell commands"
@@ -677,10 +677,10 @@ msgstr "השימוש בתכנה חופשית תלוי בבחירת המשתמש"
 
 # distribution descriptions
 msgid "description-manjaro"
-msgstr "Manjaro is a rolling release distribution focused on user friendliness"
+msgstr "‏Manjaro היא הפצה רציפה ששמה דגש על ידידותיות למשתמש"
 
 msgid "description-ubuntu"
-msgstr "Ubuntu is a Distribution build by the company Canonical"
+msgstr "‏Ubuntu היא הפצה שנוצרה על ידי חברת Canonical"
 
 msgid "description-mint"
 msgstr ""
@@ -688,8 +688,7 @@ msgstr ""
 " components, such as multimedia codecs."
 
 msgid "description-solus"
-msgstr ""
-"Solus OS is a rolling release distribution which started as a Chrome OS clone"
+msgstr "‏Solus OS היא הפצה רציפה שהחלה כחיקוי ל־Chrome OS"
 
 msgid "description-arch"
 msgstr "Arch is a rolling release distribution based on the KISS principle"
@@ -712,8 +711,8 @@ msgstr ""
 
 msgid "description-pclinuxos"
 msgstr ""
-"PCLinuxOS is a Mandrake-based distribution focused on a user-friendly"
-" interface."
+"‏PCLinuxOS היא הפצה על בסיס מנדרייק ששמה דגש על ממשק ידידותי"
+" למשתמש."
 
 msgid "description-rhel"
 msgstr ""
@@ -775,8 +774,8 @@ msgstr ""
 
 msgid "description-elementaryos"
 msgstr ""
-"elementary OS is a ubuntu-based distribution, focused on an elegant and fast"
-" user experience"
+"‏elementary OS היא הפצה על בסיס אובונטו, ששמה דגש על חוויית משתמש"
+" אלגנטית ומהירה"
 
 msgid "description-kubuntu"
 msgstr ""
@@ -815,10 +814,10 @@ msgid "source"
 msgstr "מקור התמונה"
 
 msgid "description-void"
-msgstr "Void Linux is a rolling release distribution without systemd"
+msgstr "‏Void Linux היא הפצה רציפה ללא systemd"
 
 msgid "skip-question"
-msgstr "דלג על השאלה"
+msgstr "דילוג השאלה"
 
 msgid "description-nixos"
 msgstr ""
@@ -826,7 +825,7 @@ msgstr ""
 " allows reliable system upgrades."
 
 msgid "reasons-hide"
-msgstr "הסתר סיבות"
+msgstr "הסתרת הסיבות"
 
 msgid "description-artix"
 msgstr ""
