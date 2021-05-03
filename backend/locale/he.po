@@ -6,10 +6,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
-"PO-Revision-Date: 2021-03-30 19:48+0300\n"
+"PO-Revision-Date: 2021-05-03 20:10+0300\n"
 "Project-Id-Version: \n"
-"Language-Team: Hebrew <kde-i18n-he@kde.org>\n"
-"Language: he\n"
+"Language-Team: Hebrew <>\n"
+"Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 20.12.3\n"
@@ -24,22 +24,22 @@ msgid "privacy"
 msgstr "פרטיות"
 
 msgid "about"
-msgstr "על מיזם זה"
+msgstr "על המיזם"
 
 msgid "question-is-multiplechoice"
-msgstr "You may choose multiple answers"
+msgstr "אפשר לבחור תשובות מרובות"
 
 msgid "vendor-text"
-msgstr "מיזם מאת chmr.eu"
+msgstr "מיזם של chmr.eu"
 
 msgid "get-result"
-msgstr "קבלת התוצאות"
+msgstr "הצג תוצאות"
 
 msgid "category-welcome"
 msgstr "ברוך בואך!"
 
 msgid "software-use-case"
-msgstr "תוכנה: שימוש"
+msgstr "תוכנה: מטרת השימוש"
 
 msgid "computer-knowledge-category"
 msgstr "ידע במחשבים"
@@ -48,22 +48,22 @@ msgid "linux-knowledge-category"
 msgstr "לינוקס ואני"
 
 msgid "presets-category"
-msgstr "התקנה: הגדרה מראש"
+msgstr "התקנה: מערכים"
 
 msgid "hardware-category"
 msgstr "תמיכה בחומרה"
 
 msgid "help-category"
-msgstr "מקור עזרה"
+msgstr "מקור קבלת העזרה"
 
 msgid "ux-concept-category"
-msgstr "חוויית המשתמש"
+msgstr "חוויית משתמש"
 
 msgid "price-category"
 msgstr "הפצות: מחיר"
 
 msgid "scope-category"
-msgstr "הפצות: היקף"
+msgstr "Distributions: Scope"
 
 msgid "ideology-category"
 msgstr "הפצות: אידאולוגיה"
@@ -81,7 +81,7 @@ msgid "special-features-category"
 msgstr "תוכנה: תכונות מיוחדות"
 
 msgid "recommendation-category"
-msgstr "הצגת התוצאות שלך"
+msgstr "להצגת התוצאות שלך"
 
 msgid "welcome-text-title"
 msgstr "ברוך בואך אל distrochooser.de!"
@@ -99,40 +99,43 @@ msgid "welcome-text-order"
 msgstr "You may answer in arbitrary order"
 
 msgid "welcome-text-additional-infos"
-msgstr "You can receive additional information using the question mark icon"
+msgstr "אפשר לקבל מידע נוסף בעזרת לחיצה על סמל סימן השאלה"
 
 msgid "welcome-text-remove"
 msgstr "אפשר למחוק תשובות בכל זמן"
 
 msgid "welcome-text-feedback"
-msgstr "נא לדרג את התוצאות שלך, לפי התאמתן לצרכים שלך."
+msgstr "נא לדרג את התוצאות, על סמך להתאמתן לצרכים שלך."
 
 msgid "welcome-text-importance"
 msgstr "Mark answers as important to give them more weight"
 
 msgid "locale-link-en"
-msgstr "This text is available in english"
+msgstr "טקסט זה זמין באנגלית"
 
 msgid "locale-link-de"
 msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
 
 msgid "start-test"
-msgstr "התחלת השאלון"
+msgstr "להתחלת השאלון"
 
 msgid "prev-question"
-msgstr "אחורה"
+msgstr "חזרה אחורה"
 
 msgid "next-question"
 msgstr "המשך"
 
 msgid "no-results"
-msgstr "סליחה, תעיתי בדרך"
+msgstr "סליחה, איבדתי אותך"
 
 msgid "about-header"
 msgstr "על distrochooser.de"
 
 msgid "vote-reminder"
-msgstr "You like this distribution? Give it a thumbs up!"
+msgstr "אהבת את ההפצה? אפשר לסמן אותה בלב!"
+
+msgid "vote-reminder-negative"
+msgstr "לא אהבת את ההפצה? אפשר לסמן אותה באגודל למטה!"
 
 msgid "about-intro-text"
 msgstr ""
@@ -145,7 +148,7 @@ msgid "about-intro-test-count"
 msgstr "Since the 14th of June 2014 distrochooser.de processed %tests% tests."
 
 msgid "about-licenses"
-msgstr "Distrochooser is dual-licensed."
+msgstr "‏Distrochooser מוגן בשני רישיונות."
 
 msgid "privacy-header"
 msgstr "Datenschutzerklärung"
@@ -158,8 +161,7 @@ msgstr "קוד המקור"
 
 msgid "about-licenses-source-text"
 msgstr ""
-"The sourcecode is licensed under the license written in the 'LICENSE' file,"
-" which is placed in the linked repository."
+"קוד המקור מוגן ברישיון שכתוב בקובץ \"LICENSE\", שנמצא במאגר אליו מוביל הקישור."
 
 msgid "about-licenses-database"
 msgstr "מסד הנתונים"
@@ -178,10 +180,10 @@ msgstr ""
 " investigate this."
 
 msgid "close-additional-info"
-msgstr "סגירה"
+msgstr "סגור"
 
 msgid "no-answers"
-msgstr "לא ענית על השאלות."
+msgstr "לא נתת תשובות."
 
 msgid "get-my-result"
 msgstr "להצגת התוצאות שלך."
@@ -193,13 +195,13 @@ msgid "remark-placeholder"
 msgstr "המשוב שלך (עד 3000 תווים)"
 
 msgid "distribution-homepage"
-msgstr "דף הבית של ההפצה"
+msgstr "אתר ההפצה"
 
 msgid "result-remarks-added"
-msgstr "תודה רבה על המשוב שלך!"
+msgstr "תודה רבה על מתן המשוב!"
 
 msgid "share-result"
-msgstr "שיתוף התוצאות שלי"
+msgstr "שיתוף התוצאה שלי"
 
 msgid "software-use-case-question"
 msgstr ""
@@ -210,39 +212,39 @@ msgid "software-use-case-answer-daily"
 msgstr "אני רוצה הפצה לשימוש יומיומי."
 
 msgid "software-use-case-anonymous-answer"
-msgstr "אני רוצה להשתמש בלינוקס לגלישה באינטרנט באופן אנונימי."
+msgstr "אני רוצה להשתמש בלינוקס למטרות גלישה אנונימית ברשת."
 
 msgid "software-use-case-answer-gaming"
-msgstr "עדיפה לי הפצה שנתמכת על ידי מפתחי משחקים."
+msgstr "אני מעדיף/ה הפצה שנתמכת על ידי מפתחי משחקים."
 
 msgid "computer-knowledge-question"
 msgstr "How would you rate your proficiency using a computer?"
 
 msgid "computer-knowledge-answer-beginner"
-msgstr "לעיתים קרובות יש לי צורך בעזרה מאחרים לתיקון הבעיות במחשב שלי"
+msgstr "לרוב אני צריך עזרה מאחרים בתיקון הבעיות במחשב"
 
 msgid "computer-knowledge-answer-advanced"
 msgstr "I am already able to solve some computer problems by myself"
 
 msgid "computer-knowledge-answer-professional"
-msgstr "ביכולתי לפתור את רב או כל הבעיות במחשב בעצמי"
+msgstr "ביכולתי לפתור את רוב או את כל הבעיות במחשב בעצמי"
 
 msgid "linux-knowledge-question"
 msgstr "איך היית מדרג/ת את הידע שלך בלינוקס עצמה?"
 
 msgid "linux-knowledge-answer-beginner"
-msgstr "יש לי ידע קטן או אפסי לגבי לינוקס"
+msgstr "יש לי ידע קטן או אפסי בנוגע ללינוקס"
 
 msgid "linux-knowledge-answer-advanced"
-msgstr "כבר השתמשתי בלינוקס למטרות מסוימות"
+msgstr "כבר השתמשתי בלינוקס למספר מטרות"
 
 msgid "linux-knowledge-answer-professional"
-msgstr "יש לי הבנה טובה לגבי מערכת ההפעלה לינוקס"
+msgstr "יש לי הבנה טובה בנוגע למערכת ההפעלה לינוקס"
 
 msgid "presets-question"
 msgstr ""
-"How many settings do you wish to tweak by yourself during installation? How"
-" many configuration variables should be filled with default values?"
+"כמה הגדרות ברצונך לשנות בעצמך במהלך ההתקנה? כמה דברים אמורים להיות מוגדרים"
+" מראש?"
 
 msgid "presets-question-answer-manypresets"
 msgstr "I want to use the default preset values in the installation assistant"
@@ -251,12 +253,12 @@ msgid "presets-question-answer-ownselection"
 msgstr "אני רוצה לבחור את ההגדרות בעצמי"
 
 msgid "presets-question-answer-guiselections"
-msgstr "I want to configure as much as possible using graphical applications"
+msgstr "אני רוצה להגדיר כמה שיותר דברים בעזרת יישומים גרפיים"
 
 msgid "hardware-question"
 msgstr ""
-"It is important to know how old your computer hardware is, since some"
-" distributions won't run on old computers."
+"חשוב לדעת כמה ישנה חומרת מחשבך, מאחר ולא ניתן להפעיל חלק מההפצות במחשבים"
+" ישנים."
 
 msgid "additional-info-hardware"
 msgstr ""
@@ -268,13 +270,13 @@ msgstr ""
 
 msgid "hardware-question-oldpc"
 msgstr ""
-"לא החלטתי לגבי זה ו/או למחשב שלי כבר יש בעיות בביצועים ו/או תומך ב־32 סיביות"
-" בלבד"
+"אני לא בטוח/ה לגבי זה ו/או למחשבי כבר יש בעיות ביצועים ו/או תומך רק ב־32"
+" סיביות"
 
 msgid "hardware-question-newpc"
 msgstr ""
-"The performance of my computer is good, I don't experience any performance"
-" issues, my hardware supports 64 bit"
+"ביצועי המחשב שלי טובים, לא חוויתי כל בעיות ביצועים שהן, החומרה שלי תומכת ב־64"
+" סיביות"
 
 msgid "help-question"
 msgstr ""
@@ -282,11 +284,10 @@ msgstr ""
 " prefer?"
 
 msgid "help-question-tutorials"
-msgstr ""
-"I am able to solve my problems using guides from wiki pages or tutorials"
+msgstr "ביכולתי לתקן את הבעיות במחשבי בעזרת הנחיות מדפי ויקי או מדריכים"
 
 msgid "help-question-user-exchange"
-msgstr "עדיף לי לבקש עזרה מאחרים"
+msgstr "אני מעדיף/ה לבקש עזרה מאחרים"
 
 msgid "ux-concept-question"
 msgstr ""
@@ -296,27 +297,25 @@ msgstr ""
 " desktops at any time!"
 
 msgid "ux-concept-answer-windows-like"
-msgstr "עדיף לי ממשק משתמש שדומה לזה של Windows"
+msgstr "אני מעדיף/ה ממשק משתמש דומה ל־Windows"
 
 msgid "ux-concept-answer-mac-like"
-msgstr "עדיף לי ממשק משתמש שדומה לזה של macOS"
+msgstr "אני מעדיף/ה ממשק משתמש דומה ל־macOS"
 
 msgid "ux-concept-tiling"
 msgstr "I prefer a tile-based window appearance"
 
 msgid "ux-concept-closed-expierience"
-msgstr "עדיפה לי חווייה סגורה"
+msgstr "אני מעדיף/ה חווייה סגורה"
 
 msgid "price-question"
-msgstr ""
-"רָב ההפצות חינמיות. מספר הפצות מציעות תמיכה נוספת בתמורה לתשלום סמלי באופן"
-" חד־פעמי."
+msgstr "רוב ההפצות חינמיות. מספר הפצות מציעות תמיכה נוספת תמורת תשלום חד־פעמי."
 
 msgid "price-answer-free"
-msgstr "עדיפה לי הפצה חינמית לשימוש"
+msgstr "אני מעדיף/ה הפצה חינמית"
 
 msgid "price-answer-paid"
-msgstr "אין לי בעיה לשלם מעט"
+msgstr "I would be fine to pay a fee"
 
 msgid "scope-question"
 msgstr ""
@@ -327,11 +326,11 @@ msgstr ""
 
 msgid "scope-answer-fullinstall"
 msgstr ""
-"I prefer a distribution shipping all the basic programs I need to start"
-" working immediately after installation"
+"אני מעדיף/ה הפצה שמגיעה עם כל התכניות הבסיסיות שנחוצות לי להתחלת העבודה מיד"
+" לאחר ההתקנה"
 
 msgid "scope-answer-ownselection"
-msgstr "I want to choose the basic programs to install myself"
+msgstr "אני רוצה לבחור את תכניות הבסיס שיותקנו בעצמי"
 
 msgid "ideology-question"
 msgstr ""
@@ -347,23 +346,23 @@ msgstr ""
 " distribute it's sourcecode and modifications are not allowed."
 
 msgid "ideology-answer-free"
-msgstr "אני רוצה להשתמש ברישיונות חופשיים ככל יכולתי"
+msgstr "אני רוצה להשתמש בכמה שיותר רשיונות חופשיים"
 
 msgid "ideology-answer-proprietary-ok"
-msgstr "הרישיונות שאינם חופשיים הם בסדר מבחינתי כל עוד המערכת שלי עובדת."
+msgstr "אני בסדר עם רישיונות שאינם חופשיים כל עוד המערכת שלי עובדת"
 
 msgid "privacy-question"
 msgstr ""
-"Some distributions use online services to improve the user experience. This"
-" may affect the privacy of the user, i.e. the user can be tracked when using"
-" such online features."
+"מספר הפצות משתמשות בשירותים מקוונים כדי לשפר את חוויית המשתמש. הם עשויים"
+" להשפיע על פרטיות המשתמש, כלומר יכול להיות מעקב על המשתמש בעת שימוש בתכונות"
+" מקוונות כאלו."
 
 msgid "privacy-answer-highprivacy"
 msgstr "אני לא רוצה את זה"
 
 msgid "privacy-answer-services-ok"
 msgstr ""
-"אם זה משפר את חוויית המשתמש שלי, השימוש בשירותי רשת כאלה מוסכם מבחינתי."
+"אם זה משפר את חוויית המשתמש שלי, אני מסכים/ה להשתמש בשירותים מקוונים כאלו."
 
 msgid "software-admin-question"
 msgstr ""
@@ -371,15 +370,14 @@ msgstr ""
 " software."
 
 msgid "software-admin-answer-appstore"
-msgstr "אני להתקין את התכניות שלי בעזרת סוג של \"חנות יישומים\""
+msgstr "אני רוצה להתקין את התכניות שלי בעזרת \"חנות יישומים\""
 
 msgid "software-admin-answer-console"
-msgstr "I want to install software mostly using terminal commands"
+msgstr "אני רוצה להתקין תוכנה באמצעות פקודות במסוף ברוב הפעמים"
 
 msgid "special-features-qestion"
 msgstr ""
-"Some distributions have additional features for specific purposes. Do I need"
-" such features?"
+"למספר הפצות יש תכונות מיוחדות למטרות ייעודיות. האם יש לך צורך בתכונות כאלו?"
 
 msgid "additional-info-special-features-qestion"
 msgstr ""
@@ -388,7 +386,7 @@ msgstr ""
 " lightweight solutions"
 
 msgid "answer-isolation"
-msgstr "Applications should be executed in a isolated environment by default"
+msgstr "הרצת היישומים נעשית בסביבות מופרדות כברירת מחדל"
 
 msgid "software-updates-question"
 msgstr ""
@@ -396,10 +394,10 @@ msgstr ""
 " What do you prefer?"
 
 msgid "software-updates-answer-fast"
-msgstr "עדיפים לי עדכונים מהירים"
+msgstr "אני מעדיף/ה עדכונים מהירים"
 
 msgid "software-updates-answer-slow"
-msgstr "עדיפים לי עדכונים יציבים"
+msgstr "אני מעדיף/ה עדכונים יציבים"
 
 msgid "answer-avoid-systemd"
 msgstr "אני רוצה להימנע מ־systemd"
@@ -412,7 +410,7 @@ msgstr ""
 "Click on the distribution name to see detailed reasons for this recommendation"
 
 msgid "reason-list-header"
-msgstr "סיבות בעד/נגד"
+msgstr "Reason for/ against"
 
 msgid "answer-is-blocking"
 msgstr "Following answers are excluding this answer"
@@ -421,10 +419,10 @@ msgid "answer-is-blocked"
 msgstr "This answer contradicts this former answer you have given"
 
 msgid "reason-blocked-by-others-entry"
-msgstr "\"{0}\" disagrees \"{1}\""
+msgstr "\"{0}\" לא מסכימים עם \"{1}\""
 
 msgid "additional-infos"
-msgstr "תנו לי מידע נוסף!"
+msgstr "למידע נוסף!"
 
 msgid "make-important"
 msgstr "זה חשוב!"
@@ -436,13 +434,13 @@ msgid "remove-important"
 msgstr "הסרת החשיבות"
 
 msgid "reason-list-header-negative"
-msgstr "We cannot recommend this distribution for you because:"
+msgstr "איננו ממליצים לך על ההפצה הזאת בגלל:"
 
 msgid "reason-list-header-neutral"
 msgstr "The following criteria were not factored into this"
 
 msgid "reason-list-header-blocked-by-others"
-msgstr "תשובה נחסמה בגלל התשובות האחרות שנתת"
+msgstr "תשובה זו נחסמה בגלל תשובות אחרות שנתת"
 
 msgid "matrix-supports-daily-usage"
 msgstr "מתאימה לשימוש יומיומי"
@@ -486,7 +484,7 @@ msgstr ""
 " disable animations."
 
 msgid "matrix-hardware-newpc"
-msgstr "Runs on latest hardware"
+msgstr "ניתנת להפעלה על החומרה החדשה ביותר"
 
 msgid "matrix-user-exchange"
 msgstr "There are user communities for knowledge sharing"
@@ -495,7 +493,7 @@ msgid "matrix-tutorial"
 msgstr "There are tutorials for troubleshooting and problem-solving"
 
 msgid "matrix-mac-like"
-msgstr "GUI concept has elements of macOS"
+msgstr "ממשק המשתמש דומה ל־macOS"
 
 msgid "matrix-windows-like-not-fullfilled"
 msgstr "GUI concept differs from Windows a lot"
@@ -507,7 +505,7 @@ msgid "matrix-has-windows-like-variant"
 msgstr "Has variants with a windows-like user interface"
 
 msgid "matrix-paid-version-existing"
-msgstr "There is a non-free version of this distribution"
+msgstr "ישנה גרסה בלתי־חופשית של הפצה זו"
 
 msgid "matrix-gaming-packages-stable-but-old"
 msgstr "Software versions may not be recent enough for gaming"
@@ -517,14 +515,14 @@ msgstr "Has a live mode which allows starting from disc"
 
 msgid "live-mode-only"
 msgstr ""
-"Has Live Mode: Can be started using discs or usb sticks to test it out"
-" (before installing)"
+"עם מצב זמן־אמת: אפשר להפעילה מכוננים או החסנים ניידים כדי לבדוק אותה (לפני"
+" ההתקנה)"
 
 msgid "matrix-without-fee"
-msgstr "ניתנת לשימוש ללא תשלום"
+msgstr "ניתנת לשימוש בחינם"
 
 msgid "matrix-paid"
-msgstr "יש להפצה הזאת גרסה שעולה מעט"
+msgstr "There is a fee-based version of this distribution"
 
 msgid "matrix-fullinstall"
 msgstr "מותקנת עם כל התכניות הנחוצות"
@@ -533,7 +531,7 @@ msgid "matrix-ownscope-install"
 msgstr "All programs to be used must be chosen by yourself"
 
 msgid "matrix-free-software-unfree-per-default"
-msgstr "Closed source programs are installed by default"
+msgstr "תכניות בקוד סגור מותקנות כברירת מחדל"
 
 msgid "matrix-enforces-free"
 msgstr "Enforces usage of free software"
@@ -545,10 +543,10 @@ msgid "matrix-has-default-settings"
 msgstr "עם הגדרות ברירת מחדל"
 
 msgid "matrix-privacy-ok"
-msgstr "Beneficial for user privacy"
+msgstr "חיונית לפרטיות המשתמש"
 
 msgid "matrix-privacy-thirdparty"
-msgstr "Connects to third party services by default"
+msgstr "מתחברת לשירותי צד שלישי כברירת מחדל"
 
 msgid "matrix-appstore"
 msgstr "אפשר להתקין תוכנה בעזרת חנות יישומים"
@@ -564,10 +562,10 @@ msgstr ""
 "Software updates are released as fast as possible, which makes them unstable"
 
 msgid "matrix-has-control-panel"
-msgstr "Contains a pre-installed control center"
+msgstr "מכילה מרכז הגדרות מותקן מראש"
 
 msgid "matrix-user-selection-affects-privacy"
-msgstr "על המשתמשים לבחור באיזו תוכנה להשתמש"
+msgstr "על המשתמש לבחור את התכניות בהן ישתמש"
 
 msgid "matrix-selection-by-user"
 msgstr "Scope of pre-installed programs is decided by user"
@@ -579,31 +577,31 @@ msgid "matrix-not-for-beginner"
 msgstr "לא מתאימה למתחילים"
 
 msgid "matrix-avoids-systemd"
-msgstr "רוצה להימנע מ־systemd"
+msgstr "ללא systemd"
 
 msgid "matrix-uses-systemd"
-msgstr "uses systemd"
+msgstr "משתמשת ב־systemd"
 
 msgid "built-for-anonymization"
-msgstr "נבנתה למטרות אנונימיוּת"
+msgstr "נבנתה למטרות גלישה אנונימית"
 
 msgid "matrix-administration-shell"
-msgstr "Administration is mostly done by using shell commands"
+msgstr "כמעט כל ניהול המערכת נעשה באמצעות שורת הפקודה"
 
 msgid "matrix-oldpc-no-32bit"
-msgstr "לא תומכת במחשבים ישנים בלי תמיכה ב־64 סיביות"
+msgstr "Does not support old computers without 64 bit support"
 
 msgid "matrix-requires-manual"
-msgstr "Requires reading of manuals and tutorials"
+msgstr "דורשת קריאה של הנחיות או מדריכים"
 
 msgid "matrix-requires-advanced-knowledge"
-msgstr "Requires reading up in manuals for usage"
+msgstr "לשימוש נדרשת קריאת מדריכים"
 
 msgid "matrix-isolation-default"
 msgstr "Has a isolation concept by default"
 
 msgid "matrix-oldpc-supported"
-msgstr "תומכת אפילו במחשבים ישנים"
+msgstr "תומכת גם במחשבים ישנים"
 
 msgid "checked-criteria-count"
 msgstr "aspects checked"
@@ -612,7 +610,7 @@ msgid "searching-criteria"
 msgstr "processing the criteria library"
 
 msgid "daily-usage-possibly-difficult"
-msgstr "Daily usage may result in major difficulties"
+msgstr "עלול להיות קושי רב בשימוש יומיומי"
 
 msgid "matrix-supports-daily-usage-but-built-for-livemode"
 msgstr "Can be used for daily work, but is built for live-mode"
@@ -627,10 +625,10 @@ msgid "matrix-gaming-may-require-additional-configuration"
 msgstr "May require additional configuration for gaming"
 
 msgid "matrix-built-for-enterprise"
-msgstr "Primary goal is enterprise usage"
+msgstr "המטרה המרכזית היא שימוש על ידי ארגונים"
 
 msgid "matrix-not-built-for-gaming"
-msgstr "לא מותאמת למשחקים"
+msgstr "לא מתאימה למשחקים"
 
 msgid "requires-some-computer-knowledge"
 msgstr "Requires further knowledge about computers"
@@ -639,10 +637,10 @@ msgid "matrix-maybe-not-for-beginner"
 msgstr "לא מתאימה למתחילים"
 
 msgid "matrix-installation-from-shell"
-msgstr "Installation is done using the terminal"
+msgstr "ההתקנה נעשית באמצעות המסוף"
 
 msgid "matrix-installs-range-of-programs"
-msgstr "Installs a range of program by default"
+msgstr "מותקנת עם מגוון תוכניות כברירת מחדל"
 
 msgid "matrix-configuration-from-shell"
 msgstr "Majority of configuration is done using shell commands"
@@ -652,7 +650,7 @@ msgstr ""
 "Is a middleweight system, especially suitable for semi-recent computers"
 
 msgid "matrix-has-high-range-hardware-support"
-msgstr "Supports a wide range of hardware"
+msgstr "תומכת במגוון רחב של חומרה"
 
 msgid "matrix-has-zorin-lite-version"
 msgstr "עם גרסת \"Zorin Lite\" למחשבים ישנים"
@@ -666,23 +664,23 @@ msgid "systemd-is-avoidable-per-selection"
 msgstr "Systemd can be avoided per user selection"
 
 msgid "matrix-ships-systemd-but-disabled"
-msgstr "‏Systemd מותקנת, אך מושבתת כברירת מחדל"
+msgstr "Systemd is shipped, but disabled by default"
 
 msgid "matrix-supports-privacy"
-msgstr "Only collects data when online services are used"
+msgstr "אוספת נתונים רק כאשר נעשה שימוש בשירותים מקוונים"
 
 msgid "matrix-lightweight"
 msgstr "הפצה קלילה"
 
 msgid "matrix-free-userselection"
-msgstr "Usage of free software depends on user selection"
+msgstr "השימוש בתכנה חופשית תלוי בבחירת המשתמש"
 
 # distribution descriptions
 msgid "description-manjaro"
-msgstr "Manjaro היא הפצה רציפה ששמה דגש על ידידותיות למשתמשים"
+msgstr "‏Manjaro היא הפצה רציפה ששמה דגש על ידידותיות למשתמש"
 
 msgid "description-ubuntu"
-msgstr "‏Ubuntu היא הפצה שנבנתה על ידי חברת Canonical"
+msgstr "‏Ubuntu היא הפצה שנוצרה על ידי חברת Canonical"
 
 msgid "description-mint"
 msgstr ""
@@ -690,7 +688,7 @@ msgstr ""
 " components, such as multimedia codecs."
 
 msgid "description-solus"
-msgstr "Solus OS היא הפצה רציפה שהחלה כחיקוי ל־Chrome OS"
+msgstr "‏Solus OS היא הפצה רציפה שהחלה כחיקוי ל־Chrome OS"
 
 msgid "description-arch"
 msgstr "Arch is a rolling release distribution based on the KISS principle"
@@ -700,8 +698,8 @@ msgstr "Debian is a distribution with high focus on stability"
 
 msgid "description-tails"
 msgstr ""
-"Anonymisation is the main focus of Tails, which can be used from USB or"
-" optical discs"
+"גלישה אנונימית היא המטרה המרכזית של Tails, אותה ניתן להפעיל מכוננים אופטיים"
+" או מכונני USB"
 
 msgid "description-devuan"
 msgstr "Devuan is a Debian clone without usage of the systemd toolkit"
@@ -713,8 +711,8 @@ msgstr ""
 
 msgid "description-pclinuxos"
 msgstr ""
-"PCLinuxOS is a Mandrake-based distribution focused on a user-friendly"
-" interface."
+"‏PCLinuxOS היא הפצה על בסיס מנדרייק ששמה דגש על ממשק ידידותי"
+" למשתמש."
 
 msgid "description-rhel"
 msgstr ""
@@ -748,7 +746,7 @@ msgstr ""
 "Qubes OS isolates applications using virtual machines to improve security"
 
 msgid "description-gentoo"
-msgstr "Gentoo is a flexible distribution for advanced users"
+msgstr "‏Gentoo היא הפצה גמישה למשתמשים מתקדמים"
 
 msgid "description-mxlinux"
 msgstr ""
@@ -776,31 +774,31 @@ msgstr ""
 
 msgid "description-elementaryos"
 msgstr ""
-"elementary OS is a ubuntu-based distribution, focused on an elegant and fast"
-" user experience"
+"‏elementary OS היא הפצה על בסיס אובונטו, ששמה דגש על חוויית משתמש"
+" אלגנטית ומהירה"
 
 msgid "description-kubuntu"
 msgstr ""
-"Kubuntu is an ubuntu-based distribution with a pre-installed KDE as a desktop"
+"‏Kubuntu היא הפצת לינוקס על בסיס אובונטו בה שולחן העבודה KDE מותקן כברירת מחדל"
 
 msgid "locale-en"
-msgstr "english"
+msgstr "אנגלית"
 
 msgid "locale-de"
 msgstr "deutsch"
 
 # update pack 26th december 2019
 msgid "debian-updates-slow"
-msgstr "Debian updates are usually slow in favor of stability"
+msgstr "העדכונים ב־Debian איטיים לרוב מטעמי יציבות"
 
 msgid "description-qubesos"
 msgstr "Qubes OS executes processes in virtual machines in favor of security"
 
 msgid "software-use-case-isolation"
-msgstr "I want to execute all programs in an isolated area"
+msgstr "אני רוצה להריץ את כל התכניות שלי באזורים מבודדים"
 
 msgid "matrix-runs-in-isolation"
-msgstr "Software execution happens in isolated environments"
+msgstr "כל תוכנה מורצת בסביבה נפרדת"
 
 msgid "software-use-case-blind"
 msgstr "The user is visually impaired"
@@ -816,10 +814,10 @@ msgid "source"
 msgstr "מקור התמונה"
 
 msgid "description-void"
-msgstr "‏Void Linux היא הפצה רציפה בלי systemd"
+msgstr "‏Void Linux היא הפצה רציפה ללא systemd"
 
 msgid "skip-question"
-msgstr "דילוג על השאלה"
+msgstr "דילוג השאלה"
 
 msgid "description-nixos"
 msgstr ""
@@ -827,7 +825,7 @@ msgstr ""
 " allows reliable system upgrades."
 
 msgid "reasons-hide"
-msgstr "הצגת הסיבות"
+msgstr "הסתרת הסיבות"
 
 msgid "description-artix"
 msgstr ""
@@ -835,14 +833,14 @@ msgstr ""
 " systemd."
 
 msgid "link-copied"
-msgstr "הועתק ללוח"
+msgstr "הועתק ללוח הגזירים"
 
 msgid "remark-placeholder-saving"
-msgstr "The text will be saved automatically"
+msgstr "הטקסט יישמר אוטומטית"
 
 msgid "slow-release-model"
 msgstr ""
 "Available software versions may be older than latest version from vendor"
 
 msgid "requires-payment"
-msgstr "Long term usage requires payment"
+msgstr "נדרש תשלום לשימוש לטווח ארוך"
