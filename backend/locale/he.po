@@ -6,7 +6,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
-"PO-Revision-Date: 2021-05-04 19:55+0300\n"
+"PO-Revision-Date: 2021-05-04 20:16+0300\n"
 "Project-Id-Version: \n"
 "Language-Team: Hebrew <>\n"
 "Language: he_IL\n"
@@ -211,7 +211,7 @@ msgid "software-use-case-answer-daily"
 msgstr "אני רוצה הפצה לשימוש יומיומי."
 
 msgid "software-use-case-anonymous-answer"
-msgstr "אני רוצה להשתמש בלינוקס למטרות גלישה אנונימית ברשת."
+msgstr "ברצוני להשתמש בלינוקס למטרות גלישה אנונימית ברשת."
 
 msgid "software-use-case-answer-gaming"
 msgstr "אני מעדיף/ה הפצה שנתמכת על ידי מפתחי משחקים."
@@ -246,13 +246,13 @@ msgstr ""
 " מראש?"
 
 msgid "presets-question-answer-manypresets"
-msgstr "I want to use the default preset values in the installation assistant"
+msgstr "ברצוני להשתמש בערכי ברירת המחדל המוגדרים מראש דרך אשף ההתקנה"
 
 msgid "presets-question-answer-ownselection"
-msgstr "אני רוצה לבחור את ההגדרות בעצמי"
+msgstr "ברצוני לבחור את ההגדרות בעצמי"
 
 msgid "presets-question-answer-guiselections"
-msgstr "אני רוצה להגדיר כמה שיותר דברים בעזרת יישומים גרפיים"
+msgstr "ברצוני להגדיר כמה שיותר דברים בעזרת יישומים גרפיים"
 
 msgid "hardware-question"
 msgstr ""
@@ -329,7 +329,7 @@ msgstr ""
 " לאחר ההתקנה"
 
 msgid "scope-answer-ownselection"
-msgstr "אני רוצה לבחור את תכניות הבסיס שיותקנו בעצמי"
+msgstr "ברצוני לבחור את תכניות הבסיס שיותקנו בעצמי"
 
 msgid "ideology-question"
 msgstr ""
@@ -345,7 +345,7 @@ msgstr ""
 " שלה ושינויים אינם מורשים."
 
 msgid "ideology-answer-free"
-msgstr "אני רוצה להשתמש בכמה שיותר רשיונות חופשיים"
+msgstr "ברצוני להשתמש בכמה שיותר רשיונות חופשיים"
 
 msgid "ideology-answer-proprietary-ok"
 msgstr "אני בסדר עם רישיונות שאינם חופשיים כל עוד המערכת שלי עובדת"
@@ -369,10 +369,10 @@ msgstr ""
 " software."
 
 msgid "software-admin-answer-appstore"
-msgstr "אני רוצה להתקין את התכניות שלי בעזרת \"חנות יישומים\""
+msgstr "ברצוני להתקין את התכניות שלי בעזרת \"חנות יישומים\""
 
 msgid "software-admin-answer-console"
-msgstr "אני רוצה להתקין תוכנה באמצעות שורת הפקודה ברוב הפעמים"
+msgstr "ברצוני להתקין תוכנה באמצעות שורת הפקודה ברוב הפעמים"
 
 msgid "special-features-qestion"
 msgstr ""
@@ -399,7 +399,7 @@ msgid "software-updates-answer-slow"
 msgstr "אני מעדיף/ה עדכונים יציבים"
 
 msgid "answer-avoid-systemd"
-msgstr "אני רוצה להימנע מ־systemd"
+msgstr "ברצוני להימנע מ־systemd"
 
 msgid "result-submitted-hint"
 msgstr "כעת בחישוב התוצאות"
@@ -488,19 +488,19 @@ msgid "matrix-user-exchange"
 msgstr "ישנן קהילות משתמשים בהן משתמשים חולקים את הידע שלהם"
 
 msgid "matrix-tutorial"
-msgstr "יש מדריכים לפיתרון ותיקון בעיות"
+msgstr "יש מדריכים לפתרון ותיקון בעיות"
 
 msgid "matrix-mac-like"
 msgstr "ממשק המשתמש דומה ל־macOS"
 
 msgid "matrix-windows-like-not-fullfilled"
-msgstr "GUI concept differs from Windows a lot"
+msgstr "עיקרון ממשק המשתמש שונה מאוד מ־Windows"
 
 msgid "matrix-closed-expierience"
 msgstr "עם רקעים, סמלים וערכות נושא משלה"
 
 msgid "matrix-has-windows-like-variant"
-msgstr "Has variants with a windows-like user interface"
+msgstr "יש גרסאות עם ממשק משתמש הדומה ל־Windows"
 
 msgid "matrix-paid-version-existing"
 msgstr "ישנה גרסה בלתי־חופשית של הפצה זו"
@@ -736,7 +736,7 @@ msgstr ""
 
 msgid "description-qubeos"
 msgstr ""
-"Qubes OS isolates applications using virtual machines to improve security"
+"‏Qubes OS מבודדת את היישומים באמצעות מכונות וירטואליות כדי לשפר את האבטחה"
 
 msgid "description-gentoo"
 msgstr "‏Gentoo היא הפצה גמישה למשתמשים מתקדמים"
@@ -787,7 +787,7 @@ msgid "description-qubesos"
 msgstr "Qubes OS executes processes in virtual machines in favor of security"
 
 msgid "software-use-case-isolation"
-msgstr "אני רוצה להריץ את כל התכניות שלי באזורים מבודדים"
+msgstr "ברצוני להריץ את כל התכניות שלי באזורים מבודדים"
 
 msgid "matrix-runs-in-isolation"
 msgstr "כל תוכנה מורצת בסביבה נפרדת"
@@ -820,8 +820,8 @@ msgstr "הסתרת הסיבות"
 
 msgid "description-artix"
 msgstr ""
-"Artix is an Arch Linux based distribution which utilizes OpenRC instead of"
-" systemd."
+"‏Artix היא הפצה על בסיס Arch Linux המשתמשת ב־OpenRC במקום"
+" ב־systemd."
 
 msgid "link-copied"
 msgstr "הועתק ללוח הגזירים"
