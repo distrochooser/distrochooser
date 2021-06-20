@@ -647,7 +647,7 @@ msgid "description-xubuntu"
 msgstr "Xubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là XFCE"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là LXDE"
+msgstr "Lubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là LXQt"
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là MATE"

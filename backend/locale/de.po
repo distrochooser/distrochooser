@@ -618,7 +618,7 @@ msgid "description-xubuntu"
 msgstr "Xubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem XFCE-Desktop."
 
 msgid "description-lubuntu"
-msgstr "Lubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem LXDE-Desktop."
+msgstr "Lubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem LXQt-Desktop."
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE ist eine auf Ubuntu basierende Distribution mit vorinstalliertem MATE-Desktop."

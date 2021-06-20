@@ -659,7 +659,7 @@ msgid "description-xubuntu"
 msgstr "Xubuntu 是一個基於 Ubuntu 的發行版，使用輕量级 Xfce 桌面環境"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu 是一個基於 Ubuntu 的發行版，使用輕量级 LXDE 桌面環境"
+msgstr "Lubuntu 是一個基於 Ubuntu 的發行版，使用輕量级 LXQt 桌面環境"
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE 是一個基於 Ubuntu 發行版，使用輕量級 MATE 桌面環境"

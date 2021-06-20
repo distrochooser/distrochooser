@@ -647,7 +647,7 @@ msgid "description-xubuntu"
 msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu is an Ubuntu-based distribution powered by the lightweight LXDE desktop environment"
+msgstr "Lubuntu is an Ubuntu-based distribution powered by the lightweight LXQt  desktop environment"
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"

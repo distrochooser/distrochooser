@@ -646,7 +646,7 @@ msgid "description-xubuntu"
 msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop XFCE"
 
 msgid "description-lubuntu"
-msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop LXDE"
+msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop LXQt"
 
 msgid "description-ubuntumate"
 msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop MATE"
