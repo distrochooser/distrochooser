@@ -664,6 +664,9 @@ msgstr "Lubuntu 是一個基於 Ubuntu 的發行版，使用輕量级 LXQt 桌�
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE 是一個基於 Ubuntu 發行版，使用輕量級 MATE 桌面環境"
 
+msgid "description-popos"
+msgstr "Pop!_OS 是一個基於 Ubuntu 的發行版，使用 GNOME 桌面環境 "
+
 msgid "description-fedora"
 msgstr "Fedora 是一個由 Red Hat 支援的發行版，主要強調自由軟體"
 

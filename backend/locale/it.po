@@ -651,6 +651,9 @@ msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero amb
 msgid "description-ubuntumate"
 msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop MATE"
 
+msgid "description-popos"
+msgstr "GNOME è una distribuzione basata su Ubuntu alimentata dal ambiente desktop GNOME"
+
 msgid "description-fedora"
 msgstr "Fedora è una distribuzione supportata da Red Hat con una grande attenzione al software libero"
 

@@ -652,6 +652,9 @@ msgstr "Lubuntu is an Ubuntu-based distribution powered by the lightweight LXQt 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"
 
+msgid "description-popos"
+msgstr "Pop!_OS is an Ubuntu-based distribution powered by the GNOME desktop environment"
+
 msgid "description-fedora"
 msgstr "Fedora is a Red hat backed distribution with a large focus on free software"
 

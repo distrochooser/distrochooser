@@ -624,6 +624,9 @@ msgstr "Lubuntu isch e Distribution wo uf Ubuntu basiert und e LXQt -Desktop vor
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE isch e Distribution wo uf Ubuntu basiert und e MATE-Desktop vorinstalliert het."
 
+msgid "description-popos"
+msgstr "Pop!_OS isch e Distribution wo uf Ubuntu basiert und e GNOME-Desktop vorinstalliert het."
+
 msgid "description-fedora"
 msgstr "Fedora isch e Distribution wo vo Red Hat ungerstützt wird u wo sech für d Nutzig vo freier Software usspricht"
 

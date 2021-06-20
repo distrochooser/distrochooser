@@ -653,6 +653,9 @@ msgstr "Lubuntu est une distribution basée sur Ubuntu et fonctionnant avec l'en
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger MATE"
 
+msgid "description-popos"
+msgstr "Pop!_OS est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger GNOME"
+
 msgid "description-fedora"
 msgstr "Fedora est une distribution soutenue par Red Hat qui met l'accent sur le logiciel libre"
 

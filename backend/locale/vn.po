@@ -652,6 +652,9 @@ msgstr "Lubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ b�
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là MATE"
 
+msgid "description-popos"
+msgstr "Pop!_OS là bản phân phối dựa trên Ubuntu với máy tính để bàn GNOME"
+
 msgid "description-fedora"
 msgstr "Fedora là một bản phân phối được ủng hộ bởi Red hat tập trung lớn vào phần mềm tự do"
 
