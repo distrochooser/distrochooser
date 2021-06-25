@@ -118,6 +118,9 @@ msgstr "À propos de distrochooser.de"
 msgid "vote-reminder"
 msgstr "Vous aimez cette distribution ? Mettez-lui un pouce en l'air !"
 
+msgid "vote-reminder-negative"
+msgstr "Vous n'aimez pas cette distribution ? Cliquez sur les pouces en bas !"
+
 msgid "about-intro-text"
 msgstr "distrochooser.de tente d'aider les débutants à choisir une distribution Linux adaptée à leurs besoins.<br>Les résultats donnés sont des suggestions basées sur vos réponses. Les résultats peuvent parfois ne pas être aussi pertinents, en raison des interactions complexes entre les réponses."
 
@@ -645,10 +648,13 @@ msgid "description-xubuntu"
 msgstr "Xubuntu est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger XFCE"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger LXDE"
+msgstr "Lubuntu est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger LXQt"
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger MATE"
+
+msgid "description-popos"
+msgstr "Pop!_OS est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger GNOME"
 
 msgid "description-fedora"
 msgstr "Fedora est une distribution soutenue par Red Hat qui met l'accent sur le logiciel libre"

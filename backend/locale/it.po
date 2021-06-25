@@ -118,6 +118,9 @@ msgstr "Riguardo distrochooser.de"
 msgid "vote-reminder"
 msgstr "Ti piace questa distribuzione? Metti mi piace!"
 
+msgid "vote-reminder-negative"
+msgstr "Non ti piace questa distribuzione? Clicca sul pollice verso il basso!"
+
 msgid "about-intro-text"
 msgstr "distrochooser.de cerca di aiutare i principianti di Linux a scegliere una distribuzione Linux adatta alle loro necessità.<br>I risultati dati sono suggerimenti basati sulle tue risposte. A volte i risultati potrebbero essere non molto adatti, a causa delle complesse interazioni tra le risposte."
 
@@ -643,10 +646,13 @@ msgid "description-xubuntu"
 msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop XFCE"
 
 msgid "description-lubuntu"
-msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop LXDE"
+msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop LXQt"
 
 msgid "description-ubuntumate"
 msgstr "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop MATE"
+
+msgid "description-popos"
+msgstr "GNOME è una distribuzione basata su Ubuntu alimentata dal ambiente desktop GNOME"
 
 msgid "description-fedora"
 msgstr "Fedora è una distribuzione supportata da Red Hat con una grande attenzione al software libero"

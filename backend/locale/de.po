@@ -94,7 +94,6 @@ msgstr "Gib Feedback!"
 msgid "welcome-text-importance"
 msgstr "Du kannst Antworten als wichtig markieren, um ihnen mehr Gewicht zu geben"
 
-
 msgid "start-test"
 msgstr "Test starten"
 
@@ -112,6 +111,9 @@ msgstr "Über distrochooser.de"
 
 msgid "vote-reminder"
 msgstr "Dir gefällt diese Distribution? Gib uns Feedback!"
+
+msgid "vote-reminder-negative"
+msgstr "Dir gefällt diese Distribution nicht? Gib uns Feedback!"
 
 msgid "about-intro-text"
 msgstr "Das Ziel von Distrochooser ist es, Anfängern eine Orientierungshilfe in Linux zu geben. Das Ergebnis ist dabei lediglich eine Orientierungshilfe und ist kein Orakel"
@@ -138,7 +140,7 @@ msgid "about-licenses-database"
 msgstr "Die Datenbank"
 
 msgid "about-licenses-database-text"
-msgstr "Die Inhalte (Fragen- & Antwortstruktur, Statistiken, Ergebnismatrizen) unterliegen einer proprietären Lizenz und deren Verwendung bedarft unserer vorherigen Genehmigung. Hiervon ausgeschlossen sind die Beschreibungstexte der Distributionen und deren Bilder. Diese unterliegen den Lizenzen der jeweiligen Rechteinhaber. "
+msgstr "Die Inhalte (Frage- & Antwortstruktur, Statistiken, Ergebnismatrizen) unterliegen einer proprietären Lizenz und deren Verwendung bedarf unserer vorherigen Genehmigung. Hiervon ausgeschlossen sind die Beschreibungstexte der Distributionen und deren Bilder. Diese unterliegen den Lizenzen der jeweiligen Rechteinhaber. "
 
 msgid "no-results-text"
 msgstr "Wir konnten keine Distributionen ermitteln. "
@@ -240,10 +242,10 @@ msgid "ux-concept-question"
 msgstr "Für Linux gibt es verschiedene Oberflächen (\"Desktops\") mit verschiedenen Benutzungskonzepten. Manche Distributionen verwenden verschiedene Desktops als Standard. Es ist immer möglich, neue Desktops nachzuinstallieren bzw. zwischen diesen zu wechseln. "
 
 msgid "ux-concept-answer-windows-like"
-msgstr "Ich bervorzuge eine an Windows erinnernde Oberfläche. "
+msgstr "Ich bevorzuge eine an Windows erinnernde Oberfläche. "
 
 msgid "ux-concept-answer-mac-like"
-msgstr "Ich bervorzuge eine an macOS erinnernde Oberfläche. "
+msgstr "Ich bevorzuge eine an macOS erinnernde Oberfläche. "
 
 msgid "ux-concept-closed-expierience"
 msgstr "Die Distribution sollte einen optisch geschlossenen Gesamteindruck machen"
@@ -306,7 +308,7 @@ msgid "answer-isolation"
 msgstr "Anwendungen sollen per Standard isoliert ausgeführt werden, auch wenn dies für die Benutzerfreundlichkeit nachträglich sein sollte. "
 
 msgid "software-updates-question"
-msgstr "Wann Updates für Programmpakete auf den Distributionen erscheinen hängt von den Zielen der Distribution ab. Manche Distribution bieten schnelle Updates, was sich aber negativ auf die Stabiltität des Systems auswirken kann."
+msgstr "Wann Updates für Programmpakete auf den Distributionen erscheinen hängt von den Zielen der Distribution ab. Manche Distribution bieten schnelle Updates, was sich aber negativ auf die Stabilität des Systems auswirken kann."
 
 msgid "software-updates-answer-fast"
 msgstr "Ich möchte Aktualisierungen möglichst schnell, auch wenn das Probleme mit sich bringen könnte. "
@@ -318,7 +320,7 @@ msgid "answer-avoid-systemd"
 msgstr "Ich weiß was \"systemd\" ist und möchte dieses meiden. "
 
 msgid "reason-header-hint"
-msgstr "Klicke auf den Distributionsnamen, um detailierte Gründe für eine Empfehlung zu sehen"
+msgstr "Klicke auf den Distributionsnamen, um detaillierte Gründe für eine Empfehlung zu sehen"
 
 msgid "answer-is-blocking"
 msgstr "Folgende Antworten widersprechen dieser Antwort"
@@ -327,7 +329,8 @@ msgid "answer-is-blocked"
 msgstr "Diese Antwort widerspricht folgenden Antworten"
 
 msgid "reason-blocked-by-others-entry"
-msgstr "\"{0}\" disagrees \"{1}\
+msgstr "\"{0}\" widerspricht \"{1}\
+
 msgid "additional-infos"
 msgstr "Zusätzliche Infos zu dieser Frage"
 
@@ -431,7 +434,7 @@ msgid "matrix-ownscope-install"
 msgstr "ALle zu nutzenden Programme müssen selbst gewählt werden"
 
 msgid "matrix-free-software-unfree-per-default"
-msgstr "Programme mit unfreier Lizenz werden standardmässig mitinstalliert"
+msgstr "Programme mit unfreier Lizenz werden standardmäßig mitinstalliert"
 
 msgid "matrix-enforces-free"
 msgstr "Es wird soweit möglich auf freie Software gesetzt"
@@ -452,7 +455,7 @@ msgid "matrix-appstore"
 msgstr "Installation neuer Programme ist über einen Appstore möglich"
 
 msgid "matrix-console"
-msgstr "Die meissen Programme werden über das Terminal installiert"
+msgstr "Die meisten Programme werden über das Terminal installiert"
 
 msgid "matrix-stable-updates"
 msgstr "Programmupdates sind gewöhnlich stabil"
@@ -485,7 +488,7 @@ msgid "built-for-anonymization"
 msgstr "Entwickelt für Zwecke der Anonymisierung"
 
 msgid "matrix-administration-shell"
-msgstr "Administration wird größenteils über die Shell realisiert"
+msgstr "Administration wird größtenteils über die Shell realisiert"
 
 msgid "matrix-oldpc-no-32bit"
 msgstr "Unterstützt alte Computer ohne 64-bit Unterstützung nicht."
@@ -542,7 +545,7 @@ msgid "matrix-installation-from-shell"
 msgstr "Installation wird über Konsole durchgeführt"
 
 msgid "matrix-installs-range-of-programs"
-msgstr "Es wird eine große Menge an Programmen standardmässig mitinstalliert."
+msgstr "Es wird eine große Menge an Programmen standardmäßig mitinstalliert."
 
 msgid "matrix-configuration-from-shell"
 msgstr "Ein Großteil der Konfiguration wird über die Konsole durchgeführt."
@@ -576,7 +579,7 @@ msgstr "Benutzung von freier Software wird aktiv durch den Nutzer beeinflusst"
 
 # distribution descriptions
 msgid "description-manjaro"
-msgstr "Manjaro ist eine auf benutzfreundlichkeit  fokusierte Distribution mit dem Rolling Release-Modell"
+msgstr "Manjaro ist eine auf Benutzerfreundlichkeit fokussierte Distribution mit dem Rolling Release-Modell"
 
 msgid "description-ubuntu"
 msgstr "Ubuntu ist eine von Canonical entwickelte Distribution."
@@ -591,7 +594,7 @@ msgid "description-arch"
 msgstr "Arch ist eine Rolling-Release Distribution, die dem KISS-Prinzip folgt (\"Keep it Simple and Stable\")"
 
 msgid "description-debian"
-msgstr "Debian ist eine auf Stabilität fokusierte Distribution"
+msgstr "Debian ist eine auf Stabilität fokussierte Distribution"
 
 msgid "description-tails"
 msgstr "Anonymisierung ist der Hauptzweck von Tails, das von CD/DVD oder USB Stick betrieben wird"
@@ -603,7 +606,7 @@ msgid "description-opensuse"
 msgstr "OpenSuse ist eine stabile und benutzerfreundliche Distribution, insbesondere für Desktop-User"
 
 msgid "description-pclinuxos"
-msgstr "PCLinuxOS basierte ursprünglich auf Mandrake Linux und versucht ein möglichst benutzerfreundliches System bereitszustellen."
+msgstr "PCLinuxOS basierte ursprünglich auf Mandrake Linux und versucht ein möglichst benutzerfreundliches System bereitzustellen."
 
 msgid "description-rhel"
 msgstr "Red hat Enterprise Linux (RHEL) ist eine für den betrieblichen Einsatz optimierte Distribution"
@@ -615,10 +618,13 @@ msgid "description-xubuntu"
 msgstr "Xubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem XFCE-Desktop."
 
 msgid "description-lubuntu"
-msgstr "Lubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem LXDE-Desktop."
+msgstr "Lubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem LXQt-Desktop."
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE ist eine auf Ubuntu basierende Distribution mit vorinstalliertem MATE-Desktop."
+
+msgid "description-popos"
+msgstr "Pop!_OS ist eine auf Ubuntu basierende Distribution mit vorinstalliertem GNOME-Desktop."
 
 msgid "description-fedora"
 msgstr "Fedora ist eine von Red Hat unterstütze Distribution, die sich für die Nutzung von freier Software ausspricht"
@@ -636,14 +642,13 @@ msgid "description-knoppix"
 msgstr "Knoppix ist eine für den Livebetrieb optimierte Distribution"
 
 msgid "description-cruxlinux"
-msgstr "Crux Linux ist eine 64 bit optimierte Distribution mit aktueller Software und Tools"
+msgstr "Crux Linux ist eine 64-bit optimierte Distribution mit aktueller Software und Tools"
 
 msgid "description-zorinos"
 msgstr "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche"
 
 msgid "description-elementaryos"
-msgstr "elementary OS is a ubuntu-based distribution, focused on a elegant and fast user expierience"
-
+msgstr "Elementary OS ist eine Ubuntu-basierte Distribution, die sich auf eine elegante und schnelle Benutzererfahrung konzentriert"
 
 msgid "description-kubuntu"
 msgstr "Kubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem KDE-Desktop."
@@ -660,7 +665,7 @@ msgid "debian-updates-slow"
 msgstr "Debian-Updates kommen gewöhnlich später, was der Stabilität zu Gute kommt."
 
 msgid "description-qubesos"
-msgstr "QubesOS setzt einen hoheren Sicherheitsstandard durch Isolation der genutzten Programme"
+msgstr "QubesOS setzt einen höheren Sicherheitsstandard durch Isolation der genutzten Programme"
 
 msgid "software-use-case-isolation"
 msgstr "Ich möchte, dass Programme isoliert genutzt werden"
@@ -702,7 +707,7 @@ msgid "remark-placeholder-saving"
 msgstr "Der Text wird automatisch gespeichert"
 
 msgid "slow-release-model"
-msgstr "Software durch Releasemodell ggf. nur in verzögert in neuster Version verfügbar"
+msgstr "Software durch Releasemodell ggf. nur verzögert in neuster Version verfügbar"
 
 msgid "requires-payment"
 msgstr "Kostenpflichtige Nutzung"

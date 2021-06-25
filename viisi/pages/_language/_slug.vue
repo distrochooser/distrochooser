@@ -18,8 +18,8 @@
       a(target="_blank", href="https://github.com/distrochooser/distrochooser" ) 
         i.w-icon-github
       br
-      select(v-if="!isLoading")
-        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale_key)",:selected="$store.state.language===locale_key") {{locale}}
+      select(v-if="!isLoading", v-model="language")
+        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
    
 </template>
 <script>
@@ -48,6 +48,11 @@ export default {
     infoPageLanguage: function() {
       // as the info pages are only available in de and en
       return ['de', 'en'].indexOf(this.language) !== -1 ? this.language : 'en'
+    }
+  },
+  watch: {
+    language: async function(val) {
+      await this.switchLanguage(val)
     }
   },
   async mounted() {
@@ -101,7 +106,6 @@ export default {
           language: this.language
         }
       })
-      console.log(this.$store.state.isSubmitted)
       // resubmit result to get translated values (if needed)
       if (this.isFinished) {
         this.$store.dispatch('submitAnswers', {

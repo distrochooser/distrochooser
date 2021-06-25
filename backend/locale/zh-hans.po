@@ -118,6 +118,9 @@ msgstr "关于 distrochooser.de"
 msgid "vote-reminder"
 msgstr "您喜欢这个发行版吗？给它点个赞吧！"
 
+msgid "vote-reminder-negative"
+msgstr "你不喜欢这个发行版吗？ 单击拇指向下！ !"
+
 msgid "about-intro-text"
 msgstr ""
 "distrochooser.de 的目标是帮助初学者选择他们需要的、适合自己的 Linux 发行"
@@ -656,10 +659,13 @@ msgid "description-xubuntu"
 msgstr "Xubuntu 是一个基于 Ubuntu 的发行版，使用轻量级 Xfce 桌面环境"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu 是一个基于 Ubuntu 的发行版，使用轻量级 LXDE 桌面环境"
+msgstr "Lubuntu 是一个基于 Ubuntu 的发行版，使用轻量级 LXQt 桌面环境"
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE 是一个基于 Ubuntu 的发行版，使用轻量级 MATE 桌面环境"
+
+msgid "description-popos"
+msgstr "Pop!_OS 是一个基于 Ubuntu 的发行版，使用GNOME桌面环境。"
 
 msgid "description-fedora"
 msgstr "Fedora 是一个由 Red Hat 支持的发行版，主要关注自由软件"

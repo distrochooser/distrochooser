@@ -113,6 +113,9 @@ msgstr "Über distrochooser.de"
 msgid "vote-reminder"
 msgstr "Gfaut dir die Distribution? De gib üs doch es Feedback!"
 
+msgid "vote-reminder-negative"
+msgstr "Gfaut dir die Distribution nit? De gib üs doch es Feedback!"
+
 msgid "about-intro-text"
 msgstr "Ds Zieu vo Distrochooser isches, Afänger ä Orientierigshiuf bi Linux z gäh. Z Ergäbnis isch nur ä Orientierigshiuf u kes Orakel"
 
@@ -616,10 +619,13 @@ msgid "description-xubuntu"
 msgstr "Xubuntu isch e Distribution wo uf Ubuntu basiert und e XFCE-Desktop vorinstalliert het."
 
 msgid "description-lubuntu"
-msgstr "Lubuntu isch e Distribution wo uf Ubuntu basiert und e LXDE-Desktop vorinstalliert het."
+msgstr "Lubuntu isch e Distribution wo uf Ubuntu basiert und e LXQt -Desktop vorinstalliert het."
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE isch e Distribution wo uf Ubuntu basiert und e MATE-Desktop vorinstalliert het."
+
+msgid "description-popos"
+msgstr "Pop!_OS isch e Distribution wo uf Ubuntu basiert und e GNOME-Desktop vorinstalliert het."
 
 msgid "description-fedora"
 msgstr "Fedora isch e Distribution wo vo Red Hat ungerstützt wird u wo sech für d Nutzig vo freier Software usspricht"

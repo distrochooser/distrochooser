@@ -118,6 +118,9 @@ msgstr "Về distrochooser.de"
 msgid "vote-reminder"
 msgstr "Bạn thích bản phân phối này? Hãy cho nó một lượt thích!"
 
+msgid "vote-reminder-negative"
+msgstr "Bạn không thích bản phân phối này? Nhấp vào không thích!"
+
 msgid "about-intro-text"
 msgstr "distrochooser.de cố gắng giúp những người mới bắt đầu sử dụng Linux chọn một bản phân phối phù hợp với nhu cầu của họ.<br>Kết quả đưa ra là gợi ý dựa trên câu trả lời của bạn. Đôi khi kết quả có thể không phù hợp vì sự ảnh hưởng phức tạp giữa các câu trả lời."
 
@@ -644,10 +647,13 @@ msgid "description-xubuntu"
 msgstr "Xubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là XFCE"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là LXDE"
+msgstr "Lubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là LXQt"
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là MATE"
+
+msgid "description-popos"
+msgstr "Pop!_OS là bản phân phối dựa trên Ubuntu với máy tính để bàn GNOME"
 
 msgid "description-fedora"
 msgstr "Fedora là một bản phân phối được ủng hộ bởi Red hat tập trung lớn vào phần mềm tự do"

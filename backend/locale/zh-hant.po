@@ -118,6 +118,9 @@ msgstr "關於 distrochooser.de"
 msgid "vote-reminder"
 msgstr "您喜歡這個發行版嗎? 給它一個讚吧！"
 
+msgid "vote-reminder-negative"
+msgstr "你不喜歡這個發行版嗎？ 單擊拇指向下！ "
+
 msgid "about-intro-text"
 msgstr ""
 "distrochooser.de 的目標是幫助初學者選擇需要的並符合自己需求的 Linux 發行"
@@ -656,10 +659,13 @@ msgid "description-xubuntu"
 msgstr "Xubuntu 是一個基於 Ubuntu 的發行版，使用輕量级 Xfce 桌面環境"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu 是一個基於 Ubuntu 的發行版，使用輕量级 LXDE 桌面環境"
+msgstr "Lubuntu 是一個基於 Ubuntu 的發行版，使用輕量级 LXQt 桌面環境"
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE 是一個基於 Ubuntu 發行版，使用輕量級 MATE 桌面環境"
+
+msgid "description-popos"
+msgstr "Pop!_OS 是一個基於 Ubuntu 的發行版，使用 GNOME 桌面環境 "
 
 msgid "description-fedora"
 msgstr "Fedora 是一個由 Red Hat 支援的發行版，主要強調自由軟體"

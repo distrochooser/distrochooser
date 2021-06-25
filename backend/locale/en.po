@@ -116,7 +116,10 @@ msgid "about-header"
 msgstr "About distrochooser.de"
 
 msgid "vote-reminder"
-msgstr "You like this distribution? Give it a thumbs up!"
+msgstr "You like this distribution? Give it a heart!"
+
+msgid "vote-reminder-negative"
+msgstr "You don't like this distribution? Give it a thumbs down!"
 
 msgid "about-intro-text"
 msgstr "distrochooser.de attempts to help Linux beginners to choose a Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers."
@@ -644,10 +647,13 @@ msgid "description-xubuntu"
 msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu is an Ubuntu-based distribution powered by the lightweight LXDE desktop environment"
+msgstr "Lubuntu is an Ubuntu-based distribution powered by the lightweight LXQt  desktop environment"
 
 msgid "description-ubuntumate"
 msgstr "Ubuntu MATE is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"
+
+msgid "description-popos"
+msgstr "Pop!_OS is an Ubuntu-based distribution powered by the GNOME desktop environment"
 
 msgid "description-fedora"
 msgstr "Fedora is a Red hat backed distribution with a large focus on free software"
