@@ -137,13 +137,13 @@ msgid "imprint-header"
 msgstr "Impressum"
 
 msgid "about-licenses-source"
-msgstr "The sourcecode"
+msgstr "Исходный код"
 
 msgid "about-licenses-source-text"
-msgstr "The sourcecode is licensed under the license written in the 'LICENSE' file, which is placed in the linked repository."
+msgstr "Исходный код подвержен лицензии, описанной в файле 'LICENSE', который расположен в ссылающемся репозитории."
 
 msgid "about-licenses-database"
-msgstr "The data base"
+msgstr "База данных"
 
 msgid "about-licenses-database-text"
 msgstr "The underlying data, including the question/answer structure, the result matrix and statistics, are proprietary. You may use them only with our prior permission. The description texts and logos of the various distributions are subject to the licences of the respective copyright holders."
