@@ -349,193 +349,193 @@ msgid "reason-header-hint"
 msgstr "Нажмите на название дистрибутива чтобы увидеть подробные причины для соответствующей рекомендации"
 
 msgid "reason-list-header"
-msgstr "Reason for/ against"
+msgstr "Причина за/ против"
 
 msgid "answer-is-blocking"
-msgstr "Following answers are excluding this answer"
+msgstr "Следующие ответы исключают данный ответ"
 
 msgid "answer-is-blocked"
-msgstr "This answer contradicts this former answer you have given"
+msgstr "Этот ответ противоречит этом прежнему ответу"
 
 msgid "reason-blocked-by-others-entry"
-msgstr "\"{0}\" disagrees \"{1}\""
+msgstr "\"{0}\" противоречит \"{1}\""
 
 msgid "additional-infos"
-msgstr "give me additional information!"
+msgstr "дайте больше информации!"
 
 msgid "make-important"
-msgstr "This is important!"
+msgstr "Это важно!"
 
 msgid "marked-as-important"
-msgstr "Marked as important"
+msgstr "Отмечено как важное"
 
 msgid "remove-important"
-msgstr "Remove importance"
+msgstr "Убрать отметку как важное"
 
 msgid "reason-list-header-negative"
-msgstr "We cannot recommend this distribution for you because:"
+msgstr "Мы не можем рекомендовать этот дистрибутив Вам потому что:"
 
 msgid "reason-list-header-neutral"
-msgstr "The following criteria were not factored into this"
+msgstr "Следующие критерии не были учтены"
 
 msgid "reason-list-header-blocked-by-others"
-msgstr "This answer is blocked by other answers you have given"
+msgstr "Этот ответ заблокирован другими ответами которые Вы дали"
 
 msgid "matrix-supports-daily-usage"
-msgstr "Suitable for daily use"
+msgstr "Подходит для ежедневного использования"
 
 msgid "matrix-privacy-not-beneficial"
-msgstr "Distribution concept is not beneficial for anonymisation purposes"
+msgstr "Концепция дистрибутива не располагает к анонимизации"
 
 msgid "matrix-supports-gaming-usage"
-msgstr "Distribution is actively supported by game publishers"
+msgstr "Дистрибутив активно поддерживается разработчиками игр"
 
 msgid "matrix-beginner-knowledge"
-msgstr "Suitable for beginners"
+msgstr "Подходит для начинающих"
 
 msgid "matrix-advanced-knowledge"
-msgstr "Suitable for advanced users"
+msgstr "Подходит для продвинутых пользователей"
 
 msgid "matrix-professional-knowledge"
-msgstr "Suitable for professionals"
+msgstr "Подходит для профиссионалов"
 
 msgid "matrix-linux-knowledge-higher"
-msgstr "Usage requires less Linux knowledge than answered"
+msgstr "Пользование предполагает меньше знаний о Linux чем было указано"
 
 msgid "matrix-computer-knowledge-higher"
-msgstr "Usage requires less computer knowledge than answered"
+msgstr "Пользование предполагает меньше компьютерных навыков чем было указано"
 
 msgid "matrix-linux-beginner"
-msgstr "Suitable for beginners in Linux"
+msgstr "Подходит для новичков в Linux"
 
 msgid "matrix-installation-presets-always-given"
-msgstr "The installation sets presets which may need to be reset after install"
+msgstr "Установка регулирует настройки которые может потребоваться сбросить после установки"
 
 msgid "matrix-installation-presets-gui"
-msgstr "Many settings can be done via a graphical interface"
+msgstr "Многие настройки могут регулироваться через графический интерфейс"
 
 msgid "matrix-installation-assistant-present"
-msgstr "The installation uses a installation 'wizard' with default settings"
+msgstr "Установка использует 'wizard' с настройками по умолчанию"
 
 msgid "matrix-hardware-oldpc-ubuntu"
-msgstr "You may encounter window compositor effect lags. It may be necessary to disable animations."
+msgstr "Могут встречаться лаги композитора окон. Может потребоваться отключить анимации."
 
 msgid "matrix-hardware-newpc"
-msgstr "Runs on latest hardware"
+msgstr "Работает на новейшем аппаратном обеспечении"
 
 msgid "matrix-user-exchange"
-msgstr "There are user communities for knowledge sharing"
+msgstr "Есть пользовательские сообщества для обмена информацией"
 
 msgid "matrix-tutorial"
-msgstr "There are tutorials for troubleshooting and problem-solving"
+msgstr "Есть туториалы по исправлению и решению проблем"
 
 msgid "matrix-mac-like"
-msgstr "GUI concept has elements of macOS"
+msgstr "Концепция GUI имеет элементы macOS"
 
 msgid "matrix-windows-like-not-fullfilled"
-msgstr "GUI concept differs from Windows a lot"
+msgstr "Концепция GUI значительно отличается от Windows"
 
 msgid "matrix-closed-expierience"
-msgstr "Has own wallpapers, icons and themes"
+msgstr "Имеет свои фоны рабочего стола, иконки и темы"
 
 msgid "matrix-has-windows-like-variant"
-msgstr "Has variants with a windows-like user interface"
+msgstr "Имеет варианты с пользовательским интерфейсом как у Windows"
 
 msgid "matrix-paid-version-existing"
-msgstr "There is a non-free version of this distribution"
+msgstr "Есть несвободная версия этого дистрибутива"
 
 msgid "matrix-gaming-packages-stable-but-old"
-msgstr "Software versions may not be recent enough for gaming"
+msgstr "Версия ПО может быть недостаточно новой для запуска игр"
 
 msgid "matrix-has-live-mode"
-msgstr "Has a live mode which allows starting from disc"
+msgstr "Имеет живой режим которы позволяет запускаться с диска"
 
 msgid "live-mode-only"
-msgstr "Has Live Mode: Can be started using discs or usb sticks to test it out (before installing)"
+msgstr "Есть живой режим: Может быть запущен с диска или USB-носителя для пробы (до установки)"
 
 msgid "matrix-without-fee"
-msgstr "Usable without fee"
+msgstr "Работает без оплаты"
 
 msgid "matrix-paid"
-msgstr "There is a fee-based version of this distribution"
+msgstr "Есть платная версия этого дистрибутива"
 
 msgid "matrix-fullinstall"
-msgstr "Installs all needed programs"
+msgstr "Устанавливает все необходимые программы"
 
 msgid "matrix-ownscope-install"
-msgstr "All programs to be used must be chosen by yourself"
+msgstr "Все программы для использования нужно будет выбирать самому"
 
 msgid "matrix-free-software-unfree-per-default"
-msgstr "Closed source programs are installed by default"
+msgstr "Программы с закрытым исходным кодом устанавливаются по умолчанию"
 
 msgid "matrix-enforces-free"
-msgstr "Enforces usage of free software"
+msgstr "Принуждает к использованию свободного ПО"
 
 msgid "matrix-mostly-free"
-msgstr "Works mostly with free software"
+msgstr "Работает в основном со свободным ПО"
 
 msgid "matrix-has-default-settings"
-msgstr "Has default settings"
+msgstr "Имеет настройки по умолчанию"
 
 msgid "matrix-privacy-ok"
-msgstr "Beneficial for user privacy"
+msgstr "Располагает к приватности пользователя"
 
 msgid "matrix-privacy-thirdparty"
-msgstr "Connects to third party services by default"
+msgstr "Подключается к сторонним сервисам по умолчанию"
 
 msgid "matrix-appstore"
-msgstr "Software installation can be done using an app store"
+msgstr "Установка ПО может происходить через магазин приложений"
 
 msgid "matrix-console"
-msgstr "Software installation can be done using the terminal"
+msgstr "Установка ПО может происходить через консоль"
 
 msgid "matrix-stable-updates"
-msgstr "Updates are mostly stable when published"
+msgstr "Обновления в основном стабильны на момент выхода"
 
 msgid "matrix-fast-updates"
-msgstr "Software updates are released as fast as possible, which makes them unstable"
+msgstr "Обновления программ выходят настолько быстро насколько возможно, что делает их нестабильными"
 
 msgid "matrix-has-control-panel"
-msgstr "Contains a pre-installed control center"
+msgstr "Имеет прдустановленный центр управления"
 
 msgid "matrix-user-selection-affects-privacy"
-msgstr "User has to select the software to use"
+msgstr "Пользователь должен выбрать программы для использования"
 
 msgid "matrix-selection-by-user"
-msgstr "Scope of pre-installed programs is decided by user"
+msgstr "Категории предустановленных программ выбираются пользователем"
 
 msgid "matrix-updates-fast"
-msgstr "Updates are fast, but can be unstable"
+msgstr "Обновления быстрые, но могут быть нестабильными"
 
 msgid "matrix-not-for-beginner"
-msgstr "Not suitable for beginners"
+msgstr "Не подоходит для начинающих"
 
 msgid "matrix-avoids-systemd"
-msgstr "Avoids systemd"
+msgstr "Избегает systemd"
 
 msgid "matrix-uses-systemd"
-msgstr "uses systemd"
+msgstr "использует systemd"
 
 msgid "built-for-anonymization"
-msgstr "Build for anonymisation purposes"
+msgstr "Сделан с целью анонимизации"
 
 msgid "matrix-administration-shell"
-msgstr "Administration is mostly done by using shell commands"
+msgstr "Администрирование в основном происходит через shell-команды"
 
 msgid "matrix-oldpc-no-32bit"
-msgstr "Does not support old computers without 64 bit support"
+msgstr "Не поддерживает старые компьютеры без поддержки 64 бит"
 
 msgid "matrix-requires-manual"
-msgstr "Requires reading of manuals and tutorials"
+msgstr "Требует чтения инструкций и туториалов"
 
 msgid "matrix-requires-advanced-knowledge"
-msgstr "Requires reading up in manuals for usage"
+msgstr "Требует чтения инструкций для использования"
 
 msgid "matrix-isolation-default"
-msgstr "Has a isolation concept by default"
+msgstr "Имеет концепцию изоляции по умолчанию"
 
 msgid "matrix-oldpc-supported"
-msgstr "Supports even older computers"
+msgstr "Поддерживает даже старые компьютеры"
 
 msgid "checked-criteria-count"
 msgstr "aspects checked"
