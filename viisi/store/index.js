@@ -23,7 +23,8 @@ const indexStore = new Vapi({
       'zh-hant': '繁體中文',
       vn: 'Tiếng Việt',
       ch: 'Schwizerdütsch',
-      fr: 'Français'
+      fr: 'Français',
+      ru: 'русский'
     },
     voteResult: null,
     remarksAdded: false,

@@ -146,206 +146,207 @@ msgid "about-licenses-database"
 msgstr "База данных"
 
 msgid "about-licenses-database-text"
-msgstr "The underlying data, including the question/answer structure, the result matrix and statistics, are proprietary. You may use them only with our prior permission. The description texts and logos of the various distributions are subject to the licences of the respective copyright holders."
+msgstr "Все данные, включая структуру вопросов/ответов, матрицу результатов и статистику, являются частной собственностью. Их разрешено использовать только с нашего предварительного разрешения. Тексты описания и логотипы различных дистрибутивов лицензированы соответствующими правообладателями."
 
 msgid "no-results-text"
-msgstr "Distrochooser was not able to find a suitable result based on your answers. It would be great help, if you would write us some feedback, so that we can investigate this."
+msgstr "Distrochooser не смог найти подходящий результат на основе Ваших ответов. Вы бы оказали нам большую помощь написав нам отзыв, чтобы мы могли разобраться в этом."
 
 msgid "close-additional-info"
-msgstr "Close"
+msgstr "Закрыть"
 
 msgid "no-answers"
-msgstr "You gave no answers."
+msgstr "Вы не дали ни одного ответа."
 
 msgid "get-my-result"
-msgstr "Shows you your results."
+msgstr "Показаывает Ваши результаты."
 
 msgid "additional-info"
-msgstr "Additional information"
+msgstr "Дополнительная информация"
 
 msgid "remark-placeholder"
-msgstr "Your feedback (max 3000 chars)"
+msgstr "Ваш отзыв (максимум 3000 символов)"
 
 msgid "distribution-homepage"
-msgstr "Distribution homepage"
+msgstr "Домашная страница дистрибутива"
 
 msgid "result-remarks-added"
-msgstr "Thank you for your feedback!"
+msgstr "Спасибо за Ваш отзыв!"
 
 msgid "share-result"
-msgstr "Share my result"
+msgstr "Поделиться результатом"
 
 msgid "software-use-case-question"
-msgstr "Some distributions are made for a special purpose, some for daily use. What do you need?"
+msgstr "Некоторые дистрибутивы созданы для специальных нужд, а некоторые - для повседневного использования. Что нужно Вам?"
 
 msgid "software-use-case-answer-daily"
-msgstr "I want a distribution for daily use."
+msgstr "Я хочу дистрибутив для повседневного использования."
 
 msgid "software-use-case-anonymous-answer"
-msgstr "I want to use Linux for anonymous web browsing."
+msgstr "Я хочу использовать Linux для анонимного пользования Интернетом."
 
 msgid "software-use-case-answer-gaming"
-msgstr "I prefer a distribution which is supported by game publishers."
+msgstr "Я предпочитаю дистрибутив, поддерживаемый разработчиками игр."
 
 
 msgid "computer-knowledge-question"
-msgstr "How would you rate your proficiency using a computer?"
+msgstr "Как бы Вы оценили свои навыки владения компьютером?"
 
 msgid "computer-knowledge-answer-beginner"
-msgstr "I often need help from others to fix problems with my computer"
+msgstr "Мне зачастую нужна помощь в решении моих компьютерных проблем от других людей"
 
 msgid "computer-knowledge-answer-advanced"
-msgstr "I am already able to solve some computer problems by myself"
+msgstr "Я уже способен решать некоторые компьютерные проблемы сам"
 
 msgid "computer-knowledge-answer-professional"
-msgstr "I can troubleshoot most or all computer problems by myself"
+msgstr "Я могу искать и исправлять большинство неисправностей с компьютером сам"
 
 
 msgid "linux-knowledge-question"
-msgstr "How would you rate your knowledge of Linux itself?"
+msgstr "Как бы Вы оценили свои познания о самом Linux?"
 
 msgid "linux-knowledge-answer-beginner"
-msgstr "I have little or no knowledge about Linux"
+msgstr "У меня мало или вообще нет знаний о Linux"
 
 msgid "linux-knowledge-answer-advanced"
-msgstr "I have already used Linux for some purposes"
+msgstr "Я уже использовал Linux для некоторых нужд"
 
 msgid "linux-knowledge-answer-professional"
-msgstr "I have a good understanding about the Linux operating system"
+msgstr "У меня хорошее понимание об операционной системе Linux"
 
 
 msgid "presets-question"
-msgstr "How many settings do you wish to tweak by yourself during installation? How many configuration variables should be filled with default values?"
+msgstr "Сколько настроек Вы желаете настраивать самостоятельно во время установки? Сколько переменных конфигурации должно быть заполнено значениями по умолчанию?"
 
 msgid "presets-question-answer-manypresets"
-msgstr "I want to use the default preset values in the installation assistant"
+msgstr "Я хочу использовать значения, предустановленные в ассистенте установки"
 
 msgid "presets-question-answer-ownselection"
-msgstr "I want to choose the settings by myself"
+msgstr "Я хочу выбирать настройки сам"
 
 msgid "presets-question-answer-guiselections"
-msgstr "I want to configure as much as possible using graphical applications"
+msgstr "Я хочу настроить столько, сколько смогу настроить приложениями с графическим интерфейсом"
 
 
 msgid "hardware-question"
-msgstr "It is important to know how old your computer hardware is, since some distributions won't run on old computers."
+msgstr "Важно знать насколько стар Ваш комрьютер, так как некоторые дистрибутивы не будут работать на старых компьютерах."
 
 msgid "additional-info-hardware"
-msgstr "For years, some distribution were using the 32 bit architecture, which allows to allocate up to 4 gigabytes of memory. Newer distributions tend to ditch the 32 bit in favour of the 64 bit support, which allows to allocate more than 4 gigabytes of memory. Since 2005 nearly all Computers should support 64 bit."
+msgstr "Многие годы некоторые дистрибутивы использовали 32-битную архитектуру, что позволяло выделять до 4 гигабайт памяти. Более новые дистрибутивы уходят от поддержки 32 бит в пользу поддержки 64 бит, что позволяет выделять свыше 4 гигабайт памяти. Начиная с 2005 года, почти все компьютера поддерживают 64 бита."
 
 msgid "hardware-question-oldpc"
-msgstr "I'm not sure about this and/or my computer already has performance issues and/or only supports 32 bit"
+msgstr "Я не уверен насчёт этого и/или мой компьютер уже имеет проблемы с производительностью и/или поддерживает только 32 бита"
 
 msgid "hardware-question-newpc"
-msgstr "The performance of my computer is good, I don't experience any performance issues, my hardware supports 64 bit"
+msgstr "У моего компьютера хорошая производительность, я не испытываю никаких проблем с производительностью, моё аппаратное обеспечение поддерживает 64 бита"
 
 
 msgid "help-question"
-msgstr "Some distributions prefer articles in wikis for troubleshooting. What do you prefer?"
+msgstr "Некоторые дистрибутивы предпочитают статьи на вики для предоставления решения проблем. Что предпочитаете Вы?"
 
 msgid "help-question-tutorials"
-msgstr "I am able to solve my problems using guides from wiki pages or tutorials"
+msgstr "Я способен решать мои проблемы по инструкциям из вики страниц или туториалов"
 
 msgid "help-question-user-exchange"
-msgstr "I prefer asking others for help"
+msgstr "Я предпочитаю просить других о помощи"
 
 
 msgid "ux-concept-question"
-msgstr "Linux can use a lot of different User Interfaces (\"Desktops\"). Many distributions ship one desktop as default. It is important to know if you have any preferences for a desktop concept. You can switch and install new desktops at any time!"
+msgstr "Linux может использовать множество пользовательских интерфейсовs (\"рабочих столов\"). Многие дистрибутивы предоставляют рабочий стол по умолчанию. Важно знать если у Вас есть какие-либо предпочтения в дизайне рабочего стола. Можно установить и изменить другой рабочий стол в любое время!"
 
 msgid "ux-concept-answer-windows-like"
-msgstr "I prefer a windows-like user interface"
+msgstr "Мне нравится пользовательский интерфейс как в Windows"
 
 msgid "ux-concept-answer-mac-like"
-msgstr "I prefer a macOS-like user interface"
+msgstr "Я предпочитаю пользовательский интерфейс как в macOS"
 
 msgid "ux-concept-tiling"
-msgstr "I prefer a tile-based window appearance"
+msgstr "Я предпочитаю мозаичное расположение окон"
 
 msgid "ux-concept-closed-expierience"
-msgstr "I prefer a closed experience"
+msgstr "Я предпочиаю закрытый интерфейс"
+
 
 msgid "price-question"
-msgstr "Most distributions are free. Some distributions offer additional support for a one-time fee."
+msgstr "Большинство дистрибутивов бесплатны. Некоторые дистрибутивы предлагают дополнительную поддержку за единоразовую плату."
 
 msgid "price-answer-free"
-msgstr "I prefer a free-to-use distribution"
+msgstr "Я предпочитаю бесплатный для использования дистрибутив"
 
 msgid "price-answer-paid"
-msgstr "I would be fine to pay a fee"
+msgstr "Я не против заплатить"
 
 
 msgid "scope-question"
-msgstr "Different distributions pre-install different amounts of software. Some install a complete suite of basic programs to work \"out of the box\". Other distributions offer only a base install to then let the user install what programs they want to use."
+msgstr "Разные дистрибутивы предустанавливают разное количество ПО. Некоторые устанавливают полный набор базовых программ для готовности к работе \"из коробки\". Другие дистрибутивы предлагают лишь базовую установку чтобы дать пользователям возможность установить программы которые они хотят использовать."
 
 msgid "scope-answer-fullinstall"
-msgstr "I prefer a distribution shipping all the basic programs I need to start working immediately after installation"
+msgstr "Я предпочитаю дистрибутив поставляющий все базовые программы которые мне нужны для начала работы сразу после установки"
 
 msgid "scope-answer-ownselection"
-msgstr "I want to choose the basic programs to install myself"
+msgstr "Я хочу выбирать базовые программы для установки сам"
 
 
 msgid "ideology-question"
-msgstr "The (license) ideology of a distribution is a contentious debate. There are distributions using mostly \"free-licenses\", others also use \"non-free\" software."
+msgstr "(Лицензионая) идеология дистрибутива вызывает споры. Есть дистрибутивы использующие в большинстве \"бесплатные лицензии\", другие же заодно используют и \"небесплатное\" ПО."
 
 msgid "additional-info-ideology"
-msgstr "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute it's sourcecode and modifications are not allowed."
+msgstr "Бесплатные лицензии позволяют пользователю изменять, распространять и использовать ПО для любых нужды. Бывают ситуации когда дистрибутив использует небесплатное ПО, как например драйвера для аппаратного обеспечения. Небесплатное ПО не делится своим исходным кодом и его изменения не позволительны."
 
 msgid "ideology-answer-free"
-msgstr "I want to use free licenses as much as I can"
+msgstr "Я хочу использовать бесплатные лицензии столько, сколько смогу"
 
 msgid "ideology-answer-proprietary-ok"
-msgstr "I'm fine with non-free licenses as long as my system works"
+msgstr "Меня устраивают небесплатны лицензии то тех пор пока моя система работает"
 
 
 msgid "privacy-question"
-msgstr "Some distributions use online services to improve the user experience. This may affect the privacy of the user, i.e. the user can be tracked when using such online features."
+msgstr "Некоторые дистрибутивы используют онлайн сервисы для улучшения пользовательского интерфейса. Это может повлиять на приватность пользователя, т.е. пользователь может быть отслежен через подобные онлайн сервисы."
 
 msgid "privacy-answer-highprivacy"
-msgstr "I do not want this"
+msgstr "Я такого не хочу"
 
 msgid "privacy-answer-services-ok"
-msgstr "If it improves my user experience, I agree with using such online services"
+msgstr "Я согласен использовать подобные онлайн сервисы если это улучшит моё пользование компьютером"
 
 
 msgid "software-admin-question"
-msgstr "There are many ways to administrate a Linux distribution, e. g. to install software."
+msgstr "Есть много способов администрирования дистрибутива Linux distribution, такие как например установка программ."
 
 msgid "software-admin-answer-appstore"
-msgstr "I want to install my programs using a kind of \"App store\""
+msgstr "Я хочу устанавливать мои программы через что-то наподобие \"магазина приложений\""
 
 msgid "software-admin-answer-console"
-msgstr "I want to install software mostly using terminal commands"
+msgstr "Я хочу устанавливать ПО в основном через консольные команды"
 
 
 msgid "special-features-qestion"
-msgstr "Some distributions have additional features for specific purposes. Do I need such features?"
+msgstr "Некоторые дистрибутивы обладают дополнительными возможностями для особых нужд. Нужны ли мне такие возможности?"
 
 msgid "additional-info-special-features-qestion"
-msgstr "Many distributions use 'systemd' to start the operating system itself. Some distributions avoid systemd in favor of alternative and sometimes more lightweight solutions"
+msgstr "Многие дистрибутивы используют 'systemd' для запуска самой операционной системы. Некоторые дистрибутивы обохдят systemd сторой в пользу альтернативных и в некоторых случаях менее объёмных решений"
 
 msgid "answer-isolation"
-msgstr "Applications should be executed in a isolated environment by default"
+msgstr "Приложения должны быть запущены в изолированных средах по умолчанию"
 
 
 msgid "software-updates-question"
-msgstr "Some distributions offer faster updates, which can affect system stability. What do you prefer?"
+msgstr "Некоторые дистрибутивы предлагают быстрые обновления, которые могут повлиять на стабильность системы. Что предпочитаете Вы?"
 
 msgid "software-updates-answer-fast"
-msgstr "I prefer fast updates"
+msgstr "Я предпочитаю быстрые обновления"
 
 msgid "software-updates-answer-slow"
-msgstr "I prefer stable updates"
+msgstr "Я предпочитаю стабильные обновления"
 
 msgid "answer-avoid-systemd"
-msgstr "I want to avoid systemd"
+msgstr "Я хочу избежать systemd"
 
 msgid "result-submitted-hint"
-msgstr "Calculating result"
+msgstr "Высчитываем результатCalculating result"
 
 
 msgid "reason-header-hint"
-msgstr "Click on the distribution name to see detailed reasons for this recommendation"
+msgstr "Нажмите на название дистрибутива чтобы увидеть подробные причины для соответствующей рекомендации"
 
 msgid "reason-list-header"
 msgstr "Reason for/ against"
