@@ -663,10 +663,10 @@ msgid "description-qubeos"
 msgstr "Qubes OS изолирует приложения в виртуальных машинах для усиленной безопасности"
 
 msgid "description-gentoo"
-msgstr "Gentoo is a flexible distribution for advanced users"
+msgstr "Gentoo - гибкий дистрибутив для продвинутых пользователей"
 
 msgid "description-mxlinux"
-msgstr "MX Linux is a middleweight resource usage distribution with focus on a efficient and elegant daily usage."
+msgstr "MX Linux - дистрибутив, нуждающийся в средних технических требованиях, с упором на эффктивное и элегантное повседневное использование."
 
 msgid "description-fedora"
 msgstr "Fedora is a distribution with focus on free software. Fedora is released without a long term support, shipping a new version every 6 months."
