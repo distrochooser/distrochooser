@@ -645,22 +645,22 @@ msgid "description-centos"
 msgstr "CentOS - свободный дистрибутив, основанный на RHEL"
 
 msgid "description-xubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment"
+msgstr "Xubuntu - дистрибутив, основанный на Ubuntu и снабжённыё лёгкой средой рабочего стола XFCE"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu is an Ubuntu-based distribution powered by the lightweight LXQt  desktop environment"
+msgstr "Lubuntu - дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола LXQt"
 
 msgid "description-ubuntumate"
-msgstr "Ubuntu MATE is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"
+msgstr "Ubuntu MATE - дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола MATE"
 
 msgid "description-popos"
-msgstr "Pop!_OS is an Ubuntu-based distribution powered by the GNOME desktop environment"
+msgstr "Pop!_OS - дистрибутив, основанный на Ubuntu и снабжённый средой рабочего стола GNOME"
 
 msgid "description-fedora"
-msgstr "Fedora is a Red hat backed distribution with a large focus on free software"
+msgstr "Fedora - дистрибутив, поддерживаемый Red Hat и с упором на свободное ПО"
 
 msgid "description-qubeos"
-msgstr "Qubes OS isolates applications using virtual machines to improve security"
+msgstr "Qubes OS изолирует приложения в виртуальных машинах для усиленной безопасности"
 
 msgid "description-gentoo"
 msgstr "Gentoo is a flexible distribution for advanced users"
