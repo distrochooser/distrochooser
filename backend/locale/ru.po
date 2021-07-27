@@ -538,111 +538,111 @@ msgid "matrix-oldpc-supported"
 msgstr "Поддерживает даже старые компьютеры"
 
 msgid "checked-criteria-count"
-msgstr "aspects checked"
+msgstr "аспектов проверено"
 
 msgid "searching-criteria"
-msgstr "processing the criteria library"
+msgstr "обработка библиотеки критериев"
 
 msgid "daily-usage-possibly-difficult"
-msgstr "Daily usage may result in major difficulties"
+msgstr "Повседневное пользование может привести к большим трудностям"
 
 msgid "matrix-supports-daily-usage-but-built-for-livemode"
-msgstr "Can be used for daily work, but is built for live-mode"
+msgstr "Может быть использован для повседневной работы, но был создан для живого режима"
 
 msgid "matrix-packages-available"
-msgstr "Programs for anonymisation purposes are available"
+msgstr "Программы для анонимизации доступны"
 
 msgid "matrix-packages-may-too-old-gaming"
-msgstr "Programs versions may not be up-to-date enough for gaming"
+msgstr "Версии программ могут быть недостаточно новыми для игр"
 
 msgid "matrix-gaming-may-require-additional-configuration"
-msgstr "May require additional configuration for gaming"
+msgstr "Может потребовать дополнительной конфигурации для игр"
 
 msgid "matrix-built-for-enterprise"
-msgstr "Primary goal is enterprise usage"
+msgstr "Первостепенная цель - корпоративное пользование"
 
 msgid "matrix-not-built-for-gaming"
-msgstr "Not optimized for gaming"
+msgstr "Не оптимизирован для игр"
 
 msgid "requires-some-computer-knowledge"
-msgstr "Requires further knowledge about computers"
+msgstr "Требует продвинутых компьютерных навыков"
 
 msgid "matrix-maybe-not-for-beginner"
-msgstr "Not suitable for beginners"
+msgstr "Не подходит для начинающих"
 
 msgid "matrix-installation-from-shell"
-msgstr "Installation is done using the terminal"
+msgstr "Установка происходит через консоль"
 
 msgid "matrix-installs-range-of-programs"
-msgstr "Installs a range of program by default"
+msgstr "Устанавливая некоторое количество программ по умолчанию"
 
 msgid "matrix-configuration-from-shell"
-msgstr "Majority of configuration is done using shell commands"
+msgstr "Большинство настроек регулируются через shell-команды"
 
 msgid "matrix-middleweight"
-msgstr "Is a middleweight system, especially suitable for semi-recent computers"
+msgstr "Система среднего размера, в особенности подходящая для компьютеров близких к современным"
 
 msgid "matrix-has-high-range-hardware-support"
-msgstr "Supports a wide range of hardware"
+msgstr "Поддерживает широкий ассортимент аппаратного обоеспечения"
 
 msgid "matrix-has-zorin-lite-version"
-msgstr "Has a 'Zorin Lite' version for older computers"
+msgstr "Есть версия 'Zorin Lite' для более старых компьютеров"
 
 msgid "matrix-has-windows-like-variant-cinnamon"
-msgstr "A variant ships the 'cinnamon' desktop environment, which has a Windows-like appearance"
+msgstr "Есть вариант среды рабочего стола 'cinnamon', которая схожа по внешнему виду с Windows"
 
 msgid "systemd-is-avoidable-per-selection"
-msgstr "Systemd can be avoided per user selection"
+msgstr "Можно избежать systemd по указанию пользователя"
 
 msgid "matrix-ships-systemd-but-disabled"
-msgstr "Systemd is shipped, but disabled by default"
+msgstr "Systemd предоставлен но отключен по умолчанию"
 
 msgid "matrix-supports-privacy"
-msgstr "Only collects data when online services are used"
+msgstr "Собирает данные только если используются онлайн-сервисы"
 
 msgid "matrix-lightweight"
-msgstr "Lightweight distribution"
+msgstr "Лёгкий дистрибутив"
 
 msgid "matrix-free-userselection"
-msgstr "Usage of free software depends on user selection"
+msgstr "Использование свободного ПО зависит от выбора пользователя"
 
 # distribution descriptions
 
 msgid "description-manjaro"
-msgstr "Manjaro is a rolling release distribution focused on user friendliness"
+msgstr "Manjaro - дистрибутив, основанный на rolling release с проритетом на дружелюбие к пользователю"
 
 msgid "description-ubuntu"
-msgstr "Ubuntu is a Distribution build by the company Canonical"
+msgstr "Ubuntu - дистрибутив, созданный компанией Canonical"
 
 msgid "description-mint"
-msgstr "Linux Mint is a Ubuntu based distribution with pre-installed proprietary components, such as multimedia codecs."
+msgstr "Linux Mint - дистрибутив основанный на Ubuntu с предустановленными коммерческими компонентами, такими как кодеки мультимедиа."
 
 msgid "description-solus"
-msgstr "Solus OS is a rolling release distribution which started as a Chrome OS clone"
+msgstr "Solus OS - дистрибутив, основанный на rolling release, который возник как клон Chrome OS"
 
 msgid "description-arch"
-msgstr "Arch is a rolling release distribution based on the KISS principle"
+msgstr "Arch - дистрибутив, основанный на rolling release и на принципе KISS"
 
 msgid "description-debian"
-msgstr "Debian is a distribution with high focus on stability"
+msgstr "Debian - дистрибутив с высоким приоритетом стабильности"
 
 msgid "description-tails"
-msgstr "Anonymisation is the main focus of Tails, which can be used from USB or optical discs"
+msgstr "Анонимизация - это основной приоритет Tails, который можно использовать с USB-носителей или оптических дисков"
 
 msgid "description-devuan"
-msgstr "Devuan is a Debian clone without usage of the systemd toolkit"
+msgstr "Devuan - клон Debian но без использования инструментов systemd"
 
 msgid "description-opensuse"
-msgstr "OpenSuse aims to deliver a stable and user-friendly distribution, mostly for end users"
+msgstr "OpenSuse направлен на предоставление стабильного и дружественного к пользователю дистрибутива, в основном для конечных пользователей"
 
 msgid "description-pclinuxos"
-msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface."
+msgstr "PCLinuxOS - дистрибутив, основанный на Mandrake с упором на дружественный интерфейс."
 
 msgid "description-rhel"
-msgstr "Red hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution"
+msgstr "Red hat Enterprise Linux (RHEL) - корпоративный и ориентированный на стабильность дистрибутив"
 
 msgid "description-centos"
-msgstr "CentOS is a free distribution based on RHEL"
+msgstr "CentOS - свободный дистрибутив, основанный на RHEL"
 
 msgid "description-xubuntu"
 msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment"
