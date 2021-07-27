@@ -5,7 +5,7 @@ msgid "imprint"
 msgstr "правовая информация"
 
 msgid "privacy"
-msgstr "приватностть"
+msgstr "приватность"
 
 msgid "about"
 msgstr "об этом проекте"
@@ -92,7 +92,7 @@ msgid "welcome-text-feedback"
 msgstr "Пожалуйста, оцените Ваши результаты в зависимости от того, насколько хорошо они подходят Вашим нуждам."
 
 msgid "welcome-text-importance"
-msgstr "Отметтье ответы выжными чтобы придать им больше веса"
+msgstr "Отметьте ответы важными чтобы придать им больше веса"
 
 msgid "locale-link-en"
 msgstr "This text is available in english"
@@ -122,7 +122,7 @@ msgid "vote-reminder-negative"
 msgstr "Не нравится этот дистрибутив? Поставьте ему палец вниз!"
 
 msgid "about-intro-text"
-msgstr "distrochooser.de предназначен для помощи новичкам в Linux выбрать дистрибутив Linux удовлетворяющий их нуждам.<br>Полученные результаты являются предложениями, основанными на Ваших ответах. Иногда результаты могут не так сильно подоходить в связи со сложной зависимостью между ответами."
+msgstr "distrochooser.de предназначен для помощи новичкам в Linux выбрать дистрибутив Linux удовлетворяющий их нуждам.<br>Полученные результаты являются предложениями, основанными на Ваших ответах. Иногда результаты могут не так сильно подходить в связи со сложной зависимостью между ответами."
 
 msgid "about-intro-test-count"
 msgstr "С 14 июня 2014 года distrochooser.de предоставил %tests% тестов."
@@ -158,7 +158,7 @@ msgid "no-answers"
 msgstr "Вы не дали ни одного ответа."
 
 msgid "get-my-result"
-msgstr "Показаывает Ваши результаты."
+msgstr "Показывает Ваши результаты."
 
 msgid "additional-info"
 msgstr "Дополнительная информация"
@@ -167,7 +167,7 @@ msgid "remark-placeholder"
 msgstr "Ваш отзыв (максимум 3000 символов)"
 
 msgid "distribution-homepage"
-msgstr "Домашная страница дистрибутива"
+msgstr "Домашняя страница дистрибутива"
 
 msgid "result-remarks-added"
 msgstr "Спасибо за Ваш отзыв!"
@@ -228,7 +228,7 @@ msgstr "Я хочу настроить столько, сколько смогу
 
 
 msgid "hardware-question"
-msgstr "Важно знать насколько стар Ваш комрьютер, так как некоторые дистрибутивы не будут работать на старых компьютерах."
+msgstr "Важно знать, насколько стар Ваш компьютер, так как некоторые дистрибутивы не будут работать на старых компьютерах."
 
 msgid "additional-info-hardware"
 msgstr "Многие годы некоторые дистрибутивы использовали 32-битную архитектуру, что позволяло выделять до 4 гигабайт памяти. Более новые дистрибутивы уходят от поддержки 32 бит в пользу поддержки 64 бит, что позволяет выделять свыше 4 гигабайт памяти. Начиная с 2005 года, почти все компьютера поддерживают 64 бита."
@@ -251,7 +251,7 @@ msgstr "Я предпочитаю просить других о помощи"
 
 
 msgid "ux-concept-question"
-msgstr "Linux может использовать множество пользовательских интерфейсовs (\"рабочих столов\"). Многие дистрибутивы предоставляют рабочий стол по умолчанию. Важно знать если у Вас есть какие-либо предпочтения в дизайне рабочего стола. Можно установить и изменить другой рабочий стол в любое время!"
+msgstr "Linux может использовать множество пользовательских интерфейсов (\"рабочих столов\"). Многие дистрибутивы предоставляют рабочий стол по умолчанию. Важно знать если у Вас есть какие-либо предпочтения в дизайне рабочего стола. Можно установить и изменить другой рабочий стол в любое время!"
 
 msgid "ux-concept-answer-windows-like"
 msgstr "Мне нравится пользовательский интерфейс как в Windows"
@@ -263,7 +263,7 @@ msgid "ux-concept-tiling"
 msgstr "Я предпочитаю мозаичное расположение окон"
 
 msgid "ux-concept-closed-expierience"
-msgstr "Я предпочиаю закрытый интерфейс"
+msgstr "Я предпочитаю закрытый интерфейс"
 
 
 msgid "price-question"
@@ -277,26 +277,26 @@ msgstr "Я не против заплатить"
 
 
 msgid "scope-question"
-msgstr "Разные дистрибутивы предустанавливают разное количество ПО. Некоторые устанавливают полный набор базовых программ для готовности к работе \"из коробки\". Другие дистрибутивы предлагают лишь базовую установку чтобы дать пользователям возможность установить программы которые они хотят использовать."
+msgstr "Разные дистрибутивы предустанавливают разное количество ПО. Некоторые устанавливают полный набор базовых программ для готовности к работе \"из коробки\". Другие дистрибутивы предлагают лишь базовую установку чтобы дать пользователям возможность установить программы, которые они хотят использовать."
 
 msgid "scope-answer-fullinstall"
-msgstr "Я предпочитаю дистрибутив поставляющий все базовые программы которые мне нужны для начала работы сразу после установки"
+msgstr "Я предпочитаю дистрибутив, поставляющий все базовые программы, которые мне нужны для начала работы сразу после установки"
 
 msgid "scope-answer-ownselection"
 msgstr "Я хочу выбирать базовые программы для установки сам"
 
 
 msgid "ideology-question"
-msgstr "(Лицензионая) идеология дистрибутива вызывает споры. Есть дистрибутивы использующие в большинстве \"свободные лицензии\", другие же заодно используют и \"несвободное\" ПО."
+msgstr "(Лицензионая) идеология дистрибутива вызывает споры. Есть дистрибутивы, использующие в большинстве своём\"свободные лицензии\", другие же заодно используют и \"несвободное\" ПО."
 
 msgid "additional-info-ideology"
-msgstr "Свободные лицензии позволяют пользователю изменять, распространять и использовать ПО для любых нужды. Бывают ситуации когда дистрибутив использует несвободное ПО, как например драйвера для аппаратного обеспечения. Несвободное ПО не делится своим исходным кодом и его изменения не позволительны."
+msgstr "Свободные лицензии позволяют пользователю изменять, распространять и использовать ПО для любых нужды. Бывают ситуации, когда дистрибутив использует несвободное ПО, как например драйвера для аппаратного обеспечения. Несвободное ПО не делится своим исходным кодом и его изменения не позволительны."
 
 msgid "ideology-answer-free"
 msgstr "Я хочу использовать свободные лицензии столько, сколько смогу"
 
 msgid "ideology-answer-proprietary-ok"
-msgstr "Меня устраивают несвободные лицензии до тех пор пока моя система работает"
+msgstr "Меня устраивают несвободные лицензии до тех пор, пока моя система работает"
 
 
 msgid "privacy-question"
@@ -310,7 +310,7 @@ msgstr "Я согласен использовать подобные онлай
 
 
 msgid "software-admin-question"
-msgstr "Есть много способов администрирования дистрибутива Linux distribution, такие как например установка программ."
+msgstr "Есть много способов администрирования дистрибутива Linux, такие, как например установка программ."
 
 msgid "software-admin-answer-appstore"
 msgstr "Я хочу устанавливать мои программы через что-то наподобие \"магазина приложений\""
@@ -323,7 +323,7 @@ msgid "special-features-qestion"
 msgstr "Некоторые дистрибутивы обладают дополнительными возможностями для особых нужд. Нужны ли мне такие возможности?"
 
 msgid "additional-info-special-features-qestion"
-msgstr "Многие дистрибутивы используют 'systemd' для запуска самой операционной системы. Некоторые дистрибутивы обохдят systemd сторой в пользу альтернативных и в некоторых случаях менее объёмных решений"
+msgstr "Многие дистрибутивы используют 'systemd' для запуска самой операционной системы. Некоторые дистрибутивы обходят systemd стороной в пользу альтернативных и в некоторых случаях менее объёмных решений"
 
 msgid "answer-isolation"
 msgstr "Приложения должны быть запущены в изолированных средах по умолчанию"
@@ -342,7 +342,7 @@ msgid "answer-avoid-systemd"
 msgstr "Я хочу избежать systemd"
 
 msgid "result-submitted-hint"
-msgstr "Высчитываем результатCalculating result"
+msgstr "Высчитываем результат"
 
 
 msgid "reason-header-hint"
@@ -373,13 +373,13 @@ msgid "remove-important"
 msgstr "Убрать отметку как важное"
 
 msgid "reason-list-header-negative"
-msgstr "Мы не можем рекомендовать этот дистрибутив Вам потому что:"
+msgstr "Мы не можем рекомендовать этот дистрибутив Вам, потому что:"
 
 msgid "reason-list-header-neutral"
 msgstr "Следующие критерии не были учтены"
 
 msgid "reason-list-header-blocked-by-others"
-msgstr "Этот ответ заблокирован другими ответами которые Вы дали"
+msgstr "Этот ответ заблокирован другими ответами, которые Вы дали"
 
 msgid "matrix-supports-daily-usage"
 msgstr "Подходит для ежедневного использования"
@@ -409,13 +409,13 @@ msgid "matrix-linux-beginner"
 msgstr "Подходит для новичков в Linux"
 
 msgid "matrix-installation-presets-always-given"
-msgstr "Установка регулирует настройки которые может потребоваться сбросить после установки"
+msgstr "Установка регулирует настройки, которые может потребоваться сбросить после установки"
 
 msgid "matrix-installation-presets-gui"
 msgstr "Многие настройки могут регулироваться через графический интерфейс"
 
 msgid "matrix-installation-assistant-present"
-msgstr "Установка использует 'wizard' с настройками по умолчанию"
+msgstr "Установка происходит через установщик с настройками по умолчанию"
 
 msgid "matrix-hardware-oldpc-ubuntu"
 msgstr "Могут встречаться лаги композитора окон. Может потребоваться отключить анимации."
@@ -448,10 +448,10 @@ msgid "matrix-gaming-packages-stable-but-old"
 msgstr "Версия ПО может быть недостаточно новой для запуска игр"
 
 msgid "matrix-has-live-mode"
-msgstr "Имеет живой режим которы позволяет запускаться с диска"
+msgstr "Имеет живой режим который, позволяет запускаться с диска"
 
 msgid "live-mode-only"
-msgstr "Есть живой режим: Может быть запущен с диска или USB-носителя для пробы (до установки)"
+msgstr "Есть живой режим: может быть запущен с диска или USB-носителя для пробы (до установки)"
 
 msgid "matrix-without-fee"
 msgstr "Работает без оплаты"
@@ -496,7 +496,7 @@ msgid "matrix-fast-updates"
 msgstr "Обновления программ выходят настолько быстро насколько возможно, что делает их нестабильными"
 
 msgid "matrix-has-control-panel"
-msgstr "Имеет прдустановленный центр управления"
+msgstr "Имеет предустановленный центр управления"
 
 msgid "matrix-user-selection-affects-privacy"
 msgstr "Пользователь должен выбрать программы для использования"
@@ -508,7 +508,7 @@ msgid "matrix-updates-fast"
 msgstr "Обновления быстрые, но могут быть нестабильными"
 
 msgid "matrix-not-for-beginner"
-msgstr "Не подоходит для начинающих"
+msgstr "Не подходит для начинающих"
 
 msgid "matrix-avoids-systemd"
 msgstr "Избегает systemd"
@@ -583,7 +583,7 @@ msgid "matrix-middleweight"
 msgstr "Система среднего размера, в особенности подходящая для компьютеров близких к современным"
 
 msgid "matrix-has-high-range-hardware-support"
-msgstr "Поддерживает широкий ассортимент аппаратного обоеспечения"
+msgstr "Поддерживает широкий ассортимент аппаратного обеспечения"
 
 msgid "matrix-has-zorin-lite-version"
 msgstr "Есть версия 'Zorin Lite' для более старых компьютеров"
@@ -595,7 +595,7 @@ msgid "systemd-is-avoidable-per-selection"
 msgstr "Можно избежать systemd по указанию пользователя"
 
 msgid "matrix-ships-systemd-but-disabled"
-msgstr "Systemd предоставлен но отключен по умолчанию"
+msgstr "Systemd предоставлен, но отключен по умолчанию"
 
 msgid "matrix-supports-privacy"
 msgstr "Собирает данные только если используются онлайн-сервисы"
@@ -609,82 +609,82 @@ msgstr "Использование свободного ПО зависит от
 # distribution descriptions
 
 msgid "description-manjaro"
-msgstr "Manjaro - дистрибутив, основанный на rolling release с проритетом на дружелюбие к пользователю"
+msgstr "Manjaro — дистрибутив, основанный на rolling release с приоритетом на дружелюбие к пользователю"
 
 msgid "description-ubuntu"
-msgstr "Ubuntu - дистрибутив, созданный компанией Canonical"
+msgstr "Ubuntu — дистрибутив, созданный компанией Canonical"
 
 msgid "description-mint"
-msgstr "Linux Mint - дистрибутив основанный на Ubuntu с предустановленными коммерческими компонентами, такими как кодеки мультимедиа."
+msgstr "Linux Mint — дистрибутив основанный на Ubuntu с предустановленными коммерческими компонентами, такими как кодеки мультимедиа."
 
 msgid "description-solus"
-msgstr "Solus OS - дистрибутив, основанный на rolling release, который возник как клон Chrome OS"
+msgstr "Solus OS — дистрибутив, основанный на rolling release, который возник как клон Chrome OS"
 
 msgid "description-arch"
-msgstr "Arch - дистрибутив, основанный на rolling release и на принципе KISS"
+msgstr "Arch — дистрибутив, основанный на rolling release и на принципе KISS"
 
 msgid "description-debian"
-msgstr "Debian - дистрибутив с высоким приоритетом стабильности"
+msgstr "Debian — дистрибутив с высоким приоритетом стабильности"
 
 msgid "description-tails"
-msgstr "Анонимизация - это основной приоритет Tails, который можно использовать с USB-носителей или оптических дисков"
+msgstr "Анонимизация — это основной приоритет Tails, который можно использовать с USB-носителей или оптических дисков"
 
 msgid "description-devuan"
-msgstr "Devuan - клон Debian но без использования инструментов systemd"
+msgstr "Devuan — клон Debian но без использования инструментов systemd"
 
 msgid "description-opensuse"
 msgstr "OpenSuse направлен на предоставление стабильного и дружественного к пользователю дистрибутива, в основном для конечных пользователей"
 
 msgid "description-pclinuxos"
-msgstr "PCLinuxOS - дистрибутив, основанный на Mandrake с упором на дружественный интерфейс."
+msgstr "PCLinuxOS — дистрибутив, основанный на Mandrake с упором на дружественный интерфейс."
 
 msgid "description-rhel"
-msgstr "Red hat Enterprise Linux (RHEL) - корпоративный и ориентированный на стабильность дистрибутив"
+msgstr "Red hat Enterprise Linux (RHEL) — корпоративный и ориентированный на стабильность дистрибутив"
 
 msgid "description-centos"
-msgstr "CentOS - свободный дистрибутив, основанный на RHEL"
+msgstr "CentOS — свободный дистрибутив, основанный на RHEL"
 
 msgid "description-xubuntu"
-msgstr "Xubuntu - дистрибутив, основанный на Ubuntu и снабжённыё лёгкой средой рабочего стола XFCE"
+msgstr "Xubuntu — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола XFCE"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu - дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола LXQt"
+msgstr "Lubuntu — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола LXQt"
 
 msgid "description-ubuntumate"
-msgstr "Ubuntu MATE - дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола MATE"
+msgstr "Ubuntu MATE — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола MATE"
 
 msgid "description-popos"
-msgstr "Pop!_OS - дистрибутив, основанный на Ubuntu и снабжённый средой рабочего стола GNOME"
+msgstr "Pop!_OS — дистрибутив, основанный на Ubuntu и снабжённый средой рабочего стола GNOME"
 
 msgid "description-fedora"
-msgstr "Fedora - дистрибутив, поддерживаемый Red Hat и с упором на свободное ПО"
+msgstr "Fedora — дистрибутив, поддерживаемый Red Hat и с упором на свободное ПО"
 
 msgid "description-qubeos"
 msgstr "Qubes OS изолирует приложения в виртуальных машинах для усиленной безопасности"
 
 msgid "description-gentoo"
-msgstr "Gentoo - гибкий дистрибутив для продвинутых пользователей"
+msgstr "Gentoo — гибкий дистрибутив для продвинутых пользователей"
 
 msgid "description-mxlinux"
-msgstr "MX Linux - дистрибутив, нуждающийся в средних технических требованиях, с упором на эффктивное и элегантное повседневное использование."
+msgstr "MX Linux — дистрибутив, нуждающийся в средних технических требованиях, с упором на эффективное и элегантное повседневное использование."
 
 msgid "description-fedora"
-msgstr "Fedora is a distribution with focus on free software. Fedora is released without a long term support, shipping a new version every 6 months."
+msgstr "Fedora — дистрибутив с упором на свободное ПО. Fedora выпускается без длительной технической поддержки, новая версия выходит каждые 6 месяцев."
 
 msgid "description-knoppix"
-msgstr "Knoppix is a live-mode focused operating system with a wide range of hardware support"
+msgstr "Knoppix — операционная система с упором на живой режим с большим списком поддерживаемого аппаратного обеспечения"
 
 msgid "description-cruxlinux"
-msgstr "Crux Linux is a lightweight 64 bit focused operating system with recent tools and libraries"
+msgstr "Crux Linux — лёгкая операционная система с приоритетом на 64 бита с современными инструментами и библиотеками"
 
 msgid "description-zorinos"
-msgstr "Zorin OS is a beginner focused distribution with a windows-like user interface"
+msgstr "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих"
 
 msgid "description-elementaryos"
-msgstr "elementary OS is a ubuntu-based distribution, focused on an elegant and fast user experience"
+msgstr "elementary OS — дистрибутив, основанный на Ubuntu, с упором на элегантное и быстрое пользование"
 
 msgid "description-kubuntu"
-msgstr "Kubuntu is an ubuntu-based distribution with a pre-installed KDE as a desktop"
+msgstr "Kubuntu — дистрибутив, основанный на Ubuntu с предустановленным KDE в качестве среды рабочего стола"
 
 msgid "locale-en"
 msgstr "english"
@@ -695,52 +695,53 @@ msgstr "deutsch"
 # update pack 26th december 2019
 
 msgid "debian-updates-slow"
-msgstr "Debian updates are usually slow in favor of stability"
+msgstr "Обновления у Debian обычно нечастые ради стабильности"
 
 msgid "description-qubesos"
-msgstr "Qubes OS executes processes in virtual machines in favor of security"
+msgstr "Qubes OS выполняет процессы в виртуальных машинах ради безопасности"
 
 msgid "software-use-case-isolation"
-msgstr "I want to execute all programs in an isolated area"
+msgstr "Я хочу запускать все программы в изолированной среде"
 
 msgid "matrix-runs-in-isolation"
-msgstr "Software execution happens in isolated environments"
+msgstr "Запуск программ происходит в изолированных средах"
 
 msgid "software-use-case-blind"
-msgstr "The user is visually impaired"
+msgstr "Пользователь слабовидящий"
 
 msgid "matrix-knoppix-adriane"
-msgstr "The ADRIANE project offers tools and solutions for visually impaired people"
+msgstr "Проект ADRIANE предлагает инструменты для слабовидящих людей"
 
 msgid "matrix-has-software-for-blind"
-msgstr "Software for visually impaired people are installable (e. g. 'Orca')"
+msgstr "Программы для слабовидящих людей можно установить (например, 'Orca')"
 
 msgid "source"
-msgstr "Image source"
+msgstr "Источник изображения"
 
 msgid "description-void"
-msgstr "Void Linux is a rolling release distribution without systemd"
+msgstr "Void Linux — дистрибутив, работающий по принципу rolling release без systemd"
 
 msgid "skip-question"
-msgstr "skip question"
+msgstr "пропустить вопрос"
 
 msgid "description-nixos"
-msgstr "NixOS uses the Nix package manager.  It uses declarative configuration and allows reliable system upgrades."
+msgstr "NixOS использует систему управления пакетами Nix. Она использует объявляющую конфигурацию и поддерживает надёжное обновление системы."
 
 msgid "reasons-hide"
-msgstr "Hide reasons"
+msgstr "Спрятать причины"
 
 msgid "description-artix"
-msgstr "Artix is an Arch Linux based distribution which utilizes OpenRC instead of systemd."
+msgstr "Artix — дистрибутив, основанный на Arch Linux, который использует OpenRC вместо systemd."
 
 msgid "link-copied"
-msgstr "Pasted to clipboard"
+msgstr "Скопировано в буфер обмена"
 
 msgid "remark-placeholder-saving"
-msgstr "The text will be saved automatically"
+msgstr "Текс будет сохранён автоматически"
 
 msgid "slow-release-model"
-msgstr "Available software versions may be older than latest version from vendor"
+msgstr "Доступные версии программ могут быть старее чем последняя версия от
+издателя"
 
 msgid "requires-payment"
-msgstr "Long term usage requires payment"
+msgstr "Длительное пользование требует оплаты"
