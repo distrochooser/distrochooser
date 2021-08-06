@@ -119,6 +119,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "jalovisko",
+      "name": "Nikita Letov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22379984?v=4",
+      "profile": "https://github.com/jalovisko",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
