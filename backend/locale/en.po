@@ -289,7 +289,7 @@ msgid "ideology-question"
 msgstr "The (license) ideology of a distribution is a contentious debate. There are distributions using mostly \"free-licenses\", others also use \"non-free\" software."
 
 msgid "additional-info-ideology"
-msgstr "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute it's sourcecode and modifications are not allowed."
+msgstr "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute its sourcecode and modifications are not allowed."
 
 msgid "ideology-answer-free"
 msgstr "I want to use free licenses as much as I can"
