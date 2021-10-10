@@ -38,11 +38,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://nathanbonnemains.squill.fr/"><img src="https://avatars.githubusercontent.com/u/45366162?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nathan Bonnemains</b></sub></a><br /><a href="#translation-NathanBnm" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/binarynoise"><img src="https://avatars.githubusercontent.com/u/50302352?v=4?s=100" width="100px;" alt=""/><br /><sub><b>binarynoise</b></sub></a><br /><a href="#translation-binarynoise" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/jalovisko"><img src="https://avatars.githubusercontent.com/u/22379984?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nikita Letov</b></sub></a><br /><a href="#translation-jalovisko" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/henrydenhengst"><img src="https://avatars.githubusercontent.com/u/8768292?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Henry den Hengst</b></sub></a><br /><a href="#translation-henrydenhengst" title="Translation">🌍</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://allcontributors.org) specification.

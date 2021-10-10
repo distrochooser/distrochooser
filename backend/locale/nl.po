@@ -1,0 +1,738 @@
+msgid "loading"
+msgstr "bezig met laden"
+
+msgid "imprint"
+msgstr "afdruk"
+
+msgid "privacy"
+msgstr "privacy"
+
+msgid "about"
+msgstr "over dit project"
+
+msgid "question-is-multiplechoice"
+msgstr "Je mag uit meerdere antwoorden kiezen"
+
+msgid "vendor-text"
+msgstr "Een project van chmr.eu"
+
+msgid "get-result"
+msgstr "Resultaat ophalen"
+
+msgid "category-welcome"
+msgstr "Welkom!"
+
+msgid "software-use-case"
+msgstr "Software: reden van gebruik"
+
+msgid "computer-knowledge-category"
+msgstr "Computerkennis"
+
+msgid "linux-knowledge-category"
+msgstr "Linux en jij"
+
+msgid "presets-category"
+msgstr "Installatie: standaard instellingen"
+
+msgid "hardware-category"
+msgstr "Hardware-ondersteuning"
+
+msgid "help-category"
+msgstr "Bron voor hulp"
+
+msgid "ux-concept-category"
+msgstr "Gebruikersbeleving"
+
+msgid "price-category"
+msgstr "Distributies: Prijs"
+
+msgid "scope-category"
+msgstr "Distributies: Bereik"
+
+msgid "ideology-category"
+msgstr "Distributies: Ideologie"
+
+msgid "privacy-category"
+msgstr "Distributies: Privacy"
+
+msgid "software-admin-category"
+msgstr "Administratie"
+
+msgid "software-updates-category"
+msgstr "Software: Updates"
+
+msgid "special-features-category"
+msgstr "Software: speciale functies"
+
+msgid "recommendation-category"
+msgstr "Toon jouw resultaten"
+
+msgid "welcome-text-title"
+msgstr "Welkom bij distrochooser.de!"
+
+msgid "welcome-text"
+msgstr "Welkom! Deze test helpt je bij het kiezen van een geschikte Linux-distributie."
+
+msgid "welcome-text-skip"
+msgstr "Je kunt altijd vragen overslaan"
+
+msgid "welcome-text-result-get"
+msgstr "Je kunt altijd op 'jouw aanbeveling' klikken om jouw resultaat te ontvangen"
+
+msgid "welcome-text-order"
+msgstr "Je mag in willekeurige volgorde antwoorden"
+
+msgid "welcome-text-additional-infos"
+msgstr "Je kunt aanvullende informatie ontvangen via het vraagtekenicoon"
+
+msgid "welcome-text-remove"
+msgstr "Je kunt antwoorden op elk moment verwijderen"
+
+msgid "welcome-text-feedback"
+msgstr "Beoordeel jouw resultaten, afhankelijk van hoe goed ze aan jouw behoeften voldoen."
+
+msgid "welcome-text-importance"
+msgstr "Markeer antwoorden als belangrijk om er meer gewicht aan te geven"
+
+msgid "locale-link-en"
+msgstr "This text is available in english"
+
+msgid "locale-link-nl"
+msgstr "Deze tekst is beschikbaar in het Nederlands"
+
+msgid "locale-link-de"
+msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
+
+msgid "start-test"
+msgstr "Start test"
+
+msgid "prev-question"
+msgstr "ga terug"
+
+msgid "next-question"
+msgstr "ga verder"
+
+msgid "no-results"
+msgstr "Sorry, ik heb geen resultaat"
+
+msgid "about-header"
+msgstr "Over distrochooser.de"
+
+msgid "vote-reminder"
+msgstr "Vind je deze distributie leuk? Geef het een hartje!"
+
+msgid "vote-reminder-negative"
+msgstr "Vind je deze distributie niet leuk? Geef het een duim omlaag!"
+
+msgid "about-intro-text"
+msgstr "distrochooser.de probeert Linux-beginners te helpen een Linux-distributie te kiezen die geschikt is voor hun behoeften.<br>De gegeven resultaten zijn suggesties op basis van jouw antwoorden. Soms zijn de resultaten niet zo passend vanwege de complexe samenhang van de antwoorden."
+
+msgid "about-intro-test-count"
+msgstr "Sinds 14 juni 2014 heeft distrochooser.de %tests% tests verwerkt."
+
+msgid "about-licenses"
+msgstr "Distrochooser heeft een dubbele licentie."
+
+msgid "privacy-header"
+msgstr "Gegevensbescherming"
+
+msgid "imprint-header"
+msgstr "Afdruk"
+
+msgid "about-licenses-source"
+msgstr "De broncode"
+
+msgid "about-licenses-source-text"
+msgstr "De broncode is gelicentieerd onder de licentie die is geschreven in het 'LICENTIE'-bestand, dat in de repository link is geplaatst."
+
+msgid "over-licenties-database"
+msgstr "De database"
+
+msgid "about-licenses-database"
+msgstr "De onderliggende gegevens, inclusief de vraag/antwoord-structuur, de resultatenmatrix en statistieken, zijn eigendom van distrochooser.de. Je mag ze alleen gebruiken met onze voorafgaande toestemming. De beschrijvingsteksten en logo's van de verschillende distributies zijn onderworpen aan de licenties van het respectieve copyright houders."
+
+msgid "about-licenses-database-text"
+msgstr "Distrochooser kon geen geschikt resultaat vinden op basis van je antwoorden. Het zou ons erg helpen als je ons feedback zou willen geven, zodat we dit kunnen onderzoeken."
+
+msgid "close-additional-info"
+msgstr "Gesloten"
+
+msgid "no-answers"
+msgstr "Je hebt geen antwoorden gegeven."
+
+msgid "get-my-result"
+msgstr "Toont jou je resultaten."
+
+msgid "additional-info"
+msgstr "Aanvullende informatie"
+
+msgid "remark-placeholder"
+msgstr "Jouw feedback (max. 3000 tekens)"
+
+msgid "distribution-homepage"
+msgstr "Distributie homepage"
+
+msgid "result-remarks-added"
+msgstr "Bedankt voor je feedback!"
+
+msgid "share-result"
+msgstr "Deel mijn resultaat"
+
+msgid "software-use-case-question"
+msgstr "Sommige distributies zijn gemaakt voor een speciaal doel, andere voor dagelijks gebruik. Wat heb je nodig?"
+
+msgid "software-use-case-answer-daily"
+msgstr "Ik wil een distributie voor dagelijks gebruik."
+
+msgid "software-use-case-anonymous-answer"
+msgstr "Ik wil Linux gebruiken om anoniem op het web te surfen."
+
+msgid "software-use-case-answer-gaming"
+msgstr "Ik geef de voorkeur aan een distributie die wordt ondersteund door game bedrijven."
+
+msgid "computer-knowledge-question"
+msgstr "Hoe zou je je computervaardigheid beoordelen?"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "Ik heb vaak hulp van anderen om problemen met mijn computer op te lossen"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "Ik kan al wat computerproblemen zelf oplossen"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "Ik kan de meeste of alle computerproblemen zelfstandig oplossen"
+
+msgid "linux-knowledge-question"
+msgstr "Hoe zou je je kennis van Linux zelf beoordelen?"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "Ik heb weinig of geen kennis van Linux"
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "Ik heb Linux al voor sommige doeleinden gebruikt"
+
+msgid "linux-knowledge-answer-professional"
+msgstr "Ik heb een goed begrip van het Linux-besturingssysteem"
+
+msgid "presets-question"
+msgstr "Hoeveel instellingen wilt je zelf aanpassen tijdens de installatie? Hoeveel configuratievariabelen zouden al ingevuld moeten zijn met standaardwaarden?"
+
+msgid "presets-question-answer-manypresets"
+msgstr "Ik wil de standaard vooraf ingestelde waarden in de installatie-assistent gebruiken"
+
+msgid "presets-question-answer-ownselection"
+msgstr "Ik wil zelf de instellingen kiezen"
+
+msgid "presets-question-answer-guiselections"
+msgstr "Ik wil zoveel mogelijk configureren met grafische toepassingen"
+
+msgid "hardware-question"
+msgstr "Het is belangrijk om te weten hoe oud je computerhardware is aangezien sommige distributies niet werken op oude computers."
+
+msgid "additional-info-hardware"
+msgstr "Jarenlang gebruikten sommige distributies de 32-bits architectuur, waarmee tot 4 gigabyte geheugen kon worden toegewezen. Nieuwere distributies hebben de neiging om de 32-bits te dumpen ten gunste van de 64-bits ondersteuning, waarmee meer dan 4 gigabyte aan geheugen kan worden toegewezen geheugen. Sinds 2005 zouden bijna alle computers 64 bit moeten ondersteunen."
+
+msgid "hardware-question-oldpc"
+msgstr "Ik weet het niet zeker en/of mijn computer heeft al prestatieproblemen en/of ondersteunt alleen 32 bits"
+
+msgid "hardware-question-newpc"
+msgstr "De prestaties van mijn computer zijn goed, ik heb geen prestatieproblemen, mijn hardware ondersteunt 64 bit"
+
+msgid "help-question"
+msgstr "Sommige distributies geven de voorkeur aan artikelen in wiki's voor het oplossen van problemen. Wat heeft je voorkeur?"
+
+msgid "help-question-tutorials"
+msgstr "Ik kan mijn problemen oplossen met behulp van handleidingen van wiki-pagina's of tutorials"
+
+msgid "help-question-user-exchange"
+msgstr "Ik vraag liever anderen om hulp"
+
+msgid "ux-concept-question"
+msgstr "Linux kan veel verschillende gebruikersinterfaces gebruiken (\"Desktops\"). Veel distributies leveren standaard één desktop. Het is belangrijk om te weten of je voorkeuren hebt voor een desktopconcept. Je kunt wisselen en nieuwe desktops installeren op elk moment!"
+
+msgid "ux-concept-answer-windows-like"
+msgstr "Ik geef de voorkeur aan een Windows-achtige gebruikersinterface"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "Ik geef de voorkeur aan een macOS-achtige gebruikersinterface"
+
+msgid "ux-concept-tiling"
+msgstr "Ik geef de voorkeur aan een op 'tiles' gebaseerd venster"
+
+msgid "ux-concept-closed-expierience"
+msgstr "Ik heb liever een gesloten ervaring"
+
+msgid "price-question"
+msgstr "De meeste distributies zijn gratis. Sommige distributies bieden extra ondersteuning tegen een eenmalige vergoeding."
+
+msgid "price-answer-free"
+msgstr "Ik geef de voorkeur aan een gratis te gebruiken distributie"
+
+msgid "price-answer-paid"
+msgstr "Ik zou graag een vergoeding betalen"
+
+msgid "scope-question"
+msgstr "Verschillende distributies installeren verschillende hoeveelheden software vooraf. Sommige installeren een complete suite van basisprogramma's om \"out of the box\" te werken. Andere distributies bieden alleen een basisinstallatie om de gebruiker vervolgens te laten installeren welke programma's ze willen gebruiken ."
+
+msgid "scope-answer-fullinstall"
+msgstr "Ik geef de voorkeur aan een distributie die alle basisprogramma's verzendt die ik nodig heb om direct na de installatie aan de slag te gaan"
+
+msgid "scope-answer-ownselection"
+msgstr "Ik wil zelf de basisprogramma's kiezen om te installeren"
+
+msgid "ideology-question"
+msgstr "De (licentie)ideologie van een distributie is een controversieel debat. Er zijn distributies die voornamelijk \"vrije licenties\" gebruiken, andere gebruiken ook \"niet-vrije\" software."
+
+msgid "additional-info-ideology"
+msgstr "Met vrije licenties kan de gebruiker de software voor elk doel wijzigen, herdistribueren en gebruiken. Er zijn situaties waarin een distributie niet-vrije software moet gebruiken, bijvoorbeeld voor hardwarestuurprogramma's. Niet-vrije software verspreidt de broncode en wijzigingen niet zijn niet toegestaan."
+
+msgid "ideology-answer-free"
+msgstr "Ik wil zoveel mogelijk vrije licenties gebruiken"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "Ik vind het prima met niet-vrije licenties zolang mijn systeem maar werkt"
+
+msgid "privacy-question"
+msgstr "Sommige distributies gebruiken online diensten om de gebruikerservaring te verbeteren. Dit kan de privacy van de gebruiker aantasten, d.w.z. de gebruiker kan worden gevolgd bij het gebruik van dergelijke online functies."
+
+msgid "privacy-answer-highprivacy"
+msgstr "Ik wil dit niet"
+
+msgid "privacy-answer-services-ok"
+msgstr "Als het mijn gebruikerservaring verbetert, ga ik akkoord met het gebruik van dergelijke online diensten"
+
+msgid "software-admin-question"
+msgstr "Er zijn veel manieren om een ​​Linux-distributie te beheren, bijvoorbeeld om software te installeren."
+
+msgid "software-admin-answer-appstore"
+msgstr "Ik wil mijn programma's installeren met een soort \"App store\""
+
+msgid "software-admin-answer-console"
+msgstr "Ik wil software meestal installeren met terminalcommando's"
+
+msgid "special-features-qestion"
+msgstr "Sommige distributies hebben extra functies voor specifieke doeleinden. Heb ik dergelijke functies nodig?"
+
+msgid "additional-info-special-features-qestion"
+msgstr "Veel distributies gebruiken 'systemd' om het besturingssysteem zelf te starten. Sommige distributies vermijden systemd ten gunste van alternatieve en soms lichtere oplossingen"
+
+msgid "answer-isolation"
+msgstr "Applicaties moeten standaard in een geïsoleerde omgeving worden uitgevoerd"
+
+msgid "software-updates-question"
+msgstr "Sommige distributies bieden snellere updates, die de stabiliteit van het systeem kunnen beïnvloeden. Wat heeft jouw voorkeur?"
+
+msgid "software-updates-answer-fast"
+msgstr "Ik geef de voorkeur aan snelle updates"
+
+msgid "software-updates-answer-slow"
+msgstr "Ik geef de voorkeur aan stabiele updates"
+
+msgid "answer-avoid-systemd"
+msgstr "Ik wil systemd vermijden"
+
+msgid "result-submitted-hint"
+msgstr "Resultaat berekenen"
+
+msgid "reason-header-hint"
+msgstr "Klik op de distributienaam om gedetailleerde redenen voor deze aanbeveling te zien"
+
+msgid "reason-list-header"
+msgstr "Reden voor/tegen"
+
+msgid "answer-is-blocking"
+msgstr "Volgende antwoorden zijn exclusief dit antwoord"
+
+msgid "answer-is-blocked"
+msgstr "Dit antwoord is in tegenspraak met het eerdere antwoord dat je hebt gegeven"
+
+msgid "reason-blocked-by-others-entry"
+msgstr "\"{0}\" niet akkoord \"{1}\""
+
+msgid "additional-infos"
+msgstr "geef me aanvullende informatie!"
+
+msgid "make-important"
+msgstr "Dit is belangrijk!"
+
+msgid "marked-as-important"
+msgstr "Gemarkeerd als belangrijk"
+
+msgid "remove-important"
+msgstr "Belang verwijderen"
+
+msgid "reason-list-header-negative"
+msgstr "We kunnen deze distributie niet aanbevelen omdat:"
+
+msgid "reason-list-header-neutral"
+msgstr "De volgende criteria zijn hierbij niet meegenomen"
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "Dit antwoord is geblokkeerd door andere antwoorden die je hebt gegeven"
+
+msgid "matrix-supports-daily-usage"
+msgstr "Geschikt voor dagelijks gebruik"
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "Distributie concept is niet bevorderlijk voor anonimiseringsdoeleinden"
+
+msgid "matrix-supports-gaming-usage"
+msgstr "Distributie wordt actief ondersteund door game bedrijven"
+
+msgid "matrix-beginner-knowledge"
+msgstr "Geschikt voor beginners"
+
+msgid "matrix-advanced-knowledge"
+msgstr "Geschikt voor gevorderde gebruikers"
+
+msgid "matrix-professional-knowledge"
+msgstr "Geschikt voor professionals"
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "Gebruik vereist minder Linux-kennis dan beantwoord"
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "Gebruik vereist minder computerkennis dan beantwoord"
+
+msgid "matrix-linux-beginner"
+msgstr "Geschikt voor beginners in Linux"
+
+msgid "matrix-installation-presets-always-given"
+msgstr "De installatie stelt voorinstellingen in die mogelijk opnieuw moeten worden ingesteld na de installatie"
+
+msgid "matrix-installation-presets-gui"
+msgstr "Veel instellingen kunnen via een grafische interface worden gedaan"
+
+msgid "matrix-installation-assistant-present"
+msgstr "De installatie gebruikt een installatiewizard met standaardinstellingen"
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr "Het kan zijn dat je vertragingen in het effect van de venstersamensteller ervaart. Het kan nodig zijn om animaties uit te schakelen."
+
+msgid "matrix-hardware-newpc"
+msgstr "Loopt op de nieuwste hardware"
+
+msgid "matrix-user-exchange"
+msgstr "Er zijn gebruikersgemeenschappen voor het delen van kennis"
+
+msgid "matrix-tutorial"
+msgstr "Er zijn tutorials voor het oplossen van problemen en het oplossen van problemen"
+
+msgid "matrix-mac-like"
+msgstr "GUI-concept heeft elementen van macOS"
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "GUI-concept verschilt sterk van Windows"
+
+msgid "matrix-closed-expierience"
+msgstr "Heeft eigen achtergronden, pictogrammen en thema's"
+
+msgid "matrix-has-windows-like-variant"
+msgstr "Heeft varianten met een Windows-achtige gebruikersinterface"
+
+msgid "matrix-paid-version-existing"
+msgstr "Er is een niet-gratis versie van deze distributie"
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "Softwareversies zijn mogelijk niet recent genoeg om te gamen"
+
+msgid "matrix-has-live-mode"
+msgstr "Heeft een live-modus die het mogelijk maakt om vanaf schijf te starten"
+
+msgid "live-mode-only"
+msgstr "Heeft Live-modus: Kan worden gestart met CD, DVD of usb-sticks om het uit te testen (voor de installatie)"
+
+msgid "matrix-without-fee"
+msgstr "Te gebruiken zonder kosten"
+
+msgid "matrix-paid"
+msgstr "Er is een betaalde versie van deze distributie"
+
+msgid "matrix-fullinstall"
+msgstr "Installeert alle benodigde programma's"
+
+msgid "matrix-ownscope-install"
+msgstr "Alle te gebruiken programma's moeten door jezelf worden gekozen"
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "Gesloten bronprogramma's worden standaard geïnstalleerd"
+
+msgid "matrix-enforces-free"
+msgstr "Dwingt het gebruik van vrije software af"
+
+msgid "matrix-mostly-free"
+msgstr "Werkt meestal met vrije software"
+
+msgid "matrix-has-default-settings"
+msgstr "Heeft standaardinstellingen"
+
+msgid "matrix-privacy-ok"
+msgstr "Goed voor de privacy van gebruikers"
+
+msgid "matrix-privacy-thirdparty"
+msgstr "Verbindt standaard met diensten van derde partijen"
+
+msgid "matrix-appstore"
+msgstr "Software-installatie kan via een app store"
+
+msgid "matrix-console"
+msgstr "Software-installatie kan via de terminal"
+
+msgid "matrix-stable-updates"
+msgstr "Updates zijn meestal stabiel wanneer ze worden gepubliceerd"
+
+msgid "matrix-fast-updates"
+msgstr "Software-updates worden zo snel mogelijk vrijgegeven, waardoor ze onstabiel kunnen zijn"
+
+msgid "matrix-has-control-panel"
+msgstr "Bevat een vooraf geïnstalleerde controlecentrum"
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "Gebruiker moet de te gebruiken software selecteren"
+
+msgid "matrix-selection-by-user"
+msgstr "Omvang van vooraf geïnstalleerde programma's wordt bepaald door de gebruiker"
+
+msgid "matrix-updates-fast"
+msgstr "Updates zijn snel, maar kunnen onstabiel zijn"
+
+msgid "matrix-not-for-beginner"
+msgstr "Niet geschikt voor beginners"
+
+msgid "matrix-avoids-systemd"
+msgstr "Vermijdt systemd"
+
+msgid "matrix-uses-systemd"
+msgstr "gebruikt systemd"
+
+msgid "built-for-anonymization"
+msgstr "Gebouwd voor anonimiseringsdoeleinden"
+
+msgid "matrix-administration-shell"
+msgstr "Beheer wordt meestal gedaan met behulp van shell-commando's"
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "Ondersteunt geen oude computers zonder 64-bits ondersteuning"
+
+msgid "matrix-requires-manual"
+msgstr "Vereist het lezen van handleidingen en tutorials"
+
+msgid "matrix-requires-advanced-knowledge"
+msgstr "Vereist het lezen in handleidingen voor gebruik"
+
+msgid "matrix-isolation-default"
+msgstr "Heeft standaard een isolatieconcept"
+
+msgid "matrix-oldpc-supported"
+msgstr "Ondersteunt zelfs oudere computers"
+
+msgid "checked-criteria-count"
+msgstr "aspecten gecontroleerd"
+
+msgid "searching-criteria"
+msgstr "verwerking van de criteriabibliotheek"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "Dagelijks gebruik kan tot grote problemen leiden"
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "Kan worden gebruikt voor dagelijks werk, maar is gebouwd voor live-modus"
+
+msgid "matrix-packages-available"
+msgstr "Programma's voor anonimiseringsdoeleinden zijn beschikbaar"
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "Programmaversies zijn mogelijk niet up-to-date genoeg om te gamen"
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "Misschien extra configuratie nodig voor gaming"
+
+msgid "matrix-built-for-enterprise"
+msgstr "Primair doel is zakelijk gebruik"
+
+msgid "matrix-not-built-for-gaming"
+msgstr "Niet geoptimaliseerd voor gaming"
+
+msgid "requires-some-computer-knowledge"
+msgstr "Vereist meer kennis over computers"
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "Niet geschikt voor beginners"
+
+msgid "matrix-installation-from-shell"
+msgstr "Installatie gebeurt via de terminal"
+
+msgid "matrix-installs-range-of-programs"
+msgstr "Installeert standaard een reeks programma's"
+
+msgid "matrix-configuration-from-shell"
+msgstr "De meeste configuratie wordt gedaan met behulp van shell-commando's"
+
+msgid "matrix-middleweight"
+msgstr "Is een middelzwaar systeem, vooral geschikt voor semi-recente computers"
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "Ondersteunt een breed scala aan hardware"
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "Heeft een 'Zorin Lite'-versie voor oudere computers"
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr "Een variant levert de 'cinnamon' desktop-omgeving, die een Windows-achtig uiterlijk heeft"
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "Systemd kan worden vermeden per gebruikersselectie"
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "Systemd is aanwezig, maar standaard uitgeschakeld"
+
+msgid "matrix-supports-privacy"
+msgstr "Verzamelt alleen gegevens bij gebruik van onlinediensten"
+
+msgid "matrix-lightweight"
+msgstr "Lichtgewicht distributie"
+
+msgid "matrix-free-userselection"
+msgstr "Gebruik van gratis software hangt af van gebruikersselectie"
+
+# distributiebeschrijvingen
+
+msgid "description-manjaro"
+msgstr "Manjaro is een rolling release-distributie gericht op gebruiksvriendelijkheid"
+
+msgid "description-ubuntu"
+msgstr "Ubuntu is een distributie gebouwd door het bedrijf Canonical"
+
+msgid "description-mint"
+msgstr "Linux Mint is een op Ubuntu gebaseerde distributie met voorgeïnstalleerde propriëtaire componenten, zoals multimediacodecs."
+
+msgid "description-solus"
+msgstr "Solus OS is een rolling release-distributie die begon als een Chrome OS-kloon"
+
+msgid "description-arch"
+msgstr "Arch is een rolling release-distributie gebaseerd op het KISS-principe"
+
+msgid "description-debian"
+msgstr "Debian is een distributie met een hoge focus op stabiliteit"
+
+msgid "description-tails"
+msgstr "Anonimisering is de belangrijkste focus van Tails Kan worden gebruikt vanaf USB of optische schijven"
+
+msgid "description-devuan"
+msgstr "Devuan is een Debian-kloon zonder gebruik van de systemd-toolkit"
+
+msgid "description-opensuse"
+msgstr "OpenSuse streeft naar een stabiele en gebruiksvriendelijke distributie, vooral voor eindgebruikers"
+
+msgid "description-pclinuxos"
+msgstr "PCLinuxOS is een op Mandrake gebaseerde distributie gericht op een gebruiksvriendelijke interface."
+
+msgid "description-rhel"
+msgstr "Red hat Enterprise Linux (RHEL) is een enterprise- en stabiliteitsgerichte distributie"
+
+msgid "description-centos"
+msgstr "CentOS is een gratis distributie gebaseerd op RHEL"
+
+msgid "description-xubuntu"
+msgstr "Xubuntu is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht XFCE-desktopomgeving"
+
+msgid "description-lubuntu"
+msgstr "Lubuntu is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht LXQt-desktopomgeving"
+
+msgid "description-ubuntumate"
+msgstr "Ubuntu MATE is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht MATE-desktopomgeving"
+
+msgid "description-popos"
+msgstr "Pop!_OS is een op Ubuntu gebaseerde distributie die wordt aangedreven door de GNOME-desktopomgeving"
+
+msgid "description-fedora"
+msgstr "Fedora is een door Red Hat ondersteunde distributie met een grote focus op vrije software"
+
+msgid "description-qubeos"
+msgstr "Qubes OS isoleert applicaties met behulp van virtuele machines om de beveiliging te verbeteren"
+
+msgid "description-gentoo"
+msgstr "Gentoo is een flexibele distributie voor gevorderde gebruikers"
+
+msgid "description-mxlinux"
+msgstr "MX Linux is een middelzware distributie voor resourcegebruik met de nadruk op een efficiënt en elegant dagelijks gebruik."
+
+msgid "description-fedora"
+msgstr "Fedora is een distributie met de focus op gratis software. Fedora wordt uitgebracht zonder langdurige ondersteuning en levert elke 6 maanden een nieuwe versie."
+
+msgid "description-knoppix"
+msgstr "Knoppix is ​​een live-modus gericht besturingssysteem met een breed scala aan hardware-ondersteuning"
+
+msgid "description-cruxlinux"
+msgstr "Crux Linux is een lichtgewicht 64-bits besturingssysteem met recente tools en bibliotheken"
+
+msgid "description-zorinos"
+msgstr "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface"
+
+msgid "description-elementaryos"
+msgstr "elementary OS is een op ubuntu gebaseerde distributie, gericht op een elegante en snelle gebruikerservaring"
+
+msgid "description-kubuntu"
+msgstr "Kubuntu is een op ubuntu gebaseerde distributie met een vooraf geïnstalleerde KDE als bureaublad"
+
+msgid "locale-nl"
+msgstr "nederlands"
+
+msgid "locale-en"
+msgstr "english"
+
+msgid "locale-de"
+msgstr "deutsch"
+
+# updatepakket 26 december 2019
+
+msgid "debian-updates-slow"
+msgstr "Debian-updates zijn meestal traag ten gunste van stabiliteit"
+
+msgid "description-qubesos"
+msgstr "Qubes OS voert processen uit in virtuele machines ten gunste van beveiliging"
+
+msgid "software-use-case-isolation"
+msgstr "Ik wil alle programma's in een afgelegen gebied uitvoeren"
+
+msgid "matrix-runs-in-isolation"
+msgstr "Software-uitvoering gebeurt in geïsoleerde omgevingen"
+
+msgid "software-use-case-blind"
+msgstr "De gebruiker is slechtziend"
+
+msgid "matrix-knoppix-adriane"
+msgstr "Het ADRIANE-project biedt tools en oplossingen voor slechtzienden"
+
+msgid "matrix-has-software-for-blind"
+msgstr "Software voor slechtzienden kan worden geïnstalleerd (bijv. 'Orca')"
+
+msgid "source"
+msgstr "Beeldbron"
+
+msgid "description-void"
+msgstr "Void Linux is een rolling release-distributie zonder systemd"
+
+msgid "skip-question"
+msgstr "vraag overslaan"
+
+msgid "description-nixos"
+msgstr "NixOS gebruikt de Nix-pakketbeheerder. Het gebruikt declaratieve configuratie en maakt betrouwbare systeemupgrades mogelijk."
+
+msgid "reasons-hide"
+msgstr "Redenen verbergen"
+
+msgid "description-artix"
+msgstr "Artix is ​​een op Arch Linux gebaseerde distributie die OpenRC gebruikt in plaats van systemd."
+
+msgid "link-copied"
+msgstr "Geplakt naar klembord"
+
+msgid "remark-placeholder-saving"
+msgstr "De tekst wordt automatisch opgeslagen"
+
+msgid "slow-release-model"
+msgstr "Beschikbare softwareversies kunnen ouder zijn dan de laatste versie van de leverancier"
+
+msgid "requires-payment"
+msgstr "Voor langdurig gebruik is betaling vereist"
