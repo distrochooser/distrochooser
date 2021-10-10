@@ -37,7 +37,8 @@ const indexStore = new Vapi({
     socialNetworks: viisiConfig.frontend.socialNetworks,
     answerBlockedAnswers: [],
     sessionStatus: null,
-    method: 'default'
+    method: 'default',
+    visuallyImpairedMode: false
   }
 })
   .post({
@@ -166,6 +167,14 @@ indexStore.actions.switchLanguage = async (store, payload) => {
 
 indexStore.mutations.setLanguageData = (state, data) => {
   state.translations = data.translations
+}
+
+indexStore.mutations.setVisuallyImpairedMode = (state, data) => {
+  state.visuallyImpairedMode = data
+}
+
+indexStore.actions.setVisuallyImpairedMode = (store, payload) => {
+  store.commit('setVisuallyImpairedMode', payload)
 }
 
 indexStore.mutations.setCurrentDisplayData = (state, data) => {

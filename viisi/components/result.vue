@@ -3,11 +3,11 @@
     div.result-link
       div.social-links
         span {{ __i("share-result")}}
-        a(v-for="(value, key) in $store.state.socialNetworks", :key="key", :href="value.replace('$link$',$store.state.result.url)" , target="_blank")
+        a(v-for="(value, key) in $store.state.socialNetworks", :key="key", :href="value.replace('$link$',resultUrl)" , target="_blank")
           i(:class="key")
       div.link(:data-balloon-visible="copyTooltipShown", :data-balloon="copyTooltipShown ? __i('link-copied') : false", data-balloon-pos="down", @click="toggleCopyTooltip(false)", @mouseleave="toggleCopyTooltip(true)")
         i.w-icon-paper-clip
-        input(type="text", :value="$store.state.result.url", @focus="$event.target.select()")
+        input(type="text", :value="resultUrl", @focus="$event.target.select()")
       div.remarks
         div.remarks-header {{ __i('remark-placeholder') }}
           span(v-if="$store.state.remarksAdded && remarks.length > 0") {{ " - " + __i('result-remarks-added') }}
@@ -35,6 +35,12 @@ export default {
     }
   },
   computed: {
+    resultUrl: function() {
+      if (this.$store.state.visuallyImpairedMode) {
+        return this.$store.state.result.url + '?vim=true'
+      }
+      return this.$store.state.result.url
+    },
     selections: function() {
       const _t = this
       const sortedSelections = this.$store.state.result.selections

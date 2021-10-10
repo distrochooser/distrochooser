@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.distrochooser
+  div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode }")
     div.top-logo-container
       a(href="/")
         img.top-logo(src='/logo.min.svg')
@@ -11,6 +11,7 @@
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
     div.footer(v-if="!isLoading")
+      a(target="_blank", :href="'?vim=true'" ) Visually Impaired mode
       a(target="_blank", :href="'/info/imprint/'+ infoPageLanguage" )  {{ __i("imprint") }}
       a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
       a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
@@ -28,13 +29,14 @@ import categories from '~/components/categories'
 import question from '~/components/question'
 import result from '~/components/result'
 import i18n from '~/mixins/i18n'
+import bridge from '~/mixins/bridge'
 export default {
   components: {
     categories,
     question,
     result
   },
-  mixins: [i18n],
+  mixins: [i18n, bridge],
   data: function() {
     return {
       language: 'en',
@@ -55,8 +57,15 @@ export default {
       await this.switchLanguage(val)
     }
   },
+  created: function() {
+    this.checkForRedirect()
+  },
   async mounted() {
     this.prepareLanguageData()
+    if (this.$route.fullPath.toLowerCase().indexOf('vim=true') !== -1) {
+      this.$store.dispatch('setVisuallyImpairedMode', true)
+    }
+
     var testSlug =
       typeof this.$route.params.slug !== 'undefined'
         ? this.$route.params.slug
@@ -332,6 +341,37 @@ select::-ms-expand {
 @-webkit-keyframes spin {
   to {
     -webkit-transform: rotate(360deg);
+  }
+}
+
+.visually-impaired-mode {
+  font-size: x-large;
+  margin-top: 2em;
+  .question .question-content .welcome-text {
+    font-size: x-large;
+  }
+  .answers .answer input {
+    width: 30px;
+    height: 30px;
+  }
+  button.step {
+    font-size: x-large;
+  }
+  .question-text {
+    font-size: larger;
+  }
+  .answer-remark {
+    font-size: x-large;
+  }
+  .footer a,
+  .footer select {
+    font-size: x-large !important;
+  }
+  .top-logo-container {
+    text-align: left;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
   }
 }
 </style>

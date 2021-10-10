@@ -39,12 +39,15 @@
           div {{ __i(question.additionalInfo) }}
         div.question-text(v-if="!additionalInfoShown")
           span {{ __i(question.msgid) }}
-          span.additional-remarks-button(v-if="question.additionalInfo",:data-balloon="__i('additional-infos')",data-balloon-pos="right")
+          span.additional-remarks-button(v-if="question.additionalInfo && !inVisuallyImpairedMode",:data-balloon="__i('additional-infos')",data-balloon-pos="right")
             i.w-icon-question-circle-o.additional-info-icon(v-on:click="flip")
+        div.question-text.question-additional-info-vim(v-if="inVisuallyImpairedMode") {{ __i("additional-info") }}: {{ __i(question.msgid) }}
+
+
         div.answer-remark(v-if="question.isMultipleChoice")
           span {{ __i("question-is-multiplechoice") }}
         div.answers(:class="{'flipped': additionalInfoShown}")
-          div.image-answer-parent(v-if="question.isMediaQuestion")
+          div.image-answer-parent(v-if="question.isMediaQuestion && !inVisuallyImpairedMode")
             div.image-answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
               img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)", @click='answerQuestion(answer)')
               p.image-answer-options
@@ -57,13 +60,22 @@
                     i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
               p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
           div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
-            label.container(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
+            input(v-if="inVisuallyImpairedMode", :id="'answer_'+a_key",:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
+            label(v-if="inVisuallyImpairedMode", :for="'answer_'+a_key") {{ __i(answer.msgid) }}
+            
+            label.container(v-if="!inVisuallyImpairedMode", @click='answerQuestion(answer)') {{ __i(answer.msgid) }}
               input(:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
               span.checkmark
-            span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="isAnswerSelected(answer) && !isAnswerImportant(answer)")
+            
+            a(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)") {{ __i("make-important") }}
+            a(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)") {{ __i("remove-important") }}
+
+            span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)")
               i.w-icon-star-off(:title='__i("make-important")')
-            span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
+            span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)")
               i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
+
+            
             div.warning-alert.animated.fadeInUp.faster(v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
               p {{ __i("answer-is-blocking") }}:
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
@@ -96,6 +108,9 @@ export default {
     }
   },
   computed: {
+    inVisuallyImpairedMode() {
+      return this.$store.state.visuallyImpairedMode
+    },
     isLoaded() {
       return this.$store.state !== null
     },
