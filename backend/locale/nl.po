@@ -194,7 +194,7 @@ msgid "computer-knowledge-question"
 msgstr "Hoe zou je je computervaardigheid beoordelen?"
 
 msgid "computer-knowledge-answer-beginner"
-msgstr "Ik heb vaak hulp van anderen om problemen met mijn computer op te lossen"
+msgstr "Ik heb vaak hulp van anderen nodig om problemen met mijn computer op te lossen"
 
 msgid "computer-knowledge-answer-advanced"
 msgstr "Ik kan al wat computerproblemen zelf oplossen"
@@ -239,7 +239,7 @@ msgid "hardware-question-newpc"
 msgstr "De prestaties van mijn computer zijn goed, ik heb geen prestatieproblemen, mijn hardware ondersteunt 64 bit"
 
 msgid "help-question"
-msgstr "Sommige distributies geven de voorkeur aan artikelen in wiki's voor het oplossen van problemen. Wat heeft je voorkeur?"
+msgstr "Sommige distributies geven de voorkeur aan handleidingen in wiki's voor het oplossen van problemen. Wat heeft je voorkeur?"
 
 msgid "help-question-tutorials"
 msgstr "Ik kan mijn problemen oplossen met behulp van handleidingen van wiki-pagina's of tutorials"
@@ -275,7 +275,7 @@ msgid "scope-question"
 msgstr "Verschillende distributies installeren verschillende hoeveelheden software vooraf. Sommige installeren een complete suite van basisprogramma's om \"out of the box\" te werken. Andere distributies bieden alleen een basisinstallatie om de gebruiker vervolgens te laten installeren welke programma's ze willen gebruiken ."
 
 msgid "scope-answer-fullinstall"
-msgstr "Ik geef de voorkeur aan een distributie die alle basisprogramma's verzendt die ik nodig heb om direct na de installatie aan de slag te gaan"
+msgstr "Ik geef de voorkeur aan een distributie die alle basisprogramma's heeft geinstalleerd die ik nodig heb om direct na de installatie aan de slag te gaan"
 
 msgid "scope-answer-ownselection"
 msgstr "Ik wil zelf de basisprogramma's kiezen om te installeren"
@@ -341,7 +341,7 @@ msgid "reason-list-header"
 msgstr "Reden voor/tegen"
 
 msgid "answer-is-blocking"
-msgstr "Volgende antwoorden zijn exclusief dit antwoord"
+msgstr "Eerdere antwoorden sluiten dit antwoord uit."
 
 msgid "answer-is-blocked"
 msgstr "Dit antwoord is in tegenspraak met het eerdere antwoord dat je hebt gegeven"
@@ -693,7 +693,7 @@ msgid "description-qubesos"
 msgstr "Qubes OS voert processen uit in virtuele machines ten gunste van beveiliging"
 
 msgid "software-use-case-isolation"
-msgstr "Ik wil alle programma's in een afgelegen gebied uitvoeren"
+msgstr "Ik wil alle programma's in een geisoleerde omgeving uitvoeren"
 
 msgid "matrix-runs-in-isolation"
 msgstr "Software-uitvoering gebeurt in geïsoleerde omgevingen"
