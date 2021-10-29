@@ -25,7 +25,8 @@ const indexStore = new Vapi({
       ch: 'Schwizerdütsch',
       fr: 'Français',
       ru: 'русский',
-      nl: 'Dutch'
+      nl: 'Dutch',
+      he: 'עברית'
     },
     voteResult: null,
     remarksAdded: false,
@@ -38,7 +39,8 @@ const indexStore = new Vapi({
     answerBlockedAnswers: [],
     sessionStatus: null,
     method: 'default',
-    visuallyImpairedMode: false
+    visuallyImpairedMode: false,
+    inRTLMode: true
   }
 })
   .post({
