@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode }")
+  div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode, 'rtl': isRTL }")
     div.top-logo-container
       a(href="/")
         img.top-logo(src='/logo.min.svg')
@@ -50,6 +50,9 @@ export default {
     infoPageLanguage: function() {
       // as the info pages are only available in de and en
       return ['de', 'en'].indexOf(this.language) !== -1 ? this.language : 'en'
+    },
+    isRTL() {
+      return ['he'].indexOf(this.language) !== -1
     }
   },
   watch: {
@@ -344,6 +347,19 @@ select::-ms-expand {
   }
 }
 
+.rtl {
+  direction: rtl;
+
+  .question {
+    .question-content {
+      padding-right: 1em;
+    }
+    .answer-remark {
+      left: unset !important;
+      right: 5%;
+    }
+  }
+}
 .visually-impaired-mode {
   font-size: x-large;
   margin-top: 2em;
