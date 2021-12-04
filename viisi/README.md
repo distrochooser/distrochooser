@@ -40,6 +40,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/jalovisko"><img src="https://avatars.githubusercontent.com/u/22379984?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nikita Letov</b></sub></a><br /><a href="#translation-jalovisko" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/henrydenhengst"><img src="https://avatars.githubusercontent.com/u/8768292?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Henry den Hengst</b></sub></a><br /><a href="#translation-henrydenhengst" title="Translation">🌍</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/omeritzics"><img src="https://avatars.githubusercontent.com/u/66558205?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Omer I.S.</b></sub></a><br /><a href="#question-omeritzics" title="Answering Questions">💬</a> <a href="#translation-omeritzics" title="Translation">🌍</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode }")
+  div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode, 'rtl': isRTL }")
     div.top-logo-container
       a(href="/")
         img.top-logo(src='/logo.min.svg')
@@ -15,9 +15,10 @@
       a(target="_blank", :href="'/info/imprint/'+ infoPageLanguage" )  {{ __i("imprint") }}
       a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
       a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
-      a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
       a(target="_blank", href="https://github.com/distrochooser/distrochooser" ) 
+        span {{ __i("github-link") }}
         i.w-icon-github
+      a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
       br
       select(v-if="!isLoading", v-model="language")
         option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
@@ -50,6 +51,9 @@ export default {
     infoPageLanguage: function() {
       // as the info pages are only available in de and en
       return ['de', 'en'].indexOf(this.language) !== -1 ? this.language : 'en'
+    },
+    isRTL() {
+      return ['he'].indexOf(this.language) !== -1
     }
   },
   watch: {
@@ -344,6 +348,75 @@ select::-ms-expand {
   }
 }
 
+.rtl {
+  direction: rtl;
+
+  .question {
+    .question-content {
+      padding-right: 1em;
+    }
+    .answer-remark {
+      left: unset !important;
+      right: 5%;
+    }
+  }
+
+  /* Icon margins */
+  .breadcrumb-horizontal {
+    ul li i {
+      margin-left: 0.5em;
+    }
+
+    .floating-button {
+      margin-left: unset;
+      margin-right: 11px;
+      a i {
+        margin-left: 0.5em;
+      }
+    }
+  }
+
+  .welcome-text {
+    div i {
+      margin-left: 0.5em;
+    }
+  }
+
+  .footer a i.w-icon-github {
+    margin-left: 0.5em;
+  }
+
+  /* result page */
+
+  .remarks .remarks-header {
+    margin-right: -1.5%;
+    text-align: right;
+  }
+
+  .distribution .meta .actions {
+    padding-right: 0em;
+    .vote-actions {
+      margin-right: -0.5em;
+    }
+  }
+
+  .distribution .meta .url {
+    text-align: left;
+    padding-left: 1em;
+  }
+
+  .distribution {
+    .description {
+      padding-right: 1em;
+
+      .reason-list div div i,
+      .blocking-list div div i {
+        margin-left: 0.5em;
+        margin-right: 0px;
+      }
+    }
+  }
+}
 .visually-impaired-mode {
   font-size: x-large;
   margin-top: 2em;
