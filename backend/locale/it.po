@@ -743,3 +743,6 @@ msgstr "Le versioni software disponibili possono essere più vecchie dell'ultima
 
 msgid "requires-payment"
 msgstr "Uso a pagamento"
+
+msgid "github-link"
+msgstr "GitHub"

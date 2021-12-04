@@ -818,3 +818,6 @@ msgstr "גרסאות התוכנה הזמינות עשויות להיות ישנ�
 
 msgid "requires-payment"
 msgstr "לשימוש לטווח ארוך נדרש תשלום"
+
+msgid "github-link"
+msgstr "GitHub"

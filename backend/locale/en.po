@@ -743,3 +743,6 @@ msgstr "Available software versions may be older than latest version from vendor
 
 msgid "requires-payment"
 msgstr "Long term usage requires payment"
+
+msgid "github-link"
+msgstr "GitHub"

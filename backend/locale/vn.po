@@ -743,3 +743,6 @@ msgstr "Các phiên bản phần mềm có sẵn có thể cũ hơn phiên bản
 
 msgid "requires-payment"
 msgstr "Sử dụng trả phí"
+
+msgid "github-link"
+msgstr "GitHub"

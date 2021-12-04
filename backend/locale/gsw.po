@@ -712,3 +712,6 @@ msgstr "Software isch dürs Releasemodäll eventuell nur verzögeret ir nöischt
 
 msgid "requires-payment"
 msgstr "Chostepflichtig"
+
+msgid "github-link"
+msgstr "GitHub"

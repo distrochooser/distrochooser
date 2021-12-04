@@ -711,3 +711,6 @@ msgstr "Software durch Releasemodell ggf. nur verzögert in neuster Version verf
 
 msgid "requires-payment"
 msgstr "Kostenpflichtige Nutzung"
+
+msgid "github-link"
+msgstr "GitHub"

@@ -284,6 +284,7 @@ export default {
 
   .w-icon-github {
     vertical-align: text-top;
+    margin-left: 0.5em;
   }
 }
 
@@ -384,6 +385,7 @@ select::-ms-expand {
 
   .footer a i.w-icon-github {
     margin-left: 0.5em;
+    margin-right: unset;
   }
 
   /* result page */

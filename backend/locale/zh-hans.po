@@ -754,3 +754,6 @@ msgstr "由于发布模式的原因，软件可能只有在最新版本中才会
 
 msgid "requires-payment"
 msgstr "付费使用"
+
+msgid "github-link"
+msgstr "GitHub"
