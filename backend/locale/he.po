@@ -1,0 +1,820 @@
+# Header entry was created by Lokalize.
+#
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
+"PO-Revision-Date: 2021-11-21 15:18+0200\n"
+"Project-Id-Version: \n"
+"Language-Team: Hebrew <kde-i18n-he@kde.org>\n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0\n"
+"POT-Creation-Date: \n"
+
+msgid "loading"
+msgstr "בהליכי טעינה"
+
+msgid "imprint"
+msgstr "הערות"
+
+msgid "privacy"
+msgstr "פרטיות"
+
+msgid "about"
+msgstr "על מיזם זה"
+
+msgid "question-is-multiplechoice"
+msgstr "אפשר לבחור תשובות מרובות"
+
+msgid "vendor-text"
+msgstr "מיזם מאת chmr.eu"
+
+msgid "get-result"
+msgstr "לקבלת התוצאות"
+
+msgid "category-welcome"
+msgstr "ברוך בואך!"
+
+msgid "software-use-case"
+msgstr "תוכנה: סוג השימוש"
+
+msgid "computer-knowledge-category"
+msgstr "ידע במחשבים"
+
+msgid "linux-knowledge-category"
+msgstr "לינוקס ואני"
+
+msgid "presets-category"
+msgstr "התקנה: מערכי הגדרות"
+
+msgid "hardware-category"
+msgstr "תמיכה בחומרה"
+
+msgid "help-category"
+msgstr "מקור קבלת עזרה"
+
+msgid "ux-concept-category"
+msgstr "חוויית המשתמש"
+
+msgid "price-category"
+msgstr "הפצות: מחיר"
+
+msgid "scope-category"
+msgstr "הפצות: היקף יישומים"
+
+msgid "ideology-category"
+msgstr "הפצות: אידאולוגיה"
+
+msgid "privacy-category"
+msgstr "הפצות: פרטיות"
+
+msgid "software-admin-category"
+msgstr "ניהול מערכת"
+
+msgid "software-updates-category"
+msgstr "תוכנה: עדכונים"
+
+msgid "special-features-category"
+msgstr "תוכנה: תכונות מיוחדות"
+
+msgid "recommendation-category"
+msgstr "הצגת התוצאות שלי"
+
+msgid "welcome-text-title"
+msgstr "ברוך בואך אל distrochooser.de!"
+
+msgid "welcome-text"
+msgstr "ברוך בואך! שאלון זה יעזור לך לבחור הפצת לינוקס מתאימה."
+
+msgid "welcome-text-skip"
+msgstr "תמיד אפשר לדלג על שאלות"
+
+msgid "welcome-text-result-get"
+msgstr "תמיד אפשר ללחוץ על \"ההמלצה שלך\" כדי לקבל את התוצאות"
+
+msgid "welcome-text-order"
+msgstr "אפשר לענות לא לפי הסדר"
+
+msgid "welcome-text-additional-infos"
+msgstr "אפשר לקבל מידע נוסף בעזרת לחיצה על סמל סימן השאלה"
+
+msgid "welcome-text-remove"
+msgstr "תמיד אפשר למחוק תשובות"
+
+msgid "welcome-text-feedback"
+msgstr "נא לדרג את התוצאות שלך, לפי מידת התאמתן לצרכים שלך."
+
+msgid "welcome-text-importance"
+msgstr "אפשר לסמן תשובות כחשובות כדי לתת להן יותר משקל"
+
+msgid "locale-link-en"
+msgstr "הטקסט הזה זמין באנגלית"
+
+msgid "locale-link-de"
+msgstr "שאלון זה זמין גם בגרמנית"
+
+msgid "start-test"
+msgstr "להתחלת השאלון"
+
+msgid "prev-question"
+msgstr "אחורה"
+
+msgid "next-question"
+msgstr "קדימה"
+
+msgid "no-results"
+msgstr "סליחה, איבדתי אותך"
+
+msgid "about-header"
+msgstr "על distrochooser.de"
+
+msgid "vote-reminder"
+msgstr "אהבת את ההפצה? אפשר לסמן אותה בלב!"
+
+msgid "vote-reminder-negative"
+msgstr "לא אהבת את ההפצה? אפשר לסמן אותה באגודל כלפי מטה!"
+
+msgid "about-intro-text"
+msgstr ""
+"‏distrochooser.de מנסה לעזור למתחילים בלינוקס לבחור הפצה לינוקס המתאימה "
+"לצורכיהם. <br> התוצאות שניתנו הן הצעות המבוססות על התשובות שלך. לפעמים "
+"התוצאות עשויות להיות לא מתאימות בגלל אינטראקציות מורכבות בין תשובות."
+
+msgid "about-intro-test-count"
+msgstr "מאז ה־14 ביוני 2014 distrochooser.de עבר %tests% בדיקות."
+
+msgid "about-licenses"
+msgstr "‏Distrochooser מוגן בשני רישיונות."
+
+msgid "privacy-header"
+msgstr "הגנת נתונים"
+
+msgid "imprint-header"
+msgstr "הערות"
+
+msgid "about-licenses-source"
+msgstr "קוד המקור"
+
+msgid "about-licenses-source-text"
+msgstr ""
+"קוד המקור מוגן ברישיון שכתוב בקובץ \"LICENSE\", אשר מאוחסן בתוך המאגר אליו "
+"ניתן הקישור."
+
+msgid "about-licenses-database"
+msgstr "מסד הנתונים"
+
+msgid "about-licenses-database-text"
+msgstr ""
+"הנתונים הבסיסיים, ביניהם מבנה השאלות והתשובות, המידע בתשובות והסטטיסטיקה, "
+"קנייניים. אפשר להשתמש בהם אך ורק עם קבלת האישור שלנו מראש. קטעי המידע "
+"בתיאורים והלוגואים של ההפצות השונות כפופים לרישיונות של בעלי זכויות היוצרים "
+"המתאימים."
+
+msgid "no-results-text"
+msgstr ""
+"אין באפשרות Distrochooser למצוא תוצאות מתאימות לפי התשובות שלך. כתיבת משוב "
+"יכולה לעזור לנו מאוד, כדי שנוכל לחקור זאת."
+
+msgid "close-additional-info"
+msgstr "סגירה"
+
+msgid "no-answers"
+msgstr "לא ענית על השאלות."
+
+msgid "get-my-result"
+msgstr "להצגת התוצאות שלך."
+
+msgid "additional-info"
+msgstr "מידע נוסף"
+
+msgid "remark-placeholder"
+msgstr "המשוב שלך (עד 3000 תווים)"
+
+msgid "distribution-homepage"
+msgstr "אתר ההפצה"
+
+msgid "result-remarks-added"
+msgstr "תודה רבה על המשוב!"
+
+msgid "share-result"
+msgstr "שיתוף התוצאות שלי"
+
+msgid "software-use-case-question"
+msgstr "חלק מההפצות נוצרו למטרות מיוחדות, וחלקן לשימוש יומיומי. מה את/ה צריך/ה?"
+
+msgid "software-use-case-answer-daily"
+msgstr "אני רוצה הפצה לשימוש יומיומי."
+
+msgid "software-use-case-anonymous-answer"
+msgstr "אני רוצה להשתמש בלינוקס למטרות גלישה אנונימית ברשת."
+
+msgid "software-use-case-answer-gaming"
+msgstr "אני מעדיף/ה הפצה שנתמכת על ידי מפתחי משחקים."
+
+msgid "computer-knowledge-question"
+msgstr "איך היית מדרג/ת את הידע שלך בשימוש במחשב?"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "לרוב יש לי צורך בעזרה מאחרים בתיקון הבעיות במחשב"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "כבר פתרתי בעצמי מספר בעיות במחשב"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "אני יכול/ה לפתור בעצמי את רוב או את כל הבעיות במחשב"
+
+msgid "linux-knowledge-question"
+msgstr "איך היית מדרג/ת את הידע שלך בלינוקס עצמה?"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "יש לי ידע קטן או אפסי בלינוקס"
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "כבר השתמשתי בלינוקס למספר מטרות"
+
+msgid "linux-knowledge-answer-professional"
+msgstr "יש לי הבנה טובה במערכת ההפעלה לינוקס"
+
+msgid "presets-question"
+msgstr ""
+"כמה הגדרות ברצונך לשנות במהלך ההתקנה? כמה דברים אמורים להיות מוגדרים כברירת "
+"מחדל?"
+
+msgid "presets-question-answer-manypresets"
+msgstr "ברצוני להשתמש במערכי ההגדרות ברירת־המחדל של אשף ההתקנה"
+
+msgid "presets-question-answer-ownselection"
+msgstr "ברצוני לבחור את ההגדרות בעצמי"
+
+msgid "presets-question-answer-guiselections"
+msgstr "ברצוני להגדיר כמה יותר דברים שאפשר באמצעות ממשק משתמש גרפי"
+
+msgid "hardware-question"
+msgstr ""
+"חשוב לדעת כמה ישנה חומרת מחשבך, מאחר וחלק מההפצות לא ניתנות להפעלה על מחשבים "
+"ישנים."
+
+msgid "additional-info-hardware"
+msgstr ""
+"במשך שנים, הפצות מסוימות השתמשו בארכיטקטורת 32 סיביות, המאפשרת להקצות זיכרון "
+"של עד 4 ג'יגה. הפצות חדשות יותר נוטות לנטוש את 32 הסיביות לטובת תמיכת 64 "
+"סיביות, המאפשרת להקצות זיכרון מעל 4 ג׳יגה בייטים. מאז 2005 כמעט כל המחשבים "
+"צריכים לתמוך ב־64 סיביות."
+
+msgid "hardware-question-oldpc"
+msgstr ""
+"איני בטוח/ה לגבי זה ו/או למחשבי יש בעיות ביצועים ו/או תומך רק ב־32 סיביות"
+
+msgid "hardware-question-newpc"
+msgstr ""
+"ביצועי המחשב שלי טובים, לא חוויתי כל בעיות ביצועים שהן, והחומרה שלי תומכת ב־"
+"64 סיביות"
+
+msgid "help-question"
+msgstr "חלק מההפצות מעדיפות דפי ויקי לפתרון בעיות. מה העדפתך?"
+
+msgid "help-question-tutorials"
+msgstr ""
+"אני יכול/ה לפתור בעצמי את הבעיות במחשב בעזרת מדריכים מדפי ויקי או מדריכים"
+
+msgid "help-question-user-exchange"
+msgstr "אני מעדיף/ה לבקש עזרה מאחרים"
+
+msgid "ux-concept-question"
+msgstr ""
+"בלינוקס אפשר להשתמש במגוון ממשקי משתמש שונים (\"שולחנות עבודה\"). הפצות רבות "
+"מותקנות יחד עם שולחן עבודה אחד כברירת מחדל. חשוב לדעת אם יש לך העדפות כלשהן "
+"לגבי סגנון שולחן העבודה. תמיד אפשר להחליף ולהתקין שולחנות עבודה חדשים!"
+
+msgid "ux-concept-answer-windows-like"
+msgstr "אני מעדיף/ה ממשק משתמש דמוית Windows"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "אני מעדיף/ה ממשק משתמש דמוי macOS"
+
+msgid "ux-concept-tiling"
+msgstr "אני מעדיף/ה חוויית חלונות ואריחים"
+
+msgid "ux-concept-closed-expierience"
+msgstr "אני מעדיף/ה חוויה סגורה"
+
+msgid "price-question"
+msgstr ""
+"רוב ההפצות הן בחינם. מספר הפצות מציעות תמיכה נוספת תמורת תשלום סמלי וחד־פעמי."
+
+msgid "price-answer-free"
+msgstr "אני מעדיף/ה הפצה בחינם"
+
+msgid "price-answer-paid"
+msgstr "אין לי בעיה עם תשלום סמלי"
+
+msgid "scope-question"
+msgstr ""
+"הפצות שונות מתקינות מראש כמויות תוכנה שונות. חלקן מתקינות מארז שלם של תכניות "
+"בסיסיות לעבודה \"מחוץ לקופסה\". הפצות אחרות מציעות רק התקנת בסיס כדי לאפשר "
+"למשתמש להתקין את התוכניות בהן הם רוצים להשתמש."
+
+msgid "scope-answer-fullinstall"
+msgstr ""
+"אני מעדיף/ה הפצה שמגיעה עם כל התכניות הבסיסיות שאני צריך/ה כדי להתחיל לעבוד "
+"מיד לאחר ההתקנה"
+
+msgid "scope-answer-ownselection"
+msgstr "אני מעדיף/ה לבחור בעצמי את התכניות הבסיסיות להתקנה"
+
+msgid "ideology-question"
+msgstr ""
+"(אידאולוגיית) הרישיון של הפצה היא נושא שנוי במחלוקת. ישנן הפצות שמשתמשות "
+"בעיקר ב\"רישיונות חופשיים\", בעוד אחרות משתמשות גם בתכנה \"שאינה חופשית\"."
+
+msgid "additional-info-ideology"
+msgstr ""
+"רישיונות חופשיים מאפשרים למשתמש לשנות, להפיץ מחדש ולהשתמש בתוכנה לכל מטרה "
+"שהיא. ישנם מצבים שבהם הפצה צריכה להשתמש בתוכנה שאינה חופשית, למשל עבור מנהלי "
+"התקנים לחומרה. תוכנה שאינה חופשית אינה מפיצה את קוד המקור שלה ואינה מרשה "
+"שינויים."
+
+msgid "ideology-answer-free"
+msgstr "ברצוני להשתמש בכמה שיותר רישיונות חופשיים"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "אני בסדר עם רישיונות שאינם חופשיים כל עוד המערכת שלי עובדת"
+
+msgid "privacy-question"
+msgstr ""
+"חלק מההפצות משתמשות בשירותים מקוונים כדי לשפר את חוויית המשתמש. זה עלול "
+"להשפיע על פרטיות המשתמש, לדוגמה יכול להתבצע מעקב על המשתמש בעת שימוש בתכונות "
+"מקוונות כאלו."
+
+msgid "privacy-answer-highprivacy"
+msgstr "איני רוצה את זה"
+
+msgid "privacy-answer-services-ok"
+msgstr ""
+"אם זה משפר את חוויית המשתמש שלי, אני מסכים/ה להשתמש בשירותים מקוונים כאלו"
+
+msgid "software-admin-question"
+msgstr "ישנן מספר דרכים לניהול המערכת בהפצת לינוקס, למשל התקנת תוכנה."
+
+msgid "software-admin-answer-appstore"
+msgstr "ברצוני להתקין את התכניות שלי בעזרת \"חנות יישומים\""
+
+msgid "software-admin-answer-console"
+msgstr "ברצוני להתקין תוכנה בעיקר באמצעות פקודות במסוף"
+
+msgid "special-features-qestion"
+msgstr ""
+"לחלק מההפצות יש תכונות מיוחדות למטרות מיוחדות. האם יש לי צורך בתכונות כאלו?"
+
+msgid "additional-info-special-features-qestion"
+msgstr ""
+"הפצות רבות משתמשות ב־\"systemd\" להפעלת מערכת ההפעלה עצמה. חלק מההפצות אינן "
+"משתמשות ב־systemd לטובת פתרונות חלופיים ולעיתים קלים יותר"
+
+msgid "answer-isolation"
+msgstr "היישומים יפעלו בסביבות מבודדות כברירת מחדל"
+
+msgid "software-updates-question"
+msgstr ""
+"חלק מההפצות מציעות עדכונים מהירים, שיכולים להשפיע על יציבות המערכת. מה העדפתך?"
+
+msgid "software-updates-answer-fast"
+msgstr "אני מעדיף/ה עדכונים מהירים"
+
+msgid "software-updates-answer-slow"
+msgstr "אני מעדיף/ה עדכונים יציבים"
+
+msgid "answer-avoid-systemd"
+msgstr "ברצוני להימנע מ־systemd"
+
+msgid "result-submitted-hint"
+msgstr "כעת בחישוב התוצאה"
+
+msgid "reason-header-hint"
+msgstr "לחיצה על שם ההפצה תציג את הסיבות המפורטות להמלצה"
+
+msgid "reason-list-header"
+msgstr "סיבות בעד/נגד"
+
+msgid "answer-is-blocking"
+msgstr "התשובות הבאות אינן כוללות תשובה זו"
+
+msgid "answer-is-blocked"
+msgstr "תשובה זו סותרת את התשובה הקודמת שלך"
+
+msgid "reason-blocked-by-others-entry"
+msgstr "\"{0}\" לא מסכימים עם \"{1}\""
+
+msgid "additional-infos"
+msgstr "תנו לי מידע נוסף!"
+
+msgid "make-important"
+msgstr "זה חשוב!"
+
+msgid "marked-as-important"
+msgstr "סומנה כחשובה"
+
+msgid "remove-important"
+msgstr "הסרת החשיבות"
+
+msgid "reason-list-header-negative"
+msgstr "איננו ממליצים לך הפצה זו כי:"
+
+msgid "reason-list-header-neutral"
+msgstr "הקריטריונים הבאים לא הובאו בחשבון"
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "תשובה זו חסומה בגלל התשובות האחרות שלך"
+
+msgid "matrix-supports-daily-usage"
+msgstr "מתאימה לשימוש יומיומי"
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "עיקרון ההפצה אינו חיוני למטרות גלישה אנונימית"
+
+msgid "matrix-supports-gaming-usage"
+msgstr "ההפצה נתמכת באופן פעיל על ידי מפתחי משחקים"
+
+msgid "matrix-beginner-knowledge"
+msgstr "מתאימה למתחילים"
+
+msgid "matrix-advanced-knowledge"
+msgstr "מתאימה למשתמשים מתקדמים"
+
+msgid "matrix-professional-knowledge"
+msgstr "מתאימה למתקדמים"
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "לשימוש נדרש פחות ידע בלינוקס משענית"
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "לשימוש נדרש פחות ידע במחשבים משענית"
+
+msgid "matrix-linux-beginner"
+msgstr "מתאימה למתחילים בלינוקס"
+
+msgid "matrix-installation-presets-always-given"
+msgstr "אשף ההתקנה מבצע הגדרה מראש שייתכן צורך לאפס אותה לאחר ההתקנה"
+
+msgid "matrix-installation-presets-gui"
+msgstr "ניתן להגדיר דברים רבים באמצעות ממשק גרפי"
+
+msgid "matrix-installation-assistant-present"
+msgstr "ההתקנה נעשית בעזרת \"אשף\" התקנה עם הגדרות ברירת מחדל"
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr ""
+"עלולות להתרחש בעיות באפקטים של סדרן החלונות. ייתכן שיהיה צורך בהשבתת  "
+"האנימציות."
+
+msgid "matrix-hardware-newpc"
+msgstr "ניתנת להפעלה על החומרה החדשה ביותר"
+
+msgid "matrix-user-exchange"
+msgstr "ישנן קהילות משתמשים לשיתוף ידע"
+
+msgid "matrix-tutorial"
+msgstr "ישנם מדריכים לפתרון בעיות ותקלות"
+
+msgid "matrix-mac-like"
+msgstr "סגנון ממשק המשתמש הגרפי מכיל אלמנטים מ־macOS"
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "סגנון ממשק המשתמש הגרפי שונה מאוד מ־Windows"
+
+msgid "matrix-closed-expierience"
+msgstr "עם רקעים, סמלים וערכות נושא משלה"
+
+msgid "matrix-has-windows-like-variant"
+msgstr "יש גרסאות עם ממשק משתמש דמוי Windows"
+
+msgid "matrix-paid-version-existing"
+msgstr "להפצה זו יש גרסה שאינה חופשית"
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "ייתכן שגרסאות התוכנה אינן עדכניות מספיק למשחקים"
+
+msgid "matrix-has-live-mode"
+msgstr "עם מצב המחשב שמאפשר הפעלה מתקליטור"
+
+msgid "live-mode-only"
+msgstr ""
+"עם מצב המחשה: ניתן להפעילה מתוך תקליטורים או החסנים ניידים (USB) כדי לבדוק "
+"אותה (לפני ההתקנה)"
+
+msgid "matrix-without-fee"
+msgstr "ניתנת לשימוש בחינם"
+
+msgid "matrix-paid"
+msgstr "להפצה זו יש גרסה בתשלום סמלי"
+
+msgid "matrix-fullinstall"
+msgstr "מותקנת יחד עם התכניות הנחוצות"
+
+msgid "matrix-ownscope-install"
+msgstr "על המשתמש לבחור את כל התוכניות בעצמו"
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "תכניות בקוד סגור מותקנות כברירת מחדל"
+
+msgid "matrix-enforces-free"
+msgstr "מעודדת שימוש בתכנה חופשית"
+
+msgid "matrix-mostly-free"
+msgstr "עובדת בעיקר עם תכנה חופשית"
+
+msgid "matrix-has-default-settings"
+msgstr "עם הגדרות ברירת מחדל"
+
+msgid "matrix-privacy-ok"
+msgstr "חיונית לפרטיות המשתמש"
+
+msgid "matrix-privacy-thirdparty"
+msgstr "מתחברת לשירותי צד שלישי כברירת מחדל"
+
+msgid "matrix-appstore"
+msgstr "ניתן להתקין תוכנה בעזרת חנות יישומים"
+
+msgid "matrix-console"
+msgstr "ניתן להתקין תוכנה באמצעות המסוף"
+
+msgid "matrix-stable-updates"
+msgstr "רוב העדכונים יציבים בעת פרסומם"
+
+msgid "matrix-fast-updates"
+msgstr "עדכוני התוכנה משוחררים מהר ככל האפשר, דבר שעושה אותם בלתי־יציבים"
+
+msgid "matrix-has-control-panel"
+msgstr "מכילה מרכז בקרה המותקן כברירת מחדל"
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "על המשתמש לבחור את התוכנה לשימוש"
+
+msgid "matrix-selection-by-user"
+msgstr "היקף התכניות המותקנות מראש נבחר על ידי המשתמש"
+
+msgid "matrix-updates-fast"
+msgstr "עדכונים מהירים, אך עלולים להיות בלתי־יציבים"
+
+msgid "matrix-not-for-beginner"
+msgstr "לא מתאימה למתחילים"
+
+msgid "matrix-avoids-systemd"
+msgstr "ללא systemd"
+
+msgid "matrix-uses-systemd"
+msgstr "משתמשת ב־systemd"
+
+msgid "built-for-anonymization"
+msgstr "נבנתה למטרות גלישה אנונימית"
+
+msgid "matrix-administration-shell"
+msgstr "רוב ניהול המערכת נעשה באמצעות שורת הפקודה"
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "לא תומכת במחשבים ישנים שאינם תומכים ב־64 סיביות"
+
+msgid "matrix-requires-manual"
+msgstr "נדרשת קריאת מדריכים והנחיות"
+
+msgid "matrix-requires-advanced-knowledge"
+msgstr "נדרשת קריאת מדריכי שימוש"
+
+msgid "matrix-isolation-default"
+msgstr "עם עיקרון הבידוד כברירת מחדל"
+
+msgid "matrix-oldpc-supported"
+msgstr "תומכת גם במחשבים ישנים"
+
+msgid "checked-criteria-count"
+msgstr "ההיבטים שנבדקים"
+
+msgid "searching-criteria"
+msgstr "כעת בעיבוד ספריית הקריטריונים"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "ייתכנו קשיים מהותיים בשימוש יומיומי"
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "ניתנת לעבודה יומיומית, אך נועדה למצָּב המחשה"
+
+msgid "matrix-packages-available"
+msgstr "זמינות תוכניות למטרות גלישה אנונימית"
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "ייתכן שגרסאות התוכנה אינן עדכניות מספיק למשחקים"
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "ייתכן שתידרש הגדרה נוספת למשחקים"
+
+msgid "matrix-built-for-enterprise"
+msgstr "המטרה הראשית היא שימוש על ידי ארגונים"
+
+msgid "matrix-not-built-for-gaming"
+msgstr "לא מותאמת למשחקים"
+
+msgid "requires-some-computer-knowledge"
+msgstr "נדרש ידע נרחב יותר במחשבים"
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "לא מתאימה למתחילים"
+
+msgid "matrix-installation-from-shell"
+msgstr "ההתקנה נעשית באמצעות המסוף"
+
+msgid "matrix-installs-range-of-programs"
+msgstr "מותקנת יחד עם מגוון תוכניות כברירת מחדל"
+
+msgid "matrix-configuration-from-shell"
+msgstr "רוב ההגדרה נעשית באמצעות שורת הפקודה"
+
+msgid "matrix-middleweight"
+msgstr "היא הפצה במשקל ביניים, מתאימה במיוחד למחשבים חדשים למחצה"
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "תומכת בטווח חומרה רחב"
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "עם גרסת \"Zorin Lite\" למחשבים ישנים"
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr "גרסה שמגיעה עם סביבת שולחן העבודה \"Cinnamon\", עם מראה דמוי Windows"
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "המשתמש יכול לבחור אם ברצונו להימנע מ־Systemd"
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "‏Systemd כלול, אך מושבת כברירת מחדל"
+
+msgid "matrix-supports-privacy"
+msgstr "אוספת נתונים רק בעת שימוש בשירותים מקוונים"
+
+msgid "matrix-lightweight"
+msgstr "הפצה קלילה"
+
+msgid "matrix-free-userselection"
+msgstr "השימוש בתכנה חופשית תלוי בבחירת המשתמש"
+
+# distribution descriptions
+msgid "description-manjaro"
+msgstr "‏Manjaro היא הפצה רציפה שמתמקדת בידידותיות למשתמש"
+
+msgid "description-ubuntu"
+msgstr "‏Ubuntu היא הפצה שפותחה על ידי החברה Canonical"
+
+msgid "description-mint"
+msgstr ""
+"‏Linux Mint היא הפצה המבוססת על Ubuntuומותקנת יחד עם רכיבים קנייניים, כמו "
+"מפענחי מולטימדיה."
+
+msgid "description-solus"
+msgstr "‏Solus OS היא הפצה רציפה שהחלה בתור חיקוי ל־Chrome OS"
+
+msgid "description-arch"
+msgstr "‏Arch היא הפצה רציפה המבוססת על עיקרון KISS (תשאירו אותה פשוטה, טיפשה)"
+
+msgid "description-debian"
+msgstr "‏Debian היא הפצה שמתמקדת מאוד ביציבות"
+
+msgid "description-tails"
+msgstr ""
+"‏Tails, שמתמקדת בעיקר בגלישה אנונימית, ניתנת להפעלה מהחסנים ניידים (USB) או "
+"מכוננים אופטיים"
+
+msgid "description-devuan"
+msgstr "‏Devuan הוא העתק של Debian שאינו משתמש בארגז הכלים של systemd"
+
+msgid "description-opensuse"
+msgstr "‏openSUSE שואפת לספק הפצה יציבה וידידותית למשתמשים, לרוב למשתמשי קצה"
+
+msgid "description-pclinuxos"
+msgstr "‏PCLinuxOS היא הפצה המבוססת על מנדרייק שמתמקדת בממשק ידידותי למשתמש."
+
+msgid "description-rhel"
+msgstr ""
+"‏Red hat Enterprise Linux (ר״ת: RHEL) היא הפצה שמתמקדת בשימוש על ידי ארגונים "
+"וביציבות"
+
+msgid "description-centos"
+msgstr "‏CentOS היא הפצה חופשית המבוססת על RHEL"
+
+msgid "description-xubuntu"
+msgstr ""
+"‏Xubuntu היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה הקלילה "
+"XFCE"
+
+msgid "description-lubuntu"
+msgstr ""
+"‏Lubuntu היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה הקלילה "
+"LXQt"
+
+msgid "description-ubuntumate"
+msgstr ""
+"‏Ubuntu MATE היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה MATE"
+
+msgid "description-popos"
+msgstr ""
+"‏Pop!_OS היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה GNOME"
+
+#, fuzzy
+msgid "description-fedora"
+msgstr ""
+"#-#-#-#-#  catalog.po  #-#-#-#-#\n"
+"‏Fedora היא הפצה שנתמכת על ידי Red hat ומתמקדת מאוד בתכנה חופשית\n"
+"#-#-#-#-#  catalog.po  #-#-#-#-#\n"
+"‏Fedora היא הפצה שמתמקדת בתכנה חופשית. הגרסאות של Fedora משוחררות ללא תמיכה "
+"לטווח ארוך. גרסה חדשה יוצאת לאור כל 6 חודשים."
+
+msgid "description-qubeos"
+msgstr "‏Qubes OS מבודדת את היישומים בעזרת מכונות וירטואליות כדי לשפר את האבטחה"
+
+msgid "description-gentoo"
+msgstr "‏Gentoo היא הפצה גמישה למשתמשים מתקדמים"
+
+msgid "description-mxlinux"
+msgstr ""
+"‏MX Linux היא הפצה עם שימוש בינוני במשאבים שמתמקדת ביעילות ובאלגנטיות של "
+"השימוש היומיומי"
+
+msgid "description-knoppix"
+msgstr "‏Knoppix היא הפצה שמתמקדת במצב ההמחשה עם תמיכה במגוון חומרה רחב"
+
+msgid "description-cruxlinux"
+msgstr ""
+"‏Crux Linux היא מערכת הפעלה קלילה שמתמקדת ב־64 סיביות עם כלים וספריות עדכניים"
+
+msgid "description-zorinos"
+msgstr "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows"
+
+msgid "description-elementaryos"
+msgstr ""
+"‏elementary OS היא הפצה המבוססת על Ubuntu, ומתמקדת בסיפוק ממשק משתמש אלגנטי "
+"ומהיר"
+
+msgid "description-kubuntu"
+msgstr ""
+"‏Kubuntu היא הפצה המבוססת על Ubuntu ומותקנת מראש עם KDE בתור שולחן העבודה"
+
+msgid "locale-en"
+msgstr "אנגלית"
+
+msgid "locale-de"
+msgstr "גרמנית"
+
+# update pack 26th december 2019
+msgid "debian-updates-slow"
+msgstr "העדכונים של Debian איטיים לרוב מטעמי יציבות"
+
+msgid "description-qubesos"
+msgstr "‏Qubes OS מריצה את התהליכים במכונות וירטואליות מטעמי אבטחה"
+
+msgid "software-use-case-isolation"
+msgstr "ברצוני להפעיל את כל התוכניות באזורים מבודדים"
+
+msgid "matrix-runs-in-isolation"
+msgstr "הפעלת התוכנה נעשית בסביבות מבודדות"
+
+msgid "software-use-case-blind"
+msgstr "המשתמש/ת לקוי(ית) ראייה"
+
+msgid "matrix-knoppix-adriane"
+msgstr "מיזם ADRIANE מציע כלים ופתרונות לאנשים לקויי ראייה"
+
+msgid "matrix-has-software-for-blind"
+msgstr "ניתן להתקין תוכניות לאנשים לקויי ראייה (למשל \"Orca\")"
+
+msgid "source"
+msgstr "מקור התמונה"
+
+msgid "description-void"
+msgstr "‏Void Linux היא הפצה רציפה ללא systemd"
+
+msgid "skip-question"
+msgstr "דילוג על השאלה"
+
+msgid "description-nixos"
+msgstr ""
+"‏NixOS משתמשת במנהל החבילות Nix. היא משתמשת בהגדרה הצהרתית ומאפשרת עדכוני "
+"מערכת אמינים."
+
+msgid "reasons-hide"
+msgstr "הסתרת הסיבות"
+
+msgid "description-artix"
+msgstr "‏Artix היא הפצה מבוססת Arch Linux המשתמשת ב־OpenRC במקום ב־systemd."
+
+msgid "link-copied"
+msgstr "הועתק ללוח הגזירים"
+
+msgid "remark-placeholder-saving"
+msgstr "הטקסט יישמר אוטומטית"
+
+msgid "slow-release-model"
+msgstr "גרסאות התוכנה הזמינות עשויות להיות ישנות מהגרסה העדכנית של הסַּפקים"
+
+msgid "requires-payment"
+msgstr "לשימוש לטווח ארוך נדרש תשלום"
