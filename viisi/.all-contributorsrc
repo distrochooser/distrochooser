@@ -137,6 +137,16 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "omeritzics",
+      "name": "Omer I.S.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66558205?v=4",
+      "profile": "https://github.com/omeritzics",
+      "contributions": [
+        "question",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
