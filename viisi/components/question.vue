@@ -67,8 +67,8 @@
               input(:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
               span.checkmark
             
-            a(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)") {{ __i("make-important") }}
-            a(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)") {{ __i("remove-important") }}
+            a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)") {{ __i("make-important") }}
+            a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)") {{ __i("remove-important") }}
 
             span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)")
               i.w-icon-star-off(:title='__i("make-important")')
@@ -76,10 +76,10 @@
               i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
 
             
-            div.warning-alert.animated.fadeInUp.faster(v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
+            div.warning-alert.fadeInUp.faster(:class="'animated' ? !$store.state.visuallyImpairedMode : ''", v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
               p {{ __i("answer-is-blocking") }}:
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
-                i.w-icon-circle-close-o
+                i.w-icon-circle-close-o.warning-icon
                 span "{{ __i(blockingAnswer.msgid) }}"
             div.blocking-alert.animated.fadeInUp.faster(v-if="getBlockedAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
               p {{ __i("answer-is-blocked") }}:

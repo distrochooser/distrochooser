@@ -757,3 +757,15 @@ msgstr "需付費使用"
 
 msgid "github-link"
 msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Modus für Menschen mit Seheinschränkungen"
+
+msgid "visually-impaired-mode"
+msgstr "為視障人士提供幫助"
+
+msgid "like"
+msgstr "我喜歡"
+
+msgid "dislike"
+msgstr "我不喜歡它"

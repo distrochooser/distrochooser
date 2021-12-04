@@ -747,3 +747,12 @@ msgstr "L'utilisation à long terme est payante"
 
 msgid "github-link"
 msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Mode pour les personnes ayant une déficience visuelle"
+
+msgid "like"
+msgstr "J'aime bien"
+
+msgid "dislike"
+msgstr "Je n'aime pas"

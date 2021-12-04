@@ -747,3 +747,12 @@ msgstr "Длительное пользование требует оплаты"
 
 msgid "github-link"
 msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "ежим для людей с нарушениями зрения"
+
+msgid "like"
+msgstr "Мне нравится"
+
+msgid "dislike"
+msgstr "Мне не нравится"

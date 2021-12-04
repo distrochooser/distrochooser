@@ -2,16 +2,17 @@
   div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode, 'rtl': isRTL }")
     div.top-logo-container
       a(href="/")
-        img.top-logo(src='/logo.min.svg')
+        img.top-logo(src='/logo.min.svg', alt="Distrochooser.de Logo")
     div.calculation-loading(v-if="isLoading || $store.state.isSubmitted") 
-      div.spinner
+      div.spinner(v-if="!$store.state.visuallyImpairedMode")
+      div.spinner-text(v-else) {{ __i("loading") }}
     categories(:language="language",v-if="!isLoading && !$store.state.isSubmitted")
     div(v-if="!isLoading && !isFinished && !$store.state.isSubmitted")
       question(:language="language")
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
     div.footer(v-if="!isLoading")
-      a(target="_blank", :href="'?vim=true'" ) Visually Impaired mode
+      a(target="_blank", :href="'?vim=true'" ) {{ __i("visually-impaired-mode") }}
       a(target="_blank", :href="'/info/imprint/'+ infoPageLanguage" )  {{ __i("imprint") }}
       a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
       a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
@@ -424,6 +425,12 @@ select::-ms-expand {
   margin-top: 2em;
   .question .question-content .welcome-text {
     font-size: x-large;
+    i {
+      display: none;
+    }
+  }
+  .warning-icon {
+    display: none;
   }
   .answers .answer input {
     width: 30px;
@@ -438,9 +445,18 @@ select::-ms-expand {
   .answer-remark {
     font-size: x-large;
   }
+  .important-visually-impaired {
+    margin-left: 1em;
+  }
+  .hide-reasons {
+    display: none;
+  }
   .footer a,
   .footer select {
     font-size: x-large !important;
+  }
+  .footer i {
+    display: none;
   }
   .top-logo-container {
     text-align: left;

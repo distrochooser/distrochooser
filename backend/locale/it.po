@@ -746,3 +746,12 @@ msgstr "Uso a pagamento"
 
 msgid "github-link"
 msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Modalità per le persone con problemi di vista"
+
+msgid "like"
+msgstr "Mi piace"
+
+msgid "dislike"
+msgstr "Non mi piace"

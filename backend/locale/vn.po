@@ -746,3 +746,12 @@ msgstr "Sử dụng trả phí"
 
 msgid "github-link"
 msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Giúp đỡ những người bị khiếm thị"
+
+msgid "like"
+msgstr "tôi thích nó"
+
+msgid "dislike"
+msgstr "Tôi không thích nó"

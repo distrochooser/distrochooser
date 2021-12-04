@@ -821,3 +821,12 @@ msgstr "לשימוש לטווח ארוך נדרש תשלום"
 
 msgid "github-link"
 msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "עזרה לאנשים עם לקות ראייה"
+
+msgid "like"
+msgstr "אני אוהב את זה"
+
+msgid "dislike"
+msgstr "אני לא אוהב את זה"

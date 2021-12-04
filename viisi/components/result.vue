@@ -3,8 +3,9 @@
     div.result-link
       div.social-links
         span {{ __i("share-result")}}
-        a(v-for="(value, key) in $store.state.socialNetworks", :key="key", :href="value.replace('$link$',resultUrl)" , target="_blank")
-          i(:class="key")
+        span(v-if="!$store.state.visuallyImpairedMode")
+          a(v-for="(value, key) in $store.state.socialNetworks", :key="key", :href="value.replace('$link$',resultUrl)" , target="_blank")
+            i(:class="key")
       div.link(:data-balloon-visible="copyTooltipShown", :data-balloon="copyTooltipShown ? __i('link-copied') : false", data-balloon-pos="down", @click="toggleCopyTooltip(false)", @mouseleave="toggleCopyTooltip(true)")
         i.w-icon-paper-clip
         input(type="text", :value="resultUrl", @focus="$event.target.select()")

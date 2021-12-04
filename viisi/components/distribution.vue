@@ -40,11 +40,15 @@
     div.meta
       div.actions
         div.vote-actions
-          a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)",:data-balloon="__i('vote-reminder')",data-balloon-pos="left")
-            i.w-icon-heart-on(v-bind:class="{'animated heartBeat voted': voted && positiveVote}")
-          a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)", :data-balloon="__i('vote-reminder-negative')",data-balloon-pos="left")
-            i.w-icon-dislike-o(v-bind:class="{'animated swing voted': voted && !positiveVote}")
-          a.action(href="#", v-on:click.prevent="flipped=!flipped", :data-balloon="__i('reasons-hide')",data-balloon-pos="right")
+          a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)",:data-balloon="!$store.state.visuallyImpairedMode ? __i('vote-reminder'): null",data-balloon-pos="left")
+            
+            i.w-icon-heart-on(v-bind:class="{'animated heartBeat voted': voted && positiveVote}", v-if="!$store.state.visuallyImpairedMode")
+            span(v-else) {{ voted && positiveVote ? __i("liked") :  __i("like") }} 
+
+          a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)", :data-balloon="!$store.state.visuallyImpairedMode ? __i('vote-reminder-negative') : null",data-balloon-pos="left")
+            i.w-icon-dislike-o(v-bind:class="{'animated swing voted': voted && !positiveVote}", v-if="!$store.state.visuallyImpairedMode")
+            span(v-else) {{ voted && !positiveVote? __i("not-liked") :  __i("dislike") }} 
+          a.action.hide-reasons(href="#", v-on:click.prevent="flipped=!flipped", :data-balloon="__i('reasons-hide')",data-balloon-pos="right")
             i.w-icon-shrink
       div.url
         a(v-if="url", target="_blank", :href="url") {{ __i("distribution-homepage") }}

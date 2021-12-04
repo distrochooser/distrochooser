@@ -715,3 +715,12 @@ msgstr "Chostepflichtig"
 
 msgid "github-link"
 msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Modus für Menschen mit Seheinschränkungen"
+
+msgid "like"
+msgstr "Gefällt mir"
+
+msgid "dislike"
+msgstr "Gefällt mir nicht"

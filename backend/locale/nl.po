@@ -739,3 +739,12 @@ msgstr "Voor langdurig gebruik is betaling vereist"
 
 msgid "github-link"
 msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Modus voor mensen met een visuele handicap"
+
+msgid "like"
+msgstr "Ik hou van"
+
+msgid "dislike"
+msgstr "Ik hou niet van"

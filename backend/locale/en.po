@@ -746,3 +746,12 @@ msgstr "Long term usage requires payment"
 
 msgid "github-link"
 msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Mode for people with visual impairments"
+
+msgid "like"
+msgstr "I like this"
+
+msgid "dislike"
+msgstr "I don't like this"
