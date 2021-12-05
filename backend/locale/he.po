@@ -6,7 +6,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
-"PO-Revision-Date: 2021-11-21 15:18+0200\n"
+"PO-Revision-Date: 2021-12-04 17:50+0200\n"
 "Project-Id-Version: \n"
 "Language-Team: Hebrew <kde-i18n-he@kde.org>\n"
 "Language: he_IL\n"
@@ -141,8 +141,8 @@ msgstr "לא אהבת את ההפצה? אפשר לסמן אותה באגודל �
 msgid "about-intro-text"
 msgstr ""
 "‏distrochooser.de מנסה לעזור למתחילים בלינוקס לבחור הפצה לינוקס המתאימה "
-"לצורכיהם. <br> התוצאות שניתנו הן הצעות המבוססות על התשובות שלך. לפעמים "
-"התוצאות עשויות להיות לא מתאימות בגלל אינטראקציות מורכבות בין תשובות."
+"לצורכיהם. <br> התוצאות שניתנו הן הצעות המבוססות על התשובות שלך. לפעמים התוצאות "
+"עשויות להיות לא מתאימות בגלל אינטראקציות מורכבות בין תשובות."
 
 msgid "about-intro-test-count"
 msgstr "מאז ה־14 ביוני 2014 distrochooser.de עבר %tests% בדיקות."
@@ -170,9 +170,8 @@ msgstr "מסד הנתונים"
 msgid "about-licenses-database-text"
 msgstr ""
 "הנתונים הבסיסיים, ביניהם מבנה השאלות והתשובות, המידע בתשובות והסטטיסטיקה, "
-"קנייניים. אפשר להשתמש בהם אך ורק עם קבלת האישור שלנו מראש. קטעי המידע "
-"בתיאורים והלוגואים של ההפצות השונות כפופים לרישיונות של בעלי זכויות היוצרים "
-"המתאימים."
+"קנייניים. אפשר להשתמש בהם אך ורק עם קבלת האישור שלנו מראש. קטעי המידע בתיאורים "
+"והלוגואים של ההפצות השונות כפופים לרישיונות של בעלי זכויות היוצרים המתאימים."
 
 msgid "no-results-text"
 msgstr ""
@@ -267,12 +266,12 @@ msgstr ""
 
 msgid "hardware-question-oldpc"
 msgstr ""
-"איני בטוח/ה לגבי זה ו/או למחשבי יש בעיות ביצועים ו/או תומך רק ב־32 סיביות"
+"אינני בטוח/ה לגבי זה ו/או למחשבי יש בעיות ביצועים ו/או תומך רק ב־32 סיביות"
 
 msgid "hardware-question-newpc"
 msgstr ""
-"ביצועי המחשב שלי טובים, לא חוויתי כל בעיות ביצועים שהן, והחומרה שלי תומכת ב־"
-"64 סיביות"
+"ביצועי המחשב שלי טובים, לא חוויתי כל בעיות ביצועים שהן, והחומרה שלי תומכת ב־64 "
+"סיביות"
 
 msgid "help-question"
 msgstr "חלק מההפצות מעדיפות דפי ויקי לפתרון בעיות. מה העדפתך?"
@@ -328,8 +327,8 @@ msgstr "אני מעדיף/ה לבחור בעצמי את התכניות הבסי�
 
 msgid "ideology-question"
 msgstr ""
-"(אידאולוגיית) הרישיון של הפצה היא נושא שנוי במחלוקת. ישנן הפצות שמשתמשות "
-"בעיקר ב\"רישיונות חופשיים\", בעוד אחרות משתמשות גם בתכנה \"שאינה חופשית\"."
+"(אידאולוגיית) הרישיון של הפצה היא נושא שנוי במחלוקת. ישנן הפצות שמשתמשות בעיקר "
+"ב\"רישיונות חופשיים\", בעוד אחרות משתמשות גם בתכנה \"שאינה חופשית\"."
 
 msgid "additional-info-ideology"
 msgstr ""
@@ -346,12 +345,12 @@ msgstr "אני בסדר עם רישיונות שאינם חופשיים כל ע�
 
 msgid "privacy-question"
 msgstr ""
-"חלק מההפצות משתמשות בשירותים מקוונים כדי לשפר את חוויית המשתמש. זה עלול "
-"להשפיע על פרטיות המשתמש, לדוגמה יכול להתבצע מעקב על המשתמש בעת שימוש בתכונות "
-"מקוונות כאלו."
+"חלק מההפצות משתמשות בשירותים מקוונים כדי לשפר את חוויית המשתמש. זה עלול להשפיע "
+"על פרטיות המשתמש, לדוגמה יכול להתבצע מעקב על המשתמש בעת שימוש בתכונות מקוונות "
+"כאלו."
 
 msgid "privacy-answer-highprivacy"
-msgstr "איני רוצה את זה"
+msgstr "אינני רוצה את זה"
 
 msgid "privacy-answer-services-ok"
 msgstr ""
@@ -389,10 +388,10 @@ msgid "software-updates-answer-slow"
 msgstr "אני מעדיף/ה עדכונים יציבים"
 
 msgid "answer-avoid-systemd"
-msgstr "ברצוני להימנע מ־systemd"
+msgstr "ברצוני להימנע משימוש ב־systemd"
 
 msgid "result-submitted-hint"
-msgstr "כעת בחישוב התוצאה"
+msgstr "מתבצע חישוב התוצאה"
 
 msgid "reason-header-hint"
 msgstr "לחיצה על שם ההפצה תציג את הסיבות המפורטות להמלצה"
@@ -422,7 +421,7 @@ msgid "remove-important"
 msgstr "הסרת החשיבות"
 
 msgid "reason-list-header-negative"
-msgstr "איננו ממליצים לך הפצה זו כי:"
+msgstr "איננו ממליצים לך על הפצה זו כי:"
 
 msgid "reason-list-header-neutral"
 msgstr "הקריטריונים הבאים לא הובאו בחשבון"
@@ -594,7 +593,7 @@ msgid "checked-criteria-count"
 msgstr "ההיבטים שנבדקים"
 
 msgid "searching-criteria"
-msgstr "כעת בעיבוד ספריית הקריטריונים"
+msgstr "מתבצע עיבוד ספריית הקריטריונים"
 
 msgid "daily-usage-possibly-difficult"
 msgstr "ייתכנו קשיים מהותיים בשימוש יומיומי"
@@ -668,7 +667,7 @@ msgstr "‏Ubuntu היא הפצה שפותחה על ידי החברה Canonical"
 
 msgid "description-mint"
 msgstr ""
-"‏Linux Mint היא הפצה המבוססת על Ubuntuומותקנת יחד עם רכיבים קנייניים, כמו "
+"‏Linux Mint היא הפצה המבוססת על Ubuntu ומותקנת יחד עם רכיבים קנייניים, כמו "
 "מפענחי מולטימדיה."
 
 msgid "description-solus"
@@ -720,12 +719,9 @@ msgid "description-popos"
 msgstr ""
 "‏Pop!_OS היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה GNOME"
 
-#, fuzzy
 msgid "description-fedora"
 msgstr ""
-"#-#-#-#-#  catalog.po  #-#-#-#-#\n"
 "‏Fedora היא הפצה שנתמכת על ידי Red hat ומתמקדת מאוד בתכנה חופשית\n"
-"#-#-#-#-#  catalog.po  #-#-#-#-#\n"
 "‏Fedora היא הפצה שמתמקדת בתכנה חופשית. הגרסאות של Fedora משוחררות ללא תמיכה "
 "לטווח ארוך. גרסה חדשה יוצאת לאור כל 6 חודשים."
 
@@ -737,8 +733,8 @@ msgstr "‏Gentoo היא הפצה גמישה למשתמשים מתקדמים"
 
 msgid "description-mxlinux"
 msgstr ""
-"‏MX Linux היא הפצה עם שימוש בינוני במשאבים שמתמקדת ביעילות ובאלגנטיות של "
-"השימוש היומיומי"
+"‏MX Linux היא הפצה עם שימוש בינוני במשאבים שמתמקדת ביעילות ובאלגנטיות של השימוש "
+"היומיומי"
 
 msgid "description-knoppix"
 msgstr "‏Knoppix היא הפצה שמתמקדת במצב ההמחשה עם תמיכה במגוון חומרה רחב"
@@ -756,8 +752,7 @@ msgstr ""
 "ומהיר"
 
 msgid "description-kubuntu"
-msgstr ""
-"‏Kubuntu היא הפצה המבוססת על Ubuntu ומותקנת מראש עם KDE בתור שולחן העבודה"
+msgstr "‏Kubuntu היא הפצה המבוססת על Ubuntu ומותקנת מראש עם KDE בתור שולחן העבודה"
 
 msgid "locale-en"
 msgstr "אנגלית"
@@ -779,7 +774,7 @@ msgid "matrix-runs-in-isolation"
 msgstr "הפעלת התוכנה נעשית בסביבות מבודדות"
 
 msgid "software-use-case-blind"
-msgstr "המשתמש/ת לקוי(ית) ראייה"
+msgstr "למשתמש/ת לקות ראייה"
 
 msgid "matrix-knoppix-adriane"
 msgstr "מיזם ADRIANE מציע כלים ופתרונות לאנשים לקויי ראייה"
@@ -798,8 +793,8 @@ msgstr "דילוג על השאלה"
 
 msgid "description-nixos"
 msgstr ""
-"‏NixOS משתמשת במנהל החבילות Nix. היא משתמשת בהגדרה הצהרתית ומאפשרת עדכוני "
-"מערכת אמינים."
+"‏NixOS משתמשת במנהל החבילות Nix. היא משתמשת בהגדרה הצהרתית ומאפשרת עדכוני מערכת "
+"אמינים."
 
 msgid "reasons-hide"
 msgstr "הסתרת הסיבות"
@@ -818,15 +813,3 @@ msgstr "גרסאות התוכנה הזמינות עשויות להיות ישנ�
 
 msgid "requires-payment"
 msgstr "לשימוש לטווח ארוך נדרש תשלום"
-
-msgid "github-link"
-msgstr "GitHub"
-
-msgid "visually-impaired-mode"
-msgstr "עזרה לאנשים עם לקות ראייה"
-
-msgid "like"
-msgstr "אני אוהב את זה"
-
-msgid "dislike"
-msgstr "אני לא אוהב את זה"
