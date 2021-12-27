@@ -210,8 +210,7 @@ export default {
 </script>
 <style lang="scss">
 @import '~/scss/variables.scss';
-@import '~/node_modules/spinkit/scss/spinners/3-wave.scss';
-@import '~/node_modules/flag-icon-css/css/flag-icon.min.css';
+@import '~/node_modules/spinkit/spinkit.min.css';
 /* roboto-slab-regular - latin */
 @font-face {
   font-family: 'Roboto Slab';

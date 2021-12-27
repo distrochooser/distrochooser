@@ -1,12 +1,12 @@
 const pkg = require('./package')
 
 module.exports = {
-  mode: 'universal',
 
   /*
   ** Headers of the page
   */
   head: {
+    meta: [{hid: "google-site-verification", name: "google-site-verification", content:"nqtoKAtXX7xTNyddaEGkkYtgpc0pc0b-wigel0Acy5c"}],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/icon.svg' }]
   },
 
@@ -38,24 +38,4 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
-
-  /*
-  ** Build configuration
-  */
-  build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
-  }
 }
