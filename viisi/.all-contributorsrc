@@ -156,6 +156,15 @@
       "contributions": [
         "infra"
       ]
+    },
+    {
+      "login": "ciacon",
+      "name": "ciacon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49395?v=4",
+      "profile": "https://github.com/ciacon",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
