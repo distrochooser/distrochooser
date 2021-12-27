@@ -43,6 +43,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/omeritzics"><img src="https://avatars.githubusercontent.com/u/66558205?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Omer I.S.</b></sub></a><br /><a href="#question-omeritzics" title="Answering Questions">💬</a> <a href="#translation-omeritzics" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/EinPinsel"><img src="https://avatars.githubusercontent.com/u/12642546?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stefan H.</b></sub></a><br /><a href="#infra-EinPinsel" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/ciacon"><img src="https://avatars.githubusercontent.com/u/49395?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ciacon</b></sub></a><br /><a href="#translation-ciacon" title="Translation">🌍</a></td>
   </tr>
 </table>
 
