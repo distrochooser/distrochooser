@@ -573,7 +573,7 @@ msgid "matrix-installation-from-shell"
 msgstr "Installation is done using the terminal"
 
 msgid "matrix-installs-range-of-programs"
-msgstr "Installs a range of program by default"
+msgstr "Installs a range of programs by default"
 
 msgid "matrix-configuration-from-shell"
 msgstr "Majority of configuration is done using shell commands"
