@@ -362,11 +362,23 @@ select::-ms-expand {
       right: 5%;
     }
   }
+  .welcome-text {
+    i.w-icon-right-square-o::before {
+      content: '\ea64' !important;
+    }
 
+    .w-icon-d-arrow-right::before {
+      content: '\ea30';
+    }
+  }
   /* Icon margins */
   .breadcrumb-horizontal {
     ul li i {
       margin-left: 0.5em;
+    }
+
+    .w-icon-login::before {
+      content: '\ea62';
     }
 
     .floating-button {
@@ -375,6 +387,12 @@ select::-ms-expand {
       a i {
         margin-left: 0.5em;
       }
+    }
+  }
+
+  .floating-button {
+    i.w-icon-right-square-o::before {
+      content: '\ea64' !important;
     }
   }
 
