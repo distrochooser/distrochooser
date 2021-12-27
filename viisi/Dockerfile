@@ -1,8 +1,8 @@
-FROM node:latest
+FROM node:16-slim
 
 ENV NODE_ENV=production
 ENV HOST 0.0.0.0
-
+RUN apt update && apt install python g++ make -y
 RUN mkdir -p /app
 COPY . /app
 WORKDIR /app
