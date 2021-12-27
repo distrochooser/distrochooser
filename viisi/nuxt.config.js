@@ -7,6 +7,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
+    meta: [{hid: "google-site-verification", name: "google-site-verification", content:"nqtoKAtXX7xTNyddaEGkkYtgpc0pc0b-wigel0Acy5c"}],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/icon.svg' }]
   },
 
