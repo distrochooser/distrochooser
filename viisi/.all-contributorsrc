@@ -165,6 +165,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Schuermi7",
+      "name": "schuermi7",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12413787?v=4",
+      "profile": "https://github.com/Schuermi7",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7
