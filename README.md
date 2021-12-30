@@ -1,9 +1,7 @@
 ## distrochooser
 
-
-[![](https://distrochooser.de/tux.png)](https://distrochooser.de)
-
 [![](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/vuejs/awesome-vue)
+[![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/171-shield.svg)](https://madewithvuejs.com/p/distrochooser/shield-link)
 
 This repository contains the code of [distrochooser.de](http://distrochooser.de). 
 
