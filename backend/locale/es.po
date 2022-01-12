@@ -1,0 +1,757 @@
+msgid "loading"
+msgstr "cargando"
+
+msgid "imprint"
+msgstr "imprimir"
+
+msgid "privacy"
+msgstr "intimidad"
+
+msgid "about"
+msgstr "sobre este proyecto"
+
+msgid "question-is-multiplechoice"
+msgstr "Puede elegir varias respuestas"
+
+msgid "vendor-text"
+msgstr "Un proyecto de chmr.eu"
+
+msgid "get-result"
+msgstr "Obtener resultado"
+
+msgid "category-welcome"
+msgstr "¡Bienvenidos!"
+
+msgid "software-use-case"
+msgstr "Software: caso de uso"
+
+msgid "computer-knowledge-category"
+msgstr "Conocimiento de la computadora"
+
+msgid "linux-knowledge-category"
+msgstr "linux y tu"
+
+msgid "presets-category"
+msgstr "Instalación: Preajustes"
+
+msgid "hardware-category"
+msgstr "soporte de hardware"
+
+msgid "help-category"
+msgstr "Fuente de ayuda"
+
+msgid "ux-concept-category"
+msgstr "Experiencia de usuario"
+
+msgid "price-category"
+msgstr "Distribuciones: Precio"
+
+msgid "scope-category"
+msgstr "Distribuciones: Alcance"
+
+msgid "ideology-category"
+msgstr "Distribuciones: Ideología"
+
+msgid "privacy-category"
+msgstr "Distribuciones: Privacidad"
+
+msgid "software-admin-category"
+msgstr "Administración"
+
+msgid "software-updates-category"
+msgstr "Actualizaciones de software"
+
+msgid "special-features-category"
+msgstr "Software: características especiales"
+
+msgid "recommendation-category"
+msgstr "Muestra tus resultados"
+
+msgid "welcome-text-title"
+msgstr "¡Bienvenido a distrochooser.de!"
+
+msgid "welcome-text"
+msgstr "¡Bienvenidos! Esta prueba lo ayudará a elegir una distribución de Linux adecuada."
+
+msgid "welcome-text-skip"
+msgstr "Siempre puedes saltarte las preguntas."
+
+msgid "welcome-text-result-get"
+msgstr "Siempre puede hacer clic en 'su recomendación' para recibir su resultado"
+
+msgid "welcome-text-order"
+msgstr "Puede responder en orden arbitrario"
+
+msgid "welcome-text-additional-infos"
+msgstr "Puede recibir información adicional utilizando el icono del signo de interrogación"
+
+msgid "welcome-text-remove"
+msgstr "Puedes eliminar las respuestas en cualquier momento."
+
+msgid "welcome-text-feedback"
+msgstr "Califique sus resultados, dependiendo de qué tan bien se ajusten a sus necesidades."
+
+msgid "welcome-text-importance"
+msgstr "Marque las respuestas como importantes para darles más peso"
+
+msgid "locale-link-en"
+msgstr "Este texto está disponible en inglés."
+
+msgid "locale-link-de"
+msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
+
+msgid "start-test"
+msgstr "Iniciar prueba"
+
+msgid "prev-question"
+msgstr "regresa"
+
+msgid "next-question"
+msgstr "Continuar"
+
+msgid "no-results"
+msgstr "lo siento, estoy perdido"
+
+msgid "about-header"
+msgstr "Acerca de distrochooser.de"
+
+msgid "vote-reminder"
+msgstr "¿Te gusta esta distribución? ¡Dale un corazón!"
+
+msgid "vote-reminder-negative"
+msgstr "¿No te gusta esta distribución? ¡Dale un pulgar hacia abajo!"
+
+msgid "about-intro-text"
+msgstr "distrochooser.de intenta ayudar a los principiantes de Linux a elegir una distribución de Linux adecuada a sus necesidades.<br>Los resultados proporcionados son sugerencias basadas en sus respuestas. A veces, los resultados pueden no ser tan adecuados debido a las complejas interacciones entre las respuestas."
+
+msgid "about-intro-test-count"
+msgstr "Desde el 14 de junio de 2014, distrochooser.de procesó %tests% de pruebas."
+
+msgid "about-licenses"
+msgstr "Distrochooser tiene doble licencia."
+
+msgid "privacy-header"
+msgstr "Datenschutzerklärung"
+
+msgid "imprint-header"
+msgstr "Pie de imprenta"
+
+msgid "about-licenses-source"
+msgstr "El código fuente"
+
+msgid "about-licenses-source-text"
+msgstr "El código fuente tiene licencia bajo la licencia escrita en el archivo 'LICENCIA', que se encuentra en el repositorio vinculado."
+
+msgid "about-licenses-database"
+msgstr "La base de datos"
+
+msgid "about-licenses-database-text"
+msgstr "Los datos subyacentes, incluida la estructura de preguntas y respuestas, la matriz de resultados y las estadísticas, son propietarios. Puede usarlos solo con nuestro permiso previo. Los textos de descripción y los logotipos de las distintas distribuciones están sujetos a las licencias de los respectivos titulares de los derechos de autor."
+
+msgid "no-results-text"
+msgstr "Distrochooser no pudo encontrar un resultado adecuado basado en sus respuestas. Sería de gran ayuda si nos escribiera algún comentario para que podamos investigar esto."
+
+msgid "close-additional-info"
+msgstr "Cerca"
+
+msgid "no-answers"
+msgstr "No diste respuestas."
+
+msgid "get-my-result"
+msgstr "Te muestra tus resultados."
+
+msgid "additional-info"
+msgstr "Información adicional"
+
+msgid "remark-placeholder"
+msgstr "Tus comentarios (máx. 3000 caracteres)"
+
+msgid "distribution-homepage"
+msgstr "Página de inicio de distribución"
+
+msgid "result-remarks-added"
+msgstr "¡Gracias por tus comentarios!"
+
+msgid "share-result"
+msgstr "compartir mi resultado"
+
+msgid "software-use-case-question"
+msgstr "Algunas distribuciones se hacen para un propósito especial, otras para uso diario. ¿Que necesitas?"
+
+msgid "software-use-case-answer-daily"
+msgstr "Quiero una distribución para uso diario."
+
+msgid "software-use-case-anonymous-answer"
+msgstr "Quiero usar Linux para la navegación web anónima."
+
+msgid "software-use-case-answer-gaming"
+msgstr "Prefiero una distribución que sea compatible con los editores de juegos."
+
+
+msgid "computer-knowledge-question"
+msgstr "¿Cómo calificaría su competencia en el uso de una computadora?"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "A menudo necesito ayuda de otros para solucionar problemas con mi computadora"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "Ya soy capaz de resolver algunos problemas informáticos por mi cuenta"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "Puedo solucionar la mayoría o todos los problemas de la computadora por mí mismo"
+
+
+msgid "linux-knowledge-question"
+msgstr "¿Cómo calificaría su conocimiento de Linux en sí?"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "Tengo poco o ningún conocimiento sobre Linux."
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "Ya he usado Linux para algunos propósitos."
+
+msgid "linux-knowledge-answer-professional"
+msgstr "Tengo un buen conocimiento sobre el sistema operativo Linux."
+
+
+msgid "presets-question"
+msgstr "¿Cuántas configuraciones desea modificar usted mismo durante la instalación? ¿Cuántas variables de configuración deben llenarse con valores predeterminados?"
+
+msgid "presets-question-answer-manypresets"
+msgstr "Quiero usar los valores predeterminados predeterminados en el asistente de instalación"
+
+msgid "presets-question-answer-ownselection"
+msgstr "Quiero elegir la configuración por mí mismo."
+
+msgid "presets-question-answer-guiselections"
+msgstr "Quiero configurar tanto como sea posible usando aplicaciones gráficas"
+
+
+msgid "hardware-question"
+msgstr "Es importante saber cuántos años tiene el hardware de su computadora, ya que algunas distribuciones no se ejecutarán en computadoras viejas."
+
+msgid "additional-info-hardware"
+msgstr "Durante años, algunas distribuciones utilizaron la arquitectura de 32 bits, que permite asignar hasta 4 gigabytes de memoria. Las distribuciones más nuevas tienden a abandonar los 32 bits en favor del soporte de 64 bits, lo que permite asignar más de 4 gigabytes de memoria. Desde 2005, casi todas las computadoras deben admitir 64 bits."
+
+msgid "hardware-question-oldpc"
+msgstr "No estoy seguro de esto y/o mi computadora ya tiene problemas de rendimiento y/o solo admite 32 bits"
+
+msgid "hardware-question-newpc"
+msgstr "El rendimiento de mi computadora es bueno, no tengo ningún problema de rendimiento, mi hardware es compatible con 64 bits"
+
+
+msgid "help-question"
+msgstr "Algunas distribuciones prefieren artículos en wikis para solucionar problemas. ¿Qué prefieres?"
+
+msgid "help-question-tutorials"
+msgstr "Soy capaz de resolver mis problemas usando guías de páginas wiki o tutoriales."
+
+msgid "help-question-user-exchange"
+msgstr "Prefiero pedir ayuda a los demás."
+
+
+msgid "ux-concept-question"
+msgstr "Linux puede usar muchas interfaces de usuario diferentes (\"Escritorios\"). Muchas distribuciones envían un escritorio por defecto. Es importante saber si tiene alguna preferencia por un concepto de escritorio. ¡Puede cambiar e instalar nuevos escritorios en cualquier momento!"
+
+msgid "ux-concept-answer-windows-like"
+msgstr "Prefiero una interfaz de usuario similar a Windows"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "Prefiero una interfaz de usuario similar a macOS"
+
+msgid "ux-concept-tiling"
+msgstr "Prefiero una apariencia de ventana basada en mosaicos"
+
+msgid "ux-concept-closed-expierience"
+msgstr "Prefiero una experiencia cerrada"
+
+msgid "price-question"
+msgstr "La mayoría de las distribuciones son gratuitas. Algunas distribuciones ofrecen soporte adicional por una tarifa única."
+
+msgid "price-answer-free"
+msgstr "Prefiero una distribución de uso gratuito"
+
+msgid "price-answer-paid"
+msgstr "Estaría bien pagar una tarifa"
+
+
+msgid "scope-question"
+msgstr "Diferentes distribuciones preinstalan diferentes cantidades de software. Algunos instalan un conjunto completo de programas básicos para trabajar \"desde el primer momento\". Otras distribuciones ofrecen solo una instalación básica para luego permitir que el usuario instale los programas que desea usar."
+
+msgid "scope-answer-fullinstall"
+msgstr "Prefiero una distribución que envíe todos los programas básicos que necesito para comenzar a trabajar inmediatamente después de la instalación"
+
+msgid "scope-answer-ownselection"
+msgstr "Quiero elegir los programas básicos para instalar yo mismo"
+
+
+msgid "ideology-question"
+msgstr "La ideología (licencia) de una distribución es un debate polémico. Hay distribuciones que usan principalmente \"licencias libres\", otras también usan software \"no libre\"."
+
+msgid "additional-info-ideology"
+msgstr "Las licencias gratuitas permiten al usuario modificar, redistribuir y utilizar el software para cualquier propósito. Hay situaciones en las que una distribución tiene que utilizar software no libre, por ejemplo, para controladores de hardware. El software no libre no distribuye su código fuente y no se permiten modificaciones."
+
+msgid "ideology-answer-free"
+msgstr "Quiero usar licencias libres tanto como pueda"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "Estoy bien con las licencias no libres mientras mi sistema funcione"
+
+
+msgid "privacy-question"
+msgstr "Algunas distribuciones utilizan servicios en línea para mejorar la experiencia del usuario. Esto puede afectar la privacidad del usuario, es decir, el usuario puede ser rastreado cuando usa dichas funciones en línea."
+
+msgid "privacy-answer-highprivacy"
+msgstr "No quiero esto"
+
+msgid "privacy-answer-services-ok"
+msgstr "Si mejora mi experiencia de usuario, acepto el uso de dichos servicios en línea."
+
+
+msgid "software-admin-question"
+msgstr "Hay muchas formas de administrar una distribución de Linux, por ejemplo, para instalar software."
+
+msgid "software-admin-answer-appstore"
+msgstr "Quiero instalar mis programas usando una especie de \"tienda de aplicaciones\""
+
+msgid "software-admin-answer-console"
+msgstr "Quiero instalar software principalmente usando comandos de terminal"
+
+
+msgid "special-features-qestion"
+msgstr "Algunas distribuciones tienen características adicionales para propósitos específicos. ¿Necesito tales funciones?"
+
+msgid "additional-info-special-features-qestion"
+msgstr "Muchas distribuciones usan 'systemd' para iniciar el propio sistema operativo. Algunas distribuciones evitan systemd en favor de soluciones alternativas y, a veces, más ligeras."
+
+msgid "answer-isolation"
+msgstr "Las aplicaciones deben ejecutarse en un entorno aislado de forma predeterminada"
+
+
+msgid "software-updates-question"
+msgstr "Algunas distribuciones ofrecen actualizaciones más rápidas, lo que puede afectar la estabilidad del sistema. ¿Qué prefieres?"
+
+msgid "software-updates-answer-fast"
+msgstr "Prefiero actualizaciones rápidas"
+
+msgid "software-updates-answer-slow"
+msgstr "Prefiero actualizaciones estables"
+
+msgid "answer-avoid-systemd"
+msgstr "Quiero evitar systemd"
+
+msgid "result-submitted-hint"
+msgstr "Calculando resultado"
+
+
+msgid "reason-header-hint"
+msgstr "Haga clic en el nombre de la distribución para ver los motivos detallados de esta recomendación"
+
+msgid "reason-list-header"
+msgstr "Motivo a favor/en contra"
+
+msgid "answer-is-blocking"
+msgstr "Las siguientes respuestas excluyen esta respuesta"
+
+msgid "answer-is-blocked"
+msgstr "Esta respuesta contradice esta respuesta anterior que ha dado"
+
+msgid "reason-blocked-by-others-entry"
+msgstr "\"{0}\" no está de acuerdo \"{1}\""
+
+msgid "additional-infos"
+msgstr "dame informacion adicional!"
+
+msgid "make-important"
+msgstr "¡Esto es importante!"
+
+msgid "marked-as-important"
+msgstr "Marcado como importante"
+
+msgid "remove-important"
+msgstr "Quitar importancia"
+
+msgid "reason-list-header-negative"
+msgstr "No podemos recomendarte esta distribución porque:"
+
+msgid "reason-list-header-neutral"
+msgstr "Los siguientes criterios no se tuvieron en cuenta en este"
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "Esta respuesta está bloqueada por otras respuestas que has dado."
+
+msgid "matrix-supports-daily-usage"
+msgstr "Apto para uso diario"
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "El concepto de distribución no es beneficioso para fines de anonimización."
+
+msgid "matrix-supports-gaming-usage"
+msgstr "La distribución cuenta con el apoyo activo de los editores de juegos."
+
+msgid "matrix-beginner-knowledge"
+msgstr "Adecuado para principiantes"
+
+msgid "matrix-advanced-knowledge"
+msgstr "Adecuado para usuarios avanzados"
+
+msgid "matrix-professional-knowledge"
+msgstr "Apto para profesionales"
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "El uso requiere menos conocimiento de Linux de lo que se responde"
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "El uso requiere menos conocimientos informáticos de lo que se responde"
+
+msgid "matrix-linux-beginner"
+msgstr "Apto para principiantes en Linux"
+
+msgid "matrix-installation-presets-always-given"
+msgstr "La instalación establece ajustes preestablecidos que pueden necesitar restablecerse después de la instalación"
+
+msgid "matrix-installation-presets-gui"
+msgstr "Muchos ajustes se pueden hacer a través de una interfaz gráfica"
+
+msgid "matrix-installation-assistant-present"
+msgstr "La instalación utiliza un 'asistente' de instalación con la configuración predeterminada"
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr "Es posible que encuentre retrasos en el efecto del compositor de ventana. Puede ser necesario deshabilitar las animaciones."
+
+msgid "matrix-hardware-newpc"
+msgstr "Funciona con el hardware más reciente"
+
+msgid "matrix-user-exchange"
+msgstr "Hay comunidades de usuarios para compartir conocimientos."
+
+msgid "matrix-tutorial"
+msgstr "Hay tutoriales para la solución de problemas y la resolución de problemas."
+
+msgid "matrix-mac-like"
+msgstr "El concepto de GUI tiene elementos de macOS"
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "El concepto de GUI difiere mucho de Windows"
+
+msgid "matrix-closed-expierience"
+msgstr "Tiene fondos de pantalla, íconos y temas propios."
+
+msgid "matrix-has-windows-like-variant"
+msgstr "Tiene variantes con una interfaz de usuario similar a Windows"
+
+msgid "matrix-paid-version-existing"
+msgstr "Hay una versión no libre de esta distribución."
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "Es posible que las versiones de software no sean lo suficientemente recientes para jugar"
+
+msgid "matrix-has-live-mode"
+msgstr "Tiene un modo en vivo que permite comenzar desde el disco"
+
+msgid "live-mode-only"
+msgstr "Tiene modo en vivo: se puede iniciar usando discos o memorias USB para probarlo (antes de instalar)"
+
+msgid "matrix-without-fee"
+msgstr "Utilizable sin cargo"
+
+msgid "matrix-paid"
+msgstr "Hay una versión de pago de esta distribución."
+
+msgid "matrix-fullinstall"
+msgstr "Instala todos los programas necesarios"
+
+msgid "matrix-ownscope-install"
+msgstr "Todos los programas a utilizar deben ser elegidos por usted mismo"
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "Los programas de código cerrado se instalan de forma predeterminada"
+
+msgid "matrix-enforces-free"
+msgstr "Refuerza el uso de software libre"
+
+msgid "matrix-mostly-free"
+msgstr "Funciona principalmente con software libre."
+
+msgid "matrix-has-default-settings"
+msgstr "Tiene configuraciones predeterminadas"
+
+msgid "matrix-privacy-ok"
+msgstr "Beneficioso para la privacidad del usuario"
+
+msgid "matrix-privacy-thirdparty"
+msgstr "Se conecta a servicios de terceros de forma predeterminada"
+
+msgid "matrix-appstore"
+msgstr "La instalación del software se puede hacer usando una tienda de aplicaciones"
+
+msgid "matrix-console"
+msgstr "La instalación del software se puede hacer usando la terminal"
+
+msgid "matrix-stable-updates"
+msgstr "Las actualizaciones son en su mayoría estables cuando se publican"
+
+msgid "matrix-fast-updates"
+msgstr "Las actualizaciones de software se lanzan lo más rápido posible, lo que las hace inestables"
+
+msgid "matrix-has-control-panel"
+msgstr "Contiene un centro de control preinstalado"
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "El usuario tiene que seleccionar el software a utilizar"
+
+msgid "matrix-selection-by-user"
+msgstr "El alcance de los programas preinstalados lo decide el usuario"
+
+msgid "matrix-updates-fast"
+msgstr "Las actualizaciones son rápidas, pero pueden ser inestables"
+
+msgid "matrix-not-for-beginner"
+msgstr "No apto para principiantes."
+
+msgid "matrix-avoids-systemd"
+msgstr "Evita systemd"
+
+msgid "matrix-uses-systemd"
+msgstr "utiliza systemd"
+
+msgid "built-for-anonymization"
+msgstr "Construir con fines de anonimización"
+
+msgid "matrix-administration-shell"
+msgstr "La administración se realiza principalmente mediante el uso de comandos de shell"
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "No es compatible con computadoras antiguas sin soporte de 64 bits"
+
+msgid "matrix-requires-manual"
+msgstr "Requiere lectura de manuales y tutoriales."
+
+msgid "matrix-requires-advanced-knowledge"
+msgstr "Requiere lectura de manuales para su uso"
+
+msgid "matrix-isolation-default"
+msgstr "Tiene un concepto de aislamiento por defecto"
+
+msgid "matrix-oldpc-supported"
+msgstr "Soporta incluso computadoras más antiguas"
+
+msgid "checked-criteria-count"
+msgstr "aspectos comprobados"
+
+msgid "searching-criteria"
+msgstr "procesamiento de la biblioteca de criterios"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "El uso diario puede resultar en grandes dificultades"
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "Se puede usar para el trabajo diario, pero está diseñado para el modo en vivo"
+
+msgid "matrix-packages-available"
+msgstr "Los programas para fines de anonimización están disponibles."
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "Es posible que las versiones de los programas no estén lo suficientemente actualizadas para jugar"
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "Puede requerir una configuración adicional para jugar"
+
+msgid "matrix-built-for-enterprise"
+msgstr "El objetivo principal es el uso empresarial"
+
+msgid "matrix-not-built-for-gaming"
+msgstr "No optimizado para juegos"
+
+msgid "requires-some-computer-knowledge"
+msgstr "Requiere más conocimientos sobre informática."
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "No apto para principiantes."
+
+msgid "matrix-installation-from-shell"
+msgstr "La instalación se realiza mediante el terminal."
+
+msgid "matrix-installs-range-of-programs"
+msgstr "Instala una variedad de programas por defecto"
+
+msgid "matrix-configuration-from-shell"
+msgstr "La mayoría de la configuración se realiza mediante comandos de shell"
+
+msgid "matrix-middleweight"
+msgstr "Es un sistema de peso medio, especialmente indicado para ordenadores semirrecientes"
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "Admite una amplia gama de hardware"
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "Tiene una versión 'Zorin Lite' para computadoras más antiguas"
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr "Una variante incluye el entorno de escritorio 'canela', que tiene una apariencia similar a la de Windows."
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "Systemd se puede evitar por selección de usuario"
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "Systemd se envía, pero está deshabilitado de forma predeterminada"
+
+msgid "matrix-supports-privacy"
+msgstr "Solo recopila datos cuando se utilizan servicios en línea"
+
+msgid "matrix-lightweight"
+msgstr "Distribución ligera"
+
+msgid "matrix-free-userselection"
+msgstr "El uso de software gratuito depende de la selección del usuario"
+
+# distribution descriptions
+
+msgid "description-manjaro"
+msgstr "Manjaro es una distribución de lanzamiento continuo centrada en la facilidad de uso"
+
+msgid "description-ubuntu"
+msgstr "Ubuntu es una distribución construida por la empresa Canonical"
+
+msgid "description-mint"
+msgstr "Linux Mint es una distribución basada en Ubuntu con componentes patentados preinstalados, como códecs multimedia."
+
+msgid "description-solus"
+msgstr "Solus OS es una distribución de lanzamiento continuo que comenzó como un clon de Chrome OS"
+
+msgid "description-arch"
+msgstr "Arch es una distribución de lanzamiento continuo basada en el principio KISS"
+
+msgid "description-debian"
+msgstr "Debian es una distribución con un alto enfoque en la estabilidad"
+
+msgid "description-tails"
+msgstr "La anonimización es el foco principal de Tails, que se puede usar desde USB o discos ópticos"
+
+msgid "description-devuan"
+msgstr "Devuan es un clon de Debian sin el uso del kit de herramientas systemd"
+
+msgid "description-opensuse"
+msgstr "OpenSuse tiene como objetivo ofrecer una distribución estable y fácil de usar, principalmente para usuarios finales"
+
+msgid "description-pclinuxos"
+msgstr "PCLinuxOS es una distribución basada en Mandrake centrada en una interfaz fácil de usar."
+
+msgid "description-rhel"
+msgstr "Red hat Enterprise Linux (RHEL) es una distribución centrada en la empresa y la estabilidad"
+
+msgid "description-centos"
+msgstr "CentOS es una distribución gratuita basada en RHEL"
+
+msgid "description-xubuntu"
+msgstr "Xubuntu es una distribución basada en Ubuntu impulsada por el entorno de escritorio ligero XFCE"
+
+msgid "description-lubuntu"
+msgstr "Lubuntu es una distribución basada en Ubuntu impulsada por el entorno de escritorio ligero LXQt"
+
+msgid "description-ubuntumate"
+msgstr "Ubuntu MATE es una distribución basada en Ubuntu impulsada por el entorno de escritorio ligero MATE"
+
+msgid "description-popos"
+msgstr "Pop!_OS es una distribución basada en Ubuntu impulsada por el entorno de escritorio GNOME"
+
+msgid "description-fedora"
+msgstr "Fedora es una distribución respaldada por Red Hat con un gran enfoque en el software libre"
+
+msgid "description-qubeos"
+msgstr "Qubes OS aísla aplicaciones usando máquinas virtuales para mejorar la seguridad"
+
+msgid "description-gentoo"
+msgstr "Gentoo es una distribución flexible para usuarios avanzados"
+
+msgid "description-mxlinux"
+msgstr "MX Linux es una distribución de uso de recursos de peso medio que se enfoca en un uso diario eficiente y elegante."
+
+msgid "description-fedora"
+msgstr "Fedora es una distribución con enfoque en software libre. Fedora se lanza sin soporte a largo plazo, enviando una nueva versión cada 6 meses."
+
+msgid "description-knoppix"
+msgstr "Knoppix es un sistema operativo enfocado en modo en vivo con una amplia gama de soporte de hardware"
+
+msgid "description-cruxlinux"
+msgstr "Crux Linux es un sistema operativo liviano enfocado en 64 bits con herramientas y bibliotecas recientes"
+
+msgid "description-zorinos"
+msgstr "Zorin OS es una distribución enfocada para principiantes con una interfaz de usuario similar a Windows"
+
+msgid "description-elementaryos"
+msgstr "Elementary OS es una distribución basada en ubuntu, enfocada en una experiencia de usuario elegante y rápida"
+
+msgid "description-kubuntu"
+msgstr "Kubuntu es una distribución basada en ubuntu con un KDE preinstalado como escritorio"
+
+msgid "locale-en"
+msgstr "inglés"
+
+msgid "locale-de"
+msgstr "Alemán"
+
+# update pack 26th december 2019
+
+msgid "debian-updates-slow"
+msgstr "Las actualizaciones de Debian suelen ser lentas a favor de la estabilidad"
+
+msgid "description-qubesos"
+msgstr "Qubes OS ejecuta procesos en máquinas virtuales a favor de la seguridad"
+
+msgid "software-use-case-isolation"
+msgstr "Quiero ejecutar todos los programas en un área aislada"
+
+msgid "matrix-runs-in-isolation"
+msgstr "La ejecución del software ocurre en entornos aislados."
+
+msgid "software-use-case-blind"
+msgstr "El usuario tiene problemas de visión"
+
+msgid "matrix-knoppix-adriane"
+msgstr "El proyecto ADRIANE ofrece herramientas y soluciones para personas con discapacidad visual"
+
+msgid "matrix-has-software-for-blind"
+msgstr "El software para personas con discapacidad visual es instalable (por ejemplo, 'Orca')"
+
+msgid "source"
+msgstr "Fuente de imagen"
+
+msgid "description-void"
+msgstr "Void Linux es una distribución de lanzamiento continuo sin systemd"
+
+msgid "skip-question"
+msgstr "saltar pregunta"
+
+msgid "description-nixos"
+msgstr "NixOS usa el administrador de paquetes Nix. Utiliza configuración declarativa y permite actualizaciones confiables del sistema."
+
+msgid "reasons-hide"
+msgstr "Ocultar motivos"
+
+msgid "description-artix"
+msgstr "Artix es una distribución basada en Arch Linux que utiliza OpenRC en lugar de systemd."
+
+msgid "link-copied"
+msgstr "Pegado al portapapeles"
+
+msgid "remark-placeholder-saving"
+msgstr "El texto se guardará automáticamente."
+
+msgid "slow-release-model"
+msgstr "Las versiones de software disponibles pueden ser más antiguas que la última versión del proveedor"
+
+msgid "requires-payment"
+msgstr "El uso a largo plazo requiere pago"
+
+msgid "github-link"
+msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Modalidad para personas con discapacidad visual"
+
+msgid "like"
+msgstr "Me gusta esto"
+
+msgid "dislike"
+msgstr "No me gusta esto"
