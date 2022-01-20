@@ -354,7 +354,7 @@ msgid "reason-list-header"
 msgstr "Reason for/ against"
 
 msgid "answer-is-blocking"
-msgstr "Following answers are excluding this answer"
+msgstr "This answere was excluded because it conflicts with:"
 
 msgid "answer-is-blocked"
 msgstr "This answer contradicts this former answer you have given"
