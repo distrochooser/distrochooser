@@ -157,9 +157,6 @@ msgstr "Close"
 msgid "no-answers"
 msgstr "You gave no answers."
 
-msgid "answer-conflicts-text"
-msgstr "(Conflicts) "
-
 msgid "get-my-result"
 msgstr "Shows you your results."
 
