@@ -82,15 +82,13 @@
 
             // Conflict warnings for questions should be shown at all times to
             // make the inputs more clear
-            div.warning-alert.fadeInUp.faster(:class="'animated' ? !$store.state.visuallyImpairedMode : ''", v-if="getBlockingAnswers(answer).length > 0")
+            div.warning-alert.fadeInUp.faster(:class="'animated' ? !$store.state.visuallyImpairedMode : ''", v-if="getBlockingAnswers(answer).length > 0 || getBlockedAnswers(answer).length > 0")
               p {{ __i("answer-is-blocking") }}:
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key")
                 i.w-icon-circle-close-o.warning-icon
                 span "{{ __i(blockingAnswer.msgid) }}"
-            div.blocking-alert.animated.fadeInUp.faster(v-if="getBlockedAnswers(answer).length > 0")
-              p {{ __i("answer-is-blocked") }}:
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key")
-                i.w-icon-circle-close-o
+                i.w-icon-circle-close-o.warning-icon
                 span "{{ __i(blockingAnswer.msgid) }}"
       div.actions(v-if="!additionalInfoShown")
         button.skip-step.step(@click="nextQuestion",v-if="!isAtLastQuestion()") {{  __i("skip-question") }}
