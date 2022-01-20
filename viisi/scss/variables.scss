@@ -1,28 +1,29 @@
-$mobileWidth: "1200px";
-$desktopMinWidth: "1200px";
-$desktopWidth: "1400px";
+$mobileWidth: '1200px';
+$desktopMinWidth: '1200px';
+$desktopWidth: '1400px';
 
 //Colors
 
-$background: #F4F6F9;
+$background: #f4f6f9;
 $lightAccent: #969696;
 $questionBackground: white;
 $selectedAnswerBackground: #05396b;
-$selectedAnswerForeground: #FFFFFF;
-$unselectedAnswerBackground: #FFFFFF;
+$selectedAnswerForeground: #ffffff;
+$unselectedAnswerBackground: #ffffff;
 $unselectedAnswerForeground: #000000;
-$skipButtonColor: #E3AC4A;
+$disabledAnswerForeground: #888888;
+$skipButtonColor: #e3ac4a;
 $markImportantUnselectedColor: #333333;
 $markImportantSelectedColor: red;
 $answeredCategoryBackground: green;
-$answeredCategoryForeground: #FFFFFF;
+$answeredCategoryForeground: #ffffff;
 $activeStepForeground: #05396b;
 $nextButtonBackground: #05396b;
 $nextButtonForeground: white;
 $linkColor: #05396b;
 $spinColor: #05396b;
 $answeredColor: #05396b;
-$categoryIconColor: #4d4d4d;;
+$categoryIconColor: #4d4d4d;
 $lightColor: #05396b;
 $additionalInfoBackground: #05396b;
 $additionalInfoIcon: #e1760d;
@@ -33,7 +34,7 @@ $infoBoxBackground: $additionalInfoBackground;
   outline: none;
 }
 
-i{
+i {
   vertical-align: top;
 }
-@import "mobile.scss"
+@import 'mobile.scss';

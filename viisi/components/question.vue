@@ -2,11 +2,11 @@
   div.question(v-if="isLoaded")
     div(v-if="isAtWelcomeScreen")
       div.question-content
-        div.welcome-text 
+        div.welcome-text
           h2 {{ __i("welcome-text-title") }}
           p {{ __i("welcome-text") }}
           div
-            div 
+            div
               i.w-icon-d-arrow-right
               span {{ __i("welcome-text-skip") }}
             div
@@ -29,6 +29,7 @@
               span {{ __i("welcome-text-feedback") }}
             div
               button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
+
     div(v-else)
       div.question-content
         div.additional-infos.animated.fadeIn.fast(v-if="additionalInfoShown")
@@ -59,14 +60,18 @@
                   span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
                     i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
               p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
-          div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
-            input(v-if="inVisuallyImpairedMode", :id="'answer_'+a_key",:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
+
+          // One of the individual answers for the question. The answer is
+          // blocked by a different answer, then we should set its class to
+          // answer-disabled
+          div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer), 'answer-disabled': getBlockingAnswers(answer).length > 0 || getBlockedAnswers(answer).length > 0}")
+            input(:disabled="getBlockingAnswers(answer).length > 0 || getBlockedAnswers(answer).length > 0", v-if="inVisuallyImpairedMode", :id="'answer_'+a_key",:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
             label(v-if="inVisuallyImpairedMode", :for="'answer_'+a_key") {{ __i(answer.msgid) }}
-            
+
             label.container(v-if="!inVisuallyImpairedMode", @click='answerQuestion(answer)') {{ __i(answer.msgid) }}
-              input(:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
+              input(:disabled="getBlockingAnswers(answer).length > 0 || getBlockedAnswers(answer).length > 0", :type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
               span.checkmark
-            
+
             a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)") {{ __i("make-important") }}
             a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)") {{ __i("remove-important") }}
 
@@ -75,15 +80,16 @@
             span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)")
               i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
 
-            
-            div.warning-alert.fadeInUp.faster(:class="'animated' ? !$store.state.visuallyImpairedMode : ''", v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
+            // Conflict warnings for questions should be shown at all times to
+            // make the inputs more clear
+            div.warning-alert.fadeInUp.faster(:class="'animated' ? !$store.state.visuallyImpairedMode : ''", v-if="getBlockingAnswers(answer).length > 0")
               p {{ __i("answer-is-blocking") }}:
-              div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
+              div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key")
                 i.w-icon-circle-close-o.warning-icon
                 span "{{ __i(blockingAnswer.msgid) }}"
-            div.blocking-alert.animated.fadeInUp.faster(v-if="getBlockedAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
+            div.blocking-alert.animated.fadeInUp.faster(v-if="getBlockedAnswers(answer).length > 0")
               p {{ __i("answer-is-blocked") }}:
-              div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key") 
+              div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key")
                 i.w-icon-circle-close-o
                 span "{{ __i(blockingAnswer.msgid) }}"
       div.actions(v-if="!additionalInfoShown")
@@ -99,12 +105,12 @@ export default {
     language: {
       type: String,
       required: true,
-      default: 'en'
-    }
+      default: 'en',
+    },
   },
-  data: function() {
+  data: function () {
     return {
-      additionalInfoShown: false
+      additionalInfoShown: false,
     }
   },
   computed: {
@@ -127,12 +133,12 @@ export default {
       return (
         this.isAtLastQuestion() && this.$store.state.givenAnswers.length === 0
       )
-    }
+    },
   },
   watch: {
-    question: function() {
+    question: function () {
       this.additionalInfoShown = false
-    }
+    },
   },
   methods: {
     flip() {
@@ -146,27 +152,31 @@ export default {
     },
     getAnswers() {
       const categoryId = this.$store.state.currentCategory.msgid
-      return this.$store.state.givenAnswers.filter(function(answer) {
+      return this.$store.state.givenAnswers.filter(function (answer) {
         return answer.category === categoryId
       })
     },
     getBlockingAnswers(answer) {
       // Case: A given answer is blocked because the current answer excludes them
-      return this.$store.state.givenAnswers.filter(function(givenAnswer) {
+      return this.$store.state.givenAnswers.filter(function (givenAnswer) {
         return answer.blockedAnswers.indexOf(givenAnswer.msgid) !== -1
       })
     },
     getBlockedAnswers(answer) {
       // Case: A given answer excludes a given answer
-      const category = this.$store.state.currentCategory.msgid
-      return this.$store.state.givenAnswers.filter(function(givenAnswer) {
-        if (givenAnswer.category === category) {
-          return false // ignore same category matches as they are already displayed by getBlockingAnswers()
-        }
+      return this.$store.state.givenAnswers.filter(function (givenAnswer) {
+        // We do not care if the same category is displayed by getBlockingAnswers()
         return givenAnswer.blockedAnswers.indexOf(answer.msgid) !== -1
       })
     },
     answerQuestion(answer) {
+      if (
+        this.getBlockingAnswers(answer).length > 0 ||
+        this.getBlockedAnswers(answer).length > 0
+      ) {
+        return
+      }
+
       if (this.isAnswerSelected(answer)) {
         this.$store.commit('removeAnswerQuestion', answer)
       } else {
@@ -174,14 +184,14 @@ export default {
           // switch an answer in non multiple choice questions
           var otherAnswers = this.getAnswers()
           const _t = this
-          otherAnswers.forEach(function(a) {
+          otherAnswers.forEach(function (a) {
             _t.$store.commit('removeAnswerQuestion', a)
           })
         }
         if (this.question.isMultipleChoice || !this.isQuestionAnswered()) {
           this.$store.dispatch('answerQuestion', {
             selectedAnswer: answer,
-            currentCategory: this.$store.state.currentCategory
+            currentCategory: this.$store.state.currentCategory,
           })
         }
       }
@@ -190,8 +200,8 @@ export default {
       var _t = this
       this.$store.dispatch('nextQuestion', {
         params: {
-          language: _t.language
-        }
+          language: _t.language,
+        },
       })
     },
     nextQuestion() {
@@ -202,19 +212,19 @@ export default {
       if (!this.isAtLastQuestion()) {
         this.$store.dispatch('nextQuestion', {
           params: {
-            language: _t.language
-          }
+            language: _t.language,
+          },
         })
       } else {
         this.$store.dispatch('submitAnswers', {
           params: {
             token: this.$store.state.token,
             language: _t.language,
-            method: this.$store.state.method
+            method: this.$store.state.method,
           },
           data: {
-            answers: this.$store.state.givenAnswers
-          }
+            answers: this.$store.state.givenAnswers,
+          },
         })
       }
     },
@@ -222,15 +232,15 @@ export default {
       var _t = this
       this.$store.dispatch('prevQuestion', {
         params: {
-          language: _t.language
-        }
+          language: _t.language,
+        },
       })
     },
     isAtLastQuestion() {
       var currentIndex = this.$store.state.currentCategory.index
       var maximumIndex = Math.max.apply(
         Math,
-        this.$store.state.categories.map(function(c) {
+        this.$store.state.categories.map(function (c) {
           return c.index
         })
       )
@@ -240,7 +250,7 @@ export default {
       var currentIndex = this.$store.state.currentCategory.index
       var minIndex = Math.min.apply(
         Math,
-        this.$store.state.categories.map(function(c) {
+        this.$store.state.categories.map(function (c) {
           return c.index
         })
       )
@@ -248,21 +258,21 @@ export default {
     },
     isAnswerSelected(answer) {
       return (
-        this.$store.state.givenAnswers.filter(a => a.msgid === answer.msgid)
+        this.$store.state.givenAnswers.filter((a) => a.msgid === answer.msgid)
           .length === 1
       )
     },
     isAnswerImportant(answer) {
       return (
         this.$store.state.givenAnswers.filter(
-          a => a.msgid === answer.msgid && a.important
+          (a) => a.msgid === answer.msgid && a.important
         ).length === 1
       )
     },
     async toggleImportance(answer) {
       this.$store.commit('toggleImportanceState', answer)
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -341,6 +351,15 @@ ul {
 .answer-selected {
   color: $selectedAnswerBackground !important;
 }
+
+.answer-disabled {
+  color: $disabledAnswerForeground !important;
+
+  .container {
+    cursor: not-allowed;
+  }
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;

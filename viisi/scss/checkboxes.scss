@@ -1,4 +1,3 @@
-
 @import '~/scss/variables.scss';
 .container {
   position: relative;
@@ -23,11 +22,14 @@
   width: 25px;
   background-color: #eee;
 }
-input[type='checkbox'] ~ .checkmark{
+input[type='checkbox'] ~ .checkmark {
   background-color: #eee;
 }
 input[type='radio'] ~ .checkmark {
   border-radius: 50%;
+}
+.container:hover input:disabled ~ .checkmark {
+  background-color: #eee;
 }
 .container:hover input ~ .checkmark {
   background-color: #ccc;
@@ -54,7 +56,7 @@ input ~ .checkmark:after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.container input[type='radio'] ~  .checkmark:after {
+.container input[type='radio'] ~ .checkmark:after {
   top: 8px;
   left: 8px;
   width: 9px;
