@@ -352,8 +352,9 @@ ul {
 
 .answer-disabled {
   color: $disabledAnswerForeground !important;
+  cursor: not-allowed;
 
-  .container {
+  label {
     cursor: not-allowed;
   }
 }
