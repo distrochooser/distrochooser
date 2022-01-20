@@ -156,16 +156,17 @@ export default {
     },
     getBlockingAnswers(answer) {
       // Case: A given answer is blocked because the current answer excludes them
-      return this.$store.state.givenAnswers.filter(function (givenAnswer) {
-        return answer.blockedAnswers.indexOf(givenAnswer.msgid) !== -1
-      })
+      return this.$store.state.givenAnswers.filter(
+        (givenAnswer) => answer.blockedAnswers.indexOf(givenAnswer.msgid) !== -1
+      )
     },
     getBlockedAnswers(answer) {
       // Case: A given answer excludes a given answer
-      return this.$store.state.givenAnswers.filter(function (givenAnswer) {
-        // We do not care if the same category is displayed by getBlockingAnswers()
-        return givenAnswer.blockedAnswers.indexOf(answer.msgid) !== -1
-      })
+      return this.$store.state.givenAnswers.filter(
+        (givenAnswer) =>
+          // We do not care if the same category is displayed by getBlockingAnswers()
+          givenAnswer.blockedAnswers.indexOf(answer.msgid) !== -1
+      )
     },
     answerQuestion(answer) {
       if (
