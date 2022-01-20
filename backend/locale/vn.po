@@ -632,7 +632,7 @@ msgid "description-devuan"
 msgstr "Devuan là một bản sao của Debian mà không sử dụng bộ công cụ systemd"
 
 msgid "description-opensuse"
-msgstr "OpenSuse nhằm mục đích cung cấp một bản phân phối ổn định và thân thiện với người dùng, chủ yếu dành cho người dùng cuối"
+msgstr "openSUSE nhằm mục đích cung cấp một bản phân phối ổn định và thân thiện với người dùng, chủ yếu dành cho người dùng cuối"
 
 msgid "description-pclinuxos"
 msgstr "PCLinuxOS là bản phân phối dựa trên Mandrake tập trung vào giao diện thân thiện với người dùng."

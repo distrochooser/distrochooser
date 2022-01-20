@@ -603,7 +603,7 @@ msgid "description-devuan"
 msgstr "Devuan basiert auf Debian, verzichtet jedoch auf die Verwendung von systemd"
 
 msgid "description-opensuse"
-msgstr "OpenSuse ist eine stabile und benutzerfreundliche Distribution, insbesondere für Desktop-User"
+msgstr "openSUSE ist eine stabile und benutzerfreundliche Distribution, insbesondere für Desktop-User"
 
 msgid "description-pclinuxos"
 msgstr "PCLinuxOS basierte ursprünglich auf Mandrake Linux und versucht ein möglichst benutzerfreundliches System bereitzustellen."
