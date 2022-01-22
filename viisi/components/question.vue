@@ -63,7 +63,8 @@
             input(v-if="inVisuallyImpairedMode", :id="'answer_'+a_key",:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
             label(v-if="inVisuallyImpairedMode", :for="'answer_'+a_key") {{ __i(answer.msgid) }}
             
-            label.container(v-if="!inVisuallyImpairedMode", @click='answerQuestion(answer)') {{ __i(answer.msgid) }}
+            label.container(v-if="!inVisuallyImpairedMode", @click='answerQuestion(answer)') 
+              span.answer-text {{ __i(answer.msgid) }}
               input(:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
               span.checkmark
             
@@ -330,11 +331,6 @@ ul {
   font-family: Open Sans, sans-serif;
   cursor: pointer;
 }
-.answer-text {
-  padding-left: 2em;
-  padding-right: 2em;
-  font-size: 11pt;
-}
 .image-answer.answer-selected {
   border: 2px solid $selectedAnswerBackground;
 }
@@ -540,5 +536,20 @@ a {
 .image-answer-options {
   margin-bottom: 0.5em;
   margin-top: -0.5em;
+}
+
+.rtl {
+  .answers {
+    .answer {
+      .checkmark {
+        left: unset;
+        right: 0px;
+      }
+      span.answer-text {
+        margin-right: 1.5vw;
+        padding-right: unset;
+      }
+    }
+  }
 }
 </style>
