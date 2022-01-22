@@ -183,6 +183,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "AstolfoKawaii",
+      "name": "Astolfo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42834568?v=4",
+      "profile": "https://gitlab.com/AstolfoKawaii",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
