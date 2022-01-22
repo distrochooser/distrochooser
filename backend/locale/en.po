@@ -632,7 +632,7 @@ msgid "description-devuan"
 msgstr "Devuan is a Debian clone without usage of the systemd toolkit"
 
 msgid "description-opensuse"
-msgstr "OpenSuse aims to deliver a stable and user-friendly distribution, mostly for end users"
+msgstr "openSUSE aims to deliver a stable and user-friendly distribution, mostly for end users"
 
 msgid "description-pclinuxos"
 msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface."
