@@ -31,14 +31,13 @@ import categories from '~/components/categories'
 import question from '~/components/question'
 import result from '~/components/result'
 import i18n from '~/mixins/i18n'
-import bridge from '~/mixins/bridge'
 export default {
   components: {
     categories,
     question,
     result
   },
-  mixins: [i18n, bridge],
+  mixins: [i18n],
   data: function() {
     return {
       language: 'en',
@@ -61,9 +60,6 @@ export default {
     language: async function(val) {
       await this.switchLanguage(val)
     }
-  },
-  created: function() {
-    this.checkForRedirect()
   },
   async mounted() {
     this.prepareLanguageData()
