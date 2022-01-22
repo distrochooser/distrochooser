@@ -1,7 +1,9 @@
 ## distrochooser
 
+
+[![](https://distrochooser.de/tux.png)](https://distrochooser.de)
+
 [![](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/vuejs/awesome-vue)
-[![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/171-shield.svg)](https://madewithvuejs.com/p/distrochooser/shield-link)
 
 This repository contains the code of [distrochooser.de](http://distrochooser.de). 
 
@@ -43,6 +45,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/EinPinsel"><img src="https://avatars.githubusercontent.com/u/12642546?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stefan H.</b></sub></a><br /><a href="#infra-EinPinsel" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/ciacon"><img src="https://avatars.githubusercontent.com/u/49395?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ciacon</b></sub></a><br /><a href="#translation-ciacon" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/Schuermi7"><img src="https://avatars.githubusercontent.com/u/12413787?v=4?s=100" width="100px;" alt=""/><br /><sub><b>schuermi7</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=Schuermi7" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/pabloab"><img src="https://avatars.githubusercontent.com/u/657836?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pablo</b></sub></a><br /><a href="#translation-pabloab" title="Translation">🌍</a></td>
   </tr>
 </table>
 
