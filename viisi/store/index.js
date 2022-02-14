@@ -27,7 +27,8 @@ const indexStore = new Vapi({
       ru: 'русский',
       nl: 'Dutch',
       he: 'עברית',
-      es: 'español'
+      es: 'español',
+      fi: 'suomalainen'
     },
     voteResult: null,
     remarksAdded: false,
