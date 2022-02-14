@@ -312,7 +312,7 @@ msgid "software-admin-question"
 msgstr "On lukuisia eri tapoja hallinnoida Linux jakelua, esim. kuten ohjelmien asennuksen kohdalla."
 
 msgid "software-admin-answer-appstore"
-msgstr "Haluan asentaa sovelluksia tai "appeja" käyttäen tavanomaista \"Ohjelmakauppaa\""
+msgstr "Haluan asentaa sovelluksia tai \"appeja\" käyttäen tavanomaista \"Ohjelmakauppaa\""
 
 msgid "software-admin-answer-console"
 msgstr "Haluan asentaa sovelluksia käyttäen pääasiallisesti päätekäskyjä"
