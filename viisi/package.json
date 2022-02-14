@@ -22,10 +22,8 @@
     "core-js": "3.20.1",
     "cross-env": "7.0.3",
     "express": "4.17.2",
-    "node-sass": "6.0.1",
     "nuxt": "2.15.8",
     "pug-plain-loader": "1.1.0",
-    "sass-loader": "^10",
     "spinkit": "2.0.1",
     "vuex-rest-api": "2.14.0"
   },
@@ -38,11 +36,11 @@
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-vue": "8.2.0",
     "eslint-webpack-plugin": "3.1.1",
-    "node-sass": "6.0.1",
     "nodemon": "2.0.15",
     "prettier": "2.5.1",
     "pug": "3.0.2",
     "pug-plain-loader": "1.1.0",
-    "sass-loader": "^10"
+    "sass": "^1.49.7",
+    "sass-loader": "10.2.1"
   }
 }
