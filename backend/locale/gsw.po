@@ -612,8 +612,8 @@ msgstr "PCLinuxOS het ursprünglech uf Mandrake Linux basiert u versuecht es mü
 msgid "description-rhel"
 msgstr "Red Hat Enterprise Linux (RHEL) isch e Distribution wo füre betrieblech Iisatz optimiert isch"
 
-msgid "description-centos"
-msgstr "CentOS het sech als Ziel gsetzt e Distribution uf Basis vo freier Software bereitzstelle, wo mit RHEL kompatibel isch"
+msgid "description-rocky"
+msgstr "Rocky Linux het sech als Ziel gsetzt e Distribution uf Basis vo freier Software bereitzstelle, wo mit RHEL kompatibel isch"
 
 msgid "description-xubuntu"
 msgstr "Xubuntu isch e Distribution wo uf Ubuntu basiert und e XFCE-Desktop vorinstalliert het."

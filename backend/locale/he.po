@@ -698,8 +698,8 @@ msgstr ""
 "‏Red hat Enterprise Linux (ר״ת: RHEL) היא הפצה שמתמקדת בשימוש על ידי ארגונים "
 "וביציבות"
 
-msgid "description-centos"
-msgstr "‏CentOS היא הפצה חופשית המבוססת על RHEL"
+msgid "description-rocky"
+msgstr "‏Rocky Linux היא הפצת קוד פתוח שמטרתה להיות תואמת ב-100% ל-Red Hat Enterprise Linux (RHEL)"
 
 msgid "description-xubuntu"
 msgstr ""

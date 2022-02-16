@@ -641,8 +641,8 @@ msgstr "PCLinuxOS — дистрибутив, основанный на Mandrake
 msgid "description-rhel"
 msgstr "Red hat Enterprise Linux (RHEL) — корпоративный и ориентированный на стабильность дистрибутив"
 
-msgid "description-centos"
-msgstr "CentOS — свободный дистрибутив, основанный на RHEL"
+msgid "description-rocky"
+msgstr "Rocky Linux — это дистрибутив с открытым исходным кодом, который должен быть на 100% совместим с Red Hat Enterprise Linux (RHEL)."
 
 msgid "description-xubuntu"
 msgstr "Xubuntu — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола XFCE"

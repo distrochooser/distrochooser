@@ -640,8 +640,8 @@ msgstr "PCLinuxOS on Mandrake-perustainen jakelue jossa on käyttäjäystäväll
 msgid "description-rhel"
 msgstr "Red Hat Enterprise Linux (RHEL) on yhtiöille ja yrityksille suunnattu hyvin vakaa jakelu. Kehittäjäryhmä on vapauden nimeen vannova Red Hat"
 
-msgid "description-centos"
-msgstr "CentOS on vapaa RHEL:iin perustuva jakelu"
+msgid "description-rocky"
+msgstr "Rocky Linux on avoimen lähdekoodin jakelu, jonka tavoitteena on olla 100% yhteensopiva Red Hat Enterprise Linuxin (RHEL) kanssa."
 
 msgid "description-xubuntu"
 msgstr "Xubuntu on Ubuntu-pohjainen jakelu jossa on vakiollisesti kevyt ja perinteisen yksinkertainen Xfce-työpöytäympäristö"

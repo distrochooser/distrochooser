@@ -640,8 +640,8 @@ msgstr "PCLinuxOS là bản phân phối dựa trên Mandrake tập trung vào g
 msgid "description-rhel"
 msgstr "Red hat Enterprise Linux (RHEL) là một bản phân phối tập trung vào doanh nghiệp và sự ổn định"
 
-msgid "description-centos"
-msgstr "CentOS là bản phân phối miễn phí dựa trên RHEL"
+msgid "description-rocky"
+msgstr "Rocky Linux là một bản phân phối mã nguồn mở được nhắm mục tiêu để tương thích 100% với Red Hat Enterprise Linux (RHEL)"
 
 msgid "description-xubuntu"
 msgstr "Xubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là XFCE"

@@ -630,8 +630,8 @@ msgstr "PCLinuxOS is een op Mandrake gebaseerde distributie gericht op een gebru
 msgid "description-rhel"
 msgstr "Red hat Enterprise Linux (RHEL) is een enterprise- en stabiliteitsgerichte distributie"
 
-msgid "description-centos"
-msgstr "CentOS is een gratis distributie gebaseerd op RHEL"
+msgid "description-rocky"
+msgstr "Rocky Linux is een open source-distributie die erop gericht is 100% compatibel te zijn met Red Hat Enterprise Linux (RHEL)."
 
 msgid "description-xubuntu"
 msgstr "Xubuntu is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht XFCE-desktopomgeving"
