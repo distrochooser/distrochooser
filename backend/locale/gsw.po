@@ -699,7 +699,7 @@ msgid "reasons-hide"
 msgstr "Gründ usblände"
 
 msgid "description-artix"
-msgstr "Artix isch e Distribution wo uf Arch Linux basiert, aber OpenRC statt systemd verwändet."
+msgstr "Artix isch e Distribution wo uf Arch Linux basiert, kann nebe OpenRC ach systemd verwände."
 
 msgid "link-copied"
 msgstr "Id Zwüscheablag igfüegt"

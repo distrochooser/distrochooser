@@ -730,7 +730,7 @@ msgid "reasons-hide"
 msgstr "Ẩn lí do"
 
 msgid "description-artix"
-msgstr "Artix là bản phân phối dựa trên Arch Linux sử dụng OpenRC thay vì systemd."
+msgstr "Artix là bản phân phối dựa trên Arch Linux có thể sử dụng một số hệ thống init bên cạnh systemd, ví dụ OpenRC"
 
 msgid "link-copied"
 msgstr "Dán vào clipboard"

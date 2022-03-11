@@ -741,7 +741,7 @@ msgid "reasons-hide"
 msgstr "隐藏原因"
 
 msgid "description-artix"
-msgstr "Artix 是一个基于 Arch Linux 的发行版，它使用 OpenRC 而非 systemd。"
+msgstr "Artix 是一个基于 Arch Linux 的发行版，它可以使用除了 systemd 之外的多个 init 系统，例如 OpenRC"
 
 msgid "link-copied"
 msgstr "粘贴到剪贴板"

@@ -730,7 +730,7 @@ msgid "reasons-hide"
 msgstr "Piilota syyt"
 
 msgid "description-artix"
-msgstr "Artix on Arch Linux -perusteinen jakelu joka käyttää hyväkseen OpenRC:tä systemd:n sijasta."
+msgstr "Artix on Arch Linuxiin perustuva jakelu, joka voi käyttää useita init-järjestelmiä systemd:n lisäksi, esimerkiksi OpenRC:ää"
 
 msgid "link-copied"
 msgstr "Liitetty leikepöydälle"

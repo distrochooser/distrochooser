@@ -800,7 +800,7 @@ msgid "reasons-hide"
 msgstr "הסתרת הסיבות"
 
 msgid "description-artix"
-msgstr "‏Artix היא הפצה מבוססת Arch Linux המשתמשת ב־OpenRC במקום ב־systemd."
+msgstr "‏Artix היא הפצה מבוססת Arch Linux שיכולה להשתמש במספר מערכות init מלבד systemd, למשל OpenRC"
 
 msgid "link-copied"
 msgstr "הועתק ללוח הגזירים"

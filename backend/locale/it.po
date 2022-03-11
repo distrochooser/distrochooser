@@ -730,7 +730,7 @@ msgid "reasons-hide"
 msgstr "Nascondere le ragioni"
 
 msgid "description-artix"
-msgstr "Artix è una distribuzione basata su Arch Linux che utilizza OpenRC al posto di systemd."
+msgstr "Artix è una distribuzione basata su Arch Linux che può utilizzare diversi sistemi init oltre a systemd, ad esempio OpenRC"
 
 msgid "link-copied"
 msgstr "incollato negli appunti"

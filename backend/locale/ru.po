@@ -731,7 +731,7 @@ msgid "reasons-hide"
 msgstr "Спрятать причины"
 
 msgid "description-artix"
-msgstr "Artix — дистрибутив, основанный на Arch Linux, который использует OpenRC вместо systemd."
+msgstr "Artix — это дистрибутив на основе Arch Linux, который может использовать несколько систем инициализации помимо systemd, например OpenRC."
 
 msgid "link-copied"
 msgstr "Скопировано в буфер обмена"

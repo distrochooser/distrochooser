@@ -723,7 +723,7 @@ msgid "reasons-hide"
 msgstr "Redenen verbergen"
 
 msgid "description-artix"
-msgstr "Artix is ​​een op Arch Linux gebaseerde distributie die OpenRC gebruikt in plaats van systemd."
+msgstr "Artix is een op Arch Linux gebaseerde distributie die naast systemd verschillende init-systemen kan gebruiken, bijvoorbeeld OpenRC"
 
 msgid "link-copied"
 msgstr "Geplakt naar klembord"
