@@ -1,0 +1,757 @@
+msgid "loading"
+msgstr "yükleniyor"
+
+msgid "imprint"
+msgstr "Damga"
+
+msgid "privacy"
+msgstr "Gizlilik"
+
+msgid "about"
+msgstr "Bu proje hakkında"
+
+msgid "question-is-multiplechoice"
+msgstr "Birden çok cevap seçebilirsiniz"
+
+msgid "vendor-text"
+msgstr "Bir chmr.eu projesi"
+
+msgid "get-result"
+msgstr "Sonuça git"
+
+msgid "category-welcome"
+msgstr "Hoşgeldin!"
+
+msgid "software-use-case"
+msgstr "Yazılım: Kullanım amacınız"
+
+msgid "computer-knowledge-category"
+msgstr "Bilgisayar bilgin"
+
+msgid "linux-knowledge-category"
+msgstr "Linux ve sen"
+
+msgid "presets-category"
+msgstr "Yükleme: Hazır ayarlar"
+
+msgid "hardware-category"
+msgstr "Donanım desteği"
+
+msgid "help-category"
+msgstr "Yardım için kaynak"
+
+msgid "ux-concept-category"
+msgstr "Kullanıcı deneyimi"
+
+msgid "price-category"
+msgstr "Dağıtımlar: Fiyatlandırma"
+
+msgid "scope-category"
+msgstr "Dağıtımlar: Kapsam Alanı"
+
+msgid "ideology-category"
+msgstr "Dağıtımlar: İdeoloji"
+
+msgid "privacy-category"
+msgstr "Dağıtımlar: Güvenlik"
+
+msgid "software-admin-category"
+msgstr "Yönetim"
+
+msgid "software-updates-category"
+msgstr "Yazılım: Güncelleme"
+
+msgid "special-features-category"
+msgstr "Yazılım: Dİğer Özellikler"
+
+msgid "recommendation-category"
+msgstr "Sonuçlarını gör!"
+
+msgid "welcome-text-title"
+msgstr "distrochooser.de'ye hoşgeldiniz!"
+
+msgid "welcome-text"
+msgstr "Merhaba! Bu test size sizin için en uygun Linux Dağıtımını seçmenizde yardımcı olmak için vardır."
+
+msgid "welcome-text-skip"
+msgstr "Yanıtlamak istemediğiniz soruları atlayabilirsiniz."
+
+msgid "welcome-text-result-get"
+msgstr "Sonuçlarınıza ulaşmak için her zaman 'sizin tavsiyeniz' yazısına tıklayabilirsin"
+
+msgid "welcome-text-order"
+msgstr "Soruları istediğin sırayla cevaplayabilirsin"
+
+msgid "welcome-text-additional-infos"
+msgstr "Soru işaretine tıklayarak ek bilgi alabilirsin"
+
+msgid "welcome-text-remove"
+msgstr "Cevaplarını istediğin zaman silebilir ve değiştirebilirsin"
+
+msgid "welcome-text-feedback"
+msgstr "Lütfen sonuçlarınızı, ihtiyaçlarınıza ne kadar uygun olduğuna bağlı olarak derecelendirin."
+
+msgid "welcome-text-importance"
+msgstr "Cevaplara daha fazla ağırlık vermek için önemli olarak işaretleyebilirsiniz"
+
+msgid "locale-link-en"
+msgstr "This text is available in english"
+
+msgid "locale-link-tr"
+msgstr "Bu testi Türkçe olarak da yanıtlayabilirsiniz"
+
+msgid "start-test"
+msgstr "Teste başla"
+
+msgid "prev-question"
+msgstr "geri dön"
+
+msgid "next-question"
+msgstr "sonraki"
+
+msgid "no-results"
+msgstr "Üzgünüm, kaybettim"
+
+msgid "about-header"
+msgstr "distrochooser.de hakkında"
+
+msgid "vote-reminder"
+msgstr "Bu Dağıtımı beğendin mi? Onu beğendim olarak işaretle!"
+
+msgid "vote-reminder-negative"
+msgstr "Bu Dağıtımı beğenmedin mi? Onu beğenmedim olarak işaretle"
+
+msgid "about-intro-text"
+msgstr "distrochooser.de, Linux'e yeni başlayanların ihtiyaçlarına uygun bir Linux Dağıtımı seçmelerinde onlara yardım etmeye çalışır.<br>Verilen sonuçlar, cevaplarınıza dayalaı önerilerdir. Bazen cevaplar arasındaki karmaşık etkileşimler nedeniyle sonuçlar size uygun olmayabilir."
+
+msgid "about-intro-test-count"
+msgstr "distrochooser.de 14 Haziran 2014ten beri %tests% testi değerlendirdi."
+
+msgid "about-licenses"
+msgstr "Distrochooser çift lisanslıdır."
+
+msgid "privacy-header"
+msgstr "Veri koruması"
+
+msgid "imprint-header"
+msgstr "Damga"
+
+msgid "about-licenses-source"
+msgstr "Kaynak kodu"
+
+msgid "about-licenses-source-text"
+msgstr "Kaynak kodu, bağlantılı depoda bulunan 'LICENSE' dostasında yazılı olan lisansa göre lisanslanmıştır."
+
+msgid "about-licenses-database"
+msgstr "Veritabanı"
+
+msgid "about-licenses-database-text"
+msgstr "Soru/cevap yapısı, sonuç matrsi ve istatistikler dahil olmak üzere temel veriler özeldir.Bunları yalnızca önceden iznimizi alıp kullanabilirsiniz. Çeşitli Dağıtılmarın açıklama metinleri ve logoları, ilgili telif hakkı sahiplerinin lisanslarına tabiidir."
+
+msgid "no-results-text"
+msgstr "Distrochooser cevaplarınıza uygun bir sonuç bulamadı. Bunu araştırabilmemiz için bize geri bildirim yazarazsanız çok memnun oluruz."
+
+msgid "close-additional-info"
+msgstr "Kapat"
+
+msgid "no-answers"
+msgstr "Herhangi bir yanıt vermediniz."
+
+msgid "get-my-result"
+msgstr "Size sonuçlarınızı gösterir."
+
+msgid "additional-info"
+msgstr "Ek bilgiler"
+
+msgid "remark-placeholder"
+msgstr "Görüşleriniz (En fazla 3000 kelime içerebilir!)"
+
+msgid "distribution-homepage"
+msgstr "Dağıtım'ın ana sayfası"
+
+msgid "result-remarks-added"
+msgstr "Görüşleriniz için teşekkürler!"
+
+msgid "share-result"
+msgstr "Sonuçlarımı paylaş!"
+
+msgid "software-use-case-question"
+msgstr "Bazı dağıtımlar özel bir amaç için yapılır, bazılarıysa günlük kullanım için. Size ne gerekiyor?"
+
+msgid "software-use-case-answer-daily"
+msgstr "Günlük kullanım için bir Dağıtım arıyorum."
+
+msgid "software-use-case-anonymous-answer"
+msgstr "Anonim bir şekilde internette gezebilmek için Linux kullanak istiyorum."
+
+msgid "software-use-case-answer-gaming"
+msgstr "Oyun yapımcıları tarafından desteklenen bir Dağıtımı kullanmka istiyorum"
+
+
+msgid "computer-knowledge-question"
+msgstr "Bilgisayar kullanma yeterliliğinizi nasıl değerlendirirsiniz?"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "Bilgisayarımdaki problemleri çözmek için sık sık başkalarının yardımına ihtiyaç duyarım."
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "Bilgisayarımdaki bazı problemleri zaten kendi başıma çözebiliyorum."
+
+msgid "computer-knowledge-answer-professional"
+msgstr "Bilgisayarımdaki sorunların çoğunu ya da tamamını kendi başıma çözebiiliyorum."
+
+
+msgid "linux-knowledge-question"
+msgstr "Linux hakkındaki bilginizi nasıl değerlendirirsiniz?"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "Çok az ya da hiç Linux kullanmadım."
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "Bazı amaçlar için zaten Linux kullandım."
+
+msgid "linux-knowledge-answer-professional"
+msgstr "Linux hakkında iyi bir anlayışa sahibim."
+
+
+msgid "presets-question"
+msgstr "Kurulum sırasında kendi başınıza kaç ayar yapmak istersiniz? Varsayılan değerlerle kaç yapılandırma değişkeni doldurulmalıdır?"
+
+msgid "presets-question-answer-manypresets"
+msgstr "Kurulum asistanındaki varsayılan ön ayarları kullanmak istiyorum."
+
+msgid "presets-question-answer-ownselection"
+msgstr "Ayarları kendim seçmek istiyorum."
+
+msgid "presets-question-answer-guiselections"
+msgstr "Grafik uygulamaları kullanarak mümkün olduğunca yapılandırmak istiyorum"
+
+
+msgid "hardware-question"
+msgstr "Bazı dağıtımlar eski bilgisayarlarda çalışmadığından bilgisayarınızın kaç yaşında olduğunu bilmek bizim için çok önemli"
+
+msgid "additional-info-hardware"
+msgstr "Yıllar boyunca bazı dağıtımlar 4 GB'a kadar ram kullanmanıza izin veren 32 bit mimarisini kullanıyordu. Daha yeni olan dağıtımlar 4  GB ram destekleyen 32 bit yerine, daha fazla bellek kullanmaya izin veren 64 bit mimarisini kullanır. 2005'ten beri neredeyse tüm bilgisayarlar 64 biti desteklemektedir."
+
+msgid "hardware-question-oldpc"
+msgstr "Bundan emin değilim ve/veya bilgisayarımda zaten performans sorunları var ve/veya yalnızca 32 biti destekliyor"
+
+msgid "hardware-question-newpc"
+msgstr "Bilgisayarımın performansı iyi, herhangi bir performans sorunu yaşamıyorum, donanımım 64 biti destekliyor."
+
+
+msgid "help-question"
+msgstr "Bazı Dağıtımlar'da sorunların çözümü Wiki sayfalarındaki makalelerde olur. Ne tercih edersin?"
+
+msgid "help-question-tutorials"
+msgstr "Sorunlarımı Wiki sayfalarındaki kılavuzları veya öğreticileri kullanarak çözebiliyorum."
+
+msgid "help-question-user-exchange"
+msgstr "Başkalarından yardım istemeyi tercih ederim."
+
+
+msgid "ux-concept-question"
+msgstr "Linux birçok farklı kullanıcı arayüzü (\"Masaüstü\") kullanabilir. Birçok dağıtım varsayılan bir masaüstü ile gelir. Bir masaüstü tarzı tercihiniz olup olmadığını bilmek önemlidir. Unutmayın, istediğiniz zaman yeni masaüstleri kurabilir ve değiştirebilirsiniz."
+
+msgid "ux-concept-answer-windows-like"
+msgstr "Windows benzeri arayüzleri tercih ederim."
+
+msgid "ux-concept-answer-mac-like"
+msgstr "mac-Os benzeri arayüzleri tercih ederim"
+
+msgid "ux-concept-tiling"
+msgstr "Döşeme tabanlı bir pencere görünümünü tercih ederim."
+
+msgid "ux-concept-closed-expierience"
+msgstr "Kapalı bir deneyim tercih ederim."
+
+msgid "price-question"
+msgstr "Çoğu dağıtım ücretsizdir. Bazı dağıtımlar tek seferlik bir ücret karşılığında ek destek sunar."
+
+msgid "price-answer-free"
+msgstr "Kullanımı ücretsiz bir Dağıtımı tercih ederim."
+
+msgid "price-answer-paid"
+msgstr "Ücret ödeyebilirim."
+
+
+msgid "scope-question"
+msgstr "Farklı dağıtımlar, farklı miktarda yazılımı önyüklü olarak kullanımına sunar. Bazıları, \"Kurulum sonrası direkt kullanım\" için eksiksiz bir paket kurar. Diğer dağıtımlar kullanıcının kullanmak istediği programları yüklemesine izin vermek için yalnızca temel bir kurulum sunar."
+
+msgid "scope-answer-fullinstall"
+msgstr "Kurulum sonrasında direkt kullanıma hazır bir Dağıtım kullanmayı tercih ederim."
+
+msgid "scope-answer-ownselection"
+msgstr "Kendim kurmak için temel programları seçmek istiyorum."
+
+
+msgid "ideology-question"
+msgstr "Bir Dağıtımın (lisans) ideolojisi tartışmalı bir konudur. Çoğunlukla \"Ücretsiz Lisans\" kullanan dağıtımlar vardır, diğerleri de \"Özgür Olmayan\" yazılımları kullanır"
+
+msgid "additional-info-ideology"
+msgstr "Ücretsiz lisanslar, kullanıcının yazılımı herhangi bir amaç için değiştirmesine, yeniden dağıtmasına, modifiye etmesine izin verir. Bir dağıtımın, örneğin donanım sürücüleri için özgür olmayan yazılımı kullanması gereken durumlar vardır. Özgür olmayan yazılımlar kaynak kodunu dağıtmaz, modifikasyona ve değişikliğe izin vermez."
+
+msgid "ideology-answer-free"
+msgstr "Olabildiğince özgür yazılım kullanmayı tercih ederim."
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "Sistemim çalıştığı sürece özgür olmayan yazılımlarla ilgili bir sorunum yok."
+
+
+msgid "privacy-question"
+msgstr "Bazı dağıtımlar, kullanıcı deneyimini geliştirmek için çevrimiçi hizmetleri kullanır. Bu, kullanıcının gizliliğini etkileyebilir, yani kullanıcı çevrimiçi özellikler kullanırken takip edilebilir-izlenebilir."
+
+msgid "privacy-answer-highprivacy"
+msgstr "Bunu istemiyorum"
+
+msgid "privacy-answer-services-ok"
+msgstr "Kullanıcı deneyimimi geliştirirse, bu tür çevrimiçi hizmetleri kullanmayı kabul edebilirim."
+
+
+msgid "software-admin-question"
+msgstr "Bir Linux dağıtımını yönetmenin birçok yolu vardır. Örneğin uygulama kurmak."
+
+msgid "software-admin-answer-appstore"
+msgstr "Programlarımı bir çeşit \"Uygulama Yükleyicisi\" kullanarak yüklemek isterim."
+
+msgid "software-admin-answer-console"
+msgstr "Çoğunlukla terminal komutlarını kullarak uygulama yüklemek istiyorum."
+
+
+msgid "special-features-qestion"
+msgstr "Bazı dağıtımların belirli amaçlar için ek özellikleri vardır. Bu tür özelliklere ihtiyacın var mı?"
+
+msgid "additional-info-special-features-qestion"
+msgstr "Birçok dağıtım, işletim sistemini başlatmak için 'systemd' kullanır. Bazı dağıtımlar, alternatif ve bazen daha hafif çözümleri için 'systemd'den kaçınır."
+
+msgid "answer-isolation"
+msgstr "Uygulamalar varsayılan olarka yalıtılmış bir ortamda çalışmalıdır."
+
+
+msgid "software-updates-question"
+msgstr "Bazı Dağıtımlar, sistem kararlılığını etkileyebilecek daha hızlı güncellemeler sunar. Hangisini tercih edersin?"
+
+msgid "software-updates-answer-fast"
+msgstr "Hızlı güncelleme almayı tercih ederim."
+
+msgid "software-updates-answer-slow"
+msgstr "Stabil güncellemeleri almayı tercih ederim."
+
+msgid "answer-avoid-systemd"
+msgstr "Systemd'den kaçınmak istiyorum."
+
+msgid "result-submitted-hint"
+msgstr "Sonuçlar hesaplanıyor."
+
+
+msgid "reason-header-hint"
+msgstr "Bu önerinin ayrıntılı nedenlerini görmek için dağıtımın adına tıklayın."
+
+msgid "reason-list-header"
+msgstr "Nedeni/ karşısında"
+
+msgid "answer-is-blocking"
+msgstr "Aşağıdaki cevaplar, bu cevabı hariç tutuyor."
+
+msgid "answer-is-blocked"
+msgstr "Bu cevap, verdiğiniz eski cevapla çelişiyor."
+
+msgid "reason-blocked-by-others-entry"
+msgstr "\"{0}\" uyuşmuyor \"{1}\""
+
+msgid "additional-infos"
+msgstr "bana daha fazla bilgi ver!"
+
+msgid "make-important"
+msgstr "Bu önemli!"
+
+msgid "marked-as-important"
+msgstr "Önemli olarak işaretlendi!"
+
+msgid "remove-important"
+msgstr "Önemli işaretini kaldır"
+
+msgid "reason-list-header-negative"
+msgstr "Bu Dağıtımı sana tavsiye etmiyoruz çünkü:"
+
+msgid "reason-list-header-neutral"
+msgstr "Aşağıdaki kriterler buna dahil edilmedi."
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "Bu cevapi verdiğiniz diğer cevaplar tarafından engellendi."
+
+msgid "matrix-supports-daily-usage"
+msgstr "Günlük kullanım için uygun."
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "Dağıtım konstepi anonimleştirme amaçları için faydalı değildir."
+
+msgid "matrix-supports-gaming-usage"
+msgstr "Dağıtım, oyun yapımcıları tarafından aktif olarak desteklenmektedir."
+
+msgid "matrix-beginner-knowledge"
+msgstr "Yeni başlayanlar için uygun."
+
+msgid "matrix-advanced-knowledge"
+msgstr "İleri düzey kullanıcılar için uygun."
+
+msgid "matrix-professional-knowledge"
+msgstr "Profesyoneller için uygun."
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "Kullanım, yanıtlanandan daha az Linux bilgisi gerektirir."
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "Kullanım, yanıtlanandan daha az bilgisayar bilgisi gerektirir."
+
+msgid "matrix-linux-beginner"
+msgstr "Linux'e yeni başlayanlar için uygun."
+
+msgid "matrix-installation-presets-always-given"
+msgstr "Kurulum, kurulumdan sonra sıfırlanması gerekebilecek ön ayarlara sahip."
+
+msgid "matrix-installation-presets-gui"
+msgstr "Grafik arayüzü üzerinden birçok ayar yapılabilir."
+
+msgid "matrix-installation-assistant-present"
+msgstr "Kurulum varsayılan ayarlarla bir 'kurulum sihirbazı' kullanır."
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr "Pencere birleştirici efekt gecikmeleri ile karşılaşabilirsiniz. Animasyonları devre dışı bırakmak gerekebilir."
+
+msgid "matrix-hardware-newpc"
+msgstr "En son donanımda çalışır."
+
+msgid "matrix-user-exchange"
+msgstr "Bilgi paylaşımı için kullanıcı toplulukları var."
+
+msgid "matrix-tutorial"
+msgstr "There are tutorials for troubleshooting and problem-solving"
+
+msgid "matrix-mac-like"
+msgstr "Kullanıcı arayüzünde macOS unsurları bulunur."
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "Kullanıcı arayüzü Windows'tan çok farklı."
+
+msgid "matrix-closed-expierience"
+msgstr "Kendi duvar kağıtları, simgeleri ve temaları vardır."
+
+msgid "matrix-has-windows-like-variant"
+msgstr "Windows benzeri bir kullanıcı arayüzüne sahip varyantları vardır."
+
+msgid "matrix-paid-version-existing"
+msgstr "Bu dağıtımın ücretsiz olmayan bir sürümü var."
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "Yazılım sürümleri oyun oynamak için yeterince iyi olmayabilir."
+
+msgid "matrix-has-live-mode"
+msgstr "Diskten başlatmaya izin veren bir canlı moda sahiptir."
+
+msgid "live-mode-only"
+msgstr "Canlı Modu Var: Test etmek için disk veya USBden başlatılabilir.(Kurulumdan önce)"
+
+msgid "matrix-without-fee"
+msgstr "Ücretsiz kullanılabilir."
+
+msgid "matrix-paid"
+msgstr "Bu dağıtımın ücretli bir versiyonu var."
+
+msgid "matrix-fullinstall"
+msgstr "Gerekli tüm programları yükler."
+
+msgid "matrix-ownscope-install"
+msgstr "Kullanılacak tüm programlar sizin tarafınızdan seçilmelidir."
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "Kapalı kaynak programlar varsayılan olarak yüklenir."
+
+msgid "matrix-enforces-free"
+msgstr "Özgür yazılım kullanımını zorunlu kılar."
+
+msgid "matrix-mostly-free"
+msgstr "Çoğunlukla özgür yazılımla çalışır."
+
+msgid "matrix-has-default-settings"
+msgstr "Varsayılan ayarlara sahiptir."
+
+msgid "matrix-privacy-ok"
+msgstr "Kullanıcı gizliliği için faydalıdır."
+
+msgid "matrix-privacy-thirdparty"
+msgstr "Varsayılan olarak üçüncü parti yazılım hizmetlerine bağlanır."
+
+msgid "matrix-appstore"
+msgstr "Bir uygulama mağazası kullanılarak uygulama kurulumu yapılabilir."
+
+msgid "matrix-console"
+msgstr "Terminal kullanılarak yazılım kurulumu yapılabilir."
+
+msgid "matrix-stable-updates"
+msgstr "Güncellemeler yayınlandığında genellikle stabildir."
+
+msgid "matrix-fast-updates"
+msgstr "Yazılım güncellemeleri olabildiğince hızlı yayınlanır, bu da onları kararsız hale getirir."
+
+msgid "matrix-has-control-panel"
+msgstr "Önceden kurulmuş bir kontrol merkezi içerir."
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "Kullanıcı kullanmak istediği yazılımı seçmelidir."
+
+msgid "matrix-selection-by-user"
+msgstr "Önceden yüklenecek programların kapsamı kullanıcı tarafından belirlenir."
+
+msgid "matrix-updates-fast"
+msgstr "Güncellemeler hızldır ama stabil olmayabilir."
+
+msgid "matrix-not-for-beginner"
+msgstr "Yeni başlayanlar için uygun değil."
+
+msgid "matrix-avoids-systemd"
+msgstr "Systemd'den kaçınır."
+
+msgid "matrix-uses-systemd"
+msgstr "Systemd kullanır."
+
+msgid "built-for-anonymization"
+msgstr "Anonim kullanım amacıyla yapılmıştır."
+
+msgid "matrix-administration-shell"
+msgstr "Yönetim çoğunlukla Shell komutları kullanılarak yapılır."
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "64 bit desteği olmayan eski bilgisayarları desteklemez."
+
+msgid "matrix-requires-manual"
+msgstr "Kılavuzların ve öğreticilerin okunmasını gerektirir."
+
+msgid "matrix-requires-advanced-knowledge"
+msgstr "Kullanım için kılavuzların okunması gerekir."
+
+msgid "matrix-isolation-default"
+msgstr "Varsayılan olarka bir izolasyon konseptine sahiptir."
+
+msgid "matrix-oldpc-supported"
+msgstr "Daha eski bilgisayarları bile destekler."
+
+msgid "checked-criteria-count"
+msgstr "yönler kontrol edildi."
+
+msgid "searching-criteria"
+msgstr "kriter kitaplığına işleniyor"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "Günlük kullanım için büyük zorluklara neden olabilir."
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "Günlük işler için kullanılabilir, ancak canlı mod kullanımı için üretilmiştir."
+
+msgid "matrix-packages-available"
+msgstr "Anonimleştirme amaçlı programlar mevcuttur."
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "Program sürümleri oyun oynamak için yeterince güncel olmayabilir."
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "Oyun oynamak için ek yapılandırma gerekebilir."
+
+msgid "matrix-built-for-enterprise"
+msgstr "Birincil hedef kurumsal kullanımdır."
+
+msgid "matrix-not-built-for-gaming"
+msgstr "Oyun oynamak için optimize edilmemiştir."
+
+msgid "requires-some-computer-knowledge"
+msgstr "Bilgisayarlar hakkında daha fazla bilgi gerektirir."
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "Yeni başlayanlar için uygun değildir."
+
+msgid "matrix-installation-from-shell"
+msgstr "Kurulum terminal kullanılarak yapılır."
+
+msgid "matrix-installs-range-of-programs"
+msgstr "Varsayılan olarak bir dizi program yükler."
+
+msgid "matrix-configuration-from-shell"
+msgstr "Yapılandırmanın çoğu Shell komutları kullanılarak yapılabilir."
+
+msgid "matrix-middleweight"
+msgstr "Orta ağırlıkta bir sistemdir, özellikle yeni sayılabilecek bilgisayarlar için uygundur."
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "Geniş bir donanım yelpazesini destekler."
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "Daha eski bilgisayarlar için 'Zorin Lite' versiyonu vardır."
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr "Windows benzeri görünüme sahip olan 'cinnamon' masaüstü ortamını sunar."
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "Kullanıcı seçimine göre Systemd'den kaçınılabilir."
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "Systemd içerir ama varsayılan olarak devre dışıdır."
+
+msgid "matrix-supports-privacy"
+msgstr "Yalnızca çevrimiçi hizmetleri kullandığında veri toplar."
+
+msgid "matrix-lightweight"
+msgstr "Hafif dağıtım."
+
+msgid "matrix-free-userselection"
+msgstr "Özgür yazılımın kullanımı kullanıcı seçimlerine bağlıdır."
+
+# distribution descriptions
+
+msgid "description-manjaro"
+msgstr "Manjaro kullancı dostu olmaya odaklanan, sürekli güncelleme olarak bir Dağıtımdır."
+
+msgid "description-ubuntu"
+msgstr "Ubuntu, Cannonical şirketi tarafından yapılan bir Dağıtımdır."
+
+msgid "description-mint"
+msgstr "Linux Mint, multimedya kodekleri gibi önceden yüklenmiş özel bileşenlere sahip Ubuntu tabanlı bir dağıtımdır."
+
+msgid "description-solus"
+msgstr "Solus OS, bir Chrome OS klonu olarak başlayan, sürekli güncelleme alan bir dağıtımıdır."
+
+msgid "description-arch"
+msgstr "Arch, KISS ilkesine dayalı bir yuvarlanan sürüm dağıtımıdır."
+
+msgid "description-debian"
+msgstr "Debian, kararlılığa yüksek oranda odaklanan bir dağıtımdır"
+
+msgid "description-tails"
+msgstr "Anonimleştirme, USB veya optik disklerden kullanılabilen Tails'in ana odak noktasıdır."
+
+msgid "description-devuan"
+msgstr "Devuan, systemd araç setini kullanmayan bir Debian klonudur."
+
+msgid "description-opensuse"
+msgstr "openSUSE, çoğunlukla son kullanıcılar için istikrarlı ve kullanıcı dostu bir dağıtım sunmayı amaçlar."
+
+msgid "description-pclinuxos"
+msgstr "PCLinuxOS, kullanıcı dostu bir arayüze odaklanan Mandrake tabanlı bir dağıtımdır."
+
+msgid "description-rhel"
+msgstr "Red hat Enterprise Linux (RHEL), kurumsal ve istikrar odaklı bir dağıtımdır."
+
+msgid "description-rocky"
+msgstr "Rocky Linux, Red Hat Enterprise Linux (RHEL) ile %100 uyumlu olması hedeflenen açık kaynaklı bir dağıtımdır"
+
+msgid "description-xubuntu"
+msgstr "Xubuntu, hafif XFCE masaüstü ortamı tarafından desteklenen Ubuntu tabanlı bir dağıtımdır."
+
+msgid "description-lubuntu"
+msgstr "Lubuntu, hafif LXQt masaüstü ortamı tarafından desteklenen Ubuntu tabanlı bir dağıtımdır."
+
+msgid "description-ubuntumate"
+msgstr "Ubuntu MATE, hafif MATE masaüstü ortamı tarafından desteklenen Ubuntu tabanlı bir dağıtımdır."
+
+msgid "description-popos"
+msgstr "Pop!_OS, GNOME masaüstü ortamı tarafından desteklenen Ubuntu tabanlı bir dağıtımdır."
+
+msgid "description-fedora"
+msgstr "Fedora, büyük ölçüde özgür yazılıma odaklanan Red hat destekli bir dağıtımdır"
+
+msgid "description-qubeos"
+msgstr "Qubes OS, güvenliği artırmak için sanal makineleri kullanan uygulamaları yalıtır"
+
+msgid "description-gentoo"
+msgstr "Gentoo, ileri düzey kullanıcılar için esnek bir dağıtımdır"
+
+msgid "description-mxlinux"
+msgstr "MX Linux, verimli ve zarif bir günlük kullanıma odaklanan orta ağırlıkta bir kaynak kullanım dağıtımıdır."
+
+msgid "description-fedora"
+msgstr "Fedora, özgür yazılıma odaklanan bir dağıtımdır. Fedora, her 6 ayda bir yeni bir sürüm göndererek, uzun vadeli bir destek olmadan yayınlanır."
+
+msgid "description-knoppix"
+msgstr "Knoppix, çok çeşitli donanım desteğine sahip canlı mod odaklı bir işletim sistemidir."
+
+msgid "description-cruxlinux"
+msgstr "Crux Linux, en yeni araçlara ve kitaplıklara sahip 64 bit odaklı hafif bir işletim sistemidir."
+
+msgid "description-zorinos"
+msgstr "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır."
+
+msgid "description-elementaryos"
+msgstr "temel işletim sistemi, zarif ve hızlı bir kullanıcı deneyimine odaklanan ubuntu tabanlı bir dağıtımdır."
+
+msgid "description-kubuntu"
+msgstr "Kubuntu, masaüstü olarak önceden yüklenmiş bir KDE'ye sahip ubuntu tabanlı bir dağıtımdır."
+
+msgid "locale-en"
+msgstr "english"
+
+msgid "locale-tr"
+msgstr "turkish"
+
+# update pack 26th december 2019
+
+msgid "debian-updates-slow"
+msgstr "Debian güncellemeleri genellikle stabil olması için yavaştır"
+
+msgid "description-qubesos"
+msgstr "Qubes OS, işlemleri güvenlik adına sanal makinelerde yürütür"
+
+msgid "software-use-case-isolation"
+msgstr "Tüm programları yalıtılmış bir alanda yürütmek istiyorum"
+
+msgid "matrix-runs-in-isolation"
+msgstr "Yazılım yürütme izole ortamlarda gerçekleşir"
+
+msgid "software-use-case-blind"
+msgstr "Kullanıcı görme engelli"
+
+msgid "matrix-knoppix-adriane"
+msgstr "ADRIANE projesi görme engelliler için araçlar ve çözümler sunuyor"
+
+msgid "matrix-has-software-for-blind"
+msgstr "Görme engelliler için yazılımlar kurulabilir (ör. 'Orca')"
+
+msgid "source"
+msgstr "Görüntü kaynağı"
+
+msgid "description-void"
+msgstr "Void Linux, systemd'siz bir yuvarlanan sürüm dağıtımıdır"
+
+msgid "skip-question"
+msgstr "soruyu atla"
+
+msgid "description-nixos"
+msgstr "NixOS, Nix paket yöneticisini kullanır. Bildirimsel yapılandırma kullanır ve güvenilir sistem yükseltmelerine izin verir."
+
+msgid "reasons-hide"
+msgstr "Nedenleri gizle"
+
+msgid "description-artix"
+msgstr "Artix, systemd'nin yanı sıra OpenRC gibi birkaç init sistemini de kullanabilen Arch Linux tabanlı bir dağıtımdır."
+
+msgid "link-copied"
+msgstr "Panoya kopyalandı!"
+
+msgid "remark-placeholder-saving"
+msgstr "Metin otomatik olarak kaydedilecek"
+
+msgid "slow-release-model"
+msgstr "Mevcut yazılım sürümleri, satıcının en son sürümünden daha eski olabilir"
+
+msgid "requires-payment"
+msgstr "Uzun süreli kullanım ödeme gerektirir"
+
+msgid "github-link"
+msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Görme engelliler için mod"
+
+msgid "like"
+msgstr "Bunu beğendim!"
+
+msgid "dislike"
+msgstr "Bunu beğenmedim!"
