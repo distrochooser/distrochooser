@@ -49,6 +49,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://gitlab.com/AstolfoKawaii"><img src="https://avatars.githubusercontent.com/u/42834568?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Astolfo</b></sub></a><br /><a href="#translation-AstolfoKawaii" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/heidiwenger"><img src="https://avatars.githubusercontent.com/u/82445727?v=4?s=100" width="100px;" alt=""/><br /><sub><b>heidiwenger</b></sub></a><br /><a href="#translation-heidiwenger" title="Translation">🌍</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/kajuboii"><img src="https://avatars.githubusercontent.com/u/73589113?v=4?s=100" width="100px;" alt=""/><br /><sub><b>OMER FARUK KUCUKONDER</b></sub></a><br /><a href="#translation-kajuboii" title="Translation">🌍</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
