@@ -17,10 +17,10 @@ msgid "vendor-text"
 msgstr "Bir chmr.eu projesi"
 
 msgid "get-result"
-msgstr "Sonuça git"
+msgstr "Sonuca git"
 
 msgid "category-welcome"
-msgstr "Hoşgeldin!"
+msgstr "Hoş geldin!"
 
 msgid "software-use-case"
 msgstr "Yazılım: Kullanım amacınız"
@@ -53,7 +53,7 @@ msgid "ideology-category"
 msgstr "Dağıtımlar: İdeoloji"
 
 msgid "privacy-category"
-msgstr "Dağıtımlar: Güvenlik"
+msgstr "Dağıtımlar: Gizlilik"
 
 msgid "software-admin-category"
 msgstr "Yönetim"
@@ -68,7 +68,7 @@ msgid "recommendation-category"
 msgstr "Sonuçlarını gör!"
 
 msgid "welcome-text-title"
-msgstr "distrochooser.de'ye hoşgeldiniz!"
+msgstr "distrochooser.de'ye hoş geldiniz!"
 
 msgid "welcome-text"
 msgstr "Merhaba! Bu test size sizin için en uygun Linux Dağıtımını seçmenizde yardımcı olmak için vardır."
@@ -119,10 +119,10 @@ msgid "vote-reminder"
 msgstr "Bu Dağıtımı beğendin mi? Onu beğendim olarak işaretle!"
 
 msgid "vote-reminder-negative"
-msgstr "Bu Dağıtımı beğenmedin mi? Onu beğenmedim olarak işaretle"
+msgstr "Bu Dağıtımı beğenmedin mi? Onu beğenmedim olarak işaretle!"
 
 msgid "about-intro-text"
-msgstr "distrochooser.de, Linux'e yeni başlayanların ihtiyaçlarına uygun bir Linux Dağıtımı seçmelerinde onlara yardım etmeye çalışır.<br>Verilen sonuçlar, cevaplarınıza dayalaı önerilerdir. Bazen cevaplar arasındaki karmaşık etkileşimler nedeniyle sonuçlar size uygun olmayabilir."
+msgstr "distrochooser.de, Linux'e yeni başlayanların ihtiyaçlarına uygun bir Linux Dağıtımı seçmelerinde onlara yardım etmeye çalışır.<br>Verilen sonuçlar, cevaplarınıza dayalı önerilerdir. Bazen cevaplar arasındaki karmaşık etkileşimler nedeniyle sonuçlar size uygun olmayabilir."
 
 msgid "about-intro-test-count"
 msgstr "distrochooser.de 14 Haziran 2014ten beri %tests% testi değerlendirdi."
@@ -143,13 +143,13 @@ msgid "about-licenses-source-text"
 msgstr "Kaynak kodu, bağlantılı depoda bulunan 'LICENSE' dostasında yazılı olan lisansa göre lisanslanmıştır."
 
 msgid "about-licenses-database"
-msgstr "Veritabanı"
+msgstr "Veri tabanı"
 
 msgid "about-licenses-database-text"
-msgstr "Soru/cevap yapısı, sonuç matrsi ve istatistikler dahil olmak üzere temel veriler özeldir.Bunları yalnızca önceden iznimizi alıp kullanabilirsiniz. Çeşitli Dağıtılmarın açıklama metinleri ve logoları, ilgili telif hakkı sahiplerinin lisanslarına tabiidir."
+msgstr "Soru/cevap yapısı, sonuç matrisi ve istatistikler dahil olmak üzere temel veriler özeldir.Bunları yalnızca önceden iznimizi alıp kullanabilirsiniz. Çeşitli Dağıtımların açıklama metinleri ve logoları, ilgili telif hakkı sahiplerinin lisanslarına tabiidir."
 
 msgid "no-results-text"
-msgstr "Distrochooser cevaplarınıza uygun bir sonuç bulamadı. Bunu araştırabilmemiz için bize geri bildirim yazarazsanız çok memnun oluruz."
+msgstr "Distrochooser cevaplarınıza uygun bir sonuç bulamadı. Bunu araştırabilmemiz için bize geri bildirim yazarsanız çok memnun oluruz."
 
 msgid "close-additional-info"
 msgstr "Kapat"
@@ -182,10 +182,10 @@ msgid "software-use-case-answer-daily"
 msgstr "Günlük kullanım için bir Dağıtım arıyorum."
 
 msgid "software-use-case-anonymous-answer"
-msgstr "Anonim bir şekilde internette gezebilmek için Linux kullanak istiyorum."
+msgstr "Anonim bir şekilde Internet'te gezebilmek için Linux kullanmak istiyorum."
 
 msgid "software-use-case-answer-gaming"
-msgstr "Oyun yapımcıları tarafından desteklenen bir Dağıtımı kullanmka istiyorum"
+msgstr "Oyun yapımcıları tarafından desteklenen bir Dağıtımı kullanmak istiyorum"
 
 
 msgid "computer-knowledge-question"
@@ -198,7 +198,7 @@ msgid "computer-knowledge-answer-advanced"
 msgstr "Bilgisayarımdaki bazı problemleri zaten kendi başıma çözebiliyorum."
 
 msgid "computer-knowledge-answer-professional"
-msgstr "Bilgisayarımdaki sorunların çoğunu ya da tamamını kendi başıma çözebiiliyorum."
+msgstr "Bilgisayarımdaki sorunların çoğunu ya da tamamını kendi başıma çözebiliyorum."
 
 
 msgid "linux-knowledge-question"
@@ -276,7 +276,7 @@ msgstr "Ücret ödeyebilirim."
 
 
 msgid "scope-question"
-msgstr "Farklı dağıtımlar, farklı miktarda yazılımı önyüklü olarak kullanımına sunar. Bazıları, \"Kurulum sonrası direkt kullanım\" için eksiksiz bir paket kurar. Diğer dağıtımlar kullanıcının kullanmak istediği programları yüklemesine izin vermek için yalnızca temel bir kurulum sunar."
+msgstr "Farklı dağıtımlar, farklı miktarda yazılımı ön yüklü olarak kullanımına sunar. Bazıları, \"Kurulum sonrası direkt kullanım\" için eksiksiz bir paket kurar. Diğer dağıtımlar kullanıcının kullanmak istediği programları yüklemesine izin vermek için yalnızca temel bir kurulum sunar."
 
 msgid "scope-answer-fullinstall"
 msgstr "Kurulum sonrasında direkt kullanıma hazır bir Dağıtım kullanmayı tercih ederim."
@@ -299,13 +299,13 @@ msgstr "Sistemim çalıştığı sürece özgür olmayan yazılımlarla ilgili b
 
 
 msgid "privacy-question"
-msgstr "Bazı dağıtımlar, kullanıcı deneyimini geliştirmek için çevrimiçi hizmetleri kullanır. Bu, kullanıcının gizliliğini etkileyebilir, yani kullanıcı çevrimiçi özellikler kullanırken takip edilebilir-izlenebilir."
+msgstr "Bazı dağıtımlar, kullanıcı deneyimini geliştirmek için çevrim içi hizmetleri kullanır. Bu, kullanıcının gizliliğini etkileyebilir, yani kullanıcı çevrim içi özellikler kullanırken takip edilebilir-izlenebilir."
 
 msgid "privacy-answer-highprivacy"
 msgstr "Bunu istemiyorum"
 
 msgid "privacy-answer-services-ok"
-msgstr "Kullanıcı deneyimimi geliştirirse, bu tür çevrimiçi hizmetleri kullanmayı kabul edebilirim."
+msgstr "Kullanıcı deneyimimi geliştirirse, bu tür çevrim içi hizmetleri kullanmayı kabul edebilirim."
 
 
 msgid "software-admin-question"
@@ -315,7 +315,7 @@ msgid "software-admin-answer-appstore"
 msgstr "Programlarımı bir çeşit \"Uygulama Yükleyicisi\" kullanarak yüklemek isterim."
 
 msgid "software-admin-answer-console"
-msgstr "Çoğunlukla terminal komutlarını kullarak uygulama yüklemek istiyorum."
+msgstr "Çoğunlukla terminal komutlarını kullanarak uygulama yüklemek istiyorum."
 
 
 msgid "special-features-qestion"
@@ -426,7 +426,7 @@ msgid "matrix-user-exchange"
 msgstr "Bilgi paylaşımı için kullanıcı toplulukları var."
 
 msgid "matrix-tutorial"
-msgstr "There are tutorials for troubleshooting and problem-solving"
+msgstr "Sorun giderme ve problem çözme için öğreticiler."
 
 msgid "matrix-mac-like"
 msgstr "Kullanıcı arayüzünde macOS unsurları bulunur."
@@ -450,7 +450,7 @@ msgid "matrix-has-live-mode"
 msgstr "Diskten başlatmaya izin veren bir canlı moda sahiptir."
 
 msgid "live-mode-only"
-msgstr "Canlı Modu Var: Test etmek için disk veya USBden başlatılabilir.(Kurulumdan önce)"
+msgstr "Canlı Modu Var: Test etmek için disk veya USB'den başlatılabilir.(Kurulumdan önce)"
 
 msgid "matrix-without-fee"
 msgstr "Ücretsiz kullanılabilir."
@@ -504,7 +504,7 @@ msgid "matrix-selection-by-user"
 msgstr "Önceden yüklenecek programların kapsamı kullanıcı tarafından belirlenir."
 
 msgid "matrix-updates-fast"
-msgstr "Güncellemeler hızldır ama stabil olmayabilir."
+msgstr "Güncellemeler hızlıdır ama stabil olmayabilir."
 
 msgid "matrix-not-for-beginner"
 msgstr "Yeni başlayanlar için uygun değil."
@@ -597,7 +597,7 @@ msgid "matrix-ships-systemd-but-disabled"
 msgstr "Systemd içerir ama varsayılan olarak devre dışıdır."
 
 msgid "matrix-supports-privacy"
-msgstr "Yalnızca çevrimiçi hizmetleri kullandığında veri toplar."
+msgstr "Yalnızca çevrim içi hizmetleri kullandığında veri toplar."
 
 msgid "matrix-lightweight"
 msgstr "Hafif dağıtım."
@@ -608,7 +608,7 @@ msgstr "Özgür yazılımın kullanımı kullanıcı seçimlerine bağlıdır."
 # distribution descriptions
 
 msgid "description-manjaro"
-msgstr "Manjaro kullancı dostu olmaya odaklanan, sürekli güncelleme olarak bir Dağıtımdır."
+msgstr "Manjaro kullanıcı dostu olmaya odaklanan, sürekli güncelleme olarak bir Dağıtımdır."
 
 msgid "description-ubuntu"
 msgstr "Ubuntu, Cannonical şirketi tarafından yapılan bir Dağıtımdır."
@@ -680,10 +680,10 @@ msgid "description-zorinos"
 msgstr "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır."
 
 msgid "description-elementaryos"
-msgstr "temel işletim sistemi, zarif ve hızlı bir kullanıcı deneyimine odaklanan ubuntu tabanlı bir dağıtımdır."
+msgstr "temel işletim sistemi, zarif ve hızlı bir kullanıcı deneyimine odaklanan Ubuntu tabanlı bir dağıtımdır."
 
 msgid "description-kubuntu"
-msgstr "Kubuntu, masaüstü olarak önceden yüklenmiş bir KDE'ye sahip ubuntu tabanlı bir dağıtımdır."
+msgstr "Kubuntu, masaüstü olarak önceden yüklenmiş bir KDE'ye sahip Ubuntu tabanlı bir dağıtımdır."
 
 msgid "locale-en"
 msgstr "english"
