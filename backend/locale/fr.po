@@ -339,7 +339,7 @@ msgid "software-updates-answer-slow"
 msgstr "Je préfère des mises à jour stables"
 
 msgid "answer-avoid-systemd"
-msgstr "Je veux éviter le d'utiliser systemd"
+msgstr "Je veux éviter d'utiliser systemd"
 
 msgid "result-submitted-hint"
 msgstr "Calcul du résultat"
