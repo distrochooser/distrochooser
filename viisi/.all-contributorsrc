@@ -228,6 +228,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "mothsART",
+      "name": "Jérémie Ferry",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10601196?v=4",
+      "profile": "https://github.com/mothsART",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7

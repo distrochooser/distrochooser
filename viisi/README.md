@@ -53,6 +53,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/kajuboii"><img src="https://avatars.githubusercontent.com/u/73589113?v=4?s=100" width="100px;" alt=""/><br /><sub><b>OMER FARUK KUCUKONDER</b></sub></a><br /><a href="#translation-kajuboii" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/nkot56297"><img src="https://avatars.githubusercontent.com/u/95204402?v=4?s=100" width="100px;" alt=""/><br /><sub><b>nkot56297</b></sub></a><br /><a href="#translation-nkot56297" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/EmirLogas"><img src="https://avatars.githubusercontent.com/u/76751818?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Emir</b></sub></a><br /><a href="#translation-EmirLogas" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/mothsART"><img src="https://avatars.githubusercontent.com/u/10601196?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jérémie Ferry</b></sub></a><br /><a href="#translation-mothsART" title="Translation">🌍</a></td>
   </tr>
 </table>
 
