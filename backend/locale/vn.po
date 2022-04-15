@@ -755,3 +755,6 @@ msgstr "tôi thích nó"
 
 msgid "dislike"
 msgstr "Tôi không thích nó"
+
+msgid "language"
+msgstr "ngôn ngữ"

@@ -755,3 +755,6 @@ msgstr "Pidän tästä"
 
 msgid "dislike"
 msgstr "En pidä tästä"
+
+msgid "language"
+msgstr "Kieli"

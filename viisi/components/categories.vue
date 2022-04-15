@@ -9,10 +9,13 @@
           a(href="#", @click="selectCategory(category)")
             i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '')")
             span(:class="{'active': isActive(category), 'inactive': !isActive(category), 'mobile-answered': isAnswered(category)}") {{ __i(category.msgid) }}
-      div.floating-button(:class="{'disabled': $store.state.givenAnswers.length === 0}",:data-balloon="__i($store.state.givenAnswers.length === 0 ? 'no-answers' : 'get-my-result')",data-balloon-pos="right",@click.prevent="submit")
-        a(href="#")
-          i.w-icon-right-square-o
-          span {{ __i("recommendation-category") }}
+        li(v-if="$store.state.visuallyImpairedMode")
+          a(href="#", :aria-disabled="$store.state.givenAnswers.length === 0", @click.prevent="submit", :title="__i('recommendation-category')") {{ __i("recommendation-category") }}
+
+
+      div.floating-button(v-if="!$store.state.visuallyImpairedMode", :title="__i('recommendation-category')", :class="{'disabled': $store.state.givenAnswers.length === 0}",:data-balloon="__i($store.state.givenAnswers.length === 0 ? 'no-answers' : 'get-my-result')",data-balloon-pos="right",@click.prevent="submit")
+        i.w-icon-right-square-o
+        span {{ __i("recommendation-category") }}
         
 </template>
 

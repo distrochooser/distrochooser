@@ -755,3 +755,6 @@ msgstr "Bunu beğendim!"
 
 msgid "dislike"
 msgstr "Bunu beğenmedim!"
+
+msgid "language"
+msgstr "dilim"

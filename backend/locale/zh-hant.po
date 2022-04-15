@@ -769,3 +769,6 @@ msgstr "我喜歡"
 
 msgid "dislike"
 msgstr "我不喜歡它"
+
+msgid "language"
+msgstr "語言"

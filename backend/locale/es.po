@@ -755,3 +755,6 @@ msgstr "Me gusta esto"
 
 msgid "dislike"
 msgstr "No me gusta esto"
+
+msgid "language"
+msgstr "idioma"

@@ -748,3 +748,6 @@ msgstr "Ik hou van"
 
 msgid "dislike"
 msgstr "Ik hou niet van"
+
+msgid "language"
+msgstr "taal"

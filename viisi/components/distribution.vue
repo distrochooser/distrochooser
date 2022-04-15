@@ -1,45 +1,46 @@
 <template lang="pug">
   div.distribution(v-if="!hasNoMatch")
-    div.title(:style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
+    div.title(:aria-disabled="voted && !positiveVote", :style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
       span {{ name }}
     div.description {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
-      div.reason-list.list
+      div.reason-list.list(aria-role="list")
         div(v-if="nonBlocking(reasons).length > 0")
-          div(v-for="(reason, reason_key) in nonBlocking(reasons)", :key="reason_key") 
-            i.w-icon-plus
+          div(v-for="(reason, reason_key) in nonBlocking(reasons)", :key="reason_key",aria-role="listitem") 
+            i.w-icon-plus(alt="Pro")
             span {{ reason.description }}
             span.importance-toggle(v-if="reason.isImportant")
               i.w-icon-star-on(:title='__i("marked-as-important")')
-        div(v-if="negative(reasons).length > 0")
-          div(v-for="(reason, reason_key) in negative(reasons)", :key="reason_key") 
-            i.w-icon-minus
+        div(v-if="negative(reasons).length > 0",aria-role="list")
+          b.block-title(for="negative-list") {{ __i("reason-list-header-negative").replace("%s",name) }}
+          div(id="negative-list", v-for="(reason, reason_key) in negative(reasons)", :key="reason_key",aria-role="listitem") 
+            i.w-icon-minus(alt="Contra")
             span {{ reason.description }}
             span.importance-toggle(v-if="reason.isImportant")
               i.w-icon-star-on(:title='__i("marked-as-important")')
-      div.blocking-list.list
+      div.blocking-list.list(aria-role="list")
         div(v-if="blocking(reasons).length > 0")
           b.block-title {{ __i("reason-list-header-negative").replace("%s",name) }}
-          div(v-for="(reason, reason_key) in blocking(reasons)", :key="reason_key") 
+          div(v-for="(reason, reason_key) in blocking(reasons)", :key="reason_key", aria-role="listitem") 
             i.w-icon-circle-close-o
             span {{ reason.description }} 
             span.importance-toggle(v-if="reason.isImportant")
               i.w-icon-star-on(:title='__i("marked-as-important")')
-      div.blocking-list.list
+      div.blocking-list.list(aria-role="list")
         div(v-if="blockedByOtherQuestion.length > 0")
           b.block-title {{ __i("reason-list-header-blocked-by-others").replace("%s",name) }}
-          div(v-for="(reason, reason_key) in blockedByOtherQuestion", :key="reason_key") 
+          div(v-for="(reason, reason_key) in blockedByOtherQuestion", :key="reason_key", aria-role="listitem") 
             i.w-icon-warning
             span {{ reason.description }}
-      div.reason-list.list
+      div.reason-list.list(aria-role="list")
         div(v-if="neutral.length > 0")
           b.block-title {{ __i("reason-list-header-neutral") }}
-          div(v-for="(reason, reason_key) in neutral", :key="reason_key") 
+          div(v-for="(reason, reason_key) in neutral", :key="reason_key", aria-role="listitem") 
             i.w-icon-question-circle-o
             span {{ reason.description }}
     div.meta
       div.actions
-        div.vote-actions
+        div.vote-actions(v-if="!voted")
           a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)",:data-balloon="!$store.state.visuallyImpairedMode ? __i('vote-reminder'): null",data-balloon-pos="left")
             
             i.w-icon-heart-on(v-bind:class="{'animated heartBeat voted': voted && positiveVote}", v-if="!$store.state.visuallyImpairedMode")
@@ -50,8 +51,7 @@
             span(v-else) {{ voted && !positiveVote? __i("not-liked") :  __i("dislike") }} 
           a.action.hide-reasons(href="#", v-on:click.prevent="flipped=!flipped", :data-balloon="__i('reasons-hide')",data-balloon-pos="right")
             i.w-icon-shrink
-      div.url
-        a(v-if="url", target="_blank", :href="url") {{ __i("distribution-homepage") }}
+      a.url(v-if="url",tabindex=0, role="link", :alt="__i('distribution-homepage') + ' ' + name", target="_blank", :href="url") {{ __i("distribution-homepage") }}
 </template>
 <script>
 import i18n from '~/mixins/i18n'
@@ -223,8 +223,6 @@ i {
   text-align: right;
   width: 50%;
   padding-right: 1em;
-}
-.url a {
   text-decoration: none;
   color: $linkColor;
 }

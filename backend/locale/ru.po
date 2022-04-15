@@ -756,3 +756,6 @@ msgstr "Мне нравится"
 
 msgid "dislike"
 msgstr "Мне не нравится"
+
+msgid "language"
+msgstr "язык"

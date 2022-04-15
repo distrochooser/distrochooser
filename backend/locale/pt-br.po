@@ -771,3 +771,6 @@ msgstr "Eu curtir"
 
 msgid "dislike"
 msgstr "Não curtir muito"
+
+msgid "language"
+msgstr "Língua"

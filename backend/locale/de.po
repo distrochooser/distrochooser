@@ -723,3 +723,6 @@ msgstr "Gefällt mir"
 
 msgid "dislike"
 msgstr "Gefällt mir nicht"
+
+msgid "language"
+msgstr "Sprache"

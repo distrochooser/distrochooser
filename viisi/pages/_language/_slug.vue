@@ -1,6 +1,6 @@
 <template lang="pug">
   div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode, 'rtl': isRTL }")
-    div.top-logo-container
+    div.top-logo-container(aria-role="banner")
       a(href="/")
         img.top-logo(src='/logo.min.svg', alt="Distrochooser.de Logo")
     div.calculation-loading(v-if="isLoading || $store.state.isSubmitted") 
@@ -11,8 +11,8 @@
       question(:language="language")
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
-    div.footer(v-if="!isLoading")
-      a(target="_blank", :href="'?vim=true'" ) {{ __i("visually-impaired-mode") }}
+    div.footer(v-if="!isLoading",aria-role="contentinfo")
+      a(target="_blank", :href="'?vim=true'",v-if="!$store.state.visuallyImpairedMode" ) {{ __i("visually-impaired-mode") }}
       a(target="_blank", :href="'/info/imprint/'+ infoPageLanguage" )  {{ __i("imprint") }}
       a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
       a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
@@ -21,8 +21,10 @@
         i.w-icon-github
       a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
       br
-      select(v-if="!isLoading", v-model="language")
-        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
+      div.language-select
+        label(for="language") {{ __i("language") }}
+        select(v-if="!isLoading", v-model="language",id="language",:title="__i('language')")
+          option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
    
 </template>
 <script>
@@ -436,6 +438,20 @@ select::-ms-expand {
 .visually-impaired-mode {
   font-size: x-large;
   margin-top: 2em;
+  .distribution {
+      .reason-list {
+        .w-icon-plus {
+          font-weight: bold;
+          color: #034603 !important;
+        }
+      }
+      #negative-list {
+        .w-icon-minus {
+          font-weight: bold;
+          color: #b00202 !important;
+        }
+      }
+  }
   .question .question-content .welcome-text {
     font-size: x-large;
     i {
@@ -464,6 +480,13 @@ select::-ms-expand {
   .hide-reasons {
     display: none;
   }
+  .footer {
+    width: 10%;
+  }
+  .footer a {
+    color: black;
+    display: block;
+  }
   .footer a,
   .footer select {
     font-size: x-large !important;
@@ -476,6 +499,31 @@ select::-ms-expand {
     position: fixed;
     bottom: 1em;
     right: 1em;
+  }
+  .breadcrumb-horizontal {
+    top: 0px;
+    ul li a{
+      span {
+        color: black !important;
+
+        &.active {
+          font-weight: bold;
+          border: 3px solid black;
+        }
+      }
+    }
+  }
+}
+
+.language-select {
+  width: fit-content;
+  right: 0px;
+  position: fixed;
+
+  label {
+    display: block;
+    text-align: left;
+    margin-right: 1.5em;
   }
 }
 </style>

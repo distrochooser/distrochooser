@@ -825,3 +825,6 @@ msgstr "אני אוהב את זה"
 
 msgid "dislike"
 msgstr "אני לא אוהב את זה"
+
+msgid "language"
+msgstr "שפה"

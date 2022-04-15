@@ -1,19 +1,24 @@
 <template lang="pug">
   div.result(:class="{'compact-result': compactView}")
     div.result-link
-      div.social-links
+      div.social-links(v-if="!$store.state.visuallyImpairedMode")
         span {{ __i("share-result")}}
-        span(v-if="!$store.state.visuallyImpairedMode")
+        span
           a(v-for="(value, key) in $store.state.socialNetworks", :key="key", :href="value.replace('$link$',resultUrl)" , target="_blank")
             i(:class="key")
-      div.link(:data-balloon-visible="copyTooltipShown", :data-balloon="copyTooltipShown ? __i('link-copied') : false", data-balloon-pos="down", @click="toggleCopyTooltip(false)", @mouseleave="toggleCopyTooltip(true)")
+      div.link(v-if="!$store.state.visuallyImpairedMode", :data-balloon-visible="copyTooltipShown", :data-balloon="copyTooltipShown ? __i('link-copied') : false", data-balloon-pos="down", @click="toggleCopyTooltip(false)", @mouseleave="toggleCopyTooltip(true)")
         i.w-icon-paper-clip
-        input(type="text", :value="resultUrl", @focus="$event.target.select()")
-      div.remarks
-        div.remarks-header {{ __i('remark-placeholder') }}
+        input(type="text", :name="__i('share-result')", :value="resultUrl", @focus="$event.target.select()")
+      
+      label(v-else, for="fallback-link",class="fallback-linkshare-label") {{ __i("share-result") }}
+      input(class="fallback-linkshare", id="fallback-link", aria-role="link", type="text", :name="__i('share-result')", :value="resultUrl", @focus="$event.target.select()")
+      div.remarks(aria-role="comment")
+        div.remarks-header(v-if="!$store.state.visuallyImpairedMode") {{ __i('remark-placeholder') }}
           span(v-if="$store.state.remarksAdded && remarks.length > 0") {{ " - " + __i('result-remarks-added') }}
-        textarea(v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder-saving')", @blur="updateRemark", @mouseleave="updateRemark", @input="resetRemarksAdded")
-    distribution(v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="selection.distro.fgColor", :bgColor="selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
+        label(v-else,for="remarks-textbox") {{ __i('remark-placeholder') }}
+        span(v-if="$store.state.remarksAdded && remarks.length > 0") {{ " - " + __i('result-remarks-added') }}
+        textarea(id="remarks-textbox", v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder-saving')", @blur="updateRemark", @mouseleave="updateRemark", @input="resetRemarksAdded")
+    distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
 
     div(v-if="isEmpty")
       h1 {{ __i("no-results")}}
@@ -216,5 +221,13 @@ export default {
   vertical-align: middle;
   margin-left: 0.4em;
   font-size: 11pt;
+}
+.fallback-linkshare {
+  width: 50%;
+  text-align: center;
+  font-size: large;
+}
+.fallback-linkshare-label {
+  display: block;
 }
 </style>
