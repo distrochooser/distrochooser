@@ -10,8 +10,8 @@
         i.w-icon-paper-clip
         input(type="text", :name="__i('share-result')", :value="resultUrl", @focus="$event.target.select()")
       
-      label(v-else, for="fallback-link",class="fallback-linkshare-label") {{ __i("share-result") }}
-      input(class="fallback-linkshare", id="fallback-link", aria-role="link", type="text", :name="__i('share-result')", :value="resultUrl", @focus="$event.target.select()")
+      label(v-if="$store.state.visuallyImpairedMode", for="fallback-link",class="fallback-linkshare-label") {{ __i("share-result") }}
+      input(v-if="$store.state.visuallyImpairedMode", class="fallback-linkshare", id="fallback-link", aria-role="link", type="text", :name="__i('share-result')", :value="resultUrl", @focus="$event.target.select()")
       div.remarks(aria-role="comment")
         div.remarks-header(v-if="!$store.state.visuallyImpairedMode") {{ __i('remark-placeholder') }}
           span(v-if="$store.state.remarksAdded && remarks.length > 0") {{ " - " + __i('result-remarks-added') }}

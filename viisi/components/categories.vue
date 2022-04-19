@@ -161,6 +161,7 @@ export default {
   margin-left: 1.6em;
   background: $linkColor;
   padding: 1em;
+  color: white;
 }
 .floating-button a {
   text-decoration: none;
