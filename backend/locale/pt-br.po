@@ -29,7 +29,7 @@ msgid "computer-knowledge-category"
 msgstr "Conhecimento em computador"
 
 msgid "linux-knowledge-category"
-msgstr "linux e você"
+msgstr "Linux e você"
 
 msgid "presets-category"
 msgstr "Instalação: Predefinições"
@@ -71,28 +71,28 @@ msgid "welcome-text-title"
 msgstr "Bem-vindo a distrochooser.de!"
 
 msgid "welcome-text"
-msgstr "Bem-vindo! Esta prova pode ajudar você a escolher uma distribuição de Linux adequada."
+msgstr "Bem-vindo! Este teste pode ajudá-lo a escolher uma distribuição de Linux adequada."
 
 msgid "welcome-text-skip"
-msgstr "Sempre podemos mudar as perguntas."
+msgstr "Você pode pular perguntas a qualquer momento."
 
 msgid "welcome-text-result-get"
-msgstr "Sempre pode ser necessário clicar em 'sua recomendação' para receber seu resultado"
+msgstr "Você pode clicar em 'sua recomendação' para receber seu resultado a qualquer momento"
 
 msgid "welcome-text-order"
-msgstr "Pode responder en orden arbitrario"
+msgstr "Você pode responder em qualquer ordem"
 
 msgid "welcome-text-additional-infos"
-msgstr "Pode receber informação adicional ao utilizar o símbolo de interrogação"
+msgstr "Pode receber informação adicional utilizando ícone de interrogação"
 
 msgid "welcome-text-remove"
-msgstr "Pode eliminar las respuestas en cualquier momento."
+msgstr "Você pode apagar respostas a qualquer momento."
 
 msgid "welcome-text-feedback"
-msgstr "Certifique os resultados, confira se isso está conformidade com as suas necessidades."
+msgstr "Classifique seus resultados de acordo com o quanto se adequam às suas necessidades."
 
 msgid "welcome-text-importance"
-msgstr "Marque as respostas como importantes para dar maior relevância"
+msgstr "Marque respostas como importantes para dar maior peso"
 
 msgid "locale-link-en"
 msgstr "Este texto está disponível em inglês."
@@ -110,7 +110,7 @@ msgid "next-question"
 msgstr "continuar"
 
 msgid "no-results"
-msgstr "Desculpa, eu sinto que estou perdido"
+msgstr "Desculpe, eu sinto que estou perdido"
 
 msgid "about-header"
 msgstr "Sobre a distrochooser.de"
@@ -185,7 +185,7 @@ msgid "software-use-case-anonymous-answer"
 msgstr "Quero usar Linux para a navegação da web com anonimato."
 
 msgid "software-use-case-answer-gaming"
-msgstr "Prefiro uma distribuição que tem compatibilidade com editores de jogos."
+msgstr "Prefiro uma distribuição que seja tenha suporte de desenvolvedoras de jogos."
 
 msgid "computer-knowledge-question"
 msgstr "Como você avalia sua competência para utilizar um computador?"
@@ -194,10 +194,10 @@ msgid "computer-knowledge-answer-beginner"
 msgstr "Eu preciso de ajuda de outras pessoas para solucionar problemas com o meu computador"
 
 msgid "computer-knowledge-answer-advanced"
-msgstr "Sou capaz de resolver alguns problemas de informática por mim mesmo"
+msgstr "Sou capaz de resolver alguns problemas de computador sozinho"
 
 msgid "computer-knowledge-answer-professional"
-msgstr "Posso solucionar a maioria dos problemas do meu computador por mí mismo"
+msgstr "Posso solucionar a maioria dos problemas do meu computador sozinho"
 
 msgid "linux-knowledge-question"
 msgstr "Como você classifica seu conhecimento em Linux?"
@@ -212,46 +212,46 @@ msgid "linux-knowledge-answer-professional"
 msgstr "Tenho um bom conhecimento sobre o sistema Linux."
 
 msgid "presets-question"
-msgstr "Quantas configurações deseja modificar por você mesmo durante a instalação? Quantas variáveis de configuração devem ser feitos com valores predeterminados?"
+msgstr "Quantas configurações deseja modificar por você mesmo durante a instalação? Quantas variáveis de configuração devem estar com valores predeterminados?"
 
 msgid "presets-question-answer-manypresets"
-msgstr "Quero usar os valores predeterminados com um assistente de instalação"
+msgstr "Quero usar os valores predeterminados no assistente de instalação"
 
 msgid "presets-question-answer-ownselection"
-msgstr "Quero selecionar a configuração por mim mesmo."
+msgstr "Quero selecionar a configuração por mim mesmo"
 
 msgid "presets-question-answer-guiselections"
-msgstr "Quero configurar tanto como o que for possível usando aplicações gráficas"
+msgstr "Quero configurar o máximo possível usando aplicações gráficas"
 
 msgid "hardware-question"
-msgstr "É importante saber quantos anos tem meu hardware de meu computador, e se existem distribuições podem não funcionar."
+msgstr "É importante saber a idade do hardware de teu computador, já que algumas distribuições podem não funcionar."
 
 msgid "additional-info-hardware"
 msgstr "Durante anos, algumas distribuições utilizaram a arquitectura de 32 bits, o que permite ter 4 gigabytes de memória. As distribuições mais novas abandonam a arquitetura de 32 bits em favor do suporte aos 64 bits, o que permite mais de 4 gigabytes de memória. Desde 2005, grande parte dos computadores suportam ou devem admitir o suporte a arquitetura de 64 bits."
 
 msgid "hardware-question-oldpc"
-msgstr "Não estou seguro de esto se o meu computador tem problemas de desempenho e se suporte a 32 bits"
+msgstr "Não estou certo disso e/ou se o meu computador tem problemas de desempenho e/ou se somente suporta 32 bits"
 
 msgid "hardware-question-newpc"
-msgstr "O desempenho do meu computador é bom, não tenho nenhum problema de desempenho, meu hardware é compatível com 64 bits"
+msgstr "O desempenho do meu computador é bom, não tenho nenhum problema de desempenho, meu hardware suporta com 64 bits"
 
 msgid "help-question"
-msgstr "Algumas distribuições preferem artigos em wikis para solucionar problemas. Você prefere isso?"
+msgstr "Algumas distribuições preferem artigos em wikis para solucionar problemas. O que você prefere?"
 
 msgid "help-question-tutorials"
-msgstr "Sou capaz de resolver meus problemas comsultando páginas wiki e tutoriais."
+msgstr "Sou capaz de resolver meus problemas consultando páginas wiki e tutoriais."
 
 msgid "help-question-user-exchange"
-msgstr "Prefiro pedir ajuda para os demais."
+msgstr "Prefiro pedir ajuda para os outros."
 
 msgid "ux-concept-question"
 msgstr "Linux pode usar muitas interfaces de usuário diferentes (\"ambientes gráficos\"). Muitas distribuições instalam um ambiente gráfico por padrão. É importante saber se existe alguma preferencia por conceito de ambiente gráfico. Posso mudar e instalar novos ambientes gráficos a qualquer momento!"
 
 msgid "ux-concept-answer-windows-like"
-msgstr "Prefiro uma interface de usuário similar a Windows"
+msgstr "Prefiro uma interface de usuário similar a do Windows"
 
 msgid "ux-concept-answer-mac-like"
-msgstr "Prefiro uma interface de usuário similar a macOS"
+msgstr "Prefiro uma interface de usuário similar a do macOS"
 
 msgid "ux-concept-tiling"
 msgstr "Prefiro uma aparência de janela baseada em mosaico"
@@ -302,49 +302,49 @@ msgid "price-answer-paid"
 msgstr "Eu ficaria bem em pagar uma tarifa"
 
 msgid "scope-question"
-msgstr "Diferentes distribuições pré-instalam diferentes tipos de software. Algumas instalam um comjunto completo de programas básicos para trabalho \"desde o primeiro momento\". Outras distribuições oferecem apenas uma instalação básica para jogo permite que o usuário instale os programas que deseja usar."
+msgstr "Diferentes distribuições pré-instalam diferentes tipos de software. Algumas instalam um conjunto completo de programas básicos para trabalho \"pronta para uso\". Outras distribuições oferecem apenas uma instalação básica para que os usuários instalem os programas que desejam utilizar."
 
 msgid "scope-answer-fullinstall"
 msgstr "Prefiro uma distribuição instale os programas básicos que preciso para começar a trabalhar imediatamente depois da instalação"
 
 msgid "scope-answer-ownselection"
-msgstr "Quero selecionar os programas básicos para instalar por mim mismo"
+msgstr "Quero eu mesmo selecionar os programas básicos para instalar"
 
 msgid "ideology-question"
-msgstr "A ideologia (licença) de uma distribuição é um debate polémico. Há distribuições que usam principalmente licencias livres, e outras também usam software não libre."
+msgstr "A ideologia (licença) de uma distribuição é um debate polémico. Há distribuições que usam principalmente \"licencias livres\", e outras também usam software \"não livre\"."
 
 msgid "additional-info-ideology"
 msgstr "As licenças gratuitas permitem o usuário modificar, redistribuir e utilizar o software para qualquer propósito. Há situações em que uma distribuição tem que utilizar software não libre, por exemplo, para controlar o hardware. O software não libre não é distribuido o código-fonte e não pode haver modificações."
 
 msgid "ideology-answer-free"
-msgstr "Quero usar licenças livres tanto como posso"
+msgstr "Quero usar licenças livres o tanto quanto eu puder"
 
 msgid "ideology-answer-proprietary-ok"
 msgstr "Estou bem com licenças não livres desde que meu sistema funcione"
 
 msgid "privacy-question"
-msgstr "Algumas distribuições utiliza serviços em background para melhorar a experiência de usuário. Isto pode afetar a privacidade do usuário, se decir, o usuário pode ser rastreado quando usa esses serviços em background."
+msgstr "Algumas distribuições utilizam serviços em segundo plano para melhorar a experiência de usuário. Isso pode afetar a privacidade do usuário, p. ex. o usuário pode ser rastreado quando usa esses serviços."
 
 msgid "privacy-answer-highprivacy"
-msgstr "Não quero esto"
+msgstr "Não quero isso"
 
 msgid "privacy-answer-services-ok"
-msgstr "Para melhorar minha experiência de usuário, aceito serviços em background."
+msgstr "Se melhora minha experiência de usuário, aceito serviços em segundo plano."
 
 msgid "software-admin-question"
-msgstr "Existem muitas formas de administrar uma distribuição de Linux, por exemplo, para instalar software."
+msgstr "Existem muitas formas de administrar uma distribuição Linux, por exemplo, para instalar software."
 
 msgid "software-admin-answer-appstore"
-msgstr "Quero instalar meus programas usando uma especie de controle de aplicações"
+msgstr "Quero instalar meus programas usando algo similar a uma \"Loja de aplicativos\""
 
 msgid "software-admin-answer-console"
-msgstr "Quero instalar software principalmente usando comandos de terminal"
+msgstr "Quero instalar software principalmente usando comandos no terminal"
 
 msgid "special-features-qestion"
 msgstr "Algumas distribuições tem características adicionais para propósitos específicos. Necessito disso?"
 
 msgid "additional-info-special-features-qestion"
-msgstr "Muitas distribuições usam 'systemd' para iniciar o própio sistema operativo. Algunas distribuições não utilizam o systemd em favor de soluções alternativas e, por isso, algumas são rapidas na inicialização."
+msgstr "Muitas distribuições usam 'systemd' para iniciar o própio sistema operacional. Algunas distribuições não utilizam o systemd em favor de soluções alternativas e, por isso, algumas são rapidas na inicialização."
 
 msgid "answer-isolation"
 msgstr "As aplicações devem ser executadas de forma isolada por predeterminação"
@@ -356,10 +356,10 @@ msgid "software-updates-answer-fast"
 msgstr "Prefiro atualizações rápidas"
 
 msgid "software-updates-answer-slow"
-msgstr "Prefiro atualizações estables"
+msgstr "Prefiro atualizações estáveis"
 
 msgid "answer-avoid-systemd"
-msgstr "Quero evitar systemd"
+msgstr "Quero evitar o Systemd"
 
 msgid "result-submitted-hint"
 msgstr "Calculando resultado"
@@ -611,100 +611,100 @@ msgid "matrix-has-zorin-lite-version"
 msgstr "Tem uma versão 'Zorin Lite' para computadoras antigos"
 
 msgid "matrix-has-windows-like-variant-cinnamon"
-msgstr "Uma variante inclue o ambiente gráfico 'canela', tem uma aparência similar ao Windows."
+msgstr "Uma variante que inclui o ambiente gráfico 'canela', tem uma aparência similar ao Windows."
 
 msgid "systemd-is-avoidable-per-selection"
 msgstr "Systemd pode ser evitado se selecionado pelo usuário"
 
 msgid "matrix-ships-systemd-but-disabled"
-msgstr "Systemd pode ser deshabilitado de forma predeterminada"
+msgstr "Systemd pode ser desabilitado de forma predeterminada"
 
 msgid "matrix-supports-privacy"
-msgstr "Solo recompila dados quando se utiliza serviços em linha"
+msgstr "Só coleta dados quando serviços online são usados"
 
 msgid "matrix-lightweight"
-msgstr "distribuição ligera"
+msgstr "Distribuição leve"
 
 msgid "matrix-free-userselection"
-msgstr "O uso de software gratuito depende de ser selecionado pelo usuário"
+msgstr "O uso de software livre depende da seleção do usuário"
 
 msgid "description-manjaro"
-msgstr "Manjaro é uma distribuição de lançamento comtinuo centrada em facilidad de uso"
+msgstr "Manjaro é uma distribuição \"rolling release\" centrada em facilidade de uso"
 
 msgid "description-ubuntu"
-msgstr "Ubuntu é uma distribuição comstruida pela empresa Canonical"
+msgstr "Ubuntu é uma distribuição feita pela empresa Canonical"
 
 msgid "description-mint"
-msgstr "Linux Mint é uma distribuição baseada en Ubuntu com componentes próprios pré-instalados, como codecs de multimedia."
+msgstr "Linux Mint é uma distribuição baseada em Ubuntu com componentes próprios pré-instalados, como codecs de multimídia."
 
 msgid "description-solus"
-msgstr "Solus OS é uma distribuição de lançamento continuo que começou como um clone de Chrome OS"
+msgstr "Solus OS é uma distribuição \"rolling release\" que começou como um clone do Chrome OS"
 
 msgid "description-arch"
-msgstr "Arch é uma distribuição de lançamento continuo baseada com o principio KISS"
+msgstr "Arch é uma distribuição \"rolling release\" baseada no principio KISS"
 
 msgid "description-debian"
-msgstr "Debian é uma distribuição com un alto focada em estabilidade"
+msgstr "Debian é uma distribuição altamente focada em estabilidade"
 
 msgid "description-tails"
-msgstr "O anonimato é o foco principal da distribuição linux Tails, que pode ser utilizada desde USB até discos ópticos"
+msgstr "O anonimato é o foco principal da distribuição linux Tails, que pode ser utilizada via USB ou DVDs"
 
 msgid "description-devuan"
-msgstr "Devuan é um clone do Debian, porém tem um kit de ferramentas de uso como systemd"
+msgstr "Devuan é um clone do Debian sem o conjunto de ferramentas Systemd"
 
 msgid "description-opensuse"
-msgstr "openSUSE Tem como objetivo oferecer uma distribuição estável e fácil de usar, principalmente para usuários finais"
+msgstr "openSUSE almeja oferecer uma distribuição estável e fácil de usar, principalmente para usuários finais"
 
 msgid "description-pclinuxos"
-msgstr "PCLinuxOS é uma distribuição baseada en Mandrake com uma interface de fácil utilização."
+msgstr "PCLinuxOS é uma distribuição baseada na Mandrake focada em uma interface de fácil utilização."
 
 msgid "description-rhel"
-msgstr "Red hat Enterprise Linux (RHEL) é uma distribuição para empresas e possui estabilidade"
+msgstr "Red Hat Enterprise Linux (RHEL) é uma distribuição focada em empresas focada e estabilidade"
 
 msgid "description-rocky"
-msgstr "Rocky Linux é uma distribuição de código abierto destinada a ser 100% compatible com Red Hat Enterprise Linux (RHEL)"
+msgstr "Rocky Linux é uma distribuição de código aberto destinada a ser 100% compatível com Red Hat Enterprise Linux (RHEL)"
 
 msgid "description-xubuntu"
-msgstr "Xubuntu é uma distribuição baseada en Ubuntu com o ambiente gráfico XFCE"
+msgstr "Xubuntu é uma distribuição baseada na Ubuntu com o ambiente gráfico XFCE"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu é uma distribuição baseada en Ubuntu com o ambiente gráfico LXQt"
+msgstr "Lubuntu é uma distribuição baseada na Ubuntu com o ambiente gráfico LXQt"
 
 msgid "description-ubuntumate"
-msgstr "Ubuntu MATE é uma distribuição baseada en Ubuntu com o ambiente gráfico MATE"
+msgstr "Ubuntu MATE é uma distribuição baseada na Ubuntu com o ambiente gráfico MATE"
 
 msgid "description-popos"
-msgstr "Pop!_OS é uma distribuição baseada en Ubuntu com o ambiente gráfico GNOME"
+msgstr "Pop!_OS é uma distribuição da System76 baseada na Ubuntu com o ambiente gráfico GNOME personalizado"
 
 msgid "description-fedora"
-msgstr "Fedora é uma distribuição respeitada pela Red Hat com o foco grande em software livre. Fedora é uma distribuição com focada o software livre. Fedora é lançado com o suporte a longo prazo, a cada nova versão a cada 6 meses."
+msgstr "Fedora é uma distribuição com suporte da Red Hat focada principalmente em software livre."
 
 msgid "description-qubeos"
-msgstr "Qubes OS usa aplicações em máquinas virtuais para melhorar a segurança"
+msgstr "Qubes OS isola aplicações em máquinas virtuais para melhorar a segurança"
 
 msgid "description-gentoo"
 msgstr "Gentoo é uma distribuição flexível para usuários avançados"
 
 msgid "description-mxlinux"
-msgstr "MX Linux é uma distribuição possui recursos intermediários, apesar do foco ser no uso diário, tem uma interfce eficiente e elegante."
+msgstr "MX Linux é uma distribuição de uso intermediário de recursos que foca no uso diário com uma interface eficiente e elegante."
 
 msgid "description-knoppix"
-msgstr "Knoppix é uma  sistema operativo focada en modo en vivo com uma ampla gama de suporte de hardware"
+msgstr "Knoppix é uma  sistema operacional focada em \"uso ao vivo\" com uma ampla gama de suporte à hardware"
 
 msgid "description-cruxlinux"
-msgstr "Crux Linux é uma  sistema operativo liviano focada en 64 bits com ferramentas e bibliotecas recientes"
+msgstr "Crux Linux é uma sistema operacional 64 bits leve com ferramentas e bibliotecas recentes"
 
 msgid "description-zorinos"
-msgstr "Zorin OS é uma distribuição focada para iniciantes com uma interface de usuário similar a Windows"
+msgstr "Zorin OS é uma distribuição com foco em iniciantes com uma interface de usuário similar ao Windows"
 
 msgid "description-elementaryos"
-msgstr "Oementary OS é uma distribuição baseada em Ubuntu, focada em uma experiência de usuário elegante e rápida"
+msgstr "Elementary OS é uma distribuição baseada na Ubuntu, focada em uma experiência de usuário elegante e rápida"
 
 msgid "description-kubuntu"
-msgstr "Kubuntu é uma distribuição baseada em ubuntu com o KDE pré-instalado como ambiente gráfico"
+msgstr "Kubuntu é uma distribuição baseada na Ubuntu com o KDE pré-instalado como ambiente gráfico"
 
 msgid "locale-en"
-msgstr "português-brasil"
+msgstr "Português-brasil"
 
 msgid "locale-de"
 msgstr "Alemão"
@@ -713,13 +713,13 @@ msgid "debian-updates-slow"
 msgstr "As atualizações de Debian são lentas em favor da estabilidade"
 
 msgid "description-qubesos"
-msgstr "Qubes OS executa procesos em máquinas virtuais em favor da segurança"
+msgstr "Qubes OS executa processos em máquinas virtuais em favor da segurança"
 
 msgid "software-use-case-isolation"
 msgstr "Quero executar todos os programas em uma área isolada"
 
 msgid "matrix-runs-in-isolation"
-msgstr "A execução do software ocorre de modo isolados."
+msgstr "A execução do software ocorre em ambientes isolados"
 
 msgid "software-use-case-blind"
 msgstr "O usuário tem problemas de visão"
@@ -728,16 +728,16 @@ msgid "matrix-knoppix-adriane"
 msgstr "O projeto ADRIANE oferece ferramentas e soluções para pessoas com dificuldade visual"
 
 msgid "matrix-has-software-for-blind"
-msgstr "O software para pessoas com dificuldade visual durante a instalação (por exemplo, 'Orca')"
+msgstr "Software para pessoas com dificuldade visual durante a instalação (por exemplo, 'Orca')"
 
 msgid "source"
 msgstr "Fonte de imagem"
 
 msgid "description-void"
-msgstr "Void Linux é uma distribuição de lançamento continuo de systemd"
+msgstr "Void Linux é uma distribuição \"rolling release\" sem Systemd"
 
 msgid "skip-question"
-msgstr "próxima pergunta"
+msgstr "pular pergunta"
 
 msgid "description-nixos"
 msgstr "NixOS usa o gerenciador de pacotes Nix. Utiliza uma configuração declarativa e permite atualizações confiáveis para o sistema."
@@ -746,19 +746,19 @@ msgid "reasons-hide"
 msgstr "Ocultar motivos"
 
 msgid "description-artix"
-msgstr "Artix é uma distribuição baseada en Arch Linux que possui vários sistemas de inicialização como systemd, por exemplo OpenRC"
+msgstr "Artix é uma distribuição baseada na Arch Linux que possui vários sistemas de inicialização fora o systemd, por exemplo OpenRC"
 
 msgid "link-copied"
 msgstr "Colado na área de transferência"
 
 msgid "remark-placeholder-saving"
-msgstr "O texto guardará automaticamente."
+msgstr "O texto será salvo automaticamente"
 
 msgid "slow-release-model"
 msgstr "As versões do software disponíveis podem ser mais antigas que a última versão do fornecedor"
 
 msgid "requires-payment"
-msgstr "Eu quero o suporte a longo prazo, eu posso requerer pagamento"
+msgstr "Suporte a longo prazo requer pagamento"
 
 msgid "github-link"
 msgstr "GitHub"
@@ -767,10 +767,10 @@ msgid "visually-impaired-mode"
 msgstr "Modalidade para pessoas com dificuldade visual"
 
 msgid "like"
-msgstr "Eu curtir"
+msgstr "Eu gostei"
 
 msgid "dislike"
-msgstr "Não curtir muito"
+msgstr "Não gostei"
 
 msgid "language"
-msgstr "Língua"
+msgstr "Idioma"

@@ -638,7 +638,7 @@ msgid "description-pclinuxos"
 msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface."
 
 msgid "description-rhel"
-msgstr "Red hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution"
+msgstr "Red Hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution"
 
 msgid "description-rocky"
 msgstr "Rocky Linux is a open source distribution targeted to be 100% compatible with Red Hat Enterprise Linux (RHEL)"
@@ -653,10 +653,10 @@ msgid "description-ubuntumate"
 msgstr "Ubuntu MATE is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"
 
 msgid "description-popos"
-msgstr "Pop!_OS is an Ubuntu-based distribution powered by the GNOME desktop environment"
+msgstr "Pop!_OS is an Ubuntu-based distribution powered by the GNOME desktop environment customized from System76"
 
 msgid "description-fedora"
-msgstr "Fedora is a Red hat backed distribution with a large focus on free software"
+msgstr "Fedora is a Red Hat backed distribution with a large focus on free software"
 
 msgid "description-qubeos"
 msgstr "Qubes OS isolates applications using virtual machines to improve security"
@@ -724,7 +724,7 @@ msgid "skip-question"
 msgstr "skip question"
 
 msgid "description-nixos"
-msgstr "NixOS uses the Nix package manager.  It uses declarative configuration and allows reliable system upgrades."
+msgstr "NixOS uses the Nix package manager. It uses declarative configuration and allows reliable system upgrades."
 
 msgid "reasons-hide"
 msgstr "Hide reasons"
