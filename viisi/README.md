@@ -54,6 +54,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/nkot56297"><img src="https://avatars.githubusercontent.com/u/95204402?v=4?s=100" width="100px;" alt=""/><br /><sub><b>nkot56297</b></sub></a><br /><a href="#translation-nkot56297" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/EmirLogas"><img src="https://avatars.githubusercontent.com/u/76751818?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Emir</b></sub></a><br /><a href="#translation-EmirLogas" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/mothsART"><img src="https://avatars.githubusercontent.com/u/10601196?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jérémie Ferry</b></sub></a><br /><a href="#translation-mothsART" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/msmafra"><img src="https://avatars.githubusercontent.com/u/1005457?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marcelo dos Santos Mafra</b></sub></a><br /><a href="#translation-msmafra" title="Translation">🌍</a></td>
   </tr>
 </table>
 
