@@ -828,3 +828,10 @@ msgstr "אני לא אוהב את זה"
 
 msgid "language"
 msgstr "שפה"
+
+msgid "description-deepin"
+msgstr "Deepin היא הפצה סינית מבוססת דביאן המציעה שולחן עבודה משלו בשם Deepin Desktop Environment."
+
+msgid "matrix-general-remark-additional-eula"
+msgstr "יש לקרוא בעיון את מדיניות הפרטיות של ההפצה במהלך ההתקנה"
+

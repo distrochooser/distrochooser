@@ -727,3 +727,9 @@ msgstr "Gefällt mir nicht"
 
 msgid "language"
 msgstr "Sprache"
+
+msgid "description-deepin"
+msgstr "Deepin is kommt aus China und basiert uff Debian."
+
+msgid "matrix-general-remark-additional-eula"
+msgstr "Die Datenschutzerklärung der Distribution sollte bei der Installation sorgfältig gelesen werden"

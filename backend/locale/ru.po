@@ -759,3 +759,9 @@ msgstr "Мне не нравится"
 
 msgid "language"
 msgstr "язык"
+
+msgid "description-deepin"
+msgstr "Deepin - это китайский дистрибутив на базе Debian, предлагающий собственный рабочий стол под названием Deepin Desktop Environment."
+
+msgid "matrix-general-remark-additional-eula"
+msgstr "При установке следует внимательно ознакомиться с политикой конфиденциальности дистрибутива"
