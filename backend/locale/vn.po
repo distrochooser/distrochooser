@@ -758,3 +758,6 @@ msgstr "Tôi không thích nó"
 
 msgid "language"
 msgstr "ngôn ngữ"
+
+msgid "description-deepin"
+msgstr "Deepin là một bản Phân phối dựa trên Debian của Trung Quốc, cung cấp một màn hình nền riêng có tên là Deepin Desktop Environment."

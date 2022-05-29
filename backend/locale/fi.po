@@ -758,3 +758,6 @@ msgstr "En pidä tästä"
 
 msgid "language"
 msgstr "Kieli"
+
+msgid "description-deepin"
+msgstr "Deepin on kiinalainen, Debian-pohjainen jakelu, joka tarjoaa oman työpöydän nimeltä Deepin Desktop Environment."

@@ -828,3 +828,8 @@ msgstr "אני לא אוהב את זה"
 
 msgid "language"
 msgstr "שפה"
+
+msgid "description-deepin"
+msgstr "Deepin היא הפצה סינית מבוססת דביאן המציעה שולחן עבודה משלו בשם Deepin Desktop Environment."
+
+

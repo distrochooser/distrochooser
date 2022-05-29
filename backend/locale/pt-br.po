@@ -774,3 +774,6 @@ msgstr "Não gostei"
 
 msgid "language"
 msgstr "Idioma"
+
+msgid "description-deepin"
+msgstr "Deepin é uma distribuição chinesa baseada no Debian que oferece um desktop próprio chamado Deepin Desktop Environment."

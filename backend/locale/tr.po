@@ -758,3 +758,8 @@ msgstr "Bunu beğenmedim!"
 
 msgid "language"
 msgstr "dilim"
+
+msgid "description-deepin"
+msgstr "Deepin, Deepin Masaüstü Ortamı adı verilen kendi masaüstünü sunan, Debian tabanlı, Çince bir dağıtımdır."
+
+

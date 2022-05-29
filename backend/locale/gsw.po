@@ -727,3 +727,6 @@ msgstr "Gefällt mir nicht"
 
 msgid "language"
 msgstr "Sprache"
+
+msgid "description-deepin"
+msgstr "Deepin is kommt aus China und basiert uff Debian."

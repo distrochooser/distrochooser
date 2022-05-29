@@ -769,3 +769,6 @@ msgstr "我不喜欢它"
 
 msgid "language"
 msgstr "语言"
+
+msgid "description-deepin"
+msgstr "Deepin 是一个基于 Debian 的中文发行版，提供一个名为 Deepin Desktop Environment 的自己的桌面。"
