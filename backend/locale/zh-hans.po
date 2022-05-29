@@ -772,3 +772,6 @@ msgstr "语言"
 
 msgid "description-deepin"
 msgstr "Deepin 是一个基于 Debian 的中文发行版，提供一个名为 Deepin Desktop Environment 的自己的桌面。"
+
+msgid "matrix-general-remark-additional-eula"
+msgstr "安装过程中应仔细阅读分发的隐私政策"

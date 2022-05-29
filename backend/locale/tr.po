@@ -762,4 +762,5 @@ msgstr "dilim"
 msgid "description-deepin"
 msgstr "Deepin, Deepin Masaüstü Ortamı adı verilen kendi masaüstünü sunan, Debian tabanlı, Çince bir dağıtımdır."
 
-
+msgid "matrix-general-remark-additional-eula"
+msgstr "Kurulum sırasında dağıtımın gizlilik politikası dikkatlice okunmalıdır"

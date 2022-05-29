@@ -761,3 +761,6 @@ msgstr "Kieli"
 
 msgid "description-deepin"
 msgstr "Deepin on kiinalainen, Debian-pohjainen jakelu, joka tarjoaa oman työpöydän nimeltä Deepin Desktop Environment."
+
+msgid "matrix-general-remark-additional-eula"
+msgstr "Jakelun tietosuojakäytäntö on luettava huolellisesti asennuksen aikana."

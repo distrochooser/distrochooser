@@ -761,3 +761,6 @@ msgstr "idioma"
 
 msgid "description-deepin"
 msgstr "Deepin es una distribución china basada en Debian que ofrece un escritorio propio llamado Deepin Desktop Environment."
+
+msgid "matrix-general-remark-additional-eula"
+msgstr "La política de privacidad de la distribución debe ser leída cuidadosamente durante la instalación"
