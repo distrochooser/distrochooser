@@ -58,6 +58,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/OkayPJ"><img src="https://avatars.githubusercontent.com/u/47733616?v=4?s=100" width="100px;" alt=""/><br /><sub><b>OkayPJ</b></sub></a><br /><a href="#translation-OkayPJ" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/catifox"><img src="https://avatars.githubusercontent.com/u/72690879?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sen_Yue</b></sub></a><br /><a href="#translation-catifox" title="Translation">🌍</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/fbp110"><img src="https://avatars.githubusercontent.com/u/96155179?v=4?s=100" width="100px;" alt=""/><br /><sub><b>fbp110</b></sub></a><br /><a href="#translation-fbp110" title="Translation">🌍</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
