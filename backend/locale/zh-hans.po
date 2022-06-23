@@ -491,7 +491,7 @@ msgid "matrix-selection-by-user"
 msgstr "预装程序的范围由用户决定"
 
 msgid "matrix-updates-fast"
-msgstr "更新速度很快，但可能不回很稳定"
+msgstr "更新速度很快，但可能不会很稳定"
 
 msgid "matrix-not-for-beginner"
 msgstr "不适合初学者"
