@@ -611,7 +611,7 @@ msgid "matrix-has-zorin-lite-version"
 msgstr "Tem uma versão 'Zorin Lite' para computadoras antigos"
 
 msgid "matrix-has-windows-like-variant-cinnamon"
-msgstr "Uma variante que inclui o ambiente gráfico 'canela', tem uma aparência similar ao Windows."
+msgstr "Uma variante que inclui o ambiente gráfico 'cinnamon', tem uma aparência similar ao Windows."
 
 msgid "systemd-is-avoidable-per-selection"
 msgstr "Systemd pode ser evitado se selecionado pelo usuário"
