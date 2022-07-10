@@ -12,13 +12,10 @@
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
     div.footer(v-if="!isLoading",aria-role="contentinfo")
-      a(target="_blank", :href="'?vim=true'",v-if="!$store.state.visuallyImpairedMode" ) {{ __i("visually-impaired-mode") }}
       a(target="_blank", :href="'/info/imprint/'+ infoPageLanguage" )  {{ __i("imprint") }}
       a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
       a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
-      a(target="_blank", href="https://github.com/distrochooser/distrochooser" ) 
-        span {{ __i("github-link") }}
-        i.w-icon-github
+      a(target="_blank", href="https://github.com/distrochooser/distrochooser" )  {{ __i("github-link") }}
       a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
       br
       div.language-select
@@ -267,11 +264,10 @@ export default {
 }
 .footer {
   position: fixed;
-  top: 1em;
-  padding-bottom: 1em;
+  bottom: 1em;
+  padding-top: 1em;
   text-align: right;
   right: 0px;
-  padding-left: 2em;
   z-index: 0;
 }
 .footer a {
@@ -519,6 +515,8 @@ select::-ms-expand {
   width: fit-content;
   right: 0px;
   position: fixed;
+  top: 0px;
+  margin-top: 0.5em;
 
   label {
     display: block;

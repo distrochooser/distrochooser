@@ -1,10 +1,4 @@
 @media only screen and (max-width: $desktopWidth) and (min-width: $mobileWidth) {
-  .footer {
-    bottom: unset !important;
-    top: 1em;
-    text-align: right !important;
-    position: absolute !important;
-  }
   .breadcrumb-horizontal {
     top: 0.5em;
     ul li {
@@ -156,12 +150,26 @@
   }
 }
 
-@media only screen and (max-height: 700px) {
+@media only screen and (max-width: 700px) {
   .breadcrumb-horizontal {
     overflow-y: scroll;
     max-height: 100%;
     overflow-x: hidden;
     padding-right: 2em;
     padding-top: unset !important;
+
+    .floating-button {
+      span {
+        display: none; /* Hide the 'our recommendation' text */
+      }
+    }
+  }
+  .language-select {
+    position: relative !important;
+    width: 100% !important;
+    text-align: center !important;
+    label {
+      text-align: center !important;
+    }
   }
 }
