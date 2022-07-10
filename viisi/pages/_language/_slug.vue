@@ -1,6 +1,6 @@
 <template lang="pug">
   div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode, 'rtl': isRTL }")
-    div.top-logo-container(aria-role="banner")
+    div.top-logo-container(aria-role="banner",v-if="!$store.state.visuallyImpairedMode")
       a(href="/")
         img.top-logo(src='/logo.min.svg', alt="Distrochooser.de Logo")
     div.calculation-loading(v-if="isLoading || $store.state.isSubmitted") 
@@ -11,17 +11,16 @@
       question(:language="language")
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
+    div.language-select(v-if="!$store.state.isStarted")
+      label(for="language") {{ __i("language") }}
+      select(v-if="!isLoading", v-model="language",id="language",:title="__i('language')")
+        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
     div.footer(v-if="!isLoading",aria-role="contentinfo")
       a(target="_blank", :href="'/info/imprint/'+ infoPageLanguage" )  {{ __i("imprint") }}
       a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
       a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
       a(target="_blank", href="https://github.com/distrochooser/distrochooser" )  {{ __i("github-link") }}
       a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
-      br
-      div.language-select
-        label(for="language") {{ __i("language") }}
-        select(v-if="!isLoading", v-model="language",id="language",:title="__i('language')")
-          option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
    
 </template>
 <script>
@@ -263,12 +262,9 @@ export default {
       format('svg'); /* Legacy iOS */
 }
 .footer {
-  position: fixed;
-  bottom: 1em;
-  padding-top: 1em;
-  text-align: right;
-  right: 0px;
-  z-index: 0;
+  position: static;
+  padding-top: 2em;
+  text-align: center;
 }
 .footer a {
   color: $linkColor;
@@ -477,11 +473,16 @@ select::-ms-expand {
     display: none;
   }
   .footer {
-    width: 10%;
+    width: auto;
+    right: 1em !important;
+    text-align: left !important;
+    position: fixed !important;
+    bottom: 1em;
+    color: darkblue !important;
   }
   .footer a {
-    color: black;
     display: block;
+    margin-bottom: 0.5em;
   }
   .footer a,
   .footer select {
@@ -490,17 +491,17 @@ select::-ms-expand {
   .footer i {
     display: none;
   }
-  .top-logo-container {
-    text-align: left;
-    position: fixed;
-    bottom: 1em;
-    right: 1em;
-  }
   .breadcrumb-horizontal {
     top: 0px;
+    ul li i {
+      color: black !important;
+      font-size: 1.5em;
+    }
     ul li a{
+
       span {
         color: black !important;
+        font-size: 1.5em;
 
         &.active {
           font-weight: bold;
@@ -508,12 +509,16 @@ select::-ms-expand {
         }
       }
     }
+    ul li a.recommendation-link {
+      color: black !important;
+      font-size: 1.5em;
+    }
   }
 }
 
 .language-select {
   width: fit-content;
-  right: 0px;
+  right: 1em;
   position: fixed;
   top: 0px;
   margin-top: 0.5em;

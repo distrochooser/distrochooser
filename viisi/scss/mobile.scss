@@ -26,6 +26,12 @@
     ul li span {
       display: none;
     }
+    
+    .floating-button {
+      span {
+        display: none; /* Hide the 'our recommendation' text */
+      }
+    }
   }
   .welcome-text {
     font-size: 10pt !important;
@@ -44,6 +50,7 @@
     bottom: 0px;
     left: 0px;
     top: unset !important;
+    width: 100%;
   }
 
   .footer select {
@@ -150,6 +157,17 @@
   }
 }
 
+
+@media only screen and (orientation: landscape) and (max-width: $mobileWidth) {
+  .question {
+    margin-left: 10% !important;
+  }
+  .breadcrumb-horizontal {
+    overflow: auto;
+    max-height: 100vh;
+  }
+}
+
 @media only screen and (max-width: 700px) {
   .breadcrumb-horizontal {
     overflow-y: scroll;
@@ -165,11 +183,17 @@
     }
   }
   .language-select {
-    position: relative !important;
-    width: 100% !important;
+    position: fixed !important;
+    text-align: right !important;
+    font-size: small !important;
     text-align: center !important;
+    bottom: 5em;
+    top: unset !important;
+    width: 100% !important;
     label {
+      width: 100% !important;
       text-align: center !important;
+      padding-bottom: 1em;
     }
   }
 }
