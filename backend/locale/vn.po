@@ -764,3 +764,6 @@ msgstr "Deepin là một bản Phân phối dựa trên Debian của Trung Quố
 
 msgid "matrix-general-remark-additional-eula"
 msgstr "Chính sách bảo mật của bản phân phối nên được đọc kỹ trong quá trình cài đặt"
+
+msgid "welcome-text-a11y"
+msgstr "Nhấp vào đây để làm bài kiểm tra ở chế độ thích hợp cho những người bị khiếm thị (trang sẽ làm mới cho phần này)."

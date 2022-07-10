@@ -94,6 +94,9 @@ msgstr "Gib Feedback!"
 msgid "welcome-text-importance"
 msgstr "Du kannst Antworten als wichtig markieren, um ihnen mehr Gewicht zu geben"
 
+msgid "welcome-text-a11y"
+msgstr "Klicke hier, um den Test in einem angepassten Modus für Menschen mit Sehbeeinträchtigungen durchzuführen (die Seite wird hierfür neu geladen)."
+
 msgid "start-test"
 msgstr "Test starten"
 

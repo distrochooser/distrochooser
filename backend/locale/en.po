@@ -100,6 +100,9 @@ msgstr "This text is available in english"
 msgid "locale-link-de"
 msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
 
+msgid "welcome-text-a11y"
+msgstr "To take the test in an adapted mode for people with visual impairments, click here (the page will refresh for this)."
+
 msgid "start-test"
 msgstr "Start test"
 

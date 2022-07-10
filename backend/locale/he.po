@@ -835,3 +835,5 @@ msgstr "Deepin היא הפצה סינית מבוססת דביאן המציעה �
 msgid "matrix-general-remark-additional-eula"
 msgstr "יש לקרוא בעיון את מדיניות הפרטיות של ההפצה במהלך ההתקנה"
 
+msgid "welcome-text-a11y"
+msgstr "לחץ כאן לביצוע המבחן במצב מותאם לאנשים עם לקויות ראייה (העמוד יתרענן לשם כך)."

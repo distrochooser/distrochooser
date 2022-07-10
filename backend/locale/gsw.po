@@ -733,3 +733,6 @@ msgstr "Deepin is kommt aus China und basiert uff Debian."
 
 msgid "matrix-general-remark-additional-eula"
 msgstr "Die Datenschutzerklärung der Distribution sollte bei der Installation sorgfältig gelesen werden"
+
+msgid "welcome-text-a11y"
+msgstr "Klicke hier, um den Test in einem angepassten Modus für Menschen mit Sehbeeinträchtigungen durchzuführen (die Seite wird hierfür neu geladen)."

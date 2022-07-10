@@ -749,3 +749,6 @@ msgstr "Deepin 是一个基于 Debian 的中文发行版，提供一个名为深
 
 msgid "matrix-general-remark-additional-eula"
 msgstr "建议安装过程中应仔细阅读该发行版的隐私条款"
+
+msgid "welcome-text-a11y"
+msgstr "单击此处以适合视力障碍者的模式进行测试（页面将为此刷新）。"

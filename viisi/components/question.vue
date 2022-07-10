@@ -27,6 +27,9 @@
             div
               i.w-icon-heart-off
               span {{ __i("welcome-text-feedback") }}
+            div(v-if="!inVisuallyImpairedMode")
+              i.w-icon-eye-o
+              a(href="/?vim=true") {{ __i("welcome-text-a11y") }}
             div
               button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)

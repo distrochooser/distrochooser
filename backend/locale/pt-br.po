@@ -780,3 +780,6 @@ msgstr "Deepin é uma distribuição chinesa baseada no Debian que oferece um de
 
 msgid "matrix-general-remark-additional-eula"
 msgstr "A política de privacidade da distribuição deve ser lida cuidadosamente durante a instalação"
+
+msgid "welcome-text-a11y"
+msgstr "Clique aqui para fazer o teste de forma adaptada para pessoas com deficiência visual (a página será atualizada para isso)."

@@ -764,3 +764,6 @@ msgstr "Deepin on kiinalainen, Debian-pohjainen jakelu, joka tarjoaa oman työp�
 
 msgid "matrix-general-remark-additional-eula"
 msgstr "Jakelun tietosuojakäytäntö on luettava huolellisesti asennuksen aikana."
+
+msgid "welcome-text-a11y"
+msgstr "Napsauta tätä suorittaaksesi testi näkövammaisille sovitetussa tilassa (sivu päivittyy tätä varten)."

@@ -764,3 +764,6 @@ msgstr "Deepin, Deepin Masaüstü Ortamı adı verilen kendi masaüstünü sunan
 
 msgid "matrix-general-remark-additional-eula"
 msgstr "Kurulum sırasında dağıtımın gizlilik politikası dikkatlice okunmalıdır"
+
+msgid "welcome-text-a11y"
+msgstr "Testi görme engelli kişiler için uyarlanmış bir modda yapmak için buraya tıklayın (bunun için sayfa yenilenecektir)."
