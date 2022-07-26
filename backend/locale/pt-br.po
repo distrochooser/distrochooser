@@ -134,7 +134,7 @@ msgid "privacy-header"
 msgstr "Datenschutzerklärung"
 
 msgid "imprint-header"
-msgstr "Informações legais"
+msgstr "Impressão"
 
 msgid "about-licenses-source"
 msgstr "O código-fonte"
