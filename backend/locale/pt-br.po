@@ -2,7 +2,7 @@ msgid "loading"
 msgstr "carregando"
 
 msgid "imprint"
-msgstr "imprimir"
+msgstr "informações legais"
 
 msgid "privacy"
 msgstr "privacidade"
@@ -134,7 +134,7 @@ msgid "privacy-header"
 msgstr "Datenschutzerklärung"
 
 msgid "imprint-header"
-msgstr "Impressão"
+msgstr "Informações legais"
 
 msgid "about-licenses-source"
 msgstr "O código-fonte"
