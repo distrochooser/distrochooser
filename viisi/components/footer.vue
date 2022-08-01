@@ -12,6 +12,12 @@ export default {
   mixins: [i18n],
   data: function() {
     return {}
+  },
+  props: {
+    infoPageLanguage: {
+      type: String,
+      default: ''
+    },
   }
 }
 </script>
