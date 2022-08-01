@@ -261,7 +261,7 @@ div.filtered-results-warning {
   background-color: #05396b;
   margin-right: -0.5em;
   margin-left: -0.5em;
-  height: 40px;
+  min-height: 40px;
   padding: 10px;
   font-family: Open Sans, sans-serif;
   margin-bottom: 1em;
