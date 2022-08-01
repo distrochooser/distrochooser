@@ -2,7 +2,7 @@ msgid "loading"
 msgstr "carregando"
 
 msgid "imprint"
-msgstr "imprimir"
+msgstr "informações legais"
 
 msgid "privacy"
 msgstr "privacidade"
