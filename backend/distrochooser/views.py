@@ -7,6 +7,7 @@ from secrets import token_hex
 from urllib.parse import urlparse
 import datetime
 from math import floor
+from django.db.models import Q
 
 from django.db.models import Count, Avg
 from django.views.decorators.csrf import csrf_exempt
@@ -87,6 +88,11 @@ def get_stats(request):
             else:
                 referrers[backlink] = referrers[backlink] + referrer["amount"]
 
+    got = UserSession.objects.all().values('language').annotate(amount=Count('language'))
+    lang_stats = {}
+    for language in got:
+        lang_stats[language["language"]] = language["amount"]
+
     return JsonResponse({
         "tests": results.count(),
         "visitors": UserSession.objects.all().count(),
@@ -94,7 +100,8 @@ def get_stats(request):
         "approvedPercentage": approvedPercentage,
         "referrers": referrers,
         "averageCalculationTime": averageCalculationTime,
-        "averageStayTime": averageStayTime
+        "averageStayTime": averageStayTime,
+        "languages": lang_stats
     })
 
 
