@@ -9,7 +9,7 @@
       div.link(v-if="!$store.state.visuallyImpairedMode", :data-balloon-visible="copyTooltipShown", :data-balloon="copyTooltipShown ? __i('link-copied') : false", data-balloon-pos="down", @click="toggleCopyTooltip(false)", @mouseleave="toggleCopyTooltip(true)")
         i.w-icon-paper-clip
         input(type="text", :name="__i('share-result')", :value="resultUrl", @focus="$event.target.select()")
-      
+      footernav
       label(v-if="$store.state.visuallyImpairedMode", for="fallback-link",class="fallback-linkshare-label") {{ __i("share-result") }}
       input(v-if="$store.state.visuallyImpairedMode", class="fallback-linkshare", id="fallback-link", aria-role="link", type="text", :name="__i('share-result')", :value="resultUrl", @focus="$event.target.select()")
       div.remarks(aria-role="comment")
@@ -18,7 +18,9 @@
         label(v-else,for="remarks-textbox") {{ __i('remark-placeholder') }}
         span(v-if="$store.state.remarksAdded && remarks.length > 0") {{ " - " + __i('result-remarks-added') }}
         textarea(id="remarks-textbox", v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder-saving')", @blur="updateRemark", @mouseleave="updateRemark", @input="resetRemarksAdded")
-    distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
+    div.filtered-results-warning(v-if="!$store.state.showAllResults && filteredSelections.length !==  unfilteredSelections.length", @click="showAllResults") 
+      a(href="#") {{ __i("distributions-hidden").replace("#", unfilteredSelections.length - filteredSelections.length) }}
+    distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :votes="selection.votes" :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
 
     div(v-if="isEmpty")
       h1 {{ __i("no-results")}}
@@ -26,18 +28,22 @@
 </template>
 <script>
 import distribution from '~/components/distribution'
+import footernav from '~/components/footer'
 import i18n from '~/mixins/i18n'
 import score from '~/mixins/score'
 export default {
   components: {
-    distribution
+    distribution,
+    footernav
   },
   mixins: [i18n, score],
   data: function() {
     return {
       compactView: false,
       remarks: '',
-      copyTooltipShown: false
+      copyTooltipShown: false,
+      unfilteredSelections: [],
+      filteredSelections: []
     }
   },
   computed: {
@@ -54,8 +60,25 @@ export default {
         .sort(function(a, b) {
           return _t.scoreCompare(a.reasons, b.reasons)
         })
-      console.log(sortedSelections)
-      return sortedSelections
+        .filter(function(a) {
+          return a.reasons.length > 0
+        })
+      _t.unfilteredSelections = sortedSelections
+      if (this.$store.state.showAllResults){
+        _t.filteredSelections = sortedSelections
+      } else {
+        const selectionsWithPositiveHits = sortedSelections.filter(function(a) {
+          return _t.nonBlocking(a.reasons).length > 0
+        })
+        _t.filteredSelections = selectionsWithPositiveHits
+      }
+      if (this.$store.state.ratingSort) {
+        return _t.filteredSelections.sort(function(a, b) {
+          return _t.percentageCompare(a, b)
+        })
+      } else {
+        return _t.filteredSelections
+      }
     },
     isEmpty: function() {
       var nonEmpty = 0
@@ -68,6 +91,10 @@ export default {
     }
   },
   methods: {
+    showAllResults: function() {
+      this.$store.commit('showAllResults')
+      setTimeout(function() { window.scrollTo(0,9999);; }, 200);
+    },
     resetRemarksAdded: function() {
       this.$store.commit('resetRemarksAdded')
     },
@@ -229,5 +256,17 @@ export default {
 }
 .fallback-linkshare-label {
   display: block;
+}
+div.filtered-results-warning {
+  background-color: #05396b;
+  margin-right: -0.5em;
+  margin-left: -0.5em;
+  height: 40px;
+  padding: 10px;
+  font-family: Open Sans, sans-serif;
+  margin-bottom: 1em;
+  a {
+    color: white;
+  }
 }
 </style>

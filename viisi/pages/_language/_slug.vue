@@ -15,25 +15,21 @@
       label(for="language") {{ __i("language") }}
       select(v-if="!isLoading", v-model="language",id="language",:title="__i('language')")
         option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
-    div.footer(v-if="!isLoading",aria-role="contentinfo")
-      a(target="_blank", :href="'/info/imprint/'+ infoPageLanguage" )  {{ __i("imprint") }}
-      a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
-      a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
-      a(target="_blank", href="https://github.com/distrochooser/distrochooser" )  {{ __i("github-link") }}
-      a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
-   
+    footernav(v-if="!isLoading && this.$store.state.result === null")
 </template>
 <script>
 import '@uiw/icons/fonts/w-icon.css'
 import categories from '~/components/categories'
 import question from '~/components/question'
 import result from '~/components/result'
+import footernav from '~/components/footer'
 import i18n from '~/mixins/i18n'
 export default {
   components: {
     categories,
     question,
-    result
+    result,
+    footernav
   },
   mixins: [i18n],
   data: function() {
@@ -260,28 +256,6 @@ export default {
     /* Safari, Android, iOS */
       url('/fonts/OpenSans/open-sans-v16-latin-regular.svg#OpenSans')
       format('svg'); /* Legacy iOS */
-}
-.footer {
-  position: static;
-  padding-top: 2em;
-  text-align: center;
-}
-.footer a {
-  color: $linkColor;
-  text-decoration: none;
-  padding-right: 1em;
-  font-size: small;
-
-  .w-icon-github {
-    vertical-align: text-top;
-    margin-left: 0.5em;
-  }
-}
-
-.footer select {
-  margin-top: 0.5em;
-  vertical-align: baseline;
-  margin-right: 1.5em;
 }
 .spin-parent {
   text-align: center;

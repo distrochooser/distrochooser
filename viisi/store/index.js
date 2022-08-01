@@ -44,7 +44,10 @@ const indexStore = new Vapi({
     sessionStatus: null,
     method: 'default',
     visuallyImpairedMode: false,
-    inRTLMode: true
+    inRTLMode: true,
+    showAllResults: false,
+    debug: false,
+    ratingSort: false
   }
 })
   .post({
@@ -125,6 +128,12 @@ indexStore.mutations.setAnswerQuestion = (state, answer) => {
 indexStore.mutations.toggleSubmitted = state => {
   state.isSubmitted = !state.isSubmitted
 }
+
+
+indexStore.mutations.showAllResults = state => {
+  state.showAllResults = true
+}
+
 
 indexStore.mutations.toggleImportanceState = (state, answer) => {
   state.givenAnswers.forEach(a => {

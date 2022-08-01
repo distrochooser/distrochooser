@@ -1,8 +1,13 @@
 <template lang="pug">
-  div.distribution(v-if="!hasNoMatch")
+  div.distribution
     div.title(:aria-disabled="voted && !positiveVote", :style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
       span {{ name }}
-    div.description {{ __i("description-" + id) }}
+      span.user-agree-score(v-if="$store.state.ratingSort && votes.upvotes > 0 || $store.state.ratingSort && votes.downvotes > 0") {{ __i("user-agree-score").replace("#", Math.round(votes.upvote_percentage*100)) }}
+      span.user-agree-score(v-else-if="$store.state.ratingSort && votes.upvotes == 0 && votes.downvotes == 0") {{ __i("user-agree-noscore") }}
+    div.description(v-if="flipped") {{ __i("description-" + id) }}
+    div.debug(v-if="$store.state.debug")
+      span Pro {{ votes.upvotes}} ({{ votes.upvote_percentage }})/
+      span Con {{ votes.downvotes}} ({{ votes.downvote_percentage }})
     div.description.reasons(v-if="flipped")
       div.reason-list.list(aria-role="list")
         div(v-if="nonBlocking(reasons).length > 0")
@@ -40,7 +45,7 @@
             span {{ reason.description }}
     div.meta
       div.actions
-        div.vote-actions(v-if="!voted")
+        div.vote-actions
           a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)",:data-balloon="!$store.state.visuallyImpairedMode ? __i('vote-reminder'): null",data-balloon-pos="left")
             
             i.w-icon-heart-on(v-bind:class="{'animated heartBeat voted': voted && positiveVote}", v-if="!$store.state.visuallyImpairedMode")
@@ -50,7 +55,8 @@
             i.w-icon-dislike-o(v-bind:class="{'animated swing voted': voted && !positiveVote}", v-if="!$store.state.visuallyImpairedMode")
             span(v-else) {{ voted && !positiveVote? __i("not-liked") :  __i("dislike") }} 
           a.action.hide-reasons(href="#", v-on:click.prevent="flipped=!flipped", :data-balloon="__i('reasons-hide')",data-balloon-pos="right")
-            i.w-icon-shrink
+            i.w-icon-shrink(v-if="flipped")
+            i.w-icon-arrows-alt(v-if="!flipped")
       a.url(v-if="url",tabindex=0, role="link", :alt="__i('distribution-homepage') + ' ' + name", target="_blank", :href="url") {{ __i("distribution-homepage") }}
 </template>
 <script>
@@ -92,6 +98,12 @@ export default {
       default: function() {
         return []
       }
+    },
+    votes: {
+      type: Array,
+      default: function() {
+        return []
+      }
     }
   },
   data: function() {
@@ -111,9 +123,6 @@ export default {
       return this.reasons.filter(r => {
         return r.isRelatedBlocked
       })
-    },
-    hasNoMatch: function() {
-      return this.reasons.length === 0
     }
   },
   methods: {
@@ -254,5 +263,14 @@ i {
 }
 .vote-actions a {
   text-decoration: none;
+}
+.user-agree-score {
+  position: relative;
+  right: 0px;
+  display: block;
+  text-align: right;
+  font-style: italic;
+  margin-left: 1em;
+  margin-top: -1.5em;
 }
 </style>

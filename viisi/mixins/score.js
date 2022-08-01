@@ -43,6 +43,20 @@ export default {
       })
       return negative.length + negative.filter(r => r.isImportant).length
     },
+    percentageCompare: function(a, b) {
+      var upvotePercentageA = a["votes"]["upvote_percentage"]
+      var upvotePercentageB = b["votes"]["upvote_percentage"]
+      var downvotePercentageA = a["votes"]["downvote_percentage"]
+      var downvotePercentageB = b["votes"]["downvote_percentage"]
+      
+      if (upvotePercentageA > upvotePercentageB) return -1
+      if (upvotePercentageA < upvotePercentageB) return 1
+
+      if (downvotePercentageA > downvotePercentageB) return 1
+      if (downvotePercentageA < downvotePercentageB) return -1
+
+      return 0
+    },
     scoreCompare: function(a, b) {
       var nonBlockingA = this.nonBlockingHits(a)
       var nonBlockingB = this.nonBlockingHits(b)
@@ -52,9 +66,10 @@ export default {
 
       var negativeA = this.negativeHits(a)
       var negativeB = this.negativeHits(b)
+       
 
-      if (nonBlockingA < nonBlockingB) return 1
-      if (nonBlockingA > nonBlockingB) return -1
+      if (nonBlockingA < nonBlockingB) return 1 
+      if (nonBlockingA > nonBlockingB) return -1 
 
       if (blockingA > blockingB) return 1
       if (blockingA < blockingB) return -1
