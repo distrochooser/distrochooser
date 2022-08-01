@@ -245,7 +245,7 @@ def submit_answers(request: HttpRequest, lang_code: str, token: str, method: str
     userSession.calculationEndTime = end_time
     userSession.save(update_fields=["calculationTime", "calculationEndTime"])
     return get_json_response({
-        "url": "https://beta.distrochooser.de/{0}/{1}/".format(lang_code, userSession.publicUrl),
+        "url": "https://distrochooser.de/{0}/{1}/".format(lang_code, userSession.publicUrl),
         "selections": selections,
         "token": token
     })
