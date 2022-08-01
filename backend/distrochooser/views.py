@@ -143,13 +143,14 @@ def start(request: HttpRequest, lang_code: str) -> JsonResponse:
 
     data = loads(request.body)
     referrer = data["referrer"] if "referrer" in data else null
-
+    token = "d5" + token_hex(5)
+    session_token = "d5" + token_hex(5)
     user_agent = request.META["HTTP_USER_AGENT"]
     session = UserSession()
     session.userAgent = user_agent
     session.language = lang_code
-    session.token = token_hex(5)
-    session.sessionToken = token_hex(5)
+    session.token = token
+    session.sessionToken = session_token
     session.dateTime = datetime.datetime.now()
     session.referrer = referrer
     session.save()
@@ -166,6 +167,7 @@ def start(request: HttpRequest, lang_code: str) -> JsonResponse:
         "categories": list(Category.objects.all().order_by("index").values()),
         "answers": view_bag_data["answers"]
     })
+
 
 
 def get_language_values(request: HttpRequest, lang_code: str) -> HttpResponse:
