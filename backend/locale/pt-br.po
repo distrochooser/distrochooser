@@ -783,3 +783,6 @@ msgstr "A política de privacidade da distribuição deve ser lida cuidadosament
 
 msgid "welcome-text-a11y"
 msgstr "Clique aqui para fazer o teste de forma adaptada para pessoas com deficiência visual (a página será atualizada para isso)."
+
+msgid "distributions-hidden"
+msgstr "# distribuições foram ocultadas devido à baixa correspondência. Clique aqui para ver todas as distribuições"

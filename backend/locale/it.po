@@ -767,3 +767,6 @@ msgstr "L'informativa sulla privacy della distribuzione deve essere letta attent
 
 msgid "welcome-text-a11y"
 msgstr "Fare clic qui per sostenere il test in una modalità adattata per le persone con disabilità visive (la pagina si aggiornerà per questo)."
+
+msgid "distributions-hidden"
+msgstr "# I risultati sono stati nascosti a causa di una scarsa corrispondenza. Fare clic qui per visualizzare tutte le distribuzioni."

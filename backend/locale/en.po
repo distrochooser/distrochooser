@@ -767,3 +767,6 @@ msgstr "Deepin is a chinese, Debian based Distribution offering an own desktop c
 
 msgid "matrix-general-remark-additional-eula"
 msgstr "The privacy policy of the distribution should be read carefully during installation"
+
+msgid "distributions-hidden"
+msgstr "# Ergebnisse wurden aufgrund geringer Übereinstimmung ausgeblendet. Klicken Sie hier, um alle Distributionen anzuzeigen."

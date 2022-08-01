@@ -767,3 +767,6 @@ msgstr "Chính sách bảo mật của bản phân phối nên được đọc k
 
 msgid "welcome-text-a11y"
 msgstr "Nhấp vào đây để làm bài kiểm tra ở chế độ thích hợp cho những người bị khiếm thị (trang sẽ làm mới cho phần này)."
+
+msgid "distributions-hidden"
+msgstr "1 kết quả đã bị ẩn do sự đồng ý kém. Nhấn vào đây để xem tất cả các bản phân phối."

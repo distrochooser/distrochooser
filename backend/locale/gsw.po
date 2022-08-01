@@ -736,3 +736,6 @@ msgstr "Die Datenschutzerklärung der Distribution sollte bei der Installation s
 
 msgid "welcome-text-a11y"
 msgstr "Klicke hier, um den Test in einem angepassten Modus für Menschen mit Sehbeeinträchtigungen durchzuführen (die Seite wird hierfür neu geladen)."
+
+msgid "distributions-hidden"
+msgstr "# Ergebnisse wurden aufgrund geringer Übereinstimmung ausgeblendet. Klicken Sie hier, um alle Distributionen anzuzeigen."

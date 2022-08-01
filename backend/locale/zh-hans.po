@@ -752,3 +752,6 @@ msgstr "建议安装过程中应仔细阅读该发行版的隐私条款"
 
 msgid "welcome-text-a11y"
 msgstr "单击此处以适合视力障碍者的模式进行测试（页面将为此刷新）。"
+
+msgid "distributions-hidden"
+msgstr "1 个结果因一致性不佳而被隐藏。 单击此处查看所有发行版。"

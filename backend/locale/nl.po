@@ -760,3 +760,6 @@ msgstr "Het privacybeleid van de distributie moet zorgvuldig worden gelezen tijd
 
 msgid "welcome-text-a11y"
 msgstr "Klik hier om de test af te leggen in een aangepaste modus voor mensen met een visuele beperking (de pagina zal hiervoor verversen)."
+
+msgid "distributions-hidden"
+msgstr "# Resultaten waren verborgen vanwege een slechte overeenkomst. Klik hier om alle distributies te bekijken."

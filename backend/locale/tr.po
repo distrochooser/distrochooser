@@ -767,3 +767,6 @@ msgstr "Kurulum sırasında dağıtımın gizlilik politikası dikkatlice okunma
 
 msgid "welcome-text-a11y"
 msgstr "Testi görme engelli kişiler için uyarlanmış bir modda yapmak için buraya tıklayın (bunun için sayfa yenilenecektir)."
+
+msgid "distributions-hidden"
+msgstr "# sonuç, zayıf uyum nedeniyle gizlendi. Tüm dağıtımları görüntülemek için buraya tıklayın."
