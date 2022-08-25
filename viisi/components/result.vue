@@ -18,6 +18,11 @@
         label(v-else,for="remarks-textbox") {{ __i('remark-placeholder') }}
         span(v-if="$store.state.remarksAdded && remarks.length > 0") {{ " - " + __i('result-remarks-added') }}
         textarea(id="remarks-textbox", v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder-saving')", @blur="updateRemark", @mouseleave="updateRemark", @input="resetRemarksAdded")
+    div.display-options
+      a(href="#",title="List view", v-on:click="compactView=false",:class="{'active': !compactView}")
+        i.w-icon-menu
+      a(href="#",title="Grid view", v-on:click="compactView=true",:class="{'active': compactView}")
+        i.w-icon-appstore
     div.filtered-results-warning(v-if="!$store.state.showAllResults && filteredSelections.length !==  unfilteredSelections.length", @click="showAllResults") 
       a(href="#") {{ __i("distributions-hidden").replace("#", unfilteredSelections.length - filteredSelections.length) }}
     distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :votes="selection.votes" :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
@@ -135,8 +140,15 @@ export default {
   font-family: 'Open Sans', sans-serif;
 }
 .compact-result {
-  width: unset;
-  margin-right: unset;
+  .compact-distribution {
+    display: inline-grid;
+    width: 49%;
+    height: auto;
+    margin-right: 2%;
+  }
+  .compact-distribution:nth-child(odd) {
+    margin-right: unset;
+  }
 }
 .link {
   margin-top: 1em;
@@ -157,12 +169,6 @@ export default {
 }
 .social-links i {
   margin-left: 1em;
-}
-.compact-distribution {
-  display: inline-grid;
-  width: 47%;
-  height: auto;
-  margin-right: 3%;
 }
 .view-settings {
   text-align: center;
@@ -269,4 +275,20 @@ div.filtered-results-warning {
     color: white;
   }
 }
+.display-options {
+  text-align: left;
+  margin-top: -1em;
+  margin-bottom: 1em;
+  a {
+    text-decoration: none;
+    i {
+      font-size: 2vh;
+      color: $lightAccent;
+    }
+
+    &.active i {
+      color: $linkColor;
+    }
+  } 
+} 
 </style>
