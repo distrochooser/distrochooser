@@ -194,7 +194,7 @@ export default {
         },
         {
           property: 'og:image',
-          content: this.$store.state.rootUrl + 'logo.min.svg'
+          content: this.$store.state.rootUrl + 'logo.png'
         },
         {
           property: 'og:image:type',
@@ -226,7 +226,7 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: this.$store.state.rootUrl + '/logo.min.svg'
+          content: this.$store.state.rootUrl + '/logo.png'
         },
         {
           name: 'generator',
