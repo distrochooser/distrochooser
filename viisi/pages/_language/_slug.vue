@@ -35,7 +35,8 @@ export default {
   data: function() {
     return {
       language: 'en',
-      isLoading: true
+      isLoading: true,
+      languageChanged: false
     }
   },
   computed: {
@@ -51,12 +52,12 @@ export default {
     }
   },
   watch: {
-    language: async function(val) {
+    language: async function(val) {    
+      this.languageChanged = true
       await this.switchLanguage(val)
     }
   },
   async mounted() {
-    this.prepareLanguageData()
     if (this.$route.fullPath.toLowerCase().indexOf('vim=true') !== -1) {
       this.$store.dispatch('setVisuallyImpairedMode', true)
     }
@@ -87,8 +88,15 @@ export default {
   },
   methods: {
     prepareLanguageData: function() {
+      if (this.languageChanged) {
+        /* If there was already a language change -> don't do anything. /*/
+        return;
+      }
       var allLocales = Object.keys(this.$store.state.locales)
       if (typeof this.$route.params.language === 'undefined') {
+        if (typeof window === 'undefined') {
+          return "en"; /* No browser detectable (SSR) */
+        }
         // only apply the browser language if no language flag is set
         var browserLanguage = window.navigator.language.toLowerCase()
         if (allLocales.indexOf(browserLanguage) !== -1) {
@@ -105,11 +113,13 @@ export default {
     },
     switchLanguage: async function(locale) {
       this.language = locale
+      this.$router.push("/" + this.language)
       await this.$store.dispatch('switchLanguage', {
         params: {
           language: this.language
         }
       })
+
       // resubmit result to get translated values (if needed)
       if (this.isFinished) {
         this.$store.dispatch('submitAnswers', {
@@ -126,6 +136,7 @@ export default {
     }
   },
   head: function() {
+    this.prepareLanguageData()
     var description_meta = {
       "de": "Die Linux Auswahlhilfe hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die passende Linux-Distribution zu finden.",
       "en": "The Distrochooser helps you to find the suitable Linux distribution based on your needs!",
@@ -145,6 +156,9 @@ export default {
     }
     var result = {
       titleTemplate: 'Distrochooser',
+      htmlAttrs: {
+        lang: this.language
+      },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -152,6 +166,10 @@ export default {
           name: 'keywords',
           content:
             'Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows'
+        },
+        {
+          name: 'description',
+          content: description_meta[this.language]
         },
         {
           name: 'theme-color',
@@ -198,6 +216,10 @@ export default {
           content: 'Distrochooser'
         },
         {
+          name: 'twitter:description',
+          content: description_meta[this.language]
+        },
+        {
           name: 'twitter:image',
           content: this.$store.state.rootUrl + '/logo.min.svg'
         },
@@ -207,16 +229,6 @@ export default {
         }
       ]
     }
-
-    Object.keys(description_meta).forEach((key) => {
-      var value = description_meta[key]
-      result.meta.push({
-        "name": "description",
-        "lang": key,
-        "content": value
-      })
-    })
-
     return result
   }
 }
