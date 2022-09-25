@@ -15,7 +15,7 @@
       label(for="language") {{ __i("language") }}
       select(v-if="!isLoading", v-model="language",id="language",:title="__i('language')")
         option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
-    footernav(v-if="!isLoading && this.$store.state.result === null",:infoPageLanguage="infoPageLanguage")
+    footernav(v-if="!isLoading && this.$store.state.result === null",:language="infoPageLanguage")
 </template>
 <script>
 import '@uiw/icons/fonts/w-icon.css'
