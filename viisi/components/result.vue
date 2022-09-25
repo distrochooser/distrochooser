@@ -19,8 +19,9 @@
         span(v-if="$store.state.remarksAdded && remarks.length > 0") {{ " - " + __i('result-remarks-added') }}
         textarea(id="remarks-textbox", v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder-saving')", @blur="updateRemark", @mouseleave="updateRemark", @input="resetRemarksAdded")
     div.display-options
+      span {{ __i('display-options') }}:
       a(href="#",title="List view", v-on:click="compactView=false",:class="{'active': !compactView}")
-        i.w-icon-menu
+        i.w-icon-table
       a(href="#",title="Grid view", v-on:click="compactView=true",:class="{'active': compactView}")
         i.w-icon-appstore
     div.filtered-results-warning(v-if="!$store.state.showAllResults && filteredSelections.length !==  unfilteredSelections.length", @click="showAllResults") 
@@ -146,7 +147,7 @@ export default {
     height: auto;
     margin-right: 2%;
   }
-  .compact-distribution:nth-child(odd) {
+  .compact-distribution:nth-child(even) {
     margin-right: unset;
   }
 }
@@ -279,15 +280,29 @@ div.filtered-results-warning {
   text-align: left;
   margin-top: -1em;
   margin-bottom: 1em;
+  span {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-right: 1em;
+  }
   a {
     text-decoration: none;
     i {
-      font-size: 2vh;
+      font-size: 1.5em;
       color: $lightAccent;
+
+      &.w-icon-appstore::before {
+        content: "\ea07";
+      }
     }
 
     &.active i {
       color: $linkColor;
+      
+
+      &.w-icon-appstore::before {
+        content: "\ea08";
+      }
     }
   } 
 } 
