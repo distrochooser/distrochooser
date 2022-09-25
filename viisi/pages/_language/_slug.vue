@@ -61,21 +61,7 @@ export default {
     if (this.$route.fullPath.toLowerCase().indexOf('vim=true') !== -1) {
       this.$store.dispatch('setVisuallyImpairedMode', true)
     }
-
-    var testSlug =
-      typeof this.$route.params.slug !== 'undefined'
-        ? this.$route.params.slug
-        : null
-
     const _t = this
-    if (testSlug !== null) {
-      await this.$store.dispatch('getOldAnswers', {
-        params: {
-          slug: testSlug
-        }
-      })
-      this.$store.commit('setOldTestData')
-    }
     await this.$store.dispatch('startTest', {
       params: {
         language: _t.language
@@ -84,9 +70,27 @@ export default {
         referrer: document.referrer ? document.referrer : null
       }
     })
+    await this.setOldDataIfNeeded();
     this.isLoading = false
   },
   methods: {
+    setOldDataIfNeeded: async function() {
+
+      var testSlug =
+      typeof this.$route.params.slug !== 'undefined'
+        ? this.$route.params.slug
+        : null
+
+      const _t = this
+      if (testSlug !== null) {
+        await this.$store.dispatch('getOldAnswers', {
+          params: {
+            slug: testSlug
+          }
+        })
+        this.$store.commit('setOldTestData')
+      }
+    },
     prepareLanguageData: function() {
       if (this.languageChanged) {
         /* If there was already a language change -> don't do anything. /*/
@@ -113,7 +117,8 @@ export default {
     },
     switchLanguage: async function(locale) {
       this.language = locale
-      this.$router.push("/" + this.language)
+      var slug = typeof this.$route.params.slug !== 'undefined' ? "/" + this.$route.params.slug : "" /* Also push the old result, if there is any */
+      this.$router.push("/" + this.language + slug)
       await this.$store.dispatch('switchLanguage', {
         params: {
           language: this.language

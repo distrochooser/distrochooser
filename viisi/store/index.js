@@ -226,6 +226,7 @@ indexStore.mutations.resetRemarksAdded = state => {
 }
 
 indexStore.mutations.setOldTestData = state => {
+  state.givenAnswers = []
   for (var i = 0; i < state.oldTestData.answers.length; i++) {
     var answer = state.oldTestData.answers[i]
     var category = state.oldTestData.categories[i]
