@@ -3,19 +3,38 @@ from distrochooser.models import GivenAnswer, ResultDistroSelection, ResultDistr
 from django.forms.models import model_to_dict
 from django.db import transaction
 
+
+import plotly.express as px
+import pandas as pd
+
 def saveAnswers(userSession, rawAnswers):
   # Delete old answers
   GivenAnswer.objects.filter(session=userSession).delete()
   newAnswers = []
-  selectedAnswers = {answer[0]: answer[1] for answer in Answer.objects.filter(msgid__in=[a["msgid"] for a in rawAnswers]).values_list('msgid', 'pk')}
+  rawSelectedAnswers = Answer.objects.filter(msgid__in=[a["msgid"] for a in rawAnswers]).values_list('msgid', 'pk', 'questionType')
+  selectedAnswers = {answer[0]: answer[1] for answer in rawSelectedAnswers}
   for answer in rawAnswers:
+    answer_id=selectedAnswers[answer['msgid']]
     newAnswers.append(
       GivenAnswer(
           session=userSession,
-          answer_id=selectedAnswers[answer['msgid']],
+          answer_id=answer_id,
           isImportant=answer['important']
       )
     )
+  stats = {}
+  for answer in rawSelectedAnswers:
+    answer_type = answer[2]
+    if answer_type is not None:
+      if answer_type not in stats:
+        stats[answer_type] = 0
+      stats[answer_type] = stats[answer_type] + 1
+  df = pd.DataFrame(dict(
+      r=stats.values(),
+      theta=stats.keys()))
+  fig = px.line_polar(df, r='r', theta='theta', line_close=True)
+  fig.update_layout(polar = dict(radialaxis = dict(showticklabels = False)))
+  fig.write_image("foo.png")
   GivenAnswer.objects.bulk_create(newAnswers)
 
 

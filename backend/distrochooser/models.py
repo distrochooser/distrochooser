@@ -46,6 +46,7 @@ class Answer(Translateable):
         null=True, blank=True)  # if null -> no image there!
     isDisabled = models.BooleanField(default=False)
     orderIndex = models.IntegerField(default=0)
+    questionType = models.CharField(null=True,blank=True,max_length=50)
 
     def __str__(self):
         return "{0}: {1}".format(self.question, self.msgid)
