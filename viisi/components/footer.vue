@@ -1,8 +1,8 @@
 <template lang="pug">
 div.footer(aria-role="contentinfo")
-  a(target="_blank", :href="'/info/imprint/'+ infoPageLanguage" )  {{ __i("imprint") }}
-  a(target="_blank", :href="'/info/privacy/'+ infoPageLanguage" ) {{ __i("privacy") }}
-  a(target="_blank", :href="'/info/about/'+ infoPageLanguage" ) {{ __i("about") }}
+  a(target="_blank", :href="'/info/imprint/'+ language" )  {{ __i("imprint") }}
+  a(target="_blank", :href="'/info/privacy/'+ language" ) {{ __i("privacy") }}
+  a(target="_blank", :href="'/info/about/'+ language" ) {{ __i("about") }}
   a(target="_blank", href="https://github.com/distrochooser/distrochooser" )  {{ __i("github-link") }}
   a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
 </template>
@@ -14,7 +14,7 @@ export default {
     return {}
   },
   props: {
-    infoPageLanguage: {
+    language: {
       type: String,
       default: ''
     },

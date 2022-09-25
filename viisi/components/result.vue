@@ -9,7 +9,7 @@
       div.link(v-if="!$store.state.visuallyImpairedMode", :data-balloon-visible="copyTooltipShown", :data-balloon="copyTooltipShown ? __i('link-copied') : false", data-balloon-pos="down", @click="toggleCopyTooltip(false)", @mouseleave="toggleCopyTooltip(true)")
         i.w-icon-paper-clip
         input(type="text", :name="__i('share-result')", :value="resultUrl", @focus="$event.target.select()")
-      footernav
+      footernav(:language="$store.state.language")
       label(v-if="$store.state.visuallyImpairedMode", for="fallback-link",class="fallback-linkshare-label") {{ __i("share-result") }}
       input(v-if="$store.state.visuallyImpairedMode", class="fallback-linkshare", id="fallback-link", aria-role="link", type="text", :name="__i('share-result')", :value="resultUrl", @focus="$event.target.select()")
       div.remarks(aria-role="comment")
