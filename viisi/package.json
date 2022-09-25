@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "5.13.6",
+    "@nuxtjs/sitemap": "^2.4.0",
     "@uiw/icons": "2.5.3",
     "animate.css": "3.7.0",
     "balloon-css": "1.2.0",
