@@ -738,3 +738,6 @@ msgstr "Die Datenschutzerklärung der Distribution sollte bei der Installation s
 
 msgid "distributions-hidden"
 msgstr "# Ergebnisse wurden aufgrund geringer Übereinstimmung ausgeblendet. Klicken Sie hier, um alle Distributionen anzuzeigen."
+
+msgid "display-options"
+msgstr "Du kannst hier die Anzeige deiner Ergebnisse ändern"    

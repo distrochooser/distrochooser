@@ -770,3 +770,6 @@ msgstr "Fare clic qui per sostenere il test in una modalità adattata per le per
 
 msgid "distributions-hidden"
 msgstr "# I risultati sono stati nascosti a causa di una scarsa corrispondenza. Fare clic qui per visualizzare tutte le distribuzioni."
+
+msgid "display-options"
+msgstr "È possibile modificare la visualizzazione dei risultati qui"    

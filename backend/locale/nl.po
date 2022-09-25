@@ -763,3 +763,6 @@ msgstr "Klik hier om de test af te leggen in een aangepaste modus voor mensen me
 
 msgid "distributions-hidden"
 msgstr "# Resultaten waren verborgen vanwege een slechte overeenkomst. Klik hier om alle distributies te bekijken."
+
+msgid "display-options"
+msgstr "U kunt de weergave van uw resultaten hier wijzigen"    

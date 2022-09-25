@@ -770,3 +770,6 @@ msgstr "Haga clic aquí para realizar la prueba en un modo adaptado para persona
 
 msgid "distributions-hidden"
 msgstr "# Los resultados se ocultaron debido a una mala coincidencia. Haga clic aquí para ver todas las distribuciones.."
+
+msgid "display-options"
+msgstr "Aquí puede cambiar la visualización de los resultados"    

@@ -770,3 +770,6 @@ msgstr "Nhấp vào đây để làm bài kiểm tra ở chế độ thích hợ
 
 msgid "distributions-hidden"
 msgstr "1 kết quả đã bị ẩn do sự đồng ý kém. Nhấn vào đây để xem tất cả các bản phân phối."
+
+msgid "display-options"
+msgstr "Bạn có thể thay đổi cách hiển thị kết quả của mình tại đây"

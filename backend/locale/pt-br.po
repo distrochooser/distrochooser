@@ -786,3 +786,6 @@ msgstr "Clique aqui para fazer o teste de forma adaptada para pessoas com defici
 
 msgid "distributions-hidden"
 msgstr "# distribuições foram ocultadas devido à baixa correspondência. Clique aqui para ver todas as distribuições"
+
+msgid "display-options"
+msgstr "Você pode mudar a exibição de seus resultados aqui"    

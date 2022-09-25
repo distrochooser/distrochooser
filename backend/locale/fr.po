@@ -771,3 +771,6 @@ msgstr "Cliquez ici pour passer le test dans un mode adapté pour les personnes 
 
 msgid "distributions-hidden"
 msgstr "# Les résultats ont été masqués en raison d'une mauvaise correspondance. Cliquez ici pour voir toutes les distributions."
+
+msgid "display-options"
+msgstr "Tu peux modifier ici l'affichage de tes résultats"    

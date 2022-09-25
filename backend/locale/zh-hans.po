@@ -755,3 +755,6 @@ msgstr "单击此处以适合视力障碍者的模式进行测试（页面将为
 
 msgid "distributions-hidden"
 msgstr "1 个结果因一致性不佳而被隐藏。 单击此处查看所有发行版。"
+
+msgid "display-options"
+msgstr "你可以在这里改变你的结果显示"

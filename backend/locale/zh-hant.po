@@ -784,3 +784,6 @@ msgstr "單擊此處以適合視力障礙者的模式進行測試（頁面將為
 
 msgid "distributions-hidden"
 msgstr "1 個結果因一致性不佳而被隱藏。 單擊此處查看所有發行版。"
+
+msgid "display-options"
+msgstr "您可以在此處更改結果的顯示方式"

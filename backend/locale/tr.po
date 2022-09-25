@@ -770,3 +770,6 @@ msgstr "Testi görme engelli kişiler için uyarlanmış bir modda yapmak için 
 
 msgid "distributions-hidden"
 msgstr "# sonuç, zayıf uyum nedeniyle gizlendi. Tüm dağıtımları görüntülemek için buraya tıklayın."
+
+msgid "display-options"
+msgstr "Sonuçlarınızın görüntüsünü buradan değiştirebilirsiniz"    

@@ -770,3 +770,6 @@ msgstr "The privacy policy of the distribution should be read carefully during i
 
 msgid "distributions-hidden"
 msgstr "# Ergebnisse wurden aufgrund geringer Übereinstimmung ausgeblendet. Klicken Sie hier, um alle Distributionen anzuzeigen."
+
+msgid "display-options"
+msgstr "You can change the display of your results here"    

@@ -739,3 +739,6 @@ msgstr "Klicke hier, um den Test in einem angepassten Modus für Menschen mit Se
 
 msgid "distributions-hidden"
 msgstr "# Ergebnisse wurden aufgrund geringer Übereinstimmung ausgeblendet. Klicken Sie hier, um alle Distributionen anzuzeigen."
+
+msgid "display-options"
+msgstr "Du kannst hier die Anzeige deiner Ergebnisse ändern"    

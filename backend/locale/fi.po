@@ -770,3 +770,6 @@ msgstr "Napsauta tätä suorittaaksesi testi näkövammaisille sovitetussa tilas
 
 msgid "distributions-hidden"
 msgstr "# Tulokset piilotettiin huonon ottelun vuoksi. Napsauta tätä nähdäksesi kaikki jakelut."
+
+msgid "display-options"
+msgstr "Voit muuttaa tulosten näyttöä täällä"    
