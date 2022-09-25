@@ -126,16 +126,28 @@ export default {
     }
   },
   head: function() {
-    return {
+    var description_meta = {
+      "de": "Die Linux Auswahlhilfe hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die passende Linux-Distribution zu finden.",
+      "en": "The Distrochooser helps you to find the suitable Linux distribution based on your needs!",
+      "es": "El Distrochooser le ayuda a encontrar la distribución de Linux adecuada según sus necesidades.",
+      "fi": "Distrochooser auttaa sinua löytämään sopivan Linux-jakelun tarpeidesi mukaan!",
+      "fr": "Le Distrochooser vous aide à trouver la distribution Linux appropriée en fonction de vos besoins !",
+      "gsw": "Die Linux Auswahlhilfe hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die passende Linux-Distribution zu finden.",
+      "he": "ה-Distrochooser עוזר לך למצוא את הפצת הלינוקס המתאימה בהתבסס על הצרכים שלך!",
+      "it": "Il Distrochooser vi aiuta a trovare la distribuzione Linux più adatta alle vostre esigenze!",
+      "nl": "De Distrochooser helpt u de geschikte Linux-distributie te vinden op basis van uw behoeften!",
+      "pt-br": "O Distrochooser ajuda você a encontrar a distribuição Linux adequada com base em suas necessidades!",
+      "ru": "Distrochooser поможет вам найти подходящий дистрибутив Linux в соответствии с вашими потребностями!",
+      "tr": "Distrochooser, ihtiyaçlarınıza göre uygun Linux dağıtımını bulmanıza yardımcı olur!",
+      "vn": "Distrochooser giúp bạn tìm bản phân phối Linux phù hợp dựa trên nhu cầu của bạn!",
+      "zh-hans":"Distrochooser 可帮助您根据需要找到合适的 Linux 发行版！",
+      "zh-hant":"Distrochooser可以帮助你根据你的需要找到合适的Linux发行版"
+    }
+    var result = {
       titleTemplate: 'Distrochooser',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.welcomeText(this.language)
-        },
         {
           name: 'keywords',
           content:
@@ -195,6 +207,17 @@ export default {
         }
       ]
     }
+
+    Object.keys(description_meta).forEach((key) => {
+      var value = description_meta[key]
+      result.meta.push({
+        "name": "description",
+        "lang": key,
+        "content": value
+      })
+    })
+
+    return result
   }
 }
 </script>

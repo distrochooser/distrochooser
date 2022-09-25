@@ -7,7 +7,7 @@ module.exports = {
   */
   head: {
     meta: [{hid: "google-site-verification", name: "google-site-verification", content:"nqtoKAtXX7xTNyddaEGkkYtgpc0pc0b-wigel0Acy5c"}],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/icon.svg' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/icon.svg' }, {rel: 'canonical', href: 'https://distrochooser.de'}]
   },
 
   /*
