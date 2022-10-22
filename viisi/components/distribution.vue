@@ -5,9 +5,6 @@
       span.user-agree-score(v-if="$store.state.ratingSort && votes.upvotes > 0 || $store.state.ratingSort && votes.downvotes > 0") {{ __i("user-agree-score").replace("#", Math.round(votes.upvote_percentage*100)) }}
       span.user-agree-score(v-else-if="$store.state.ratingSort && votes.upvotes == 0 && votes.downvotes == 0") {{ __i("user-agree-noscore") }}
     div.description(v-if="flipped") {{ __i("description-" + id) }}
-    div.debug(v-if="$store.state.debug")
-      span Pro {{ votes.upvotes}} ({{ votes.upvote_percentage }})/
-      span Con {{ votes.downvotes}} ({{ votes.downvote_percentage }})
     div.description.reasons(v-if="flipped")
       div.reason-list.list(aria-role="list")
         div(v-if="nonBlocking(reasons).length > 0")
@@ -43,6 +40,10 @@
           div(v-for="(reason, reason_key) in neutral", :key="reason_key", aria-role="listitem") 
             i.w-icon-question-circle-o
             span {{ reason.description }}
+    div.tags 
+      span(v-for="(tag, tag_key) in peculiarities", :key="tag_key") 
+        i.w-icon-tag 
+        span.tag-text {{ tag }}
     div.meta
       div.actions
         div.vote-actions
@@ -94,6 +95,12 @@ export default {
       default: 'white'
     },
     reasons: {
+      type: Array,
+      default: function() {
+        return []
+      }
+    },
+    peculiarities: {
       type: Array,
       default: function() {
         return []
@@ -161,8 +168,18 @@ export default {
   font-family: Open Sans, sans-serif;
   margin-bottom: 1em;
 }
-.description {
+.description,
+.tags  {
   margin-left: 1em;
+}
+.tags i {
+  font-size: 1em;
+  vertical-align: middle;
+  color: #05396b;
+}
+.tags .tag-text {
+  margin-right: 0.5em;
+  color: grey;
 }
 .meta .actions {
   width: 50%;

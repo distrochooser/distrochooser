@@ -46,8 +46,9 @@ const indexStore = new Vapi({
     visuallyImpairedMode: false,
     inRTLMode: true,
     showAllResults: false,
-    debug: false,
-    ratingSort: false
+    debug: true,
+    ratingSort: false,
+    peculiarities: {}
   }
 })
   .post({
@@ -199,6 +200,12 @@ indexStore.mutations.setCurrentDisplayData = (state, data) => {
   state.language = data.language
   state.testCount = data.testCount
   state.translations = data.translations
+  /* only hebrew locale is currently rtl */
+  if (state.language == "he") {
+    state.inRTLMode = true
+  } else {
+    state.inRTLMode = false 
+  }
 }
 
 indexStore.mutations.setCurrentQuestionData = (state, data) => {
@@ -279,6 +286,40 @@ indexStore.actions.prevQuestion = (store, payload) => {
     language: payload.params.language,
     selectedCategory: nextCategory
   })
+}
+
+indexStore.mutations.resetPeculiarities = (state, payload) => {
+  delete state.peculiarities[payload.questionId]
+}
+
+
+indexStore.mutations.removePeculiarities = (state, payload) => {
+  for (var i=0;i<payload.data.length;i++) {
+    var tag = payload.data[i]
+    var index = state.peculiarities[payload.questionId].indexOf(tag)
+    if (index !== -1) {
+      state.peculiarities[payload.questionId].splice(index, 1)
+    }
+  }
+}
+
+indexStore.mutations.savePeculiarities = (state, payload) => {
+  if (typeof state.peculiarities[payload.questionId] === 'undefined') {
+    state.peculiarities[payload.questionId] = payload.selection
+  } else {
+    for (var i=0;i<payload.oldSelection.length;i++) {
+      var tag = payload.oldSelection[i]
+      var index = state.peculiarities[payload.questionId].indexOf(tag)
+      if (index !== -1) {
+        state.peculiarities[payload.questionId].splice(index, 1)
+      }
+    }
+    payload.selection.forEach((value) => {
+      if (state.peculiarities[payload.questionId].indexOf(value) === -1) {
+        state.peculiarities[payload.questionId].push(value)
+      }
+    })
+  }
 }
 
 const createStore = () => {

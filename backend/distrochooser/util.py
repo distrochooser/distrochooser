@@ -50,7 +50,8 @@ def get_step_data(category_index: int) -> dict:
         response_answers.append({
             "msgid": answer.msgid,
             "blockedAnswers": blocked_answers,
-            "mediaSourcePath": answer.mediaSourcePath
+            "mediaSourcePath": answer.mediaSourcePath,
+            "peculiarities": answer.peculiarities.split(",") if answer.peculiarities is not None else []
         })
     return {
         "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice', 'additionalInfo', 'isMediaQuestion')),

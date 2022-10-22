@@ -90,6 +90,9 @@
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key") 
                 i.w-icon-circle-close-o
                 span "{{ __i(blockingAnswer.msgid) }}"
+            
+            div(v-if="isAnswerSelected(answer) && answer.peculiarities.length > 0")
+              peculiarities(:values="answer.peculiarities", :question="question.msgid")
       div.actions(v-if="!additionalInfoShown")
         button.skip-step.step(@click="nextQuestion",v-if="!isAtLastQuestion()") {{  __i("skip-question") }}
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
@@ -97,8 +100,12 @@
 </template>
 <script>
 import i18n from '~/mixins/i18n'
+import peculiarities from '~/components/peculiarities.vue'
 export default {
   mixins: [i18n],
+  components: {
+    peculiarities
+  },
   props: {
     language: {
       type: String,
@@ -173,6 +180,10 @@ export default {
     answerQuestion(answer) {
       if (this.isAnswerSelected(answer)) {
         this.$store.commit('removeAnswerQuestion', answer)
+        this.$store.commit('removePeculiarities',{
+          questionId: this.question.msgid,
+          data: answer.peculiarities,
+        })
       } else {
         if (!this.question.isMultipleChoice && this.isQuestionAnswered()) {
           // switch an answer in non multiple choice questions
@@ -180,6 +191,9 @@ export default {
           const _t = this
           otherAnswers.forEach(function(a) {
             _t.$store.commit('removeAnswerQuestion', a)
+            _t.$store.commit('resetPeculiarities',{
+              questionId: _t.question.msgid,
+            })
           })
         }
         if (this.question.isMultipleChoice || !this.isQuestionAnswered()) {
@@ -217,7 +231,8 @@ export default {
             method: this.$store.state.method
           },
           data: {
-            answers: this.$store.state.givenAnswers
+            answers: this.$store.state.givenAnswers,
+            peculiarities: this.$store.state.peculiarities
           }
         })
       }

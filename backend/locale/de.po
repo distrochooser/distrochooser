@@ -741,3 +741,6 @@ msgstr "# Ergebnisse wurden aufgrund geringer Übereinstimmung ausgeblendet. Kli
 
 msgid "display-options"
 msgstr "Du kannst hier die Anzeige deiner Ergebnisse ändern"    
+
+msgid "peculiarities-ideology-question"
+msgstr "Optional: Schränke ein, welche Lizenzen bevorzugt werden sollen:"
