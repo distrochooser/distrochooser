@@ -8,13 +8,13 @@ msgid "privacy"
 msgstr "privasi"
 
 msgid "about"
-msgstr "about this project"
+msgstr "mengenai proyek ini"
 
 msgid "question-is-multiplechoice"
-msgstr "You may choose multiple answers"
+msgstr "Anda boleh memilih lebih dari satu jawaban"
 
 msgid "vendor-text"
-msgstr "A project by chmr.eu"
+msgstr "Sebuah proyek oleh chmr.eu"
 
 msgid "get-result"
 msgstr "Dapatkan hasil"
@@ -32,13 +32,13 @@ msgid "linux-knowledge-category"
 msgstr "Linux dan Anda"
 
 msgid "presets-category"
-msgstr "Installation: Presets"
+msgstr "Instalasi: Pengaturan awal"
 
 msgid "hardware-category"
-msgstr "Hardware support"
+msgstr "Dukungan perangkat keras"
 
 msgid "help-category"
-msgstr "Source for help"
+msgstr "Sumber bantuan"
 
 msgid "ux-concept-category"
 msgstr "Pengalaman pengguna"
@@ -56,43 +56,43 @@ msgid "privacy-category"
 msgstr "Distribusi: Privasi"
 
 msgid "software-admin-category"
-msgstr "Administration"
+msgstr "Administrasi"
 
 msgid "software-updates-category"
-msgstr "Software: Updates"
+msgstr "Perangkat Lunak: Pembaruan"
 
 msgid "special-features-category"
-msgstr "Software: Special features"
+msgstr "Perangkat Lunak: Fitur khusus"
 
 msgid "recommendation-category"
-msgstr "Show your results"
+msgstr "Tunjukan hasil"
 
 msgid "welcome-text-title"
-msgstr "Welcome to distrochooser.de!"
+msgstr "Selamat datang di distrochooser.de!"
 
 msgid "welcome-text"
-msgstr "Welcome! This test will help you choose a suitable Linux distribution."
+msgstr "Selamat datang! Tes ini akan membantu anda memilih distribusi Linux yang cocok untuk anda."
 
 msgid "welcome-text-skip"
-msgstr "You can always skip questions"
+msgstr "Anda selalu dapat melewatkan pertanyaan"
 
 msgid "welcome-text-result-get"
-msgstr "You can always click on 'your recommendation' to receive your result"
+msgstr "Anda selalu dapat mengklik pada 'rekomendasi anda' untuk menerima hasil"
 
 msgid "welcome-text-order"
-msgstr "You may answer in arbitrary order"
+msgstr "Anda dapat menjawab dengan urutan yang anda inginkan"
 
 msgid "welcome-text-additional-infos"
-msgstr "You can receive additional information using the question mark icon"
+msgstr "Anda dapat menerima informasi tambahan menggunakan ikon tanda tanya"
 
 msgid "welcome-text-remove"
-msgstr "You can delete answers at any time"
+msgstr "Anda dapat menghapus jawaban kapan pun"
 
 msgid "welcome-text-feedback"
-msgstr "Please rate your results, depending on how well they fit your needs."
+msgstr "Tolong berikan penilaian terhadap hasil yang anda terima, berdasarkan kecocokannya dalam memenuhi kebutuhan anda."
 
 msgid "welcome-text-importance"
-msgstr "Mark answers as important to give them more weight"
+msgstr "Tandai jawaban penting untuk menambah bobotnya"
 
 msgid "locale-link-en"
 msgstr "This text is available in english"
@@ -101,37 +101,37 @@ msgid "locale-link-de"
 msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
 
 msgid "welcome-text-a11y"
-msgstr "To take the test in an adapted mode for people with visual impairments, click here (the page will refresh for this)."
+msgstr "Untuk melakukan teks dalam mode untuk orang dengan masalah pengelihatan, klik di sini (Halaman akan diperbarui)."
 
 msgid "start-test"
-msgstr "Start test"
+msgstr "Mulai tes"
 
 msgid "prev-question"
-msgstr "go back"
+msgstr "Kembali"
 
 msgid "next-question"
-msgstr "proceed"
+msgstr "Lanjut"
 
 msgid "no-results"
-msgstr "Sorry, I'm lost"
+msgstr "Maaf, saya tidak tahu"
 
 msgid "about-header"
-msgstr "About distrochooser.de"
+msgstr "Tentang distrochooser.de"
 
 msgid "vote-reminder"
-msgstr "You like this distribution? Give it a heart!"
+msgstr "Anda suka distribusi ini? Berikan hati!"
 
 msgid "vote-reminder-negative"
-msgstr "You don't like this distribution? Give it a thumbs down!"
+msgstr "Anda tidak suka distribusi ini? Acungkan jempol ke bawah!"
 
 msgid "about-intro-text"
-msgstr "distrochooser.de attempts to help Linux beginners to choose a Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers."
+msgstr "distrochooser.de mencoba untuk membantu pemula Linux untuk memilih distribusi Linux yang sesuai kebutuhan mereka.<br>Hasil yang diberikan adalah saran berdasarkan jawaban anda. Terkadang hasil yang didapat tidak begitu sesuai, karena hubungan jawaban yang kompleks."
 
 msgid "about-intro-test-count"
-msgstr "Since the 14th of June 2014 distrochooser.de processed %tests% tests."
+msgstr "Sejak the 14 Juni 2014 distrochooser.de telah mengolah %tests% tests."
 
 msgid "about-licenses"
-msgstr "Distrochooser is dual-licensed."
+msgstr "Distrochooser memiliki lisensi ganda."
 
 msgid "privacy-header"
 msgstr "Datenschutzerklärung"
@@ -140,208 +140,210 @@ msgid "imprint-header"
 msgstr "Impressum"
 
 msgid "about-licenses-source"
-msgstr "The sourcecode"
+msgstr "Source code"
 
 msgid "about-licenses-source-text"
-msgstr "The sourcecode is licensed under the license written in the 'LICENSE' file, which is placed in the linked repository."
+msgstr "Source code dilisensi dibawah lisensi yang tertulis pada file 'LICENSE', yang terletak pada tautan repositori."
 
 msgid "about-licenses-database"
-msgstr "The data base"
+msgstr "Database"
 
 msgid "about-licenses-database-text"
 msgstr "The underlying data, including the question/answer structure, the result matrix and statistics, are proprietary. You may use them only with our prior permission. The description texts and logos of the various distributions are subject to the licences of the respective copyright holders."
 
 msgid "no-results-text"
-msgstr "Distrochooser was not able to find a suitable result based on your answers. It would be great help, if you would write us some feedback, so that we can investigate this."
+msgstr "Distrochooser tidak dapat menemukan hasil yang cocok berdasarkan jawaban anda. Akan sangat membantu jika anda berkenan memberikan kritik dan saran, agar kami dapat mencari tahu."
 
 msgid "close-additional-info"
-msgstr "Close"
+msgstr "Tutup"
 
 msgid "no-answers"
-msgstr "You gave no answers."
+msgstr "Anda tidak memberikan jawaban."
 
 msgid "get-my-result"
-msgstr "Shows you your results."
+msgstr "Tunjukan hasil."
 
 msgid "additional-info"
-msgstr "Additional information"
+msgstr "Informasi tambahan"
 
 msgid "remark-placeholder"
-msgstr "Your feedback (max 3000 chars)"
+msgstr "Kritik dan saran (maksimal 3000 karakter)"
 
 msgid "distribution-homepage"
-msgstr "Distribution homepage"
+msgstr "Beranda distribusi"
 
 msgid "result-remarks-added"
-msgstr "Thank you for your feedback!"
+msgstr "Terima kasih atas kritik dan sarannya!"
 
 msgid "share-result"
-msgstr "Share my result"
+msgstr "Bagikan hasil saya"
 
 msgid "software-use-case-question"
-msgstr "Some distributions are made for a special purpose, some for daily use. What do you need?"
+msgstr "Beberapa distribusi dibuat dengan tujuan khusus, beberapa untuk penggunaan sehari-hari. Apa yang anda butuhkan?"
 
 msgid "software-use-case-answer-daily"
-msgstr "I want a distribution for daily use."
+msgstr "Saya ingin distribusi untuk penggunaan sehari-hari."
 
 msgid "software-use-case-anonymous-answer"
-msgstr "I want to use Linux for anonymous web browsing."
+msgstr "Saya ingin menggunakan Linux untuk penjelajahan web secara anonim."
 
 msgid "software-use-case-answer-gaming"
-msgstr "I prefer a distribution which is supported by game publishers."
+msgstr "Saya ingin distrisbusi yang didukung oleh penerbit game."
 
 
 msgid "computer-knowledge-question"
-msgstr "How would you rate your proficiency using a computer?"
+msgstr "Bagaimana anda menilai keterampilan berkomputer anda?"
 
 msgid "computer-knowledge-answer-beginner"
-msgstr "I often need help from others to fix problems with my computer"
+msgstr "Saya sering memerlukan bantuan dari orang lain untuk memperbaiki masalah pada komputer saya"
 
 msgid "computer-knowledge-answer-advanced"
-msgstr "I am already able to solve some computer problems by myself"
+msgstr "Saya mampu mengatasi beberapa masalah komputer sendiri"
 
 msgid "computer-knowledge-answer-professional"
-msgstr "I can troubleshoot most or all computer problems by myself"
+msgstr "Saya mampu mengatasi sebagian besar atau semua masalah komputer sendiri"
 
 
 msgid "linux-knowledge-question"
-msgstr "How would you rate your knowledge of Linux itself?"
+msgstr "Bagaimana anda menilai pengetahuan anda mengenai Linux itu sendiri?"
 
 msgid "linux-knowledge-answer-beginner"
-msgstr "I have little or no knowledge about Linux"
+msgstr "Saya hampir atau tidak tahu apapun mengenai Linux"
 
 msgid "linux-knowledge-answer-advanced"
-msgstr "I have already used Linux for some purposes"
+msgstr "Saya sudah menggunakan Linux untuk tujuan tertentu"
 
 msgid "linux-knowledge-answer-professional"
-msgstr "I have a good understanding about the Linux operating system"
+msgstr "Saya memiliki pemahaman yang bagus mengenai sistem operasi Linux"
 
 
 msgid "presets-question"
-msgstr "How many settings do you wish to tweak by yourself during installation? How many configuration variables should be filled with default values?"
+msgstr "Berapa banyak pengaturan yang ingin anda lakukan sendiri selama instalasi? Berapa banyak pengaturan variabel yang harus diisi dengan nilai awal?"
 
 msgid "presets-question-answer-manypresets"
-msgstr "I want to use the default preset values in the installation assistant"
+msgstr "Saya ingin menggunakan pengaturan dengan nilai awal pada bantuan instalasi."
 
 msgid "presets-question-answer-ownselection"
-msgstr "I want to choose the settings by myself"
+msgstr "Saya ingin memilih pengaturan sendiri"
 
 msgid "presets-question-answer-guiselections"
-msgstr "I want to configure as much as possible using graphical applications"
+msgstr "Saya ingin mengatur sebanyak mungkin menggunakan aplikasi grafis"
 
 
 msgid "hardware-question"
-msgstr "It is important to know how old your computer hardware is, since some distributions won't run on old computers."
+msgstr "Penting untuk mengetahui usia perangkat keras komputer anda, karena bebrapa distribusi tidak dapat bekerja pada komputer lama."
 
 msgid "additional-info-hardware"
-msgstr "For years, some distribution were using the 32 bit architecture, which allows to allocate up to 4 gigabytes of memory. Newer distributions tend to ditch the 32 bit in favour of the 64 bit support, which allows to allocate more than 4 gigabytes of memory. Since 2005 nearly all Computers should support 64 bit."
+msgstr "Bertahun-tahun, beberapa distribusi menggunakan arsitektur 32 bit, yang dapat menggunakan hingga 4 GB memori. Distribusi baru cenderung meninggalkan 32 bit untuk dukungan 64 bit, yang dapat menggunakan lebih dari 4 GB memori. Sejak 2005 hampir semua komputer dapat dukungan 64 bit."
 
 msgid "hardware-question-oldpc"
-msgstr "I'm not sure about this and/or my computer already has performance issues and/or only supports 32 bit"
+msgstr "Saya tidak yakin mengenai hal ini dan/atau komputer saya memiliki masalah kinerja dan/atau hanya mendukung 32 bit"
 
 msgid "hardware-question-newpc"
-msgstr "The performance of my computer is good, I don't experience any performance issues, my hardware supports 64 bit"
+msgstr "Kinerja komputer saya baik, saya tidak memiliki masalah kinerja, perangkat keras saya mendukung 64 bit"
 
 
 msgid "help-question"
-msgstr "Some distributions prefer articles in wikis for troubleshooting. What do you prefer?"
+msgstr "Beberapa distribusi lebih menyukai artiker di wiki untuk penyelesaian maslaah. Yang mana yang anda lebih suka?"
 
 msgid "help-question-tutorials"
-msgstr "I am able to solve my problems using guides from wiki pages or tutorials"
+msgstr "Saya dapat menyelesaikan permasalahan menggunakan panduan dari halaman wiki atau tutorial"
 
 msgid "help-question-user-exchange"
-msgstr "I prefer asking others for help"
+msgstr "Saya lebih suka meminta bantuan orang lain"
 
 
 msgid "ux-concept-question"
-msgstr "Linux can use a lot of different User Interfaces (\"Desktops\"). Many distributions ship one desktop as default. It is important to know if you have any preferences for a desktop concept. You can switch and install new desktops at any time!"
+msgstr "Linux dapat menggunakan berbagai tampilan pengguna. Banyak distribusi menyediakan satu desktop awal. Penting untuk mengetahui jika anda memiliki preferensi terhadap konsep desktop. Anda dapat berpindah dan menginstal desktop baru kapanpun!"
 
 msgid "ux-concept-answer-windows-like"
-msgstr "I prefer a windows-like user interface"
+msgstr "Saya suka tampilan antarmuka pengguna seperti windows"
 
 msgid "ux-concept-answer-mac-like"
-msgstr "I prefer a macOS-like user interface"
+msgstr "Saya suka tampilan antarmuka pengguna seperti MacOS"
 
 msgid "ux-concept-tiling"
-msgstr "I prefer a tile-based window appearance"
+msgstr "Saya suka tampilan berbasis tile"
 
 msgid "ux-concept-closed-expierience"
-msgstr "I prefer a closed experience"
+msgstr "Saya suka pengalaman tertutup"
+
 
 msgid "price-question"
-msgstr "Most distributions are free. Some distributions offer additional support for a one-time fee."
+msgstr "Kebanyakan distribusi gratis. Beberapa lagi menawarkan bantuan tambahan dengan sekali pembayaran."
 
 msgid "price-answer-free"
-msgstr "I prefer a free-to-use distribution"
+msgstr "Saya lebih suka distribusi gratis"
 
 msgid "price-answer-paid"
-msgstr "I would be fine to pay a fee"
+msgstr "Saya tidak keberatan untuk membayar"
 
 
 msgid "scope-question"
-msgstr "Different distributions pre-install different amounts of software. Some install a complete suite of basic programs to work \"out of the box\". Other distributions offer only a base install to then let the user install what programs they want to use."
+msgstr "Distribusi berbeda menginstal aplikasi awal yang yang berbeda dengan jumlah yang berbeda juga. Beberapa menginstal program dasar lengkap yang dapat digunakan langsung. Distribusi lain hanya menyediakan instalasi dasar dan membiarkan pengguna menginstal program yang mereka inginkan."
 
 msgid "scope-answer-fullinstall"
-msgstr "I prefer a distribution shipping all the basic programs I need to start working immediately after installation"
+msgstr "Saya lebih suka distribusi yang menyediakan semua program dasar yang saya perlukan agar dapat langsung bekerja setelah instalasi"
 
 msgid "scope-answer-ownselection"
-msgstr "I want to choose the basic programs to install myself"
+msgstr "Saya ingin memilih program yang saya instal sendiri"
 
 
 msgid "ideology-question"
-msgstr "The (license) ideology of a distribution is a contentious debate. There are distributions using mostly \"free-licenses\", others also use \"non-free\" software."
+msgstr "Ideologi lisensi suatu distribusi merupakan debat yang terus menerus. Ada distribusi yang menggunakan \"Lisensi Bebas\", yang lain juga menggunakan perangkat lunak \"tidak bebas\".
 
 msgid "additional-info-ideology"
-msgstr "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute its sourcecode and modifications are not allowed."
+msgstr "Lisensi bebas memungkinkan pengguna untuk mengubah, mendistribusikan ulang, dan menggunakan suatu perangkat lunak untuk tujuan apapun. Ada situasi dimana distribusi harus menggunakan perangkat lunak tidak bebas, contohnya untuk driver perangkat keras. Perangkat lunak tidak bebas tidak mendistribusikan kode sumbernya dan modifikasi tidak diperbolehkan."
 
 msgid "ideology-answer-free"
-msgstr "I want to use free licenses as much as I can"
+msgstr "Saya ingin menggunakan lisensi bebas sebisa mungkin"
+I want to use free licenses as much as I can"
 
 msgid "ideology-answer-proprietary-ok"
-msgstr "I'm fine with non-free licenses as long as my system works"
+msgstr "Saya tidak keberatan dengan lisensi tidak bebas selama sistem saya bekerja"
 
 
 msgid "privacy-question"
-msgstr "Some distributions use online services to improve the user experience. This may affect the privacy of the user, i.e. the user can be tracked when using such online features."
+msgstr "Beberapa distribusi menggunakan layanan online untuk meningkatkan pengalaman pengguna. Hal ini dapat memengaruhi privasi pengguna, contoh: Pengguna dapat dilacak ketika menggunakan fitur online semacam itu."
 
 msgid "privacy-answer-highprivacy"
-msgstr "I do not want this"
+msgstr "Saya tidak menginginkannya"
 
 msgid "privacy-answer-services-ok"
-msgstr "If it improves my user experience, I agree with using such online services"
+msgstr "Jika hal tersebut meningkatkan pengalaman pengguna saya, saya setuju dengan penggunaan layanan online semacam itu"
 
 
 msgid "software-admin-question"
-msgstr "There are many ways to administrate a Linux distribution, e. g. to install software."
+msgstr "Ada banyak cara untuk mengelola distribusi linux, Contoh: menginstal perangkat lunak."
 
 msgid "software-admin-answer-appstore"
-msgstr "I want to install my programs using a kind of \"App store\""
+msgstr "Saya ingin menginstal program menggunakan sesuati seperti \"App store\""
 
 msgid "software-admin-answer-console"
-msgstr "I want to install software mostly using terminal commands"
+msgstr "Saya ingin menginstal aplikasi menggunakan perintah terminal"
 
 
 msgid "special-features-qestion"
-msgstr "Some distributions have additional features for specific purposes. Do I need such features?"
+msgstr "Beberapa distribusi mempunyai fitur tambahan untuk tujuan tertentu. Apa anda memerlukan fitur semacam itu?"
 
 msgid "additional-info-special-features-qestion"
-msgstr "Many distributions use 'systemd' to start the operating system itself. Some distributions avoid systemd in favor of alternative and sometimes more lightweight solutions"
+msgstr "Banyak distribusi menggunakan 'systemd' untuk menjalankan sistem operasi itu sendiri. Beberapa distribusi menghindarinya demi alternatif yang dapat menjadi solusi lebih ringan"
 
 msgid "answer-isolation"
-msgstr "Applications should be executed in a isolated environment by default"
+msgstr "Aplikasi harus dijalankan pada lingkup terisolasi dari awal"
 
 
 msgid "software-updates-question"
-msgstr "Some distributions offer faster updates, which can affect system stability. What do you prefer?"
+msgstr "Beberapa distribusi menawarkan pembaruan yang cepat, yang dapat memengaruhi kestabilan sistem. Yang mana yang anda lebih suka?"
 
 msgid "software-updates-answer-fast"
-msgstr "I prefer fast updates"
+msgstr "Saya ingin pembaruan yang cepat"
 
 msgid "software-updates-answer-slow"
-msgstr "I prefer stable updates"
+msgstr "Saya ingin pembaruan yang stabil"
 
 msgid "answer-avoid-systemd"
-msgstr "I want to avoid systemd"
+msgstr "Saya ingin menghindari systemd"
 
 msgid "result-submitted-hint"
 msgstr "Calculating result"
@@ -715,61 +717,61 @@ msgid "matrix-knoppix-adriane"
 msgstr "The ADRIANE project offers tools and solutions for visually impaired people"
 
 msgid "matrix-has-software-for-blind"
-msgstr "Software for visually impaired people are installable (e. g. 'Orca')"
+msgstr "Perangkat lunak untuk orang dengan masalah pengelihatan dapat diinstal (contoh: Orca)"
 
 msgid "source"
-msgstr "Image source"
+msgstr "Sumber gambar"
 
 msgid "description-void"
-msgstr "Void Linux is a rolling release distribution without systemd"
+msgstr "Void Linux distribusi rilis bergilir tanpa systemd"
 
 msgid "skip-question"
-msgstr "skip question"
+msgstr "lewatkan pertanyaan"
 
 msgid "description-nixos"
-msgstr "NixOS uses the Nix package manager. It uses declarative configuration and allows reliable system upgrades."
+msgstr "NixOS menggunakan Nix Package Manager. NixOS menggunakan pengaturan deklaratif dan memungkinkan pembaruan sistem yang handal."
 
 msgid "reasons-hide"
-msgstr "Hide reasons"
+msgstr "Sembunyikan alasan"
 
 msgid "description-artix"
-msgstr "Artix is an Arch Linux based distribution which can use several init systems besides systemd, for example OpenRC"
+msgstr "Artix adalah distribusi berbasis Arch Linux yang dapat menggunakan berbagai macam sistem init selain systemd, contohnya OpenRC"
 
 msgid "link-copied"
-msgstr "Pasted to clipboard"
+msgstr "Disalin ke clipboard"
 
 msgid "remark-placeholder-saving"
-msgstr "The text will be saved automatically"
+msgstr "Teks akan disimpan otomatis"
 
 msgid "slow-release-model"
-msgstr "Available software versions may be older than latest version from vendor"
+msgstr "Versi perangkat lunak yang tersedia lebih tertinggal daripada versi terbaru dari vendor"
 
 msgid "requires-payment"
-msgstr "Long term usage requires payment"
+msgstr "Penggunaan jangka panjang berbayar"
 
 msgid "github-link"
 msgstr "GitHub"
 
 msgid "visually-impaired-mode"
-msgstr "Mode for people with visual impairments"
+msgstr "Mode untuk orang-orang dengan masalah pengelihatan"
 
 msgid "like"
-msgstr "I like this"
+msgstr "Saya suka ini"
 
 msgid "dislike"
-msgstr "I don't like this"
+msgstr "Saya tidak suka ini"
 
 msgid "language"
-msgstr "language"
+msgstr "Bahasa"
 
 msgid "description-deepin"
-msgstr "Deepin is a chinese, Debian based Distribution offering an own desktop called Deepin Desktop Environment."
+msgstr "Deepin adalah Distribusi berbasis Debian dari Tiongkok yang menawarkan desktop tersendiri, yaitu Deepin Desktop Environment."
 
 msgid "matrix-general-remark-additional-eula"
-msgstr "The privacy policy of the distribution should be read carefully during installation"
+msgstr "Kebijakan privasi distribusi harus dicermati selama instalasi"
 
 msgid "distributions-hidden"
-msgstr "# Ergebnisse wurden aufgrund geringer Übereinstimmung ausgeblendet. Klicken Sie hier, um alle Distributionen anzuzeigen."
+msgstr "# Hasil disembunyikan karena persetujuan yang buruk. Klik di sini untuk melihat semua distribusi."
 
 msgid "display-options"
-msgstr "You can change the display of your results here"    
+msgstr "Anda dapat mengubah tampilan hasil anda di sini"
