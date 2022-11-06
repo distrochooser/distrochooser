@@ -134,10 +134,10 @@ msgid "about-licenses"
 msgstr "Distrochooser memiliki lisensi ganda."
 
 msgid "privacy-header"
-msgstr "Datenschutzerklärung"
+msgstr "Perlindungan data"
 
 msgid "imprint-header"
-msgstr "Impressum"
+msgstr "Imprint"
 
 msgid "about-licenses-source"
 msgstr "Source code"
@@ -350,73 +350,73 @@ msgstr "Calculating result"
 
 
 msgid "reason-header-hint"
-msgstr "Click on the distribution name to see detailed reasons for this recommendation"
+msgstr "Klik pada nama distribusi untuk melihat rincian rekomendasi."
 
 msgid "reason-list-header"
-msgstr "Reason for/ against"
+msgstr "Alasan pro/ kontra"
 
 msgid "answer-is-blocking"
 msgstr "Following answers are excluding this answer"
 
 msgid "answer-is-blocked"
-msgstr "This answer contradicts this former answer you have given"
+msgstr "Jawaban ini bertentangan dengan jawaban yang sebelumnya telah diberikan"
 
 msgid "reason-blocked-by-others-entry"
-msgstr "\"{0}\" disagrees \"{1}\""
+msgstr "\"{0}\" bertentangan dengan \"{1}\""
 
 msgid "additional-infos"
-msgstr "give me additional information!"
+msgstr "Berikan saya informasi lebih!"
 
 msgid "make-important"
-msgstr "This is important!"
+msgstr "Ini penting!"
 
 msgid "marked-as-important"
-msgstr "Marked as important"
+msgstr "Tandai sebagai penting"
 
 msgid "remove-important"
-msgstr "Remove importance"
+msgstr "Cabut tanda penting"
 
 msgid "reason-list-header-negative"
-msgstr "We cannot recommend this distribution for you because:"
+msgstr "Kami tidak dapat merekomendasikan distribusi ini karena:"
 
 msgid "reason-list-header-neutral"
-msgstr "The following criteria were not factored into this"
+msgstr "Kriteria berikut tidak dipertimbangkan"
 
 msgid "reason-list-header-blocked-by-others"
 msgstr "This answer is blocked by other answers you have given"
 
 msgid "matrix-supports-daily-usage"
-msgstr "Suitable for daily use"
+msgstr "Cocok untuk penggunaan sehari-hari"
 
 msgid "matrix-privacy-not-beneficial"
-msgstr "Distribution concept is not beneficial for anonymisation purposes"
+msgstr "Konsep distribusi ini tidak menguntungkan untuk keperluan anonim"
 
 msgid "matrix-supports-gaming-usage"
-msgstr "Distribution is actively supported by game publishers"
+msgstr "Distribusi ini didukung oleh penerbit game"
 
 msgid "matrix-beginner-knowledge"
-msgstr "Suitable for beginners"
+msgstr "Cocok untuk para pemula"
 
 msgid "matrix-advanced-knowledge"
-msgstr "Suitable for advanced users"
+msgstr "Cocok untuk para pengguna handal"
 
 msgid "matrix-professional-knowledge"
-msgstr "Suitable for professionals"
+msgstr "Cocok untuk kalangan profesional"
 
 msgid "matrix-linux-knowledge-higher"
-msgstr "Usage requires less Linux knowledge than answered"
+msgstr "Penggunaan memerlukan pengetahuan Linux lebih sedikit dari yang telah dijawab"
 
 msgid "matrix-computer-knowledge-higher"
-msgstr "Usage requires less computer knowledge than answered"
+msgstr "Penggunaan memerlukan pengetahuan komputer lebih sedikit dari yang telah dijawab"
 
 msgid "matrix-linux-beginner"
-msgstr "Suitable for beginners in Linux"
+msgstr "Cocok untuk para pemula dalam Linux"
 
 msgid "matrix-installation-presets-always-given"
-msgstr "The installation sets presets which may need to be reset after install"
+msgstr "Distribusi ini memiliki pengaturan awal yang perlu diulang setelah instalasi"
 
 msgid "matrix-installation-presets-gui"
-msgstr "Many settings can be done via a graphical interface"
+msgstr "Banyak pengaturan yang dapat dilakukan dengan tampilan antarmuka grafis"
 
 msgid "matrix-installation-assistant-present"
 msgstr "The installation uses a installation 'wizard' with default settings"
@@ -518,10 +518,10 @@ msgid "matrix-avoids-systemd"
 msgstr "Avoids systemd"
 
 msgid "matrix-uses-systemd"
-msgstr "uses systemd"
+msgstr "Menggunakan systemd"
 
 msgid "built-for-anonymization"
-msgstr "Build for anonymisation purposes"
+msgstr "Dibuat untuk keperluan anonim"
 
 msgid "matrix-administration-shell"
 msgstr "Administration is mostly done by using shell commands"
@@ -557,138 +557,138 @@ msgid "matrix-packages-available"
 msgstr "Programs for anonymisation purposes are available"
 
 msgid "matrix-packages-may-too-old-gaming"
-msgstr "Programs versions may not be up-to-date enough for gaming"
+msgstr "Versi program kurang terkini untuk game"
 
 msgid "matrix-gaming-may-require-additional-configuration"
-msgstr "May require additional configuration for gaming"
+msgstr "Memerlukan pengaturan tambahan untuk game"
 
 msgid "matrix-built-for-enterprise"
-msgstr "Primary goal is enterprise usage"
+msgstr "Tujuan utama adalah kebutuhan perusahaan"
 
 msgid "matrix-not-built-for-gaming"
-msgstr "Not optimized for gaming"
+msgstr "Tidak teroptimisasi untuk game"
 
 msgid "requires-some-computer-knowledge"
-msgstr "Requires further knowledge about computers"
+msgstr "Memerlukan pengetahuan komputer yang lebih"
 
 msgid "matrix-maybe-not-for-beginner"
-msgstr "Not suitable for beginners"
+msgstr "Tidak cocok untuk pemula"
 
 msgid "matrix-installation-from-shell"
-msgstr "Installation is done using the terminal"
+msgstr "Instalasi dilakukan menggunakan terminal"
 
 msgid "matrix-installs-range-of-programs"
-msgstr "Installs a range of programs by default"
+msgstr "Menginstal banyak program dari awal"
 
 msgid "matrix-configuration-from-shell"
-msgstr "Majority of configuration is done using shell commands"
+msgstr "Sebagian pengaturan dilakukan melalui shell command"
 
 msgid "matrix-middleweight"
-msgstr "Is a middleweight system, especially suitable for semi-recent computers"
+msgstr "Merupakan sistem menengah, yang cocok umtuk komputer yang agak lama"
 
 msgid "matrix-has-high-range-hardware-support"
-msgstr "Supports a wide range of hardware"
+msgstr "Memiliki dukungan perangkat keras yang luas"
 
 msgid "matrix-has-zorin-lite-version"
-msgstr "Has a 'Zorin Lite' version for older computers"
+msgstr "Memiliki versi 'Zorin Lite' untuk komputer lama"
 
 msgid "matrix-has-windows-like-variant-cinnamon"
-msgstr "A variant ships the 'cinnamon' desktop environment, which has a Windows-like appearance"
+msgstr "Ada varian yang menyediakan 'cinnamon' desktop environment, yang memiliki tampilan seperti windows"
 
 msgid "systemd-is-avoidable-per-selection"
-msgstr "Systemd can be avoided per user selection"
+msgstr "Systemd dapat dihindari jika pengguna menginginkannya"
 
 msgid "matrix-ships-systemd-but-disabled"
-msgstr "Systemd is shipped, but disabled by default"
+msgstr "Menyediakan systemd, tetapi perlu diaktifkan untuk digunakan"
 
 msgid "matrix-supports-privacy"
-msgstr "Only collects data when online services are used"
+msgstr "Hanya mengumpulkan data ketika layanan online digunakan"
 
 msgid "matrix-lightweight"
-msgstr "Lightweight distribution"
+msgstr "Distribusi ringan"
 
 msgid "matrix-free-userselection"
-msgstr "Usage of free software depends on user selection"
+msgstr "Penggunaan perangkat lunak bebas bergantung pada pilihan pengguna"
 
 # distribution descriptions
 
 msgid "description-manjaro"
-msgstr "Manjaro is a rolling release distribution focused on user friendliness"
+msgstr "Manjaro adalah distribusi rilis bergirir yang berfokus pada kemudahan pengguna"
 
 msgid "description-ubuntu"
-msgstr "Ubuntu is a Distribution build by the company Canonical"
+msgstr "Ubuntu adalah distribusi yang dibuat oleh perusahaan Canonical"
 
 msgid "description-mint"
-msgstr "Linux Mint is a Ubuntu based distribution with pre-installed proprietary components, such as multimedia codecs."
+msgstr "Linux Mint adalah distribusi turunan Ubuntu dengan komponen yang memiliki hak milik seperti codec multimedia."
 
 msgid "description-solus"
-msgstr "Solus OS is a rolling release distribution which started as a Chrome OS clone"
+msgstr "Solus OS adalah distribusi rilis bergilir yang bermula sebagai tiruan Chrome OS"
 
 msgid "description-arch"
-msgstr "Arch is a rolling release distribution based on the KISS principle"
+msgstr "Arch adalah distribusi rilis bergilir berdasarkan prinsip KISS"
 
 msgid "description-debian"
-msgstr "Debian is a distribution with high focus on stability"
+msgstr "Debian adalah distribusi dengan fokus utama pada kestabilan"
 
 msgid "description-tails"
-msgstr "Anonymisation is the main focus of Tails, which can be used from USB or optical discs"
+msgstr "Anonimisasi adalah tujuan utama dari Tails, yang dapat digunakan dari USB atau kaset"
 
 msgid "description-devuan"
-msgstr "Devuan is a Debian clone without usage of the systemd toolkit"
+msgstr "Devuan adalah tiruan Debian tanpa penggunaan systemd"
 
 msgid "description-opensuse"
-msgstr "openSUSE aims to deliver a stable and user-friendly distribution, mostly for end users"
+msgstr "openSUSE bertujuan untuk mengantarkan distribusi yang stabil dan ramah pengguna"
 
 msgid "description-pclinuxos"
-msgstr "PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface."
+msgstr "PCLinuxOS adalah distribusi berbasis Mandrake berfokus pada antarmuka yang ramah pengguna."
 
 msgid "description-rhel"
-msgstr "Red Hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution"
+msgstr "Red Hat Enterprise Linux (RHEL) adalah distribusi yang berfokus pada perusahaan dan kestabilan"
 
 msgid "description-rocky"
-msgstr "Rocky Linux is a open source distribution targeted to be 100% compatible with Red Hat Enterprise Linux (RHEL)"
+msgstr "Rocky Linux adalah distribusi sumber terbuka yang menargetkan kompatibilitas total dengan Red Hat Enterprise Linux (RHEL)"
 
 msgid "description-xubuntu"
-msgstr "Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment"
+msgstr "Xubuntu adalah distribusi berbasis Ubuntu dengan XFCE terinstall sejak awal"
 
 msgid "description-lubuntu"
-msgstr "Lubuntu is an Ubuntu-based distribution powered by the lightweight LXQt  desktop environment"
+msgstr "Lubuntu adalah distribusi berbasis Ubuntu dengan LXQt terinstall sejak awal"
 
 msgid "description-ubuntumate"
-msgstr "Ubuntu MATE is an Ubuntu-based distribution powered by the lightweight MATE desktop environment"
+msgstr "Ubuntu MATE adalah distribusi berbasis Ubuntu dengan MATE terinstall sejak awal"
 
 msgid "description-popos"
-msgstr "Pop!_OS is an Ubuntu-based distribution powered by the GNOME desktop environment customized from System76"
+msgstr "Pop!_OS adalah distribusi turunan Ubuntu dengan GNOME yang telah dimodifikasi oleh System76"
 
 msgid "description-fedora"
-msgstr "Fedora is a Red Hat backed distribution with a large focus on free software"
+msgstr "Fedora adalah distribusi yang disokong Red Hat dengan fokus pada perangkat lunak bebas"
 
 msgid "description-qubeos"
-msgstr "Qubes OS isolates applications using virtual machines to improve security"
+msgstr "Qubes OS mengisolasi aplikasi menggunakan virtual machine untuk meningkatkan keamanan"
 
 msgid "description-gentoo"
-msgstr "Gentoo is a flexible distribution for advanced users"
+msgstr "Gentoo adalah distribusi yang fleksibel untuk pengguna handal"
 
 msgid "description-mxlinux"
-msgstr "MX Linux is a middleweight resource usage distribution with focus on a efficient and elegant daily usage."
+msgstr "MX Linux adalah distribusi dengan beban menengah berfokus pada penggunaan sehari-hari yang efisien dan elegan"
 
 msgid "description-fedora"
-msgstr "Fedora is a distribution with focus on free software. Fedora is released without a long term support, shipping a new version every 6 months."
+msgstr "Fedora adalah distribusi dengan fokus perangkat lunak bebas. Fedora dirilis tanpa dukungan jangka panjang, yang rilis setiap 6 bulan sekali."
 
 msgid "description-knoppix"
-msgstr "Knoppix is a live-mode focused operating system with a wide range of hardware support"
+msgstr "Knoppix adalah sistem operasi live mode dengan dukungan perangkat keras yang luas"
 
 msgid "description-cruxlinux"
-msgstr "Crux Linux is a lightweight 64 bit focused operating system with recent tools and libraries"
+msgstr "Crux Linux adalah distribusi 64 bit yang ringan dengan alat dan library terbaru"
 
 msgid "description-zorinos"
-msgstr "Zorin OS is a beginner focused distribution with a windows-like user interface"
+msgstr "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows"
 
 msgid "description-elementaryos"
-msgstr "elementary OS is a ubuntu-based distribution, focused on an elegant and fast user experience"
+msgstr "elementary OS adalah distribusi turunan ubuntu, berfokus pada pengalaman pengguna yang cepat dan elegan"
 
 msgid "description-kubuntu"
-msgstr "Kubuntu is an ubuntu-based distribution with a pre-installed KDE as a desktop"
+msgstr "Kubuntu adalah distribusi berbasis Ubuntu dengan KDE terinstall sejak awal"
 
 msgid "locale-en"
 msgstr "english"
@@ -699,22 +699,22 @@ msgstr "deutsch"
 # update pack 26th december 2019
 
 msgid "debian-updates-slow"
-msgstr "Debian updates are usually slow in favor of stability"
+msgstr "Pembaruan Debian cenderung lambat demu kestabilan"
 
 msgid "description-qubesos"
-msgstr "Qubes OS executes processes in virtual machines in favor of security"
+msgstr "Qubes OS menjalankan proses dalam virtual machine demi keamanan"
 
 msgid "software-use-case-isolation"
-msgstr "I want to execute all programs in an isolated area"
+msgstr "Saya ingin menjalankan semua program pada lingkngan terisolasi"
 
 msgid "matrix-runs-in-isolation"
-msgstr "Software execution happens in isolated environments"
+msgstr "Perangkat lunak dijalankan pada lingkungan terisolasi"
 
 msgid "software-use-case-blind"
-msgstr "The user is visually impaired"
+msgstr "Pengguna memiliki masalah pengelihatan"
 
 msgid "matrix-knoppix-adriane"
-msgstr "The ADRIANE project offers tools and solutions for visually impaired people"
+msgstr "Proyek ADRIANE menawarkan alat dan solusi untuk orang-orang dengan kendala visual."
 
 msgid "matrix-has-software-for-blind"
 msgstr "Perangkat lunak untuk orang dengan masalah pengelihatan dapat diinstal (contoh: Orca)"
