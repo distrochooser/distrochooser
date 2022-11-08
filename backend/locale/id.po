@@ -419,103 +419,103 @@ msgid "matrix-installation-presets-gui"
 msgstr "Banyak pengaturan yang dapat dilakukan dengan tampilan antarmuka grafis"
 
 msgid "matrix-installation-assistant-present"
-msgstr "The installation uses a installation 'wizard' with default settings"
+msgstr "Instalasi menggunakan 'wizard' dengan setelan awal"
 
 msgid "matrix-hardware-oldpc-ubuntu"
-msgstr "You may encounter window compositor effect lags. It may be necessary to disable animations."
+msgstr "Anda mungkin akan menemui masalah lag pada kompositor window. Anda perlu mematikan animasi."
 
 msgid "matrix-hardware-newpc"
-msgstr "Runs on latest hardware"
+msgstr "Mampu bekerja pada perangkat keras terbaru"
 
 msgid "matrix-user-exchange"
-msgstr "There are user communities for knowledge sharing"
+msgstr "Mempunyai komunitas pengguna untuk berbagi pengetahuan"
 
 msgid "matrix-tutorial"
-msgstr "There are tutorials for troubleshooting and problem-solving"
+msgstr "Ada tutorial untuk mencari dan menyelesaikan masalah"
 
 msgid "matrix-mac-like"
-msgstr "GUI concept has elements of macOS"
+msgstr "Konsep GUI seperti macOS"
 
 msgid "matrix-windows-like-not-fullfilled"
-msgstr "GUI concept differs from Windows a lot"
+msgstr "Konsep GUI sangat jauh dari Windows"
 
 msgid "matrix-closed-expierience"
-msgstr "Has own wallpapers, icons and themes"
+msgstr "Mempunyai wallpaper, ikon, dan tema tersendiri"
 
 msgid "matrix-has-windows-like-variant"
-msgstr "Has variants with a windows-like user interface"
+msgstr "Mempunyai varian dengan tampilan seperti Windows"
 
 msgid "matrix-paid-version-existing"
-msgstr "There is a non-free version of this distribution"
+msgstr "Distribusi ini memiliki versi yang tidak bebas"
 
 msgid "matrix-gaming-packages-stable-but-old"
-msgstr "Software versions may not be recent enough for gaming"
+msgstr "Versi perangkat lunak kurang cukup baru untuk game"
 
 msgid "matrix-has-live-mode"
-msgstr "Has a live mode which allows starting from disc"
+msgstr "Mempunyai mode live yang memungkinkan untuk dijalankan menggunakan kaset"
 
 msgid "live-mode-only"
-msgstr "Has Live Mode: Can be started using discs or usb sticks to test it out (before installing)"
+msgstr "Mempunyai Mode Live: Dapat dijalankan menggunakan kaset atau USB Flash Drive agar dapat dicoba sebelum diinstall"
 
 msgid "matrix-without-fee"
-msgstr "Usable without fee"
+msgstr "Dapat digunakan tanpa membayar"
 
 msgid "matrix-paid"
-msgstr "There is a fee-based version of this distribution"
+msgstr "Distribusi ini memiliki versi berbayar"
 
 msgid "matrix-fullinstall"
-msgstr "Installs all needed programs"
+msgstr "Menginstall semua program yang diperlukan"
 
 msgid "matrix-ownscope-install"
-msgstr "All programs to be used must be chosen by yourself"
+msgstr "Semua program yang digunakan harus dipilih sendiri"
 
 msgid "matrix-free-software-unfree-per-default"
-msgstr "Closed source programs are installed by default"
+msgstr "Aplikasi sumber tertutup terinstall dari awal"
 
 msgid "matrix-enforces-free"
-msgstr "Enforces usage of free software"
+msgstr "Menegakkan penggunaan perangkat lunak bebas"
 
 msgid "matrix-mostly-free"
-msgstr "Works mostly with free software"
+msgstr "Sebagian besarnya adalah perangkat lunak bebas"
 
 msgid "matrix-has-default-settings"
-msgstr "Has default settings"
+msgstr "Mempunyai setelan awal"
 
 msgid "matrix-privacy-ok"
-msgstr "Beneficial for user privacy"
+msgstr "Menguntungkan privasi pengguna"
 
 msgid "matrix-privacy-thirdparty"
-msgstr "Connects to third party services by default"
+msgstr "Terhubung ke layanan pihak ketiga dari awal"
 
 msgid "matrix-appstore"
-msgstr "Software installation can be done using an app store"
+msgstr "Instalasi perangkat lunak dapat dilakukan melalui sebuah pusat aplikasi"
 
 msgid "matrix-console"
-msgstr "Software installation can be done using the terminal"
+msgstr "Instalasi perangkat lunak dapat dilakukan melalui terminal"
 
 msgid "matrix-stable-updates"
-msgstr "Updates are mostly stable when published"
+msgstr "Pembaruan stabil ketika rilis"
 
 msgid "matrix-fast-updates"
-msgstr "Software updates are released as fast as possible, which makes them unstable"
+msgstr "Pembaruan perangakt lunak dirilis dengan cepat, yang dapat menyebabkan sistem kurang stabil"
 
 msgid "matrix-has-control-panel"
-msgstr "Contains a pre-installed control center"
+msgstr "Memiliki pusat kontrol terinstall dari awal"
 
 msgid "matrix-user-selection-affects-privacy"
-msgstr "User has to select the software to use"
+msgstr "Pengguna harus memilih perangkat lunak yang digunakan"
 
 msgid "matrix-selection-by-user"
-msgstr "Scope of pre-installed programs is decided by user"
+msgstr "Cakupan program yang terinstall dari awal ditentukan pengguna"
 
 msgid "matrix-updates-fast"
-msgstr "Updates are fast, but can be unstable"
+msgstr "Pembaruan cepat, tapi kurang stabil"
 
 msgid "matrix-not-for-beginner"
-msgstr "Not suitable for beginners"
+msgstr "Tidak cocok untuk pemula"
 
 msgid "matrix-avoids-systemd"
-msgstr "Avoids systemd"
+msgstr "Menghindari systemd"
 
 msgid "matrix-uses-systemd"
 msgstr "Menggunakan systemd"
@@ -524,22 +524,22 @@ msgid "built-for-anonymization"
 msgstr "Dibuat untuk keperluan anonim"
 
 msgid "matrix-administration-shell"
-msgstr "Administration is mostly done by using shell commands"
+msgstr "Administrasi dilakukan melalui perintah shell"
 
 msgid "matrix-oldpc-no-32bit"
-msgstr "Does not support old computers without 64 bit support"
+msgstr "Tidak mendukung komputer yang tidak memiliki dukungan 64 bit"
 
 msgid "matrix-requires-manual"
-msgstr "Requires reading of manuals and tutorials"
+msgstr "Perlu membaca panduan dan tutorial"
 
 msgid "matrix-requires-advanced-knowledge"
-msgstr "Requires reading up in manuals for usage"
+msgstr "Perlu membaca panduan untuk penggunaan"
 
 msgid "matrix-isolation-default"
-msgstr "Has a isolation concept by default"
+msgstr "Konsep isolasi tersedia dari awal"
 
 msgid "matrix-oldpc-supported"
-msgstr "Supports even older computers"
+msgstr "Mendukung komputer lama"
 
 msgid "checked-criteria-count"
 msgstr "aspects checked"
@@ -548,13 +548,13 @@ msgid "searching-criteria"
 msgstr "processing the criteria library"
 
 msgid "daily-usage-possibly-difficult"
-msgstr "Daily usage may result in major difficulties"
+msgstr "Penggunaan sehari-hari dapat mengalami kesulitan"
 
 msgid "matrix-supports-daily-usage-but-built-for-livemode"
-msgstr "Can be used for daily work, but is built for live-mode"
+msgstr "Dapat digunakan untuk penggunaan sehari-hari, tetapi didesain untuk mode live"
 
 msgid "matrix-packages-available"
-msgstr "Programs for anonymisation purposes are available"
+msgstr "Program untuk anonimisasi tersedia"
 
 msgid "matrix-packages-may-too-old-gaming"
 msgstr "Versi program kurang terkini untuk game"
