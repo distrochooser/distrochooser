@@ -33,7 +33,7 @@ Use this file as the boilerplate for your translation.
 
 The file names in `backend/locale` are following the [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard, wich means they are two letter codes.
 
-E. g. if you want to create a greece translation, use the filename `gr.po`.
+E. g. if you want to create a greek translation, use the filename `gr.po`.
 
 The files are structured in key:value pairs, marked  with `msgid` (the key) and `msgstr` (the value).
 
