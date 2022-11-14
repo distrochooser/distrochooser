@@ -297,7 +297,6 @@ msgstr "Lisensi bebas memungkinkan pengguna untuk mengubah, mendistribusikan ula
 
 msgid "ideology-answer-free"
 msgstr "Saya ingin menggunakan lisensi bebas sebisa mungkin"
-I want to use free licenses as much as I can"
 
 msgid "ideology-answer-proprietary-ok"
 msgstr "Saya tidak keberatan dengan lisensi tidak bebas selama sistem saya bekerja"
