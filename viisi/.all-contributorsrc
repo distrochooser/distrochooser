@@ -282,6 +282,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "FKAgony",
+      "name": "Agony",
+      "avatar_url": "https://avatars.githubusercontent.com/u/117533462?v=4",
+      "profile": "https://github.com/FKAgony",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
