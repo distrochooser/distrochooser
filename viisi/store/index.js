@@ -32,6 +32,7 @@ const indexStore = new Vapi({
       tr: 'Türkçe',
       'pt-br': 'português brasileiro',
       id: 'bahasa Indonesia',
+      gr: "ελληνική γλώσσα"
     },
     voteResult: null,
     remarksAdded: false,
