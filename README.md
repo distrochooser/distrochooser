@@ -1,5 +1,6 @@
 ## distrochooser
 
+
 <img src="https://distrochooser.de/logo.min.svg" width="50%" >
 
 [![](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/vuejs/awesome-vue)
@@ -59,6 +60,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/fbp110"><img src="https://avatars.githubusercontent.com/u/96155179?v=4?s=100" width="100px;" alt=""/><br /><sub><b>fbp110</b></sub></a><br /><a href="#translation-fbp110" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/zephyroths"><img src="https://avatars.githubusercontent.com/u/19946761?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zephyroths</b></sub></a><br /><a href="#translation-zephyroths" title="Translation">🌍</a></td>
   </tr>
 </table>
 
