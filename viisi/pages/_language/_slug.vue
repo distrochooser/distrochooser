@@ -156,6 +156,7 @@ export default {
       "ru": "Distrochooser поможет вам найти подходящий дистрибутив Linux в соответствии с вашими потребностями!",
       "tr": "Distrochooser, ihtiyaçlarınıza göre uygun Linux dağıtımını bulmanıza yardımcı olur!",
       "vn": "Distrochooser giúp bạn tìm bản phân phối Linux phù hợp dựa trên nhu cầu của bạn!",
+      "id": "Distrochooser membantu Anda menemukan distribusi Linux yang sesuai dengan kebutuhan Anda!",
       "zh-hans":"Distrochooser 可帮助您根据需要找到合适的 Linux 发行版！",
       "zh-hant":"Distrochooser可以帮助你根据你的需要找到合适的Linux发行版"
     }

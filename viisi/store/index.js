@@ -30,7 +30,8 @@ const indexStore = new Vapi({
       es: 'español',
       fi: 'suomalainen',
       tr: 'Türkçe',
-      'pt-br': 'português brasileiro'
+      'pt-br': 'português brasileiro',
+      id: 'bahasa Indonesia',
     },
     voteResult: null,
     remarksAdded: false,
