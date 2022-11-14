@@ -1,0 +1,777 @@
+msgid "loading"
+msgstr "loading"
+
+msgid "imprint"
+msgstr "imprint"
+
+msgid "privacy"
+msgstr "privasi"
+
+msgid "about"
+msgstr "mengenai proyek ini"
+
+msgid "question-is-multiplechoice"
+msgstr "Anda boleh memilih lebih dari satu jawaban"
+
+msgid "vendor-text"
+msgstr "Sebuah proyek oleh chmr.eu"
+
+msgid "get-result"
+msgstr "Dapatkan hasil"
+
+msgid "category-welcome"
+msgstr "Selamat datang!"
+
+msgid "software-use-case"
+msgstr "Software: Use case"
+
+msgid "computer-knowledge-category"
+msgstr "Pengetahuan Komputer"
+
+msgid "linux-knowledge-category"
+msgstr "Linux dan Anda"
+
+msgid "presets-category"
+msgstr "Instalasi: Pengaturan awal"
+
+msgid "hardware-category"
+msgstr "Dukungan perangkat keras"
+
+msgid "help-category"
+msgstr "Sumber bantuan"
+
+msgid "ux-concept-category"
+msgstr "Pengalaman pengguna"
+
+msgid "price-category"
+msgstr "Distribusi: Harga"
+
+msgid "scope-category"
+msgstr "Distribusi: Cakupan"
+
+msgid "ideology-category"
+msgstr "Distribusi: Ideologi"
+
+msgid "privacy-category"
+msgstr "Distribusi: Privasi"
+
+msgid "software-admin-category"
+msgstr "Administrasi"
+
+msgid "software-updates-category"
+msgstr "Perangkat Lunak: Pembaruan"
+
+msgid "special-features-category"
+msgstr "Perangkat Lunak: Fitur khusus"
+
+msgid "recommendation-category"
+msgstr "Tunjukan hasil"
+
+msgid "welcome-text-title"
+msgstr "Selamat datang di distrochooser.de!"
+
+msgid "welcome-text"
+msgstr "Selamat datang! Tes ini akan membantu anda memilih distribusi Linux yang cocok untuk anda."
+
+msgid "welcome-text-skip"
+msgstr "Anda selalu dapat melewatkan pertanyaan"
+
+msgid "welcome-text-result-get"
+msgstr "Anda selalu dapat mengklik pada 'rekomendasi anda' untuk menerima hasil"
+
+msgid "welcome-text-order"
+msgstr "Anda dapat menjawab dengan urutan yang anda inginkan"
+
+msgid "welcome-text-additional-infos"
+msgstr "Anda dapat menerima informasi tambahan menggunakan ikon tanda tanya"
+
+msgid "welcome-text-remove"
+msgstr "Anda dapat menghapus jawaban kapan pun"
+
+msgid "welcome-text-feedback"
+msgstr "Tolong berikan penilaian terhadap hasil yang anda terima, berdasarkan kecocokannya dalam memenuhi kebutuhan anda."
+
+msgid "welcome-text-importance"
+msgstr "Tandai jawaban penting untuk menambah bobotnya"
+
+msgid "locale-link-en"
+msgstr "This text is available in english"
+
+msgid "locale-link-de"
+msgstr "Dieser Test steht auch in Deutsch zur Verfügung"
+
+msgid "welcome-text-a11y"
+msgstr "Untuk melakukan teks dalam mode untuk orang dengan masalah pengelihatan, klik di sini (Halaman akan diperbarui)."
+
+msgid "start-test"
+msgstr "Mulai tes"
+
+msgid "prev-question"
+msgstr "Kembali"
+
+msgid "next-question"
+msgstr "Lanjut"
+
+msgid "no-results"
+msgstr "Maaf, saya tidak tahu"
+
+msgid "about-header"
+msgstr "Tentang distrochooser.de"
+
+msgid "vote-reminder"
+msgstr "Anda suka distribusi ini? Berikan hati!"
+
+msgid "vote-reminder-negative"
+msgstr "Anda tidak suka distribusi ini? Acungkan jempol ke bawah!"
+
+msgid "about-intro-text"
+msgstr "distrochooser.de mencoba untuk membantu pemula Linux untuk memilih distribusi Linux yang sesuai kebutuhan mereka.<br>Hasil yang diberikan adalah saran berdasarkan jawaban anda. Terkadang hasil yang didapat tidak begitu sesuai, karena hubungan jawaban yang kompleks."
+
+msgid "about-intro-test-count"
+msgstr "Sejak the 14 Juni 2014 distrochooser.de telah mengolah %tests% tests."
+
+msgid "about-licenses"
+msgstr "Distrochooser memiliki lisensi ganda."
+
+msgid "privacy-header"
+msgstr "Perlindungan data"
+
+msgid "imprint-header"
+msgstr "Imprint"
+
+msgid "about-licenses-source"
+msgstr "Source code"
+
+msgid "about-licenses-source-text"
+msgstr "Source code dilisensi dibawah lisensi yang tertulis pada file 'LICENSE', yang terletak pada tautan repositori."
+
+msgid "about-licenses-database"
+msgstr "Database"
+
+msgid "about-licenses-database-text"
+msgstr "The underlying data, including the question/answer structure, the result matrix and statistics, are proprietary. You may use them only with our prior permission. The description texts and logos of the various distributions are subject to the licences of the respective copyright holders."
+
+msgid "no-results-text"
+msgstr "Distrochooser tidak dapat menemukan hasil yang cocok berdasarkan jawaban anda. Akan sangat membantu jika anda berkenan memberikan kritik dan saran, agar kami dapat mencari tahu."
+
+msgid "close-additional-info"
+msgstr "Tutup"
+
+msgid "no-answers"
+msgstr "Anda tidak memberikan jawaban."
+
+msgid "get-my-result"
+msgstr "Tunjukan hasil."
+
+msgid "additional-info"
+msgstr "Informasi tambahan"
+
+msgid "remark-placeholder"
+msgstr "Kritik dan saran (maksimal 3000 karakter)"
+
+msgid "distribution-homepage"
+msgstr "Beranda distribusi"
+
+msgid "result-remarks-added"
+msgstr "Terima kasih atas kritik dan sarannya!"
+
+msgid "share-result"
+msgstr "Bagikan hasil saya"
+
+msgid "software-use-case-question"
+msgstr "Beberapa distribusi dibuat dengan tujuan khusus, beberapa untuk penggunaan sehari-hari. Apa yang anda butuhkan?"
+
+msgid "software-use-case-answer-daily"
+msgstr "Saya ingin distribusi untuk penggunaan sehari-hari."
+
+msgid "software-use-case-anonymous-answer"
+msgstr "Saya ingin menggunakan Linux untuk penjelajahan web secara anonim."
+
+msgid "software-use-case-answer-gaming"
+msgstr "Saya ingin distrisbusi yang didukung oleh penerbit game."
+
+
+msgid "computer-knowledge-question"
+msgstr "Bagaimana anda menilai keterampilan berkomputer anda?"
+
+msgid "computer-knowledge-answer-beginner"
+msgstr "Saya sering memerlukan bantuan dari orang lain untuk memperbaiki masalah pada komputer saya"
+
+msgid "computer-knowledge-answer-advanced"
+msgstr "Saya mampu mengatasi beberapa masalah komputer sendiri"
+
+msgid "computer-knowledge-answer-professional"
+msgstr "Saya mampu mengatasi sebagian besar atau semua masalah komputer sendiri"
+
+
+msgid "linux-knowledge-question"
+msgstr "Bagaimana anda menilai pengetahuan anda mengenai Linux itu sendiri?"
+
+msgid "linux-knowledge-answer-beginner"
+msgstr "Saya hampir atau tidak tahu apapun mengenai Linux"
+
+msgid "linux-knowledge-answer-advanced"
+msgstr "Saya sudah menggunakan Linux untuk tujuan tertentu"
+
+msgid "linux-knowledge-answer-professional"
+msgstr "Saya memiliki pemahaman yang bagus mengenai sistem operasi Linux"
+
+
+msgid "presets-question"
+msgstr "Berapa banyak pengaturan yang ingin anda lakukan sendiri selama instalasi? Berapa banyak pengaturan variabel yang harus diisi dengan nilai awal?"
+
+msgid "presets-question-answer-manypresets"
+msgstr "Saya ingin menggunakan pengaturan dengan nilai awal pada bantuan instalasi."
+
+msgid "presets-question-answer-ownselection"
+msgstr "Saya ingin memilih pengaturan sendiri"
+
+msgid "presets-question-answer-guiselections"
+msgstr "Saya ingin mengatur sebanyak mungkin menggunakan aplikasi grafis"
+
+
+msgid "hardware-question"
+msgstr "Penting untuk mengetahui usia perangkat keras komputer anda, karena bebrapa distribusi tidak dapat bekerja pada komputer lama."
+
+msgid "additional-info-hardware"
+msgstr "Bertahun-tahun, beberapa distribusi menggunakan arsitektur 32 bit, yang dapat menggunakan hingga 4 GB memori. Distribusi baru cenderung meninggalkan 32 bit untuk dukungan 64 bit, yang dapat menggunakan lebih dari 4 GB memori. Sejak 2005 hampir semua komputer dapat dukungan 64 bit."
+
+msgid "hardware-question-oldpc"
+msgstr "Saya tidak yakin mengenai hal ini dan/atau komputer saya memiliki masalah kinerja dan/atau hanya mendukung 32 bit"
+
+msgid "hardware-question-newpc"
+msgstr "Kinerja komputer saya baik, saya tidak memiliki masalah kinerja, perangkat keras saya mendukung 64 bit"
+
+
+msgid "help-question"
+msgstr "Beberapa distribusi lebih menyukai artiker di wiki untuk penyelesaian maslaah. Yang mana yang anda lebih suka?"
+
+msgid "help-question-tutorials"
+msgstr "Saya dapat menyelesaikan permasalahan menggunakan panduan dari halaman wiki atau tutorial"
+
+msgid "help-question-user-exchange"
+msgstr "Saya lebih suka meminta bantuan orang lain"
+
+
+msgid "ux-concept-question"
+msgstr "Linux dapat menggunakan berbagai tampilan pengguna. Banyak distribusi menyediakan satu desktop awal. Penting untuk mengetahui jika anda memiliki preferensi terhadap konsep desktop. Anda dapat berpindah dan menginstal desktop baru kapanpun!"
+
+msgid "ux-concept-answer-windows-like"
+msgstr "Saya suka tampilan antarmuka pengguna seperti windows"
+
+msgid "ux-concept-answer-mac-like"
+msgstr "Saya suka tampilan antarmuka pengguna seperti MacOS"
+
+msgid "ux-concept-tiling"
+msgstr "Saya suka tampilan berbasis tile"
+
+msgid "ux-concept-closed-expierience"
+msgstr "Saya suka pengalaman tertutup"
+
+
+msgid "price-question"
+msgstr "Kebanyakan distribusi gratis. Beberapa lagi menawarkan bantuan tambahan dengan sekali pembayaran."
+
+msgid "price-answer-free"
+msgstr "Saya lebih suka distribusi gratis"
+
+msgid "price-answer-paid"
+msgstr "Saya tidak keberatan untuk membayar"
+
+
+msgid "scope-question"
+msgstr "Distribusi berbeda menginstal aplikasi awal yang yang berbeda dengan jumlah yang berbeda juga. Beberapa menginstal program dasar lengkap yang dapat digunakan langsung. Distribusi lain hanya menyediakan instalasi dasar dan membiarkan pengguna menginstal program yang mereka inginkan."
+
+msgid "scope-answer-fullinstall"
+msgstr "Saya lebih suka distribusi yang menyediakan semua program dasar yang saya perlukan agar dapat langsung bekerja setelah instalasi"
+
+msgid "scope-answer-ownselection"
+msgstr "Saya ingin memilih program yang saya instal sendiri"
+
+
+msgid "ideology-question"
+msgstr "Ideologi lisensi suatu distribusi merupakan debat yang terus menerus. Ada distribusi yang menggunakan \"Lisensi Bebas\", yang lain juga menggunakan perangkat lunak \"tidak bebas\".
+
+msgid "additional-info-ideology"
+msgstr "Lisensi bebas memungkinkan pengguna untuk mengubah, mendistribusikan ulang, dan menggunakan suatu perangkat lunak untuk tujuan apapun. Ada situasi dimana distribusi harus menggunakan perangkat lunak tidak bebas, contohnya untuk driver perangkat keras. Perangkat lunak tidak bebas tidak mendistribusikan kode sumbernya dan modifikasi tidak diperbolehkan."
+
+msgid "ideology-answer-free"
+msgstr "Saya ingin menggunakan lisensi bebas sebisa mungkin"
+I want to use free licenses as much as I can"
+
+msgid "ideology-answer-proprietary-ok"
+msgstr "Saya tidak keberatan dengan lisensi tidak bebas selama sistem saya bekerja"
+
+
+msgid "privacy-question"
+msgstr "Beberapa distribusi menggunakan layanan online untuk meningkatkan pengalaman pengguna. Hal ini dapat memengaruhi privasi pengguna, contoh: Pengguna dapat dilacak ketika menggunakan fitur online semacam itu."
+
+msgid "privacy-answer-highprivacy"
+msgstr "Saya tidak menginginkannya"
+
+msgid "privacy-answer-services-ok"
+msgstr "Jika hal tersebut meningkatkan pengalaman pengguna saya, saya setuju dengan penggunaan layanan online semacam itu"
+
+
+msgid "software-admin-question"
+msgstr "Ada banyak cara untuk mengelola distribusi linux, Contoh: menginstal perangkat lunak."
+
+msgid "software-admin-answer-appstore"
+msgstr "Saya ingin menginstal program menggunakan sesuati seperti \"App store\""
+
+msgid "software-admin-answer-console"
+msgstr "Saya ingin menginstal aplikasi menggunakan perintah terminal"
+
+
+msgid "special-features-qestion"
+msgstr "Beberapa distribusi mempunyai fitur tambahan untuk tujuan tertentu. Apa anda memerlukan fitur semacam itu?"
+
+msgid "additional-info-special-features-qestion"
+msgstr "Banyak distribusi menggunakan 'systemd' untuk menjalankan sistem operasi itu sendiri. Beberapa distribusi menghindarinya demi alternatif yang dapat menjadi solusi lebih ringan"
+
+msgid "answer-isolation"
+msgstr "Aplikasi harus dijalankan pada lingkup terisolasi dari awal"
+
+
+msgid "software-updates-question"
+msgstr "Beberapa distribusi menawarkan pembaruan yang cepat, yang dapat memengaruhi kestabilan sistem. Yang mana yang anda lebih suka?"
+
+msgid "software-updates-answer-fast"
+msgstr "Saya ingin pembaruan yang cepat"
+
+msgid "software-updates-answer-slow"
+msgstr "Saya ingin pembaruan yang stabil"
+
+msgid "answer-avoid-systemd"
+msgstr "Saya ingin menghindari systemd"
+
+msgid "result-submitted-hint"
+msgstr "Calculating result"
+
+
+msgid "reason-header-hint"
+msgstr "Klik pada nama distribusi untuk melihat rincian rekomendasi."
+
+msgid "reason-list-header"
+msgstr "Alasan pro/ kontra"
+
+msgid "answer-is-blocking"
+msgstr "Following answers are excluding this answer"
+
+msgid "answer-is-blocked"
+msgstr "Jawaban ini bertentangan dengan jawaban yang sebelumnya telah diberikan"
+
+msgid "reason-blocked-by-others-entry"
+msgstr "\"{0}\" bertentangan dengan \"{1}\""
+
+msgid "additional-infos"
+msgstr "Berikan saya informasi lebih!"
+
+msgid "make-important"
+msgstr "Ini penting!"
+
+msgid "marked-as-important"
+msgstr "Tandai sebagai penting"
+
+msgid "remove-important"
+msgstr "Cabut tanda penting"
+
+msgid "reason-list-header-negative"
+msgstr "Kami tidak dapat merekomendasikan distribusi ini karena:"
+
+msgid "reason-list-header-neutral"
+msgstr "Kriteria berikut tidak dipertimbangkan"
+
+msgid "reason-list-header-blocked-by-others"
+msgstr "This answer is blocked by other answers you have given"
+
+msgid "matrix-supports-daily-usage"
+msgstr "Cocok untuk penggunaan sehari-hari"
+
+msgid "matrix-privacy-not-beneficial"
+msgstr "Konsep distribusi ini tidak menguntungkan untuk keperluan anonim"
+
+msgid "matrix-supports-gaming-usage"
+msgstr "Distribusi ini didukung oleh penerbit game"
+
+msgid "matrix-beginner-knowledge"
+msgstr "Cocok untuk para pemula"
+
+msgid "matrix-advanced-knowledge"
+msgstr "Cocok untuk para pengguna handal"
+
+msgid "matrix-professional-knowledge"
+msgstr "Cocok untuk kalangan profesional"
+
+msgid "matrix-linux-knowledge-higher"
+msgstr "Penggunaan memerlukan pengetahuan Linux lebih sedikit dari yang telah dijawab"
+
+msgid "matrix-computer-knowledge-higher"
+msgstr "Penggunaan memerlukan pengetahuan komputer lebih sedikit dari yang telah dijawab"
+
+msgid "matrix-linux-beginner"
+msgstr "Cocok untuk para pemula dalam Linux"
+
+msgid "matrix-installation-presets-always-given"
+msgstr "Distribusi ini memiliki pengaturan awal yang perlu diulang setelah instalasi"
+
+msgid "matrix-installation-presets-gui"
+msgstr "Banyak pengaturan yang dapat dilakukan dengan tampilan antarmuka grafis"
+
+msgid "matrix-installation-assistant-present"
+msgstr "Instalasi menggunakan 'wizard' dengan setelan awal"
+
+msgid "matrix-hardware-oldpc-ubuntu"
+msgstr "Anda mungkin akan menemui masalah lag pada kompositor window. Anda perlu mematikan animasi."
+
+msgid "matrix-hardware-newpc"
+msgstr "Mampu bekerja pada perangkat keras terbaru"
+
+msgid "matrix-user-exchange"
+msgstr "Mempunyai komunitas pengguna untuk berbagi pengetahuan"
+
+msgid "matrix-tutorial"
+msgstr "Ada tutorial untuk mencari dan menyelesaikan masalah"
+
+msgid "matrix-mac-like"
+msgstr "Konsep GUI seperti macOS"
+
+msgid "matrix-windows-like-not-fullfilled"
+msgstr "Konsep GUI sangat jauh dari Windows"
+
+msgid "matrix-closed-expierience"
+msgstr "Mempunyai wallpaper, ikon, dan tema tersendiri"
+
+msgid "matrix-has-windows-like-variant"
+msgstr "Mempunyai varian dengan tampilan seperti Windows"
+
+msgid "matrix-paid-version-existing"
+msgstr "Distribusi ini memiliki versi yang tidak bebas"
+
+msgid "matrix-gaming-packages-stable-but-old"
+msgstr "Versi perangkat lunak kurang cukup baru untuk game"
+
+msgid "matrix-has-live-mode"
+msgstr "Mempunyai mode live yang memungkinkan untuk dijalankan menggunakan kaset"
+
+msgid "live-mode-only"
+msgstr "Mempunyai Mode Live: Dapat dijalankan menggunakan kaset atau USB Flash Drive agar dapat dicoba sebelum diinstall"
+
+msgid "matrix-without-fee"
+msgstr "Dapat digunakan tanpa membayar"
+
+msgid "matrix-paid"
+msgstr "Distribusi ini memiliki versi berbayar"
+
+msgid "matrix-fullinstall"
+msgstr "Menginstall semua program yang diperlukan"
+
+msgid "matrix-ownscope-install"
+msgstr "Semua program yang digunakan harus dipilih sendiri"
+
+msgid "matrix-free-software-unfree-per-default"
+msgstr "Aplikasi sumber tertutup terinstall dari awal"
+
+msgid "matrix-enforces-free"
+msgstr "Menegakkan penggunaan perangkat lunak bebas"
+
+msgid "matrix-mostly-free"
+msgstr "Sebagian besarnya adalah perangkat lunak bebas"
+
+msgid "matrix-has-default-settings"
+msgstr "Mempunyai setelan awal"
+
+msgid "matrix-privacy-ok"
+msgstr "Menguntungkan privasi pengguna"
+
+msgid "matrix-privacy-thirdparty"
+msgstr "Terhubung ke layanan pihak ketiga dari awal"
+
+msgid "matrix-appstore"
+msgstr "Instalasi perangkat lunak dapat dilakukan melalui sebuah pusat aplikasi"
+
+msgid "matrix-console"
+msgstr "Instalasi perangkat lunak dapat dilakukan melalui terminal"
+
+msgid "matrix-stable-updates"
+msgstr "Pembaruan stabil ketika rilis"
+
+msgid "matrix-fast-updates"
+msgstr "Pembaruan perangakt lunak dirilis dengan cepat, yang dapat menyebabkan sistem kurang stabil"
+
+msgid "matrix-has-control-panel"
+msgstr "Memiliki pusat kontrol terinstall dari awal"
+
+msgid "matrix-user-selection-affects-privacy"
+msgstr "Pengguna harus memilih perangkat lunak yang digunakan"
+
+msgid "matrix-selection-by-user"
+msgstr "Cakupan program yang terinstall dari awal ditentukan pengguna"
+
+msgid "matrix-updates-fast"
+msgstr "Pembaruan cepat, tapi kurang stabil"
+
+msgid "matrix-not-for-beginner"
+msgstr "Tidak cocok untuk pemula"
+
+msgid "matrix-avoids-systemd"
+msgstr "Menghindari systemd"
+
+msgid "matrix-uses-systemd"
+msgstr "Menggunakan systemd"
+
+msgid "built-for-anonymization"
+msgstr "Dibuat untuk keperluan anonim"
+
+msgid "matrix-administration-shell"
+msgstr "Administrasi dilakukan melalui perintah shell"
+
+msgid "matrix-oldpc-no-32bit"
+msgstr "Tidak mendukung komputer yang tidak memiliki dukungan 64 bit"
+
+msgid "matrix-requires-manual"
+msgstr "Perlu membaca panduan dan tutorial"
+
+msgid "matrix-requires-advanced-knowledge"
+msgstr "Perlu membaca panduan untuk penggunaan"
+
+msgid "matrix-isolation-default"
+msgstr "Konsep isolasi tersedia dari awal"
+
+msgid "matrix-oldpc-supported"
+msgstr "Mendukung komputer lama"
+
+msgid "checked-criteria-count"
+msgstr "aspects checked"
+
+msgid "searching-criteria"
+msgstr "processing the criteria library"
+
+msgid "daily-usage-possibly-difficult"
+msgstr "Penggunaan sehari-hari dapat mengalami kesulitan"
+
+msgid "matrix-supports-daily-usage-but-built-for-livemode"
+msgstr "Dapat digunakan untuk penggunaan sehari-hari, tetapi didesain untuk mode live"
+
+msgid "matrix-packages-available"
+msgstr "Program untuk anonimisasi tersedia"
+
+msgid "matrix-packages-may-too-old-gaming"
+msgstr "Versi program kurang terkini untuk game"
+
+msgid "matrix-gaming-may-require-additional-configuration"
+msgstr "Memerlukan pengaturan tambahan untuk game"
+
+msgid "matrix-built-for-enterprise"
+msgstr "Tujuan utama adalah kebutuhan perusahaan"
+
+msgid "matrix-not-built-for-gaming"
+msgstr "Tidak teroptimisasi untuk game"
+
+msgid "requires-some-computer-knowledge"
+msgstr "Memerlukan pengetahuan komputer yang lebih"
+
+msgid "matrix-maybe-not-for-beginner"
+msgstr "Tidak cocok untuk pemula"
+
+msgid "matrix-installation-from-shell"
+msgstr "Instalasi dilakukan menggunakan terminal"
+
+msgid "matrix-installs-range-of-programs"
+msgstr "Menginstal banyak program dari awal"
+
+msgid "matrix-configuration-from-shell"
+msgstr "Sebagian pengaturan dilakukan melalui shell command"
+
+msgid "matrix-middleweight"
+msgstr "Merupakan sistem menengah, yang cocok umtuk komputer yang agak lama"
+
+msgid "matrix-has-high-range-hardware-support"
+msgstr "Memiliki dukungan perangkat keras yang luas"
+
+msgid "matrix-has-zorin-lite-version"
+msgstr "Memiliki versi 'Zorin Lite' untuk komputer lama"
+
+msgid "matrix-has-windows-like-variant-cinnamon"
+msgstr "Ada varian yang menyediakan 'cinnamon' desktop environment, yang memiliki tampilan seperti windows"
+
+msgid "systemd-is-avoidable-per-selection"
+msgstr "Systemd dapat dihindari jika pengguna menginginkannya"
+
+msgid "matrix-ships-systemd-but-disabled"
+msgstr "Menyediakan systemd, tetapi perlu diaktifkan untuk digunakan"
+
+msgid "matrix-supports-privacy"
+msgstr "Hanya mengumpulkan data ketika layanan online digunakan"
+
+msgid "matrix-lightweight"
+msgstr "Distribusi ringan"
+
+msgid "matrix-free-userselection"
+msgstr "Penggunaan perangkat lunak bebas bergantung pada pilihan pengguna"
+
+# distribution descriptions
+
+msgid "description-manjaro"
+msgstr "Manjaro adalah distribusi rilis bergirir yang berfokus pada kemudahan pengguna"
+
+msgid "description-ubuntu"
+msgstr "Ubuntu adalah distribusi yang dibuat oleh perusahaan Canonical"
+
+msgid "description-mint"
+msgstr "Linux Mint adalah distribusi turunan Ubuntu dengan komponen yang memiliki hak milik seperti codec multimedia."
+
+msgid "description-solus"
+msgstr "Solus OS adalah distribusi rilis bergilir yang bermula sebagai tiruan Chrome OS"
+
+msgid "description-arch"
+msgstr "Arch adalah distribusi rilis bergilir berdasarkan prinsip KISS"
+
+msgid "description-debian"
+msgstr "Debian adalah distribusi dengan fokus utama pada kestabilan"
+
+msgid "description-tails"
+msgstr "Anonimisasi adalah tujuan utama dari Tails, yang dapat digunakan dari USB atau kaset"
+
+msgid "description-devuan"
+msgstr "Devuan adalah tiruan Debian tanpa penggunaan systemd"
+
+msgid "description-opensuse"
+msgstr "openSUSE bertujuan untuk mengantarkan distribusi yang stabil dan ramah pengguna"
+
+msgid "description-pclinuxos"
+msgstr "PCLinuxOS adalah distribusi berbasis Mandrake berfokus pada antarmuka yang ramah pengguna."
+
+msgid "description-rhel"
+msgstr "Red Hat Enterprise Linux (RHEL) adalah distribusi yang berfokus pada perusahaan dan kestabilan"
+
+msgid "description-rocky"
+msgstr "Rocky Linux adalah distribusi sumber terbuka yang menargetkan kompatibilitas total dengan Red Hat Enterprise Linux (RHEL)"
+
+msgid "description-xubuntu"
+msgstr "Xubuntu adalah distribusi berbasis Ubuntu dengan XFCE terinstall sejak awal"
+
+msgid "description-lubuntu"
+msgstr "Lubuntu adalah distribusi berbasis Ubuntu dengan LXQt terinstall sejak awal"
+
+msgid "description-ubuntumate"
+msgstr "Ubuntu MATE adalah distribusi berbasis Ubuntu dengan MATE terinstall sejak awal"
+
+msgid "description-popos"
+msgstr "Pop!_OS adalah distribusi turunan Ubuntu dengan GNOME yang telah dimodifikasi oleh System76"
+
+msgid "description-fedora"
+msgstr "Fedora adalah distribusi yang disokong Red Hat dengan fokus pada perangkat lunak bebas"
+
+msgid "description-qubeos"
+msgstr "Qubes OS mengisolasi aplikasi menggunakan virtual machine untuk meningkatkan keamanan"
+
+msgid "description-gentoo"
+msgstr "Gentoo adalah distribusi yang fleksibel untuk pengguna handal"
+
+msgid "description-mxlinux"
+msgstr "MX Linux adalah distribusi dengan beban menengah berfokus pada penggunaan sehari-hari yang efisien dan elegan"
+
+msgid "description-fedora"
+msgstr "Fedora adalah distribusi dengan fokus perangkat lunak bebas. Fedora dirilis tanpa dukungan jangka panjang, yang rilis setiap 6 bulan sekali."
+
+msgid "description-knoppix"
+msgstr "Knoppix adalah sistem operasi live mode dengan dukungan perangkat keras yang luas"
+
+msgid "description-cruxlinux"
+msgstr "Crux Linux adalah distribusi 64 bit yang ringan dengan alat dan library terbaru"
+
+msgid "description-zorinos"
+msgstr "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows"
+
+msgid "description-elementaryos"
+msgstr "elementary OS adalah distribusi turunan ubuntu, berfokus pada pengalaman pengguna yang cepat dan elegan"
+
+msgid "description-kubuntu"
+msgstr "Kubuntu adalah distribusi berbasis Ubuntu dengan KDE terinstall sejak awal"
+
+msgid "locale-en"
+msgstr "english"
+
+msgid "locale-de"
+msgstr "deutsch"
+
+# update pack 26th december 2019
+
+msgid "debian-updates-slow"
+msgstr "Pembaruan Debian cenderung lambat demu kestabilan"
+
+msgid "description-qubesos"
+msgstr "Qubes OS menjalankan proses dalam virtual machine demi keamanan"
+
+msgid "software-use-case-isolation"
+msgstr "Saya ingin menjalankan semua program pada lingkngan terisolasi"
+
+msgid "matrix-runs-in-isolation"
+msgstr "Perangkat lunak dijalankan pada lingkungan terisolasi"
+
+msgid "software-use-case-blind"
+msgstr "Pengguna memiliki masalah pengelihatan"
+
+msgid "matrix-knoppix-adriane"
+msgstr "Proyek ADRIANE menawarkan alat dan solusi untuk orang-orang dengan kendala visual."
+
+msgid "matrix-has-software-for-blind"
+msgstr "Perangkat lunak untuk orang dengan masalah pengelihatan dapat diinstal (contoh: Orca)"
+
+msgid "source"
+msgstr "Sumber gambar"
+
+msgid "description-void"
+msgstr "Void Linux distribusi rilis bergilir tanpa systemd"
+
+msgid "skip-question"
+msgstr "lewatkan pertanyaan"
+
+msgid "description-nixos"
+msgstr "NixOS menggunakan Nix Package Manager. NixOS menggunakan pengaturan deklaratif dan memungkinkan pembaruan sistem yang handal."
+
+msgid "reasons-hide"
+msgstr "Sembunyikan alasan"
+
+msgid "description-artix"
+msgstr "Artix adalah distribusi berbasis Arch Linux yang dapat menggunakan berbagai macam sistem init selain systemd, contohnya OpenRC"
+
+msgid "link-copied"
+msgstr "Disalin ke clipboard"
+
+msgid "remark-placeholder-saving"
+msgstr "Teks akan disimpan otomatis"
+
+msgid "slow-release-model"
+msgstr "Versi perangkat lunak yang tersedia lebih tertinggal daripada versi terbaru dari vendor"
+
+msgid "requires-payment"
+msgstr "Penggunaan jangka panjang berbayar"
+
+msgid "github-link"
+msgstr "GitHub"
+
+msgid "visually-impaired-mode"
+msgstr "Mode untuk orang-orang dengan masalah pengelihatan"
+
+msgid "like"
+msgstr "Saya suka ini"
+
+msgid "dislike"
+msgstr "Saya tidak suka ini"
+
+msgid "language"
+msgstr "Bahasa"
+
+msgid "description-deepin"
+msgstr "Deepin adalah Distribusi berbasis Debian dari Tiongkok yang menawarkan desktop tersendiri, yaitu Deepin Desktop Environment."
+
+msgid "matrix-general-remark-additional-eula"
+msgstr "Kebijakan privasi distribusi harus dicermati selama instalasi"
+
+msgid "distributions-hidden"
+msgstr "# Hasil disembunyikan karena persetujuan yang buruk. Klik di sini untuk melihat semua distribusi."
+
+msgid "display-options"
+msgstr "Anda dapat mengubah tampilan hasil anda di sini"
