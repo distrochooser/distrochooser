@@ -27,7 +27,9 @@ As mentioned, the backend is a django application. The majority of logic happens
 
 # Contributing translations 🌍
 
-You can find the file `backend/locale/en.po` in this repository. This file is the english translation. If you don't have a GitHub account and want to download it: [the direct link](https://raw.githubusercontent.com/distrochooser/distrochooser/master/backend/locale/en.po).
+> I am working on deploying a Weblate instance for a more easy approach. See https://github.com/distrochooser/distrochooser/issues/190 for details.
+
+You can find the file `en.po` in the repository https://github.com/distrochooser/translations. This file is the english translation. If you don't have a GitHub account and want to download it: [the direct link](https://raw.githubusercontent.com/distrochooser/translations/main/en.po).
 
 Use this file as the boilerplate for your translation.
 
@@ -61,7 +63,7 @@ msgstr "This example is \"quoted\"" ✅ all good
 
 ## How to submit the translation? 📮
 
-You can either do a pull request into the `distrochooser/distrochooser:master` branch or, if you don't have a GitHub account, send it via mail to `mail@chmr.eu`.
+You can either do a pull request into the `distrochooser/translations:main` branch or, if you don't have a GitHub account, send it via mail to `mail@chmr.eu`.
 
 
 Thank you for your support 😁
