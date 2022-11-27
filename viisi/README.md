@@ -62,6 +62,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/fbp110"><img src="https://avatars.githubusercontent.com/u/96155179?v=4?s=100" width="100px;" alt=""/><br /><sub><b>fbp110</b></sub></a><br /><a href="#translation-fbp110" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/zephyroths"><img src="https://avatars.githubusercontent.com/u/19946761?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zephyroths</b></sub></a><br /><a href="#translation-zephyroths" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/FKAgony"><img src="https://avatars.githubusercontent.com/u/117533462?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Agony</b></sub></a><br /><a href="#translation-FKAgony" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/WX4300"><img src="https://avatars.githubusercontent.com/u/113265063?v=4?s=100" width="100px;" alt=""/><br /><sub><b>WX4300</b></sub></a><br /><a href="#translation-WX4300" title="Translation">🌍</a></td>
   </tr>
 </table>
 
