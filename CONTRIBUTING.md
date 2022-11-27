@@ -27,7 +27,9 @@ As mentioned, the backend is a django application. The majority of logic happens
 
 # Contributing translations 🌍
 
-> I am working on deploying a Weblate instance for a more easy approach. See https://github.com/distrochooser/distrochooser/issues/190 for details.
+https://github.com/distrochooser/translations is your starting point for translations. You can either use the Weblate instance (details in the Readme) or use a PR.
+
+For PR users:
 
 You can find the file `en.po` in the repository https://github.com/distrochooser/translations. This file is the english translation. If you don't have a GitHub account and want to download it: [the direct link](https://raw.githubusercontent.com/distrochooser/translations/main/en.po).
 
