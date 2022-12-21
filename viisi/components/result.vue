@@ -26,7 +26,7 @@
         i.w-icon-appstore
     div.filtered-results-warning(v-if="!$store.state.showAllResults && filteredSelections.length !==  unfilteredSelections.length", @click="showAllResults") 
       a(href="#") {{ __i("distributions-hidden").replace("#", unfilteredSelections.length - filteredSelections.length) }}
-    distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :votes="selection.votes" :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :peculiarities="selection.peculiarities", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
+    distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :key="selection_key",:name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :votes="selection.votes" :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :tags="selection.tags", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
 
     div(v-if="isEmpty")
       h1 {{ __i("no-results")}}

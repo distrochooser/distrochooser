@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import GivenPeculiarities, Question, Answer, GivenAnswer, GivenPeculiarities, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category, AnswerDistributionMatrix
+from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category, AnswerDistributionMatrix
 
 [admin.site.register(*models) for models in [
   (Question,),
   (GivenAnswer,),
-  (GivenPeculiarities,),
   (UserSession,),
   (ResultDistroSelection,),
   (Distribution,),

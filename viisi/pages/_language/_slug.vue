@@ -134,8 +134,7 @@ export default {
             method: this.$store.state.method
           },
           data: {
-            answers: this.$store.state.givenAnswers,
-            peculiarities: this.$store.state.peculiarities
+            answers: this.$store.state.givenAnswers
           }
         })
       }

@@ -41,7 +41,7 @@
             i.w-icon-question-circle-o
             span {{ reason.description }}
     div.tags 
-      span(v-for="(tag, tag_key) in peculiarities", :key="tag_key") 
+      span(v-for="(tag, tag_key) in tags", :key="tag_key") 
         i.w-icon-tag 
         span.tag-text {{ tag }}
     div.meta
@@ -100,7 +100,7 @@ export default {
         return []
       }
     },
-    peculiarities: {
+    tags: {
       type: Array,
       default: function() {
         return []

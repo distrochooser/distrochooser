@@ -48,7 +48,7 @@ const indexStore = new Vapi({
     showAllResults: false,
     debug: true,
     ratingSort: false,
-    peculiarities: {}
+    tags: {}
   }
 })
   .post({
@@ -111,13 +111,21 @@ indexStore.actions.answerQuestion = async (store, payload) => {
     answered: true,
     important: false,
     category: payload.currentCategory.msgid,
-    blockedAnswers: answer.blockedAnswers
+    blockedAnswers: answer.blockedAnswers,
+    tags: []
   }
   store.commit('setAnswerQuestion', answer)
 }
 
 indexStore.actions.submitAnswers = async (store, payload) => {
   store.commit('toggleSubmitted')
+  payload.data.answers.forEach((answer) => {
+    var msgid = answer.msgid
+    answer["tags"] = []
+    if (typeof store.state.tags[msgid]  !== undefined) {
+      answer["tags"] = store.state.tags[msgid]
+    }
+  })
   await store.dispatch('submit', payload)
   store.commit('toggleSubmitted')
 }
@@ -288,35 +296,35 @@ indexStore.actions.prevQuestion = (store, payload) => {
   })
 }
 
-indexStore.mutations.resetPeculiarities = (state, payload) => {
-  delete state.peculiarities[payload.questionId]
+indexStore.mutations.resetTags = (state, payload) => {
+  delete state.tags[payload.answerId]
 }
 
 
-indexStore.mutations.removePeculiarities = (state, payload) => {
+indexStore.mutations.removeTags = (state, payload) => {
   for (var i=0;i<payload.data.length;i++) {
     var tag = payload.data[i]
-    var index = state.peculiarities[payload.questionId].indexOf(tag)
+    var index = state.tags[payload.answerId].indexOf(tag)
     if (index !== -1) {
-      state.peculiarities[payload.questionId].splice(index, 1)
+      state.tags[payload.answerId].splice(index, 1)
     }
   }
 }
 
-indexStore.mutations.savePeculiarities = (state, payload) => {
-  if (typeof state.peculiarities[payload.questionId] === 'undefined') {
-    state.peculiarities[payload.questionId] = payload.selection
+indexStore.mutations.saveTags = (state, payload) => {
+  if (typeof state.tags[payload.answerId] === 'undefined') {
+    state.tags[payload.answerId] = payload.selection
   } else {
     for (var i=0;i<payload.oldSelection.length;i++) {
       var tag = payload.oldSelection[i]
-      var index = state.peculiarities[payload.questionId].indexOf(tag)
+      var index = state.tags[payload.answerId].indexOf(tag)
       if (index !== -1) {
-        state.peculiarities[payload.questionId].splice(index, 1)
+        state.tags[payload.answerId].splice(index, 1)
       }
     }
     payload.selection.forEach((value) => {
-      if (state.peculiarities[payload.questionId].indexOf(value) === -1) {
-        state.peculiarities[payload.questionId].push(value)
+      if (state.tags[payload.answerId].indexOf(value) === -1) {
+        state.tags[payload.answerId].push(value)
       }
     })
   }

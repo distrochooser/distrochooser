@@ -1,7 +1,7 @@
 <template lang="pug">
-  div.peculiarities
-    span.header {{ __i("peculiarities-"+question) }}
-    v-select(v-model="selected",:dir="$store.state.inRTLMode ? 'rtl' : 'ltr'", multiple="multiple",label="peculiarities",:options="values")
+  div.tags
+    span.header {{ __i("tags-"+answer) }}
+    v-select(v-model="selected",:dir="$store.state.inRTLMode ? 'rtl' : 'ltr'", multiple="multiple",label="tags",:options="values")
 </template>
 <script> 
 import { VueSelect as vSelect } from 'vue-select';
@@ -15,7 +15,7 @@ export default {
     }
   },
   props: {
-    question: {
+    answer: {
         type: String,
         default: ""
     },
@@ -25,17 +25,17 @@ export default {
     }
   },
   mounted: function (){
-    var existingValues = this.$store.state.peculiarities[this.question]
+    var existingValues = this.$store.state.tags[this.answer]
     if (typeof existingValues === 'undefined') {
       this.selected = [...this.values]
     } else {
-      this.selected = this.$store.state.peculiarities[this.question]
+      this.selected = this.$store.state.tags[this.answer]
     }
   },
   watch: {
     selected: function(newSelection, oldSelection) {
-      this.$store.commit('savePeculiarities',{
-        questionId: this.question,
+      this.$store.commit('saveTags',{
+        answerId: this.answer,
         selection: newSelection,
         oldSelection: oldSelection
       })
@@ -49,7 +49,7 @@ export default {
 
 <style lang="scss">
 @import '~/scss/variables.scss';
-div.peculiarities {
+div.tags {
   margin-left: 2em;
 
   .v-select {

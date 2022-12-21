@@ -20,7 +20,8 @@ CACHEOPS = CONFIG["backend"]["CACHE"]["CACHEOPS"]
 
 
 INSTALLED_APPS = [
-    'cacheops',
+   # 'cacheops',
+    'taggit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

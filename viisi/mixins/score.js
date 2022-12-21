@@ -58,8 +58,8 @@ export default {
       return 0
     },
     scoreCompare: function(a, b) {
-      var nonBlockingA = this.nonBlockingHits(a.reasons) + a.peculiarities.length * 0.5
-      var nonBlockingB = this.nonBlockingHits(b.reasons) + b.peculiarities.length * 0.5
+      var nonBlockingA = this.nonBlockingHits(a.reasons) + a.tags.length * 0.5
+      var nonBlockingB = this.nonBlockingHits(b.reasons) + b.tags.length * 0.5
 
       var blockingA = this.blockingHits(a.reasons)
       var blockingB = this.blockingHits(b.reasons)

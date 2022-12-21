@@ -90,9 +90,8 @@
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key") 
                 i.w-icon-circle-close-o
                 span "{{ __i(blockingAnswer.msgid) }}"
-            
-            div(v-if="isAnswerSelected(answer) && answer.peculiarities.length > 0")
-              peculiarities(:values="answer.peculiarities", :question="question.msgid")
+            div(v-if="isAnswerSelected(answer) && answer.tags.length > 0") 
+              tags(:values="answer.tags", :answer="answer.msgid")
       div.actions(v-if="!additionalInfoShown")
         button.skip-step.step(@click="nextQuestion",v-if="!isAtLastQuestion()") {{  __i("skip-question") }}
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
@@ -100,11 +99,11 @@
 </template>
 <script>
 import i18n from '~/mixins/i18n'
-import peculiarities from '~/components/peculiarities.vue'
+import tags from '~/components/tags.vue'
 export default {
   mixins: [i18n],
   components: {
-    peculiarities
+    tags
   },
   props: {
     language: {
@@ -180,9 +179,9 @@ export default {
     answerQuestion(answer) {
       if (this.isAnswerSelected(answer)) {
         this.$store.commit('removeAnswerQuestion', answer)
-        this.$store.commit('removePeculiarities',{
-          questionId: this.question.msgid,
-          data: answer.peculiarities,
+        this.$store.commit('removeTags',{
+          answerId: answer.msgid,
+          data: answer.tags,
         })
       } else {
         if (!this.question.isMultipleChoice && this.isQuestionAnswered()) {
@@ -191,8 +190,8 @@ export default {
           const _t = this
           otherAnswers.forEach(function(a) {
             _t.$store.commit('removeAnswerQuestion', a)
-            _t.$store.commit('resetPeculiarities',{
-              questionId: _t.question.msgid,
+            _t.$store.commit('resetTags',{
+              answerId: a.msgid,
             })
           })
         }
@@ -231,8 +230,7 @@ export default {
             method: this.$store.state.method
           },
           data: {
-            answers: this.$store.state.givenAnswers,
-            peculiarities: this.$store.state.peculiarities
+            answers: this.$store.state.givenAnswers
           }
         })
       }
