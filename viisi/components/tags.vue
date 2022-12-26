@@ -1,6 +1,7 @@
 <template lang="pug">
   div.tags-select
     span.tags-header {{ __i("tags-header") }}: {{ __i("tags-"+answer) }}
+    span.tags-description {{ __i("tags-description") }}
     v-select(id="tags-select",v-model="selected",:dir="$store.state.inRTLMode ? 'rtl' : 'ltr'", multiple="multiple",:options="translatedOptions", :reduce="(option) => option.id")
     blockquote.additional-info(v-if="__i('tags-'+answer+'-additional-info') != 'tags-'+answer+'-additional-info'")
       span(v-html="__i('tags-'+answer+'-additional-info')")
@@ -68,7 +69,7 @@ export default {
 @import '~/scss/variables.scss';
 div.tags-select {
   margin-left: 2em;
-  width: 50%;
+  min-width: 50%;
   padding: 1em;
 
   .tags-header {
@@ -101,7 +102,7 @@ div.tags-select {
   }
 
   blockquote.additional-info  {
-    border-left: 0.25em solid #05396b;
+    border-left: 0.25em solid #e1760d;
     padding: 0.5em;
   }
 }
