@@ -36,7 +36,6 @@ export default {
           }
         )
       })
-      console.log(this.values, translated)
       return translated
     }
   },
