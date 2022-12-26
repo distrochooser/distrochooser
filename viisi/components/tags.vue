@@ -1,7 +1,7 @@
 <template lang="pug">
   div.tags
     span.header {{ __i("tags-"+answer) }}
-    v-select(v-model="selected",:dir="$store.state.inRTLMode ? 'rtl' : 'ltr'", multiple="multiple",label="tags",:options="values")
+    v-select(v-model="selected",:dir="$store.state.inRTLMode ? 'rtl' : 'ltr'", multiple="multiple",:options="translatedOptions", :reduce="(option) => option.id")
 </template>
 <script> 
 import { VueSelect as vSelect } from 'vue-select';
@@ -22,6 +22,22 @@ export default {
     values: {
       type: Array,
       default: []
+    }
+  },
+  computed: {
+    translatedOptions: function() {
+      var translated = []
+      var i = this.__i
+      this.values.forEach((value) => {
+        translated.push(
+          {
+            label: i("tag-" + value),
+            id: value
+          }
+        )
+      })
+      console.log(this.values, translated)
+      return translated
     }
   },
   mounted: function (){
@@ -47,7 +63,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '~/scss/variables.scss';
 div.tags {
   margin-left: 2em;

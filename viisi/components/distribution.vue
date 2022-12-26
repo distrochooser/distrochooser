@@ -43,7 +43,7 @@
     div.tags 
       span(v-for="(tag, tag_key) in tags", :key="tag_key") 
         i.w-icon-tag 
-        span.tag-text {{ tag }}
+        span.tag-text {{ __i("tag-" + tag) }}
     div.meta
       div.actions
         div.vote-actions
