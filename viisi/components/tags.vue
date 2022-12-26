@@ -1,7 +1,9 @@
 <template lang="pug">
-  div.tags
-    span.header {{ __i("tags-"+answer) }}
-    v-select(v-model="selected",:dir="$store.state.inRTLMode ? 'rtl' : 'ltr'", multiple="multiple",:options="translatedOptions", :reduce="(option) => option.id")
+  div.tags-select
+    span.tags-header {{ __i("tags-header") }}: {{ __i("tags-"+answer) }}
+    v-select(id="tags-select",v-model="selected",:dir="$store.state.inRTLMode ? 'rtl' : 'ltr'", multiple="multiple",:options="translatedOptions", :reduce="(option) => option.id")
+    blockquote.additional-info(v-if="__i('tags-'+answer+'-additional-info') != 'tags-'+answer+'-additional-info'")
+      span(v-html="__i('tags-'+answer+'-additional-info')")
 </template>
 <script> 
 import { VueSelect as vSelect } from 'vue-select';
@@ -62,13 +64,65 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '~/scss/variables.scss';
-div.tags {
+div.tags-select {
   margin-left: 2em;
+  width: 50%;
+  padding: 1em;
+
+  .tags-header {
+    color: #000;
+    font-family: "Roboto Slab";
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 1em;
+    display: block;
+  }
+
+  .tags-header::after {
+    content: "";
+    display: block;
+    border-bottom: 0.15em solid #e1760d;
+    width: 5%;
+    position: relative;
+    bottom: -6px; /* your padding + border-width */
+  }
 
   .v-select {
     margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  .header {
+    margin-bottom: 0.5em;
+    display: block;
+    font-family: "Roboto Slab";
+    color: black;
+  }
+
+  blockquote.additional-info  {
+    border-left: 0.25em solid #05396b;
+    padding: 0.5em;
+  }
+}
+
+#tags-select div div {
+
+  .vs__selected{
+      border-radius: 0px !important;
+      background-color: #05396b;
+      color: white;
+  }
+}
+.vs__dropdown-toggle{
+  border-radius: 0px !important;
+}
+.vs__deselect {
+  svg {
+    margin-left: 0.5em;
+    path {
+      fill: white !important;
+    }
   }
 }
 </style>
