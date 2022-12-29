@@ -118,6 +118,10 @@ class Distribution(models.Model):
     logo = models.FileField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     tags = TaggableManager()
+    ratings = models.IntegerField(default=0)
+    positive_ratings = models.IntegerField(default=0)
+    percentage = models.FloatField(default=0)
+    rank = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

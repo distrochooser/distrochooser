@@ -28,13 +28,15 @@ def saveAnswers(userSession, rawAnswers):
           answer.tags.add(tag)
       answer.save()
 
-def get_statistics(distro_id: int) -> float:
+def get_statistics(distro_id: int) -> tuple[float, int, int]:
   """
   Returns the percentage of approval for the given distro
 
   Returns:
-    positive int: More users approve this selections
-    negative int: More user disapprove this result
+    A tuple of the percentage, the amount of positive votes and the overall vote count.
+    Meaning of the first value:
+    positive float: More users approve this selections
+    negative float: More user disapprove this result
     50: Equal count of approvals/ disapprovals
     0: No ratings yet
   """
@@ -55,7 +57,7 @@ def get_statistics(distro_id: int) -> float:
   else:
     percentage = -1 * (100/(all_count/ not_approved_by_user)) if not_approved_by_user != 0 else 0
 
-  return round(percentage,0)
+  return round(percentage,0), approved_by_user, all_count
 
 @transaction.atomic
 def getSelections(userSession, data, langCode):
@@ -123,13 +125,10 @@ def getSelections(userSession, data, langCode):
         "reasons": list(map(lambda r: model_to_dict(r,exclude=["id", "isDisApprovedByUser"]), reasons)),
         "selection": selection.id,
         "tags": matchedTags[distroId] if distroId in matchedTags else [],
-        "percentage": percentage,
-        "rank": -1
+        "percentage": selection.distro.percentage,
+        "positive_ratings": selection.distro.positive_ratings,
+        "ratings": selection.distro.ratings,
+        "rank": selection.distro.rank
       }
     )
-  percentages = {k: percentages[k] for k in sorted(percentages, key=percentages.get, reverse=True)}
-  print(percentages)
-  for result in results:
-    rank = list(percentages.values()).index(result["percentage"]) + 1 # starting with 0
-    result["rank"] = rank
   return results
