@@ -49,7 +49,7 @@ def get_statistics(distro_id: int) -> Tuple[float, int, int]:
   all_count = selections.count()
   not_approved_by_user = all_count - approved_by_user
   percentage = 0
-  if not_approved_by_user < approved_by_user:
+  if approved_by_user > 0:
     percentage = (100/(all_count/ approved_by_user)) if approved_by_user != 0 else 0
   elif not_approved_by_user == approved_by_user and approved_by_user == 0:
     percentage = 0
