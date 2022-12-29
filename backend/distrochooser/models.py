@@ -1,10 +1,8 @@
 from django.db import models
-from datetime import datetime
-import string
 from backend.settings import MEDIA_ROOT
 from django.utils.timezone import now
 from distrochooser.constants import COMMIT
-
+from taggit.managers import TaggableManager
 
 class Translateable(models.Model):
     msgid = models.CharField(
@@ -46,7 +44,7 @@ class Answer(Translateable):
         null=True, blank=True)  # if null -> no image there!
     isDisabled = models.BooleanField(default=False)
     orderIndex = models.IntegerField(default=0)
-
+    tags = TaggableManager()
     def __str__(self):
         return "{0}: {1}".format(self.question, self.msgid)
 
@@ -88,7 +86,6 @@ class UserSession(models.Model):
         self.commit = COMMIT
         super(UserSession, self).save(*args, **kwargs)
 
-
 class GivenAnswer(models.Model):
     class Meta():
         indexes = [
@@ -99,6 +96,7 @@ class GivenAnswer(models.Model):
         UserSession, on_delete=models.CASCADE, db_index=True)
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
     isImportant = models.BooleanField(default=False)
+    tags = TaggableManager()
 
     def __str__(self):
         return "{0}: {1}".format(self.session, self.answer)
@@ -119,6 +117,7 @@ class Distribution(models.Model):
         max_length=200, null=True, blank=True, default="")
     logo = models.FileField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
+    tags = TaggableManager()
 
     def __str__(self):
         return self.name

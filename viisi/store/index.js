@@ -49,8 +49,9 @@ const indexStore = new Vapi({
     visuallyImpairedMode: false,
     inRTLMode: true,
     showAllResults: false,
-    debug: false,
-    ratingSort: false
+    debug: true,
+    ratingSort: false,
+    tags: {}
   }
 })
   .post({
@@ -113,13 +114,21 @@ indexStore.actions.answerQuestion = async (store, payload) => {
     answered: true,
     important: false,
     category: payload.currentCategory.msgid,
-    blockedAnswers: answer.blockedAnswers
+    blockedAnswers: answer.blockedAnswers,
+    tags: []
   }
   store.commit('setAnswerQuestion', answer)
 }
 
 indexStore.actions.submitAnswers = async (store, payload) => {
   store.commit('toggleSubmitted')
+  payload.data.answers.forEach((answer) => {
+    var msgid = answer.msgid
+    answer["tags"] = []
+    if (typeof store.state.tags[msgid]  !== undefined) {
+      answer["tags"] = store.state.tags[msgid]
+    }
+  })
   await store.dispatch('submit', payload)
   store.commit('toggleSubmitted')
 }
@@ -202,6 +211,12 @@ indexStore.mutations.setCurrentDisplayData = (state, data) => {
   state.language = data.language
   state.testCount = data.testCount
   state.translations = data.translations
+  /* only hebrew locale is currently rtl */
+  if (state.language == "he") {
+    state.inRTLMode = true
+  } else {
+    state.inRTLMode = false 
+  }
 }
 
 indexStore.mutations.setCurrentQuestionData = (state, data) => {
@@ -282,6 +297,40 @@ indexStore.actions.prevQuestion = (store, payload) => {
     language: payload.params.language,
     selectedCategory: nextCategory
   })
+}
+
+indexStore.mutations.resetTags = (state, payload) => {
+  delete state.tags[payload.answerId]
+}
+
+
+indexStore.mutations.removeTags = (state, payload) => {
+  for (var i=0;i<payload.data.length;i++) {
+    var tag = payload.data[i]
+    var index = state.tags[payload.answerId].indexOf(tag)
+    if (index !== -1) {
+      state.tags[payload.answerId].splice(index, 1)
+    }
+  }
+}
+
+indexStore.mutations.saveTags = (state, payload) => {
+  if (typeof state.tags[payload.answerId] === 'undefined') {
+    state.tags[payload.answerId] = payload.selection
+  } else {
+    for (var i=0;i<payload.oldSelection.length;i++) {
+      var tag = payload.oldSelection[i]
+      var index = state.tags[payload.answerId].indexOf(tag)
+      if (index !== -1) {
+        state.tags[payload.answerId].splice(index, 1)
+      }
+    }
+    payload.selection.forEach((value) => {
+      if (state.tags[payload.answerId].indexOf(value) === -1) {
+        state.tags[payload.answerId].push(value)
+      }
+    })
+  }
 }
 
 const createStore = () => {

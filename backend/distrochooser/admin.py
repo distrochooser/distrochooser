@@ -10,7 +10,6 @@ from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSele
   (SelectionReason,),
 ]]
 
-
 class CategoryAdmin(admin.ModelAdmin):
   def get_ordering(self, request):
      return ['index']

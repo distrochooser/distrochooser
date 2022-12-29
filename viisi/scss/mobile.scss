@@ -95,7 +95,7 @@
   }
   .answer {
     font-size: 13px !important;
-    display: flex;
+    display: block;
   }
   .answers {
     margin-left: 0.5em !important;
@@ -157,6 +157,9 @@
   }
   .display-options {
     display: none;
+  }
+  div.tags-select {
+    width: initial;
   }
 }
 

@@ -7,9 +7,8 @@ from secrets import token_hex
 from urllib.parse import urlparse
 import datetime
 from math import floor
-from django.db.models import Q
 
-from django.db.models import Count, Avg
+from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpRequest, JsonResponse, Http404
 from django.shortcuts import render, redirect
@@ -17,7 +16,7 @@ from django.shortcuts import render, redirect
 from backend.settings import LOCALES
 from distrochooser.util import get_json_response, get_step_data
 from distrochooser.calculations import default
-from distrochooser.models import UserSession, Category, ResultDistroSelection, GivenAnswer, AnswerDistributionMatrix
+from distrochooser.models import UserSession, Category, ResultDistroSelection, GivenAnswer
 from distrochooser.constants import TRANSLATIONS, TESTOFFSET, CONFIG
 
 

@@ -63,33 +63,36 @@
                     i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
               p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
           div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
-            input(v-if="inVisuallyImpairedMode", :id="'answer_'+a_key",:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
-            label(v-if="inVisuallyImpairedMode", :for="'answer_'+a_key") {{ __i(answer.msgid) }}
-            
-            label.container(v-if="!inVisuallyImpairedMode", @click='answerQuestion(answer)') 
-              span.answer-text {{ __i(answer.msgid) }}
-              input(:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
-              span.checkmark
-            
-            a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)") {{ __i("make-important") }}
-            a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)") {{ __i("remove-important") }}
+            div
+              input(v-if="inVisuallyImpairedMode", :id="'answer_'+a_key",:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
+              label(v-if="inVisuallyImpairedMode", :for="'answer_'+a_key") {{ __i(answer.msgid) }}
+              
+              label.container(v-if="!inVisuallyImpairedMode", @click='answerQuestion(answer)') 
+                span.answer-text {{ __i(answer.msgid) }}
+                input(:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
+                span.checkmark
+              
+              a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)") {{ __i("make-important") }}
+              a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)") {{ __i("remove-important") }}
 
-            span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)")
-              i.w-icon-star-off(:title='__i("make-important")')
-            span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)")
-              i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
+              span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)")
+                i.w-icon-star-off(:title='__i("make-important")')
+              span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)")
+                i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
 
-            
-            div.warning-alert.fadeInUp.faster(:class="'animated' ? !$store.state.visuallyImpairedMode : ''", v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
-              p {{ __i("answer-is-blocking") }}:
-              div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
-                i.w-icon-circle-close-o.warning-icon
-                span "{{ __i(blockingAnswer.msgid) }}"
-            div.blocking-alert.animated.fadeInUp.faster(v-if="getBlockedAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
-              p {{ __i("answer-is-blocked") }}:
-              div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key") 
-                i.w-icon-circle-close-o
-                span "{{ __i(blockingAnswer.msgid) }}"
+              
+              div.warning-alert.fadeInUp.faster(:class="'animated' ? !$store.state.visuallyImpairedMode : ''", v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
+                p {{ __i("answer-is-blocking") }}:
+                div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
+                  i.w-icon-circle-close-o.warning-icon
+                  span "{{ __i(blockingAnswer.msgid) }}"
+              div.blocking-alert.animated.fadeInUp.faster(v-if="getBlockedAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
+                p {{ __i("answer-is-blocked") }}:
+                div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key") 
+                  i.w-icon-circle-close-o
+                  span "{{ __i(blockingAnswer.msgid) }}"
+            div(v-if="isAnswerSelected(answer) && answer.tags.length > 0", class="tags-select-parent") 
+              tags(:values="answer.tags", :answer="answer.msgid")
       div.actions(v-if="!additionalInfoShown")
         button.skip-step.step(@click="nextQuestion",v-if="!isAtLastQuestion()") {{  __i("skip-question") }}
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
@@ -97,8 +100,12 @@
 </template>
 <script>
 import i18n from '~/mixins/i18n'
+import tags from '~/components/tags.vue'
 export default {
   mixins: [i18n],
+  components: {
+    tags
+  },
   props: {
     language: {
       type: String,
@@ -173,6 +180,10 @@ export default {
     answerQuestion(answer) {
       if (this.isAnswerSelected(answer)) {
         this.$store.commit('removeAnswerQuestion', answer)
+        this.$store.commit('removeTags',{
+          answerId: answer.msgid,
+          data: answer.tags,
+        })
       } else {
         if (!this.question.isMultipleChoice && this.isQuestionAnswered()) {
           // switch an answer in non multiple choice questions
@@ -180,6 +191,9 @@ export default {
           const _t = this
           otherAnswers.forEach(function(a) {
             _t.$store.commit('removeAnswerQuestion', a)
+            _t.$store.commit('resetTags',{
+              answerId: a.msgid,
+            })
           })
         }
         if (this.question.isMultipleChoice || !this.isQuestionAnswered()) {

@@ -47,10 +47,12 @@ def get_step_data(category_index: int) -> dict:
         blocked_answers = []
         for blocked in answer.blockedAnswers.all():
             blocked_answers.append(blocked.msgid)
+        tag_slugs = list(answer.tags.slugs())
         response_answers.append({
             "msgid": answer.msgid,
             "blockedAnswers": blocked_answers,
-            "mediaSourcePath": answer.mediaSourcePath
+            "mediaSourcePath": answer.mediaSourcePath,
+            "tags": tag_slugs
         })
     return {
         "question": model_to_dict(question, fields=('id', 'msgid', 'isMultipleChoice', 'additionalInfo', 'isMediaQuestion')),

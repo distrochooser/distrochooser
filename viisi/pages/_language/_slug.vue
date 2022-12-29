@@ -1,5 +1,7 @@
 <template lang="pug">
   div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode, 'rtl': isRTL }")
+    div.beta-banner(v-if="isBeta") Development version: For testing purposes only. For the online version, use  
+      a(href="https://distrochooser.de") distrochooser.de
     div.top-logo-container(aria-role="banner",v-if="!$store.state.visuallyImpairedMode")
       a(href="/")
         img.top-logo(src='/logo.min.svg', alt="Distrochooser.de Logo")
@@ -18,6 +20,7 @@
     footernav(v-if="!isLoading && this.$store.state.result === null",:language="infoPageLanguage")
 </template>
 <script>
+import viisiConfig from '~/distrochooser.json'
 import '@uiw/icons/fonts/w-icon.css'
 import categories from '~/components/categories'
 import question from '~/components/question'
@@ -40,6 +43,9 @@ export default {
     }
   },
   computed: {
+    isBeta: function() {
+      return viisiConfig.frontend.frontendUrl.indexOf("localhost") !== -1 || viisiConfig.frontend.frontendUrl.indexOf("beta.distrochooser.de")  !== -1
+    },
     isFinished: function() {
       return this.$store.state.result !== null
     },
@@ -235,6 +241,12 @@ export default {
         }
       ]
     }
+    if (this.isBeta) {
+      result["meta"].push({
+        "name": "robots",
+        "content": "noindex"
+      })
+    }
     return result
   }
 }
@@ -297,6 +309,21 @@ export default {
     /* Safari, Android, iOS */
       url('/fonts/OpenSans/open-sans-v16-latin-regular.svg#OpenSans')
       format('svg'); /* Legacy iOS */
+}
+.beta-banner {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  text-align: center;
+  width: 100%;
+  padding: 1em;
+  background: red;
+  z-index: -10000000;
+  color: white;
+  a {
+    color: white;
+    font-weight: bold;
+  }
 }
 .spin-parent {
   text-align: center;
