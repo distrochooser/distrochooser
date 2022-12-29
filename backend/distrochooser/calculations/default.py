@@ -115,11 +115,8 @@ def getSelections(userSession, data, langCode):
           createdReasons[distro.id].append(reason)
           reason.save()
   results = []
-  percentages = {}
   for distroId, selection in createdSelections.items():
     reasons = createdReasons[distroId]
-    percentage = get_statistics(distroId)
-    percentages[distroId] = percentage
     results.append(
       {
         "distro": model_to_dict(selection.distro, exclude=["logo", "id", "tags"]),
