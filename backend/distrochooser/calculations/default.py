@@ -1,7 +1,8 @@
 from distrochooser.constants import TRANSLATIONS
-from distrochooser.models import Question, GivenAnswer, ResultDistroSelection, ResultDistroSelection, Distribution, SelectionReason, Answer, AnswerDistributionMatrix, UserSession
+from distrochooser.models import  GivenAnswer, ResultDistroSelection, ResultDistroSelection, Distribution, SelectionReason, Answer, AnswerDistributionMatrix, UserSession
 from django.forms.models import model_to_dict
 from django.db import transaction
+from django.db.models import Q
 
 def saveAnswers(userSession, rawAnswers):
   # Delete old answers
@@ -27,7 +28,34 @@ def saveAnswers(userSession, rawAnswers):
           answer.tags.add(tag)
       answer.save()
 
+def get_statistics(distro_id: int) -> float:
+  """
+  Returns the percentage of approval for the given distro
 
+  Returns:
+    positive int: More users approve this selections
+    negative int: More user disapprove this result
+    50: Equal count of approvals/ disapprovals
+    0: No ratings yet
+  """
+  
+  # Get all voted results for this distribution
+  selections = ResultDistroSelection.objects.filter(distro=distro_id).filter(Q(isApprovedByUser=True) | Q(isDisApprovedByUser=True))
+
+  approved_by_user= selections.filter(isApprovedByUser=True).count()
+  all_count = selections.count()
+  not_approved_by_user = all_count - approved_by_user
+  percentage = 0
+  if not_approved_by_user < approved_by_user:
+    percentage = (100/(all_count/ approved_by_user)) if approved_by_user != 0 else 0
+  elif not_approved_by_user == approved_by_user and approved_by_user == 0:
+    percentage = 0
+  elif not_approved_by_user == approved_by_user:
+    percentage = 50
+  else:
+    percentage = -1 * (100/(all_count/ not_approved_by_user)) if not_approved_by_user != 0 else 0
+
+  return round(percentage,0)
 
 @transaction.atomic
 def getSelections(userSession, data, langCode):
@@ -84,14 +112,24 @@ def getSelections(userSession, data, langCode):
           createdReasons[distro.id].append(reason)
           reason.save()
   results = []
+  percentages = {}
   for distroId, selection in createdSelections.items():
     reasons = createdReasons[distroId]
+    percentage = get_statistics(distroId)
+    percentages[distroId] = percentage
     results.append(
       {
         "distro": model_to_dict(selection.distro, exclude=["logo", "id", "tags"]),
-        "reasons": list(map(lambda r: model_to_dict(r,exclude=["id", "resultSelection"]), reasons)),
+        "reasons": list(map(lambda r: model_to_dict(r,exclude=["id", "isDisApprovedByUser"]), reasons)),
         "selection": selection.id,
-        "tags": matchedTags[distroId] if distroId in matchedTags else []
+        "tags": matchedTags[distroId] if distroId in matchedTags else [],
+        "percentage": percentage,
+        "rank": -1
       }
     )
+  percentages = {k: percentages[k] for k in sorted(percentages, key=percentages.get, reverse=True)}
+  print(percentages)
+  for result in results:
+    rank = list(percentages.values()).index(result["percentage"]) + 1 # starting with 0
+    result["rank"] = rank
   return results

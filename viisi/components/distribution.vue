@@ -1,9 +1,43 @@
 <template lang="pug">
   div.distribution
-    div.title(:aria-disabled="voted && !positiveVote", :style="'background-color: ' + bgColor +'; color: ' + fgColor",:class="{'downvoted-distro': voted && !positiveVote}") 
+    div.title(:aria-disabled="voted && !positiveVote", :style="'background-color: ' + bgColor +'; color: ' + fgColor") 
       span {{ name }}
-      span.user-agree-score(v-if="$store.state.ratingSort && votes.upvotes > 0 || $store.state.ratingSort && votes.downvotes > 0") {{ __i("user-agree-score").replace("#", Math.round(votes.upvote_percentage*100)) }}
-      span.user-agree-score(v-else-if="$store.state.ratingSort && votes.upvotes == 0 && votes.downvotes == 0") {{ __i("user-agree-noscore") }}
+      div.vote-action(:class="{'downvoted-distro animate__animated animate__rubberBand': voted && !positiveVote, 'animate__animated animate__tada': voted && positiveVote}")
+          a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)",:data-balloon="!$store.state.visuallyImpairedMode ? __i('vote-reminder'): null",data-balloon-pos="left")
+            i.w-icon-heart-on(:style="'color: ' + fgColor", v-bind:class="{'voted': voted && positiveVote}", v-if="!$store.state.visuallyImpairedMode")
+            span(v-else) {{ voted && positiveVote ? __i("liked") :  __i("like") }} 
+
+          a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)", :data-balloon="!$store.state.visuallyImpairedMode ? __i('vote-reminder-negative') : null",data-balloon-pos="left")
+            i.w-icon-dislike-o(:style="'color: ' + fgColor", v-bind:class="{'voted': voted && !positiveVote}", v-if="!$store.state.visuallyImpairedMode")
+            span(v-else) {{ voted && !positiveVote? __i("not-liked") :  __i("dislike") }} 
+    div.metrics
+      div.metric.rank 
+        p.metric-title(:style="'--distro-color: ' + bgColor")
+          i.w-icon-pie-chart
+          span {{ __i("metric-rank")}}
+        p.metric-value {{ numberWithSuffix(rank) }}
+      div.metric.percentage
+        p.metric-title(:style="'--distro-color: ' + bgColor") 
+          i.w-icon-bar-chart 
+          span {{ __i("metric-percentage")}}
+        p.metric-value {{  percentage }}%
+      div.metric.tags
+        p.metric-title(:style="'--distro-color: ' + bgColor") 
+          i.w-icon-tags
+          span {{ __i("metric-tags")}}
+        p.metric-value 
+          div.tags 
+            span.no-tags(v-if="tags.length == 0") {{  __i("no-tags") }}
+            span(v-for="(tag, tag_key) in tags", :key="tag_key") 
+              i.w-icon-tag 
+              span.tag-text {{ __i("tag-" + tag) }}
+      div.metric.website
+        p.metric-title(:style="'--distro-color: ' + bgColor") 
+          i.w-icon-link
+          span {{ __i("metric-website")}}
+        p.metric-value 
+          a(v-if="url",tabindex=0, role="link", :alt="__i('distribution-homepage') + ' ' + name", target="_blank", :href="url") {{ getURLHost(url) }}
+    
     div.description(v-if="flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
       div.reason-list.list(aria-role="list")
@@ -40,25 +74,6 @@
           div(v-for="(reason, reason_key) in neutral", :key="reason_key", aria-role="listitem") 
             i.w-icon-question-circle-o
             span {{ reason.description }}
-    div.tags 
-      span(v-for="(tag, tag_key) in tags", :key="tag_key") 
-        i.w-icon-tag 
-        span.tag-text {{ __i("tag-" + tag) }}
-    div.meta
-      div.actions
-        div.vote-actions
-          a.action(href="#", v-on:click.prevent="vote(voted && positiveVote? null : true)",:data-balloon="!$store.state.visuallyImpairedMode ? __i('vote-reminder'): null",data-balloon-pos="left")
-            
-            i.w-icon-heart-on(v-bind:class="{'animated heartBeat voted': voted && positiveVote}", v-if="!$store.state.visuallyImpairedMode")
-            span(v-else) {{ voted && positiveVote ? __i("liked") :  __i("like") }} 
-
-          a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)", :data-balloon="!$store.state.visuallyImpairedMode ? __i('vote-reminder-negative') : null",data-balloon-pos="left")
-            i.w-icon-dislike-o(v-bind:class="{'animated swing voted': voted && !positiveVote}", v-if="!$store.state.visuallyImpairedMode")
-            span(v-else) {{ voted && !positiveVote? __i("not-liked") :  __i("dislike") }} 
-          a.action.hide-reasons(href="#", v-on:click.prevent="flipped=!flipped", :data-balloon="__i('reasons-hide')",data-balloon-pos="right")
-            i.w-icon-shrink(v-if="flipped")
-            i.w-icon-arrows-alt(v-if="!flipped")
-      a.url(v-if="url",tabindex=0, role="link", :alt="__i('distribution-homepage') + ' ' + name", target="_blank", :href="url") {{ __i("distribution-homepage") }}
 </template>
 <script>
 import i18n from '~/mixins/i18n'
@@ -106,10 +121,16 @@ export default {
         return []
       }
     },
-    votes: {
-      type: Array,
+    rank: {
+      type: Number,
       default: function() {
-        return []
+        return 0
+      }
+    },
+    percentage: {
+      type: Number,
+      default: function() {
+        return 0
       }
     }
   },
@@ -133,6 +154,9 @@ export default {
     }
   },
   methods: {
+    getURLHost: function(url) {
+      return new URL(url).host
+    },
     vote: function(positive) {
       this.$store.dispatch('voteSelection', {
         data: {
@@ -159,6 +183,7 @@ export default {
   background: $questionBackground;
   padding-top: 1em;
   margin-bottom: 2em;
+  padding-bottom: 0.25em;
 }
 .title {
   margin-right: -0.5em;
@@ -181,10 +206,8 @@ export default {
   margin-right: 0.5em;
   color: grey;
 }
-.meta .actions {
-  width: 50%;
-  display: inline-block;
-  padding: 1em;
+.vote-actions {
+
 }
 .action {
   margin-right: 0.5em;
@@ -275,11 +298,12 @@ i {
   color: #ff7a00;
   margin-left: 0.5em;
 }
-.vote-actions {
-  display: inline;
-}
-.vote-actions a {
-  text-decoration: none;
+.vote-action {
+  display: inline-block;
+  margin-left: 1em;
+  a {
+    text-decoration: none;
+  }
 }
 .user-agree-score {
   position: relative;
@@ -289,5 +313,43 @@ i {
   font-style: italic;
   margin-left: 1em;
   margin-top: -1.5em;
+}
+.metrics {
+  display: table;
+  width: 100%;
+  text-align: center;
+  table-layout: fixed;
+  margin-bottom: 1em;
+  margin-top: -1em;
+  .metric {
+    display: table-cell;
+    padding-top: 1em;
+    .metric-title {
+      i {
+        color: $linkColor;
+        vertical-align: sub;
+      }
+    }
+    .metric-title::after{
+      content: "";
+      display: block;
+      border-bottom: 0.15em solid var(--distro-color);
+      width: 20%;
+      left: 40%;
+      position: relative;
+      padding-bottom: 0.5em;
+      margin-bottom: 0.75em;
+    }
+    .metric-value {
+      text-align: center;
+      
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: $linkColor;
+        word-break: break-all;
+      }
+    }
+  }
 }
 </style>
