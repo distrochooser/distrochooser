@@ -21,9 +21,10 @@ def saveAnswers(userSession, rawAnswers):
   for answer in received:
     raw_objs = list(filter(lambda a: a["msgid"] == answer.answer.msgid, rawAnswers))
     if len(raw_objs) == 1:
-      tags = raw_objs[0]["tags"]
-      for tag in tags:
-        answer.tags.add(tag)
+      if "tags" in raw_objs[0]:
+        tags = raw_objs[0]["tags"]
+        for tag in tags:
+          answer.tags.add(tag)
       answer.save()
 
 
