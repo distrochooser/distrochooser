@@ -3,6 +3,7 @@ from distrochooser.models import  GivenAnswer, ResultDistroSelection, ResultDist
 from django.forms.models import model_to_dict
 from django.db import transaction
 from django.db.models import Q
+from typing import Tuple
 
 def saveAnswers(userSession, rawAnswers):
   # Delete old answers
@@ -28,7 +29,7 @@ def saveAnswers(userSession, rawAnswers):
           answer.tags.add(tag)
       answer.save()
 
-def get_statistics(distro_id: int) -> tuple[float, int, int]:
+def get_statistics(distro_id: int) -> Tuple[float, int, int]:
   """
   Returns the percentage of approval for the given distro
 

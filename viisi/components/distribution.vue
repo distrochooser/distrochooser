@@ -20,7 +20,7 @@
         p.metric-title(:style="'--distro-color: ' + bgColor") 
           i.w-icon-bar-chart 
           span {{ __i("metric-percentage")}}
-        p.metric-value {{  percentage }}%
+        p.metric-value {{  percentage }}% ({{ ratings }}x {{ __i("metric-ratings") }})
       div.metric.tags
         p.metric-title(:style="'--distro-color: ' + bgColor") 
           i.w-icon-tags
@@ -128,6 +128,18 @@ export default {
       }
     },
     percentage: {
+      type: Number,
+      default: function() {
+        return 0
+      }
+    },
+    ratings: {
+      type: Number,
+      default: function() {
+        return 0
+      }
+    },
+    positive_ratings: {
       type: Number,
       default: function() {
         return 0
