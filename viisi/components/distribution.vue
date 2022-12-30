@@ -36,7 +36,13 @@
           i.w-icon-link
           span {{ __i("metric-website")}}
         p.metric-value 
-          a(v-if="url",tabindex=0, role="link", :alt="__i('distribution-homepage') + ' ' + name", target="_blank", :href="url") {{ getURLHost(url) }}
+          a(v-if="url",tabindex=0, role="link", :alt="__i('distribution-homepage') + ' ' + name", target="_blank", :href="url", v-on:click.prevent="registerClick", :data-dbid="dbid", :data-target="url") {{ getURLHost(url) }}
+      div.metric.website-clicks
+        p.metric-title(:style="'--distro-color: ' + bgColor") 
+          i.w-icon-eye
+          span {{ __i("metric-website-clicks")}}
+        p.metric-value 
+          span {{ clicks  }}
     
     div.description(v-if="flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
@@ -84,6 +90,14 @@ export default {
     name: {
       type: String,
       default: ''
+    },
+    clicks: {
+      type: Number,
+      default: -1
+    },
+    dbid: {
+      type: Number,
+      default: -1
     },
     id: {
       type: String,
@@ -166,6 +180,17 @@ export default {
     }
   },
   methods: {
+    registerClick: async function(e) {
+      var target = e.target.getAttribute("data-target")
+      var id = e.target.getAttribute("data-dbid")
+      e.preventDefault()
+      await this.$store.dispatch('registerClick', {
+        params: {
+          id: id
+        }
+      })
+      window.location.href = target
+    },
     getURLHost: function(url) {
       return new URL(url).host
     },

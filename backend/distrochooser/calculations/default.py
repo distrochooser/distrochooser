@@ -119,7 +119,7 @@ def getSelections(userSession, data, langCode):
     reasons = createdReasons[distroId]
     results.append(
       {
-        "distro": model_to_dict(selection.distro, exclude=["logo", "id", "tags"]),
+        "distro": model_to_dict(selection.distro, exclude=["logo", "tags"]),
         "reasons": list(map(lambda r: model_to_dict(r,exclude=["id", "isDisApprovedByUser"]), reasons)),
         "selection": selection.id,
         "tags": matchedTags[distroId] if distroId in matchedTags else [],

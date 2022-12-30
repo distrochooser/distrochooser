@@ -122,6 +122,7 @@ class Distribution(models.Model):
     positive_ratings = models.IntegerField(default=0)
     percentage = models.FloatField(default=0)
     rank = models.IntegerField(default=0)
+    clicks = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

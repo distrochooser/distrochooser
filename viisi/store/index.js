@@ -51,7 +51,8 @@ const indexStore = new Vapi({
     showAllResults: false,
     debug: true,
     ratingSort: false,
-    tags: {}
+    tags: {},
+    clickRegisterResult: null
   }
 })
   .post({
@@ -63,6 +64,11 @@ const indexStore = new Vapi({
     action: 'language',
     property: 'data',
     path: ({ language }) => `translation/${language}/`
+  })
+  .get({
+    action: 'registerClick',
+    property: 'clickRegisterResult',
+    path: ({ id }) => `click/${id}`
   })
   .get({
     action: 'loadQuestion',

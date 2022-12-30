@@ -16,7 +16,7 @@ from django.shortcuts import render, redirect
 from backend.settings import LOCALES
 from distrochooser.util import get_json_response, get_step_data
 from distrochooser.calculations import default
-from distrochooser.models import UserSession, Category, ResultDistroSelection, GivenAnswer
+from distrochooser.models import UserSession, Category, ResultDistroSelection, GivenAnswer, Distribution
 from distrochooser.constants import TRANSLATIONS, TESTOFFSET, CONFIG
 
 
@@ -343,3 +343,10 @@ def get_given_answers(request: HttpRequest, token: str) -> JsonResponse:
             "categories": list(answers.values_list("answer__question__category__msgid", flat=True))
         }
     )
+
+
+def register_click(request: HttpRequest, id: int) -> HttpResponse:
+    distro = Distribution.objects.get(id=id)
+    distro.clicks = distro.clicks + 1
+    distro.save()
+    return HttpResponse("ok")
