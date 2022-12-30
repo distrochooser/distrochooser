@@ -2,7 +2,7 @@
   div.question(v-if="isLoaded")
     div(v-if="isAtWelcomeScreen")
       div.question-content
-        div.welcome-text 
+        div.welcome-text(v-if="!isAtHardwareScreen")
           h2 {{ __i("welcome-text-title") }}
           p {{ __i("welcome-text") }}
           div
@@ -32,6 +32,7 @@
               a(href="/?vim=true") {{ __i("welcome-text-a11y") }}
             div
               button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
+        hardware(v-else,:language="language", :startTestFunc="startTestAfterHardware")
     div(v-else)
       div.question-content
         div.additional-infos.animated.fadeIn.fast(v-if="additionalInfoShown")
@@ -101,10 +102,12 @@
 <script>
 import i18n from '~/mixins/i18n'
 import tags from '~/components/tags.vue'
+import hardware from '~/components/hardware.vue'
 export default {
   mixins: [i18n],
   components: {
-    tags
+    tags,
+    hardware
   },
   props: {
     language: {
@@ -115,7 +118,8 @@ export default {
   },
   data: function() {
     return {
-      additionalInfoShown: false
+      additionalInfoShown: false,
+      isAtHardwareScreen: false,
     }
   },
   computed: {
@@ -204,13 +208,27 @@ export default {
         }
       }
     },
-    startTest() {
+    startTestAfterHardware() {
+      this.isAtHardwareScreen = false     
       var _t = this
-      this.$store.dispatch('nextQuestion', {
-        params: {
-          language: _t.language
-        }
+        this.$store.dispatch('nextQuestion', {
+          params: {
+            language: _t.language
+          }
       })
+
+    },
+    startTest() {
+      if (!this.isAtHardwareScreen) {
+        this.isAtHardwareScreen = true
+      } else {
+        var _t = this
+        this.$store.dispatch('nextQuestion', {
+          params: {
+            language: _t.language
+          }
+        })
+      }
     },
     nextQuestion() {
       if (this.isAtEndWithoutAnswers) {
