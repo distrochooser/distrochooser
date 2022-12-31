@@ -9,14 +9,16 @@
                     ol 
                         li {{ __i("windows-x-hint") }}
                         li {{ __i("windows-choose-system") }}
-                        li {{ __i("windows-taskmgr-gpu-title") }}
-                        li {{ __i("windows-taskmgr-gpu-directions") }}
+                div.mac
+                    h3 Mac
+                    ul 
+                        li {{ __i("no-mac-distros") }} 
                 div.linux
                     h3 Linux
                     ol 
                         li {{ __i("linux-open-terminal") }}
                         li {{ __i("linux-execute") }} 
-                            code bash -c 'echo CPU frequency in Ghz: $(($(cat /proc/cpuinfo | grep MHz | tail  -n 1 | grep -Eo "[0-9]+" | head  -n 1) / 1000)) && echo Memory in GB: $(($(grep MemTotal /proc/meminfo | grep -Eo "[0-9]+") / 1024 / 1024)) && echo Graphics card: $(lspci | grep VGA | cut -d ":" -f 3)'
+                            code bash -c 'echo CPU frequency in Ghz: $(($(cat /proc/cpuinfo | grep MHz | tail  -n 1 | grep -Eo "[0-9]+" | head  -n 1) / 1000)) && echo Memory in GB: $(($(grep MemTotal /proc/meminfo | grep -Eo "[0-9]+") / 1024 / 1024))'
             
             div.hardware-input.identify
                 label(for="this-computer") {{  __i('hardware-this-computer') }}
@@ -33,14 +35,18 @@
             div.storage.hardware-input
                 label(for="storage") {{  __i('hardware-storage-title') }}
                 input(name="storage", type="number", :placeholder="__i('hardware-storage-placeholder')", v-model="storage")
-            div.gpu.hardware-input
-                label(for="gpu") {{  __i('hardware-gpu-title') }}
-                input(name="gpu",  :placeholder="__i('hardware-gpu-placeholder')", v-model="gpu")
-            h3 {{  __i("hardware-assumption-result") }}
-            div.hardware-input(v-for="(result_value, result_key) in result", :key="result_key", :class="result_key")
-                label {{ __i(result_key) }}
-                i(v-bind:class="{'w-icon-check-square-o': result_value, 'w-icon-close-square-o': !result_value}") 
-        
+            div.touch.hardware-input
+                label(for="touch") {{  __i('hardware-touch-title') }}
+                input(name="touch",  type="checkbox", v-model="touch")
+            div.mobile.hardware-input
+                label(for="mobile") {{  __i('hardware-mobile-title') }}
+                input(name="mobile",  type="checkbox", v-model="mobile")
+            div(v-if="filledOut")
+                h3 {{  __i("hardware-assumption-result") }}
+                div.hardware-input(v-for="(result_value, result_key) in result", :key="result_key", :class="result_key", v-if="result_value")
+                    label {{ __i(result_key) }}
+                    i(v-bind:class="{'w-icon-check-square-o': result_value, 'w-icon-close-square-o': !result_value}") 
+            
         div.actions
             button.skip-step.step(@click="startTestFunc") {{  __i("skip-question") }}
             button.start-test-button.next-step.step(@click="startTestFuncWithStoredHardware") {{ __i("start-test") }}
@@ -68,18 +74,23 @@ mixins: [i18n],
             cpuFrequency: 0,
             memory: 0,
             storage: 0,
-            gpu: ""
+            touch: false,
+            mobile: false
         }
     },
     computed: {
+        filledOut: function () {
+            return this.cpuCores != 0 && this.cpuFrequency != 0 && this.memory != 0 && this.storage != 0
+        },
         result: function () {
             return {
-                "multi-core": this.cpuCores > 0,
-                "cpu-64bit": navigator.userAgent.match(/(x64|Macintosh)/) != null,
-                "mobile": this.gpu.match(/((R|G)TX \d{3,}M|M\d{2,})/) != null || this.gpu.match(/M1/),
-                "touch": this.detectTouch(),
-                "gpu-desktop": this.gpu.match(/((R|G)TX \d{3,}(!M)|M\d{2,})/) != null,
-                "memory-limited": this.memory < 4
+                "multi-core": this.cpuCores > 1,
+                "cpu-64bit": navigator.userAgent.match(/(WOW64|x64|Macintosh)/i) != null && this.cpuCores > 1, 
+                "mobile": this.mobile,
+                "touch": this.touch,
+                "memory-limited": this.memory < 8,
+                "storage-limited": this.memory < 20,
+                "cpu-limited": this.cpuCores <= 2 || this.cpuFrequency <= 2
             }
         }
     },
@@ -98,24 +109,18 @@ mixins: [i18n],
             if (this.thisComputer) {
                 this.cpuCores = navigator.hardwareConcurrency
                 this.memory = navigator.deviceMemory /* Not on all browsers */
-                this.getGraphicsCard()
+                if (!this.memory) {
+                    this.memory = 0
+                }
+                this.touch = this.detectTouch()
             } else {
                 this.cpuCores = 0
                 this.memory = 0
                 this.cpu = ""
                 this.storage = 0
+                this.touch = false
+                this.mobile = false
             }
-        },
-        /* see https://stackoverflow.com/questions/15464896/get-cpu-gpu-memory-information */
-        getGraphicsCard: function() {
-            const gl = document.createElement('canvas').getContext('webgl');
-            if (!gl) {
-                return {
-                error: "no webgl",
-                };
-            }
-            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-            this.gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
         }
     }
 }
@@ -184,6 +189,7 @@ code {
 }
 
 .memory-limited i.w-icon-close-square-o,
+.storage-limited i.w-icon-close-square-o,
 .multi-core i.w-icon-check-square-o,
 .cpu-64bit i.w-icon-check-square-o,
 .gpu-desktop i.w-icon-check-square-o  {
@@ -191,6 +197,7 @@ code {
 }
 
 .memory-limited i.w-icon-check-square-o,
+.storage-limited i.w-icon-check-square-o,
 .cpu-64bit i.w-icon-close-square-o,
 .gpu-desktop i.w-icon-close-square-o  {
     color: darkred;
