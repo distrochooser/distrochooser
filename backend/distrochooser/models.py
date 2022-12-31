@@ -77,6 +77,12 @@ class UserSession(models.Model):
     calculationEndTime = models.DateTimeField(
         null=True, blank=True, default=None)
     remarksProcessed = models.BooleanField(default=False)
+    hardware_cores = models.IntegerField(default=-1)
+    hardware_frequency = models.IntegerField(default=-1)
+    hardware_memory = models.IntegerField(default=-1)
+    hardware_storage = models.IntegerField(default=-1)
+    hardware_is_touch = models.BooleanField(default=False)
+    hardware_is_mobile = models.BooleanField(default=False)
 
     def __str__(self):
         return "{0} - {1}".format(self.dateTime, self.publicUrl)

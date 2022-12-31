@@ -350,3 +350,22 @@ def register_click(request: HttpRequest, id: int) -> HttpResponse:
     distro.clicks = distro.clicks + 1
     distro.save()
     return HttpResponse("ok")
+
+
+def store_requirements(request: HttpRequest, token: str, cores: int, frequency: float, memory: int, storage: int, is_touch: bool, is_mobile: bool) -> HttpResponse:
+    session = UserSession.objects.get(token=token)
+    session.hardware_cores = cores
+    session.hardware_frequency = frequency
+    session.hardware_is_mobile = is_mobile
+    session.hardware_is_touch = is_touch
+    session.hardware_memory = memory
+    session.hardware_storage = storage
+    response = {
+        "cores": cores,
+        "frequency": frequency,
+        "memory": memory,
+        "storage": storage,
+        "is_touch": is_touch,
+        "is_mobile": is_mobile
+    }
+    return JsonResponse(response)
