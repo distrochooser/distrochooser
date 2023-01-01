@@ -26,7 +26,7 @@
         i.w-icon-appstore
     div.filtered-results-warning(v-if="!$store.state.showAllResults && filteredSelections.length !==  unfilteredSelections.length", @click="showAllResults") 
       a(href="#") {{ __i("distributions-hidden").replace("#", unfilteredSelections.length - filteredSelections.length) }}
-    distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :ratings="selection.distro.ratings", :positive_ratings="selection.distro.positive_ratings", :key="selection_key",:percentage="selection.percentage", :rank="selection.rank", :clicks="selection.distro.clicks" :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :dbid="selection.distro.id", :tags="selection.tags", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
+    distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :ratings="selection.distro.ratings", :positive_ratings="selection.distro.positive_ratings", :key="selection_key",:percentage="selection.percentage", :rank="selection.rank", :clicks="selection.distro.clicks" :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :dbid="selection.distro.id",  :hardware_check="selection.hardware_check", :requirements_check_values="selection.requirements_check_values", :tags="selection.tags", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
 
     div(v-if="isEmpty")
       h1 {{ __i("no-results")}}
@@ -251,7 +251,8 @@ export default {
   text-align: left;
   margin-top: 2.5em;
 }
-.w-icon-check-square {
+.w-icon-check-square,
+.w-icon-close-square {
   vertical-align: middle;
   margin-left: 0.4em;
   font-size: 11pt;

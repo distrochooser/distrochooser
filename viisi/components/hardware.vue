@@ -38,18 +38,10 @@
             div.touch.hardware-input
                 label(for="touch") {{  __i('hardware-touch-title') }}
                 input(name="touch",  type="checkbox", v-model="touch")
-            div.mobile.hardware-input
-                label(for="mobile") {{  __i('hardware-mobile-title') }}
-                input(name="mobile",  type="checkbox", v-model="mobile")
-            div(v-if="filledOut")
-                h3 {{  __i("hardware-assumption-result") }}
-                div.hardware-input(v-for="(result_value, result_key) in result", :key="result_key", :class="result_key", v-if="result_value")
-                    label {{ __i(result_key) }}
-                    i(v-bind:class="{'w-icon-check-square-o': result_value, 'w-icon-close-square-o': !result_value}") 
             
         div.actions
-            button.skip-step.step(@click="startTestFunc") {{  __i("skip-question") }}
-            button.start-test-button.next-step.step(@click="startTestFuncWithStoredHardware") {{ __i("start-test") }}
+            button.skip-step.step(@click="startTestFuncWithoutStoredHardware") {{ $store.state.hardwareRequirements != null ?  __i("clear-skip-question") : __i("skip-question") }}
+            button.start-test-button.next-step.step(@click="startTestFuncWithStoredHardware",:disabled="!filledOut", v-bind:class="{'disabled': !filledOut}") {{ __i("start-test") }}
 </template>
 <script> 
 import i18n from '~/mixins/i18n'
@@ -80,7 +72,6 @@ mixins: [i18n],
     },
     created: function() {
         if (this.$store.state.hardwareRequirements !== null) {
-            this.mobile = this.$store.state.hardwareRequirements.is_mobile
             this.touch = this.$store.state.hardwareRequirements.is_touch
             this.storage = this.$store.state.hardwareRequirements.storage
             this.memory = this.$store.state.hardwareRequirements.memory
@@ -91,20 +82,25 @@ mixins: [i18n],
     computed: {
         filledOut: function () {
             return this.cpuCores != 0 && this.cpuFrequency != 0 && this.memory != 0 && this.storage != 0
-        },
-        result: function () {
-            return {
-                "multi-core": this.cpuCores > 1,
-                "cpu-64bit": navigator.userAgent.match(/(WOW64|x64|Macintosh)/i) != null && this.cpuCores > 1, 
-                "mobile": this.mobile,
-                "touch": this.touch,
-                "memory-limited": this.memory < 8,
-                "storage-limited": this.memory < 20,
-                "cpu-limited": this.cpuCores <= 2 || this.cpuFrequency <= 2
-            }
         }
     },
     methods: {
+        startTestFuncWithoutStoredHardware: async function () {
+            var payload = {
+                token: this.$store.state.token,
+                cores: -1,
+                frequency: -1,
+                memory: -1,
+                storage: -1,
+                is_touch: false
+            }
+            
+            await this.$store.dispatch('storeHardwareRequirements', {
+                params: payload
+            })
+            this.$store.commit("resetHardwareRequirements")
+            this.startTestFunc()
+        },
         startTestFuncWithStoredHardware: async function () {
             var payload = {
                 token: this.$store.state.token,
@@ -112,10 +108,8 @@ mixins: [i18n],
                 frequency: this.cpuFrequency,
                 memory: this.memory,
                 storage: this.storage,
-                is_touch: this.touch,
-                is_mobile: this.mobile
+                is_touch: this.touch
             }
-            console.log("save data", payload)
             
             await this.$store.dispatch('storeHardwareRequirements', {
                 params: payload

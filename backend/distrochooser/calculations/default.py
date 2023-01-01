@@ -61,7 +61,7 @@ def get_statistics(distro_id: int) -> Tuple[float, int, int]:
   return round(percentage,0), approved_by_user, all_count
 
 @transaction.atomic
-def getSelections(userSession, data, langCode):
+def getSelections(userSession: UserSession, data, langCode):
   translationToUse = TRANSLATIONS[langCode] if langCode in TRANSLATIONS else TRANSLATIONS["en"]
   ResultDistroSelection.objects.filter(session=userSession).delete()
   saveAnswers(userSession, data['answers'])
@@ -74,6 +74,25 @@ def getSelections(userSession, data, langCode):
   createdSelections = {}
   createdReasons = {}
 
+  hardware_requirements = {
+    "hardware_cores": userSession.hardware_cores,
+    "hardware_frequency": userSession.hardware_frequency,
+    "hardware_memory": userSession.hardware_memory,
+    "hardware_storage": userSession.hardware_storage,
+    "hardware_has_touch_support": userSession.hardware_is_touch,
+  }
+  do_hardware_check = True
+  for key, value in hardware_requirements.items():
+    if value == -1:
+      do_hardware_check = False
+      break
+  hardware_requirements_translations = {
+    "hardware_cores": "hardware-cpu-cores-title",
+    "hardware_frequency": "hardware-cpu-frequency-title",
+    "hardware_memory": "hardware-memory-title",
+    "hardware_storage": "hardware-storage-title",
+    "hardware_has_touch_support": "hardware-touch-title",
+  }
 
   newSelections = []
   matchedTags = {}
@@ -117,8 +136,50 @@ def getSelections(userSession, data, langCode):
   results = []
   for distroId, selection in createdSelections.items():
     reasons = createdReasons[distroId]
+    requirements_check_result = {}
+    requirements_check_values = {}
+    has_failed_requirements_check = False
+    if selection.distro.hardware_requirements_present and do_hardware_check:
+      for key, user_requirement_value in hardware_requirements.items():
+        distro_value = getattr(selection.distro, key)
+        is_fullfilled = False
+        is_needed = True
+        if "has" in key:
+          # only check booleans if the user demands it
+          print(key, user_requirement_value)
+          if user_requirement_value:
+            is_fullfilled = distro_value == True
+          else:
+            is_needed = False
+        else:
+          is_fullfilled = distro_value <= user_requirement_value
+        if is_needed:
+          translation_key = hardware_requirements_translations[key]
+          if not is_fullfilled:
+            has_failed_requirements_check = True
+          requirements_check_result[translation_key] = is_fullfilled
+          requirements_check_values[translation_key] = [
+            distro_value if "has" not in key else translationToUse["boolean-" + str(distro_value).lower()],
+            user_requirement_value
+          ]
+      
+      hardware_check_reason = SelectionReason(
+        isImportant = False,
+        resultSelection = selection,
+        isBlockingHit = has_failed_requirements_check,
+        isPositiveHit = not has_failed_requirements_check,
+        isNeutralHit = False,
+        description = translationToUse["hardware-check-failed" if has_failed_requirements_check else "hardware-check-succeeded"]
+      )
+      hardware_check_reason.save()
+      reasons.append(hardware_check_reason)
+      
+      
     results.append(
       {
+        "hardware_check": requirements_check_result,
+        "failed_hardware_check": has_failed_requirements_check,
+        "requirements_check_values": requirements_check_values,
         "distro": model_to_dict(selection.distro, exclude=["logo", "tags"]),
         "reasons": list(map(lambda r: model_to_dict(r,exclude=["id", "isDisApprovedByUser"]), reasons)),
         "selection": selection.id,

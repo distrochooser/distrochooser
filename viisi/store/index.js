@@ -13,6 +13,7 @@ const indexStore = new Vapi({
     token: null, //session token
     sessionToken: null, //private session token
     isStarted: false,
+    isAtHardwareScreen: false,
     result: null,
     translations: null,
     locales: {
@@ -115,7 +116,7 @@ const indexStore = new Vapi({
   .get({
     action: 'storeHardwareRequirements',
     property: 'hardwareRequirements',
-    path: ({ token, cores, frequency, memory, storage, is_touch, is_mobile }) => `requirements/${token}/${cores}/${frequency}/${memory}/${storage}/${is_touch}/${is_mobile}`
+    path: ({ token, cores, frequency, memory, storage, is_touch }) => `requirements/${token}/${cores}/${frequency}/${memory}/${storage}/${is_touch}`
   })
   .getStore()
 
@@ -158,6 +159,18 @@ indexStore.mutations.showAllResults = state => {
   state.showAllResults = true
 }
 
+indexStore.mutations.openHardwareScreen = state => {
+  state.isAtHardwareScreen = true
+}
+
+indexStore.mutations.closeHardwareScreen = state => {
+  state.isAtHardwareScreen = false
+}
+
+
+indexStore.mutations.resetHardwareRequirements = state => {
+  state.hardwareRequirements = null
+}
 
 indexStore.mutations.toggleImportanceState = (state, answer) => {
   state.givenAnswers.forEach(a => {
@@ -178,6 +191,7 @@ indexStore.mutations.removeAnswerQuestion = (state, answer) => {
 
 indexStore.actions.selectCategory = async (store, payload) => {
   store.commit('setStarted') //make sure the test is active
+  store.commit('closeHardwareScreen') 
   var category = payload.selectedCategory
   store.commit('setSelectCategory', category)
   await store.dispatch('loadQuestion', {
@@ -273,6 +287,7 @@ indexStore.mutations.setOldTestData = state => {
 
 indexStore.actions.nextQuestion = (store, payload) => {
   store.commit('setStarted') //make sure the test is active
+  store.commit('closeHardwareScreen') 
   const currentCategory = store.state.currentCategory
   var nextCategory = null
   if (currentCategory === null) {

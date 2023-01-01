@@ -352,21 +352,19 @@ def register_click(request: HttpRequest, id: int) -> HttpResponse:
     return HttpResponse("ok")
 
 
-def store_requirements(request: HttpRequest, token: str, cores: int, frequency: float, memory: int, storage: int, is_touch: bool, is_mobile: bool) -> HttpResponse:
+def store_requirements(request: HttpRequest, token: str, cores: int, frequency: float, memory: int, storage: int, is_touch: bool) -> HttpResponse:
     session = UserSession.objects.get(token=token)
     session.hardware_cores = cores
     session.hardware_frequency = frequency
-    session.hardware_is_mobile = is_mobile == "true"
     session.hardware_is_touch = is_touch == "true"
     session.hardware_memory = memory
     session.hardware_storage = storage
     session.save()
     response = {
-        "cores": cores,
-        "frequency": frequency,
-        "memory": memory,
-        "storage": storage,
-        "is_touch": is_touch,
-        "is_mobile": is_mobile
+        "cores": session.hardware_cores,
+        "frequency": session.hardware_frequency,
+        "memory": session.hardware_memory,
+        "storage": session.hardware_storage,
+        "is_touch": session.hardware_is_touch
     }
     return JsonResponse(response)

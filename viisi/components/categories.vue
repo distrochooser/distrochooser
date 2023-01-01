@@ -2,9 +2,13 @@
     div.breadcrumb-horizontal
       ul
         li
-          a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen,'inactive': !isAtWelcomeScreen  }") 
+          a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen && !isAtHardwareScreen,'inactive': !isAtWelcomeScreen  }") 
             i.active-indicator.w-icon-login
             span {{ __i("category-welcome") }}
+        li
+          a(href="#",@click="openHardwareScreen",:class="{'active': isAtHardwareScreen,'inactive': !isAtHardwareScreen, 'answered': $store.state.hardwareRequirements != null }") 
+            i.active-indicator.w-icon-laptop
+            span {{ __i("category-hardware-requirements") }}
         li(v-for="(category, c_k) in categories" v-bind:key="c_k", )
           a(href="#", @click="selectCategory(category)")
             i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '')")
@@ -39,9 +43,21 @@ export default {
     },
     isAtWelcomeScreen() {
       return !this.$store.state.isStarted
+    },
+    isAtHardwareScreen() {
+      return this.$store.state.isAtHardwareScreen && this.$store.state.result === null
     }
   },
   methods: {
+    openHardwareScreen() {
+      this.$store.commit("setStarted")
+      
+      this.$store.commit('resetResult')
+      this.$store.commit("openHardwareScreen")
+    },
+    closeHardwareScreen() {
+      this.$store.commit("closeHardwareScreen")
+    },
     isAnswered(category) {
       return (
         this.$store.state.givenAnswers.filter(function(a) {
@@ -53,7 +69,8 @@ export default {
       return (
         this.$store.state.result === null &&
         this.$store.state.currentCategory !== null &&
-        this.$store.state.currentCategory.msgid === category.msgid
+        this.$store.state.currentCategory.msgid === category.msgid && 
+        !this.$store.state.isAtHardwareScreen
       )
     },
     selectCategory(category) {
@@ -64,6 +81,7 @@ export default {
       })
     },
     restart() {
+      this.closeHardwareScreen()
       this.$store.commit('resetStarted')
     },
     start() {

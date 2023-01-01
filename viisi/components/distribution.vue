@@ -42,7 +42,19 @@
           i.w-icon-eye
           span {{ __i("metric-website-clicks")}}
         p.metric-value 
-          span {{ clicks  }}
+          span {{ clicks  }}  
+      div.metric.hardware-check(v-if="$store.state.hardwareRequirements != null")
+        p.metric-title(:style="'--distro-color: ' + bgColor") 
+          i.w-icon-laptop
+          span {{ __i("metric-hardware-check")}}
+        p.metric-value 
+          div(v-if="Object.keys(hardware_check).length != 0")
+            div(v-for="(requirement, requirement_key) in hardware_check", :key="requirement_key") 
+              i.w-icon-check-square(v-if="requirement")
+              i.w-icon-close-square(v-else) 
+              span.hardware-text {{ __i(requirement_key) }}: {{  requirements_check_values[requirement_key][0] }} 
+          span(v-else) {{ __i("metric-hardware-check-no-value") }}
+
     
     div.description(v-if="flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
@@ -113,6 +125,14 @@ export default {
     },
     url: {
       type: String,
+      default: null
+    },
+    hardware_check: {
+      type: Object,
+      default: null
+    },
+    requirements_check_values: {
+      type: Object,
       default: null
     },
     bgColor: {
@@ -387,6 +407,11 @@ i {
         word-break: break-all;
       }
     }
+  }
+}
+.metric.hardware-check {
+  div {
+    text-align: left;
   }
 }
 </style>

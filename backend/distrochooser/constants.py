@@ -15,7 +15,10 @@ def parseTranslation(langCode: str, poFile: str) -> dict:
 # Build the translation one time to prevent them from being generated on each request
 TRANSLATIONS = {}
 for key, value in LOCALES.items():
-  TRANSLATIONS[key] = parseTranslation(key, value)
+  try:
+    TRANSLATIONS[key] = parseTranslation(key, value)
+  except:
+    print(f"ERROR in FILE {key}")
 
 
 TESTOFFSET = 713037

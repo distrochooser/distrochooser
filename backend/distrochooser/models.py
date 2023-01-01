@@ -82,7 +82,6 @@ class UserSession(models.Model):
     hardware_memory = models.IntegerField(default=-1)
     hardware_storage = models.IntegerField(default=-1)
     hardware_is_touch = models.BooleanField(default=False)
-    hardware_is_mobile = models.BooleanField(default=False)
 
     def __str__(self):
         return "{0} - {1}".format(self.dateTime, self.publicUrl)
@@ -123,12 +122,18 @@ class Distribution(models.Model):
         max_length=200, null=True, blank=True, default="")
     logo = models.FileField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     ratings = models.IntegerField(default=0)
     positive_ratings = models.IntegerField(default=0)
     percentage = models.FloatField(default=0)
     rank = models.IntegerField(default=0)
     clicks = models.IntegerField(default=0)
+    hardware_requirements_present = models.BooleanField(default=False)
+    hardware_cores = models.IntegerField(default=-1)
+    hardware_frequency = models.IntegerField(default=-1)
+    hardware_memory = models.IntegerField(default=-1)
+    hardware_storage = models.IntegerField(default=-1)
+    hardware_has_touch_support = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

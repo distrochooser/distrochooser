@@ -1,8 +1,8 @@
 <template lang="pug">
   div.question(v-if="isLoaded")
-    div(v-if="isAtWelcomeScreen")
+    div(v-if="isAtWelcomeScreen && !isAtHardwareScreen")
       div.question-content
-        div.welcome-text(v-if="!isAtHardwareScreen")
+        div.welcome-text
           h2 {{ __i("welcome-text-title") }}
           p {{ __i("welcome-text") }}
           div
@@ -32,8 +32,10 @@
               a(href="/?vim=true") {{ __i("welcome-text-a11y") }}
             div
               button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
-        hardware(v-else,:language="language", :startTestFunc="startTestAfterHardware")
-    div(v-else)
+    div(v-if="isAtHardwareScreen")
+      div.question-content
+        hardware(:language="language", :startTestFunc="startTestAfterHardware")
+    div(v-if="!isAtWelcomeScreen && !isAtHardwareScreen")
       div.question-content
         div.additional-infos.animated.fadeIn.fast(v-if="additionalInfoShown")
           div.additional-info-menu(v-on:click="flip")
@@ -118,8 +120,7 @@ export default {
   },
   data: function() {
     return {
-      additionalInfoShown: false,
-      isAtHardwareScreen: false,
+      additionalInfoShown: false
     }
   },
   computed: {
@@ -137,6 +138,9 @@ export default {
     },
     isAtWelcomeScreen() {
       return !this.$store.state.isStarted
+    },
+    isAtHardwareScreen() {
+      return this.$store.state.isAtHardwareScreen
     },
     isAtEndWithoutAnswers() {
       return (
@@ -209,18 +213,18 @@ export default {
       }
     },
     startTestAfterHardware() {
-      this.isAtHardwareScreen = false     
       var _t = this
-        this.$store.dispatch('nextQuestion', {
+      this.$store.commit("setSelectCategory", null)
+      this.$store.commit("closeHardwareScreen")
+      this.$store.dispatch('nextQuestion', {
           params: {
             language: _t.language
           }
       })
-
     },
     startTest() {
       if (!this.isAtHardwareScreen) {
-        this.isAtHardwareScreen = true
+        this.$store.commit('openHardwareScreen')
       } else {
         var _t = this
         this.$store.dispatch('nextQuestion', {
