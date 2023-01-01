@@ -78,6 +78,16 @@ mixins: [i18n],
             mobile: false
         }
     },
+    created: function() {
+        if (this.$store.state.hardwareRequirements !== null) {
+            this.mobile = this.$store.state.hardwareRequirements.is_mobile
+            this.touch = this.$store.state.hardwareRequirements.is_touch
+            this.storage = this.$store.state.hardwareRequirements.storage
+            this.memory = this.$store.state.hardwareRequirements.memory
+            this.cpuFrequency = this.$store.state.hardwareRequirements.frequency
+            this.cpuCores = this.$store.state.hardwareRequirements.cores
+        }
+    },
     computed: {
         filledOut: function () {
             return this.cpuCores != 0 && this.cpuFrequency != 0 && this.memory != 0 && this.storage != 0
@@ -95,8 +105,21 @@ mixins: [i18n],
         }
     },
     methods: {
-        startTestFuncWithStoredHardware: function () {
-            console.log("save data")
+        startTestFuncWithStoredHardware: async function () {
+            var payload = {
+                token: this.$store.state.token,
+                cores: this.cpuCores,
+                frequency: this.cpuFrequency,
+                memory: this.memory,
+                storage: this.storage,
+                is_touch: this.touch,
+                is_mobile: this.mobile
+            }
+            console.log("save data", payload)
+            
+            await this.$store.dispatch('storeHardwareRequirements', {
+                params: payload
+            })
             this.startTestFunc()
         }, 
         /* https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript*/

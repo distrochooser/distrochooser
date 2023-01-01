@@ -356,10 +356,11 @@ def store_requirements(request: HttpRequest, token: str, cores: int, frequency: 
     session = UserSession.objects.get(token=token)
     session.hardware_cores = cores
     session.hardware_frequency = frequency
-    session.hardware_is_mobile = is_mobile
-    session.hardware_is_touch = is_touch
+    session.hardware_is_mobile = is_mobile == "true"
+    session.hardware_is_touch = is_touch == "true"
     session.hardware_memory = memory
     session.hardware_storage = storage
+    session.save()
     response = {
         "cores": cores,
         "frequency": frequency,

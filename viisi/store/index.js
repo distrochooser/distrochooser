@@ -52,7 +52,8 @@ const indexStore = new Vapi({
     debug: true,
     ratingSort: false,
     tags: {},
-    clickRegisterResult: null
+    clickRegisterResult: null,
+    hardwareRequirements: null
   }
 })
   .post({
@@ -110,6 +111,11 @@ const indexStore = new Vapi({
     action: 'getSessionStatus',
     property: 'sessionStatus',
     path: ({ token }) => `status/${token}/`
+  })
+  .get({
+    action: 'storeHardwareRequirements',
+    property: 'hardwareRequirements',
+    path: ({ token, cores, frequency, memory, storage, is_touch, is_mobile }) => `requirements/${token}/${cores}/${frequency}/${memory}/${storage}/${is_touch}/${is_mobile}`
   })
   .getStore()
 
