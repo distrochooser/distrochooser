@@ -10,39 +10,25 @@
           a.action(href="#", v-on:click.prevent="vote(voted && !positiveVote ? null : false)", :data-balloon="!$store.state.visuallyImpairedMode ? __i('vote-reminder-negative') : null",data-balloon-pos="left")
             i.w-icon-dislike-o(:style="'color: ' + fgColor", v-bind:class="{'voted': voted && !positiveVote}", v-if="!$store.state.visuallyImpairedMode")
             span(v-else) {{ voted && !positiveVote? __i("not-liked") :  __i("dislike") }} 
+    
+    div.metrics-copyright {{  __i("metrics-copyright") }}
     div.metrics
       div.metric.rank 
         p.metric-title(:style="'--distro-color: ' + bgColor")
           i.w-icon-pie-chart
           span {{ __i("metric-rank")}}
-        p.metric-value {{ numberWithSuffix(rank) }}
+        p.metric-value {{ numberWithSuffix(rank) }}  ({{clicks}} {{ __i("metric-website-clicks")}}) 
       div.metric.percentage
         p.metric-title(:style="'--distro-color: ' + bgColor") 
           i.w-icon-bar-chart 
           span {{ __i("metric-percentage")}}
         p.metric-value {{  percentage }}% ({{ ratings }}x {{ __i("metric-ratings") }})
-      div.metric.tags
-        p.metric-title(:style="'--distro-color: ' + bgColor") 
-          i.w-icon-tags
-          span {{ __i("metric-tags")}}
-        p.metric-value 
-          div.tags 
-            span.no-tags(v-if="tags.length == 0") {{  __i("no-tags") }}
-            span(v-for="(tag, tag_key) in tags", :key="tag_key") 
-              i.w-icon-tag 
-              span.tag-text {{ __i("tag-" + tag) }}
       div.metric.website
         p.metric-title(:style="'--distro-color: ' + bgColor") 
           i.w-icon-link
           span {{ __i("metric-website")}}
         p.metric-value 
           a(v-if="url",tabindex=0, role="link", :alt="__i('distribution-homepage') + ' ' + name", target="_blank", :href="url", v-on:click.prevent="registerClick", :data-dbid="dbid", :data-target="url") {{ getURLHost(url) }}
-      div.metric.website-clicks
-        p.metric-title(:style="'--distro-color: ' + bgColor") 
-          i.w-icon-eye
-          span {{ __i("metric-website-clicks")}}
-        p.metric-value 
-          span {{ clicks  }}  
       div.metric.hardware-check(v-if="$store.state.hardwareRequirements != null")
         p.metric-title(:style="'--distro-color: ' + bgColor") 
           i.w-icon-laptop
@@ -54,7 +40,16 @@
               i.w-icon-close-square(v-else) 
               span.hardware-text {{ __i(requirement_key) }}: {{  requirements_check_values[requirement_key][0] }} 
           span(v-else) {{ __i("metric-hardware-check-no-value") }}
-
+      div.metric.age
+        p.metric-title(:style="'--distro-color: ' + bgColor")
+          i.w-icon-pie-chart
+          span {{ __i("metric-age")}}
+        p.metric-value {{ age }} 
+          i.w-icon-question-circle-o(:title="__i('metric-no-value-yet')",v-if="age <= 0")
+    div.description-tags(v-if="tags.length>0") {{ __i("metric-tags") }}
+      div(v-for="(tag, tag_key) in tags", :key="tag_key") 
+        i.w-icon-tag 
+        span.tag-text {{ __i("tag-" + tag) }}
     
     div.description(v-if="flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")
@@ -177,6 +172,12 @@ export default {
       type: Number,
       default: function() {
         return 0
+      }
+    },
+    age: {
+      type: Number,
+      default: function() {
+        return -1
       }
     }
   },
@@ -413,5 +414,20 @@ i {
   div {
     text-align: left;
   }
+}
+.description-tags {
+  margin-left: 1em;
+  margin-bottom: 1em;
+  div {
+    margin-top: 1em;
+  }
+}
+.metrics-copyright {
+  text-align: right;
+  margin-bottom: 0.5em;
+  margin-top: -0.5em;
+  color: gray;
+  margin-right: 1em;
+  font-size: 10pt;
 }
 </style>
