@@ -106,6 +106,7 @@ def getSelections(userSession: UserSession, data, langCode):
     createdReasons[distro.id] = []
     selection.save()
 
+  matrixTuple: AnswerDistributionMatrix
   for matrixTuple in matchingTuples:
     isInAnswerList = matrixTuple.answer.pk in (o["answer"] for o in givenAnswers)
     if isInAnswerList:
@@ -125,14 +126,25 @@ def getSelections(userSession: UserSession, data, langCode):
       isReasonUnique = not len(list(filter(lambda r: r.description == reason.description, createdReasons[distro.id]))) > 0
       
       for distro in matrixTuple.distros.all():
+        # verify peculiarities to match with the distribution
+        got = distro.tags.filter(name__in=matchedGivenAnswer.tags.names())
+        new_tags = list(got.values_list("name",flat=True))
+        print(distro.name, got, new_tags, distro.tags)
+        if distro.id not in matchedTags:
+          matchedTags[distro.id] = new_tags
+        else:
+          matchedTags[distro.id] = matchedTags[distro.id] + new_tags
+        
+        # Make sure tehere are no double entries
+        matchedTags[distro.id] = list(set(matchedTags[distro.id]))
         if isReasonUnique:
           selection = createdSelections[distro.id]
-          reason.resultSelection = selection
-           # verify peculiarities to match with the distribution
-          got = distro.tags.filter(name__in=matchedGivenAnswer.tags.names())
-          matchedTags[distro.id] = list(got.values_list("name",flat=True))
-          createdReasons[distro.id].append(reason)
-          reason.save()
+          # Tag Only hits are used to return the tags to the user result.
+          # But these answers are not included in a decision making
+          if not matrixTuple.isTagOnlyHit:
+            reason.resultSelection = selection
+            createdReasons[distro.id].append(reason)
+            reason.save()
   results = []
   for distroId, selection in createdSelections.items():
     reasons = createdReasons[distroId]
