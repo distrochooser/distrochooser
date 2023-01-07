@@ -44,7 +44,8 @@ class Answer(Translateable):
         null=True, blank=True)  # if null -> no image there!
     isDisabled = models.BooleanField(default=False)
     orderIndex = models.IntegerField(default=0)
-    tags = TaggableManager()
+    tag_prexfix = models.CharField(default=None,blank=True,null=True, max_length=25)
+    tags = TaggableManager(blank=True)
     def __str__(self):
         return "{0}: {1}".format(self.question, self.msgid)
 
@@ -134,6 +135,10 @@ class Distribution(models.Model):
     hardware_memory = models.IntegerField(default=-1)
     hardware_storage = models.IntegerField(default=-1)
     hardware_has_touch_support = models.BooleanField(default=False)
+    data_id = models.CharField(max_length=10, default=None,blank=True,null=True)
+    version = models.CharField(max_length=10, default=None,blank=True,null=True)
+    founded = models.CharField(max_length=10, default=None,blank=True,null=True)
+    age = models.IntegerField(default=None,null=True,blank=True)
 
     def __str__(self):
         return self.name
@@ -185,6 +190,9 @@ class AnswerDistributionMatrix(models.Model):
     isNegativeHit = models.BooleanField(default=False)
     # e. g. "professional user" for ubuntu ->
     isNeutralHit = models.BooleanField(default=False)
+
+    # only used to allow tag mapping
+    isTagOnlyHit = models.BooleanField(default=False)
     description = models.CharField(default='', max_length=300, blank=False)
     distros = models.ManyToManyField(
         to=Distribution, related_name="answerMatrixDistros", blank=True)
