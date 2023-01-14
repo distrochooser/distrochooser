@@ -29,6 +29,13 @@
           span {{ __i("metric-website")}}
         p.metric-value 
           a(v-if="url",tabindex=0, role="link", :alt="__i('distribution-homepage') + ' ' + name", target="_blank", :href="url", v-on:click.prevent="registerClick", :data-dbid="dbid", :data-target="url") {{ getURLHost(url) }}
+     
+      div.metric.age
+        p.metric-title(:style="'--distro-color: ' + bgColor")
+          i.w-icon-pie-chart
+          span {{ __i("metric-age")}}
+        p.metric-value {{ age }} 
+          i.w-icon-question-circle-o(:title="__i('metric-no-value-yet')",v-if="age <= 0")
       div.metric.hardware-check(v-if="$store.state.hardwareRequirements != null")
         p.metric-title(:style="'--distro-color: ' + bgColor") 
           i.w-icon-laptop
@@ -40,12 +47,6 @@
               i.w-icon-close-square(v-else) 
               span.hardware-text {{ __i(requirement_key) }}: {{  requirements_check_values[requirement_key][0] }} 
           span(v-else) {{ __i("metric-hardware-check-no-value") }}
-      div.metric.age
-        p.metric-title(:style="'--distro-color: ' + bgColor")
-          i.w-icon-pie-chart
-          span {{ __i("metric-age")}}
-        p.metric-value {{ age }} 
-          i.w-icon-question-circle-o(:title="__i('metric-no-value-yet')",v-if="age <= 0")
     div.description-tags(v-if="tags.length>0") {{ __i("metric-tags") }}
       div(v-for="(tag, tag_key) in tags", :key="tag_key") 
         i.w-icon-tag 
