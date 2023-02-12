@@ -13,6 +13,7 @@ const indexStore = new Vapi({
     token: null, //session token
     sessionToken: null, //private session token
     isStarted: false,
+    isAtHardwareScreen: false,
     result: null,
     translations: null,
     locales: {
@@ -34,7 +35,7 @@ const indexStore = new Vapi({
       id: 'bahasa Indonesia',
       gr: "ελληνική γλώσσα",
       pl: 'Polski',
-      az: 'Azerbaijani'
+      sv: 'svenska'
     },
     voteResult: null,
     remarksAdded: false,
@@ -50,8 +51,11 @@ const indexStore = new Vapi({
     visuallyImpairedMode: false,
     inRTLMode: true,
     showAllResults: false,
-    debug: false,
-    ratingSort: false
+    debug: true,
+    ratingSort: false,
+    tags: {},
+    clickRegisterResult: null,
+    hardwareRequirements: null
   }
 })
   .post({
@@ -63,6 +67,11 @@ const indexStore = new Vapi({
     action: 'language',
     property: 'data',
     path: ({ language }) => `translation/${language}/`
+  })
+  .get({
+    action: 'registerClick',
+    property: 'clickRegisterResult',
+    path: ({ id }) => `click/${id}`
   })
   .get({
     action: 'loadQuestion',
@@ -105,6 +114,11 @@ const indexStore = new Vapi({
     property: 'sessionStatus',
     path: ({ token }) => `status/${token}/`
   })
+  .get({
+    action: 'storeHardwareRequirements',
+    property: 'hardwareRequirements',
+    path: ({ token, cores, frequency, memory, storage, is_touch }) => `requirements/${token}/${cores}/${frequency}/${memory}/${storage}/${is_touch}`
+  })
   .getStore()
 
 indexStore.actions.answerQuestion = async (store, payload) => {
@@ -114,13 +128,21 @@ indexStore.actions.answerQuestion = async (store, payload) => {
     answered: true,
     important: false,
     category: payload.currentCategory.msgid,
-    blockedAnswers: answer.blockedAnswers
+    blockedAnswers: answer.blockedAnswers,
+    tags: []
   }
   store.commit('setAnswerQuestion', answer)
 }
 
 indexStore.actions.submitAnswers = async (store, payload) => {
   store.commit('toggleSubmitted')
+  payload.data.answers.forEach((answer) => {
+    var msgid = answer.msgid
+    answer["tags"] = []
+    if (typeof store.state.tags[msgid]  !== undefined) {
+      answer["tags"] = store.state.tags[msgid]
+    }
+  })
   await store.dispatch('submit', payload)
   store.commit('toggleSubmitted')
 }
@@ -138,6 +160,18 @@ indexStore.mutations.showAllResults = state => {
   state.showAllResults = true
 }
 
+indexStore.mutations.openHardwareScreen = state => {
+  state.isAtHardwareScreen = true
+}
+
+indexStore.mutations.closeHardwareScreen = state => {
+  state.isAtHardwareScreen = false
+}
+
+
+indexStore.mutations.resetHardwareRequirements = state => {
+  state.hardwareRequirements = null
+}
 
 indexStore.mutations.toggleImportanceState = (state, answer) => {
   state.givenAnswers.forEach(a => {
@@ -158,6 +192,7 @@ indexStore.mutations.removeAnswerQuestion = (state, answer) => {
 
 indexStore.actions.selectCategory = async (store, payload) => {
   store.commit('setStarted') //make sure the test is active
+  store.commit('closeHardwareScreen') 
   var category = payload.selectedCategory
   store.commit('setSelectCategory', category)
   await store.dispatch('loadQuestion', {
@@ -203,6 +238,12 @@ indexStore.mutations.setCurrentDisplayData = (state, data) => {
   state.language = data.language
   state.testCount = data.testCount
   state.translations = data.translations
+  /* only hebrew locale is currently rtl */
+  if (state.language == "he") {
+    state.inRTLMode = true
+  } else {
+    state.inRTLMode = false 
+  }
 }
 
 indexStore.mutations.setCurrentQuestionData = (state, data) => {
@@ -247,6 +288,7 @@ indexStore.mutations.setOldTestData = state => {
 
 indexStore.actions.nextQuestion = (store, payload) => {
   store.commit('setStarted') //make sure the test is active
+  store.commit('closeHardwareScreen') 
   const currentCategory = store.state.currentCategory
   var nextCategory = null
   if (currentCategory === null) {
@@ -283,6 +325,40 @@ indexStore.actions.prevQuestion = (store, payload) => {
     language: payload.params.language,
     selectedCategory: nextCategory
   })
+}
+
+indexStore.mutations.resetTags = (state, payload) => {
+  delete state.tags[payload.answerId]
+}
+
+
+indexStore.mutations.removeTags = (state, payload) => {
+  for (var i=0;i<payload.data.length;i++) {
+    var tag = payload.data[i]
+    var index = state.tags[payload.answerId].indexOf(tag)
+    if (index !== -1) {
+      state.tags[payload.answerId].splice(index, 1)
+    }
+  }
+}
+
+indexStore.mutations.saveTags = (state, payload) => {
+  if (typeof state.tags[payload.answerId] === 'undefined') {
+    state.tags[payload.answerId] = payload.selection
+  } else {
+    for (var i=0;i<payload.oldSelection.length;i++) {
+      var tag = payload.oldSelection[i]
+      var index = state.tags[payload.answerId].indexOf(tag)
+      if (index !== -1) {
+        state.tags[payload.answerId].splice(index, 1)
+      }
+    }
+    payload.selection.forEach((value) => {
+      if (state.tags[payload.answerId].indexOf(value) === -1) {
+        state.tags[payload.answerId].push(value)
+      }
+    })
+  }
 }
 
 const createStore = () => {
