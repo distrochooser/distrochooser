@@ -83,6 +83,7 @@ class UserSession(models.Model):
     hardware_memory = models.IntegerField(default=-1)
     hardware_storage = models.IntegerField(default=-1)
     hardware_is_touch = models.BooleanField(default=False)
+    filter_by_hardware = models.BooleanField(default=False)
 
     def __str__(self):
         return "{0} - {1}".format(self.dateTime, self.publicUrl)

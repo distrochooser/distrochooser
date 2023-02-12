@@ -38,6 +38,9 @@
             div.touch.hardware-input
                 label(for="touch") {{  __i('hardware-touch-title') }}
                 input(name="touch",  type="checkbox", v-model="touch")
+            div.filter-by-hardware.hardware-input
+                label(for="filter-by-hardware") {{  __i('filter-by-hardware') }}
+                input(name="filter-by-hardware",  type="checkbox", v-model="filterByHardware")
             
         div.actions
             button.skip-step.step(@click="startTestFuncWithoutStoredHardware") {{ $store.state.hardwareRequirements != null ?  __i("clear-skip-question") : __i("skip-question") }}
@@ -67,7 +70,8 @@ mixins: [i18n],
             memory: 0,
             storage: 0,
             touch: false,
-            mobile: false
+            mobile: false,
+            filterByHardware: false
         }
     },
     created: function() {
@@ -77,6 +81,7 @@ mixins: [i18n],
             this.memory = this.$store.state.hardwareRequirements.memory
             this.cpuFrequency = this.$store.state.hardwareRequirements.frequency
             this.cpuCores = this.$store.state.hardwareRequirements.cores
+            this.filterByHardware = this.$store.state.hardwareRequirements.filter_by_hardware
         }
     },
     computed: {
@@ -92,7 +97,8 @@ mixins: [i18n],
                 frequency: -1,
                 memory: -1,
                 storage: -1,
-                is_touch: false
+                is_touch: false,
+                filterByHardware: false
             }
             
             await this.$store.dispatch('storeHardwareRequirements', {
@@ -108,7 +114,8 @@ mixins: [i18n],
                 frequency: this.cpuFrequency,
                 memory: this.memory,
                 storage: this.storage,
-                is_touch: this.touch
+                is_touch: this.touch,
+                filterByHardware: this.filterByHardware
             }
             
             await this.$store.dispatch('storeHardwareRequirements', {

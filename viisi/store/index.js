@@ -116,7 +116,7 @@ const indexStore = new Vapi({
   .get({
     action: 'storeHardwareRequirements',
     property: 'hardwareRequirements',
-    path: ({ token, cores, frequency, memory, storage, is_touch }) => `requirements/${token}/${cores}/${frequency}/${memory}/${storage}/${is_touch}`
+    path: ({ token, cores, frequency, memory, storage, is_touch, filterByHardware }) => `requirements/${token}/${cores}/${frequency}/${memory}/${storage}/${is_touch}/${filterByHardware}`
   })
   .getStore()
 

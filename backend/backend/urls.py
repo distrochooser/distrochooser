@@ -39,5 +39,5 @@ urlpatterns = [
     path('process_feedback{0}/<str:token>/'.format(system_suffix),
          process_feedback, name="process_feedback"),
     path('click/<id>', register_click, name="register_click"),
-    path("requirements/<token>/<cores>/<frequency>/<memory>/<storage>/<is_touch>", store_requirements, name="store_requirements")
+    path("requirements/<token>/<cores>/<frequency>/<memory>/<storage>/<is_touch>/<filter_by_hardware>", store_requirements, name="store_requirements")
 ]

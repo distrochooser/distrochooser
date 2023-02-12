@@ -183,21 +183,23 @@ def getSelections(userSession: UserSession, data, langCode):
       )
       hardware_check_reason.save()
       reasons.append(hardware_check_reason)
-      
-      
-    results.append(
-      {
-        "hardware_check": requirements_check_result,
-        "failed_hardware_check": has_failed_requirements_check,
-        "requirements_check_values": requirements_check_values,
-        "distro": model_to_dict(selection.distro, exclude=["logo", "tags"]),
-        "reasons": list(map(lambda r: model_to_dict(r,exclude=["id", "isDisApprovedByUser"]), reasons)),
-        "selection": selection.id,
-        "tags": matchedTags[distroId] if distroId in matchedTags else [],
-        "percentage": selection.distro.percentage,
-        "positive_ratings": selection.distro.positive_ratings,
-        "ratings": selection.distro.ratings,
-        "rank": selection.distro.rank
-      }
-    )
+    
+    add_condition = selection.distro.hardware_requirements_present and requirements_check_result and not has_failed_requirements_check if userSession.filter_by_hardware else True
+    if add_condition:
+      results.append(
+        {
+          "did_hardware_check": selection.distro.hardware_requirements_present,
+          "hardware_check": requirements_check_result,
+          "failed_hardware_check": has_failed_requirements_check,
+          "requirements_check_values": requirements_check_values,
+          "distro": model_to_dict(selection.distro, exclude=["logo", "tags"]),
+          "reasons": list(map(lambda r: model_to_dict(r,exclude=["id", "isDisApprovedByUser"]), reasons)),
+          "selection": selection.id,
+          "tags": matchedTags[distroId] if distroId in matchedTags else [],
+          "percentage": selection.distro.percentage,
+          "positive_ratings": selection.distro.positive_ratings,
+          "ratings": selection.distro.ratings,
+          "rank": selection.distro.rank
+        }
+      )
   return results
