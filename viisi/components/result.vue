@@ -20,19 +20,20 @@
         textarea(id="remarks-textbox", v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder-saving')", @blur="updateRemark", @mouseleave="updateRemark", @input="resetRemarksAdded")
     div.display-options
       span {{ __i('display-options') }}:
-      a(href="#",title="List view", v-on:click="() => {slideshowView=false;compactView=false}",:class="{'active': !compactView && !slideShowView}")
+      a(href="#",title="List view", v-on:click="() => {listView=true;slideshowView=false;compactView=false}",:class="{'active': listView}")
         i.w-icon-table
-      a(href="#",title="Grid view", v-on:click="() => {slideshowView=false;compactView=true}",:class="{'active': compactView}")
+      a(href="#",title="Grid view", v-on:click="() => {listView=false;slideshowView=false;compactView=true}",:class="{'active': compactView}")
         i.w-icon-appstore
-      a(href="#",title="Slideshow view", v-on:click="() => {slideshowView=true;compactView=false;slideShowIndex=0}",:class="{'active': slideshowView}")
-        i.w-icon-swap
+      a(href="#",title="Slideshow view", v-on:click="() => {listView=false;slideshowView=true;compactView=false;slideShowIndex=0}",:class="{'active': slideshowView}")
+        i.w-icon-picture
     div.filtered-results-warning(v-if="!$store.state.showAllResults && filteredSelections.length !==  unfilteredSelections.length", @click="showAllResults") 
       a(href="#") {{ __i("distributions-hidden").replace("#", unfilteredSelections.length - filteredSelections.length) }}
     div(v-if="!slideshowView")
       distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :ratings="selection.distro.ratings", :age="selection.distro.age", :positive_ratings="selection.distro.positive_ratings", :key="selection_key",:percentage="selection.percentage", :rank="selection.rank", :clicks="selection.distro.clicks" :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :dbid="selection.distro.id",  :hardware_check="selection.hardware_check", :requirements_check_values="selection.requirements_check_values", :tags="selection.tags", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
     div(v-if="slideshowView")
       div.slideshow-content(v-if="slideShowElement") 
-      
+        
+        distribution.slideshow-control.middle(aria-role="list-item", :ratings="slideShowElement.distro.ratings", :age="slideShowElement.distro.age", :positive_ratings="slideShowElement.distro.positive_ratings", :percentage="slideShowElement.percentage", :rank="slideShowElement.rank", :clicks="slideShowElement.distro.clicks" :name="slideShowElement.distro.name", :description="slideShowElement.distro.description", :reasons="slideShowElement.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  slideShowElement.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : slideShowElement.distro.bgColor", :id="slideShowElement.distro.identifier", :dbid="slideShowElement.distro.id",  :hardware_check="slideShowElement.hardware_check", :requirements_check_values="slideShowElement.requirements_check_values", :tags="slideShowElement.tags", :selection="slideShowElement.selection", :url="slideShowElement.distro.url", :class="{'compact-distribution': compactView}")
         div.slideshow-navigation-bullets
           div.slideshow-control.left
             div.scroll-button(v-on:click="scroll(-1)") 
@@ -43,8 +44,6 @@
           div.slideshow-control.right
             div.scroll-button(v-on:click="scroll(1)")
               i.w-icon-caret-right
-        distribution.slideshow-control.middle(aria-role="list-item", :ratings="slideShowElement.distro.ratings", :age="slideShowElement.distro.age", :positive_ratings="slideShowElement.distro.positive_ratings", :percentage="slideShowElement.percentage", :rank="slideShowElement.rank", :clicks="slideShowElement.distro.clicks" :name="slideShowElement.distro.name", :description="slideShowElement.distro.description", :reasons="slideShowElement.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  slideShowElement.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : slideShowElement.distro.bgColor", :id="slideShowElement.distro.identifier", :dbid="slideShowElement.distro.id",  :hardware_check="slideShowElement.hardware_check", :requirements_check_values="slideShowElement.requirements_check_values", :tags="slideShowElement.tags", :selection="slideShowElement.selection", :url="slideShowElement.distro.url", :class="{'compact-distribution': compactView}")
-
     div(v-if="isEmpty")
       h1 {{ __i("no-results")}}
       p {{ __i("no-results-text")}}
@@ -62,6 +61,7 @@ export default {
   mixins: [i18n, score],
   data: function() {
     return {
+      listView: true,
       compactView: false,
       slideshowView: false,
       remarks: '',
@@ -337,7 +337,7 @@ div.filtered-results-warning {
     &.active i {
       color: $linkColor;
       
-
+  
       &.w-icon-appstore::before {
         content: "\ea08";
       }
