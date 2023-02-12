@@ -17,8 +17,8 @@ TRANSLATIONS = {}
 for key, value in LOCALES.items():
   try:
     TRANSLATIONS[key] = parseTranslation(key, value)
-  except:
-    print(f"ERROR in FILE {key}")
+  except Exception as e:
+    print(f"ERROR in FILE {key}", e)
 
 
 TESTOFFSET = 713037
