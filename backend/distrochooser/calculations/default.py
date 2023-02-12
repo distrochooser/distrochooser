@@ -129,7 +129,6 @@ def getSelections(userSession: UserSession, data, langCode):
         # verify peculiarities to match with the distribution
         got = distro.tags.filter(name__in=matchedGivenAnswer.tags.names())
         new_tags = list(got.values_list("name",flat=True))
-        print(distro.name, got, new_tags, distro.tags)
         if distro.id not in matchedTags:
           matchedTags[distro.id] = new_tags
         else:
@@ -158,7 +157,6 @@ def getSelections(userSession: UserSession, data, langCode):
         is_needed = True
         if "has" in key:
           # only check booleans if the user demands it
-          print(key, user_requirement_value)
           if user_requirement_value:
             is_fullfilled = distro_value == True
           else:

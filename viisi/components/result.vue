@@ -20,14 +20,30 @@
         textarea(id="remarks-textbox", v-model="remarks",maxlength="3000",:placeholder="__i('remark-placeholder-saving')", @blur="updateRemark", @mouseleave="updateRemark", @input="resetRemarksAdded")
     div.display-options
       span {{ __i('display-options') }}:
-      a(href="#",title="List view", v-on:click="compactView=false",:class="{'active': !compactView}")
+      a(href="#",title="List view", v-on:click="() => {listView=true;slideshowView=false;compactView=false}",:class="{'active': listView}")
         i.w-icon-table
-      a(href="#",title="Grid view", v-on:click="compactView=true",:class="{'active': compactView}")
+      a(href="#",title="Grid view", v-on:click="() => {listView=false;slideshowView=false;compactView=true}",:class="{'active': compactView}")
         i.w-icon-appstore
+      a(href="#",title="Slideshow view", v-on:click="() => {listView=false;slideshowView=true;compactView=false;slideShowIndex=0}",:class="{'active': slideshowView}")
+        i.w-icon-picture
     div.filtered-results-warning(v-if="!$store.state.showAllResults && filteredSelections.length !==  unfilteredSelections.length", @click="showAllResults") 
       a(href="#") {{ __i("distributions-hidden").replace("#", unfilteredSelections.length - filteredSelections.length) }}
-    distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :ratings="selection.distro.ratings", :age="selection.distro.age", :positive_ratings="selection.distro.positive_ratings", :key="selection_key",:percentage="selection.percentage", :rank="selection.rank", :clicks="selection.distro.clicks" :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :dbid="selection.distro.id",  :hardware_check="selection.hardware_check", :requirements_check_values="selection.requirements_check_values", :tags="selection.tags", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
-
+    div(v-if="!slideshowView")
+      distribution(aria-role="list-item", v-for="(selection, selection_key) in selections", :ratings="selection.distro.ratings", :age="selection.distro.age", :positive_ratings="selection.distro.positive_ratings", :key="selection_key",:percentage="selection.percentage", :rank="selection.rank", :clicks="selection.distro.clicks" :name="selection.distro.name", :description="selection.distro.description", :reasons="selection.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  selection.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : selection.distro.bgColor", :id="selection.distro.identifier", :dbid="selection.distro.id",  :hardware_check="selection.hardware_check", :requirements_check_values="selection.requirements_check_values", :tags="selection.tags", :selection="selection.selection", :url="selection.distro.url", :class="{'compact-distribution': compactView}")
+    div(v-if="slideshowView")
+      div.slideshow-content(v-if="slideShowElement") 
+        
+        distribution.slideshow-control.middle(aria-role="list-item", :ratings="slideShowElement.distro.ratings", :age="slideShowElement.distro.age", :positive_ratings="slideShowElement.distro.positive_ratings", :percentage="slideShowElement.percentage", :rank="slideShowElement.rank", :clicks="slideShowElement.distro.clicks" :name="slideShowElement.distro.name", :description="slideShowElement.distro.description", :reasons="slideShowElement.reasons", :fgColor="$store.state.visuallyImpairedMode ? 'white' :  slideShowElement.distro.fgColor", :bgColor="$store.state.visuallyImpairedMode ? 'black' : slideShowElement.distro.bgColor", :id="slideShowElement.distro.identifier", :dbid="slideShowElement.distro.id",  :hardware_check="slideShowElement.hardware_check", :requirements_check_values="slideShowElement.requirements_check_values", :tags="slideShowElement.tags", :selection="slideShowElement.selection", :url="slideShowElement.distro.url", :class="{'compact-distribution': compactView}")
+        div.slideshow-navigation-bullets
+          div.slideshow-control.left
+            div.scroll-button(v-on:click="scroll(-1)") 
+              i.w-icon-caret-left
+          span(v-for="(result, result_key) in selections.length", :key="result_key")
+            a(v-on:click="slideShowIndex=result_key")
+              span(:class="{'active': result_key == slideShowIndex}") ⬤
+          div.slideshow-control.right
+            div.scroll-button(v-on:click="scroll(1)")
+              i.w-icon-caret-right
     div(v-if="isEmpty")
       h1 {{ __i("no-results")}}
       p {{ __i("no-results-text")}}
@@ -45,11 +61,14 @@ export default {
   mixins: [i18n, score],
   data: function() {
     return {
+      listView: true,
       compactView: false,
+      slideshowView: false,
       remarks: '',
       copyTooltipShown: false,
       unfilteredSelections: [],
-      filteredSelections: []
+      filteredSelections: [],
+      slideShowIndex: null
     }
   },
   computed: {
@@ -58,6 +77,11 @@ export default {
         return this.$store.state.result.url + '?vim=true'
       }
       return this.$store.state.result.url
+    },
+    slideShowElement: function (){
+      if (this.slideShowIndex != null && this.slideShowIndex < this.selections.length) {
+        return this.selections[this.slideShowIndex]
+      }
     },
     selections: function() {
       const _t = this
@@ -97,6 +121,19 @@ export default {
     }
   },
   methods: {
+    scroll: function (stepping) {
+      var new_index = this.slideShowIndex + stepping
+      if (new_index < this.selections.length && new_index >= 0) {
+        this.slideShowIndex = new_index
+      } else {
+        if (new_index >= this.selections.length) {
+          this.slideShowIndex = 0
+        }
+        else {
+          this.slideShowIndex = this.selections.length -1
+        }
+      }
+    },
     showAllResults: function() {
       this.$store.commit('showAllResults')
       setTimeout(function() { window.scrollTo(0,9999);; }, 200);
@@ -300,11 +337,53 @@ div.filtered-results-warning {
     &.active i {
       color: $linkColor;
       
-
+  
       &.w-icon-appstore::before {
         content: "\ea08";
       }
     }
   } 
 } 
+.slideshow-navigation-bullets {
+  text-align: center;
+  margin: 0.5em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  span {
+    font-size: 8pt;
+    margin: 0.5em;
+    color: grey;
+    &.active {
+      color: #3c6eb4;
+      font-size: 12pt;
+      vertical-align: sub;
+    }
+  }
+}
+.slideshow-content {
+  .distribution {
+    text-align: left;
+  }
+  .left,
+  .right {
+    width: 5%;
+    display: inline-block;
+  }
+  .right {
+    text-align: right;
+    margin-left: 0.5em;
+  }
+  .left {
+    margin-right: 1em;
+  }
+  .slideshow-control {
+    vertical-align: top;
+  }
+  .scroll-button {
+    i {
+      font-size: 2em;
+      color: #05396b;
+    }
+  }
+}
 </style>
