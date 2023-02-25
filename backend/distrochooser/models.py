@@ -103,6 +103,7 @@ class GivenAnswer(models.Model):
         UserSession, on_delete=models.CASCADE, db_index=True)
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
     isImportant = models.BooleanField(default=False)
+    isLessImportant = models.BooleanField(default=False)
     tags = TaggableManager()
 
     def __str__(self):
@@ -176,6 +177,7 @@ class SelectionReason(models.Model):
     isNeutralHit = models.BooleanField(default=False)
     # if answer was flagged as important
     isImportant = models.BooleanField(default=False)
+    isLessImportant = models.BooleanField(default=False)
 
     def __str__(self):
         return "{0}: P{1}-B{2}-RB{3}-N{4}-I{5}".format(self.description, self.isPositiveHit, self.isBlockingHit, self.isRelatedBlocked, self.isNeutralHit, self.isImportant)

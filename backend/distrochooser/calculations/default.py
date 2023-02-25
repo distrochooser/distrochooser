@@ -15,7 +15,8 @@ def saveAnswers(userSession, rawAnswers):
       GivenAnswer(
           session=userSession,
           answer_id=selectedAnswers[answer['msgid']],
-          isImportant=answer['important']
+          isImportant=answer['important'],
+          isLessImportant=answer['lessImportant']
       )
     )
   received = GivenAnswer.objects.bulk_create(newAnswers)
@@ -65,8 +66,9 @@ def getSelections(userSession: UserSession, data, langCode):
   translationToUse = TRANSLATIONS[langCode] if langCode in TRANSLATIONS else TRANSLATIONS["en"]
   ResultDistroSelection.objects.filter(session=userSession).delete()
   saveAnswers(userSession, data['answers'])
-  givenAnswers = GivenAnswer.objects.filter(session=userSession).prefetch_related('answer').values("answer","isImportant")
+  givenAnswers = GivenAnswer.objects.filter(session=userSession).prefetch_related('answer').values("answer","isImportant", "isLessImportant")
   importantAnswers = list(map(lambda o: o["answer"], filter(lambda o: o["isImportant"], givenAnswers)))
+  lessImportantAnswers = list(map(lambda o: o["answer"], filter(lambda o: o["isLessImportant"], givenAnswers)))
   distros = Distribution.objects.all()
   matchingTuples = AnswerDistributionMatrix.objects.all().prefetch_related('distros', 'answer')
 
@@ -115,6 +117,7 @@ def getSelections(userSession: UserSession, data, langCode):
 
       reason = SelectionReason(
         isImportant = matrixTuple.answer.pk in importantAnswers,
+        isLessImportant = matrixTuple.answer.pk in lessImportantAnswers,
         resultSelection = None,
         isBlockingHit = matrixTuple.isBlockingHit,
         isPositiveHit = not matrixTuple.isNegativeHit if not matrixTuple.isNeutralHit else True,
