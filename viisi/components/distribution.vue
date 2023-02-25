@@ -61,6 +61,8 @@
             span {{ reason.description }}
             span.importance-toggle(v-if="reason.isImportant")
               i.w-icon-star-on(:title='__i("marked-as-important")')
+            span.importance-toggle(v-if="reason.isLessImportant")
+              i.w-icon-star-off(:title='__i("marked-as-less-important")')
         div(v-if="negative(reasons).length > 0",aria-role="list")
           b.block-title(for="negative-list") {{ __i("reason-list-header-negative").replace("%s",name) }}
           div(id="negative-list", v-for="(reason, reason_key) in negative(reasons)", :key="reason_key",aria-role="listitem") 
@@ -68,6 +70,8 @@
             span {{ reason.description }}
             span.importance-toggle(v-if="reason.isImportant")
               i.w-icon-star-on(:title='__i("marked-as-important")')
+            span.importance-toggle(v-if="reason.isLessImportant")
+              i.w-icon-star-off(:title='__i("marked-as-less-important")')
       div.blocking-list.list(aria-role="list")
         div(v-if="blocking(reasons).length > 0")
           b.block-title {{ __i("reason-list-header-negative").replace("%s",name) }}
@@ -76,6 +80,8 @@
             span {{ reason.description }} 
             span.importance-toggle(v-if="reason.isImportant")
               i.w-icon-star-on(:title='__i("marked-as-important")')
+            span.importance-toggle(v-if="reason.isLessImportant")
+              i.w-icon-star-off(:title='__i("marked-as-less-important")')
       div.blocking-list.list(aria-role="list")
         div(v-if="blockedByOtherQuestion.length > 0")
           b.block-title {{ __i("reason-list-header-blocked-by-others").replace("%s",name) }}
@@ -265,9 +271,6 @@ export default {
   margin-right: 0.5em;
   color: grey;
 }
-.vote-actions {
-
-}
 .action {
   margin-right: 0.5em;
 }
@@ -354,6 +357,10 @@ i {
   color: grey;
 }
 .importance-toggle .w-icon-star-on {
+  color: #ff7a00;
+  margin-left: 0.5em;
+}
+.importance-toggle .w-icon-star-off {
   color: #ff7a00;
   margin-left: 0.5em;
 }

@@ -60,10 +60,7 @@
                 a.source-link(target="_blank", :href="answer.mediaSourcePath", v-if="answer.mediaSourcePath") 
                     i.w-icon-link(:title='__i("source")')
                 span
-                  span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="isAnswerSelected(answer) && !isAnswerImportant(answer)")
-                    i.w-icon-star-off(:title='__i("make-important")')
-                  span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
-                    i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
+                  importance(v-if="isAnswerSelected(answer)",:answer="answer", :important="isAnswerImportant(answer)", :lessImportant="isAnswerLessImportant(answer)")
               p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
           div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
             div
@@ -74,16 +71,7 @@
                 span.answer-text {{ __i(answer.msgid) }}
                 input(:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
                 span.checkmark
-              
-              a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)") {{ __i("make-important") }}
-              a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)") {{ __i("remove-important") }}
-
-              span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)")
-                i.w-icon-star-off(:title='__i("make-important")')
-              span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)")
-                i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
-
-              
+              importance(v-if="isAnswerSelected(answer)", :important="isAnswerImportant(answer)", :lessImportant="isAnswerLessImportant(answer)", :answer="answer")
               div.warning-alert.fadeInUp.faster(:class="'animated' ? !$store.state.visuallyImpairedMode : ''", v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
                 p {{ __i("answer-is-blocking") }}:
                 div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
@@ -105,11 +93,13 @@
 import i18n from '~/mixins/i18n'
 import tags from '~/components/tags.vue'
 import hardware from '~/components/hardware.vue'
+import importance from '~/components/importance.vue'
 export default {
   mixins: [i18n],
   components: {
     tags,
-    hardware
+    hardware,
+    importance
   },
   props: {
     language: {
@@ -299,8 +289,12 @@ export default {
         ).length === 1
       )
     },
-    async toggleImportance(answer) {
-      this.$store.commit('toggleImportanceState', answer)
+    isAnswerLessImportant(answer) {
+      return (
+        this.$store.state.givenAnswers.filter(
+          a => a.msgid === answer.msgid && a.lessImportant
+        ).length === 1
+      )
     }
   }
 }
@@ -544,13 +538,6 @@ a {
   max-width: 100%;
   max-height: 160px;
 }
-.importance-toggle .w-icon-star-off,
-.importance-toggle .w-icon-star-on {
-  color: #ff7a00;
-  margin-left: 0.2em;
-  font-size: 13pt;
-}
-
 .welcome-text div .w-icon-d-arrow-right {
   color: #e4ae4c;
 }

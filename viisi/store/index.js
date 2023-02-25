@@ -126,6 +126,7 @@ indexStore.actions.answerQuestion = async (store, payload) => {
     msgid: answer.msgid,
     answered: true,
     important: false,
+    lessImportant: false,
     category: payload.currentCategory.msgid,
     blockedAnswers: answer.blockedAnswers,
     tags: []
@@ -172,10 +173,28 @@ indexStore.mutations.resetHardwareRequirements = state => {
   state.hardwareRequirements = null
 }
 
-indexStore.mutations.toggleImportanceState = (state, answer) => {
+indexStore.mutations.makeImportant  = (state, answer) => {
   state.givenAnswers.forEach(a => {
     if (a.msgid === answer.msgid) {
-      a.important = !a.important
+      a.important = true;
+    }
+  })
+}
+
+indexStore.mutations.makeLessImportant = (state, answer) => {
+  state.givenAnswers.forEach(a => {
+    if (a.msgid === answer.msgid) {
+      a.lessImportant = true;
+    }
+  })
+}
+
+
+indexStore.mutations.resetImportanceState = (state, answer) => {
+  state.givenAnswers.forEach(a => {
+    if (a.msgid === answer.msgid) {
+      a.lessImportant = false;
+      a.important = false;
     }
   })
 }
@@ -279,6 +298,7 @@ indexStore.mutations.setOldTestData = state => {
       msgid: answer,
       answered: true,
       important: state.oldTestData.important.indexOf(answer) !== -1,
+      lessImportant: state.oldTestData.lessImportant.indexOf(answer) !== -1,
       category: category,
       blockedAnswers: []
     })

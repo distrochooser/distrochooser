@@ -24,7 +24,7 @@ export default {
       var blocking = reasons.filter(r => {
         return r.isBlockingHit && !r.isRelatedBlocked
       })
-      return blocking.length + blocking.filter(r => r.isImportant).length
+      return blocking.length + blocking.filter(r => r.isImportant).length - blocking.filter(r => r.isLessImportant).length
     },
     nonBlockingHits: function(reasons) {
       var nonBlocking = reasons.filter(r => {
@@ -35,13 +35,13 @@ export default {
           r.isPositiveHit
         )
       })
-      return nonBlocking.length + nonBlocking.filter(r => r.isImportant).length
+      return nonBlocking.length + nonBlocking.filter(r => r.isImportant).length  - nonBlocking.filter(r => r.isLessImportant).length
     },
     negativeHits: function(reasons) {
       var negative = reasons.filter(r => {
         return !r.isBlockingHit && !r.isPositiveHit && !r.isNeutralHit
       })
-      return negative.length + negative.filter(r => r.isImportant).length
+      return negative.length + negative.filter(r => r.isImportant).length - negative.filter(r => r.isLessImportant).length
     },
     percentageCompare: function(a, b) {
       var upvotePercentageA = a["votes"]["upvote_percentage"]
