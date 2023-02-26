@@ -1,6 +1,6 @@
 <template lang="pug">
 span.importance
-    i.w-icon-star-off(v-on:click="makeLessImportant", v-bind:class="{'active': lessImportant }", :title='__i("make-less-important")')
+    i.w-icon-down-circle-o(v-on:click="makeLessImportant", v-bind:class="{'w-icon-down-circle active': lessImportant }", :title='__i("make-less-important")')
     i.w-icon-star-on(v-on:click="makeImportant", v-bind:class="{'active': important }", :title='__i("make-important")')
 </template>
 <script>
@@ -55,9 +55,12 @@ export default {
     vertical-align: middle;
 }
 
-.w-icon-star-on,
-.w-icon-star-off {
+.w-icon-star-on {
     color: $lightAccent;
+}
+
+.w-icon-down-circle {
+    color: notImportantSelectedColor;
 }
 
 .w-icon-star-on.active {
