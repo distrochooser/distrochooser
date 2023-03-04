@@ -370,3 +370,8 @@ def store_requirements(request: HttpRequest, token: str, cores: int, frequency: 
         "filter_by_hardware": session.filter_by_hardware
     }
     return JsonResponse(response)
+
+
+
+def public_stats(request: HttpRequest) -> HttpResponse:
+    return "ok"
