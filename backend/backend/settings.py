@@ -20,7 +20,7 @@ CACHEOPS = CONFIG["backend"]["CACHE"]["CACHEOPS"]
 
 
 INSTALLED_APPS = [
-   # 'cacheops',
+    #'cacheops',
     'taggit',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -103,3 +103,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 CSRF_COOKIE_SECURE = False
 
 MEDIA_ROOT = "media/"
+
+PROMETHEUS_MULTIPROC_DIR = "prometheus/"
+os.environ["PROMETHEUS_MULTIPROC_DIR"] = PROMETHEUS_MULTIPROC_DIR
