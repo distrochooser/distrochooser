@@ -11,8 +11,9 @@
             span {{ __i("category-hardware-requirements") }}
         li(v-for="(category, c_k) in categories" v-bind:key="c_k", )
           a(href="#", @click="selectCategory(category)")
-            i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '')")
+            i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '') + (isMarked(category) ? ' mobile-marked' : '')")
             span(:class="{'active': isActive(category), 'inactive': !isActive(category), 'mobile-answered': isAnswered(category)}") {{ __i(category.msgid) }}
+            i.w-icon-save.marked(v-if="isMarked(category)",:title="__i('marked')")
         li(v-if="$store.state.visuallyImpairedMode")
           a(href="#", class="recommendation-link", :aria-disabled="$store.state.givenAnswers.length === 0", @click.prevent="submit", :title="__i('recommendation-category')") {{ __i("recommendation-category") }}
 
@@ -72,6 +73,12 @@ export default {
         this.$store.state.currentCategory.msgid === category.msgid && 
         !this.$store.state.isAtHardwareScreen
       )
+    },
+    isMarked(category) {
+      if (!category){
+        return false;
+      }
+      return this.$store.state.markedQuestions.indexOf(category.msgid) !== -1      
     },
     selectCategory(category) {
       const _t = this
@@ -199,5 +206,12 @@ export default {
 }
 .pending-indicator {
   margin-left: 0.5em;
+}
+.marked {
+  color: $markedHighlightColor !important;
+  margin-left: 0.5em;
+}
+.mobile-marked {
+  color: $markedHighlightColor !important;
 }
 </style>

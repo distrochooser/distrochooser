@@ -35,8 +35,10 @@
     div(v-if="isAtHardwareScreen")
       div.question-content
         hardware(:language="language", :startTestFunc="startTestAfterHardware")
-    div(v-if="!isAtWelcomeScreen && !isAtHardwareScreen")
+    div(v-if="!isAtWelcomeScreen && !isAtHardwareScreen",:class="{'marked-question': marked}")
       div.question-content
+        div.mark-for-later-container
+          i.w-icon-save(:class="{'marked': marked}", :title="__i(marked ? 'marked' : 'mark')", v-on:click="toggleMarking")
         div.additional-infos.animated.fadeIn.fast(v-if="additionalInfoShown")
           div.additional-info-menu(v-on:click="flip")
             span {{ __i("close-additional-info") }}
@@ -48,6 +50,7 @@
           span.additional-remarks-button(v-if="question.additionalInfo && !inVisuallyImpairedMode",:data-balloon="__i('additional-infos')",data-balloon-pos="right")
             i.w-icon-question-circle-o.additional-info-icon(v-on:click="flip")
         div.question-text.question-additional-info-vim(v-if="inVisuallyImpairedMode") {{ __i("additional-info") }}: {{ __i(question.msgid) }}
+            
 
 
         div.answer-remark(v-if="question.isMultipleChoice")
@@ -123,6 +126,9 @@ export default {
     question() {
       return this.$store.state.question
     },
+    marked() {
+      return this.question !== null && this.$store.state.markedQuestions.indexOf(this.$store.state.currentCategory.msgid) !== -1
+    },
     answers() {
       return this.$store.state.answers
     },
@@ -144,6 +150,9 @@ export default {
     }
   },
   methods: {
+    toggleMarking() {
+      this.$store.commit('toggleMarkingOfQuestion', this.$store.state.currentCategory.msgid)
+    },
     flip() {
       this.additionalInfoShown = !this.additionalInfoShown
     },
@@ -336,7 +345,6 @@ export default {
   line-height: 2;
 }
 .question-text {
-  padding-top: 1em;
   padding-left: 2em;
   padding-right: 1em;
   padding-bottom: 1em;
@@ -577,5 +585,25 @@ a {
       }
     }
   }
+}
+
+.mark-for-later-container {
+  text-align: right;
+  width: 100%;
+  padding-top: 0.5em;
+  padding-right: 0.25em;
+  i {
+    margin-top: 1em;
+    cursor: pointer;
+
+    &.marked {
+      color: $markedHighlightColor;
+      font-weight: bold;
+    }
+  }
+}
+
+.marked-question {
+  box-shadow: 0px 0px 3px 2px $markedHighlightColor;
 }
 </style>

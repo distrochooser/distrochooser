@@ -10,6 +10,7 @@ const indexStore = new Vapi({
     categories: null,
     currentCategory: null,
     givenAnswers: [],
+    markedQuestions: [],
     token: null, //session token
     sessionToken: null, //private session token
     isStarted: false,
@@ -179,6 +180,16 @@ indexStore.mutations.makeImportant  = (state, answer) => {
       a.important = true;
     }
   })
+}
+
+
+indexStore.mutations.toggleMarkingOfQuestion  = (state, question) => {
+  const questionCategoryIndex = state.markedQuestions.indexOf(question)
+  if (questionCategoryIndex !== -1) {
+    state.markedQuestions.splice(questionCategoryIndex, 1);
+  } else {
+    state.markedQuestions.push(question);
+  }
 }
 
 indexStore.mutations.makeLessImportant = (state, answer) => {
