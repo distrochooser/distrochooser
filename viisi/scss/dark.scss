@@ -1,0 +1,36 @@
+body:not(.light) {
+    color: $darkFont;
+    background-color: $darkBackground !important; 
+    a,
+    li span.active,
+    .footer a {
+        color: $darkLinkFont !important;
+    }
+
+    .inactive {
+        color: $inactiveDarkFont !important;
+    }
+
+    .answer-text {
+        color: $darkFont !important;
+    }
+
+    .question-content,
+    .distribution,
+    .actions {
+        background-color: $darkerBackground !important;
+    }
+
+    .distribution .block-title {
+        color: $darkFont;
+    }
+
+    .tags-select {
+        .tags-header {
+            color: $darkFont;
+        }
+        .tags-description {
+            color: $darkLinkFont !important;
+        }
+    }
+}
