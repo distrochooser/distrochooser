@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from distrochooser.views import start, load_question, submit_answers, get_locales, vote, get_given_answers, update_remark, get_ssr_data, get_language_values, get_stats, get_feedback, process_feedback, register_click, store_requirements
+from distrochooser.views import start, load_question, submit_answers, get_locales, vote, get_given_answers, update_remark, get_ssr_data, get_language_values, get_stats, get_feedback, process_feedback, register_click, store_requirements, metrics
 from backend.settings import CONFIG
 
 system_suffix = CONFIG["backend"]["SUFFIX"]
@@ -34,6 +34,7 @@ urlpatterns = [
     path('translation/<str:lang_code>/',
          get_language_values, name="get_language_values"),
     path('stats{0}/'.format(system_suffix), get_stats, name="get_stats"),
+    path('metrics/'.format(system_suffix), metrics, name="metrics"),
     path('feedback{0}/'.format(system_suffix),
          get_feedback, name="get_feedback"),
     path('process_feedback{0}/<str:token>/'.format(system_suffix),
