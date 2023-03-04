@@ -5,7 +5,6 @@ Views of the API backend.
 from json import loads
 from secrets import token_hex
 from urllib.parse import urlparse
-import datetime
 from statistics import pstdev, median
 
 from django.db.models import Count
@@ -13,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpRequest, JsonResponse, Http404
 from django.shortcuts import render, redirect
 from django.db.models import Avg, F
+from django.utils import timezone
 from prometheus_client import generate_latest
 
 from backend.settings import LOCALES
@@ -21,6 +21,8 @@ from distrochooser.calculations import default
 from distrochooser.models import UserSession, Category, ResultDistroSelection, GivenAnswer, Distribution
 from distrochooser.constants import TRANSLATIONS, TESTOFFSET, CONFIG
 from .prometheus import all_tests_gauge, median_test_stay_time, average_test_stay_time, answered_tests_v5_gauge, answered_tests_v_previous_gauge, distro_gauges, average_test_calculation_time, median_test_calculation_time, stdev_test_calculation_time, empty_tests_v5_gauge, negative_ratings_gauge, positive_ratings_gauge, registry
+
+from cacheops import cached
 
 def get_locales(request: HttpRequest) -> JsonResponse:
     """
@@ -152,7 +154,7 @@ def start(request: HttpRequest, lang_code: str) -> JsonResponse:
     session.language = lang_code
     session.token = token
     session.sessionToken = session_token
-    session.dateTime = datetime.datetime.now()
+    session.dateTime = timezone.now()
     session.referrer = referrer
     session.save()
     view_bag_data = get_step_data(0)
@@ -229,7 +231,7 @@ def submit_answers(request: HttpRequest, lang_code: str, token: str, method: str
 
     userSession = UserSession.objects.get(token=token)
 
-    start_time = datetime.datetime.now()
+    start_time = timezone.now()
 
     data = loads(request.body)
     calculations = {
@@ -240,7 +242,7 @@ def submit_answers(request: HttpRequest, lang_code: str, token: str, method: str
     else:
         raise Exception("Calculation method not known")
 
-    end_time = datetime.datetime.now()
+    end_time = timezone.now()
     calculationTime = end_time - start_time
     userSession.calculationTime = int(calculationTime.microseconds / 1000)
     userSession.calculationEndTime = end_time
@@ -373,7 +375,7 @@ def store_requirements(request: HttpRequest, token: str, cores: int, frequency: 
     }
     return JsonResponse(response)
 
-
+@cached(timeout=120)
 def metrics(request: HttpRequest) -> HttpResponse:
     all_tests_gauge.set(UserSession.objects.count() + TESTOFFSET)
     

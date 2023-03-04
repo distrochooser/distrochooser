@@ -18,9 +18,10 @@ ALLOWED_HOSTS = CONFIG["backend"]["ALLOWED_HOSTS"]
 CACHEOPS_REDIS = CONFIG["backend"]["CACHE"]["CACHEOPS_REDIS"]
 CACHEOPS = CONFIG["backend"]["CACHE"]["CACHEOPS"]
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
 INSTALLED_APPS = [
-    #'cacheops',
+    'cacheops',
     'taggit',
     'django.contrib.admin',
     'django.contrib.auth',

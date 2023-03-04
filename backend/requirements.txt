@@ -1,7 +1,8 @@
-django==2.2.28
-polib==1.1.1
+django==3.2.18
+polib==1.2.0
 gunicorn==20.1.0 
-django-cors-headers>=3.7.0
-django-cacheops==4.2
+django-cors-headers==3.14.0
+django-cacheops==6.2
 psycopg2>=2.8,<2.9 # as long as it's on Django 2.x
 django-taggit==3.1.0
+prometheus-client==0.16.0
