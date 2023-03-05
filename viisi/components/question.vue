@@ -35,16 +35,16 @@
     div(v-if="isAtHardwareScreen")
       div.question-content
         hardware(:language="language", :startTestFunc="startTestAfterHardware")
-    div(v-if="!isAtWelcomeScreen && !isAtHardwareScreen",:class="{'marked-question': marked}")
+    div(v-if="!isAtWelcomeScreen && !isAtHardwareScreen",:class="{'marked-question': marked && !additionalInfoShown}")
       div.question-content
-        div.mark-for-later-container
-          i.w-icon-save(:class="{'marked': marked}", :title="__i(marked ? 'marked' : 'mark')", v-on:click="toggleMarking")
         div.additional-infos.animated.fadeIn.fast(v-if="additionalInfoShown")
           div.additional-info-menu(v-on:click="flip")
             span {{ __i("close-additional-info") }}
             i.w-icon-circle-close-o
           h3 {{ __i("additional-info") }} | {{ __i($store.state.currentCategory.msgid) }}
           div {{ __i(question.additionalInfo) }}
+        div.mark-for-later-container
+          i.w-icon-save(:class="{'marked': marked}", :title="__i(marked ? 'marked' : 'mark')", v-on:click="toggleMarking")
         div.question-text(v-if="!additionalInfoShown")
           span {{ __i(question.msgid) }}
           span.additional-remarks-button(v-if="question.additionalInfo && !inVisuallyImpairedMode",:data-balloon="__i('additional-infos')",data-balloon-pos="right")
