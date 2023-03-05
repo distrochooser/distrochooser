@@ -1,20 +1,25 @@
 body:not(.light) {
     color: $darkFont;
     background-color: $darkBackground !important; 
+
+    /* Links, Navigation links */
     a,
     li span.active,
     .footer a {
         color: $darkLinkFont !important;
     }
-
+    /* Inactive links (navigation) */
     .inactive {
         color: $inactiveDarkFont !important;
     }
-
+    i.active-indicator.mobile-active {
+        color: white;
+    }
+    /* Text of answer */
     .answer-text {
         color: $darkFont !important;
     }
-
+    /* The center box */
     .question-content,
     .distribution,
     .actions {
@@ -32,5 +37,46 @@ body:not(.light) {
         .tags-description {
             color: $darkLinkFont !important;
         }
+    }
+
+    .importance{
+        .w-icon-down-circle-o  {
+            color: $darkLinkFont !important;
+        }
+    }
+    /* Checkboxes */
+    .container input:checked ~ .checkmark {
+        background-color: $darkLinkFont !important;
+    }
+    /* Get result button */
+    .floating-button {
+        span {
+            color: $darkFont !important;
+        }
+        &.disabled {
+            background-color: $darkBackground !important; 
+        }
+        &:not(.disabled) {
+            background-color: $darkLinkFont !important;
+        }
+    }
+
+    
+    .remarks-header,
+    .link i {
+        background-color: $darkLinkFont !important;
+        border-color: $darkLinkFont !important;
+    }
+
+    .metric-title i {
+        color: $darkLinkFont !important;
+    }
+
+    .w-icon-plus {
+        color: #47ff47;
+    }
+
+    .w-icon-circle-close-o {
+        color: #f00;
     }
 }
