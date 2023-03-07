@@ -1,0 +1,93 @@
+{% extends 'backend/base.html' %}
+
+
+{% block content %}
+
+
+<ol class="list-group list-group-numbered">
+
+    {% for question in questions %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold"> {{ question.msgid }}</div>
+            <small>{{ question.additionalInfo }}</small>
+
+            {% if question.isMultipleChoice %}
+            <span class="badge bg-primary rounded-pill">isMultipleChoice</span>
+            {% endif%}
+            {% if question.isMediaQuestion %}
+            <span class="badge bg-primary rounded-pill">isMediaQuestion</span>
+            {% endif%}
+
+            <ul class="list-group list-group-flush">
+                <ol class="list-group list-group-numbered">
+                    {% for answer in answers %}
+                    {% if answer.question == question %}
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{ answer }}</div>
+                            <ul class="list-group">
+                                {% for other_answer in answer.blockedAnswers.all %}
+                                <li class="list-group-item list-group-item-danger">Blocking: {{ other_answer }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                    <div class="accordion" id="reasons_{{answer.id}}">
+
+                    {% for matrix_tuple in matrix %}
+                    {% if matrix_tuple.answer == answer%}
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="header_{{answer.id}}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#matrix_{{matrix_tuple.id}}" aria-expanded="true" aria-controls="matrix_{{matrix_tuple.id}}">
+                                {{ matrix_tuple.description }}
+                            </button>
+                          </h2>
+                          <div id="matrix_{{matrix_tuple.id}}" class="accordion-collapse collapse show" aria-labelledby="header_{{answer.id}}" data-bs-parent="#reasons_{{answer.id}}">
+                            <div class="accordion-body row">
+                                {% for distro in matrix_tuple.distros.all %}
+                                <div class="col-2 my-1">
+                                    <button type="button" class="btn btn-primary position-relative" style="border-color: {{ distro.bgColor}}; background-color: {{ distro.bgColor}}; color: {{ distro.fgColor}};">
+        
+                                        {{ distro.name }}
+                                        {% if matrix_tuple.isBlockingHit %}
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            --
+                                        </span>
+                                        {% elif matrix_tuple.isNeutralHit %}
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info text-black">
+                                            ~
+                                        </span>
+                                        {% elif matrix_tuple.isNegativeHit %}
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            -
+                                        </span>
+                                        {% elif matrix_tuple.isTagOnlyHit %}
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success ">
+                                            Tags+
+                                        </span>
+                                        {%  else %}
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                            +
+                                        </span>
+                                        {% endif %}
+                                    </button>
+                                </div>
+                                {% endfor %}
+                            </div>
+                          </div>
+                        </div>      
+                        
+                    {% endif %}
+                    {% endfor %}                  
+                      </div>
+                    {%endif%}
+                    {% endfor %}
+                </ol>
+            </ul>
+        </div>
+    </li>
+
+    {% endfor %}
+</ol>
+{% endblock %}

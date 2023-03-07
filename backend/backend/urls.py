@@ -18,6 +18,9 @@ from django.urls import path
 from distrochooser.views import start, load_question, submit_answers, get_locales, vote, get_given_answers, update_remark, get_ssr_data, get_language_values, get_stats, get_feedback, process_feedback, register_click, store_requirements, metrics
 from backend.settings import CONFIG
 
+
+from distrochooser.feedback import feedback_index, feedback_selection_reasons
+
 system_suffix = CONFIG["backend"]["SUFFIX"]
 
 urlpatterns = [
@@ -40,5 +43,8 @@ urlpatterns = [
     path('process_feedback{0}/<str:token>/'.format(system_suffix),
          process_feedback, name="process_feedback"),
     path('click/<id>', register_click, name="register_click"),
-    path("requirements/<token>/<cores>/<frequency>/<memory>/<storage>/<is_touch>/<filter_by_hardware>", store_requirements, name="store_requirements")
+    path("requirements/<token>/<cores>/<frequency>/<memory>/<storage>/<is_touch>/<filter_by_hardware>", store_requirements, name="store_requirements"),
+    path('', feedback_index, name="feedback_index"),
+    path('matrix', feedback_selection_reasons, name="feedback_selection_reasons")
+
 ]
