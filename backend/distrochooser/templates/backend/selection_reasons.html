@@ -2,7 +2,58 @@
 
 
 {% block content %}
+<div class="modal" id="updatemodal" tabindex="-1">
+    <div class="modal-dialog show">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update mapping</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <h2>
+                        {{ old_answer }}
+                    </h2>
+                    <h3>
+                        {{ distro }}
+                    </h3>
+                    {% if old_mapping %}
+                    <div class="mb-3">
+                        <label for="mapping_change" class="form-label">Assign to other mapping</label>
+                        <select class="form-control" id="mapping_change" aria-describedby="mapping_change_help">
+                            <option>Select for new mapping</option>
+                            {% for mapping in other_mappings %}
+                            <option value="{{mapping.id}}" 
+                                {% if mapping.id == old_mapping.id %}
+                                    selected
+                                {% endif %}
+                                >
+                                {{mapping.description}}</option>
+                            {% endfor %}
+                        </select>
+                        <div id="mapping_change_help" class="form-text">Description</div>
+                    </div>
 
+                    <hr />
+                    <h2>Or</h2>
+                    {% endif %}
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Description</label>
+                      <input type="text" class="form-control" id="description">
+                    </div>
+
+                    {% for hit_type in hit_types %}
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="{{hit_type}}">
+                        <label class="form-check-label" for="{{hit_type}}">{{ hit_type}}</label>
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <ol class="list-group list-group-numbered">
 
@@ -35,52 +86,71 @@
                     </li>
                     <div class="accordion" id="reasons_{{answer.id}}">
 
-                    {% for matrix_tuple in matrix %}
-                    {% if matrix_tuple.answer == answer%}
+                        {% for matrix_tuple in matrix %}
+                        {% if matrix_tuple.answer == answer%}
                         <div class="accordion-item">
-                          <h2 class="accordion-header" id="header_{{answer.id}}">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#matrix_{{matrix_tuple.id}}" aria-expanded="true" aria-controls="matrix_{{matrix_tuple.id}}">
-                                {{ matrix_tuple.description }}
-                            </button>
-                          </h2>
-                          <div id="matrix_{{matrix_tuple.id}}" class="accordion-collapse collapse show" aria-labelledby="header_{{answer.id}}" data-bs-parent="#reasons_{{answer.id}}">
-                            <div class="accordion-body row">
-                                {% for distro in matrix_tuple.distros.all %}
-                                <div class="col-2 my-1">
-                                    <button type="button" class="btn btn-primary position-relative" style="border-color: {{ distro.bgColor}}; background-color: {{ distro.bgColor}}; color: {{ distro.fgColor}};">
-        
-                                        {{ distro.name }}
-                                        {% if matrix_tuple.isBlockingHit %}
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                            --
-                                        </span>
-                                        {% elif matrix_tuple.isNeutralHit %}
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info text-black">
-                                            ~
-                                        </span>
-                                        {% elif matrix_tuple.isNegativeHit %}
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                            -
-                                        </span>
-                                        {% elif matrix_tuple.isTagOnlyHit %}
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success ">
-                                            Tags+
-                                        </span>
-                                        {%  else %}
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                            +
-                                        </span>
-                                        {% endif %}
-                                    </button>
+                            <h2 class="accordion-header" id="header_{{answer.id}}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#matrix_{{matrix_tuple.id}}" aria-expanded="true"
+                                    aria-controls="matrix_{{matrix_tuple.id}}">
+                                    {{ matrix_tuple.description }}
+                                </button>
+                            </h2>
+                            <div id="matrix_{{matrix_tuple.id}}" class="accordion-collapse collapse show"
+                                aria-labelledby="header_{{answer.id}}" data-bs-parent="#reasons_{{answer.id}}">
+                                <div id="matrix_drop_{{matrix_tuple.id}}" class="accordion-body row drag-target" ondrop="drop_entry(event)" ondragover="drop_enable(event)">
+                                    {% for distro in matrix_tuple.distros.all %}
+                                    <div class="col-2 my-1">
+                                        <button mapping_id="{{matrix_tuple.id}}" id="distro_drag_{{distro.id}}" draggable="true" ondragstart="drag_entry(event)" type="button" class="btn btn-primary position-relative"
+                                            style="border-color: {{ distro.bgColor}}; background-color: {{ distro.bgColor}}; color: {{ distro.fgColor}};">
+
+                                            {{ distro.name }}
+                                            {% if matrix_tuple.isBlockingHit %}
+                                            <span
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger dropdown-toggle"
+                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                --
+                                            </span>
+                                            {% elif matrix_tuple.isNeutralHit %}
+                                            <span
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info text-black dropdown-toggle"
+                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                ~
+                                            </span>
+                                            {% elif matrix_tuple.isNegativeHit %}
+                                            <span
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger dropdown-toggle"
+                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                -
+                                            </span>
+                                            {% elif matrix_tuple.isTagOnlyHit %}
+                                            <span
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success dropdown-toggle"
+                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Tags+
+                                            </span>
+                                            {% else %}
+                                            <span
+                                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success dropdown-toggle"
+                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                +
+                                            </span>
+                                            {% endif %}
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                        href="?distro={{distro.id}}&mapping={{matrix_tuple.id}}&answer={{answer.id}}">Change</a>
+                                                </li>
+                                            </ul>
+                                        </button>
+                                    </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
                             </div>
-                          </div>
-                        </div>      
-                        
-                    {% endif %}
-                    {% endfor %}                  
-                      </div>
+                        </div>
+
+                        {% endif %}
+                        {% endfor %}
+                    </div>
                     {%endif%}
                     {% endfor %}
                 </ol>

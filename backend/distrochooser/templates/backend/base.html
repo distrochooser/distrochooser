@@ -8,7 +8,8 @@
     <meta name="generator" content="Distrochooser">
     <title>Distrochooser</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.1/font/bootstrap-icons.css">
 
 
@@ -30,7 +31,31 @@
     </main>
 
 
-    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function drop_enable(event) {
+            event.preventDefault();
+        }
+        function drag_entry(event) {
+            //event.preventDefault();
+            event.dataTransfer.setData("entry_id", event.target.getAttribute("id"));
+            event.dataTransfer.setData("mapping_id", event.target.getAttribute("mapping_id"));
+        }
+        function drop_entry(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("entry_id").replace("distro_drag_", "");
+            var data_source = event.dataTransfer.getData("mapping_id");
+            var receiver = event.target.getAttribute("id").replace("matrix_drop_", "");
+            window.location.href = "/matrix?distro=" + data + "&old_mapping=" + data_source + "&mapping=" + receiver + "&action=move"
+        }
+        var updatemodal = new bootstrap.Modal(document.getElementById("updatemodal"), {});
+        document.onreadystatechange = function () {
+            //updatemodal.show();
+        };
+    </script>
 </body>
 
 </html>
