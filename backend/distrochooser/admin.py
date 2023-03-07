@@ -36,6 +36,7 @@ class AnswerAdmin(admin.ModelAdmin):
 admin.site.register(Answer, AnswerAdmin)
 
 class AnswerDistributionMatrixAdmin(admin.ModelAdmin):
+  list_display = ("answer", "description", "isBlockingHit", "isNegativeHit", "isNeutralHit", "isTagOnlyHit", "distro_list")
   def get_ordering(self, request):
      return ['answer__question']
 admin.site.register(AnswerDistributionMatrix, AnswerDistributionMatrixAdmin)

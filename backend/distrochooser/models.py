@@ -199,6 +199,12 @@ class AnswerDistributionMatrix(models.Model):
     description = models.CharField(default='', max_length=300, blank=False)
     distros = models.ManyToManyField(
         to=Distribution, related_name="answerMatrixDistros", blank=True)
-
+    @property
+    def distro_list(self):
+        distros = ""
+        distro: Distribution
+        for distro in self.distros.order_by("name"):
+            distros += distro.name + ", "
+        return distros
     def __str__(self):
         return "Blocking: {0}, Negative: {1}, Neutral: {2}, {3} ({4})".format(self.isBlockingHit, self.isNegativeHit, self.isNeutralHit, self.answer, self.distros.all().values_list("name", flat=True))
