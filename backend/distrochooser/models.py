@@ -182,6 +182,15 @@ class SelectionReason(models.Model):
     def __str__(self):
         return "{0}: P{1}-B{2}-RB{3}-N{4}-I{5}".format(self.description, self.isPositiveHit, self.isBlockingHit, self.isRelatedBlocked, self.isNeutralHit, self.isImportant)
 
+class UserSuggestion(models.Model):
+    distro = models.ForeignKey(
+        Distribution, on_delete=models.CASCADE, default=None)
+    old_mapping = models.ForeignKey(
+        'AnswerDistributionMatrix', on_delete=models.CASCADE, default=None, blank=True, null=True, related_name="User_Suggestion_old")
+    new_mapping = models.ForeignKey(
+        'AnswerDistributionMatrix', on_delete=models.CASCADE, default=None, blank=True, null=True, related_name="User_Suggestion_New")
+    is_removal = models.BooleanField(default=False)
+
 
 class AnswerDistributionMatrix(models.Model):
     class Meta():
@@ -199,6 +208,15 @@ class AnswerDistributionMatrix(models.Model):
     description = models.CharField(default='', max_length=300, blank=False)
     distros = models.ManyToManyField(
         to=Distribution, related_name="answerMatrixDistros", blank=True)
+    isSuggestion = models.BooleanField(default=False)
+    suggestions = models.ManyToManyField(to="AnswerDistributionMatrix", related_name="suggestion_matrix", blank=True)
+
+    def get_suggestions(self):
+        return self.suggestions.all()
+    def get_distro_suggestions(self):
+        return UserSuggestion.objects.filter(new_mapping=self)
+    def get_distro_removal_suggestions(self):
+        return UserSuggestion.objects.filter(old_mapping=self)
     @property
     def distro_list(self):
         distros = ""
@@ -207,4 +225,4 @@ class AnswerDistributionMatrix(models.Model):
             distros += distro.name + ", "
         return distros
     def __str__(self):
-        return "Blocking: {0}, Negative: {1}, Neutral: {2}, {3} ({4})".format(self.isBlockingHit, self.isNegativeHit, self.isNeutralHit, self.answer, self.distros.all().values_list("name", flat=True))
+        return "Suggestion: {0}, Blocking: {0}, Negative: {1}, Neutral: {2}, {3} ({4})".format(self.isSuggestion, self.isBlockingHit, self.isNegativeHit, self.isNeutralHit, self.answer, self.distros.all().values_list("name", flat=True))
