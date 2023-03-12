@@ -1,4 +1,5 @@
 from django import template
+from distrochooser.constants import TRANSLATIONS
 from distrochooser.models import Distribution, AnswerDistributionMatrix, Answer, UserSuggestion
 register = template.Library()
 
@@ -10,3 +11,10 @@ def tag_distro(distro: Distribution, matrix_tuple: AnswerDistributionMatrix, ans
 @register.inclusion_tag('tag_selection.html')
 def tag_selection(matrix_tuple: AnswerDistributionMatrix, answer: Answer):
     return {'matrix_tuple': matrix_tuple, 'answer': answer}
+
+@register.simple_tag
+def i(value: str, lang: str):
+    # even as Django has it's own i18n system, the majority in this project was build for the frontend, not utilizing this. Which was kind of dumb.
+    # To prevent using two systems for translating, this method will be used to parse the existing translations
+    # This might change in later versions
+    return TRANSLATIONS[lang][value] if value in TRANSLATIONS[lang] else value

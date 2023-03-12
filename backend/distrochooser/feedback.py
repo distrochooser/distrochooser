@@ -95,7 +95,7 @@ def feedback_selection_reasons(request: HttpRequest) -> HttpResponse:
         answer_id = request.GET.get("answer")
         old_answer = Answer.objects.get(id=answer_id)
 
-
+    new_mapping_suggestions = AnswerDistributionMatrix.objects.filter(isSuggestion=True)
     suggested_items = UserSuggestion.objects.all()
 
     return HttpResponse(template.render({
@@ -109,5 +109,7 @@ def feedback_selection_reasons(request: HttpRequest) -> HttpResponse:
         "old_answer": old_answer,
         "old_mapping": old_mapping,
         "other_mappings": other_mappings,
-        "suggested_items": suggested_items
+        "suggested_items": suggested_items,
+        "new_mapping_suggestions": new_mapping_suggestions,
+        "language_code": "en"
     }, request))
