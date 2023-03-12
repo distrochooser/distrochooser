@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category, AnswerDistributionMatrix
+from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category, AnswerDistributionMatrix, UserSuggestion
 
 [admin.site.register(*models) for models in [
   (Question,),
@@ -36,7 +36,12 @@ class AnswerAdmin(admin.ModelAdmin):
 admin.site.register(Answer, AnswerAdmin)
 
 class AnswerDistributionMatrixAdmin(admin.ModelAdmin):
-  list_display = ("answer", "description", "isBlockingHit", "isNegativeHit", "isNeutralHit", "isTagOnlyHit", "distro_list")
+  list_display = ("answer", "description", "isSuggestion", "isBlockingHit", "isNegativeHit", "isNeutralHit", "isTagOnlyHit", "distro_list")
   def get_ordering(self, request):
      return ['answer__question']
 admin.site.register(AnswerDistributionMatrix, AnswerDistributionMatrixAdmin)
+
+
+class UserSuggestionAdmin(admin.ModelAdmin):
+  list_display = ("distro","old_mapping", "new_mapping", "is_removal" )
+admin.site.register(UserSuggestion, UserSuggestionAdmin)
