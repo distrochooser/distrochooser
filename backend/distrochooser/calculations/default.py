@@ -71,7 +71,7 @@ def getSelections(userSession: UserSession, data, langCode):
   importantAnswers = list(map(lambda o: o["answer"], filter(lambda o: o["isImportant"], givenAnswers)))
   lessImportantAnswers = list(map(lambda o: o["answer"], filter(lambda o: o["isLessImportant"], givenAnswers)))
   distros = Distribution.objects.all()
-  matchingTuples = AnswerDistributionMatrix.objects.all().prefetch_related('distros', 'answer')
+  matchingTuples = AnswerDistributionMatrix.objects.filter(isSuggestion=False).prefetch_related('distros', 'answer')
 
 
   createdSelections = {}
