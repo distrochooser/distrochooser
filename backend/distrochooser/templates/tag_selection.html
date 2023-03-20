@@ -1,12 +1,28 @@
 {% load distrochooser_extras %}
-<div class="card">
-    <div class="card-header">
-        {{ matrix_tuple.description }}
 
-        <div>
-            <a href="?action=delete&mapping={{matrix_tuple.id}}" class="badge text-bg-danger">Remove</a>
+<div class="accordion-item">
+  <h2 class="accordion-header  mb-2" id="{{matrix_tuple.id}}-heading">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ matrix_tuple.id }}" aria-expanded="false" aria-controls="collapse-{{ matrix_tuple.id }}">
+      <i class="bi bi-map-fill me-1 {% if matrix_tuple.isNegativeSuggestion %}text-danger{% elif matrix_tuple.isSuggestion %}text-success{% endif %}"></i>  
+      <b>{{ matrix_tuple.description }}</b>
+        
+    </button>
+  </h2>
+  <div id="collapse-{{ matrix_tuple.id }}" class="accordion-collapse collapse" aria-labelledby="{{matrix_tuple.id}}-heading" data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+      
+      <div class="row">
+        <div class="col-2">
+          <a href="?action=delete&mapping={{matrix_tuple.id}}" class="badge text-bg-danger">Remove this mapping</a>
         </div>
     </div>
+      
+
+    {% if matrix_tuple.isNegativeSuggestion %}
+    <div class="col-10 alert alert-danger">
+      Marked for removal. No additions possible. All mappings will be removed.
+    </div>
+    {% else %}
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
         <div id="matrix_drop_{{matrix_tuple.id}}" class="drag-target " ondrop="drop_entry(event)"
@@ -16,7 +32,7 @@
       </li>
       <li class="list-group-item">
       {% for distro in matrix_tuple.distros.all %}
-      {% tag_distro distro matrix_tuple answer %}
+        {% tag_distro distro matrix_tuple answer %}
       {% endfor %}   
       </li> 
       {% if matrix_tuple.get_distro_removal_suggestions.count > 0 %}
@@ -33,7 +49,7 @@
       {% if matrix_tuple.get_distro_suggestions.count > 0 %}
       <li class="list-group-item">
         {% for suggestion_tuple in matrix_tuple.get_distro_suggestions %}
-        <h3>Suggestion</h3>
+        <h3>Suggestion: </h3>
         <div id="matrix_drop_{{suggestion_tuple.id}}" ondrop="drop_entry(event)" ondragover="drop_enable(event)"
             class="drag-target border border-warning">
             {% tag_distro suggestion_tuple.distro matrix_tuple answer suggestion_tuple %}
@@ -41,4 +57,9 @@
         {% endfor %}
       </li>
       {% endif %}
+      </ul>
+    {% endif %}
+    
+    </div>
   </div>
+</div>

@@ -209,6 +209,7 @@ class AnswerDistributionMatrix(models.Model):
     distros = models.ManyToManyField(
         to=Distribution, related_name="answerMatrixDistros", blank=True)
     isSuggestion = models.BooleanField(default=False)
+    isNegativeSuggestion = models.BooleanField(default=False)
     suggestions = models.ManyToManyField(to="AnswerDistributionMatrix", related_name="suggestion_matrix", blank=True)
 
     def get_suggestions(self):

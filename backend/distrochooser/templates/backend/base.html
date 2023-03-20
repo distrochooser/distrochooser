@@ -12,7 +12,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.1/font/bootstrap-icons.css">
 
-
     <!-- Favicons -->
     <meta name="theme-color" content="{{ meta.themecolor }}">
 
@@ -67,6 +66,20 @@
         document.onreadystatechange = function () {
             if (window.location.search.indexOf("action=create") !== -1){
                 updatemodal.show();
+            }
+            /* Jump to new mappings after they where created */
+            if (window.location.href.indexOf("returnto") !== -1) {
+                var raw = document.location.search.replace("?", "").split("&");
+                var params = {}
+                raw.forEach(function(v) {
+                    var parts = v.split("=");
+                    var key = parts[0];
+                    var value = parseInt(parts[1]);
+                    params[key] = value
+                })
+                document.getElementById(params["returnquestion"] + "-tab").click()
+                document.querySelector("button[aria-controls='collapse-" + params["returnmapping"] +"']").click()
+                document.getElementById(params["returnmapping"] + "-heading").scrollIntoView()
             }
         };
     </script>
