@@ -9,8 +9,8 @@ def tag_distro(distro: Distribution, matrix_tuple: AnswerDistributionMatrix, ans
 
 
 @register.inclusion_tag('tag_selection.html')
-def tag_selection(matrix_tuple: AnswerDistributionMatrix, answer: Answer):
-    return {'matrix_tuple': matrix_tuple, 'answer': answer}
+def tag_selection(matrix_tuple: AnswerDistributionMatrix, answer: Answer, language_code: str):
+    return {'matrix_tuple': matrix_tuple, 'answer': answer, 'language_code': language_code}
 
 @register.simple_tag
 def i(value: str, lang: str):

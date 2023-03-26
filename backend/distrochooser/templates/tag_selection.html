@@ -4,7 +4,7 @@
   <h2 class="accordion-header  mb-2" id="{{matrix_tuple.id}}-heading">
     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ matrix_tuple.id }}" aria-expanded="false" aria-controls="collapse-{{ matrix_tuple.id }}">
       <i class="bi bi-map-fill me-1 {% if matrix_tuple.isNegativeSuggestion %}text-danger{% elif matrix_tuple.isSuggestion %}text-success{% endif %}"></i>  
-      <b>{{ matrix_tuple.description }}</b>
+      <b>{% i matrix_tuple.description language_code %}</b>
         
     </button>
   </h2>
