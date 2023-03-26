@@ -60,7 +60,7 @@
                 "is_ignored": is_ignored
             })
             var mapping_url_part = data_source ? "&old_mapping=" + data_source :  ""
-            window.location.href = "/matrix?distro=" + data + mapping_url_part + "&mapping=" + receiver + "&action=move"
+            window.location.href = "/matrix/"+sessionToken+"?distro=" + data + mapping_url_part + "&mapping=" + receiver + "&action=move"
         }
         var updatemodal = new bootstrap.Modal(document.getElementById("updatemodal"), {});
         document.onreadystatechange = function () {
@@ -86,6 +86,9 @@
     <style>
         .drag-target {
            /* background: red; */
+        }
+        .suggested-deletion {
+            text-decoration: line-through;
         }
     </style>
 </body>

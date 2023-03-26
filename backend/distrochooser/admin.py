@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category, AnswerDistributionMatrix, UserSuggestion
+from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category, AnswerDistributionMatrix, UserSuggestion, UserSuggestionSession
 
 [admin.site.register(*models) for models in [
   (Question,),
@@ -45,3 +45,7 @@ admin.site.register(AnswerDistributionMatrix, AnswerDistributionMatrixAdmin)
 class UserSuggestionAdmin(admin.ModelAdmin):
   list_display = ("distro","old_mapping", "new_mapping", "is_removal")
 admin.site.register(UserSuggestion, UserSuggestionAdmin)
+
+class UsesSuggestionSessionAdmin(admin.ModelAdmin):
+  list_display = ("sessionToken", "readonlyToken",)
+admin.site.register(UserSuggestionSession, UsesSuggestionSessionAdmin)
