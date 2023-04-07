@@ -391,4 +391,12 @@ div.filtered-results-warning {
     }
   }
 }
+.w-icon-mastodon {
+  background-image: url(/mastodon.svg);
+  background-position: center;
+  background-repeat: round;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
 </style>
