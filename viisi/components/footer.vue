@@ -1,5 +1,6 @@
 <template lang="pug">
 div.footer(aria-role="contentinfo")
+  a(v-on:click="toggleDarkMode")  {{ __i("toggle-darkmode") }}
   a(target="_blank", :href="'/info/imprint/'+ language" )  {{ __i("imprint") }}
   a(target="_blank", :href="'/info/privacy/'+ language" ) {{ __i("privacy") }}
   a(target="_blank", :href="'/info/about/'+ language" ) {{ __i("about") }}
@@ -18,6 +19,21 @@ export default {
       type: String,
       default: ''
     },
+  },
+  created: function(){
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+      this.toggleDarkMode();
+    }
+  },
+  methods: {
+    toggleDarkMode: function(){
+      const isLight = document.querySelector("body").classList.contains("light");
+      if (isLight) {
+        document.querySelector("body").classList.replace("light", "dark")
+      } else {
+        document.querySelector("body").classList.replace("dark", "light")
+      }
+    }
   }
 }
 </script>

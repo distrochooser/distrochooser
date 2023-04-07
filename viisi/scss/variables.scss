@@ -31,6 +31,11 @@ $notImportantSelectedColor: #0c1b28;
 $infoBoxBackground: $additionalInfoBackground;
 $markedHighlightColor: #ff7a00;
 
+$darkBackground: #353535;
+$darkerBackground: #2d2c2c;
+$darkFont: white;
+$darkLinkFont: #7eb1e4;
+$inactiveDarkFont: rgb(178, 176, 176);
 //Resets
 *:focus {
   outline: none;
@@ -39,4 +44,5 @@ $markedHighlightColor: #ff7a00;
 i{
   vertical-align: top;
 }
-@import "mobile.scss"
+@import "mobile.scss";
+@import "dark.scss";
