@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode, 'rtl': isRTL }")
+  div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode, 'rtl': isRTL, 'dark': true }")
     div.beta-banner(v-if="isBeta") Development version: For testing purposes only. For the online version, use  
       a(href="https://distrochooser.de") distrochooser.de
     div.top-logo-container(aria-role="banner",v-if="!$store.state.visuallyImpairedMode")
@@ -170,6 +170,9 @@ export default {
       titleTemplate: 'Distrochooser',
       htmlAttrs: {
         lang: this.language
+      },
+      bodyAttrs: {
+        "class": "light"
       },
       meta: [
         { charset: 'utf-8' },

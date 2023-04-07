@@ -1,0 +1,126 @@
+body:not(.light) {
+    color: $darkFont;
+    background-color: $darkBackground !important; 
+
+    /* Links, Navigation links */
+    a,
+    
+    .footer a {
+        color: $darkLinkFont !important;
+    }
+    /* Inactive links (navigation) */
+    .inactive {
+        color: $inactiveDarkFont !important;
+    }
+    i.active-indicator.mobile-active,
+    li span.active {
+        color: white;
+    }
+    .breadcrumb-horizontal ul li i {
+        color: #bdbaba;
+    }
+    /* Text of answer */
+    .answer-text {
+        color: $darkFont !important;
+    }
+    .image-answer {
+        &:not(.answer-selected) {
+            border-width: 0px !important;
+            border:  2px solid #f000 !important; /* to prevent jumping */
+        }
+        &.answer-selected {
+            border: 2px solid white !important;
+        }
+        p {
+            color: white;
+        }
+    }
+    .mobile-answered {
+        color: $darkLinkFont !important;
+    }
+    /* The center box */
+    .question-content,
+    .distribution,
+    .actions {
+        background-color: $darkerBackground !important;
+    }
+
+    .marked-question {
+        box-shadow: 0px 0px 3px 2px $darkLinkFont;
+    }
+
+    .distribution .block-title {
+        color: $darkFont;
+    }
+
+    .tags-select {
+        .tags-header {
+            color: $darkFont;
+        }
+        .tags-description,
+        .additional-info {
+            color: $darkLinkFont !important;
+        }
+
+        .vs__selected {
+            background-color: $darkLinkFont !important;
+        }
+    }
+
+    .importance{
+        .w-icon-down-circle-o  {
+            color: $darkLinkFont !important;
+        }
+    }
+    /* Checkboxes */
+    .container input:checked ~ .checkmark {
+        background-color: $darkLinkFont !important;
+    }
+    /* Get result button */
+    .floating-button {
+        span {
+            color: $darkFont !important;
+        }
+        &.disabled {
+            background-color: $darkBackground !important; 
+        }
+        &:not(.disabled) {
+            background-color: $darkLinkFont !important;
+        }
+    }
+
+    
+    .remarks-header,
+    .filtered-results-warning,
+    .link i {
+        background-color: $darkLinkFont !important;
+        border-color: $darkLinkFont !important;
+    }
+    .filtered-results-warning a {
+        color: white !important;
+    }
+
+    .metric-title i {
+        color: $darkLinkFont !important;
+    }
+
+    .w-icon-plus {
+        color: #47ff47;
+    }
+
+    .w-icon-circle-close-o {
+        color: #f00;
+    }
+
+    .w-icon-save {
+        color: white !important;
+    }
+    .display-options a.active i,
+    .scroll-button i,
+    .slideshow-navigation-bullets span a span.active{
+        color: $darkLinkFont !important;
+    }
+    .beta-banner a {
+        color: white !important;
+    }
+}

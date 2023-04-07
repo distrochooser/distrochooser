@@ -1,0 +1,14 @@
+
+        <button mapping_id="{{matrix_tuple.id}}" id="distro_drag_{{distro.id}}" draggable="true" ondragstart="drag_entry(event)"  
+                class="mx-3 my-3 btn btn-secondary {% if matrix_tuple%}dropdown-toggle{% endif%} " type="button" {% if matrix_tuple%} data-bs-toggle="dropdown" aria-expanded="false" {% endif%} 
+                style="border-color: {{ distro.bgColor}}; background-color: {{ distro.bgColor}}; color: {{ distro.fgColor}};">
+            {{ distro.name }}
+        </button>
+        {% if matrix_tuple %}
+        <ul class="dropdown-menu">
+            <li>
+                <a class="dropdown-item"
+                    href="?distro={{distro.id}}&old_mapping={{matrix_tuple.id}}&answer={{answer.id}}&action=move{% if suggestion %}&suggestion={{suggestion.id}}{%endif%}">Remove</a>
+            </li>
+        </ul>
+        {% endif %}

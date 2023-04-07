@@ -80,3 +80,4 @@ viisi/distrochooser.json
 distrochooser.json
 backend/commit
 update.sh
+backend/prometheus/*.db

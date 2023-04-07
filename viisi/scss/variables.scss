@@ -26,8 +26,16 @@ $categoryIconColor: #4d4d4d;;
 $lightColor: #05396b;
 $additionalInfoBackground: #05396b;
 $additionalInfoIcon: #e1760d;
+$importanceSelectedColor: #ff7a00;
+$notImportantSelectedColor: #0c1b28;
 $infoBoxBackground: $additionalInfoBackground;
+$markedHighlightColor: #ff7a00;
 
+$darkBackground: #353535;
+$darkerBackground: #2d2c2c;
+$darkFont: white;
+$darkLinkFont: #7eb1e4;
+$inactiveDarkFont: rgb(178, 176, 176);
 //Resets
 *:focus {
   outline: none;
@@ -36,4 +44,5 @@ $infoBoxBackground: $additionalInfoBackground;
 i{
   vertical-align: top;
 }
-@import "mobile.scss"
+@import "mobile.scss";
+@import "dark.scss";

@@ -13,14 +13,16 @@ with open(CONFIG_PATH, 'r') as f:
 SECRET_KEY = CONFIG["backend"]["SECRET_KEY"]
 DEBUG = CONFIG["backend"]["DEBUG"]
 ALLOWED_HOSTS = CONFIG["backend"]["ALLOWED_HOSTS"]
+FEEDBACK_URL = CONFIG["frontend"]["feedbackUrl"]
 
 
 CACHEOPS_REDIS = CONFIG["backend"]["CACHE"]["CACHEOPS_REDIS"]
 CACHEOPS = CONFIG["backend"]["CACHE"]["CACHEOPS"]
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
 INSTALLED_APPS = [
-   # 'cacheops',
+    'cacheops',
     'taggit',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -103,3 +105,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 CSRF_COOKIE_SECURE = False
 
 MEDIA_ROOT = "media/"
+
+PROMETHEUS_MULTIPROC_DIR = "prometheus/"
+os.environ["PROMETHEUS_MULTIPROC_DIR"] = PROMETHEUS_MULTIPROC_DIR

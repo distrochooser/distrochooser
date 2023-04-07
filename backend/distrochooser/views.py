@@ -5,20 +5,24 @@ Views of the API backend.
 from json import loads
 from secrets import token_hex
 from urllib.parse import urlparse
-import datetime
-from math import floor
+from statistics import pstdev, median
 
 from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpRequest, JsonResponse, Http404
 from django.shortcuts import render, redirect
+from django.db.models import Avg, F
+from django.utils import timezone
+from prometheus_client import generate_latest
 
 from backend.settings import LOCALES
 from distrochooser.util import get_json_response, get_step_data
 from distrochooser.calculations import default
 from distrochooser.models import UserSession, Category, ResultDistroSelection, GivenAnswer, Distribution
 from distrochooser.constants import TRANSLATIONS, TESTOFFSET, CONFIG
+from .prometheus import all_tests_gauge, median_test_stay_time, average_test_stay_time, answered_tests_v5_gauge, answered_tests_v_previous_gauge, distro_gauges, average_test_calculation_time, median_test_calculation_time, stdev_test_calculation_time, empty_tests_v5_gauge, negative_ratings_gauge, positive_ratings_gauge, registry
 
+from cacheops import cached
 
 def get_locales(request: HttpRequest) -> JsonResponse:
     """
@@ -150,7 +154,7 @@ def start(request: HttpRequest, lang_code: str) -> JsonResponse:
     session.language = lang_code
     session.token = token
     session.sessionToken = session_token
-    session.dateTime = datetime.datetime.now()
+    session.dateTime = timezone.now()
     session.referrer = referrer
     session.save()
     view_bag_data = get_step_data(0)
@@ -227,7 +231,7 @@ def submit_answers(request: HttpRequest, lang_code: str, token: str, method: str
 
     userSession = UserSession.objects.get(token=token)
 
-    start_time = datetime.datetime.now()
+    start_time = timezone.now()
 
     data = loads(request.body)
     calculations = {
@@ -238,7 +242,7 @@ def submit_answers(request: HttpRequest, lang_code: str, token: str, method: str
     else:
         raise Exception("Calculation method not known")
 
-    end_time = datetime.datetime.now()
+    end_time = timezone.now()
     calculationTime = end_time - start_time
     userSession.calculationTime = int(calculationTime.microseconds / 1000)
     userSession.calculationEndTime = end_time
@@ -370,3 +374,39 @@ def store_requirements(request: HttpRequest, token: str, cores: int, frequency: 
         "filter_by_hardware": session.filter_by_hardware
     }
     return JsonResponse(response)
+
+@cached(timeout=120)
+def metrics(request: HttpRequest) -> HttpResponse:
+    all_tests_gauge.set(UserSession.objects.count() + TESTOFFSET)
+    
+    empty_tests_v5_gauge.set(UserSession.objects.filter(calculationTime=0).count())
+    calculatedResults = UserSession.objects.filter(calculationTime__gt=0)
+    answered_tests_v5_gauge.set(calculatedResults.count())
+    answered_tests_v_previous_gauge.set(TESTOFFSET)
+
+    average_test_calculation_time_value = calculatedResults.aggregate(Avg('calculationTime'))["calculationTime__avg"]
+    average_test_calculation_time.set(average_test_calculation_time_value)
+    
+    median_test_calculation_time_values = list(calculatedResults.values_list("calculationTime", flat=True))
+    median_test_calculation_time.set(median(median_test_calculation_time_values))
+
+    stdev_test_calculation_time.set(pstdev(median_test_calculation_time_values))
+
+    positive_ratings_gauge.set(ResultDistroSelection.objects.filter(isApprovedByUser=True).count())
+    negative_ratings_gauge.set(ResultDistroSelection.objects.filter(isDisApprovedByUser=True).count())
+
+    stay_times_raw = UserSession.objects.filter(calculationEndTime__isnull=False).annotate(stay_time=(F("calculationEndTime") - F("dateTime")))
+    #.values_list("stay_time",flat=True)
+    avg_stay_time_value = stay_times_raw.aggregate(Avg('stay_time'))["stay_time__avg"].total_seconds()
+    median_stay_time_value = median(stay_times_raw.values_list("stay_time",flat=True)).total_seconds()
+
+    average_test_stay_time.set(avg_stay_time_value)
+    median_test_stay_time.set(median_stay_time_value)
+    
+    for identifier, distro_gauge in distro_gauges.items():
+        distribution: Distribution = Distribution.objects.get(identifier=identifier)
+        for key, gauge in distro_gauge.items():
+            gauge.set(distribution.__getattribute__(key))
+    
+    data = generate_latest(registry)
+    return HttpResponse(data)

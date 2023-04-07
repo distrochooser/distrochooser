@@ -1,0 +1,182 @@
+{% extends 'backend/base.html' %}
+{% load distrochooser_extras %}
+{% load i18n %}
+
+{% block content %}
+<script>
+    var sessionToken = "{% if is_readonly%}{{session.readonlyToken}}{%else%}{{ session.sessionToken }}{%endif%}";
+</script>
+<div class="modal" id="updatemodal" tabindex="-1">
+    <div class="modal-dialog show">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% i "add_or_update_mapping" language_code %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="{{ action }}">
+                    <h2>
+                        {% i old_answer.msgid  language_code %}
+                    </h2>
+                 
+                    <div class="mb-3">
+                      <label for="description" class="form-label"> {% i "mapping_description" language_code %}</label>
+                      <input type="text" class="form-control" id="description" name="description">
+                    </div>
+
+                    {% for hit_type in hit_types %}
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" name="{{hit_type}}" id="{{hit_type}}">
+                        <label class="form-check-label" for="{{hit_type}}">{% i hit_type language_code %}</label>
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">{% i "submit" language_code %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2">
+            <div class="sticky-top">
+                <img src="https://distrochooser.de/logo.min.svg" class="img-fluid p-3 w-50 d-block" >
+            {% for distro in distros  %}
+                {% tag_distro distro suggestion_tuple answer %}
+            {% endfor %}
+            {% if not is_readonly %}
+            <form class="form m-1">
+                <label for=" " class="form-label">{% i "feedback_url" language_code %}</label>
+                <input type="text" id="feedback_url" value="{{feedback_url}}"" class="form-control" aria-describedby="feedback_url_help">
+                <div id="feedback_url_help" class="form-text">
+                    {% i "feedback_url_help" language_code %}
+                </div>
+            </form>
+            {% endif %}
+
+            <form class="form m-1">
+                <label for=" " class="form-label">{% i "readonly_url" language_code %}</label>
+                <input type="text" id="{{readonly_url}}" value="{{readonly_url}}"" class="form-control" aria-describedby="readonly_url_help">
+                <div id="readonly_url_help" class="form-text">
+                    {% i "readonly_url_help" language_code %}
+                </div>
+            </form>
+            <div class="card">
+                <div class="card-header">
+                  {% i "your_suggestions" language_code %}
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for item in new_mapping_suggestions %}
+                    <li class="list-group-item">
+                        {% if not item.isNegativeSuggestion %}
+                            <span class="badge text-bg-success">New mapping</span> 
+                            {{ item.description }}
+                            {% if item.isNeutralHit %}
+                                <span class="badge text-bg-light">Neutral</span>
+                            {% endif %}
+                            {% if item.isBlockingHit %}
+                                <span class="badge text-bg-dark">Blocking</span>
+                            {% endif %}
+                            {% if item.isNegativeHit %}
+                                <span class="badge text-bg-danger">Negative</span>
+                            {% endif %}
+                            {% if item.isTagOnlyHit %}
+                                <span class="badge text-bg-info">Tag hit</span>
+                            {% endif %}
+                        {% else %}
+                            <span class="badge text-bg-danger">Remove mapping</span> 
+                            {{ item.description }}
+                        {% endif %}
+                    </br>
+                    </li>
+                    {% endfor %}
+                    {% for item in suggested_items %}
+                    <li class="list-group-item">
+                        {% if not item.old_mapping and item.new_mapping%}
+                            <span class="badge text-bg-success">Add distro</span> {{ item.distro }} to {{ item.new_mapping.description }}
+                        {% endif %}
+
+                        {% if not item.new_mapping  %}
+                            <span class="badge text-bg-danger">Remove distro</span> {{ item.distro }} from {{ item.old_mapping.description }}
+                        {% endif %}
+
+                        {% if item.old_mapping and item.new_mapping  %}
+                            <span class="badge text-bg-warning">Move distro</span> {{ item.distro }} from {{ item.old_mapping.description }} to {{ item.new_mapping.description }}
+                        {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+    </div>  
+    <div class="col-10">
+        <ul class="nav nav-pills mb-3" id="question-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="help-tab" data-bs-toggle="pill" data-bs-target="#content-help" type="button" role="tab" aria-controls="content-help">Welcome</button>
+            </li>
+            {% for question in questions %}
+                <li class="nav-item" role="presentation">
+                <button class="nav-link" id="{{question.id}}-tab" data-bs-toggle="pill" data-bs-target="#content-{{question.id}}" type="button" role="tab" aria-controls="content-{{question.id}}">{% i question.category.msgid  language_code %} </button>
+                </li>
+            {% endfor %}
+            
+
+        </ul>
+        <div class="tab-content" id="question-tabContent">
+            <div class="tab-pane fade show" id="content-help" role="tabpanel" aria-labelledby="help-tab" tabindex="0">
+                Welcome ....
+            </div>
+            {% for question in questions %}
+                
+            <div class="tab-pane fade show" id="content-{{question.id}}" role="tabpanel" aria-labelledby="{{question.id}}-tab" tabindex="0">
+                <div class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                        <i class="bi bi-patch-question-fill me-1"></i> 
+                        {% i question.msgid language_code %}
+                        <small>{% if question.isMultipleChoice %}
+                            <span class="badge bg-primary rounded-pill">isMultipleChoice</span>
+                            {% endif%}
+                            {% if question.isMediaQuestion %}
+                            <span class="badge bg-primary rounded-pill">isMediaQuestion</span>
+                            {% endif%}
+                        </small>
+                    </h5>
+               
+                    </div>
+                {% for answer in answers %}
+                {% if answer.question == question %}
+                  
+                    <p class="mb-1">
+                        <h3>
+                            <i class="bi bi-patch-exclamation-fill me-1"></i> 
+                            {% i answer.msgid language_code %}
+
+
+                            <a href="?action=create&answer={{answer.id}}"><i class="bi bi-node-plus"></i>
+                            </a>
+                        </h3>
+                    </p>
+                    <ul class="list-group">
+                        {% for other_answer in answer.blockedAnswers.all %}
+                            <li class="list-group-item list-group-item-danger my-2">{% i "answer-is-blocking" language_code %}: {% i other_answer.msgid language_code %}</li>
+                        {% endfor %}
+                    </ul>
+                    <div>
+                        {% for matrix_tuple in matrix %}
+                        {% if matrix_tuple.answer == answer and matrix_tuple.session is None or matrix_tuple.session == session%}
+                            {% tag_selection matrix_tuple answer language_code session %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endfor %}
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
