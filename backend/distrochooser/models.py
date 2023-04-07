@@ -3,6 +3,10 @@ from backend.settings import MEDIA_ROOT
 from django.utils.timezone import now
 from distrochooser.constants import COMMIT
 from taggit.managers import TaggableManager
+from secrets import token_hex
+
+def get_token():
+    return token_hex(5)
 
 class Translateable(models.Model):
     msgid = models.CharField(
@@ -182,6 +186,22 @@ class SelectionReason(models.Model):
     def __str__(self):
         return "{0}: P{1}-B{2}-RB{3}-N{4}-I{5}".format(self.description, self.isPositiveHit, self.isBlockingHit, self.isRelatedBlocked, self.isNeutralHit, self.isImportant)
 
+class UserSuggestionSession(models.Model):
+    sessionToken = models.CharField(max_length=200, null=False, blank=False, default=get_token)
+    readonlyToken = models.CharField(max_length=200, null=False, blank=False, default=get_token)
+
+class UserSuggestion(models.Model):
+    distro = models.ForeignKey(
+        Distribution, on_delete=models.CASCADE, default=None)
+    old_mapping = models.ForeignKey(
+        'AnswerDistributionMatrix', on_delete=models.CASCADE, default=None, blank=True, null=True, related_name="User_Suggestion_old")
+    new_mapping = models.ForeignKey(
+        'AnswerDistributionMatrix', on_delete=models.CASCADE, default=None, blank=True, null=True, related_name="User_Suggestion_New")
+    is_removal = models.BooleanField(default=False)
+    session = models.ForeignKey(
+        UserSuggestionSession, on_delete=models.CASCADE,blank=False,null=False)
+
+
 
 class AnswerDistributionMatrix(models.Model):
     class Meta():
@@ -199,6 +219,24 @@ class AnswerDistributionMatrix(models.Model):
     description = models.CharField(default='', max_length=300, blank=False)
     distros = models.ManyToManyField(
         to=Distribution, related_name="answerMatrixDistros", blank=True)
+    isSuggestion = models.BooleanField(default=False)
+    isNegativeSuggestion = models.BooleanField(default=False)
+    suggestions = models.ManyToManyField(to="AnswerDistributionMatrix", related_name="suggestion_matrix", blank=True)
+    session = models.ForeignKey(
+        UserSuggestionSession, on_delete=models.CASCADE,blank=True,null=True)
+
+    def get_distro_suggestions(self, session: UserSuggestionSession):
+        return UserSuggestion.objects.filter(new_mapping=self, session=session)
+    def get_distro_removal_suggestions(self, session: UserSuggestionSession):
+        return UserSuggestion.objects.filter(old_mapping=self, session=session)
+    def get_delete_suggestion(self, session: UserSuggestionSession):
+        matches = AnswerDistributionMatrix.objects.filter(description=self.description, isNegativeSuggestion=True, session=session)
+        if matches.count() == 0:
+            return None
+        return matches.get()
+    
+    def has_suggestions(self, session: UserSuggestionSession):
+        return self.get_distro_removal_suggestions(session).count() > 0 or self.get_distro_suggestions(session).count() > 0
     @property
     def distro_list(self):
         distros = ""
@@ -207,4 +245,4 @@ class AnswerDistributionMatrix(models.Model):
             distros += distro.name + ", "
         return distros
     def __str__(self):
-        return "Blocking: {0}, Negative: {1}, Neutral: {2}, {3} ({4})".format(self.isBlockingHit, self.isNegativeHit, self.isNeutralHit, self.answer, self.distros.all().values_list("name", flat=True))
+        return "Suggestion: {0}, Blocking: {0}, Negative: {1}, Neutral: {2}, {3} ({4})".format(self.isSuggestion, self.isBlockingHit, self.isNegativeHit, self.isNeutralHit, self.answer, self.distros.all().values_list("name", flat=True))

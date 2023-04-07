@@ -1,0 +1,84 @@
+{% load distrochooser_extras %}
+{% delete_suggestion matrix_tuple session as delete_suggestion_result %}
+{% if not matrix_tuple.isNegativeSuggestion or not delete_suggestion_result and matrix_tuple.isNegativeSuggestion  %}
+<div class="accordion-item">
+  <h2 class="accordion-header  mb-2" id="{{matrix_tuple.id}}-heading">
+    <button class="accordion-button collapsed" type="button" >
+
+      {% if matrix_tuple.isBlockingHit %}
+      <i class="bi bi-x-circle-fill me-1 text-danger"></i>
+      {% elif matrix_tuple.isNegativeHit %}
+        <i class="bi bi-dash-circle-fill me-1 text-danger"></i>
+      {% elif matrix_tuple.isNeutralHit %}
+        <i class="bi bi-circle me-1 text-primary"></i>
+      {% else %}
+        <i class="bi bi-plus-circle-fill me-1 text-success"></i>
+      {% endif %}
+      {% has_suggestions matrix_tuple session as has_suggestion_result %}
+      {% if has_suggestion_result and not delete_suggestion_result %}
+        <i class="bi bi-asterisk me-1 text-warning"></i>
+      {% endif %}
+      {% if delete_suggestion_result %}
+        <span class="text-muted" data-bs-toggle="collapse" data-bs-target="#collapse-{{ matrix_tuple.id }}" aria-expanded="false" aria-controls="collapse-{{ matrix_tuple.id }}">{% i matrix_tuple.description language_code %}</span> 
+        
+        <a href="?action=delete&mapping={{delete_suggestion_result.id}}" class="ms-1 text-reset"><i class="bi bi-arrow-counterclockwise"></i></a>
+      {% else %}
+        <b data-bs-toggle="collapse" data-bs-target="#collapse-{{ matrix_tuple.id }}" aria-expanded="false" aria-controls="collapse-{{ matrix_tuple.id }}">{% i matrix_tuple.description language_code %}</b> 
+        <a href="?action=delete&mapping={{matrix_tuple.id}}" class="ms-1 text-reset"> <i class="bi bi-trash-fill"></i></a>
+      {% endif %}
+    </button>
+  </h2>
+  <div id="collapse-{{ matrix_tuple.id }}" class="accordion-collapse collapse" aria-labelledby="{{matrix_tuple.id}}-heading" data-bs-parent="#accordionExample">
+
+    <div class="accordion-body">
+    {% if delete_suggestion_result %}
+    <div class="col-10 alert alert-danger">
+      Marked for removal. No additions possible. All mappings will be removed.
+    </div>
+    {% else %}
+      
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <div id="matrix_drop_{{matrix_tuple.id}}" class="drag-target " ondrop="drop_entry(event)"
+            ondragover="drop_enable(event)">
+            Drop new distros here
+        </div>
+      </li>
+      <li class="list-group-item">
+      {% for distro in matrix_tuple.distros.all %}
+        {% tag_distro distro matrix_tuple answer %}
+      {% endfor %}   
+      </li> 
+
+      {% distro_removal_suggestions matrix_tuple session as distro_removal_suggestions_result %}
+      {% if distro_removal_suggestions_result.count > 0 %}
+      <li class="list-group-item">
+        <h3>Suggestion: Distro remove</h3>
+        <div id="matrix_drop_{{suggestion_tuple.id}}" class="border border-warning">
+            {% for user_suggestion_tuple in distro_removal_suggestions_result  %}
+                    {% tag_distro user_suggestion_tuple.distro matrix_tuple answer user_suggestion_tuple %}
+            {% endfor %}
+        </div>
+      </li>
+      {% endif %}
+      {% distro_suggestions matrix_tuple session as distro_suggestions_result %}
+      
+      {% if distro_suggestions_result.count > 0 %}
+      <li class="list-group-item">
+        {% for suggestion_tuple in distro_suggestions_result %}
+        <h3>Suggestion: </h3>
+        <div id="matrix_drop_{{suggestion_tuple.id}}" ondrop="drop_entry(event)" ondragover="drop_enable(event)"
+            class="drag-target border border-warning">
+            {% tag_distro suggestion_tuple.distro matrix_tuple answer suggestion_tuple %}
+        </div>
+        {% endfor %}
+      </li>
+      {% endif %}
+      </ul>
+    {% endif %}
+    
+    </div>
+  </div>
+</div>
+
+{% endif %}

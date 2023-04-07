@@ -13,6 +13,7 @@ with open(CONFIG_PATH, 'r') as f:
 SECRET_KEY = CONFIG["backend"]["SECRET_KEY"]
 DEBUG = CONFIG["backend"]["DEBUG"]
 ALLOWED_HOSTS = CONFIG["backend"]["ALLOWED_HOSTS"]
+FEEDBACK_URL = CONFIG["frontend"]["feedbackUrl"]
 
 
 CACHEOPS_REDIS = CONFIG["backend"]["CACHE"]["CACHEOPS_REDIS"]
