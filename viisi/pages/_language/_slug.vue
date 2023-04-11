@@ -7,13 +7,13 @@
         img.top-logo(src='/logo.min.svg', alt="Distrochooser.de Logo")
     div.calculation-loading(v-if="isLoading || $store.state.isSubmitted") 
       div.spinner(v-if="!$store.state.visuallyImpairedMode")
-      div.spinner-text(v-else) {{ __i("loading") }}
-    categories(:language="language",v-if="!isLoading && !$store.state.isSubmitted")
+      div.spinner-text {{ __i("loading") }}
+    categories(:language="language",class="loading-hidden", v-bind:class="{'loading-show': !isLoading && !$store.state.isSubmitted}")
     div(v-if="!isLoading && !isFinished && !$store.state.isSubmitted")
       question(:language="language")
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
-    div.language-select(v-if="!$store.state.isStarted")
+    div.language-select(v-if="!$store.state.isStarted && !$store.state.isAtHardwareScreen")
       label(for="language") {{ __i("language") }}
       select(v-if="!isLoading", v-model="language",id="language",:title="__i('language')")
         option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
@@ -321,7 +321,7 @@ export default {
   width: 100%;
   padding: 1em;
   background: red;
-  z-index: -10000000;
+  z-index: 10000000;
   color: white;
   a {
     color: white;
@@ -351,16 +351,35 @@ select::-ms-expand {
   }
 }
 .calculation-loading {
-  text-align: center;
-  margin-top: 15%;
+  z-index: 1100000;
+}
+.calculation-loading,
+.spinner-text {
   font-size: large;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 1s;
+}
+.spinner-text{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  padding-top: 7em;
 }
 .calculation-text {
   padding-top: 2em;
 }
 
 .spinner {
-  display: inline-block;
   width: 100px;
   height: 100px;
   border: 5px solid lightgray;
@@ -368,9 +387,14 @@ select::-ms-expand {
   border-top-color: $spinColor;
   animation: spin 1s infinite;
   -webkit-animation: spin 1s infinite;
-  margin: 100px auto;
-  text-align: center;
+  margin: 0 auto;
   font-size: 10px;
+  position: absolute;  
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 @keyframes spin {
@@ -573,5 +597,11 @@ select::-ms-expand {
     text-align: left;
     margin-right: 1.5em;
   }
+}
+.loading-show{
+  display: initial !important;
+}
+.loading-hidden{
+  display: none;
 }
 </style>

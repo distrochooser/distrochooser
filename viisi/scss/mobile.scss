@@ -23,6 +23,7 @@
     width: auto;
     padding: 0px !important;
     top: 1em !important;
+    padding-right: 0.5em !important;
     ul li span {
       display: none;
     }
@@ -185,8 +186,9 @@
     overflow-y: scroll;
     max-height: 100%;
     overflow-x: hidden;
-    padding-right: 2em;
-    padding-top: unset !important;
+    padding-right: 0.6em !important;
+    padding-top: 20% !important;
+    top: 0px !important;
 
     .floating-button {
       span {

@@ -28,7 +28,7 @@
                 input(name="cpu-cores", type="number", :placeholder="__i('hardware-cpu-cores-placeholder')", v-model="cpuCores")
             div.cpu.hardware-input.frequency
                 label(for="cpu-frequency") {{  __i('hardware-cpu-frequency-title') }}
-                input(name="cpu-frequency", :placeholder="__i('hardware-cpu-frequency-placeholder')",v-model="cpuFrequency")
+                input(name="cpu-frequency",  type="number", :placeholder="__i('hardware-cpu-frequency-placeholder')",v-model="cpuFrequency")
             div.memory.hardware-input
                 label(for="memory") {{  __i('hardware-memory-title') }}
                 input(name="memory", type="number", :placeholder="__i('hardware-memory-placeholder')", v-model="memory")
@@ -171,6 +171,9 @@ mixins: [i18n],
     input,
     i {
         display: table-cell;
+    }
+    input[type='number'] {
+        min-width: 20%;
     }
 }
 code {
