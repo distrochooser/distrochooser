@@ -180,6 +180,7 @@ export default {
   margin-left: 15%;
   height: 25em;
   font-family: 'Open Sans', sans-serif;
+  animation: fadeIn 0.5s;
 }
 .compact-result {
   .compact-distribution {

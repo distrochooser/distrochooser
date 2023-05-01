@@ -434,7 +434,7 @@ i {
   text-align: right;
   margin-bottom: 0.5em;
   margin-top: -0.5em;
-  color: #d9d9d9;
+  color: #999696;
   margin-right: 1em;
   font-size: 10pt;
 }

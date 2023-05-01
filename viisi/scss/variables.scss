@@ -1,5 +1,5 @@
-$mobileWidth: "1200px";
-$desktopMinWidth: "1200px";
+$mobileWidth: "1500px";
+$desktopMinWidth: "1500px";
 $desktopWidth: "1400px";
 
 //Colors
@@ -44,5 +44,12 @@ $inactiveDarkFont: rgb(178, 176, 176);
 i{
   vertical-align: top;
 }
+
+@keyframes fadeIn {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
 @import "mobile.scss";
 @import "dark.scss";
+@import "displaymodes.scss";

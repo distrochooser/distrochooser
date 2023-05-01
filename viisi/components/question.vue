@@ -319,6 +319,7 @@ export default {
   width: 80%;
   margin-right: 10%;
   margin-left: 10%;
+  animation: fadeIn 0.5s;
 }
 @media only screen and (max-width: $mobileWidth) {
   .question {

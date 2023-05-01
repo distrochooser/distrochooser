@@ -1,27 +1,58 @@
 <template lang="pug">
-    div.breadcrumb-horizontal
-      ul
-        li
-          a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen && !isAtHardwareScreen,'inactive': !isAtWelcomeScreen  }") 
-            i.active-indicator.w-icon-login
-            span {{ __i("category-welcome") }}
-        li
-          a(href="#",@click="openHardwareScreen",:class="{'active': isAtHardwareScreen,'inactive': !isAtHardwareScreen, 'answered': $store.state.hardwareRequirements != null }") 
-            i.active-indicator.w-icon-laptop
-            span {{ __i("category-hardware-requirements") }}
-        li(v-for="(category, c_k) in categories" v-bind:key="c_k", )
-          a(href="#", @click="selectCategory(category)")
-            i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '') + (isMarked(category) ? ' mobile-marked' : '')")
-            span(:class="{'active': isActive(category), 'inactive': !isActive(category), 'mobile-answered': isAnswered(category)}") {{ __i(category.msgid) }}
-            i.w-icon-save.marked(v-if="isMarked(category)",:title="__i('marked')")
-        li(v-if="$store.state.visuallyImpairedMode")
-          a(href="#", class="recommendation-link", :aria-disabled="$store.state.givenAnswers.length === 0", @click.prevent="submit", :title="__i('recommendation-category')") {{ __i("recommendation-category") }}
+.breadcrumb-horizontal
+  ul
+    li
+      a(
+        href='#',
+        @click='restart',
+        :class='{ active: isAtWelcomeScreen && !isAtHardwareScreen, inactive: !isAtWelcomeScreen }'
+      ) 
+        |
+        i.active-indicator.w-icon-login
+        span {{ __i('category-welcome') }}
+    li(:title='__i("category-hardware-requirements")')
+      a(
+        href='#',
+        @click='openHardwareScreen',
+        :class='{ active: isAtHardwareScreen, inactive: !isAtHardwareScreen, answered: $store.state.hardwareRequirements != null }'
+      ) 
+        |
+        i.active-indicator.w-icon-laptop
+        span {{ __i('category-hardware-requirements') }}
+    li(
+      v-for='(category, c_k) in categories',
+      v-bind:key='c_k',
+      :title='__i(category.msgid)'
+    )
+      a(href='#', @click='selectCategory(category)')
+        i.active-indicator(
+          :class='category.iconClass + (isAnswered(category) ? " mobile-answered" : "") + (isActive(category) ? " mobile-active" : "") + (isMarked(category) ? " mobile-marked" : "")'
+        )
+        span(
+          :class='{ active: isActive(category), inactive: !isActive(category), "mobile-answered": isAnswered(category) }'
+        ) {{ __i(category.msgid) }}
+        i.w-icon-save.marked(v-if='isMarked(category)', :title='__i("marked")')
+    li(
+      v-if='$store.state.visuallyImpairedMode',
+      :title='__i("recommendation-category")'
+    )
+      a.recommendation-link(
+        href='#',
+        :aria-disabled='$store.state.givenAnswers.length === 0',
+        @click.prevent='submit',
+        :title='__i("recommendation-category")'
+      ) {{ __i('recommendation-category') }}
 
-
-      div.floating-button(v-if="!$store.state.visuallyImpairedMode", :title="__i('recommendation-category')", :class="{'disabled': $store.state.givenAnswers.length === 0}",:data-balloon="__i($store.state.givenAnswers.length === 0 ? 'no-answers' : 'get-my-result')",data-balloon-pos="right",@click.prevent="submit")
-        i.w-icon-right-square-o
-        span {{ __i("recommendation-category") }}
-        
+  .floating-button(
+    v-if='!$store.state.visuallyImpairedMode',
+    :title='__i("recommendation-category")',
+    :class='{ disabled: $store.state.givenAnswers.length === 0 }',
+    :data-balloon='__i($store.state.givenAnswers.length === 0 ? "no-answers" : "get-my-result")',
+    data-balloon-pos='right',
+    @click.prevent='submit'
+  )
+    i.w-icon-right-square-o
+    span {{ __i('recommendation-category') }}
 </template>
 
 <script>
@@ -32,8 +63,8 @@ export default {
     language: {
       type: String,
       required: true,
-      default: 'en'
-    }
+      default: 'en',
+    },
   },
   computed: {
     isLoaded() {
@@ -46,22 +77,25 @@ export default {
       return !this.$store.state.isStarted
     },
     isAtHardwareScreen() {
-      return this.$store.state.isAtHardwareScreen && this.$store.state.result === null
-    }
+      return (
+        this.$store.state.isAtHardwareScreen &&
+        this.$store.state.result === null
+      )
+    },
   },
   methods: {
     openHardwareScreen() {
-      this.$store.commit("setStarted")
-      
+      this.$store.commit('setStarted')
+
       this.$store.commit('resetResult')
-      this.$store.commit("openHardwareScreen")
+      this.$store.commit('openHardwareScreen')
     },
     closeHardwareScreen() {
-      this.$store.commit("closeHardwareScreen")
+      this.$store.commit('closeHardwareScreen')
     },
     isAnswered(category) {
       return (
-        this.$store.state.givenAnswers.filter(function(a) {
+        this.$store.state.givenAnswers.filter(function (a) {
           return a.category === category.msgid
         }).length > 0
       )
@@ -70,21 +104,21 @@ export default {
       return (
         this.$store.state.result === null &&
         this.$store.state.currentCategory !== null &&
-        this.$store.state.currentCategory.msgid === category.msgid && 
+        this.$store.state.currentCategory.msgid === category.msgid &&
         !this.$store.state.isAtHardwareScreen
       )
     },
     isMarked(category) {
-      if (!category){
-        return false;
+      if (!category) {
+        return false
       }
-      return this.$store.state.markedQuestions.indexOf(category.msgid) !== -1      
+      return this.$store.state.markedQuestions.indexOf(category.msgid) !== -1
     },
     selectCategory(category) {
       const _t = this
       this.$store.dispatch('selectCategory', {
         language: _t.language,
-        selectedCategory: category
+        selectedCategory: category,
       })
     },
     restart() {
@@ -95,8 +129,8 @@ export default {
       var _t = this
       this.$store.dispatch('nextQuestion', {
         params: {
-          language: _t.language
-        }
+          language: _t.language,
+        },
       })
     },
     submit() {
@@ -114,14 +148,14 @@ export default {
         params: {
           token: this.$store.state.token,
           language: this.language,
-          method: this.$store.state.method
+          method: this.$store.state.method,
         },
         data: {
-          answers: this.$store.state.givenAnswers
-        }
+          answers: this.$store.state.givenAnswers,
+        },
       })
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -133,7 +167,11 @@ export default {
   left: 1em;
   font-family: Archivo;
   letter-spacing: 0.5px;
-  padding-top: 1em;
+  top: 0px;
+  padding-top: 5%;
+  border-right: 1px solid #89898966;
+  height: 100%;
+  padding-right: 2.5em;
 }
 .breadcrumb-horizontal ul {
   list-style-type: none;
@@ -186,18 +224,18 @@ export default {
   margin-left: 1.6em;
   background: $linkColor;
   padding: 1em;
-  color: white;
+  color: white !important;
 }
 .floating-button a {
   text-decoration: none;
-  color: white;
+  color: white !important;
 }
 .floating-button a i {
   vertical-align: bottom;
 }
 .disabled {
   cursor: no-drop;
-  background: white;
+  background: white !important;
   color: black;
   border: 1px solid black;
 }
