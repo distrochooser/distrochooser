@@ -57,14 +57,17 @@
           span {{ __i("question-is-multiplechoice") }}
         div.answers(:class="{'flipped': additionalInfoShown}")
           div.image-answer-parent(v-if="question.isMediaQuestion && !inVisuallyImpairedMode")
-            div.image-answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
-              img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)", @click='answerQuestion(answer)')
-              p.image-answer-options
-                a.source-link(target="_blank", :href="answer.mediaSourcePath", v-if="answer.mediaSourcePath") 
-                    i.w-icon-link(:title='__i("source")')
-                span
-                  importance(v-if="isAnswerSelected(answer)",:answer="answer", :important="isAnswerImportant(answer)", :lessImportant="isAnswerLessImportant(answer)")
-              p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
+            div.image-group(v-for="(group, group_key) in answers", :key="group_key")
+              h2 {{  __i(group_key) }}
+              div.descriptive-text-mediagroup {{ __i("descriptive-text-mediagroup-"+ group_key) }}
+              div.image-answer(v-for="(answer, a_key) in group", :key="a_key",:class="['mediagroup-' + group_key , {'answer-selected': isAnswerSelected(answer)}]")
+                img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)", @click='answerQuestion(answer)')
+                p.image-answer-options
+                  a.source-link(target="_blank", :href="answer.mediaSourcePath", v-if="answer.mediaSourcePath") 
+                      i.w-icon-link(:title='__i("source")')
+                  span
+                    importance(v-if="isAnswerSelected(answer)",:answer="answer", :important="isAnswerImportant(answer)", :lessImportant="isAnswerLessImportant(answer)")
+                p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
           div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
             div
               input(v-if="inVisuallyImpairedMode", :id="'answer_'+a_key",:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
@@ -130,7 +133,19 @@ export default {
       return this.question !== null && this.$store.state.markedQuestions.indexOf(this.$store.state.currentCategory.msgid) !== -1
     },
     answers() {
-      return this.$store.state.answers
+      if (this.question.isMediaQuestion) {
+        var groups = {}
+        this.$store.state.answers.forEach((a) => {
+          var existingGroups = Object.keys(groups);
+          if (existingGroups.indexOf(a.mediaGroup) === -1) {
+            groups[a.mediaGroup] = []
+          }
+          groups[a.mediaGroup].push(a)
+        })
+        return groups
+      } else {
+        return this.$store.state.answers
+      }
     },
     isAtWelcomeScreen() {
       return !this.$store.state.isStarted
@@ -546,6 +561,21 @@ a {
   padding: 1em;
   max-width: 100%;
   max-height: 160px;
+}
+
+
+.image-answer.mediagroup-desktop {
+  margin-left: 25%;
+  margin-right: 25%;
+  img {
+    max-height: unset;
+    width: 100%;
+  }
+}
+
+.descriptive-text-mediagroup {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
 }
 .welcome-text div .w-icon-d-arrow-right {
   color: #e4ae4c;

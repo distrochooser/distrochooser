@@ -46,6 +46,7 @@ class Answer(Translateable):
         to="Answer", related_name="blockedAnswersFromAnswer", blank=True)
     mediaSourcePath = models.TextField(
         null=True, blank=True)  # if null -> no image there!
+    mediaGroup = models.CharField(null=True,blank=True,default=None, max_length=25)
     isDisabled = models.BooleanField(default=False)
     orderIndex = models.IntegerField(default=0)
     tag_prexfix = models.CharField(default=None,blank=True,null=True, max_length=25)
