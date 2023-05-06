@@ -104,7 +104,13 @@ export default {
         const selectionsWithPositiveHits = sortedSelections.filter(function(a) {
           return _t.nonBlocking(a.reasons).length > 0
         })
-        _t.filteredSelections = selectionsWithPositiveHits
+        const selectionWithPositiveRatio = selectionsWithPositiveHits.filter(function(a) {
+          const blockingHits = _t.blockingHits(a.reasons)
+          const negativeHits = _t.negativeHits(a.reasons)
+          const nonBlockingHits = _t.nonBlockingHits(a.reasons)
+          return blockingHits + negativeHits < nonBlockingHits
+        })
+        _t.filteredSelections = selectionWithPositiveRatio
       }
       if (this.$store.state.ratingSort) {
         return _t.filteredSelections.sort(function(a, b) {
