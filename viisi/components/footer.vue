@@ -21,8 +21,9 @@ export default {
     },
   },
   created: function(){
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+    if (!this.$store.state.autoToggleDarkMode && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
       this.toggleDarkMode();
+      this.$store.commit('setAutoToggleDarkMode')
     }
   },
   methods: {
