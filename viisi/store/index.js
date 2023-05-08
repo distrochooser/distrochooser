@@ -55,7 +55,8 @@ const indexStore = new Vapi({
     ratingSort: false,
     tags: {},
     clickRegisterResult: null,
-    hardwareRequirements: null
+    hardwareRequirements: null,
+    autoToggleDarkMode: false
   }
 })
   .post({
@@ -389,6 +390,11 @@ indexStore.mutations.saveTags = (state, payload) => {
       }
     })
   }
+}
+
+
+indexStore.mutations.setAutoToggleDarkMode = state => {
+  state.autoToggleDarkMode = true;
 }
 
 const createStore = () => {
