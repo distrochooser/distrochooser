@@ -52,6 +52,7 @@ def get_step_data(category_index: int) -> dict:
             "msgid": answer.msgid,
             "blockedAnswers": blocked_answers,
             "mediaSourcePath": answer.mediaSourcePath,
+            "mediaGroup": answer.mediaGroup,
             "tags": tag_slugs
         })
     return {
