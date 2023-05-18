@@ -25,6 +25,10 @@ export default {
     values: {
       type: Array,
       default: []
+    },
+    translations: {
+      type: Object,
+      default: {}
     }
   },
   computed: {
@@ -34,7 +38,7 @@ export default {
       this.values.forEach((value) => {
         translated.push(
           {
-            label: i("tag-" + value),
+            label: typeof this.translations[value][this.$store.state.language] !== undefined ?  this.translations[value][this.$store.state.language] : value,
             id: value
           }
         )

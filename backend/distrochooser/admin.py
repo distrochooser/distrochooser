@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category, AnswerDistributionMatrix, UserSuggestion, UserSuggestionSession
+from .models import Question, Answer, GivenAnswer, UserSession, ResultDistroSelection, Distribution, SelectionReason, Category, AnswerDistributionMatrix, UserSuggestion, UserSuggestionSession, AnswerTag, AnswerBaseTag
 
 [admin.site.register(*models) for models in [
   (Question,),
@@ -49,3 +49,10 @@ admin.site.register(UserSuggestion, UserSuggestionAdmin)
 class UsesSuggestionSessionAdmin(admin.ModelAdmin):
   list_display = ("sessionToken", "readonlyToken",)
 admin.site.register(UserSuggestionSession, UsesSuggestionSessionAdmin)
+
+class AnswerTagAdmin(admin.ModelAdmin):
+  pass
+admin.site.register(AnswerTag, AnswerTagAdmin)
+class AnswerBaseTagAdmin(admin.ModelAdmin):
+  pass
+admin.site.register(AnswerBaseTag, AnswerBaseTagAdmin)

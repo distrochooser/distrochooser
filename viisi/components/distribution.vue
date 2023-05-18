@@ -50,7 +50,7 @@
     div.description-tags(v-if="tags.length>0") {{ __i("metric-tags") }}
       div(v-for="(tag, tag_key) in tags", :key="tag_key") 
         i.w-icon-tag 
-        span.tag-text {{ __i("tag-" + tag) }}
+        span.tag-text {{ tag }}
     
     div.description(v-if="flipped") {{ __i("description-" + id) }}
     div.description.reasons(v-if="flipped")

@@ -8,9 +8,7 @@ from backend.settings import FEEDBACK_URL
 
 def feedback_index(request: HttpRequest) -> HttpResponse:
     template = loader.get_template('backend/index.html')
-    return HttpResponse(template.render({
-        "foo": "bar"
-    }, request))
+    return HttpResponse(template.render({}, request))
 
 def create_mapping(request: HttpRequest, hit_types: List, answers: QuerySet[Answer], session: UserSuggestionSession)  -> AnswerDistributionMatrix:
     """
@@ -186,7 +184,7 @@ def feedback_selection_reasons(request: HttpRequest, token: str = None) -> HttpR
         "other_mappings": other_mappings,
         "suggested_items": suggested_items,
         "new_mapping_suggestions": new_mapping_suggestions,
-        "language_code": "en",
+        "language_code": "de",
         "session": session,
         "feedback_url": f"{FEEDBACK_URL}matrix/{session.sessionToken}",
         "readonly_url": f"{FEEDBACK_URL}matrix/{session.readonlyToken}",

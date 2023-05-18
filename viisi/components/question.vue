@@ -89,7 +89,7 @@
                   i.w-icon-circle-close-o
                   span "{{ __i(blockingAnswer.msgid) }}"
             div(v-if="isAnswerSelected(answer) && answer.tags.length > 0", class="tags-select-parent") 
-              tags(:values="answer.tags", :answer="answer.msgid")
+              tags(:values="answer.tags", :answer="answer.msgid", :translations="answer.tag_translations")
       div.actions(v-if="!additionalInfoShown")
         button.skip-step.step(@click="nextQuestion",v-if="!isAtLastQuestion()") {{  __i("skip-question") }}
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}

@@ -70,19 +70,19 @@
                     {% for item in new_mapping_suggestions %}
                     <li class="list-group-item">
                         {% if not item.isNegativeSuggestion %}
-                            <span class="badge text-bg-success">New mapping</span> 
+                            <span class="badge text-bg-success">{% i "new_mapping" language_code %}</span> 
                             {{ item.description }}
                             {% if item.isNeutralHit %}
-                                <span class="badge text-bg-light">Neutral</span>
+                                <span class="badge text-bg-light">{% i "neutral_mapping" language_code %}</span>
                             {% endif %}
                             {% if item.isBlockingHit %}
-                                <span class="badge text-bg-dark">Blocking</span>
+                                <span class="badge text-bg-dark">{% i "blocking_mapping" language_code %}</span>
                             {% endif %}
                             {% if item.isNegativeHit %}
-                                <span class="badge text-bg-danger">Negative</span>
+                                <span class="badge text-bg-danger">{% i "negative_mapping" language_code %}</span>
                             {% endif %}
                             {% if item.isTagOnlyHit %}
-                                <span class="badge text-bg-info">Tag hit</span>
+                                <span class="badge text-bg-info">{% i "tag_mapping" language_code %}</span>
                             {% endif %}
                         {% else %}
                             <span class="badge text-bg-danger">Remove mapping</span> 
@@ -113,7 +113,7 @@
     <div class="col-10">
         <ul class="nav nav-pills mb-3" id="question-tab" role="tablist">
             <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="help-tab" data-bs-toggle="pill" data-bs-target="#content-help" type="button" role="tab" aria-controls="content-help">Welcome</button>
+            <button class="nav-link active" id="help-tab" data-bs-toggle="pill" data-bs-target="#content-help" type="button" role="tab" aria-controls="content-help">{% i "category-welcome" language_code %}</button>
             </li>
             {% for question in questions %}
                 <li class="nav-item" role="presentation">
@@ -136,10 +136,10 @@
                         <i class="bi bi-patch-question-fill me-1"></i> 
                         {% i question.msgid language_code %}
                         <small>{% if question.isMultipleChoice %}
-                            <span class="badge bg-primary rounded-pill">isMultipleChoice</span>
+                            <span class="badge bg-primary rounded-pill">{% i "question-is-multiplechoice" language_code %}</span>
                             {% endif%}
                             {% if question.isMediaQuestion %}
-                            <span class="badge bg-primary rounded-pill">isMediaQuestion</span>
+                            <span class="badge bg-primary rounded-pill">{% i "media-question" language_code %}</span>
                             {% endif%}
                         </small>
                     </h5>

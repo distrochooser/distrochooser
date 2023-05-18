@@ -1,9 +1,10 @@
 from distrochooser.constants import TRANSLATIONS
-from distrochooser.models import  GivenAnswer, ResultDistroSelection, ResultDistroSelection, Distribution, SelectionReason, Answer, AnswerDistributionMatrix, UserSession
+from distrochooser.models import  GivenAnswer, ResultDistroSelection, ResultDistroSelection, Distribution, SelectionReason, Answer, AnswerDistributionMatrix, UserSession, AnswerTag, AnswerBaseTag
 from django.forms.models import model_to_dict
 from django.db import transaction
 from django.db.models import Q
 from typing import Tuple
+from json import loads
 
 def saveAnswers(userSession, rawAnswers):
   # Delete old answers
@@ -113,7 +114,7 @@ def getSelections(userSession: UserSession, data, langCode):
   for matrixTuple in matchingTuples:
     isInAnswerList = matrixTuple.answer.pk in (o["answer"] for o in givenAnswers)
     if isInAnswerList:
-      matchedGivenAnswer = GivenAnswer.objects.filter(session=userSession, answer=matrixTuple.answer).first()
+      matchedGivenAnswer = GivenAnswer.objects.filter(session=userSession, answer=matrixTuple.answer).order_by("-tags").first()
       selectedDescription = translationToUse[matrixTuple.description] if matrixTuple.description in translationToUse else matrixTuple.description
 
       reason = SelectionReason(
@@ -133,10 +134,16 @@ def getSelections(userSession: UserSession, data, langCode):
         # verify peculiarities to match with the distribution
         got = distro.tags.filter(name__in=matchedGivenAnswer.tags.names())
         new_tags = list(got.values_list("name",flat=True))
+        new_tags_translated = []
+        tag: str
+        for tag in new_tags:
+          tag_obj: AnswerBaseTag = AnswerBaseTag.objects.get(name=tag)
+          translations = loads(tag_obj.tag_translations)
+          new_tags_translated.append(translations[userSession.language] if userSession.language in translations else tag)
         if distro.id not in matchedTags:
-          matchedTags[distro.id] = new_tags
+          matchedTags[distro.id] = new_tags_translated
         else:
-          matchedTags[distro.id] = matchedTags[distro.id] + new_tags
+          matchedTags[distro.id] = matchedTags[distro.id] + new_tags_translated
         
         # Make sure tehere are no double entries
         matchedTags[distro.id] = list(set(matchedTags[distro.id]))

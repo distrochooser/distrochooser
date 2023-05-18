@@ -1,9 +1,28 @@
+from __future__ import annotations
 from django.db import models
 from backend.settings import MEDIA_ROOT
 from django.utils.timezone import now
 from distrochooser.constants import COMMIT
 from taggit.managers import TaggableManager
 from secrets import token_hex
+
+from taggit.managers import TaggableManager
+from taggit.models import TagBase, GenericTaggedItemBase
+
+class AnswerBaseTag(TagBase):
+    tag_translations = models.TextField(default=None,blank=True,null=True)
+class AnswerTag(GenericTaggedItemBase):
+    # TaggedWhatever can also extend TaggedItemBase or a combination of
+    # both TaggedItemBase and GenericTaggedItemBase. GenericTaggedItemBase
+    # allows using the same tag for different kinds of objects, in this
+    # example Food and Drink.
+
+    # Here is where you provide your custom Tag class.
+    tag = models.ForeignKey(
+        AnswerBaseTag,
+        on_delete=models.CASCADE,
+        related_name="%(app_label)s_%(class)s_items",
+    )
 
 def get_token():
     return token_hex(5)
@@ -50,7 +69,7 @@ class Answer(Translateable):
     isDisabled = models.BooleanField(default=False)
     orderIndex = models.IntegerField(default=0)
     tag_prexfix = models.CharField(default=None,blank=True,null=True, max_length=25)
-    tags = TaggableManager(blank=True)
+    tags = TaggableManager(blank=True, through=AnswerTag)
     def __str__(self):
         return "{0}: {1}".format(self.question, self.msgid)
 
@@ -109,7 +128,7 @@ class GivenAnswer(models.Model):
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
     isImportant = models.BooleanField(default=False)
     isLessImportant = models.BooleanField(default=False)
-    tags = TaggableManager()
+    tags = TaggableManager(through=AnswerTag)
 
     def __str__(self):
         return "{0}: {1}".format(self.session, self.answer)
@@ -130,7 +149,7 @@ class Distribution(models.Model):
         max_length=200, null=True, blank=True, default="")
     logo = models.FileField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
-    tags = TaggableManager(blank=True)
+    tags = TaggableManager(blank=True,through=AnswerTag)
     ratings = models.IntegerField(default=0)
     positive_ratings = models.IntegerField(default=0)
     percentage = models.FloatField(default=0)
