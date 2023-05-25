@@ -1,0 +1,7 @@
+Contact: mailto: mail@chmr.eu
+Expires: 2027-12-25T15:12:00.000Z
+Preferred-Languages: en, fr, de
+Policy: https://distrochooser.de/info/privacy/en
+Policy: https://github.com/distrochooser/distrochooser/blob/master/SECURITY.md
+Policy: https://github.com/distrochooser/distrochooser/blob/master/LICENSE
+Policy: https://github.com/distrochooser/distrochooser/blob/master/README.md
