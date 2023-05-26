@@ -1,0 +1,46 @@
+# tosdr.org/txt
+#   
+#  _                _      _        _   
+# | |_ ___  ___  __| |_ __| |___  _| |_ 
+# | __/ _ \/ __|/ _` | '__| __\ \/ / __|
+# | || (_) \__ \ (_| | |_ | |_ >  <| |_ 
+#  \__\___/|___/\__,_|_(_) \__/_/\_\\__|
+#                                      
+# tosdr.txt is the easiest way to get your service added to the ToS;DR Database.
+# Simply provide Domains and Documents in a simple format in this file, so our crawler can automatically add your service.
+#
+# Each document requires the following keys to be set:
+# 
+# Document-Name     - The Name of your document. e.g. "Privacy Policy"
+# Document-Url      - The Full url to your document e.g. "https://tosdr.org/legal"
+# Path              - The XPath of your document. Read more about it here: https://en.wikipedia.org/wiki/XPath
+# 
+# If none of these 3 keys are not given, your tosdr.txt is invalid. If you do not know how to set an XPath, use the value "//body"
+#
+#
+# To define the domains and subdomains of your service use the following key:
+#
+# Domains           - Comma separated list of domains without www prefix or paths. e.g. "tosdr.org,subdomain.tosdr.org,another.subdomain.tosdr.org"
+#
+#
+# If your service already exists in our Database, you can set the "ID" key as we do not update documents when this key is not given.
+#
+# ID                - Your Service ID
+#
+# Note: Your domain including top level domain HAS to match one of the urls in the database. If it does not, the ID key is skipped during parsing.
+#
+# Did you know you can use inline comments as well? See below!
+#
+
+
+ID: 596 # Phoenix Service ID
+
+Domains: tosdr.org,translate.tosdr.org,admin.tosdr.org,admin.matrix.tosdr.org,api.tosdr.org,cdn.tosdr.org,arachne.crawler.api.tosdr.org,artifacts.tosdr.org,atlas.tosdr.org,atlas.crawler.api.tosdr.org,avidreader.crawler.api.tosdr.org,blog.tosdr.org,ci.tosdr.org,crawler.tosdr.org,docs.tosdr.org,floppy.crawler.api.tosdr.org,forum.tosdr.org,james.crawler.api.tosdr.org,matrix.tosdr.org,meet.tosdr.org,phoenix.tosdr.org,safariextension.tosdr.org,search.tosdr.org,shields.tosdr.org,to.tosdr.org,status.tosdr.org,us.crawler.api.tosdr.org,simple.tosdr.org
+
+Document-Name: Privacy Policy
+Url: https://tosdr.org/legal
+Path: /html/body/div[3]/p[1]
+
+Document-Name: Legal Information
+Url: https://tosdr.org/legal
+Path: /html/body/div[2]/p
