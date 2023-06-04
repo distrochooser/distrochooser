@@ -1,6 +1,12 @@
 # Contributing to the distrochooser project
 
-Thank you for your interest in contributing to the distrochoooser project 🎉!
+Thank you for your interest in contributing to the distrochooser project 🎉!
+
+# General
+
+Distrochooser has a very slow development cycle as this is a "weekend warrior" project. This means that issues might be unanswered for months before being picked up. But don't worry, they will be discussed, but just not that fast as in large projects. 
+
+Please note that there will no discussions with deleted accounts (on PR/ Issues/ Discussions). These threads will be closed.
 
 # Preparations
 
