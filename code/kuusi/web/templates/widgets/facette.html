@@ -1,0 +1,13 @@
+{% load web_extras %}
+{% load crispy_forms_tags %}
+{% for field  in form %}
+    {% with prev=form.fields|prev:forloop.counter0 %} 
+        {% if field.name in child_facettes %}
+            <div class="child-{{prev}}">
+                {{ field|as_crispy_field }}
+            </div>
+        {%else%}
+            {{ field|as_crispy_field }}
+        {% endif %}
+    {% endwith %}
+{% endfor %}

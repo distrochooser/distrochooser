@@ -1,4 +1,7 @@
 {% load web_extras %}
+<form action="" method="post" enctype="multipart/form-data">
+
+{% csrf_token %}
 <h1>{%__ page "title" %}</h1>
 {% for row in page.structure %}
 <div class="row">
@@ -13,3 +16,4 @@
     {% endfor %}
 </div>
 {% endfor %}
+</form>

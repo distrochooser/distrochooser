@@ -6,7 +6,7 @@
     <div class="col-3">
         <!-- {% trans "BTN_PREV_PAGE" %} -->
         {% if page.previous_page %}
-            <a class="btn btn-secondary" href="?page={{page.previous_page.pk}}">
+            <a class="btn btn-secondary" href="?page={{page.next_page.pk}}">
                 {% trans "BTN_PREV_PAGE" %}
             </a>
         {% endif %}
@@ -14,9 +14,7 @@
     <div class="col-3">
         <!-- {% trans "BTN_NEXT_PAGE" %} -->
         {% if page.next_page %}
-            <a class="btn btn-secondary" href="?page={{page.next_page.pk}}">
-                {% trans "BTN_NEXT_PAGE" %}
-            </a>
+            <input class="btn btn-primary" type="submit" value="{% trans "BTN_NEXT_PAGE" %}">
         {% endif %}
     </div>
 </div>

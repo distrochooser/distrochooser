@@ -27,10 +27,11 @@ from django.db import models
 from django.db.models import Max, Min
 from django.template import loader
 
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
 
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
+from django.forms import Form, BooleanField
 
 from django.db import models
 from django.utils.translation import gettext as _
@@ -171,16 +172,6 @@ def translateable_removing(sender, instance, using, **kwargs):
         origin.remove_translation_records()
         origin.update_po_file()
 
-class Choosable(Translateable):
-    """
-    Element ot be choosed. 
-
-    Must be translated
-    """
-    name = TranslateableField(null=False, blank=False, max_length=120)
-
-    def __str__(self) -> str:
-        return f"{self.name}"
 
 class Page(Translateable):
     title = TranslateableField(null=False, blank=False, max_length=120)
@@ -202,7 +193,7 @@ class Page(Translateable):
         """
         result = list()
         # TODO: add all widget types into this query.
-        widgets_used = list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(NavigationWidget.objects.filter(pages__pk__in=[self]))
+        widgets_used = list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(NavigationWidget.objects.filter(pages__pk__in=[self]))+ list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self]))
 
         all_widgets = Widget.objects.filter(pages__in=[self])
         max_row = all_widgets.aggregate(Max('row'))["row__max"]
@@ -229,10 +220,10 @@ class Widget(models.Model):
     row = models.IntegerField(default=1, null=False, blank=False)
     col = models.IntegerField(default=1, null=False, blank=False)
     width = models.IntegerField(default=1, null=False, blank=False)
-    pages = models.ManyToManyField(to=Page,blank=True,default=None, null=True)
-    def render(self, page: Page):
+    pages = models.ManyToManyField(to=Page,blank=True,default=None)
+    def render(self, request: HttpRequest, page: Page):
         raise Exception()
-        
+
 class HTMLWidget(Widget):
     template = models.CharField(null=False, blank=False, max_length=25)
     def __init__(self, *args, **kwargs):
@@ -251,6 +242,37 @@ class HTMLWidget(Widget):
     def render(self, request: HttpRequest, page: Page):
         render_template = loader.get_template(f"widgets/{self.template}")
         return render_template.render({}, request)
+
+class FacetteSelectionWidget(Widget):
+    topic = models.CharField(null=False, blank=False, max_length=120)
+    def render(self,request: HttpRequest,  page: Page):
+        facettes = Facette.objects.filter(topic=self.topic)
+        render_template = loader.get_template(f"widgets/facette.html")
+        data = {}
+        if request.method == "POST":
+            data = request.POST
+            # TODO: Read data from database
+            # TODO: Show validations warnings
+            # TODO: save data
+
+        facette_form = Form(data)
+        child_facettes = []
+        context = {}
+        for facette in facettes:
+            is_child = Facette.objects.filter(child_facettes__pk__in=[facette.pk]).count() > 0
+            if not is_child:
+                facette_form.fields[facette.catalogue_id] = BooleanField(required=False)
+
+            for sub_facette in facette.child_facettes.all():
+                facette_form.fields[sub_facette.catalogue_id] = BooleanField(required=False)
+                child_facettes.append(sub_facette.catalogue_id)
+        
+        context["form"] = facette_form
+
+        return render_template.render({
+            "form": facette_form,
+            "child_facettes": child_facettes
+        }, request)
     
 class NavigationWidget(Widget):
     def render(self, request: HttpRequest, page: Page):
@@ -258,3 +280,29 @@ class NavigationWidget(Widget):
         return render_template.render({
             "page": page
         }, request)
+    
+class Choosable(Translateable):
+    """
+    Element ot be choosed. 
+
+    Must be translated
+    """
+    name = TranslateableField(null=False, blank=False, max_length=120)
+
+    def __str__(self) -> str:
+        return f"{self.name}"
+    
+class Facette(Translateable):
+    """
+    A facette describes a fact narrowing down the selection for choosables.
+
+    The description will be used for displaying results
+
+    The selectable_description is displayed for selection within a page
+
+    The topic reduces a facette to a certain subarea, e. g. "licenses" for Linux distributions
+    """
+    description = TranslateableField(null=False, blank=False, max_length=120)
+    selectable_description = TranslateableField(null=False, blank=False, max_length=120)
+    topic = TranslateableField(null=False, blank=False, max_length=120)
+    child_facettes = models.ManyToManyField(to="Facette",blank=True)

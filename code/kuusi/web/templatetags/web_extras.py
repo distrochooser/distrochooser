@@ -15,6 +15,8 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
+from typing import Dict
 from django import template
 
 from django.http import HttpRequest
@@ -22,6 +24,14 @@ from django.http import HttpRequest
 from web.models import Widget, Page, Translateable
 
 register = template.Library()
+
+@register.filter
+def prev(haystack: Dict, index: int ):
+    if index == 0:
+        return None
+    
+    return list(haystack.keys())[index - 1]
+
 
 @register.simple_tag(takes_context=True)
 def render_widget(context, widget: Widget, page: Page):

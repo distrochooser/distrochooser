@@ -15,7 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
 
@@ -31,6 +31,10 @@ def route_index(request: HttpRequest):
         page = Page.objects.get(pk=page_id)
     else:
         page = Page.objects.first()
+
+
+    if request.method == "POST" and page.next_page:
+        return HttpResponseRedirect(f"/?page={page.next_page.pk}")
         
     context = {
         "page": page
