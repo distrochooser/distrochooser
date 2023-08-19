@@ -20,45 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 @import "../node_modules/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-$blue: #709EC8 !default;
-$indigo: #414066 !default;
-$purple: #240029 !default;
-$pink: #d63384 !default;
-$red: #BA2D0B !default;
-$orange: #FF7033 !default;
-$yellow: #8d583b !default;
-$green: #B1CC74 !default;
-$teal: #E8FCC2 !default;
-$cyan: #097287 !default;
-
-$primary: #e85045 !default;
-$secondary: #851b15 !default;
-$success: #3e8d63 !default;
-$info: #13101c !default;
-$warning: #FF7033 !default;
-$danger: $red !default;
-
-$light: #f0f0f0 !default;
-$dark: #4A5043 !default;
-
-$tw-grey: #f7f7f7;
-
-$theme-colors: (
-  "primary": $primary,
-  "secondary": $secondary,
-  "success": $success,
-  "info": $info,
-  "warning": $warning,
-  "danger": $danger,
-  "light": $light,
-  "dark": $dark) !default;
-
-$border-radius: 0px;
-$border-radius-sm: 0px;
-$border-radius-lg: 0px;
-$border-radius-pill: 0px;
-
-$card-header-font-color: white;
 
 
 // 3. Include remainder of required Bootstrap stylesheets
@@ -66,6 +27,7 @@ $card-header-font-color: white;
 @import "../node_modules/bootstrap/scss/variables-dark";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/helpers";
 // 4. Include any optional Bootstrap components as you like
 @import "../node_modules/bootstrap/scss/root";
 @import "../node_modules/bootstrap/scss/reboot";

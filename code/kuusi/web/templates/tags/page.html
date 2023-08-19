@@ -1,0 +1,15 @@
+{% load web_extras %}
+<h1>{%__ page "title" %}</h1>
+{% for row in page.structure %}
+<div class="row">
+    {% for widget in row %}
+        {% if not widget %}
+            <div class="col-1"></div>
+        {% else %}
+        <div class="col col-{{widget.width}}">
+            {% render_widget widget page %}
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endfor %}

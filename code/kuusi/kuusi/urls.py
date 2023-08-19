@@ -19,6 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from django.contrib import admin
 from django.urls import path
 
+from web.views import route_index
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('', route_index, name='route_index'),
 ]

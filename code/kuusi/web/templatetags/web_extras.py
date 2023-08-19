@@ -1,0 +1,46 @@
+"""
+kuusi
+Copyright (C) 2015-2023  Christoph Müller <mail@chmr.eu>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+from django import template
+
+from django.http import HttpRequest
+
+from web.models import Widget, Page, Translateable
+
+register = template.Library()
+
+@register.simple_tag(takes_context=True)
+def render_widget(context, widget: Widget, page: Page):
+    """
+    Triggers render() on a given Widget while injecting the global request context into the call.
+    """
+    request: HttpRequest = context['request']
+    return widget.render(request, page)
+
+@register.simple_tag(takes_context=True)
+def __(context, translatable_object: Translateable, key: str):
+    # TODO: LANGUAGE INJECT
+    return translatable_object.__(key, language_code="en")
+
+@register.inclusion_tag(filename="tags/page.html", takes_context=True)
+def page(context, page: Page):
+    request: HttpRequest = context['request']
+    return {"page": page, "request": request}
+
+@register.inclusion_tag(filename="tags/logo.html")
+def logo():
+    return {}

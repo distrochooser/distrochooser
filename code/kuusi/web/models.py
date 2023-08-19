@@ -17,12 +17,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, List
 from os.path import join, exists
-from os import mkdir
+from os import mkdir, listdir
 from logging import getLogger
 
+from django import forms
 from django.db import models
+from django.db.models import Max, Min
+from django.template import loader
+
+from django.http import HttpRequest
+
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
@@ -31,7 +37,7 @@ from django.utils.translation import gettext as _
 
 from polib import pofile
 
-from kuusi.settings import LOCALE_PATHS, LANGUAGES
+from kuusi.settings import LOCALE_PATHS, LANGUAGES, BASE_DIR
 
 logger = getLogger('root')
 
@@ -85,15 +91,30 @@ class TranslateableField(models.CharField):
 class TranslateableFieldRecord(models.Model):
     msg_id = models.CharField(null=False, blank=False, max_length=50)
     po_block = models.TextField(null=True, blank=True, max_length=1000)
-
     def __str__(self) -> str:
         return self.msg_id
 
 class Translateable(models.Model):
     """
     This class is just used to trigger a signal, which clears up unused TranslateableFieldRecords
+
+    If a TranslateField shall be used, the model must inherit this class.
     """
     catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=20) 
+
+    def __(self, key: str, language_code: str = "en") -> str:
+        msg_id = self._meta.get_field(key).get_msg_id(self)
+        # TODO: make this block in a function
+        # TODO: make this in memory
+        translation_path = join(LOCALE_PATHS[0], language_code, "LC_MESSAGES", "translateable.po")
+        existing_record_translations = {}
+        if exists(translation_path):
+            po = pofile(translation_path)
+            for entry in po:
+                existing_record_translations[entry.msgid] = entry.msgstr
+        if msg_id not in existing_record_translations or len(existing_record_translations[msg_id]) == 0:
+            return msg_id
+        return existing_record_translations[msg_id]
 
     def remove_translation_records(self):
         """ 
@@ -160,3 +181,77 @@ class Choosable(Translateable):
 
     def __str__(self) -> str:
         return f"{self.name}"
+
+class Page(Translateable):
+    title = TranslateableField(null=False, blank=False, max_length=120)
+    next_page = models.ForeignKey(to="Page", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="page_next")
+    
+    def __str__(self) -> str:
+        return f"{self.title}"
+    
+    @property
+    def previous_page(self) -> Page | None:
+        return Page.objects.filter(next_page=self).first()
+
+    @property
+    def structure(self) -> List[List[Widget]]:
+        """
+        Returns the structure of the page as a 2-dimensional list containing widgets.
+
+        X and Y are hereby the cols to be used.
+        """
+        result = list()
+        # TODO: add all widget types into this query.
+        widgets_used = list(HTMLWidget.objects.filter(page=self)) + list(NavigationWidget.objects.filter(page=self))
+  
+        all_widgets = Widget.objects.filter(page=self)
+        max_row = all_widgets.aggregate(Max('row'))["row__max"]
+        max_col = all_widgets.aggregate(Max('col'))["col__max"]
+        min_row = all_widgets.aggregate(Min('row'))["row__min"]
+        min_col = all_widgets.aggregate(Min('col'))["col__min"]
+        logger.debug(f"The page {self} spans as follows {min_col},{min_row} -> {max_col}, {max_row}")
+        for y in range(min_row, max_row + 1):
+            row_list = list()
+            for x in range(min_col, max_col + 1):
+                matches  = list(filter(lambda w: w.col == x and w.row == y, widgets_used))
+                widget = matches[0] if len(matches) > 0 else None
+                if widget:
+                    row_list.append(widget)
+                else:
+                    row_list.append(None)
+            result.append(row_list)
+        return result
+    
+class Widget(models.Model):
+    row = models.IntegerField(default=1, null=False, blank=False)
+    col = models.IntegerField(default=1, null=False, blank=False)
+    width = models.IntegerField(default=1, null=False, blank=False)
+    page = models.ForeignKey(to=Page, on_delete=models.CASCADE,related_name="widget_page", blank=True, default=None, null=True)
+    def render(self, page: Page):
+        raise Exception()
+        
+class HTMLWidget(Widget):
+    template = models.CharField(null=False, blank=False, max_length=25)
+    def __init__(self, *args, **kwargs):
+        template_path = join(BASE_DIR, "web", "templates", "widgets")
+        raw_templates = listdir(template_path)
+        templates = []
+        for template in raw_templates:
+            templates.append((template, template))
+        self._meta.get_field('template').choices = templates
+        self._meta.get_field('template').widget = forms.Select(choices=templates)
+        super(HTMLWidget, self).__init__(*args, **kwargs)
+    
+    def __str__(self) -> str:
+        return self.template
+    
+    def render(self, request: HttpRequest, page: Page):
+        render_template = loader.get_template(f"widgets/{self.template}")
+        return render_template.render({}, request)
+    
+class NavigationWidget(Widget):
+    def render(self, request: HttpRequest, page: Page):
+        render_template = loader.get_template(f"widgets/navigation.html")
+        return render_template.render({
+            "page": page
+        }, request)

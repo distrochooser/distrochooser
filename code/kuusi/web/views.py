@@ -15,7 +15,19 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+from django.http import HttpRequest, HttpResponse
+from django.template import loader
+from django.utils.translation import gettext_lazy as _
 
-from django.shortcuts import render
 
-# Create your views here.
+from web.models import Page
+
+
+def route_index(request: HttpRequest):
+    template = loader.get_template('index.html')
+    page = Page.objects.first()
+    context = {
+        "page": page
+    }
+    return HttpResponse(template.render(context, request))
+
