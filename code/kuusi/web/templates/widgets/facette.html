@@ -3,7 +3,7 @@
 {% for field  in form %}
     {% with prev=form.fields|prev:forloop.counter0 %} 
         {% if field.name in child_facettes %}
-            <div class="child-{{prev}}">
+            <div class="collapse child-facette child-{{prev}}" id="collapse-{{prev}}">
                 {{ field|as_crispy_field }}
             </div>
         {%else%}

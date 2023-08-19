@@ -258,10 +258,18 @@ class FacetteSelectionWidget(Widget):
         facette_form = Form(data)
         child_facettes = []
         context = {}
+
+
         for facette in facettes:
             is_child = Facette.objects.filter(child_facettes__pk__in=[facette.pk]).count() > 0
+            has_child = facette.child_facettes.count() > 0
             if not is_child:
                 facette_form.fields[facette.catalogue_id] = BooleanField(required=False)
+                if has_child:
+                    facette_form.fields[facette.catalogue_id].widget.attrs['data-bs-toggle'] = 'collapse'
+                    facette_form.fields[facette.catalogue_id].widget.attrs['data-bs-target'] = f'#collapse-{facette.catalogue_id}'
+                    facette_form.fields[facette.catalogue_id].widget.attrs['aria-expanded'] = 'false'
+                    facette_form.fields[facette.catalogue_id].widget.attrs['aria-controls'] = f'collapse-{facette.catalogue_id}'
 
             for sub_facette in facette.child_facettes.all():
                 facette_form.fields[sub_facette.catalogue_id] = BooleanField(required=False)
