@@ -202,13 +202,16 @@ class Page(Translateable):
         """
         result = list()
         # TODO: add all widget types into this query.
-        widgets_used = list(HTMLWidget.objects.filter(page=self)) + list(NavigationWidget.objects.filter(page=self))
-  
-        all_widgets = Widget.objects.filter(page=self)
+        widgets_used = list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(NavigationWidget.objects.filter(pages__pk__in=[self]))
+
+        all_widgets = Widget.objects.filter(pages__in=[self])
         max_row = all_widgets.aggregate(Max('row'))["row__max"]
         max_col = all_widgets.aggregate(Max('col'))["col__max"]
         min_row = all_widgets.aggregate(Min('row'))["row__min"]
         min_col = all_widgets.aggregate(Min('col'))["col__min"]
+        if not max_row or not max_col:
+            logger.debug(f"The page {self} has no widgets")
+            return result
         logger.debug(f"The page {self} spans as follows {min_col},{min_row} -> {max_col}, {max_row}")
         for y in range(min_row, max_row + 1):
             row_list = list()
@@ -226,7 +229,7 @@ class Widget(models.Model):
     row = models.IntegerField(default=1, null=False, blank=False)
     col = models.IntegerField(default=1, null=False, blank=False)
     width = models.IntegerField(default=1, null=False, blank=False)
-    page = models.ForeignKey(to=Page, on_delete=models.CASCADE,related_name="widget_page", blank=True, default=None, null=True)
+    pages = models.ManyToManyField(to=Page,blank=True,default=None, null=True)
     def render(self, page: Page):
         raise Exception()
         

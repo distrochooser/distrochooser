@@ -25,7 +25,13 @@ from web.models import Page
 
 def route_index(request: HttpRequest):
     template = loader.get_template('index.html')
-    page = Page.objects.first()
+    page_id = request.GET.get("page")
+    page = None
+    if page_id:
+        page = Page.objects.get(pk=page_id)
+    else:
+        page = Page.objects.first()
+        
     context = {
         "page": page
     }
