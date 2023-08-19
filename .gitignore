@@ -5,3 +5,4 @@ __pycache__/
 static/*.css
 static/*.css.map
 .DS_Store
+*.mo
