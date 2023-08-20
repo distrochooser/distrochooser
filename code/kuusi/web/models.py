@@ -337,7 +337,9 @@ class FacetteSelectionWidget(Widget):
             return False
 
         if is_valid:
-            FacetteSelection.objects.filter(session=request.session_obj).delete()
+            # Make sure there is no double facette selections within this topic of the page
+            # TODO: Make more dependend from the page rather than the topic
+            FacetteSelection.objects.filter(session=request.session_obj, facette__topic=self.topic).delete()
             active_facettes = self.get_active_facettes(facette_form)
             # store facettes
             facette: Facette
@@ -352,13 +354,18 @@ class FacetteSelectionWidget(Widget):
            return False
         return True
     
-    def render(self,request: HttpRequest,  page: Page):
+    def render(self,request: WebHttpRequest,  page: Page):
         render_template = loader.get_template(f"widgets/facette.html")
         data = None
         facette_form = Form()
         if request.method == "POST":
             data = request.POST
-            # TODO: Read data from database
+        else:
+            data = {}
+            selected_facettes = FacetteSelection.objects.filter(session=request.session_obj).filter(facette__topic=self.topic)
+            selection: Facette
+            for selection in selected_facettes:
+                data[selection.facette.catalogue_id] = "on"
         facette_form, child_facettes = self.build_form(data)
         context = {}        
         context["form"] = facette_form
