@@ -195,7 +195,7 @@ class Page(Translateable):
     @property
     def widget_list(self) -> List[Widget]:
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
-        return list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self])) + list(ResultListRenderer.objects.filter(pages__pk__in=[self])) + list(ResultShareWidget.objects.filter(pages__pk__in=[self])) +  list(NavigationWidget.objects.filter(pages__pk__in=[self]))
+        return list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self])) + list(ResultListWidget.objects.filter(pages__pk__in=[self])) + list(ResultShareWidget.objects.filter(pages__pk__in=[self])) +  list(NavigationWidget.objects.filter(pages__pk__in=[self]))
 
     def proceed(self, request: WebHttpRequest) -> bool:
         for widget in self.widget_list:
@@ -393,7 +393,7 @@ class ResultShareWidget(Widget):
             "share_link": f"{KUUSI_URL}/{request.session_obj.result_id}"
         }, request)
 
-class ResultListRenderer(Widget):
+class ResultListWidget(Widget):
     def proceed(self, request: WebHttpRequest, page: Page) -> bool:
         return True
     def render(self, request: WebHttpRequest, page: Page):
