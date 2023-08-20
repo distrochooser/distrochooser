@@ -20,10 +20,11 @@ from django.template import loader
 from django.utils.translation import gettext_lazy as _
 
 
-from web.models import Page, Session
+from web.models import Page, Session, WebHttpRequest
+from logging import getLogger
+logger = getLogger('root')
 
-
-def route_index(request: HttpRequest):
+def route_index(request: WebHttpRequest):
     template = loader.get_template('index.html')
     page_id = request.GET.get("page")
     page = None
@@ -45,9 +46,15 @@ def route_index(request: HttpRequest):
 
     # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
     request.session_obj = session
+    # TODO: These are not properly set within WebHttpRequest class.
+    request.has_errors = False
+    request.has_warnings = False
     if request.method == "POST":
         result = page.proceed(request)
-
+        if not result:
+            if "BTN_NEXT_PAGE_FORCE" in request.POST:
+                logger.debug(f"User decided to force to next page even as there are issues present (has_errors={request.has_errors},has_warnings={request.has_warnings})")
+                result = True
         if result and page.next_page:
             return HttpResponseRedirect(f"/?page={page.next_page.pk}")
         

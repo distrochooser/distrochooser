@@ -16,3 +16,8 @@
         {{ form.errors }}
     </div>
 {% endif %}
+{% if form.warnings %}
+    <div class="alert alert-warning">
+        {{ form.warnings }}
+    </div>
+{% endif %}

@@ -13,8 +13,13 @@
     </div>
     <div class="col-3">
         <!-- {% trans "BTN_NEXT_PAGE" %} -->
+        <!-- {% trans "BTN_NEXT_PAGE_FORCE" %} -->
         {% if page.next_page %}
-            <input class="btn btn-primary" type="submit" value="{% trans "BTN_NEXT_PAGE" %}">
+            {% if has_errors or has_warnings %}
+                <button name="BTN_NEXT_PAGE_FORCE" class="btn btn-primary"  value="BTN_NEXT_PAGE_FORCE">{% trans "BTN_NEXT_PAGE_FORCE" %}</button>
+            {% else %}
+                <input class="btn btn-primary" type="submit" value="{% trans "BTN_NEXT_PAGE" %}">
+            {% endif %}
         {% endif %}
     </div>
 </div>

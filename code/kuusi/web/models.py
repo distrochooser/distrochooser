@@ -42,8 +42,16 @@ import string
 from polib import pofile
 
 from kuusi.settings import LOCALE_PATHS, LANGUAGES, BASE_DIR
+from web.forms import WarningForm
 
 logger = getLogger('root')
+
+class WebHttpRequest(HttpRequest):
+    session_obj: Session = None
+    has_warnings: bool = False
+    has_errors:  bool = False
+    
+
 
 class TranslateableField(models.CharField):
     "A field which can be translated"
@@ -189,9 +197,10 @@ class Page(Translateable):
 
     @property
     def widget_list(self) -> List[Widget]:
-        return list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(NavigationWidget.objects.filter(pages__pk__in=[self]))+ list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self]))
+        # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
+        return list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self])) + list(NavigationWidget.objects.filter(pages__pk__in=[self]))
 
-    def proceed(self, request: HttpRequest) -> bool:
+    def proceed(self, request: WebHttpRequest) -> bool:
         for widget in self.widget_list:
             result = widget.proceed(request, self)
             if not result:
@@ -265,8 +274,8 @@ class HTMLWidget(Widget):
 class FacetteSelectionWidget(Widget):
     topic = models.CharField(null=False, blank=False, max_length=120)
 
-    def build_form(self, data: Dict | None) -> Tuple[Form, List]:
-        facette_form = Form(data) if data else Form()
+    def build_form(self, data: Dict | None) -> Tuple[WarningForm, List]:
+        facette_form = WarningForm(data) if data else WarningForm()
         facettes = Facette.objects.filter(topic=self.topic)
         child_facettes = []
         for facette in facettes:
@@ -294,11 +303,16 @@ class FacetteSelectionWidget(Widget):
             for behaviour in behaviours:
                 not_this = list(filter(lambda f: f.pk != facette.pk, active_facettes))
                 result = behaviour.is_true(facette, not_this)
-                if result:
-                    facette_form.add_error(facette.catalogue_id, behaviour.description)
+                if result: 
+                    if behaviour.criticality == FacetteBehaviour.Criticality.ERROR:
+                        facette_form.add_error(facette.catalogue_id, behaviour.description)
+                    elif behaviour.criticality == FacetteBehaviour.Criticality.WARNING:
+                        facette_form.add_warning(facette.catalogue_id, behaviour.description)
+                
         return facette_form, child_facettes
 
     def get_active_facettes(self, form: Form) -> List:
+        # TODO: Also include facettes from the session
         facettes = Facette.objects.all()
         active_facettes = []
         if not form.is_valid():
@@ -313,12 +327,13 @@ class FacetteSelectionWidget(Widget):
     
         return active_facettes
 
-    def proceed(self, request: HttpRequest, page: Page) -> bool:
+    def proceed(self, request: WebHttpRequest, page: Page) -> bool:
         facette_form, _ = self.build_form(request.POST)
 
         is_valid = facette_form.is_valid()
 
         if not is_valid:
+            request.has_errors = True
             return False
 
         if is_valid:
@@ -332,7 +347,9 @@ class FacetteSelectionWidget(Widget):
                         session=request.session_obj
                     )
                     select.save()
-            
+        if facette_form.has_warning():
+           request.has_warnings = True
+           return False
         return True
     
     def render(self,request: HttpRequest,  page: Page):
@@ -342,7 +359,6 @@ class FacetteSelectionWidget(Widget):
         if request.method == "POST":
             data = request.POST
             # TODO: Read data from database
-            # TODO: Show validations warnings
         facette_form, child_facettes = self.build_form(data)
         context = {}        
         context["form"] = facette_form
@@ -353,12 +369,14 @@ class FacetteSelectionWidget(Widget):
         }, request)
     
 class NavigationWidget(Widget):
-    def proceed(self, request: HttpRequest, page: Page) -> bool:
+    def proceed(self, request: WebHttpRequest, page: Page) -> bool:
         return True
-    def render(self, request: HttpRequest, page: Page):
+    def render(self, request: WebHttpRequest, page: Page):
         render_template = loader.get_template(f"widgets/navigation.html")
         return render_template.render({
-            "page": page
+            "page": page,
+            "has_errors": request.has_errors,
+            "has_warnings": request.has_warnings
         }, request)
 
 
@@ -426,11 +444,20 @@ class FacetteBehaviour(Translateable):
         max_length=20,
         choices=Direction.choices,
         default=Direction.BIDRECTIONAL
+    )    
+    
+    class Criticality(models.TextChoices):
+        WARNING = "WARNING", "WARNING"
+        ERROR = "ERROR", "ERROR"
+        INFO = "INFO", "INFO"
+
+    criticality = models.CharField(
+        max_length=20,
+        choices=Criticality.choices,
+        default=Criticality.ERROR
     )
 
     def facette_in_queryset(self, facettes: List[Facette], queryset: QuerySet):
-        print(facettes)
-        print(queryset)
         for facette in facettes:
             if queryset.filter(pk=facette.pk).count() > 0:
                 return True
@@ -453,7 +480,6 @@ class FacetteBehaviour(Translateable):
            if is_self and is_objects_others:
                return True
            
-    
         if self.direction == FacetteBehaviour.Direction.OBJECT_TO_SUBJECT:
            if is_others and is_subjects_others:
                return True
