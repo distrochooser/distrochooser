@@ -41,7 +41,7 @@ import random
 import string
 from polib import pofile
 
-from kuusi.settings import LOCALE_PATHS, LANGUAGES, BASE_DIR
+from kuusi.settings import LOCALE_PATHS, LANGUAGES, BASE_DIR, KUUSI_URL
 from web.forms import WarningForm
 
 logger = getLogger('root')
@@ -51,8 +51,6 @@ class WebHttpRequest(HttpRequest):
     has_warnings: bool = False
     has_errors:  bool = False
     
-
-
 class TranslateableField(models.CharField):
     "A field which can be translated"
 
@@ -183,7 +181,6 @@ def translateable_removing(sender, instance, using, **kwargs):
         origin.remove_translation_records()
         origin.update_po_file()
 
-
 class Page(Translateable):
     title = TranslateableField(null=False, blank=False, max_length=120)
     next_page = models.ForeignKey(to="Page", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="page_next")
@@ -198,7 +195,7 @@ class Page(Translateable):
     @property
     def widget_list(self) -> List[Widget]:
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
-        return list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self])) + list(NavigationWidget.objects.filter(pages__pk__in=[self]))
+        return list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self])) + list(ResultListRenderer.objects.filter(pages__pk__in=[self])) + list(ResultShareWidget.objects.filter(pages__pk__in=[self])) +  list(NavigationWidget.objects.filter(pages__pk__in=[self]))
 
     def proceed(self, request: WebHttpRequest) -> bool:
         for widget in self.widget_list:
@@ -386,6 +383,72 @@ class NavigationWidget(Widget):
             "has_warnings": request.has_warnings
         }, request)
 
+class ResultShareWidget(Widget):    
+    def proceed(self, request: WebHttpRequest, page: Page) -> bool:
+        return True
+    def render(self, request: WebHttpRequest, page: Page):
+        render_template = loader.get_template(f"widgets/result_share.html")
+        return render_template.render({
+            "page": page,
+            "share_link": f"{KUUSI_URL}/{request.session_obj.result_id}"
+        }, request)
+
+class ResultListRenderer(Widget):
+    def proceed(self, request: WebHttpRequest, page: Page) -> bool:
+        return True
+    def render(self, request: WebHttpRequest, page: Page):
+        render_template = loader.get_template(f"widgets/result_list.html")
+        selections = FacetteSelection.objects.filter(session=request.session_obj)
+
+
+        assignments_selected = list()
+        selection: FacetteSelection
+        for selection in selections:
+            facette = selection.facette
+            assignments = FacetteAssignment.objects.filter(facettes__pk__in=[facette.pk])
+            if assignments.count() > 0:
+                assignments_selected += assignments
+        
+        choosables = Choosable.objects.all()
+
+        raw_results: Dict[Choosable, float] = {}
+        assignments_used: Dict[Choosable, FacetteAssignment] = {}
+        choosable: Choosable
+        for choosable in choosables:
+            # TODO: This must be done EASIER FFS
+            assignment_types = FacetteAssignment.AssignmentType.__dict__.get("_member_map_")
+            results = {}
+            for key, _ in assignment_types.items():
+                results[key] = 0
+
+            # get facette assingments actually relevant for this choosable
+            choosable_assignments = list(filter(lambda a: a.choosables.filter(pk=choosable.pk).count() == 1, assignments_selected))
+            assignments_used[choosable] = []
+            assignment: FacetteAssignment
+            for assignment in choosable_assignments:
+                results[assignment.assignment_type] += 1
+                assignments_used[choosable].append(assignment)
+            
+            score = FacetteAssignment.AssignmentType.get_score(results)
+            logger.debug(f"Choosable={choosable}, Score={score}, Results={results}")
+            raw_results[choosable] = score
+
+        
+        ranked_keys = sorted(raw_results)
+        ranked_result = {}
+        for key in ranked_keys:
+            ranked_result[key] = {
+                "choosable": key,
+                "score": raw_results[key],
+                "assignments": assignments_used[key]
+            }
+
+
+        return render_template.render({
+            "page": page,
+            "results": ranked_result
+        }, request)
+
 
 def get_session_result_id():
     letters = string.ascii_lowercase + "1234567890"
@@ -492,7 +555,40 @@ class FacetteBehaviour(Translateable):
                return True
         return False
 
-
 class FacetteSelection(models.Model):
     facette = models.ForeignKey(to=Facette, on_delete=models.CASCADE, blank=False,null=False, related_name="facetteseletion_facette")
     session = models.ForeignKey(to=Session, on_delete=models.CASCADE, blank=False,null=False, related_name="facetteseletion_session")
+
+class FacetteAssignment(Translateable):
+    choosables = models.ManyToManyField(to=Choosable)
+    facettes = models.ManyToManyField(to=Facette)
+    description = TranslateableField(null=True, blank=True, default=None, max_length=255)
+    class AssignmentType(models.TextChoices):
+        POSITIVE = "POSITIVE", "POSITIVE"
+        NEGATIVE = "NEGATIVE", "NEGATIVE"
+        NEUTRAL = "NEUTRAL", "NEUTRAL"
+
+        def get_score( haystack: Dict) -> float:
+            """
+            Calculate a numeric score for a given result set.
+
+            The result set is keys from this class with numeric values.
+
+            The calculation is located here to allow the assignment types to be extended without altering major parts of the code.
+            """
+            score_map = {
+                FacetteAssignment.AssignmentType.POSITIVE: 1,
+                FacetteAssignment.AssignmentType.NEGATIVE: -1,
+                FacetteAssignment.AssignmentType.NEUTRAL: 0
+            }
+            score = 0
+            for key, value in haystack.items():
+                score += score_map[key] * value
+
+            return score
+
+    assignment_type =  models.CharField(
+        max_length=20,
+        choices=AssignmentType.choices,
+        default=AssignmentType.NEUTRAL
+    )   

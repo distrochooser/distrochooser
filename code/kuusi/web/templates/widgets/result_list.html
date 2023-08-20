@@ -1,0 +1,9 @@
+{% load web_extras %}
+{% for key, result in results.items %}
+{%__ result.choosable "name" %} {{ result.score }}
+<ul>
+    {% for assignment in result.assignments %}
+    <li>{{ assignment.assignment_type }}: {%__  assignment "description" %}</li>
+    {%endfor%}
+</ul>
+{% endfor %}
