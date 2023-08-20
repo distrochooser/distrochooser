@@ -17,15 +17,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from __future__ import annotations
-from typing import Any, List
+from typing import Any, List, Dict, Tuple
 from os.path import join, exists
 from os import mkdir, listdir
 from logging import getLogger
 
 from django import forms
 from django.db import models
-from django.db.models import Max, Min
+from django.db.models import Max, Min, QuerySet
 from django.template import loader
+from django.utils import timezone
 
 from django.http import HttpRequest, HttpResponseRedirect
 
@@ -36,6 +37,8 @@ from django.forms import Form, BooleanField
 from django.db import models
 from django.utils.translation import gettext as _
 
+import random
+import string
 from polib import pofile
 
 from kuusi.settings import LOCALE_PATHS, LANGUAGES, BASE_DIR
@@ -176,13 +179,25 @@ def translateable_removing(sender, instance, using, **kwargs):
 class Page(Translateable):
     title = TranslateableField(null=False, blank=False, max_length=120)
     next_page = models.ForeignKey(to="Page", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="page_next")
-    
+    require_session = models.BooleanField(default=False)
     def __str__(self) -> str:
         return f"{self.title}"
     
     @property
     def previous_page(self) -> Page | None:
         return Page.objects.filter(next_page=self).first()
+
+    @property
+    def widget_list(self) -> List[Widget]:
+        return list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(NavigationWidget.objects.filter(pages__pk__in=[self]))+ list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self]))
+
+    def proceed(self, request: HttpRequest) -> bool:
+        for widget in self.widget_list:
+            result = widget.proceed(request, self)
+            if not result:
+                return False
+            
+        return True
 
     @property
     def structure(self) -> List[List[Widget]]:
@@ -193,8 +208,7 @@ class Page(Translateable):
         """
         result = list()
         # TODO: add all widget types into this query.
-        widgets_used = list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(NavigationWidget.objects.filter(pages__pk__in=[self]))+ list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self]))
-
+        widgets_used = self.widget_list
         all_widgets = Widget.objects.filter(pages__in=[self])
         max_row = all_widgets.aggregate(Max('row'))["row__max"]
         max_col = all_widgets.aggregate(Max('col'))["col__max"]
@@ -223,6 +237,8 @@ class Widget(models.Model):
     pages = models.ManyToManyField(to=Page,blank=True,default=None)
     def render(self, request: HttpRequest, page: Page):
         raise Exception()
+    def proceed(self, request: HttpRequest, page: Page) -> bool:
+        raise Exception()
 
 class HTMLWidget(Widget):
     template = models.CharField(null=False, blank=False, max_length=25)
@@ -242,27 +258,20 @@ class HTMLWidget(Widget):
     def render(self, request: HttpRequest, page: Page):
         render_template = loader.get_template(f"widgets/{self.template}")
         return render_template.render({}, request)
+    
+    def proceed(self, request: HttpRequest, page: Page) -> bool:
+        return True
 
 class FacetteSelectionWidget(Widget):
     topic = models.CharField(null=False, blank=False, max_length=120)
-    def render(self,request: HttpRequest,  page: Page):
+
+    def build_form(self, data: Dict | None) -> Tuple[Form, List]:
+        facette_form = Form(data) if data else Form()
         facettes = Facette.objects.filter(topic=self.topic)
-        render_template = loader.get_template(f"widgets/facette.html")
-        data = {}
-        if request.method == "POST":
-            data = request.POST
-            # TODO: Read data from database
-            # TODO: Show validations warnings
-            # TODO: save data
-
-        facette_form = Form(data)
         child_facettes = []
-        context = {}
-
-
         for facette in facettes:
-            is_child = Facette.objects.filter(child_facettes__pk__in=[facette.pk]).count() > 0
-            has_child = facette.child_facettes.count() > 0
+            is_child = facette.is_child
+            has_child = facette.has_child
             if not is_child:
                 facette_form.fields[facette.catalogue_id] = BooleanField(required=False)
                 if has_child:
@@ -270,11 +279,72 @@ class FacetteSelectionWidget(Widget):
                     facette_form.fields[facette.catalogue_id].widget.attrs['data-bs-target'] = f'#collapse-{facette.catalogue_id}'
                     facette_form.fields[facette.catalogue_id].widget.attrs['aria-expanded'] = 'false'
                     facette_form.fields[facette.catalogue_id].widget.attrs['aria-controls'] = f'collapse-{facette.catalogue_id}'
-
+       
             for sub_facette in facette.child_facettes.all():
                 facette_form.fields[sub_facette.catalogue_id] = BooleanField(required=False)
                 child_facettes.append(sub_facette.catalogue_id)
+             
+        # trigger facette behaviours
+        active_facettes = self.get_active_facettes(facette_form)
+        facette: Facette
+        for facette in active_facettes:
+            behaviours = FacetteBehaviour.objects.all()
         
+            behaviour: FacetteBehaviour
+            for behaviour in behaviours:
+                not_this = list(filter(lambda f: f.pk != facette.pk, active_facettes))
+                result = behaviour.is_true(facette, not_this)
+                if result:
+                    facette_form.add_error(facette.catalogue_id, behaviour.description)
+        return facette_form, child_facettes
+
+    def get_active_facettes(self, form: Form) -> List:
+        facettes = Facette.objects.all()
+        active_facettes = []
+        if not form.is_valid():
+            return active_facettes
+        # get selected facettes
+        facette: Facette
+        for facette in facettes:
+            key = facette.catalogue_id
+            active = form.cleaned_data.get(key)
+            if active:
+                active_facettes.append(facette)
+    
+        return active_facettes
+
+    def proceed(self, request: HttpRequest, page: Page) -> bool:
+        facette_form, _ = self.build_form(request.POST)
+
+        is_valid = facette_form.is_valid()
+
+        if not is_valid:
+            return False
+
+        if is_valid:
+            FacetteSelection.objects.filter(session=request.session_obj).delete()
+            active_facettes = self.get_active_facettes(facette_form)
+            # store facettes
+            facette: Facette
+            for facette in active_facettes:
+                    select = FacetteSelection(
+                        facette=facette,
+                        session=request.session_obj
+                    )
+                    select.save()
+            
+        return True
+    
+    def render(self,request: HttpRequest,  page: Page):
+        render_template = loader.get_template(f"widgets/facette.html")
+        data = None
+        facette_form = Form()
+        if request.method == "POST":
+            data = request.POST
+            # TODO: Read data from database
+            # TODO: Show validations warnings
+        facette_form, child_facettes = self.build_form(data)
+        context = {}        
         context["form"] = facette_form
 
         return render_template.render({
@@ -283,12 +353,29 @@ class FacetteSelectionWidget(Widget):
         }, request)
     
 class NavigationWidget(Widget):
+    def proceed(self, request: HttpRequest, page: Page) -> bool:
+        return True
     def render(self, request: HttpRequest, page: Page):
         render_template = loader.get_template(f"widgets/navigation.html")
         return render_template.render({
             "page": page
         }, request)
-    
+
+
+def get_session_result_id():
+    letters = string.ascii_lowercase + "1234567890"
+    result_str = ''.join(random.choice(letters) for i in range(10))
+    is_existing = Session.objects.filter(result_id=result_str).count() != 0
+    while is_existing:
+        result_str = ''.join(random.choice(letters) for i in range(7))
+        is_existing = Session.objects.filter(result_id=result_str).count() != 0
+    return result_str 
+
+class Session(models.Model):
+    started = models.DateTimeField(default=timezone.now,null=False,blank=False)
+    user_agent = models.CharField(default=None, null=True, blank=True, max_length=150)
+    result_id = models.CharField(default=get_session_result_id, max_length=10, null=False, blank=False)    
+
 class Choosable(Translateable):
     """
     Element ot be choosed. 
@@ -314,3 +401,65 @@ class Facette(Translateable):
     selectable_description = TranslateableField(null=False, blank=False, max_length=120)
     topic = TranslateableField(null=False, blank=False, max_length=120)
     child_facettes = models.ManyToManyField(to="Facette",blank=True)
+
+    @property
+    def is_child(self) -> bool:
+        return Facette.objects.filter(child_facettes__pk__in=[self.pk]).count() > 0
+    
+    @property
+    def has_child(self) -> bool:
+        return self.child_facettes.count() > 0
+
+    def __str__(self) -> str:
+        return f"[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) {self.description} (select: {self.selectable_description})"
+
+class FacetteBehaviour(Translateable):
+    description = TranslateableField(null=False, blank=False, max_length=120)
+    affected_objects = models.ManyToManyField(to="Facette",blank=True, related_name="facette_behaviour_objects")
+    affected_subjects =  models.ManyToManyField(to="Facette",blank=True, related_name="facette_behaviour_subjects")
+    class Direction(models.TextChoices):
+        SUBJECT_TO_OBJECT = "SUBJECT_TO_OBJECT", "SUBJECT_TO_OBJECT"
+        OBJECT_TO_SUBJECT = "OBJECT_TO_SUBJECT", "OBJECT_TO_SUBJECT"
+        BIDRECTIONAL = "BIDRECTIONAL", "BIDRECTIONAL"
+
+    direction =  models.CharField(
+        max_length=20,
+        choices=Direction.choices,
+        default=Direction.BIDRECTIONAL
+    )
+
+    def facette_in_queryset(self, facettes: List[Facette], queryset: QuerySet):
+        print(facettes)
+        print(queryset)
+        for facette in facettes:
+            if queryset.filter(pk=facette.pk).count() > 0:
+                return True
+        return False
+
+    def is_true(self, facette: Facette, others: List[Facette]) -> bool:
+        is_self = self.affected_subjects.filter(pk__in=[facette.pk]).count() > 0
+        is_others = self.affected_objects.filter(pk__in=[facette.pk]).count() > 0
+
+        is_subjects_others = self.facette_in_queryset(others, self.affected_subjects)
+        is_objects_others = self.facette_in_queryset(others, self.affected_objects)
+
+    
+        if self.direction == FacetteBehaviour.Direction.BIDRECTIONAL:
+            if is_self or is_others:
+                return True
+        
+    
+        if self.direction == FacetteBehaviour.Direction.SUBJECT_TO_OBJECT:
+           if is_self and is_objects_others:
+               return True
+           
+    
+        if self.direction == FacetteBehaviour.Direction.OBJECT_TO_SUBJECT:
+           if is_others and is_subjects_others:
+               return True
+        return False
+
+
+class FacetteSelection(models.Model):
+    facette = models.ForeignKey(to=Facette, on_delete=models.CASCADE, blank=False,null=False, related_name="facetteseletion_facette")
+    session = models.ForeignKey(to=Session, on_delete=models.CASCADE, blank=False,null=False, related_name="facetteseletion_session")

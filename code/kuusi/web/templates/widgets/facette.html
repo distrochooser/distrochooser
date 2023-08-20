@@ -11,3 +11,8 @@
         {% endif %}
     {% endwith %}
 {% endfor %}
+{% if form.errors %}
+    <div class="alert alert-danger">
+        {{ form.errors }}
+    </div>
+{% endif %}

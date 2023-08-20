@@ -20,7 +20,7 @@ from django.template import loader
 from django.utils.translation import gettext_lazy as _
 
 
-from web.models import Page
+from web.models import Page, Session
 
 
 def route_index(request: HttpRequest):
@@ -31,10 +31,25 @@ def route_index(request: HttpRequest):
         page = Page.objects.get(pk=page_id)
     else:
         page = Page.objects.first()
+    session = None
+    if page.require_session:
+        if "result_id" not in request.session:
+            user_agent = request.headers.get("user-agent")
+            session = Session(
+                user_agent = user_agent
+            )
+            session.save()
+            request.session["result_id"] = session.result_id
+        else:
+            session = Session.objects.filter(result_id=request.session["result_id"]).first()
 
+    # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
+    request.session_obj = session
+    if request.method == "POST":
+        result = page.proceed(request)
 
-    if request.method == "POST" and page.next_page:
-        return HttpResponseRedirect(f"/?page={page.next_page.pk}")
+        if result and page.next_page:
+            return HttpResponseRedirect(f"/?page={page.next_page.pk}")
         
     context = {
         "page": page
