@@ -93,7 +93,7 @@ def route_index(request: WebHttpRequest):
                 logger.debug(f"User decided to force to next page even as there are issues present (has_errors={request.has_errors},has_warnings={request.has_warnings})")
                 result = True
         if result and page.next_page:
-            return HttpResponseRedirect(f"/?page={page.next_page.pk}")
+            return HttpResponseRedirect(page.next_page.href)
     
     current_location = request.get_full_path()
     step_data = []

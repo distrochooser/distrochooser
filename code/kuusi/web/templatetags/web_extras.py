@@ -23,6 +23,8 @@ from django.http import HttpRequest
 
 from web.models import Widget, Page, Translateable
 
+from kuusi.settings import KUUSI_URL, KUUSI_NAME, KUUSI_COPYRIGHT_STRING
+
 register = template.Library()
 
 
@@ -64,3 +66,23 @@ def step(context, step: Dict):
 @register.inclusion_tag(filename="tags/cookies.html")
 def cookies():
     return {}
+
+@register.inclusion_tag(filename="tags/footer.html")
+def footer():
+    return {
+        "left_text": KUUSI_COPYRIGHT_STRING,
+        "links": [
+            {
+                "href": "/about",
+                "title": "/about"
+            }, 
+            {
+                "href": "/privacy",
+                "title": "/privacy"
+            }, 
+            {
+                "href": "/imprint",
+                "title": "/imprint"
+            }
+        ]
+    }

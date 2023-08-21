@@ -169,3 +169,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 KUUSI_URL="https://beta.distrochooser.de"
+
+KUUSI_NAME="distrochooser.de"
+
+KUUSI_COPYRIGHT_STRING = "text copyright"
