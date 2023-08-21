@@ -1,4 +1,10 @@
 {% load i18n%}
+{% load web_extras %}
+{% if page.next_page.require_session and not page.require_session%}
+<div class="row">
+    {% cookies %}
+</div>
+{% endif %}
 <div class="row">
     <div class="col-6">
         CTX: {{ page }}

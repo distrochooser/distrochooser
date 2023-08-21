@@ -18,10 +18,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
 
 from web.views import route_index
+
+from kuusi.settings import STATIC_URL, STATIC_ROOT
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', route_index, name='route_index'),
-]
+] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True)

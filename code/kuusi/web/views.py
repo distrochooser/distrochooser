@@ -20,7 +20,7 @@ from django.template import loader
 from django.utils.translation import gettext_lazy as _
 
 
-from web.models import Page, Session, WebHttpRequest
+from web.models import Page, Session, WebHttpRequest, Category
 from logging import getLogger
 logger = getLogger('root')
 
@@ -57,9 +57,32 @@ def route_index(request: WebHttpRequest):
                 result = True
         if result and page.next_page:
             return HttpResponseRedirect(f"/?page={page.next_page.pk}")
-        
+    
+    categories = Category.objects.filter(child_of__isnull=True)
+    current_location = request.get_full_path()
+    step_data = []
+    category: Category
+    for category in categories:
+        minor_steps = []
+        # TODO: Inject language
+        category_step = category.to_step(current_location, "en")
+        child_categories = Category.objects.filter(child_of=category)
+        child_category: Category
+        for child_category in child_categories: 
+            minor_steps.append(
+                child_category.to_step(current_location, "en")
+            )
+
+        step = {
+            "icon": category.icon,
+            "major": category_step,
+            "minor": minor_steps,
+        }
+        step_data.append(step)
+
     context = {
-        "page": page
+        "page": page,
+        "steps": step_data
     }
     return HttpResponse(template.render(context, request))
 

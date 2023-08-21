@@ -25,11 +25,12 @@ from web.models import Widget, Page, Translateable
 
 register = template.Library()
 
+
 @register.filter
-def prev(haystack: Dict, index: int ):
+def prev(haystack: Dict, index: int):
     if index == 0:
         return None
-    
+
     return list(haystack.keys())[index - 1]
 
 
@@ -38,8 +39,9 @@ def render_widget(context, widget: Widget, page: Page):
     """
     Triggers render() on a given Widget while injecting the global request context into the call.
     """
-    request: HttpRequest = context['request']
+    request: HttpRequest = context["request"]
     return widget.render(request, page)
+
 
 @register.simple_tag(takes_context=True)
 def __(context, translatable_object: Translateable, key: str):
@@ -48,9 +50,17 @@ def __(context, translatable_object: Translateable, key: str):
 
 @register.inclusion_tag(filename="tags/page.html", takes_context=True)
 def page(context, page: Page):
-    request: HttpRequest = context['request']
+    request: HttpRequest = context["request"]
     return {"page": page, "request": request}
 
 @register.inclusion_tag(filename="tags/logo.html")
 def logo():
+    return {}
+
+@register.inclusion_tag(filename="tags/step.html", takes_context=True)
+def step(context, step: Dict):
+    return step
+
+@register.inclusion_tag(filename="tags/cookies.html")
+def cookies():
     return {}

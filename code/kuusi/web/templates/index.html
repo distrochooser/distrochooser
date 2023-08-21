@@ -2,23 +2,14 @@
 {% load web_extras %}
 {% block content%}
 <div class="row">
-    <div class="col-3">
+    <div class="col-2"></div>
+    <div class="col-1">
+        {% for step in steps %}
+            {% step step %}
+        {% endfor %}
     </div>
     <div class="col-6">
         {% page page %}
     </div>
 </div>
-<style>
-    .row {
-        border: 1px solid red;
-    }
-
-    .col {
-        border: 1px solid green;
-    }
-
-    .child-facette {
-        border: 1px solid fuchsia;
-    }
-</style>
 {% endblock %}

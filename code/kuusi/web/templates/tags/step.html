@@ -1,0 +1,27 @@
+{% load web_extras %}
+
+<div class="row ku-step">
+    <div class="col-12">
+        <span class="ku-step-major  {% if major.active %} ku-step-major-active {% endif %}">
+            <i class="{{ icon }}"></i>
+        </span>
+        <span class="ku-step-major-title">
+            {% if major.href %}
+            <a href="{{major.href}}" class="{% if major.active %} ku-step-active {% endif %}">{{major.title}}</a>
+            {% else %}
+            <span>{{major.title}}</span>
+            {%endif %}
+        </span>
+    </div>
+    {% for step in minor %}
+    <div class="col-12">
+        <span class="ku-step-minor-title {% if step.active %} ku-step-title-active {% endif %}">
+            {% if step.href %}
+            <a href="{{step.href}}" class="{% if step.active %} ku-step-active {% endif %}">{{step.title}}</a>
+            {% else %}
+            <span>{{step.title}}</span>
+            {%endif %}
+        </span>
+    </div>
+    {% endfor %}
+</div>

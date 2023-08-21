@@ -449,7 +449,6 @@ class ResultListWidget(Widget):
             "results": ranked_result
         }, request)
 
-
 def get_session_result_id():
     letters = string.ascii_lowercase + "1234567890"
     result_str = ''.join(random.choice(letters) for i in range(10))
@@ -592,3 +591,23 @@ class FacetteAssignment(Translateable):
         choices=AssignmentType.choices,
         default=AssignmentType.NEUTRAL
     )   
+
+class Category(Translateable):
+    name = TranslateableField(null=False, blank=False, max_length=120)
+    icon = models.CharField(null=False, blank=False, default="bi bi-clipboard2-data", max_length=100)
+    identifier = models.CharField(null=False, blank=False, max_length=100)
+    child_of = models.ForeignKey(to="Category", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="category_child_of")
+    target_page = models.ForeignKey(to="Page", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="category_target_page")
+    
+    def to_step(self, current_location: str, language_code: str) -> Dict:
+        """
+        Returns the structure so that the custom tag "steps" can generate the navigation element.
+        """
+        target = None
+        if self.target_page:
+            target = f"/?page={self.target_page.pk}"
+        return  {"title": self.__("name", language_code), "href": target, "active": current_location ==  target}
+    
+
+    def __str__(self) -> str:
+        return f"[{self.icon}] {self.name} -> {self.target_page} (child of: {self.child_of})"
