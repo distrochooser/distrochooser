@@ -29,7 +29,7 @@ def route_index(request: WebHttpRequest):
     page_id = request.GET.get("page")
     page = None
     if page_id:
-        page = Page.objects.get(pk=page_id)
+        page = Page.objects.get(catalogue_id=page_id)
     else:
         page = Page.objects.first()
 

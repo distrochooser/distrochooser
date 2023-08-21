@@ -189,6 +189,10 @@ class Page(Translateable):
     def __str__(self) -> str:
         return f"{self.title}"
     
+    @property
+    def href(self):
+        return f"/?page={self.catalogue_id}"
+    
     def is_visible(self, session: Session | None) -> bool:
         """
         Returns if the page is visible in view of the session version
@@ -651,9 +655,11 @@ class Category(Translateable):
         If the target page is not fitting the version of the session, None is returned.
         """
         target = None
-        if self.target_page:
-            target = f"/?page={self.target_page.pk}"
-            if not self.target_page.is_visible(session):
+        target_page: Page = self.target_page
+        if target_page:
+            target = target_page.href
+
+            if not target_page.is_visible(session):
                 return None
         return  {"title": self.__("name", language_code), "href": target, "active": current_location ==  target}
     
