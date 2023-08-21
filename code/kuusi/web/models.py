@@ -185,8 +185,19 @@ class Page(Translateable):
     title = TranslateableField(null=False, blank=False, max_length=120)
     next_page = models.ForeignKey(to="Page", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="page_next")
     require_session = models.BooleanField(default=False)
+    not_in_versions = models.ManyToManyField(to="SessionVersion", blank=True)
     def __str__(self) -> str:
         return f"{self.title}"
+    
+    def is_visible(self, session: Session | None) -> bool:
+        """
+        Returns if the page is visible in view of the session version
+        """
+        is_page_visible = True
+        if session and session.version:
+            if self.not_in_versions.filter(pk=session.version.pk).count() > 0:
+                is_page_visible = False
+        return is_page_visible
     
     @property
     def previous_page(self) -> Page | None:
@@ -195,7 +206,7 @@ class Page(Translateable):
     @property
     def widget_list(self) -> List[Widget]:
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
-        return list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self])) + list(ResultListWidget.objects.filter(pages__pk__in=[self])) + list(ResultShareWidget.objects.filter(pages__pk__in=[self])) +  list(NavigationWidget.objects.filter(pages__pk__in=[self]))
+        return list(SessionVersionWidget.objects.filter(pages__pk__in=[self])) +  list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self])) + list(ResultListWidget.objects.filter(pages__pk__in=[self])) + list(ResultShareWidget.objects.filter(pages__pk__in=[self])) +  list(NavigationWidget.objects.filter(pages__pk__in=[self]))
 
     def proceed(self, request: WebHttpRequest) -> bool:
         for widget in self.widget_list:
@@ -213,7 +224,6 @@ class Page(Translateable):
         X and Y are hereby the cols to be used.
         """
         result = list()
-        # TODO: add all widget types into this query.
         widgets_used = self.widget_list
         all_widgets = Widget.objects.filter(pages__in=[self])
         max_row = all_widgets.aggregate(Max('row'))["row__max"]
@@ -234,6 +244,7 @@ class Page(Translateable):
                 else:
                     row_list.append(None)
             result.append(row_list)
+        logger.debug(result)
         return result
     
 class Widget(models.Model):
@@ -470,6 +481,32 @@ class Session(models.Model):
     started = models.DateTimeField(default=timezone.now,null=False,blank=False)
     user_agent = models.CharField(default=None, null=True, blank=True, max_length=150)
     result_id = models.CharField(default=get_session_result_id, max_length=10, null=False, blank=False)    
+    version = models.ForeignKey(to="SessionVersion", on_delete=models.SET_NULL, null=True, default=None, blank=True, related_name="session_version")
+
+class SessionVersion(Translateable):
+    version_name = TranslateableField(null=False, blank=False, max_length=120)
+
+class SessionVersionWidget(Widget):
+    def proceed(self, request: WebHttpRequest, page: Page) -> bool:
+        # TODO: Force the page to run into an exception if the page afterwards is not requiring a session.
+
+        session = request.session_obj
+        version = request.POST.get("KU_SESSION_VERSION")
+
+        if session:
+            if version is None or len(version) == 0:
+                session.version = None
+            else:
+                session.version = SessionVersion.objects.get(pk=version)
+            session.save()
+        return True
+    def render(self, request: WebHttpRequest, page: Page):
+        render_template = loader.get_template(f"widgets/version.html")
+        versions = SessionVersion.objects.all()
+        return render_template.render({
+            "versions": versions,
+            "selected_version": None if not request.session_obj else request.session_obj.version
+        }, request)
 
 class Choosable(Translateable):
     """
@@ -607,13 +644,17 @@ class Category(Translateable):
     child_of = models.ForeignKey(to="Category", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="category_child_of")
     target_page = models.ForeignKey(to="Page", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="category_target_page")
     
-    def to_step(self, current_location: str, language_code: str) -> Dict:
+    def to_step(self, current_location: str, language_code: str, session: Session | None) -> Dict | None:
         """
         Returns the structure so that the custom tag "steps" can generate the navigation element.
+        
+        If the target page is not fitting the version of the session, None is returned.
         """
         target = None
         if self.target_page:
             target = f"/?page={self.target_page.pk}"
+            if not self.target_page.is_visible(session):
+                return None
         return  {"title": self.__("name", language_code), "href": target, "active": current_location ==  target}
     
 

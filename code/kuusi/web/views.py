@@ -15,7 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
 
@@ -51,13 +51,8 @@ def route_index(request: WebHttpRequest):
         else:
             next_page = None
 
-    categories = []
-    for chained_page in pages:
-        # Child categories will be created later, when the steps are created.
-        used_in_category = Category.objects.filter(target_page=chained_page,child_of__isnull=True )
-        if used_in_category.count() > 0:
-            categories.append(used_in_category.first())
-
+    # it is REQUIRED that a possible version selection is done before pages handle with sessions.
+    # in best case, there is a welcome page (without cookies) > then the version select -> then the pages following.
     session = None
     if page.require_session:
         if "result_id" not in request.session:
@@ -71,7 +66,23 @@ def route_index(request: WebHttpRequest):
             session = Session.objects.filter(result_id=request.session["result_id"]).first()
 
     # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
+    # TODO: Prevent that categories are disappearing due to missing session on the first page
     request.session_obj = session
+
+    # Only include the pages fitting the selected version
+    version_comp_pages = []
+    page: Page
+    for chained_page in pages:
+        if chained_page.is_visible(session):
+            version_comp_pages.append(chained_page)
+
+    pages = version_comp_pages
+    categories = []
+    for chained_page in pages:
+        # Child categories will be created later, when the steps are created.
+        used_in_category = Category.objects.filter(target_page=chained_page,child_of__isnull=True)
+        if used_in_category.count() > 0:
+            categories.append(used_in_category.first())
     # TODO: These are not properly set within WebHttpRequest class.
     request.has_errors = False
     request.has_warnings = False
@@ -90,12 +101,12 @@ def route_index(request: WebHttpRequest):
     for category in categories:
         minor_steps = []
         # TODO: Inject language
-        category_step = category.to_step(current_location, "en")
+        category_step = category.to_step(current_location, "en", request.session_obj)
         child_categories = Category.objects.filter(child_of=category)
         child_category: Category
         for child_category in child_categories: 
             minor_steps.append(
-                child_category.to_step(current_location, "en")
+                child_category.to_step(current_location, "en", request.session_obj)
             )
 
         step = {
@@ -104,7 +115,8 @@ def route_index(request: WebHttpRequest):
             "minor": minor_steps,
         }
         step_data.append(step)
-
+    if not page.is_visible(request.session_obj):
+        return HttpResponseNotAllowed(_("PAGE_NOT_AVAILABLE"))
     context = {
         "page": page,
         "steps": step_data
