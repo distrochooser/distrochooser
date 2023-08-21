@@ -271,7 +271,7 @@ class HTMLWidget(Widget):
 class FacetteSelectionWidget(Widget):
     topic = models.CharField(null=False, blank=False, max_length=120)
 
-    def build_form(self, data: Dict | None) -> Tuple[WarningForm, List]:
+    def build_form(self, data: Dict | None, session: Session) -> Tuple[WarningForm, List]:
         facette_form = WarningForm(data) if data else WarningForm()
         facettes = Facette.objects.filter(topic=self.topic)
         child_facettes = []
@@ -291,14 +291,22 @@ class FacetteSelectionWidget(Widget):
                 child_facettes.append(sub_facette.catalogue_id)
              
         # trigger facette behaviours
-        active_facettes = self.get_active_facettes(facette_form)
+        # While we need to now _all_ selected facettes, it's also required to know the facettes within the current screen
+        active_facettes_this_widget = self.get_active_facettes(facette_form, session)
+        selections = FacetteSelection.objects.filter(session=session)
+        active_facettes = []
+        selection: FacetteSelection
+        for selection in selections:
+            if selection.facette not in active_facettes:
+                active_facettes.append(selection.facette)
         facette: Facette
         for facette in active_facettes:
             behaviours = FacetteBehaviour.objects.all()
         
             behaviour: FacetteBehaviour
             for behaviour in behaviours:
-                not_this = list(filter(lambda f: f.pk != facette.pk, active_facettes))
+                # We only care about behavours true for a facette within the current screen while we iterate all facettes *somewhere* selected
+                not_this = list(filter(lambda f: f.pk != facette.pk, active_facettes_this_widget))
                 result = behaviour.is_true(facette, not_this)
                 if result: 
                     if behaviour.criticality == FacetteBehaviour.Criticality.ERROR:
@@ -308,8 +316,7 @@ class FacetteSelectionWidget(Widget):
                 
         return facette_form, child_facettes
 
-    def get_active_facettes(self, form: Form) -> List:
-        # TODO: Also include facettes from the session
+    def get_active_facettes(self, form: Form, session: Session) -> List:
         facettes = Facette.objects.all()
         active_facettes = []
         if not form.is_valid():
@@ -321,11 +328,12 @@ class FacetteSelectionWidget(Widget):
             active = form.cleaned_data.get(key)
             if active:
                 active_facettes.append(facette)
+        
     
         return active_facettes
 
     def proceed(self, request: WebHttpRequest, page: Page) -> bool:
-        facette_form, _ = self.build_form(request.POST)
+        facette_form, _ = self.build_form(request.POST, request.session_obj)
 
         is_valid = facette_form.is_valid()
 
@@ -337,7 +345,7 @@ class FacetteSelectionWidget(Widget):
             # Make sure there is no double facette selections within this topic of the page
             # TODO: Make more dependend from the page rather than the topic
             FacetteSelection.objects.filter(session=request.session_obj, facette__topic=self.topic).delete()
-            active_facettes = self.get_active_facettes(facette_form)
+            active_facettes = self.get_active_facettes(facette_form, request.session_obj)
             # store facettes
             facette: Facette
             for facette in active_facettes:
@@ -363,7 +371,7 @@ class FacetteSelectionWidget(Widget):
             selection: Facette
             for selection in selected_facettes:
                 data[selection.facette.catalogue_id] = "on"
-        facette_form, child_facettes = self.build_form(data)
+        facette_form, child_facettes = self.build_form(data, request.session_obj)
         context = {}        
         context["form"] = facette_form
 
