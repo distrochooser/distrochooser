@@ -32,6 +32,32 @@ def route_index(request: WebHttpRequest):
         page = Page.objects.get(pk=page_id)
     else:
         page = Page.objects.first()
+
+    # get the categories in an order fitting the pages
+    pages = []
+    prev_page = page.previous_page
+    while prev_page is not None:
+        if prev_page:
+            pages = [prev_page] + pages
+            prev_page = prev_page.previous_page
+        else:
+            prev_page = None
+    pages.append(page)
+    next_page = page.next_page
+    while next_page is not None:
+        if next_page:
+            pages.append(next_page)
+            next_page = next_page.next_page
+        else:
+            next_page = None
+
+    categories = []
+    for chained_page in pages:
+        # Child categories will be created later, when the steps are created.
+        used_in_category = Category.objects.filter(target_page=chained_page,child_of__isnull=True )
+        if used_in_category.count() > 0:
+            categories.append(used_in_category.first())
+
     session = None
     if page.require_session:
         if "result_id" not in request.session:
@@ -58,7 +84,6 @@ def route_index(request: WebHttpRequest):
         if result and page.next_page:
             return HttpResponseRedirect(f"/?page={page.next_page.pk}")
     
-    categories = Category.objects.filter(child_of__isnull=True)
     current_location = request.get_full_path()
     step_data = []
     category: Category
