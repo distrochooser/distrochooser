@@ -1,6 +1,10 @@
 .ku-step {
     margin-bottom: 0.25em;
 }
+.ku-step-button {
+    background: #fff0;
+    border: 0px rgb(14, 15, 16);
+}
 .ku-step-major {
     background-color: red;
     color: white;
@@ -35,8 +39,8 @@
     }
 }
 
-.ku-step-major-title a,
-.ku-step-minor-title a {
+.ku-step-major-title button,
+.ku-step-minor-title button {
     color: grey;
     text-decoration: none;
 
