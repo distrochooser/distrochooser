@@ -1,5 +1,6 @@
 {% load web_extras %}
 {% load i18n %}
+
 <div class="row ku-step">
     <div class="col-12">
         <span class="ku-step-major  {% if major.active %} ku-step-major-active {% endif %}">
@@ -7,7 +8,7 @@
         </span>
         <span class="ku-step-major-title">
             {% if major.href %}
-                <button name="BTN_FORCED_NAVIGATION" class="ku-step-button {% if major.active %} ku-step-active {% endif %}" value="{{major.href}}">{{major.title}}</button>
+                <button name="BTN_FORCED_NAVIGATION" class="ku-step-button {% if major.active %} ku-step-active {% endif %} {% if major.answered %} ku-step-answered {% endif %}" value="{{major.href}}">{{major.title}}</button>
             {% else %}
             <span>{{major.title}}</span>
             {%endif %}
@@ -17,7 +18,7 @@
     <div class="col-12">
         <span class="ku-step-minor-title {% if step.active %} ku-step-title-active {% endif %}">
             {% if step.href %}
-            <button  name="BTN_FORCED_NAVIGATION" class="ku-step-button {% if step.active %} ku-step-active {% endif %}" value="{{step.href}}">{{step.title}}</button>
+            <button  name="BTN_FORCED_NAVIGATION" class="ku-step-button {% if step.active %} ku-step-active {% endif %} {% if step.answered %} ku-step-answered {% endif %}" value="{{step.href}}">{{step.title}}</button>
             {% else %}
             <span>{{step.title}}</span>
             {%endif %}

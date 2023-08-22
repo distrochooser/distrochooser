@@ -68,7 +68,8 @@ def route_index(request: WebHttpRequest):
     # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
     # TODO: Prevent that categories are disappearing due to missing session on the first page
     request.session_obj = session
-
+    if request.session_obj:
+        print(session.answered_pages)
     # Only include the pages fitting the selected version
     version_comp_pages = []
     page: Page

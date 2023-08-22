@@ -362,6 +362,7 @@ class FacetteSelectionWidget(Widget):
         if is_valid:
             # Make sure there is no double facette selections within this topic of the page
             # TODO: Make more dependend from the page rather than the topic
+            # TODO: Make sure sub facettes are deleted if there parent facette selection is deleted
             FacetteSelection.objects.filter(session=request.session_obj, facette__topic=self.topic).delete()
             active_facettes = self.get_active_facettes(facette_form, request.session_obj)
             # store facettes
@@ -490,6 +491,21 @@ class Session(models.Model):
     result_id = models.CharField(default=get_session_result_id, max_length=10, null=False, blank=False)    
     version = models.ForeignKey(to="SessionVersion", on_delete=models.SET_NULL, null=True, default=None, blank=True, related_name="session_version")
 
+    @property
+    def answered_pages(self):
+        pages = Page.objects.all()
+        answer_state = {}
+        page: Page
+        for page in pages:
+            # TODO: Make this more variable if an answer could result in a text field value, for example.
+            facette_widgets = FacetteSelectionWidget.objects.filter(pages__pk__in=[page.pk])
+            if facette_widgets.count() > 0:
+                widget: FacetteSelectionWidget 
+                for widget in facette_widgets:
+                    has_selections = FacetteSelection.objects.filter(session=self, facette__topic=widget.topic).count() > 0
+                    if has_selections:
+                        answer_state[page.catalogue_id] = has_selections
+        return answer_state
 class SessionVersion(Translateable):
     version_name = TranslateableField(null=False, blank=False, max_length=120)
 
@@ -664,7 +680,8 @@ class Category(Translateable):
 
             if not target_page.is_visible(session):
                 return None
-        return  {"title": self.__("name", language_code), "href": target, "active": current_location ==  target}
+            is_answered =  target_page.catalogue_id in session.answered_pages if session and target_page.catalogue_id in session.answered_pages else False
+        return  {"title": self.__("name", language_code), "href": target, "active": current_location ==  target, "answered": is_answered}
     
 
     def __str__(self) -> str:
