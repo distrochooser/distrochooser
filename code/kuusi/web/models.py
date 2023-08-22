@@ -293,16 +293,19 @@ class FacetteSelectionWidget(Widget):
         for facette in facettes:
             is_child = facette.is_child
             has_child = facette.has_child
+            is_selected = FacetteSelection.objects.filter(facette=facette, session=session).count() > 0
             if not is_child:
                 facette_form.fields[facette.catalogue_id] = BooleanField(required=False)
                 if has_child:
                     facette_form.fields[facette.catalogue_id].widget.attrs['data-bs-toggle'] = 'collapse'
                     facette_form.fields[facette.catalogue_id].widget.attrs['data-bs-target'] = f'#collapse-{facette.catalogue_id}'
-                    facette_form.fields[facette.catalogue_id].widget.attrs['aria-expanded'] = 'false'
+                    facette_form.fields[facette.catalogue_id].widget.attrs['aria-expanded'] = 'false' if not is_selected else 'true'
                     facette_form.fields[facette.catalogue_id].widget.attrs['aria-controls'] = f'collapse-{facette.catalogue_id}'
+                    facette_form.fields[facette.catalogue_id].widget.attrs['data-ku-id'] = facette.catalogue_id
        
             for sub_facette in facette.child_facettes.all():
                 facette_form.fields[sub_facette.catalogue_id] = BooleanField(required=False)
+                facette_form.fields[sub_facette.catalogue_id].widget.attrs['data-ku-parent'] = facette.catalogue_id
                 child_facettes.append(sub_facette.catalogue_id)
              
         # trigger facette behaviours
