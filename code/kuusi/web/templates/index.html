@@ -1,15 +1,19 @@
 {% extends '_layout.html' %}
 {% load web_extras %}
 {% block content%}
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col-1">
-        {% for step in steps %}
-            {% step step %}
-        {% endfor %}
+
+<form method="post" enctype="application/x-www-form-urlencoded">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-1">
+            {% for step in steps %}
+                {% step step %}
+            {% endfor %}
+        </div>
+        <div class="col-6">
+            {% page page %}
+        </div>
     </div>
-    <div class="col-6">
-        {% page page %}
-    </div>
-</div>
+</form>
 {% endblock %}

@@ -1,7 +1,4 @@
 {% load web_extras %}
-<form  method="post" enctype="application/x-www-form-urlencoded">
-
-{% csrf_token %}
 <h1>{%__ page "title" %}</h1>
 {% for row in page.structure %}
 <div class="row">
@@ -16,4 +13,3 @@
     {% endfor %}
 </div>
 {% endfor %}
-</form>

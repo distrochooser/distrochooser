@@ -92,10 +92,18 @@ def route_index(request: WebHttpRequest):
             if "BTN_NEXT_PAGE_FORCE" in request.POST:
                 logger.debug(f"User decided to force to next page even as there are issues present (has_errors={request.has_errors},has_warnings={request.has_warnings})")
                 result = True
+        
+
+        if "BTN_FORCED_NAVIGATION" in request.POST:
+            value = request.POST.get("BTN_FORCED_NAVIGATION")
+            return HttpResponseRedirect(value)
+    
         if result and page.next_page:
             return HttpResponseRedirect(page.next_page.href)
-    
     current_location = request.get_full_path()
+    # If the user is curently on the start page -> use the first available site as "current location"
+    if current_location.__len__() <= 1:
+        current_location = pages[0].href
     step_data = []
     category: Category
     for category in categories:
