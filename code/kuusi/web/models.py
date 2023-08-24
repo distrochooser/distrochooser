@@ -222,6 +222,9 @@ class Page(Translateable):
 
     @property
     def facette_selection_descriptions(self) -> List[str]:
+        """
+        Return a list of descriptions collected within FacetteSelectionWidgets of this page
+        """
         result = list()
         widgets_used = FacetteSelectionWidget.objects.filter(pages__pk__in=[self])
 
