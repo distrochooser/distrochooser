@@ -186,6 +186,7 @@ class Page(Translateable):
     next_page = models.ForeignKey(to="Page", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="page_next")
     require_session = models.BooleanField(default=False)
     not_in_versions = models.ManyToManyField(to="SessionVersion", blank=True)
+    can_be_marked = models.BooleanField(default=False)
     def __str__(self) -> str:
         return f"{self.title}"
     
@@ -266,7 +267,26 @@ class Page(Translateable):
             result.append(row_list)
         logger.debug(result)
         return result
-    
+
+    def is_marked(self, session: Session):
+        return PageMarking.objects.filter(page=self, session=session).count() > 0
+
+    def toggle_marking(self, session: Session):
+        marking_matches = PageMarking.objects.filter(page=self, session=session)
+
+        if marking_matches.count() > 0:
+            marking_matches.delete()
+        else:
+            marking = PageMarking(
+                page=self,
+                session=session
+            )
+            marking.save()
+
+class PageMarking(models.Model):
+    page = models.ForeignKey(to=Page, on_delete=models.CASCADE, blank=False,null=False, related_name="pagemarking_page")
+    session = models.ForeignKey(to="Session", on_delete=models.CASCADE, blank=False,null=False, related_name="pagemarking_session")
+
 class Widget(models.Model):
     row = models.IntegerField(default=1, null=False, blank=False)
     col = models.IntegerField(default=1, null=False, blank=False)
@@ -425,7 +445,8 @@ class NavigationWidget(Widget):
         return render_template.render({
             "page": page,
             "has_errors": request.has_errors,
-            "has_warnings": request.has_warnings
+            "has_warnings": request.has_warnings,
+            "is_marked": page.is_marked(request.session_obj)
         }, request)
 
 class ResultShareWidget(Widget):    
@@ -699,7 +720,8 @@ class Category(Translateable):
             if not target_page.is_visible(session):
                 return None
             is_answered =  target_page.catalogue_id in session.answered_pages if session and target_page.catalogue_id in session.answered_pages else False
-        return  {"title": self.__("name", language_code), "href": target, "active": current_location ==  target, "answered": is_answered}
+            is_marked = target_page.is_marked(session)
+        return  {"title": self.__("name", language_code), "href": target, "active": current_location ==  target, "answered": is_answered, "marked": is_marked}
     
 
     def __str__(self) -> str:

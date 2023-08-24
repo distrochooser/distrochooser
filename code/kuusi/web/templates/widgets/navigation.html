@@ -6,8 +6,21 @@
 </div>
 {% endif %}
 <div class="row">
-    <div class="col-6">
+    <div class="col-3">
         CTX: {{ page }}
+    </div>
+    <div class="col-3">
+        <!-- {% trans "BTN_MARK" %} -->
+        <!-- {% trans "BTN_UNMARK" %} -->
+        {% if page.can_be_marked %}
+            <button name="BTN_MARK_TOGGLE" class="btn btn-primary"  value="BTN_MARK_TOGGLE">
+                {% if is_marked %}
+                {% trans "BTN_UNMARK" %}
+                {% else %}
+                {% trans "BTN_MARK" %}
+                {% endif %}
+            </button>
+        {% endif %}
     </div>
     <div class="col-3">
         <!-- {% trans "BTN_PREV_PAGE" %} -->

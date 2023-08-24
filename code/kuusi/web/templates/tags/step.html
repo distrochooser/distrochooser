@@ -12,6 +12,9 @@
             {% else %}
             <span>{{major.title}}</span>
             {%endif %}
+            {% if major.marked%}
+                <i class="bi bi-question-diamond"></i>
+            {% endif %}
         </span>
     </div>
     {% for step in minor %}
@@ -22,6 +25,9 @@
             {% else %}
             <span>{{step.title}}</span>
             {%endif %}
+            {% if step.marked%}
+                <i class="bi bi-question-diamond"></i>
+            {% endif %}
         </span>
     </div>
     {% endfor %}

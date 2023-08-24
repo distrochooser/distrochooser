@@ -68,8 +68,6 @@ def route_index(request: WebHttpRequest):
     # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
     # TODO: Prevent that categories are disappearing due to missing session on the first page
     request.session_obj = session
-    if request.session_obj:
-        print(session.answered_pages)
     # Only include the pages fitting the selected version
     version_comp_pages = []
     page: Page
@@ -87,7 +85,11 @@ def route_index(request: WebHttpRequest):
     # TODO: These are not properly set within WebHttpRequest class.
     request.has_errors = False
     request.has_warnings = False
-    if request.method == "POST":
+    if request.method == "POST":  
+        stay = False
+        if page.can_be_marked and "BTN_MARK_TOGGLE" in request.POST:
+            page.toggle_marking(request.session_obj)
+            stay = True
         result = page.proceed(request)
         if not result:
             if "BTN_NEXT_PAGE_FORCE" in request.POST:
@@ -99,7 +101,7 @@ def route_index(request: WebHttpRequest):
             value = request.POST.get("BTN_FORCED_NAVIGATION")
             return HttpResponseRedirect(value)
     
-        if result and page.next_page:
+        if result and page.next_page and not stay:
             return HttpResponseRedirect(page.next_page.href)
     current_location = request.get_full_path()
     # If the user is curently on the start page -> use the first available site as "current location"
