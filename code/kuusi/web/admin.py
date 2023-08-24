@@ -26,7 +26,7 @@ from web.models import Choosable, TranslateableFieldRecord, Translateable, Categ
     (Translateable,),
     (Category,),
     (Page,),
-    (Widget,),
+#    (Widget,), just for debugging (is base class only)
     (HTMLWidget,),
     (NavigationWidget,),
     (FacetteSelectionWidget,),

@@ -19,15 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from typing import Dict, List
 from django import template
 
+from django.utils.translation import gettext as _
 from django.http import HttpRequest
 from django.forms import Form
 
 from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable
 
-from kuusi.settings import KUUSI_URL, KUUSI_NAME, KUUSI_COPYRIGHT_STRING
+from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, KUUSI_FOOTER_LINKS
 
 register = template.Library()
-
 
 @register.filter
 def prev(haystack: Dict, index: int):
@@ -75,13 +75,15 @@ def cookies():
 
 @register.inclusion_tag(filename="tags/footer.html")
 def footer():
+    links = []
+    # FIXME: Translation not read when not inside of template
+    for link in KUUSI_FOOTER_LINKS:
+        link["title"] = _(link["title"])
+        links.append(link)
     return {
         "left_text": KUUSI_COPYRIGHT_STRING,
-        "links": [
-            {"href": "/about", "title": "/about"},
-            {"href": "/privacy", "title": "/privacy"},
-            {"href": "/imprint", "title": "/imprint"},
-        ],
+        "free_nav": KUUSI_INFO_STRING,
+        "links": links,
     }
 
 

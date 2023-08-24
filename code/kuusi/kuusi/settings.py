@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "crispy_forms",
     "crispy_bootstrap5",
-    "web"
+    "web",
 ]
 
 MIDDLEWARE = [
@@ -57,7 +57,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.locale.LocaleMiddleware"
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "kuusi.urls"
@@ -117,8 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-us"
 
 LANGUAGES = [
-  ('de', "Deutsch"),
-  ('en', "Englisch"),
+    ("de", "Deutsch"),
+    ("en", "Englisch"),
 ]
 
 TIME_ZONE = "UTC"
@@ -133,9 +133,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (
-    "/Users/chm/Documents/distrochooser/static",
-)
+STATICFILES_DIRS = ("/Users/chm/Documents/distrochooser/static",)
 
 STATIC_ROOT = ""
 
@@ -144,22 +142,20 @@ STATIC_ROOT = ""
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOCALE_PATHS = (
-    "/Users/chm/Documents/distrochooser/locale",
-)
+LOCALE_PATHS = ("/Users/chm/Documents/distrochooser/locale",)
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
         },
     },
-    'loggers': {
-        'root': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
+    "loggers": {
+        "root": {
+            "handlers": ["console"],
+            "level": "DEBUG",
         },
     },
 }
@@ -168,8 +164,16 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-KUUSI_URL="https://beta.distrochooser.de"
+KUUSI_URL = "https://beta.distrochooser.de"
 
-KUUSI_NAME="distrochooser.de"
+KUUSI_NAME = "distrochooser.de"
 
 KUUSI_COPYRIGHT_STRING = "text copyright"
+
+KUUSI_INFO_STRING = "Ein Projekt von <a href='https://chmr.eu'>chmr.eu</a>"
+
+KUUSI_FOOTER_LINKS = [
+    {"href": "/about", "title": "FOOTER_ABOUT"},
+    {"href": "/privacy", "title": "FOOTER_PRIVACY"},
+    {"href": "/imprint", "title": "FOOTER_IMPRINT"}
+]
