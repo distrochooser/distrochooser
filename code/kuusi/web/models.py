@@ -221,6 +221,19 @@ class Page(Translateable):
         return True
 
     @property
+    def facette_selection_descriptions(self) -> List[str]:
+        result = list()
+        widgets_used = FacetteSelectionWidget.objects.filter(pages__pk__in=[self])
+
+        widget: FacetteSelectionWidget
+        for widget in widgets_used:
+            if widget.description:
+                result.append(widget.description)
+        
+        return result
+
+
+    @property
     def structure(self) -> List[List[Widget]]:
         """
         Returns the structure of the page as a 2-dimensional list containing widgets.
@@ -285,6 +298,8 @@ class HTMLWidget(Widget):
 
 class FacetteSelectionWidget(Widget):
     topic = models.CharField(null=False, blank=False, max_length=120)
+    # FIXME: The description field will not be taken over by any i18n processes, Translateablefield is not really available as FacetteSelectionWidget inherits Widget, not Translateable
+    description = models.TextField(null=True, blank=True, default=None, max_length=250)
 
     def build_form(self, data: Dict | None, session: Session) -> Tuple[WarningForm, List]:
         facette_form = WarningForm(data) if data else WarningForm()
