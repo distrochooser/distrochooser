@@ -19,7 +19,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllow
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
 
-
+from kuusi.settings import KUUSI_NAME
 from web.models import Page, Session, WebHttpRequest, Category
 from logging import getLogger
 logger = getLogger('root')
@@ -129,6 +129,7 @@ def route_index(request: WebHttpRequest):
     if not page.is_visible(request.session_obj):
         return HttpResponseNotAllowed(_("PAGE_NOT_AVAILABLE"))
     context = {
+        "title": KUUSI_NAME,
         "page": page,
         "steps": step_data
     }

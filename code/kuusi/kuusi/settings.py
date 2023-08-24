@@ -166,7 +166,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 KUUSI_URL = "https://beta.distrochooser.de"
 
-KUUSI_NAME = "distrochooser.de"
+KUUSI_NAME = "Distrochooser"
 
 KUUSI_COPYRIGHT_STRING = "text copyright"
 
