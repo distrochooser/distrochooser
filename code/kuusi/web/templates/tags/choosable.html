@@ -1,0 +1,38 @@
+{% load web_extras %}
+{% load i18n %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                {%__ choosable "name" %}: {{ score }}
+            </div>
+            <div class="card-body">
+                {%__ choosable "description" %}
+
+                <div class="row mb-2 mt-2">
+                    {% for _, meta_obj in  choosable.meta.items%}
+                    <div class="col-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-truncate">{%__ meta_obj "meta_title" %}</h5>
+                                <p class="card-text">
+                                    {% meta_value meta_obj %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <ul>
+                            {% for assignment in assignments %}
+                            <li>{{ assignment.assignment_type }}: {%__  assignment "description" %}</li>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

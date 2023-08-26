@@ -1,0 +1,10 @@
+{% load humanize %}
+{% if obj.meta_type == "FLAG" %}
+<span class="fi fi-{{obj.meta_value}}"></span>
+{% elif obj.meta_type == "TEXT" %}
+{{obj.meta_value}}
+{% elif obj.meta_type == "DATE" %}
+{{obj.meta_value}} 
+{% elif obj.meta_type == "LINK" %}
+<a target="_blank" href="{{obj.meta_value}}">{{obj.meta_title}}</a>
+{% endif %}

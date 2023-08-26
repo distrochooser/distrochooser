@@ -23,7 +23,7 @@ from django.utils.translation import gettext as _
 from django.http import HttpRequest
 from django.forms import Form
 
-from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable
+from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
 
 from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, KUUSI_FOOTER_LINKS
 
@@ -112,3 +112,17 @@ def sub_facettes(context, form: Form, current_facette: str):
         "child_fields": child_fields,
         "form": form,
     }
+
+
+
+@register.inclusion_tag(filename="tags/choosable.html")
+def choosable(result: Dict):
+    choosable: Choosable = result.get("choosable")
+    score: float = result.get("score")
+    assignments: List[FacetteAssignment] = result.get("assignments")
+    return {"choosable": choosable, "score": score, "assignments": assignments}
+
+
+@register.inclusion_tag(filename="tags/meta_value.html")
+def meta_value(obj: ChoosableMeta):
+    return {"obj": obj}

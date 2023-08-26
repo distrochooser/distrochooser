@@ -18,9 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Q
 
 from kuusi.settings import KUUSI_NAME
-from web.models import Page, Session, WebHttpRequest, Category
+from web.models import Page, Session, WebHttpRequest, Category, FacetteSelectionWidget, Facette, FacetteAssignment, Choosable, FacetteBehaviour
 from logging import getLogger
 logger = getLogger('root')
 
@@ -133,5 +134,28 @@ def route_index(request: WebHttpRequest):
         "page": page,
         "steps": step_data
     }
-    return HttpResponse(template.render(context, request))
+    # TODO: create a tree , displaying the behaviours and selection reasons 
+    # TODO: Allow the user to display and modify the tree (if allowed)
+    tree= {}
+    topics = []
+    page: Page
+    for page in pages:
+        topics += page.facette_selection_topics
 
+
+    topic: str
+    for topic in topics:        
+        tree[topic] = []
+        leaf = {}
+        facettes = Facette.objects.filter(topic=topic)
+
+        facette: Facette
+        for facette in facettes:
+            pass
+
+
+
+        tree[topic].append(leaf)
+
+
+    return HttpResponse(template.render(context, request))

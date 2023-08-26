@@ -1,12 +1,28 @@
 {% load i18n%}
 
-<div class="row">
+<div class="row mb-3">
     <div class="text-center">
         {% trans "SHARE_RESULT_TEXT" %}
     </div>
 </div>
 <div class="row">
-    <div class="text-center">
-        <input class="form-control" type="text" value="{{share_link}}"/>
+    <div class="col text-center mb-2 mt-1">
+        <a class="me-2" href="https://www.facebook.com/sharer/sharer.php?u={{share_link}}" target="_blank"><i
+                class="bi bi-facebook"></i></a>
+        <a class="me-2"
+            href="https://twitter.com/share?url={{share_link}}&amp;hashtags=distrochooser,linux&amp;via=distrochooser"
+            target="_blank"><i class="bi bi-twitter"></i></a>
+        <a class="me-2" href="http://reddit.com/submit?url={{share_link}}&amp;title=Distrochooser.de" target="_blank"><i
+                class="bi bi-reddit"></i></a></span>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+
+        <div class="text-center">
+            <input class="form-control" type="text" value="{{share_link}}" />
+        </div>
     </div>
 </div>

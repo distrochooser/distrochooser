@@ -222,13 +222,17 @@ class Page(Translateable):
         return True
 
     @property
+    def facette_selections(self) -> List[FacetteSelectionWidget]:
+        widgets_used = FacetteSelectionWidget.objects.filter(pages__pk__in=[self])
+        return widgets_used
+
+    @property
     def facette_selection_descriptions(self) -> List[str]:
         """
         Return a list of descriptions collected within FacetteSelectionWidgets of this page
         """
         result = list()
-        widgets_used = FacetteSelectionWidget.objects.filter(pages__pk__in=[self])
-
+        widgets_used = self.facette_selections
         widget: FacetteSelectionWidget
         for widget in widgets_used:
             if widget.description:
@@ -236,6 +240,20 @@ class Page(Translateable):
         
         return result
 
+
+    @property
+    def facette_selection_topics(self) -> List[str]:
+        """
+        Return a list of topics collected within FacetteSelectionWidgets of this page
+        """
+        result = list()
+        widgets_used = self.facette_selections
+        widget: FacetteSelectionWidget
+        for widget in widgets_used:
+            if widget.topic:
+                result.append(widget.topic)
+        
+        return result
 
     @property
     def structure(self) -> List[List[Widget]]:
@@ -577,10 +595,47 @@ class Choosable(Translateable):
     Must be translated
     """
     name = TranslateableField(null=False, blank=False, max_length=120)
+    description = TranslateableField(null=True, blank=True, default=None, max_length=120)
 
     def __str__(self) -> str:
-        return f"{self.name}"
+        return f"{self.name}" 
     
+    @property
+    def meta(self) -> Dict[str, any]:
+        meta_objects = ChoosableMeta.objects.filter(meta_choosable=self).order_by("meta_name")
+        result = {}
+        meta_objects: ChoosableMeta
+        for meta_object in meta_objects:
+            result[meta_object.meta_name] = meta_object
+
+        return result
+
+class ChoosableMeta(Translateable):
+    meta_choosable = models.ForeignKey(to=Choosable, on_delete=models.CASCADE, null=True,blank=True, related_name="choosablemeta_choosable")
+    
+    class MetaType(models.TextChoices):
+        TEXT = "TEXT", "TEXT"
+        FLAG = "FLAG", "FLAG"
+        LINK = "LINK", "LINK"
+        DATE = "DATE", "DATE"
+    class MetaName(models.TextChoices):
+        CREATED = "CREATED", "CREATED"
+        COUNTRY = "COUNTRY", "COUNTRY"
+        LICENSES = "LICENSES", "LICENSES"
+        WEBSITE = "WEBSITE", "WEBSITE"
+
+    meta_type = models.CharField(
+        max_length=20,
+        choices=MetaType.choices,
+        default=MetaType.TEXT
+    )
+    meta_title = TranslateableField(null=True, blank=True, max_length=120)
+    meta_name = models.CharField(max_length=25, blank=False,null=False, choices=MetaName.choices, default=MetaName.CREATED)
+    meta_value = models.CharField(max_length=255, blank=False,null=False, default="A value")
+
+
+    def __str__(self) -> str:
+        return f"{self.meta_choosable}: {self.meta_name} ({self.meta_type}) -> {self.meta_value}"
 class Facette(Translateable):
     """
     A facette describes a fact narrowing down the selection for choosables.

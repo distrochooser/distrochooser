@@ -18,10 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
 
-from web.models import Choosable, TranslateableFieldRecord, Translateable, Category, Page, Widget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking
+from web.models import Choosable, TranslateableFieldRecord, Translateable, Category, Page, Widget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking, ChoosableMeta
 
 [admin.site.register(*models) for models in [
     (Choosable,),
+    (ChoosableMeta,),
     (TranslateableFieldRecord,),
     (Translateable,),
     (Category,),
