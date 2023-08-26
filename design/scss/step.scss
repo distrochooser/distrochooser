@@ -6,7 +6,7 @@
     border: 0px rgb(14, 15, 16);
 }
 .ku-step-major {
-    background-color: red;
+    background-color: grey;
     color: white;
     border-radius: 1.5em;
     width: 1.5em;
@@ -16,7 +16,7 @@
     position: relative;
     margin-left: 0.5em;
     &.ku-step-major-active {
-        background-color: green;
+        background-color: black;
     }
     i {
         margin-left: 0.25em;
@@ -27,9 +27,10 @@
     position: relative;
 }
 .ku-step-minor-title {
+    font-size: smaller;
     display: block;
-    border-left: 3px solid red;
-    margin-left: 1.1em;
+    border-left: 3px solid black;
+    margin-left: 1.4em;
     padding-bottom: 0.2em;
     padding-left: 0.5em;
     color: grey;
@@ -46,10 +47,16 @@
 
     &.ku-step-active {
         color: black;
+        text-decoration: underline;
     }
 }
 
 
 .ku-step-answered {
     font-weight: bold;
+}
+
+.ku-step-marked {
+    color: gold;
+    position: absolute;
 }

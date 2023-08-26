@@ -1,32 +1,41 @@
 {% load web_extras %}
 {% load i18n %}
-<h1>{%__ page "title" %}</h1>
-{% if page.facette_selection_descriptions|length > 0 %}
-<div class="row">
-    <a data-bs-toggle="collapse" href="#facette_selection_descriptions" role="button" aria-expanded="false" aria-controls="facette_selection_descriptions" class="text-muted text-decoration-none pb-2">
-        {% trans "ADDITIONAL_DESCRIPTION_FACETTES_LINK" %}<i class="bi bi-info-circle ms-1"></i>
-    </a>
-    <div class="collapse mb-3" id="facette_selection_descriptions">
-        <div class="card card-body">
-            {% for description in page.facette_selection_descriptions%}
-                <p class="mb-0">
-                    {{ description }}
-                </p>
+<div class="{% if not page.no_header%}card{%endif%}">
+    {% if not page.no_header%}
+    <div class="card-header">
+        {%__ page "title" %}
+    </div>
+    {%endif%}
+    <div class="card-body">
+        {% if page.facette_selection_descriptions|length > 0 %}
+        <div class="row">
+            <a data-bs-toggle="collapse" href="#facette_selection_descriptions" role="button" aria-expanded="false"
+                aria-controls="facette_selection_descriptions" class="text-muted text-decoration-none pb-2">
+                {% trans "ADDITIONAL_DESCRIPTION_FACETTES_LINK" %}<i class="bi bi-info-circle ms-1"></i>
+            </a>
+            <div class="collapse mb-3" id="facette_selection_descriptions">
+                <div class="card card-body">
+                    {% for description in page.facette_selection_descriptions%}
+                    <p class="mb-0">
+                        {{ description }}
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% for row in page.structure %}
+        <div class="row">
+            {% for widget in row %}
+            {% if not widget %}
+            <div class="col-1"></div>
+            {% else %}
+            <div class="col col-{{widget.width}}">
+                {% render_widget widget page %}
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
+        {% endfor %}
     </div>
 </div>
-{% endif %}
-{% for row in page.structure %}
-<div class="row">
-    {% for widget in row %}
-    {% if not widget %}
-    <div class="col-1"></div>
-    {% else %}
-    <div class="col col-{{widget.width}}">
-        {% render_widget widget page %}
-    </div>
-    {% endif %}
-    {% endfor %}
-</div>
-{% endfor %}

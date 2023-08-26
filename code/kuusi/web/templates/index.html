@@ -6,8 +6,7 @@
 <form method="post" enctype="application/x-www-form-urlencoded">
     {% csrf_token %}
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-1">
+        <div class="col-3">
             {% for step in steps %}
                 {% step step %}
             {% endfor %}

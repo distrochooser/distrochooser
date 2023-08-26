@@ -187,6 +187,7 @@ class Page(Translateable):
     require_session = models.BooleanField(default=False)
     not_in_versions = models.ManyToManyField(to="SessionVersion", blank=True)
     can_be_marked = models.BooleanField(default=False)
+    no_header = models.BooleanField(default=False)
     def __str__(self) -> str:
         return f"{self.title}"
     
