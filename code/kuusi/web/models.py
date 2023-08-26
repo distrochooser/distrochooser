@@ -213,7 +213,7 @@ class Page(Translateable):
     def widget_list(self) -> List[Widget]:
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
         return list(SessionVersionWidget.objects.filter(pages__pk__in=[self])) +  list(HTMLWidget.objects.filter(pages__pk__in=[self])) + list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self])) + list(ResultListWidget.objects.filter(pages__pk__in=[self])) + list(ResultShareWidget.objects.filter(pages__pk__in=[self])) +  list(NavigationWidget.objects.filter(pages__pk__in=[self]))
-
+    
     def proceed(self, request: WebHttpRequest) -> bool:
         for widget in self.widget_list:
             result = widget.proceed(request, self)
