@@ -71,7 +71,7 @@ def route_index(request: WebHttpRequest):
     request.session_obj = session
     # Only include the pages fitting the selected version
     version_comp_pages = []
-    page: Page
+    chained_page: Page
     for chained_page in pages:
         if chained_page.is_visible(session):
             version_comp_pages.append(chained_page)
@@ -101,9 +101,28 @@ def route_index(request: WebHttpRequest):
         if "BTN_FORCED_NAVIGATION" in request.POST:
             value = request.POST.get("BTN_FORCED_NAVIGATION")
             return HttpResponseRedirect(value)
-    
-        if result and page.next_page and not stay:
-            return HttpResponseRedirect(page.next_page.href)
+        
+        forward_target: Page = None
+        attempts  = 0
+        if not stay:
+            logger.debug(f"The next page is not visible. Starting page skip.")
+            # Make sure the user is redirect to a _valid_ page instead of an empty one if the next page is not visible
+            forward_target = page.next_page
+            while forward_target and not forward_target.is_visible(session):
+                if forward_target.next_page.is_visible(session):
+                    forward_target = forward_target.next_page
+                    logger.debug(f"Forward target is now {forward_target}")
+                
+                attempts +=1
+
+                if attempts >= 10:
+                    break     
+
+            forward_target_href = page.next_page.href if page.next_page else None
+            if result:
+                if forward_target is not None:
+                    forward_target_href = forward_target.href
+                return HttpResponseRedirect(forward_target_href)
     current_location = request.get_full_path()
     # If the user is curently on the start page -> use the first available site as "current location"
     if current_location.__len__() <= 1:
@@ -136,26 +155,5 @@ def route_index(request: WebHttpRequest):
     }
     # TODO: create a tree , displaying the behaviours and selection reasons 
     # TODO: Allow the user to display and modify the tree (if allowed)
-    tree= {}
-    topics = []
-    page: Page
-    for page in pages:
-        topics += page.facette_selection_topics
-
-
-    topic: str
-    for topic in topics:        
-        tree[topic] = []
-        leaf = {}
-        facettes = Facette.objects.filter(topic=topic)
-
-        facette: Facette
-        for facette in facettes:
-            pass
-
-
-
-        tree[topic].append(leaf)
-
 
     return HttpResponse(template.render(context, request))

@@ -536,12 +536,12 @@ class ResultListWidget(Widget):
 
 def get_session_result_id():
     letters = string.ascii_lowercase + "1234567890"
-    result_str = ''.join(random.choice(letters) for i in range(10))
+    result_str = ''.join(random.choice(letters) for i in range(5))
     is_existing = Session.objects.filter(result_id=result_str).count() != 0
     while is_existing:
-        result_str = ''.join(random.choice(letters) for i in range(7))
+        result_str = ''.join(random.choice(letters) for i in range(5))
         is_existing = Session.objects.filter(result_id=result_str).count() != 0
-    return result_str 
+    return "d6" + result_str 
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now,null=False,blank=False)
