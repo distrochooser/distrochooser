@@ -545,7 +545,7 @@ def get_session_result_id():
     return "d6" + result_str 
 
 def get_session_number():
-    return SESSION_NUMBER_OFFSET + 1
+    return SESSION_NUMBER_OFFSET + Session.objects.all().count() + 1
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now,null=False,blank=False)
