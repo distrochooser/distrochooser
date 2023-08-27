@@ -725,6 +725,20 @@ class FacetteAssignment(Translateable):
     choosables = models.ManyToManyField(to=Choosable)
     facettes = models.ManyToManyField(to=Facette)
     description = TranslateableField(null=True, blank=True, default=None, max_length=255)
+    long_description = TranslateableField(null=True, blank=True, default=None, max_length=800)
+    @property 
+    def facette_topics(self) -> List[str]:
+        """
+        Returns a set of facette objects to return a unique list of topics. The Facette objects are used as translatables to provide the needed __() function
+        """
+        topics = []
+        results = []
+        facette: Facette
+        for facette in self.facettes.all():
+            if facette.topic not in topics:
+                topics.append(facette.topic)
+                results.append(facette)
+        return results
     class AssignmentType(models.TextChoices):
         POSITIVE = "POSITIVE", "POSITIVE"
         NEGATIVE = "NEGATIVE", "NEGATIVE"

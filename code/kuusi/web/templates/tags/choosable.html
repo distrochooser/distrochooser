@@ -10,7 +10,7 @@
                 {%__ choosable "description" %}
 
                 <div class="row mb-2 mt-2">
-                    {% for _, meta_obj in  choosable.meta.items%}
+                    {% for _, meta_obj in choosable.meta.items%}
                     <div class="col-2">
                         <div class="card">
                             <div class="card-body">
@@ -25,10 +25,29 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12">
-                        <ul>
+                        <div class="list-group">
                             {% for assignment in assignments %}
-                            <li>{{ assignment.assignment_type }}: {%__  assignment "description" %}</li>
+                            <div class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{%__  assignment "description" %}</h5>
+                                    <small>{{ assignment.assignment_type }}</small>
+                                </div>
+                                {% if assignment.long_description %}
+                                    <p class="mb-1">{%__  assignment "long_description" %}</p>
+                                {% endif %}
+                                <small>
+                                    {% for facette_topic in assignment.facette_topics %}
+                                    <div class="col">
+                                        <span class="badge rounded-pill text-bg-light">
+                                            {%__ facette_topic "topic" %}
+                                        </span>
+                                    </div>
+                                    {%endfor%}
+                                </small>
+                            </div>
                             {%endfor%}
+                        </div>
+                        <ul>
                         </ul>
                     </div>
                 </div>
