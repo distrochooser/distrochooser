@@ -20,7 +20,7 @@ from django.template import loader
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 
-from kuusi.settings import KUUSI_NAME
+from kuusi.settings import KUUSI_NAME, ACCELERATION
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelectionWidget, Facette, FacetteAssignment, Choosable, FacetteBehaviour
 from logging import getLogger
 logger = getLogger('root')
@@ -86,16 +86,20 @@ def route_index(request: WebHttpRequest):
     # TODO: These are not properly set within WebHttpRequest class.
     request.has_errors = False
     request.has_warnings = False
+    overwrite_status = 200
     if request.method == "POST":  
         stay = False
         if page.can_be_marked and "BTN_MARK_TOGGLE" in request.POST:
             page.toggle_marking(request.session_obj)
             stay = True
+            overwrite_status = 422
         result = page.proceed(request)
         if not result:
             if "BTN_NEXT_PAGE_FORCE" in request.POST:
                 logger.debug(f"User decided to force to next page even as there are issues present (has_errors={request.has_errors},has_warnings={request.has_warnings})")
                 result = True
+            else:
+                overwrite_status = 422  
         
 
         if "BTN_FORCED_NAVIGATION" in request.POST:
@@ -128,11 +132,12 @@ def route_index(request: WebHttpRequest):
     if current_location.__len__() <= 1:
         current_location = pages[0].href
     step_data = []
+    index: int
     category: Category
-    for category in categories:
+    for index, category in enumerate(categories):
         minor_steps = []
         # TODO: Inject language
-        category_step = category.to_step(current_location, "en", request.session_obj)
+        category_step = category.to_step(current_location, "en", request.session_obj, index == categories.__len__() - 1)
         child_categories = Category.objects.filter(child_of=category)
         child_category: Category
         for child_category in child_categories: 
@@ -151,9 +156,19 @@ def route_index(request: WebHttpRequest):
     context = {
         "title": KUUSI_NAME,
         "page": page,
-        "steps": step_data
+        "steps": step_data,
+        "acceleration": True # Turbolinks like framework present?
     }
     # TODO: create a tree , displaying the behaviours and selection reasons 
     # TODO: Allow the user to display and modify the tree (if allowed)
 
-    return HttpResponse(template.render(context, request))
+    if "accept" in request.headers and "turbo" in request.headers.get("accept"):
+        logger.debug(f"This is a turbo call")
+    else:
+        overwrite_status = 200
+        logger.debug(f"There is not ext/vnd.turbo-stream.html accept header. Revoking all status code changes.")
+
+    logger.debug(f"Status overwrite is {overwrite_status}")
+
+
+    return HttpResponse(template.render(context, request), status=overwrite_status)

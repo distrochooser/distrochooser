@@ -178,3 +178,7 @@ KUUSI_FOOTER_LINKS = [
     {"href": "/privacy", "title": "FOOTER_PRIVACY"},
     {"href": "/imprint", "title": "FOOTER_IMPRINT"}
 ]
+
+# use https://turbo.hotwired.dev to prevent flicker
+# requires the status codes to be altered.
+ACCELERATION = True

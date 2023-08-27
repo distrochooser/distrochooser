@@ -762,7 +762,7 @@ class Category(Translateable):
     child_of = models.ForeignKey(to="Category", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="category_child_of")
     target_page = models.ForeignKey(to="Page", on_delete=models.CASCADE, null=True, blank=True, default=None, related_name="category_target_page")
     
-    def to_step(self, current_location: str, language_code: str, session: Session | None) -> Dict | None:
+    def to_step(self, current_location: str, language_code: str, session: Session | None, is_last: bool = False) -> Dict | None:
         """
         Returns the structure so that the custom tag "steps" can generate the navigation element.
         
@@ -777,7 +777,7 @@ class Category(Translateable):
                 return None
             is_answered =  target_page.catalogue_id in session.answered_pages if session and target_page.catalogue_id in session.answered_pages else False
             is_marked = target_page.is_marked(session)
-        return  {"title": self.__("name", language_code), "href": target, "active": current_location ==  target, "answered": is_answered, "marked": is_marked}
+        return  {"title": self.__("name", language_code), "href": target, "active": current_location ==  target, "answered": is_answered, "marked": is_marked, "last": is_last}
     
 
     def __str__(self) -> str:
