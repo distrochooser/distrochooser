@@ -553,7 +553,8 @@ class Session(models.Model):
     result_id = models.CharField(default=get_session_result_id, max_length=10, null=False, blank=False)    
     version = models.ForeignKey(to="SessionVersion", on_delete=models.SET_NULL, null=True, default=None, blank=True, related_name="session_version")
     number = models.IntegerField(default=get_session_number, null=True, blank=True)
-
+    session_origin = models.ForeignKey(to="Session", on_delete=models.SET_NULL, null=True, default=None, blank=True, related_name="session_sessionorigin")
+    # TODO: Add a counter for statistical purposes
     @property
     def answered_pages(self):
         pages = Page.objects.all()

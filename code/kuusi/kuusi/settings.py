@@ -165,7 +165,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-KUUSI_URL = "https://beta.distrochooser.de"
+KUUSI_URL = "http://localhost:8000"
 
 KUUSI_NAME = "Distrochooser"
 

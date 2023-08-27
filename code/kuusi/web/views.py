@@ -21,11 +21,12 @@ from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 
 from kuusi.settings import KUUSI_NAME, ACCELERATION
-from web.models import Page, Session, WebHttpRequest, Category, FacetteSelectionWidget, Facette, FacetteAssignment, Choosable, FacetteBehaviour
+from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from logging import getLogger
 logger = getLogger('root')
 
-def route_index(request: WebHttpRequest):
+def route_index(request: WebHttpRequest, id: str = None):
+    # TODO: Get the original selections, copy them to the users's own session.
     template = loader.get_template('index.html')
     page_id = request.GET.get("page")
     page = None
@@ -56,6 +57,8 @@ def route_index(request: WebHttpRequest):
     # in best case, there is a welcome page (without cookies) > then the version select -> then the pages following.
     session = None
     if page.require_session:
+        # TODO: Make the handling better. TO pick up old results it's required to have a session, but the welcome page should not feature a session due to cookies
+        # TODO: Also, get rid of the csrftoken cookie until user gave consent
         if "result_id" not in request.session:
             user_agent = request.headers.get("user-agent")
             session = Session(
@@ -66,6 +69,37 @@ def route_index(request: WebHttpRequest):
         else:
             session = Session.objects.filter(result_id=request.session["result_id"]).first()
 
+    # Load selections of an old session
+    if id is not None and session:
+        old_session = Session.objects.filter(result_id=id).first()
+        if old_session:
+            logger.debug(f"Found old session {old_session}")
+            if not session.session_origin:
+                selections = FacetteSelection.objects.filter(session=old_session)
+                selection: FacetteSelection
+                for selection in selections:
+                    # prevent double copies
+                    if FacetteSelection.objects.filter(session=session, facette=selection.facette).count() == 0:
+                        selection.pk = None
+                        selection.session = session
+                        selection.save()
+                session.session_origin = old_session
+                session.save()
+            else:
+                if session.session_origin != old_session:
+                    logger.debug(f"This is a new session, but the user has a session.")
+                    # TODO: Create a new session in case the user clicks on another session link.
+                    # TODO: Get rid of redundancy with  above
+                    user_agent = request.headers.get("user-agent")
+                    session = Session(
+                        user_agent = user_agent,
+                        session_origin = old_session
+                    )
+                    session.save()
+                    request.session["result_id"] = session.result_id
+                else:   
+                    logger.debug(f"Skipping selection copy, the session {session} is already linked to session {old_session}")
+    
     # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
     # TODO: Prevent that categories are disappearing due to missing session on the first page
     request.session_obj = session
@@ -166,7 +200,7 @@ def route_index(request: WebHttpRequest):
         logger.debug(f"This is a turbo call")
     else:
         overwrite_status = 200
-        logger.debug(f"There is not ext/vnd.turbo-stream.html accept header. Revoking all status code changes.")
+        logger.debug(f"There is no ext/vnd.turbo-stream.html accept header. Revoking all status code changes.")
 
     logger.debug(f"Status overwrite is {overwrite_status}")
 
