@@ -182,3 +182,5 @@ KUUSI_FOOTER_LINKS = [
 # use https://turbo.hotwired.dev to prevent flicker
 # requires the status codes to be altered.
 ACCELERATION = True
+
+SESSION_NUMBER_OFFSET = 1754516

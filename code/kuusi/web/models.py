@@ -41,7 +41,7 @@ import random
 import string
 from polib import pofile
 
-from kuusi.settings import LOCALE_PATHS, LANGUAGES, BASE_DIR, KUUSI_URL
+from kuusi.settings import LOCALE_PATHS, LANGUAGES, BASE_DIR, KUUSI_URL, SESSION_NUMBER_OFFSET
 from web.forms import WarningForm
 
 logger = getLogger('root')
@@ -474,6 +474,7 @@ class ResultShareWidget(Widget):
     def render(self, request: WebHttpRequest, page: Page):
         render_template = loader.get_template(f"widgets/result_share.html")
         return render_template.render({
+            "session": request.session_obj,
             "page": page,
             "share_link": f"{KUUSI_URL}/{request.session_obj.result_id}"
         }, request)
@@ -543,11 +544,15 @@ def get_session_result_id():
         is_existing = Session.objects.filter(result_id=result_str).count() != 0
     return "d6" + result_str 
 
+def get_session_number():
+    return SESSION_NUMBER_OFFSET + 1
+
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now,null=False,blank=False)
     user_agent = models.CharField(default=None, null=True, blank=True, max_length=150)
     result_id = models.CharField(default=get_session_result_id, max_length=10, null=False, blank=False)    
     version = models.ForeignKey(to="SessionVersion", on_delete=models.SET_NULL, null=True, default=None, blank=True, related_name="session_version")
+    number = models.IntegerField(default=get_session_number, null=True, blank=True)
 
     @property
     def answered_pages(self):
