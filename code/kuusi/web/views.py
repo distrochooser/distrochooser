@@ -20,7 +20,7 @@ from django.template import loader
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 
-from kuusi.settings import KUUSI_NAME, ACCELERATION
+from kuusi.settings import KUUSI_NAME, ACCELERATION, DEBUG
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from logging import getLogger
 logger = getLogger('root')
@@ -70,6 +70,7 @@ def route_index(request: WebHttpRequest, id: str = None):
             session = Session.objects.filter(result_id=request.session["result_id"]).first()
 
     # Load selections of an old session
+    # TODO: Load correct version!
     if id is not None and session:
         old_session = Session.objects.filter(result_id=id).first()
         if old_session:
@@ -191,7 +192,8 @@ def route_index(request: WebHttpRequest, id: str = None):
         "title": KUUSI_NAME,
         "page": page,
         "steps": step_data,
-        "acceleration": True # Turbolinks like framework present?
+        "acceleration":ACCELERATION,
+        "debug": DEBUG
     }
     # TODO: create a tree , displaying the behaviours and selection reasons 
     # TODO: Allow the user to display and modify the tree (if allowed)

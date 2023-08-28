@@ -555,6 +555,7 @@ class Session(models.Model):
     number = models.IntegerField(default=get_session_number, null=True, blank=True)
     session_origin = models.ForeignKey(to="Session", on_delete=models.SET_NULL, null=True, default=None, blank=True, related_name="session_sessionorigin")
     # TODO: Add a counter for statistical purposes
+    # TODO: Add a flag to define a version on the facette structure to allow to differentiate between database iterations
     @property
     def answered_pages(self):
         pages = Page.objects.all()
