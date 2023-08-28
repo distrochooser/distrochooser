@@ -6,3 +6,5 @@ static/*.css
 static/*.css.map
 .DS_Store
 *.mo
+static/admin
+static/*.css
