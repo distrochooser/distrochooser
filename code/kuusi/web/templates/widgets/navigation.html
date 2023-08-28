@@ -9,31 +9,31 @@
 <div class="row mt-3">
     <div class="col-8"></div>
     <div class="col-4 text-end">
-        <!-- {% trans "BTN_MARK" %} -->
-        <!-- {% trans "BTN_UNMARK" %} -->
+        <!-- {% _i18n "BTN_MARK" %} -->
+        <!-- {% _i18n "BTN_UNMARK" %} -->
         {% if page.can_be_marked %}
             <button name="BTN_MARK_TOGGLE" class="btn"  value="BTN_MARK_TOGGLE">
                 <i class="bi bi-bookmark-fill"></i>
                 {% if is_marked %}
-                {% trans "BTN_UNMARK" %}
+                {% _i18n "BTN_UNMARK" %}
                 {% else %}
-                {% trans "BTN_MARK" %}
+                {% _i18n "BTN_MARK" %}
                 {% endif %}
             </button>
         {% endif %}
-        <!-- {% trans "BTN_PREV_PAGE" %} -->
+        <!-- {% _i18n "BTN_PREV_PAGE" %} -->
         {% if page.previous_page %}
             <a class="btn btn-secondary" href="{{page.previous_page.href}}">
-                <i class="bi bi-arrow-left-square"></i> {% trans "BTN_PREV_PAGE" %}
+                <i class="bi bi-arrow-left-square"></i> {% _i18n "BTN_PREV_PAGE" %}
             </a>
         {% endif %}
-        <!-- {% trans "BTN_NEXT_PAGE" %} -->
-        <!-- {% trans "BTN_NEXT_PAGE_FORCE" %} -->
+        <!-- {% _i18n "BTN_NEXT_PAGE" %} -->
+        <!-- {% _i18n "BTN_NEXT_PAGE_FORCE" %} -->
         {% if page.next_page %}
             {% if has_errors or has_warnings %}
-                <button name="BTN_NEXT_PAGE_FORCE" class="btn btn-primary"  value="BTN_NEXT_PAGE_FORCE"><i class="bi bi-arrow-right-square-fill"></i>  {% trans "BTN_NEXT_PAGE_FORCE" %}</button>
+                <button name="BTN_NEXT_PAGE_FORCE" class="btn btn-primary"  value="BTN_NEXT_PAGE_FORCE"><i class="bi bi-arrow-right-square-fill"></i>  {% _i18n "BTN_NEXT_PAGE_FORCE" %}</button>
             {% else %}
-                <button name="BTN_NEXT_PAGE" class="btn btn-primary"  value="BTN_NEXT_PAGE"><i class="bi bi-arrow-right-square-fill"></i> {% trans "BTN_NEXT_PAGE" %}</button>
+                <button name="BTN_NEXT_PAGE" class="btn btn-primary"  value="BTN_NEXT_PAGE"><i class="bi bi-arrow-right-square-fill"></i> {% _i18n "BTN_NEXT_PAGE" %}</button>
            
             {% endif %}
         {% endif %}

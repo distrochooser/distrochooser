@@ -1,4 +1,4 @@
-{% load i18n%}
+{% load web_extras %}
 
 <div class="row">
     <div class="col text-center mb-2 mt-1">
@@ -16,10 +16,10 @@
     <div class="col-3"></div>
     <div class="col-6">
             <div class="input-group">
-                <span class="input-group-text" id="result-link-number">{% trans "YOUR_RESULT_LINK_TEST_NUMBER" %} #{{ session.number }}</span>
+                <span class="input-group-text" id="result-link-number">{% _i18n "YOUR_RESULT_LINK_TEST_NUMBER" %} #{{ session.number }}</span>
                 <input type="text" class="form-control" id="result-link" aria-describedby="result-link-number result-link-label-bottom" value="{{share_link}}">
             </div>
-            <div class="form-text" id="result-link-label-bottom">{% trans "YOUR_RESULT_LINK_LABEL" %}</div>
+            <div class="form-text" id="result-link-label-bottom">{% _i18n "YOUR_RESULT_LINK_LABEL" %}</div>
 
     </div>
 </div>

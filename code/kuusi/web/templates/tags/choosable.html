@@ -4,17 +4,17 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                {%__ choosable "name" %}: {{ score }}
+                {% _i18n choosable "name" %}: {{ score }}
             </div>
             <div class="card-body">
-                {%__ choosable "description" %}
+                {% _i18n choosable "description" %}
 
                 <div class="row mb-2 mt-2">
                     {% for _, meta_obj in choosable.meta.items%}
                     <div class="col-2">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title text-truncate">{%__ meta_obj "meta_title" %}</h5>
+                                <h5 class="card-title text-truncate">{% _i18n meta_obj "meta_title" %}</h5>
                                 <p class="card-text">
                                     {% meta_value meta_obj %}
                                 </p>
@@ -29,17 +29,17 @@
                             {% for assignment in assignments %}
                             <div class="list-group-item list-group-item-action">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">{%__  assignment "description" %}</h5>
+                                    <h5 class="mb-1">{% _i18n  assignment "description" %}</h5>
                                     <small>{{ assignment.assignment_type }}</small>
                                 </div>
                                 {% if assignment.long_description %}
-                                    <p class="mb-1">{%__  assignment "long_description" %}</p>
+                                    <p class="mb-1">{% _i18n  assignment "long_description" %}</p>
                                 {% endif %}
                                 <small>
                                     {% for facette_topic in assignment.facette_topics %}
                                     <div class="col">
                                         <span class="badge rounded-pill text-bg-light">
-                                            {%__ facette_topic "topic" %}
+                                            {% _i18n facette_topic "topic" %}
                                         </span>
                                     </div>
                                     {%endfor%}

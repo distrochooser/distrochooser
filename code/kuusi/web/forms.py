@@ -1,6 +1,6 @@
 from typing import Any, Mapping, Optional, Type, Union
 from django.core.exceptions import ValidationError as ValidationError
-from django.forms import Form
+from django.forms import Form, TextInput
 from django.forms.utils import ErrorList
 
 class WarningForm(Form):

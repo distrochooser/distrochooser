@@ -3,7 +3,7 @@
 <div class="{% if not page.no_header%}card{%endif%}">
     {% if not page.no_header%}
     <div class="card-header">
-        {%__ page "title" %}
+        {% _i18n page "title" %}
     </div>
     {%endif%}
     <div class="card-body">
@@ -11,7 +11,7 @@
         <div class="row">
             <a data-bs-toggle="collapse" href="#facette_selection_descriptions" role="button" aria-expanded="false"
                 aria-controls="facette_selection_descriptions" class="text-muted text-decoration-none pb-2">
-                {% trans "ADDITIONAL_DESCRIPTION_FACETTES_LINK" %}<i class="bi bi-info-circle ms-1"></i>
+                {% _i18n "ADDITIONAL_DESCRIPTION_FACETTES_LINK" %}<i class="bi bi-info-circle ms-1"></i>
             </a>
             <div class="collapse mb-3" id="facette_selection_descriptions">
                 <div class="card card-body">
