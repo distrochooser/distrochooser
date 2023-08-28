@@ -21,7 +21,7 @@ from django import template
 
 from django.utils.translation import gettext as _
 from django.http import HttpRequest
-from django.forms import Form
+from django.forms import Form, Field
 
 from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
 
@@ -88,7 +88,7 @@ def footer():
 
 
 @register.inclusion_tag(filename="tags/sub_facettes.html", takes_context=True)
-def sub_facettes(context, form: Form, current_facette: str):
+def sub_facettes(context, form: Form, current_facette: str, weights: Dict):
     request: WebHttpRequest = context["request"]
     session = request.session_obj
     child_fields = []
@@ -111,6 +111,7 @@ def sub_facettes(context, form: Form, current_facette: str):
         "has_facettes": has_facettes,
         "child_fields": child_fields,
         "form": form,
+        "weights": weights
     }
 
 
@@ -126,3 +127,10 @@ def choosable(result: Dict):
 @register.inclusion_tag(filename="tags/meta_value.html")
 def meta_value(obj: ChoosableMeta):
     return {"obj": obj}
+
+@register.inclusion_tag(filename="tags/weight.html")
+def weight(field: Field, weights: Dict):
+    value = 0
+    if field.name in weights:
+        value = weights.get(field.name)
+    return {"field": field, "value": value}

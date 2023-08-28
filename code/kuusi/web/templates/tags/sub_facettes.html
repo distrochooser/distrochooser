@@ -4,7 +4,14 @@
 <div class="collapse child-facette child-{{current_facette}}{% if is_selected %} show{%endif%}" id="collapse-{{current_facette}}">
     {% for child_field in form %}
         {% if child_field.name in child_fields %}
-            {{ child_field| as_crispy_field }}
+            <div class="row">
+                <div class="col-10">
+                    {{ child_field| as_crispy_field }}
+                </div>
+                <div class="col-2">
+                    {% weight child_field weights %}
+                </div>
+            </div>
         {% endif %}
     {%endfor%}
 </div>

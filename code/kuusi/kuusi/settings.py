@@ -184,3 +184,11 @@ KUUSI_FOOTER_LINKS = [
 ACCELERATION = True
 
 SESSION_NUMBER_OFFSET = 1754516
+
+WEIGHT_MAP  = {
+    -2: -0.5,
+    -1: -0.25,
+    0: 0,
+    1: 2,
+    2: 4    
+}

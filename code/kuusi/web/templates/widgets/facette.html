@@ -1,19 +1,25 @@
 {% load web_extras %}
 {% load crispy_forms_tags %}
-{% for field  in form %}
-    {% if field.name not in child_facettes %}
+{% for field in form %}
+{% if field.name not in child_facettes %}
+<div class="row">
+    <div class="col-10">
         {{ field|as_crispy_field }}
-        
-        {% sub_facettes form field.name %}
-    {% endif %}
+    </div>
+    <div class="col-2">
+        {% weight field weights%}
+    </div>
+    {% sub_facettes form field.name weights %}
+</div>
+{% endif %}
 {% endfor %}
 {% if form.errors %}
-    <div class="alert alert-danger">
-        {{ form.errors }}
-    </div>
+<div class="alert alert-danger">
+    {{ form.errors }}
+</div>
 {% endif %}
 {% if form.warnings %}
-    <div class="alert alert-warning">
-        {{ form.warnings }}
-    </div>
+<div class="alert alert-warning">
+    {{ form.warnings }}
+</div>
 {% endif %}
