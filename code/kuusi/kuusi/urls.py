@@ -21,6 +21,7 @@ from django.urls import path
 from django.conf.urls.static import static
 
 from web.views import route_index
+from web.http import route_add_suggestion
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
 
@@ -28,4 +29,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', route_index, name='route_index'),
     path('<id>', route_index, name='route_index'),
+    path('api/i18n/add_suggestion', route_add_suggestion, name='route_add_suggestion'),
 ] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True)

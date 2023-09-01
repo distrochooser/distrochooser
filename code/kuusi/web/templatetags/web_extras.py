@@ -24,7 +24,7 @@ from django.utils import safestring
 from django.http import HttpRequest
 from django.forms import Form, Field
 
-from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
+from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta, TranslationSuggestion
 
 from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, KUUSI_FOOTER_LINKS
 
@@ -48,7 +48,7 @@ def render_widget(context, widget: Widget, page: Page):
 
 
 @register.inclusion_tag(takes_context=True, filename="tags/i18n.html")
-def _i18n(context, translateable_object: Translateable | safestring.SafeString, key: str = None):
+def _i18n(context, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
     value = None
     needle = None
     if not str:
@@ -56,11 +56,17 @@ def _i18n(context, translateable_object: Translateable | safestring.SafeString, 
     if translateable_object and not key and isinstance(translateable_object, safestring.SafeString):
         needle = str(translateable_object)
         value =  _(translateable_object) # If they translateable_object is a safestring, use Django's translation
+    elif isinstance(translateable_object, str):
+        needle = translateable_object
+        value =  _(translateable_object)
     else:
         value =  translateable_object.__(key, language_code="en")
         needle = key
-
-    return {"value": value, "needle": needle}
+    # TODO: Language inject
+    # TODO: Show suggestions
+    suggestions = list(TranslationSuggestion.objects.filter(lang_code="en").filter(lang_key=needle).values_list("lang_value",flat=True))
+    
+    return {"value": value, "needle": needle, "suggestions": suggestions }
 
 @register.inclusion_tag(filename="tags/page.html", takes_context=True)
 def page(context, page: Page):

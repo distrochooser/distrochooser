@@ -10,7 +10,7 @@
             {% if major.href %}
             <button name="BTN_FORCED_NAVIGATION"
                 class="ku-step-button {% if major.active %} ku-step-active {% endif %} {% if major.answered %} ku-step-answered {% endif %}"
-                value="{{major.href}}">{{major.title}}</button>
+                value="{{major.href}}">{%_i18n major.title %}</button>
             {% else %}
             <span>{{major.title}}</span>
             {%endif %}
@@ -25,7 +25,7 @@
             {% if step.href %}
             <button name="BTN_FORCED_NAVIGATION"
                 class="ku-step-button {% if step.active %} ku-step-active {% endif %} {% if step.answered %} ku-step-answered {% endif %}"
-                value="{{step.href}}">{{step.title}}</button>
+                value="{{step.href}}">{%_i18n minor.title %}</button>
             {% else %}
             <span>{{step.title}}</span>
             {%endif %}

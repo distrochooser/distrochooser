@@ -33,6 +33,7 @@ from django.http import HttpRequest
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.forms import Form, BooleanField
+from django.utils.safestring import mark_safe
 
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -402,7 +403,11 @@ class FacetteSelectionWidget(Widget):
     topic = models.CharField(null=False, blank=False, max_length=120)
     # FIXME: The description field will not be taken over by any i18n processes, Translateablefield is not really available as FacetteSelectionWidget inherits Widget, not Translateable
     description = models.TextField(null=True, blank=True, default=None, max_length=250)
-
+    def build_translateable_label(self, facette: Facette) -> str:
+        render_template = loader.get_template(f"widgets/facette_label.html")
+        return mark_safe(render_template.render({
+            "title": facette.catalogue_id
+        }))
     def build_form(
         self, data: Dict | None, session: Session
     ) -> Tuple[WarningForm, List, Dict]:
@@ -423,7 +428,8 @@ class FacetteSelectionWidget(Widget):
             if is_selected:
                 weights[facette.catalogue_id] = selection_matches.first().weight
             if not is_child:
-                facette_form.fields[facette.catalogue_id] = BooleanField(required=False)
+
+                facette_form.fields[facette.catalogue_id] = BooleanField(required=False, label=self.build_translateable_label(facette))
                 if has_child:
                     facette_form.fields[facette.catalogue_id].widget.attrs[
                         "data-bs-toggle"
@@ -443,7 +449,8 @@ class FacetteSelectionWidget(Widget):
 
             for sub_facette in facette.child_facettes.all():
                 facette_form.fields[sub_facette.catalogue_id] = BooleanField(
-                    required=False
+                    required=False,
+                    label=self.build_translateable_label(sub_facette)
                 )
                 facette_form.fields[sub_facette.catalogue_id].widget.attrs[
                     "data-ku-parent"
@@ -1046,3 +1053,13 @@ class Category(Translateable):
 
     def __str__(self) -> str:
         return f"[{self.icon}] {self.name} -> {self.target_page} (child of: {self.child_of})"
+
+
+class TranslationSuggestion(models.Model):
+    lang_code = models.CharField(max_length=10,blank=False, null=False)
+    lang_key = models.CharField(max_length=255,blank=False, null=False)
+    lang_value = models.CharField(max_length=255,blank=False, null=False)
+    amount = models.IntegerField(default=0, blank=False, null=False)    
+
+    def __str__(self) -> str:
+        return f"[{self.lang_code}]: {self.lang_key} = {self.lang_value} ({self.amount}x)"

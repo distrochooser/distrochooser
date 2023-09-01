@@ -176,7 +176,7 @@ KUUSI_INFO_STRING = "Ein Projekt von <a href='https://chmr.eu'>chmr.eu</a>"
 KUUSI_FOOTER_LINKS = [
     {"href": "/about", "title": "FOOTER_ABOUT"},
     {"href": "/privacy", "title": "FOOTER_PRIVACY"},
-    {"href": "/imprint", "title": "FOOTER_IMPRINT"}
+    {"href": "/imprint", "title": "FOOTER_IMPRINT"},
 ]
 
 # use https://turbo.hotwired.dev to prevent flicker
@@ -185,10 +185,9 @@ ACCELERATION = True
 
 SESSION_NUMBER_OFFSET = 1754516
 
-WEIGHT_MAP  = {
-    -2: -0.5,
-    -1: -0.25,
-    0: 0,
-    1: 2,
-    2: 4    
+WEIGHT_MAP = {-2: -0.5, -1: -0.25, 0: 0, 1: 2, 2: 4}
+
+LANGUAGE_CODES = {
+    "en": "English",
+    "de": "Deutsch"
 }

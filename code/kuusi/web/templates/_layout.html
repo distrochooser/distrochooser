@@ -64,11 +64,19 @@
                 <div class="col-12">
                     <div class="row mt-3">
                         <div class="col-3"></div>
-                        <div class="col-3 text-end">
-                            <input type="text" placeholder="language code">
-                        </div>
                         <div class="col-3">
-                            <a href="#" class="btn btn-primary ku-i18n-save">Save my translation</a>
+                            <div class="mb-3">
+                                <label for="ku-i18n-lang-code" class="form-label">Language Code</label>
+                                <select name="ku-i18n-lang-code" id="ku-i18n-lang-code" class="form-control">
+                                    {% for code in language_codes %}
+                                    <option value="{{code}}">{{code}}</option>
+                                    {% endfor %}
+                                </select>
+                              </div>
+                          
+                              <div class="mb-3">
+                                <a href="#" class="btn btn-primary ku-i18n-save">Save my translation</a>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -76,7 +84,7 @@
         </div>
     </main>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

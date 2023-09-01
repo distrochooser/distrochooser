@@ -6,7 +6,7 @@
     <p class="col-md-4 mb-0 text-muted mt-2 text-center">{{ free_nav|safe }}</p>
     <p class="col-md-4 mb-0  text-muted mt-2 text-end">
         {% for link in links %}
-            <a href=" {{ link.href }}" class="d-inline-block px-2 text-muted"> {{ link.title }}</a>
+            <a href=" {{ link.href }}" class="d-inline-block px-2 text-muted"> {% _i18n link.title %}</a>
         {% endfor %}
     </p>
 </footer>

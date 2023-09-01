@@ -20,7 +20,7 @@ from django.template import loader
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 
-from kuusi.settings import KUUSI_NAME, ACCELERATION, DEBUG
+from kuusi.settings import KUUSI_NAME, ACCELERATION, DEBUG, LANGUAGE_CODES
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from logging import getLogger
 logger = getLogger('root')
@@ -193,7 +193,8 @@ def route_index(request: WebHttpRequest, id: str = None):
         "page": page,
         "steps": step_data,
         "acceleration":ACCELERATION,
-        "debug": DEBUG
+        "debug": DEBUG,
+        "language_codes": LANGUAGE_CODES
     }
     # TODO: create a tree , displaying the behaviours and selection reasons 
     # TODO: Allow the user to display and modify the tree (if allowed)
