@@ -3,6 +3,9 @@
 
 var raw = window.localStorage.getItem("ku-collected-translations")
 var collected_translations = JSON.parse(raw)
+if (!collected_translations){
+    collected_translations = {}
+}
 function init_translation() {
     var i18n_elements = document.querySelectorAll(".ku-i18n")
     i18n_elements.forEach(function (i18n_element) {
@@ -46,7 +49,19 @@ function click_handler_i18n_value(e) {
 async function toggleTranslation() {
     var element = document.querySelector(".ku-i18n-controls")
     var i18n_elements = document.querySelectorAll(".ku-i18n")
-    var lang_code = document.querySelector("#ku-i18n-lang-code").value
+    var triggerLink = document.querySelector(".ku-18n-show")
+    /* Trigger disable/ hide on language switch elements to prevent the user from switching the language within the translation process */
+    /* TODO: Keep state within page changes */
+    var languageSelect = document.querySelector("#ku-i18n-site-lang-code-change")
+    var languageSelectInput = document.querySelector("#ku-i18n-site-lang-code")
+    if (languageSelectInput.hasAttribute("disabled")){
+        languageSelectInput.removeAttribute("disabled")
+    } else {
+        languageSelectInput.setAttribute("disabled", "disabled")
+    }
+    languageSelect.classList.toggle("d-none")
+    triggerLink.classList.toggle("d-none")
+    var lang_code = document.querySelector("#ku-i18n-site-lang-code").value
     element.classList.toggle("d-none");
     if (element.classList.contains("d-none")) {
         i18n_elements.forEach(i18n_element => {

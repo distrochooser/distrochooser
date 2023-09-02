@@ -38,65 +38,32 @@
             {% endif %}
 
         </div>
-            <div class="col-8"></div>
+            <div class="col-{% if debug %}2{%else%}3{%endif%}"></div>
+            <div class="col-6 mt-3">{% logo %}</div>
             <div class="col-2"></div>
             <div class="col-1">
             <form action="" method="post" enctype="application/x-www-form-urlencoded">
                 <label for="ku-i18n-site-lang-code" class="form-label"> {% _i18n "LANGUAGE" %}</label>
                 {% csrf_token %}
-                <select name="ku-i18n-site-lang-code" id="ku-i18n-site-lang-code" class="form-control">
+                <select id="ku-i18n-site-lang-code" name="ku-i18n-site-lang-code" id="ku-i18n-site-lang-code" class="form-control">
                     {% for code in language_codes %}
                         <option value="{{code}}" {% if code == language_code %} selected {% endif%}>{{code}}</option>
                     {% endfor %}
                 </select>
-                <button class="form-control mt-2" name="ku-i18n-site-lang-code-change">{% _i18n 'LANGUAGE_CHANGE' %}</button>
+                <button class="form-control mt-2" id="ku-i18n-site-lang-code-change" name="ku-i18n-site-lang-code-change">{% _i18n 'LANGUAGE_CHANGE' %}</button>
+                <a href="#" class="text-muted ku-18n-show mt-3 d-block">
+                    {% _i18n 'TRANSLATION_TRIGGER' %}
+                </a>
+
+                <div class="mt-2 d-none ku-i18n-controls">
+                    <a href="#" class="btn btn-primary ku-i18n-save">Save my translation</a>
+                </div>
             </form>
         </div>
     </div>
     <main>
         <div class="container-fluid py-4">
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
-                    {% logo %}
-                </div>
-            </div>
             {% block content %}{% endblock %}
-            <a href="#" class="ku-18n-show">
-                Translate now
-            </a>
-            <div class="row ku-i18n-controls d-none">
-                <div class="col-12">
-                    <div class="row mt-3">
-                        <div class="col-3"></div>
-                        <div class="col-6">
-                            <div class="alert alert-info">
-                                During translation, the links are not active. To proceed to the next page, just press
-                                "save"
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="row mt-3">
-                        <div class="col-3"></div>
-                        <div class="col-3">
-                            <div class="mb-3">
-                                <label for="ku-i18n-lang-code" class="form-label">Language Code</label>
-                                <select name="ku-i18n-lang-code" id="ku-i18n-lang-code" class="form-control">
-                                    {% for code in language_codes %}
-                                    <option value="{{code}}">{{code}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <a href="#" class="btn btn-primary ku-i18n-save">Save my translation</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
