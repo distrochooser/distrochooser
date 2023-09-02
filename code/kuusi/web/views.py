@@ -140,7 +140,15 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     request.LANGUAGE_CODE = DEFAULT_LANGUAGE_CODE if not language_code else language_code
     translation.activate(request.LANGUAGE_CODE)
     overwrite_status = 200
+    base_url = f"/{request.LANGUAGE_CODE}" + ("" if not id else f"/{id}")
     if request.method == "POST":
+        # The user has selected to change the language
+        if "ku-i18n-site-lang-code-change" in request.POST:
+            new_code = request.POST.get("ku-i18n-site-lang-code")
+            target = f"/{new_code}" + ("" if not id else f"/{id}")
+            if request.GET.get("page"):
+                target += f"/?page={request.GET.get('page')}"
+            return HttpResponseRedirect(target)
         stay = False
         if page.can_be_marked and "BTN_MARK_TOGGLE" in request.POST:
             page.toggle_marking(request.session_obj)
@@ -158,7 +166,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
 
         if "BTN_FORCED_NAVIGATION" in request.POST:
             value = request.POST.get("BTN_FORCED_NAVIGATION")
-            return HttpResponseRedirect(value)
+            return HttpResponseRedirect(base_url + value)
 
         forward_target: Page = None
         attempts = 0
@@ -180,7 +188,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
             if result:
                 if forward_target is not None:
                     forward_target_href = forward_target.href
-                return HttpResponseRedirect(forward_target_href)
+                return HttpResponseRedirect(base_url + forward_target_href)
     current_location = request.get_full_path()
     # If the user is curently on the start page -> use the first available site as "current location"
     if current_location.__len__() <= 1:
