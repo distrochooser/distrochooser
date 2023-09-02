@@ -20,6 +20,7 @@ from typing import Dict, List
 from django import template
 
 from django.utils.translation import gettext as _
+from django.utils.translation import get_language
 from django.utils import safestring
 from django.http import HttpRequest
 from django.forms import Form, Field
@@ -49,6 +50,7 @@ def render_widget(context, widget: Widget, page: Page):
 
 @register.inclusion_tag(takes_context=True, filename="tags/i18n.html")
 def _i18n(context, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
+    language_code = get_language()
     value = None
     needle = None
     if not str:
@@ -60,11 +62,10 @@ def _i18n(context, translateable_object: Translateable | safestring.SafeString |
         needle = translateable_object
         value =  _(translateable_object)
     else:
-        value =  translateable_object.__(key, language_code="en")
+        value =  translateable_object.__(key, language_code=language_code)
         needle = key
-    # TODO: Language inject
     # TODO: Show suggestions
-    suggestions = list(TranslationSuggestion.objects.filter(lang_code="en").filter(lang_key=needle).values_list("lang_value",flat=True))
+    suggestions = list(TranslationSuggestion.objects.filter(lang_code=language_code).filter(lang_key=needle).values_list("lang_value",flat=True))
     
     return {"value": value, "needle": needle, "suggestions": suggestions }
 

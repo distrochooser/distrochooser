@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.conf.urls.static import static
 
 from web.views import route_index
@@ -28,6 +28,8 @@ from kuusi.settings import STATIC_URL, STATIC_ROOT
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', route_index, name='route_index'),
-    path('<id>', route_index, name='route_index'),
+    re_path('(?P<language_code>[a-z]+)/(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
+    re_path('(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
+    re_path('(?P<language_code>[a-z]+)', route_index, name='route_index'),
     path('api/i18n/add_suggestion', route_add_suggestion, name='route_add_suggestion'),
 ] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True)

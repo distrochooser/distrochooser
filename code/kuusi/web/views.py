@@ -19,15 +19,24 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllow
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
+from django.utils import translation
 
-from kuusi.settings import KUUSI_NAME, ACCELERATION, DEBUG, LANGUAGE_CODES
+from kuusi.settings import (
+    KUUSI_NAME,
+    ACCELERATION,
+    DEBUG,
+    LANGUAGE_CODES,
+    DEFAULT_LANGUAGE_CODE,
+)
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from logging import getLogger
-logger = getLogger('root')
 
-def route_index(request: WebHttpRequest, id: str = None):
+logger = getLogger("root")
+
+
+def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
     # TODO: Get the original selections, copy them to the users's own session.
-    template = loader.get_template('index.html')
+    template = loader.get_template("index.html")
     page_id = request.GET.get("page")
     page = None
     if page_id:
@@ -61,13 +70,13 @@ def route_index(request: WebHttpRequest, id: str = None):
         # TODO: Also, get rid of the csrftoken cookie until user gave consent
         if "result_id" not in request.session:
             user_agent = request.headers.get("user-agent")
-            session = Session(
-                user_agent = user_agent
-            )
+            session = Session(user_agent=user_agent)
             session.save()
             request.session["result_id"] = session.result_id
         else:
-            session = Session.objects.filter(result_id=request.session["result_id"]).first()
+            session = Session.objects.filter(
+                result_id=request.session["result_id"]
+            ).first()
 
     # Load selections of an old session
     # TODO: Load correct version!
@@ -80,7 +89,12 @@ def route_index(request: WebHttpRequest, id: str = None):
                 selection: FacetteSelection
                 for selection in selections:
                     # prevent double copies
-                    if FacetteSelection.objects.filter(session=session, facette=selection.facette).count() == 0:
+                    if (
+                        FacetteSelection.objects.filter(
+                            session=session, facette=selection.facette
+                        ).count()
+                        == 0
+                    ):
                         selection.pk = None
                         selection.session = session
                         selection.save()
@@ -92,15 +106,14 @@ def route_index(request: WebHttpRequest, id: str = None):
                     # TODO: Create a new session in case the user clicks on another session link.
                     # TODO: Get rid of redundancy with  above
                     user_agent = request.headers.get("user-agent")
-                    session = Session(
-                        user_agent = user_agent,
-                        session_origin = old_session
-                    )
+                    session = Session(user_agent=user_agent, session_origin=old_session)
                     session.save()
                     request.session["result_id"] = session.result_id
-                else:   
-                    logger.debug(f"Skipping selection copy, the session {session} is already linked to session {old_session}")
-    
+                else:
+                    logger.debug(
+                        f"Skipping selection copy, the session {session} is already linked to session {old_session}"
+                    )
+
     # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
     # TODO: Prevent that categories are disappearing due to missing session on the first page
     request.session_obj = session
@@ -115,14 +128,19 @@ def route_index(request: WebHttpRequest, id: str = None):
     categories = []
     for chained_page in pages:
         # Child categories will be created later, when the steps are created.
-        used_in_category = Category.objects.filter(target_page=chained_page,child_of__isnull=True)
+        used_in_category = Category.objects.filter(
+            target_page=chained_page, child_of__isnull=True
+        )
         if used_in_category.count() > 0:
             categories.append(used_in_category.first())
     # TODO: These are not properly set within WebHttpRequest class.
     request.has_errors = False
     request.has_warnings = False
+    # TODO: Investigate correct approach
+    request.LANGUAGE_CODE = DEFAULT_LANGUAGE_CODE if not language_code else language_code
+    translation.activate(request.LANGUAGE_CODE)
     overwrite_status = 200
-    if request.method == "POST":  
+    if request.method == "POST":
         stay = False
         if page.can_be_marked and "BTN_MARK_TOGGLE" in request.POST:
             page.toggle_marking(request.session_obj)
@@ -131,18 +149,19 @@ def route_index(request: WebHttpRequest, id: str = None):
         result = page.proceed(request)
         if not result:
             if "BTN_NEXT_PAGE_FORCE" in request.POST:
-                logger.debug(f"User decided to force to next page even as there are issues present (has_errors={request.has_errors},has_warnings={request.has_warnings})")
+                logger.debug(
+                    f"User decided to force to next page even as there are issues present (has_errors={request.has_errors},has_warnings={request.has_warnings})"
+                )
                 result = True
             else:
-                overwrite_status = 422  
-        
+                overwrite_status = 422
 
         if "BTN_FORCED_NAVIGATION" in request.POST:
             value = request.POST.get("BTN_FORCED_NAVIGATION")
             return HttpResponseRedirect(value)
-        
+
         forward_target: Page = None
-        attempts  = 0
+        attempts = 0
         if not stay:
             logger.debug(f"The next page is not visible. Starting page skip.")
             # Make sure the user is redirect to a _valid_ page instead of an empty one if the next page is not visible
@@ -151,11 +170,11 @@ def route_index(request: WebHttpRequest, id: str = None):
                 if forward_target.next_page.is_visible(session):
                     forward_target = forward_target.next_page
                     logger.debug(f"Forward target is now {forward_target}")
-                
-                attempts +=1
+
+                attempts += 1
 
                 if attempts >= 10:
-                    break     
+                    break
 
             forward_target_href = page.next_page.href if page.next_page else None
             if result:
@@ -171,15 +190,18 @@ def route_index(request: WebHttpRequest, id: str = None):
     category: Category
     for index, category in enumerate(categories):
         minor_steps = []
-        # TODO: Inject language
-        category_step = category.to_step(current_location, "en", request.session_obj, index == categories.__len__() - 1)
+        category_step = category.to_step(
+            current_location,
+            request.LANGUAGE_CODE,
+            request.session_obj,
+            index == categories.__len__() - 1,
+        )
         child_categories = Category.objects.filter(child_of=category)
         child_category: Category
-        for child_category in child_categories: 
+        for child_category in child_categories:
             minor_steps.append(
-                child_category.to_step(current_location, "en", request.session_obj)
+                child_category.to_step(current_location, request.LANGUAGE_CODE, request.session_obj)
             )
-
         step = {
             "icon": category.icon,
             "major": category_step,
@@ -192,20 +214,22 @@ def route_index(request: WebHttpRequest, id: str = None):
         "title": KUUSI_NAME,
         "page": page,
         "steps": step_data,
-        "acceleration":ACCELERATION,
+        "acceleration": ACCELERATION,
         "debug": DEBUG,
-        "language_codes": LANGUAGE_CODES
+        "language_codes": LANGUAGE_CODES,
+        "language_code": request.LANGUAGE_CODE
     }
-    # TODO: create a tree , displaying the behaviours and selection reasons 
+    # TODO: create a tree , displaying the behaviours and selection reasons
     # TODO: Allow the user to display and modify the tree (if allowed)
 
     if "accept" in request.headers and "turbo" in request.headers.get("accept"):
         logger.debug(f"This is a turbo call")
     else:
         overwrite_status = 200
-        logger.debug(f"There is no ext/vnd.turbo-stream.html accept header. Revoking all status code changes.")
+        logger.debug(
+            f"There is no ext/vnd.turbo-stream.html accept header. Revoking all status code changes."
+        )
 
     logger.debug(f"Status overwrite is {overwrite_status}")
-
 
     return HttpResponse(template.render(context, request), status=overwrite_status)
