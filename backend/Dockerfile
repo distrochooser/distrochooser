@@ -6,5 +6,5 @@ WORKDIR /code
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 ADD . /code/
-expose 8000
+EXPOSE 8000
 CMD ["gunicorn", "backend.wsgi", "--timeout", "600", "-b", "0.0.0.0"]
