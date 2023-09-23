@@ -15,11 +15,15 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed, HttpResponseForbidden, HttpResponseNotFound
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 from django.utils import translation
+from django.core.management import call_command
+from django.views.decorators.csrf import csrf_exempt
+import tempfile
+from os.path import join
 
 from kuusi.settings import (
     KUUSI_NAME,
@@ -27,6 +31,8 @@ from kuusi.settings import (
     DEBUG,
     LANGUAGE_CODES,
     DEFAULT_LANGUAGE_CODE,
+    UPDATE_API_KEY, 
+    UPDATE_UPLOAD_PATH
 )
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from logging import getLogger
@@ -241,3 +247,35 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     logger.debug(f"Status overwrite is {overwrite_status}")
 
     return HttpResponse(template.render(context, request), status=overwrite_status)
+
+
+@csrf_exempt
+def route_update(request: WebHttpRequest) -> HttpResponse:
+    """
+    Update the matrix OTA. Has the same logic as manage.py parse <filename>
+
+    The endpoint receives a set of files, which have their original filenames.
+    The first file is considered as "main" file and will be used to trigger the parse mechanism.
+
+    The endpoint requires an Authorization header to feature the value from UPDATE_API_KEY and the method must be POST.
+    
+    """
+    if request.method != "POST":
+        return HttpResponseNotAllowed("Not allowed")
+    
+    header = request.headers.get("Authorization")
+
+    if not header or header != UPDATE_API_KEY:
+        return HttpResponseForbidden("Forbidden")
+    
+    if request.FILES.__len__ == 0:
+        return HttpResponseNotFound("File is missing")
+    first_file_name = None
+    for key, file_content in request.FILES.items():
+        if not first_file_name:
+            first_file_name = key
+        with open(join(UPDATE_UPLOAD_PATH, key), "wb") as file:
+            for chunk in file_content.chunks():
+                file.write(chunk)
+    call_command('parse', join(UPDATE_UPLOAD_PATH, first_file_name))
+    return HttpResponse("ok")

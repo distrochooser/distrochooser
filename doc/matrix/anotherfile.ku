@@ -2,7 +2,7 @@
 @facette foo (topic topic1);
 @facette bar (topic topic1);
 @facette foo2 (topic topic2) parent bar;
-@behaviour not-both (subject foo subject bar object barz)  bidirectional;
+@behaviour not-both (subject foo subject bar object barz) bidirectional;
 @behaviour not-this (subject foo) subject_to_object error;
 
 

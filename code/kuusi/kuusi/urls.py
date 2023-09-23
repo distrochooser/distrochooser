@@ -20,13 +20,14 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls.static import static
 
-from web.views import route_index
+from web.views import route_index, route_update
 from web.http import route_add_suggestion
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("update",  route_update, name="route_update"),
     path('', route_index, name='route_index'),
     re_path('(?P<language_code>[a-z]+)/(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
     re_path('(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),

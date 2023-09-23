@@ -193,3 +193,7 @@ LANGUAGE_CODES = {
     "en": "English",
     "de": "Deutsch"
 }
+
+UPDATE_API_KEY = "fooooooo"
+
+UPDATE_UPLOAD_PATH = "/Users/chm/Documents/distrochooser/tmp"
