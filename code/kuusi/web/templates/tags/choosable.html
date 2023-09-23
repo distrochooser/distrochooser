@@ -30,7 +30,7 @@
                             <div class="list-group-item list-group-item-action">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">{% _i18n  assignment "description" %}</h5>
-                                    <small>{{ assignment.assignment_type }}</small>
+                                    <small>{% _i18n assignment.assignment_type %} </small>
                                 </div>
                                 {% if assignment.long_description %}
                                     <p class="mb-1">{% _i18n  assignment "long_description" %}</p>

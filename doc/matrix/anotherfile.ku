@@ -1,0 +1,12 @@
+# just an example
+@facette foo (topic topic1);
+@facette bar (topic topic1);
+@facette foo2 (topic topic2) parent bar;
+@behaviour not-both (subject foo subject bar object barz)  bidirectional;
+@behaviour not-this (subject foo) subject_to_object error;
+
+
+# fjalksfj
+@choosable debian (link website example.tld text example hallo); 
+@choosable ubuntu (link website example.tld text example hallo); 
+@assignment debian-assignment (foo bar) to debian to ubuntu negative;

@@ -192,7 +192,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     current_location = request.get_full_path()
     # If the user is curently on the start page -> use the first available site as "current location"
     if current_location.__len__() <= 1:
-        current_location = pages[0].href
+        current_location = base_url  + pages[0].href
     step_data = []
     index: int
     category: Category

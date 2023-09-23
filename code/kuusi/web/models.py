@@ -129,6 +129,8 @@ class Translateable(models.Model):
 
     catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=20)
 
+    is_invalidated = models.BooleanField(default=False)
+
     def __(self, key: str, language_code: str = "en") -> str:
         msg_id = self._meta.get_field(key).get_msg_id(self)
         # TODO: make this block in a function
@@ -412,7 +414,7 @@ class FacetteSelectionWidget(Widget):
         self, data: Dict | None, session: Session
     ) -> Tuple[WarningForm, List, Dict]:
         facette_form = WarningForm(data) if data else WarningForm()
-        facettes = Facette.objects.filter(topic=self.topic)
+        facettes = Facette.objects.filter(topic=self.topic, is_invalidated=False)
         child_facettes = []
         weights = {}
         for facette in facettes:
@@ -468,7 +470,7 @@ class FacetteSelectionWidget(Widget):
                 active_facettes.append(selection.facette)
         facette: Facette
         for facette in active_facettes:
-            behaviours = FacetteBehaviour.objects.all()
+            behaviours = FacetteBehaviour.objects.filter(is_invalidated=False)
             behaviour: FacetteBehaviour
             for behaviour in behaviours:
                 # We only care about behavours true for a facette within the current screen while we iterate all facettes *somewhere* selected
@@ -489,7 +491,7 @@ class FacetteSelectionWidget(Widget):
         return facette_form, child_facettes, weights
 
     def get_active_facettes(self, form: Form, session: Session) -> List:
-        facettes = Facette.objects.all()
+        facettes = Facette.objects.filter(is_invalidated=False)
         active_facettes = []
         if not form.is_valid():
             return active_facettes
@@ -616,7 +618,8 @@ class ResultListWidget(Widget):
         for selection in selections:
             facette = selection.facette
             assignments = FacetteAssignment.objects.filter(
-                facettes__pk__in=[facette.pk]
+                facettes__pk__in=[facette.pk],
+                is_invalidated=False
             )
             if assignments.count() > 0:
                 assignments_selected += assignments
@@ -624,7 +627,7 @@ class ResultListWidget(Widget):
             # The weight from the selection will be used to alter the score later.
             weights_per_assignment.append(selection.weight)
 
-        choosables = Choosable.objects.all()
+        choosables = Choosable.objects.filter(is_invalidated=False)
 
         raw_results: Dict[Choosable, float] = {}
         assignments_used: Dict[Choosable, FacetteAssignment] = {}
@@ -661,8 +664,8 @@ class ResultListWidget(Widget):
             logger.debug(f"Choosable={choosable}, Score={score}, Results={results}")
 
             raw_results[choosable] = score
-
-        ranked_keys = sorted(raw_results)
+        # FIXME: ADd proper sorting.
+        ranked_keys = raw_results
         ranked_result = {}
         for key in ranked_keys:
             ranked_result[key] = {
@@ -1045,7 +1048,7 @@ class Category(Translateable):
         return {
             "title": self.__("name", language_code),
             "href": target,
-            "active": current_location == target,
+            "active": current_location == target, # FIXME: Properly identify the current location also when /<language>/<id> is set
             "answered": is_answered,
             "marked": is_marked,
             "last": is_last,
