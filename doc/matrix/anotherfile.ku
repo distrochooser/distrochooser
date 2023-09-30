@@ -1,12 +1,30 @@
-# just an example
-@facette foo (topic topic1);
-@facette bar (topic topic1);
-@facette foo2 (topic topic2) parent bar;
+@version simplified;
+
+@page first-page (session) next version-page;
+@page version-page (session) next second-page;
+@page second-page (session markable) not simplified next third-page;
+@page third-page (session markable) not simplified next result-page;
+@page result-page (session no-header);
+
+@widget html 1 1 12 welcome.html to first-page;
+@widget selection 1 1 12 to second-page topic foo;
+@widget navigation 4 1 12 to second-page to first-page to version-page to second-page to third-page;
+@widget result 2 1 12 to result-page;
+@widget share 1 1 12 to result-page;
+@widget version 3 1 12 to version-page;
+
+@category first-page-category (bi bi-clipboard2-data) to first-page;
+@category version-page-category (bi bi-clipboard2-data) to version-page;
+@category second-page-category (bi bi-clipboard2-data) to second-page;
+@category third-page-category (bi bi-clipboard2-data) to third-page parent second-page-category;
+@category result-page-category (bi bi-clipboard2-data) to result-page;
+
+@facette foo (topic foo);
+@facette bar (topic foo);
+@facette foo2 (topic foo) parent bar;
 @behaviour not-both (subject foo subject bar object barz) bidirectional;
 @behaviour not-this (subject foo) subject_to_object error;
 
-
-# fjalksfj
 @choosable debian (link website example.tld text example hallo); 
 @choosable ubuntu (link website example.tld text example hallo); 
 @assignment debian-assignment (foo bar) to debian to ubuntu negative;

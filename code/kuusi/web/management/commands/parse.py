@@ -16,13 +16,13 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from typing import Dict, Tuple, List
-from re import match, MULTILINE, finditer, sub
+from re import match, MULTILINE, finditer, sub, search
 from logging import getLogger
 from os.path import join, exists, dirname
 
 from django.core.management.base import BaseCommand
 
-from web.models import Facette, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour
+from web.models import Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Widget
 
 logger = getLogger("root")
 
@@ -35,9 +35,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # FIXME: Implement a better way of handling old, data, e. g. of making the selections orphans, but keep old results.
+        # FIXME: Make sure the translatable process omits invalidated entries
         if not options["file_path"]:
             raise Exception("no filename")
         file_path = options["file_path"]
+        invalidation_id = random_str()
         with open(file_path, "r") as file:
             raw = file.read()
 
@@ -72,15 +74,23 @@ class Command(BaseCommand):
             lines = no_comment_raw.split(";")
 
             data_types = {
+                "version": self.version,
+                "page": self.page,
+                "category": self.category,
+                "widget": self.widget,
                 "facettes": self.facette,
                 "behaviour": self.behaviour,
                 "assignment": self.assignment,
-                "choosable": self.choosable,
+                "choosable": self.choosable
             }
 
             results = {}
 
             data_store = {
+                "version": self.version_store,
+                "page": self.page_store,
+                "category": self.category_store,
+                "widget": self.widget_store,
                 "facettes": self.facette_store,
                 "choosable": self.choosable_store,
                 "assignment": self.assignment_store,
@@ -96,11 +106,20 @@ class Command(BaseCommand):
                     if got:
                         results[key].append(got)
             for key, value in data_store.items():
-                value(results[key])
+                value(invalidation_id, results[key])
+        # Remove facettes not used by any selection to reduce polluting the table.
+        all_old_facettes = Facette.objects.filter(is_invalidated=True)
+        facette: Facette
+        for facette in all_old_facettes:
+            has_selections =FacetteSelection.objects.filter(facette=facette).count() == 0
+            if has_selections:
+                logger.debug(f"The facette {facette} does not feature any selections. Getting rid of it.")
+                facette.delete()
 
-    def facette_store(self, raw: List[Dict]):
+    def facette_store(self, invalidation_id: str, raw: List[Dict]):
         Facette.objects.all().all().update(
-            is_invalidated = True
+            is_invalidated = True,
+            invalidation_id = invalidation_id
         )
         for element in raw:
             facette = Facette(
@@ -119,9 +138,10 @@ class Command(BaseCommand):
                 parent.child_facettes.add(child)
                 parent.save()
 
-    def choosable_store(self, raw: List[Dict]):
+    def choosable_store(self, invalidation_id: str, raw: List[Dict]):
         Choosable.objects.all().update(
-            is_invalidated = True
+            is_invalidated = True,
+            invalidation_id = invalidation_id
         )
         for element in raw:
             choosable = Choosable(
@@ -144,9 +164,10 @@ class Command(BaseCommand):
                 )
                 choosable_meta.save()
 
-    def assignment_store(self, raw: List[Dict]):
+    def assignment_store(self, invalidation_id: str, raw: List[Dict]):
         FacetteAssignment.objects.all().update(
-            is_invalidated = True
+            is_invalidated = True,
+            invalidation_id = invalidation_id
         )
         for element in raw:
             assignment = FacetteAssignment(
@@ -162,8 +183,11 @@ class Command(BaseCommand):
                 assignment.choosables.add(Choosable.objects.get(catalogue_id=target,is_invalidated=False))
             assignment.save()
 
-    def behaviour_store(self, raw: List[Dict]):
-        FacetteBehaviour.objects.all().delete()
+    def behaviour_store(self, invalidation_id: str, raw: List[Dict]): 
+        FacetteBehaviour.objects.all().update(
+            is_invalidated = True,
+            invalidation_id = invalidation_id
+        )
         for element in raw:
             behaviour = FacetteBehaviour(
                 catalogue_id=element["name"],
@@ -178,7 +202,95 @@ class Command(BaseCommand):
                 behaviour.affected_objects.add(Facette.objects.get(catalogue_id=facette,is_invalidated=False))
             behaviour.save()
 
+    def version_store(self, invalidation_id: str, raw: List[Dict]): 
+        SessionVersion.objects.all().update(
+            is_invalidated = True,
+            invalidation_id = invalidation_id
+        )
+        for element in raw:
+            version = SessionVersion(
+                catalogue_id = element["name"],
+                version_name = element["name"]
+            )
+            version.save()
 
+    def page_store(self, invalidation_id: str, raw: List[Dict]): 
+        Page.objects.all().delete()
+        for element in raw:
+            page = Page(
+                catalogue_id = element["name"],
+                title = element["name"],
+                no_header=element["no-header"],
+                can_be_marked=element["markable"],
+                require_session=element["session"]
+            )
+            page.save()
+            for key in element["not"]:
+                page.not_in_versions.add(
+                    SessionVersion.objects.get(catalogue_id=key, is_invalidated=False)
+                )
+            page.save()
+
+        valid_pages = Page.objects.filter(is_invalidated=False)
+
+        page: Page
+        for page in valid_pages:
+            for element in raw:
+                if element["name"] == page.catalogue_id:
+                    next_page = element["next"]
+                    if next_page:
+                        page.next_page = valid_pages.get(catalogue_id=next_page)
+                        page.save()
+
+    def category_store(self, invalidation_id: str, raw: List[Dict]): 
+        Category.objects.all().delete()
+        for element in raw:
+            page = Category(
+                catalogue_id = element["name"],
+                name = element["name"],
+                target_page=Page.objects.get(catalogue_id=element["to"], is_invalidated=False)
+            )
+            page.save()
+        
+        for category in Category.objects.all():
+            for element in raw:
+                if element["name"] == category.catalogue_id:
+                    if element["parent"]:
+                        category.child_of = Category.objects.get(catalogue_id=element["parent"])
+                        category.save()
+
+    def widget_store(self, invalidation_id: str, raw: List[Dict]):
+
+        class_map = {
+            "version": SessionVersionWidget,
+            "share": ResultShareWidget,
+            "result": ResultListWidget,
+            "navigation": NavigationWidget,
+            "selection": FacetteSelectionWidget,
+            "html": HTMLWidget
+        }
+
+        for element in raw:
+            if element["type"] in class_map.keys():
+
+                class_name = class_map[element["type"]]
+                class_name.objects.all().delete()
+                new_widget = class_name(
+                    row = element["row"],
+                    col = element["col"],
+                    width = element["width"]
+                )
+                new_widget.save()
+                for page in element["to"]:
+                    new_widget.pages.add(Page.objects.get(catalogue_id=page, is_invalidated=False))
+
+                if element["type"] == "selection": 
+                    new_widget.topic = element["topic"]
+
+                if element["type"] == "html": 
+                    new_widget.template = element["template"]
+
+                new_widget.save()
 
     def get_name(self, prefix: str, line: str) -> Dict:
         name_text_re = r"@" + prefix + "\s+(?P<name>[\w-]+)"
@@ -304,3 +416,128 @@ class Command(BaseCommand):
                         content = groups["content"]
                         result["meta"].append({"type": what,"title": title, "content": content})
             return result
+
+    def version(self, line: str) -> Dict:
+        if "@version" not in line:
+            return None
+        else:
+            result = self.get_name("version", line)
+            return result
+
+    def page(self, line: str) -> Dict:
+        if "@page" not in line:
+            return None
+        else:
+            result = self.get_name("page", line)
+            result["not"] = []
+            result["next"] = None
+            properties_line = match(r".*\((?P<properties>[^\)]+).*", line)
+            if properties_line:
+                properties_line_contents = properties_line.groupdict()["properties"]
+                needles = [
+                    "session",
+                    "markable",
+                    "no-header"
+                ]
+                for needle in needles:
+                    result[needle] = needle in properties_line_contents
+            pattern = r".*not\s+(?P<name>[\w-]+)"
+            matches = finditer(pattern, line)
+            for name_match in matches:
+                name = name_match.group("name")
+                result["not"].append(name)
+
+            pattern = r".*next\s+(?P<name>[\w-]+)"
+            name_match = match(pattern, line)
+            if name_match:
+                name = name_match.group("name")
+                result["next"] = name
+            return result
+        
+    def category(self, line: str) -> Dict:
+        if "@category" not in line:
+            return None
+        else:
+            result = self.get_name("category", line)  
+            result["to"] = None
+            result["parent"] = None
+            properties_line = match(r".*\((?P<properties>[^\)]+).*", line)
+            if properties_line:
+                properties_line_contents = properties_line.groupdict()["properties"]
+                result["icon"] = properties_line_contents
+            
+            pattern = r"to\s+(?P<name>[\w-]+)"
+            matches = search(pattern, line)
+            if matches:
+                name = matches.group("name")
+                result["to"] = name
+            pattern = r"parent\s+(?P<name>[\w-]+)"
+            matches = search(pattern, line)
+            if matches:
+                name = matches.group("name")
+                result["parent"] = name
+            return result
+
+    def widget(self, line: str) -> Dict:
+        if "@widget" not in line:
+            return None
+        else:
+            result = self.get_name("widget", line)
+            result["type"] = result["name"]
+            result["to"] = []
+            result.update(self.coords(line))
+
+            pattern = r"to\s+(?P<name>[\w-]+)"
+            matches = finditer(pattern, line)
+            for name_match in matches:
+                name = name_match.group("name")
+                result["to"].append(name)
+        
+            pattern = r".*topic\s+(?P<topic>[\w-]+)"
+            topic_match = match(pattern, line)
+            if topic_match:
+                name = topic_match.group("topic")
+                result["topic"] = name
+            widget_types = {
+                "html": self.htmlwidget,
+                "selection": self.selectionwidget
+            }
+            for key, value in widget_types.items():
+                if result["type"] == key:
+                    result.update(value(line))
+            return result
+        
+    def coords(self, line: str) -> Dict:
+        pattern = ".*(?P<row>[\d]+)\s+(?P<col>[\d]+)\s+(?P<width>[\d]+).*"
+        results = match(pattern, line)
+
+        data = {}
+        if results:
+            data["row"] = results.group("row")
+            data["col"] = results.group("col")
+            data["width"] = results.group("width")
+            return data
+        else:
+            return None
+        
+    def htmlwidget(self, line: str) -> Dict:
+        pattern = "(?P<template>[\w-]{1,}\.html)"
+        results = search(pattern, line) 
+
+        if results:
+            return {
+                "template": results.group("template")
+            }
+        return None   
+    
+    def selectionwidget(self, line: str) -> Dict:
+        pattern = "(?P<topic>[\w-]{1,})\s{0,}$"
+        results = search(pattern, line) 
+
+        # TODO: Decide to use .description or not.
+
+        if results:
+            return {
+                "topic": results.group("topic")
+            }
+        return None

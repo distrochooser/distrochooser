@@ -130,6 +130,7 @@ class Translateable(models.Model):
     catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=20)
 
     is_invalidated = models.BooleanField(default=False)
+    invalidation_id = models.CharField(max_length=5, default=None,null=True,blank=True)
 
     def __(self, key: str, language_code: str = "en") -> str:
         msg_id = self._meta.get_field(key).get_msg_id(self)
@@ -399,7 +400,6 @@ class HTMLWidget(Widget):
 
     def proceed(self, request: HttpRequest, page: Page) -> bool:
         return True
-
 
 class FacetteSelectionWidget(Widget):
     topic = models.CharField(null=False, blank=False, max_length=120)
@@ -676,13 +676,16 @@ class ResultListWidget(Widget):
 
         return render_template.render({"page": page, "results": ranked_result}, request)
 
-
-def get_session_result_id():
+def random_str():
     letters = string.ascii_lowercase + "1234567890"
     result_str = "".join(random.choice(letters) for i in range(5))
+    return result_str
+
+def get_session_result_id():
+    result_str = random_str()
     is_existing = Session.objects.filter(result_id=result_str).count() != 0
     while is_existing:
-        result_str = "".join(random.choice(letters) for i in range(5))
+        result_str = random_str()
         is_existing = Session.objects.filter(result_id=result_str).count() != 0
     return "d6" + result_str
 
@@ -762,7 +765,7 @@ class SessionVersionWidget(Widget):
 
     def render(self, request: WebHttpRequest, page: Page):
         render_template = loader.get_template(f"widgets/version.html")
-        versions = SessionVersion.objects.all()
+        versions = SessionVersion.objects.filter(is_invalidated=False)
         return render_template.render(
             {
                 "versions": versions,
@@ -867,7 +870,8 @@ class Facette(Translateable):
         return self.child_facettes.count() > 0
 
     def __str__(self) -> str:
-        return f"[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) {self.description} (select: {self.selectable_description})"
+        invalidation_prefix = f"Invalidated: ({self.invalidation_id}): " if self.is_invalidated else ""
+        return f"{invalidation_prefix}[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) {self.description} (select: {self.selectable_description})"
 
 
 class FacetteBehaviour(Translateable):
