@@ -203,7 +203,7 @@ class Command(BaseCommand):
             behaviour.save()
             for facette in element["subject"]:
                 behaviour.affected_subjects.add(Facette.objects.get(catalogue_id=facette,is_invalidated=False))
-            for facette in element["subject"]:
+            for facette in element["object"]:
                 behaviour.affected_objects.add(Facette.objects.get(catalogue_id=facette,is_invalidated=False))
             behaviour.save()
 

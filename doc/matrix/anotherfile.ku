@@ -22,7 +22,7 @@
 @facette foo (topic foo);
 @facette bar (topic foo);
 @facette foo2 (topic foo) parent bar;
-@behaviour not-both (subject foo subject bar object barz) bidirectional;
+@behaviour not-both (subject foo object bar) bidirectional warning;
 @behaviour not-this (subject foo) subject_to_object error;
 
 @choosable debian (link website example.tld text example hallo); 

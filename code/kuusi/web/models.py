@@ -886,10 +886,10 @@ class FacetteBehaviour(Translateable):
     class Direction(models.TextChoices):
         SUBJECT_TO_OBJECT = "SUBJECT_TO_OBJECT", "SUBJECT_TO_OBJECT"
         OBJECT_TO_SUBJECT = "OBJECT_TO_SUBJECT", "OBJECT_TO_SUBJECT"
-        BIDRECTIONAL = "BIDRECTIONAL", "BIDRECTIONAL"
-
+        BIDIRECTIONAL = "BIDIRECTIONAL", "BIDIRECTIONAL"
+        
     direction = models.CharField(
-        max_length=20, choices=Direction.choices, default=Direction.BIDRECTIONAL
+        max_length=20, choices=Direction.choices, default=Direction.BIDIRECTIONAL
     )
 
     class Criticality(models.TextChoices):
@@ -914,7 +914,7 @@ class FacetteBehaviour(Translateable):
         is_subjects_others = self.facette_in_queryset(others, self.affected_subjects)
         is_objects_others = self.facette_in_queryset(others, self.affected_objects)
 
-        if self.direction == FacetteBehaviour.Direction.BIDRECTIONAL:
+        if self.direction == FacetteBehaviour.Direction.BIDIRECTIONAL:
             if is_self or is_others:
                 return True
 
