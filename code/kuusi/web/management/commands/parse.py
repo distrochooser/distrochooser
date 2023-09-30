@@ -22,7 +22,7 @@ from os.path import join, exists, dirname
 
 from django.core.management.base import BaseCommand
 
-from web.models import Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Widget
+from web.models import Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Session
 
 logger = getLogger("root")
 
@@ -115,6 +115,11 @@ class Command(BaseCommand):
             if has_selections:
                 logger.debug(f"The facette {facette} does not feature any selections. Getting rid of it.")
                 facette.delete()
+        all_versions = SessionVersion.objects.filter(is_invalidated=True)
+        version: SessionVersion
+        for version in all_versions:
+            if Session.objects.filter(version=version).count() == 0:
+                version.delete()
 
     def facette_store(self, invalidation_id: str, raw: List[Dict]):
         Facette.objects.all().all().update(
