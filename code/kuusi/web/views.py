@@ -40,6 +40,55 @@ from logging import getLogger
 logger = getLogger("root")
 
 
+def process_user_i18n_suggestion(session: Session, base_url: str, page: Page, request: WebHttpRequest) -> HttpResponse | None:
+    # The user has selected to change the language
+    if "ku-i18n-site-lang-code-change" in request.POST:
+        new_code = request.POST.get("ku-i18n-site-lang-code")
+        target = f"/{new_code}" + ("" if not id else f"/{id}")
+        if request.GET.get("page"):
+            target += f"/?page={request.GET.get('page')}"
+        return HttpResponseRedirect(target)
+    stay = False
+    if page.can_be_marked and "BTN_MARK_TOGGLE" in request.POST:
+        page.toggle_marking(request.session_obj)
+        stay = True
+        overwrite_status = 422
+    result = page.proceed(request)
+    if not result:
+        if "BTN_NEXT_PAGE_FORCE" in request.POST:
+            logger.debug(
+                f"User decided to force to next page even as there are issues present (has_errors={request.has_errors},has_warnings={request.has_warnings})"
+            )
+            result = True
+        else:
+            overwrite_status = 422
+
+    if "BTN_FORCED_NAVIGATION" in request.POST:
+        value = request.POST.get("BTN_FORCED_NAVIGATION")
+        return HttpResponseRedirect(base_url + value)
+
+    forward_target: Page = None
+    attempts = 0
+    if not stay:
+        logger.debug(f"The next page is not visible. Starting page skip.")
+        # Make sure the user is redirect to a _valid_ page instead of an empty one if the next page is not visible
+        forward_target = page.next_page
+        while forward_target and not forward_target.is_visible(session):
+            if forward_target.next_page.is_visible(session):
+                forward_target = forward_target.next_page
+                logger.debug(f"Forward target is now {forward_target}")
+
+            attempts += 1
+
+            if attempts >= 10:
+                break
+
+        forward_target_href = page.next_page.href if page.next_page else None
+        if result:
+            if forward_target is not None:
+                forward_target_href = forward_target.href
+            return HttpResponseRedirect(base_url + forward_target_href)
+    return None
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
     # TODO: Get the original selections, copy them to the users's own session.
     template = loader.get_template("index.html")
@@ -148,58 +197,33 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     overwrite_status = 200
     base_url = f"/{request.LANGUAGE_CODE}" + ("" if not id else f"/{id}")
     if request.method == "POST":
-        # The user has selected to change the language
-        if "ku-i18n-site-lang-code-change" in request.POST:
-            new_code = request.POST.get("ku-i18n-site-lang-code")
-            target = f"/{new_code}" + ("" if not id else f"/{id}")
-            if request.GET.get("page"):
-                target += f"/?page={request.GET.get('page')}"
-            return HttpResponseRedirect(target)
-        stay = False
-        if page.can_be_marked and "BTN_MARK_TOGGLE" in request.POST:
-            page.toggle_marking(request.session_obj)
-            stay = True
-            overwrite_status = 422
-        result = page.proceed(request)
-        if not result:
-            if "BTN_NEXT_PAGE_FORCE" in request.POST:
-                logger.debug(
-                    f"User decided to force to next page even as there are issues present (has_errors={request.has_errors},has_warnings={request.has_warnings})"
-                )
-                result = True
-            else:
-                overwrite_status = 422
-
-        if "BTN_FORCED_NAVIGATION" in request.POST:
-            value = request.POST.get("BTN_FORCED_NAVIGATION")
-            return HttpResponseRedirect(base_url + value)
-
-        forward_target: Page = None
-        attempts = 0
-        if not stay:
-            logger.debug(f"The next page is not visible. Starting page skip.")
-            # Make sure the user is redirect to a _valid_ page instead of an empty one if the next page is not visible
-            forward_target = page.next_page
-            while forward_target and not forward_target.is_visible(session):
-                if forward_target.next_page.is_visible(session):
-                    forward_target = forward_target.next_page
-                    logger.debug(f"Forward target is now {forward_target}")
-
-                attempts += 1
-
-                if attempts >= 10:
-                    break
-
-            forward_target_href = page.next_page.href if page.next_page else None
-            if result:
-                if forward_target is not None:
-                    forward_target_href = forward_target.href
-                return HttpResponseRedirect(base_url + forward_target_href)
+        response = process_user_i18n_suggestion(session, base_url, page, request)
+        if response:
+            return response
     current_location = request.get_full_path()
     # If the user is curently on the start page -> use the first available site as "current location"
     if current_location.__len__() <= 1:
         current_location = base_url  + pages[0].href
     step_data = []
+
+    """
+    In Case the desired page is not active within the current version -> attempt to find the next one suitable
+
+    If not page is suitable, it will result in a 405 later.
+    """
+    if not page.is_visible(session):
+        fallback_page = None
+        next_page = page.next_page
+
+        next_page: Page
+        while next_page is not None:
+            if next_page.is_visible(session):
+                fallback_page = next_page
+                break
+            next_page = next_page.next_page
+        if fallback_page:
+            page = fallback_page
+
     index: int
     category: Category
     for index, category in enumerate(categories):
