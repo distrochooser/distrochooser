@@ -487,6 +487,9 @@ class FacetteSelectionWidget(Widget):
                         facette_form.add_warning(
                             facette.catalogue_id, behaviour.description
                         )
+                    else:
+                        # TODO: Implement facette behaviour for criticality INFO
+                        pass
 
         return facette_form, child_facettes, weights
 
@@ -920,22 +923,22 @@ class FacetteBehaviour(Translateable):
         return False
 
     def is_true(self, facette: Facette, others: List[Facette]) -> bool:
-        is_self = self.affected_subjects.filter(pk__in=[facette.pk]).count() > 0
-        is_others = self.affected_objects.filter(pk__in=[facette.pk]).count() > 0
+        is_subject = self.affected_subjects.filter(pk__in=[facette.pk]).count() > 0
+        is_object = self.affected_objects.filter(pk__in=[facette.pk]).count() > 0
 
         is_subjects_others = self.facette_in_queryset(others, self.affected_subjects)
         is_objects_others = self.facette_in_queryset(others, self.affected_objects)
 
         if self.direction == FacetteBehaviour.Direction.BIDIRECTIONAL:
-            if is_self or is_others:
+            if (is_subject or is_object) and (is_subjects_others or is_objects_others):
                 return True
 
         if self.direction == FacetteBehaviour.Direction.SUBJECT_TO_OBJECT:
-            if is_self and is_objects_others:
+            if is_subject and is_objects_others or is_subjects_others and is_object:
                 return True
 
         if self.direction == FacetteBehaviour.Direction.OBJECT_TO_SUBJECT:
-            if is_others and is_subjects_others:
+            if is_object and is_objects_others or is_subjects_others and is_object:
                 return True
         return False
 
