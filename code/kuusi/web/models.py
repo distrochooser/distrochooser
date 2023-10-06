@@ -553,7 +553,6 @@ class FacetteSelectionWidget(Widget):
         facette_form, _ , _= self.build_form(request.POST, request.session_obj)
         # Make sure there is no double facette selections within this topic of the page
         # TODO: Make more dependend from the page rather than the topic
-        # TODO: Make sure sub facettes are deleted if there parent facette selection is deleted     
         request.has_warnings = facette_form.has_warning()
         request.has_errors = not facette_form.is_valid()
         if request.has_warnings or request.has_errors:
