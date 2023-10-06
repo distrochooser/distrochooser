@@ -417,6 +417,9 @@ class FacetteSelectionWidget(Widget):
         facettes = Facette.objects.filter(topic=self.topic, is_invalidated=False)
         child_facettes = []
         weights = {}
+
+        # Build the form content
+        facette: Facette
         for facette in facettes:
             is_child = facette.is_child
             has_child = facette.has_child
@@ -460,6 +463,7 @@ class FacetteSelectionWidget(Widget):
         active_facettes_this_widget = self.get_active_facettes(facette_form, session)
         selections = FacetteSelection.objects.filter(session=session)
         active_facettes = []
+
         selection: FacetteSelection
         for selection in selections:
             if selection.facette not in active_facettes:
@@ -487,6 +491,9 @@ class FacetteSelectionWidget(Widget):
         return facette_form, child_facettes, weights
 
     def get_active_facettes(self, form: Form, session: Session) -> List:
+        """
+        Returns the currently active facettes from the submitted form.
+        """
         facettes = Facette.objects.filter(is_invalidated=False)
         active_facettes = []
         if not form.is_valid():
@@ -498,49 +505,58 @@ class FacetteSelectionWidget(Widget):
             active = form.cleaned_data.get(key)
             if active:
                 active_facettes.append(facette)
-
+        return active_facettes
+    def get_active_facettes_raw(self, request: WebHttpRequest, session: Session) -> List:
+        """
+        Similar as get_active_facettes, but reads from POST directly instead from a given form.
+        """
+        facettes = Facette.objects.filter(is_invalidated=False)
+        active_facettes = []
+        # get selected facettes
+        facette: Facette
+        for facette in facettes:
+            key = facette.catalogue_id
+            active = request.POST.get(key)
+            if active:
+                active_facettes.append(facette)
         return active_facettes
 
     def proceed(self, request: WebHttpRequest, page: Page) -> bool:
+        # Always remove the facettes for the current widget to prevent permanent selections
+        FacetteSelection.objects.filter(
+            session=request.session_obj, facette__topic=self.topic
+        ).delete()
+        # Get the posted facettes directly from the request to store new selections (including weights)
+        active_facettes = self.get_active_facettes_raw(
+            request, request.session_obj
+        )
+        facette: Facette
+        for facette in active_facettes:
+            weight = 0
+            if f"{facette.catalogue_id}-weight" in request.POST:
+                raw_weight =request.POST.get(f"{facette.catalogue_id}-weight")
+
+                is_valid_number = raw_weight.isdigit()
+                if is_valid_number: # positive values
+                    weight = int(raw_weight)
+                if "-" in raw_weight: # negative values
+                    weight = int(raw_weight[1:]) * -1
+                if weight != 0:
+                    logger.debug(f"Facette {facette.catalogue_id} will be weighted with {weight}")
+                else:
+                    logger.debug(f"The string {raw_weight} for field {facette.catalogue_id} could not be casted into an int")
+
+            select = FacetteSelection(facette=facette, session=request.session_obj)
+            select.weight = weight
+            select.save()
+        
         facette_form, _ , _= self.build_form(request.POST, request.session_obj)
-
-        is_valid = facette_form.is_valid()
-        if not is_valid:
-            request.has_errors = True
-            return False
-
-        if is_valid:
-            # Make sure there is no double facette selections within this topic of the page
-            # TODO: Make more dependend from the page rather than the topic
-            # TODO: Make sure sub facettes are deleted if there parent facette selection is deleted
-            FacetteSelection.objects.filter(
-                session=request.session_obj, facette__topic=self.topic
-            ).delete()
-            active_facettes = self.get_active_facettes(
-                facette_form, request.session_obj
-            )
-            # store facettes
-            facette: Facette
-            for facette in active_facettes:
-                weight = 0
-                if f"{facette.catalogue_id}-weight" in request.POST:
-                    raw_weight =request.POST.get(f"{facette.catalogue_id}-weight")
-
-                    is_valid_number = raw_weight.isdigit()
-                    if is_valid_number: # positive values
-                        weight = int(raw_weight)
-                    if "-" in raw_weight: # negative values
-                        weight = int(raw_weight[1:]) * -1
-                    if weight != 0:
-                        logger.debug(f"Facette {facette.catalogue_id} will be weighted with {weight}")
-                    else:
-                        logger.debug(f"The string {raw_weight} for field {facette.catalogue_id} could not be casted into an int")
-
-                select = FacetteSelection(facette=facette, session=request.session_obj)
-                select.weight = weight
-                select.save()
-        if facette_form.has_warning():
-            request.has_warnings = True
+        # Make sure there is no double facette selections within this topic of the page
+        # TODO: Make more dependend from the page rather than the topic
+        # TODO: Make sure sub facettes are deleted if there parent facette selection is deleted     
+        request.has_warnings = facette_form.has_warning()
+        request.has_errors = not facette_form.is_valid()
+        if request.has_warnings or request.has_errors:
             return False
         return True
 
