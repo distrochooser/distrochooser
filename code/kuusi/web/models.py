@@ -430,24 +430,20 @@ class FacetteSelectionWidget(Widget):
             if is_selected:
                 weights[facette.catalogue_id] = selection_matches.first().weight
             if not is_child:
-
                 facette_form.fields[facette.catalogue_id] = BooleanField(required=False, label=self.build_translateable_label(facette))
+
                 if has_child:
-                    facette_form.fields[facette.catalogue_id].widget.attrs[
-                        "data-bs-toggle"
-                    ] = "collapse"
-                    facette_form.fields[facette.catalogue_id].widget.attrs[
-                        "data-bs-target"
-                    ] = f"#collapse-{facette.catalogue_id}"
-                    facette_form.fields[facette.catalogue_id].widget.attrs[
-                        "aria-expanded"
-                    ] = ("false" if not is_selected else "true")
-                    facette_form.fields[facette.catalogue_id].widget.attrs[
-                        "aria-controls"
-                    ] = f"collapse-{facette.catalogue_id}"
-                    facette_form.fields[facette.catalogue_id].widget.attrs[
-                        "data-ku-id"
-                    ] = facette.catalogue_id
+                    attr_map = {
+                        "data-bs-toggle": "collapse",
+                        "data-bs-target": f"#collapse-{facette.catalogue_id}",
+                        "aria-expanded": ("false" if not is_selected else "true"),
+                        "aria-controls": f"collapse-{facette.catalogue_id}",
+                        "data-ku-id": facette.catalogue_id
+                    }
+                    for key, value in attr_map.items():
+                        facette_form.fields[facette.catalogue_id].widget.attrs[
+                          key
+                        ] = value
 
             for sub_facette in facette.child_facettes.all():
                 facette_form.fields[sub_facette.catalogue_id] = BooleanField(
@@ -648,6 +644,7 @@ class ResultListWidget(Widget):
                     assignments_selected,
                 )
             )
+            # FIXME: SOmething causes the get_score() result to be 0 even with negative assignments
             assignments_used[choosable] = []
             assignment: FacetteAssignment
             for assignment in choosable_assignments:
