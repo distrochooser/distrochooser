@@ -689,7 +689,6 @@ class ResultListWidget(Widget):
                     assignments_selected,
                 )
             )
-            # FIXME: SOmething causes the get_score() result to be 0 even with negative assignments
             assignments_used[choosable] = []
             assignment: FacetteAssignment
             for assignment in choosable_assignments:
