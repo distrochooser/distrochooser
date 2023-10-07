@@ -84,7 +84,6 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
             ).first()
 
     # Load selections of an old session
-    # TODO: Load correct version!
     if id is not None and session:
         old_session = Session.objects.filter(result_id=id).first()
         if old_session:
