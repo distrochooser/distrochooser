@@ -7,31 +7,13 @@
             <i class="{{ icon }}"></i>
         </span>
         <span class="ku-step-major-title">
-            {% if major.href %}
-            <button name="BTN_FORCED_NAVIGATION"
-                class="ku-step-button {% if major.active %} ku-step-active {% endif %} {% if major.answered %} ku-step-answered {% endif %}"
-                value="{{major.href}}">{%_i18n major.title %}</button>
-            {% else %}
-            <span>{{major.title}}</span>
-            {%endif %}
-            {% if major.marked%}
-            <i class="bi bi-bookmark-fill ku-step-marked"></i>
-            {% endif %}
+            {% step_content major %}
         </span>
     </div>
     {% for step in minor %}
     <div class="col-12">
         <span class="ku-step-minor-title {% if step.active %} ku-step-title-active {% endif %}">
-            {% if step.href %}
-            <button name="BTN_FORCED_NAVIGATION"
-                class="ku-step-button {% if step.active %} ku-step-active {% endif %} {% if step.answered %} ku-step-answered {% endif %}"
-                value="{{step.href}}">{%_i18n step.title %}</button>
-            {% else %}
-            <span>{{step.title}}</span>
-            {%endif %}
-            {% if step.marked%}
-            <i class="bi bi-bookmark-fill ku-step-marked"></i>
-            {% endif %}
+            {% step_content step %}
         </span>
     </div>
     {% endfor %}

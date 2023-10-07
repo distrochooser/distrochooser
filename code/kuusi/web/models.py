@@ -27,6 +27,7 @@ from django.db import models
 from django.db.models import Max, Min, QuerySet
 from django.template import loader
 from django.utils import timezone
+from django.db.models import Q
 
 from django.http import HttpRequest
 
@@ -336,10 +337,14 @@ class Page(Translateable):
         return result
 
     def is_marked(self, session: Session):
-        return PageMarking.objects.filter(page=self, session=session).count() > 0
+        return PageMarking.objects.filter(page=self, session=session, is_error=False, is_warning=False).count() > 0
+    def is_error(self, session: Session):
+        return PageMarking.objects.filter(page=self, session=session, is_error=True).count() > 0
+    def is_warning(self, session: Session):
+        return PageMarking.objects.filter(page=self, session=session, is_warning=True).count() > 0
 
     def toggle_marking(self, session: Session):
-        marking_matches = PageMarking.objects.filter(page=self, session=session)
+        marking_matches = PageMarking.objects.filter(page=self, session=session, is_error=False, is_warning=False)
 
         if marking_matches.count() > 0:
             marking_matches.delete()
@@ -363,6 +368,9 @@ class PageMarking(models.Model):
         null=False,
         related_name="pagemarking_session",
     )
+    is_error = models.BooleanField(default=False)
+    is_warning = models.BooleanField(default=False)
+    is_info = models.BooleanField(default=False)
 
 
 class Widget(models.Model):
@@ -491,6 +499,24 @@ class FacetteSelectionWidget(Widget):
                     else:
                         # TODO: Implement facette behaviour for criticality INFO
                         pass
+        
+        # FIXME: Get rid of double iterations
+        for page in self.pages.all():
+            PageMarking.objects.filter(session=session, page=page).filter(Q(is_error=True)|Q(is_warning=True)).delete()
+        if facette_form.errors.__len__() > 0 or facette_form.warnings.__len__() > 0:
+            # Create a non-deletable Marking for pages using this widget
+            # In case of facette selection widgets, this will most likely be one.
+
+            if self.pages.count() > 0:
+                logger.warn(f"There will be markings due to errors/ warnings in widget {self} for more than one page.")
+            for page in self.pages.all():
+                marking = PageMarking(
+                    session=session,
+                    page=page,
+                    is_error = facette_form.errors.__len__() > 0,
+                    is_warning = facette_form.warnings.__len__() > 0
+                )
+                marking.save()
 
         return facette_form, child_facettes, weights
 
@@ -1054,6 +1080,9 @@ class Category(Translateable):
         """
         target = None
         target_page: Page = self.target_page
+        is_error = False
+        is_warning = False
+        is_marked = False
         if target_page:
             target = target_page.href
 
@@ -1065,12 +1094,16 @@ class Category(Translateable):
                 else False
             )
             is_marked = target_page.is_marked(session)
+            is_warning = target_page.is_warning(session)
+            is_error = target_page.is_error(session)
         return {
             "title": self.__("name", language_code),
             "href": target,
             "active": current_location == target, # FIXME: Properly identify the current location also when /<language>/<id> is set
             "answered": is_answered,
             "marked": is_marked,
+            "warning": is_warning,
+            "error": is_error,
             "last": is_last,
         }
 

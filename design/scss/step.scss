@@ -58,5 +58,13 @@
 
 .ku-step-marked {
     color: gold;
-    position: absolute;
+    position: relative;
+
+    &.bi-exclamation-octagon-fill{
+        color: red;
+    }
+
+    &.bi-exclamation-square-fill{
+        color: blue;
+    }
 }

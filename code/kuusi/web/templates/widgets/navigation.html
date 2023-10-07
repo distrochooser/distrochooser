@@ -22,6 +22,7 @@
             </button>
         {% endif %}
         <!-- {% _i18n "BTN_PREV_PAGE" %} -->
+        <!-- FIXME: Make sure the widgets are processed (in any way) before leaving the page -->
         {% if page.previous_page %}
             <a class="btn btn-secondary" href="{{page.previous_page.href}}">
                 <i class="bi bi-arrow-left-square"></i> {% _i18n "BTN_PREV_PAGE" %}

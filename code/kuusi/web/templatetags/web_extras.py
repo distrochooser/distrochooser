@@ -85,6 +85,10 @@ def logo():
 def step(context, step: Dict):
     return step
 
+@register.inclusion_tag(filename="tags/step_content.html")
+def step_content(step: Dict):
+    return {"step": step}
+
 
 @register.inclusion_tag(filename="tags/cookies.html")
 def cookies():
