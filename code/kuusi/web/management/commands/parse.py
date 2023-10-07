@@ -36,7 +36,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # FIXME: Implement a better way of handling old, data, e. g. of making the selections orphans, but keep old results.
         # FIXME: Make sure the translatable process omits invalidated entries
-        # FIXME: Don't remove old structures, only invalidate them.
         if not options["file_path"]:
             raise Exception("no filename")
         file_path = options["file_path"]
@@ -116,20 +115,7 @@ class Command(BaseCommand):
                         results[key].append(got)
             for key, value in data_store.items():
                 value(invalidation_id, results[key])
-        # Remove facettes not used by any selection to reduce polluting the table.
-        all_old_facettes = Facette.objects.filter(is_invalidated=True)
-        facette: Facette
-        for facette in all_old_facettes:
-            has_selections =FacetteSelection.objects.filter(facette=facette).count() == 0
-            if has_selections:
-                logger.debug(f"The facette {facette} does not feature any selections. Getting rid of it.")
-                facette.delete()
-        all_versions = SessionVersion.objects.filter(is_invalidated=True)
-        version: SessionVersion
-        for version in all_versions:
-            if Session.objects.filter(version=version).count() == 0:
-                version.delete()
-
+    
     def facette_store(self, invalidation_id: str, raw: List[Dict]):
         Facette.objects.filter(is_invalidated=False).update(
             is_invalidated = True,
