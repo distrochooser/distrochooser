@@ -31,7 +31,7 @@
     <!--  {% _i18n "DEBUG_MODE_ON" %} -->
     <div class="row">
         {% if debug %}
-        <div class="col-1">
+        <div class="col-md-1 col-sm-12">
             <div class="alert alert-danger text-center">
                 {% _i18n "DEBUG_MODE_ON" %}
             </div>
@@ -55,7 +55,8 @@
             </div>
             <div class="col-2"></div>
             <div class="col-1">
-            <form action="" method="post" enctype="application/x-www-form-urlencoded">
+           <div class="col-2">
+             <form action="" method="post" enctype="application/x-www-form-urlencoded">
                 <label for="ku-i18n-site-lang-code" class="form-label"> {% _i18n "LANGUAGE" %}</label>
                 {% csrf_token %}
                 <select id="ku-i18n-site-lang-code" name="ku-i18n-site-lang-code" id="ku-i18n-site-lang-code" class="form-control">
@@ -72,6 +73,7 @@
                     <a href="#" class="btn btn-primary ku-i18n-save">Save my translation</a>
                 </div>
             </form>
+           </div>
         </div>
     </div>
     <main>

@@ -6,12 +6,12 @@
 <form method="post" enctype="application/x-www-form-urlencoded">
     {% csrf_token %}
     <div class="row">
-        <div class="col-3">
+        <div class="col-2 col-lg-3 ">
             {% for step in steps %}
                 {% step step %}
             {% endfor %}
         </div>
-        <div class="col-6">
+        <div class="col-9 col-lg-6">
             {% page page %}
         </div>
     </div>

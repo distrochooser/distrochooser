@@ -72,6 +72,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     session = None
     if page.require_session:
         # TODO: Make the handling better. TO pick up old results it's required to have a session, but the welcome page should not feature a session due to cookies
+        # TODO: Decide if when no id is given -> new session or not?
         # TODO: Also, get rid of the csrftoken cookie until user gave consent
         if "result_id" not in request.session:
             user_agent = request.headers.get("user-agent")
