@@ -45,9 +45,9 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     page_id = request.GET.get("page")
     page = None
     if page_id:
-        page = Page.objects.get(catalogue_id=page_id)
+        page = Page.objects.get(catalogue_id=page_id, is_invalidated=False)
     else:
-        page = Page.objects.first()
+        page = Page.objects.filter(is_invalidated=False).first()
 
     # get the categories in an order fitting the pages
     pages = []

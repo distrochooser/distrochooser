@@ -179,7 +179,7 @@ class Command(BaseCommand):
                 choosable_meta.save()
 
     def assignment_store(self, invalidation_id: str, raw: List[Dict]):
-        FacetteAssignment.objects.all().update(
+        FacetteAssignment.objects.filter(is_invalidated=False).update(
             is_invalidated = True,
             invalidation_id = invalidation_id
         )
@@ -217,7 +217,7 @@ class Command(BaseCommand):
             behaviour.save()
 
     def version_store(self, invalidation_id: str, raw: List[Dict]): 
-        SessionVersion.objects.all().update(
+        SessionVersion.objects.filter(is_invalidated=False).update(
             is_invalidated = True,
             invalidation_id = invalidation_id
         )
@@ -229,7 +229,10 @@ class Command(BaseCommand):
             version.save()
 
     def page_store(self, invalidation_id: str, raw: List[Dict]): 
-        Page.objects.all().delete()
+        Page.objects.filter(is_invalidated=False).update(
+            is_invalidated = True,
+            invalidation_id = invalidation_id
+        )
         for element in raw:
             page = Page(
                 catalogue_id = element["name"],
@@ -257,7 +260,10 @@ class Command(BaseCommand):
                         page.save()
 
     def category_store(self, invalidation_id: str, raw: List[Dict]): 
-        Category.objects.all().delete()
+        Category.objects.filter(is_invalidated=False).update(
+            is_invalidated = True,
+            invalidation_id = invalidation_id
+        )
         for element in raw:
             page = Category(
                 catalogue_id = element["name"],
@@ -266,7 +272,7 @@ class Command(BaseCommand):
             )
             page.save()
         
-        for category in Category.objects.all():
+        for category in Category.objects.filter(is_invalidated=False):
             for element in raw:
                 if element["name"] == category.catalogue_id:
                     if element["parent"]:
@@ -274,7 +280,7 @@ class Command(BaseCommand):
                         category.save()
 
     def widget_store(self, invalidation_id: str, raw: List[Dict]):
-
+        
         class_map = {
             "version": SessionVersionWidget,
             "share": ResultShareWidget,
@@ -286,7 +292,7 @@ class Command(BaseCommand):
 
         for element in raw:
             if element["type"] in class_map.keys():
-
+                # Widgets won't be invalidated as the pages are invalidated already.
                 class_name = class_map[element["type"]]
                 class_name.objects.all().delete()
                 new_widget = class_name(
