@@ -103,6 +103,8 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
                         selection.pk = None
                         selection.session = session
                         selection.save()
+                # Make sure that copied results do not leave the version
+                session.valid_for = old_session.valid_for
                 session.session_origin = old_session
                 session.save()
             else:
@@ -205,7 +207,9 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         "acceleration": ACCELERATION,
         "debug": DEBUG,
         "language_codes": LANGUAGE_CODES,
-        "language_code": request.LANGUAGE_CODE
+        "language_code": request.LANGUAGE_CODE,
+        "session": session,
+        "is_old": session.valid_for != "latest"
     }
     # TODO: create a tree , displaying the behaviours and selection reasons
     # TODO: Allow the user to display and modify the tree (if allowed)

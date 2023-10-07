@@ -39,7 +39,20 @@
 
         </div>
             <div class="col-{% if debug %}2{%else%}3{%endif%}"></div>
-            <div class="col-6 mt-3">{% logo %}</div>
+            <div class="col-6 mt-3">{% logo %}
+
+            <div class="row">
+                {% if is_old %}
+                <div class="col-12 alert alert-info">
+                    {% if debug %}
+                        INVALIDATION: {{ session.valid_for }}
+                    {% else %}
+                       {% _i18n "OLD_RESULT" %}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            </div>
             <div class="col-2"></div>
             <div class="col-1">
             <form action="" method="post" enctype="application/x-www-form-urlencoded">

@@ -36,10 +36,19 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # FIXME: Implement a better way of handling old, data, e. g. of making the selections orphans, but keep old results.
         # FIXME: Make sure the translatable process omits invalidated entries
+        # FIXME: Don't remove old structures, only invalidate them.
         if not options["file_path"]:
             raise Exception("no filename")
         file_path = options["file_path"]
         invalidation_id = random_str()
+        
+        # Make sure that sessions always keep their "old" invalidation to avoid breaking old results.
+        sessions = Session.objects.filter(valid_for="latest")
+        session: Session
+        for session in sessions:
+            session.valid_for = invalidation_id
+            session.save()
+
         with open(file_path, "r") as file:
             raw = file.read()
 
@@ -122,7 +131,7 @@ class Command(BaseCommand):
                 version.delete()
 
     def facette_store(self, invalidation_id: str, raw: List[Dict]):
-        Facette.objects.all().all().update(
+        Facette.objects.filter(is_invalidated=False).update(
             is_invalidated = True,
             invalidation_id = invalidation_id
         )
@@ -144,7 +153,7 @@ class Command(BaseCommand):
                 parent.save()
 
     def choosable_store(self, invalidation_id: str, raw: List[Dict]):
-        Choosable.objects.all().update(
+        Choosable.objects.filter(is_invalidated=False).update(
             is_invalidated = True,
             invalidation_id = invalidation_id
         )
@@ -189,7 +198,7 @@ class Command(BaseCommand):
             assignment.save()
 
     def behaviour_store(self, invalidation_id: str, raw: List[Dict]): 
-        FacetteBehaviour.objects.all().update(
+        FacetteBehaviour.objects.filter(is_invalidated=False).update(
             is_invalidated = True,
             invalidation_id = invalidation_id
         )

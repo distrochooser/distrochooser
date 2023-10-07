@@ -422,7 +422,13 @@ class FacetteSelectionWidget(Widget):
         self, data: Dict | None, session: Session
     ) -> Tuple[WarningForm, List, Dict]:
         facette_form = WarningForm(data) if data else WarningForm()
-        facettes = Facette.objects.filter(topic=self.topic, is_invalidated=False)
+
+        facettes = None
+        if session.valid_for == "latest":
+            facettes = Facette.objects.filter(topic=self.topic, is_invalidated=False)
+        else:
+            logger.debug(f"Facette widget {self} will use facettes of invalidation {session.valid_for}.")
+            facettes = Facette.objects.filter(topic=self.topic, is_invalidated=True, invalidation_id=session.valid_for)
         child_facettes = []
         weights = {}
 
@@ -479,7 +485,12 @@ class FacetteSelectionWidget(Widget):
                 active_facettes.append(selection.facette)
         facette: Facette
         for facette in active_facettes:
-            behaviours = FacetteBehaviour.objects.filter(is_invalidated=False)
+            behaviours = None
+            if session.valid_for == "latest":
+                behaviours = FacetteBehaviour.objects.filter(is_invalidated=False)
+            else:
+                logger.debug(f"Using behaviours of invalidation {session.valid_for}.")
+                behaviours =  FacetteBehaviour.objects.filter(is_invalidated=True, invalidation_id=session.valid_for)
             behaviour: FacetteBehaviour
             for behaviour in behaviours:
                 # We only care about behavours true for a facette within the current screen while we iterate all facettes *somewhere* selected
@@ -657,17 +668,30 @@ class ResultListWidget(Widget):
         selection: FacetteSelection
         for selection in selections:
             facette = selection.facette
-            assignments = FacetteAssignment.objects.filter(
-                facettes__pk__in=[facette.pk],
-                is_invalidated=False
-            )
+            assignments = None
+            if request.session_obj.valid_for != "latest":
+                logger.debug(f"The session is not for latest, choosing assignments of invalidation {request.session_obj.valid_for}.")
+                assignments = FacetteAssignment.objects.filter(
+                    facettes__pk__in=[facette.pk],
+                    is_invalidated=True,
+                    invalidation_id=request.session_obj.valid_for
+                )
+            else:
+                assignments = FacetteAssignment.objects.filter(
+                    facettes__pk__in=[facette.pk],
+                    is_invalidated=False
+                )
             if assignments.count() > 0:
                 assignments_selected += assignments
 
             # The weight from the selection will be used to alter the score later.
             weights_per_assignment.append(selection.weight)
-
-        choosables = Choosable.objects.filter(is_invalidated=False)
+        choosables = None
+        if request.session_obj.valid_for != "latest":
+            logger.debug(f"The session is not for latest, choosing choosables of invalidation {request.session_obj.valid_for}.")
+            choosables = Choosable.objects.filter(invalidation_id=request.session_obj.valid_for, is_invalidated=True)
+        else:
+            choosables = Choosable.objects.filter(is_invalidated=False)
 
         raw_results: Dict[Choosable, float] = {}
         assignments_used: Dict[Choosable, FacetteAssignment] = {}
@@ -748,6 +772,7 @@ class Session(models.Model):
         related_name="session_version",
     )
     number = models.IntegerField(default=get_session_number, null=True, blank=True)
+    valid_for = models.CharField(max_length=5, default="latest",null=True,blank=True)
     session_origin = models.ForeignKey(
         to="Session",
         on_delete=models.SET_NULL,
