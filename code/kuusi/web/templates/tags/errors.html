@@ -1,3 +1,10 @@
-<div class="alert alert-danger">
-    {{ errors }}
-</div>
+<ol class="list-group">
+    {% for key, error in haystack.items %}
+    <li class="list-group-item d-flex justify-content-between align-items-start  list-group-item-{{severity}}">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">{{key}}</div>
+            <small class="text-muted"> {{error}}</small>
+        </div>
+    </li>
+    {% endfor %}
+</ol>

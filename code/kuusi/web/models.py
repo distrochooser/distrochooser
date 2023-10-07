@@ -32,7 +32,7 @@ from django.http import HttpRequest
 
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
-from django.forms import Form, BooleanField
+from django.forms import Form, BooleanField, ValidationError
 from django.utils.safestring import mark_safe
 
 from django.db import models

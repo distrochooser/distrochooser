@@ -24,6 +24,7 @@ from django.utils.translation import get_language
 from django.utils import safestring
 from django.http import HttpRequest
 from django.forms import Form, Field, ValidationError
+from django.forms.utils import ErrorDict
 
 from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta, TranslationSuggestion
 
@@ -152,14 +153,36 @@ def weight(field: Field, weights: Dict):
         value = weights.get(field.name)
     return {"field": field, "value": value}
 
+def flatten_errors_warnings(haystack: ErrorDict):
+    """
+    Returns a "flattened" dict containing the error messages for human display
+    """
+    result: Dict = {}
+    for key, errors in haystack.as_data().items():
+        for error in errors:
+            message = str(error.message)
+            matched = False
+            for result_key, result_value in result.items():
+                if result_key != key:
+                    if result_value == message:
+                        old_key = result_key
+                        new_key = old_key + "," + key
+                        del result[old_key]
+                        result[new_key] = message
+                        matched = True
+                        break
+            
+            if not matched:
+                result[key] = message
+                
+    return result
 
 @register.inclusion_tag(filename="tags/errors.html")
 def errors(errors: Dict[str, List[ValidationError]]):
     # TODO: Make less redundant with warnings()
-    # TODO: Get rid of double entries
-    return {"errors": errors}
+    return {"haystack": flatten_errors_warnings(errors), "severity": "danger"}
 
 
-@register.inclusion_tag(filename="tags/warnings.html")
+@register.inclusion_tag(filename="tags/errors.html")
 def warnings(warnings: Dict[str, List[ValidationError]]):
-    return {"warnings": warnings}
+    return {"haystack": flatten_errors_warnings(errors), "severity": "warning"}
