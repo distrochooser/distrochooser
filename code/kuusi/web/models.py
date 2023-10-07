@@ -430,18 +430,17 @@ class FacetteSelectionWidget(Widget):
                 selection_matches.count()
                 > 0
             )
+
             if is_selected:
                 weights[facette.catalogue_id] = selection_matches.first().weight
             if not is_child:
                 facette_form.fields[facette.catalogue_id] = BooleanField(required=False, label=self.build_translateable_label(facette))
-
                 if has_child:
                     attr_map = {
                         "data-bs-toggle": "collapse",
                         "data-bs-target": f"#collapse-{facette.catalogue_id}",
                         "aria-expanded": ("false" if not is_selected else "true"),
-                        "aria-controls": f"collapse-{facette.catalogue_id}",
-                        "data-ku-id": facette.catalogue_id
+                        "aria-controls": f"collapse-{facette.catalogue_id}"
                     }
                     for key, value in attr_map.items():
                         facette_form.fields[facette.catalogue_id].widget.attrs[
@@ -457,7 +456,9 @@ class FacetteSelectionWidget(Widget):
                     "data-ku-parent"
                 ] = facette.catalogue_id
                 child_facettes.append(sub_facette.catalogue_id)
-
+            # To make grabbing the facette inputs with selectors for facette.js easier-> add a static attribute
+            facette_form.fields[facette.catalogue_id].widget.attrs["data-ku-facette"] = True
+            facette_form.fields[facette.catalogue_id].widget.attrs["data-ku-id"] = facette.catalogue_id
         # trigger facette behaviours
         # While we need to now _all_ selected facettes, it's also required to know the facettes within the current screen
         active_facettes_this_widget = self.get_active_facettes(facette_form, session)
