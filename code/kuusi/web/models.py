@@ -702,10 +702,9 @@ class ResultListWidget(Widget):
 
             score = FacetteAssignment.AssignmentType.get_score(results)
             logger.debug(f"Choosable={choosable}, Score={score}, Results={results}")
-
             raw_results[choosable] = score
-        # FIXME: ADd proper sorting.
-        ranked_keys = raw_results
+
+        ranked_keys =sorted(raw_results, key=raw_results.get, reverse=True)
         ranked_result = {}
         for key in ranked_keys:
             ranked_result[key] = {
