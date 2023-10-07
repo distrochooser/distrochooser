@@ -262,7 +262,7 @@ class Command(BaseCommand):
             for element in raw:
                 if element["name"] == category.catalogue_id:
                     if element["parent"]:
-                        category.child_of = Category.objects.get(catalogue_id=element["parent"])
+                        category.child_of = Category.objects.get(catalogue_id=element["parent"], is_invalidated=False)
                         category.save()
 
     def widget_store(self, invalidation_id: str, raw: List[Dict]):
@@ -280,7 +280,6 @@ class Command(BaseCommand):
             if element["type"] in class_map.keys():
                 # Widgets won't be invalidated as the pages are invalidated already.
                 class_name = class_map[element["type"]]
-                class_name.objects.all().delete()
                 new_widget = class_name(
                     row = element["row"],
                     col = element["col"],
