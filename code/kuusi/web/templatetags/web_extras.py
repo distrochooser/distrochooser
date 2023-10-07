@@ -189,4 +189,4 @@ def errors(errors: Dict[str, List[ValidationError]]):
 
 @register.inclusion_tag(filename="tags/errors.html")
 def warnings(warnings: Dict[str, List[ValidationError]]):
-    return {"haystack": flatten_errors_warnings(errors), "severity": "warning"}
+    return {"haystack": flatten_errors_warnings(warnings), "severity": "warning"}
