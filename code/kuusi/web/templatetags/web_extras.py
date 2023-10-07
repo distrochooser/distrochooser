@@ -23,7 +23,7 @@ from django.utils.translation import gettext as _
 from django.utils.translation import get_language
 from django.utils import safestring
 from django.http import HttpRequest
-from django.forms import Form, Field
+from django.forms import Form, Field, ValidationError
 
 from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta, TranslationSuggestion
 
@@ -151,3 +151,15 @@ def weight(field: Field, weights: Dict):
     if field.name in weights:
         value = weights.get(field.name)
     return {"field": field, "value": value}
+
+
+@register.inclusion_tag(filename="tags/errors.html")
+def errors(errors: Dict[str, List[ValidationError]]):
+    # TODO: Make less redundant with warnings()
+    # TODO: Get rid of double entries
+    return {"errors": errors}
+
+
+@register.inclusion_tag(filename="tags/warnings.html")
+def warnings(warnings: Dict[str, List[ValidationError]]):
+    return {"warnings": warnings}

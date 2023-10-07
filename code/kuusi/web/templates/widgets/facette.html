@@ -15,12 +15,8 @@
 {% endif %}
 {% endfor %}
 {% if form.errors %}
-<div class="alert alert-danger">
-    {{ form.errors }}
-</div>
+{% errors form.errors %}
 {% endif %}
 {% if form.warnings %}
-<div class="alert alert-warning">
-    {{ form.warnings }}
-</div>
+{% warnings form.warnings %}
 {% endif %}
