@@ -499,17 +499,16 @@ class FacetteSelectionWidget(Widget):
                     else:
                         # TODO: Implement facette behaviour for criticality INFO
                         pass
-        
-        # FIXME: Get rid of double iterations
-        for page in self.pages.all():
-            PageMarking.objects.filter(session=session, page=page).filter(Q(is_error=True)|Q(is_warning=True)).delete()
+        # Log a warning as this might cause headache later
         if facette_form.errors.__len__() > 0 or facette_form.warnings.__len__() > 0:
-            # Create a non-deletable Marking for pages using this widget
-            # In case of facette selection widgets, this will most likely be one.
-
             if self.pages.count() > 0:
                 logger.warn(f"There will be markings due to errors/ warnings in widget {self} for more than one page.")
-            for page in self.pages.all():
+        page: Page
+        for page in self.pages.all():
+            PageMarking.objects.filter(session=session, page=page).filter(Q(is_error=True)|Q(is_warning=True)).delete()
+            if facette_form.errors.__len__() > 0 or facette_form.warnings.__len__() > 0:
+                # Create a non-deletable Marking for pages using this widget
+                # In case of facette selection widgets, this will most likely be one.
                 marking = PageMarking(
                     session=session,
                     page=page,
