@@ -1,0 +1,3 @@
+@facette with-dock (topic ux);
+@facette one-centered-window (topic ux);
+@facette tiling (topic ux);

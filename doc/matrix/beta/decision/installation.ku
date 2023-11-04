@@ -1,0 +1,3 @@
+@facette many-preselections (topic installation);
+@facette commandline-setup (topic installation);
+@facette many-choices-gui (topic installation);

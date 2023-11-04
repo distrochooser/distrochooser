@@ -1,0 +1,3 @@
+# Debian choosable definition
+
+@choosable debian (link website https://www.debian.org/ text licenses DFSG date created 1993-08-16 flag country us); 

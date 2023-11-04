@@ -1,0 +1,4 @@
+@facette 64bit (topic old-hardware);
+@facette no64bit (topic old-hardware);
+
+@behaviour 64bit-gaming-most-likely issues (subject gaming-usage object no64bit) bidirectional error;

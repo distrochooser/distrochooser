@@ -1,0 +1,21 @@
+# This is the Distrochooser 6 matrix description
+
+@include versions/simplified.ku;
+@include pages/pages.ku;
+@include choosables/debian.ku;
+
+# Scenario page selections
+@include decision/scenario.ku;
+# PC knowledge page selections
+@include decision/pc-knowledge.ku;
+@include decision/linux-knowledge.ku;
+@include decision/installation.ku;
+@include decision/old-hardware.ku;
+@include decision/help.ku;
+@include decision/ux.ku;
+@include decision/pricing.ku;
+@include decision/scope.ku;
+@include decision/ideology.ku;
+@include decision/privacy.ku;
+@include decision/administration.ku;
+@include decision/updates.ku;
