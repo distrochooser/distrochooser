@@ -73,9 +73,13 @@
 @category administration-page-category (bi bi-gear-wide-connected) to administration-page;
 
 
-@page updates-page (session markable) not simplified;
+@page updates-page (session markable) not simplified next result-page;
 @widget selection 1 1 12 to updates-page topic updates;
 @category updates-page-category (bi bi-cloud-plus) to updates-page;
+
+@page result-page (session no-header);
+@widget result 2 1 12 to result-page;
+@category result-page-category (bi bi-list-nested) to result-page;
 
 
 # add the nav widget to all pages
