@@ -163,7 +163,7 @@ class Translateable(models.Model):
             field_type = type(field)
             field_name = field.name
             if isinstance(field, TranslateableField):
-                logger.debug(f"Removing field records for {field_type} ({field_name})")
+                logger.debug(f"Removing field records for {self}:{field_type} ({field_name})")
                 TranslateableFieldRecord.objects.filter(
                     msg_id=field.get_msg_id(self)
                 ).delete()
@@ -251,6 +251,7 @@ class Page(Translateable):
     @property
     def widget_list(self) -> List[Widget]:
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
+        # TODO: Add hardware requirements widget (which requires some widgets to store abitrary data)
         return (
             list(SessionVersionWidget.objects.filter(pages__pk__in=[self]))
             + list(HTMLWidget.objects.filter(pages__pk__in=[self]))
@@ -483,6 +484,7 @@ class FacetteSelectionWidget(Widget):
         for selection in selections:
             if selection.facette not in active_facettes:
                 active_facettes.append(selection.facette)
+        # FIXME: Facettes not triggering
         facette: Facette
         for facette in active_facettes:
             behaviours = None
@@ -918,7 +920,9 @@ class Facette(Translateable):
     The selectable_description is displayed for selection within a page
 
     The topic reduces a facette to a certain subarea, e. g. "licenses" for Linux distributions
-    """
+    """ 
+
+    # TODO: Add a source flag to describe decisions.
 
     description = TranslateableField(null=False, blank=False, max_length=120)
     selectable_description = TranslateableField(null=False, blank=False, max_length=120)

@@ -22,7 +22,7 @@ from os.path import join, exists, dirname
 
 from django.core.management.base import BaseCommand
 
-from web.models import Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Session
+from web.models import TranslationSuggestion, Widget, Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Session
 
 logger = getLogger("root")
 
@@ -32,12 +32,27 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("file_path", type=str)
+        parser.add_argument("--wipe",action='store_true', default=False)
 
     def handle(self, *args, **options):
         # FIXME: Implement a better way of handling old, data, e. g. of making the selections orphans, but keep old results.
         # FIXME: Make sure the translatable process omits invalidated entries
         if not options["file_path"]:
             raise Exception("no filename")
+        
+        if options["wipe"]:
+            logger.warn("Removing database content")
+            #Session.objects.all().delete()
+            Choosable.objects.all().delete()
+            Facette.objects.all().delete()
+            FacetteSelection.objects.all().delete()
+            FacetteAssignment.objects.all().delete()
+            Category.objects.all().delete()
+            Page.objects.all().delete()
+            Widget.objects.all().delete()
+            TranslationSuggestion.objects.all().delete()
+            SessionVersion.objects.all().delete()
+        
         file_path = options["file_path"]
         invalidation_id = random_str()
         
@@ -78,6 +93,8 @@ class Command(BaseCommand):
                 if len(line) > 0:
                     no_comment_raw += line + "\n"
 
+            # Get rid of comment lines without content
+            no_comment_raw = no_comment_raw.replace("#", "")
             
             lines = no_comment_raw.split(";")
 
@@ -151,15 +168,21 @@ class Command(BaseCommand):
             )
             choosable.save()
             for meta in element["meta"]:
-                meta_type = meta["type"]
-                # FIXME: Properly decide between title and name in the ChoosableMeta class.
-                meta_title= meta["title"]
+                # Type is used for visualization mostly, while the name is used for catalogue purposes
+                meta_type = meta["type"].upper()
+                meta_name = meta["name"].upper()
+                if meta_name not in ChoosableMeta.MetaName.names:
+                    raise Exception(f"Choosable meta for invalid type: {meta_name}, allowed: {ChoosableMeta.MetaName.names}")
+                
+                if meta_type not in ChoosableMeta.MetaType.names:
+                    raise Exception(f"Choosable meta for invalid name: {meta_name}, allowed: {ChoosableMeta.MetaType.names}")
+                
                 meta_content = meta["content"]
                 choosable_meta = ChoosableMeta(
                     meta_choosable = choosable,
-                    catalogue_id = f"{element['name']}-{meta_title}",
-                    meta_type = meta_type.upper(),
-                    meta_title = meta_title,
+                    catalogue_id = f"{element['name']}-{meta_name}",
+                    meta_type = meta_type,
+                    meta_name = meta_name,
                     meta_value = meta_content
                 )
                 choosable_meta.save()
@@ -254,7 +277,8 @@ class Command(BaseCommand):
             page = Category(
                 catalogue_id = element["name"],
                 name = element["name"],
-                target_page=Page.objects.get(catalogue_id=element["to"], is_invalidated=False)
+                target_page=Page.objects.get(catalogue_id=element["to"], is_invalidated=False),
+                icon=element["icon"]
             )
             page.save()
         
@@ -410,16 +434,16 @@ class Command(BaseCommand):
             properties_line = match(r".*\((?P<properties>[^\)]+).*", line)
             if properties_line:
                 properties_line_contents = properties_line.groupdict()["properties"]
-                target_re = r"(?P<what>(link|flag|text|date))\s{1,}(?P<title>[\w-]+)\s{1,}(?P<content>[\w-]+)"
+                target_re = r"(?P<what>(link|flag|text|date))\s{1,}(?P<name>[\w-]+)\s{1,}(?P<content>[^\s]+)"
                 matches = finditer(target_re, properties_line_contents)
                 result["meta"] = []
                 if matches:
                     for property_match in matches:
                         groups = property_match.groupdict()
                         what = groups["what"]
-                        title = groups["title"]
+                        name = groups["name"]
                         content = groups["content"]
-                        result["meta"].append({"type": what,"title": title, "content": content})
+                        result["meta"].append({"type": what,"name": name, "content": content})
             return result
 
     def version(self, line: str) -> Dict:
@@ -470,7 +494,6 @@ class Command(BaseCommand):
             if properties_line:
                 properties_line_contents = properties_line.groupdict()["properties"]
                 result["icon"] = properties_line_contents
-            
             pattern = r"to\s+(?P<name>[\w-]+)"
             matches = search(pattern, line)
             if matches:
@@ -488,6 +511,7 @@ class Command(BaseCommand):
             return None
         else:
             result = self.get_name("widget", line)
+            logger.debug(f"Raw line for widget parse: {line}")
             result["type"] = result["name"]
             result["to"] = []
             result.update(self.coords(line))

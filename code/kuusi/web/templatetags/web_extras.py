@@ -190,5 +190,5 @@ def errors(errors: Dict[str, List[ValidationError]]):
 @register.inclusion_tag(filename="tags/errors.html")
 def warnings(warnings: Dict[str, List[ValidationError]]):
     # FIXME: warnings should be using the same structure as errors() first parameter, but it doesnt. 
-    return None
+    return {}
     return {"haystack": flatten_errors_warnings(warnings), "severity": "warning"}
