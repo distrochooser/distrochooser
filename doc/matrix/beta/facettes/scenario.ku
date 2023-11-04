@@ -14,6 +14,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Debian choosable definition
+@facette daily-usage (topic scenario);
+@facette privacy-usage (topic scenario);
+@facette gaming-usage (topic scenario);
+@facette privacy-isolation-usage (topic scenario);
+@facette impaired-view-usage (topic scenario);
+@facette live-mode-usage (topic scenario);
 
-@choosable debian (link website https://www.debian.org/ text licenses DFSG date created 1993-08-16 flag country us); 
+@behaviour not-both (subject live-mode-usage object gaming-usage) bidirectional error;

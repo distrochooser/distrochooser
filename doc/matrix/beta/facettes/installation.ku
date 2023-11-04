@@ -14,6 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Debian choosable definition
-
-@choosable debian (link website https://www.debian.org/ text licenses DFSG date created 1993-08-16 flag country us); 
+@facette many-preselections (topic installation);
+@facette commandline-setup (topic installation);
+@facette many-choices-gui (topic installation);

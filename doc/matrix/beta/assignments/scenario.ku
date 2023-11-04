@@ -14,6 +14,26 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Debian choosable definition
+# Generic assignments without a distro-specific scope
 
-@choosable debian (link website https://www.debian.org/ text licenses DFSG date created 1993-08-16 flag country us); 
+@assignment daily-usage (daily-usage) to debian positive;
+@assignment live-mode-usage (live-mode-usage) to debian positive;
+
+# Use caseses possible, but require additional packages (generic scope)
+
+@assignment privacy-usage-software-needed (privacy-usage) to debian neutral;
+@assignment impaired-view-usage-software-needed (impaired-view-usage) to debian neutral;
+
+
+
+
+# Distro specifics
+
+# Debian
+
+# Page age might be to old for gaming (besides the obvious Linux gaming challenges)
+@assignment gaming-usage-packages-might-be-too-old (gaming-usage) to debian negative;
+
+
+
+

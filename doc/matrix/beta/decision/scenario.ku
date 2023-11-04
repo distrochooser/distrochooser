@@ -1,9 +1,0 @@
-
-@facette daily-usage (topic scenario);
-@facette privacy-usage (topic scenario);
-@facette gaming-usage (topic scenario);
-@facette privacy-isolation-usage (topic scenario);
-@facette impaired-view-usage (topic scenario);
-@facette live-mode-usage (topic scenario);
-
-@behaviour not-both (subject live-mode-usage object gaming-usage) bidirectional error;

@@ -1,3 +1,0 @@
-@facette app-store-gui (topic administration);
-@facette install-from-source (topic administration);
-@facette no-systemd (topic administration);
