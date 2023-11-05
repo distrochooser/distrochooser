@@ -14,5 +14,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette license-open-source (topic ideology);
-@facette proprietary-okay-when-working (topic ideology);
+# Generic assignments without a distro-specific scope
+
+@assignment 64bits-ok (64bit) to debian positive to ubuntu to debian;
+
+
+# Distros specific matches
+
+# Debian
+
+@assignment no64bit-ok (no64bit) to debian positive;
+
+# Ubuntu
+
+@assignment 64bit-support-removed (no64bit) to ubuntu negative;

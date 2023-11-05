@@ -14,5 +14,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette license-open-source (topic ideology);
-@facette proprietary-okay-when-working (topic ideology);
+# Generic assignments without a distro-specific scope
+
+# Distros pecific matches
+
+# Debian
+
+@assignment graphical-installer-allows-selection-of-many-packages (many-choices-gui) to debian positive;
+
+# Ubuntu
+
+@assignment many-preselections-ok (many-preselections) to ubuntu positive;
+
+# For Ubuntu, the installation process for desktop editions is implemented using a GUI setup. This setup gives basic options (such as hostname etc), but has a predefined selection of software to be installed.
+@assignment default-installer-is-gui-not-commandline-setup (commandline-setup) to ubuntu negative;
+@assignment installer-adds-a-preselection-of-software (many-choices-gui) to ubuntu negative;
+

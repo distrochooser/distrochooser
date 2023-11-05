@@ -2,7 +2,9 @@
 
 @include versions/simplified.ku;
 @include pages/pages.ku;
+
 @include choosables/debian.ku;
+@include choosables/ubuntu.ku;
 
 @include facettes/scenario.ku;
 @include facettes/pc-knowledge.ku;
@@ -21,3 +23,18 @@
 
 
 @include assignments/scenario.ku;
+
+# Knowledge map definition
+# The knowlege is defined as following. The kowledge levels BELOW receive a negative match, the above won't be matched.
+@include assignments/pc-knowledge.ku;
+@include assignments/linux-knowledge.ku;
+@include assignments/installation.ku;
+@include assignments/old-hardware.ku;
+@include assignments/help.ku;
+# THE UX question is omitted until the media selection widget is implemented
+@include assignments/pricing.ku;
+@include assignments/scope.ku;
+@include assignments/ideology.ku;
+@include assignments/privacy.ku;
+@include assignments/administration.ku;
+@include assignments/updates.ku;

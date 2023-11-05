@@ -14,5 +14,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette license-open-source (topic ideology);
-@facette proprietary-okay-when-working (topic ideology);
+# Generic assignments without a distro-specific scope
+
+@assignment your-software-selection-influences-connections-done (privacy-no-connections-unless-wanted) to debian to ubuntu neutral;
+
+# Distro specific
+
+# Ubuntu
+
+# The live checker thingy...
+@assignment okay-when-working (privacy-no-connections-unless-wanted) to ubuntu positive;

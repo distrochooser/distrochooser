@@ -14,5 +14,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette license-open-source (topic ideology);
-@facette proprietary-okay-when-working (topic ideology);
+
+# General mappings
+
+# Slow updating distros (talking about the main versions, not some rolling derivate)
+
+@assignment prefer-stable (prefer-stable) to debian positive;
+@assignment prefer-fast-not-present (prefer-fast) to debian negative;
+
+
+# Faster updating distros, but still stable
+
+@assignment prefer-stable (prefer-stable) to ubuntu positive;
+@assignment prefer-fast-ok (prefer-fast) to ubuntu positive;
+
+# Faster updating distros, but still stable (mostly rolling)

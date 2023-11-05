@@ -14,5 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette license-open-source (topic ideology);
-@facette proprietary-okay-when-working (topic ideology);
+# Ubuntu choosable definition
+
+@choosable ubuntu (link website https://ubuntu.com text licenses GNU GPL date created 2004-10-20 flag country gb); 

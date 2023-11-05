@@ -14,5 +14,14 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette license-open-source (topic ideology);
-@facette proprietary-okay-when-working (topic ideology);
+# Generic assignments without a distro-specific scope
+
+@assignment app-store-gui-present (app-store-gui) to ubuntu positive;
+
+# Mapping for distros not usually installing software form source
+
+@assignment packages-are-mostly-precompiled (install-from-source) to debian to ubuntu negative;
+
+# Systemd family Distros
+
+@assignment systemd-used (no-systemd) to debian to ubuntu negative;

@@ -14,5 +14,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette license-open-source (topic ideology);
-@facette proprietary-okay-when-working (topic ideology);
+# Generic assignments without a distro-specific scope
+
+# Distros pecific matches
+
+# Debian
+
+@assignment no-linux-contact-requires-some-knowledge  (no-linux-contact) to debian negative;
+@assignment already-used-ok (already-used) to debian positive;
+
+# Ubuntu
+
+@assignment no-linux-contact-ok (no-linux-contact) to ubuntu positive;
+
+
+
+
