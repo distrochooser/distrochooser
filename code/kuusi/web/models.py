@@ -667,6 +667,8 @@ class ResultListWidget(Widget):
 
         assignments_selected = list()
         weights_per_assignment = list()
+
+
         selection: FacetteSelection
         for selection in selections:
             facette = selection.facette
@@ -683,11 +685,15 @@ class ResultListWidget(Widget):
                     facettes__pk__in=[facette.pk],
                     is_invalidated=False
                 )
+            
             if assignments.count() > 0:
                 assignments_selected += assignments
 
             # The weight from the selection will be used to alter the score later.
-            weights_per_assignment.append(selection.weight)
+            # Iterate the newly attached assignments ot make sure that cound(weights_per_assignments) == count(assignments_selected)
+            for assignment in assignments:
+                weights_per_assignment.append(selection.weight)
+
         choosables = None
         if request.session_obj.valid_for != "latest":
             logger.debug(f"The session is not for latest, choosing choosables of invalidation {request.session_obj.valid_for}.")
@@ -725,7 +731,6 @@ class ResultListWidget(Widget):
                 results[assignment.assignment_type] += weighted_score
 
                 assignments_used[choosable].append(assignment)
-
             score = FacetteAssignment.AssignmentType.get_score(results)
             logger.debug(f"Choosable={choosable}, Score={score}, Results={results}")
             raw_results[choosable] = score
@@ -1025,6 +1030,11 @@ class FacetteAssignment(Translateable):
     long_description = TranslateableField(
         null=True, blank=True, default=None, max_length=800
     )
+
+    def __str__(self) -> str:
+        choosables_str = [c.name for c in self.choosables.all()]
+        facettes_str = [f.catalogue_id for f in self.facettes.all()]
+        return f"{choosables_str} -> {facettes_str} ({self.assignment_type})"
 
     @property
     def facette_topics(self) -> List[str]:
