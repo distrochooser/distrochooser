@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
 
-from web.models import Choosable, TranslateableFieldRecord, Translateable, Category, Page, Widget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking, ChoosableMeta, TranslationSuggestion
+from web.models import Choosable, TranslateableFieldRecord, Translateable, Category, Page, Widget, FacetteRadioSelectionWidget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking, ChoosableMeta, TranslationSuggestion
 
 [admin.site.register(*models) for models in [
     (Choosable,),
@@ -31,6 +31,7 @@ from web.models import Choosable, TranslateableFieldRecord, Translateable, Categ
     (HTMLWidget,),
     (NavigationWidget,),
     (FacetteSelectionWidget,),
+    (FacetteRadioSelectionWidget,),
     (Facette,),
     (FacetteBehaviour,),
     (Session,),

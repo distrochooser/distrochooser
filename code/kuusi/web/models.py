@@ -252,10 +252,20 @@ class Page(Translateable):
     def widget_list(self) -> List[Widget]:
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
         # TODO: Add hardware requirements widget (which requires some widgets to store abitrary data)
+
+
+        # filter out the FacetteSelectionWidgets acting as parent for radio selections
+        radio_selections = FacetteRadioSelectionWidget.objects.filter(pages__pk__in=[self])
+        ignore_parent_selections = []
+        for radio_selection in radio_selections:
+            parent = radio_selection.__dict__["facetteselectionwidget_ptr_id"]
+            ignore_parent_selections.append(parent)
+        facette_selections = list(FacetteSelectionWidget.objects.exclude(pk__in=ignore_parent_selections).filter(pages__pk__in=[self]))
         return (
             list(SessionVersionWidget.objects.filter(pages__pk__in=[self]))
             + list(HTMLWidget.objects.filter(pages__pk__in=[self]))
-            + list(FacetteSelectionWidget.objects.filter(pages__pk__in=[self]))
+            + list(radio_selections)
+            + facette_selections
             + list(ResultListWidget.objects.filter(pages__pk__in=[self]))
             + list(ResultShareWidget.objects.filter(pages__pk__in=[self]))
             + list(NavigationWidget.objects.filter(pages__pk__in=[self]))
@@ -622,6 +632,95 @@ class FacetteSelectionWidget(Widget):
         return render_template.render(
             {"form": facette_form, "child_facettes": child_facettes, "weights": weights}, request
         )
+
+class FacetteRadioSelectionWidget(FacetteSelectionWidget):
+    
+    def build_form(
+        self, data: Dict | None, session: Session
+    ) -> Tuple[WarningForm, List, Dict]:
+        facette_form = WarningForm(data) if data else WarningForm()
+        facettes = None
+        if session.valid_for == "latest":
+            facettes = Facette.objects.filter(topic=self.topic, is_invalidated=False)
+        else:
+            logger.debug(f"Facette radio widget {self} will use facettes of invalidation {session.valid_for}.")
+            facettes = Facette.objects.filter(topic=self.topic, is_invalidated=True, invalidation_id=session.valid_for)
+        child_facettes = []
+        weights = {}
+        # TODO: Implement child facette selection (maybe?)
+        # Build the form content
+        names = []
+        facette: Facette
+        for facette in facettes:
+            names.append((facette.catalogue_id, facette.catalogue_id))
+
+            selection_matches = FacetteSelection.objects.filter(
+                    facette=facette, session=session
+            )
+            is_selected = (
+                selection_matches.count()
+                > 0
+            )
+
+            if is_selected:
+                weights[self.topic] = selection_matches.first().weight
+            
+        radio_group = forms.CharField(widget=forms.RadioSelect(choices=names))
+
+        facette_form.fields[self.topic] = radio_group
+        return facette_form, child_facettes, weights
+
+    def proceed(self, request: WebHttpRequest, page: Page) -> bool:
+        # Always remove the facettes for the current widget to prevent permanent selections
+        if request.method == "POST":
+            active_facette = request.POST.get(self.topic)
+            weight = request.POST.get(f"{self.topic}-weight")
+            if active_facette:
+                FacetteSelection.objects.filter(
+                    session=request.session_obj, facette__topic=self.topic
+                ).delete()
+                facette = None
+                if request.session_obj.valid_for == "latest":
+                    facette = Facette.objects.get(topic=self.topic, is_invalidated=False, catalogue_id=active_facette)
+                    logger.debug(f"Facette radio widget {self} will use facette of current invalidation {request.session_obj.valid_for} for selection.")
+                else:
+                    logger.debug(f"Facette radio widget {self} will use facette of invalidation {request.session_obj.valid_for} for selection.")
+                    facette = facette=Facette.objects.get(topic=self.topic, is_invalidated=True, catalogue_id=active_facette, invalidation_id=request.session_obj.valid_for)
+                select = FacetteSelection(facette=facette, session=request.session_obj)
+                select.weight = weight
+                select.save()
+        
+        facette_form, _ , _= self.build_form(request.POST, request.session_obj)
+        # TODO: Add behaviours for Radio selections
+        request.has_warnings = facette_form.has_warning()
+        request.has_errors = not facette_form.is_valid()
+        if request.has_warnings or request.has_errors:
+            return False
+        return True
+
+    def render(self, request: WebHttpRequest, page: Page):
+        render_template = loader.get_template(f"widgets/facette.html")
+        data = None
+        facette_form = Form()
+        if request.method == "POST":
+            data = request.POST
+        else:
+            data = {}
+            selected_facettes = FacetteSelection.objects.filter(
+                session=request.session_obj
+            ).filter(facette__topic=self.topic)
+
+            selection: Facette
+            for selection in selected_facettes:
+                data[self.topic] = selection.facette.catalogue_id
+        facette_form, child_facettes, weights = self.build_form(data, request.session_obj)
+        context = {}
+        context["form"] = facette_form
+
+        return render_template.render(
+            {"form": facette_form, "child_facettes": child_facettes, "weights": weights}, request
+        )
+
 
 
 class NavigationWidget(Widget):
@@ -1042,13 +1141,11 @@ class FacetteAssignment(Translateable):
         Returns a set of facette objects to return a unique list of topics. The Facette objects are used as translatables to provide the needed __() function
         """
         topics = []
-        results = []
         facette: Facette
         for facette in self.facettes.all():
             if facette.topic not in topics:
                 topics.append(facette.topic)
-                results.append(facette)
-        return results
+        return topics
 
     class AssignmentType(models.TextChoices):
         POSITIVE = "POSITIVE", "POSITIVE"

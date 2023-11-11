@@ -22,10 +22,9 @@ from os.path import join, exists, dirname
 
 from django.core.management.base import BaseCommand
 
-from web.models import TranslationSuggestion, Widget, Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Session
+from web.models import TranslationSuggestion, Widget, Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, FacetteRadioSelectionWidget, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Session
 
 logger = getLogger("root")
-
 
 class Command(BaseCommand):
     help = "Imports a given *.ku file"
@@ -201,8 +200,10 @@ class Command(BaseCommand):
             )
             assignment.save()
             for facette in element["facettes"]:
+                logger.debug(f"Adding facette {facette} to {assignment}")
                 assignment.facettes.add(Facette.objects.get(catalogue_id=facette,is_invalidated=False))
             for target in element["targets"]:
+                logger.debug(f"Adding choosable {target} to {assignment}")
                 assignment.choosables.add(Choosable.objects.get(catalogue_id=target,is_invalidated=False))
             assignment.save()
 
@@ -297,6 +298,7 @@ class Command(BaseCommand):
             "result": ResultListWidget,
             "navigation": NavigationWidget,
             "selection": FacetteSelectionWidget,
+            "radio": FacetteRadioSelectionWidget,
             "html": HTMLWidget
         }
 
@@ -313,7 +315,7 @@ class Command(BaseCommand):
                 for page in element["to"]:
                     new_widget.pages.add(Page.objects.get(catalogue_id=page, is_invalidated=False))
 
-                if element["type"] == "selection": 
+                if element["type"] in ["selection", "radio"]: 
                     new_widget.topic = element["topic"]
 
                 if element["type"] == "html": 
@@ -529,7 +531,8 @@ class Command(BaseCommand):
                 result["topic"] = name
             widget_types = {
                 "html": self.htmlwidget,
-                "selection": self.selectionwidget
+                "selection": self.selectionwidget,
+                "radio": self.radiowidget
             }
             for key, value in widget_types.items():
                 if result["type"] == key:
@@ -564,6 +567,17 @@ class Command(BaseCommand):
         results = search(pattern, line) 
 
         # TODO: Decide to use .description or not.
+
+        if results:
+            return {
+                "topic": results.group("topic")
+            }
+        return None
+    
+    def radiowidget(self, line: str) -> Dict:
+        pattern = "(?P<topic>[\w-]{1,})\s{0,}$"
+        results = search(pattern, line) 
+        # TODO: Fix redundancy towards selectionwidget
 
         if results:
             return {
