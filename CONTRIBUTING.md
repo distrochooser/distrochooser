@@ -18,7 +18,7 @@ Following documents are important for any contribution in the distrochooser repo
 
 # Contributing to the code 💻
 
-Basically, the distrochooser project splits into two modules, the frontend (`viisi`, which is a Nuxt.js project) and the backend (`backend`, wich is a Django project). 
+Basically, the distrochooser project splits into two modules, the frontend (`viisi`, which is a Nuxt.js project) and the backend (`backend`, which is a Django project). 
 
 - 📦 Please use yarn while working with the frontend
 - 🐍 The backend is Python3 only
@@ -41,7 +41,7 @@ You can find the file `en.po` in the repository https://github.com/distrochooser
 
 Use this file as the boilerplate for your translation.
 
-The file names in `backend/locale` are following the [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard, wich means they are two letter codes.
+The file names in `backend/locale` are following the [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard, which means they are two letter codes.
 
 E. g. if you want to create a greek translation, use the filename `gr.po`.
 
