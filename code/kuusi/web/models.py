@@ -133,6 +133,9 @@ class Translateable(models.Model):
     is_invalidated = models.BooleanField(default=False)
     invalidation_id = models.CharField(max_length=5, default=None,null=True,blank=True)
 
+    def __str__(self) -> str:
+        return f"[{self.invalidation_id}] ({self.catalogue_id})"
+
     def __(self, key: str, language_code: str = "en") -> str:
         msg_id = self._meta.get_field(key).get_msg_id(self)
         # TODO: make this block in a function
@@ -447,7 +450,8 @@ class FacetteSelectionWidget(Widget):
     def build_translateable_label(self, facette: Facette) -> str:
         render_template = loader.get_template(f"widgets/facette_label.html")
         return mark_safe(render_template.render({
-            "title": facette.catalogue_id
+            "object": facette, 
+            "title": "selectable_description"
         }))
     def build_form(
         self, data: Dict | None, session: Session
@@ -668,11 +672,12 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
         child_facettes = []
         weights = {}
         # TODO: Implement child facette selection (maybe?)
+        # TODO: Inject language here to the __() call
         # Build the form content
         names = []
         facette: Facette
         for facette in facettes:
-            names.append((facette.catalogue_id, facette.catalogue_id))
+            names.append((facette.catalogue_id, facette.__("selectable_description", "en")))
 
             selection_matches = FacetteSelection.objects.filter(
                     facette=facette, session=session
@@ -1039,8 +1044,6 @@ class Facette(Translateable):
     """
     A facette describes a fact narrowing down the selection for choosables.
 
-    The description will be used for displaying results
-
     The selectable_description is displayed for selection within a page
 
     The topic reduces a facette to a certain subarea, e. g. "licenses" for Linux distributions
@@ -1048,7 +1051,6 @@ class Facette(Translateable):
 
     # TODO: Add a source flag to describe decisions.
 
-    description = TranslateableField(null=False, blank=False, max_length=120)
     selectable_description = TranslateableField(null=False, blank=False, max_length=120)
     topic = TranslateableField(null=False, blank=False, max_length=120)
     child_facettes = models.ManyToManyField(to="Facette", blank=True)
@@ -1063,7 +1065,7 @@ class Facette(Translateable):
 
     def __str__(self) -> str:
         invalidation_prefix = f"Invalidated: ({self.invalidation_id}): " if self.is_invalidated else ""
-        return f"{invalidation_prefix}[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) {self.description} (select: {self.selectable_description})"
+        return f"{invalidation_prefix}[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) (select: {self.selectable_description})"
 
 
 class FacetteBehaviour(Translateable):
@@ -1143,9 +1145,6 @@ class FacetteSelection(models.Model):
 class FacetteAssignment(Translateable):
     choosables = models.ManyToManyField(to=Choosable)
     facettes = models.ManyToManyField(to=Facette)
-    description = TranslateableField(
-        null=True, blank=True, default=None, max_length=255
-    )
     long_description = TranslateableField(
         null=True, blank=True, default=None, max_length=800
     )

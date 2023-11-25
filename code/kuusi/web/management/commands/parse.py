@@ -21,8 +21,10 @@ from logging import getLogger
 from os.path import join, exists, dirname
 
 from django.core.management.base import BaseCommand
+from polib import pofile
 
-from web.models import TranslationSuggestion, Widget, Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, FacetteRadioSelectionWidget, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Session
+from web.models import TranslateableFieldRecord, TranslationSuggestion, Widget, Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, FacetteRadioSelectionWidget, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Session
+from kuusi.settings import LANGUAGE_CODES, LOCALE_PATHS
 
 logger = getLogger("root")
 
@@ -39,6 +41,27 @@ class Command(BaseCommand):
         if not options["file_path"]:
             raise Exception("no filename")
         
+        # remember _old_ translations as the Delete calls will cause the translateable.po to be wiped.
+        translations = {}
+        for key in LANGUAGE_CODES:
+            translations[key] = {}
+
+            translation_path = join(
+                LOCALE_PATHS[0], key, "LC_MESSAGES", "translateable.po"
+            )
+            raw_file = open(translation_path, "r").readlines()
+            if exists(translation_path):
+                po = pofile(translation_path)
+                for entry in po:
+                    for index, line in enumerate(raw_file):
+                        if f"msgid \"{entry.msgid}\"" in line:
+                            remark_line = raw_file[index-1]
+                            matches = match(r".*remark:\s(.*)$", remark_line)
+                            # use the remark comment to make a reverse search for the tuples
+                            if matches:
+                                remark = matches.group(1).strip()
+                                translations[key][remark] = entry.msgstr
+
         if options["wipe"]:
             logger.warn("Removing database content")
             #Session.objects.all().delete()
@@ -51,6 +74,7 @@ class Command(BaseCommand):
             Widget.objects.all().delete()
             TranslationSuggestion.objects.all().delete()
             SessionVersion.objects.all().delete()
+            TranslateableFieldRecord.objects.all().delete()
         
         file_path = options["file_path"]
         invalidation_id = random_str()
@@ -131,7 +155,24 @@ class Command(BaseCommand):
                         results[key].append(got)
             for key, value in data_store.items():
                 value(invalidation_id, results[key])
-    
+
+        # Set the translations in place again
+        # TODO: The mapping between field records is so weak its not existing. This causes the re-setting of the values to be quite a mess.
+        for key in LANGUAGE_CODES:
+            translation_path = join(
+                LOCALE_PATHS[0], key, "LC_MESSAGES", "translateable.po"
+            )
+            raw_file = open(translation_path, "r").readlines()
+            translations_locale = translations[key]
+            for catalogue_id, value in translations_locale.items():
+                logger.debug(f"Find old translation for {key}: {catalogue_id}.")
+                for index, line in enumerate(raw_file):
+                    matches = match(r".*remark: " +catalogue_id+ "$", line)
+                    # use the remark comment to make a reverse search for the tuples
+                    if matches and value and len(value) > 0:
+                        logger.debug(f"Found old translation for {key}: {catalogue_id}")
+                        raw_file[index+2] = f"msgstr \"{value}\"\n"
+            open(translation_path, "w").writelines(raw_file)
     def facette_store(self, invalidation_id: str, raw: List[Dict]):
         Facette.objects.filter(is_invalidated=False).update(
             is_invalidated = True,
@@ -140,7 +181,6 @@ class Command(BaseCommand):
         for element in raw:
             facette = Facette(
                 catalogue_id=f"{element['name']}",
-                description=f"{element['name']}-description",
                 selectable_description=f"{element['name']}-selectable-description",
                 topic=f"{element['topic']}"
             )
@@ -194,7 +234,6 @@ class Command(BaseCommand):
         for element in raw:
             assignment = FacetteAssignment(
                 catalogue_id=element["name"],
-                description=f"{element['name']}-description",
                 long_description=f"{element['name']}-long-description",
                 assignment_type=element["weight"].upper()
             )

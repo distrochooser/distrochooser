@@ -1,0 +1,745 @@
+
+# Model reference: SessionVersion.12884
+# Attribute name: version_name, remark: simplified
+msgid "SESSIONVERSION_SIMPLIFIED_VERSION_NAME"
+msgstr "Simplified verson for new users"
+# Model reference: Page.12885
+# Attribute name: title, remark: welcome-page
+msgid "PAGE_WELCOME-PAGE_TITLE"
+msgstr "Welcome!"
+# Model reference: Page.12886
+# Attribute name: title, remark: version-page
+msgid "PAGE_VERSION-PAGE_TITLE"
+msgstr "Questionaire version"
+# Model reference: Page.12893
+# Attribute name: title, remark: ux-page
+msgid "PAGE_UX-PAGE_TITLE"
+msgstr "User expierience"
+# Model reference: Page.12899
+# Attribute name: title, remark: updates-page
+msgid "PAGE_UPDATES-PAGE_TITLE"
+msgstr "System updates"
+# Model reference: Page.12895
+# Attribute name: title, remark: scope-page
+msgid "PAGE_SCOPE-PAGE_TITLE"
+msgstr "Installation scope"
+# Model reference: Page.12887
+# Attribute name: title, remark: scenario-page
+msgid "PAGE_SCENARIO-PAGE_TITLE"
+msgstr "User scenario"
+# Model reference: Page.12900
+# Attribute name: title, remark: result-page
+msgid "PAGE_RESULT-PAGE_TITLE"
+msgstr "Your result"
+# Model reference: Page.12897
+# Attribute name: title, remark: privacy-page
+msgid "PAGE_PRIVACY-PAGE_TITLE"
+msgstr "System privacy"
+# Model reference: Page.12894
+# Attribute name: title, remark: pricing-page
+msgid "PAGE_PRICING-PAGE_TITLE"
+msgstr "Pricing and fees"
+# Model reference: Page.12888
+# Attribute name: title, remark: pc-knowledge-page
+msgid "PAGE_PC-KNOWLEDGE-PAGE_TITLE"
+msgstr "PC knowledge"
+# Model reference: Page.12891
+# Attribute name: title, remark: old-hardware-page
+msgid "PAGE_OLD-HARDWARE-PAGE_TITLE"
+msgstr "Target hardware age"
+# Model reference: Page.12889
+# Attribute name: title, remark: linux-knowledge-page
+msgid "PAGE_LINUX-KNOWLEDGE-PAGE_TITLE"
+msgstr "Linux knowledge"
+# Model reference: Page.12890
+# Attribute name: title, remark: installation-page
+msgid "PAGE_INSTALLATION-PAGE_TITLE"
+msgstr "Installation  (?)"
+# Model reference: Page.12896
+# Attribute name: title, remark: ideology-page
+msgid "PAGE_IDEOLOGY-PAGE_TITLE"
+msgstr "License ideologies"
+# Model reference: Page.12892
+# Attribute name: title, remark: help-page
+msgid "PAGE_HELP-PAGE_TITLE"
+msgstr "Help sources"
+# Model reference: Page.12898
+# Attribute name: title, remark: administration-page
+msgid "PAGE_ADMINISTRATION-PAGE_TITLE"
+msgstr "System administration"
+# Model reference: Facette.12936
+# Attribute name: topic, remark: ux
+msgid "FACETTE_WITH-DOCK_TOPIC"
+msgstr "ux"
+# Model reference: Facette.12936
+# Attribute name: selectable_description, remark: with-dock-selectable-description
+msgid "FACETTE_WITH-DOCK_SELECTABLE_DESCRIPTION"
+msgstr "I prefer a user interface using a dock-like concept"
+# Model reference: Facette.12938
+# Attribute name: topic, remark: ux
+msgid "FACETTE_TILING_TOPIC"
+msgstr "ux"
+# Model reference: Facette.12938
+# Attribute name: selectable_description, remark: tiling-selectable-description
+msgid "FACETTE_TILING_SELECTABLE_DESCRIPTION"
+msgstr "I prefer a tiling window manager to manage many windows at once"
+# Model reference: Facette.12942
+# Attribute name: topic, remark: scope
+msgid "FACETTE_SCOPE-OWN-SELECTION_TOPIC"
+msgstr "scope"
+# Model reference: Facette.12942
+# Attribute name: selectable_description, remark: scope-own-selection-selectable-description
+msgid "FACETTE_SCOPE-OWN-SELECTION_SELECTABLE_DESCRIPTION"
+msgstr "The installed system should only feature tools I've selected"
+# Model reference: Facette.12941
+# Attribute name: topic, remark: scope
+msgid "FACETTE_SCOPE-OUT-OF-THE-BOX_TOPIC"
+msgstr "scope"
+# Model reference: Facette.12941
+# Attribute name: selectable_description, remark: scope-out-of-the-box-selectable-description
+msgid "FACETTE_SCOPE-OUT-OF-THE-BOX_SELECTABLE_DESCRIPTION"
+msgstr "The installed system should feature many commonly used tools, so I can start using it directly"
+# Model reference: Facette.12944
+# Attribute name: topic, remark: ideology
+msgid "FACETTE_PROPRIETARY-OKAY-WHEN-WORKING_TOPIC"
+msgstr "ideology"
+# Model reference: Facette.12944
+# Attribute name: selectable_description, remark: proprietary-okay-when-working-selectable-description
+msgid "FACETTE_PROPRIETARY-OKAY-WHEN-WORKING_SELECTABLE_DESCRIPTION"
+msgstr "If it improves my user expierience, I'm fine with non-free components"
+# Model reference: Facette.12925
+# Attribute name: topic, remark: pc-knowledge
+msgid "FACETTE_PROFESSIONAL-USAGE_TOPIC"
+msgstr "pc-knowledge"
+# Model reference: Facette.12925
+# Attribute name: selectable_description, remark: professional-usage-selectable-description
+msgid "FACETTE_PROFESSIONAL-USAGE_SELECTABLE_DESCRIPTION"
+msgstr "I am an expierienced user"
+# Model reference: Facette.12918
+# Attribute name: topic, remark: scenario
+msgid "FACETTE_PRIVACY-USAGE_TOPIC"
+msgstr "scenario"
+# Model reference: Facette.12918
+# Attribute name: selectable_description, remark: privacy-usage-selectable-description
+msgid "FACETTE_PRIVACY-USAGE_SELECTABLE_DESCRIPTION"
+msgstr "The system should actively enhance my privacy, even when it causes additional effort"
+# Model reference: Facette.12945
+# Attribute name: topic, remark: privacy
+msgid "FACETTE_PRIVACY-NO-CONNECTIONS-UNLESS-WANTED_TOPIC"
+msgstr "privacy"
+# Model reference: Facette.12945
+# Attribute name: selectable_description, remark: privacy-no-connections-unless-wanted-selectable-description
+msgid "FACETTE_PRIVACY-NO-CONNECTIONS-UNLESS-WANTED_SELECTABLE_DESCRIPTION"
+msgstr "I don't want any connections to servers I did not accept"
+# Model reference: Facette.12920
+# Attribute name: topic, remark: scenario
+msgid "FACETTE_PRIVACY-ISOLATION-USAGE_TOPIC"
+msgstr "scenario"
+# Model reference: Facette.12920
+# Attribute name: selectable_description, remark: privacy-isolation-usage-selectable-description
+msgid "FACETTE_PRIVACY-ISOLATION-USAGE_SELECTABLE_DESCRIPTION"
+msgstr "Programs should be executed in isolated environments"
+# Model reference: Facette.12939
+# Attribute name: topic, remark: pricing
+msgid "FACETTE_PRICING-FREE_TOPIC"
+msgstr "pricing"
+# Model reference: Facette.12939
+# Attribute name: selectable_description, remark: pricing-free-selectable-description
+msgid "FACETTE_PRICING-FREE_SELECTABLE_DESCRIPTION"
+msgstr "I prefer a distribution without a price or a usage fee"
+# Model reference: Facette.12950
+# Attribute name: topic, remark: updates
+msgid "FACETTE_PREFER-STABLE_TOPIC"
+msgstr "updates"
+# Model reference: Facette.12950
+# Attribute name: selectable_description, remark: prefer-stable-selectable-description
+msgid "FACETTE_PREFER-STABLE_SELECTABLE_DESCRIPTION"
+msgstr "I prefer stable updates, even as new features might take some time to arrive"
+# Model reference: Facette.12951
+# Attribute name: topic, remark: updates
+msgid "FACETTE_PREFER-FAST_TOPIC"
+msgstr "updates"
+# Model reference: Facette.12951
+# Attribute name: selectable_description, remark: prefer-fast-selectable-description
+msgid "FACETTE_PREFER-FAST_SELECTABLE_DESCRIPTION"
+msgstr "I prefer fast updates, even as it might by unstable"
+# Model reference: Facette.12940
+# Attribute name: topic, remark: pricing
+msgid "FACETTE_PAID-SUPPORT-OK_TOPIC"
+msgstr "pricing"
+# Model reference: Facette.12940
+# Attribute name: selectable_description, remark: paid-support-ok-selectable-description
+msgid "FACETTE_PAID-SUPPORT-OK_SELECTABLE_DESCRIPTION"
+msgstr "I prefer a distribution where I can get support and updates for a fee"
+# Model reference: Facette.12937
+# Attribute name: topic, remark: ux
+msgid "FACETTE_ONE-CENTERED-WINDOW_TOPIC"
+msgstr "ux"
+# Model reference: Facette.12937
+# Attribute name: selectable_description, remark: one-centered-window-selectable-description
+msgid "FACETTE_ONE-CENTERED-WINDOW_SELECTABLE_DESCRIPTION"
+msgstr "I prefer if the user interface keeps one window in the foreground, like on a smartphone"
+# Model reference: Facette.12946
+# Attribute name: topic, remark: privacy
+msgid "FACETTE_OKAY-WHEN-WORKING_TOPIC"
+msgstr "privacy"
+# Model reference: Facette.12946
+# Attribute name: selectable_description, remark: okay-when-working-selectable-description
+msgid "FACETTE_OKAY-WHEN-WORKING_SELECTABLE_DESCRIPTION"
+msgstr "I'm fine with this as long as it improves my user expierience"
+# Model reference: Facette.12933
+# Attribute name: topic, remark: old-hardware
+msgid "FACETTE_NO64BIT_TOPIC"
+msgstr "old-hardware"
+# Model reference: Facette.12933
+# Attribute name: selectable_description, remark: no64bit-selectable-description
+msgid "FACETTE_NO64BIT_SELECTABLE_DESCRIPTION"
+msgstr "The computer is older and/ or does not feature a 64 bit processor"
+# Model reference: Facette.12949
+# Attribute name: topic, remark: administration
+msgid "FACETTE_NO-SYSTEMD_TOPIC"
+msgstr "administration"
+# Model reference: Facette.12949
+# Attribute name: selectable_description, remark: no-systemd-selectable-description
+msgid "FACETTE_NO-SYSTEMD_SELECTABLE_DESCRIPTION"
+msgstr "I don't want to have systemd in my operating system"
+# Model reference: Facette.12926
+# Attribute name: topic, remark: linux-knowledge
+msgid "FACETTE_NO-LINUX-CONTACT_TOPIC"
+msgstr "linux-knowledge"
+# Model reference: Facette.12926
+# Attribute name: selectable_description, remark: no-linux-contact-selectable-description
+msgid "FACETTE_NO-LINUX-CONTACT_SELECTABLE_DESCRIPTION"
+msgstr "I never used linux before"
+# Model reference: Facette.12935
+# Attribute name: topic, remark: help
+msgid "FACETTE_NEED-HUMAN-HELP_TOPIC"
+msgstr "help"
+# Model reference: Facette.12935
+# Attribute name: selectable_description, remark: need-human-help-selectable-description
+msgid "FACETTE_NEED-HUMAN-HELP_SELECTABLE_DESCRIPTION"
+msgstr "I prefer to ask other users for help"
+# Model reference: Facette.12929
+# Attribute name: topic, remark: installation
+msgid "FACETTE_MANY-PRESELECTIONS_TOPIC"
+msgstr "installation"
+# Model reference: Facette.12929
+# Attribute name: selectable_description, remark: many-preselections-selectable-description
+msgid "FACETTE_MANY-PRESELECTIONS_SELECTABLE_DESCRIPTION"
+msgstr "I need many preselections for technical options"
+# Model reference: Facette.12931
+# Attribute name: topic, remark: installation
+msgid "FACETTE_MANY-CHOICES-GUI_TOPIC"
+msgstr "installation"
+# Model reference: Facette.12931
+# Attribute name: selectable_description, remark: many-choices-gui-selectable-description
+msgid "FACETTE_MANY-CHOICES-GUI_SELECTABLE_DESCRIPTION"
+msgstr "Many options should be selectable using a graphical interface"
+# Model reference: Facette.12934
+# Attribute name: topic, remark: help
+msgid "FACETTE_MANUALS_TOPIC"
+msgstr "help"
+# Model reference: Facette.12934
+# Attribute name: selectable_description, remark: manuals-selectable-description
+msgid "FACETTE_MANUALS_SELECTABLE_DESCRIPTION"
+msgstr "I prefer using manuals"
+# Model reference: Facette.12922
+# Attribute name: topic, remark: scenario
+msgid "FACETTE_LIVE-MODE-USAGE_TOPIC"
+msgstr "scenario"
+# Model reference: Facette.12922
+# Attribute name: selectable_description, remark: live-mode-usage-selectable-description
+msgid "FACETTE_LIVE-MODE-USAGE_SELECTABLE_DESCRIPTION"
+msgstr "I want to test the distribution first using an USB stick or an optical disk"
+# Model reference: Facette.12943
+# Attribute name: topic, remark: ideology
+msgid "FACETTE_LICENSE-OPEN-SOURCE_TOPIC"
+msgstr "ideology"
+# Model reference: Facette.12943
+# Attribute name: selectable_description, remark: license-open-source-selectable-description
+msgid "FACETTE_LICENSE-OPEN-SOURCE_SELECTABLE_DESCRIPTION"
+msgstr "I prefer distributions considered 'Open Source'"
+# Model reference: Facette.12928
+# Attribute name: topic, remark: linux-knowledge
+msgid "FACETTE_KNOWLEDGE-PRESENT_TOPIC"
+msgstr "linux-knowledge"
+# Model reference: Facette.12928
+# Attribute name: selectable_description, remark: knowledge-present-selectable-description
+msgid "FACETTE_KNOWLEDGE-PRESENT_SELECTABLE_DESCRIPTION"
+msgstr "I am already a linux user and can solve any problem by myself"
+# Model reference: Facette.12948
+# Attribute name: topic, remark: administration
+msgid "FACETTE_INSTALL-FROM-SOURCE_TOPIC"
+msgstr "administration"
+# Model reference: Facette.12948
+# Attribute name: selectable_description, remark: install-from-source-selectable-description
+msgid "FACETTE_INSTALL-FROM-SOURCE_SELECTABLE_DESCRIPTION"
+msgstr "I want to install everything from it's sourcecode"
+# Model reference: Facette.12921
+# Attribute name: topic, remark: scenario
+msgid "FACETTE_IMPAIRED-VIEW-USAGE_TOPIC"
+msgstr "scenario"
+# Model reference: Facette.12921
+# Attribute name: selectable_description, remark: impaired-view-usage-selectable-description
+msgid "FACETTE_IMPAIRED-VIEW-USAGE_SELECTABLE_DESCRIPTION"
+msgstr "I need support tools for impaired view"
+# Model reference: Facette.12919
+# Attribute name: topic, remark: scenario
+msgid "FACETTE_GAMING-USAGE_TOPIC"
+msgstr "scenario"
+# Model reference: Facette.12919
+# Attribute name: selectable_description, remark: gaming-usage-selectable-description
+msgid "FACETTE_GAMING-USAGE_SELECTABLE_DESCRIPTION"
+msgstr "I want to play games"
+# Model reference: Facette.12917
+# Attribute name: topic, remark: scenario
+msgid "FACETTE_DAILY-USAGE_TOPIC"
+msgstr "scenario"
+# Model reference: Facette.12917
+# Attribute name: selectable_description, remark: daily-usage-selectable-description
+msgid "FACETTE_DAILY-USAGE_SELECTABLE_DESCRIPTION"
+msgstr "I want to use the system for daily work"
+# Model reference: Facette.12930
+# Attribute name: topic, remark: installation
+msgid "FACETTE_COMMANDLINE-SETUP_TOPIC"
+msgstr "installation"
+# Model reference: Facette.12930
+# Attribute name: selectable_description, remark: commandline-setup-selectable-description
+msgid "FACETTE_COMMANDLINE-SETUP_SELECTABLE_DESCRIPTION"
+msgstr "I want to install the system from a command line, if possible"
+# Model reference: Facette.12923
+# Attribute name: topic, remark: pc-knowledge
+msgid "FACETTE_BEGINNER-USAGE_TOPIC"
+msgstr "pc-knowledge"
+# Model reference: Facette.12923
+# Attribute name: selectable_description, remark: beginner-usage-selectable-description
+msgid "FACETTE_BEGINNER-USAGE_SELECTABLE_DESCRIPTION"
+msgstr "I am a beginner"
+# Model reference: Facette.12947
+# Attribute name: topic, remark: administration
+msgid "FACETTE_APP-STORE-GUI_TOPIC"
+msgstr "administration"
+# Model reference: Facette.12947
+# Attribute name: selectable_description, remark: app-store-gui-selectable-description
+msgid "FACETTE_APP-STORE-GUI_SELECTABLE_DESCRIPTION"
+msgstr "I prefer to install tools using an app-store like plattform"
+# Model reference: Facette.12927
+# Attribute name: topic, remark: linux-knowledge
+msgid "FACETTE_ALREADY-USED_TOPIC"
+msgstr "linux-knowledge"
+# Model reference: Facette.12927
+# Attribute name: selectable_description, remark: already-used-selectable-description
+msgid "FACETTE_ALREADY-USED_SELECTABLE_DESCRIPTION"
+msgstr "I already used linux a bit"
+# Model reference: Facette.12924
+# Attribute name: topic, remark: pc-knowledge
+msgid "FACETTE_ADVANCED-USAGE_TOPIC"
+msgstr "pc-knowledge"
+# Model reference: Facette.12924
+# Attribute name: selectable_description, remark: advanced-usage-selectable-description
+msgid "FACETTE_ADVANCED-USAGE_SELECTABLE_DESCRIPTION"
+msgstr "I already used computers for quite some time and can solve many problems already by myself."
+# Model reference: Facette.12932
+# Attribute name: topic, remark: old-hardware
+msgid "FACETTE_64BIT_TOPIC"
+msgstr "old-hardware"
+# Model reference: Facette.12932
+# Attribute name: selectable_description, remark: 64bit-selectable-description
+msgid "FACETTE_64BIT_SELECTABLE_DESCRIPTION"
+msgstr "My computer is up to date and especiallyl features a 64-bit processor"
+# Model reference: FacetteBehaviour.1342
+# Attribute name: description, remark: not-this-description
+msgid "FACETTEBEHAVIOUR_NOT-THIS_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteBehaviour.12997
+# Attribute name: description, remark: not-both-description
+msgid "FACETTEBEHAVIOUR_NOT-BOTH_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteBehaviour.12998
+# Attribute name: description, remark: 64bit-gaming-most-likely-description
+msgid "FACETTEBEHAVIOUR_64BIT-GAMING-MOST-LIKELY_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12988
+# Attribute name: long_description, remark: your-software-selection-influences-connections-done-long-description
+msgid "FACETTEASSIGNMENT_YOUR-SOFTWARE-SELECTION-INFLUENCES-CONNECTIONS-DONE_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11957
+# Attribute name: description, remark: your-software-selection-influences-connections-done-description
+msgid "FACETTEASSIGNMENT_YOUR-SOFTWARE-SELECTION-INFLUENCES-CONNECTIONS-DONE_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12992
+# Attribute name: long_description, remark: systemd-used-long-description
+msgid "FACETTEASSIGNMENT_SYSTEMD-USED_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11961
+# Attribute name: description, remark: systemd-used-description
+msgid "FACETTEASSIGNMENT_SYSTEMD-USED_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12985
+# Attribute name: long_description, remark: scope-own-selection-ok-long-description
+msgid "FACETTEASSIGNMENT_SCOPE-OWN-SELECTION-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11954
+# Attribute name: description, remark: scope-own-selection-ok-description
+msgid "FACETTEASSIGNMENT_SCOPE-OWN-SELECTION-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12984
+# Attribute name: long_description, remark: scope-out-of-the-box-ok-long-description
+msgid "FACETTEASSIGNMENT_SCOPE-OUT-OF-THE-BOX-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11953
+# Attribute name: description, remark: scope-out-of-the-box-ok-description
+msgid "FACETTEASSIGNMENT_SCOPE-OUT-OF-THE-BOX-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12987
+# Attribute name: long_description, remark: proprietary-okay-when-working-ok-long-description
+msgid "FACETTEASSIGNMENT_PROPRIETARY-OKAY-WHEN-WORKING-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11956
+# Attribute name: description, remark: proprietary-okay-when-working-ok-description
+msgid "FACETTEASSIGNMENT_PROPRIETARY-OKAY-WHEN-WORKING-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12986
+# Attribute name: long_description, remark: proprietary-components-present-long-description
+msgid "FACETTEASSIGNMENT_PROPRIETARY-COMPONENTS-PRESENT_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11955
+# Attribute name: description, remark: proprietary-components-present-description
+msgid "FACETTEASSIGNMENT_PROPRIETARY-COMPONENTS-PRESENT_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12964
+# Attribute name: long_description, remark: privacy-usage-software-needed-long-description
+msgid "FACETTEASSIGNMENT_PRIVACY-USAGE-SOFTWARE-NEEDED_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11933
+# Attribute name: description, remark: privacy-usage-software-needed-description
+msgid "FACETTEASSIGNMENT_PRIVACY-USAGE-SOFTWARE-NEEDED_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12983
+# Attribute name: long_description, remark: pricing-free-only-ok-long-description
+msgid "FACETTEASSIGNMENT_PRICING-FREE-ONLY-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11952
+# Attribute name: description, remark: pricing-free-only-ok-description
+msgid "FACETTEASSIGNMENT_PRICING-FREE-ONLY-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12995
+# Attribute name: long_description, remark: prefer-stable-long-description
+msgid "FACETTEASSIGNMENT_PREFER-STABLE_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11964
+# Attribute name: description, remark: prefer-stable-description
+msgid "FACETTEASSIGNMENT_PREFER-STABLE_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12996
+# Attribute name: long_description, remark: prefer-fast-ok-long-description
+msgid "FACETTEASSIGNMENT_PREFER-FAST-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11965
+# Attribute name: description, remark: prefer-fast-ok-description
+msgid "FACETTEASSIGNMENT_PREFER-FAST-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12994
+# Attribute name: long_description, remark: prefer-fast-not-present-long-description
+msgid "FACETTEASSIGNMENT_PREFER-FAST-NOT-PRESENT_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11963
+# Attribute name: description, remark: prefer-fast-not-present-description
+msgid "FACETTEASSIGNMENT_PREFER-FAST-NOT-PRESENT_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12991
+# Attribute name: long_description, remark: packages-are-mostly-precompiled-long-description
+msgid "FACETTEASSIGNMENT_PACKAGES-ARE-MOSTLY-PRECOMPILED_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11960
+# Attribute name: description, remark: packages-are-mostly-precompiled-description
+msgid "FACETTEASSIGNMENT_PACKAGES-ARE-MOSTLY-PRECOMPILED_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12989
+# Attribute name: long_description, remark: okay-when-working-long-description
+msgid "FACETTEASSIGNMENT_OKAY-WHEN-WORKING_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11958
+# Attribute name: description, remark: okay-when-working-description
+msgid "FACETTEASSIGNMENT_OKAY-WHEN-WORKING_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12979
+# Attribute name: long_description, remark: no64bit-ok-long-description
+msgid "FACETTEASSIGNMENT_NO64BIT-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11948
+# Attribute name: description, remark: no64bit-ok-description
+msgid "FACETTEASSIGNMENT_NO64BIT-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12971
+# Attribute name: long_description, remark: no-linux-contact-requires-some-knowledge-long-description
+msgid "FACETTEASSIGNMENT_NO-LINUX-CONTACT-REQUIRES-SOME-KNOWLEDGE_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11940
+# Attribute name: description, remark: no-linux-contact-requires-some-knowledge-description
+msgid "FACETTEASSIGNMENT_NO-LINUX-CONTACT-REQUIRES-SOME-KNOWLEDGE_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12973
+# Attribute name: long_description, remark: no-linux-contact-ok-long-description
+msgid "FACETTEASSIGNMENT_NO-LINUX-CONTACT-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11942
+# Attribute name: description, remark: no-linux-contact-ok-description
+msgid "FACETTEASSIGNMENT_NO-LINUX-CONTACT-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12982
+# Attribute name: long_description, remark: need-human-help-ok-long-description
+msgid "FACETTEASSIGNMENT_NEED-HUMAN-HELP-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11951
+# Attribute name: description, remark: need-human-help-ok-description
+msgid "FACETTEASSIGNMENT_NEED-HUMAN-HELP-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12975
+# Attribute name: long_description, remark: many-preselections-ok-long-description
+msgid "FACETTEASSIGNMENT_MANY-PRESELECTIONS-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11944
+# Attribute name: description, remark: many-preselections-ok-description
+msgid "FACETTEASSIGNMENT_MANY-PRESELECTIONS-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12981
+# Attribute name: long_description, remark: manuals-present-ok-long-description
+msgid "FACETTEASSIGNMENT_MANUALS-PRESENT-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11950
+# Attribute name: description, remark: manuals-present-ok-description
+msgid "FACETTEASSIGNMENT_MANUALS-PRESENT-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12963
+# Attribute name: long_description, remark: live-mode-usage-long-description
+msgid "FACETTEASSIGNMENT_LIVE-MODE-USAGE_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11932
+# Attribute name: description, remark: live-mode-usage-description
+msgid "FACETTEASSIGNMENT_LIVE-MODE-USAGE_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12977
+# Attribute name: long_description, remark: installer-adds-a-preselection-of-software-long-description
+msgid "FACETTEASSIGNMENT_INSTALLER-ADDS-A-PRESELECTION-OF-SOFTWARE_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11946
+# Attribute name: description, remark: installer-adds-a-preselection-of-software-description
+msgid "FACETTEASSIGNMENT_INSTALLER-ADDS-A-PRESELECTION-OF-SOFTWARE_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12965
+# Attribute name: long_description, remark: impaired-view-usage-software-needed-long-description
+msgid "FACETTEASSIGNMENT_IMPAIRED-VIEW-USAGE-SOFTWARE-NEEDED_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11934
+# Attribute name: description, remark: impaired-view-usage-software-needed-description
+msgid "FACETTEASSIGNMENT_IMPAIRED-VIEW-USAGE-SOFTWARE-NEEDED_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12974
+# Attribute name: long_description, remark: graphical-installer-allows-selection-of-many-packages-long-description
+msgid "FACETTEASSIGNMENT_GRAPHICAL-INSTALLER-ALLOWS-SELECTION-OF-MANY-PACKAGES_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11943
+# Attribute name: description, remark: graphical-installer-allows-selection-of-many-packages-description
+msgid "FACETTEASSIGNMENT_GRAPHICAL-INSTALLER-ALLOWS-SELECTION-OF-MANY-PACKAGES_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12967
+# Attribute name: long_description, remark: gaming-usage-proprietary-drivers-installable-ui-packages-new-long-description
+msgid "FACETTEASSIGNMENT_GAMING-USAGE-PROPRIETARY-DRIVERS-INSTALLABLE-UI-PACKAGES-NEW_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11936
+# Attribute name: description, remark: gaming-usage-proprietary-drivers-installable-ui-packages-new-description
+msgid "FACETTEASSIGNMENT_GAMING-USAGE-PROPRIETARY-DRIVERS-INSTALLABLE-UI-PACKAGES-NEW_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12966
+# Attribute name: long_description, remark: gaming-usage-packages-might-be-too-old-long-description
+msgid "FACETTEASSIGNMENT_GAMING-USAGE-PACKAGES-MIGHT-BE-TOO-OLD_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11935
+# Attribute name: description, remark: gaming-usage-packages-might-be-too-old-description
+msgid "FACETTEASSIGNMENT_GAMING-USAGE-PACKAGES-MIGHT-BE-TOO-OLD_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12976
+# Attribute name: long_description, remark: default-installer-is-gui-not-commandline-setup-long-description
+msgid "FACETTEASSIGNMENT_DEFAULT-INSTALLER-IS-GUI-NOT-COMMANDLINE-SETUP_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11945
+# Attribute name: description, remark: default-installer-is-gui-not-commandline-setup-description
+msgid "FACETTEASSIGNMENT_DEFAULT-INSTALLER-IS-GUI-NOT-COMMANDLINE-SETUP_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12962
+# Attribute name: long_description, remark: daily-usage-long-description
+msgid "FACETTEASSIGNMENT_DAILY-USAGE_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11931
+# Attribute name: description, remark: daily-usage-description
+msgid "FACETTEASSIGNMENT_DAILY-USAGE_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12970
+# Attribute name: long_description, remark: beginner-usage-long-description
+msgid "FACETTEASSIGNMENT_BEGINNER-USAGE_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11939
+# Attribute name: description, remark: beginner-usage-description
+msgid "FACETTEASSIGNMENT_BEGINNER-USAGE_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12968
+# Attribute name: long_description, remark: beginner-usage-some-knowlege-required-long-description
+msgid "FACETTEASSIGNMENT_BEGINNER-USAGE-SOME-KNOWLEGE-REQUIRED_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11937
+# Attribute name: description, remark: beginner-usage-some-knowlege-required-description
+msgid "FACETTEASSIGNMENT_BEGINNER-USAGE-SOME-KNOWLEGE-REQUIRED_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12990
+# Attribute name: long_description, remark: app-store-gui-present-long-description
+msgid "FACETTEASSIGNMENT_APP-STORE-GUI-PRESENT_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11959
+# Attribute name: description, remark: app-store-gui-present-description
+msgid "FACETTEASSIGNMENT_APP-STORE-GUI-PRESENT_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12972
+# Attribute name: long_description, remark: already-used-ok-long-description
+msgid "FACETTEASSIGNMENT_ALREADY-USED-OK_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.11941
+# Attribute name: description, remark: already-used-ok-description
+msgid "FACETTEASSIGNMENT_ALREADY-USED-OK_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12969
+# Attribute name: long_description, remark: advanced-usage-long-description
+msgid "FACETTEASSIGNMENT_ADVANCED-USAGE_LONG_DESCRIPTION"
+msgstr ""
+# Model reference: FacetteAssignment.12978
+# Attribute name: long_description, remark: 64bits-ok-long-description
+msgid "FACETTEASSIGNMENT_64BITS-OK_LONG_DESCRIPTION"
+msgstr "The distribution can run on 64 bit processors"
+# Model reference: FacetteAssignment.12980
+# Attribute name: long_description, remark: 64bit-support-removed-long-description
+msgid "FACETTEASSIGNMENT_64BIT-SUPPORT-REMOVED_LONG_DESCRIPTION"
+msgstr "The distribution has removed support for 64 bit"
+# Model reference: Choosable.12957
+# Attribute name: name, remark: ubuntu
+msgid "CHOOSABLE_UBUNTU_NAME"
+msgstr "Ubuntu"
+# Model reference: Choosable.12957
+# Attribute name: description, remark: ubuntu-description
+msgid "CHOOSABLE_UBUNTU_DESCRIPTION"
+msgstr "Ubuntu is a Distribution built by the company Canonical"
+# Model reference: Choosable.12952
+# Attribute name: name, remark: debian
+msgid "CHOOSABLE_DEBIAN_NAME"
+msgstr "Debian"
+# Model reference: Choosable.12952
+# Attribute name: description, remark: debian-description
+msgid "CHOOSABLE_DEBIAN_DESCRIPTION"
+msgstr "Debian is a distribution with high focus on stability"
+# Model reference: ChoosableMeta.82
+# Attribute name: meta_title, remark: website
+msgid "CHOOSABLEMETA_WEBSITE_META_TITLE"
+msgstr "Website"
+# Model reference: ChoosableMeta.12958
+# Attribute name: meta_title, remark: None
+msgid "CHOOSABLEMETA_UBUNTU-WEBSITE_META_TITLE"
+msgstr "Website"
+# Model reference: ChoosableMeta.12959
+# Attribute name: meta_title, remark: None
+msgid "CHOOSABLEMETA_UBUNTU-LICENSES_META_TITLE"
+msgstr "Licenses"
+# Model reference: ChoosableMeta.1339
+# Attribute name: meta_title, remark: example
+msgid "CHOOSABLEMETA_UBUNTU-EXAMPLE_META_TITLE"
+msgstr ""
+# Model reference: ChoosableMeta.12960
+# Attribute name: meta_title, remark: None
+msgid "CHOOSABLEMETA_UBUNTU-CREATED_META_TITLE"
+msgstr "Created"
+# Model reference: ChoosableMeta.12961
+# Attribute name: meta_title, remark: None
+msgid "CHOOSABLEMETA_UBUNTU-COUNTRY_META_TITLE"
+msgstr "Founded in"
+# Model reference: ChoosableMeta.12953
+# Attribute name: meta_title, remark: None
+msgid "CHOOSABLEMETA_DEBIAN-WEBSITE_META_TITLE"
+msgstr "Website"
+# Model reference: ChoosableMeta.12954
+# Attribute name: meta_title, remark: None
+msgid "CHOOSABLEMETA_DEBIAN-LICENSES_META_TITLE"
+msgstr "Licenses"
+# Model reference: ChoosableMeta.1370
+# Attribute name: meta_title, remark: None
+msgid "CHOOSABLEMETA_DEBIAN-EXAMPLE_META_TITLE"
+msgstr ""
+# Model reference: ChoosableMeta.12955
+# Attribute name: meta_title, remark: None
+msgid "CHOOSABLEMETA_DEBIAN-CREATED_META_TITLE"
+msgstr "Founded"
+# Model reference: ChoosableMeta.12956
+# Attribute name: meta_title, remark: None
+msgid "CHOOSABLEMETA_DEBIAN-COUNTRY_META_TITLE"
+msgstr "Founded in"
+# Model reference: Category.12901
+# Attribute name: name, remark: welcome-page-category
+msgid "CATEGORY_WELCOME-PAGE-CATEGORY_NAME"
+msgstr "Welcome!"
+# Model reference: Category.30
+# Attribute name: name, remark: VERSION
+msgid "CATEGORY_VERSION_NAME"
+msgstr "Questionaire version"
+# Model reference: Category.12902
+# Attribute name: name, remark: version-page-category
+msgid "CATEGORY_VERSION-PAGE-CATEGORY_NAME"
+msgstr "Questionaire version"
+# Model reference: Category.12909
+# Attribute name: name, remark: ux-page-category
+msgid "CATEGORY_UX-PAGE-CATEGORY_NAME"
+msgstr "User expierience"
+# Model reference: Category.12915
+# Attribute name: name, remark: updates-page-category
+msgid "CATEGORY_UPDATES-PAGE-CATEGORY_NAME"
+msgstr "System updates"
+# Model reference: Category.12911
+# Attribute name: name, remark: scope-page-category
+msgid "CATEGORY_SCOPE-PAGE-CATEGORY_NAME"
+msgstr "Installation scope"
+# Model reference: Category.12903
+# Attribute name: name, remark: scenario-page-category
+msgid "CATEGORY_SCENARIO-PAGE-CATEGORY_NAME"
+msgstr "User scenario"
+# Model reference: Category.12916
+# Attribute name: name, remark: result-page-category
+msgid "CATEGORY_RESULT-PAGE-CATEGORY_NAME"
+msgstr "Your result"
+# Model reference: Category.12913
+# Attribute name: name, remark: privacy-page-category
+msgid "CATEGORY_PRIVACY-PAGE-CATEGORY_NAME"
+msgstr "System privacy"
+# Model reference: Category.12910
+# Attribute name: name, remark: pricing-page-category
+msgid "CATEGORY_PRICING-PAGE-CATEGORY_NAME"
+msgstr "Pricing and fees"
+# Model reference: Category.12904
+# Attribute name: name, remark: pc-knowledge-page-category
+msgid "CATEGORY_PC-KNOWLEDGE-PAGE-CATEGORY_NAME"
+msgstr "PC knowledge"
+# Model reference: Category.12907
+# Attribute name: name, remark: old-hardware-page-category
+msgid "CATEGORY_OLD-HARDWARE-PAGE-CATEGORY_NAME"
+msgstr "Target hardware age"
+# Model reference: Category.12905
+# Attribute name: name, remark: linux-knowledge-category
+msgid "CATEGORY_LINUX-KNOWLEDGE-CATEGORY_NAME"
+msgstr "Linux knowledge"
+# Model reference: Category.12906
+# Attribute name: name, remark: installation-page-category
+msgid "CATEGORY_INSTALLATION-PAGE-CATEGORY_NAME"
+msgstr "Installation (?)"
+# Model reference: Category.12912
+# Attribute name: name, remark: ideology-page-category
+msgid "CATEGORY_IDEOLOGY-PAGE-CATEGORY_NAME"
+msgstr "License ideology"
+# Model reference: Category.12908
+# Attribute name: name, remark: help-page-category
+msgid "CATEGORY_HELP-PAGE-CATEGORY_NAME"
+msgstr "Help sources"
