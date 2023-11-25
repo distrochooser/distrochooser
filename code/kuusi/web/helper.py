@@ -46,6 +46,12 @@ def forward_helper(id: str, overwrite_status: int, session: Session, base_url: s
         page.toggle_marking(request.session_obj)
         stay = True
         overwrite_status = 422
+
+    # If reset the answers is requested -> Redirect the user to the page using a 301 to prevent the answers from being reselected immediately
+    if page.can_be_marked and "BTN_RESET_ANSWER" in request.POST:
+        page.reset_answers(request.session_obj)
+        target = f"?page={request.GET.get('page')}"
+        return None, HttpResponseRedirect(target)
     result = page.proceed(request)
     if not result:
         if "BTN_NEXT_PAGE_FORCE" in request.POST:
