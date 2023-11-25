@@ -244,6 +244,13 @@ class Page(Translateable):
                 is_page_visible = False
         return is_page_visible
 
+
+    def is_answered(self, session: Session):
+        return  (
+            self.catalogue_id in session.answered_pages
+            if session and self.catalogue_id in session.answered_pages
+            else False
+        )
     @property
     def previous_page(self) -> Page | None:
         return Page.objects.filter(next_page=self).first()
@@ -363,6 +370,19 @@ class Page(Translateable):
             marking = PageMarking(page=self, session=session)
             marking.save()
 
+    def reset_answers(self, session: Session):
+        widgets = self.widget_list
+        for widget in widgets:
+            if hasattr(widget, "topic"):
+                facettes = None    
+                topic = widget.topic
+                if session.valid_for == "latest":
+                    facettes = Facette.objects.filter(topic=topic, is_invalidated=False)
+                else:
+                    logger.debug(f"Answer reset {self} will use facettes of invalidation {session.valid_for}.")
+                    facettes = Facette.objects.filter(topic=topic, is_invalidated=True, invalidation_id=session.valid_for)
+                for facette in facettes:
+                    FacetteSelection.objects.filter(session=session,facette=facette).delete()
 
 class PageMarking(models.Model):
     page = models.ForeignKey(
@@ -1221,11 +1241,7 @@ class Category(Translateable):
 
             if not target_page.is_visible(session):
                 return None
-            is_answered = (
-                target_page.catalogue_id in session.answered_pages
-                if session and target_page.catalogue_id in session.answered_pages
-                else False
-            )
+            is_answered = target_page.is_answered(session)
             is_marked = target_page.is_marked(session)
             is_warning = target_page.is_warning(session)
             is_error = target_page.is_error(session)

@@ -7,8 +7,15 @@
 </div>
 {% endif %}
 <div class="row mt-3">
-    <div class="col-8"></div>
-    <div class="col-4 text-end">
+    <div class="col-6"></div>
+    <div class="col-6 text-end">
+        <!-- {% _i18n "BTN_RESET_ANSWER" %} -->
+        {% if page.can_be_marked %}
+            <button name="BTN_RESET_ANSWER" class="btn"  value="BTN_MARK_TOGGLE">
+                <i class="bi bi-trash"></i>
+                {% _i18n "BTN_RESET_ANSWER" %}
+            </button>
+        {% endif %}
         <!-- {% _i18n "BTN_MARK" %} -->
         <!-- {% _i18n "BTN_UNMARK" %} -->
         {% if page.can_be_marked %}
