@@ -29,7 +29,7 @@
 
 
 @page pc-knowledge-page (session markable) next linux-knowledge-page;
-@widget selection 1 1 12 to pc-knowledge-page topic pc-knowledge;
+@widget radio 1 1 12 to pc-knowledge-page topic pc-knowledge;
 @category pc-knowledge-page-category (bi bi-pc-display) to pc-knowledge-page;
 
 

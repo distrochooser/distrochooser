@@ -1,10 +1,12 @@
 {% load web_extras %}
+{% load i18n %}
 <div class="weight"  id="{{field.name}}-weight-container">
     <div class="row">
         <div class="col-2">
             <i class="bi bi-dash-circle-fill weight-icon"></i>
         </div>
         <div class="col-8 text-center">
+            <!-- {% translate "WEIGHT_LABEL" %} -->
             <label for="{{field.name}}-weight" class="form-label text-muted fs-6 weight-label">{% _i18n "WEIGHT_LABEL" %}</label>
         </div>
         <div class="col-2 text-end">
