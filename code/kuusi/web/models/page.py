@@ -101,8 +101,8 @@ class Page(Translateable):
         return True
 
     @property
-    def facette_selections(self) -> List[FacetteSelectionWidget]:
-        widgets_used = FacetteSelectionWidget.objects.filter(pages__pk__in=[self])
+    def facette_selections(self) -> List:
+        widgets_used = apps.get_model("web", "FacetteSelectionWidget").objects.filter(pages__pk__in=[self])
         return widgets_used
 
     @property
