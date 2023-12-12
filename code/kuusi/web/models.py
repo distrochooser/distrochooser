@@ -658,7 +658,7 @@ class FacetteSelectionWidget(Widget):
         )
 
 class FacetteRadioSelectionWidget(FacetteSelectionWidget):
-    
+    NOTHING_SELECTED = "nothing";
     def build_form(
         self, data: Dict | None, session: Session
     ) -> Tuple[WarningForm, List, Dict]:
@@ -675,6 +675,8 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
         # TODO: Inject language here to the __() call
         # Build the form content
         names = []
+        names.append((FacetteRadioSelectionWidget.NOTHING_SELECTED, FacetteRadioSelectionWidget.NOTHING_SELECTED))
+        default_selection = FacetteRadioSelectionWidget.NOTHING_SELECTED
         facette: Facette
         for facette in facettes:
             names.append((facette.catalogue_id, facette.__("selectable_description", "en")))
@@ -689,31 +691,34 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
 
             if is_selected:
                 weights[self.topic] = selection_matches.first().weight
+                default_selection = facette.catalogue_id
             
         radio_group = forms.CharField(widget=forms.RadioSelect(choices=names))
 
         facette_form.fields[self.topic] = radio_group
+        facette_form.initial[self.topic] = default_selection
         return facette_form, child_facettes, weights
 
     def proceed(self, request: WebHttpRequest, page: Page) -> bool:
         # Always remove the facettes for the current widget to prevent permanent selections
         if request.method == "POST":
             active_facette = request.POST.get(self.topic)
-            weight = request.POST.get(f"{self.topic}-weight")
-            if active_facette:
-                FacetteSelection.objects.filter(
-                    session=request.session_obj, facette__topic=self.topic
-                ).delete()
-                facette = None
-                if request.session_obj.valid_for == "latest":
-                    facette = Facette.objects.get(topic=self.topic, is_invalidated=False, catalogue_id=active_facette)
-                    logger.debug(f"Facette radio widget {self} will use facette of current invalidation {request.session_obj.valid_for} for selection.")
-                else:
-                    logger.debug(f"Facette radio widget {self} will use facette of invalidation {request.session_obj.valid_for} for selection.")
-                    facette = facette=Facette.objects.get(topic=self.topic, is_invalidated=True, catalogue_id=active_facette, invalidation_id=request.session_obj.valid_for)
-                select = FacetteSelection(facette=facette, session=request.session_obj)
-                select.weight = weight
-                select.save()
+            if active_facette != FacetteRadioSelectionWidget.NOTHING_SELECTED:
+                weight = request.POST.get(f"{self.topic}-weight")
+                if active_facette:
+                    FacetteSelection.objects.filter(
+                        session=request.session_obj, facette__topic=self.topic
+                    ).delete()
+                    facette = None
+                    if request.session_obj.valid_for == "latest":
+                        facette = Facette.objects.get(topic=self.topic, is_invalidated=False, catalogue_id=active_facette)
+                        logger.debug(f"Facette radio widget {self} will use facette of current invalidation {request.session_obj.valid_for} for selection.")
+                    else:
+                        logger.debug(f"Facette radio widget {self} will use facette of invalidation {request.session_obj.valid_for} for selection.")
+                        facette = facette=Facette.objects.get(topic=self.topic, is_invalidated=True, catalogue_id=active_facette, invalidation_id=request.session_obj.valid_for)
+                    select = FacetteSelection(facette=facette, session=request.session_obj)
+                    select.weight = weight
+                    select.save()
         
         facette_form, _ , _= self.build_form(request.POST, request.session_obj)
         # TODO: Add behaviours for Radio selections
