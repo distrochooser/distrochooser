@@ -16,7 +16,6 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-@import "../node_modules/flag-icons/css/flag-icons.min.css";
 .ku-step {
   margin-bottom: 0.25em;
 }
@@ -27,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 .ku-step-major {
-  background-color: red;
+  background-color: grey;
   color: white;
   border-radius: 1.5em;
   width: 1.5em;
@@ -38,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   margin-left: 0.5em;
 }
 .ku-step-major.ku-step-major-active {
-  background-color: green;
+  background-color: black;
 }
 .ku-step-major i {
   margin-left: 0.25em;
@@ -50,15 +49,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 .ku-step-minor-title {
+  font-size: smaller;
   display: block;
-  border-left: 3px solid red;
-  margin-left: 1.1em;
+  border-left: 3px solid black;
+  margin-left: 1.4em;
   padding-bottom: 0.2em;
   padding-left: 0.5em;
   color: grey;
 }
 .ku-step-minor-title.ku-step-title-active {
-  border-left-color: green;
+  color: grey;
 }
 
 .ku-step-major-title button,
@@ -69,10 +69,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .ku-step-major-title button.ku-step-active,
 .ku-step-minor-title button.ku-step-active {
   color: black;
+  text-decoration: underline;
 }
 
 .ku-step-answered {
   font-weight: bold;
+}
+
+.ku-step-marked {
+  color: gold;
+  position: relative;
+}
+.ku-step-marked.bi-exclamation-octagon-fill {
+  color: red;
+}
+.ku-step-marked.bi-exclamation-square-fill {
+  color: blue;
 }
 
 .ku-logo {
@@ -80,9 +92,51 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   margin-bottom: 1em;
 }
 
+footer {
+  margin-left: -1em;
+  margin-right: -1em;
+  padding-left: 1em;
+  padding-right: 0.5em;
+  margin-bottom: -0.5em;
+}
+
 footer p a {
   color: grey;
   text-decoration: none;
+}
+
+.card .card-header {
+  margin-left: -1em;
+  margin-right: -1em;
+  border: 0px;
+  background: black;
+  color: white;
+  border-radius: 0px !important;
+  margin-top: 0.5em;
+}
+
+input[value=nothing] {
+  display: none;
+}
+
+.weight-icon {
+  font-size: 10pt !important;
+}
+
+.weight-label {
+  font-size: 8pt !important;
+}
+
+.ku-i18n-translateable {
+  border-bottom: 5px dotted red;
+}
+
+.ku-i18n-translateable-fromstorage {
+  border-bottom: 5px dotted yellow !important;
+}
+
+.ku-i18n-translateable-done {
+  border-bottom: 5px dotted green !important;
 }
 
 .clearfix::after {
@@ -5127,5 +5181,3 @@ textarea.form-control-lg {
   position: relative;
   top: -1px;
 }
-
-/*# sourceMappingURL=custom.css.map */

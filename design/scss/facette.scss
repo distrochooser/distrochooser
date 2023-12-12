@@ -1,3 +1,10 @@
-.child-facette {
-   // TODO: Add visual hint that the facettes are child facettes without messing up with the form layout
+/* Hide the radio buttons which have a 'nothing' value (they are the default), but we do not want them */
+input[value='nothing'] {
+   display: none;
+}
+input[value='nothing'] + label {
+   display: none;
+}
+.form-check {
+   min-height: 0px !important;
 }
