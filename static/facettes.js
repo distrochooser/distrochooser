@@ -11,7 +11,7 @@ function checkedStateHandler(el) {
     if (isRadio) {
         checked = document.querySelectorAll("input[data-ku-facette]:not([value='nothing']):checked").length > 0
         const selection = document.querySelector("input[data-ku-facette]")
-        data_id = selection ? selections.getAttribute("data-ku-facette") : null;
+        data_id = selection ? selection.getAttribute("data-ku-facette") : null;
     } else {
         data_id = el.getAttribute("data-ku-id")
         checked = el.checked;
