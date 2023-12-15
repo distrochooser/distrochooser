@@ -1,25 +1,38 @@
 {% load web_extras %}
+{% load i18n %}
 
 <div class="row">
     <div class="col text-center mb-2 mt-1">
-        <a class="me-2" href="https://www.facebook.com/sharer/sharer.php?u={{share_link}}" target="_blank"><i
-                class="bi bi-facebook"></i></a>
-        <a class="me-2"
-            href="https://twitter.com/share?url={{share_link}}&amp;hashtags=distrochooser,linux&amp;via=distrochooser"
-            target="_blank"><i class="bi bi-twitter"></i></a>
-        <a class="me-2" href="http://reddit.com/submit?url={{share_link}}&amp;title=Distrochooser.de" target="_blank"><i
-                class="bi bi-reddit"></i></a></span>
 
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <a class="btn btn-outline-primary facebook" href="https://www.facebook.com/sharer/sharer.php?u={{share_link}}"
+                target="_blank">
+                <i class="bi bi-facebook"></i>
+            </a> 
+            <a class="btn btn-outline-primary twitter" class="me-2"
+                href="https://twitter.com/share?url={{share_link}}&amp;hashtags=distrochooser,linux&amp;via=distrochooser"
+                target="_blank">
+                <i class="bi bi-twitter"></i>
+            </a>
+
+            <a class="btn btn-outline-primary reddit" class="me-2" href="http://reddit.com/submit?url={{share_link}}&amp;title=Distrochooser.de"
+                target="_blank">
+                <i class="bi bi-reddit"></i>
+            </a>
+        </div>
     </div>
 </div>
 <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-            <div class="input-group">
-                <span class="input-group-text" id="result-link-number">{% _i18n "YOUR_RESULT_LINK_TEST_NUMBER" %} #{{ session.number }}</span>
-                <input type="text" class="form-control" id="result-link" aria-describedby="result-link-number result-link-label-bottom" value="{{share_link}}">
-            </div>
-            <div class="form-text" id="result-link-label-bottom">{% _i18n "YOUR_RESULT_LINK_LABEL" %}</div>
+        <!-- {% translate "YOUR_RESULT_LINK_TEST_NUMBER" %} -->
+        <div class="input-group">
+            <span class="input-group-text" id="result-link-number"><i class="bi bi-paperclip"></i></span>
+            <input type="text" class="form-control share-link" id="result-link"
+                aria-describedby="result-link-number result-link-label-bottom" value="{{share_link}}" onfocus="this.select();" onmouseup="return false;">
+        </div>
+        <!-- {% translate "YOUR_RESULT_LINK_LABEL" %} -->
+        <div class="form-text" id="result-link-label-bottom">{% _i18n "YOUR_RESULT_LINK_LABEL" %}</div>
 
     </div>
 </div>

@@ -23,7 +23,6 @@ msgid "LANGUAGE_CHANGE"
 msgstr "Change language"
 
 #: web/templates/tags/language_select.html:18
-#| msgid "SAVE_TRANSLATION"
 msgid "TRANSLATION_TRIGGER"
 msgstr "Suggest translation"
 
@@ -58,6 +57,14 @@ msgstr "Next"
 #: web/templates/widgets/navigation.html:39
 msgid "BTN_NEXT_PAGE_FORCE"
 msgstr "Next"
+
+#: web/templates/widgets/result_share.html:19
+msgid "YOUR_RESULT_LINK_TEST_NUMBER"
+msgstr "Result number"
+
+#: web/templates/widgets/result_share.html:24
+msgid "YOUR_RESULT_LINK_LABEL"
+msgstr "Your result link"
 
 #: web/views.py:202
 msgid "PAGE_NOT_AVAILABLE"
