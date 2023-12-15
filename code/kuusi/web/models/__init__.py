@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from .translateable import Translateable, TranslateableField, TranslateableFieldRecord, TranslationSuggestion
 from .http import WebHttpRequest
-from .session import Session, get_session_number, get_session_result_id
+from .session import Session, get_session_number, get_session_result_id, random_str
 from .widget import Widget
 from .sessionversion import SessionVersion, SessionVersionWidget
 from .choosable import Choosable, ChoosableMeta

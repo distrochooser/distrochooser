@@ -91,6 +91,7 @@
 @category updates-page-category (bi bi-cloud-plus) to updates-page;
 
 @page result-page (session no-header);
+@widget share 1 1 12 to result-page;
 @widget result 2 1 12 to result-page;
 @category result-page-category (bi bi-list-nested) to result-page;
 
