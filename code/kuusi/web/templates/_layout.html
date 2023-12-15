@@ -19,7 +19,7 @@
     <link data-n-head="ssr" rel="icon" type="image/x-icon" href="{% static 'icon.svg' %}">
     {% if acceleration %}
     <script type="module">
-        import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
+        import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo@7.3.0';
     </script>
     {% endif %}
     <title>
@@ -38,42 +38,24 @@
             {% endif %}
 
         </div>
-            <div class="col-{% if debug %}2{%else%}3{%endif%}"></div>
-            <div class="col-6 mt-3">{% logo %}
+        <div class="col-{% if debug %}2{%else%}3{%endif%}"></div>
+        <div class="col-6 mt-3">{% logo %}
 
             <div class="row">
                 {% if is_old %}
                 <div class="col-12 alert alert-info">
                     {% if debug %}
-                        INVALIDATION: {{ session.valid_for }}
+                    INVALIDATION: {{ session.valid_for }}
                     {% else %}
-                       {% _i18n "OLD_RESULT" %}
+                    {% _i18n "OLD_RESULT" %}
                     {% endif %}
                 </div>
                 {% endif %}
             </div>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-1">
-           <div class="col-2">
-             <form action="" method="post" enctype="application/x-www-form-urlencoded">
-                <label for="ku-i18n-site-lang-code" class="form-label"> {% _i18n "LANGUAGE" %}</label>
-                {% csrf_token %}
-                <select id="ku-i18n-site-lang-code" name="ku-i18n-site-lang-code" id="ku-i18n-site-lang-code" class="form-control">
-                    {% for code in language_codes %}
-                        <option value="{{code}}" {% if code == language_code %} selected {% endif%}>{{code}}</option>
-                    {% endfor %}
-                </select>
-                <button class="form-control mt-2" id="ku-i18n-site-lang-code-change" name="ku-i18n-site-lang-code-change">{% _i18n 'LANGUAGE_CHANGE' %}</button>
-                <a href="#" class="text-muted ku-18n-show mt-3 d-block">
-                    {% _i18n 'TRANSLATION_TRIGGER' %}
-                </a>
-
-                <div class="mt-2 d-none ku-i18n-controls">
-                    <a href="#" class="btn btn-primary ku-i18n-save">Save my translation</a>
-                </div>
-            </form>
-           </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-1">
+            {% language_select%}
         </div>
     </div>
     <main>

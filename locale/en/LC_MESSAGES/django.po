@@ -14,6 +14,23 @@ msgstr "negative"
 msgid "POSITIVE"
 msgstr "positive"
 
+#: web/templates/tags/language_select.html:6
+msgid "LANGUAGE"
+msgstr "Language"
+
+#: web/templates/tags/language_select.html:15
+msgid "LANGUAGE_CHANGE"
+msgstr "Change language"
+
+#: web/templates/tags/language_select.html:18
+#| msgid "SAVE_TRANSLATION"
+msgid "TRANSLATION_TRIGGER"
+msgstr "Suggest translation"
+
+#: web/templates/tags/language_select.html:23
+msgid "SAVE_TRANSLATION"
+msgstr "save my translation"
+
 #: web/templates/tags/weight.html:9
 msgid "WEIGHT_LABEL"
 msgstr "Importance"
