@@ -168,7 +168,7 @@ KUUSI_URL = "http://localhost:8000"
 
 KUUSI_NAME = "Distrochooser"
 
-KUUSI_COPYRIGHT_STRING = "text copyright"
+KUUSI_COPYRIGHT_STRING = None
 
 KUUSI_INFO_STRING = "Ein Projekt von <a href='https://chmr.eu'>chmr.eu</a>"
 
