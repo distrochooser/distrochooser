@@ -28,7 +28,7 @@ from django.forms.utils import ErrorDict
 
 from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta, TranslationSuggestion
 
-from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, KUUSI_FOOTER_LINKS
+from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, KUUSI_FOOTER_LINKS, LANGUAGE_CODES
 
 register = template.Library()
 
@@ -192,3 +192,8 @@ def warnings(warnings: Dict[str, List[ValidationError]]):
     # FIXME: warnings should be using the same structure as errors() first parameter, but it doesnt. 
     return {}
     return {"haystack": flatten_errors_warnings(warnings), "severity": "warning"}
+
+
+@register.inclusion_tag(filename="tags/language_select.html")
+def language_select():
+    return {"language_codes": LANGUAGE_CODES}
