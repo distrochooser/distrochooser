@@ -1,6 +1,10 @@
 {% extends '_layout.html' %}
 {% load web_extras %}
+{% load i18n %}
 {% block title%}Distrochooser{% endblock %}
 {% block content%}
-<h1>Privacy</h1>
+<h1>{% translate "PRIVACY_PAGE_TITLE" %}</h1>
+<p>
+    {% translate "PRIVACY_PAGE_TEXT" %}
+</p>
 {% endblock %}
