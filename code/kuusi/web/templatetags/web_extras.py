@@ -28,7 +28,7 @@ from django.forms.utils import ErrorDict
 
 from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta, TranslationSuggestion
 
-from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, KUUSI_FOOTER_LINKS, LANGUAGE_CODES
+from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES
 
 register = template.Library()
 
@@ -97,15 +97,9 @@ def cookies():
 
 @register.inclusion_tag(filename="tags/footer.html")
 def footer():
-    links = []
-    # FIXME: Translation not read when not inside of template
-    for link in KUUSI_FOOTER_LINKS:
-        link["title"] = _(link["title"])
-        links.append(link)
     return {
         "left_text": KUUSI_COPYRIGHT_STRING,
-        "free_nav": KUUSI_INFO_STRING,
-        "links": links,
+        "free_nav": KUUSI_INFO_STRING
     }
 
 

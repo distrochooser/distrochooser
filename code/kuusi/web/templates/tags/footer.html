@@ -1,4 +1,5 @@
 {% load web_extras %}
+{% load i18n %}
 <footer class="d-flex flex-wrap justify-content-between align-items-center mt-3 border-top">
     <p class="col-md-4 mb-0 mt-2 text-muted"></p>
         {% if left_text%}
@@ -7,8 +8,8 @@
     </p>
     <p class="col-md-4 mb-0 text-muted mt-2 text-center">{{ free_nav|safe }}</p>
     <p class="col-md-4 mb-0  text-muted mt-2 text-end">
-        {% for link in links %}
-            <a href=" {{ link.href }}" class="d-inline-block px-2 text-muted"> {% _i18n link.title %}</a>
-        {% endfor %}
+        <a href="/about" class="d-inline-block px-2 text-muted">{% translate "LINK_ABOUT"%}</a>
+        <a href="/privacy" class="d-inline-block px-2 text-muted">{% translate "LINK_PRIVACY" %}</a>
+        <a href="/imprint" class="d-inline-block px-2 text-muted">{% translate "LINK_IMPRINT" %}</a>
     </p>
 </footer>
