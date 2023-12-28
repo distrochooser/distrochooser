@@ -1,5 +1,20 @@
 {% load web_extras %}
+{% load i18n %}
+<!--  {% translate "WELCOME_WIDGET_HEADER" %} -->
 <b>{% _i18n "WELCOME_WIDGET_HEADER"%}</b>
-<ul>
-    <li>Lorem ipsum</li>
+<!--  {% translate "WELCOME_WIDGET_TEXT" %} -->
+<p>
+    {% _i18n "WELCOME_WIDGET_TEXT"%}
+</p>
+<ul class="welcome-widget-list">
+    <!--  {% translate "WELCOME_WIDGET_SKIP_QUESTIONS" %} -->
+    <!--  {% translate "WELCOME_WIDGET_GET_ANSWER_ANY_TIME" %} -->
+    <!--  {% translate "WELCOME_WIDGET_ANY_ORDER" %} -->
+    <!--  {% translate "WELCOME_WIDGET_DELETE_ANY_TIME" %} -->
+    <!--  {% translate "WELCOME_WIDGET_MARK_WEIGHT" %} -->
+    <li><i class="bi bi-skip-forward"></i> {% _i18n "WELCOME_WIDGET_SKIP_QUESTIONS"%}</li>
+    <li><i class="bi bi-view-list"></i> {% _i18n "WELCOME_WIDGET_GET_ANSWER_ANY_TIME"%}</li>
+    <li><i class="bi bi-list-ol"></i>{% _i18n "WELCOME_WIDGET_ANY_ORDER"%}</li>
+    <li><i class="bi bi-x-octagon-fill"></i> {% _i18n "WELCOME_WIDGET_DELETE_ANY_TIME"%}</li>
+    <li><i class="bi bi-plus-slash-minus"></i> {% _i18n "WELCOME_WIDGET_MARK_WEIGHT"%}</li>
 </ul>

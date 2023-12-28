@@ -7,15 +7,31 @@ msgid "DEBUG_MODE_ON_DESCRIPTION"
 msgstr ""
 "There will be additional output, which will not be part of the regular usage."
 
-#: web/templates/tags/choosable.html:32
+#: web/templates/about.html:6
+msgid "ABOUT_PAGE_TITLE"
+msgstr ""
+
+#: web/templates/about.html:8
+msgid "ABOUT_PAGE_TEXT"
+msgstr ""
+
+#: web/templates/privacy.html:6
+msgid "PRIVACY_PAGE_TITLE"
+msgstr ""
+
+#: web/templates/privacy.html:8
+msgid "PRIVACY_PAGE_TEXT"
+msgstr ""
+
+#: web/templates/tags/choosable.html:35
 msgid "NEUTRAL"
 msgstr "neutral"
 
-#: web/templates/tags/choosable.html:33
+#: web/templates/tags/choosable.html:36
 msgid "NEGATIVE"
 msgstr "negative"
 
-#: web/templates/tags/choosable.html:34
+#: web/templates/tags/choosable.html:37
 msgid "POSITIVE"
 msgstr "positive"
 
@@ -83,6 +99,34 @@ msgstr "Result number"
 msgid "YOUR_RESULT_LINK_LABEL"
 msgstr "Your result link"
 
-#: web/views.py:202
+#: web/templates/widgets/welcome.html:2
+msgid "WELCOME_WIDGET_HEADER"
+msgstr "Welcome to distrochooser.de!"
+
+#: web/templates/widgets/welcome.html:4
+msgid "WELCOME_WIDGET_TEXT"
+msgstr "Welcome! This test will help you choose a suitable Linux distribution."
+
+#: web/templates/widgets/welcome.html:9
+msgid "WELCOME_WIDGET_SKIP_QUESTIONS"
+msgstr "You can always skip questions"
+
+#: web/templates/widgets/welcome.html:10
+msgid "WELCOME_WIDGET_GET_ANSWER_ANY_TIME"
+msgstr "You can always click on 'get result' to receive your result"
+
+#: web/templates/widgets/welcome.html:11
+msgid "WELCOME_WIDGET_ANY_ORDER"
+msgstr "You may answer in arbitrary order"
+
+#: web/templates/widgets/welcome.html:12
+msgid "WELCOME_WIDGET_DELETE_ANY_TIME"
+msgstr "You can delete answers at any time"
+
+#: web/templates/widgets/welcome.html:13
+msgid "WELCOME_WIDGET_MARK_WEIGHT"
+msgstr "Mark answers as important to give them more weight"
+
+#: web/views.py:218
 msgid "PAGE_NOT_AVAILABLE"
 msgstr ""
