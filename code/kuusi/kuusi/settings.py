@@ -172,11 +172,6 @@ KUUSI_COPYRIGHT_STRING = None
 
 KUUSI_INFO_STRING = "Ein Projekt von <a href='https://chmr.eu'>chmr.eu</a>"
 
-KUUSI_FOOTER_LINKS = [
-    {"href": "/about", "title": "FOOTER_ABOUT"},
-    {"href": "/privacy", "title": "FOOTER_PRIVACY"},
-    {"href": "/imprint", "title": "FOOTER_IMPRINT"},
-]
 
 # use https://turbo.hotwired.dev to prevent flicker
 # requires the status codes to be altered.

@@ -2,6 +2,11 @@
 msgid "DEBUG_MODE_ON"
 msgstr "Debug mode is ON!"
 
+#: web/templates/_layout.html:37
+msgid "DEBUG_MODE_ON_DESCRIPTION"
+msgstr ""
+"There will be additional output, which will not be part of the regular usage."
+
 #: web/templates/tags/choosable.html:32
 msgid "NEUTRAL"
 msgstr "neutral"
@@ -13,6 +18,18 @@ msgstr "negative"
 #: web/templates/tags/choosable.html:34
 msgid "POSITIVE"
 msgstr "positive"
+
+#: web/templates/tags/footer.html:11
+msgid "LINK_ABOUT"
+msgstr "About this project"
+
+#: web/templates/tags/footer.html:12
+msgid "LINK_PRIVACY"
+msgstr "Privacy"
+
+#: web/templates/tags/footer.html:13
+msgid "LINK_IMPRINT"
+msgstr "Imprint"
 
 #: web/templates/tags/language_select.html:6
 msgid "LANGUAGE"
@@ -58,11 +75,11 @@ msgstr "Next"
 msgid "BTN_NEXT_PAGE_FORCE"
 msgstr "Next"
 
-#: web/templates/widgets/result_share.html:19
+#: web/templates/widgets/result_share.html:28
 msgid "YOUR_RESULT_LINK_TEST_NUMBER"
 msgstr "Result number"
 
-#: web/templates/widgets/result_share.html:24
+#: web/templates/widgets/result_share.html:34
 msgid "YOUR_RESULT_LINK_LABEL"
 msgstr "Your result link"
 
