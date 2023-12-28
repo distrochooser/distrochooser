@@ -4,9 +4,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                {% _i18n choosable "name" %}: {{ score }}
+                {% _i18n choosable "name" %}
             </div>
             <div class="card-body">
+                <div class="alert alert-danger">
+                    DEBUG SCORE: {{ score }}
+                </div>
                 {% _i18n choosable "description" %}
 
                 <div class="row mb-2 mt-2">

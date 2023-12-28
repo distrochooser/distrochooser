@@ -170,7 +170,7 @@ KUUSI_NAME = "Distrochooser"
 
 KUUSI_COPYRIGHT_STRING = None
 
-KUUSI_INFO_STRING = "Ein Projekt von <a href='https://chmr.eu'>chmr.eu</a>"
+KUUSI_INFO_STRING = "Made by <a href='https://chmr.eu'>chmr.eu</a>"
 
 
 # use https://turbo.hotwired.dev to prevent flicker
