@@ -20,13 +20,16 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls.static import static
 
-from web.views import route_index, route_update
+from web.views import route_index, route_update, route_about, route_contact, route_privacy
 from web.http import route_add_suggestion
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    re_path("(?P<language_code>[a-z]+)/about", route_about, name="route_about"),
+    re_path("(?P<language_code>[a-z]+)/privacy", route_privacy, name="route_privacy"),
+    re_path("(?P<language_code>[a-z]+)/contact", route_contact, name="route_contact"),
     path("update",  route_update, name="route_update"),
     path('', route_index, name='route_index'),
     re_path('(?P<language_code>[a-z]+)/(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),

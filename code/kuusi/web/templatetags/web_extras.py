@@ -97,7 +97,9 @@ def cookies():
 
 @register.inclusion_tag(filename="tags/footer.html")
 def footer():
+    # TODO: Inject language code
     return {
+        "language_code": "en",
         "left_text": KUUSI_COPYRIGHT_STRING,
         "free_nav": KUUSI_INFO_STRING
     }

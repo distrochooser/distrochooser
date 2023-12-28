@@ -38,6 +38,22 @@ from logging import getLogger
 
 logger = getLogger("root")
 
+def route_about(request: WebHttpRequest, language_code: str = None):
+    template = loader.get_template("about.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def route_privacy(request: WebHttpRequest, language_code: str = None):
+    template = loader.get_template("privacy.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def route_contact(request: WebHttpRequest, language_code: str = None):
+    template = loader.get_template("contact.html")
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
     # TODO: Get the original selections, copy them to the users's own session.
