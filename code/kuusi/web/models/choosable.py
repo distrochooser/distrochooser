@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from typing import Dict
 from django.db import models
 from web.models import Translateable, TranslateableField
+from django.utils.translation import gettext_lazy as _
 
 class Choosable(Translateable):
     """
@@ -41,7 +42,8 @@ class Choosable(Translateable):
             "meta_name"
         )
         result = {}
-        meta_objects: ChoosableMeta
+
+        meta_object: ChoosableMeta
         for meta_object in meta_objects:
             result[meta_object.meta_name] = meta_object
 
@@ -64,15 +66,14 @@ class ChoosableMeta(Translateable):
         DATE = "DATE", "DATE"
 
     class MetaName(models.TextChoices):
-        CREATED = "CREATED", "CREATED"
-        COUNTRY = "COUNTRY", "COUNTRY"
-        LICENSES = "LICENSES", "LICENSES"
-        WEBSITE = "WEBSITE", "WEBSITE"
+        CREATED = "CREATED", _("CREATED")
+        COUNTRY = "COUNTRY",  _("COUNTRY")
+        LICENSES = "LICENSES",  _("LICENSES")
+        WEBSITE = "WEBSITE",  _("WEBSITE")
 
     meta_type = models.CharField(
         max_length=20, choices=MetaType.choices, default=MetaType.TEXT
     )
-    meta_title = TranslateableField(null=True, blank=True, max_length=120)
     meta_name = models.CharField(
         max_length=25,
         blank=False,
@@ -83,6 +84,7 @@ class ChoosableMeta(Translateable):
     meta_value = models.CharField(
         max_length=255, blank=False, null=False, default="A value"
     )
+
 
     def __str__(self) -> str:
         return f"{self.meta_choosable}: {self.meta_name} ({self.meta_type}) -> {self.meta_value}"

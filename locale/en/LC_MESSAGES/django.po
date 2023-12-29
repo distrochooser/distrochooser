@@ -1,11 +1,26 @@
+#: web/models/choosable.py:69
+msgid "CREATED"
+msgstr "Date of creation"
+
+#: web/models/choosable.py:70
+msgid "COUNTRY"
+msgstr "Country of origin"
+
+#: web/models/choosable.py:71
+msgid "LICENSES"
+msgstr "Licenses"
+
+#: web/models/choosable.py:72
+msgid "WEBSITE"
+msgstr "Website"
+
 #: web/templates/_layout.html:31
 msgid "DEBUG_MODE_ON"
 msgstr "Debug mode is ON!"
 
 #: web/templates/_layout.html:37
 msgid "DEBUG_MODE_ON_DESCRIPTION"
-msgstr ""
-"There will be additional output, which will not be part of the regular usage."
+msgstr "There will be additional output and the data is dummy data."
 
 #: web/templates/about.html:6
 msgid "ABOUT_PAGE_TITLE"
@@ -23,15 +38,15 @@ msgstr ""
 msgid "PRIVACY_PAGE_TEXT"
 msgstr ""
 
-#: web/templates/tags/choosable.html:35
+#: web/templates/tags/choosable.html:33
 msgid "NEUTRAL"
 msgstr "neutral"
 
-#: web/templates/tags/choosable.html:36
+#: web/templates/tags/choosable.html:34
 msgid "NEGATIVE"
 msgstr "negative"
 
-#: web/templates/tags/choosable.html:37
+#: web/templates/tags/choosable.html:35
 msgid "POSITIVE"
 msgstr "positive"
 
@@ -99,31 +114,35 @@ msgstr "Result number"
 msgid "YOUR_RESULT_LINK_LABEL"
 msgstr "Your result link"
 
-#: web/templates/widgets/welcome.html:2
+#: web/templates/widgets/version.html:4
+msgid "FULL_VERSION"
+msgstr "Full version"
+
+#: web/templates/widgets/welcome.html:3
 msgid "WELCOME_WIDGET_HEADER"
 msgstr "Welcome to distrochooser.de!"
 
-#: web/templates/widgets/welcome.html:4
+#: web/templates/widgets/welcome.html:5
 msgid "WELCOME_WIDGET_TEXT"
 msgstr "Welcome! This test will help you choose a suitable Linux distribution."
 
-#: web/templates/widgets/welcome.html:9
+#: web/templates/widgets/welcome.html:10
 msgid "WELCOME_WIDGET_SKIP_QUESTIONS"
 msgstr "You can always skip questions"
 
-#: web/templates/widgets/welcome.html:10
+#: web/templates/widgets/welcome.html:11
 msgid "WELCOME_WIDGET_GET_ANSWER_ANY_TIME"
 msgstr "You can always click on 'get result' to receive your result"
 
-#: web/templates/widgets/welcome.html:11
+#: web/templates/widgets/welcome.html:12
 msgid "WELCOME_WIDGET_ANY_ORDER"
 msgstr "You may answer in arbitrary order"
 
-#: web/templates/widgets/welcome.html:12
+#: web/templates/widgets/welcome.html:13
 msgid "WELCOME_WIDGET_DELETE_ANY_TIME"
 msgstr "You can delete answers at any time"
 
-#: web/templates/widgets/welcome.html:13
+#: web/templates/widgets/welcome.html:14
 msgid "WELCOME_WIDGET_MARK_WEIGHT"
 msgstr "Mark answers as important to give them more weight"
 
