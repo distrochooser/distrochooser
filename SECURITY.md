@@ -4,8 +4,8 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.x (currently beta.distrochooser.de)  | :white_check_mark: |
-| 4.x (currently distrochooser.de) | :white_check_mark: |
+| 5.x (currently distrochooser.de)  | :white_check_mark: |
+| 4.x  | :x:    |
 | < 4.0 (offline)  | :x:                |
 
 ## Reporting a Vulnerability
