@@ -7,17 +7,15 @@
                 {% _i18n choosable "name" %}
             </div>
             <div class="card-body">
-                <div class="alert alert-danger">
-                    DEBUG SCORE: {{ score }}
-                </div>
                 {% _i18n choosable "description" %}
 
                 <div class="row mb-2 mt-2">
-                    {% for _, meta_obj in choosable.meta.items%}
-                    <div class="col-2">
+                    {% for _, meta_obj in choosable.meta.items %}
+                    <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title text-truncate">{% _i18n meta_obj "meta_title" %}</h5>
+                                <h5 class="card-title text-truncate">{{ meta_obj.get_meta_name_display }}
+                                </h5>
                                 <p class="card-text">
                                     {% meta_value meta_obj %}
                                 </p>
