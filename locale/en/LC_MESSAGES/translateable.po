@@ -454,7 +454,7 @@ msgstr ""
 # Model reference: FacetteAssignment.13656
 # Attribute name: long_description, remark: gaming-usage-packages-might-be-too-old-long-description
 msgid "FACETTEASSIGNMENT_GAMING-USAGE-PACKAGES-MIGHT-BE-TOO-OLD_LONG_DESCRIPTION"
-msgstr ""
+msgstr "The packages available might be too old for gaming"
 # Model reference: FacetteAssignment.13666
 # Attribute name: long_description, remark: default-installer-is-gui-not-commandline-setup-long-description
 msgid "FACETTEASSIGNMENT_DEFAULT-INSTALLER-IS-GUI-NOT-COMMANDLINE-SETUP_LONG_DESCRIPTION"
