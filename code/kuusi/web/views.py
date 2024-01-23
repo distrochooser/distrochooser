@@ -15,7 +15,12 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseForbidden, HttpResponseNotFound
+from django.http import (
+    HttpResponse,
+    HttpResponseNotAllowed,
+    HttpResponseForbidden,
+    HttpResponseNotFound,
+)
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
 from django.utils import translation
@@ -29,14 +34,15 @@ from kuusi.settings import (
     DEBUG,
     LANGUAGE_CODES,
     DEFAULT_LANGUAGE_CODE,
-    UPDATE_API_KEY, 
-    UPDATE_UPLOAD_PATH
+    UPDATE_API_KEY,
+    UPDATE_UPLOAD_PATH,
 )
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from web.helper import forward_helper
 from logging import getLogger
 
 logger = getLogger("root")
+
 
 def route_about(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("about.html")
@@ -54,6 +60,7 @@ def route_contact(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("contact.html")
     context = {}
     return HttpResponse(template.render(context, request))
+
 
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
     template = loader.get_template("index.html")
@@ -159,18 +166,22 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     request.has_errors = False
     request.has_warnings = False
     # TODO: Investigate correct approach
-    request.LANGUAGE_CODE = DEFAULT_LANGUAGE_CODE if not language_code else language_code
+    request.LANGUAGE_CODE = (
+        DEFAULT_LANGUAGE_CODE if not language_code else language_code
+    )
     translation.activate(request.LANGUAGE_CODE)
     overwrite_status = 200
     base_url = f"/{request.LANGUAGE_CODE}" + ("" if not id else f"/{id}")
     if request.method == "POST":
-        overwrite_status, response = forward_helper(id, overwrite_status, session, base_url, page, request)
+        overwrite_status, response = forward_helper(
+            id, overwrite_status, session, base_url, page, request
+        )
         if response and not overwrite_status:
             return response
     current_location = request.get_full_path()
     # If the user is curently on the start page -> use the first available site as "current location"
     if current_location.__len__() <= 1:
-        current_location = base_url  + pages[0].href
+        current_location = base_url + pages[0].href
     step_data = []
 
     """
@@ -196,16 +207,16 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     for index, category in enumerate(categories):
         minor_steps = []
         category_step = category.to_step(
-            current_location,
-            request.LANGUAGE_CODE,
-            request.session_obj,
+            request,
             index == categories.__len__() - 1,
         )
         child_categories = Category.objects.filter(child_of=category)
         child_category: Category
         for child_category in child_categories:
             minor_steps.append(
-                child_category.to_step(current_location, request.LANGUAGE_CODE, request.session_obj)
+                child_category.to_step(
+                    request,
+                )
             )
         step = {
             "icon": category.icon,
@@ -224,7 +235,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         "language_codes": LANGUAGE_CODES,
         "language_code": request.LANGUAGE_CODE,
         "session": session,
-        "is_old": session.valid_for != "latest"
+        "is_old": session.valid_for != "latest",
     }
     # TODO: create a tree , displaying the behaviours and selection reasons
     # TODO: Allow the user to display and modify the tree (if allowed)
@@ -251,16 +262,16 @@ def route_update(request: WebHttpRequest) -> HttpResponse:
     The first file is considered as "main" file and will be used to trigger the parse mechanism.
 
     The endpoint requires an Authorization header to feature the value from UPDATE_API_KEY and the method must be POST.
-    
+
     """
     if request.method != "POST":
         return HttpResponseNotAllowed("Not allowed")
-    
+
     header = request.headers.get("Authorization")
 
     if not header or header != UPDATE_API_KEY:
         return HttpResponseForbidden("Forbidden")
-    
+
     if request.FILES.__len__ == 0:
         return HttpResponseNotFound("File is missing")
     first_file_name = None
@@ -270,5 +281,5 @@ def route_update(request: WebHttpRequest) -> HttpResponse:
         with open(join(UPDATE_UPLOAD_PATH, key), "wb") as file:
             for chunk in file_content.chunks():
                 file.write(chunk)
-    call_command('parse', join(UPDATE_UPLOAD_PATH, first_file_name))
+    call_command("parse", join(UPDATE_UPLOAD_PATH, first_file_name))
     return HttpResponse("ok")

@@ -65,6 +65,10 @@ class Page(Translateable):
             if session and self.catalogue_id in session.answered_pages
             else False
         )
+    
+    def is_active(self, request: WebHttpRequest):
+        return "page" in request.GET and request.GET.get("page") == self.catalogue_id
+    
     @property
     def previous_page(self) -> Page | None:
         return Page.objects.filter(next_page=self).first()
