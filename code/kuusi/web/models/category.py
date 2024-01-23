@@ -17,9 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from typing import Dict
+from web.models.http import WebHttpRequest
 from web.models import Translateable, TranslateableField, Session, Page
 from django.db import models
-
 
 class Category(Translateable):
     name = TranslateableField(null=False, blank=False, max_length=120)
@@ -46,9 +46,7 @@ class Category(Translateable):
 
     def to_step(
         self,
-        current_location: str,
-        language_code: str,
-        session: Session | None,
+        request: WebHttpRequest, 
         is_last: bool = False,
     ) -> Dict | None:
         """
@@ -56,11 +54,16 @@ class Category(Translateable):
 
         If the target page is not fitting the version of the session, None is returned.
         """
+        language_code = request.LANGUAGE_CODE
+        session = request.session_obj
+
         target = None
         target_page: Page = self.target_page
         is_error = False
         is_warning = False
         is_marked = False
+        is_active = False
+
         if target_page:
             target = target_page.href
 
@@ -70,10 +73,12 @@ class Category(Translateable):
             is_marked = target_page.is_marked(session)
             is_warning = target_page.is_warning(session)
             is_error = target_page.is_error(session)
+            is_active = target_page.is_active(request)
+
         return {
             "title": self.__("name", language_code),
             "href": target,
-            "active": current_location == target, # FIXME: Properly identify the current location also when /<language>/<id> is set
+            "active": is_active,
             "answered": is_answered,
             "marked": is_marked,
             "warning": is_warning,
