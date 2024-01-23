@@ -30,16 +30,7 @@
 <body id="body" class="d-flex flex-column h-100 bg-light">
     <!--  {% translate "DEBUG_MODE_ON" %} -->
     <div class="row">
-        {% if debug %}
-        <div class="col-md-1 col-sm-12">
-            <div class="alert alert-danger text-center">
-                {% _i18n "DEBUG_MODE_ON" %}
-                <span>{% translate "DEBUG_MODE_ON_DESCRIPTION" %}</span>
-            </div>
-            {% endif %}
-
-        </div>
-        <div class="col-{% if debug %}2{%else%}3{%endif%}"></div>
+        <div class="col-3"></div>
         <div class="col-6 mt-3">{% logo %}
 
             <div class="row">
@@ -62,6 +53,21 @@
     <main>
         <div class="container-fluid py-4">
             {% block content %}{% endblock %}
+            
+            <!--  {% translate "DEBUG_MODE_ON" %} -->
+            {% if debug %}
+            <div class="fixed-bottom">
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <div class="alert alert-danger">{% translate "DEBUG_MODE_ON_DESCRIPTION" %}</div>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </main>
 
