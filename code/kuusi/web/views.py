@@ -56,7 +56,6 @@ def route_contact(request: WebHttpRequest, language_code: str = None):
     return HttpResponse(template.render(context, request))
 
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
-    # TODO: Get the original selections, copy them to the users's own session.
     template = loader.get_template("index.html")
     page_id = request.GET.get("page")
     page = None
