@@ -14,13 +14,13 @@ msgstr "Licenses"
 msgid "WEBSITE"
 msgstr "Website"
 
-#: web/templates/_layout.html:31
+#: web/templates/_layout.html:31 web/templates/_layout.html:57
 msgid "DEBUG_MODE_ON"
 msgstr "Debug mode is ON!"
 
-#: web/templates/_layout.html:37
+#: web/templates/_layout.html:64
 msgid "DEBUG_MODE_ON_DESCRIPTION"
-msgstr "There will be additional output and the data is dummy data."
+msgstr "This is a preview version: Stuff might not work correctly, there will be additional output and the data is dummy data. Also, your browser tab might explode."
 
 #: web/templates/about.html:6
 msgid "ABOUT_PAGE_TITLE"
