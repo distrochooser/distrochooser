@@ -20,7 +20,7 @@ msgstr "Debug mode is ON!"
 
 #: web/templates/_layout.html:64
 msgid "DEBUG_MODE_ON_DESCRIPTION"
-msgstr "This is a preview version: Stuff might not work correctly, there will be additional output and the data is dummy data. Also, your browser tab might explode."
+msgstr "This is a preview version: Stuff might not work correctly, there will be additional output and the data is dummy data. Also, your browser tab might explode which will result in the end of the observable universe."
 
 #: web/templates/about.html:6
 msgid "ABOUT_PAGE_TITLE"
