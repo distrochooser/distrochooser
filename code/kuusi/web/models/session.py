@@ -43,7 +43,7 @@ def get_session_result_id():
 def get_session_number():
     return SESSION_NUMBER_OFFSET + Session.objects.all().count() + 1
 
-
+# TODO: Add a way to exclude bot and crawler sessions
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
     user_agent = models.CharField(default=None, null=True, blank=True, max_length=150)
@@ -68,6 +68,7 @@ class Session(models.Model):
         blank=True,
         related_name="session_sessionorigin",
     )
+    referrer = models.TextField(blank=True, default=None, null=True)
 
     # TODO: Add a counter for statistical purposes
     # TODO: Add a flag to define a version on the facette structure to allow to differentiate between database iterations
