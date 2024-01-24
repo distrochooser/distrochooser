@@ -190,3 +190,9 @@ LANGUAGE_CODES = {
 UPDATE_API_KEY = "fooooooo"
 
 UPDATE_UPLOAD_PATH = "/Users/chm/Documents/distrochooser/tmp"
+
+# Privacy related settings.
+
+# We won't touch the CSRF_COOKIE_AGE because of the reasons mentioned in https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-cookie-age
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True # The cookie is not really used for anything rather than picking up data between requests. After the session, it should not be valid anymore

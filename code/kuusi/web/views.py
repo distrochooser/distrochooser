@@ -36,6 +36,7 @@ from kuusi.settings import (
     DEFAULT_LANGUAGE_CODE,
     UPDATE_API_KEY,
     UPDATE_UPLOAD_PATH,
+    SESSION_NUMBER_OFFSET
 )
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from web.helper import forward_helper
@@ -46,7 +47,9 @@ logger = getLogger("root")
 
 def route_about(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("about.html")
-    context = {}
+    context = {
+        "count": SESSION_NUMBER_OFFSET  + Session.objects.all().count()
+    }
     return HttpResponse(template.render(context, request))
 
 
@@ -100,6 +103,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
             user_agent = request.headers.get("user-agent")
             session = Session(user_agent=user_agent)
             session.save()
+            session.referrer = request.headers.get("referrer")
             request.session["result_id"] = session.result_id
         else:
             session = Session.objects.filter(
