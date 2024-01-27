@@ -38,6 +38,7 @@ from kuusi.settings import (
     UPDATE_UPLOAD_PATH,
     SESSION_NUMBER_OFFSET
 )
+from kuusi.legal import LEGAL_TEXT
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from web.helper import forward_helper
 from logging import getLogger
@@ -61,8 +62,11 @@ def route_privacy(request: WebHttpRequest, language_code: str = None):
 
 def route_contact(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("contact.html")
-    context = {}
+    context = {
+        "text": LEGAL_TEXT
+    }
     return HttpResponse(template.render(context, request))
+
 
 
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
