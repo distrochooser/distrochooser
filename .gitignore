@@ -8,3 +8,4 @@ static/*.css.map
 *.mo
 static/admin
 static/*.css
+code/kuusi/kuusi/legal.py
