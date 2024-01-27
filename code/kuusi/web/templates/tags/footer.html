@@ -1,15 +1,11 @@
 {% load web_extras %}
 {% load i18n %}
 <footer class="d-flex flex-wrap justify-content-between align-items-center mt-3 border-top">
-    <p class="col-md-4 mb-0 mt-2 text-muted"></p>
-        {% if left_text%}
-        {{ left_text }}
-        {% endif %}
-    </p>
-    <p class="col-md-4 mb-0 text-muted mt-2 text-center">{{ free_nav|safe }}</p>
-    <p class="col-md-4 mb-0  text-muted mt-2 text-end">
+    <p class="col-md-7 mb-0 text-muted mt-2">{{ free_nav|safe }}</p>
+
+    <p class="col-md-5 mb-0  text-muted mt-2 text-end">
         <a target="_blank" href="/{{language_code}}/about" class="d-inline-block px-2 text-muted">{% translate "LINK_ABOUT"%}</a>
         <a target="_blank" href="/{{language_code}}/privacy" class="d-inline-block px-2 text-muted">{% translate "LINK_PRIVACY" %}</a>
-        <a target="_blank" href="/{{language_code}}/imprint" class="d-inline-block px-2 text-muted">{% translate "LINK_IMPRINT" %}</a>
+        <a target="_blank" href="/{{language_code}}/contact" class="d-inline-block px-2 text-muted">{% translate "LINK_IMPRINT" %}</a>
     </p>
 </footer>

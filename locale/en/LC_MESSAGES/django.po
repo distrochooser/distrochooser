@@ -20,23 +20,126 @@ msgstr "Debug mode is ON!"
 
 #: web/templates/_layout.html:64
 msgid "DEBUG_MODE_ON_DESCRIPTION"
-msgstr "This is a preview version: Stuff might not work correctly, there will be additional output and the data is dummy data. Also, your browser tab might explode which will result in the end of the observable universe."
+msgstr ""
+"This is a preview version: Stuff might not work correctly, there will be "
+"additional output and the data is dummy data. Also, your browser tab might "
+"explode which will result in the end of the observable universe."
 
 #: web/templates/about.html:6
 msgid "ABOUT_PAGE_TITLE"
-msgstr ""
+msgstr "About this project"
 
 #: web/templates/about.html:8
 msgid "ABOUT_PAGE_TEXT"
 msgstr ""
+"distrochooser.de attempts to help Linux beginners to choose a Linux "
+"distribution suited to their needs. The given results are suggestions based "
+"on your answers. Sometimes results may be not as fitting, because of complex "
+"interactions between answers."
+
+#: web/templates/about.html:11
+msgid "ABOUT_PAGE_TEXT_STATS"
+msgstr "Result lists created since 14th june 2014:"
+
+#: web/templates/about.html:14
+msgid "ABOUT_PAGE_LICENSE_TITLE"
+msgstr "Licensing"
+
+#: web/templates/about.html:17
+msgid "ABOUT_PAGE_LICENSE_TEXT"
+msgstr ""
+"This project features two licenses. The project files are licensed via the "
+"LICENSE file in the Git repository."
+
+#: web/templates/about.html:18
+msgid "ABOUT_PAGE_LICENSE_LINK"
+msgstr "Repository on GitHub"
+
+#: web/templates/about.html:18 web/templates/privacy.html:13
+msgid "PRIVACY_PAGE_EXTERNAL_LINK"
+msgstr "External link"
+
+#: web/templates/about.html:21
+msgid "ABOUT_PAGE_LICENSE_DATABASE_TEXT"
+msgstr ""
+"The definition of the decision matrix is part of the previously mentioned "
+"GitHub repository. The statistical runtime data may be released with a "
+"suitable open data licensing policy on a later date."
+
+#: web/templates/contact.html:6
+msgid "IMPRINT_TITLE"
+msgstr "Imprint"
+
+#: web/templates/contact.html:11
+# Keep the english version in all translations due to legal reasons.
+msgid "IMPRINT_DISCLAIMER_TITLE"
+msgstr "Disclaimer"
+
+#: web/templates/contact.html:15
+# Keep the english version in all translations due to legal reasons.
+msgid "IMPRINT_DISCLAIMER_TEXT"
+msgstr "This is a disclaimer text, which will be sticked to english due to legal reasons."
 
 #: web/templates/privacy.html:6
 msgid "PRIVACY_PAGE_TITLE"
-msgstr ""
+msgstr "Privacy"
 
 #: web/templates/privacy.html:8
 msgid "PRIVACY_PAGE_TEXT"
+msgstr "On following site, we described what data is stored."
+
+#: web/templates/privacy.html:11
+msgid "PRIVACY_PAGE_COOKIE_TEXT"
 msgstr ""
+"This page utilizes cookies. The cookies are utilized to provide required "
+"features. We will set cookies as described below."
+
+#: web/templates/privacy.html:13
+msgid "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME"
+msgstr ""
+"This cookie is used for a security mechanism called 'Cross Site Request "
+"Forgery'. The cookie has a lifetime of one year."
+
+#: web/templates/privacy.html:13
+msgid "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME_DOCS"
+msgstr ""
+"You can find more information about this cookie in the Django documentation. "
+"Django is the framework utilized for this service."
+
+#: web/templates/privacy.html:14
+msgid "PRIVACY_PAGE_COOKIE_SESSION_LIFETIME"
+msgstr ""
+"This cookie stores a session ID which is used to map your answers to your "
+"result. This cookie will be expired after you finish your session"
+
+#: web/templates/privacy.html:17
+msgid "PRIVACY_PAGE_STORED_DATA"
+msgstr "What data do we store?"
+
+#: web/templates/privacy.html:19
+msgid "PRIVACY_PAGE_STORED_TEXT"
+msgstr "We store following information when you open this page"
+
+#: web/templates/privacy.html:22
+msgid "PRIVACY_PAGE_STORED_TEXT_DATE_TIME"
+msgstr "The date and time of the access"
+
+#: web/templates/privacy.html:25
+msgid "PRIVACY_PAGE_STORED_TEXT_USER_AGENT"
+msgstr ""
+"The user agent of your browser. The user agent identifies technical "
+"information about your browser, but is not really mappable to you (except "
+"you are the last remaining Internet Explorer 5 user)"
+
+#: web/templates/privacy.html:28
+msgid "PRIVACY_PAGE_STORED_REF"
+msgstr "An referrer, if any. Your browser might already remove privacy related data here"
+
+#: web/templates/privacy.html:31
+msgid "PRIVACY_PAGE_STORED_TEXT_WHY"
+msgstr ""
+"We store this information to run anonymous statistics. Regularly, this "
+"dataset cannot be mapped to single users."
 
 #: web/templates/tags/choosable.html:33
 msgid "NEUTRAL"
@@ -50,17 +153,17 @@ msgstr "negative"
 msgid "POSITIVE"
 msgstr "positive"
 
-#: web/templates/tags/footer.html:11
+#: web/templates/tags/footer.html:7
 msgid "LINK_ABOUT"
 msgstr "About this project"
 
-#: web/templates/tags/footer.html:12
+#: web/templates/tags/footer.html:8
 msgid "LINK_PRIVACY"
 msgstr "Privacy"
 
-#: web/templates/tags/footer.html:13
+#: web/templates/tags/footer.html:9
 msgid "LINK_IMPRINT"
-msgstr "Imprint"
+msgstr "Contact"
 
 #: web/templates/tags/language_select.html:6
 msgid "LANGUAGE"
@@ -82,27 +185,27 @@ msgstr "save my translation"
 msgid "WEIGHT_LABEL"
 msgstr "Importance"
 
-#: web/templates/widgets/navigation.html:12
+#: web/templates/widgets/navigation.html:11
 msgid "BTN_RESET_ANSWER"
 msgstr "Reset answers"
 
-#: web/templates/widgets/navigation.html:19
+#: web/templates/widgets/navigation.html:18
 msgid "BTN_MARK"
 msgstr "Mark this question"
 
-#: web/templates/widgets/navigation.html:20
+#: web/templates/widgets/navigation.html:19
 msgid "BTN_UNMARK"
 msgstr "Remove marking"
 
-#: web/templates/widgets/navigation.html:31
+#: web/templates/widgets/navigation.html:32
 msgid "BTN_PREV_PAGE"
 msgstr "Previous"
 
-#: web/templates/widgets/navigation.html:38
+#: web/templates/widgets/navigation.html:39
 msgid "BTN_NEXT_PAGE"
 msgstr "Next"
 
-#: web/templates/widgets/navigation.html:39
+#: web/templates/widgets/navigation.html:40
 msgid "BTN_NEXT_PAGE_FORCE"
 msgstr "Next"
 
@@ -146,6 +249,6 @@ msgstr "You can delete answers at any time"
 msgid "WELCOME_WIDGET_MARK_WEIGHT"
 msgstr "Mark answers as important to give them more weight"
 
-#: web/views.py:218
+#: web/views.py:236
 msgid "PAGE_NOT_AVAILABLE"
 msgstr ""

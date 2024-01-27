@@ -1,6 +1,18 @@
 {% extends '_layout.html' %}
 {% load web_extras %}
+{% load i18n %}
 {% block title%}Distrochooser{% endblock %}
 {% block content%}
-<h1>Contact</h1>
+<h1>{% translate "IMPRINT_TITLE" %}</h1>
+<p>
+    {{ text|linebreaks }}
+</p>
+<h2>
+    {% translate "IMPRINT_DISCLAIMER_TITLE" %}
+</h2>
+<p>
+    {{ text|linebreaks }}
+    {% translate "IMPRINT_DISCLAIMER_TEXT" %}
+</p>
+{% footer %}
 {% endblock %}
