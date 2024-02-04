@@ -1,20 +1,22 @@
 {% load web_extras %}
 {% load i18n %}
 <!--  {% translate "WELCOME_WIDGET_HEADER" %} -->
-<b>{% _i18n "WELCOME_WIDGET_HEADER"%}</b>
+<h2>{% _i18n "WELCOME_WIDGET_HEADER"%}</h2>
 <!--  {% translate "WELCOME_WIDGET_TEXT" %} -->
-<p>
+<p class="mb-2 mt-2">
     {% _i18n "WELCOME_WIDGET_TEXT"%}
 </p>
-<ul class="welcome-widget-list">
+<ul class="welcome-widget-list mt-2">
     <!--  {% translate "WELCOME_WIDGET_SKIP_QUESTIONS" %} -->
     <!--  {% translate "WELCOME_WIDGET_GET_ANSWER_ANY_TIME" %} -->
     <!--  {% translate "WELCOME_WIDGET_ANY_ORDER" %} -->
     <!--  {% translate "WELCOME_WIDGET_DELETE_ANY_TIME" %} -->
     <!--  {% translate "WELCOME_WIDGET_MARK_WEIGHT" %} -->
-    <li><i class="bi bi-skip-forward"></i> {% _i18n "WELCOME_WIDGET_SKIP_QUESTIONS"%}</li>
-    <li><i class="bi bi-view-list"></i> {% _i18n "WELCOME_WIDGET_GET_ANSWER_ANY_TIME"%}</li>
-    <li><i class="bi bi-list-ol"></i>{% _i18n "WELCOME_WIDGET_ANY_ORDER"%}</li>
-    <li><i class="bi bi-x-octagon-fill"></i> {% _i18n "WELCOME_WIDGET_DELETE_ANY_TIME"%}</li>
-    <li><i class="bi bi-plus-slash-minus"></i> {% _i18n "WELCOME_WIDGET_MARK_WEIGHT"%}</li>
+    <!--  {% translate "WELCOME_MARK_UNSURE" %} -->
+    <li class="mb-2"><i class="bi bi-skip-forward me-1"></i> {% _i18n "WELCOME_WIDGET_SKIP_QUESTIONS"%}</li>
+    <li class="mb-2"><i class="bi bi-view-list me-1"></i> {% _i18n "WELCOME_WIDGET_GET_ANSWER_ANY_TIME"%}</li>
+    <li class="mb-2"><i class="bi bi-list-ol me-1"></i>{% _i18n "WELCOME_WIDGET_ANY_ORDER"%}</li>
+    <li class="mb-2"><i class="bi bi bi-bookmark-fill ku-step-marked me-1"></i>{% _i18n "WELCOME_MARK_UNSURE"%}</li>
+    <li class="mb-2"><i class="bi bi-x-octagon-fill me-1"></i> {% _i18n "WELCOME_WIDGET_DELETE_ANY_TIME"%}</li>
+    <li class="mb-2"><i class="bi bi-plus-slash-minus me-1"></i> {% _i18n "WELCOME_WIDGET_MARK_WEIGHT"%}</li>
 </ul>

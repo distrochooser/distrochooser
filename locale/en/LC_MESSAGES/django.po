@@ -14,11 +14,11 @@ msgstr "Licenses"
 msgid "WEBSITE"
 msgstr "Website"
 
-#: web/templates/_layout.html:31 web/templates/_layout.html:57
+#: web/templates/_layout.html:19 web/templates/_layout.html:45
 msgid "DEBUG_MODE_ON"
 msgstr "Debug mode is ON!"
 
-#: web/templates/_layout.html:64
+#: web/templates/_layout.html:52
 msgid "DEBUG_MODE_ON_DESCRIPTION"
 msgstr ""
 "This is a preview version: Stuff might not work correctly, there will be "
@@ -70,15 +70,17 @@ msgstr ""
 msgid "IMPRINT_TITLE"
 msgstr "Imprint"
 
-#: web/templates/contact.html:11
 # Keep the english version in all translations due to legal reasons.
+#: web/templates/contact.html:11
 msgid "IMPRINT_DISCLAIMER_TITLE"
 msgstr "Disclaimer"
 
-#: web/templates/contact.html:15
 # Keep the english version in all translations due to legal reasons.
+#: web/templates/contact.html:15
 msgid "IMPRINT_DISCLAIMER_TEXT"
-msgstr "This is a disclaimer text, which will be sticked to english due to legal reasons."
+msgstr ""
+"This is a disclaimer text, which will be sticked to english due to legal "
+"reasons."
 
 #: web/templates/privacy.html:6
 msgid "PRIVACY_PAGE_TITLE"
@@ -133,7 +135,9 @@ msgstr ""
 
 #: web/templates/privacy.html:28
 msgid "PRIVACY_PAGE_STORED_REF"
-msgstr "An referrer, if any. Your browser might already remove privacy related data here"
+msgstr ""
+"An referrer, if any. Your browser might already remove privacy related data "
+"here"
 
 #: web/templates/privacy.html:31
 msgid "PRIVACY_PAGE_STORED_TEXT_WHY"
@@ -248,6 +252,10 @@ msgstr "You can delete answers at any time"
 #: web/templates/widgets/welcome.html:14
 msgid "WELCOME_WIDGET_MARK_WEIGHT"
 msgstr "Mark answers as important to give them more weight"
+
+#: web/templates/widgets/welcome.html:15
+msgid "WELCOME_MARK_UNSURE"
+msgstr "You can mark a question if you are unsure what to answer"
 
 #: web/views.py:236
 msgid "PAGE_NOT_AVAILABLE"

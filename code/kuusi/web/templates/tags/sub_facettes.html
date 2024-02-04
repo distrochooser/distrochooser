@@ -5,10 +5,10 @@
     {% for child_field in form %}
         {% if child_field.name in child_fields %}
             <div class="row">
-                <div class="col-10">
+                <div class="col-9">
                     {{ child_field| as_crispy_field }}
                 </div>
-                <div class="col-2">
+                <div class="col-3">
                     {% weight child_field weights %}
                 </div>
             </div>
