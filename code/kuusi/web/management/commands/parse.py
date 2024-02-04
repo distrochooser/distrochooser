@@ -605,8 +605,6 @@ class Command(BaseCommand):
         pattern = "(?P<topic>[\w-]{1,})\s{0,}$"
         results = search(pattern, line) 
 
-        # TODO: Decide to use .description or not.
-
         if results:
             return {
                 "topic": results.group("topic")
@@ -614,12 +612,5 @@ class Command(BaseCommand):
         return None
     
     def radiowidget(self, line: str) -> Dict:
-        pattern = "(?P<topic>[\w-]{1,})\s{0,}$"
-        results = search(pattern, line) 
-        # TODO: Fix redundancy towards selectionwidget
-
-        if results:
-            return {
-                "topic": results.group("topic")
-            }
-        return None
+        # The radiowidget is not different to selectionwidget in terms of properties
+        return self.selectionwidget(line)
