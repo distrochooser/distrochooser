@@ -185,6 +185,21 @@ msgstr "Suggest translation"
 msgid "SAVE_TRANSLATION"
 msgstr "save my translation"
 
+#: web/templates/tags/step_content.html:15
+#: web/templates/tags/step_content.html:20
+msgid "BOOKMARKED_STEP"
+msgstr "Bookmarked category"
+
+#: web/templates/tags/step_content.html:16
+#: web/templates/tags/step_content.html:23
+msgid "ERROR_STEP"
+msgstr "Your answers caused an error"
+
+#: web/templates/tags/step_content.html:17
+#: web/templates/tags/step_content.html:26
+msgid "WARNING_STEP"
+msgstr "Your answers caused a warning"
+
 #: web/templates/tags/weight.html:9
 msgid "WEIGHT_LABEL"
 msgstr "Importance"
