@@ -20,13 +20,14 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls.static import static
 
-from web.views import route_index, route_update, route_about, route_contact, route_privacy
+from web.views import route_index, route_update, route_about, route_contact, route_privacy, route_ack
 from web.http import route_add_suggestion
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    re_path('api/ack/(?P<result_id>[a-zA-Z0-9]+)', route_ack),
     re_path("(?P<language_code>[a-z]+)/about", route_about, name="route_about"),
     re_path("(?P<language_code>[a-z]+)/privacy", route_privacy, name="route_privacy"),
     re_path("(?P<language_code>[a-z]+)/contact", route_contact, name="route_contact"),
@@ -35,5 +36,5 @@ urlpatterns = [
     re_path('(?P<language_code>[a-z]+)/(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
     re_path('(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
     re_path('(?P<language_code>[a-z]+)', route_index, name='route_index'),
-    path('api/i18n/add_suggestion', route_add_suggestion, name='route_add_suggestion'),
+    path('api/i18n/add_suggestion', route_add_suggestion, name='route_add_suggestion')
 ] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True)

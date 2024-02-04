@@ -67,6 +67,13 @@ def route_contact(request: WebHttpRequest, language_code: str = None):
     }
     return HttpResponse(template.render(context, request))
 
+def route_ack(request: WebHttpRequest, result_id: str):
+    session_matches = Session.objects.filter(result_id=result_id)
+    if session_matches.count() == 1:
+        session = session_matches.first()
+        session.is_ack = True
+        session.save()
+    return HttpResponse("ACK")
 
 
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):

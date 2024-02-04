@@ -40,4 +40,10 @@
 
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var result_id = "{{session.result_id}}"; 
+        window.ack(result_id);
+    });
+</script>
 {% footer %}
