@@ -95,11 +95,11 @@ def cookies():
     return {}
 
 
-@register.inclusion_tag(filename="tags/footer.html")
-def footer():
-    # TODO: Inject language code
+@register.inclusion_tag(filename="tags/footer.html", takes_context=True)
+def footer(context):
+    request: HttpRequest = context["request"]
     return {
-        "language_code": "en",
+        "language_code": request.LANGUAGE_CODE,
         "left_text": KUUSI_COPYRIGHT_STRING,
         "free_nav": KUUSI_INFO_STRING
     }
