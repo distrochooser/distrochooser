@@ -73,7 +73,8 @@ def _i18n(context, translateable_object: Translateable | safestring.SafeString |
 @register.inclusion_tag(filename="tags/page.html", takes_context=True)
 def page(context, page: Page):
     request: HttpRequest = context["request"]
-    return {"page": page, "request": request}
+    session = request.session_obj
+    return {"page": page, "request": request, "session": session}
 
 
 @register.inclusion_tag(filename="tags/logo.html")
