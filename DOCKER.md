@@ -25,6 +25,6 @@ docker build -t distrochooser:kuusi
 ```
 docker run -it -p 8000:8000 --rm  --volume /path_to_the/db.sqlite3:/tmp/db.sqlite3 \
                                   --volume /path_to_the/dummy-settings.py:/kuusi/kuusi/settings.py \
-                                  --volume /path_to_the/dummy-test:/kuusi/static test
+                                  --volume /path_to_the/dummy-test:/kuusi/static distrochooser:kuusi
 ```
 
