@@ -13,6 +13,7 @@
         "build-styles": "./build-styles.sh"
     },
     "devDependencies": {
-        "webpack-cli": "^5.1.4"
+        "webpack-cli": "^5.1.4",
+        "sass": "1.55.0"
     }
 }
