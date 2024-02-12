@@ -9,3 +9,8 @@ static/*.css.map
 static/admin
 static/*.css
 code/kuusi/kuusi/legal.py
+static/*
+design/yarn-error.log
+dummy-settings.py
+dummy-server-assets.py
+NOTES.md
