@@ -1,6 +1,6 @@
 """
 kuusi
-Copyright (C) 2014-2023  Christoph Müller <mail@chmr.eu>
+Copyright (C) 2014-2024  Christoph Müller  <mail@chmr.eu>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -16,4 +16,13 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-LEGAL_TEXT = "This file is checked in only to have LEGAL_TEXT defined. \nIt is used to deploy imprint data to the running instances."
+FROM python:3.6
+ENV PYTHONUNBUFFERED 1
+RUN apt-get update && apt-get install -y gcc libpq-dev python3-psycopg2
+RUN mkdir /code
+WORKDIR /code
+ADD requirements.txt /code/
+RUN pip install -r requirements.txt
+ADD . /code/
+expose 8000
+CMD ["gunicorn", "backend.wsgi", "--timeout", "600", "-b", "0.0.0.0"]
