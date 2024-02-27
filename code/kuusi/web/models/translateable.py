@@ -85,7 +85,7 @@ class TranslateableField(models.CharField):
 
 
 class TranslateableFieldRecord(models.Model):
-    msg_id = models.CharField(null=False, blank=False, max_length=50)
+    msg_id = models.CharField(null=False, blank=False, max_length=250)
     po_block = models.TextField(null=True, blank=True, max_length=1000)
 
     def __str__(self) -> str:
@@ -99,10 +99,10 @@ class Translateable(models.Model):
     If a TranslateField shall be used, the model must inherit this class.
     """
 
-    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=20)
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255)
 
     is_invalidated = models.BooleanField(default=False)
-    invalidation_id = models.CharField(max_length=5, default=None,null=True,blank=True)
+    invalidation_id = models.CharField(max_length=255, default=None,null=True,blank=True)
 
     def __str__(self) -> str:
         return f"[{self.invalidation_id}] ({self.catalogue_id})"
