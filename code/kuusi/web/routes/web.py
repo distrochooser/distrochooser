@@ -17,15 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from django.http import (
     HttpResponse,
-    HttpResponseNotAllowed,
-    HttpResponseForbidden,
-    HttpResponseNotFound,
+    HttpResponseNotAllowed
 )
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
 from django.utils import translation
-from django.core.management import call_command
-from django.views.decorators.csrf import csrf_exempt
 from os.path import join
 
 from kuusi.settings import (
@@ -34,46 +30,12 @@ from kuusi.settings import (
     DEBUG,
     LANGUAGE_CODES,
     DEFAULT_LANGUAGE_CODE,
-    UPDATE_API_KEY,
-    UPDATE_UPLOAD_PATH,
-    SESSION_NUMBER_OFFSET
 )
-from kuusi.legal import LEGAL_TEXT
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from web.helper import forward_helper
 from logging import getLogger
 
 logger = getLogger("root")
-
-
-def route_about(request: WebHttpRequest, language_code: str = None):
-    template = loader.get_template("about.html")
-    context = {
-        "count": SESSION_NUMBER_OFFSET  + Session.objects.all().count()
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def route_privacy(request: WebHttpRequest, language_code: str = None):
-    template = loader.get_template("privacy.html")
-    context = {}
-    return HttpResponse(template.render(context, request))
-
-
-def route_contact(request: WebHttpRequest, language_code: str = None):
-    template = loader.get_template("contact.html")
-    context = {
-        "text": LEGAL_TEXT
-    }
-    return HttpResponse(template.render(context, request))
-
-def route_ack(request: WebHttpRequest, result_id: str):
-    session_matches = Session.objects.filter(result_id=result_id)
-    if session_matches.count() == 1:
-        session = session_matches.first()
-        session.is_ack = True
-        session.save()
-    return HttpResponse("ACK")
 
 
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
@@ -241,6 +203,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         step_data.append(step)
     if not page.is_visible(request.session_obj):
         return HttpResponseNotAllowed(_("PAGE_NOT_AVAILABLE"))
+
     context = {
         "title": KUUSI_NAME,
         "page": page,
@@ -267,34 +230,3 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
 
     return HttpResponse(template.render(context, request), status=overwrite_status)
 
-
-@csrf_exempt
-def route_update(request: WebHttpRequest) -> HttpResponse:
-    """
-    Update the matrix OTA. Has the same logic as manage.py parse <filename>
-
-    The endpoint receives a set of files, which have their original filenames.
-    The first file is considered as "main" file and will be used to trigger the parse mechanism.
-
-    The endpoint requires an Authorization header to feature the value from UPDATE_API_KEY and the method must be POST.
-
-    """
-    if request.method != "POST":
-        return HttpResponseNotAllowed("Not allowed")
-
-    header = request.headers.get("Authorization")
-
-    if not header or header != UPDATE_API_KEY:
-        return HttpResponseForbidden("Forbidden")
-
-    if request.FILES.__len__ == 0:
-        return HttpResponseNotFound("File is missing")
-    first_file_name = None
-    for key, file_content in request.FILES.items():
-        if not first_file_name:
-            first_file_name = key
-        with open(join(UPDATE_UPLOAD_PATH, key), "wb") as file:
-            for chunk in file_content.chunks():
-                file.write(chunk)
-    call_command("parse", join(UPDATE_UPLOAD_PATH, first_file_name))
-    return HttpResponse("ok")
