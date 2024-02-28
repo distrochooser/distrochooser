@@ -73,6 +73,23 @@ class Page(Translateable):
     def previous_page(self) -> Page | None:
         return Page.objects.filter(next_page=self).first()
 
+    def next_visible_page(page: Page, session: Session) -> Page | None:
+        # If the page is not visible, try to find a next displayable page.
+        # TODO: Mind result in a null pointer
+        fallback_page = None
+        next_page = page.next_page
+
+        next_page: Page
+        while next_page is not None:
+            if next_page.is_visible(session):
+                fallback_page = next_page
+                break
+            next_page = next_page.next_page
+        if fallback_page:
+            page = fallback_page
+        
+        return page
+
     @property
     def widget_list(self) -> List[Widget]:
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
