@@ -20,7 +20,10 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls.static import static
 
-from web.views import route_index, route_update, route_about, route_contact, route_privacy, route_ack
+from web.routes.web import route_index
+from web.routes.static import  route_about, route_contact, route_privacy
+from web.routes.matrix import route_update
+from web.routes.ack import route_ack
 from web.http import route_add_suggestion
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT

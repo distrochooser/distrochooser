@@ -15,6 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+from typing import List, Tuple
 from django.http import (
     HttpResponse,
     HttpResponseNotAllowed
@@ -38,16 +39,10 @@ from logging import getLogger
 logger = getLogger("root")
 
 
-def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
-    template = loader.get_template("index.html")
-    page_id = request.GET.get("page")
-    page = None
-    if page_id:
-        page = Page.objects.get(catalogue_id=page_id, is_invalidated=False)
-    else:
-        page = Page.objects.filter(is_invalidated=False).first()
-
-    # get the categories in an order fitting the pages
+def get_page_route(page: Page) -> Tuple[Page | None, List[Page]]: 
+    """
+    Get a next page and all available pages from the given page as a start point
+    """
     pages = []
     prev_page = page.previous_page
     while prev_page is not None:
@@ -64,10 +59,13 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
             next_page = next_page.next_page
         else:
             next_page = None
+    
+    return next_page, pages
 
-    # it is REQUIRED that a possible version selection is done before pages handle with sessions.
-    # in best case, there is a welcome page (without cookies) > then the version select -> then the pages following.
-    session = None
+def get_session(page: Page, request: WebHttpRequest) -> Session:
+    # Get a session object based on the informations present. If no result_id is existing withing the session a new session will be started
+    # FIXME: Get rid of the cookie
+    session: Session = None
     if page.require_session:
         # TODO: Make the handling better. TO pick up old results it's required to have a session, but the welcome page should not feature a session due to cookies
         # TODO: Decide if when no id is given -> new session or not?
@@ -82,55 +80,52 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
             session = Session.objects.filter(
                 result_id=request.session["result_id"]
             ).first()
+    return session
 
-    # Load selections of an old session
-    if id is not None and session:
-        old_session = Session.objects.filter(result_id=id).first()
-        if old_session:
-            logger.debug(f"Found old session {old_session}")
-            if not session.session_origin:
-                selections = FacetteSelection.objects.filter(session=old_session)
-                selection: FacetteSelection
-                for selection in selections:
-                    # prevent double copies
-                    if (
-                        FacetteSelection.objects.filter(
-                            session=session, facette=selection.facette
-                        ).count()
-                        == 0
-                    ):
-                        selection.pk = None
-                        selection.session = session
-                        selection.save()
-                # Make sure that copied results do not leave the version
-                session.valid_for = old_session.valid_for
-                session.session_origin = old_session
+def clone_selections(id: str, request: WebHttpRequest, session: Session):
+    old_session = Session.objects.filter(result_id=id).first()
+    if old_session:
+        logger.debug(f"Found old session {old_session}")
+        if not session.session_origin:
+            selections = FacetteSelection.objects.filter(session=old_session)
+            selection: FacetteSelection
+            for selection in selections:
+                # prevent double copies
+                if (
+                    FacetteSelection.objects.filter(
+                        session=session, facette=selection.facette
+                    ).count()
+                    == 0
+                ):
+                    selection.pk = None
+                    selection.session = session
+                    selection.save()
+            # Make sure that copied results do not leave the version
+            session.valid_for = old_session.valid_for
+            session.session_origin = old_session
+            session.save()
+        else:
+            if session.session_origin != old_session:
+                logger.debug(f"This is a new session, but the user has a session.")
+                # TODO: Create a new session in case the user clicks on another session link.
+                # TODO: Get rid of redundancy with  above
+                user_agent = request.headers.get("user-agent")
+                session = Session(user_agent=user_agent, session_origin=old_session)
                 session.save()
+                request.session["result_id"] = session.result_id
             else:
-                if session.session_origin != old_session:
-                    logger.debug(f"This is a new session, but the user has a session.")
-                    # TODO: Create a new session in case the user clicks on another session link.
-                    # TODO: Get rid of redundancy with  above
-                    user_agent = request.headers.get("user-agent")
-                    session = Session(user_agent=user_agent, session_origin=old_session)
-                    session.save()
-                    request.session["result_id"] = session.result_id
-                else:
-                    logger.debug(
-                        f"Skipping selection copy, the session {session} is already linked to session {old_session}"
-                    )
+                logger.debug(
+                    f"Skipping selection copy, the session {session} is already linked to session {old_session}"
+                )
 
-    # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
-    # TODO: Prevent that categories are disappearing due to missing session on the first page
-    request.session_obj = session
-    # Only include the pages fitting the selected version
+def get_categories_and_filtered_pages(pages: List[Page], session: Session) -> Tuple[List[Page], List[Category]]: 
+    # Get Categories and pages suitable for the currently existing session
     version_comp_pages = []
     chained_page: Page
     for chained_page in pages:
         if chained_page.is_visible(session):
             version_comp_pages.append(chained_page)
 
-    pages = version_comp_pages
     categories = []
     for chained_page in pages:
         # Child categories will be created later, when the steps are created.
@@ -139,46 +134,10 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         )
         if used_in_category.count() > 0:
             categories.append(used_in_category.first())
-    # TODO: These are not properly set within WebHttpRequest class.
-    request.has_errors = False
-    request.has_warnings = False
-    # TODO: Investigate correct approach
-    request.LANGUAGE_CODE = (
-        DEFAULT_LANGUAGE_CODE if not language_code else language_code
-    )
-    translation.activate(request.LANGUAGE_CODE)
-    overwrite_status = 200
-    base_url = f"/{request.LANGUAGE_CODE}" + ("" if not id else f"/{id}")
-    if request.method == "POST":
-        overwrite_status, response = forward_helper(
-            id, overwrite_status, session, base_url, page, request
-        )
-        if response and not overwrite_status:
-            return response
-    current_location = request.get_full_path()
-    # If the user is curently on the start page -> use the first available site as "current location"
-    if current_location.__len__() <= 1:
-        current_location = base_url + pages[0].href
+    return version_comp_pages, categories
+
+def build_step_data(categories: List[Category], request: WebHttpRequest):
     step_data = []
-
-    """
-    In Case the desired page is not active within the current version -> attempt to find the next one suitable
-
-    If not page is suitable, it will result in a 405 later.
-    """
-    if not page.is_visible(session):
-        fallback_page = None
-        next_page = page.next_page
-
-        next_page: Page
-        while next_page is not None:
-            if next_page.is_visible(session):
-                fallback_page = next_page
-                break
-            next_page = next_page.next_page
-        if fallback_page:
-            page = fallback_page
-
     index: int
     category: Category
     for index, category in enumerate(categories):
@@ -201,6 +160,74 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
             "minor": minor_steps,
         }
         step_data.append(step)
+    return step_data
+    
+def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
+    template = loader.get_template("index.html")
+
+
+    # Get the current page
+    page_id = request.GET.get("page")
+    page = None
+    if page_id:
+        page = Page.objects.get(catalogue_id=page_id, is_invalidated=False)
+    else:
+        page = Page.objects.filter(is_invalidated=False).first()
+
+    # get the categories in an order fitting the pages
+    next_page, pages = get_page_route(page)
+
+    session = get_session(page, request)
+
+    if id is not None and session:
+        # Load selections of an old session, if needed
+        clone_selections(id, request, session)
+
+    # Onboard th session to the request oject 
+
+    # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
+    # TODO: Prevent that categories are disappearing due to missing session on the first page
+    request.session_obj = session    
+    # TODO: These are not properly set within WebHttpRequest class.
+    request.has_errors = False
+    request.has_warnings = False
+    # TODO: Investigate correct approach
+
+    # i18n handling
+    request.LANGUAGE_CODE = (
+        DEFAULT_LANGUAGE_CODE if not language_code else language_code
+    )
+    translation.activate(request.LANGUAGE_CODE)
+
+    # Build the navigation/ Categories
+    pages, categories = get_categories_and_filtered_pages(pages, session)
+
+    # Turbo call handling
+    overwrite_status = 200
+    base_url = f"/{request.LANGUAGE_CODE}" + ("" if not id else f"/{id}")
+    if request.method == "POST":
+        overwrite_status, response = forward_helper(
+            id, overwrite_status, session, base_url, page, request
+        )
+        if response and not overwrite_status:
+            return response
+        
+    
+    current_location = request.get_full_path()
+    # If the user is curently on the start page -> use the first available site as "current location"
+    if current_location.__len__() <= 1:
+        current_location = base_url + pages[0].href
+
+    """
+    In Case the desired page is not active within the current version -> attempt to find the next one suitable
+
+    If not page is suitable, it will result in a 405 later.
+    """
+    if not page.is_visible(session):
+        page = Page.next_visible_page(page, session)
+
+    step_data = build_step_data(categories, request)
+
     if not page.is_visible(request.session_obj):
         return HttpResponseNotAllowed(_("PAGE_NOT_AVAILABLE"))
 
