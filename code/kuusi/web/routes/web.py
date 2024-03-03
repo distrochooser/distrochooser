@@ -242,8 +242,6 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         "session": session,
         "is_old": session.valid_for != "latest",
     }
-    # TODO: create a tree , displaying the behaviours and selection reasons
-    # TODO: Allow the user to display and modify the tree (if allowed)
 
     if "accept" in request.headers and "turbo" in request.headers.get("accept"):
         logger.debug(f"This is a turbo call")
