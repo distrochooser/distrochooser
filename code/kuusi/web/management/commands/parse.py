@@ -23,7 +23,7 @@ from os.path import join, exists, dirname
 from django.core.management.base import BaseCommand
 from polib import pofile
 
-from web.models import TranslateableFieldRecord, TranslationSuggestion, Widget, Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, FacetteRadioSelectionWidget, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Session
+from web.models import TranslateableFieldRecord, Widget, Facette, Category, FacetteAssignment, Choosable, ChoosableMeta, FacetteBehaviour, random_str, FacetteSelection, Page, SessionVersion, FacetteRadioSelectionWidget, SessionVersionWidget, ResultShareWidget, ResultListWidget, NavigationWidget, FacetteSelectionWidget, HTMLWidget, Session
 from kuusi.settings import LANGUAGE_CODES, LOCALE_PATHS
 
 logger = getLogger("root")
@@ -72,7 +72,6 @@ class Command(BaseCommand):
             Category.objects.all().delete()
             Page.objects.all().delete()
             Widget.objects.all().delete()
-            TranslationSuggestion.objects.all().delete()
             SessionVersion.objects.all().delete()
             TranslateableFieldRecord.objects.all().delete()
         

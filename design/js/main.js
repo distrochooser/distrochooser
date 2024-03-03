@@ -17,7 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 require("./facettes.js");
-require("./i18n.js");
 require("./ack.js");
 
 require("../node_modules/@popperjs/core/dist/umd/popper.js");

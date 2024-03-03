@@ -184,13 +184,3 @@ def translateable_removing(sender, instance, using, **kwargs):
     else:
         origin.remove_translation_records()
         origin.update_po_file()
-
-
-class TranslationSuggestion(models.Model):
-    lang_code = models.CharField(max_length=10,blank=False, null=False)
-    lang_key = models.CharField(max_length=255,blank=False, null=False)
-    lang_value = models.CharField(max_length=255,blank=False, null=False)
-    amount = models.IntegerField(default=0, blank=False, null=False)    
-    # TODO: make translateablerecord rely on itself instead of the po files as the handling gets more and more messy...
-    def __str__(self) -> str:
-        return f"[{self.lang_code}]: {self.lang_key} = {self.lang_value} ({self.amount}x)"

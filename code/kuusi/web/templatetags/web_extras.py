@@ -26,7 +26,7 @@ from django.http import HttpRequest
 from django.forms import Form, Field, ValidationError
 from django.forms.utils import ErrorDict
 
-from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta, TranslationSuggestion
+from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
 
 from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES
 
@@ -65,10 +65,8 @@ def _i18n(context, translateable_object: Translateable | safestring.SafeString |
     else:
         value =  translateable_object.__(key, language_code=language_code)
         needle = key
-    # TODO: Show suggestions
-    suggestions = list(TranslationSuggestion.objects.filter(lang_code=language_code).filter(lang_key=needle).values_list("lang_value",flat=True))
     
-    return {"value": value, "needle": needle, "suggestions": suggestions }
+    return {"value": value, "needle": needle}
 
 @register.inclusion_tag(filename="tags/page.html", takes_context=True)
 def page(context, page: Page):

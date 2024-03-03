@@ -175,7 +175,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         page = Page.objects.filter(is_invalidated=False).first()
 
     # get the categories in an order fitting the pages
-    next_page, pages = get_page_route(page)
+    _, pages = get_page_route(page)
 
     session = get_session(page, request)
 

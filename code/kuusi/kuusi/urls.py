@@ -24,7 +24,6 @@ from web.routes.web import route_index
 from web.routes.static import  route_about, route_contact, route_privacy
 from web.routes.matrix import route_update
 from web.routes.ack import route_ack
-from web.http import route_add_suggestion
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
 
@@ -39,5 +38,4 @@ urlpatterns = [
     re_path('(?P<language_code>[a-z]+)/(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
     re_path('(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
     re_path('(?P<language_code>[a-z]+)', route_index, name='route_index'),
-    path('api/i18n/add_suggestion', route_add_suggestion, name='route_add_suggestion')
 ] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True)
