@@ -15,7 +15,11 @@
             {% page page %}
         </div>
     </div>
+    <div class="row">
+        <div class="col-1 mt-3 ku-language-select-container">
+            {% language_select%}
+        </div>
+    </div>
 </form>
 {{ tree }}
 {% endblock %}
-{% block side_block %}{% language_select%}{% endblock %}

@@ -4,14 +4,19 @@
 <form action="" method="post" enctype="application/x-www-form-urlencoded"
 
     <!--  {% translate "LANGUAGE" %} -->
-    <label for="ku-i18n-site-lang-code" class="form-label"> {% _i18n "LANGUAGE" %}</label>
+    <label for="ku-i18n-site-lang-code" class="form-label fs-6"> {% _i18n "LANGUAGE" %}</label>
     {% csrf_token %}
-    <select id="ku-i18n-site-lang-code" name="ku-i18n-site-lang-code" id="ku-i18n-site-lang-code" class="form-control">
-        {% for code in language_codes %}
-            <option value="{{code}}" {% if code == language_code %} selected {% endif%}>{{code}}</option>
-        {% endfor %}
-    </select>
-
+    <div class="row">
+        <div class="col-3">
+            <select id="ku-i18n-site-lang-code" name="ku-i18n-site-lang-code" id="ku-i18n-site-lang-code" class="form-control form-control-sm">
+                {% for code in language_codes %}
+                    <option value="{{code}}" {% if code == language_code %} selected {% endif%}>{{code}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-9">
+            <button class="form-control form-control-sm" id="ku-i18n-site-lang-code-change" name="ku-i18n-site-lang-code-change">{% _i18n 'LANGUAGE_CHANGE' %}</button>
+        </div>
+    </div>
     <!--  {% translate "LANGUAGE_CHANGE" %} -->
-    <button class="form-control mt-2" id="ku-i18n-site-lang-code-change" name="ku-i18n-site-lang-code-change">{% _i18n 'LANGUAGE_CHANGE' %}</button>
 </form>
