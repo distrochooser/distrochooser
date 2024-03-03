@@ -35,7 +35,7 @@
         </div>
     </div>
     <main>
-        <div class="container-fluid py-4">
+        <div class="{% block container-class %}container-fluid{% endblock %} py-4">
             {% block content %}{% endblock %}
             
             <!--  {% translate "DEBUG_MODE_ON" %} -->

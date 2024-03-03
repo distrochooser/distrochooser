@@ -2,34 +2,40 @@
 {% load web_extras %}
 {% load i18n %}
 {% block title%}Distrochooser{% endblock %}
+{% block container-class %}container{% endblock %}
 {% block content%}
-<h1>{% translate "PRIVACY_PAGE_TITLE" %}</h1>
-<p>
-    {% translate "PRIVACY_PAGE_TEXT" %}
-</p>
-<p>
-    {% translate "PRIVACY_PAGE_COOKIE_TEXT" %}
-    <ul>
-        <li>csrftoken - {% translate "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME" %} <a target="_blank" href="https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-cookie-age">{% translate "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME_DOCS" %}</a> ({% translate "PRIVACY_PAGE_EXTERNAL_LINK" %})</li>
-        <li>sessionid - {% translate "PRIVACY_PAGE_COOKIE_SESSION_LIFETIME" %}</li>
-    </ul>
-</p>
-<h2>{% translate "PRIVACY_PAGE_STORED_DATA" %}</h2>
-<p>
-    {% translate "PRIVACY_PAGE_STORED_TEXT" %}:
-    <ul>
-        <li>
-            {% translate "PRIVACY_PAGE_STORED_TEXT_DATE_TIME" %}
-        </li>
-        <li>
-            {% translate "PRIVACY_PAGE_STORED_TEXT_USER_AGENT" %}
-        </li>
-        <li>
-            {% translate "PRIVACY_PAGE_STORED_REF" %}
-        </li>
-    </ul>
-    {% translate "PRIVACY_PAGE_STORED_TEXT_WHY" %}
-</p>
-
+<div classs="row">
+    <div class="col-3"></div>
+    <div class="col-8">
+        <h1>{% translate "PRIVACY_PAGE_TITLE" %}</h1>
+        <p>
+            {% translate "PRIVACY_PAGE_TEXT" %}
+        </p>
+        <p>
+            {% translate "PRIVACY_PAGE_COOKIE_TEXT" %}
+        <ul>
+            <li>csrftoken - {% translate "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME" %} <a target="_blank"
+                    href="https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-cookie-age">{% translate  "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME_DOCS" %}</a> ({% translate "PRIVACY_PAGE_EXTERNAL_LINK" %})</li>
+            <li>sessionid - {% translate "PRIVACY_PAGE_COOKIE_SESSION_LIFETIME" %}</li>
+        </ul>
+        </p>
+        <h2>{% translate "PRIVACY_PAGE_STORED_DATA" %}</h2>
+        <p>
+            {% translate "PRIVACY_PAGE_STORED_TEXT" %}:
+        <ul>
+            <li>
+                {% translate "PRIVACY_PAGE_STORED_TEXT_DATE_TIME" %}
+            </li>
+            <li>
+                {% translate "PRIVACY_PAGE_STORED_TEXT_USER_AGENT" %}
+            </li>
+            <li>
+                {% translate "PRIVACY_PAGE_STORED_REF" %}
+            </li>
+        </ul>
+        {% translate "PRIVACY_PAGE_STORED_TEXT_WHY" %}
+        </p>
+    </div>
+</div>
 {% footer %}
 {% endblock %}
