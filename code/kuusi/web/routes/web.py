@@ -197,6 +197,10 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     request.LANGUAGE_CODE = (
         DEFAULT_LANGUAGE_CODE if not language_code else language_code
     )
+    if session.language_code != request.LANGUAGE_CODE:
+        logger.debug(f"Session lang was {session.language_code} is now {request.LANGUAGE_CODE}")
+        session.language_code = request.LANGUAGE_CODE
+        session.save()
     translation.activate(request.LANGUAGE_CODE)
 
     # Build the navigation/ Categories

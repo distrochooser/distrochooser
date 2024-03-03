@@ -70,6 +70,8 @@ class Session(models.Model):
     )
     referrer = models.TextField(blank=True, default=None, null=True)
     is_ack = models.BooleanField(default=False) # A session will be 'acknowledged' by a JS snippet to exclude curl() calls
+    language_code = models.CharField(max_length=10, default="en", null=False, blank=False)
+
     # TODO: Add a counter for statistical purposes
     # TODO: Add a flag to define a version on the facette structure to allow to differentiate between database iterations
     @property
