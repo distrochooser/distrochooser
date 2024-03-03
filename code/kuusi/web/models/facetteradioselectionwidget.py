@@ -41,14 +41,13 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
         child_facettes = []
         weights = {}
         # TODO: Implement child facette selection (maybe?)
-        # TODO: Inject language here to the __() call
         # Build the form content
         names = []
         names.append((FacetteRadioSelectionWidget.NOTHING_SELECTED, FacetteRadioSelectionWidget.NOTHING_SELECTED))
         default_selection = FacetteRadioSelectionWidget.NOTHING_SELECTED
         facette: Facette
         for facette in facettes:
-            names.append((facette.catalogue_id, facette.__("selectable_description", "en")))
+            names.append((facette.catalogue_id, facette.__("selectable_description", session.language_code)))
 
             selection_matches = FacetteSelection.objects.filter(
                     facette=facette, session=session
