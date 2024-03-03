@@ -1,0 +1,20 @@
+{% load web_extras %}
+{% load i18n %}
+
+<div class="row ku-step {% if major.last %} ku-step-major-last {% endif %}">
+    <div class="col-12">
+        <span class="ku-step-major  {% if major.active %} ku-step-major-active {% endif %}">
+            <i class="{{ icon }}"></i>
+        </span>
+        <span class="ku-step-major-title">
+            {% step_content major %}
+        </span>
+    </div>
+    {% for step in minor %}
+    <div class="col-12">
+        <span class="ku-step-minor-title {% if step.active %} ku-step-title-active {% endif %}">
+            {% step_content step %}
+        </span>
+    </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,25 @@
+{% extends '_layout.html' %}
+{% load web_extras %}
+{% load i18n %}
+{% block title%}Distrochooser{% endblock %}
+{% block content%}
+<h1>{% translate "ABOUT_PAGE_TITLE" %}</h1>
+<p>
+    {% translate "ABOUT_PAGE_TEXT" %}
+</p>
+<p>
+    {% trans "ABOUT_PAGE_TEXT_STATS" %} {{ count }}
+</p>
+<h2>
+    {% translate "ABOUT_PAGE_LICENSE_TITLE" %}
+</h2>
+<p>
+    {% translate "ABOUT_PAGE_LICENSE_TEXT" %}
+    <a href="https://github.com/distrochooser/distrochooser">{% translate "ABOUT_PAGE_LICENSE_LINK" %}</a> ({% translate "PRIVACY_PAGE_EXTERNAL_LINK" %}).
+</p>
+<p>
+    {% translate "ABOUT_PAGE_LICENSE_DATABASE_TEXT" %}
+</p>
+
+{% footer %}
+{% endblock %}

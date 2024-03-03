@@ -1,0 +1,43 @@
+# kuusi
+# Copyright (C) 2014-2024  Christoph Müller  <mail@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# Generic assignments without a distro-specific scope
+
+@assignment daily-usage (daily-usage) to debian positive to ubuntu;
+@assignment live-mode-usage (live-mode-usage) to debian positive to ubuntu;
+
+# Use caseses possible, but require additional packages (generic scope)
+
+@assignment privacy-usage-software-needed (privacy-usage) to debian neutral to ubuntu;
+@assignment impaired-view-usage-software-needed (impaired-view-usage) to debian neutral to ubuntu;
+
+
+
+
+# Distro specifics
+
+# Debian
+
+# Page age might be to old for gaming (besides the obvious Linux gaming challenges)
+@assignment gaming-usage-packages-might-be-too-old (gaming-usage) to debian negative;
+
+# Ubuntu
+
+# As the packages are more-or-less up to date an proprietary drivers can be installed using an UI, we will map the gaming as positive
+@assignment gaming-usage-proprietary-drivers-installable-ui-packages-new (gaming-usage) to ubuntu latest;
+
+
+

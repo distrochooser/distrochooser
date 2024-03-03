@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="{{language_code}}">
+{% load static %}
+{% load i18n %}
+{% load web_extras %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'custom.css' %}" rel="stylesheet">
+    <meta name="generator" content="LDC 2023 (kuusi)">
+    <link data-n-head="ssr" rel="icon" type="image/x-icon" href="{% static 'icon.svg' %}">
+    <title>
+        {%block title%}{%endblock%}
+    </title>
+</head>
+
+<body id="body" class="d-flex flex-column h-100 bg-light">
+    <!--  {% translate "DEBUG_MODE_ON" %} -->
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mt-3">{% logo %}
+
+            <div class="row">
+                {% if is_old %}
+                <div class="col-12 alert alert-info">
+                    {% if debug %}
+                    INVALIDATION: {{ session.valid_for }}
+                    {% else %}
+                    {% _i18n "OLD_RESULT" %}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="{% block container-class %}container-fluid{% endblock %} py-4">
+            {% block content %}{% endblock %}
+            
+            <!--  {% translate "DEBUG_MODE_ON" %} -->
+            {% if debug %}
+            <div class="position-static mt-5">
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <div class="alert alert-danger">{% translate "DEBUG_MODE_ON_DESCRIPTION" %}</div>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    <script src="{% static 'bundle.js' %}"></script>
+    {% if acceleration %}
+    <script src="{% static 'turbo.es2017-umd.js' %}"></script>
+    {% endif %}
+</body>
+
+</html>

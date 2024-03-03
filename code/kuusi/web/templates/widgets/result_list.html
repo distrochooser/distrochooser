@@ -1,0 +1,6 @@
+{% load web_extras %}
+{% for key, result in results.items %}
+<div class="row mt-3">
+    {% choosable result %}
+</div>
+{% endfor %}
