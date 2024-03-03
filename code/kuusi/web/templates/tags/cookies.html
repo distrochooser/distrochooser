@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load web_extras %}
 <div class="alert alert-info">
-    {% _i18n "COOKIES" %}
+    {% translate "COOKIES_ALERT" %}
+    <a target="_blank" href="/{{language_code}}/privacy" class="d-inline-block px-2 text-muted">{% translate "LINK_PRIVACY" %}</a>
 </div>

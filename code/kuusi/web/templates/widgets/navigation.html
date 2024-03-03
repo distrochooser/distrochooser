@@ -1,9 +1,12 @@
 {% load i18n%}
 {% load web_extras %}
 
-{% if page.next_page.require_session and not page.require_session%}
-<div class="row">
-    {% cookies %}
+<!-- {% translate "COOKIES_ALERT" %} -->
+{% if page.previous_page is None %}
+<div class="row mt-3">
+    <div class="col-12">
+        {% cookies %}
+    </div>
 </div>
 {% endif %}
 <div class="row mt-3">

@@ -89,9 +89,12 @@ def step_content(step: Dict):
     return {"step": step}
 
 
-@register.inclusion_tag(filename="tags/cookies.html")
-def cookies():
-    return {}
+@register.inclusion_tag(filename="tags/cookies.html", takes_context=True)
+def cookies(context):
+    request: HttpRequest = context["request"]
+    return {
+        "language_code": request.LANGUAGE_CODE
+    }
 
 
 @register.inclusion_tag(filename="tags/footer.html", takes_context=True)
