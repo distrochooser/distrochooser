@@ -14,7 +14,25 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-#include ./versions/simplified.toml
-#include ./pages/pages.toml
-#include ./choosables/debian.toml
+[[choosable]]
+catalogue_id = "debian"
+[[choosable.meta]]
+meta_type = "link"
+meta_name = "website"
+meta_value = "https://www.debian.org/"
+[[choosable.meta]]
+meta_type = "text"
+meta_name = "licenses"
+meta_value = "DFSG"
+[[choosable.meta]]
+meta_type = "date"
+meta_name = "created"
+meta_value = "https://www.debian.org/"
+[[choosable.meta]]
+meta_type = "date"
+meta_name = "created"
+meta_value = "1993-08-16"
+[[choosable.meta]]
+meta_type = "flag"
+meta_name = "country"
+meta_value = "us"
