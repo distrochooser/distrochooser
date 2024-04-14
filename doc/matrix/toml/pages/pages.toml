@@ -1,0 +1,241 @@
+# kuusi
+# Copyright (C) 2014-2024  Christoph Müller  <mail@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# Welcome Page
+# TODO: Deprecate session flag as it is flaky
+
+[page.welcome-page]
+next_page = "version-page"
+
+[widget.html.welcome-page-widget-name]
+template = "welcome.html"
+pages = ["welcome-page"]
+
+[category.welcome-page-category]
+icon = "bi bi-house-door"
+target_page = "welcome-page"
+
+# Version page
+
+[page.version-page]
+next_page = "scenario-page"
+
+[widget.version.version-page-widget-name]
+pages = ["welcome-page"]
+
+[category.version-page-category]
+icon = "bi bi-house-door"
+target_page = "version-page"
+
+# Scenario page
+
+[page.scenario-page]
+next_page = "pc-knowledge-page"
+
+[widget.selection.scenario-page-widget-name]
+topic = "scenario"
+pages = ["scenario-page"]
+
+[category.scenario-page-category]
+icon = "bi bi-controller"
+target_page = "scenario-page"
+
+# PC knowledge page
+
+[page.pc-knowledge-page]
+next_page = "linux-knowledge-page"
+
+[widget.radio.pc-knowledge-page-widget-name]
+topic = "pc-knowledge"
+pages = ["pc-knowledge-page"]
+
+[category.pc-knowledge-page-category]
+icon = "bi bi-pc-display"
+target_page = "pc-knowledge-page"
+
+# Linux knowledge page
+
+[page.linux-knowledge-page]
+next_page = "installation-page"
+
+[widget.selection.linux-knowledge-page-widget-name]
+topic = "linux-knowledge"
+pages = ["linux-knowledge-page"]
+
+[category.linux-knowledge-page-category]
+icon = "bi bi-123" # TODO: Add a proper Icon
+target_page = "linux-knowledge-page"
+
+# Installation page
+
+[page.installation-page]
+next_page = "old-hardware-page"
+
+[widget.selection.installation-page-widget-name]
+topic = "installation"
+pages = ["installation-page"]
+
+[category.installation-page-category]
+icon = "bi bi-device-hdd"
+target_page = "installation-page"
+
+# old-hardware-page
+
+[page.old-hardware-page]
+next_page = "help-page"
+not_in_versions = ["simplified"]
+
+[widget.selection.old-hardware-page-widget-name]
+topic = "installation"
+pages = ["old-hardware-page"]
+
+[category.old-hardware-category]
+icon = "bi bi-calendar-x"
+target_page = "old-hardware-page"
+
+# help page
+
+[page.help-page]
+next_page = "ux-page"
+
+[widget.selection.help-page-widget-name]
+topic = "installation"
+pages = ["help-page"]
+
+[category.help-category]
+icon = "bi bi-question"
+target_page = "help-page"
+
+# UX Page
+
+[page.ux-page]
+next_page = "pricing-page"
+
+# TODO:  The UX question should be a media selection
+[widget.selection.ux-page-widget-name]
+topic = "ux"
+pages = ["ux-page"]
+
+[category.ux-category]
+icon = "bi bi-window-fullscreen"
+target_page = "ux-page"
+
+# Pricing page
+
+[page.pricing-page]
+next_page = "scope-page"
+not_in_versions = ["simplified"]
+
+[widget.selection.pricing-page-widget-name]
+topic = "pricing"
+pages = ["pricing-page"]
+
+[category.pricing-category]
+icon = "bi bi-currency-exchange"
+target_page = "pricing-page"
+
+# Scope
+
+[page.scope-page]
+next_page = "ideology-page"
+
+[widget.selection.scope-page-widget-name]
+topic = "scope"
+pages = ["scope-page"]
+
+[category.scope-category]
+icon = "bi bi-list-check"
+target_page = "scope-page"
+
+# Ideology
+
+[page.ideology-page]
+next_page = "privacy-page"
+
+# TODO:  The UX question should be a media selection[widget.selection.ideology-page-widget-name]
+topic = "ideology"
+not_in_versions = ["simplified"]
+pages = ["ideology-page"]
+
+[category.ideology-category]
+icon = "bi bi-patch-exclamation"
+target_page = "ideology-page"
+
+# Privacy
+
+[page.privacy-page]
+next_page = "administration-page"
+
+[widget.selection.privacy-page-widget-name]
+topic = "privacy"
+pages = ["privacy-page"]
+
+[category.privacy-category]
+icon = "bi bi-shield-lock"
+target_page = "privacy-page"
+
+# Administration 
+
+[page.administration-page]
+next_page = "updates-page"
+
+# TODO:  The UX question should be a media selection[widget.selection.administration-page-widget-name]
+topic = "administration"
+pages = ["administration-page"]
+not_in_versions = ["simplified"]
+
+[category.administration-category]
+icon = "bi bi-gear-wide-connected"
+target_page = "administration-page"
+
+# Updates 
+
+[page.updates-page]
+next_page = "result-page"
+not_in_versions = ["simplified"]
+
+[widget.selection.updates-page-widget-name]
+topic = "updates"
+pages = ["updates-page"]
+
+[category.updates-category]
+icon = "bi bi-gear-wide-connected"
+target_page = "updates-page"
+
+# Results
+
+[page.result-page]
+next_page = "result-page"
+
+[widget.share.result-page-widget-name]
+topic = "result"
+pages = ["result-page"]
+
+[widget.result.result-page-widget-name]
+row = 2
+topic = "result"
+pages = ["result-page"]
+
+[category.result-category]
+icon = "bi bi-list-nested"
+target_page = "result-page"
+
+# Widgets present on all (or many) pages
+
+[widget.navigation.global-nav]
+row = 4
+col = 1
+pages = ["welcome-page", "version-page", "scenario-page", "pc-knowledge-page", "linux-knowledge-page", "installation-page", "old-hardware-page", "help-page","ux-page", "pricing-page", "scope-page", "ideology-page"]
