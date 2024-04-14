@@ -22,7 +22,7 @@ from web.models import Translateable, TranslateableField, Session, Page
 from django.db import models
 
 class Category(Translateable):
-    name = TranslateableField(null=False, blank=False, max_length=120)
+    name = TranslateableField(null=False, blank=False, max_length=120) # TODO: Redundance between name <> identifier and the inherited catalogue_id
     icon = models.CharField(
         null=False, blank=False, default="bi bi-clipboard2-data", max_length=100
     )
