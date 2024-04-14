@@ -28,7 +28,7 @@ class Choosable(Translateable):
     Must be translated
     """
 
-    name = TranslateableField(null=False, blank=False, max_length=120)
+    name = TranslateableField(null=False, blank=False, max_length=120) # TODO: Consider removal as only the catalogue_id is used
     description = TranslateableField(
         null=True, blank=True, default=None, max_length=120
     )
