@@ -30,6 +30,7 @@ from web.management.commands.version import create_version
 from web.management.commands.page import create_pages
 from web.management.commands.category import create_categories
 from web.management.commands.widget import create_widgets
+from web.management.commands.choosable import create_choosables
 
 from logging import getLogger, ERROR
 
@@ -106,13 +107,15 @@ class Command(BaseCommand):
         new_pages = create_pages(self.get_or_default, parsed_toml["page"])
         new_categories = create_categories(self.get_or_default, parsed_toml["category"])
         new_widgets = create_widgets(self.get_or_default, parsed_toml["widget"])
+        new_choosables = create_choosables(self.get_or_default, parsed_toml["choosable"])
 
         logger.info(f"Summary for file {file_path}")
         logger.info(f"Created {len(new_versions)} versions")
         logger.info(f"Created {len(new_pages)} pages")
         logger.info(f"Created {len(new_categories)} categories")
         logger.info(f"Created {len(new_widgets)} widgets")
-
+        logger.info(f"Created {len(new_choosables)} choosables")
+        
     def get_or_default(self, prop: str, raw: str) -> any:
         defaults = {
             "col": 1,
