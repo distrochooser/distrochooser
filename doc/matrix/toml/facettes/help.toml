@@ -14,21 +14,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+[facette.manuals]
+topic = "help"
 
-#include ./versions/simplified.toml
-#include ./pages/pages.toml
-#include ./facettes/administration.toml
-#include ./facettes/help.toml
-#include ./facettes/ideology.toml
-#include ./facettes/installation.toml
-#include ./facettes/linux-knowledge.toml
-#include ./facettes/old-hardware.toml
-#include ./facettes/pc-knowledge.toml
-#include ./facettes/pricing.toml
-#include ./facettes/privacy.toml
-#include ./facettes/scenario.toml
-#include ./facettes/scope.toml
-#include ./facettes/updates.toml
-#include ./facettes/ux.toml
-
-#include ./choosables/debian.toml
+[facette.need-human-help]
+topic = "help"
