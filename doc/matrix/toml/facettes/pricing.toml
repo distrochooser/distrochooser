@@ -15,20 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-#include ./versions/simplified.toml
-#include ./pages/pages.toml
-#include ./facettes/administration.toml
-#include ./facettes/help.toml
-#include ./facettes/ideology.toml
-#include ./facettes/installation.toml
-#include ./facettes/linux-knowledge.toml
-#include ./facettes/old-hardware.toml
-#include ./facettes/pc-knowledge.toml
-#include ./facettes/pricing.toml
-#include ./facettes/privacy.toml
-#include ./facettes/scenario.toml
-#include ./facettes/scope.toml
-#include ./facettes/updates.toml
-#include ./facettes/ux.toml
+[facette.pricing-free]
+topic = "pricing"
 
-#include ./choosables/debian.toml
+[facette.paid-support-ok]
+topic = "pricing"
