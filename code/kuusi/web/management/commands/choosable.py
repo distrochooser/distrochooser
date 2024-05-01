@@ -22,9 +22,7 @@ from logging import getLogger
 
 logger = getLogger('command') 
 def create_choosables(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[Choosable]:
-
     got = []
-    print(haystack)
 
     for element in haystack:
         catalogue_id = element["catalogue_id"] # TODO: Change that the catalogie_id will be used like the others instead using an explicit property

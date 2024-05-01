@@ -32,3 +32,16 @@
 #include ./facettes/ux.toml
 
 #include ./choosables/debian.toml
+
+#include ./assignments/administration.toml
+#include ./assignments/help.toml
+#include ./assignments/ideology.toml
+#include ./assignments/installation.toml
+#include ./assignments/linux-knowledge.toml
+#include ./assignments/old-hardware.toml
+#include ./assignments/pc-knowledge.toml
+#include ./assignments/pricing.toml
+#include ./assignments/privacy.toml
+#include ./assignments/scenario.toml
+#include ./assignments/scope.toml
+#include ./assignments/updates.toml

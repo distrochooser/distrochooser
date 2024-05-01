@@ -15,13 +15,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Generic assignments without a distro-specific scope
+[assignment.your-software-selection-influences-connections-done]
+from = ["privacy-no-connections-unless-wanted"]
+to = ["debian"]
+how = "neutral"
 
-@assignment app-store-gui-present (app-store-gui) to ubuntu positive;
+# Distro specific
 
-# Mapping for distros not usually installing software form source
+# Ubuntu
 
-@assignment packages-are-mostly-precompiled (install-from-source) to debian to ubuntu negative;
-
-# Systemd family Distros
-
-@assignment systemd-used (no-systemd) to debian to ubuntu negative;
+# The live checker thingy...

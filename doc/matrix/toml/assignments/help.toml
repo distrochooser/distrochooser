@@ -14,6 +14,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Ubuntu choosable definition
+# Generic assignments without a distro-specific scope
 
-@choosable ubuntu (link website https://ubuntu.com text licenses GNU GPL date created 2004-10-20 flag country gb); 
+[assignment.manuals-present-ok]
+from = ["manuals"]
+to = ["debian"]
+how = "positive"
+
+[assignment.need-human-help-ok]
+from = ["need-human-help"]
+to = ["debian"]
+how = "positive"
+
+# Distros specific matches
+
+

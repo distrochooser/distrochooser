@@ -14,5 +14,20 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette manuals (topic help);
-@facette need-human-help (topic help);
+# Generic assignments without a distro-specific scope
+
+
+# Debian is included in this negative mapping as since Bookworm proprietary components _can_ be present
+# Ubuntu also.
+
+[assignment.proprietary-components-present]
+from = ["license-open-source"]
+to = ["debian"]
+how = "negative"
+
+[assignment.proprietary-okay-when-working-ok]
+from = ["proprietary-okay-when-working"]
+to = ["debian"]
+how = "positive"
+
+

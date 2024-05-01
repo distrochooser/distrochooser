@@ -14,7 +14,21 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette 64bit (topic old-hardware);
-@facette no64bit (topic old-hardware);
 
-@behaviour 64bit-gaming-most-likely issues (subject gaming-usage object no64bit) bidirectional error;
+# General mappings
+
+# Slow updating distros (talking about the main versions, not some rolling derivate)
+[assignment.prefer-stable]
+from = ["prefer-stable"]
+to = ["debian"]
+how = "positive"
+
+[assignment.prefer-fast-not-present]
+from = ["prefer-fast"]
+to = ["debian"]
+how = "negative"
+
+
+# Faster updating distros, but still stable
+
+# Faster updating distros, but still stable (mostly rolling)

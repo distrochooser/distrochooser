@@ -15,18 +15,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Generic assignments without a distro-specific scope
+[assignment.pricing-free-only-ok]
+from = ["pricing-free"]
+to = ["debian"]
+how = "positive"
 
-# Distros pecific matches
-
-# Debian
-
-@assignment no-linux-contact-requires-some-knowledge  (no-linux-contact) to debian negative;
-@assignment already-used-ok (already-used) to debian positive;
+# Distro specifics
 
 # Ubuntu
 
-@assignment no-linux-contact-ok (no-linux-contact) to ubuntu positive;
-
-
-
+# We focus on desktop OS'es here, so commercial support for server editions of Ubuntu will be not considered here.
 

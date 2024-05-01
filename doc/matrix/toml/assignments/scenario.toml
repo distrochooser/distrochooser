@@ -15,15 +15,28 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Generic assignments without a distro-specific scope
+[assignment.daily-usage]
+from = ["daily-usage"]
+to = ["debian"]
+how = "positive"
 
-@assignment daily-usage (daily-usage) to debian positive to ubuntu;
-@assignment live-mode-usage (live-mode-usage) to debian positive to ubuntu;
+[assignment.live-mode-ok]
+from = ["live-mode-usage"]
+to = ["debian"]
+how = "positive"
+
+
 
 # Use caseses possible, but require additional packages (generic scope)
+[assignment.privacy-usage-software-needed]
+from = ["privacy-usage"]
+to = ["debian"]
+how = "neutral"
 
-@assignment privacy-usage-software-needed (privacy-usage) to debian neutral to ubuntu;
-@assignment impaired-view-usage-software-needed (impaired-view-usage) to debian neutral to ubuntu;
-
+[assignment.impaired-view-usage-software-needed]
+from = ["impaired-view-usage"]
+to = ["debian"]
+how = "neutral"
 
 
 
@@ -32,12 +45,12 @@
 # Debian
 
 # Page age might be to old for gaming (besides the obvious Linux gaming challenges)
-@assignment gaming-usage-packages-might-be-too-old (gaming-usage) to debian negative;
+
+[assignment.gaming-usage-packages-might-be-too-old ]
+from = ["gaming-usage"]
+to = ["debian"]
+how = "negative"
 
 # Ubuntu
-
-# As the packages are more-or-less up to date an proprietary drivers can be installed using an UI, we will map the gaming as positive
-@assignment gaming-usage-proprietary-drivers-installable-ui-packages-new (gaming-usage) to ubuntu latest;
-
 
 
