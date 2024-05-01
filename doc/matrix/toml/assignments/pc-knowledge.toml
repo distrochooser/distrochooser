@@ -16,11 +16,24 @@
 
 # Generic assignments without a distro-specific scope
 
-@assignment pricing-free-only-ok (pricing-free) to debian to ubuntu positive;
+# Distros pecific matches
 
-# Distro specifics
+# Debian
+
+[assignment.beginner-usage-some-knowlege-required ]
+from = ["beginner-usage"]
+to = ["debian"]
+how = "negative"
+
+[assignment.advanced-usage ]
+from = ["beginner-usage"]
+to = ["debian"]
+how = "positive"
+
 
 # Ubuntu
 
-# We focus on desktop OS'es here, so commercial support for server editions of Ubuntu will be not considered here.
+
+
+
 

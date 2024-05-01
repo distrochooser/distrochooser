@@ -14,5 +14,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette pricing-free (topic pricing);
-@facette paid-support-ok (topic pricing);
+# Generic assignments without a distro-specific scope
+[assignment.scope-out-of-the-box-ok]
+from = ["scope-out-of-the-box"]
+to = ["debian"]
+how = "positive"
+
+# Distro specifics
+
+# Debian
+
+
+# The debian installer allows selection of package groups
+[assignment.scope-own-selection-ok]
+from = ["scope-own-selection"]
+to = ["debian"]
+how = "positive"

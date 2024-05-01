@@ -16,11 +16,21 @@
 
 # Generic assignments without a distro-specific scope
 
-@assignment scope-out-of-the-box-ok (scope-out-of-the-box) to debian to ubuntu positive;
-
-# Distro specifics
+# Distros pecific matches
 
 # Debian
+[assignment.no-linux-contact-requires-some-knowledge ]
+from = ["no-linux-contact"]
+to = ["debian"]
+how = "negative"
 
-# The debian installer allows selection of package groups
-@assignment scope-own-selection-ok (scope-own-selection) to debian positive;
+[assignment.already-used-ok]
+from = ["already-used"]
+to = ["debian"]
+how = "positive"
+
+# Ubuntu
+
+
+
+

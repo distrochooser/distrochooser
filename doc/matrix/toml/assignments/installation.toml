@@ -16,8 +16,14 @@
 
 # Generic assignments without a distro-specific scope
 
-@assignment manuals-present-ok (manuals) to ubuntu to debian positive;
-@assignment need-human-help-ok (need-human-help) to ubuntu to debian positive;
+# Distros pecific matches
 
-# Distros specific matches
+# Debian
+[assignment.graphical-installer-allows-selection-of-many-packages]
+from = ["many-choices-gui"]
+to = ["debian"]
+how = "positive"
+
+# For Ubuntu, the installation process for desktop editions is implemented using a GUI setup. This setup gives basic options (such as hostname etc), but has a predefined selection of software to be installed.
+
 

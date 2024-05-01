@@ -14,6 +14,22 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-@facette app-store-gui (topic administration);
-@facette install-from-source (topic administration);
-@facette no-systemd (topic administration);
+# Generic assignments without a distro-specific scope
+
+[assignment.64bits-ok]
+from = ["64bit"]
+to = ["debian"]
+how = "positive"
+
+
+# Distros specific matches
+
+# Debian
+
+[assignment.no64bit-ok]
+from = ["no64bit"]
+to = ["debian"]
+how = "positive"
+
+
+# Ubuntu

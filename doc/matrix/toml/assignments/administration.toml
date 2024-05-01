@@ -14,18 +14,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# Generic assignments without a distro-specific scope
 
-# General mappings
+[assignment.app-store-gui-present]
+from = ["app-store-gui"]
+to = ["debian"]
+how = "positive"
 
-# Slow updating distros (talking about the main versions, not some rolling derivate)
+[assignment.packages-are-mostly-precompiled]
+from = ["install-from-source"]
+to = ["debian"]
+how = "negative"
 
-@assignment prefer-stable (prefer-stable) to debian positive;
-@assignment prefer-fast-not-present (prefer-fast) to debian negative;
-
-
-# Faster updating distros, but still stable
-
-@assignment prefer-stable (prefer-stable) to ubuntu positive;
-@assignment prefer-fast-ok (prefer-fast) to ubuntu positive;
-
-# Faster updating distros, but still stable (mostly rolling)
+[assignment.systemd-used]
+from = ["no-systemd"]
+to = ["debian"]
+how = "negative"
