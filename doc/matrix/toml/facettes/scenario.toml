@@ -32,4 +32,8 @@ topic = "scenario"
 [facette.live-mode-usage]
 topic = "scenario"
 
-# TODO: @behaviour not-both (subject live-mode-usage object gaming-usage) bidirectional error;
+[behaviour.not-both]
+subjects = ["live-mode-usage"]
+objects = ["gaming-usage"]
+direction = "bidrectional"
+criticality = "error"
