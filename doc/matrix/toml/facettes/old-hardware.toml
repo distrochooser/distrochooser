@@ -13,11 +13,17 @@
 # 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# TODO: @behaviour 64bit-gaming-most-likely issues (subject gaming-usage object no64bit) bidirectional error;
+# TODO: 
 
 [facette.64bit]
 topic = "old-hardware"
 
 [facette.no64bit]
 topic = "old-hardware"
+
+[behaviour.64bit-gaming-most-likely-issues]
+subjects = ["gaming-usage"]
+objects = ["no64bit"]
+direction = "bidrectional"
+criticality = "error"
 

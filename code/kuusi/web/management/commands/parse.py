@@ -31,7 +31,7 @@ from web.management.commands.page import create_pages
 from web.management.commands.category import create_categories
 from web.management.commands.widget import create_widgets
 from web.management.commands.choosable import create_choosables
-from web.management.commands.facettes import create_facettes
+from web.management.commands.facettes import create_facettes, create_facette_behaviours
 from web.management.commands.assignment import create_assignments
 
 from logging import getLogger, ERROR
@@ -112,6 +112,7 @@ class Command(BaseCommand):
         new_choosables = create_choosables(self.get_or_default, parsed_toml["choosable"])
         new_facettes = create_facettes(self.get_or_default, parsed_toml["facette"])
         new_assignments = create_assignments(self.get_or_default, parsed_toml["assignment"])
+        new_behaviours = create_facette_behaviours(self.get_or_default, parsed_toml["behaviour"])
 
         logger.info(f"Summary for file {file_path}")
         logger.info(f"Created {len(new_versions)} versions")
@@ -121,6 +122,7 @@ class Command(BaseCommand):
         logger.info(f"Created {len(new_choosables)} choosables")
         logger.info(f"Created {len(new_facettes)} facettes")
         logger.info(f"Created {len(new_assignments)} assignments")
+        logger.info(f"Created {len(new_behaviours)} behaviours")
         
         
     def get_or_default(self, prop: str, raw: str) -> any:
