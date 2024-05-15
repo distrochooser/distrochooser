@@ -218,7 +218,6 @@ target_page = "updates-page"
 # Results
 
 [page.result-page]
-next_page = "result-page"
 
 [widget.share.result-page-widget-name]
 topic = "result"
