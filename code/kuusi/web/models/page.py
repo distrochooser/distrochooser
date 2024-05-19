@@ -38,6 +38,8 @@ class Page(Translateable):
     require_session = models.BooleanField(default=False)
     not_in_versions = models.ManyToManyField(to="SessionVersion", blank=True)
     can_be_marked = models.BooleanField(default=False)
+    hide_text = models.BooleanField(default=False)
+    hide_help = models.BooleanField(default=False)
     no_header = models.BooleanField(default=False)
     text = TranslateableField(null=True, blank=True,  max_length=80)
     help = TranslateableField(null=True, blank=True,  max_length=80)

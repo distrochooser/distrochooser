@@ -31,7 +31,7 @@
 #include ./facettes/updates.toml
 #include ./facettes/ux.toml
 
-#include ./choosables/debian.toml
+#include ./choosables/choosables.toml
 
 #include ./assignments/administration.toml
 #include ./assignments/help.toml

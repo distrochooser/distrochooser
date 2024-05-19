@@ -36,7 +36,9 @@ def create_pages(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> 
                 can_be_marked = get_or_default("can_be_marked", properties),
                 require_session  = get_or_default("require_session", properties),
                 text = f"{catalogue_id}-text",
-                help= f"{catalogue_id}-help"
+                help= f"{catalogue_id}-help",
+                hide_text = get_or_default("hide_text", properties),
+                hide_help = get_or_default("hide_help", properties),
             )
             new_page.save()
             

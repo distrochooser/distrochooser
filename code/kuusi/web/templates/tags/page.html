@@ -7,23 +7,27 @@
     </div>
     {%endif%}
     <div class="card-body">
-        {% if page.help %}
-        <div class="row">
-            <!-- FIXME: Expander is broken -->
-            <a data-bs-toggle="collapse" href="#facette_selection_descriptions" role="button" aria-expanded="false"
-                aria-controls="facette_selection_descriptions" class="text-muted text-decoration-none pb-2">
-                {% _i18n page.text %}<i class="bi bi-info-circle ms-1"></i>
-            </a>
-            <div class="collapse mb-3" id="facette_selection_descriptions">
-                <div class="card card-body">
-                    <p class="mb-0">
-                        {{ page.help }}
-                    </p>
+        {% if not page.hide_text  %}
+            {% if page.help and not page.hide_help %}
+            <div class="row">
+                <!-- FIXME: Expander is broken -->
+                <a data-bs-toggle="collapse" href="#facette_selection_descriptions" role="button" aria-expanded="false"
+                    aria-controls="facette_selection_descriptions" class="text-muted text-decoration-none pb-2">
+                    {% _i18n page.text %}<i class="bi bi-info-circle ms-1"></i>
+                </a>
+                <div class="collapse mb-3" id="facette_selection_descriptions">
+                    <div class="card card-body">
+                        <p class="mb-0">
+                            {% _i18n page.help %}
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        {% else %}
-            {% _i18n page.text %}
+            {% else %}
+               <p>
+                {% _i18n page.text %}
+               </p>
+            {% endif %}
         {% endif %}
         {% for row in page.structure %}
         <div class="row">
