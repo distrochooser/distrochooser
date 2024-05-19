@@ -165,7 +165,8 @@ target_page = "scope-page"
 [page.ideology-page]
 next_page = "privacy-page"
 
-# TODO:  The UX question should be a media selection[widget.selection.ideology-page-widget-name]
+# TODO:  The UX question should be a media selection
+[widget.selection.ideology-page-widget-name]
 topic = "ideology"
 not_in_versions = ["simplified"]
 pages = ["ideology-page"]
@@ -192,7 +193,8 @@ target_page = "privacy-page"
 [page.administration-page]
 next_page = "updates-page"
 
-# TODO:  The UX question should be a media selection[widget.selection.administration-page-widget-name]
+# TODO:  The UX question should be a media selection
+[widget.selection.administration-page-widget-name]
 topic = "administration"
 pages = ["administration-page"]
 not_in_versions = ["simplified"]
