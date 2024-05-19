@@ -22,6 +22,7 @@ from django.http import HttpRequest
 
 
 
+
 class Widget(models.Model):
     row = models.IntegerField(default=1, null=False, blank=False)
     col = models.IntegerField(default=1, null=False, blank=False)
