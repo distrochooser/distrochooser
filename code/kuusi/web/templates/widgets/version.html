@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load web_extras %}
 <div class="mb-3">
-    <!-- {% translate "FULL_VERSION" %} -->
+    <!-- {% _i18n "FULL_VERSION" %} -->
     <select class="form-select" name="KU_SESSION_VERSION" multiple aria-label="{% _i18n "VERSION_SELECTION" %}">
         <option value="" {% if not selected_version %} selected {%endif%}>{% _i18n "FULL_VERSION"%}</option>
         {% for version in versions %}

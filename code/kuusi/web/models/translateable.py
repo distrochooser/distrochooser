@@ -22,18 +22,42 @@ from typing import Any
 
 from django.db import models
 from django.db.models.signals import pre_delete
+from django.db.backends.signals import connection_created
 from django.dispatch import receiver
 from logging import getLogger
 from os.path import join, exists
-from polib import pofile
-from os import mkdir
+from json import loads, dumps
+from os import mkdir, listdir
 
 logger = getLogger("root")
 
 from kuusi.settings import (
     LOCALE_PATHS,
-    LANGUAGES
+    LANGUAGE_CODES
 )
+
+TRANSLATIONS = {}
+
+
+def hot_load_translations(**kwargs):
+    path = join(LOCALE_PATHS[0])
+    files = listdir(path)
+    for file in files:
+        if ".json" in file:
+            parts = file.split("-")
+            language = parts[1].replace(".json", "").lower()
+            if language not in TRANSLATIONS:
+                TRANSLATIONS[language] = {}
+            full_path = join(path, file)
+            content = loads(open(full_path, "r").read())
+            for key, value in content.items():
+                TRANSLATIONS[language][key] = value
+            print(f"Finished reading file {full_path} for translation. Language = {language}")
+# Do this once in the livetime of the instance
+# TODO: Move me to a better place!
+hot_load_translations()
+
+
 class TranslateableField(models.CharField):
     "A field which can be translated"
 
@@ -45,23 +69,8 @@ class TranslateableField(models.CharField):
         """
         Get a unique identifier to be used for translation purposes.
         """
-        model_type = type(model_instance).__name__
-        identifier = model_instance.pk
-        if model_instance.catalogue_id:
-            identifier = model_instance.catalogue_id
-        return f"{model_type}_{identifier}_{self.name}".upper()
-
-    def get_po_block(self, model_instance: Translateable):
-        """
-        Return the block to be written into the PO file.
-        A msg_str might be appended if an translation is existing within the locale context.
-        """
-        comment = self.value_from_object(model_instance)
-        name = self.name
-        model_type = type(model_instance).__name__
-        pk = model_instance.pk
-        msg_id = self.get_msg_id(model_instance)
-        return f'\n# Model reference: {model_type}.{pk}\n# Attribute name: {name}, remark: {comment}\nmsgid "{msg_id}"'
+        identifier = model_instance.catalogue_id
+        return f"{identifier}-{self.name}"
 
     def pre_save(self, model_instance: Translateable, add: bool) -> Any:
         """
@@ -69,25 +78,39 @@ class TranslateableField(models.CharField):
         """
         if len(LOCALE_PATHS) == 0:
             raise Exception(f"No locale paths are set")
-
+        model_type = type(model_instance).__name__
+        msg_id = self.get_msg_id(model_instance)
         # Make sure that the TranslateAbleField has a record we can reference
         TranslateableFieldRecord.objects.filter(
-            msg_id=self.get_msg_id(model_instance)
+            msg_id=msg_id,
+            model_type=model_type
         ).delete()
-        record = TranslateableFieldRecord.objects.create(
-            msg_id=self.get_msg_id(model_instance),
-            po_block=self.get_po_block(model_instance),
+        TranslateableFieldRecord.objects.create(
+            msg_id=msg_id,
+            model_type=model_type
         )
-
-        logger.debug(f"TranslatableFieldRecord is {record}")
-        model_instance.update_po_file()
+        self.update_json(model_type, msg_id)
         return super().pre_save(model_instance, add)
+
+    def update_json(self, model_type: str, msg_id: str):
+        for locale in LANGUAGE_CODES:
+            lowercase_locale = locale.lower()
+            lowercase_model_type =model_type.lower()
+            path = join(LOCALE_PATHS[0], f"{lowercase_model_type}-{lowercase_locale}.json")
+            entries = {}
+            if exists(path):
+                with open(path, "r") as file:
+                    entries = loads(file.read())
+            if msg_id not in entries:
+                entries[msg_id] = None
+            with open(path, "w") as file:
+                file.write(dumps(entries))
+
 
 
 class TranslateableFieldRecord(models.Model):
     msg_id = models.CharField(null=False, blank=False, max_length=250)
-    po_block = models.TextField(null=True, blank=True, max_length=1000)
-
+    model_type = models.TextField(null=True, blank=True, max_length=200)
     def __str__(self) -> str:
         return self.msg_id
 
@@ -98,33 +121,20 @@ class Translateable(models.Model):
 
     If a TranslateField shall be used, the model must inherit this class.
     """
-
-    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255)
+    # The catalogue_id needs to be set to allow uniquely identify the translated fields using this
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
 
     is_invalidated = models.BooleanField(default=False)
     invalidation_id = models.CharField(max_length=255, default=None,null=True,blank=True)
 
     def __str__(self) -> str:
         return f"[{self.invalidation_id}] ({self.catalogue_id})"
-
+    def get_msgd_id_of_field(self, key: str) -> str:
+        return self._meta.get_field(key).get_msg_id(self)
     def __(self, key: str, language_code: str = "en") -> str:
-        msg_id = self._meta.get_field(key).get_msg_id(self)
-        # TODO: make this block in a function
-        # TODO: make this in memory
-        translation_path = join(
-            LOCALE_PATHS[0], language_code, "LC_MESSAGES", "translateable.po"
-        )
-        existing_record_translations = {}
-        if exists(translation_path):
-            po = pofile(translation_path)
-            for entry in po:
-                existing_record_translations[entry.msgid] = entry.msgstr
-        if (
-            msg_id not in existing_record_translations
-            or len(existing_record_translations[msg_id]) == 0
-        ):
-            return msg_id
-        return existing_record_translations[msg_id]
+        msg_id = self.get_msgd_id_of_field(key)
+        return f"{TRANSLATIONS[language_code][msg_id]}" if language_code in TRANSLATIONS and msg_id in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][msg_id] is not None  else msg_id
+     
 
     def remove_translation_records(self):
         """
@@ -134,44 +144,11 @@ class Translateable(models.Model):
 
         field: models.Field | TranslateableField
         for field in fields:
-            field_type = type(field)
-            field_name = field.name
+
             if isinstance(field, TranslateableField):
-                logger.debug(f"Removing field records for {self}:{field_type} ({field_name})")
                 TranslateableFieldRecord.objects.filter(
                     msg_id=field.get_msg_id(self)
                 ).delete()
-
-    def update_po_file(self):
-        """
-        Update the PO file to represent the currently used records
-        """
-        for lang in LANGUAGES:
-            key = lang[0]
-            if not exists(join(LOCALE_PATHS[0], key)):
-                mkdir(join(LOCALE_PATHS[0], key))
-            if not exists(join(LOCALE_PATHS[0], key, "LC_MESSAGES")):
-                mkdir(join(LOCALE_PATHS[0], key, "LC_MESSAGES"))
-
-            translation_path = join(
-                LOCALE_PATHS[0], key, "LC_MESSAGES", "translateable.po"
-            )
-            existing_record_translations = {}
-            if exists(translation_path):
-                po = pofile(translation_path)
-                for entry in po:
-                    existing_record_translations[entry.msgid] = entry.msgstr
-
-            # write the PO file
-            all_records = TranslateableFieldRecord.objects.all().order_by("-msg_id")
-            with open(translation_path, "w") as file:
-                record: TranslateableFieldRecord
-                for record in all_records:
-                    msg_str = ""
-                    if record.msg_id in existing_record_translations:
-                        msg_str = existing_record_translations[record.msg_id]
-                    file.write(record.po_block + f'\nmsgstr "{msg_str}"')
-
 
 @receiver(pre_delete, sender=Translateable)
 def translateable_removing(sender, instance, using, **kwargs):
@@ -180,7 +157,5 @@ def translateable_removing(sender, instance, using, **kwargs):
         entry: Translateable
         for entry in origin:
             entry.remove_translation_records()
-            entry.update_po_file()
     else:
         origin.remove_translation_records()
-        origin.update_po_file()

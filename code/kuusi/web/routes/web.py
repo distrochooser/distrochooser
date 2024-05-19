@@ -59,7 +59,6 @@ def get_page_route(page: Page) -> Tuple[Page | None, List[Page]]:
             next_page = next_page.next_page
         else:
             next_page = None
-    
     return next_page, pages
 
 def get_session(page: Page, request: WebHttpRequest) -> Session:
@@ -71,15 +70,24 @@ def get_session(page: Page, request: WebHttpRequest) -> Session:
         # TODO: Decide if when no id is given -> new session or not?
         # TODO: Also, get rid of the csrftoken cookie until user gave consent
         if "result_id" not in request.session:
-            user_agent = request.headers.get("user-agent")
-            session = Session(user_agent=user_agent)
-            session.save()
-            session.referrer = request.headers.get("referrer")
-            request.session["result_id"] = session.result_id
+            session = get_fresh_session(request)
         else:
             session = Session.objects.filter(
                 result_id=request.session["result_id"]
             ).first()
+            # TODO: Add some display to indicate what happens to old sessions
+            if session.valid_for != "latest": 
+                # The session is linking to some old result version
+                session = get_fresh_session(request)
+
+    request.session["result_id"] = session.result_id
+    return session
+
+def get_fresh_session(request: WebHttpRequest) -> Session:
+    user_agent = request.headers.get("user-agent")
+    session = Session(user_agent=user_agent)
+    session.save()
+    session.referrer = request.headers.get("referrer")
     return session
 
 def clone_selections(id: str, request: WebHttpRequest, session: Session):
@@ -164,7 +172,6 @@ def build_step_data(categories: List[Category], request: WebHttpRequest):
     
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
     template = loader.get_template("index.html")
-
 
     # Get the current page
     page_id = request.GET.get("page")

@@ -12,15 +12,15 @@
 {% else %}
 <span>{{step.title}}</span>
 {%endif %}
-<!-- {% translate "BOOKMARKED_STEP" %} -->
-<!-- {% translate "ERROR_STEP" %} -->
-<!-- {% translate "WARNING_STEP" %} -->
+<!-- {% _i18n "BOOKMARKED_STEP" %} -->
+<!-- {% _i18n "ERROR_STEP" %} -->
+<!-- {% _i18n "WARNING_STEP" %} -->
 {% if step.marked %}
-    <i class="bi bi-bookmark-fill ku-step-marked" title="{% translate "BOOKMARKED_STEP" %}"></i>
+    <i class="bi bi-bookmark-fill ku-step-marked" title="{% _i18n "BOOKMARKED_STEP" %}"></i>
 {% endif %}
 {% if step.error %}
-    <i class="bi bi-exclamation-octagon-fill ku-step-marked" title="{% translate "ERROR_STEP" %}"></i>
+    <i class="bi bi-exclamation-octagon-fill ku-step-marked" title="{% _i18n "ERROR_STEP" %}"></i>
 {% endif %}
 {% if step.warnings %}
-    <i class="bi bi-exclamation-square-fill ku-step-marked" title="{% translate "WARNING_STEP" %}"></i>
+    <i class="bi bi-exclamation-square-fill ku-step-marked" title="{% _i18n "WARNING_STEP" %}"></i>
 {% endif %}

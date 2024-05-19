@@ -32,13 +32,13 @@ def create_categories(get_or_default: Callable[[str, Dict], any], haystack: Dict
         logger.info(f"Current: {catalogue_id}")
         
         new_category = Category(
+            catalogue_id=catalogue_id, # preserve the catalogue id for translation purposes to uniquely identify the translateable field
             name=catalogue_id,
             icon=get_or_default("icon", properties),
             identifier = catalogue_id,
             target_page = Page.objects.get(catalogue_id=properties["target_page"])
         )
         new_category.save()
-
     
     for catalogue_id, properties  in haystack.items():
         child_of = get_or_default("child_of", properties)

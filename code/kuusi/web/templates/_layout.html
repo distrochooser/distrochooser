@@ -16,7 +16,7 @@
 </head>
 
 <body id="body" class="d-flex flex-column h-100 bg-light">
-    <!--  {% translate "DEBUG_MODE_ON" %} -->
+    <!--  {% _i18n "DEBUG_MODE_ON" %} -->
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6 mt-3">{% logo %}
@@ -38,14 +38,14 @@
         <div class="{% block container-class %}container-fluid{% endblock %} py-4">
             {% block content %}{% endblock %}
             
-            <!--  {% translate "DEBUG_MODE_ON" %} -->
+            <!--  {% _i18n "DEBUG_MODE_ON" %} -->
             {% if debug %}
             <div class="position-static mt-5">
                 <div class="row">
                     <div class="col">
                     </div>
                     <div class="col">
-                        <div class="alert alert-danger">{% translate "DEBUG_MODE_ON_DESCRIPTION" %}</div>
+                        <div class="alert alert-danger">{% _i18n "DEBUG_MODE_ON_DESCRIPTION" %}</div>
                     </div>
                     <div class="col">
                     </div>

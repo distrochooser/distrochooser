@@ -28,6 +28,7 @@ def create_choosables(get_or_default: Callable[[str, Dict], any], haystack: Dict
         catalogue_id = element["catalogue_id"] # TODO: Change that the catalogie_id will be used like the others instead using an explicit property
 
         new_choosable = Choosable(
+            catalogue_id = catalogue_id,
             name = catalogue_id
         )
         new_choosable.save()
@@ -35,6 +36,7 @@ def create_choosables(get_or_default: Callable[[str, Dict], any], haystack: Dict
         if "meta" in element:
             for meta in element["meta"]:
                 new_choosable_meta = ChoosableMeta(
+                    catalogue_id = meta["meta_name"],
                     meta_choosable = new_choosable,
                     meta_type = meta["meta_type"],
                     meta_name = meta["meta_name"],

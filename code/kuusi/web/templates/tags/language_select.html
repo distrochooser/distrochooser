@@ -3,7 +3,7 @@
 {% load i18n %}
 <form action="" method="post" enctype="application/x-www-form-urlencoded"
 
-    <!--  {% translate "LANGUAGE" %} -->
+    <!--  {% _i18n "LANGUAGE" %} -->
     <label for="ku-i18n-site-lang-code" class="form-label fs-6"> {% _i18n "LANGUAGE" %}</label>
     {% csrf_token %}
     <div class="row">
@@ -18,5 +18,5 @@
             <button class="form-control form-control-sm" id="ku-i18n-site-lang-code-change" name="ku-i18n-site-lang-code-change">{% _i18n 'LANGUAGE_CHANGE' %}</button>
         </div>
     </div>
-    <!--  {% translate "LANGUAGE_CHANGE" %} -->
+    <!--  {% _i18n "LANGUAGE_CHANGE" %} -->
 </form>
