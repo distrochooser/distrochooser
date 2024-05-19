@@ -37,7 +37,7 @@ class Facette(Translateable):
     # TODO: Add a source flag to describe decisions.
 
     selectable_description = TranslateableField(null=False, blank=False, max_length=120)
-    topic = TranslateableField(null=False, blank=False, max_length=120)
+    topic = models.CharField(null=False, blank=False, max_length=120)
     child_facettes = models.ManyToManyField(to="Facette", blank=True)
 
     @property

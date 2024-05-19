@@ -134,7 +134,9 @@ class Command(BaseCommand):
             "require_session": True,
             "can_be_marked": True,
             "not_in_versions": [],
-            "child_of": None
+            "child_of": None,
+            "hide_text": False,
+            "hide_help": False
         }
         if prop in raw:
             return raw[prop]

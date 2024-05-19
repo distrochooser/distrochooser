@@ -45,8 +45,7 @@ class Choosable(Translateable):
 
         meta_object: ChoosableMeta
         for meta_object in meta_objects:
-            result[meta_object.meta_name] = meta_object
-
+            result[meta_object.meta_name.upper()] = meta_object
         return result
 
 
