@@ -3,7 +3,7 @@
 <div class="{% if not page.no_header%}card{%endif%}">
     {% if not page.no_header%}
     <div class="card-header">
-        {% _i18n page "title" %}
+        {% _i18n page.get_category "name" %}
     </div>
     {%endif%}
     <div class="card-body">

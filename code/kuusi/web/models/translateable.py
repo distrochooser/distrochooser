@@ -104,7 +104,7 @@ class TranslateableField(models.CharField):
             if msg_id not in entries:
                 entries[msg_id] = None
             with open(path, "w") as file:
-                file.write(dumps(entries))
+                file.write(dumps(entries, indent=4))
 
 
 

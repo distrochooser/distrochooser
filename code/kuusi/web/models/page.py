@@ -27,7 +27,6 @@ from django.apps import apps
 logger = getLogger("root")
 
 class Page(Translateable):
-    title = TranslateableField(null=False, blank=False, max_length=120)
     next_page = models.ForeignKey(
         to="Page",
         on_delete=models.CASCADE,
@@ -41,8 +40,6 @@ class Page(Translateable):
     can_be_marked = models.BooleanField(default=False)
     no_header = models.BooleanField(default=False)
 
-    def __str__(self) -> str:
-        return f"{self.title}"
 
     @property
     def href(self):
@@ -69,6 +66,10 @@ class Page(Translateable):
     def is_active(self, request: WebHttpRequest):
         return "page" in request.GET and request.GET.get("page") == self.catalogue_id
     
+    @property
+    def get_category(self) -> str:
+        return apps.get_model("web", "Category").objects.get(target_page=self)
+
     @property
     def previous_page(self) -> Page | None:
         return Page.objects.filter(next_page=self).first()
