@@ -30,6 +30,7 @@ def create_version(_: Callable, haystack: Dict) -> List[SessionVersion]:
     for catalogue_id, _ in haystack.items():
         logger.info(f"New version: {catalogue_id}")
         new_version = SessionVersion(
+            catalogue_id = catalogue_id,
             version_name = catalogue_id
         )
         new_version.save()

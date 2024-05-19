@@ -7,16 +7,16 @@
 {% block content%}
 <div classs="row">
     <div class="col-12">
-        <h1>{% translate "IMPRINT_TITLE" %}</h1>
+        <h1>{% _i18n "IMPRINT_TITLE" %}</h1>
         <p>
             {{ text|linebreaks }}
         </p>
         <h2>
-            {% translate "IMPRINT_DISCLAIMER_TITLE" %}
+            {% _i18n "IMPRINT_DISCLAIMER_TITLE" %}
         </h2>
         <p>
             {{ text|linebreaks }}
-            {% translate "IMPRINT_DISCLAIMER_TEXT" %}
+            {% _i18n "IMPRINT_DISCLAIMER_TEXT" %}
         </p>
     </div>
 </div>

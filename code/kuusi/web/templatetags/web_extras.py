@@ -27,7 +27,7 @@ from django.forms import Form, Field, ValidationError
 from django.forms.utils import ErrorDict
 
 from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
-
+from web.models import TRANSLATIONS
 from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES
 
 register = template.Library()
@@ -56,16 +56,13 @@ def _i18n(context, translateable_object: Translateable | safestring.SafeString |
     needle = None
     if not str:
         raise Exception("Key is required")
-    if translateable_object and not key and isinstance(translateable_object, safestring.SafeString):
-        needle = str(translateable_object)
-        value =  _(translateable_object) # If they translateable_object is a safestring, use Django's translation
-    elif isinstance(translateable_object, str):
-        needle = translateable_object
-        value =  _(translateable_object)
-    else:
-        value =  translateable_object.__(key, language_code=language_code)
+    if isinstance(translateable_object, Translateable):
         needle = key
-    
+        value =  translateable_object.__(key, language_code=language_code)
+    else:
+        needle = str(translateable_object)
+        value = TRANSLATIONS[language_code][needle] if needle in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][needle] is not None else needle
+
     return {"value": value, "needle": needle}
 
 @register.inclusion_tag(filename="tags/page.html", takes_context=True)

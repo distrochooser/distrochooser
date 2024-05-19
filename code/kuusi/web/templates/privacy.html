@@ -6,33 +6,33 @@
 {% block content%}
 <div classs="row">
     <div class="col-12">
-        <h1>{% translate "PRIVACY_PAGE_TITLE" %}</h1>
+        <h1>{% _i18n "PRIVACY_PAGE_TITLE" %}</h1>
         <p>
-            {% translate "PRIVACY_PAGE_TEXT" %}
+            {% _i18n "PRIVACY_PAGE_TEXT" %}
         </p>
         <p>
-            {% translate "PRIVACY_PAGE_COOKIE_TEXT" %}
+            {% _i18n "PRIVACY_PAGE_COOKIE_TEXT" %}
         <ul>
-            <li>csrftoken - {% translate "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME" %} <a target="_blank"
-                    href="https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-cookie-age">{% translate  "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME_DOCS" %}</a> ({% translate "PRIVACY_PAGE_EXTERNAL_LINK" %})</li>
-            <li>sessionid - {% translate "PRIVACY_PAGE_COOKIE_SESSION_LIFETIME" %}</li>
+            <li>csrftoken - {% _i18n "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME" %} <a target="_blank"
+                    href="https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-cookie-age">{% _i18n  "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME_DOCS" %}</a> ({% _i18n "PRIVACY_PAGE_EXTERNAL_LINK" %})</li>
+            <li>sessionid - {% _i18n "PRIVACY_PAGE_COOKIE_SESSION_LIFETIME" %}</li>
         </ul>
         </p>
-        <h2>{% translate "PRIVACY_PAGE_STORED_DATA" %}</h2>
+        <h2>{% _i18n "PRIVACY_PAGE_STORED_DATA" %}</h2>
         <p>
-            {% translate "PRIVACY_PAGE_STORED_TEXT" %}:
+            {% _i18n "PRIVACY_PAGE_STORED_TEXT" %}:
         <ul>
             <li>
-                {% translate "PRIVACY_PAGE_STORED_TEXT_DATE_TIME" %}
+                {% _i18n "PRIVACY_PAGE_STORED_TEXT_DATE_TIME" %}
             </li>
             <li>
-                {% translate "PRIVACY_PAGE_STORED_TEXT_USER_AGENT" %}
+                {% _i18n "PRIVACY_PAGE_STORED_TEXT_USER_AGENT" %}
             </li>
             <li>
-                {% translate "PRIVACY_PAGE_STORED_REF" %}
+                {% _i18n "PRIVACY_PAGE_STORED_REF" %}
             </li>
         </ul>
-        {% translate "PRIVACY_PAGE_STORED_TEXT_WHY" %}
+        {% _i18n "PRIVACY_PAGE_STORED_TEXT_WHY" %}
         </p>
     </div>
 </div>

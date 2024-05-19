@@ -30,14 +30,12 @@
                             {% for assignment in assignments %}
                             <div class="list-group-item list-group-item-action">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <!-- {% translate "NEUTRAL" %} -->
-                                    <!-- {% translate "NEGATIVE" %} -->
-                                    <!-- {% translate "POSITIVE" %} -->
+                                    <!-- {% _i18n "NEUTRAL" %} -->
+                                    <!-- {% _i18n "NEGATIVE" %} -->
+                                    <!-- {% _i18n "POSITIVE" %} -->
                                     <small>{% _i18n assignment.assignment_type %} </small>
                                 </div>
-                                {% if assignment.long_description %}
-                                    <p class="mb-1">{% _i18n  assignment "long_description" %}</p>
-                                {% endif %}
+                                <p class="mb-1">{% _i18n  assignment "long_description" %}</p>
                                 <small>
                                     {% for facette_topic in assignment.facette_topics %}
                                     <div class="col">

@@ -41,9 +41,11 @@ def create_pages(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> 
         # Assign the next pages after all pages are created
         for catalogue_id, properties in haystack.items():
             page = Page.objects.get(catalogue_id=catalogue_id)
-            next_catalogue_id = properties["next_page"]
-            logger.info(f"Trying to assign next page from {next_catalogue_id} to {page}")
-            page.next_page =  Page.objects.get(catalogue_id=next_catalogue_id)
+            # Only assign a next page if there is one
+            next_catalogue_id = properties["next_page"] if "next_page" in properties else None
+            if next_catalogue_id:
+                logger.info(f"Trying to assign next page from {next_catalogue_id} to {page}")
+                page.next_page =  Page.objects.get(catalogue_id=next_catalogue_id)
             not_in_versions = get_or_default("not_in_versions", properties)
 
             if len(not_in_versions) > 0:

@@ -125,6 +125,7 @@ class Command(BaseCommand):
         logger.info(f"Created {len(new_behaviours)} behaviours")
         
         
+        
     def get_or_default(self, prop: str, raw: str) -> any:
         defaults = {
             "col": 1,
