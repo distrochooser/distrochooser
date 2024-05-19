@@ -61,10 +61,10 @@ def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -
                 new_widget.pages.add(Page.objects.get(catalogue_id=page_catalogue_id))
 
             if key in prop_map:
-                for key, value in prop_map[key].items():
+                for prop_key, value in prop_map[key].items():
                     # TODO: Make this asisgnment more variable (especially for List[Type] szenarios)
                     if value in [str, int, float]:
-                        new_widget.__setattr__(key, properties[key])
+                        new_widget.__setattr__(prop_key, properties[prop_key])
                     else:
                         raise NotImplementedError()
 
