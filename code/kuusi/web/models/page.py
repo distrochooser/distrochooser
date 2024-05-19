@@ -39,7 +39,8 @@ class Page(Translateable):
     not_in_versions = models.ManyToManyField(to="SessionVersion", blank=True)
     can_be_marked = models.BooleanField(default=False)
     no_header = models.BooleanField(default=False)
-
+    text = TranslateableField(null=True, blank=True,  max_length=80)
+    help = TranslateableField(null=True, blank=True,  max_length=80)
 
     @property
     def href(self):

@@ -2,7 +2,11 @@
 {% load web_extras %}
 {% load i18n %}
 {% block title%}Distrochooser{% endblock %}
+
+{% block container-class %}container{% endblock %}
 {% block content%}
+<div classs="row">
+    <div class="col-12">
 <h1>{% _i18n "ABOUT_PAGE_TITLE" %}</h1>
 <p>
     {% _i18n "ABOUT_PAGE_TEXT" %}
@@ -20,6 +24,8 @@
 <p>
     {% _i18n "ABOUT_PAGE_LICENSE_DATABASE_TEXT" %}
 </p>
+</div>
+</div>
 
 {% footer %}
 {% endblock %}

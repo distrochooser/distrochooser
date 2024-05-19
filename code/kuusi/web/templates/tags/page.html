@@ -7,22 +7,23 @@
     </div>
     {%endif%}
     <div class="card-body">
-        {% if page.facette_selection_descriptions|length > 0 %}
+        {% if page.help %}
         <div class="row">
+            <!-- FIXME: Expander is broken -->
             <a data-bs-toggle="collapse" href="#facette_selection_descriptions" role="button" aria-expanded="false"
                 aria-controls="facette_selection_descriptions" class="text-muted text-decoration-none pb-2">
-                {% _i18n "ADDITIONAL_DESCRIPTION_FACETTES_LINK" %}<i class="bi bi-info-circle ms-1"></i>
+                {% _i18n page.text %}<i class="bi bi-info-circle ms-1"></i>
             </a>
             <div class="collapse mb-3" id="facette_selection_descriptions">
                 <div class="card card-body">
-                    {% for description in page.facette_selection_descriptions%}
                     <p class="mb-0">
-                        {{ description }}
+                        {{ page.help }}
                     </p>
-                    {% endfor %}
                 </div>
             </div>
         </div>
+        {% else %}
+            {% _i18n page.text %}
         {% endif %}
         {% for row in page.structure %}
         <div class="row">
