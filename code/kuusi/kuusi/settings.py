@@ -118,9 +118,50 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-us"
 
 LANGUAGES = [
-    ("en", "Englisch"),
+    ("en", "en"),
+    ("fr","fr"),
+    ("nl","nl"),
+    ("gr","gr"),
+    ("sv","sv"),
+    ("tr","tr"),
+    ("vn","vn"),
+    ("zh-hans","zh-hans"),
+    ("it","it"),
+    ("es","es"),
+    ("de","de"),
+    ("pt-br","pt-br"),
+    ("gsw","gsw"),
+    ("he","he"),
+    ("id","id"),
+    ("az","az"),
+    ("pl","pl"),
+    ("zh-hant","zh-hant"),
+    ("ru","ru"),
+    ("fi","fi"),
 ]
 
+LANGUAGE_CODES = {
+    "en": "en",
+    "fr": "fr",
+    "nl": "nl",
+    "gr": "gr",
+    "sv": "sv",
+    "tr": "tr",
+    "vn": "vn",
+    "zh-hans": "zh-hans",
+    "it": "it",
+    "es": "es",
+    "de": "de",
+    "pt-br": "pt-br",
+    "gsw": "gsw",
+    "he": "he",
+    "id": "id",
+    "az": "az",
+    "pl": "pl",
+    "zh-hant": "zh-hant",
+    "ru": "ru",
+    "fi": "fi"
+}
 TIME_ZONE = "UTC"
 
 USE_I18N = True
@@ -183,9 +224,6 @@ WEIGHT_MAP = {-2: -0.5, -1: -0.25, 0: 1, 1: 2, 2: 4}
 
 DEFAULT_LANGUAGE_CODE = "en"
 
-LANGUAGE_CODES = {
-    "en": "English"
-}
 
 UPDATE_API_KEY = "fooooooo"
 
