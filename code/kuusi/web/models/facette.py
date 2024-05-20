@@ -155,6 +155,7 @@ class FacetteAssignment(Translateable):
         POSITIVE = "POSITIVE", "POSITIVE"
         NEGATIVE = "NEGATIVE", "NEGATIVE"
         NEUTRAL = "NEUTRAL", "NEUTRAL"
+        BLOCKING = "BLOCKING", "BLOCKING"
 
         def get_score(haystack: Dict) -> float:
             """
@@ -171,8 +172,11 @@ class FacetteAssignment(Translateable):
             }
             score = 0
             for key, value in haystack.items():
+                if key == FacetteAssignment.AssignmentType.BLOCKING:
+                    score = 0
+                    break
                 score += score_map[key] * value
-
+            
             return score
 
     assignment_type = models.CharField(

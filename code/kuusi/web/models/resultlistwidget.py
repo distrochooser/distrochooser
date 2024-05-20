@@ -96,12 +96,11 @@ class ResultListWidget(Widget):
                 weights_this_assignment = weights_per_assignment[original_index]
                 weighted_score = 1 * WEIGHT_MAP[weights_this_assignment]
                 # TODO: Handle the case that an assignment is used twice?
-                logger.debug(f"The assignment {assignment} has weight {weights_this_assignment}, according to it's source selection. The score will be {weighted_score}. The score type is {assignment.assignment_type}")
                 results[assignment.assignment_type] += weighted_score
 
                 assignments_used[choosable].append(assignment)
             score = FacetteAssignment.AssignmentType.get_score(results)
-            logger.debug(f"Choosable={choosable}, Score={score}, Results={results}")
+            logger.debug(f"Choosable={choosable}, Score={score}, Results={results}, Weights={results}")
             raw_results[choosable] = score
 
         ranked_keys =sorted(raw_results, key=raw_results.get, reverse=True)

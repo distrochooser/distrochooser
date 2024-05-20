@@ -1,0 +1,340 @@
+[assignment.matrix-supports-daily-usage-facette-daily-usage]
+long_description = "matrix-supports-daily-usage-facette-daily-usage"
+from = ["daily-usage"]
+to = ["ubuntu","debian","devuan","arch","mint","opensuse","solus","manjaro","pclinuxos","rocky","rhel","MXLinux","Fedora","Gentoo","CruxLinux","ZorinOS","elementaryOS","qubesos","nixOS","Xubuntu","Lubuntu","UbuntuMATE","void","artix","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.daily-usage-possibly-difficult-facette-daily-usage]
+long_description = "daily-usage-possibly-difficult-facette-daily-usage"
+from = ["daily-usage"]
+to = ["tails"]
+how = "negative"
+[assignment.matrix-supports-daily-usage-but-built-for-livemode-facette-daily-usage]
+long_description = "matrix-supports-daily-usage-but-built-for-livemode-facette-daily-usage"
+from = ["daily-usage"]
+to = ["Knoppix"]
+how = "negative"
+[assignment.matrix-privacy-not-beneficial-facette-privacy-usage]
+long_description = "matrix-privacy-not-beneficial-facette-privacy-usage"
+from = ["privacy-usage"]
+to = ["ubuntu","deepin"]
+how = "blocking"
+[assignment.matrix-packages-available-facette-privacy-usage]
+long_description = "matrix-packages-available-facette-privacy-usage"
+from = ["privacy-usage"]
+to = ["debian","devuan","arch","mint","opensuse","solus","manjaro","pclinuxos","rocky","rhel","MXLinux","Fedora","Gentoo","Knoppix","CruxLinux","ZorinOS","elementaryOS","qubesos","nixOS","Xubuntu","Lubuntu","UbuntuMATE","void","artix","popos"]
+how = "neutral"
+[assignment.built-for-anonymization-facette-privacy-usage]
+long_description = "built-for-anonymization-facette-privacy-usage"
+from = ["privacy-usage"]
+to = ["tails"]
+how = "positive"
+[assignment.matrix-supports-gaming-usage-facette-gaming-usage]
+long_description = "matrix-supports-gaming-usage-facette-gaming-usage"
+from = ["gaming-usage"]
+to = ["ubuntu","mint","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.matrix-packages-may-too-old-gaming-facette-gaming-usage]
+long_description = "matrix-packages-may-too-old-gaming-facette-gaming-usage"
+from = ["gaming-usage"]
+to = ["debian","devuan","rocky","MXLinux"]
+how = "negative"
+[assignment.live-mode-only-facette-gaming-usage]
+long_description = "live-mode-only-facette-gaming-usage"
+from = ["gaming-usage"]
+to = ["tails"]
+how = "blocking"
+[assignment.matrix-gaming-may-require-additional-configuration-facette-gaming-usage]
+long_description = "matrix-gaming-may-require-additional-configuration-facette-gaming-usage"
+from = ["gaming-usage"]
+to = ["arch","opensuse","solus","manjaro","pclinuxos","Fedora","Gentoo","void","artix"]
+how = "neutral"
+[assignment.matrix-built-for-enterprise-facette-gaming-usage]
+long_description = "matrix-built-for-enterprise-facette-gaming-usage"
+from = ["gaming-usage"]
+to = ["rhel"]
+how = "negative"
+[assignment.matrix-not-built-for-gaming-facette-gaming-usage]
+long_description = "matrix-not-built-for-gaming-facette-gaming-usage"
+from = ["gaming-usage"]
+to = ["Knoppix","CruxLinux","qubesos"]
+how = "negative"
+[assignment.matrix-beginner-knowledge-facette-beginner-usage]
+long_description = "matrix-beginner-knowledge-facette-beginner-usage"
+from = ["beginner-usage"]
+to = ["ubuntu","mint","opensuse","solus","pclinuxos","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.requires-some-computer-knowledge-facette-beginner-usage]
+long_description = "requires-some-computer-knowledge-facette-beginner-usage"
+from = ["beginner-usage"]
+to = ["debian","tails","devuan","arch","manjaro","rocky","rhel","MXLinux","Fedora","Gentoo","Knoppix","CruxLinux","qubesos","nixOS","void","artix"]
+how = "negative"
+[assignment.matrix-computer-knowledge-higher-facette-advanced-usage]
+long_description = "matrix-computer-knowledge-higher-facette-advanced-usage"
+from = ["advanced-usage"]
+to = ["ubuntu","mint","solus","pclinuxos","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","deepin"]
+how = "neutral"
+[assignment.matrix-requires-advanced-knowledge-facette-advanced-usage]
+long_description = "matrix-requires-advanced-knowledge-facette-advanced-usage"
+from = ["advanced-usage"]
+to = ["debian","devuan","arch","manjaro","rocky","rhel","MXLinux","Fedora","Gentoo","Knoppix","CruxLinux","qubesos","void","artix"]
+how = "positive"
+[assignment.matrix-computer-knowledge-higher-facette-professional-usage]
+long_description = "matrix-computer-knowledge-higher-facette-professional-usage"
+from = ["professional-usage"]
+to = ["ubuntu","mint","solus","manjaro","pclinuxos","MXLinux","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "neutral"
+[assignment.matrix-requires-advanced-knowledge-facette-professional-usage]
+long_description = "matrix-requires-advanced-knowledge-facette-professional-usage"
+from = ["professional-usage"]
+to = ["debian","devuan","arch","opensuse","rocky","rhel","Gentoo","qubesos","nixOS","void","artix"]
+how = "positive"
+[assignment.matrix-beginner-knowledge-facette-no-linux-contact]
+long_description = "matrix-beginner-knowledge-facette-no-linux-contact"
+from = ["no-linux-contact"]
+to = ["ubuntu","mint","opensuse","solus","pclinuxos","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.matrix-not-for-beginner-facette-no-linux-contact]
+long_description = "matrix-not-for-beginner-facette-no-linux-contact"
+from = ["no-linux-contact"]
+to = ["debian","devuan","arch","manjaro","rocky","rhel","MXLinux","Gentoo","Knoppix","qubesos","nixOS","void","artix"]
+how = "blocking"
+[assignment.matrix-maybe-not-for-beginner-facette-no-linux-contact]
+long_description = "matrix-maybe-not-for-beginner-facette-no-linux-contact"
+from = ["no-linux-contact"]
+to = ["MXLinux","Fedora","Knoppix","CruxLinux","qubesos","nixOS"]
+how = "negative"
+[assignment.matrix-requires-manual-facette-already-used]
+long_description = "matrix-requires-manual-facette-already-used"
+from = ["already-used"]
+to = ["debian","devuan","arch","opensuse","manjaro","rocky","rhel","MXLinux","Gentoo","Knoppix","CruxLinux","qubesos","nixOS","void","artix"]
+how = "positive"
+[assignment.matrix-installation-assistant-present-facette-many-preselections]
+long_description = "matrix-installation-assistant-present-facette-many-preselections"
+from = ["many-preselections"]
+to = ["ubuntu","debian","devuan","mint","opensuse","solus","manjaro","pclinuxos","rocky","rhel","MXLinux","Fedora","Knoppix","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.matrix-has-default-settings-facette-many-preselections]
+long_description = "matrix-has-default-settings-facette-many-preselections"
+from = ["many-preselections"]
+to = ["ubuntu","mint","opensuse","solus","Fedora","Knoppix","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.matrix-installation-from-shell-facette-many-preselections]
+long_description = "matrix-installation-from-shell-facette-many-preselections"
+from = ["many-preselections"]
+to = ["arch","Gentoo","void","artix"]
+how = "blocking"
+[assignment.matrix-installs-range-of-programs-facette-commandline-setup]
+long_description = "matrix-installs-range-of-programs-facette-commandline-setup"
+from = ["commandline-setup"]
+to = ["ubuntu","mint","opensuse","solus","manjaro","pclinuxos","MXLinux","Fedora","Knoppix","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "negative"
+[assignment.matrix-selection-by-user-facette-commandline-setup]
+long_description = "matrix-selection-by-user-facette-commandline-setup"
+from = ["commandline-setup"]
+to = ["debian","devuan","arch","opensuse","rocky","rhel","Gentoo","CruxLinux","void","artix"]
+how = "positive"
+[assignment.matrix-installation-presets-gui-facette-many-choices-gui]
+long_description = "matrix-installation-presets-gui-facette-many-choices-gui"
+from = ["many-choices-gui"]
+to = ["ubuntu","mint","opensuse","solus","manjaro","pclinuxos","Fedora","Knoppix","ZorinOS","elementaryOS","nixOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","deepin"]
+how = "positive"
+[assignment.matrix-has-control-panel-facette-many-choices-gui]
+long_description = "matrix-has-control-panel-facette-many-choices-gui"
+from = ["many-choices-gui"]
+to = ["ubuntu","mint","opensuse","solus","pclinuxos","Fedora","Knoppix","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.matrix-configuration-from-shell-facette-many-choices-gui]
+long_description = "matrix-configuration-from-shell-facette-many-choices-gui"
+from = ["many-choices-gui"]
+to = ["arch","Gentoo"]
+how = "blocking"
+[assignment.matrix-oldpc-no-32bit-facette-no64bit]
+long_description = "matrix-oldpc-no-32bit-facette-no64bit"
+from = ["no64bit"]
+to = ["ubuntu","arch","pclinuxos","Fedora","CruxLinux","ZorinOS","Lubuntu","artix","popos","deepin"]
+how = "blocking"
+[assignment.matrix-middleweight-facette-no64bit]
+long_description = "matrix-middleweight-facette-no64bit"
+from = ["no64bit"]
+to = ["MXLinux"]
+how = "positive"
+[assignment.matrix-has-high-range-hardware-support-facette-no64bit]
+long_description = "matrix-has-high-range-hardware-support-facette-no64bit"
+from = ["no64bit"]
+to = ["Knoppix"]
+how = "positive"
+[assignment.matrix-has-zorin-lite-version-facette-no64bit]
+long_description = "matrix-has-zorin-lite-version-facette-no64bit"
+from = ["no64bit"]
+to = ["ZorinOS"]
+how = "positive"
+[assignment.matrix-oldpc-no-32bit-desc-facette-no64bit]
+long_description = "matrix-oldpc-no-32bit-desc-facette-no64bit"
+from = ["no64bit"]
+to = ["ubuntu","tails","devuan","arch","mint","solus","manjaro","pclinuxos","rocky","rhel","Fedora","CruxLinux","ZorinOS","elementaryOS","qubesos","Xubuntu","Lubuntu","UbuntuMATE","artix","kubuntu","popos","deepin"]
+how = "negative"
+[assignment.matrix-lightweight-facette-no64bit]
+long_description = "matrix-lightweight-facette-no64bit"
+from = ["no64bit"]
+to = ["elementaryOS","Xubuntu","Lubuntu","UbuntuMATE"]
+how = "positive"
+[assignment.matrix-tutorial-facette-manuals]
+long_description = "matrix-tutorial-facette-manuals"
+from = ["manuals"]
+to = ["debian","tails","devuan","arch","opensuse","rocky","rhel","MXLinux","Fedora","Gentoo","Knoppix","CruxLinux","qubesos","nixOS","void","artix"]
+how = "positive"
+[assignment.matrix-user-exchange-facette-need-human-help]
+long_description = "matrix-user-exchange-facette-need-human-help"
+from = ["need-human-help"]
+to = ["ubuntu","mint","solus","manjaro","pclinuxos","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos"]
+how = "positive"
+[assignment.matrix-without-fee-facette-pricing-free]
+long_description = "matrix-without-fee-facette-pricing-free"
+from = ["pricing-free"]
+to = ["ubuntu","debian","tails","devuan","arch","mint","opensuse","solus","manjaro","pclinuxos","rocky","MXLinux","Fedora","Gentoo","Knoppix","CruxLinux","ZorinOS","elementaryOS","qubesos","nixOS","Xubuntu","Lubuntu","UbuntuMATE","void","artix","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.matrix-paid-version-existing-facette-paid-support-ok]
+long_description = "matrix-paid-version-existing-facette-paid-support-ok"
+from = ["paid-support-ok"]
+to = ["ubuntu","opensuse","rhel","ZorinOS","elementaryOS"]
+how = "positive"
+[assignment.matrix-fullinstall-facette-scope-out-of-the-box]
+long_description = "matrix-fullinstall-facette-scope-out-of-the-box"
+from = ["scope-out-of-the-box"]
+to = ["ubuntu","devuan","mint","opensuse","solus","manjaro","pclinuxos","rocky","rhel","MXLinux","Fedora","Knoppix","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.matrix-free-software-unfree-per-default-facette-license-open-source]
+long_description = "matrix-free-software-unfree-per-default-facette-license-open-source"
+from = ["license-open-source"]
+to = ["ubuntu","mint","manjaro","pclinuxos","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","popos"]
+how = "blocking"
+[assignment.matrix-free-userselection-facette-license-open-source]
+long_description = "matrix-free-userselection-facette-license-open-source"
+from = ["license-open-source"]
+to = ["debian","devuan","arch","rocky","Gentoo","artix"]
+how = "positive"
+[assignment.matrix-enforces-free-facette-license-open-source]
+long_description = "matrix-enforces-free-facette-license-open-source"
+from = ["license-open-source"]
+to = ["Fedora"]
+how = "positive"
+[assignment.matrix-free-software-unfree-per-default-facette-proprietary-okay-when-working]
+long_description = "matrix-free-software-unfree-per-default-facette-proprietary-okay-when-working"
+from = ["proprietary-okay-when-working"]
+to = ["ubuntu","mint","manjaro","pclinuxos","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.matrix-privacy-thirdparty-facette-privacy-no-connections-unless-wanted]
+long_description = "matrix-privacy-thirdparty-facette-privacy-no-connections-unless-wanted"
+from = ["privacy-no-connections-unless-wanted"]
+to = []
+how = "blocking"
+[assignment.matrix-user-selection-affects-privacy-facette-privacy-no-connections-unless-wanted]
+long_description = "matrix-user-selection-affects-privacy-facette-privacy-no-connections-unless-wanted"
+from = ["privacy-no-connections-unless-wanted"]
+to = ["debian","tails","devuan","arch","mint","opensuse","solus","manjaro","pclinuxos","rocky","rhel","MXLinux","Fedora","Gentoo","Knoppix","CruxLinux","ZorinOS","qubesos","void","artix"]
+how = "positive"
+[assignment.matrix-supports-privacy-facette-privacy-no-connections-unless-wanted]
+long_description = "matrix-supports-privacy-facette-privacy-no-connections-unless-wanted"
+from = ["privacy-no-connections-unless-wanted"]
+to = ["elementaryOS"]
+how = "positive"
+[assignment.matrix-privacy-thirdparty-facette-okay-when-working]
+long_description = "matrix-privacy-thirdparty-facette-okay-when-working"
+from = ["okay-when-working"]
+to = ["ubuntu"]
+how = "negative"
+[assignment.matrix-appstore-facette-app-store-gui]
+long_description = "matrix-appstore-facette-app-store-gui"
+from = ["app-store-gui"]
+to = ["ubuntu","mint","opensuse","solus","manjaro","pclinuxos","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos"]
+how = "positive"
+[assignment.matrix-console-facette-install-from-source]
+long_description = "matrix-console-facette-install-from-source"
+from = ["install-from-source"]
+to = ["ubuntu","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos"]
+how = "neutral"
+[assignment.matrix-administration-shell-facette-install-from-source]
+long_description = "matrix-administration-shell-facette-install-from-source"
+from = ["install-from-source"]
+to = ["debian","tails","devuan","arch","rocky","rhel","MXLinux","Fedora","Gentoo","Knoppix","CruxLinux","qubesos","nixOS","void","artix"]
+how = "positive"
+[assignment.matrix-uses-systemd-facette-no-systemd]
+long_description = "matrix-uses-systemd-facette-no-systemd"
+from = ["no-systemd"]
+to = ["ubuntu","debian","tails","arch","mint","opensuse","solus","manjaro","rocky","rhel","Fedora","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "blocking"
+[assignment.matrix-avoids-systemd-facette-no-systemd]
+long_description = "matrix-avoids-systemd-facette-no-systemd"
+from = ["no-systemd"]
+to = ["devuan","pclinuxos","Knoppix","CruxLinux","artix"]
+how = "positive"
+[assignment.systemd-is-avoidable-per-selection-facette-no-systemd]
+long_description = "systemd-is-avoidable-per-selection-facette-no-systemd"
+from = ["no-systemd"]
+to = ["Gentoo","void"]
+how = "positive"
+[assignment.matrix-ships-systemd-but-disabled-facette-no-systemd]
+long_description = "matrix-ships-systemd-but-disabled-facette-no-systemd"
+from = ["no-systemd"]
+to = ["MXLinux"]
+how = "positive"
+[assignment.matrix-updates-fast-facette-prefer-fast]
+long_description = "matrix-updates-fast-facette-prefer-fast"
+from = ["prefer-fast"]
+to = ["arch","solus","manjaro","pclinuxos","Fedora","Gentoo","CruxLinux","void","artix"]
+how = "positive"
+[assignment.matrix-stable-updates-facette-prefer-stable]
+long_description = "matrix-stable-updates-facette-prefer-stable"
+from = ["prefer-stable"]
+to = ["ubuntu","debian","tails","devuan","mint","opensuse","rocky","rhel","MXLinux","Knoppix","ZorinOS","elementaryOS","nixOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
+how = "positive"
+[assignment.debian-updates-slow-facette-prefer-fast]
+long_description = "debian-updates-slow-facette-prefer-fast"
+from = ["prefer-fast"]
+to = ["debian"]
+how = "negative"
+[assignment.matrix-runs-in-isolation-facette-privacy-isolation-usage]
+long_description = "matrix-runs-in-isolation-facette-privacy-isolation-usage"
+from = ["privacy-isolation-usage"]
+to = ["qubesos"]
+how = "positive"
+[assignment.matrix-knoppix-adriane-facette-impaired-view-usage]
+long_description = "matrix-knoppix-adriane-facette-impaired-view-usage"
+from = ["impaired-view-usage"]
+to = ["Knoppix"]
+how = "positive"
+[assignment.matrix-has-software-for-blind-facette-impaired-view-usage]
+long_description = "matrix-has-software-for-blind-facette-impaired-view-usage"
+from = ["impaired-view-usage"]
+to = ["ubuntu","debian","devuan","arch","mint","opensuse","solus","manjaro","pclinuxos","rocky","rhel","MXLinux","Fedora","Gentoo","CruxLinux","ZorinOS","elementaryOS","qubesos","nixOS","Xubuntu","Lubuntu","UbuntuMATE","void","artix","popos"]
+how = "positive"
+[assignment.matrix-has-live-mode-facette-live-mode-usage]
+long_description = "matrix-has-live-mode-facette-live-mode-usage"
+from = ["live-mode-usage"]
+to = ["ubuntu","devuan","mint","opensuse","solus","manjaro","pclinuxos","Fedora","Knoppix","ZorinOS","elementaryOS","qubesos","Xubuntu","Lubuntu","UbuntuMATE","void","popos","deepin"]
+how = "positive"
+[assignment.slow-release-model-facette-prefer-stable]
+long_description = "slow-release-model-facette-prefer-stable"
+from = ["prefer-stable"]
+to = ["debian","rocky"]
+how = "neutral"
+[assignment.requires-payment-facette-pricing-free]
+long_description = "requires-payment-facette-pricing-free"
+from = ["pricing-free"]
+to = ["rhel"]
+how = "blocking"
+[assignment.matrix-configuration-from-shell-desc-facette-many-choices-gui]
+long_description = "matrix-configuration-from-shell-desc-facette-many-choices-gui"
+from = ["many-choices-gui"]
+to = ["artix"]
+how = "neutral"
+[assignment.matrix-general-remark-additional-eula-facette-privacy-no-connections-unless-wanted]
+long_description = "matrix-general-remark-additional-eula-facette-privacy-no-connections-unless-wanted"
+from = ["privacy-no-connections-unless-wanted"]
+to = ["deepin"]
+how = "neutral"
+[assignment.matrix-general-remark-additional-eula-facette-okay-when-working]
+long_description = "matrix-general-remark-additional-eula-facette-okay-when-working"
+from = ["okay-when-working"]
+to = ["ubuntu","deepin"]
+how = "neutral"

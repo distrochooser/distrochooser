@@ -14,3 +14,6 @@ design/yarn-error.log
 dummy-settings.py
 dummy-server-assets.py
 NOTES.md
+doc/tools/env.py
+doc/tools/out
+locale
