@@ -173,9 +173,11 @@ class FacetteAssignment(Translateable):
             score = 0
             for key, value in haystack.items():
                 if key == FacetteAssignment.AssignmentType.BLOCKING:
-                    score = 0
-                    break
-                score += score_map[key] * value
+                    if value != 0:
+                        score = 0
+                        break
+                else:
+                    score += score_map[key] * value
             
             return score
 
