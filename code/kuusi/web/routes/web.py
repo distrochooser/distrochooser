@@ -31,9 +31,11 @@ from kuusi.settings import (
     DEBUG,
     LANGUAGE_CODES,
     DEFAULT_LANGUAGE_CODE,
+    KUUSI_TRANSLATION_URL
 )
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
 from web.helper import forward_helper
+from web.models.translateable import INCOMPLETE_TRANSLATIONS
 from logging import getLogger
 
 logger = getLogger("root")
@@ -59,6 +61,7 @@ def get_page_route(page: Page) -> Tuple[Page | None, List[Page]]:
             next_page = next_page.next_page
         else:
             next_page = None
+    
     return next_page, pages
 
 def get_session(page: Page, request: WebHttpRequest) -> Session:
@@ -252,6 +255,8 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         "language_code": request.LANGUAGE_CODE,
         "session": session,
         "is_old": session.valid_for != "latest",
+        "locale_incomplete": language_code in INCOMPLETE_TRANSLATIONS,
+        "translation_url": KUUSI_TRANSLATION_URL
     }
 
     if "accept" in request.headers and "turbo" in request.headers.get("accept"):

@@ -191,4 +191,5 @@ def warnings(warnings: Dict[str, List[ValidationError]]):
 
 @register.inclusion_tag(filename="tags/language_select.html")
 def language_select():
-    return {"language_codes": LANGUAGE_CODES}
+    language_code = get_language()
+    return {"language_codes": LANGUAGE_CODES, "current_language": language_code}

@@ -29,7 +29,7 @@ from os.path import join
 from kuusi.settings import (
     SESSION_NUMBER_OFFSET
 )
-from kuusi.legal import LEGAL_TEXT
+from kuusi.legal import LEGAL_TEXT, LEGAL_TEXT_DISCLAIMER
 from web.models import Session, WebHttpRequest
 from web.helper import forward_helper
 from logging import getLogger
@@ -51,6 +51,7 @@ def route_privacy(request: WebHttpRequest, language_code: str = None):
 def route_contact(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("contact.html")
     context = {
-        "text": LEGAL_TEXT
+        "text": LEGAL_TEXT,
+        "disclaimer_text": LEGAL_TEXT_DISCLAIMER
     }
     return HttpResponse(template.render(context, request))
