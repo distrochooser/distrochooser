@@ -18,6 +18,7 @@
 # TODO: Deprecate session flag as it is flaky
 
 [page.welcome-page]
+can_be_marked = false
 next_page = "version-page"
 hide_text = true
 
