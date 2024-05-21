@@ -37,7 +37,7 @@ from kuusi.settings import (
 )
 
 TRANSLATIONS = {}
-
+INCOMPLETE_TRANSLATIONS = []
 
 def hot_load_translations(**kwargs):
     path = join(LOCALE_PATHS[0])
@@ -53,6 +53,13 @@ def hot_load_translations(**kwargs):
             for key, value in content.items():
                 TRANSLATIONS[language][key] = value
             print(f"Finished reading file {full_path} for translation. Language = {language}")
+    # Use to display an information
+    for locale in TRANSLATIONS:
+        if locale != "en":
+            for key, value in TRANSLATIONS[locale].items():
+                if value == TRANSLATIONS["en"][key]:
+                    INCOMPLETE_TRANSLATIONS.append(locale)
+                    break
 # Do this once in the livetime of the instance
 # TODO: Move me to a better place!
 hot_load_translations()

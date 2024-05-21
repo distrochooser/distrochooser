@@ -9,7 +9,7 @@
         <div class="col-3">
             <select id="ku-i18n-site-lang-code" name="ku-i18n-site-lang-code" id="ku-i18n-site-lang-code" class="form-control form-control-sm">
                 {% for code in language_codes %}
-                    <option value="{{code}}" {% if code == language_code %} selected {% endif%}>{{code}}</option>
+                    <option value="{{code}}" {% if code == current_language %} selected {% endif%}>{{code}}</option>
                 {% endfor %}
             </select>
         </div>

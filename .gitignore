@@ -16,4 +16,6 @@ dummy-server-assets.py
 NOTES.md
 doc/tools/env.py
 doc/tools/out
+doc/tools/old-translations
+doc/tools/viisi.json
 locale
