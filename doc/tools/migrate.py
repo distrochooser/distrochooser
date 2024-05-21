@@ -103,8 +103,12 @@ for answer in raw_answers:
         answers.append({
             "msgid": answer["fields"]["msgid"],
             "pk": answer["pk"],
-            "new_msgid": answer_map[answer["fields"]["msgid"]]
+            "old_blocked": answer["fields"]["blockedAnswers"],
+            "new_msgid": answer_map[answer["fields"]["msgid"]],
         })
+
+for answer in answers:
+    answer["blocked"] = list(map(lambda ax: "\"" +ax["new_msgid"]  +"\"", filter(lambda ax: ax["pk"] in answer["old_blocked"], answers)))
 
 raw_answerdistributionmatrix = list(filter(lambda m: m["model"] == "distrochooser.answerdistributionmatrix", data))
 
@@ -162,6 +166,18 @@ for matrix in raw_answerdistributionmatrix:
 
             print(f"{pk}{description} ALREADY SEEN")
 
+
+
+# we assume all distrochooser 5 matrix blocks as bidrectional
+
+assignment_content += "\n"
+for answer in answers:
+    for key, blocked in enumerate(answer["blocked"]):
+        assignment_content += f"[behaviour.{answer['new_msgid']}-{key}]\n"
+        assignment_content += "direction=\"BIDIRECTIONAL\"\n"
+        assignment_content += f"subjects=[\"{answer['new_msgid']}\"]\n"
+        assignment_content += f"objects=[{','.join(answer['blocked'])}]\n"
+        assignment_content += "criticality=\"WARNING\"\n"
 
 with open(matrix_path + "assignments.toml", "w+") as file:
     file.write(assignment_content)

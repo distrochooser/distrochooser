@@ -133,6 +133,7 @@ class FacetteSelectionWidget(Widget):
                     else:
                         # TODO: Implement facette behaviour for criticality INFO
                         pass
+        # FIXME: Facettes do not display the behaviour
         # Log a warning as this might cause headache later
         if facette_form.errors.__len__() > 0 or facette_form.warnings.__len__() > 0:
             if self.pages.count() > 0:
