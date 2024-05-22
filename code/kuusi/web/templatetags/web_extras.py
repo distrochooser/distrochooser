@@ -143,7 +143,7 @@ def choosable(result: Dict):
 
 @register.inclusion_tag(filename="tags/meta_value.html")
 def meta_value(obj: ChoosableMeta):
-    return {"obj": obj}
+    return {"obj": obj, "choosable": obj.meta_choosable}
 
 @register.inclusion_tag(filename="tags/weight.html")
 def weight(field: Field, weights: Dict):

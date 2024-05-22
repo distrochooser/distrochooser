@@ -32,6 +32,7 @@ class Choosable(Translateable):
     description = TranslateableField(
         null=True, blank=True, default=None, max_length=120
     )
+    clicked = models.IntegerField(default=0)
 
     def __str__(self) -> str:
         return f"{self.name}"

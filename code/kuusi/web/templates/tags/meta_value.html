@@ -6,5 +6,5 @@
 {% elif obj.meta_type == "date" %}
 {{obj.meta_value}} 
 {% elif obj.meta_type == "link" %}
-<a target="_blank" href="{{obj.meta_value}}">{{obj.meta_value}}</a>
+<a target="_blank" href="/out/{{choosable.pk}}/{{obj.meta_name}}">{{obj.meta_value}}</a>
 {% endif %}

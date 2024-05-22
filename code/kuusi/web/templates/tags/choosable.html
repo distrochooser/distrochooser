@@ -33,7 +33,7 @@
                                     <!-- {% _i18n "NEUTRAL" %} -->
                                     <!-- {% _i18n "NEGATIVE" %} -->
                                     <!-- {% _i18n "POSITIVE" %} -->
-                                    <small>{% _i18n assignment.assignment_type %} </small>
+                                    <small class="badge rounded-pill badge-{{assignment.assignment_type|lower}}">{% _i18n assignment.assignment_type %} </small>
                                 </div>
                                 <p class="mb-1">{% _i18n  assignment "long_description" %}</p>
                                 <small>

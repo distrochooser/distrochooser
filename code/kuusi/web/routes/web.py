@@ -18,8 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from typing import List, Tuple
 from django.http import (
     HttpResponse,
-    HttpResponseNotAllowed
+    HttpResponseNotAllowed,
+    HttpResponseRedirect
 )
+from django.http import Http404
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
 from django.utils import translation
@@ -33,7 +35,7 @@ from kuusi.settings import (
     DEFAULT_LANGUAGE_CODE,
     KUUSI_TRANSLATION_URL
 )
-from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection
+from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection, Choosable, ChoosableMeta
 from web.helper import forward_helper
 from web.models.translateable import INCOMPLETE_TRANSLATIONS
 from logging import getLogger
@@ -172,7 +174,21 @@ def build_step_data(categories: List[Category], request: WebHttpRequest):
         }
         step_data.append(step)
     return step_data
-    
+
+def route_outgoing(request: WebHttpRequest, id: int, property: str) -> HttpResponse:
+    got = Choosable.objects.filter(pk=id) 
+    property = property.upper()
+    if got.count() == 1:
+        choosable: Choosable = got.first()
+        if choosable:
+            if property not in choosable.meta:
+                raise Http404()
+            else:
+                choosable.clicked += 1 # FIXME: Todo consider click related value to allow map property -> click
+                choosable.save()
+                return HttpResponseRedirect(choosable.meta[property].meta_value)
+    raise Http404()
+
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
     template = loader.get_template("index.html")
 
