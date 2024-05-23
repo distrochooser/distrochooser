@@ -14,11 +14,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-[facette.with-dock]
+[facette.ux-concept-answer-mac-like]
 topic = "ux"
 
-[facette.one-centered-window]
-topic = "ux"
-
-[facette.tiling]
+[facette.ux-concept-answer-windows-like]
 topic = "ux"

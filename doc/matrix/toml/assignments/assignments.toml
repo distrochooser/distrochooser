@@ -1,3 +1,19 @@
+# kuusi
+# Copyright (C) 2014-2024  Christoph Müller  <mail@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 [assignment.matrix-supports-daily-usage-facette-daily-usage]
 long_description = "matrix-supports-daily-usage-facette-daily-usage"
 from = ["daily-usage"]
@@ -188,6 +204,21 @@ long_description = "matrix-user-exchange-facette-need-human-help"
 from = ["need-human-help"]
 to = ["ubuntu","mint","solus","manjaro","pclinuxos","ZorinOS","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos"]
 how = "positive"
+[assignment.matrix-has-windows-like-variant-cinnamon-facette-ux-concept-answer-windows-like]
+long_description = "matrix-has-windows-like-variant-cinnamon-facette-ux-concept-answer-windows-like"
+from = ["ux-concept-answer-windows-like"]
+to = ["mint"]
+how = "positive"
+[assignment.matrix-has-windows-like-variant-facette-ux-concept-answer-windows-like]
+long_description = "matrix-has-windows-like-variant-facette-ux-concept-answer-windows-like"
+from = ["ux-concept-answer-windows-like"]
+to = ["pclinuxos","Knoppix","ZorinOS","Lubuntu","kubuntu"]
+how = "positive"
+[assignment.matrix-mac-like-facette-ux-concept-answer-mac-like]
+long_description = "matrix-mac-like-facette-ux-concept-answer-mac-like"
+from = ["ux-concept-answer-mac-like"]
+to = ["popos","deepin"]
+how = "positive"
 [assignment.matrix-without-fee-facette-pricing-free]
 long_description = "matrix-without-fee-facette-pricing-free"
 from = ["pricing-free"]
@@ -339,47 +370,47 @@ from = ["okay-when-working"]
 to = ["ubuntu","deepin"]
 how = "neutral"
 
-[behaviour.0gaming-usage]
+[behaviour.gaming-usage-0]
 direction="BIDIRECTIONAL"
 subjects=["gaming-usage"]
 objects=["privacy-usage"]
 criticality="WARNING"
-[behaviour.0already-used]
+[behaviour.already-used-0]
 direction="BIDIRECTIONAL"
 subjects=["already-used"]
 objects=["beginner-usage"]
 criticality="WARNING"
-[behaviour.0knowledge-present]
+[behaviour.knowledge-present-0]
 direction="BIDIRECTIONAL"
 subjects=["knowledge-present"]
 objects=["beginner-usage","advanced-usage"]
 criticality="WARNING"
-[behaviour.1knowledge-present]
+[behaviour.knowledge-present-1]
 direction="BIDIRECTIONAL"
 subjects=["knowledge-present"]
 objects=["beginner-usage","advanced-usage"]
 criticality="WARNING"
-[behaviour.0install-from-source]
+[behaviour.install-from-source-0]
 direction="BIDIRECTIONAL"
 subjects=["install-from-source"]
 objects=["beginner-usage","no-linux-contact"]
 criticality="WARNING"
-[behaviour.1install-from-source]
+[behaviour.install-from-source-1]
 direction="BIDIRECTIONAL"
 subjects=["install-from-source"]
 objects=["beginner-usage","no-linux-contact"]
 criticality="WARNING"
-[behaviour.0privacy-isolation-usage]
+[behaviour.privacy-isolation-usage-0]
 direction="BIDIRECTIONAL"
 subjects=["privacy-isolation-usage"]
 objects=["beginner-usage","no-linux-contact","okay-when-working"]
 criticality="WARNING"
-[behaviour.1privacy-isolation-usage]
+[behaviour.privacy-isolation-usage-1]
 direction="BIDIRECTIONAL"
 subjects=["privacy-isolation-usage"]
 objects=["beginner-usage","no-linux-contact","okay-when-working"]
 criticality="WARNING"
-[behaviour.2privacy-isolation-usage]
+[behaviour.privacy-isolation-usage-2]
 direction="BIDIRECTIONAL"
 subjects=["privacy-isolation-usage"]
 objects=["beginner-usage","no-linux-contact","okay-when-working"]
