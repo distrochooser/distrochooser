@@ -51,7 +51,7 @@ with open(matrix_path + "choosables.toml", "w+") as file:
     content = ""
     for choosable in choosables:
         content += "[[choosable]]\n"
-        content += f"catalogue_id=\"{choosable['catalogue_id']}\"\n"
+        content += f"catalogue_id=\"{choosable['identifier']}\"\n"
 
         content += "[[choosable.meta]]\n"
         content += "meta_type=\"link\"\n"
@@ -154,7 +154,6 @@ for matrix in raw_answerdistributionmatrix:
                 how_str = "blocking"
 
             
-            # TODO: Blocking hits === behaviour ?
             assignment_content += f"[assignment.{description}]\n"
             assignment_content += f"long_description = \"{description}\"\n"
             assignment_content += f"from = [{','.join(ref_facettes)}]\n"
