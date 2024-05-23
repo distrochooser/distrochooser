@@ -36,7 +36,7 @@ function checkedStateHandler(el) {
 
     console.debug("The page is in radio select mode: " + isRadio + ". The data id is: " + data_id + "the checked state is: " + checked)
 
-    var weightContainer = document.querySelector("#"+data_id+"-weight-container")
+    var weightContainer = document.querySelector("#ku-"+data_id+"-weight-container")
     
     if (checked) {
         weightContainer.classList.remove("d-none");

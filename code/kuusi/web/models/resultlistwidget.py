@@ -105,6 +105,7 @@ class ResultListWidget(Widget):
 
         ranked_keys =sorted(raw_results, key=raw_results.get, reverse=True)
         ranked_result = {}
+        # TODO: Add weights for display (also on navigation steps!)
         for key in ranked_keys:
             ranked_result[key] = {
                 "choosable": key,

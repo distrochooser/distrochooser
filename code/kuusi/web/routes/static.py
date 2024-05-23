@@ -37,6 +37,7 @@ from logging import getLogger
 def route_about(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("about.html")
     context = {
+        "language_code": language_code,
         "count": SESSION_NUMBER_OFFSET  + Session.objects.all().count()
     }
     return HttpResponse(template.render(context, request))
@@ -44,13 +45,16 @@ def route_about(request: WebHttpRequest, language_code: str = None):
 
 def route_privacy(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("privacy.html")
-    context = {}
+    context = {
+        "language_code": language_code
+    }
     return HttpResponse(template.render(context, request))
 
 
 def route_contact(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("contact.html")
     context = {
+        "language_code": language_code,
         "text": LEGAL_TEXT,
         "disclaimer_text": LEGAL_TEXT_DISCLAIMER
     }

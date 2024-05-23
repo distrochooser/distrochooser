@@ -7,4 +7,11 @@ input[value='nothing'] + label {
 }
 .form-check {
    min-height: 0px !important;
+   margin-bottom: 1em;
+}
+.ku-facette-content {
+   min-height: 3.5em; 
+   label.requiredField {
+      display: none;
+   }
 }
