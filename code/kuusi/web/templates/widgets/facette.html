@@ -3,7 +3,7 @@
 {% for field in form %}
 {% if field.name not in child_facettes %}
 <div class="row">
-    <div class="col-9">
+    <div class="col-9 ku-facette-content">
         <!-- TODO: Render to add a ku-18n span here -->
         {{ field|as_crispy_field }}
     </div>

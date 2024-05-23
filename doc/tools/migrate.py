@@ -94,7 +94,9 @@ answer_map = {
     "software-admin-answer-console": "install-from-source",
     "answer-avoid-systemd": "no-systemd",
     "software-updates-answer-fast": "prefer-fast",
-    "software-updates-answer-slow": "prefer-stable"
+    "software-updates-answer-slow": "prefer-stable",
+    "ux-concept-answer-mac-like": "ux-concept-answer-mac-like",
+    "ux-concept-answer-windows-like": "ux-concept-answer-windows-like"
 }
 
 answers = []
@@ -275,14 +277,16 @@ for locale in locales:
         facette_texts[value] = entries[key]
     with open(locale_path + f"facette-{locale}.json", "w+") as file:
         file.write(dumps(facette_texts, indent=4))
-    page_texts = {}
+    page_texts = {
+        "version-page-text": "You can select a simplified questionaire edition, which removes some super technical questions",
+        "linux-knowledge-page-text": "How would you rate your knowledge with the Linux operating system?"
+    }
     for key, value in page_map.items():
         page_texts[value] = entries[key]
     with open(locale_path + f"page-{locale}.json", "w+") as file:
         file.write(dumps(page_texts, indent=4))
     category_texts = {
-        "version-page-category-name": "Questionaire edition",
-        "version-page-text": "You can select a simplified questionaire edition, which removes some super technical questions"
+        "version-page-category-name": "Questionaire edition"
     }
     for key, value in category_map.items():
         category_texts[key] = entries[value]
