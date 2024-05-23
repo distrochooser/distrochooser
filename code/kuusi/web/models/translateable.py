@@ -38,6 +38,7 @@ from kuusi.settings import (
 
 TRANSLATIONS = {}
 INCOMPLETE_TRANSLATIONS = []
+RTL_TRANSLATIONS = ["he"]
 
 def hot_load_translations(**kwargs):
     path = join(LOCALE_PATHS[0])

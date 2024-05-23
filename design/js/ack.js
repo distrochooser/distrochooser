@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 function ack(result_id) {
+    // TODO: Refine ack to only trigger after the first page (aka thee welcome site)
     var url = "/api/ack/" + result_id
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     fetch(url, {

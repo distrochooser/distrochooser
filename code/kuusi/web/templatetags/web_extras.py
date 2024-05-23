@@ -27,7 +27,7 @@ from django.forms import Form, Field, ValidationError
 from django.forms.utils import ErrorDict
 
 from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
-from web.models import TRANSLATIONS
+from web.models import TRANSLATIONS, RTL_TRANSLATIONS
 from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES
 
 register = template.Library()
@@ -193,3 +193,7 @@ def warnings(warnings: Dict[str, List[ValidationError]]):
 def language_select():
     language_code = get_language()
     return {"language_codes": LANGUAGE_CODES, "current_language": language_code}
+
+@register.simple_tag()
+def rtl_class(language_code: str):
+    return "ku-rtl" if  language_code in RTL_TRANSLATIONS else "ku-ltr"

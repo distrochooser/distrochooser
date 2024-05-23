@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from .translateable import Translateable, TranslateableField, TranslateableFieldRecord, TRANSLATIONS
+from .translateable import Translateable, TranslateableField, TranslateableFieldRecord, TRANSLATIONS, RTL_TRANSLATIONS
 from .http import WebHttpRequest
 from .session import Session, get_session_number, get_session_result_id, random_str
 from .widget import Widget

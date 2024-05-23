@@ -69,6 +69,7 @@ def get_page_route(page: Page) -> Tuple[Page | None, List[Page]]:
 def get_session(page: Page, request: WebHttpRequest) -> Session:
     # Get a session object based on the informations present. If no result_id is existing withing the session a new session will be started
     # FIXME: Get rid of the cookie
+    # FIXME: The copy of existing answers does not work, causing the old sesion to be resumed
     session: Session = None
     if page.require_session:
         # TODO: Make the handling better. TO pick up old results it's required to have a session, but the welcome page should not feature a session due to cookies
