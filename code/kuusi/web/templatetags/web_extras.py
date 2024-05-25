@@ -39,6 +39,13 @@ def prev(haystack: Dict, index: int):
 
     return list(haystack.keys())[index - 1]
 
+@register.filter
+def weight_abs(raw):
+    return abs(raw)
+
+@register.filter
+def replace_weight_signs(raw):
+    return str(abs(raw)).replace('.', '-')
 
 @register.simple_tag(takes_context=True)
 def render_widget(context, widget: Widget, page: Page):

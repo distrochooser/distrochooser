@@ -1,17 +1,33 @@
-/* FIXME: Missing prefixes */
-.badge-positive {
+
+.ku-badge-positive {
     background-color: green;
 }
-.badge-neutral {
+.ku-badge-neutral {
     background-color: grey;
     color: white;
 }
-.badge-blocking {
+.ku-badge-blocking {
     background-color: black;
 }
-.badge-negative {
+.ku-badge-negative {
 
     background-color: red;
+}
+
+/* TODO: Add a proper scale here */
+.ku-badge-0-25x {
+    background-color: lightgray;
+}
+
+.ku-badge-0-5x {
+    background-color: lightgray;
+}
+
+.ku-badge-2x {
+    background-color: lightgray;
+}
+.ku-badge-4x {
+    background-color: lightgray;
 }
 
 .ku-page-text {
