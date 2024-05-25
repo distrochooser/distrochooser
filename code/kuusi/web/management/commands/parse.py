@@ -136,7 +136,8 @@ class Command(BaseCommand):
             "not_in_versions": [],
             "child_of": None,
             "hide_text": False,
-            "hide_help": False
+            "hide_help": False,
+            "css_classes": None
         }
         if prop in raw:
             return raw[prop]

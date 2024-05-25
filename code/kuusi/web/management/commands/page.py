@@ -39,6 +39,7 @@ def create_pages(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> 
                 help= f"{catalogue_id}-help",
                 hide_text = get_or_default("hide_text", properties),
                 hide_help = get_or_default("hide_help", properties),
+                css_classes = get_or_default("css_classes", properties)
             )
             new_page.save()
             

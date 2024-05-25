@@ -43,6 +43,7 @@ class Page(Translateable):
     no_header = models.BooleanField(default=False)
     text = TranslateableField(null=True, blank=True,  max_length=80)
     help = TranslateableField(null=True, blank=True,  max_length=80)
+    css_classes = models.CharField(max_length=50, null=True,default=None)
 
     @property
     def href(self):

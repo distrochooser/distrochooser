@@ -70,6 +70,19 @@
     }
 }
 
-.ku-language-select-container {
-    margin-left: 0.5em;
+.ku-result {
+    .col-4 {
+        border: 1px solid black;
+        width: fit-content;
+        height: 2.5em;
+        padding-top: 0.3em;
+        position: absolute;
+        left: 1em;
+        margin-top: 0.5em;
+        span {
+            button {
+                text-decoration: none;
+            }
+        }
+    }
 }
