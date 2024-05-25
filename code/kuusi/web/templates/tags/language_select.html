@@ -6,14 +6,14 @@
     <label for="ku-i18n-site-lang-code" class="form-label fs-6"> {% _i18n "LANGUAGE" %}</label>
     {% csrf_token %}
     <div class="row">
-        <div class="col-3">
+        <div class="col-4">
             <select id="ku-i18n-site-lang-code" name="ku-i18n-site-lang-code" id="ku-i18n-site-lang-code" class="form-control form-control-sm">
                 {% for code in language_codes %}
                     <option value="{{code}}" {% if code == current_language %} selected {% endif%}>{{code}}</option>
                 {% endfor %}
             </select>
         </div>
-        <div class="col-9">
+        <div class="col-8">
             <button class="form-control form-control-sm" id="ku-i18n-site-lang-code-change" name="ku-i18n-site-lang-code-change">{% _i18n 'LANGUAGE_CHANGE' %}</button>
         </div>
     </div>

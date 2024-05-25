@@ -234,6 +234,7 @@ target_page = "updates-page"
 [page.result-page]
 hide_help = true
 hide_text =true 
+css_classes = "ku-result"
 [widget.share.result-page-widget-name]
 topic = "result"
 pages = ["result-page"]

@@ -63,9 +63,11 @@ class Category(Translateable):
         is_warning = False
         is_marked = False
         is_active = False
+        css_classes = None
 
         if target_page:
             target = target_page.href
+            css_classes = target_page.css_classes
 
             if not target_page.is_visible(session):
                 return None
@@ -84,6 +86,7 @@ class Category(Translateable):
             "warning": is_warning,
             "error": is_error,
             "last": is_last,
+            "css_classes": css_classes
         }
 
     def __str__(self) -> str:

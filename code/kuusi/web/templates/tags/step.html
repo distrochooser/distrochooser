@@ -1,8 +1,8 @@
 {% load web_extras %}
 {% load i18n %}
-
-<div class="row ku-step {% if major.last %} ku-step-major-last {% endif %}">
-    <div class="col-12">
+{% if major.href %}
+<div class="row ku-step {% if major.last %} ku-step-major-last {% endif %} {% if major.css_classes %} {{ major.css_classes}} {% endif %}">
+    <div class="col-5">
         <span class="ku-step-major  {% if major.active %} ku-step-major-active {% endif %}">
             <i class="{{ icon }}"></i>
         </span>
@@ -11,10 +11,11 @@
         </span>
     </div>
     {% for step in minor %}
-    <div class="col-12">
-        <span class="ku-step-minor-title {% if step.active %} ku-step-title-active {% endif %}">
+    <div class="col-5">
+        <span class="ku-step-minor-title {% if step.active %} ku-step-title-active {% endif %} {% if step.css_classes %} {{ step.css_classes}} {% endif %}">
             {% step_content step %}
         </span>
     </div>
     {% endfor %}
 </div>
+{% endif %}

@@ -3,6 +3,9 @@
 {% block title%}{{title}}{% endblock %}
 {% block content%}
 
+<div class="ku-language-select-container">
+    {% language_select%}
+</div>
 <form method="post" enctype="application/x-www-form-urlencoded">
     {% csrf_token %}
     <div class="row">
@@ -13,11 +16,6 @@
         </div>
         <div class="col-9 col-lg-6">
             {% page page %}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-1 mt-3 ku-language-select-container">
-            {% language_select%}
         </div>
     </div>
 </form>
