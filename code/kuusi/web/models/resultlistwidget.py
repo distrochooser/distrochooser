@@ -107,10 +107,11 @@ class ResultListWidget(Widget):
         ranked_result = {}
         # TODO: Add weights for display (also on navigation steps!)
         for key in ranked_keys:
-            ranked_result[key] = {
-                "choosable": key,
-                "score": raw_results[key],
-                "assignments": assignments_used[key],
-            }
+            if len(assignments_used[key]) > 0:
+                ranked_result[key] = {
+                    "choosable": key,
+                    "score": raw_results[key],
+                    "assignments": assignments_used[key],
+                }
 
         return render_template.render({"page": page, "results": ranked_result}, request)
