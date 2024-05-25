@@ -196,10 +196,12 @@ def warnings(warnings: Dict[str, List[ValidationError]]):
     return {"haystack": flatten_errors_warnings(warnings), "severity": "warning"}
 
 
-@register.inclusion_tag(filename="tags/language_select.html")
-def language_select():
+@register.inclusion_tag(takes_context=True,filename="tags/language_select.html")
+def language_select(context):
+    request: HttpRequest = context["request"]
+    
     language_code = get_language()
-    return {"language_codes": LANGUAGE_CODES, "current_language": language_code}
+    return {"language_codes": LANGUAGE_CODES, "current_language": language_code, "get_params": request.GET.urlencode()}
 
 @register.simple_tag()
 def rtl_class(language_code: str):
