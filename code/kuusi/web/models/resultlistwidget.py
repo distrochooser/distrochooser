@@ -98,9 +98,9 @@ class ResultListWidget(Widget):
                 # TODO: Handle the case that an assignment is used twice?
                 results[assignment.assignment_type] += weighted_score
 
-                assignments_used[choosable].append(assignment)
+                assignments_used[choosable].append((assignment, weighted_score))
             score = FacetteAssignment.AssignmentType.get_score(results)
-            logger.debug(f"Choosable={choosable}, Score={score}, Results={results}, Weights={results}")
+            logger.debug(f"Choosable={choosable}, Score={score}, Results={results}")
             raw_results[choosable] = score
 
         ranked_keys =sorted(raw_results, key=raw_results.get, reverse=True)
