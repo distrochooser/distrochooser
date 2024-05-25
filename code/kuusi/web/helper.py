@@ -65,7 +65,10 @@ def forward_helper(id: str, overwrite_status: int, session: Session, base_url: s
     if "BTN_FORCED_NAVIGATION" in request.POST:
         value = request.POST.get("BTN_FORCED_NAVIGATION")
         return None, HttpResponseRedirect(base_url + value)
-
+    if "BTN_PREV_PAGE" in request.POST and page.previous_page:
+        id = page.previous_page.catalogue_id
+        target = f"?page={id}"
+        return None, HttpResponseRedirect(target)
     forward_target: Page = None
     attempts = 0
     if not stay:
