@@ -22,13 +22,14 @@ from django import template
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language
 from django.utils import safestring
+from django.utils.html import strip_tags
 from django.http import HttpRequest
 from django.forms import Form, Field, ValidationError
 from django.forms.utils import ErrorDict
 
 from web.models import Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
 from web.models import TRANSLATIONS, RTL_TRANSLATIONS
-from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES
+from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES, KUUSI_META_TAGS
 
 register = template.Library()
 
@@ -206,3 +207,12 @@ def language_select(context):
 @register.simple_tag()
 def rtl_class(language_code: str):
     return "ku-rtl" if  language_code in RTL_TRANSLATIONS else "ku-ltr"
+
+@register.inclusion_tag(filename="tags/meta_tags.html")
+def meta_tags():
+    language_code = get_language()
+    result = KUUSI_META_TAGS
+    result["twitter:description"] = strip_tags(TRANSLATIONS[language_code]["ABOUT_PAGE_TEXT"])
+    return {
+        "tags": result
+    }

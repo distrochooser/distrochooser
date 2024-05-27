@@ -91,7 +91,7 @@ answer_map = {
     "privacy-answer-highprivacy":"privacy-no-connections-unless-wanted",
     "privacy-answer-services-ok": "okay-when-working",
     "software-admin-answer-appstore": "app-store-gui",
-    "software-admin-answer-console": "install-from-source",
+    "software-admin-answer-console": "software-admin-answer-console",
     "answer-avoid-systemd": "no-systemd",
     "software-updates-answer-fast": "prefer-fast",
     "software-updates-answer-slow": "prefer-stable",

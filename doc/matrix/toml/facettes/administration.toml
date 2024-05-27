@@ -17,7 +17,7 @@
 [facette.app-store-gui]
 topic = "administration"
 
-[facette.install-from-source]
+[facette.software-admin-answer-console]
 topic = "administration"
 
 [facette.no-systemd]

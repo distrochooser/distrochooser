@@ -213,10 +213,22 @@ KUUSI_COPYRIGHT_STRING = None
 
 KUUSI_INFO_STRING = "Made by <a href='https://chmr.eu'>chmr.eu</a>"
 
+KUUSI_TRANSLATION_URL = "https://translate.distrochooser.de"
+
+KUUSI_META_TAGS = {
+    "twitter:card": "summary",
+    "twitter:title": "Distrochooser",
+    "twitter:description": "",
+    "twitter:image": KUUSI_URL + "/static/logo.svg",
+    "og:title": "Distrochooser",
+    "og:type": "website",
+    "og:url": KUUSI_URL,
+    "og:image": KUUSI_URL + "/static/logo.svg"
+}
 
 # use https://turbo.hotwired.dev to prevent flicker
 # requires the status codes to be altered.
-ACCELERATION = True
+ACCELERATION = False
 
 SESSION_NUMBER_OFFSET = 1754516
 
