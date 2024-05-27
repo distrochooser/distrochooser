@@ -71,20 +71,19 @@ def get_session(page: Page, request: WebHttpRequest) -> Session:
     # FIXME: Get rid of the cookie
     # FIXME: The copy of existing answers does not work, causing the old sesion to be resumed
     session: Session = None
-    if page.require_session:
-        # TODO: Make the handling better. TO pick up old results it's required to have a session, but the welcome page should not feature a session due to cookies
-        # TODO: Decide if when no id is given -> new session or not?
-        # TODO: Also, get rid of the csrftoken cookie until user gave consent
-        if "result_id" not in request.session:
+    # TODO: Make the handling better. TO pick up old results it's required to have a session, but the welcome page should not feature a session due to cookies
+    # TODO: Decide if when no id is given -> new session or not?
+    # TODO: Also, get rid of the csrftoken cookie until user gave consent
+    if "result_id" not in request.session:
+        session = get_fresh_session(request)
+    else:
+        session = Session.objects.filter(
+            result_id=request.session["result_id"]
+        ).first()
+        # TODO: Add some display to indicate what happens to old sessions
+        if session.valid_for != "latest": 
+            # The session is linking to some old result version
             session = get_fresh_session(request)
-        else:
-            session = Session.objects.filter(
-                result_id=request.session["result_id"]
-            ).first()
-            # TODO: Add some display to indicate what happens to old sessions
-            if session.valid_for != "latest": 
-                # The session is linking to some old result version
-                session = get_fresh_session(request)
 
     request.session["result_id"] = session.result_id
     return session
