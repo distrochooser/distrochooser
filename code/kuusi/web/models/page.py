@@ -35,7 +35,6 @@ class Page(Translateable):
         default=None,
         related_name="page_next",
     )
-    require_session = models.BooleanField(default=False)
     not_in_versions = models.ManyToManyField(to="SessionVersion", blank=True)
     can_be_marked = models.BooleanField(default=False)
     hide_text = models.BooleanField(default=False)
@@ -194,6 +193,7 @@ class Page(Translateable):
                     row_list.append(None)
             result.append(row_list)
         logger.debug(result)
+
         return result
 
     def is_marked(self, session: Session):
