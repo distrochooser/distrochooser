@@ -41,19 +41,9 @@ class ResultListWidget(Widget):
         selection: FacetteSelection
         for selection in selections:
             facette = selection.facette
-            assignments = None
-            if request.session_obj.valid_for != "latest":
-                logger.debug(f"The session is not for latest, choosing assignments of invalidation {request.session_obj.valid_for}.")
-                assignments = FacetteAssignment.objects.filter(
-                    facettes__pk__in=[facette.pk],
-                    is_invalidated=True,
-                    invalidation_id=request.session_obj.valid_for
-                )
-            else:
-                assignments = FacetteAssignment.objects.filter(
-                    facettes__pk__in=[facette.pk],
-                    is_invalidated=False
-                )
+            assignments = FacetteAssignment.objects.filter(
+                    facettes__pk__in=[facette.pk]
+            )
             
             if assignments.count() > 0:
                 assignments_selected += assignments
@@ -63,12 +53,7 @@ class ResultListWidget(Widget):
             for assignment in assignments:
                 weights_per_assignment.append(selection.weight)
 
-        choosables = None
-        if request.session_obj.valid_for != "latest":
-            logger.debug(f"The session is not for latest, choosing choosables of invalidation {request.session_obj.valid_for}.")
-            choosables = Choosable.objects.filter(invalidation_id=request.session_obj.valid_for, is_invalidated=True)
-        else:
-            choosables = Choosable.objects.filter(is_invalidated=False)
+        choosables = Choosable.objects.all()
 
         raw_results: Dict[Choosable, float] = {}
         assignments_used: Dict[Choosable, FacetteAssignment] = {}

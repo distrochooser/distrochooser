@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
             model_name="session",
             name="valid_for",
             field=models.CharField(
-                blank=True, default="latest", max_length=5, null=True
+                blank=True, default="latest", max_length=15, null=True
             ),
         ),
         migrations.AlterField(

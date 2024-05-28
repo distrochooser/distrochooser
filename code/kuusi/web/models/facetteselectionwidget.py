@@ -45,12 +45,7 @@ class FacetteSelectionWidget(Widget):
     ) -> Tuple[WarningForm, List, Dict]:
         facette_form = WarningForm(data) if data else WarningForm()
 
-        facettes = None
-        if session.valid_for == "latest":
-            facettes = Facette.objects.filter(topic=self.topic, is_invalidated=False)
-        else:
-            logger.debug(f"Facette widget {self} will use facettes of invalidation {session.valid_for}.")
-            facettes = Facette.objects.filter(topic=self.topic, is_invalidated=True, invalidation_id=session.valid_for)
+        facettes = Facette.objects.filter(topic=self.topic)
         child_facettes = []
         weights = {}
 
@@ -108,12 +103,7 @@ class FacetteSelectionWidget(Widget):
         # FIXME: Facettes not triggering
         facette: Facette
         for facette in active_facettes:
-            behaviours = None
-            if session.valid_for == "latest":
-                behaviours = FacetteBehaviour.objects.filter(is_invalidated=False)
-            else:
-                logger.debug(f"Using behaviours of invalidation {session.valid_for}.")
-                behaviours =  FacetteBehaviour.objects.filter(is_invalidated=True, invalidation_id=session.valid_for)
+            behaviours = FacetteBehaviour.objects.all()
             behaviour: FacetteBehaviour
             for behaviour in behaviours:
                 # We only care about behavours true for a facette within the current screen while we iterate all facettes *somewhere* selected

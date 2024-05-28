@@ -131,7 +131,6 @@ class Command(BaseCommand):
             "col": 1,
             "row": 1,
             "width": 12,
-            "require_session": True,
             "can_be_marked": True,
             "not_in_versions": [],
             "child_of": None,

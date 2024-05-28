@@ -216,13 +216,8 @@ class Page(Translateable):
         widgets = self.widget_list
         for widget in widgets:
             if hasattr(widget, "topic"):
-                facettes = None    
                 topic = widget.topic
-                if session.valid_for == "latest":
-                    facettes = Facette.objects.filter(topic=topic, is_invalidated=False)
-                else:
-                    logger.debug(f"Answer reset {self} will use facettes of invalidation {session.valid_for}.")
-                    facettes = Facette.objects.filter(topic=topic, is_invalidated=True, invalidation_id=session.valid_for)
+                facettes = Facette.objects.filter(topic=topic)
                 for facette in facettes:
                     FacetteSelection.objects.filter(session=session,facette=facette).delete()
 
