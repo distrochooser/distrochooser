@@ -16,9 +16,10 @@ RUN cd /sass_builder/ && mkdir ../static/ && yarn run build-js && ls -la ../stat
 FROM python:3.11
 ADD code/kuusi /kuusi
 RUN apt-get update && \
-    apt-get install -y gcc libpq-dev python3-psycopg2 && \
+    apt-get install -y gcc nano libpq-dev python3-psycopg postgresql-client && \
     cd /kuusi && \
-    pip install -r requirements.txt
+    pip install -r requirements.txt && \
+    pip install "psycopg[binary]"
 
 RUN adduser --disabled-password --gecos '' kuusi
 
@@ -40,7 +41,6 @@ ADD static/icon.svg /kuusi/static-buildtime/icon.svg
 RUN chown kuusi:kuusi -R /kuusi/static-buildtime
 # Add locales
 ADD locale /kuusi/locale
-
 
 USER kuusi
 EXPOSE 8000
