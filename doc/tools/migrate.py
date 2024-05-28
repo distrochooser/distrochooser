@@ -99,6 +99,7 @@ answer_map = {
     "ux-concept-answer-windows-like": "ux-concept-answer-windows-like"
 }
 
+
 answers = []
 for answer in raw_answers:
     if answer["fields"]["msgid"] in answer_map:
@@ -114,6 +115,11 @@ for answer in answers:
 
 raw_answerdistributionmatrix = list(filter(lambda m: m["model"] == "distrochooser.answerdistributionmatrix", data))
 
+ignored_assignments = [
+    "matrix-computer-knowledge-higher-facette-advanced-usage",
+    "matrix-computer-knowledge-higher-facette-professional-usage"
+]
+
 seen_assigments = {}
 assignment_content =""
 for matrix in raw_answerdistributionmatrix:
@@ -125,11 +131,12 @@ for matrix in raw_answerdistributionmatrix:
     for facette in ref_facettes:
         description += "-facette-" +  facette.replace("\"", "")
 
+
     is_neutral = matrix["fields"]["isNeutralHit"]
     is_negative = matrix["fields"]["isNegativeHit"]
     is_blocking = matrix["fields"]["isBlockingHit"]
     if len(ref_facettes) == 0:
-        print(f"omitting {description}")
+        print(f"omitting {description} due to emptyness")
     else:
         how_str = "positive"
         candidate = {
@@ -153,12 +160,14 @@ for matrix in raw_answerdistributionmatrix:
             if is_blocking:
                 how_str = "blocking"
 
-            
-            assignment_content += f"[assignment.{description}]\n"
-            assignment_content += f"long_description = \"{description}\"\n"
-            assignment_content += f"from = [{','.join(ref_facettes)}]\n"
-            assignment_content += f"to = [{','.join(ref_distros)}]\n"
-            assignment_content += f"how = \"{how_str}\"\n"
+            if description not in ignored_assignments:
+                assignment_content += f"[assignment.{description}]\n"
+                assignment_content += f"long_description = \"{description}\"\n"
+                assignment_content += f"from = [{','.join(ref_facettes)}]\n"
+                assignment_content += f"to = [{','.join(ref_distros)}]\n"
+                assignment_content += f"how = \"{how_str}\"\n"
+            else:
+                print(f"Ignoring to add {description} to assignment content")
             seen_assigments[description] = candidate
 
 
@@ -234,7 +243,6 @@ locales = ["en"] + list(map(lambda l: l.replace(".po", ""), filter(lambda l: ".p
 
 for locale in locales:
     entries_raw = pofile(f"./old-translations/{locale}.po")
-    print(locale)
     entries = {}
     for entry in entries_raw:
         entries[entry.msgid] = entry.msgstr
@@ -251,7 +259,6 @@ for locale in locales:
             for old_key, old_value in entries.items():
                 if old_value == value:
                     page_map[old_key] = key
-    
     choosable_texts= {}
     for choosable in choosables:
         old_msgid = choosable["identifier"]
