@@ -86,9 +86,8 @@ class FacetteBehaviour(Translateable):
         return False
 
     def is_true(self, facette: Facette, others: List[Facette]) -> bool:
-        is_subject = self.affected_subjects.filter(pk__in=[facette.pk]).count() > 0
-        is_object = self.affected_objects.filter(pk__in=[facette.pk]).count() > 0
-
+        is_subject = self.affected_subjects.filter(pk=facette.pk).count() > 0
+        is_object = self.affected_objects.filter(pk=facette.pk).count() > 0
         is_subjects_others = self.facette_in_queryset(others, self.affected_subjects)
         is_objects_others = self.facette_in_queryset(others, self.affected_objects)
 

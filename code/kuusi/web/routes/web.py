@@ -15,6 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+from django.core.cache import cache
 from typing import List, Tuple
 from django.http import (
     HttpResponse,
@@ -63,10 +64,9 @@ def get_page_route(page: Page) -> Tuple[Page | None, List[Page]]:
             next_page = next_page.next_page
         else:
             next_page = None
-    
     return next_page, pages
 
-def get_session(page: Page, request: WebHttpRequest) -> Session:
+def get_session(page: Page, request: WebHttpRequest, id: str = None) -> Session:
     # Get a session object based on the informations present. If no result_id is existing withing the session a new session will be started
     # FIXME: Get rid of the cookie
     # FIXME: The copy of existing answers does not work, causing the old sesion to be resumed
@@ -80,11 +80,11 @@ def get_session(page: Page, request: WebHttpRequest) -> Session:
         session = Session.objects.filter(
             result_id=request.session["result_id"]
         ).first()
+        logger.debug(f"Resumed old session {session.result_id}")
         # TODO: Add some display to indicate what happens to old sessions
         if session.valid_for != "latest": 
             # The session is linking to some old result version
             session = get_fresh_session(request)
-
     request.session["result_id"] = session.result_id
     return session
 
@@ -133,6 +133,11 @@ def clone_selections(id: str, request: WebHttpRequest, session: Session):
 
 def get_categories_and_filtered_pages(pages: List[Page], session: Session) -> Tuple[List[Page], List[Category]]: 
     # Get Categories and pages suitable for the currently existing session
+    cached_version = cache.get(f"get_categories_and_filtered_pages-pages-{session.version}")
+    if cached_version:
+        logger.debug("Returning cached categories and pages")
+        return cache.get(f"get_categories_and_filtered_pages-pages-{session.version}"), cache.get(f"get_categories_and_filtered_pages-categories-{session.version}")
+    
     version_comp_pages = []
     chained_page: Page
     for chained_page in pages:
@@ -147,6 +152,8 @@ def get_categories_and_filtered_pages(pages: List[Page], session: Session) -> Tu
         )
         if used_in_category.count() > 0:
             categories.append(used_in_category.first())
+    cache.set(f"get_categories_and_filtered_pages-pages-{session.version}", version_comp_pages)
+    cache.set(f"get_categories_and_filtered_pages-categories-{session.version}", categories)
     return version_comp_pages, categories
 
 def build_step_data(categories: List[Category], request: WebHttpRequest):
@@ -189,26 +196,18 @@ def route_outgoing(request: WebHttpRequest, id: int, property: str) -> HttpRespo
                 return HttpResponseRedirect(choosable.meta[property].meta_value)
     raise Http404()
 
-def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
-    template = loader.get_template("index.html")
 
+pages_cache  = None
+def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
     # Get the current page
     page_id = request.GET.get("page")
     page = None
     if page_id:
-        page = Page.objects.get(catalogue_id=page_id, is_invalidated=False)
+        page = Page.objects.get(catalogue_id=page_id)
     else:
-        page = Page.objects.filter(is_invalidated=False).first()
+        page = Page.objects.first()
 
-    # get the categories in an order fitting the pages
-    _, pages = get_page_route(page)
-
-    session = get_session(page, request)
-
-    if id is not None and session:
-        # Load selections of an old session, if needed
-        clone_selections(id, request, session)
-
+    session = get_session(page, request, id)
     # Onboard th session to the request oject 
 
     # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
@@ -217,6 +216,28 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     # TODO: These are not properly set within WebHttpRequest class.
     request.has_errors = False
     request.has_warnings = False
+
+    # Turbo call handling
+    # FIXME: The forwarding fuckupery causes the loading time to be more than 2x the regular loading time
+    overwrite_status = 200
+    base_url = f"/{request.LANGUAGE_CODE}" + ("" if not id else f"/{id}")
+    if request.method == "POST":
+        overwrite_status, response = forward_helper(
+            id, overwrite_status, session, base_url, page, request
+        )
+        if response and not overwrite_status:
+            return response
+       
+
+    # get the categories in an order fitting the pages
+    _, pages = get_page_route(page)
+    # Build the navigation/ Categories
+    pages, categories = get_categories_and_filtered_pages(pages, session)
+
+    if id is not None and session:
+        # Load selections of an old session, if needed
+        clone_selections(id, request, session)
+
     # TODO: Investigate correct approach
 
     # i18n handling
@@ -227,21 +248,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         logger.debug(f"Session lang was {session.language_code} is now {request.LANGUAGE_CODE}")
         session.language_code = request.LANGUAGE_CODE
         session.save()
-    translation.activate(request.LANGUAGE_CODE)
-
-    # Build the navigation/ Categories
-    pages, categories = get_categories_and_filtered_pages(pages, session)
-
-    # Turbo call handling
-    overwrite_status = 200
-    base_url = f"/{request.LANGUAGE_CODE}" + ("" if not id else f"/{id}")
-    if request.method == "POST":
-        overwrite_status, response = forward_helper(
-            id, overwrite_status, session, base_url, page, request
-        )
-        if response and not overwrite_status:
-            return response
-        
+    translation.activate(request.LANGUAGE_CODE) 
     
     current_location = request.get_full_path()
     # If the user is curently on the start page -> use the first available site as "current location"
@@ -284,6 +291,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         )
 
     logger.debug(f"Status overwrite is {overwrite_status}")
+    template = loader.get_template("index.html")
 
     return HttpResponse(template.render(context, request), status=overwrite_status)
 

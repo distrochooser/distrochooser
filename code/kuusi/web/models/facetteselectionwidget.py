@@ -103,13 +103,16 @@ class FacetteSelectionWidget(Widget):
         # FIXME: Facettes not triggering
         facette: Facette
         for facette in active_facettes:
-            behaviours = FacetteBehaviour.objects.all()
+            behaviours = FacetteBehaviour.objects.filter(
+                Q(affected_subjects__pk__in=[facette.pk])|
+                Q(affected_objects__pk__in=[facette.pk])
+            )
+            # We only care about behavours true for a facette within the current screen while we iterate all facettes *somewhere* selected
+            not_this = list(
+                filter(lambda f: f.pk != facette.pk, active_facettes_this_widget)
+            )
             behaviour: FacetteBehaviour
             for behaviour in behaviours:
-                # We only care about behavours true for a facette within the current screen while we iterate all facettes *somewhere* selected
-                not_this = list(
-                    filter(lambda f: f.pk != facette.pk, active_facettes_this_widget)
-                )
                 result = behaviour.is_true(facette, not_this)
                 if result:
                     if behaviour.criticality == FacetteBehaviour.Criticality.ERROR:
