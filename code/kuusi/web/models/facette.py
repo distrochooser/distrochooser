@@ -49,8 +49,7 @@ class Facette(Translateable):
         return self.child_facettes.count() > 0
 
     def __str__(self) -> str:
-        invalidation_prefix = f"Invalidated: ({self.invalidation_id}): " if self.is_invalidated else ""
-        return f"{invalidation_prefix}[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) (select: {self.selectable_description})"
+        return f"[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) (select: {self.selectable_description})"
 
 
 class FacetteBehaviour(Translateable):

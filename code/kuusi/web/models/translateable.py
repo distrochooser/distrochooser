@@ -133,10 +133,9 @@ class Translateable(models.Model):
     catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
 
     is_invalidated = models.BooleanField(default=False)
-    invalidation_id = models.CharField(max_length=255, default=None,null=True,blank=True)
 
     def __str__(self) -> str:
-        return f"[{self.invalidation_id}] ({self.catalogue_id})"
+        return f"({self.catalogue_id})"
     def get_msgd_id_of_field(self, key: str) -> str:
         return self._meta.get_field(key).get_msg_id(self)
     def __(self, key: str, language_code: str = "en") -> str:

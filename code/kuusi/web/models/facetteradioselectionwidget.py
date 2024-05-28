@@ -32,12 +32,7 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
         self, data: Dict | None, session: Session
     ) -> Tuple[WarningForm, List, Dict]:
         facette_form = WarningForm(data) if data else WarningForm()
-        facettes = None
-        if session.valid_for == "latest":
-            facettes = Facette.objects.filter(topic=self.topic, is_invalidated=False)
-        else:
-            logger.debug(f"Facette radio widget {self} will use facettes of invalidation {session.valid_for}.")
-            facettes = Facette.objects.filter(topic=self.topic, is_invalidated=True, invalidation_id=session.valid_for)
+        facettes = Facette.objects.filter(topic=self.topic)
         child_facettes = []
         weights = {}
         # TODO: Implement child facette selection (maybe?)
@@ -79,13 +74,7 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
                     FacetteSelection.objects.filter(
                         session=request.session_obj, facette__topic=self.topic
                     ).delete()
-                    facette = None
-                    if request.session_obj.valid_for == "latest":
-                        facette = Facette.objects.get(topic=self.topic, is_invalidated=False, catalogue_id=active_facette)
-                        logger.debug(f"Facette radio widget {self} will use facette of current invalidation {request.session_obj.valid_for} for selection.")
-                    else:
-                        logger.debug(f"Facette radio widget {self} will use facette of invalidation {request.session_obj.valid_for} for selection.")
-                        facette = facette=Facette.objects.get(topic=self.topic, is_invalidated=True, catalogue_id=active_facette, invalidation_id=request.session_obj.valid_for)
+                    facette = Facette.objects.get(topic=self.topic, catalogue_id=active_facette)
                     select = FacetteSelection(facette=facette, session=request.session_obj)
                     select.weight = weight
                     select.save()
