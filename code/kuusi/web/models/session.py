@@ -71,28 +71,3 @@ class Session(models.Model):
     referrer = models.TextField(blank=True, default=None, null=True)
     is_ack = models.BooleanField(default=False) # A session will be 'acknowledged' by a JS snippet to exclude curl() calls
     language_code = models.CharField(max_length=10, default="en", null=False, blank=False)
-
-    # TODO: Add a counter for statistical purposes
-    # TODO: Add a flag to define a version on the facette structure to allow to differentiate between database iterations
-    @property
-    def answered_pages(self):
-        pages = apps.get_model("web", "Page").objects.all()
-        answer_state = {}
-        
-        for page in pages:
-            # TODO: Make this more variable if an answer could result in a text field value, for example.
-            facette_widgets = apps.get_model("web", "FacetteSelectionWidget").objects.filter(
-                pages__pk__in=[page.pk]
-            )
-            if facette_widgets.count() > 0:
-
-                for widget in facette_widgets:
-                    has_selections = (
-                        apps.get_model("web", "FacetteSelection").objects.filter(
-                            session=self, facette__topic=widget.topic
-                        ).count()
-                        > 0
-                    )
-                    if has_selections:
-                        answer_state[page.catalogue_id] = has_selections
-        return answer_state

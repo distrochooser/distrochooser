@@ -66,7 +66,7 @@ def get_page_route(page: Page) -> Tuple[Page | None, List[Page]]:
             next_page = None
     return next_page, pages
 
-def get_session(page: Page, request: WebHttpRequest, id: str = None) -> Session:
+def get_session(request: WebHttpRequest) -> Session:
     # Get a session object based on the informations present. If no result_id is existing withing the session a new session will be started
     # FIXME: Get rid of the cookie
     # FIXME: The copy of existing answers does not work, causing the old sesion to be resumed
@@ -207,7 +207,7 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     else:
         page = Page.objects.first()
 
-    session = get_session(page, request, id)
+    session = get_session(request)
     # Onboard th session to the request oject 
 
     # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
