@@ -44,7 +44,9 @@ for distro in raw_distros:
         "url": distro["fields"]["url"],
         "pk": distro["pk"],
         "name": distro["fields"]["name"],
-        "identifier": distro["fields"]["identifier"].lower()
+        "identifier": distro["fields"]["identifier"].lower(),
+        "bg_color": distro["fields"]["bgColor"],
+        "fg_color": distro["fields"]["fgColor"],
     })
 
 with open(matrix_path + "choosables.toml", "w+") as file:
@@ -52,6 +54,8 @@ with open(matrix_path + "choosables.toml", "w+") as file:
     for choosable in choosables:
         content += "[[choosable]]\n"
         content += f"catalogue_id=\"{choosable['identifier']}\"\n"
+        content += f"bg_color=\"{choosable['bg_color']}\"\n"
+        content += f"fg_color=\"{choosable['fg_color']}\"\n"
 
         content += "[[choosable.meta]]\n"
         content += "meta_type=\"link\"\n"

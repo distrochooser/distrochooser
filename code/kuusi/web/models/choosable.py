@@ -33,6 +33,8 @@ class Choosable(Translateable):
         null=True, blank=True, default=None, max_length=120
     )
     clicked = models.IntegerField(default=0)
+    bg_color = models.CharField(max_length=10, default=None, null=True)
+    fg_color = models.CharField(max_length=10, default=None, null=True)
 
     def __str__(self) -> str:
         return f"{self.name}"

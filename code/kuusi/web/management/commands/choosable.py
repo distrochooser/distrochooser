@@ -29,7 +29,9 @@ def create_choosables(get_or_default: Callable[[str, Dict], any], haystack: Dict
 
         new_choosable = Choosable(
             catalogue_id = catalogue_id,
-            name = catalogue_id
+            name = catalogue_id,
+            fg_color = get_or_default("fg_color", element),
+            bg_color = get_or_default("bg_color", element)
         )
         new_choosable.save()
         # Only assign meta values if there are any
