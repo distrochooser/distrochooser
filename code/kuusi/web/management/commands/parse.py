@@ -136,7 +136,9 @@ class Command(BaseCommand):
             "child_of": None,
             "hide_text": False,
             "hide_help": False,
-            "css_classes": None
+            "css_classes": None,
+            "bg_color": "black",
+            "fg_color": "white"
         }
         if prop in raw:
             return raw[prop]
