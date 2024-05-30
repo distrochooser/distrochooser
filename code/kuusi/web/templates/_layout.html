@@ -19,19 +19,8 @@
     <!--  {% _i18n "DEBUG_MODE_ON" %} -->
     <div class="row">
         <div class="col-3"></div>
-        <div class="col-6 mt-3">{% logo %}
-
-            <div class="row">
-                {% if is_old %}
-                <div class="col-12 alert alert-info">
-                    {% if debug %}
-                    INVALIDATION: {{ session.valid_for }}
-                    {% else %}
-                    {% _i18n "OLD_RESULT" %}
-                    {% endif %}
-                </div>
-                {% endif %}
-            </div>
+        <div class="col-6 mt-3">
+            {% logo %}
         </div>
     </div>
     <main>
@@ -45,7 +34,9 @@
                     <div class="col">
                     </div>
                     <div class="col">
-                        <div class="alert alert-danger">{% _i18n "DEBUG_MODE_ON_DESCRIPTION" %}</div>
+                        <div class="alert alert-danger">
+                            <input name="result_id" value="{{session.result_id}}">
+                        {% _i18n "DEBUG_MODE_ON_DESCRIPTION" %}</div>
                     </div>
                     <div class="col">
                     </div>

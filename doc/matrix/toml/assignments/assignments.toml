@@ -68,21 +68,11 @@ long_description = "requires-some-computer-knowledge-facette-beginner-usage"
 from = ["beginner-usage"]
 to = ["debian","tails","devuan","arch","manjaro","rocky","rhel","MXLinux","Fedora","Gentoo","Knoppix","CruxLinux","qubesos","nixOS","void","artix"]
 how = "negative"
-[assignment.matrix-computer-knowledge-higher-facette-advanced-usage]
-long_description = "matrix-computer-knowledge-higher-facette-advanced-usage"
-from = ["advanced-usage"]
-to = ["ubuntu","mint","solus","pclinuxos","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","deepin"]
-how = "neutral"
 [assignment.matrix-requires-advanced-knowledge-facette-advanced-usage]
 long_description = "matrix-requires-advanced-knowledge-facette-advanced-usage"
 from = ["advanced-usage"]
 to = ["debian","devuan","arch","manjaro","rocky","rhel","MXLinux","Fedora","Gentoo","Knoppix","CruxLinux","qubesos","void","artix"]
 how = "positive"
-[assignment.matrix-computer-knowledge-higher-facette-professional-usage]
-long_description = "matrix-computer-knowledge-higher-facette-professional-usage"
-from = ["professional-usage"]
-to = ["ubuntu","mint","solus","manjaro","pclinuxos","MXLinux","elementaryOS","Xubuntu","Lubuntu","UbuntuMATE","kubuntu","popos","deepin"]
-how = "neutral"
 [assignment.matrix-requires-advanced-knowledge-facette-professional-usage]
 long_description = "matrix-requires-advanced-knowledge-facette-professional-usage"
 from = ["professional-usage"]

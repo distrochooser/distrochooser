@@ -31,7 +31,7 @@ class ResultShareWidget(Widget):
             {
                 "session": request.session_obj,
                 "page": page,
-                "share_link": f"{KUUSI_URL}/{request.session_obj.result_id}",
+                "share_link": f"{KUUSI_URL}/{request.session_obj.language_code}/{request.session_obj.result_id}",
             },
             request,
         )

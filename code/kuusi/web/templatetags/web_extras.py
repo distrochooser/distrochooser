@@ -199,10 +199,10 @@ def warnings(warnings: Dict[str, List[ValidationError]]):
 
 @register.inclusion_tag(takes_context=True,filename="tags/language_select.html")
 def language_select(context):
-    request: HttpRequest = context["request"]
-    
+    request: WebHttpRequest = context["request"]
+    session_result_id = request.session_obj.result_id
     language_code = get_language()
-    return {"language_codes": LANGUAGE_CODES, "current_language": language_code, "get_params": request.GET.urlencode()}
+    return {"result_id": session_result_id, "language_codes": LANGUAGE_CODES, "current_language": language_code, "get_params": request.GET.urlencode()}
 
 @register.simple_tag()
 def rtl_class(language_code: str):

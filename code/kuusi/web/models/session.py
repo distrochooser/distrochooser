@@ -59,7 +59,6 @@ class Session(models.Model):
         related_name="session_version",
     )
     number = models.IntegerField(default=get_session_number, null=True, blank=True)
-    valid_for = models.CharField(max_length=15, default="latest",null=True,blank=True)
     session_origin = models.ForeignKey(
         to="Session",
         on_delete=models.SET_NULL,

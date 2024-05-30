@@ -7,7 +7,7 @@
     </button>
     <ul class="dropdown-menu">
         {% for code in language_codes %}
-            <li><a class="dropdown-item" href="/{{code}}/?{{get_params}}">{{code}}</a></li>
+            <li><a class="dropdown-item" href="/{{code}}/{{result_id}}?{{get_params}}">{{code}}</a></li>
         {% endfor %}
     </ul>
   </div>

@@ -44,7 +44,7 @@ from logging import getLogger
 logger = getLogger("root")
 
 
-def get_page_route(page: Page) -> Tuple[Page | None, List[Page]]: 
+def get_page_route(page: Page) -> List[Page]: 
     """
     Get a next page and all available pages from the given page as a start point
     """
@@ -64,29 +64,39 @@ def get_page_route(page: Page) -> Tuple[Page | None, List[Page]]:
             next_page = next_page.next_page
         else:
             next_page = None
-    return next_page, pages
+    return pages
 
-def get_session(request: WebHttpRequest) -> Session:
+def get_session(request: WebHttpRequest, param_id: str=None) -> Tuple[bool, Session]:
     # Get a session object based on the informations present. If no result_id is existing withing the session a new session will be started
     # FIXME: Get rid of the cookie
-    # FIXME: The copy of existing answers does not work, causing the old sesion to be resumed
-    session: Session = None
-    # TODO: Make the handling better. TO pick up old results it's required to have a session, but the welcome page should not feature a session due to cookies
-    # TODO: Decide if when no id is given -> new session or not?
     # TODO: Also, get rid of the csrftoken cookie until user gave consent
+    session: Session = None
+    is_new = False
     if "result_id" not in request.session:
         session = get_fresh_session(request)
+        is_new = True
     else:
-        session = Session.objects.filter(
-            result_id=request.session["result_id"]
-        ).first()
-        logger.debug(f"Resumed old session {session.result_id}")
-        # TODO: Add some display to indicate what happens to old sessions
-        if session.valid_for != "latest": 
-            # The session is linking to some old result version
+        cookie_result_id = request.session.get("result_id")
+        if cookie_result_id != param_id:
             session = get_fresh_session(request)
+            is_new = True
+            logger.debug(f"The id's differed. Creating new session {session.result_id}")
+        else:
+            session = Session.objects.filter(
+                result_id=request.session["result_id"]
+            ).first()
+            logger.debug(f"Resumed old session {session.result_id}")
+
+    if is_new and param_id is not None: 
+        # Load selections of an old session, if needed
+        logger.debug(f"Copying selections from {param_id} to {session.result_id}")
+        clone_selections(param_id, request, session)
+    else:
+        logger.debug("Omitting the cloning of selection, as the cookie features the result_id from the query params.")
+
+
     request.session["result_id"] = session.result_id
-    return session
+    return is_new, session
 
 def get_fresh_session(request: WebHttpRequest) -> Session:
     user_agent = request.headers.get("user-agent")
@@ -96,7 +106,11 @@ def get_fresh_session(request: WebHttpRequest) -> Session:
     return session
 
 def clone_selections(id: str, request: WebHttpRequest, session: Session):
+    #FIXME: There is no log output when the session is existing AND already cloned, even as it seems working properly..dafuq?
     old_session = Session.objects.filter(result_id=id).first()
+    if session.session_origin is not None and session.session_origin.result_id == id:
+        logger.debug(f"Aborting copy to prevent double copy")
+        return
     if old_session:
         logger.debug(f"Found old session {old_session}")
         if not session.session_origin:
@@ -113,8 +127,6 @@ def clone_selections(id: str, request: WebHttpRequest, session: Session):
                     selection.pk = None
                     selection.session = session
                     selection.save()
-            # Make sure that copied results do not leave the version
-            session.valid_for = old_session.valid_for
             session.session_origin = old_session
             session.save()
         else:
@@ -131,7 +143,9 @@ def clone_selections(id: str, request: WebHttpRequest, session: Session):
                     f"Skipping selection copy, the session {session} is already linked to session {old_session}"
                 )
 
-def get_categories_and_filtered_pages(pages: List[Page], session: Session) -> Tuple[List[Page], List[Category]]: 
+def get_categories_and_filtered_pages(page: Page, session: Session) -> Tuple[List[Page], List[Category]]: 
+    # get the categories in an order fitting the pages
+    pages = get_page_route(page)
     # Get Categories and pages suitable for the currently existing session
     cached_version = cache.get(f"get_categories_and_filtered_pages-pages-{session.version}")
     if cached_version:
@@ -197,7 +211,6 @@ def route_outgoing(request: WebHttpRequest, id: int, property: str) -> HttpRespo
     raise Http404()
 
 
-pages_cache  = None
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
     # Get the current page
     page_id = request.GET.get("page")
@@ -207,7 +220,21 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     else:
         page = Page.objects.first()
 
-    session = get_session(request)
+    _, session = get_session(request, id)
+
+    # i18n handling
+    request.LANGUAGE_CODE = (
+        DEFAULT_LANGUAGE_CODE if not language_code else language_code
+    )
+    if session.language_code != request.LANGUAGE_CODE:
+        logger.debug(f"Session lang was {session.language_code} is now {request.LANGUAGE_CODE}")
+        session.language_code = request.LANGUAGE_CODE
+        session.save()
+    translation.activate(request.LANGUAGE_CODE) 
+
+    # If the id is none -> Redirect the user to a URL representing the entire state
+    if id is None or id != session.result_id or language_code is None:
+        return HttpResponseRedirect(f"/{request.LANGUAGE_CODE}/{session.result_id}?page={page.catalogue_id}")
     # Onboard th session to the request oject 
 
     # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
@@ -229,26 +256,10 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
             return response
        
 
-    # get the categories in an order fitting the pages
-    _, pages = get_page_route(page)
     # Build the navigation/ Categories
-    pages, categories = get_categories_and_filtered_pages(pages, session)
+    pages, categories = get_categories_and_filtered_pages(page, session)
 
-    if id is not None and session:
-        # Load selections of an old session, if needed
-        clone_selections(id, request, session)
-
-    # TODO: Investigate correct approach
-
-    # i18n handling
-    request.LANGUAGE_CODE = (
-        DEFAULT_LANGUAGE_CODE if not language_code else language_code
-    )
-    if session.language_code != request.LANGUAGE_CODE:
-        logger.debug(f"Session lang was {session.language_code} is now {request.LANGUAGE_CODE}")
-        session.language_code = request.LANGUAGE_CODE
-        session.save()
-    translation.activate(request.LANGUAGE_CODE) 
+  
     
     current_location = request.get_full_path()
     # If the user is curently on the start page -> use the first available site as "current location"
@@ -277,7 +288,6 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         "language_codes": LANGUAGE_CODES,
         "language_code": request.LANGUAGE_CODE,
         "session": session,
-        "is_old": session.valid_for != "latest",
         "locale_incomplete": language_code in INCOMPLETE_TRANSLATIONS,
         "translation_url": KUUSI_TRANSLATION_URL
     }
