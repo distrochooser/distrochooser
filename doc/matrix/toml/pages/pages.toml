@@ -76,7 +76,7 @@ target_page = "pc-knowledge-page"
 next_page = "installation-page"
 hide_help = true
 
-[widget.selection.linux-knowledge-page-widget-name]
+[widget.radio.linux-knowledge-page-widget-name]
 topic = "linux-knowledge"
 pages = ["linux-knowledge-page"]
 
