@@ -44,4 +44,4 @@ RUN chown kuusi:kuusi -R /kuusi/static-buildtime && chmod +x /kuusi/run.sh
 USER kuusi
 EXPOSE 8000
 WORKDIR /kuusi
-CMD ["run.sh"]
+CMD ["/kuusi/run.sh"]
