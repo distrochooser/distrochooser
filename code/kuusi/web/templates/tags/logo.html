@@ -1,4 +1,4 @@
 {% load static%}
 <p class="text-center">
-    <a href="?page=welcome-page"><img class="ku-logo" src="{% static 'logo.svg' %}"/></a>
+    <a href="{%if not on_static_page%}?page=welcome-page{%else%}/{%endif%}"><img class="ku-logo" src="{% static 'logo.svg' %}"/></a>
 </p>
