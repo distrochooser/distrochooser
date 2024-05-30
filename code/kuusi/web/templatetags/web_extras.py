@@ -88,8 +88,8 @@ def page(context, page: Page):
 
 
 @register.inclusion_tag(filename="tags/logo.html")
-def logo():
-    return {}
+def logo(on_static_page: bool = False):
+    return {"on_static_page": on_static_page}
 
 
 @register.inclusion_tag(filename="tags/step.html", takes_context=True)
