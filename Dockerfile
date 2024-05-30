@@ -30,7 +30,6 @@ COPY --from=sass_builder /sass_builder/node_modules/flag-icons/flags/ /kuusi/sta
 COPY --from=sass_builder /sass_builder/custom.css /kuusi/static-buildtime/custom.css
 COPY --from=sass_builder /sass_builder/custom.css.map /kuusi/static-buildtime/custom.css.map
 
-# TODO: Add proper webpack-ish pipeline
 COPY --from=sass_builder /static/bundle.js /kuusi/static-buildtime/bundle.js
 COPY --from=sass_builder /static/turbo.es2017-umd.js /kuusi/static-buildtime/turbo.es2017-umd.js
 
@@ -38,11 +37,11 @@ COPY --from=sass_builder /static/turbo.es2017-umd.js /kuusi/static-buildtime/tur
 ADD static/logo.svg /kuusi/static-buildtime/logo.svg
 ADD static/icon.svg /kuusi/static-buildtime/icon.svg
 
-RUN chown kuusi:kuusi -R /kuusi/static-buildtime
 # Add locales
 ADD locale /kuusi/locale
-
+ADD run.sh /kuusi/run.sh
+RUN chown kuusi:kuusi -R /kuusi/static-buildtime && chmod +x /kuusi/run.sh
 USER kuusi
 EXPOSE 8000
 WORKDIR /kuusi
-CMD ["gunicorn", "kuusi.wsgi", "--timeout", "600", "-b", "0.0.0.0"]
+CMD ["run.sh"]
