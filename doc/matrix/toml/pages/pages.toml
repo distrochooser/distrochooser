@@ -104,7 +104,7 @@ target_page = "installation-page"
 next_page = "help-page"
 not_in_versions = ["simplified"]
 
-[widget.selection.old-hardware-page-widget-name]
+[widget.radio.old-hardware-page-widget-name]
 topic = "old-hardware"
 pages = ["old-hardware-page"]
 
@@ -174,6 +174,7 @@ target_page = "scope-page"
 
 [page.ideology-page]
 next_page = "privacy-page"
+not_in_versions = ["simplified"]
 
 # TODO:  The UX question should be a media selection
 [widget.selection.ideology-page-widget-name]
