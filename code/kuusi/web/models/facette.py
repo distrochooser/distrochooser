@@ -24,6 +24,7 @@ from web.models import Translateable, TranslateableField, Session, Choosable
 from django.db import models
 from django.db.models import  QuerySet
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.apps import apps
 
 class Facette(Translateable):
     """
@@ -137,6 +138,9 @@ class FacetteAssignment(Translateable):
         facettes_str = [f.catalogue_id for f in self.facettes.all()]
         return f"{choosables_str} -> {facettes_str} ({self.assignment_type})"
 
+    def is_flagged(self, choosable: Choosable) -> bool:
+        return apps.get_model("web", "Feedback").objects.filter(assignment=self, choosable=choosable).count() != 0
+    
     @property
     def facette_topics(self) -> List[str]:
         """

@@ -36,7 +36,7 @@ from kuusi.settings import (
     DEFAULT_LANGUAGE_CODE,
     KUUSI_TRANSLATION_URL
 )
-from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection, Choosable, ChoosableMeta
+from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection, Choosable, ChoosableMeta, FacetteAssignment, Feedback
 from web.helper import forward_helper
 from web.models.translateable import INCOMPLETE_TRANSLATIONS
 from logging import getLogger
@@ -305,3 +305,23 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
 
     return HttpResponse(template.render(context, request), status=overwrite_status)
 
+
+def route_feedback(request: WebHttpRequest,assignment_id: int, choosable_id: int):
+    assignment: FacetteAssignment = FacetteAssignment.objects.get(pk=assignment_id)
+    choosable: Choosable = Choosable.objects.get(pk=choosable_id)
+    session: Session = Session.objects.get(result_id=request.session.get("result_id"))
+    if not assignment.is_flagged(choosable):
+        Feedback.objects.create(
+            assignment=assignment,
+            is_positive=False,
+            choosable=choosable
+        )
+    else:
+        Feedback.objects.filter(assignment=assignment, choosable=choosable).delete()
+
+    url = f"/{session.language_code}/{session.result_id}?page=result-page"
+    if request.GET.get("scroll_to"):
+        url += f"&scroll_to={request.GET.get('scroll_to')}"
+    else:
+        url += f"#{choosable.pk}"
+    return HttpResponseRedirect(url)

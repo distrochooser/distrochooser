@@ -56,9 +56,8 @@ def render_widget(context, widget: Widget, page: Page):
     request: HttpRequest = context["request"]
     return widget.render(request, page)
 
-
-@register.inclusion_tag(takes_context=True, filename="tags/i18n.html")
-def _i18n(context, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
+@register.simple_tag(takes_context=True)
+def _i18n_flat(context, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
     language_code = get_language()
     value = None
     needle = None
@@ -70,8 +69,16 @@ def _i18n(context, translateable_object: Translateable | safestring.SafeString |
     else:
         needle = str(translateable_object)
         value = TRANSLATIONS[language_code][needle] if needle in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][needle] is not None else needle
-
     return {"value": value, "needle": needle}
+
+@register.simple_tag(takes_context=True)
+def _i18n_flat_value(context, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
+    return _i18n_flat(context, translateable_object,key).get("value")
+
+
+@register.inclusion_tag(takes_context=True, filename="tags/i18n.html")
+def _i18n(context, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
+    return _i18n_flat(context, translateable_object,key)
 
 @register.inclusion_tag(filename="tags/page.html", takes_context=True)
 def page(context, page: Page):
@@ -216,3 +223,8 @@ def meta_tags():
     return {
         "tags": result
     }
+
+@register.inclusion_tag(filename="tags/feedback_state.html")
+def feedback_state(assignment: FacetteAssignment, choosable: Choosable):
+    is_flagged = assignment.is_flagged(choosable)
+    return {"assignment": assignment, "choosable": "choosable", "is_flagged": is_flagged}
