@@ -1,4 +1,4 @@
-/*
+"""
 kuusi
 Copyright (C) 2014-2024  Christoph Müller  <mail@chmr.eu>
 
@@ -14,11 +14,16 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+"""
 
-require("./facettes.js");
-require("./ack.js");
-require("./i18n.js");
+from __future__ import annotations
+from django.db import models
+from django.http import HttpRequest
 
-require("../node_modules/@popperjs/core/dist/umd/popper.js");
-require("../node_modules/bootstrap/dist/js/bootstrap.bundle.js");
+from .choosable import Choosable
+from .facette import FacetteAssignment
+
+class Feedback(models.Model):
+    choosable = models.ForeignKey(to=Choosable, null=False, on_delete=models.CASCADE)
+    assignment = models.ForeignKey(to=FacetteAssignment, null=False, on_delete=models.CASCADE)
+    is_positive = models.BooleanField(default=False)

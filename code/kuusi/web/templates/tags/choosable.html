@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header" id="{{choosable.pk}}">
                 {% _i18n choosable "name" %}
             </div>
             <div class="card-body">
@@ -29,31 +29,36 @@
                         <div class="list-group">
                             <!-- TODO: Add some relation between mapping and assignment for editing -->
                             {% for assignment, weighted_score in assignments %}
-                            <div class="list-group-item list-group-item-action"> 
-                                <div class="d-flex w-100">
-                                    <!-- {% _i18n "NEUTRAL" %} -->
-                                    <!-- {% _i18n "NEGATIVE" %} -->
-                                    <!-- {% _i18n "POSITIVE" %} -->
-                                    {% if weighted_score != 1 %}
-                                        <small class="d-inline badge rounded-pill ku-badge-{{weighted_score|replace_weight_signs}}x me-2">{{weighted_score|weight_abs}}x</small>
-                                    {% endif %}
-                                    <small class="badge rounded-pill ku-badge-{{assignment.assignment_type|lower}}">{% _i18n assignment.assignment_type %} </small>
-                                </div>
-                                <p class="mb-1">{% _i18n  assignment "long_description" %}</p>
-                                <small>
-                                    {% for facette_topic in assignment.facette_topics %}
-                                    <div class="col">
-                                        <span class="badge rounded-pill text-bg-light">
-                                            {% _i18n facette_topic "topic" %}
-                                        </span>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100">
+                                            <!-- {% _i18n "NEUTRAL" %} -->
+                                            <!-- {% _i18n "NEGATIVE" %} -->
+                                            <!-- {% _i18n "POSITIVE" %} -->
+                                            {% if weighted_score != 1 %}
+                                            <small
+                                                class="d-inline badge rounded-pill ku-badge-{{weighted_score|replace_weight_signs}}x me-2">{{weighted_score|weight_abs}}x</small>
+                                            {% endif %}
+                                            <small
+                                                class="badge rounded-pill ku-badge-{{assignment.assignment_type|lower}}">{% _i18n assignment.assignment_type %} </small>
+                                            <a title="{% _i18n_flat_value "ASSIGNMENT_FLAG_TOGGLE"%}" href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state assignment choosable%}</a>
+                                        </div>
+                                        <p class="mb-1">{% _i18n  assignment "long_description" %}</p>
+                                        <small>
+                                            {% for facette_topic in assignment.facette_topics %}
+                                            <div class="col">
+                                                <span class="badge rounded-pill text-bg-light">
+                                                    {% _i18n facette_topic "topic" %}
+                                                </span>
+                                            </div>
+                                            {%endfor%}
+                                        </small>
                                     </div>
-                                    {%endfor%}
-                                </small>
+                                </div>
                             </div>
                             {%endfor%}
                         </div>
-                        <ul>
-                        </ul>
                     </div>
                 </div>
             </div>

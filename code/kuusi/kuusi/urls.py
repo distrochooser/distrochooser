@@ -20,15 +20,16 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls.static import static
 
-from web.routes.web import route_index, route_outgoing
+from web.routes.web import route_index, route_outgoing, route_feedback
 from web.routes.static import  route_about, route_contact, route_privacy
 from web.routes.matrix import route_update
 from web.routes.ack import route_ack
 
-from kuusi.settings import STATIC_URL, STATIC_ROOT
+from kuusi.settings import STATIC_URL, STATIC_ROOT, DEBUG
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("feedback/<assignment_id>/<choosable_id>",  route_feedback, name="route_feedback"),
     re_path('api/ack/(?P<result_id>[a-zA-Z0-9]+)', route_ack),
     re_path("(?P<language_code>[a-z]+)/about", route_about, name="route_about"),
     re_path("(?P<language_code>[a-z]+)/privacy", route_privacy, name="route_privacy"),
