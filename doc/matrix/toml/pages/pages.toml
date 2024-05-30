@@ -39,7 +39,7 @@ next_page = "scenario-page"
 pages = ["version-page"]
 
 [category.version-page-category]
-icon = "bi bi-house-door"
+icon = "bi bi-signpost-2"
 target_page = "version-page"
 
 # Scenario page
