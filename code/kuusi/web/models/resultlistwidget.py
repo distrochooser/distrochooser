@@ -89,6 +89,7 @@ class ResultListWidget(Widget):
             raw_results[choosable] = score
 
         ranked_keys =sorted(raw_results, key=raw_results.get, reverse=True)
+        all_scores = list(set(map(lambda s: s, raw_results.values())))
         ranked_result = {}
         # TODO: Add weights for display (also on navigation steps!)
         for key in ranked_keys:
@@ -97,6 +98,9 @@ class ResultListWidget(Widget):
                     "choosable": key,
                     "score": raw_results[key],
                     "assignments": assignments_used[key],
+                    "position": all_scores.index(raw_results[key]) + 1 # FIXME: Does not work
                 }
-
-        return render_template.render({"page": page, "results": ranked_result}, request)
+        display_mode = "compact"
+        if request.GET.get("switch_to") is not None and request.GET.get("switch_to") in ["list", "compact"]:
+            display_mode = request.GET.get("switch_to")
+        return render_template.render({"display_mode": display_mode, "page": page, "results": ranked_result}, request)

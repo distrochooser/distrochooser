@@ -1,9 +1,9 @@
 {% load web_extras %}
 {% load i18n %}
-<div class="row">
+<div class="row ku-result-item">
     <div class="col-12">
         <div class="card">
-            <div class="card-header" style="color: {{choosable.fg_color}}; background-color: {{choosable.bg_color}};" id="{{choosable.pk}}">
+            <div class="card-header" style="color: {{choosable.fg_color}}; background-color: {{choosable.bg_color}};" id="choosable_{{choosable.pk}}">
                 {% _i18n choosable "name" %}
             </div>
             <div class="card-body">
@@ -11,7 +11,7 @@
 
                 <div class="row mb-2 mt-2">
                     {% for _, meta_obj in choosable.meta.items %}
-                    <div class="col">
+                    <div class="col-3">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title text-truncate">{{ meta_obj.get_meta_name_display }}
@@ -27,12 +27,12 @@
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="list-group">
+                            <div class="row">
                             <!-- TODO: Add some relation between mapping and assignment for editing -->
                             {% for assignment, weighted_score in assignments %}
-                            <div class="row">
-                                <div class="col-12">
+                                <div class="col-3 mb-3">
                                     <div class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100">
+                                        <div class="d-flex">
                                             <!-- {% _i18n "NEUTRAL" %} -->
                                             <!-- {% _i18n "NEGATIVE" %} -->
                                             <!-- {% _i18n "POSITIVE" %} -->
@@ -45,19 +45,21 @@
                                             <a title="{% _i18n_flat_value "ASSIGNMENT_FLAG_TOGGLE"%}" href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state assignment choosable%}</a>
                                         </div>
                                         <p class="mb-1">{% _i18n  assignment "long_description" %}</p>
-                                        <small>
-                                            {% for facette_topic in assignment.facette_topics %}
-                                            <div class="col">
-                                                <span class="badge rounded-pill text-bg-light">
-                                                    {% _i18n facette_topic "topic" %}
-                                                </span>
-                                            </div>
-                                            {%endfor%}
-                                        </small>
+                                        <div class="row d-flex">
+                                            <small>
+                                                {% for facette_topic in assignment.facette_topics %}
+                                                <div class="col">
+                                                    <span class="badge rounded-pill text-bg-light">
+                                                        {% _i18n facette_topic "topic" %}
+                                                    </span>
+                                                </div>
+                                                {%endfor%}
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             {%endfor%}
+                            </div>
                         </div>
                     </div>
                 </div>

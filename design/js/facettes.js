@@ -57,3 +57,6 @@ var urlParams = new URLSearchParams(window.location.search)
 if (urlParams.get('scroll_to')) {
     document.documentElement.scrollTop = urlParams.get('scroll_to')
 }
+
+/* Assign scrollspy window height */
+document.querySelector(".ku-result-list").setAttribute("style", "height: " + document.querySelector("#ku-result-list-scrollspy").offsetHeight + "px !important") 

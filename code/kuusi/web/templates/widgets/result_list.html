@@ -1,6 +1,35 @@
 {% load web_extras %}
-{% for key, result in results.items %}
-<div class="row mt-3">
-    {% choosable result %}
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="?page=result-page&switch_to=list" class="btn btn-outline-primary {% if display_mode == "list" %}active{% endif %}"><i class="bi bi-list"></i></a>
+            <a href="?page=result-page&switch_to=compact" class="btn btn-outline-primary {% if display_mode == "compact" %}active{% endif%}"><i class="bi bi-list-columns-reverse"></i></a>
+        </div>
+    </div>
 </div>
-{% endfor %}
+{% if display_mode == "compact" %}
+<div class="row mt-3">
+    <div class="col-1">
+        <div id="ku-result-list-scrollspy" class="list-group">
+            {% for key, result in results.items %}
+               <a class="list-group-item list-group-item-action" style="color: {{result.choosable.fg_color}}; background-color: {{result.choosable.bg_color}};"  href="#choosable_{{ result.choosable.pk }}" >{{ forloop.counter }}. {% _i18n result.choosable "name" %} </a>
+            {% endfor %}    
+        </div>
+  
+    </div>
+    <div class="col-11 h-100 overflow-auto ku-result-list">
+        {% for key, result in results.items %}
+            {% choosable result %}
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="row mt-3">
+        {% for key, result in results.items %}
+        <div class="col-12 h-100 mt-3">
+            {% choosable result %}
+        </div>
+        {% endfor %}
+</div>
+{% endif %}
