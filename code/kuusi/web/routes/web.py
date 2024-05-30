@@ -323,5 +323,5 @@ def route_feedback(request: WebHttpRequest,assignment_id: int, choosable_id: int
     if request.GET.get("scroll_to"):
         url += f"&scroll_to={request.GET.get('scroll_to')}"
     else:
-        url += f"#{choosable.pk}"
+        url += f"#choosable_{choosable.pk}"
     return HttpResponseRedirect(url)

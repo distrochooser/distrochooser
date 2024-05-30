@@ -1,3 +1,8 @@
 .ku-rtl {
     direction: rtl;
+    /* Move the language select to the left to prevent overlap with the navigation */
+    .ku-language-select-container {
+        left: 1em !important;
+        right: unset !important;
+    }
 }
