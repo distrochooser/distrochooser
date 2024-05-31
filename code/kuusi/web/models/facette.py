@@ -153,6 +153,18 @@ class FacetteAssignment(Translateable):
                 topics.append(facette.topic)
         return topics
 
+
+    def __lt__(self, other):
+        order = [
+            FacetteAssignment.AssignmentType.POSITIVE,
+            FacetteAssignment.AssignmentType.NEUTRAL,
+            FacetteAssignment.AssignmentType.NEGATIVE,
+            FacetteAssignment.AssignmentType.BLOCKING,
+        ]
+        my_index = order.index(self.assignment_type)
+        other_index = order.index(other.assignment_type)
+        return my_index > other_index
+    
     class AssignmentType(models.TextChoices):
         POSITIVE = "POSITIVE", "POSITIVE"
         NEGATIVE = "NEGATIVE", "NEGATIVE"
@@ -166,20 +178,17 @@ class FacetteAssignment(Translateable):
             The result set is keys from this class with numeric values.
 
             The calculation is located here to allow the assignment types to be extended without altering major parts of the code.
+            FIXME: Add a more "natural" sorting 
             """
             score_map = {
                 FacetteAssignment.AssignmentType.POSITIVE: 1,
                 FacetteAssignment.AssignmentType.NEGATIVE: -1,
                 FacetteAssignment.AssignmentType.NEUTRAL: 0,
+                FacetteAssignment.AssignmentType.BLOCKING: -100,
             }
             score = 0
             for key, value in haystack.items():
-                if key == FacetteAssignment.AssignmentType.BLOCKING:
-                    if value != 0:
-                        score = 0
-                        break
-                else:
-                    score += score_map[key] * value
+                score += score_map[key] * value
             
             return score
 

@@ -90,17 +90,32 @@ class ResultListWidget(Widget):
 
         ranked_keys =sorted(raw_results, key=raw_results.get, reverse=True)
         all_scores = list(set(map(lambda s: s, raw_results.values())))
+        all_scores.sort()
+        all_scores.reverse()
         ranked_result = {}
         # TODO: Add weights for display (also on navigation steps!)
         for key in ranked_keys:
             if len(assignments_used[key]) > 0:
+                sorted_assignments = sorted(assignments_used[key])
+                assignment_stats = {}
+                for value in sorted_assignments:
+                    assignment = value[0]
+                    if assignment.assignment_type not in assignment_stats:
+                        assignment_stats[assignment.assignment_type] = 1
+                    else: 
+                        assignment_stats[assignment.assignment_type]+=1
+                
                 ranked_result[key] = {
                     "choosable": key,
                     "score": raw_results[key],
-                    "assignments": assignments_used[key],
-                    "position": all_scores.index(raw_results[key]) + 1 # FIXME: Does not work
+                    "assignments": sorted_assignments,
+                    "position": all_scores.index(raw_results[key]) + 1,
+                    "stats": assignment_stats
                 }
-        display_mode = "compact"
+        # Default mode is compact unless the session or the get parameter overwrites it
+        display_mode = "compact" if not request.session_obj.display_mode else request.session_obj.display_mode
         if request.GET.get("switch_to") is not None and request.GET.get("switch_to") in ["list", "compact"]:
             display_mode = request.GET.get("switch_to")
+            request.session_obj.display_mode = display_mode
+            request.session_obj.save()
         return render_template.render({"display_mode": display_mode, "page": page, "results": ranked_result}, request)
