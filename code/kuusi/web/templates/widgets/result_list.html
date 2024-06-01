@@ -11,18 +11,21 @@
 {% if display_mode == "compact" %}
 <div class="row mt-3">
     <div class="col-2">
-        
         <div id="ku-result-list-scrollspy" class="list-group rounded-0">
             {% for key, result in results.items %}
             <a  class="text-decoration-none list-group-item list-group-item-action"  style="background-color: {{result.choosable.bg_color}};color: {{result.choosable.fg_color}};" href="#choosable_{{ result.choosable.pk }}" >
                 <div class="row g-0">
-                    <div class="col">
-                       {{ result.position }}. {% _i18n result.choosable "name" %}
+                    <div class="col  text-center">
+                       {{ result.position }}
+                       <span class="d-none d-lg-inline">
+                        . {% _i18n result.choosable "name" %}
 
-                       <span class="badge text-bg-success"   title="{{ result.stats.POSITIVE }}x {% _i18n_flat_value "POSITIVE" %}">{{ result.stats.POSITIVE }}</span>
-                       <span class="badge text-bg-secondary" title="{{ result.stats.NEUTRAL }}x {% _i18n_flat_value "NEUTRAL" %}">{{ result.stats.NEUTRAL }}</span>
-                       <span class="badge text-bg-danger"    title="{{ result.stats.NEGATIVE }}x {% _i18n_flat_value "NEGATIVE" %}">{{ result.stats.NEGATIVE }}</span>
-                       <span class="badge text-bg-dark"      title="{{ result.stats.BLOCKING }}x {% _i18n_flat_value "BLOCKING" %}">{{ result.stats.BLOCKING }}</span>
+                        <span class="badge text-bg-success"   title="{{ result.stats.POSITIVE }}x {% _i18n_flat_value "POSITIVE" %}">{{ result.stats.POSITIVE }}</span>
+                        <span class="badge text-bg-secondary" title="{{ result.stats.NEUTRAL }}x {% _i18n_flat_value "NEUTRAL" %}">{{ result.stats.NEUTRAL }}</span>
+                        <span class="badge text-bg-danger"    title="{{ result.stats.NEGATIVE }}x {% _i18n_flat_value "NEGATIVE" %}">{{ result.stats.NEGATIVE }}</span>
+                        <span class="badge text-bg-dark"      title="{{ result.stats.BLOCKING }}x {% _i18n_flat_value "BLOCKING" %}">{{ result.stats.BLOCKING }}</span>
+                       </span>
+
 
                     </div>
                 </div>

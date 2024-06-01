@@ -11,7 +11,7 @@
 
                 <div class="row mb-2 mt-2">
                     {% for _, meta_obj in choosable.meta.items %}
-                    <div class="col-3">
+                    <div class="col-12 col-sm-3">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title text-truncate">{{ meta_obj.get_meta_name_display }}
@@ -30,7 +30,7 @@
                             <div class="row">
                             <!-- TODO: Add some relation between mapping and assignment for editing -->
                             {% for assignment, weighted_score in assignments %}
-                                <div class="col-3 mb-3">
+                                <div class="col-12 col-sm-3 mb-3">
                                     <div class="list-group-item list-group-item-action">
                                         <div class="d-flex">
                                             <!-- {% _i18n "NEUTRAL" %} -->
@@ -38,10 +38,10 @@
                                             <!-- {% _i18n "POSITIVE" %} -->
                                             {% if weighted_score != 1 %}
                                             <small
-                                                class="d-inline badge rounded-pill ku-badge-{{weighted_score|replace_weight_signs}}x me-2">{{weighted_score|weight_abs}}x</small>
+                                                class="d-inline badge text-wrap rounded-pill ku-badge-{{weighted_score|replace_weight_signs}}x me-2">{{weighted_score|weight_abs}}x</small>
                                             {% endif %}
                                             <small
-                                                class="badge rounded-pill ku-badge-{{assignment.assignment_type|lower}}">{% _i18n assignment.assignment_type %} </small>
+                                                class="badge rounded-pill text-wrap ku-badge-{{assignment.assignment_type|lower}}">{% _i18n assignment.assignment_type %} </small>
                                             <a title="{% _i18n_flat_value "ASSIGNMENT_FLAG_TOGGLE"%}" href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state assignment choosable%}</a>
                                         </div>
                                         <p class="mb-1">{% _i18n  assignment "long_description" %}</p>

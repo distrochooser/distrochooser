@@ -24,11 +24,11 @@
     display: inline-block;
     position: relative;
     margin-left: 0.5em;
+    box-shadow: unset;
+    border: unset;
+    text-align: center;
     &.ku-step-major-active {
         background-color: black;
-    }
-    i {
-        margin-left: 0.25em;
     }
 }
 .ku-step-major-title {
