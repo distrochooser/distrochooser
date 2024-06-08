@@ -36,18 +36,306 @@ data = loads(open("./viisi.json").read())
 
 raw_distros = list(filter(lambda m: m["model"] == "distrochooser.distribution", data))
 
+choosable_meta_enrichtment = {
+    "debian": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "1993-09-15"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us" # We country is basically the firm/ organisation behind the distro.
+        }
+    ],
+    "ubuntu": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2004-10-20"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "gb"
+        }
+    ],
+    "tails": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2009-06-23"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us"
+        }
+    ],
+    "devuan": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2016-05-03"
+        }
+    ],
+    "arch": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2002-03-11"
+        }
+    ],
+    "mint": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2006-08-27"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "fr"
+        }
+    ],
+    "opensuse": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "1993-03-01"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "lu"
+        }
+    ],
+    "solus": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2015-12-27"
+        }
+    ],
+    "manjaro": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2011-06-11"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "de"
+        }
+    ],
+    "pclinuxos": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2003-10-24"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us"
+        }
+    ],
+    "rocky": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2021-03-01"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us"
+        }
+    ],
+    "rhel": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2000-02-22"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us"
+        }
+    ],
+    "mxlinux": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2003-11-04"
+        }
+    ],
+    "fedora": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2014-03-24"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us"
+        }
+    ],
+    "gentoo": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2002-03-31"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us"
+        }
+    ],
+    "knoppix": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2000-09-30"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "de"
+        }
+    ],
+    "zorinos": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2009-01-01"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "ie"
+        }
+    ],
+    "elementaryos": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2011-03-31"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us"
+        }
+    ],
+    "qubesos": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2012-09-03"
+        }
+    ],
+    "nixos": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2003-06-03"
+        }
+    ],
+    "xubuntu": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2006-06-23"
+        }
+    ],
+    "lubuntu": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2008-10-01"
+        }
+    ],
+    "ubuntumate": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2014-10-23"
+        }
+    ],
+    "void": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2008-01-01"
+        }
+    ],
+    "artix": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2017-01-01"
+        }
+    ],
+    "kubuntu": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2005-04-08"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us,de"
+        }
+    ],
+    "popos": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2017-10-27"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "us"
+        }
+    ],
+    "deepin": [
+        {
+            "meta_type": "date",
+            "meta_name": "age",
+            "meta_value": "2004-02-28"
+        },
+        {
+            "meta_type": "flag",
+            "meta_name": "country",
+            "meta_value": "cn"
+        }
+    ]
+}
+
+skip_distro = [
+    "cruxlinux" # last version 2022...
+]
 choosables = []
 
 for distro in raw_distros:
-    choosables.append({
-        "catalogue_id": distro["fields"]["identifier"],
-        "url": distro["fields"]["url"],
-        "pk": distro["pk"],
-        "name": distro["fields"]["name"],
-        "identifier": distro["fields"]["identifier"].lower(),
-        "bg_color": distro["fields"]["bgColor"],
-        "fg_color": distro["fields"]["fgColor"],
-    })
+    if distro["fields"]["identifier"] not in skip_distro:
+        choosables.append({
+            "catalogue_id": distro["fields"]["identifier"],
+            "url": distro["fields"]["url"],
+            "pk": distro["pk"],
+            "name": distro["fields"]["name"],
+            "identifier": distro["fields"]["identifier"].lower(),
+            "bg_color": distro["fields"]["bgColor"],
+            "fg_color": distro["fields"]["fgColor"],
+        })
 
 with open(matrix_path + "choosables.toml", "w+") as file:
     content = ""
@@ -61,6 +349,13 @@ with open(matrix_path + "choosables.toml", "w+") as file:
         content += "meta_type=\"link\"\n"
         content += "meta_name=\"website\"\n"
         content += f"meta_value=\"{choosable['url']}\"\n"
+
+        if choosable['identifier'] in choosable_meta_enrichtment:
+            for meta in choosable_meta_enrichtment[choosable['identifier']]:
+                content += "[[choosable.meta]]\n"
+                content += f"meta_type=\"{meta['meta_type']}\"\n"
+                content += f"meta_name=\"{meta['meta_name']}\"\n"
+                content += f"meta_value=\"{meta['meta_value']}\"\n"
     file.write(content)
 
 
@@ -326,7 +621,7 @@ for locale in locales:
     ui_texts["NEUTRAL"] = "Neutral property"
     ui_texts["POSITIVE"] = "Positive match"
     ui_texts["website"] = "Distribution homepage"
-    ui_texts["created"] = "Date of creation"
+    ui_texts["age"] = "Age in years"
     ui_texts["ABOUT_PAGE_TEXT_STATS"] = "Amount of tests created since 14.06.2024:"
     ui_texts["ABOUT_PAGE_LICENSE_TITLE"] = "License"
     ui_texts["ABOUT_PAGE_LICENSE_TEXT"] = "Distrochooser.de is Open Source software. You can find more information about the license on "
