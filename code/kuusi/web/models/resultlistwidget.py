@@ -89,7 +89,7 @@ class ResultListWidget(Widget):
             raw_results[choosable] = score
 
         ranked_keys =sorted(raw_results, key=raw_results.get, reverse=True)
-        all_scores = list(set(map(lambda s: s, raw_results.values())))
+        all_scores = list(filter(lambda s: s!= 0, set(map(lambda s: s, raw_results.values()))))
         all_scores.sort()
         all_scores.reverse()
         ranked_result = {}
@@ -104,7 +104,6 @@ class ResultListWidget(Widget):
                         assignment_stats[assignment.assignment_type] = 1
                     else: 
                         assignment_stats[assignment.assignment_type]+=1
-                
                 ranked_result[key] = {
                     "choosable": key,
                     "score": raw_results[key],
