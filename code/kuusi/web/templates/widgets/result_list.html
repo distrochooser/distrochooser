@@ -1,43 +1,62 @@
 {% load web_extras %}
+<!--- TODO: persist the open/ close state of the collapse-->
 <div class="row">
-    <div class="col-4"></div>
-    <div class="col-4 text-center">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="?page=result-page&switch_to=list" class="btn btn-outline-primary {% if display_mode == "list" %}active{% endif %}"><i class="bi bi-list"></i></a>
-            <a href="?page=result-page&switch_to=compact" class="btn btn-outline-primary {% if display_mode == "compact" %}active{% endif%}"><i class="bi bi-list-columns-reverse"></i></a>
+    <div class="col-12 text-center">
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#result-filter-collapse" role="button" aria-expanded="false" aria-controls="result-filter-collapse">
+            {% _i18n "RESULT_FILTER_OPTIONS" %}
+        </a>
+    </div>
+</div>
+<div class="collapse" id="result-filter-collapse">
+    <div class="card card-body mt-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                {% _i18n "DISPLAY_MODE" %}
+                <div class="btn-group" role="group" aria-label="Filter">
+                    <a href="?page=result-page&switch_to=list" class="btn btn-outline-primary {% if display_mode == "list" %}active{% endif %}"><i class="bi bi-list"></i> {% _i18n "LIST_MODE" %}</a>
+                    <a href="?page=result-page&switch_to=compact" class="btn btn-outline-primary {% if display_mode == "compact" %}active{% endif%}"><i class="bi bi-list-columns-reverse"></i> {% _i18n "COMPACT_MODE" %}</a>
+                </div>
+            </div>
+            <div class="col-12 text-center mt-3">
+                {% _i18n "RESULT_FILTER_OPTIONS_AGE" %}
+                <div class="btn-group" role="group" aria-label="Display">
+                    {% for filter_key, filter_active in filters.items %}
+                        <a href="?page=result-page&toggle_filter={{filter_key}}" class="btn btn-outline-primary {% if filter_key  in active_filters%}active{% endif%}"> {% _i18n filter_key %}</a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
 {% if display_mode == "compact" %}
 <div class="row mt-3">
     <div class="col-2">
-        <div id="ku-result-list-scrollspy" class="list-group rounded-0">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             {% for key, result in results.items %}
-            <a  class="text-decoration-none list-group-item list-group-item-action"  style="background-color: {{result.choosable.bg_color}};color: {{result.choosable.fg_color}};" href="#choosable_{{ result.choosable.pk }}" >
-                <div class="row g-0">
-                    <div class="col  text-center">
-                       {{ result.position }}
-                       <span class="d-none d-lg-inline">
-                        . {% _i18n result.choosable "name" %}
-
-                        <span class="badge text-bg-success"   title="{{ result.stats.POSITIVE }}x {% _i18n_flat_value "POSITIVE" %}">{{ result.stats.POSITIVE }}</span>
-                        <span class="badge text-bg-secondary" title="{{ result.stats.NEUTRAL }}x {% _i18n_flat_value "NEUTRAL" %}">{{ result.stats.NEUTRAL }}</span>
-                        <span class="badge text-bg-danger"    title="{{ result.stats.NEGATIVE }}x {% _i18n_flat_value "NEGATIVE" %}">{{ result.stats.NEGATIVE }}</span>
-                        <span class="badge text-bg-dark"      title="{{ result.stats.BLOCKING }}x {% _i18n_flat_value "BLOCKING" %}">{{ result.stats.BLOCKING }}</span>
-                       </span>
-
-
-                    </div>
-                </div>
-            </a>
+            
+            <button class="nav-link rounded-0 {% if forloop.first%}active{%endif%}" {% if forloop.first%}aria-selected="true"{%endif%} id="choosable-{{result.choosable.pk}}-tab"  style="background-color: {{result.choosable.bg_color}};color: {{result.choosable.fg_color}};" data-bs-toggle="pill" data-bs-target="#choosable-{{result.choosable.pk}}-content" type="button" role="tab" aria-controls="choosable-{{result.choosable.pk}}-content">
+                {{ result.position }}
+                <span class="d-none d-lg-inline">
+                    . {% _i18n result.choosable "name" %}
+                    <span class="badge text-bg-success"   title="{{ result.stats.POSITIVE }}x {% _i18n_flat_value "POSITIVE" %}">{{ result.stats.POSITIVE }}</span>
+                    <span class="badge text-bg-secondary" title="{{ result.stats.NEUTRAL }}x {% _i18n_flat_value "NEUTRAL" %}">{{ result.stats.NEUTRAL }}</span>
+                    <span class="badge text-bg-danger"    title="{{ result.stats.NEGATIVE }}x {% _i18n_flat_value "NEGATIVE" %}">{{ result.stats.NEGATIVE }}</span>
+                    <span class="badge text-bg-dark"      title="{{ result.stats.BLOCKING }}x {% _i18n_flat_value "BLOCKING" %}">{{ result.stats.BLOCKING }}</span>
+                </span>
+            </button>
             {% endfor %}    
         </div>
-  
     </div>
-    <div class="col-10 h-100 overflow-auto ku-result-list">
-        {% for key, result in results.items %}
-            {% choosable result %}
-        {% endfor %}
+    <div class="col-10">
+        <div class="tab-content " id="v-pills-tabContent">
+            {% for key, result in results.items %}
+                <div class="tab-pane fade {% if forloop.first%}show active{%endif%}" id="choosable-{{result.choosable.pk}}-content" role="tabpanel" aria-labelledby="choosable-{{result.choosable.pk}}-tabv" tabindex="0">
+                    {% choosable result %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% else %}

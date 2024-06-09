@@ -44,19 +44,3 @@ function checkedStateHandler(el) {
         weightContainer.classList.add("d-none");
     }
 }
-//FIXME: This causes nausea
-document.addEventListener("scroll", (e) => {
-    const scrollPosition =  document.documentElement.scrollTop
-    document.querySelectorAll("a.ku-feedback-link").forEach((el) => {
-        var dataHref = el.getAttribute("data-href")
-        el.setAttribute("href", dataHref + "?scroll_to=" + scrollPosition)
-    })
-});
-
-var urlParams = new URLSearchParams(window.location.search)
-if (urlParams.get('scroll_to')) {
-    document.documentElement.scrollTop = urlParams.get('scroll_to')
-}
-
-/* Assign scrollspy window height */
-document.querySelector(".ku-result-list").setAttribute("style", "height: " + document.querySelector("#ku-result-list-scrollspy").offsetHeight + "px !important") 

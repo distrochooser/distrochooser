@@ -20,7 +20,8 @@ from typing import Dict
 from django.db import models
 from web.models import Translateable, TranslateableField
 from django.utils.translation import gettext_lazy as _
-
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 class Choosable(Translateable):
     """
     Element ot be choosed.
@@ -68,7 +69,7 @@ class ChoosableMeta(Translateable):
         DATE = "DATE", "DATE"
 
     class MetaName(models.TextChoices):
-        CREATED = "CREATED", _("CREATED")
+        CREATED = "AGE", _("AGE")
         COUNTRY = "COUNTRY",  _("COUNTRY")
         LICENSES = "LICENSES",  _("LICENSES")
         WEBSITE = "WEBSITE",  _("WEBSITE")
@@ -87,6 +88,16 @@ class ChoosableMeta(Translateable):
         max_length=255, blank=False, null=False, default="A value"
     )
 
+    @property
+    def as_list(self):
+        return self.meta_value.split(",")
+
+    @property
+    def years_since(self):
+        now = datetime.now()
+        date = datetime.fromisoformat(self.meta_value)
+        delta = relativedelta(now, date)
+        return delta.years
 
     def __str__(self) -> str:
         return f"{self.meta_choosable}: {self.meta_name} ({self.meta_type}) -> {self.meta_value}"

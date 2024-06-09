@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 @import "choosable";
 @import "rtl";
 @import "navigation";
+@import "debug";
 
 $bootstrap-icons-font-src: url("/static/bi-fonts/bootstrap-icons.woff2") format("woff2"), url("/static/bi-fonts/bootstrap-icons.woff") format("woff");
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
