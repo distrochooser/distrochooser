@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from typing import Dict
-from web.models import Widget, WebHttpRequest, Page, FacetteSelection, FacetteAssignment, Choosable
+from web.models import Widget, WebHttpRequest, Page, FacetteSelection, FacetteAssignment, Choosable, SessionMeta
 from django.template import loader
 
 from kuusi.settings import WEIGHT_MAP
@@ -54,6 +54,49 @@ class ResultListWidget(Widget):
                 weights_per_assignment.append(selection.weight)
 
         choosables = Choosable.objects.all()
+
+        active_filters = []
+        pre_filters = {
+            "RESULT_MORE_THAN_5": lambda c: c.meta["AGE"].years_since >= 5 if "AGE" in c.meta else True,
+            "RESULT_MORE_THAN_15": lambda c: c.meta["AGE"].years_since >= 15 if "AGE" in c.meta else True,
+            "RESULT_MORE_THAN_20": lambda c: c.meta["AGE"].years_since >= 20 if "AGE" in c.meta else True
+        }
+        # presect filters
+        # FIXME: Off-by-one request error -> n-1th request still selected
+        # FIXME: Toggle of the same filter does not work
+        # FIXME: Preselection of filters
+        # FIXME: Session persistence does not work
+
+        for filter_key, delegate in pre_filters.items():
+            filter_enabled = request.GET.get("toggle_filter") == filter_key
+            if filter_enabled: #Don't do anything if the filter is not required to be used
+                old_filter = request.session_obj.get_meta_value("RESULT_AGE_FILTER") 
+                was_enabled = old_filter == filter_key
+                if was_enabled and  filter_enabled:
+                    # remove persistence -> Toggle
+                    SessionMeta.objects.filter(
+                        session=request.session_obj,
+                        meta_key = "RESULT_AGE_FILTER"
+                    ).delete()
+                    filter_enabled = False
+                elif not was_enabled and filter_enabled:
+                    # create meta object to persist the filter while deleting any other prefilters
+                    SessionMeta.objects.filter(
+                        session=request.session_obj
+                    ).delete()
+                    SessionMeta(
+                        session=request.session_obj,
+                        meta_key = "RESULT_AGE_FILTER",
+                        meta_value=filter_key
+                    ).save()
+                
+                elif not filter_enabled and was_enabled:
+                    filter_enabled = True
+                    
+                if filter_enabled:
+                    if filter_key not in active_filters:
+                        active_filters.append(filter_key)
+                    choosables = list(filter(delegate, choosables))
 
         raw_results: Dict[Choosable, float] = {}
         assignments_used: Dict[Choosable, FacetteAssignment] = {}
@@ -117,4 +160,7 @@ class ResultListWidget(Widget):
             display_mode = request.GET.get("switch_to")
             request.session_obj.display_mode = display_mode
             request.session_obj.save()
-        return render_template.render({"display_mode": display_mode, "page": page, "results": ranked_result}, request)
+      
+
+
+        return render_template.render({"active_filters": active_filters, "filters": pre_filters, "display_mode": display_mode, "page": page, "results": ranked_result}, request)

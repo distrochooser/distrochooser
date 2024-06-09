@@ -38,12 +38,3 @@
 .bi-flag-fill {
     color: darkred;
 }
-
-.ku-result-list {
-    scroll-snap-type: y mandatory;
-    overflow: hidden !important;
-}
-.ku-result-item {
-    scroll-snap-align: start;
-    height: 100%;
-}

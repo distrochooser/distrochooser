@@ -2,3 +2,13 @@
     width: 250px;
     margin-bottom: 1em;
 }
+
+.ku-logo-mobile {
+    width: 10%;
+    position: fixed;
+    left: 0.5em;
+    top: 0.5em;
+    .ku-logo {
+        width: 100%;
+    }
+}

@@ -71,3 +71,23 @@ class Session(models.Model):
     is_ack = models.BooleanField(default=False) # A session will be 'acknowledged' by a JS snippet to exclude curl() calls
     language_code = models.CharField(max_length=10, default="en", null=False, blank=False)
     display_mode = models.CharField(max_length=15, default=None, null=True, blank=True)
+
+
+    def get_meta_value(self, key: str) -> str | None:
+        matches = SessionMeta.objects.filter(session=self, meta_key=key)
+        if matches.count() < 1:
+            return None
+        
+        return matches.first().meta_value
+
+class SessionMeta(models.Model):
+    session = models.ForeignKey(
+        to="Session",
+        on_delete=models.SET_NULL,
+        null=True,
+        default=None,
+        blank=True,
+        related_name="sessionmeta_session",
+    )
+    meta_key = models.CharField(max_length=10, null=False, blank=False)
+    meta_value = models.CharField(max_length=10, null=False, blank=False)

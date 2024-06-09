@@ -17,6 +17,10 @@
 
 <body id="body" class="d-flex flex-column h-100 bg-light {% rtl_class language_code %}">
     <!--  {% _i18n "DEBUG_MODE_ON" %} -->
+    {% if debug %}
+    <div class="ku-debug-bg">
+    </div>
+    {% endif %}
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6 mt-3">
@@ -35,8 +39,9 @@
                     </div>
                     <div class="col">
                         <div class="alert alert-danger">
-                            <input name="result_id" value="{{session.result_id}}">
-                        {% _i18n "DEBUG_MODE_ON_DESCRIPTION" %}</div>
+                        {% _i18n "DEBUG_MODE_ON_DESCRIPTION" %}
+                            <code>{{session.result_id}}</code>
+                        </div>
                     </div>
                     <div class="col">
                     </div>

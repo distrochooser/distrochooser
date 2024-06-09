@@ -645,6 +645,13 @@ for locale in locales:
     ui_texts["IMPRINT_TITLE"] = "Imprint"
     ui_texts["IMPRINT_DISCLAIMER_TITLE"] = "Disclaimer"
     ui_texts["IMPRINT_DISCLAIMER_TEXT"] = "We do not take any liability for the pages linked in this service. If you find a malicous link on this website, please inform us using our contact information."
-   
+    ui_texts["RESULT_MORE_THAN_5"] = "5 years or older"
+    ui_texts["RESULT_MORE_THAN_15"] = "15 years or older"
+    ui_texts["RESULT_MORE_THAN_20"] = "20 years or older"
+    ui_texts["RESULT_FILTER_OPTIONS_AGE"] = "Distribution age"
+    ui_texts["RESULT_FILTER_OPTIONS"] = "Filter options"
+    ui_texts["DISPLAY_MODE"] =  "Display mode"
+    ui_texts["COMPACT_MODE"] =  "Compact display"
+    ui_texts["LIST_MODE"] =  "List display"
     with open(locale_path + f"ui-{locale}.json", "w+") as file:
         file.write(dumps(ui_texts, indent=4))
