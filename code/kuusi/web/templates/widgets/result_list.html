@@ -1,13 +1,5 @@
 {% load web_extras %}
-<!--- TODO: persist the open/ close state of the collapse-->
-<div class="row">
-    <div class="col-12 text-center">
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#result-filter-collapse" role="button" aria-expanded="false" aria-controls="result-filter-collapse">
-            {% _i18n "RESULT_FILTER_OPTIONS" %}
-        </a>
-    </div>
-</div>
-<div class="collapse" id="result-filter-collapse">
+<div id="result-filter-collapse">
     <div class="card card-body mt-3">
         <div class="row">
             <div class="col-12 text-center">
@@ -21,7 +13,7 @@
                 {% _i18n "RESULT_FILTER_OPTIONS_AGE" %}
                 <div class="btn-group" role="group" aria-label="Display">
                     {% for filter_key, filter_active in filters.items %}
-                        <a href="?page=result-page&toggle_filter={{filter_key}}" class="btn btn-outline-primary {% if filter_key  in active_filters%}active{% endif%}"> {% _i18n filter_key %}</a>
+                        <a href="?page=result-page&toggle_filter={{filter_key}}{% if filter_key  in active_filters%}&disable_filter=true{% endif%}" class="btn btn-outline-primary {% if filter_key  in active_filters%}active{% endif%}"> {% _i18n filter_key %}</a>
                     {% endfor %}
                 </div>
             </div>

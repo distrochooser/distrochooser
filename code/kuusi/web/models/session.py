@@ -72,13 +72,15 @@ class Session(models.Model):
     language_code = models.CharField(max_length=10, default="en", null=False, blank=False)
     display_mode = models.CharField(max_length=15, default=None, null=True, blank=True)
 
-
     def get_meta_value(self, key: str) -> str | None:
         matches = SessionMeta.objects.filter(session=self, meta_key=key)
         if matches.count() < 1:
             return None
         
         return matches.first().meta_value
+
+    def __str__(self) -> str:
+        return f"{self.started}: {self.result_id}"
 
 class SessionMeta(models.Model):
     session = models.ForeignKey(
@@ -91,3 +93,5 @@ class SessionMeta(models.Model):
     )
     meta_key = models.CharField(max_length=10, null=False, blank=False)
     meta_value = models.CharField(max_length=10, null=False, blank=False)
+    def __str__(self) -> str:
+        return f"{self.session.result_id}: {self.meta_key} -> {self.meta_value}"
