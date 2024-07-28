@@ -43,6 +43,7 @@ class Page(Translateable):
     text = TranslateableField(null=True, blank=True,  max_length=80)
     help = TranslateableField(null=True, blank=True,  max_length=80)
     css_classes = models.CharField(max_length=50, null=True,default=None)
+    hide_if_no_selections = models.BooleanField(default=False)
 
     @property
     def href(self):
@@ -56,6 +57,8 @@ class Page(Translateable):
         if session and session.version:
             if self.not_in_versions.filter(pk=session.version.pk).count() > 0:
                 is_page_visible = False
+        if self.hide_if_no_selections and FacetteSelection.objects.filter(session=session).count() == 0:
+            is_page_visible = False
         return is_page_visible
 
 

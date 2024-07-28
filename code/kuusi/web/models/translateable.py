@@ -61,9 +61,6 @@ def hot_load_translations(**kwargs):
                 if value == TRANSLATIONS["en"][key]:
                     INCOMPLETE_TRANSLATIONS.append(locale)
                     break
-# Do this once in the livetime of the instance
-# TODO: Move me to a better place!
-hot_load_translations()
 
 
 class TranslateableField(models.CharField):

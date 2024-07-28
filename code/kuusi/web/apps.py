@@ -22,3 +22,7 @@ from django.apps import AppConfig
 class WebConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "web"
+    def ready(self):
+        from web.models.translateable import hot_load_translations
+        hot_load_translations()
+
