@@ -126,6 +126,7 @@ class ResultListWidget(Widget):
         all_scores.reverse()
         ranked_result = {}
         # TODO: Add weights for display (also on navigation steps!)
+        last_position = -1
         for key in ranked_keys:
             if len(assignments_used[key]) > 0:
                 sorted_assignments = sorted(assignments_used[key])
@@ -136,13 +137,16 @@ class ResultListWidget(Widget):
                         assignment_stats[assignment.assignment_type] = 1
                     else: 
                         assignment_stats[assignment.assignment_type]+=1
+                position = all_scores.index(raw_results[key]) + 1 if raw_results[key] in all_scores else 1
                 ranked_result[key] = {
                     "choosable": key,
                     "score": raw_results[key],
                     "assignments": sorted_assignments,
-                    "position": all_scores.index(raw_results[key]) + 1 if raw_results[key] in all_scores else 1,
-                    "stats": assignment_stats
+                    "position": position,
+                    "stats": assignment_stats,
+                    "new_group": last_position != position
                 }
+                last_position = ranked_result[key]["position"]
         # Default mode is compact unless the session or the get parameter overwrites it
         display_mode = "compact" if not request.session_obj.display_mode else request.session_obj.display_mode
         if request.GET.get("switch_to") is not None and request.GET.get("switch_to") in ["list", "compact"]:
@@ -151,4 +155,4 @@ class ResultListWidget(Widget):
 
 
 
-        return render_template.render({ "active_filters": active_filters, "filters": pre_filters, "display_mode": display_mode, "page": page, "results": ranked_result}, request)
+        return render_template.render({ "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters, "display_mode": display_mode, "page": page, "results": ranked_result}, request)

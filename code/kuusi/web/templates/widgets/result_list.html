@@ -1,25 +1,40 @@
 {% load web_extras %}
-<div id="result-filter-collapse">
-    <div class="card card-body mt-3">
-        <div class="row">
-            <div class="col-12 text-center">
-                {% _i18n "DISPLAY_MODE" %}
-                <div class="btn-group" role="group" aria-label="Filter">
-                    <a href="?page=result-page&switch_to=list" class="btn btn-outline-primary {% if display_mode == "list" %}active{% endif %}"><i class="bi bi-list"></i> {% _i18n "LIST_MODE" %}</a>
-                    <a href="?page=result-page&switch_to=compact" class="btn btn-outline-primary {% if display_mode == "compact" %}active{% endif%}"><i class="bi bi-list-columns-reverse"></i> {% _i18n "COMPACT_MODE" %}</a>
+<div id="result-filter-collapse" class="row">
+    <div class="col-4">
+
+    </div>
+    <div class="col-4">
+        <div class="card card-body mt-3">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <b class="d-block">{% _i18n "DISPLAY_MODE" %}</b>
+                    <div class="btn-group" role="group" aria-label="Filter">
+                        <a href="?page=result-page&switch_to=list" class="btn btn-outline-primary {% if display_mode == "list" %}active{% endif %}"><i class="bi bi-list"></i> {% _i18n "LIST_MODE" %}</a>
+                        <a href="?page=result-page&switch_to=compact" class="btn btn-outline-primary {% if display_mode == "compact" %}active{% endif%}"><i class="bi bi-list-columns-reverse"></i> {% _i18n "COMPACT_MODE" %}</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 text-center mt-3">
-                {% _i18n "RESULT_FILTER_OPTIONS_AGE" %}
-                <div class="btn-group" role="group" aria-label="Display">
-                    {% for filter_key, filter_active in filters.items %}
-                        <a href="?page=result-page&toggle_filter={{filter_key}}{% if filter_key  in active_filters%}&disable_filter=true{% endif%}" class="btn btn-outline-primary {% if filter_key  in active_filters%}active{% endif%}"> {% _i18n filter_key %}</a>
-                    {% endfor %}
+                <div class="col-12 text-center mt-3">
+                    <b>{% _i18n "RESULT_FILTER_OPTIONS_AGE" %}</b>
+                    <div class="btn-group" role="group" aria-label="Display">
+                        {% for filter_key, filter_active in filters.items %}
+                            <a href="?page=result-page&toggle_filter={{filter_key}}{% if filter_key  in active_filters%}&disable_filter=true{% endif%}" class="btn btn-outline-primary {% if filter_key  in active_filters%}active{% endif%}"> {% _i18n filter_key %}</a>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+{% if feedback_given %}
+    <div class="row mt-3">
+        <div class="col">
+            <div class="alert alert-success">
+                {% _i18n "FEEDBACK_THANK_YOU" %} <i class="bi bi-emoji-smile"></i>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 
 {% if display_mode == "compact" %}
@@ -27,16 +42,20 @@
     <div class="col-2">
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             {% for key, result in results.items %}
-            
-            <button class="nav-link rounded-0 {% if forloop.first%}active{%endif%}" {% if forloop.first%}aria-selected="true"{%endif%} id="choosable-{{result.choosable.pk}}-tab"  style="background-color: {{result.choosable.bg_color}};color: {{result.choosable.fg_color}};" data-bs-toggle="pill" data-bs-target="#choosable-{{result.choosable.pk}}-content" type="button" role="tab" aria-controls="choosable-{{result.choosable.pk}}-content">
-                {{ result.position }}
-                <span class="d-none d-lg-inline">
-                    . {% _i18n result.choosable "name" %}
-                    <span class="badge text-bg-success"   title="{{ result.stats.POSITIVE }}x {% _i18n_flat_value "POSITIVE" %}">{{ result.stats.POSITIVE }}</span>
-                    <span class="badge text-bg-secondary" title="{{ result.stats.NEUTRAL }}x {% _i18n_flat_value "NEUTRAL" %}">{{ result.stats.NEUTRAL }}</span>
-                    <span class="badge text-bg-danger"    title="{{ result.stats.NEGATIVE }}x {% _i18n_flat_value "NEGATIVE" %}">{{ result.stats.NEGATIVE }}</span>
-                    <span class="badge text-bg-dark"      title="{{ result.stats.BLOCKING }}x {% _i18n_flat_value "BLOCKING" %}">{{ result.stats.BLOCKING }}</span>
-                </span>
+            <button class="nav-link rounded-0 {% if forloop.first%}active{%endif%} {%if result.new_group and result.position != 1%}mt-4{%endif%}" {% if forloop.first%}aria-selected="true"{%endif%} id="choosable-{{result.choosable.pk}}-tab"  style="background-color: {{result.choosable.bg_color}};color: {{result.choosable.fg_color}};" data-bs-toggle="pill" data-bs-target="#choosable-{{result.choosable.pk}}-content" type="button" role="tab" aria-controls="choosable-{{result.choosable.pk}}-content">
+                <div class="row">
+                    <div class="col-9">
+                        {% _i18n result.choosable "name" %}
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            {%if result.stats.POSITIVE %}<span class="col-12 me-1 mb-1 badge text-bg-success"   title="{{ result.stats.POSITIVE }}x {% _i18n_flat_value "POSITIVE" %}">{{ result.stats.POSITIVE }} <i class="bi bi-plus-circle"></i></span>{%endif%}
+                            {%if result.stats.NEUTRAL %}<span class="col-12 me-1 mb-1 badge text-bg-secondary" title="{{ result.stats.NEUTRAL }}x {% _i18n_flat_value "NEUTRAL" %}">{{ result.stats.NEUTRAL }} <i class="bi bi-question-circle"></i></span>{%endif%}
+                            {%if result.stats.NEGATIVE %}<span class="col-12 me-1 mb-1 badge text-bg-danger"    title="{{ result.stats.NEGATIVE }}x {% _i18n_flat_value "NEGATIVE" %}">{{ result.stats.NEGATIVE }} <i class="bi bi-dash-circle"></i></span>{%endif%}
+                            {%if result.stats.BLOCKING %}<span class="col-12 me-1 mb-1 badge text-bg-dark"      title="{{ result.stats.BLOCKING }}x {% _i18n_flat_value "BLOCKING" %}">{{ result.stats.BLOCKING }} <i class="bi bi-ban"></i></span>{%endif%}
+                        </div>
+                     </div>
+                </div>
             </button>
             {% endfor %}    
         </div>
