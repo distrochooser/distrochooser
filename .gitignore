@@ -19,3 +19,7 @@ doc/tools/out
 doc/tools/old-translations
 doc/tools/viisi.json
 locale
+dummy*
+cache*
+locale-pipeline*
+docker.sh
