@@ -658,8 +658,8 @@ for locale in locales:
     ui_texts["ASSIGNMENT_FLAG_TOGGLE"] = "Markt his assignment as incorrect"
     ui_texts["FEEDBACK_THANK_YOU"] = "Thank you for your report!"
     ui_texts["simplified-version_name"] = "Simplified version"
-    #A11y
 
+    #A11y
     ui_texts["A11Y_OPTIONS"] =  "Accessibility"
     ui_texts["FONT_SIZE"] =  "Font sizing"
     ui_texts["FONT_SIZE_DEFAULT"] =  "Default font size"
