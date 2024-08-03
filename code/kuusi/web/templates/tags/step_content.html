@@ -5,7 +5,7 @@
 <button name="BTN_FORCED_NAVIGATION"
     class="ku-step-button {% if step.active %} ku-step-active {% endif %} {% if step.answered %} ku-step-answered {% endif %}"
     value="{{step.href}}">
-    {%_i18n_ language_code step.title %}
+    {{ step.title  }}
 </button>
 {% else %}
 <span>{{step.title}}</span>

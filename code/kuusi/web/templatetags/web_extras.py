@@ -28,7 +28,7 @@ from django.forms.utils import ErrorDict
 
 from web.models import SessionMeta, Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
 from web.models import TRANSLATIONS, RTL_TRANSLATIONS
-from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES, KUUSI_META_TAGS
+from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES, KUUSI_META_TAGS, DEFAULT_LANGUAGE_CODE
 
 register = template.Library()
 
@@ -63,15 +63,21 @@ def render_widget(context, widget: Widget, page: Page):
 def _i18n_get_value(language_code: str, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
     value = None
     needle = None
+    default_value =  None
+    if language_code == "favicon":
+        return {"value": "", "needle": needle, "is_missing": True}
     if not str:
         raise Exception("Key is required")
     if isinstance(translateable_object, Translateable):
         needle = key
         value =  translateable_object.__(key, language_code=language_code)
+        default_value =  translateable_object.__(key, language_code=DEFAULT_LANGUAGE_CODE)
     else:
         needle = str(translateable_object)
+        default_value = TRANSLATIONS["en"][needle]  if needle in TRANSLATIONS["en"] and TRANSLATIONS["en"][needle] is not None else needle
         value = TRANSLATIONS[language_code][needle] if needle in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][needle] is not None else needle
-    return {"value": value, "needle": needle}
+    is_missing = language_code != "en" and default_value == value
+    return {"value": value, "needle": needle, "is_missing": is_missing}
 
 @register.inclusion_tag(filename="tags/i18n.html")
 def _i18n_(language_code: str, translateable_object: Translateable | safestring.SafeString | str, key: str = None):

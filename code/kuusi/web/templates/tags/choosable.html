@@ -42,17 +42,6 @@
                                             <a href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state assignment choosable%}</a>
                                         </div>
                                         <p class="mb-1">{% _i18n_ language_code  assignment "long_description" %}</p>
-                                        <div class="row d-flex">
-                                            <small>
-                                                {% for facette_topic in assignment.facette_topics %}
-                                                <div class="col">
-                                                    <span class="badge rounded-pill text-bg-light">
-                                                        {% _i18n_ language_code facette_topic "topic" %}
-                                                    </span>
-                                                </div>
-                                                {%endfor%}
-                                            </small>
-                                        </div>
                                     </div>
                                 </div>
                             {%endfor%}

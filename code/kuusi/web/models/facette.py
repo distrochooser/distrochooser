@@ -140,18 +140,6 @@ class FacetteAssignment(Translateable):
 
     def is_flagged(self, choosable: Choosable) -> bool:
         return apps.get_model("web", "Feedback").objects.filter(assignment=self, choosable=choosable).count() != 0
-    
-    @property
-    def facette_topics(self) -> List[str]:
-        """
-        Returns a set of facette objects to return a unique list of topics. The Facette objects are used as translatables to provide the needed __() function
-        """
-        topics = []
-        facette: Facette
-        for facette in self.facettes.all():
-            if facette.topic not in topics:
-                topics.append(facette.topic)
-        return topics
 
 
     def __lt__(self, other):
