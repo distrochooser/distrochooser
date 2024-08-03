@@ -27,17 +27,21 @@ from web.routes.ack import route_ack
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT, DEBUG
 
+dynamic_routes = [   
+    path("update",  route_update, name="route_update"),
+    path("out/<id>/<property>",  route_outgoing, name="route_outgoing"),
+    path('', route_index, name='route_index'),
+    re_path('(?P<language_code>[a-z]{2,4})/(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
+    re_path('(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
+    re_path('(?P<language_code>[a-z]{2,4})', route_index, name='route_index')
+]
+
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin", admin.site.urls),
     path("feedback/<assignment_id>/<choosable_id>",  route_feedback, name="route_feedback"),
     re_path('api/ack/(?P<result_id>[a-zA-Z0-9]+)', route_ack),
     re_path("(?P<language_code>[a-z]+)/about", route_about, name="route_about"),
     re_path("(?P<language_code>[a-z]+)/privacy", route_privacy, name="route_privacy"),
     re_path("(?P<language_code>[a-z]+)/contact", route_contact, name="route_contact"),
-    path("update",  route_update, name="route_update"),
-    path("out/<id>/<property>",  route_outgoing, name="route_outgoing"),
-    path('', route_index, name='route_index'),
-    re_path('(?P<language_code>[a-z]+)/(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
-    re_path('(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
-    re_path('(?P<language_code>[a-z]+)', route_index, name='route_index'),
-] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True)
+   
+] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True) + dynamic_routes
