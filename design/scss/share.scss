@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 $facebook: #4267B2;
 $twitter: #1d9bf0;
 $reddit: #FF5700;
+$whatsapp: #25D366;
+$telegram: #24A1DE;
 a.facebook {
     color: $facebook;
     border-color: $facebook;
@@ -44,4 +46,22 @@ a.reddit {
 }
 .share-link {
     text-align: center;
+}
+
+a.whatsapp {
+    color: $whatsapp;
+    border-color: $whatsapp;
+
+    &:hover {
+        background-color: $whatsapp;
+    }
+}
+
+a.telegram {
+    color: $telegram;
+    border-color: $telegram;
+
+    &:hover {
+        background-color: $telegram;
+    }
 }
