@@ -81,7 +81,7 @@ topic = "linux-knowledge"
 pages = ["linux-knowledge-page"]
 
 [category.linux-knowledge-page-category]
-icon = "bi bi-123" # TODO: Add a proper Icon
+icon = "bi bi-list-ol"
 target_page = "linux-knowledge-page"
 
 # Installation page
