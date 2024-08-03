@@ -205,7 +205,7 @@ def route_outgoing(request: WebHttpRequest, id: int, property: str) -> HttpRespo
             if property not in choosable.meta:
                 raise Http404()
             else:
-                choosable.clicked += 1 # FIXME: Todo consider click related value to allow map property -> click
+                choosable.clicked += 1
                 choosable.save()
                 return HttpResponseRedirect(choosable.meta[property].meta_value)
     raise Http404()
