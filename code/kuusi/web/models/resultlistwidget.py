@@ -68,7 +68,8 @@ class ResultListWidget(Widget):
         # User deselects the active filter or switches the filter
         if request.GET.get("disable_filter") == stored_filter or stored_filter != request.GET.get("toggle_filter"):
             SessionMeta.objects.filter(
-                session=request.session_obj
+                session=request.session_obj,
+                meta_key = "RESULT_AGE_FILTER"
             ).delete()
 
 
