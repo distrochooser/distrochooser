@@ -541,6 +541,7 @@ ui_map = {
 locales = ["en"] + list(map(lambda l: l.replace(".po", ""), filter(lambda l: ".po" in l, old_locales)))
 
 for locale in locales:
+    print(f"Processing {locale}")
     entries_raw = pofile(f"./old-translations/{locale}.po")
     entries = {}
     for entry in entries_raw:
@@ -653,5 +654,20 @@ for locale in locales:
     ui_texts["DISPLAY_MODE"] =  "Display mode"
     ui_texts["COMPACT_MODE"] =  "Compact display"
     ui_texts["LIST_MODE"] =  "List display"
+    ui_texts["WELCOME_WIDGET_FLAG"] = "You can give feedback on results to help us to improve the service"
+
+    #A11y
+
+    ui_texts["A11Y_OPTIONS"] =  "Accessibility"
+    ui_texts["FONT_SIZE"] =  "Font sizing"
+    ui_texts["FONT_SIZE_DEFAULT"] =  "Default font size"
+    ui_texts["FONT_SIZE_LARGER"] =  "Larger font size"
+    ui_texts["FONT_SIZE_LARGEST"] =  "Largest font size"
+
+    ui_texts["OTHER_SETTINGS"] =  "Other settings"
+    ui_texts["COLOR_MODE_BLACK_AND_WHITE"] =  "Black and white mode"
+    ui_texts["COLOR_MODE_HIGH_CONTRAST"] =  "High contrast"
+
+
     with open(locale_path + f"ui-{locale}.json", "w+") as file:
         file.write(dumps(ui_texts, indent=4))
