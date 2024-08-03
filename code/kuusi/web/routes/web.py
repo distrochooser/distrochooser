@@ -213,7 +213,7 @@ def route_outgoing(request: WebHttpRequest, id: int, property: str) -> HttpRespo
 
 def route_index(request: WebHttpRequest, language_code: str = None, id: str = None):
     # Prevent the route from doing weird stuff with 404-ish routes
-    if language_code not in LANGUAGE_CODES:
+    if language_code is not None and language_code not in LANGUAGE_CODES:
         raise Http404()
 
     # Get the current page
