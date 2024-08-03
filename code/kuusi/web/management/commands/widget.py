@@ -31,7 +31,6 @@ def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -
         "result": ResultListWidget,  
         "navigation": NavigationWidget
     }
-    # FIXME: This currently doe
     prop_map: Dict[str, Dict[str, Type]]= {
         "html": {"template": str},
         "selection": {"topic":str},
