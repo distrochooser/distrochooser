@@ -107,6 +107,6 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
         context["form"] = facette_form
 
         return render_template.render(
-            {"form": facette_form, "child_facettes": child_facettes, "weights": weights}, request
+            {"language_code": request.session_obj.language_code, "form": facette_form, "child_facettes": child_facettes, "weights": weights}, request
         )
 

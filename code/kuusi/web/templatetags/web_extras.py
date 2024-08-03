@@ -20,7 +20,6 @@ from typing import Dict, List
 from django import template
 
 from django.utils.translation import gettext as _
-from django.utils.translation import get_language
 from django.utils import safestring
 from django.utils.html import strip_tags
 from django.http import HttpRequest
@@ -61,9 +60,7 @@ def render_widget(context, widget: Widget, page: Page):
     request: HttpRequest = context["request"]
     return widget.render(request, page)
 
-@register.simple_tag(takes_context=True)
-def _i18n_flat(context, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
-    language_code = "en" #FIXME: wrong code gets injected, like "favicon"
+def _i18n_get_value(language_code: str, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
     value = None
     needle = None
     if not str:
@@ -76,14 +73,10 @@ def _i18n_flat(context, translateable_object: Translateable | safestring.SafeStr
         value = TRANSLATIONS[language_code][needle] if needle in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][needle] is not None else needle
     return {"value": value, "needle": needle}
 
-@register.simple_tag(takes_context=True)
-def _i18n_flat_value(context, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
-    return _i18n_flat(context, translateable_object,key).get("value")
-
-
-@register.inclusion_tag(takes_context=True, filename="tags/i18n.html")
-def _i18n(context, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
-    return _i18n_flat(context, translateable_object,key)
+@register.inclusion_tag(filename="tags/i18n.html")
+def _i18n_(language_code: str, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
+    got =  _i18n_get_value(language_code, translateable_object,key)
+    return got
 
 @register.inclusion_tag(filename="tags/page.html", takes_context=True)
 def page(context, page: Page):
@@ -97,13 +90,14 @@ def logo(on_static_page: bool = False):
     return {"on_static_page": on_static_page}
 
 
-@register.inclusion_tag(filename="tags/step.html", takes_context=True)
-def step(context, step: Dict):
+@register.inclusion_tag(filename="tags/step.html")
+def step(language_code: str, step: Dict):
+    step["language_code"] = language_code
     return step
 
 @register.inclusion_tag(filename="tags/step_content.html")
-def step_content(step: Dict):
-    return {"step": step}
+def step_content(language_code: str, step: Dict):
+    return {"language_code": language_code, "step": step}
 
 
 @register.inclusion_tag(filename="tags/cookies.html", takes_context=True)
@@ -114,11 +108,10 @@ def cookies(context):
     }
 
 
-@register.inclusion_tag(filename="tags/footer.html", takes_context=True)
-def footer(context):
-    request: HttpRequest = context["request"]
+@register.inclusion_tag(filename="tags/footer.html")
+def footer(language_code: str):
     return {
-        "language_code": request.LANGUAGE_CODE,
+        "language_code": language_code,
         "left_text": KUUSI_COPYRIGHT_STRING,
         "free_nav": KUUSI_INFO_STRING
     }
@@ -154,11 +147,11 @@ def sub_facettes(context, form: Form, current_facette: str, weights: Dict):
 
 
 @register.inclusion_tag(filename="tags/choosable.html")
-def choosable(result: Dict):
+def choosable(language_code: str, result: Dict):
     choosable: Choosable = result.get("choosable")
     score: float = result.get("score")
     assignments: List[FacetteAssignment] = result.get("assignments")
-    return {"choosable": choosable, "score": score, "assignments": assignments}
+    return {"choosable": choosable, "language_code": language_code, "score": score, "assignments": assignments}
 
 
 @register.inclusion_tag(filename="tags/meta_value.html")
@@ -166,11 +159,11 @@ def meta_value(obj: ChoosableMeta):
     return {"obj": obj, "choosable": obj.meta_choosable}
 
 @register.inclusion_tag(filename="tags/weight.html")
-def weight(field: Field, weights: Dict):
+def weight(language_code: str, field: Field, weights: Dict):
     value = 0
     if field.name in weights:
         value = weights.get(field.name)
-    return {"field": field, "value": value}
+    return {"language_code": language_code, "field": field, "value": value}
 
 def flatten_errors_warnings(haystack: ErrorDict):
     """
@@ -213,17 +206,17 @@ def warnings(warnings: Dict[str, List[ValidationError]]):
 def language_select(context):
     request: WebHttpRequest = context["request"]
     session_result_id = request.session_obj.result_id
-    language_code = get_language()
-    return {"result_id": session_result_id, "language_codes": LANGUAGE_CODES, "current_language": language_code, "get_params": request.GET.urlencode()}
+    language_code = request.session_obj.language_code
+    return {"result_id": session_result_id, "language_codes": LANGUAGE_CODES, "language_code": language_code, "get_params": request.GET.urlencode()}
 
 @register.simple_tag()
 def rtl_class(language_code: str):
     return "ku-rtl" if  language_code in RTL_TRANSLATIONS else "ku-ltr"
 
-@register.inclusion_tag(filename="tags/meta_tags.html")
-def meta_tags():
-    # FIXME: get_language also returns "favicon", most likely related to an url routing issue, falling back to en for now   
-    language_code = "en"# get_language()
+@register.inclusion_tag(takes_context=True,filename="tags/meta_tags.html")
+def meta_tags(context):
+    # TODO: get proper lang code
+    language_code = "en"
     result = KUUSI_META_TAGS
     result["twitter:description"] = strip_tags(TRANSLATIONS[language_code]["ABOUT_PAGE_TEXT"])
     return {
@@ -239,6 +232,9 @@ def feedback_state(assignment: FacetteAssignment, choosable: Choosable):
 @register.simple_tag(takes_context=True)
 def a11y_classes(context):
     request: HttpRequest = context["request"]
+    #static pages might not feature that session_obj -> return empty string
+    if not hasattr(request, "session_obj"):
+        return ""
     session = request.session_obj
     session_metas = SessionMeta.objects.filter(session=session)
     class_string = ""

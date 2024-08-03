@@ -33,7 +33,8 @@ logger = getLogger("root")
 
 from kuusi.settings import (
     LOCALE_PATHS,
-    LANGUAGE_CODES
+    LANGUAGE_CODES,
+    DEFAULT_LANGUAGE_CODE
 )
 
 TRANSLATIONS = {}
@@ -135,7 +136,7 @@ class Translateable(models.Model):
         return f"({self.catalogue_id})"
     def get_msgd_id_of_field(self, key: str) -> str:
         return self._meta.get_field(key).get_msg_id(self)
-    def __(self, key: str, language_code: str = "en") -> str:
+    def __(self, key: str, language_code: str = DEFAULT_LANGUAGE_CODE) -> str:
         msg_id = self.get_msgd_id_of_field(key)
         return f"{TRANSLATIONS[language_code][msg_id]}" if language_code in TRANSLATIONS and msg_id in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][msg_id] is not None  else msg_id
      

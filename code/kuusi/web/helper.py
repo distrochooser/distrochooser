@@ -19,6 +19,8 @@ from typing import Tuple
 from django.http import HttpResponse, HttpResponseRedirect
 from web.models import Session, Page, WebHttpRequest
 
+from kuusi.settings import DEFAULT_LANGUAGE_CODE
+
 from logging import getLogger
 
 logger = getLogger("root")

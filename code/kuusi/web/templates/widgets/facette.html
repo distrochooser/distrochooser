@@ -8,7 +8,7 @@
         {{ field|as_crispy_field }}
     </div>
     <div class="col-12 col-sm-3">
-        {% weight field weights%}
+        {% weight language_code field weights%}
     </div>
     {% sub_facettes form field.name weights %}
 </div>

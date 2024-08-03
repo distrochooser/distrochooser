@@ -106,7 +106,8 @@ class SessionVersionWidget(Widget):
                 "selected_version": None
                 if not request.session_obj
                 else request.session_obj.version,
-                "active_a11y": active_a11y
+                "active_a11y": active_a11y,
+                "language_code": request.session_obj.language_code
             },
             request,
         )

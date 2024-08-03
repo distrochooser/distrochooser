@@ -27,14 +27,12 @@
 
     </div>
     <div class="col-4">
-        <!-- {% _i18n "YOUR_RESULT_LINK_TEST_NUMBER" %} -->
         <div class="input-group">
             <span class="input-group-text" id="result-link-number"><i class="bi bi-paperclip"></i></span>
             <input type="text" class="form-control share-link" id="result-link"
                 aria-describedby="result-link-number result-link-label-bottom" value="{{share_link}}" onfocus="this.select();" onmouseup="return false;">
         </div>
-        <!-- {% _i18n "YOUR_RESULT_LINK_LABEL" %} -->
-        <div class="form-text" id="result-link-label-bottom">{% _i18n "YOUR_RESULT_LINK_LABEL" %}</div>
+        <div class="form-text" id="result-link-label-bottom">{% _i18n_ language_code "YOUR_RESULT_LINK_LABEL" %}</div>
 
     </div>
 </div>

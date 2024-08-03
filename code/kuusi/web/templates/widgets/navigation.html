@@ -1,7 +1,6 @@
 {% load i18n%}
 {% load web_extras %}
 
-<!-- {% _i18n "COOKIES_ALERT" %} -->
 {% if page.previous_page is None %}
 <div class="row mt-3">
     <div class="col-12">
@@ -11,58 +10,52 @@
 {% endif %}
 <div class="row mt-3">
     <div class="col-6">
-            <!-- {% _i18n "BTN_RESET_ANSWER" %} -->
             {% if page.can_be_marked %}
                 <button name="BTN_RESET_ANSWER" class="btn"  value="BTN_MARK_TOGGLE">
 
                     <i class="bi bi-trash"></i>
                     <span class="d-none d-sm-inline">
-                        {% _i18n "BTN_RESET_ANSWER" %}
+                        {% _i18n_ language_code "BTN_RESET_ANSWER" %}
                     </span>
                 </button>
             {% endif %}
-            <!-- {% _i18n "BTN_MARK" %} -->
-            <!-- {% _i18n "BTN_UNMARK" %} -->
             {% if page.can_be_marked %}
                 <button name="BTN_MARK_TOGGLE" class="btn"  value="BTN_MARK_TOGGLE">
                     <i class="bi bi-bookmark-fill"></i>
 
                     <span class="d-none d-sm-inline">
                         {% if is_marked %}
-                        {% _i18n "BTN_UNMARK" %}
+                        {% _i18n_ language_code "BTN_UNMARK" %}
                         {% else %}
-                        {% _i18n "BTN_MARK" %}
+                        {% _i18n_ language_code "BTN_MARK" %}
                         {% endif %}
                     </span>
                 </button>
             {% endif %}
     </div>
     <div class="col-6 text-end">
-        <!-- {% _i18n "BTN_PREV_PAGE" %} -->
         <!-- FIXME: Make sure the widgets are processed (in any way) before leaving the page -->
         {% if page.previous_page %}
             <button name="BTN_PREV_PAGE" class="btn btn-secondary"  value="BTN_PREV_PAGE">
                 <i class="bi bi-arrow-left-square"></i> 
                 <span class="d-none d-sm-inline">
-                     {% _i18n "BTN_PREV_PAGE" %}
+                     {% _i18n_ language_code "BTN_PREV_PAGE" %}
                 </span>
             </button>
         {% endif %}
-        <!-- {% _i18n "BTN_NEXT_PAGE" %} -->
-        <!-- {% _i18n "BTN_NEXT_PAGE_FORCE" %} -->
         {% if page.next_page %}
             {% if has_errors or has_warnings %}
                 <button name="BTN_NEXT_PAGE_FORCE" class="btn btn-primary"  value="BTN_NEXT_PAGE_FORCE">
                     <i class="bi bi-arrow-right-square-fill"></i>  
                     <span class="d-none d-sm-inline">
-                    {% _i18n "BTN_NEXT_PAGE_FORCE" %}
+                    {% _i18n_ language_code "BTN_NEXT_PAGE_FORCE" %}
                     </span>
                 </button>
             {% else %}
                 <button name="BTN_NEXT_PAGE" class="btn btn-primary"  value="BTN_NEXT_PAGE">
                     <i class="bi bi-arrow-right-square-fill"></i> 
                     <span class="d-none d-sm-inline">
-                    {% _i18n "BTN_NEXT_PAGE" %}
+                    {% _i18n_ language_code "BTN_NEXT_PAGE" %}
                     </span>
                 </button>
            

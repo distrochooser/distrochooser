@@ -4,17 +4,17 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header" style="color: {{choosable.fg_color}}; background-color: {{choosable.bg_color}};" id="choosable_{{choosable.pk}}">
-                {% _i18n choosable "name" %}
+                {% _i18n_ language_code choosable "name" %}
             </div>
             <div class="card-body">
-                {% _i18n choosable "description" %}
+                {% _i18n_ language_code choosable "description" %}
 
                 <div class="row mb-2 mt-2">
                     {% for _, meta_obj in choosable.meta.items %}
                     <div class="col-12 col-sm-3">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title text-truncate">{% _i18n meta_obj.meta_name %}
+                                <h5 class="card-title text-truncate">{% _i18n_ language_code meta_obj.meta_name %}
                                 </h5>
                                 <p class="card-text">
                                     {% meta_value meta_obj %}
@@ -33,24 +33,21 @@
                                 <div class="col-12 col-sm-3 mb-3">
                                     <div class="list-group-item list-group-item-action">
                                         <div class="d-flex">
-                                            <!-- {% _i18n "NEUTRAL" %} -->
-                                            <!-- {% _i18n "NEGATIVE" %} -->
-                                            <!-- {% _i18n "POSITIVE" %} -->
                                             {% if weighted_score != 1 %}
                                             <small
                                                 class="d-inline badge text-wrap rounded-pill ku-badge-{{weighted_score|replace_weight_signs}}x me-2">{{weighted_score|weight_abs}}x</small>
                                             {% endif %}
                                             <small
-                                                class="badge rounded-pill text-wrap ku-badge-{{assignment.assignment_type|lower}}">{% _i18n assignment.assignment_type %} </small>
-                                            <a title="{% _i18n_flat_value "ASSIGNMENT_FLAG_TOGGLE"%}" href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state assignment choosable%}</a>
+                                                class="badge rounded-pill text-wrap ku-badge-{{assignment.assignment_type|lower}}">{% _i18n_ language_code assignment.assignment_type %} </small>
+                                            <a href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state assignment choosable%}</a>
                                         </div>
-                                        <p class="mb-1">{% _i18n  assignment "long_description" %}</p>
+                                        <p class="mb-1">{% _i18n_ language_code  assignment "long_description" %}</p>
                                         <div class="row d-flex">
                                             <small>
                                                 {% for facette_topic in assignment.facette_topics %}
                                                 <div class="col">
                                                     <span class="badge rounded-pill text-bg-light">
-                                                        {% _i18n facette_topic "topic" %}
+                                                        {% _i18n_ language_code facette_topic "topic" %}
                                                     </span>
                                                 </div>
                                                 {%endfor%}

@@ -5,20 +5,17 @@
 <button name="BTN_FORCED_NAVIGATION"
     class="ku-step-button {% if step.active %} ku-step-active {% endif %} {% if step.answered %} ku-step-answered {% endif %}"
     value="{{step.href}}">
-    {%_i18n step.title %}
+    {%_i18n_ language_code step.title %}
 </button>
 {% else %}
 <span>{{step.title}}</span>
 {%endif %}
-<!-- {% _i18n "BOOKMARKED_STEP" %} -->
-<!-- {% _i18n "ERROR_STEP" %} -->
-<!-- {% _i18n "WARNING_STEP" %} -->
 {% if step.marked %}
-    <i class="bi bi-bookmark-fill ku-step-marked">{% _i18n 'BOOKMARKED_STEP' %}</i>
+    <i class="bi bi-bookmark-fill ku-step-marked">{% _i18n_ language_code 'BOOKMARKED_STEP' %}</i>
 {% endif %}
 {% if step.error %}
-    <i class="bi bi-exclamation-octagon-fill ku-step-marked">{% _i18n "ERROR_STEP" %}</i>
+    <i class="bi bi-exclamation-octagon-fill ku-step-marked">{% _i18n_ language_code "ERROR_STEP" %}</i>
 {% endif %}
 {% if step.warnings %}
-    <i class="bi bi-exclamation-square-fill ku-step-marked">{% _i18n "WARNING_STEP" %}</i>
+    <i class="bi bi-exclamation-square-fill ku-step-marked">{% _i18n_ language_code "WARNING_STEP" %}</i>
 {% endif %}

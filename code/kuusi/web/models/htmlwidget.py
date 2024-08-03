@@ -43,7 +43,10 @@ class HTMLWidget(Widget):
 
     def render(self, request: HttpRequest, page: Page):
         render_template = loader.get_template(f"widgets/{self.template}")
-        return render_template.render({}, request)
+        language_code = request.session_obj.language_code
+        return render_template.render({
+            "language_code": language_code
+        }, request)
 
     def proceed(self, request: HttpRequest, page: Page) -> bool:
         return True

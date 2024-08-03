@@ -34,12 +34,8 @@ class FacetteSelectionWidget(Widget):
     topic = models.CharField(null=False, blank=False, max_length=120)
     # FIXME: The description field will not be taken over by any i18n processes, Translateablefield is not really available as FacetteSelectionWidget inherits Widget, not Translateable
     description = models.TextField(null=True, blank=True, default=None, max_length=250)
-    def build_translateable_label(self, facette: Facette) -> str:
-        render_template = loader.get_template(f"widgets/facette_label.html")
-        return mark_safe(render_template.render({
-            "object": facette, 
-            "title": "selectable_description"
-        }))
+    def build_translateable_label(self, facette: Facette, language_code: str) -> str:
+        return  facette.__("selectable_description", language_code)
     def build_form(
         self, data: Dict | None, session: Session
     ) -> Tuple[WarningForm, List, Dict]:
@@ -65,7 +61,7 @@ class FacetteSelectionWidget(Widget):
             if is_selected:
                 weights[facette.catalogue_id] = selection_matches.first().weight
             if not is_child:
-                facette_form.fields[facette.catalogue_id] = BooleanField(required=False, label=self.build_translateable_label(facette))
+                facette_form.fields[facette.catalogue_id] = BooleanField(required=False, label=self.build_translateable_label(facette, session.language_code))
                 if has_child:
                     attr_map = {
                         "data-bs-toggle": "collapse",
@@ -235,5 +231,5 @@ class FacetteSelectionWidget(Widget):
         context["form"] = facette_form
 
         return render_template.render(
-            {"form": facette_form, "child_facettes": child_facettes, "weights": weights}, request
+            {"language_code": request.session_obj.language_code, "form": facette_form, "child_facettes": child_facettes, "weights": weights}, request
         )

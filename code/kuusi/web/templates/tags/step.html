@@ -7,13 +7,13 @@
             <i class="{{ icon }}"></i>
         </button>
         <span class="ku-step-major-title d-none d-sm-inline">
-            {% step_content major %}
+            {% step_content language_code major %}
         </span>
     </div>
     {% for step in minor %}
     <div class="col-8">
         <span class="ku-step-minor-title {% if step.active %} ku-step-title-active {% endif %} {% if step.css_classes %} {{ step.css_classes}} {% endif %}">
-            {% step_content step %}
+            {% step_content language_code step %}
         </span>
     </div>
     {% endfor %}

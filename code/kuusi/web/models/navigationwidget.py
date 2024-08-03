@@ -32,6 +32,7 @@ class NavigationWidget(Widget):
                 "has_errors": request.has_errors,
                 "has_warnings": request.has_warnings,
                 "is_marked": page.is_marked(request.session_obj),
+                "language_code": request.session_obj.language_code
             },
             request,
         )

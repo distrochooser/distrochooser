@@ -16,7 +16,6 @@
 </head>
 
 <body id="body" class="d-flex flex-column h-100 bg-light {% rtl_class language_code %} {% a11y_classes %}">
-    <!--  {% _i18n "DEBUG_MODE_ON" %} -->
     {% if debug %}
     <div class="ku-debug-bg">
     </div>
@@ -31,8 +30,6 @@
         <div class="{% block container-class %}container-fluid{% endblock %} py-4">
 
             {% block content %}{% endblock %}
-            
-            <!--  {% _i18n "DEBUG_MODE_ON" %} -->
             {% if debug %}
             <div class="position-static mt-5">
                 <div class="row">
@@ -40,8 +37,9 @@
                     </div>
                     <div class="col">
                         <div class="alert alert-danger">
-                        {% _i18n "DEBUG_MODE_ON_DESCRIPTION" %}
+                        {% _i18n_ language_code "DEBUG_MODE_ON_DESCRIPTION" %}
                             <code>{{session.result_id}}</code>
+                            <code>{{session.language_code}}</code>
                         </div>
                     </div>
                     <div class="col">
@@ -57,7 +55,7 @@
                     </div>
                     <div class="col">
                         <div class="alert alert-danger">
-                            <a href="{{translation_url}}">{% _i18n "LOCALE_INCOMPLETE" %}</a>
+                            <a href="{{translation_url}}">{% _i18n_ language_code "LOCALE_INCOMPLETE" %}</a>
                         </div>
                     </div>
                     <div class="col">
