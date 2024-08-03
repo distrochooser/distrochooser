@@ -219,10 +219,8 @@ def language_select(context):
 def rtl_class(language_code: str):
     return "ku-rtl" if  language_code in RTL_TRANSLATIONS else "ku-ltr"
 
-@register.inclusion_tag(takes_context=True,filename="tags/meta_tags.html")
-def meta_tags(context):
-    # TODO: get proper lang code
-    language_code = "en"
+@register.inclusion_tag(filename="tags/meta_tags.html")
+def meta_tags(language_code:str):
     result = KUUSI_META_TAGS
     result["twitter:description"] = strip_tags(TRANSLATIONS[language_code]["ABOUT_PAGE_TEXT"])
     return {
