@@ -2,7 +2,6 @@ FROM alpine:latest as sass_builder
 RUN apk add --no-cache npm \
     && npm install -g sass@1.55.0 yarn
 
-# TODO: .dockerignore node_modules
 ADD /design/ /sass_builder/
 
 # The custom.scss' paths are configured for /static being served in dev mode -> Get rid of the static path within custom.css
