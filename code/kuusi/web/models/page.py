@@ -92,16 +92,22 @@ class Page(Translateable):
 
     def next_visible_page(page: Page, session: Session) -> Page | None:
         # If the page is not visible, try to find a next displayable page.
-        # TODO: Mind result in a null pointer
         fallback_page = None
         next_page = page.next_page
 
+        # Allow the next page only to try 50 times to search for a following page.
+        # If no page is found, an exception is called.
+        max_attempts = 50
+        attempts = 0
         next_page: Page
         while next_page is not None:
             if next_page.is_visible(session):
                 fallback_page = next_page
                 break
             next_page = next_page.next_page
+            attempts +=1
+            if attempts >= max_attempts:
+                raise Exception("Page loop detected")
         if fallback_page:
             page = fallback_page
         
