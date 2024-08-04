@@ -91,13 +91,10 @@ class ResultListWidget(Widget):
         assignments_used: Dict[Choosable, FacetteAssignment] = {}
         choosable: Choosable
         for choosable in choosables:
-            # TODO: This must be done EASIER FFS
-            assignment_types = FacetteAssignment.AssignmentType.__dict__.get(
-                "_member_map_"
-            )
             results = {}
-            for key, _ in assignment_types.items():
-                results[key] = 0
+            for key in FacetteAssignment.AssignmentType.choices:
+                identifier, _ = key
+                results[identifier] = 0
 
             # get facette assingments actually relevant for this choosable
             choosable_assignments = list(
