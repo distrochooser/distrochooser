@@ -28,6 +28,7 @@ from django.forms.utils import ErrorDict
 
 from web.models import SessionMeta, Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
 from web.models import TRANSLATIONS, RTL_TRANSLATIONS
+from web.forms import WarningForm
 from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES, KUUSI_META_TAGS, DEFAULT_LANGUAGE_CODE
 
 register = template.Library()
@@ -196,16 +197,15 @@ def flatten_errors_warnings(haystack: ErrorDict):
     return result
 
 @register.inclusion_tag(filename="tags/errors.html")
-def errors(errors: Dict[str, List[ValidationError]]):
-    # TODO: Make less redundant with warnings()
-    return {"haystack": flatten_errors_warnings(errors), "severity": "danger"}
+def errors(language_code: str, form: WarningForm):
+    errors: Dict[str, List[ValidationError]] = form.behaviour_errors
+    warnings: Dict[str, List[ValidationError]] = form.behaviour_warnings
+    information: Dict[str, List[ValidationError]] = form.behaviour_information
+    return {"language_code": language_code, "errors": errors, "warnings": warnings, "information": information}
 
-
-@register.inclusion_tag(filename="tags/errors.html")
-def warnings(warnings: Dict[str, List[ValidationError]]):
-    # FIXME: warnings should be using the same structure as errors() first parameter, but it doesnt. 
-    return {}
-    return {"haystack": flatten_errors_warnings(warnings), "severity": "warning"}
+@register.inclusion_tag(filename="tags/errors_inner.html")
+def errors_inner(language_code: str, criticality: str, haystack: Dict[str, List[str]], title: str):
+    return {"language_code": language_code, "criticality": criticality, "haystack": haystack, "title": title}
 
 
 @register.inclusion_tag(takes_context=True,filename="tags/language_select.html")

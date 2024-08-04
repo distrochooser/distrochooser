@@ -20,5 +20,5 @@ from django.http import HttpRequest
 
 class WebHttpRequest(HttpRequest):
     session_obj = None # web.models.Session
-    has_warnings: bool = False
+    has_behaviour_popups: bool = False
     has_errors: bool = False

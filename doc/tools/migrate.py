@@ -658,6 +658,8 @@ for locale in locales:
     ui_texts["ASSIGNMENT_FLAG_TOGGLE"] = "Markt his assignment as incorrect"
     ui_texts["FEEDBACK_THANK_YOU"] = "Thank you for your report!"
     ui_texts["simplified-version_name"] = "Simplified version"
+    ui_texts["BTN_NEXT_PAGE_FORCE"] = "proceed"
+    ui_texts["CONFLICTING_ANSWER"] = "This answers might conflict"
 
     #A11y
     ui_texts["A11Y_OPTIONS"] =  "Accessibility"

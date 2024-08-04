@@ -1,10 +1,14 @@
-<ol class="list-group">
-    {% for key, error in haystack.items %}
-    <li class="list-group-item d-flex justify-content-between align-items-start  list-group-item-{{severity}}">
-        <div class="ms-2 me-auto">
-            <div class="fw-bold">{{key}}</div>
-            <small class="text-muted"> {{error}}</small>
-        </div>
-    </li>
-    {% endfor %}
+{% load web_extras %}
+<ol class="list-group mt-3">
+    
+    {% if errors %}
+        {% errors_inner language_code "error" errors "BEHAVIOUR_ERRORS"%}
+    {% endif %}
+    {% if warnings %}
+        {% errors_inner language_code "warning" warnings "BEHAVIOUR_WARNINGS"%}
+    {% endif %}
+
+    {% if information %}
+        {% errors_inner language_code "information" information "BEHAVIOUR_INFORMATION"%}
+    {% endif %}
 </ol>

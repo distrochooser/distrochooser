@@ -15,12 +15,13 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from typing import Tuple
+from typing import Tuple, List
 from django.http import HttpResponse, HttpResponseRedirect
-from web.models import Session, Page, WebHttpRequest
-
+from django.db.models import Q
+from web.models import Session, Page, WebHttpRequest, FacetteSelection, Facette, FacetteBehaviour, PageMarking
+from web.forms import WarningForm
 from kuusi.settings import DEFAULT_LANGUAGE_CODE
-
+from web.templatetags.web_extras import _i18n_get_value
 from logging import getLogger
 
 logger = getLogger("root")
@@ -58,7 +59,7 @@ def forward_helper(id: str, overwrite_status: int, session: Session, base_url: s
     if not result:
         if "BTN_NEXT_PAGE_FORCE" in request.POST:
             logger.debug(
-                f"User decided to force to next page even as there are issues present (has_errors={request.has_errors},has_warnings={request.has_warnings})"
+                f"User decided to force to next page even as there are issues present (has_errors={request.has_errors})"
             )
             result = True
         else:
@@ -95,3 +96,51 @@ def forward_helper(id: str, overwrite_status: int, session: Session, base_url: s
             return None, HttpResponseRedirect(base_url + forward_target_href)
     logger.debug(f"The forward helper does not result in any additional responses.")
     return overwrite_status, None
+
+
+def get_active_facettes(session: Session) ->List[Facette]:
+    active_facettes = []
+    selections = FacetteSelection.objects.filter(session=session)
+    selection: FacetteSelection
+    for selection in selections:
+        if selection.facette not in active_facettes:
+            active_facettes.append(selection.facette)
+    return active_facettes
+
+
+def trigger_behaviours(facette_form: WarningForm, active_facettes: List[Facette], active_facettes_this_widget: List[Facette], session: Session, pages):
+    facette: Facette
+    for facette in active_facettes:
+        behaviours = FacetteBehaviour.objects.filter(
+            Q(affected_subjects__pk__in=[facette.pk])|
+            Q(affected_objects__pk__in=[facette.pk])
+        )
+        # We only care about behavours true for a facette within the current screen while we iterate all facettes *somewhere* selected
+        not_this = list(
+            filter(lambda f: f.pk != facette.pk, active_facettes_this_widget)
+        )
+        behaviour: FacetteBehaviour
+        for behaviour in behaviours:
+            result = behaviour.is_true(facette, not_this)
+            if result:
+                text = _i18n_get_value(session.language_code, facette, "selectable_description")["value"]
+                key = _i18n_get_value(session.language_code, behaviour, "description")["value"]
+
+                # fall back to a generic title if there is no translation available:
+                if behaviour.description in key:
+                    key = _i18n_get_value(session.language_code, "CONFLICTING_ANSWER")["value"]
+                facette_form.add(key, text, behaviour.criticality)
+    page: Page
+    for page in pages.all():
+        PageMarking.objects.filter(session=session, page=page).filter(Q(is_error=True)|Q(is_warning=True)).delete()
+        if facette_form.has_any_behaviour():
+            # Create a non-deletable Marking for pages using this widget
+            # In case of facette selection widgets, this will most likely be one.
+            marking = PageMarking(
+                session=session,
+                page=page,
+                is_error = facette_form.has_behaviour_error(),
+                is_warning = facette_form.has_behaviour_warning(),
+                is_info = facette_form.has_behaviour_information()
+            )
+            marking.save()

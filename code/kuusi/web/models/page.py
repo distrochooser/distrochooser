@@ -210,11 +210,13 @@ class Page(Translateable):
         return result
 
     def is_marked(self, session: Session):
-        return PageMarking.objects.filter(page=self, session=session, is_error=False, is_warning=False).count() > 0
+        return PageMarking.objects.filter(page=self, session=session, is_error=False, is_warning=False, is_info=False).count() > 0
     def is_error(self, session: Session):
         return PageMarking.objects.filter(page=self, session=session, is_error=True).count() > 0
     def is_warning(self, session: Session):
         return PageMarking.objects.filter(page=self, session=session, is_warning=True).count() > 0
+    def is_info(self, session: Session):
+        return PageMarking.objects.filter(page=self, session=session, is_info=True).count() > 0
 
     def toggle_marking(self, session: Session):
         marking_matches = PageMarking.objects.filter(page=self, session=session, is_error=False, is_warning=False)

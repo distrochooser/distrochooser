@@ -14,9 +14,4 @@
 </div>
 {% endif %}
 {% endfor %}
-{% if form.errors %}
-{% errors form.errors %}
-{% endif %}
-{% if form.warnings %}
-{% warnings form.warnings %}
-{% endif %}
+{% errors language_code form %}

@@ -73,8 +73,7 @@ class Category(Translateable):
                 return None
             is_answered = target_page.is_answered(session)
             is_marked = target_page.is_marked(session)
-            is_warning = target_page.is_warning(session)
-            is_error = target_page.is_error(session)
+            is_error = target_page.is_error(session) or target_page.is_info(session) or target_page.is_warning(session)
             is_active = target_page.is_active(request)
 
         return {
@@ -83,7 +82,6 @@ class Category(Translateable):
             "active": is_active,
             "answered": is_answered,
             "marked": is_marked,
-            "warning": is_warning,
             "error": is_error,
             "last": is_last,
             "css_classes": css_classes

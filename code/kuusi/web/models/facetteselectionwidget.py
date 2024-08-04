@@ -25,6 +25,8 @@ from django.template import loader
 from django.utils.safestring import mark_safe
 from django.forms import Form, BooleanField
 from django.db.models import Q
+from web.templatetags.web_extras import _i18n_get_value
+from web.helper import trigger_behaviours, get_active_facettes
 
 from logging import getLogger
 
@@ -89,57 +91,10 @@ class FacetteSelectionWidget(Widget):
         # trigger facette behaviours
         # While we need to now _all_ selected facettes, it's also required to know the facettes within the current screen
         active_facettes_this_widget = self.get_active_facettes(facette_form, session)
-        selections = FacetteSelection.objects.filter(session=session)
-        active_facettes = []
-
-        selection: FacetteSelection
-        for selection in selections:
-            if selection.facette not in active_facettes:
-                active_facettes.append(selection.facette)
-        # FIXME: Facettes not triggering
-        facette: Facette
-        for facette in active_facettes:
-            behaviours = FacetteBehaviour.objects.filter(
-                Q(affected_subjects__pk__in=[facette.pk])|
-                Q(affected_objects__pk__in=[facette.pk])
-            )
-            # We only care about behavours true for a facette within the current screen while we iterate all facettes *somewhere* selected
-            not_this = list(
-                filter(lambda f: f.pk != facette.pk, active_facettes_this_widget)
-            )
-            behaviour: FacetteBehaviour
-            for behaviour in behaviours:
-                result = behaviour.is_true(facette, not_this)
-                if result:
-                    if behaviour.criticality == FacetteBehaviour.Criticality.ERROR:
-                        facette_form.add_error(
-                            facette.catalogue_id, behaviour.description
-                        )
-                    elif behaviour.criticality == FacetteBehaviour.Criticality.WARNING:
-                        facette_form.add_warning(
-                            facette.catalogue_id, behaviour.description
-                        )
-                    else:
-                        # TODO: Implement facette behaviour for criticality INFO
-                        pass
-        # FIXME: Facettes do not display the behaviour
-        # Log a warning as this might cause headache later
-        if facette_form.errors.__len__() > 0 or facette_form.warnings.__len__() > 0:
-            if self.pages.count() > 0:
-                logger.warn(f"There will be markings due to errors/ warnings in widget {self} for more than one page.")
-        page: Page
-        for page in self.pages.all():
-            PageMarking.objects.filter(session=session, page=page).filter(Q(is_error=True)|Q(is_warning=True)).delete()
-            if facette_form.errors.__len__() > 0 or facette_form.warnings.__len__() > 0:
-                # Create a non-deletable Marking for pages using this widget
-                # In case of facette selection widgets, this will most likely be one.
-                marking = PageMarking(
-                    session=session,
-                    page=page,
-                    is_error = facette_form.errors.__len__() > 0,
-                    is_warning = facette_form.warnings.__len__() > 0
-                )
-                marking.save()
+        
+        active_facettes = get_active_facettes(session)
+        
+        trigger_behaviours(facette_form, active_facettes, active_facettes_this_widget, session, self.pages)
 
         return facette_form, child_facettes, weights
 
@@ -206,9 +161,8 @@ class FacetteSelectionWidget(Widget):
         facette_form, _ , _= self.build_form(request.POST, request.session_obj)
         # Make sure there is no double facette selections within this topic of the page
         # TODO: Make more dependend from the page rather than the topic
-        request.has_warnings = facette_form.has_warning()
-        request.has_errors = not facette_form.is_valid()
-        if request.has_warnings or request.has_errors:
+        request.has_errors = facette_form.has_any_behaviour()
+        if request.has_errors:
             return False
         return True
 

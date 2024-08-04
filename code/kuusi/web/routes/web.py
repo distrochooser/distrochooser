@@ -246,7 +246,6 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
     request.session_obj = session    
     # TODO: These are not properly set within WebHttpRequest class.
     request.has_errors = False
-    request.has_warnings = False
 
     # Turbo call handling
     # FIXME: The forwarding fuckupery causes the loading time to be more than 2x the regular loading time

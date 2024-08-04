@@ -23,6 +23,7 @@ from logging import getLogger
 from django import forms
 from django.forms import Form
 from django.template import loader
+from web.helper import trigger_behaviours, get_active_facettes
 
 logger = getLogger("root");
 
@@ -62,6 +63,8 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
 
         facette_form.fields[self.topic] = radio_group
         facette_form.initial[self.topic] = default_selection
+        active_facettes = get_active_facettes(session)
+        trigger_behaviours(facette_form, active_facettes, [facette], session, self.pages)
         return facette_form, child_facettes, weights
 
     def proceed(self, request: WebHttpRequest, page: Page) -> bool:
@@ -79,11 +82,10 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
                     select.weight = weight
                     select.save()
         
-        facette_form, _ , _= self.build_form(request.POST, request.session_obj)
-        # TODO: Add behaviours for Radio selections
-        request.has_warnings = facette_form.has_warning()
-        request.has_errors = not facette_form.is_valid()
-        if request.has_warnings or request.has_errors:
+                    facette_form, _ , _= self.build_form(request.POST, request.session_obj)
+                
+        request.has_errors = facette_form.has_behaviour_error()
+        if request.has_errors:
             return False
         return True
 
@@ -105,7 +107,6 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
         facette_form, child_facettes, weights = self.build_form(data, request.session_obj)
         context = {}
         context["form"] = facette_form
-
         return render_template.render(
             {"language_code": request.session_obj.language_code, "form": facette_form, "child_facettes": child_facettes, "weights": weights}, request
         )
