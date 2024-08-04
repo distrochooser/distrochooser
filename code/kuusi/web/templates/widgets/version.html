@@ -1,0 +1,36 @@
+{% load i18n %}
+{% load web_extras %}
+<div class="mb-3">
+    <select class="form-select" name="KU_SESSION_VERSION" multiple aria-label="{% _i18n_ language_code "VERSION_SELECTION" %}">
+        <option value="" {% if not selected_version %} selected {%endif%}>{% _i18n_ language_code "FULL_VERSION"%}</option>
+        {% for version in versions %}
+            <option value="{{version.pk}}" {% if selected_version == version %} selected {%endif%}>{% _i18n_ language_code version "version_name"%}</option>
+        {% endfor %}
+    </select>
+</div>
+<h3>
+    {% _i18n_ language_code "A11Y_OPTIONS" %}
+</h3>
+<div class="row">
+    <div class="col-3">
+        <label for="ku-a11y-font-size">{% _i18n_ language_code "FONT_SIZE"%}</label>
+        <select id="FONT_SIZE" name="FONT_SIZE" class="form-control">
+            {% for key, value in a11y_options.font.items %}
+                <option value="FONT_SIZE_{{key}}" {%if active_a11y.font|get_item:key%}selected{%endif%}>{% _i18n_ language_code value %}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-3 mt-3">
+        <label for="ku-a11y-font-size">{% _i18n_ language_code "OTHER_SETTINGS"%}</label>
+        <div class="row">
+             <div class="col">
+                {% for key, _ in a11y_options.others.items %}
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="{{key}}" type="checkbox" id="{{key}}" value="checked" {%if active_a11y.others|get_item:key%}checked='checked'{%endif%}>
+                        <label class="form-check-label" for="{{key}}">{% _i18n_ language_code key%}</label>
+                    </div>
+                {% endfor %}
+             </div>
+        </div>
+    </div>
+</div>

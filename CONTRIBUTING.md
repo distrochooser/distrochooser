@@ -18,18 +18,24 @@ Following documents are important for any contribution in the distrochooser repo
 
 # Contributing to the code 💻
 
-Basically, the distrochooser project splits into two modules, the frontend (`viisi`, which is a Nuxt.js project) and the backend (`backend`, which is a Django project). 
+This version of distrochooser consists out of a single monolith, based in Django 4.x.
 
-- 📦 Please use yarn while working with the frontend
-- 🐍 The backend is Python3 only
+# Contributing to the decision matrix ✅
 
-## Viisi
+The Distrochooser data model describes as follows:
 
-Viisi is a Nuxt.js 2 project. It heavily depends on [https://github.com/christianmalek/vuex-rest-api](https://github.com/christianmalek/vuex-rest-api) for communicating with the JSON backend. The frontend does not load all the required data at startup, it does only load the translations and the data required for the currently displayed data. If you switch a question, the data for the next question gets loaded.
+- Translateable objects have a `catalogue_id` attribute, which is used in the translation as a search key
+- A distribution is a `Choosable`, which can have multiple `ChoosableMeta` objects, which define a specified property of the entry.
+- Each displayed page is a `Page` object, which is related to one `Category` object, which controls the navigation
+- Each page can have multiple `Widget` objects (which can also be inherited ones from `Widget`), which are aligned in a row/ col/ width structure
+- For `SelectionWidgets`, they have a topic which is used to map the answers `Facettes`
+- Each `Facette` should point to `FacetteAssignments`, which map a descriptive text in a defined way ("blocking", "negative", "neutral", "positive") to the selected answer (this is the decision part)
+- A `Facette` can have `FacetteBehaviours`, which can be triggered when answers might exclude themselves. `FacetteBehaviours` have a severity from warning to critical to be displayed in the UI. `FacetteBehaviour` are optional.
+- Each selected answer is a `FacetteSelection` and is part of a `Session`
 
-## Backend
+The matrix is defined in the /doc/matrix folder. Basically everything is defined in TOML-files.
 
-As mentioned, the backend is a django application. The majority of logic happens in the `views.py` file, the calculation methods are isolated in the `calculations/` folder.
+**Important** If you introduce new mappings keep in mind that the translation requires updating as well!
 
 # Contributing translations 🌍
 
@@ -37,41 +43,13 @@ https://github.com/distrochooser/translations is your starting point for transla
 
 For PR users:
 
-You can find the file `en.po` in the repository https://github.com/distrochooser/translations. This file is the english translation. If you don't have a GitHub account and want to download it: [the direct link](https://raw.githubusercontent.com/distrochooser/translations/main/en.po).
+You can find the file `en.po` in the repository https://github.com/distrochooser/translations. For this Distrochooser version, a JSON-based format is used. Each area of translation is suffixed by an [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code, for example if you want to create a greek translation, use the filename `ui-gr.po`.
 
-Use this file as the boilerplate for your translation.
-
-The file names in `backend/locale` are following the [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard, which means they are two letter codes.
-
-E. g. if you want to create a greek translation, use the filename `gr.po`.
-
-The files are structured in key:value pairs, marked  with `msgid` (the key) and `msgstr` (the value).
-
-```
-msgid "welcome-text"
-msgstr "Welcome! This test will help you choose a suitable Linux distribution."
-```
-
-## Warning: Please use no `"` inside of the `""`. This will cause a syntax error ⚠ 
-
-```
-msgid "example-text"
-msgstr "This example is "quoted"" ⚠ syntax error!
-```
-You can use `'` inside of the value:
-```
-msgid "example-text"
-msgstr "This example is 'quoted'" ✅ all good
-```
-Or you can escape the `"`:
-```
-msgid "example-text"
-msgstr "This example is \"quoted\"" ✅ all good
-```
+The english translation is the leading translation.
 
 ## How to submit the translation? 📮
 
-You can either do a pull request into the `distrochooser/translations:main` branch or, if you don't have a GitHub account, send it via mail to `mail@chmr.eu`.
+You can either do a pull request into the `distrochooser/translations:main` branch or, if you don't have a GitHub account, send it via mail to `mail@chmr.eu`. Alternatively, you can use https://translate.distrochooser.de
 
 
 Thank you for your support 😁

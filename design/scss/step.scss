@@ -1,0 +1,96 @@
+.ku-steps {
+    position: fixed;
+    width: 12%;
+    border-right: 1px solid #dfdfdf;
+    top: 0em;
+    padding-top: 9em;
+    height: 100%;
+}
+.ku-step {
+    margin-bottom: 0.25em;
+    font-size: large;
+}
+.ku-step-button {
+    background: #fff0;
+    border: 0px rgb(14, 15, 16);
+}
+.ku-step-major {
+    background-color: grey;
+    color: white;
+    border-radius: 1.5em;
+    width: 1.5em;
+    height: 1.5em;
+    top: 1px;
+    display: inline-block;
+    position: relative;
+    margin-left: 0.5em;
+    box-shadow: unset;
+    border: unset;
+    text-align: center;
+    &.ku-step-major-active {
+        background-color: black;
+    }
+}
+.ku-step-major-title {
+    padding-left: 0.2em;
+    position: relative;
+}
+.ku-step-minor-title {
+    font-size: smaller;
+    display: block;
+    border-left: 3px solid black;
+    margin-left: 1.4em;
+    padding-bottom: 0.2em;
+    padding-left: 0.5em;
+    color: grey;
+
+    &.ku-step-title-active {
+        color: grey;
+    }
+}
+
+.ku-step-major-title button,
+.ku-step-minor-title button {
+    color: grey;
+    text-decoration: none;
+
+    &.ku-step-active {
+        color: black;
+        text-decoration: underline;
+    }
+}
+
+
+.ku-step-answered {
+    font-weight: bold;
+}
+
+.ku-step-marked {
+    color: darkorange;
+    position: relative;
+
+    &.bi-exclamation-octagon-fill{
+        color: red;
+    }
+
+    &.bi-exclamation-square-fill{
+        color: blue;
+    }
+}
+
+.ku-result {
+    .col-4 {
+        border: 1px solid black;
+        width: fit-content;
+        height: 2.5em;
+        padding-top: 0.3em;
+        position: absolute;
+        left: 1em;
+        margin-top: 0.5em;
+        span {
+            button {
+                text-decoration: none;
+            }
+        }
+    }
+}

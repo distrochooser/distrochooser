@@ -1,0 +1,13 @@
+
+{% load web_extras %}
+{% load i18n %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {% _i18n_ language_code "LANGUAGE" %}  
+    </button>
+    <ul class="dropdown-menu">
+        {% for code in language_codes %}
+            <li><a class="dropdown-item" href="/{{code}}/{{result_id}}?{{get_params}}">{{code}}</a></li>
+        {% endfor %}
+    </ul>
+  </div>

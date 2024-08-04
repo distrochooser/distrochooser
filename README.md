@@ -1,13 +1,22 @@
 ## distrochooser
 
 
-<img src="https://distrochooser.de/logo.min.svg" width="50%" >
+<img src="https://github.com/distrochooser/distrochooser/blob/kuusi/static/logo.svg" width="50%" >
 
-[![](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/vuejs/awesome-vue)
 
 This repository contains the code of [distrochooser.de](http://distrochooser.de). 
 
 The Distrochooser is a service to help Linux beginners to orientate. The service is not an oracle and can not calculate 100% accurate results, but it helps to orientate.
+
+## Building locally
+
+1. Use a venv to add the requirements from `./code/`. 
+2. Import the matrix using `python3 manage.py parse ../../doc/matrix/toml/matrix.toml --wipe`(the `--wipe` flag is optional and clears the database)
+3. To build js and styles, cd into design and execute `yarn run build-styles` and `yarn run build-js` (make sure a folder static is present in the projects root dir)
+4. Run `python3 manage.py collectstatic` (you will have to adapt the `settings.py` to point to the static folder before)
+5. Run `python3 manage.py runserver`
+6. Open localhost:8000
+
 
 ## License
 
@@ -15,6 +24,8 @@ See LICENSE
 
 
 ## Contributors ✨
+
+> If you are interesting in contributing, see `CONTRIBUTING.md`!
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 

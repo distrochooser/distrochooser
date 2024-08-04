@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="{{language_code}}">
+{% load static %}
+{% load i18n %}
+{% load web_extras %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'custom.css' %}" rel="stylesheet">
+    {% meta_tags language_code %}
+    <link data-n-head="ssr" rel="icon" type="image/x-icon" href="{% static 'icon.svg' %}">
+    <title>
+        {%block title%}{%endblock%}
+    </title>
+</head>
+
+<body id="body" class="d-flex flex-column h-100 bg-light {% rtl_class language_code %} {% a11y_classes %}">
+    {% if debug %}
+    <div class="ku-debug-bg">
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mt-3">
+            {%block logo%}{%endblock%}
+        </div>
+    </div>
+    <main>
+        <div class="{% block container-class %}container-fluid{% endblock %} py-4">
+
+            {% block content %}{% endblock %}
+            {% if debug %}
+            <div class="position-static mt-5">
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <div class="alert alert-danger">
+                        {% _i18n_ language_code "DEBUG_MODE_ON_DESCRIPTION" %}
+                            <code>{{session.result_id}}</code>
+                            <code>{{session.language_code}}</code>
+                        </div>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if locale_incomplete %}
+            <div class="position-static mt-5">
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <div class="alert alert-danger">
+                            <a href="{{translation_url}}">{% _i18n_ language_code "LOCALE_INCOMPLETE" %}</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    <script src="{% static 'bundle.js' %}"></script>
+    {% if acceleration %}
+    <script src="{% static 'turbo.es2017-umd.js' %}"></script>
+    {% endif %}
+</body>
+
+</html>

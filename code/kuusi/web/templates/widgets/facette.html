@@ -1,0 +1,16 @@
+{% load web_extras %}
+{% load crispy_forms_tags %}
+{% for field in form %}
+{% if field.name not in child_facettes %}
+<div class="row">
+    <div class="col-12 col-sm-9 ku-facette-content">
+        {{ field|as_crispy_field }}
+    </div>
+    <div class="col-12 col-sm-3">
+        {% weight language_code field weights%}
+    </div>
+    {% sub_facettes form field.name weights %}
+</div>
+{% endif %}
+{% endfor %}
+{% errors language_code form %}

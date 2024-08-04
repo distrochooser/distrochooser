@@ -1,0 +1,21 @@
+{% load web_extras %}
+{% load i18n %}
+{% if major.href %}
+<div class="row ku-step {% if major.last %} ku-step-major-last {% endif %} {% if major.css_classes %} {{ major.css_classes}} {% endif %}">
+    <div class="col-8">
+        <button name="BTN_FORCED_NAVIGATION" class="ku-step-major  {% if major.active %} ku-step-major-active {% endif %}"  value="{{major.href}}">
+            <i class="{{ icon }}"></i>
+        </button>
+        <span class="ku-step-major-title d-none d-sm-inline">
+            {% step_content language_code major %}
+        </span>
+    </div>
+    {% for step in minor %}
+    <div class="col-8">
+        <span class="ku-step-minor-title {% if step.active %} ku-step-title-active {% endif %} {% if step.css_classes %} {{ step.css_classes}} {% endif %}">
+            {% step_content language_code step %}
+        </span>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

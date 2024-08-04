@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load web_extras %}
+
+{% if step.href %}
+<button name="BTN_FORCED_NAVIGATION"
+    class="ku-step-button {% if step.active %} ku-step-active {% endif %} {% if step.answered %} ku-step-answered {% endif %}"
+    value="{{step.href}}">
+    {{ step.title  }}
+</button>
+{% else %}
+<span>{{step.title}}</span>
+{%endif %}
+{% if step.marked %}
+    <i class="bi bi-bookmark-fill ku-step-marked">{% _i18n_ language_code 'BOOKMARKED_STEP' %}</i>
+{% endif %}
+{% if step.error %}
+    <i class="bi bi-exclamation-octagon-fill ku-step-marked"></i>
+{% endif %}

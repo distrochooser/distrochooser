@@ -1,0 +1,7 @@
+{% load static%}
+<p class="text-center d-none d-sm-block">
+    <a href="{%if not on_static_page%}?page=welcome-page{%else%}/{%endif%}"><img class="ku-logo" src="{% static 'logo.svg' %}"/></a>
+</p>
+<p class="text-center d-sm-none  ku-logo-mobile">
+    <a href="{%if not on_static_page%}?page=welcome-page{%else%}/{%endif%}"><img class="ku-logo" src="{% static 'icon.svg' %}"/></a>
+</p>

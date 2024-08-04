@@ -1,0 +1,42 @@
+{% extends '_layout.html' %}
+{% load web_extras %}
+{% load i18n %}
+{% block title%}Distrochooser{% endblock %}
+
+{%block logo%}{% logo True %}{%endblock%}
+{% block container-class %}container{% endblock %}
+{% block content%}
+<div classs="row">
+    <div class="col-12">
+        <h1>{% _i18n_ language_code "PRIVACY_PAGE_TITLE" %}</h1>
+        <p>
+            {% _i18n_ language_code "PRIVACY_PAGE_TEXT" %}
+        </p>
+        <p>
+            {% _i18n_ language_code "PRIVACY_PAGE_COOKIE_TEXT" %}
+        <ul>
+            <li>csrftoken - {% _i18n_ language_code "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME" %} <a target="_blank"
+                    href="https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-cookie-age">{% _i18n_ language_code  "PRIVACY_PAGE_CSRF_COOKIE_SESSION_LIFETIME_DOCS" %}</a> ({% _i18n_ language_code "PRIVACY_PAGE_EXTERNAL_LINK" %})</li>
+            <li>sessionid - {% _i18n_ language_code "PRIVACY_PAGE_COOKIE_SESSION_LIFETIME" %}</li>
+        </ul>
+        </p>
+        <h2>{% _i18n_ language_code "PRIVACY_PAGE_STORED_DATA" %}</h2>
+        <p>
+            {% _i18n_ language_code "PRIVACY_PAGE_STORED_TEXT" %}
+        <ul>
+            <li>
+                {% _i18n_ language_code "PRIVACY_PAGE_STORED_TEXT_DATE_TIME" %}
+            </li>
+            <li>
+                {% _i18n_ language_code "PRIVACY_PAGE_STORED_TEXT_USER_AGENT" %}
+            </li>
+            <li>
+                {% _i18n_ language_code "PRIVACY_PAGE_STORED_REF" %}
+            </li>
+        </ul>
+        {% _i18n_ language_code "PRIVACY_PAGE_STORED_TEXT_WHY" %}
+        </p>
+    </div>
+</div>
+{% footer language_code %}
+{% endblock %}

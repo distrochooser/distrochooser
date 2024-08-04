@@ -1,0 +1,8 @@
+{% load web_extras %}
+<li class="list-group-item d-flex justify-content-between align-items-start  list-group-item-{{criticality}}">
+    <div class="ms-2 me-auto">
+        {% for key, error in haystack.items %}
+            <small class="text-muted d-block">{%_i18n_ language_code key%}: {% _i18n_ language_code error %}</small>
+        {% endfor %}
+    </div>
+</li>

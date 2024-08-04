@@ -1,0 +1,41 @@
+/*
+kuusi
+Copyright (C) 2014-2024  Christoph Müller  <mail@chmr.eu>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// 2. Include any default variable overrides here
+@import "step";
+@import "logo";
+@import "footer";
+@import "card";
+@import "facette";
+@import "weight";
+@import "i18n";
+@import "share";
+@import "welcome";
+@import "choosable";
+@import "rtl";
+@import "navigation";
+@import "debug";
+@import "a11y";
+
+$bootstrap-icons-font-src: url("/static/bi-fonts/bootstrap-icons.woff2") format("woff2"), url("/static/bi-fonts/bootstrap-icons.woff") format("woff");
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+$flag-icons-path: "/static/flags/";
+@import "../node_modules/flag-icons/sass/flag-icons.scss";

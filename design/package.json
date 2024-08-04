@@ -1,0 +1,19 @@
+{
+    "dependencies": {
+        "@hotwired/turbo": "7.3.0",
+        "@popperjs/core": "2.11.6",
+        "animate.css": "^4.1.1",
+        "bootstrap": "5.2.3",
+        "bootstrap-icons": "^1.11.3",
+        "flag-icons": "^7.1.0",
+        "webpack": "^5.90.0"
+    },
+    "scripts": {
+        "build-js": "webpack --config webpack.config.js && cp -R ./node_modules/@hotwired/turbo/dist/turbo.es2017-umd.js ../static/turbo.es2017-umd.js",
+        "build-styles": "./build-styles.sh"
+    },
+    "devDependencies": {
+        "webpack-cli": "^5.1.4",
+        "sass": "1.55.0"
+    }
+}

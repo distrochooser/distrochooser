@@ -1,0 +1,26 @@
+{% extends '_layout.html' %}
+{% load web_extras %}
+{% block title%}{{title}}{% endblock %}
+
+{%block logo%}{% logo %}{%endblock%}
+{% block content%}
+
+<div class="ku-language-select-container">
+    {% language_select%}
+</div>
+<form method="post" enctype="application/x-www-form-urlencoded">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-2 col-lg-3 ">
+            <div class="ku-steps">
+                {% for step in steps %}
+                    {% step language_code step %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-9 col-lg-6">
+            {% page page %}
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+/* Hide the radio buttons which have a 'nothing' value (they are the default), but we do not want them */
+input[value='nothing'] {
+   display: none;
+}
+input[value='nothing'] + label {
+   display: none;
+}
+.form-check {
+   min-height: 0px !important;
+   margin-bottom: 1em;
+}
+.ku-facette-content {
+   min-height: 3.5em; 
+   label.requiredField {
+      display: none;
+   }
+}
