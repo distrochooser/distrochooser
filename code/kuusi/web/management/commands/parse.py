@@ -90,7 +90,6 @@ class Command(BaseCommand):
         parsed_toml = loads(got)
 
 
-        # TODO: Widget: Add defaults if now row/col/width is provided. Defaults:
         """
         row = 1
         col = 1

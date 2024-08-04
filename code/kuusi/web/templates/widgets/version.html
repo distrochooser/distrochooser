@@ -24,7 +24,7 @@
         <label for="ku-a11y-font-size">{% _i18n_ language_code "OTHER_SETTINGS"%}</label>
         <div class="row">
              <div class="col">
-                {% for key in a11y_keys %}
+                {% for key, _ in a11y_options.others.items %}
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" name="{{key}}" type="checkbox" id="{{key}}" value="checked" {%if active_a11y.others|get_item:key%}checked='checked'{%endif%}>
                         <label class="form-check-label" for="{{key}}">{% _i18n_ language_code key%}</label>

@@ -25,18 +25,16 @@ class SessionVersion(Translateable):
 
 
 # TODO: Make this proper enums to use in a11y_classes() as well
-# TODO: Merge A11Y_OPTIONS and A11Y_KEYS into one structure
 A11Y_OPTIONS = {
     "font": {
         "DEFAULT": "FONT_SIZE_DEFAULT",
         "LARGER": "FONT_SIZE_LARGER",
         "LARGEST": "FONT_SIZE_LARGEST"
+    },
+    "others": {
+        "COLOR_MODE_BLACK_AND_WHITE":  "COLOR_MODE_BLACK_AND_WHITE"
     }
 }
-
-A11Y_KEYS = [
-    "COLOR_MODE_BLACK_AND_WHITE"
-]
 
 class SessionVersionWidget(Widget):
     def proceed(self, request, page) -> bool:
@@ -71,12 +69,11 @@ class SessionVersionWidget(Widget):
         )
         meta.save()
 
-        mode_needles = A11Y_KEYS
+        mode_needles = A11Y_OPTIONS["others"]
         active_modes = [n in request.POST.keys() for n in mode_needles]
         for index, needle in enumerate(mode_needles):
             active = active_modes[index]
             if active:
-                had_changed = True
                 meta = SessionMeta(
                     session = session,
                     meta_key = needle,
@@ -96,13 +93,12 @@ class SessionVersionWidget(Widget):
             for key, value in options.items():
                 active_a11y[section][key] = metas.filter(meta_value=value).count() > 0
         active_a11y["others"] =  {}
-        for key in A11Y_KEYS:
+        for key in A11Y_OPTIONS["others"]:
             active_a11y["others"][key] = metas.filter(meta_key=key).count() > 0
         return render_template.render(
             {
                 "versions": versions,
                 "a11y_options": A11Y_OPTIONS,
-                "a11y_keys": A11Y_KEYS,
                 "selected_version": None
                 if not request.session_obj
                 else request.session_obj.version,
