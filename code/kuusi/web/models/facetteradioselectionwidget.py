@@ -81,7 +81,7 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
                     select.weight = weight
                     select.save()
         
-                    facette_form, _ , _= self.build_form(request.POST, request.session_obj)
+        facette_form, _ , _= self.build_form(request.POST, request.session_obj)
                 
         request.has_errors = facette_form.has_behaviour_error()
         if request.has_errors:
