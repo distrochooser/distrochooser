@@ -1,8 +1,8 @@
 import Vapi from 'vuex-rest-api'
 import Vuex from 'vuex'
-import viisiConfig from '~/viisi.json'
+import viisiConfig from '~/distrochooser.json'
 const indexStore = new Vapi({
-  baseURL: viisiConfig.backendUrl,
+  baseURL: viisiConfig.frontend.backendUrl,
   state: {
     data: null, //for initial bulk loading
     question: null,
@@ -11,31 +11,57 @@ const indexStore = new Vapi({
     currentCategory: null,
     givenAnswers: [],
     token: null, //session token
+    sessionToken: null, //private session token
     isStarted: false,
+    isAtHardwareScreen: false,
     result: null,
     translations: null,
-    locales: null,
+    locales: {
+      en: 'English',
+      de: 'Deutsch',
+      it: 'Italiano',
+      'zh-hans': '简体中文',
+      'zh-hant': '繁體中文',
+      vn: 'Tiếng Việt',
+      ch: 'Schwizerdütsch',
+      fr: 'Français',
+      ru: 'русский',
+      nl: 'Dutch',
+      he: 'עברית',
+      es: 'español',
+      fi: 'suomalainen',
+      tr: 'Türkçe',
+      'pt-br': 'português brasileiro',
+      id: 'bahasa Indonesia',
+      gr: "ελληνική γλώσσα",
+      pl: 'Polski',
+      sv: 'svenska'
+    },
     voteResult: null,
     remarksAdded: false,
     language: 'en',
     testCount: 0,
     oldTestData: null,
     isSubmitted: false,
-    rootUrl: viisiConfig.frontendUrl,
+    rootUrl: viisiConfig.frontend.frontendUrl,
+    socialNetworks: viisiConfig.frontend.socialNetworks,
     answerBlockedAnswers: [],
-    sessionStatus: null
+    sessionStatus: null,
+    method: 'default',
+    visuallyImpairedMode: false,
+    inRTLMode: true,
+    showAllResults: false,
+    debug: true,
+    ratingSort: false,
+    tags: {},
+    clickRegisterResult: null,
+    hardwareRequirements: null
   }
 })
-  .get({
-    action: 'getLocales',
-    property: 'locales',
-    path: () => `locales/`
-  })
-  .get({
+  .post({
     action: 'start',
     property: 'data',
-    path: ({ language, refLinkEncoded }) =>
-      `start/${language}/${refLinkEncoded}/`
+    path: ({ language }) => `start/${language}/`
   })
   .get({
     action: 'language',
@@ -43,15 +69,20 @@ const indexStore = new Vapi({
     path: ({ language }) => `translation/${language}/`
   })
   .get({
+    action: 'registerClick',
+    property: 'clickRegisterResult',
+    path: ({ id }) => `click/${id}`
+  })
+  .get({
     action: 'loadQuestion',
     property: 'data',
-    path: ({ language, index, token }) =>
-      `question/${language}/${index}/${token}/`
+    path: ({ index }) => `question/${index}/`
   })
   .post({
     action: 'submit',
     property: 'result',
-    path: ({ language, token }) => `submit/${language}/${token}/`
+    path: ({ language, token, method }) =>
+      `submit/${language}/${token}/${method}/`
   })
   .post({
     action: 'voteSelection',
@@ -83,25 +114,35 @@ const indexStore = new Vapi({
     property: 'sessionStatus',
     path: ({ token }) => `status/${token}/`
   })
+  .get({
+    action: 'storeHardwareRequirements',
+    property: 'hardwareRequirements',
+    path: ({ token, cores, frequency, memory, storage, is_touch }) => `requirements/${token}/${cores}/${frequency}/${memory}/${storage}/${is_touch}`
+  })
   .getStore()
 
-indexStore.actions.answerQuestion = (store, payload) => {
+indexStore.actions.answerQuestion = async (store, payload) => {
   var answer = payload.selectedAnswer
   var answer = {
     msgid: answer.msgid,
     answered: true,
     important: false,
     category: payload.currentCategory.msgid,
-    blockedAnswers: answer.blockedAnswers
+    blockedAnswers: answer.blockedAnswers,
+    tags: []
   }
-
   store.commit('setAnswerQuestion', answer)
-  // TODO: push answer to server
-  // TODO: Read result
 }
 
 indexStore.actions.submitAnswers = async (store, payload) => {
   store.commit('toggleSubmitted')
+  payload.data.answers.forEach((answer) => {
+    var msgid = answer.msgid
+    answer["tags"] = []
+    if (typeof store.state.tags[msgid]  !== undefined) {
+      answer["tags"] = store.state.tags[msgid]
+    }
+  })
   await store.dispatch('submit', payload)
   store.commit('toggleSubmitted')
 }
@@ -112,6 +153,24 @@ indexStore.mutations.setAnswerQuestion = (state, answer) => {
 
 indexStore.mutations.toggleSubmitted = state => {
   state.isSubmitted = !state.isSubmitted
+}
+
+
+indexStore.mutations.showAllResults = state => {
+  state.showAllResults = true
+}
+
+indexStore.mutations.openHardwareScreen = state => {
+  state.isAtHardwareScreen = true
+}
+
+indexStore.mutations.closeHardwareScreen = state => {
+  state.isAtHardwareScreen = false
+}
+
+
+indexStore.mutations.resetHardwareRequirements = state => {
+  state.hardwareRequirements = null
 }
 
 indexStore.mutations.toggleImportanceState = (state, answer) => {
@@ -132,15 +191,13 @@ indexStore.mutations.removeAnswerQuestion = (state, answer) => {
 }
 
 indexStore.actions.selectCategory = async (store, payload) => {
+  store.commit('setStarted') //make sure the test is active
+  store.commit('closeHardwareScreen') 
   var category = payload.selectedCategory
   store.commit('setSelectCategory', category)
-  //TODO: trigger question change
-  //TODO: load the question
   await store.dispatch('loadQuestion', {
     params: {
-      language: payload.language,
-      index: category.index,
-      token: store.state.token
+      index: category.index
     }
   })
   store.commit('setCurrentQuestionData', store.state.data)
@@ -166,12 +223,27 @@ indexStore.mutations.setLanguageData = (state, data) => {
   state.translations = data.translations
 }
 
+indexStore.mutations.setVisuallyImpairedMode = (state, data) => {
+  state.visuallyImpairedMode = data
+}
+
+indexStore.actions.setVisuallyImpairedMode = (store, payload) => {
+  store.commit('setVisuallyImpairedMode', payload)
+}
+
 indexStore.mutations.setCurrentDisplayData = (state, data) => {
   state.categories = data.categories
   state.token = data.token
+  state.sessionToken = data.sessionToken
   state.language = data.language
   state.testCount = data.testCount
   state.translations = data.translations
+  /* only hebrew locale is currently rtl */
+  if (state.language == "he") {
+    state.inRTLMode = true
+  } else {
+    state.inRTLMode = false 
+  }
 }
 
 indexStore.mutations.setCurrentQuestionData = (state, data) => {
@@ -185,13 +257,21 @@ indexStore.mutations.setStarted = state => {
 
 indexStore.mutations.resetStarted = state => {
   state.isStarted = false
+  state.isSubmitted = false
+  state.result = null
+  state.currentCategory = null
 }
 
 indexStore.mutations.resetResult = state => {
   state.result = null
 }
 
+indexStore.mutations.resetRemarksAdded = state => {
+  state.remarksAdded = false
+}
+
 indexStore.mutations.setOldTestData = state => {
+  state.givenAnswers = []
   for (var i = 0; i < state.oldTestData.answers.length; i++) {
     var answer = state.oldTestData.answers[i]
     var category = state.oldTestData.categories[i]
@@ -208,6 +288,7 @@ indexStore.mutations.setOldTestData = state => {
 
 indexStore.actions.nextQuestion = (store, payload) => {
   store.commit('setStarted') //make sure the test is active
+  store.commit('closeHardwareScreen') 
   const currentCategory = store.state.currentCategory
   var nextCategory = null
   if (currentCategory === null) {
@@ -244,6 +325,40 @@ indexStore.actions.prevQuestion = (store, payload) => {
     language: payload.params.language,
     selectedCategory: nextCategory
   })
+}
+
+indexStore.mutations.resetTags = (state, payload) => {
+  delete state.tags[payload.answerId]
+}
+
+
+indexStore.mutations.removeTags = (state, payload) => {
+  for (var i=0;i<payload.data.length;i++) {
+    var tag = payload.data[i]
+    var index = state.tags[payload.answerId].indexOf(tag)
+    if (index !== -1) {
+      state.tags[payload.answerId].splice(index, 1)
+    }
+  }
+}
+
+indexStore.mutations.saveTags = (state, payload) => {
+  if (typeof state.tags[payload.answerId] === 'undefined') {
+    state.tags[payload.answerId] = payload.selection
+  } else {
+    for (var i=0;i<payload.oldSelection.length;i++) {
+      var tag = payload.oldSelection[i]
+      var index = state.tags[payload.answerId].indexOf(tag)
+      if (index !== -1) {
+        state.tags[payload.answerId].splice(index, 1)
+      }
+    }
+    payload.selection.forEach((value) => {
+      if (state.tags[payload.answerId].indexOf(value) === -1) {
+        state.tags[payload.answerId].push(value)
+      }
+    })
+  }
 }
 
 const createStore = () => {

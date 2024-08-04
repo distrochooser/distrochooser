@@ -3,17 +3,19 @@
       ul
         li
           a(href="#",@click="restart",:class="{'active': isAtWelcomeScreen,'inactive': !isAtWelcomeScreen  }") 
-            i.active-indicator.fas.fa-door-open
+            i.active-indicator.w-icon-login
             span {{ __i("category-welcome") }}
-        li(v-for="(category, c_k) in categories" v-bind:key="c_k")
+        li(v-for="(category, c_k) in categories" v-bind:key="c_k", )
           a(href="#", @click="selectCategory(category)")
             i.active-indicator(:class="category.iconClass + (isAnswered(category) ? ' mobile-answered' : '') + (isActive(category) ? ' mobile-active' : '')")
-            span(:class="{'active': isActive(category), 'inactive': !isActive(category)}") {{ __i(category.msgid) }}
-            i(v-if="isAnswered(category)").fa.fa-check.animated.heartBeat.isAnswered
-      div.floating-button(:class="{'disabled': $store.state.givenAnswers.length === 0}",:data-balloon="__i($store.state.givenAnswers.length === 0 ? 'no-answers' : 'get-my-result')",data-balloon-pos="right",@click.prevent="submit")
-        a(href="#")
-          i.fas.fa-bullhorn
-          span {{ __i("recommendation-category") }}
+            span(:class="{'active': isActive(category), 'inactive': !isActive(category), 'mobile-answered': isAnswered(category)}") {{ __i(category.msgid) }}
+        li(v-if="$store.state.visuallyImpairedMode")
+          a(href="#", class="recommendation-link", :aria-disabled="$store.state.givenAnswers.length === 0", @click.prevent="submit", :title="__i('recommendation-category')") {{ __i("recommendation-category") }}
+
+
+      div.floating-button(v-if="!$store.state.visuallyImpairedMode", :title="__i('recommendation-category')", :class="{'disabled': $store.state.givenAnswers.length === 0}",:data-balloon="__i($store.state.givenAnswers.length === 0 ? 'no-answers' : 'get-my-result')",data-balloon-pos="right",@click.prevent="submit")
+        i.w-icon-right-square-o
+        span {{ __i("recommendation-category") }}
         
 </template>
 
@@ -26,11 +28,6 @@ export default {
       type: String,
       required: true,
       default: 'en'
-    }
-  },
-  data: function() {
-    return {
-      statusIntervalId: null
     }
   },
   computed: {
@@ -60,9 +57,6 @@ export default {
       )
     },
     selectCategory(category) {
-      if (this.isAtWelcomeScreen) {
-        this.start()
-      }
       const _t = this
       this.$store.dispatch('selectCategory', {
         language: _t.language,
@@ -81,29 +75,21 @@ export default {
       })
     },
     submit() {
-      if (this.isAtWelcomeScreen) {
+      if (this.$store.state.oldTestData !== null) {
         this.start()
       }
+      if (
+        this.$store.state.givenAnswers.length === 0 ||
+        this.isAtWelcomeScreen
+      ) {
+        return
+      }
       const _t = this
-      _t.$store.dispatch('getSessionStatus', {
-        params: {
-          token: _t.$store.state.token
-        }
-      })
-      this.statusIntervalId = window.setInterval(function() {
-        _t.$store.dispatch('getSessionStatus', {
-          params: {
-            token: _t.$store.state.token
-          }
-        })
-        if (!_t.$store.state.isSubmitted) {
-          window.clearInterval(_t.statusIntervalId)
-        }
-      }, 300)
       this.$store.dispatch('submitAnswers', {
         params: {
           token: this.$store.state.token,
-          language: this.language
+          language: this.language,
+          method: this.$store.state.method
         },
         data: {
           answers: this.$store.state.givenAnswers
@@ -133,6 +119,7 @@ export default {
 
 .breadcrumb-horizontal ul li i {
   color: $categoryIconColor;
+  vertical-align: text-bottom;
 }
 .breadcrumb-horizontal ul li a {
   text-decoration: none;
@@ -174,11 +161,14 @@ export default {
   margin-left: 1.6em;
   background: $linkColor;
   padding: 1em;
-  border-radius: 4px;
+  color: white;
 }
 .floating-button a {
   text-decoration: none;
   color: white;
+}
+.floating-button a i {
+  vertical-align: bottom;
 }
 .disabled {
   cursor: no-drop;
@@ -188,5 +178,8 @@ export default {
 }
 .disabled * {
   color: black;
+}
+.pending-indicator {
+  margin-left: 0.5em;
 }
 </style>

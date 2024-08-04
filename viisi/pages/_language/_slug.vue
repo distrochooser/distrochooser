@@ -1,112 +1,137 @@
 <template lang="pug">
-  div.distrochooser
-    div.top-logo-container
+  div.distrochooser(v-bind:class="{ 'visually-impaired-mode': $store.state.visuallyImpairedMode, 'rtl': isRTL }")
+    div.top-logo-container(aria-role="banner",v-if="!$store.state.visuallyImpairedMode")
       a(href="/")
-        img.top-logo(src='/logo.min.svg')
-    div.spin-parent(v-if="isLoading" )
-      span {{ __i("loading") }}
-      div.spinner
-        div.rect1(style="background-color: black")
-        div.rect2(style="background-color: #e4ae4c")
-        div.rect3(style="background-color: #1c105a")
-        div.rect4(style="background-color: #ebeef3; border-color: black") 
-        div.rect5(style="background-color: #39BA95")    
-    div.calculation-loading(v-if="$store.state.isSubmitted && $store.state.sessionStatus !== null") 
-      div.spinner
-        div.rect1(style="background-color: black")
-        div.rect2(style="background-color: #e4ae4c")
-        div.rect3(style="background-color: #1c105a")
-        div.rect4(style="background-color: #ebeef3; border-color: black") 
-        div.rect5(style="background-color: #39BA95")    
-      span.calculation-text {{ $store.state.sessionStatus.done }} {{ __i("checked-criteria-count") }}
+        img.top-logo(src='/logo.min.svg', alt="Distrochooser.de Logo")
+    div.calculation-loading(v-if="isLoading || $store.state.isSubmitted") 
+      div.spinner(v-if="!$store.state.visuallyImpairedMode")
+      div.spinner-text(v-else) {{ __i("loading") }}
     categories(:language="language",v-if="!isLoading && !$store.state.isSubmitted")
     div(v-if="!isLoading && !isFinished && !$store.state.isSubmitted")
       question(:language="language")
     div(v-if="!isLoading && isFinished&& !$store.state.isSubmitted")
       result(:language="language")
-    div.footer(v-if="!isLoading")
-      a(target="_blank", :href="'/info/imprint/'+ language" )  {{ __i("imprint") }}
-      a(target="_blank", :href="'/info/privacy/'+ language" ) {{ __i("privacy") }}
-      a(target="_blank", :href="'/info/about/'+ language" ) {{ __i("about") }}
-      a(target="_blank", href="https://chmr.eu") {{ __i("vendor-text") }}
-    
-    div.languages(v-if="!isLoading")
-      span(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-on:click="switchLanguage(locale)")
-        i.flag-icon(:class="'flag-icon-'+locale")
-   
+    div.language-select(v-if="!$store.state.isStarted")
+      label(for="language") {{ __i("language") }}
+      select(v-if="!isLoading", v-model="language",id="language",:title="__i('language')")
+        option(v-for="(locale, locale_key) in $store.state.locales", :key="locale_key", v-bind:value="locale_key") {{locale}}
+    footernav(v-if="!isLoading && this.$store.state.result === null",:language="infoPageLanguage")
 </template>
 <script>
+import '@uiw/icons/fonts/w-icon.css'
 import categories from '~/components/categories'
 import question from '~/components/question'
 import result from '~/components/result'
+import footernav from '~/components/footer'
 import i18n from '~/mixins/i18n'
 export default {
   components: {
     categories,
     question,
-    result
+    result,
+    footernav
   },
   mixins: [i18n],
   data: function() {
     return {
       language: 'en',
-      isLoading: true
+      isLoading: true,
+      languageChanged: false
     }
   },
   computed: {
     isFinished: function() {
       return this.$store.state.result !== null
+    },
+    infoPageLanguage: function() {
+      // as the info pages are only available in de and en
+      return ['de', 'en'].indexOf(this.language) !== -1 ? this.language : 'en'
+    },
+    isRTL() {
+      return ['he'].indexOf(this.language) !== -1
+    }
+  },
+  watch: {
+    language: async function(val) {    
+      this.languageChanged = true
+      await this.switchLanguage(val)
     }
   },
   async mounted() {
-    await this.prepareLanguageData()
-    var testSlug =
+    if (this.$route.fullPath.toLowerCase().indexOf('vim=true') !== -1) {
+      this.$store.dispatch('setVisuallyImpairedMode', true)
+    }
+    const _t = this
+    await this.$store.dispatch('startTest', {
+      params: {
+        language: _t.language
+      },
+      data: {
+        referrer: document.referrer ? document.referrer : null
+      }
+    })
+    await this.setOldDataIfNeeded();
+    this.isLoading = false
+  },
+  methods: {
+    setOldDataIfNeeded: async function() {
+
+      var testSlug =
       typeof this.$route.params.slug !== 'undefined'
         ? this.$route.params.slug
         : null
 
-    const _t = this
-    if (testSlug !== null) {
-      await this.$store.dispatch('getOldAnswers', {
-        params: {
-          slug: testSlug
-        }
-      })
-      this.$store.commit('setOldTestData')
-    }
-    await this.$store.dispatch('startTest', {
-      params: {
-        language: _t.language,
-        refLinkEncoded: document.referrer ? btoa(document.referrer) : '-'
+      const _t = this
+      if (testSlug !== null) {
+        await this.$store.dispatch('getOldAnswers', {
+          params: {
+            slug: testSlug
+          }
+        })
+        this.$store.commit('setOldTestData')
       }
-    })
-    this.isLoading = false
-  },
-  methods: {
-    prepareLanguageData: async function() {
-      await this.$store.dispatch('getLocales')
-      var lang =
-        typeof this.$route.params.language !== 'undefined' &&
-        this.$store.state.locales.indexOf(this.$route.params.language) !== -1
-          ? this.$route.params.language
-          : 'en'
-
-      this.language = lang
+    },
+    prepareLanguageData: function() {
+      if (this.languageChanged) {
+        /* If there was already a language change -> don't do anything. /*/
+        return;
+      }
+      var allLocales = Object.keys(this.$store.state.locales)
+      if (typeof this.$route.params.language === 'undefined') {
+        if (typeof window === 'undefined') {
+          return "en"; /* No browser detectable (SSR) */
+        }
+        // only apply the browser language if no language flag is set
+        var browserLanguage = window.navigator.language.toLowerCase()
+        if (allLocales.indexOf(browserLanguage) !== -1) {
+          this.language = browserLanguage
+        }
+      } else {
+        var lang =
+          typeof this.$route.params.language !== 'undefined' &&
+          allLocales.indexOf(this.$route.params.language) !== -1
+            ? this.$route.params.language
+            : 'en'
+        this.language = lang
+      }
     },
     switchLanguage: async function(locale) {
       this.language = locale
+      var slug = typeof this.$route.params.slug !== 'undefined' ? "/" + this.$route.params.slug : "" /* Also push the old result, if there is any */
+      this.$router.push("/" + this.language + slug)
       await this.$store.dispatch('switchLanguage', {
         params: {
           language: this.language
         }
       })
-      console.log(this.$store.state.isSubmitted)
+
       // resubmit result to get translated values (if needed)
       if (this.isFinished) {
         this.$store.dispatch('submitAnswers', {
           params: {
             token: this.$store.state.token,
-            language: this.language
+            language: this.language,
+            method: this.$store.state.method
           },
           data: {
             answers: this.$store.state.givenAnswers
@@ -116,20 +141,41 @@ export default {
     }
   },
   head: function() {
-    return {
+    this.prepareLanguageData()
+    var description_meta = {
+      "de": "Die Linux Auswahlhilfe hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die passende Linux-Distribution zu finden.",
+      "en": "The Distrochooser helps you to find the suitable Linux distribution based on your needs!",
+      "es": "El Distrochooser le ayuda a encontrar la distribución de Linux adecuada según sus necesidades.",
+      "fi": "Distrochooser auttaa sinua löytämään sopivan Linux-jakelun tarpeidesi mukaan!",
+      "fr": "Le Distrochooser vous aide à trouver la distribution Linux appropriée en fonction de vos besoins !",
+      "gsw": "Die Linux Auswahlhilfe hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die passende Linux-Distribution zu finden.",
+      "he": "ה-Distrochooser עוזר לך למצוא את הפצת הלינוקס המתאימה בהתבסס על הצרכים שלך!",
+      "it": "Il Distrochooser vi aiuta a trovare la distribuzione Linux più adatta alle vostre esigenze!",
+      "nl": "De Distrochooser helpt u de geschikte Linux-distributie te vinden op basis van uw behoeften!",
+      "pt-br": "O Distrochooser ajuda você a encontrar a distribuição Linux adequada com base em suas necessidades!",
+      "ru": "Distrochooser поможет вам найти подходящий дистрибутив Linux в соответствии с вашими потребностями!",
+      "tr": "Distrochooser, ihtiyaçlarınıza göre uygun Linux dağıtımını bulmanıza yardımcı olur!",
+      "vn": "Distrochooser giúp bạn tìm bản phân phối Linux phù hợp dựa trên nhu cầu của bạn!",
+      "id": "Distrochooser membantu Anda menemukan distribusi Linux yang sesuai dengan kebutuhan Anda!",
+      "zh-hans":"Distrochooser 可帮助您根据需要找到合适的 Linux 发行版！",
+      "zh-hant":"Distrochooser可以帮助你根据你的需要找到合适的Linux发行版"
+    }
+    var result = {
       titleTemplate: 'Distrochooser',
+      htmlAttrs: {
+        lang: this.language
+      },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
-          hid: 'description',
-          name: 'description',
-          content: this.welcomeText(this.language)
-        },
-        {
           name: 'keywords',
           content:
             'Linux, Distrochooser, Linux Chooser, Linux Distribution Chooser, Linux Auswahlhilfe, Linux Auswahl, Alternative to Windows, Linux Comparison, Linux Vergleich, Vergleich, Auswahlhilfe, Alternative zu Windows'
+        },
+        {
+          name: 'description',
+          content: description_meta[this.language]
         },
         {
           name: 'theme-color',
@@ -149,7 +195,7 @@ export default {
         },
         {
           property: 'og:image',
-          content: this.$store.state.rootUrl + 'logo.min.svg'
+          content: this.$store.state.rootUrl + 'logo.png'
         },
         {
           property: 'og:image:type',
@@ -176,8 +222,12 @@ export default {
           content: 'Distrochooser'
         },
         {
+          name: 'twitter:description',
+          content: description_meta[this.language]
+        },
+        {
           name: 'twitter:image',
-          content: '/logo.min.svg'
+          content: this.$store.state.rootUrl + '/logo.png'
         },
         {
           name: 'generator',
@@ -185,14 +235,13 @@ export default {
         }
       ]
     }
+    return result
   }
 }
 </script>
 <style lang="scss">
 @import '~/scss/variables.scss';
-@import '~/node_modules/spinkit/scss/spinners/3-wave.scss';
-@import '~/node_modules/flag-icon-css/css/flag-icon.min.css';
-@import '~/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+@import '~/node_modules/spinkit/spinkit.min.css';
 /* roboto-slab-regular - latin */
 @font-face {
   font-family: 'Roboto Slab';
@@ -249,103 +298,11 @@ export default {
       url('/fonts/OpenSans/open-sans-v16-latin-regular.svg#OpenSans')
       format('svg'); /* Legacy iOS */
 }
-.fa-facebook {
-  color: #3b5998;
-}
-.fa-twitter {
-  color: #1da1f2;
-}
-.footer {
-  position: fixed;
-  top: 1em;
-  padding-bottom: 1em;
-  text-align: right;
-  width: 100%;
-  left: 0px;
-  padding-left: 2em;
-  z-index: -9999;
-}
-.footer a {
-  color: $linkColor;
-  text-decoration: none;
-  padding-right: 1em;
-  font-size: small;
-}
-// loader
-.spinner {
-  margin: 100px auto;
-  width: 200px;
-  height: 14em;
-  text-align: center;
-  font-size: 10px;
-}
-
-.spinner > div {
-  background-color: $spinColor;
-  height: 100%;
-  width: 10px;
-  display: inline-block;
-
-  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  margin: 1em;
-}
-
-.spinner .rect2 {
-  -webkit-animation-delay: -1.1s;
-  animation-delay: -1.1s;
-}
-
-.spinner .rect3 {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
-}
-
-.spinner .rect4 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
-
-.spinner .rect5 {
-  -webkit-animation-delay: -0.8s;
-  animation-delay: -0.8s;
-}
-
-@-webkit-keyframes sk-stretchdelay {
-  0%,
-  40%,
-  100% {
-    -webkit-transform: scaleY(0.4);
-  }
-  20% {
-    -webkit-transform: scaleY(1);
-  }
-}
-
-@keyframes sk-stretchdelay {
-  0%,
-  40%,
-  100% {
-    transform: scaleY(0.4);
-    -webkit-transform: scaleY(0.4);
-  }
-  20% {
-    transform: scaleY(1);
-    -webkit-transform: scaleY(1);
-  }
-}
 .spin-parent {
   text-align: center;
   margin-top: 3em;
 }
-.languages {
-  position: fixed;
-  right: 1em;
-  bottom: 1em;
-}
-.language {
-  margin-right: 1em;
-}
+
 .flag-icon {
   cursor: pointer;
   font-size: 13pt;
@@ -370,5 +327,221 @@ select::-ms-expand {
 }
 .calculation-text {
   padding-top: 2em;
+}
+
+.spinner {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: 5px solid lightgray;
+  border-radius: 50%;
+  border-top-color: $spinColor;
+  animation: spin 1s infinite;
+  -webkit-animation: spin 1s infinite;
+  margin: 100px auto;
+  text-align: center;
+  font-size: 10px;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.rtl {
+  direction: rtl;
+
+  .question {
+    .question-content {
+      padding-right: 1em;
+    }
+    .answer-remark {
+      left: unset !important;
+      right: 5%;
+    }
+  }
+  .welcome-text {
+    i.w-icon-right-square-o::before {
+      content: '\ea64' !important;
+    }
+
+    .w-icon-d-arrow-right::before {
+      content: '\ea30';
+    }
+  }
+  /* Icon margins */
+  .breadcrumb-horizontal {
+    ul li i {
+      margin-left: 0.5em;
+    }
+
+    .w-icon-login::before {
+      content: '\ea62';
+    }
+
+    .floating-button {
+      margin-left: unset;
+      margin-right: 11px;
+      a i {
+        margin-left: 0.5em;
+      }
+    }
+  }
+
+  .floating-button {
+    i.w-icon-right-square-o::before {
+      content: '\ea64' !important;
+    }
+  }
+
+  .welcome-text {
+    div i {
+      margin-left: 0.5em;
+    }
+  }
+
+  .footer a i.w-icon-github {
+    margin-left: 0.5em;
+    margin-right: unset;
+  }
+
+  /* result page */
+
+  .remarks .remarks-header {
+    margin-right: -1.5%;
+    text-align: right;
+  }
+
+  .distribution .meta .actions {
+    padding-right: 0em;
+    .vote-actions {
+      margin-right: -0.5em;
+    }
+  }
+
+  .distribution .meta .url {
+    text-align: left;
+    padding-left: 1em;
+  }
+
+  .distribution {
+    .description {
+      padding-right: 1em;
+
+      .reason-list div div i,
+      .blocking-list div div i {
+        margin-left: 0.5em;
+        margin-right: 0px;
+      }
+    }
+  }
+}
+.visually-impaired-mode {
+  font-size: x-large;
+  margin-top: 2em;
+  .distribution {
+      .reason-list {
+        .w-icon-plus {
+          font-weight: bold;
+          color: #034603 !important;
+        }
+      }
+      #negative-list {
+        .w-icon-minus {
+          font-weight: bold;
+          color: #b00202 !important;
+        }
+      }
+  }
+  .question .question-content .welcome-text {
+    font-size: x-large;
+    i {
+      display: none;
+    }
+  }
+  .warning-icon {
+    display: none;
+  }
+  .answers .answer input {
+    width: 30px;
+    height: 30px;
+  }
+  button.step {
+    font-size: x-large;
+  }
+  .question-text {
+    font-size: larger;
+  }
+  .answer-remark {
+    font-size: x-large;
+  }
+  .important-visually-impaired {
+    margin-left: 1em;
+  }
+  .hide-reasons {
+    display: none;
+  }
+  .footer {
+    width: auto;
+    right: 1em !important;
+    text-align: left !important;
+    position: fixed !important;
+    bottom: 1em;
+    color: darkblue !important;
+  }
+  .footer a {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+  .footer a,
+  .footer select {
+    font-size: x-large !important;
+  }
+  .footer i {
+    display: none;
+  }
+  .breadcrumb-horizontal {
+    top: 0px;
+    ul li i {
+      color: black !important;
+      font-size: 1.5em;
+    }
+    ul li a{
+
+      span {
+        color: black !important;
+        font-size: 1.5em;
+
+        &.active {
+          font-weight: bold;
+          border: 3px solid black;
+        }
+      }
+    }
+    ul li a.recommendation-link {
+      color: black !important;
+      font-size: 1.5em;
+    }
+  }
+}
+
+.language-select {
+  width: fit-content;
+  right: 1em;
+  position: fixed;
+  top: 0px;
+  margin-top: 0.5em;
+
+  label {
+    display: block;
+    text-align: left;
+    margin-right: 1.5em;
+  }
 }
 </style>

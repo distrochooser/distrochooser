@@ -3,4 +3,3 @@ polib==1.1.1
 gunicorn==22.0.0 
 django-cors-headers>=3.7.0
 django-cacheops==4.2
-psycopg2>=2.8,<2.9 # as long as it's on Django 2.x

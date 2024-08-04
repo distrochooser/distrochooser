@@ -1,0 +1,48 @@
+<h1>
+  {{sessions|length}} Feedbacks
+</h1>
+<table border="1px" width="100%">
+ <tr>
+   <th>
+     Token
+   </th>
+   <th>
+     DateTime
+   </th>
+   <th>
+     calcTime
+   </th>
+   <th>
+    Remark
+   </th>
+   <th>
+    Done
+   </th>
+ </tr> 
+{% for session in sessions %}
+  {% if session.remarksProcessed %}
+    <tr style="text-decoration: line-through;">
+      {% else %}
+    <tr>
+  {% endif %}
+  <td>
+    {{session.token}}
+  </td>
+  <td>
+    {{session.dateTime}}
+  </td>
+  <td>
+    {{session.calculationTime}}
+  </td>
+  <td>
+    {{session.remarks}}
+  </td>
+  <td>
+    <a href="/process_feedback{{system_suffix}}/{{session.token}}/">
+      {{session.remarksProcessed}}
+    </a>
+  </td>
+</tr>
+{% endfor %}
+
+</table>

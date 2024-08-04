@@ -1,13 +1,13 @@
 const pkg = require('./package')
 
 module.exports = {
-  mode: 'universal',
 
   /*
   ** Headers of the page
   */
   head: {
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/icon.svg' }]
+    meta: [{hid: "google-site-verification", name: "google-site-verification", content:"nqtoKAtXX7xTNyddaEGkkYtgpc0pc0b-wigel0Acy5c"}],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/icon.svg' }, {rel: 'canonical', href: 'https://distrochooser.de'}]
   },
 
   /*
@@ -30,7 +30,8 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    "@nuxtjs/sitemap",
   ],
   /*
   ** Axios module configuration
@@ -38,24 +39,45 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
-
-  /*
-  ** Build configuration
-  */
-  build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
+  sitemap: {
+    hostname: 'https://distrochooser.de',
+    gzip: true,
+    exclude: [
+      '/info/privacy/*',
+      '/info/imprint/*'
+    ],
+    routes: [
+      '/',
+      '/de',
+      '/en',
+      '/es',
+      '/fi',
+      '/fr',
+      '/ch',
+      '/he',
+      '/it',
+      '/nl',
+      '/pt-br',
+      '/ru',
+      '/tr',
+      '/vn',
+      '/zh-hans',
+      '/zh-hant',
+      '/info/about/de',
+      '/info/about/en',
+      '/info/about/es',
+      '/info/about/fi',
+      '/info/about/fr',
+      '/info/about/ch',
+      '/info/about/he',
+      '/info/about/it',
+      '/info/about/nl',
+      '/info/about/pt-br',
+      '/info/about/ru',
+      '/info/about/tr',
+      '/info/about/vn',
+      '/info/about/zh-hans',
+      '/info/about/zh-hant',
+    ]
   }
 }

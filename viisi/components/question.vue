@@ -5,71 +5,95 @@
         div.welcome-text 
           h2 {{ __i("welcome-text-title") }}
           p {{ __i("welcome-text") }}
-          p
+          div
             div 
-              i.fas.fa-forward
+              i.w-icon-d-arrow-right
               span {{ __i("welcome-text-skip") }}
             div
-              i.fas.fa-play
+              i.w-icon-question-circle-o
+              span {{ __i("welcome-text-additional-infos") }}
+            div
+              i.w-icon-right-square-o
               span {{ __i("welcome-text-result-get") }}
             div
-              i.fas.fa-sort-amount-up
+              i.w-icon-swap
               span {{ __i("welcome-text-order") }}
             div
-              i.fas.fa-trash-alt
+              i.w-icon-minus-circle-o
               span {{ __i("welcome-text-remove") }}
             div
-              i.fas.fa-star
+              i.w-icon-star-off
               span {{ __i("welcome-text-importance") }}
             div
-              i.fas.fa-heart
+              i.w-icon-heart-off
               span {{ __i("welcome-text-feedback") }}
-           
-        div.actions
-          button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
+            div(v-if="!inVisuallyImpairedMode")
+              i.w-icon-eye-o
+              a(href="/?vim=true") {{ __i("welcome-text-a11y") }}
+            div
+              button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
       div.question-content
         div.additional-infos.animated.fadeIn.fast(v-if="additionalInfoShown")
           div.additional-info-menu(v-on:click="flip")
             span {{ __i("close-additional-info") }}
-            i.fas.fa-times-circle
+            i.w-icon-circle-close-o
           h3 {{ __i("additional-info") }} | {{ __i($store.state.currentCategory.msgid) }}
           div {{ __i(question.additionalInfo) }}
         div.question-text(v-if="!additionalInfoShown")
           span {{ __i(question.msgid) }}
+          span.additional-remarks-button(v-if="question.additionalInfo && !inVisuallyImpairedMode",:data-balloon="__i('additional-infos')",data-balloon-pos="right")
+            i.w-icon-question-circle-o.additional-info-icon(v-on:click="flip")
+        div.question-text.question-additional-info-vim(v-if="inVisuallyImpairedMode") {{ __i("additional-info") }}: {{ __i(question.msgid) }}
+
+
         div.answer-remark(v-if="question.isMultipleChoice")
           span {{ __i("question-is-multiplechoice") }}
         div.answers(:class="{'flipped': additionalInfoShown}")
-          div.image-answer-parent(v-if="question.isMediaQuestion")
-            div.image-answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}",@click='answerQuestion(answer)')
-              img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)")
-              p {{ __i(answer.msgid) }}
+          div.image-answer-parent(v-if="question.isMediaQuestion && !inVisuallyImpairedMode")
+            div.image-answer(v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
+              img(:src="'/img/'+answer.msgid+'.png'",:title="__i(answer.msgid)", @click='answerQuestion(answer)')
+              p.image-answer-options
+                a.source-link(target="_blank", :href="answer.mediaSourcePath", v-if="answer.mediaSourcePath") 
+                    i.w-icon-link(:title='__i("source")')
+                span
+                  span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="isAnswerSelected(answer) && !isAnswerImportant(answer)")
+                    i.w-icon-star-off(:title='__i("make-important")')
+                  span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
+                    i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
+              p(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
           div.answer(v-else,v-for="(answer, a_key) in answers", :key="a_key",:class="{'answer-selected': isAnswerSelected(answer)}")
-            span(v-if="question.isMultipleChoice")
-              i.far.answer-box(@click='answerQuestion(answer)', :class="{'fa-check-square': isAnswerSelected(answer), 'fa-square': !isAnswerSelected(answer)}")
-            span(v-else,)
-              i.far.answer-box(@click='answerQuestion(answer)', :class="{'fa-check-circle': isAnswerSelected(answer), 'fa-circle': !isAnswerSelected(answer)}")
-            label(@click='answerQuestion(answer)') {{ __i(answer.msgid) }}
-            span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="isAnswerSelected(answer) && !isAnswerImportant(answer)")
-              i.far.fa-star(:title='__i("make-important")')
-            span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="isAnswerSelected(answer) && isAnswerImportant(answer)")
-              i.fas.fa-star.animated.jello(:title="__i('remove-important')")
-            div.warning-alert.animated.fadeInUp.faster(v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
+            input(v-if="inVisuallyImpairedMode", :id="'answer_'+a_key",:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
+            label(v-if="inVisuallyImpairedMode", :for="'answer_'+a_key") {{ __i(answer.msgid) }}
+            
+            label.container(v-if="!inVisuallyImpairedMode", @click='answerQuestion(answer)') 
+              span.answer-text {{ __i(answer.msgid) }}
+              input(:type="question.isMultipleChoice ? 'checkbox': 'radio'", @click='answerQuestion(answer)', :checked="isAnswerSelected(answer)")
+              span.checkmark
+            
+            a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)") {{ __i("make-important") }}
+            a.important-visually-impaired(href="#", v-on:click="toggleImportance(answer)", v-if="inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)") {{ __i("remove-important") }}
+
+            span.importance-toggle(v-on:click="toggleImportance(answer)", v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && !isAnswerImportant(answer)")
+              i.w-icon-star-off(:title='__i("make-important")')
+            span.importance-toggle(v-on:click="toggleImportance(answer)",v-if="!inVisuallyImpairedMode && isAnswerSelected(answer) && isAnswerImportant(answer)")
+              i.w-icon-star-on.animated.jello(:title="__i('remove-important')")
+
+            
+            div.warning-alert.fadeInUp.faster(:class="'animated' ? !$store.state.visuallyImpairedMode : ''", v-if="getBlockingAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
               p {{ __i("answer-is-blocking") }}:
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockingAnswers(answer)", :key="blockingAnswer_key") 
-                i.fas.fa-times-circle
+                i.w-icon-circle-close-o.warning-icon
                 span "{{ __i(blockingAnswer.msgid) }}"
             div.blocking-alert.animated.fadeInUp.faster(v-if="getBlockedAnswers(answer).length > 0 &&  isAnswerSelected(answer)")
               p {{ __i("answer-is-blocked") }}:
               div(v-for="(blockingAnswer, blockingAnswer_key) in getBlockedAnswers(answer)", :key="blockingAnswer_key") 
-                i.fas.fa-times-circle
+                i.w-icon-circle-close-o
                 span "{{ __i(blockingAnswer.msgid) }}"
       div.actions(v-if="!additionalInfoShown")
-        div.additional-remarks-action
-          span.additional-remarks-button(v-if="question.additionalInfo",:data-balloon="__i('additional-infos')",data-balloon-pos="left")
-            i.far.fa-question-circle.additional-info-icon(v-on:click="flip")
+        button.skip-step.step(@click="nextQuestion",v-if="!isAtLastQuestion()") {{  __i("skip-question") }}
         button.back-step.step(@click="prevQuestion",v-if="!isAtFirstQuestion()") {{  __i("prev-question") }}
-        button.next-step.step(@click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
+        button.next-step.step(:class="{'disabled-step': isAtEndWithoutAnswers}" @click="nextQuestion") {{  __i(isAtLastQuestion() ? "get-result" : "next-question") }}
 </template>
 <script>
 import i18n from '~/mixins/i18n'
@@ -88,6 +112,9 @@ export default {
     }
   },
   computed: {
+    inVisuallyImpairedMode() {
+      return this.$store.state.visuallyImpairedMode
+    },
     isLoaded() {
       return this.$store.state !== null
     },
@@ -99,6 +126,11 @@ export default {
     },
     isAtWelcomeScreen() {
       return !this.$store.state.isStarted
+    },
+    isAtEndWithoutAnswers() {
+      return (
+        this.isAtLastQuestion() && this.$store.state.givenAnswers.length === 0
+      )
     }
   },
   watch: {
@@ -167,6 +199,9 @@ export default {
       })
     },
     nextQuestion() {
+      if (this.isAtEndWithoutAnswers) {
+        return
+      }
       var _t = this
       if (!this.isAtLastQuestion()) {
         this.$store.dispatch('nextQuestion', {
@@ -178,7 +213,8 @@ export default {
         this.$store.dispatch('submitAnswers', {
           params: {
             token: this.$store.state.token,
-            language: _t.language
+            language: _t.language,
+            method: this.$store.state.method
           },
           data: {
             answers: this.$store.state.givenAnswers
@@ -227,7 +263,7 @@ export default {
         ).length === 1
       )
     },
-    toggleImportance(answer) {
+    async toggleImportance(answer) {
       this.$store.commit('toggleImportanceState', answer)
     }
   }
@@ -235,6 +271,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~/scss/variables.scss';
+@import '~/scss/checkboxes.scss';
 @import '~/node_modules/animate.css/animate.min.css';
 @import '~/node_modules/balloon-css/balloon.min.css';
 .question {
@@ -263,11 +300,10 @@ export default {
   }
 }
 .welcome-text {
-  padding: 2em;
+  padding-left: 1em;
   font-size: 13pt;
   font-family: 'Archivo', sans-serif;
   line-height: 2;
-  height: 23em;
 }
 .question-text {
   padding-top: 1em;
@@ -298,10 +334,8 @@ ul {
   font-family: Open Sans, sans-serif;
   cursor: pointer;
 }
-.answer-text {
-  padding-left: 2em;
-  padding-right: 2em;
-  font-size: 11pt;
+.image-answer.answer-selected {
+  border: 2px solid $selectedAnswerBackground;
 }
 .answer-selected {
   color: $selectedAnswerBackground !important;
@@ -315,26 +349,27 @@ ul {
 }
 .step {
   color: black;
-  padding: 0.7rem 1.4rem;
+  padding: 0.4rem 0.8rem;
   border: 1px solid $nextButtonBackground;
   margin-left: 1rem;
   cursor: pointer;
-  border-radius: 4px;
   font-family: 'Open Sans';
   font-size: 12pt;
 }
 .skip-step {
-  position: relative;
-  left: 95%;
-  top: 0.5em;
-  display: inline;
-  color: $skipButtonColor;
+  border: 1px solid $skipButtonColor;
 }
 .next-step {
   background: $lightColor;
   color: white;
   border: 1px solid $nextButtonBackground;
 }
+.disabled-step {
+  background: white;
+  color: black;
+  cursor: no-drop;
+}
+
 .back-step:hover {
   background: $lightColor;
   color: white;
@@ -393,10 +428,6 @@ a {
   margin-right: 1em;
   margin-left: 1em;
 }
-.fa-check-circle,
-.fa-check-square {
-  color: $answeredColor;
-}
 .answer-box {
   font-size: 1.5em;
   vertical-align: sub;
@@ -428,14 +459,15 @@ a {
 }
 .additional-info-icon {
   color: $additionalInfoIcon;
-  font-size: 17pt;
+  font-size: 14pt;
 }
 .additional-remarks-action {
   margin-top: 0.6em;
   margin-right: -0.5em;
 }
 .start-test-button {
-  margin-bottom: -1em;
+  margin-top: 0.5em;
+  margin-left: unset;
 }
 .blocking-alert {
   border: 1px solid red;
@@ -464,38 +496,63 @@ a {
   margin-right: 1em;
   cursor: pointer;
   margin-bottom: 1em;
+  padding: 0.5em;
+  border: 2px solid white;
 }
 .image-answer-parent {
   text-align: center;
+  margin-left: -3em;
 }
 .image-answer img {
-  width: 50%;
+  padding: 1em;
+  max-width: 100%;
+  max-height: 160px;
 }
-.importance-toggle .far {
+.importance-toggle .w-icon-star-off,
+.importance-toggle .w-icon-star-on {
   color: #ff7a00;
   margin-left: 0.2em;
+  font-size: 13pt;
 }
 
-.importance-toggle .fas {
-  color: #ff7a00;
-  margin-left: 0.2em;
-}
-.welcome-text div .fa-forward {
+.welcome-text div .w-icon-d-arrow-right {
   color: #e4ae4c;
 }
-.welcome-text div .fa-play {
+.welcome-text div .w-icon-question-circle-o {
   color: #1c105a;
 }
-.welcome-text div .fa-sort-amount-up {
+.welcome-text div .w-icon-right-square-o {
   color: #39ba95;
 }
-.welcome-text div .fa-trash-alt {
+.welcome-text div .w-icon-minus-circle-o {
   color: grey;
 }
-.welcome-text div .fa-star {
+.welcome-text div .w-icon-star-off {
   color: #ff7a00;
 }
-.welcome-text div .fa-heart {
+.welcome-text div .w-icon-heart-off {
   color: #d50d0d;
+}
+.source-link {
+  font-size: 9pt;
+}
+.image-answer-options {
+  margin-bottom: 0.5em;
+  margin-top: -0.5em;
+}
+
+.rtl {
+  .answers {
+    .answer {
+      .checkmark {
+        left: unset;
+        right: 0px;
+      }
+      span.answer-text {
+        margin-right: 1.5vw;
+        padding-right: unset;
+      }
+    }
+  }
 }
 </style>

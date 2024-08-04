@@ -1,25 +1,27 @@
-from os.path import join
-from backend.settings import LOCALES
+from os.path import join, exists
+from backend.settings import CONFIG, LOCALES
 # not using django's translation model b/c of dynamical content instead of values taken out of the sourcecode
 import polib
 
-def parseTranslation(langCode: str) -> dict:
+def parseTranslation(langCode: str, poFile: str) -> dict:
   if langCode not in LOCALES:
     raise Exception("Language not installed")
-
-  po = polib.pofile(LOCALES[langCode])
+  po = polib.pofile(poFile)
   result = {}
   for entry in po:
     result[entry.msgid] = entry.msgstr
   return result
 
-
 # Build the translation one time to prevent them from being generated on each request
-TRANSLATIONS = {
-  "en": parseTranslation("en"),
-  "de": parseTranslation("de"),
-  "us": parseTranslation("en"),
-  "gb": parseTranslation("en")
-}
+TRANSLATIONS = {}
+for key, value in LOCALES.items():
+  TRANSLATIONS[key] = parseTranslation(key, value)
 
-TESTOFFSET = 713037   
+
+TESTOFFSET = 713037
+COMMIT = None
+if exists("commit"):
+  with open("commit", "r") as file:
+    COMMIT = file.read()
+
+print("distrochooser5", COMMIT)
