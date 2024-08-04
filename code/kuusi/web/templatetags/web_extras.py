@@ -28,6 +28,7 @@ from django.forms.utils import ErrorDict
 
 from web.models import SessionMeta, Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
 from web.models import TRANSLATIONS, RTL_TRANSLATIONS
+from web.models.sessionversion import A11Y_OPTIONS_BODYCLASSES
 from web.forms import WarningForm
 from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES, KUUSI_META_TAGS, DEFAULT_LANGUAGE_CODE
 
@@ -243,19 +244,12 @@ def a11y_classes(context):
     session_metas = SessionMeta.objects.filter(session=session)
     class_string = ""
 
-    class_map = {
-        "COLOR_MODE_BLACK_AND_WHITE": "ku-color-bw",
-        "COLOR_MODE_HIGH_CONTRAST": "ku-color-hc",
-        "FONT_SIZE_LARGER": "ku-font-larger",
-        "FONT_SIZE_LARGEST": "ku-font-largest",
-    }
-
     meta: SessionMeta
     for meta in session_metas:
-        if meta.meta_key in class_map:
-            class_string += " " + class_map[meta.meta_key]
+        if meta.meta_key in A11Y_OPTIONS_BODYCLASSES:
+            class_string += " " + A11Y_OPTIONS_BODYCLASSES[meta.meta_key]
         # The font size is digged into the meta_value -> check for these aswell
-        if meta.meta_value in class_map:
-            class_string += " " + class_map[meta.meta_value]
+        if meta.meta_value in A11Y_OPTIONS_BODYCLASSES:
+            class_string += " " + A11Y_OPTIONS_BODYCLASSES[meta.meta_value]
 
     return class_string

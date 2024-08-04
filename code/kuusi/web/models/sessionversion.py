@@ -23,8 +23,6 @@ from django.apps import apps
 class SessionVersion(Translateable):
     version_name = TranslateableField(null=False, blank=False, max_length=120)
 
-
-# TODO: Make this proper enums to use in a11y_classes() as well
 A11Y_OPTIONS = {
     "font": {
         "DEFAULT": "FONT_SIZE_DEFAULT",
@@ -34,6 +32,13 @@ A11Y_OPTIONS = {
     "others": {
         "COLOR_MODE_BLACK_AND_WHITE":  "COLOR_MODE_BLACK_AND_WHITE"
     }
+}
+
+A11Y_OPTIONS_BODYCLASSES = {
+    "COLOR_MODE_BLACK_AND_WHITE": "ku-color-bw",
+    "COLOR_MODE_HIGH_CONTRAST": "ku-color-hc",
+    "FONT_SIZE_LARGER": "ku-font-larger",
+    "FONT_SIZE_LARGEST": "ku-font-largest",
 }
 
 class SessionVersionWidget(Widget):
