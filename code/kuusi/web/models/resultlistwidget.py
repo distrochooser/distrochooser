@@ -125,7 +125,6 @@ class ResultListWidget(Widget):
         all_scores.sort()
         all_scores.reverse()
         ranked_result = {}
-        # TODO: Add weights for display (also on navigation steps!)
         last_position = -1
         for key in ranked_keys:
             if len(assignments_used[key]) > 0:

@@ -130,7 +130,6 @@ def clone_selections(id: str, request: WebHttpRequest, session: Session):
         else:
             if session.session_origin != old_session:
                 logger.debug(f"This is a new session, but the user has a session.")
-                # TODO: Create a new session in case the user clicks on another session link.
                 # TODO: Get rid of redundancy with  above
                 user_agent = request.headers.get("user-agent")
                 session = Session(user_agent=user_agent, session_origin=old_session)
@@ -239,14 +238,12 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
         return HttpResponseRedirect(f"/{request.LANGUAGE_CODE}/{session.result_id}?page={page.catalogue_id}")
     # Onboard th session to the request oject 
 
-    # TODO: If the user accesses the site with a GET parameter result_id, create a new session and copy old results.
-    # TODO: Prevent that categories are disappearing due to missing session on the first page
+  
+    # TODO: Find a more elegant way to inject these properties into the (Web-)HttpRequest
     request.session_obj = session    
-    # TODO: These are not properly set within WebHttpRequest class.
     request.has_errors = False
 
     # Turbo call handling
-    # FIXME: The forwarding fuckupery causes the loading time to be more than 2x the regular loading time
     overwrite_status = 200
     base_url = f"/{request.LANGUAGE_CODE}" + ("" if not id else f"/{id}")
     if request.method == "POST":

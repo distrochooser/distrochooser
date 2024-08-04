@@ -36,7 +36,6 @@ class FacetteRadioSelectionWidget(FacetteSelectionWidget):
         facettes = Facette.objects.filter(topic=self.topic)
         child_facettes = []
         weights = {}
-        # TODO: Implement child facette selection (maybe?)
         # Build the form content
         names = []
         names.append((FacetteRadioSelectionWidget.NOTHING_SELECTED, FacetteRadioSelectionWidget.NOTHING_SELECTED))

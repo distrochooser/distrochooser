@@ -44,9 +44,8 @@ def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -
 
     for key, widget_class in key_map.items():
         elements = haystack[key]
-        # TODO: The Widget base class does not feature a real catalogue id. COnsider changing.
-        for catalogue_id, properties in elements.items():
-            logger.debug(f"Current widget: {catalogue_id}")
+        for type_id, properties in elements.items():
+            logger.debug(f"Current widget: {type_id}")
             new_widget: Widget = widget_class(
                 row = get_or_default("row", properties),
                 col = get_or_default("col", properties),

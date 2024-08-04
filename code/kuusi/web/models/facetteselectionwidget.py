@@ -34,8 +34,6 @@ logger = getLogger("root")
 
 class FacetteSelectionWidget(Widget):
     topic = models.CharField(null=False, blank=False, max_length=120)
-    # FIXME: The description field will not be taken over by any i18n processes, Translateablefield is not really available as FacetteSelectionWidget inherits Widget, not Translateable
-    description = models.TextField(null=True, blank=True, default=None, max_length=250)
     def build_translateable_label(self, facette: Facette, language_code: str) -> str:
         return  facette.__("selectable_description", language_code)
     def build_form(
@@ -160,7 +158,6 @@ class FacetteSelectionWidget(Widget):
         
         facette_form, _ , _= self.build_form(request.POST, request.session_obj)
         # Make sure there is no double facette selections within this topic of the page
-        # TODO: Make more dependend from the page rather than the topic
         request.has_errors = facette_form.has_any_behaviour()
         if request.has_errors:
             return False
