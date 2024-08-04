@@ -17,3 +17,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 LEGAL_TEXT = "This file is checked in only to have LEGAL_TEXT defined. \nIt is used to deploy imprint data to the running instances."
+
+LEGAL_TEXT_DISCLAIMER = "This text is here"
