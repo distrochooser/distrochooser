@@ -68,8 +68,6 @@ def get_page_route(page: Page) -> List[Page]:
 
 def get_session(request: WebHttpRequest, param_id: str=None) -> Tuple[bool, Session]:
     # Get a session object based on the informations present. If no result_id is existing withing the session a new session will be started
-    # FIXME: Get rid of the cookie
-    # TODO: Also, get rid of the csrftoken cookie until user gave consent
     session: Session = None
     is_new = False
     if "result_id" not in request.session:

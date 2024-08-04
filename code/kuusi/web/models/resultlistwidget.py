@@ -153,6 +153,4 @@ class ResultListWidget(Widget):
             display_mode = request.GET.get("switch_to")
             request.session_obj.display_mode = display_mode
 
-
-
-        return render_template.render({ "language_code": request.session_obj.language_code, "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters, "display_mode": display_mode, "page": page, "results": ranked_result}, request)
+        return render_template.render({ "result_id": request.session_obj.result_id, "language_code": request.session_obj.language_code, "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters, "display_mode": display_mode, "page": page, "results": ranked_result}, request)

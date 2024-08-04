@@ -79,3 +79,11 @@
         {% endfor %}
 </div>
 {% endif %}
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var result_id = "{{result_id}}"; 
+        window.ack(result_id);
+    });
+</script>

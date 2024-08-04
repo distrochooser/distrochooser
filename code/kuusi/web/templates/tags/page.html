@@ -10,7 +10,6 @@
         {% if not page.hide_text  %}
             {% if page.help and not page.hide_help %}
             <div class="row">
-                <!-- FIXME: Expander is broken -->
                 <a data-bs-toggle="collapse" href="#{{page.catalogue_id}}" role="button" aria-expanded="false"
                     aria-controls="{{page.catalogue_id}}" class="text-muted text-decoration-none pb-2  ku-page-text">
                     {% _i18n_ session.language_code page.text %}<i class="bi bi-info-circle ms-1"></i>
@@ -45,10 +44,4 @@
 
     </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) { 
-        var result_id = "{{session.result_id}}"; 
-        window.ack(result_id);
-    });
-</script>
 {% footer session.language_code  %}
