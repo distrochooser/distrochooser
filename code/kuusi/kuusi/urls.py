@@ -24,6 +24,7 @@ from web.routes.web import route_index, route_outgoing, route_feedback
 from web.routes.static import  route_about, route_contact, route_privacy
 from web.routes.matrix import route_update
 from web.routes.ack import route_ack
+from web.routes.data import route_data
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT, DEBUG
 
@@ -43,5 +44,6 @@ urlpatterns = [
     re_path("(?P<language_code>[a-z]+)/about", route_about, name="route_about"),
     re_path("(?P<language_code>[a-z]+)/privacy", route_privacy, name="route_privacy"),
     re_path("(?P<language_code>[a-z]+)/contact", route_contact, name="route_contact"),
+    re_path("data/(?P<version>[0-9]+)", route_data, name="route_data"),
    
 ] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True) + dynamic_routes
