@@ -31,6 +31,7 @@ target_page = "welcome-page"
 # Version page
 
 [page.version-page]
+can_be_marked = false
 next_page = "scenario-page"
 
 [widget.version.version-page-widget-name]
