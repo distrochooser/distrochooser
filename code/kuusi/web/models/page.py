@@ -64,6 +64,7 @@ class Page(Translateable):
 
     def is_answered(self, session: Session):
         # TODO: Make this more variable if an answer could result in a text field value, for example.
+        # It works at the moment, as radio selection widGet also inherits the FacetteSelectionWidget
         facette_widgets = apps.get_model("web", "FacetteSelectionWidget").objects.filter(
             pages__pk__in=[self.pk]
         )

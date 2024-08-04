@@ -34,7 +34,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,13 +52,18 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "web.middleware.cors.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.locale.LocaleMiddleware"
 ]
+
+if DEBUG:
+    MIDDLEWARE.append('django_cprofile_middleware.middleware.ProfilerMiddleware')
+    DJANGO_CPROFILE_MIDDLEWARE_REQUIRE_STAFF = False
 
 ROOT_URLCONF = "kuusi.urls"
 
@@ -164,7 +168,7 @@ LANGUAGE_CODES = {
 }
 TIME_ZONE = "UTC"
 
-USE_I18N = True
+USE_I18N = False
 
 USE_TZ = True
 
@@ -235,7 +239,6 @@ SESSION_NUMBER_OFFSET = 1754516
 WEIGHT_MAP = {-2: -0.5, -1: -0.25, 0: 1, 1: 2, 2: 4}
 
 DEFAULT_LANGUAGE_CODE = "en"
-
 
 UPDATE_API_KEY = "fooooooo"
 

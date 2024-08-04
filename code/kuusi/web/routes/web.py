@@ -129,7 +129,6 @@ def clone_selections(id: str, request: WebHttpRequest, session: Session):
         else:
             if session.session_origin != old_session:
                 logger.debug(f"This is a new session, but the user has a session.")
-                # TODO: Get rid of redundancy with  above
                 user_agent = request.headers.get("user-agent")
                 session = Session(user_agent=user_agent, session_origin=old_session)
                 session.save()
