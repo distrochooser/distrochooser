@@ -103,16 +103,19 @@ class ResultListWidget(Widget):
                     assignments_selected,
                 )
             )
+            used_assignment = []
             assignments_used[choosable] = []
             assignment: FacetteAssignment
             for assignment in choosable_assignments:
-                original_index = assignments_selected.index(assignment)
-                weights_this_assignment = weights_per_assignment[original_index]
-                weighted_score = 1 * WEIGHT_MAP[weights_this_assignment]
-                # TODO: Handle the case that an assignment is used twice?
-                results[assignment.assignment_type] += weighted_score
+                # only use this assignment if not already processed in another context (e. g. bidirectional cases)
+                if assignment.pk not in used_assignment:
+                    original_index = assignments_selected.index(assignment)
+                    weights_this_assignment = weights_per_assignment[original_index]
+                    weighted_score = 1 * WEIGHT_MAP[weights_this_assignment]
+                    results[assignment.assignment_type] += weighted_score
 
-                assignments_used[choosable].append((assignment, weighted_score))
+                    assignments_used[choosable].append((assignment, weighted_score))
+                    used_assignment.append(assignment.pk)
             score = FacetteAssignment.AssignmentType.get_score(results)
             logger.debug(f"Choosable={choosable}, Score={score}, Results={results}")
             raw_results[choosable] = score
