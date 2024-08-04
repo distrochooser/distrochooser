@@ -60,7 +60,7 @@ def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -
 
             if key in prop_map:
                 for prop_key, value in prop_map[key].items():
-                    # TODO: Make this asisgnment more variable (especially for List[Type] szenarios)
+                    # TODO: Make this assignment more variable (especially for List[Type] szenarios). Currently, it is only possible to premap atomic types
                     if value in [str, int, float]:
                         new_widget.__setattr__(prop_key, properties[prop_key])
                     else:

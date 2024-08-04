@@ -104,7 +104,6 @@ def get_fresh_session(request: WebHttpRequest) -> Session:
     return session
 
 def clone_selections(id: str, request: WebHttpRequest, session: Session):
-    #FIXME: There is no log output when the session is existing AND already cloned, even as it seems working properly..dafuq?
     old_session = Session.objects.filter(result_id=id).first()
     if session.session_origin is not None and session.session_origin.result_id == id:
         logger.debug(f"Aborting copy to prevent double copy")

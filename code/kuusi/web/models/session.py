@@ -32,7 +32,6 @@ def random_str():
     return result_str
 
 def get_session_result_id():
-    # FIXME: This breaks the migration 0033 as the column default is queried before the column
     result_str = random_str()
     is_existing = Session.objects.filter(result_id=result_str).count() != 0
     while is_existing:

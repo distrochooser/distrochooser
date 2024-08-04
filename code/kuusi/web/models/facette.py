@@ -166,7 +166,6 @@ class FacetteAssignment(Translateable):
             The result set is keys from this class with numeric values.
 
             The calculation is located here to allow the assignment types to be extended without altering major parts of the code.
-            FIXME: Add a more "natural" sorting 
             """
             score_map = {
                 FacetteAssignment.AssignmentType.POSITIVE: 1,
