@@ -2,8 +2,6 @@
 
 # Copy the precompiled assets
 
-# FIXME: URL /static prefix for bootstrap icon fonts properly
-
 cp -v /kuusi/static-buildtime/* /kuusi/static/
 
 python manage.py migrate
