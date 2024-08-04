@@ -34,9 +34,6 @@ class Facette(Translateable):
 
     The topic reduces a facette to a certain subarea, e. g. "licenses" for Linux distributions
     """ 
-
-    # TODO: Add a source flag to describe decisions.
-
     selectable_description = TranslateableField(null=False, blank=False, max_length=120)
     topic = models.CharField(null=False, blank=False, max_length=120)
     child_facettes = models.ManyToManyField(to="Facette", blank=True)
