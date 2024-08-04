@@ -3,9 +3,11 @@
 
 <img src="https://github.com/distrochooser/distrochooser/blob/kuusi/static/logo.svg" width="50%" >
 
-![Discord](https://img.shields.io/discord/1269641977293443073?logo=discord&label=Distrochooser&link=https%3A%2F%2Fdiscord.gg%2Fju4kRxfasc)
+![Discord](https://img.shields.io/discord/1269641977293443073?style=flat&logo=discord&label=Distrochooser%20Discord) https://discord.gg/aDkCutfqak
+
 ![GitHub License](https://img.shields.io/github/license/distrochooser/distrochooser)
-![Static Badge](https://img.shields.io/badge/Open_data-ODbL_1.0-blue)
+
+![Static Badge](https://img.shields.io/badge/Open_data-ODbL_1.0-brightgreen)
 
 
 
