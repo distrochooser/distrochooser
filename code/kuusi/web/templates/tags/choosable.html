@@ -41,7 +41,11 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <span class="me-1 badge ku-badge-{{assignment.assignment_type|lower}}"><i class="bi bi-dash-circle"></i></span>
+                                                <span class="me-1 badge ku-badge-{{assignment.assignment_type|lower}}">
+                                                    {% if weighted_score != 1 %}
+                                                        {{ weighted_score }}x
+                                                    {% endif %}
+                                                    <i class="bi bi-dash-circle"></i></span>
                                                 {% _i18n_ language_code assignment.assignment_type %}
                                                 <small>
                                                     <a href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state language_code assignment choosable%}</a>
