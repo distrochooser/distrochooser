@@ -229,9 +229,11 @@ def meta_tags(language_code:str):
     }
 
 @register.inclusion_tag(filename="tags/feedback_state.html")
-def feedback_state(assignment: FacetteAssignment, choosable: Choosable):
+def feedback_state(language_code: str, assignment: FacetteAssignment, choosable: Choosable):
     is_flagged = assignment.is_flagged(choosable)
-    return {"assignment": assignment, "choosable": "choosable", "is_flagged": is_flagged}
+
+    title = _i18n_get_value(language_code, "FLAG_THIS_ASSIGNMENT" if not is_flagged else "REMOVE_FLAG_ASSIGNMENT")["value"]
+    return {"title": title, "assignment": assignment, "choosable": "choosable", "is_flagged": is_flagged}
 
 
 @register.simple_tag(takes_context=True)

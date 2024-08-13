@@ -38,7 +38,7 @@
                                             {% endif %}
                                             <small
                                                 class="badge rounded-pill text-wrap ku-badge-{{assignment.assignment_type|lower}}">{% _i18n_ language_code assignment.assignment_type %} </small>
-                                            <a href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state assignment choosable%}</a>
+                                            <a href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state language_code assignment choosable%}</a>
                                         </div>
                                         <p class="mb-1">{% _i18n_ language_code  assignment "long_description" %}</p>
                                     </div>
