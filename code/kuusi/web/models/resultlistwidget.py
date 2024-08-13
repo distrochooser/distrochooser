@@ -65,24 +65,43 @@ class ResultListWidget(Widget):
         stored_filter = request.session_obj.get_meta_value("RESULT_AGE_FILTER")
         logger.debug(f"Stored filter is {stored_filter}")
 
-        # User deselects the active filter or switches the filter
-        if request.GET.get("disable_filter") == stored_filter or stored_filter != request.GET.get("toggle_filter"):
-            SessionMeta.objects.filter(
+        for filter_key, delegate in pre_filters.items():
+            active_filter = SessionMeta.objects.filter(
                 session=request.session_obj,
-                meta_key = "RESULT_AGE_FILTER"
-            ).delete()
+                meta_key = "RESULT_AGE_FILTER",
+                meta_value=filter_key
+            )
+            toggle_enabled = request.GET.get("toggle_filter") == filter_key
 
+            if active_filter.count() > 0 :
+                # filter was stored in database but needs to be toggled
+                if toggle_enabled:
+                     SessionMeta.objects.filter(
+                        session=request.session_obj,
+                        meta_key = "RESULT_AGE_FILTER",
+                        meta_value=filter_key
+                    ).delete()
+            else:
+                if toggle_enabled:
+                    SessionMeta.objects.filter(
+                        session=request.session_obj,
+                        meta_key = "RESULT_AGE_FILTER"
+                    ).exclude(
+                        meta_value=filter_key
+                    ).delete()
+                    SessionMeta(
+                        session=request.session_obj,
+                        meta_key = "RESULT_AGE_FILTER",
+                        meta_value=filter_key
+                    ).save()
 
         for filter_key, delegate in pre_filters.items():
-            filter_enabled = request.GET.get("toggle_filter") == filter_key and not request.GET.get("disable_filter")
+            filter_enabled = SessionMeta.objects.filter(
+                session=request.session_obj,
+                meta_key = "RESULT_AGE_FILTER",
+                meta_value=filter_key
+            ).count() > 0
             if filter_enabled:
-                # create meta object to persist the filter while deleting any other prefilters
-                SessionMeta(
-                    session=request.session_obj,
-                    meta_key = "RESULT_AGE_FILTER",
-                    meta_value=filter_key
-                ).save()
-                
                 if filter_key not in active_filters:
                     active_filters.append(filter_key)
                 choosables = list(filter(delegate, choosables))
