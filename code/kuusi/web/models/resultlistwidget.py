@@ -147,6 +147,7 @@ class ResultListWidget(Widget):
         last_position = -1
 
         scroll_to = request.GET.get("scroll_to")
+        choosable_pks = []
         for index, key in enumerate(ranked_keys):
             if len(assignments_used[key]) > 0:
                 sorted_assignments = sorted(assignments_used[key])
@@ -169,7 +170,15 @@ class ResultListWidget(Widget):
                     "css_class": "active" if css_class_is_active else "",
                     "is_active": css_class_is_active
                 }
+                choosable_pks.append(key.pk)
                 last_position = ranked_result[key]["position"]
 
-
-        return render_template.render({"scroll_to": scroll_to, "result_id": request.session_obj.result_id, "language_code": request.session_obj.language_code, "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters,  "page": page, "results": ranked_result}, request)
+        previous_item = None
+        next_item = None
+        current_item_index = 0 if not scroll_to else choosable_pks.index(int(scroll_to))
+        if current_item_index -1 >= 0:
+            previous_item = "scroll_to=" + str(choosable_pks[current_item_index - 1])
+        
+        if current_item_index < len(choosable_pks) -1 :
+            next_item = "scroll_to=" + str(choosable_pks[current_item_index + 1])
+        return render_template.render({"previous_item": previous_item, "next_item": next_item, "scroll_to": scroll_to, "result_id": request.session_obj.result_id, "language_code": request.session_obj.language_code, "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters,  "page": page, "results": ranked_result}, request)

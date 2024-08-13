@@ -22,9 +22,13 @@
     {% endif %}
     <div class="row">
         <div class="col-3"></div>
-        <div class="col-6 mt-3">
+        <div class="col-6">
             {%block logo%}{%endblock%}
         </div>
+    </div>
+    <div class="row">
+        <!-- spacer for mobile -->
+        <div class="d-block d-sm-none mt-5"></div>
     </div>
     <main>
         <div class="{% block container-class %}container-fluid{% endblock %} py-4">
@@ -33,16 +37,14 @@
             {% if debug %}
             <div class="position-static mt-5">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-2 col-lg-4">
                     </div>
-                    <div class="col">
+                    <div class="col-9 col-lg-4">
                         <div class="alert alert-danger">
                         {% _i18n_ language_code "DEBUG_MODE_ON_DESCRIPTION" %}
                             <code>{{session.result_id}}</code>
                             <code>{{session.language_code}}</code>
                         </div>
-                    </div>
-                    <div class="col">
                     </div>
                 </div>
             </div>

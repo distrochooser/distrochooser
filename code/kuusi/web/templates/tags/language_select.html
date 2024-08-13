@@ -1,7 +1,8 @@
 
 {% load web_extras %}
 {% load i18n %}
-<div class="dropdown">
+
+<div class="dropdown d-none d-sm-block">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         {% _i18n_ language_code "LANGUAGE" %}  
     </button>
@@ -11,3 +12,10 @@
         {% endfor %}
     </ul>
   </div>
+<div class="d-block d-sm-none">
+    <select  class="form-select" onchange="location = this.value;">
+        {% for code in language_codes %}
+            <option value="/{{code}}/{{result_id}}?{{get_params}}" {%if language_code == code %}selected{%endif%}>{{code}}</option>
+        {% endfor %}
+    </select>
+</div>
