@@ -651,7 +651,6 @@ for locale in locales:
     ui_texts["RESULT_MORE_THAN_20"] = "20 years or older"
     ui_texts["RESULT_FILTER_OPTIONS_AGE"] = "Distribution age"
     ui_texts["RESULT_FILTER_OPTIONS"] = "Filter options"
-    ui_texts["DISPLAY_MODE"] =  "Display mode"
     ui_texts["COMPACT_MODE"] =  "Compact display"
     ui_texts["LIST_MODE"] =  "List display"
     ui_texts["WELCOME_WIDGET_FLAG"] = "You can give feedback on results to help us to improve the service"

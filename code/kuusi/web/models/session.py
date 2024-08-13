@@ -69,7 +69,6 @@ class Session(models.Model):
     referrer = models.TextField(blank=True, default=None, null=True)
     is_ack = models.BooleanField(default=False) # A session will be 'acknowledged' by a JS snippet to exclude curl() calls
     language_code = models.CharField(max_length=10, default="en", null=False, blank=False)
-    display_mode = models.CharField(max_length=50, default=None, null=True, blank=True)
 
     def get_meta_value(self, key: str) -> str | None:
         matches = SessionMeta.objects.filter(session=self, meta_key=key)

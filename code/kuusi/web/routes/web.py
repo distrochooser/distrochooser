@@ -318,11 +318,7 @@ def route_feedback(request: WebHttpRequest,assignment_id: int, choosable_id: int
         Feedback.objects.filter(assignment=assignment, choosable=choosable).delete()
 
     url = f"/{session.language_code}/{session.result_id}?page=result-page"
-    # Fixme: Obey list display mode properly
     if is_new:
         url += "&feedback=true"
-    if request.GET.get("scroll_to"):
-        url += f"&scroll_to={request.GET.get('scroll_to')}"
-    else:
-        url += f"#choosable_{choosable.pk}"
+    url += f"&scroll_to={choosable.pk}"
     return HttpResponseRedirect(url)

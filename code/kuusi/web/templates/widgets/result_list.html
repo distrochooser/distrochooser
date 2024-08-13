@@ -7,13 +7,6 @@
         <div class="card card-body mt-3">
             <div class="row">
                 <div class="col-12 text-center">
-                    <b class="d-block">{% _i18n_ language_code "DISPLAY_MODE" %}</b>
-                    <div class="btn-group" role="group" aria-label="Filter">
-                        <a href="?page=result-page&switch_to=list" class="btn btn-outline-primary {% if display_mode == "list" %}active{% endif %}"><i class="bi bi-list"></i> {% _i18n_ language_code "LIST_MODE" %}</a>
-                        <a href="?page=result-page&switch_to=compact" class="btn btn-outline-primary {% if display_mode == "compact" %}active{% endif%}"><i class="bi bi-list-columns-reverse"></i> {% _i18n_ language_code "COMPACT_MODE" %}</a>
-                    </div>
-                </div>
-                <div class="col-12 text-center mt-3">
                     <b>{% _i18n_ language_code "RESULT_FILTER_OPTIONS_AGE" %}</b>
                     <div class="btn-group" role="group" aria-label="Display">
                         {% for filter_key, filter_active in filters.items %}
@@ -37,12 +30,11 @@
 {% endif %}
 
 
-{% if display_mode == "compact" %}
 <div class="row mt-3">
     <div class="col-2">
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             {% for key, result in results.items %}
-            <button class="nav-link rounded-0 {% if forloop.first%}active{%endif%} {%if result.new_group and result.position != 1%}mt-4{%endif%}" {% if forloop.first%}aria-selected="true"{%endif%} id="choosable-{{result.choosable.pk}}-tab"  style="background-color: {{result.choosable.bg_color}};color: {{result.choosable.fg_color}};" data-bs-toggle="pill" data-bs-target="#choosable-{{result.choosable.pk}}-content" type="button" role="tab" aria-controls="choosable-{{result.choosable.pk}}-content">
+            <button class="nav-link rounded-0 {{ result.css_class }} {%if result.new_group and result.position != 1%}mt-4{%endif%}" aria-selected="{{result.is_active}}" id="choosable-{{result.choosable.pk}}-tab"  style="background-color: {{result.choosable.bg_color}};color: {{result.choosable.fg_color}};" data-bs-toggle="pill" data-bs-target="#choosable-{{result.choosable.pk}}-content" type="button" role="tab" aria-controls="choosable-{{result.choosable.pk}}-content">
                 <div class="row">
                     <div class="col-9">
                         {% _i18n_ language_code result.choosable "name" %}
@@ -63,23 +55,13 @@
     <div class="col-10">
         <div class="tab-content " id="v-pills-tabContent">
             {% for key, result in results.items %}
-                <div class="tab-pane fade {% if forloop.first%}show active{%endif%}" id="choosable-{{result.choosable.pk}}-content" role="tabpanel" aria-labelledby="choosable-{{result.choosable.pk}}-tabv" tabindex="0">
+                <div class="tab-pane fade {{ result.css_class }} {% if result.is_active %}show{%endif%}" id="choosable-{{result.choosable.pk}}-content" role="tabpanel" aria-labelledby="choosable-{{result.choosable.pk}}-tabv" tabindex="0">
                     {% choosable language_code result %}
                 </div>
             {% endfor %}
         </div>
     </div>
 </div>
-{% else %}
-<div class="row mt-3">
-        {% for key, result in results.items %}
-        <div class="col-12 h-100 mt-3">
-            {% choosable language_code result %}
-        </div>
-        {% endfor %}
-</div>
-{% endif %}
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function(event) { 

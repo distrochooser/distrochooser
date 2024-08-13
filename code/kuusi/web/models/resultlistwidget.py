@@ -126,7 +126,9 @@ class ResultListWidget(Widget):
         all_scores.reverse()
         ranked_result = {}
         last_position = -1
-        for key in ranked_keys:
+
+        scroll_to = request.GET.get("scroll_to")
+        for index, key in enumerate(ranked_keys):
             if len(assignments_used[key]) > 0:
                 sorted_assignments = sorted(assignments_used[key])
                 assignment_stats = {}
@@ -137,19 +139,18 @@ class ResultListWidget(Widget):
                     else: 
                         assignment_stats[assignment.assignment_type]+=1
                 position = all_scores.index(raw_results[key]) + 1 if raw_results[key] in all_scores else 1
+                css_class_is_active = index == 0 if not scroll_to else str(scroll_to) == str(key.pk)
                 ranked_result[key] = {
                     "choosable": key,
                     "score": raw_results[key],
                     "assignments": sorted_assignments,
                     "position": position,
                     "stats": assignment_stats,
-                    "new_group": last_position != position
+                    "new_group": last_position != position,
+                    "css_class": "active" if css_class_is_active else "",
+                    "is_active": css_class_is_active
                 }
                 last_position = ranked_result[key]["position"]
-        # Default mode is compact unless the session or the get parameter overwrites it
-        display_mode = "compact" if not request.session_obj.display_mode else request.session_obj.display_mode
-        if request.GET.get("switch_to") is not None and request.GET.get("switch_to") in ["list", "compact"]:
-            display_mode = request.GET.get("switch_to")
-            request.session_obj.display_mode = display_mode
 
-        return render_template.render({ "result_id": request.session_obj.result_id, "language_code": request.session_obj.language_code, "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters, "display_mode": display_mode, "page": page, "results": ranked_result}, request)
+
+        return render_template.render({"scroll_to": scroll_to, "result_id": request.session_obj.result_id, "language_code": request.session_obj.language_code, "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters,  "page": page, "results": ranked_result}, request)
