@@ -7,40 +7,50 @@
                 {% _i18n_ language_code choosable "name" %}
             </div>
             <div class="card-body">
-                {% _i18n_ language_code choosable "description" %}
+                
+                <blockquote class="blockquote">
+                    <p>{% _i18n_ language_code choosable "description" %}</p>
+                </blockquote>
 
                 <div class="row mb-2 mt-2">
                     {% for _, meta_obj in choosable.meta.items %}
                     <div class="col-12 col-sm-3">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title text-truncate">{% _i18n_ language_code meta_obj.meta_name %}
-                                </h5>
+                                <h6 class="card-title text-truncate">
+                                    {% _i18n_ language_code meta_obj.meta_name %}
+                                </h6>
                                 <p class="card-text">
-                                    {% meta_value meta_obj %}
+                                    <small>
+                                        {% meta_value meta_obj %}
+                                    </small>
                                 </p>
                             </div>
                         </div>
                     </div>
                     {%endfor%}
                 </div>
+                <hr>
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="list-group">
                             <div class="row">
                             {% for assignment, weighted_score in assignments %}
+
                                 <div class="col-12 col-sm-3 mb-3">
-                                    <div class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            {% if weighted_score != 1 %}
-                                            <small
-                                                class="d-inline badge text-wrap rounded-pill ku-badge-{{weighted_score|replace_weight_signs}}x me-2">{{weighted_score|weight_abs}}x</small>
-                                            {% endif %}
-                                            <small
-                                                class="badge rounded-pill text-wrap ku-badge-{{assignment.assignment_type|lower}}">{% _i18n_ language_code assignment.assignment_type %} </small>
-                                            <a href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state language_code assignment choosable%}</a>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <span class="me-1 badge ku-badge-{{assignment.assignment_type|lower}}"><i class="bi bi-dash-circle"></i></span>
+                                                {% _i18n_ language_code assignment.assignment_type %}
+                                                <small>
+                                                    <a href="/feedback/{{assignment.pk}}/{{choosable.pk}}" data-href="/feedback/{{assignment.pk}}/{{choosable.pk}}"  class="ku-feedback-link ms-2">{% feedback_state language_code assignment choosable%}</a>
+                                                </small>
+                                            </h5>
+                                            <p class="card-text"> 
+                                                {% _i18n_ language_code  assignment "long_description" %}
+                                            </p>
                                         </div>
-                                        <p class="mb-1">{% _i18n_ language_code  assignment "long_description" %}</p>
                                     </div>
                                 </div>
                             {%endfor%}
