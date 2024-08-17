@@ -33,7 +33,7 @@ The Distrochooser data model describes as follows:
 - A `Facette` can have `FacetteBehaviours`, which can be triggered when answers might exclude themselves. `FacetteBehaviours` have a severity from warning to critical to be displayed in the UI. `FacetteBehaviour` are optional.
 - Each selected answer is a `FacetteSelection` and is part of a `Session`
 
-The matrix is defined in the /doc/matrix folder. Basically everything is defined in TOML-files.
+The matrix is defined in the /doc/matrix folder. Basically everything is defined in TOML-files. The Id's of the elements are used as `catalogue_id` mentioned earlier and are used to reference objects.
 
 **Important** If you introduce new mappings keep in mind that the translation requires updating as well!
 
