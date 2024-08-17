@@ -223,11 +223,12 @@ KUUSI_META_TAGS = {
     "twitter:card": "summary",
     "twitter:title": "Distrochooser",
     "twitter:description": "",
-    "twitter:image": KUUSI_URL + "/static/logo.svg",
+    "twitter:image": KUUSI_URL + "/static/logo.png",
     "og:title": "Distrochooser",
     "og:type": "website",
     "og:url": KUUSI_URL,
-    "og:image": KUUSI_URL + "/static/logo.svg",
+    "og:image": KUUSI_URL + "/static/logo.png",
+    "og:description": "",
     "theme-color": "#158cba"
 }
 

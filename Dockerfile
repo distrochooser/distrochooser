@@ -35,6 +35,7 @@ COPY --from=sass_builder /static/turbo.es2017-umd.js /kuusi/static-buildtime/tur
 
 ADD static/logo.svg /kuusi/static-buildtime/logo.svg
 ADD static/icon.svg /kuusi/static-buildtime/icon.svg
+ADD static/icon.png /kuusi/static-buildtime/icon.png
 ADD doc /kuusi/doc
 # Add locales
 ADD locale /kuusi/locale

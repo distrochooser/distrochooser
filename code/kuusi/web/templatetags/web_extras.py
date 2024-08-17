@@ -227,7 +227,9 @@ def rtl_class(language_code: str):
 @register.inclusion_tag(filename="tags/meta_tags.html")
 def meta_tags(language_code:str):
     result = KUUSI_META_TAGS
-    result["twitter:description"] = strip_tags(TRANSLATIONS[language_code]["ABOUT_PAGE_TEXT"])
+    for key, _ in result.items():
+        if "description" in key:
+            result[key] = strip_tags(TRANSLATIONS[language_code]["ABOUT_PAGE_TEXT"])
     return {
         "tags": result
     }
