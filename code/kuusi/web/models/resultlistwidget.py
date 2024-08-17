@@ -148,7 +148,8 @@ class ResultListWidget(Widget):
 
         scroll_to = request.GET.get("scroll_to")
         choosable_pks = []
-        for index, key in enumerate(ranked_keys):
+        index = 0
+        for key in ranked_keys:
             if len(assignments_used[key]) > 0:
                 sorted_assignments = sorted(assignments_used[key])
                 assignment_stats = {}
@@ -159,6 +160,7 @@ class ResultListWidget(Widget):
                     else: 
                         assignment_stats[assignment.assignment_type]+=1
                 position = all_scores.index(raw_results[key]) + 1 if raw_results[key] in all_scores else 1
+                print(index)
                 css_class_is_active = index == 0 if not scroll_to else str(scroll_to) == str(key.pk)
                 ranked_result[key] = {
                     "choosable": key,
@@ -170,6 +172,7 @@ class ResultListWidget(Widget):
                     "css_class": "active" if css_class_is_active else "",
                     "is_active": css_class_is_active
                 }
+                index += 1
                 choosable_pks.append(key.pk)
                 last_position = ranked_result[key]["position"]
 
