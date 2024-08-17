@@ -18,7 +18,7 @@ Following documents are important for any contribution in the distrochooser repo
 
 # Contributing to the code 💻
 
-This version of distrochooser consists out of a single monolith, based in Django 4.x.
+This version of distrochooser consists out of a single monolith, based in Django 4.2.x.
 
 # Contributing to the decision matrix ✅
 
@@ -41,16 +41,9 @@ The matrix is defined in the /doc/matrix folder. Basically everything is defined
 
 https://github.com/distrochooser/translations is your starting point for translations. You can either use the Weblate instance (details in the Readme) or use a PR.
 
-For PR users:
-
-You can find the file `en.po` in the repository https://github.com/distrochooser/translations. For this Distrochooser version, a JSON-based format is used. Each area of translation is suffixed by an [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code, for example if you want to create a greek translation, use the filename `ui-gr.po`.
+This version uses the branch `6-new-baseline` currently as long as it's in beta.
 
 The english translation is the leading translation.
-
-## How to submit the translation? 📮
-
-You can either do a pull request into the `distrochooser/translations:main` branch or, if you don't have a GitHub account, send it via mail to `mail@chmr.eu`. Alternatively, you can use https://translate.distrochooser.de
-
 
 Thank you for your support 😁
 
