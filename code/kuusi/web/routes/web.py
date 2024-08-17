@@ -34,7 +34,8 @@ from kuusi.settings import (
     DEBUG,
     LANGUAGE_CODES,
     DEFAULT_LANGUAGE_CODE,
-    KUUSI_TRANSLATION_URL
+    KUUSI_TRANSLATION_URL,
+    ROBOTS_TXT
 )
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection, Choosable, ChoosableMeta, FacetteAssignment, Feedback
 from web.helper import forward_helper
@@ -322,3 +323,21 @@ def route_feedback(request: WebHttpRequest,assignment_id: int, choosable_id: int
         url += "&feedback=true"
     url += f"&scroll_to={choosable.pk}"
     return HttpResponseRedirect(url)
+
+def route_robots_txt(request: WebHttpRequest):
+
+    for user_agent, rules in ROBOTS_TXT.items():
+        robots_content = f"User-agent: {user_agent}\n"
+        for rule in rules:
+            if "language_code" in rule:
+                for code in LANGUAGE_CODES:
+                    rule_content = rule.replace("language_code", code)
+                    robots_content += f"Disallow: {rule_content}\n"
+            else:
+                robots_content += f"Disallow: {rule}\n"
+
+    
+    response =  HttpResponse(robots_content)
+    response.headers["content-type"] = "text/plain"
+
+    return response

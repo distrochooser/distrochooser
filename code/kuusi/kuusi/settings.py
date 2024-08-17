@@ -250,3 +250,12 @@ UPDATE_UPLOAD_PATH = "/Users/chm/Documents/distrochooser/tmp"
 # We won't touch the CSRF_COOKIE_AGE because of the reasons mentioned in https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-cookie-age
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True # The cookie is not really used for anything rather than picking up data between requests. After the session, it should not be valid anymore
+
+# Forbid certain page from crawling using the robots.txt standard.
+# If a rule contains language_code, it will be applied multiple times for all available LANGUAGE_CODES
+ROBOTS_TXT = {
+    "*": [
+        "/language_code/contact",
+        "/language_code/privacy"
+    ]
+}

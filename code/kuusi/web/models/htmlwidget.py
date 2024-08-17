@@ -49,4 +49,5 @@ class HTMLWidget(Widget):
         }, request)
 
     def proceed(self, request: HttpRequest, page: Page) -> bool:
+        
         return True

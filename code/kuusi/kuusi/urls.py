@@ -25,11 +25,13 @@ from web.routes.static import  route_about, route_contact, route_privacy
 from web.routes.matrix import route_update
 from web.routes.ack import route_ack
 from web.routes.data import route_data
+from web.routes.web import route_robots_txt
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT, DEBUG
 
 dynamic_routes = [   
     path("update",  route_update, name="route_update"),
+    path("robots.txt",  route_robots_txt, name="route_robots_txt"),
     path("out/<id>/<property>",  route_outgoing, name="route_outgoing"),
     path('', route_index, name='route_index'),
     re_path('(?P<language_code>[a-z]{2,4})/(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
