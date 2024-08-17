@@ -660,7 +660,7 @@ for locale in locales:
     ui_texts["CONFLICTING_ANSWER"] = "This answers might conflict"
     ui_texts["FLAG_THIS_ASSIGNMENT"] = "Mark this assignment as incorrect"
     ui_texts["REMOVE_FLAG_ASSIGNMENT"] = "Remove marking"
-
+    ui_texts["DESCRIPTION_TEXT"] = "The Distrochooser helps you to find the suitable Linux distribution based on your needs!"
     #A11y
     ui_texts["A11Y_OPTIONS"] =  "Accessibility"
     ui_texts["FONT_SIZE"] =  "Font sizing"

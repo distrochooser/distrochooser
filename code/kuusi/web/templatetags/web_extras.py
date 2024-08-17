@@ -229,7 +229,7 @@ def meta_tags(language_code:str):
     result = KUUSI_META_TAGS
     for key, _ in result.items():
         if "description" in key:
-            result[key] = strip_tags(TRANSLATIONS[language_code]["ABOUT_PAGE_TEXT"])
+            result[key] = strip_tags(TRANSLATIONS[language_code]["DESCRIPTION_TEXT"])
     return {
         "tags": result
     }
