@@ -227,7 +227,8 @@ KUUSI_META_TAGS = {
     "og:title": "Distrochooser",
     "og:type": "website",
     "og:url": KUUSI_URL,
-    "og:image": KUUSI_URL + "/static/logo.svg"
+    "og:image": KUUSI_URL + "/static/logo.svg",
+    "theme-color": "#158cba"
 }
 
 # use https://turbo.hotwired.dev to prevent flicker
