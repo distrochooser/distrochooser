@@ -1,9 +1,9 @@
 {% load web_extras %}
 <div id="result-filter-collapse" class="row">
-    <div class="col-4 d-none d-sm-block">
+    <div class="col-4 col-xl-2 col-xxl-4">
 
     </div>
-    <div class="col-12 col-sm-4">
+    <div class="col-12 col-xl-8 col-xxl-4">
         <div class="card card-body mt-3">
             <div class="row">
                 <div class="col-12 text-center">
@@ -31,7 +31,7 @@
 
 
 <div class="row mt-3">
-    <div class="col-2  d-none d-sm-block">
+    <div class="col-2 d-xl-block d-lg-none d-md-none d-sm-none d-none">
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             {% for key, result in results.items %}
             <button class="nav-link rounded-0 {{ result.css_class }} {%if result.new_group and result.position != 1%}mt-4{%endif%}" aria-selected="{{result.is_active}}" id="choosable-{{result.choosable.pk}}-tab"  style="background-color: {{result.choosable.bg_color}};color: {{result.choosable.fg_color}};" data-bs-toggle="pill" data-bs-target="#choosable-{{result.choosable.pk}}-content" type="button" role="tab" aria-controls="choosable-{{result.choosable.pk}}-content">
@@ -52,10 +52,12 @@
             {% endfor %}    
         </div>
     </div>
-    <div class="col-2 col d-sm-none">
+    <div class="col-2 col d-xl-none">
+        {% if previous_item %}
         <a href="?page=result-page&{{ previous_item }}"><i class="fs-1 bi bi-arrow-left-square-fill"></i></a>
+        {%endif%}
     </div>
-    <div class="col-8 col-sm-10">
+    <div class="col-8 col-xl-10">
         <div class="tab-content " id="v-pills-tabContent">
             {% for key, result in results.items %}
                     <div class="tab-pane fade {{ result.css_class }} {% if result.is_active %}show{%endif%}" id="choosable-{{result.choosable.pk}}-content" role="tabpanel" aria-labelledby="choosable-{{result.choosable.pk}}-tabv" tabindex="0">
@@ -64,8 +66,10 @@
             {% endfor %}
         </div>
     </div>
-    <div class="col-2 col d-sm-none">
-        <a href="?page=result-page&{{ next_item }}"><i class="fs-1 bi bi-arrow-right-square-fill"></i></a>
+    <div class="col-2 col d-xl-none text-end">
+        {% if next_item %}
+            <a href="?page=result-page&{{ next_item }}"><i class="fs-1 bi bi-arrow-right-square-fill"></i></a>
+        {%endif%}
     </div>
 </div>
 

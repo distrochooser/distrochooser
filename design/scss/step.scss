@@ -18,7 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 .ku-steps {
     position: fixed;
-    width: 12%;
+    width: fit-content;
+    padding-right: 1em;
     border-right: 1px solid #dfdfdf;
     top: 0em;
     padding-top: 9em;
@@ -31,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .ku-step-button {
     background: #fff0;
     border: 0px rgb(14, 15, 16);
+    text-align: left;
 }
 .ku-step-major {
     background-color: grey;
@@ -85,10 +87,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 .ku-step-marked {
     color: darkorange;
-    position: relative;
+    position: absolute;
+    left: -0.5em;
+    top: 0.25em;
+    font-size: 0.75em;
 
     &.bi-exclamation-octagon-fill{
         color: red;
+        top: -0.5em;
     }
 
     &.bi-exclamation-square-fill{

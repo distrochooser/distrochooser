@@ -107,6 +107,10 @@ def step(language_code: str, step: Dict):
 def step_content(language_code: str, step: Dict):
     return {"language_code": language_code, "step": step}
 
+@register.inclusion_tag(filename="tags/step_markings.html")
+def step_markings(language_code: str, step: Dict):
+    return {"language_code": language_code, "step": step}
+
 
 @register.inclusion_tag(filename="tags/cookies.html", takes_context=True)
 def cookies(context):

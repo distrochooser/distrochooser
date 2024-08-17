@@ -14,7 +14,7 @@
                 <button name="BTN_RESET_ANSWER" class="btn"  value="BTN_MARK_TOGGLE">
 
                     <i class="bi bi-trash"></i>
-                    <span class="d-none d-sm-inline">
+                    <span class="d-none d-md-inline">
                         {% _i18n_ language_code "BTN_RESET_ANSWER" %}
                     </span>
                 </button>
@@ -23,7 +23,7 @@
                 <button name="BTN_MARK_TOGGLE" class="btn"  value="BTN_MARK_TOGGLE">
                     <i class="bi bi-bookmark-fill"></i>
 
-                    <span class="d-none d-sm-inline">
+                    <span class="d-none d-md-inline">
                         {% if is_marked %}
                         {% _i18n_ language_code "BTN_UNMARK" %}
                         {% else %}
@@ -37,7 +37,7 @@
         {% if page.previous_page %}
             <button name="BTN_PREV_PAGE" class="btn btn-secondary"  value="BTN_PREV_PAGE">
                 <i class="bi bi-arrow-left-square"></i> 
-                <span class="d-none d-sm-inline">
+                <span class="d-none d-md-inline">
                      {% _i18n_ language_code "BTN_PREV_PAGE" %}
                 </span>
             </button>
@@ -46,14 +46,14 @@
             {% if has_errors %}
                 <button name="BTN_NEXT_PAGE_FORCE" class="btn btn-primary"  value="BTN_NEXT_PAGE_FORCE">
                     <i class="bi bi-arrow-right-square-fill"></i>  
-                    <span class="d-none d-sm-inline">
+                    <span class="d-none d-md-inline">
                     {% _i18n_ language_code "BTN_NEXT_PAGE_FORCE" %}
                     </span>
                 </button>
             {% else %}
                 <button name="BTN_NEXT_PAGE" class="btn btn-primary"  value="BTN_NEXT_PAGE">
                     <i class="bi bi-arrow-right-square-fill"></i> 
-                    <span class="d-none d-sm-inline">
+                    <span class="d-none d-md-inline">
                     {% _i18n_ language_code "BTN_NEXT_PAGE" %}
                     </span>
                 </button>
