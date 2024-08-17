@@ -259,3 +259,8 @@ ROBOTS_TXT = {
         "/language_code/privacy"
     ]
 }
+
+SITEMAP_PUBLIC_URL = "http://localhost:8000" # please no trailing slash
+SITEMAP_ADDITIONAL_ENTRIES = [
+    "/language_code/about"
+]

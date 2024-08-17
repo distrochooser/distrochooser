@@ -234,7 +234,10 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
 
     # If the id is none -> Redirect the user to a URL representing the entire state
     if id is None or id != session.result_id or language_code is None:
-        return HttpResponseRedirect(f"/{request.LANGUAGE_CODE}/{session.result_id}?page={page.catalogue_id}")
+        # DO not redirect on a simple GET request
+        # Allowing crawlers to crawl the page for OGP tags
+        if request.method != "GET":
+            return HttpResponseRedirect(f"/{request.LANGUAGE_CODE}/{session.result_id}?page={page.catalogue_id}")
     # Onboard th session to the request oject 
 
   
@@ -324,20 +327,3 @@ def route_feedback(request: WebHttpRequest,assignment_id: int, choosable_id: int
     url += f"&scroll_to={choosable.pk}"
     return HttpResponseRedirect(url)
 
-def route_robots_txt(request: WebHttpRequest):
-
-    for user_agent, rules in ROBOTS_TXT.items():
-        robots_content = f"User-agent: {user_agent}\n"
-        for rule in rules:
-            if "language_code" in rule:
-                for code in LANGUAGE_CODES:
-                    rule_content = rule.replace("language_code", code)
-                    robots_content += f"Disallow: {rule_content}\n"
-            else:
-                robots_content += f"Disallow: {rule}\n"
-
-    
-    response =  HttpResponse(robots_content)
-    response.headers["content-type"] = "text/plain"
-
-    return response
