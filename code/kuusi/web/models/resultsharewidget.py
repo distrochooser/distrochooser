@@ -29,6 +29,7 @@ class ResultShareWidget(Widget):
         render_template = loader.get_template(f"widgets/result_share.html")
         return render_template.render(
             {
+                "is_rtl": request.session_obj.is_rtl,
                 "session": request.session_obj,
                 "page": page,
                 "language_code": request.session_obj.language_code,

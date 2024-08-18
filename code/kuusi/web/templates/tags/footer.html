@@ -8,7 +8,7 @@
         </small>
     </p>
 
-    <p class="col-6 col-md-6 mb-0  text-muted mt-2 text-end">
+    <p class="col-6 col-md-6 mb-0  text-muted mt-2 {% if not is_rtl %}text-end{%else%}text-start{%endif%}">
         <small>
             <a target="_blank" href="/{{language_code}}/about" class="d-inline-block px-2 text-muted">{% _i18n_ language_code "LINK_ABOUT"%}</a>
             <a target="_blank" href="/{{language_code}}/privacy" class="d-inline-block px-2 text-muted">{% _i18n_ language_code  "LINK_PRIVACY" %}</a>

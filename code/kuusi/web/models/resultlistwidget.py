@@ -184,4 +184,4 @@ class ResultListWidget(Widget):
         
         if current_item_index < len(choosable_pks) -1 :
             next_item = "scroll_to=" + str(choosable_pks[current_item_index + 1])
-        return render_template.render({"previous_item": previous_item, "next_item": next_item, "scroll_to": scroll_to, "result_id": request.session_obj.result_id, "language_code": request.session_obj.language_code, "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters,  "page": page, "results": ranked_result}, request)
+        return render_template.render({"is_rtl": request.session_obj.is_rtl,"previous_item": previous_item, "next_item": next_item, "scroll_to": scroll_to, "result_id": request.session_obj.result_id, "language_code": request.session_obj.language_code, "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters,  "page": page, "results": ranked_result}, request)

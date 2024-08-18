@@ -93,9 +93,10 @@ def page(context, page: Page):
     return {"page": page, "request": request, "session": session}
 
 
-@register.inclusion_tag(filename="tags/logo.html")
-def logo(on_static_page: bool = False):
-    return {"on_static_page": on_static_page}
+@register.inclusion_tag(filename="tags/logo.html", takes_context=True)
+def logo(context, on_static_page: bool = False):
+    request: HttpRequest = context["request"]
+    return {"on_static_page": on_static_page, "is_rtl": request.session_obj.is_rtl}
 
 
 @register.inclusion_tag(filename="tags/step.html")
@@ -125,7 +126,8 @@ def footer(language_code: str):
     return {
         "language_code": language_code,
         "left_text": KUUSI_COPYRIGHT_STRING,
-        "free_nav": KUUSI_INFO_STRING
+        "free_nav": KUUSI_INFO_STRING,
+        "is_rtl": language_code in RTL_TRANSLATIONS
     }
 
 
@@ -261,3 +263,12 @@ def a11y_classes(context):
             class_string += " " + A11Y_OPTIONS_BODYCLASSES[meta.meta_value]
 
     return class_string
+
+
+@register.inclusion_tag(filename="tags/next_item.html")
+def next_item(next_item: str | None):
+    return {"next_item": next_item}
+
+@register.inclusion_tag(filename="tags/previous_item.html")
+def previous_item(previous_item: str | None):
+    return {"previous_item": previous_item}

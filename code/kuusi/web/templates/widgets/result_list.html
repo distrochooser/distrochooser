@@ -53,9 +53,11 @@
         </div>
     </div>
     <div class="col-2 col d-xl-none">
-        {% if previous_item %}
-        <a href="?page=result-page&{{ previous_item }}"><i class="fs-1 bi bi-arrow-left-square-fill"></i></a>
-        {%endif%}
+        {% if is_rtl %} 
+            {% next_item next_item %}
+        {% else %}
+            {% previous_item previous_item %}
+        {% endif %}
     </div>
     <div class="col-8 col-xl-10">
         <div class="tab-content " id="v-pills-tabContent">
@@ -67,9 +69,12 @@
         </div>
     </div>
     <div class="col-2 col d-xl-none text-end">
-        {% if next_item %}
-            <a href="?page=result-page&{{ next_item }}"><i class="fs-1 bi bi-arrow-right-square-fill"></i></a>
-        {%endif%}
+        {% if is_rtl %} 
+
+            {% previous_item previous_item %}
+        {% else %}
+            {% next_item next_item %}
+        {% endif %}
     </div>
 </div>
 

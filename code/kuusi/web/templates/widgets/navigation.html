@@ -36,7 +36,7 @@
                 </button>
             {% endif %}
     </div>
-    <div class="col-6 text-end">
+    <div class="col-6 {% if not is_rtl %}text-end{% else %}text-start{%endif%}">
         {% if page.previous_page %}
             <button name="BTN_PREV_PAGE" class="btn btn-secondary"  value="BTN_PREV_PAGE">
                 <i class="bi bi-arrow-left-square"></i> 

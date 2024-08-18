@@ -26,6 +26,8 @@ from django.db import models
 from django.utils import timezone
 from django.apps import apps
 
+from web.models.translateable import RTL_TRANSLATIONS
+
 def random_str():
     letters = string.ascii_lowercase + "1234567890"
     result_str = "".join(random.choice(letters) for i in range(5))
@@ -79,6 +81,10 @@ class Session(models.Model):
 
     def __str__(self) -> str:
         return f"{self.started}: {self.result_id}"
+    
+    @property
+    def is_rtl(self):
+        return self.language_code in RTL_TRANSLATIONS
 
 class SessionMeta(models.Model):
     session = models.ForeignKey(

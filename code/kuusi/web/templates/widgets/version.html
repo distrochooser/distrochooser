@@ -12,7 +12,7 @@
     {% _i18n_ language_code "A11Y_OPTIONS" %}
 </h3>
 <div class="row">
-    <div class="col-3">
+    <div class="col-12 col-xxl-3">
         <label for="ku-a11y-font-size">{% _i18n_ language_code "FONT_SIZE"%}</label>
         <select id="FONT_SIZE" name="FONT_SIZE" class="form-control">
             {% for key, value in a11y_options.font.items %}
@@ -20,7 +20,7 @@
             {% endfor %}
         </select>
     </div>
-    <div class="col-3 mt-3">
+    <div class="col-12 col-xxl-3 mt-3">
         <label for="ku-a11y-font-size">{% _i18n_ language_code "OTHER_SETTINGS"%}</label>
         <div class="row">
              <div class="col">
