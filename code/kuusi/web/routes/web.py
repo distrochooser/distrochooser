@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from django.core.cache import cache
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 from django.http import (
     HttpResponse,
     HttpResponseNotAllowed,
@@ -26,7 +26,7 @@ from django.http import Http404
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
 from django.utils import translation
-from os.path import join
+from re import match
 
 from kuusi.settings import (
     KUUSI_NAME,
@@ -35,7 +35,7 @@ from kuusi.settings import (
     LANGUAGE_CODES,
     DEFAULT_LANGUAGE_CODE,
     KUUSI_TRANSLATION_URL,
-    ROBOTS_TXT
+    REMARK_BRIDGE
 )
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection, Choosable, ChoosableMeta, FacetteAssignment, Feedback
 from web.helper import forward_helper
