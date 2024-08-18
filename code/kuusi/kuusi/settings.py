@@ -273,3 +273,7 @@ DEFAULT_SESSION_META = {
         "RESULT_NEEDS_POSITIVE"
     ]
 }
+
+# Add a beta background to the page
+
+BETA = True
