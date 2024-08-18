@@ -34,9 +34,10 @@ from kuusi.settings import (
     DEBUG,
     LANGUAGE_CODES,
     DEFAULT_LANGUAGE_CODE,
-    KUUSI_TRANSLATION_URL
+    KUUSI_TRANSLATION_URL,
+    DEFAULT_SESSION_META
 )
-from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection, Choosable, ChoosableMeta, FacetteAssignment, Feedback
+from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection, Choosable, ChoosableMeta, FacetteAssignment, Feedback, SessionMeta
 from web.helper import forward_helper
 from web.models.translateable import INCOMPLETE_TRANSLATIONS
 from logging import getLogger
@@ -101,6 +102,16 @@ def get_fresh_session(request: WebHttpRequest) -> Session:
     session = Session(user_agent=user_agent)
     session.save()
     session.referrer = request.headers.get("referrer")
+    for group, items in DEFAULT_SESSION_META.items():
+        for item in items:
+            meta = SessionMeta()
+            meta.meta_key = group
+            meta.meta_value = item
+            meta.session = session
+            meta.save()
+
+    session.referrer = request.headers.get("referrer")
+    session.save()
     return session
 
 def clone_selections(id: str, request: WebHttpRequest, session: Session):

@@ -265,3 +265,11 @@ SITEMAP_PUBLIC_URL = "http://localhost:8000" # please no trailing slash
 SITEMAP_ADDITIONAL_ENTRIES = [
     "/language_code/about"
 ]
+
+# Decide which default session meta keys/ values will be set.
+
+DEFAULT_SESSION_META = {
+    "RESULT_STATS_FILTER": [
+        "RESULT_NEEDS_POSITIVE"
+    ]
+}

@@ -98,4 +98,4 @@ class SessionMeta(models.Model):
     meta_key = models.CharField(max_length=10, null=False, blank=False)
     meta_value = models.CharField(max_length=10, null=False, blank=False)
     def __str__(self) -> str:
-        return f"{self.session.result_id}: {self.meta_key} -> {self.meta_value}"
+        return f"{self.session}: {self.meta_key} -> {self.meta_value}"
