@@ -34,8 +34,7 @@ from kuusi.settings import (
     DEBUG,
     LANGUAGE_CODES,
     DEFAULT_LANGUAGE_CODE,
-    KUUSI_TRANSLATION_URL,
-    REMARK_BRIDGE
+    KUUSI_TRANSLATION_URL
 )
 from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection, Choosable, ChoosableMeta, FacetteAssignment, Feedback
 from web.helper import forward_helper
