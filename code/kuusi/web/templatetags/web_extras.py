@@ -93,10 +93,9 @@ def page(context, page: Page):
     return {"page": page, "request": request, "session": session}
 
 
-@register.inclusion_tag(filename="tags/logo.html", takes_context=True)
-def logo(context, on_static_page: bool = False):
-    request: HttpRequest = context["request"]
-    return {"on_static_page": on_static_page, "is_rtl": request.session_obj.is_rtl}
+@register.inclusion_tag(filename="tags/logo.html")
+def logo(language_code: str, on_static_page: bool = False):
+    return {"on_static_page": on_static_page, "is_rtl": language_code in RTL_TRANSLATIONS}
 
 
 @register.inclusion_tag(filename="tags/step.html")

@@ -24,3 +24,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         right: unset !important;
     }
 }
+
+/**
+FIXME: The RTL causes to have border radius' on wrong sites. To fix that for now, get rid of it entirely
+*/
+/* navigation */
+.btn-group {
+    .btn {
+        border-radius: 0px;
+    }
+}
+/* age selector */
+.input-group {
+    .input-group-text {
+        border-radius: 0px;
+    }
+}
+/* share widget */
+.form-control {
+    border-radius: 0px;
+}
+
+/* Desktop dropdown */
+.dropdown-toggle {
+    border-radius: 0px;
+}
