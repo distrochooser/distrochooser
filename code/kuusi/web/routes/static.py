@@ -42,6 +42,12 @@ def route_about(request: WebHttpRequest, language_code: str = None):
     }
     return HttpResponse(template.render(context, request))
 
+def route_support(request: WebHttpRequest, language_code: str = None):
+    template = loader.get_template("support.html")
+    context = {
+        "language_code": language_code,
+    }
+    return HttpResponse(template.render(context, request))
 
 def route_privacy(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("privacy.html")

@@ -1,0 +1,29 @@
+{% extends '_layout.html' %}
+{% load web_extras %}
+{% load i18n %}
+
+{% block title%}Distrochooser{% endblock %}
+{%block logo%}{% logo language_code True %}{%endblock%}
+{% block container-class %}container{% endblock %}
+{% block content%}
+<div classs="row">
+    <div class="col-12">
+        <h1>{% _i18n_ language_code "LINK_SUPPORT" %}</h1>
+        <p>
+           
+        </p>
+        <blockquote class="blockquote">
+            <p>{% _i18n_ language_code "SUPPORT_TEXT" %}</p>
+        </blockquote>
+        <h2>{% _i18n_ language_code "SUPPORT_TEXT_LINKS" %}</h2>
+        <ul class="list-group">
+            <a class="list-group-item"href="https://github.com/distrochooser">GitHub - https://github.com/distrochooser</a>
+            <a class="list-group-item"href="https://discord.gg/aDkCutfqak">Discord - https://discord.gg/aDkCutfqak</a>
+            <a class="list-group-item"href="https://fosstodon.org/@distrochooser">Fediverse - @distrochooser@fosstodon.org</a>
+            <a class="list-group-item"href="https://twitter.com/distrochooser">X - @distrochooser</a>
+            <a class="list-group-item">Email - mail@distrochooser.de</a>
+        </ul>
+    </div>
+</div>
+{% footer language_code %}
+{% endblock %}
