@@ -17,7 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from typing import Dict
-from web.models import Widget, WebHttpRequest, Page, FacetteSelection, FacetteAssignment, Choosable, SessionMeta
+from web.models import (
+    Widget,
+    WebHttpRequest,
+    Page,
+    FacetteSelection,
+    FacetteAssignment,
+    Choosable,
+    SessionMeta,
+)
 from django.template import loader
 
 from kuusi.settings import WEIGHT_MAP
@@ -25,6 +33,7 @@ from kuusi.settings import WEIGHT_MAP
 from logging import getLogger
 
 logger = getLogger("root")
+
 
 class ResultListWidget(Widget):
     def proceed(self, request: WebHttpRequest, page: Page) -> bool:
@@ -37,14 +46,13 @@ class ResultListWidget(Widget):
         assignments_selected = list()
         weights_per_assignment = list()
 
-
         selection: FacetteSelection
         for selection in selections:
             facette = selection.facette
             assignments = FacetteAssignment.objects.filter(
-                    facettes__pk__in=[facette.pk]
+                facettes__pk__in=[facette.pk]
             )
-            
+
             if assignments.count() > 0:
                 assignments_selected += assignments
 
@@ -57,54 +65,76 @@ class ResultListWidget(Widget):
 
         active_filters = []
         pre_filters = {
-            "RESULT_MORE_THAN_5": lambda c: c.meta["AGE"].years_since >= 5 if "AGE" in c.meta else True,
-            "RESULT_MORE_THAN_15": lambda c: c.meta["AGE"].years_since >= 15 if "AGE" in c.meta else True,
-            "RESULT_MORE_THAN_20": lambda c: c.meta["AGE"].years_since >= 20 if "AGE" in c.meta else True
+            "RESULT_MORE_THAN_5": lambda c: (
+                c.meta["AGE"].years_since >= 5 if "AGE" in c.meta else True
+            ),
+            "RESULT_MORE_THAN_15": lambda c: (
+                c.meta["AGE"].years_since >= 15 if "AGE" in c.meta else True
+            ),
+            "RESULT_MORE_THAN_20": lambda c: (
+                c.meta["AGE"].years_since >= 20 if "AGE" in c.meta else True
+            ),
+        }
+        # Post filters only filter of a dictionary consisting out of a FacetteAssignment.AssignmentType as key and int as value, representing the amount of assignments present
+        
+        post_filters = {
+            "RESULT_NEEDS_POSITIVE": lambda c: FacetteAssignment.AssignmentType.POSITIVE
+            in c
+            and c[FacetteAssignment.AssignmentType.POSITIVE] > 0
         }
         # presect filters
         stored_filter = request.session_obj.get_meta_value("RESULT_AGE_FILTER")
         logger.debug(f"Stored filter is {stored_filter}")
 
-        for filter_key, delegate in pre_filters.items():
-            active_filter = SessionMeta.objects.filter(
-                session=request.session_obj,
-                meta_key = "RESULT_AGE_FILTER",
-                meta_value=filter_key
-            )
-            toggle_enabled = request.GET.get("toggle_filter") == filter_key
+        all_filters = {
+            "RESULT_AGE_FILTER": pre_filters,
+            "RESULT_STATS_FILTER": post_filters,
+        }
 
-            if active_filter.count() > 0 :
-                # filter was stored in database but needs to be toggled
-                if toggle_enabled:
-                     SessionMeta.objects.filter(
-                        session=request.session_obj,
-                        meta_key = "RESULT_AGE_FILTER",
-                        meta_value=filter_key
-                    ).delete()
-            else:
-                if toggle_enabled:
+        # Control storing of pre filter flags
+        for filter_group_key, filters in all_filters.items():
+            for filter_key, delegate in filters.items():
+                active_filter = SessionMeta.objects.filter(
+                    session=request.session_obj,
+                    meta_key=filter_group_key,
+                    meta_value=filter_key,
+                )
+                toggle_enabled = request.GET.get("toggle_filter") == filter_key
+
+                if active_filter.count() > 0:
+                    # filter was stored in database but needs to be toggled
+                    if toggle_enabled:
+                        SessionMeta.objects.filter(
+                            session=request.session_obj,
+                            meta_key=filter_group_key,
+                            meta_value=filter_key,
+                        ).delete()
+                else:
+                    if toggle_enabled:
+                        SessionMeta.objects.filter(
+                            session=request.session_obj, meta_key=filter_group_key
+                        ).exclude(meta_value=filter_key).delete()
+                        SessionMeta(
+                            session=request.session_obj,
+                            meta_key=filter_group_key,
+                            meta_value=filter_key,
+                        ).save()
+
+        for filter_group_key, filters in all_filters.items():
+            for filter_key, delegate in filters.items():
+                filter_enabled = (
                     SessionMeta.objects.filter(
                         session=request.session_obj,
-                        meta_key = "RESULT_AGE_FILTER"
-                    ).exclude(
-                        meta_value=filter_key
-                    ).delete()
-                    SessionMeta(
-                        session=request.session_obj,
-                        meta_key = "RESULT_AGE_FILTER",
-                        meta_value=filter_key
-                    ).save()
-
-        for filter_key, delegate in pre_filters.items():
-            filter_enabled = SessionMeta.objects.filter(
-                session=request.session_obj,
-                meta_key = "RESULT_AGE_FILTER",
-                meta_value=filter_key
-            ).count() > 0
-            if filter_enabled:
-                if filter_key not in active_filters:
-                    active_filters.append(filter_key)
-                choosables = list(filter(delegate, choosables))
+                        meta_key=filter_group_key,
+                        meta_value=filter_key,
+                    ).count()
+                    > 0
+                )
+                if filter_enabled:
+                    if filter_key not in active_filters:
+                        active_filters.append(filter_key)
+                    if filter_key in pre_filters:  # Only run prefilters yet
+                        choosables = list(filter(delegate, choosables))
 
         raw_results: Dict[Choosable, float] = {}
         assignments_used: Dict[Choosable, FacetteAssignment] = {}
@@ -139,8 +169,10 @@ class ResultListWidget(Widget):
             logger.debug(f"Choosable={choosable}, Score={score}, Results={results}")
             raw_results[choosable] = score
 
-        ranked_keys =sorted(raw_results, key=raw_results.get, reverse=True)
-        all_scores = list(filter(lambda s: s!= 0, set(map(lambda s: s, raw_results.values()))))
+        ranked_keys = sorted(raw_results, key=raw_results.get, reverse=True)
+        all_scores = list(
+            filter(lambda s: s != 0, set(map(lambda s: s, raw_results.values())))
+        )
         all_scores.sort()
         all_scores.reverse()
         ranked_result = {}
@@ -157,31 +189,60 @@ class ResultListWidget(Widget):
                     assignment = value[0]
                     if assignment.assignment_type not in assignment_stats:
                         assignment_stats[assignment.assignment_type] = 1
-                    else: 
-                        assignment_stats[assignment.assignment_type]+=1
-                position = all_scores.index(raw_results[key]) + 1 if raw_results[key] in all_scores else 1
-                print(index)
-                css_class_is_active = index == 0 if not scroll_to else str(scroll_to) == str(key.pk)
-                ranked_result[key] = {
-                    "choosable": key,
-                    "score": raw_results[key],
-                    "assignments": sorted_assignments,
-                    "position": position,
-                    "stats": assignment_stats,
-                    "new_group": last_position != position,
-                    "css_class": "active" if css_class_is_active else "",
-                    "is_active": css_class_is_active
-                }
-                index += 1
-                choosable_pks.append(key.pk)
-                last_position = ranked_result[key]["position"]
+                    else:
+                        assignment_stats[assignment.assignment_type] += 1
+                add_choosable = True
+                for post_filter_key, post_filter_delegate in post_filters.items():
+                    # Do not run the filter delegate if not active
+                    if post_filter_key in active_filters:
+                        result = post_filter_delegate(assignment_stats)
+                        if not result:
+                            add_choosable = False
+                            break
+                if add_choosable:
+                    position = (
+                        all_scores.index(raw_results[key]) + 1
+                        if raw_results[key] in all_scores
+                        else 1
+                    )
+                    css_class_is_active = (
+                        index == 0 if not scroll_to else str(scroll_to) == str(key.pk)
+                    )
+                    ranked_result[key] = {
+                        "choosable": key,
+                        "score": raw_results[key],
+                        "assignments": sorted_assignments,
+                        "position": position,
+                        "stats": assignment_stats,
+                        "new_group": last_position != position,
+                        "css_class": "active" if css_class_is_active else "",
+                        "is_active": css_class_is_active,
+                    }
+                    index += 1
+                    choosable_pks.append(key.pk)
+                    last_position = ranked_result[key]["position"]
 
         previous_item = None
         next_item = None
         current_item_index = 0 if not scroll_to else choosable_pks.index(int(scroll_to))
-        if current_item_index -1 >= 0:
+        if current_item_index - 1 >= 0:
             previous_item = "scroll_to=" + str(choosable_pks[current_item_index - 1])
-        
-        if current_item_index < len(choosable_pks) -1 :
+
+        if current_item_index < len(choosable_pks) - 1:
             next_item = "scroll_to=" + str(choosable_pks[current_item_index + 1])
-        return render_template.render({"is_rtl": request.session_obj.is_rtl,"previous_item": previous_item, "next_item": next_item, "scroll_to": scroll_to, "result_id": request.session_obj.result_id, "language_code": request.session_obj.language_code, "feedback_given": request.GET.get("feedback") is not None, "active_filters": active_filters, "filters": pre_filters,  "page": page, "results": ranked_result}, request)
+        return render_template.render(
+            {
+                "is_rtl": request.session_obj.is_rtl,
+                "previous_item": previous_item,
+                "next_item": next_item,
+                "scroll_to": scroll_to,
+                "result_id": request.session_obj.result_id,
+                "language_code": request.session_obj.language_code,
+                "feedback_given": request.GET.get("feedback") is not None,
+                "active_filters": active_filters,
+                "all_filters": all_filters,
+                "page": page,
+                "results": ranked_result,
+            },
+            request,
+        )

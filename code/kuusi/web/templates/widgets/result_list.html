@@ -6,14 +6,20 @@
     <div class="col-12 col-xl-8 col-xxl-4">
         <div class="card card-body mt-3">
             <div class="row">
-                <div class="col-12 text-center">
-                    <b>{% _i18n_ language_code "RESULT_FILTER_OPTIONS_AGE" %}</b>
-                    <div class="btn-group" role="group" aria-label="Display">
-                        {% for filter_key, filter_active in filters.items %}
-                            <a href="?page=result-page&toggle_filter={{filter_key}}{% if filter_key  in active_filters%}&disable_filter=true{% endif%}" class="btn btn-outline-primary {% if filter_key  in active_filters%}active{% endif%}"> {% _i18n_ language_code filter_key %}</a>
-                        {% endfor %}
+                {% for filter_group, filters in all_filters.items %}
+
+                    <div class="col-12 text-center mb-3">
+                        <form>
+                            <label for="ku-age-filter" class="form-label d-block">{% _i18n_ language_code filter_group %}</label>
+                            <div class="btn-group" role="group" id=""ku-age-filter">
+                                {% for filter_key, filter_active in filters.items %}
+                                    <a href="?page=result-page&toggle_filter={{filter_key}}{% if filter_key  in active_filters%}&disable_filter=true{% endif%}" class="btn btn-outline-primary {% if filter_key  in active_filters%}active{% endif%}"> {% _i18n_ language_code filter_key %}</a>
+                                {% endfor %}
+                            </div>
+                        </form>
                     </div>
-                </div>
+                {% endfor %}
+
             </div>
         </div>
     </div>

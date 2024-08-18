@@ -649,8 +649,8 @@ for locale in locales:
     ui_texts["RESULT_MORE_THAN_5"] = "5 years or older"
     ui_texts["RESULT_MORE_THAN_15"] = "15 years or older"
     ui_texts["RESULT_MORE_THAN_20"] = "20 years or older"
-    ui_texts["RESULT_FILTER_OPTIONS_AGE"] = "Distribution age"
-    ui_texts["RESULT_FILTER_OPTIONS"] = "Filter options"
+    ui_texts["RESULT_AGE_FILTER"] = "Linux distribution age"
+    ui_texts["RESULT_STATS_FILTER"] = "List options"
     ui_texts["COMPACT_MODE"] =  "Compact display"
     ui_texts["LIST_MODE"] =  "List display"
     ui_texts["WELCOME_WIDGET_FLAG"] = "You can give feedback on results to help us to improve the service"
@@ -671,6 +671,7 @@ for locale in locales:
     ui_texts["OTHER_SETTINGS"] =  "Other settings"
     ui_texts["COLOR_MODE_BLACK_AND_WHITE"] =  "Black and white mode"
     ui_texts["COLOR_MODE_HIGH_CONTRAST"] =  "High contrast"
+    ui_texts["RESULT_NEEDS_POSITIVE"] =  "Skip entries without positive match"
 
 
     with open(locale_path + f"ui-{locale}.json", "w+") as file:
