@@ -1,0 +1,6 @@
+
+[assignment.ubuntu-lts]
+long_description = "ubuntu-lts-all-two-years"
+from = ["lts-less-than-once-per-year"]
+to = ["ubuntu"]
+how = "positive"
