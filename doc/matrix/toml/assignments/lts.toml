@@ -1,6 +1,90 @@
+# kuusi
+# Copyright (C) 2014-2024  Christoph Müller  <mail@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# The LTS assignment is a "positive open" group
+# This means there are some positive matches
+# while some distros remain without mapping
+# Only for the facettes "lts-once-per-year" and "lts-less-than-once-per-year"
+# negative mappings are given for updates with high update/ upgrade frequency
+
+# TODO: Consider adding behaviour if conflicting with fast updates facette
+
+# Ubuntu has LTS editions
+# leave the other facettes untouched.
+# Mint mapped according to on the same assignment due to https://de.wikipedia.org/wiki/Linux_Mint
 [assignment.ubuntu-lts]
 long_description = "ubuntu-lts-all-two-years"
 from = ["lts-less-than-once-per-year"]
-to = ["ubuntu"]
+to = ["ubuntu", "mint"]
 how = "positive"
+
+# Debian _is_ a LTS distro
+# https://www.debian.org/releases/
+# leave the other facettes untouched.
+# According to https://endoflife.date/devuan, the devuan cycle follows the Debian cycle -> reuse match here
+[assignment.debian-lts]
+long_description = "debian-lts"
+from = ["lts-less-than-once-per-year"]
+to = ["debian", "devuan"]
+how = "positive"
+
+# tails has a rather quick schedule, make it match positive for multiple times answer and negative for the other answers
+# https://tails.net/contribute/release_schedule/
+[assignment.tails-lts]
+long_description = "generic-quick-updates"
+from = ["lts-multiple-times-per-year"]
+to = ["tails"]
+how = "positive"
+
+[assignment.tails-lts-blocker]
+long_description = "generic-quick-updates"
+from = ["lts-less-than-once-per-year", "lts-once-per-year"]
+to = ["tails"]
+how = "negative"
+
+# Arch
+[assignment.arch-lts]
+long_description = "generic-quick-updates"
+from = ["lts-multiple-times-per-year"]
+to = ["arch"]
+how = "positive"
+
+[assignment.arch-lts-blocker]
+long_description = "generic-rolling-updates"
+from = ["lts-less-than-once-per-year", "lts-once-per-year"]
+to = ["arch"]
+how = "negative"
+
+# OpenSuse
+# https://en.wikipedia.org/wiki/OpenSUSE#Version_history
+[assignment.opensuse-lts]
+long_description = "opensuse-tumbleweed"
+from = ["lts-multiple-times-per-year"]
+to = ["opensuse"]
+how = "positive"
+
+[assignment.opensuse-lts-leap]
+long_description = "generic-quick-updates"
+from = ["lts-once-per-year"]
+to = ["opensuse"]
+how = "positive"
+
+[assignment.opensuse-lts-blocker]
+long_description = "generic-quick-updates"
+from = ["lts-less-than-once-per-year"]
+to = ["opensuse"]
+how = "negative"
+
