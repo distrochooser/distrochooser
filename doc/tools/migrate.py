@@ -581,7 +581,14 @@ for locale in locales:
     facette_texts = {
         "lts-multiple-times-per-year-selectable_description": "I'm fine with doing these upgrades multiple times per year",
         "lts-once-per-year-selectable_description": "I am willing to do one such update per year",
-        "lts-less-than-once-per-year-selectable_description": "I want to run multiple years on the same version"
+        "lts-less-than-once-per-year-selectable_description": "I want to run multiple years on the same version",
+        "debian-lts-selectable_description": "Stable releases are supported for 3 years extended by a two year Long Term Support (LTS) phase",
+        "ubuntu-lts-all-two-years-selectable_description": "Long Term Support (LTS) editions are released each two years",
+        "opensuse-tumbleweed-selectable_description": "There is the Tumbleweed-Edition, which is a tested rolling release, requires multiple upgrades per year", 
+        "opensuse-leap-selectable_description": "The Leap-Edition is released once per year",
+        "generic-once-per-year-selectable_description": "There is a major release per year",
+        "generic-quick-updates-selectable_description": "There are multiple releases per year required to be installed",
+        "generic-rolling-updates-selectable_description": "Is a rolling release Linux distribution; There are frequent updates with possible upgrade steps required"
     }
     for key, value in facette_map.items():
         facette_texts[value] = entries[key]
