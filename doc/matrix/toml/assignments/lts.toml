@@ -104,7 +104,7 @@ how = "positive"
 # Rocky, RHEL
 # https://endoflife.date/rocky-linux
 [assignment.rocky-rhel-lts]
-long_description = "generic-quick-updates"
+long_description = "rocky-rhel-support"
 from = ["lts-less-than-once-per-year"]
 to = ["rocky", "rhel"]
 how = "positive"
@@ -116,4 +116,26 @@ from = ["lts-once-per-year"]
 to = ["fedora"]
 how = "positive"
 
+
+# Knoppix
+# TODO: Decide if Knoppix should have a positive mapping here at all as the last version is according to wiki from 2022.
+
+# Crux
+# TODO: Decide if Crux should be removed
+
+# Zorin OS
+# https://zorin.com/os/details/
+[assignment.zorin-lts]
+long_description = "zorin-support"
+from = ["lts-less-than-once-per-year"]
+to = ["zorinos"]
+how = "positive"
+
+# Elementary OS
+# https://github.com/elementary/os/wiki/Release-Upgrades
+[assignment.elementaryos-lts]
+long_description = "elementary-support"
+from = ["lts-less-than-once-per-year"]
+to = ["elementaryos"]
+how = "positive"
 
