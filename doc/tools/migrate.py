@@ -588,7 +588,8 @@ for locale in locales:
         "opensuse-leap-selectable_description": "The Leap-Edition is released once per year",
         "generic-once-per-year-selectable_description": "There is a major release per year",
         "generic-quick-updates-selectable_description": "There are multiple releases per year required to be installed",
-        "generic-rolling-updates-selectable_description": "Is a rolling release Linux distribution; There are frequent updates with possible upgrade steps required"
+        "generic-rolling-updates-selectable_description": "Is a rolling release Linux distribution; There are frequent updates with possible upgrade steps required",
+        "rocky-rhel-support-selectable_description": "Major releases are supported for multiple years"
     }
     for key, value in facette_map.items():
         facette_texts[value] = entries[key]

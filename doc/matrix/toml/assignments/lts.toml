@@ -35,10 +35,11 @@ how = "positive"
 # https://www.debian.org/releases/
 # leave the other facettes untouched.
 # According to https://endoflife.date/devuan, the devuan cycle follows the Debian cycle -> reuse match here
+# Adding MX Linux also here as it's based on debian and so inherits it's schedule https://en.wikipedia.org/wiki/MX_Linux
 [assignment.debian-lts]
 long_description = "debian-lts"
 from = ["lts-less-than-once-per-year"]
-to = ["debian", "devuan"]
+to = ["debian", "devuan", "mxlinux"]
 how = "positive"
 
 # tails has a rather quick schedule, make it match positive for multiple times answer and negative for the other answers
@@ -56,16 +57,17 @@ to = ["tails"]
 how = "negative"
 
 # Arch
+# Also adding Manjaro to this mapping, for now
 [assignment.arch-lts]
 long_description = "generic-quick-updates"
 from = ["lts-multiple-times-per-year"]
-to = ["arch"]
+to = ["arch", "manjaro", "gentoo"]
 how = "positive"
 
 [assignment.arch-lts-blocker]
 long_description = "generic-rolling-updates"
 from = ["lts-less-than-once-per-year", "lts-once-per-year"]
-to = ["arch"]
+to = ["arch", "manjaro", "gentoo"]
 how = "negative"
 
 # OpenSuse
@@ -87,4 +89,31 @@ long_description = "generic-quick-updates"
 from = ["lts-less-than-once-per-year"]
 to = ["opensuse"]
 how = "negative"
+
+# Solus, PCLinuxOS
+# https://en.wikipedia.org/wiki/Solus_(operating_system)
+# https://en.wikipedia.org/wiki/PCLinuxOS#History
+# According to wiki there is a major rlease switch per year and the rest is rolling
+# Mapping it to a positive match to once-per-year
+[assignment.solus-lts]
+long_description = "generic-once-per-year"
+from = ["lts-once-per-year"]
+to = ["solus", "pclinuxos"]
+how = "positive"
+
+# Rocky, RHEL
+# https://endoflife.date/rocky-linux
+[assignment.rocky-rhel-lts]
+long_description = "generic-quick-updates"
+from = ["lts-less-than-once-per-year"]
+to = ["rocky", "rhel"]
+how = "positive"
+
+# Fedora
+[assignment.fedora-lts]
+long_description = "generic-once-per-year"
+from = ["lts-once-per-year"]
+to = ["fedora"]
+how = "positive"
+
 
