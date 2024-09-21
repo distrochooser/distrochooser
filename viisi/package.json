@@ -22,7 +22,7 @@
     "balloon-css": "1.2.0",
     "core-js": "3.20.1",
     "cross-env": "7.0.3",
-    "express": "4.19.2",
+    "express": "4.20.0",
     "nuxt": "2.15.8",
     "pug-plain-loader": "1.1.0",
     "spinkit": "2.0.1",
