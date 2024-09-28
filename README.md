@@ -13,7 +13,8 @@ This repository contains the code of [distrochooser.de](http://distrochooser.de)
 
 The Distrochooser is a service to help Linux beginners to orientate. The service is not an oracle and can not calculate 100% accurate results, but it helps to orientate.
 
-> Information 1: The current `main` branch is the in-development version, which is still in beta state. The current production version running on distrochooser.de is located in the `viisi` branch.
+> Information: The current `main` branch is the in-development version, which is still in beta state. The current production version running on distrochooser.de is located in the `viisi` branch. Addtionally, things can change quite quickly.
+> If you plan to contribute, feel free to give a ping first, so work can be coordinated and efforts can be used in the best possible way. Thank you!
 
 ## Building locally
 
