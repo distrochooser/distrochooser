@@ -8,6 +8,8 @@ Distrochooser has a very slow development cycle as this is a "weekend warrior" p
 
 Please note that there will no discussions with deleted accounts (on PR/ Issues/ Discussions). These threads will be closed.
 
+> Please inform me when you plan to contribute (e. g. in the discussion tab or in an issue), so I can introduce you to caveats/issues and give you hints on how to realize your contribution in the best possible way. Thank you!
+
 # Preparations
 
 Following documents are important for any contribution in the distrochooser repository
