@@ -14,3 +14,4 @@ snakeviz==2.2.0
 sqlparse==0.5.0
 tornado==6.4.1
 user-agents==2.2.0
+termcolor==2.4.0
