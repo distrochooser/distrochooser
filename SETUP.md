@@ -1,0 +1,58 @@
+# Building locally
+
+## Base configuration
+
+- Clone the Distrochooser repository https://github.com/distrochooser/distrochooser **important: branch main**
+- Clone the translation repository https://github.com/distrochooser/distrochooser **important: branch 6-baseline** into the folder `locale`
+
+You should now see following folder structure:
+
+Inside this folder, create a empty folder "static".
+```
+[...]
+code/
+doc/
+locale/ <-- this folder is from the translation repo and should contain JSON-files
+HOW-TO-Map.md
+static/ <-- the empty folder you've just created
+[...]
+```
+
+Edit the file `code/kuusi/kuusi/settings.py` and change following settings
+
+`STATICFILES_DIRS`: Add the full path of the folder you've just created
+`LOCALE_PATHS`: Add the full path to the folder `locale`
+
+
+## Install
+
+> We assume you use a venv-like approach here. If you use another approach, replace this step with the tool of your choice.
+
+Create the venv:
+
+`python -m venv ./venv` while `./venv` is the path where you want to put the virtual environment folder into.
+
+Activate the venv (this step depends on your operating system, see https://docs.python.org/3/tutorial/venv.html for details):
+
+`source ./venv/bin/activate`
+
+Switch into the folder `code/kuusi` and executing following command
+
+```
+# Create database (sqlite per default here) and migrate the structure
+python manage.py migrate
+# to get a user and password for the admin panel on /admin
+python manage.py createsuperuser
+# Import the base questionaire structure
+python manage.py parse ../../doc/matrix/toml/matrix.toml --wipe 
+# Add static files
+python manage.py collectstatic
+```
+
+At this point, you have a filled database and basically can start the application using `python3 manage.py runserver`. You should now be able to open http://localhost:8000 and http://localhost:8000/admin, respectively.
+
+# Styling requirements
+
+If you plan to do CSS/ styling changes, you need to add the frontend requirements aswell.
+
+For this, switch into the `design` folder and execute `yarn install`. After that, you will be able to use `yarn run build-styles` and `yarn run build-js`. Both commands result in files being put into the folder `../static`.

@@ -17,13 +17,11 @@ The Distrochooser is a service to help Linux beginners to orientate. The service
 
 ## Building locally
 
-1. Use a venv to add the requirements from `./code/`. 
-2. Import the matrix using `python3 manage.py parse ../../doc/matrix/toml/matrix.toml --wipe`(the `--wipe` flag is optional and clears the database)
-3. To build js and styles, cd into design and execute `yarn run build-styles` and `yarn run build-js` (make sure a folder static is present in the projects root dir)
-4. Run `python3 manage.py collectstatic` (you will have to adapt the `settings.py` to point to the static folder before)
-5. Run `python3 manage.py runserver`
-6. Open localhost:8000
+See SETUP.md
 
+## How to provide distribution mappings?
+
+See HOW-TO-MAP.md
 
 ## License
 

@@ -22,20 +22,7 @@ This version of distrochooser consists out of a single monolith, based in Django
 
 # Contributing to the decision matrix ✅
 
-The Distrochooser data model describes as follows:
-
-- Translateable objects have a `catalogue_id` attribute, which is used in the translation as a search key
-- A distribution is a `Choosable`, which can have multiple `ChoosableMeta` objects, which define a specified property of the entry.
-- Each displayed page is a `Page` object, which is related to one `Category` object, which controls the navigation
-- Each page can have multiple `Widget` objects (which can also be inherited ones from `Widget`), which are aligned in a row/ col/ width structure
-- For `SelectionWidgets`, they have a topic which is used to map the answers `Facettes`
-- Each `Facette` should point to `FacetteAssignments`, which map a descriptive text in a defined way ("blocking", "negative", "neutral", "positive") to the selected answer (this is the decision part)
-- A `Facette` can have `FacetteBehaviours`, which can be triggered when answers might exclude themselves. `FacetteBehaviours` have a severity from warning to critical to be displayed in the UI. `FacetteBehaviour` are optional.
-- Each selected answer is a `FacetteSelection` and is part of a `Session`
-
-The matrix is defined in the /doc/matrix folder. Basically everything is defined in TOML-files. The Id's of the elements are used as `catalogue_id` mentioned earlier and are used to reference objects.
-
-**Important** If you introduce new mappings keep in mind that the translation requires updating as well!
+You can find an in-depth guide in the file HOW-TO-MAP.md
 
 # Contributing translations 🌍
 
