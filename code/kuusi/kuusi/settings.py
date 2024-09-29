@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from pathlib import Path
+from os.path import dirname, join
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -178,7 +179,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = ("/Users/chm/Documents/distrochooser/static",)
+# per default, the /static/ folder is located on the repo root, which is two levels above the BASE_DIR
+STATICFILES_DIRS = (join(dirname(dirname(BASE_DIR)), "static"),)
+
 
 STATIC_ROOT = ""
 
@@ -187,7 +190,8 @@ STATIC_ROOT = ""
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOCALE_PATHS = ("/Users/chm/Documents/distrochooser/locale",)
+# per default, the /locale/ folder is located on the repo root, which is two levels above the BASE_DIR
+LOCALE_PATHS = (join(dirname(dirname(BASE_DIR)), "locale"),)
 
 LOGGING = {
     "version": 1,
@@ -241,10 +245,6 @@ SESSION_NUMBER_OFFSET = 1754516
 WEIGHT_MAP = {-2: -0.5, -1: -0.25, 0: 1, 1: 2, 2: 4}
 
 DEFAULT_LANGUAGE_CODE = "en"
-
-UPDATE_API_KEY = "fooooooo"
-
-UPDATE_UPLOAD_PATH = "/Users/chm/Documents/distrochooser/tmp"
 
 # Privacy related settings.
 

@@ -7,22 +7,14 @@
 
 You should now see following folder structure:
 
-Inside this folder, create a empty folder "static".
 ```
 [...]
 code/
 doc/
 locale/ <-- this folder is from the translation repo and should contain JSON-files
 HOW-TO-Map.md
-static/ <-- the empty folder you've just created
 [...]
 ```
-
-Edit the file `code/kuusi/kuusi/settings.py` and change following settings
-
-`STATICFILES_DIRS`: Add the full path of the folder you've just created
-`LOCALE_PATHS`: Add the full path to the folder `locale`
-
 
 ## Install
 

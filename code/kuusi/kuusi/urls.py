@@ -22,7 +22,6 @@ from django.conf.urls.static import static
 
 from web.routes.web import route_index, route_outgoing, route_feedback
 from web.routes.static import  route_about, route_contact, route_privacy, route_support
-from web.routes.matrix import route_update
 from web.routes.ack import route_ack
 from web.routes.data import route_data
 from web.routes.bridge import route_distrochooser5_redirect
@@ -31,7 +30,6 @@ from web.routes.crawlers import route_robots_txt, route_sitemap_xml
 from kuusi.settings import STATIC_URL, STATIC_ROOT
 
 dynamic_routes = [   
-    path("update",  route_update, name="route_update"),
     path("robots.txt",  route_robots_txt, name="route_robots_txt"),
     path("sitemap.xml",  route_sitemap_xml, name="sitemap.xml"),
     path("out/<id>/<property>",  route_outgoing, name="route_outgoing"),
