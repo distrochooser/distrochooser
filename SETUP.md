@@ -48,3 +48,7 @@ At this point, you have a filled database and basically can start the applicatio
 If you plan to do CSS/ styling changes, you need to add the frontend requirements aswell.
 
 For this, switch into the `design` folder and execute `yarn install`. After that, you will be able to use `yarn run build-styles` and `yarn run build-js`. Both commands result in files being put into the folder `../static`.
+
+# Further reading
+
+See CONCEPTS.md for details about application structure.
