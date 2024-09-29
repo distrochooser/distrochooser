@@ -243,6 +243,7 @@ class ResultListWidget(Widget):
                 "all_filters": all_filters,
                 "page": page,
                 "results": ranked_result,
+                "results_count": index
             },
             request,
         )
