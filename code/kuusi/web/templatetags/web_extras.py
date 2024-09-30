@@ -226,7 +226,7 @@ def rtl_class(language_code: str):
     return "ku-rtl" if  language_code in RTL_TRANSLATIONS else "ku-ltr"
 
 @register.inclusion_tag(filename="tags/meta_tags.html")
-def meta_tags(language_code:str, _: Page):
+def meta_tags(language_code:str, page: Page, session: Session):
     result = KUUSI_META_TAGS
     for key, _ in result.items():
         if "description" in key:
