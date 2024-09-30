@@ -26,7 +26,7 @@ from django.http import HttpRequest
 from django.forms import Form, Field, ValidationError
 from django.forms.utils import ErrorDict
 
-from web.models import SessionMeta, Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta
+from web.models import SessionMeta, Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta, Session
 from web.models import TRANSLATIONS, RTL_TRANSLATIONS
 from web.models.sessionversion import A11Y_OPTIONS_BODYCLASSES
 from web.forms import WarningForm
@@ -226,7 +226,7 @@ def rtl_class(language_code: str):
     return "ku-rtl" if  language_code in RTL_TRANSLATIONS else "ku-ltr"
 
 @register.inclusion_tag(filename="tags/meta_tags.html")
-def meta_tags(language_code:str, page: Page):
+def meta_tags(language_code:str, page: Page, session: Session):
     result = KUUSI_META_TAGS
     for key, _ in result.items():
         if "description" in key:
