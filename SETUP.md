@@ -3,7 +3,7 @@
 ## Base configuration
 
 - Clone the Distrochooser repository https://github.com/distrochooser/distrochooser **important: branch main**
-- Clone the translation repository https://github.com/distrochooser/distrochooser **important: branch 6-baseline** into the folder `locale`
+- Clone the translation repository https://github.com/distrochooser/translations **important: branch 6-new-baseline** into the folder `locale`
 
 You should now see following folder structure:
 
