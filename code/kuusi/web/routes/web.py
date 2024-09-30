@@ -245,13 +245,10 @@ def route_index(request: WebHttpRequest, language_code: str = None, id: str = No
 
     # If the id is none -> Redirect the user to a URL representing the entire state
     if id is None or id != session.result_id or language_code is None:
-        # DO not redirect on a simple GET request
-        # Allowing crawlers to crawl the page for OGP tags
-        if request.method != "GET":
-            url_suffix = "?page={page.catalogue_id}"
-            if "BTN_FORCED_NAVIGATION" in request.POST:
-                url_suffix =request.POST["BTN_FORCED_NAVIGATION"]
-            return HttpResponseRedirect(f"/{request.LANGUAGE_CODE}/{session.result_id}{url_suffix}")
+        url_suffix = f"?page={page.catalogue_id}"
+        if "BTN_FORCED_NAVIGATION" in request.POST:
+            url_suffix =request.POST["BTN_FORCED_NAVIGATION"]
+        return HttpResponseRedirect(f"/{request.LANGUAGE_CODE}/{session.result_id}{url_suffix}")
     # Onboard th session to the request oject 
 
   
