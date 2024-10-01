@@ -5,9 +5,9 @@
   "author": "cmllr",
   "private": true,
   "scripts": {
-    "add": "all-contributors add",
-    "generate": "all-contributors generate",
-    "publish": "cp ./README.md  ../../README.md"
+    "c:add": "all-contributors add",
+    "c:generate": "all-contributors generate",
+    "c:publish": "cp ./README.md  ../../README.md"
   },
   "devDependencies": {
     "all-contributors-cli": "6.20.0"

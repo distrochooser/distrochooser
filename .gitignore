@@ -27,3 +27,4 @@ cache*
 locale-pipeline*
 docker.sh
 .vscode
+doc/tools/readme-generate/node_modules
