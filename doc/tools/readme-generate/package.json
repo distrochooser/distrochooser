@@ -7,7 +7,7 @@
   "scripts": {
     "c:add": "all-contributors add",
     "c:generate": "all-contributors generate",
-    "c:publish": "cp ./README.md  ../../README.md"
+    "c:publish": "cp ./README.md  ../../../README.md"
   },
   "devDependencies": {
     "all-contributors-cli": "6.20.0"

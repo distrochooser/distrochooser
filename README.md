@@ -82,6 +82,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/WX4300"><img src="https://avatars.githubusercontent.com/u/113265063?v=4?s=100" width="100px;" alt=""/><br /><sub><b>WX4300</b></sub></a><br /><a href="#translation-WX4300" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/Agayev033"><img src="https://avatars.githubusercontent.com/u/30019351?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Agayev033</b></sub></a><br /><a href="#translation-Agayev033" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/codehangen"><img src="https://avatars.githubusercontent.com/u/111701513?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Code Hangen</b></sub></a><br /><a href="#a11y-codehangen" title="Accessibility">️️️️♿️</a> <a href="#question-codehangen" title="Answering Questions">💬</a> <a href="#ideas-codehangen" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/theoforger"><img src="https://avatars.githubusercontent.com/u/173939954?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TheoForger</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=theoforger" title="Documentation">📖</a></td>
   </tr>
 </table>
 
