@@ -11,7 +11,7 @@
                     <div class="col-12 text-center mb-3">
                         <form>
                             <label for="ku-age-filter" class="form-label d-block">{% _i18n_ language_code filter_group %}</label>
-                            <div class="btn-group" role="group" id=""ku-age-filter">
+                            <div class="btn-group" role="group" id="ku-age-filter">
                                 {% for filter_key, filter_active in filters.items %}
                                     <a href="?page=result-page&toggle_filter={{filter_key}}{% if filter_key  in active_filters%}&disable_filter=true{% endif%}" class="btn btn-outline-primary {% if filter_key  in active_filters%}active{% endif%}"> 
                                         {% if filter_key  in active_filters%}
