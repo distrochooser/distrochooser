@@ -29,3 +29,7 @@ docker.sh
 .vscode
 doc/tools/readme-generate/node_modules
 doc/tools/readme-generate/yarn-error.log
+
+# for manage.py collectstatic
+static_root/*
+!static_root/.gitkeep

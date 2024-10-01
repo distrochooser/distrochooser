@@ -182,8 +182,8 @@ STATIC_URL = "/static/"
 # per default, the /static/ folder is located on the repo root, which is two levels above the BASE_DIR
 STATICFILES_DIRS = (join(dirname(dirname(BASE_DIR)), "static"),)
 
-
-STATIC_ROOT = ""
+# per default, the /static_root/ folder is located on the repo root and is used as the target for the static files to server
+STATIC_ROOT = join(dirname(dirname(BASE_DIR)), "static_root")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
