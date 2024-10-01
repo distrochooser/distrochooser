@@ -84,6 +84,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/codehangen"><img src="https://avatars.githubusercontent.com/u/111701513?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Code Hangen</b></sub></a><br /><a href="#a11y-codehangen" title="Accessibility">️️️️♿️</a> <a href="#question-codehangen" title="Answering Questions">💬</a> <a href="#ideas-codehangen" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/theoforger"><img src="https://avatars.githubusercontent.com/u/173939954?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TheoForger</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=theoforger" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/spline2hg"><img src="https://avatars.githubusercontent.com/u/181270613?v=4?s=100" width="100px;" alt=""/><br /><sub><b>spline2hg</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/issues?q=author%3Aspline2hg" title="Bug reports">🐛</a> <a href="#userTesting-spline2hg" title="User Testing">📓</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->

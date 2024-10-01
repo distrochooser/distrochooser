@@ -329,6 +329,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "spline2hg",
+      "name": "spline2hg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/181270613?v=4",
+      "profile": "https://github.com/spline2hg",
+      "contributions": [
+        "bug",
+        "userTesting"
+      ]
     }
   ],
   "contributorsPerLine": 7
