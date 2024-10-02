@@ -31,6 +31,7 @@ Activate the venv (this step depends on your operating system, see https://docs.
 Switch into the folder `code/kuusi` and executing following command
 
 ```
+python install -r requirements.txt
 # Create database (sqlite per default here) and migrate the structure
 python manage.py migrate
 # to get a user and password for the admin panel on /admin
