@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from re import finditer, Match
-from pathlib import Path
+from pathlib import Path, PurePath
 from posixpath import abspath, dirname, isabs, join
 from django.core.management.base import BaseCommand
 from tomllib import loads
@@ -64,18 +64,19 @@ class Command(BaseCommand):
         Return the TOML contents as a string, includes resolved.
         """
         content = open(file_path, "r").read()
-        file_folder = dirname(abspath(file_path))
-        folder_obj = Path(file_folder)
+        path_file = Path(file_path)
+        folder_path = path_file.parent.resolve()
+
 
         matches = finditer(r"#include\s{1,}([^\n]+)", content)
 
         match: Match
         for match in matches:
             full_match = match.group(0)
+            raw_path = match.group(1)
+            full_file_path = PurePath(folder_path, raw_path)
 
-            full_match_path = folder_obj.joinpath(match.group(1))
-            
-            included_content = self.resolve(full_match_path)
+            included_content = self.resolve(full_file_path)
             content = content.replace(full_match, included_content)
     
         return content
