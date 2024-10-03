@@ -13,6 +13,11 @@ static/*
 !static/logo.svg
 !static/logo.png
 !static/icon.svg
+!static/*.css
+!static/*.css.map
+!static/*.js
+!static/bi-fonts
+!static/flags
 design/yarn-error.log
 dummy-settings.py
 dummy-server-assets.py

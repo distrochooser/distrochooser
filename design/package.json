@@ -6,14 +6,16 @@
         "bootstrap": "5.2.3",
         "bootstrap-icons": "^1.11.3",
         "flag-icons": "^7.1.0",
+        "generate-license-file": "^3.5.1",
         "webpack": "^5.94.0"
     },
     "scripts": {
         "build-js": "webpack --config webpack.config.js && cp -R ./node_modules/@hotwired/turbo/dist/turbo.es2017-umd.js ../static/turbo.es2017-umd.js",
-        "build-styles": "./build-styles.sh"
+        "build-styles": "cp -R node_modules/bootstrap-icons/font/fonts/ ../static/bi-fonts && cp -R node_modules/flag-icons/flags/ ../static/flags/ && sass --watch scss/custom.scss ../static/custom.css   --style compressed",
+        "generate-licenses": "generate-license-file --input ./package.json --output ../THIRD-PARTY-LICENSES.md --overwrite"
     },
     "devDependencies": {
-        "webpack-cli": "^5.1.4",
-        "sass": "1.55.0"
+        "sass": "1.55.0",
+        "webpack-cli": "^5.1.4"
     }
 }
