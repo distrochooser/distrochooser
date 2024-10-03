@@ -46,7 +46,8 @@ At this point, you have a filled database and basically can start the applicatio
 
 # Styling requirements
 
-If you plan to do CSS/ styling changes, you need to add the frontend requirements aswell.
+> If you plan to do CSS/ styling changes, you need to add the frontend requirements aswell.
+> For all other purposes, the required files are included in the repository. See THIRD-PARTY-LICENSES.md for further information.
 
 For this, switch into the `design` folder and execute `yarn install`. After that, you will be able to use `yarn run build-styles` and `yarn run build-js`. Both commands result in files being put into the folder `../static`.
 
