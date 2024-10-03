@@ -29,6 +29,12 @@ See HOW-TO-MAP.md
 See LICENSE
 
 
+## Third party licenses
+
+To allow users to setup the instance without Node.js, a set of prebuild styles and scripts is included in /static. This folder contains third party libraries.
+
+For the licenses used there, see THIRD-PARTY-LICENSES.md
+
 ## Contributors ✨
 
 > If you are interesting in contributing, see `CONTRIBUTING.md`!
