@@ -49,7 +49,7 @@ bg_color="#d70a53"
 fg_color="white"
 [...]
 ```
-**You are introducing a new distribution?** You can also add meta blocks. This meta blocks have a type and a name, which is fixed. This meta blocks are **optional**, but help to improve the user expierience.
+**You are introducing a new distribution?** You can also add meta blocks. This meta blocks have a type and a name, which is fixed. The meta blocks are **optional**, but help to improve the user expierience.
 
 > The combination between type and name is fixed (it may be merged into one field at some point)
 
