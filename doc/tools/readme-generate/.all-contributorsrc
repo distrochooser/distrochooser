@@ -341,6 +341,16 @@
         "bug",
         "userTesting"
       ]
+    },
+    {
+      "login": "Macvncpro",
+      "name": "Rohit Singh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/125227348?v=4",
+      "profile": "https://github.com/Macvncpro",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7
