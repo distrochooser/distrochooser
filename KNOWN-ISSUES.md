@@ -30,8 +30,17 @@
    **Expected Behavior**: A "Skip Question" button should be available to allow users to skip certain questions if needed.
 
 5. **Repeated Alerts in Distribution Privacy Section**
-Alerts for the same action appear multiple times.
+   - Alerts for the same action appear multiple times.
 
+6. **Some Improvements and bug fixes for setup.md**
+   - To start the application there is a typo error in the command "python3 manage.py runserver".
+
+   **Expected Behavior**: It should be "python manage.py runserver" (removed the 3)
+
+   - Adding a command for activating application for Linux AND Windows could be helpful.
+
+   **Expected Behavior**: Linux/MacOS: "source ./venv/bin/activate"
+                          Windows: ".\venv\Scripts\activate"
 
 ---
 5.2**Visual Example**:
