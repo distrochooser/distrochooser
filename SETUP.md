@@ -26,7 +26,7 @@ Create the venv:
 
 Activate the venv (this step depends on your operating system, see https://docs.python.org/3/tutorial/venv.html for details):
 
-`source ./venv/bin/activate`
+`source ./venv/bin/activate` for unix-like Systems and `.\venv\Scripts\activate` for Windows systems
 
 Switch into the folder `code/kuusi` and executing following command
 
@@ -42,7 +42,7 @@ python manage.py parse ../../doc/matrix/toml/matrix.toml --wipe
 python manage.py collectstatic
 ```
 
-At this point, you have a filled database and basically can start the application using `python3 manage.py runserver`. You should now be able to open http://localhost:8000 and http://localhost:8000/admin, respectively.
+At this point, you have a filled database and basically can start the application using `python manage.py runserver`. You should now be able to open http://localhost:8000 and http://localhost:8000/admin, respectively.
 
 # Styling requirements
 
