@@ -25,14 +25,7 @@ from typing import Dict, List
 
 
 from web.models import TranslateableFieldRecord, Widget, Facette, Category, FacetteAssignment, Choosable, FacetteSelection, Page, SessionVersion
-
-from web.management.commands.version import create_version
-from web.management.commands.page import create_pages
-from web.management.commands.category import create_categories
-from web.management.commands.widget import create_widgets
-from web.management.commands.choosable import create_choosables
-from web.management.commands.facettes import create_facettes, create_facette_behaviours
-from web.management.commands.assignment import create_assignments
+from web.management.commands.modules.parse import create_version, create_pages, create_categories, create_widgets, create_choosables, create_facettes, create_facette_behaviours, create_assignments
 
 from logging import getLogger, ERROR
 
