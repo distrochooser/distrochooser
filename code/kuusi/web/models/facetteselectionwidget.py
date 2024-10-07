@@ -19,13 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from typing import Tuple, Dict, List
 from django.db import models
 from web.models import Facette
-from web.models import Session, Widget, FacetteSelection, FacetteBehaviour, Page, PageMarking, WebHttpRequest
+from web.models import Session, Widget, FacetteSelection, Page, WebHttpRequest
 from web.forms import WarningForm
 from django.template import loader
-from django.utils.safestring import mark_safe
 from django.forms import Form, BooleanField
-from django.db.models import Q
-from web.templatetags.web_extras import _i18n_get_value
 from web.helper import trigger_behaviours, get_active_facettes
 
 from logging import getLogger
