@@ -57,25 +57,25 @@ In this case, the translations are added as-is in a JSON file:
     "BTN_MARK": "Mark this question",
 ```
 
-To use this translation value, you can use the `_i18n_` helper, e. g in a HTML template:
+To use this translation value, you can use the `/code/kuusi/web/templates/tags/_i18n_` helper, e. g in a HTML template:
 
 ```
 {% _i18n_ language_code "BTN_MARK" %}
 ```
 
-> Additional localization helpers are defined in the `web_extras.py` file.
+> Additional localization helpers are defined in the `/code/kuusi/web/templatetags/web_extras.py` file.
 
 ## Concepts: Design
 
 The frontend uses Bootstrap 5.
 
-The templates are located in the `templates` folder. There is the base layout file `_layout.html`, which defines the base page structure.
+The templates are located in the `/code/kuusi/web/templates` folder. There is the base layout file `_layout.html`, which defines the base page structure.
 
-Templates related to `Widget` classes are located in the folder `templates/widgets`, while templates used in template tags from `web_extras.py` are located in `template/tags`.
+Templates related to `Widget` classes are located in the folder `/code/kuusi/web/templates/widgets`, while templates used in template tags from `web_extras.py` are located in `/code/kuusi/web/template/tags`.
 
 SCSS components are located in the folder `/design`. The files are split based on a purpose.
 
-If additional class names are being introduced, the class prefix `ku-` should be used, e. g. in file `logo.scss`:
+If additional class names are being introduced, the class prefix `ku-` should be used, e. g. in file `/design/scss/logo.scss`:
 
 ```
 .ku-logo {
@@ -84,9 +84,9 @@ If additional class names are being introduced, the class prefix `ku-` should be
 }
 ```
 
-The SCSS files are embeeded in a `custom.scss` file, which brings the Bootstrap 5 and Distrochooser theme parts together.
+The SCSS files are embeeded in a `/design/scss/custom.scss` file, which brings the Bootstrap 5 and Distrochooser theme parts together.
 
-To get these file compiled/ picked up by the webserver, the script `build-styles` is available inside the `package.json`. Important: **Please execute this scripts from the folder `/design`, as the `build-styles` script uses relative paths.**
+To get these file compiled/ picked up by the webserver, the script `build-styles` is available inside the `/design/package.json`. Important: **Please execute this scripts from the folder `/design`, as the `build-styles` script uses relative paths.**
 
 ## Data model
 
