@@ -57,7 +57,7 @@ In this case, the translations are added as-is in a JSON file:
     "BTN_MARK": "Mark this question",
 ```
 
-To use this translation value, you can use the `/code/kuusi/web/templates/tags/_i18n_` helper, e. g in a HTML template:
+To use this translation value, you can use the `_i18n_` helper function in `/code/kuusi/web/templatetags/web_extras.py`, e. g in a HTML template:
 
 ```
 {% _i18n_ language_code "BTN_MARK" %}
