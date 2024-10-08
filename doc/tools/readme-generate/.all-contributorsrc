@@ -351,6 +351,15 @@
         "bug",
         "ideas"
       ]
+    },
+    {
+      "login": "ShreeluSantosh",
+      "name": "Shreelu Santosh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/94289402?v=4",
+      "profile": "http://shreelusantosh.xyz/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7

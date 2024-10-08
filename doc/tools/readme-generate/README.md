@@ -92,6 +92,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/spline2hg"><img src="https://avatars.githubusercontent.com/u/181270613?v=4?s=100" width="100px;" alt=""/><br /><sub><b>spline2hg</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/issues?q=author%3Aspline2hg" title="Bug reports">🐛</a> <a href="#userTesting-spline2hg" title="User Testing">📓</a></td>
     <td align="center"><a href="https://github.com/Macvncpro"><img src="https://avatars.githubusercontent.com/u/125227348?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rohit Singh</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/issues?q=author%3AMacvncpro" title="Bug reports">🐛</a> <a href="#ideas-Macvncpro" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://shreelusantosh.xyz/"><img src="https://avatars.githubusercontent.com/u/94289402?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shreelu Santosh</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=ShreeluSantosh" title="Documentation">📖</a></td>
   </tr>
 </table>
 
