@@ -3,7 +3,9 @@
 ## Base configuration
 
 - Clone the Distrochooser repository https://github.com/distrochooser/distrochooser **important: branch main**
-- Clone the translation repository https://github.com/distrochooser/translations **important: branch 6-new-baseline** into the folder `locale`
+- Clone the translation repository https://github.com/distrochooser/translations **important: branch 6-new-baseline** INTO the folder `locale`, e. g. with `git clone https://github.com/distrochooser/translations.git -b 6-new-baseline ./locale`
+
+**Important**: Make sure you've cloned the contents of the https://github.com/distrochooser/translations repository **directly** into the `locale` folder. You can verify this if after the cloning your `locale` folder should contain files like `ui-en.json`, without having a new subdirectory "translations".
 
 You should now see following folder structure:
 
