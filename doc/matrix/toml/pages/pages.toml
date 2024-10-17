@@ -215,7 +215,7 @@ target_page = "administration-page"
 # Updates 
 
 [page.updates-page]
-next_page = "result-page"
+next_page = "lts-page"
 hide_help = true
 not_in_versions = ["simplified"]
 
@@ -226,6 +226,20 @@ pages = ["updates-page"]
 [category.updates-category]
 icon = "bi bi-gear-wide-connected"
 target_page = "updates-page"
+
+# Updates (LTS)
+[page.lts-page]
+next_page = "result-page"
+hide_help = false
+not_in_versions = ["simplified"]
+
+[widget.radio.lts-page-widget-name]
+topic = "lts"
+pages = ["lts-page"]
+
+[category.lts-category]
+icon = "bi bi-arrow-clockwise"
+target_page = "lts-page"
 
 # Results
 
