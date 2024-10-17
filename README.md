@@ -13,7 +13,7 @@ This repository contains the code of [distrochooser.de](http://distrochooser.de)
 
 The Distrochooser is a service to help Linux beginners to orientate. The service is not an oracle and can not calculate 100% accurate results, but it helps to orientate.
 
-> Information: The current `main` branch is the in-development version, which is still in beta state. The current production version running on distrochooser.de is located in the `viisi` branch. Addtionally, things can change quite quickly.
+> Information: The current `main` branch is the in-development version, which is still in beta state. The current production version running on distrochooser.de is located in the `viisi` branch. Additionally, things can change quite quickly.
 > If you plan to contribute, feel free to give a ping first, so work can be coordinated and efforts can be used in the best possible way. Thank you!
 
 ## Building locally
@@ -36,7 +36,7 @@ For the licenses used there, see THIRD-PARTY-LICENSES.md
 
 ## Contributors ✨
 
-> If you are interesting in contributing, see `CONTRIBUTING.md`!
+> If you are interested in contributing, see `CONTRIBUTING.md`!
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
