@@ -13,7 +13,7 @@ This repository contains the code of [distrochooser.de](http://distrochooser.de)
 
 The Distrochooser is a service to help Linux beginners to orientate. The service is not an oracle and can not calculate 100% accurate results, but it helps to orientate.
 
-> Information: The current `main` branch is the in-development version, which is still in beta state. The current production version running on distrochooser.de is located in the `viisi` branch. Additionally, things can change quite quickly.
+> Information: The current `main` branch is the in-development version, which is still in beta state. The current production version running on distrochooser.de is located in the `viisi` branch. Addtionally, things can change quite quickly.
 > If you plan to contribute, feel free to give a ping first, so work can be coordinated and efforts can be used in the best possible way. Thank you!
 
 ## Building locally
@@ -36,7 +36,7 @@ For the licenses used there, see THIRD-PARTY-LICENSES.md
 
 ## Contributors ✨
 
-> If you are interested in contributing, see `CONTRIBUTING.md`!
+> If you are interesting in contributing, see `CONTRIBUTING.md`!
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -94,6 +94,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Macvncpro"><img src="https://avatars.githubusercontent.com/u/125227348?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rohit Singh</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/issues?q=author%3AMacvncpro" title="Bug reports">🐛</a> <a href="#ideas-Macvncpro" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http://shreelusantosh.xyz/"><img src="https://avatars.githubusercontent.com/u/94289402?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shreelu Santosh</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=ShreeluSantosh" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Indrajeet-S"><img src="https://avatars.githubusercontent.com/u/94740794?v=4?s=100" width="100px;" alt=""/><br /><sub><b>QBit</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=Indrajeet-S" title="Code">💻</a></td>
+    <td align="center"><a href="https://spageektti.cc/"><img src="https://avatars.githubusercontent.com/u/155078792?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wiktor Perskawiec</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=spageektti" title="Documentation">📖</a></td>
   </tr>
 </table>
 

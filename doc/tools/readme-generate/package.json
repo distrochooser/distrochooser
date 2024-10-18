@@ -7,7 +7,8 @@
   "scripts": {
     "c:add": "all-contributors add",
     "c:generate": "all-contributors generate",
-    "c:publish": "cp ./README.md  ../../../README.md"
+    "c:publish": "cp ./README.md  ../../../README.md",
+    "c:commit": "git add .all-contributorsrc ./README.md  ../../../README.md && git commit"
   },
   "devDependencies": {
     "all-contributors-cli": "6.20.0"
