@@ -32,6 +32,10 @@ from web.models.sessionversion import A11Y_OPTIONS_BODYCLASSES
 from web.forms import WarningForm
 from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES, KUUSI_META_TAGS, DEFAULT_LANGUAGE_CODE
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 register = template.Library()
 
 @register.filter
@@ -226,11 +230,14 @@ def rtl_class(language_code: str):
     return "ku-rtl" if  language_code in RTL_TRANSLATIONS else "ku-ltr"
 
 @register.inclusion_tag(filename="tags/meta_tags.html")
-def meta_tags(language_code:str, page: Page, session: Session):
+def meta_tags(language_code: str, page: Page, session: Session):
     result = KUUSI_META_TAGS
     for key, _ in result.items():
         if "description" in key:
-            result[key] = strip_tags(TRANSLATIONS[language_code]["DESCRIPTION_TEXT"])
+            if "DESCRIPTION_TEXT" in TRANSLATIONS[language_code]:
+                result[key] = strip_tags(TRANSLATIONS[language_code]["DESCRIPTION_TEXT"])
+            else:
+                logger.warning(f'DESCRIPTION_TEXT missing for language: {language_code}')
     return {
         "tags": result
     }
