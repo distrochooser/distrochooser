@@ -84,7 +84,7 @@ If additional class names are being introduced, the class prefix `ku-` should be
 }
 ```
 
-The SCSS files are embeeded in a `/design/scss/custom.scss` file, which brings the Bootstrap 5 and Distrochooser theme parts together.
+The SCSS files are embedded in a `/design/scss/custom.scss` file, which brings the Bootstrap 5 and Distrochooser theme parts together.
 
 To get these file compiled/ picked up by the webserver, the script `build-styles` is available inside the `/design/package.json`. Important: **Please execute this scripts from the folder `/design`, as the `build-styles` script uses relative paths.**
 
