@@ -167,6 +167,30 @@ LANGUAGE_CODES = {
     "ru": "ru",
     "fi": "fi"
 }
+
+LOCALE_MAPPING = {
+    "en": "en_US",
+    "fr": "fr_FR",
+    "nl": "nl_NL",
+    "gr": "el_GR",
+    "sv": "sv_SE",
+    "tr": "tr_TR",
+    "vn": "vi_VN",
+    "zh-hans": "zh_Hans",
+    "it": "it_IT",
+    "es": "es_ES",
+    "de": "de_DE",
+    "pt-br": "pt_BR",
+    "gsw": "gsw_CH",
+    "he": "he_IL",
+    "id": "id_ID",
+    "az": "az_AZ",
+    "pl": "pl_PL",
+    "zh-hant": "zh_Hant",
+    "ru": "ru_RU",
+    "fi": "fi_FI"
+}
+
 TIME_ZONE = "UTC"
 
 USE_I18N = False
@@ -232,7 +256,12 @@ KUUSI_META_TAGS = {
     "og:type": "website",
     "og:url": KUUSI_URL,
     "og:image": KUUSI_URL + "/logo.png",
+    "og:image:type": "image/png",
+    "og:image:width": "100",
+    "og:image:height": "100",
     "og:description": "",
+    "og:locale": "en_US",
+    "og:site_name": "Distrochooser",
     "theme-color": "#158cba"
 }
 
