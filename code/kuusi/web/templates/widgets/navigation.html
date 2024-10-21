@@ -36,7 +36,15 @@
                 </button>
             {% endif %}
     </div>
-    <div class="col-6 {% if not is_rtl %}text-end{% else %}text-start{%endif%}">
+    <div class="col-12 {% if not is_rtl %}text-end{% else %}text-start{%endif%}">
+        {% if page.previous_page %}
+            <button name="BTN_SKIP_PAGE" class="btn btn-secondary" value="BTN_SKIP_PAGE">
+                <i class="bi bi-arrow-right-square"></i> 
+                <span class="d-none d-md-inline">
+                    {% _i18n_ language_code "BTN_SKIP_PAGE" %}
+                </span>
+            </button>
+        {% endif %}
         {% if page.previous_page %}
             <button name="BTN_PREV_PAGE" class="btn btn-secondary"  value="BTN_PREV_PAGE">
                 <i class="bi bi-arrow-left-square"></i> 
