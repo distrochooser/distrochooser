@@ -30,7 +30,7 @@ from web.models import SessionMeta, Widget, Page, FacetteSelection, WebHttpReque
 from web.models import TRANSLATIONS, RTL_TRANSLATIONS
 from web.models.sessionversion import A11Y_OPTIONS_BODYCLASSES
 from web.forms import WarningForm
-from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES, KUUSI_META_TAGS, DEFAULT_LANGUAGE_CODE
+from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES, KUUSI_META_TAGS, DEFAULT_LANGUAGE_CODE, LOCALE_MAPPING
 
 import logging
 
@@ -232,6 +232,12 @@ def rtl_class(language_code: str):
 @register.inclusion_tag(filename="tags/meta_tags.html")
 def meta_tags(language_code: str, page: Page, session: Session):
     result = KUUSI_META_TAGS
+
+    if language_code in LOCALE_MAPPING:
+        result["og:locale"] = LOCALE_MAPPING[language_code]
+    else:
+        logger.warning(f'Locale mapping missing for language: {language_code}')
+    
     for key, _ in result.items():
         if "description" in key:
             if "DESCRIPTION_TEXT" in TRANSLATIONS[language_code]:
