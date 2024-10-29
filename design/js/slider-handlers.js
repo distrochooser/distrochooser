@@ -7,14 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
         minusButton.addEventListener('click', () => {
             if (slider.value > slider.min) {
                 slider.value = parseInt(slider.value) - 1;
-                slider.dispatchEvent(new Event('input')); // Trigger input event if needed
             }
         });
 
         plusButton.addEventListener('click', () => {
             if (slider.value < slider.max) {
                 slider.value = parseInt(slider.value) + 1;
-                slider.dispatchEvent(new Event('input')); // Trigger input event if needed
             }
         });
     });
