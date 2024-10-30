@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 require("./facettes.js");
 require("./ack.js");
 require("./i18n.js");
+require("./slider-handlers.js");
 
 require("../node_modules/@popperjs/core/dist/umd/popper.js");
 require("../node_modules/bootstrap/dist/js/bootstrap.bundle.js");
