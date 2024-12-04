@@ -578,14 +578,32 @@ for locale in locales:
     
     with open(locale_path + f"facetteassignment-{locale}.json", "w+") as file:
         file.write(dumps(assignment_texts, indent=4))
-    facette_texts = {}
+    facette_texts = {
+        "lts-multiple-times-per-year-selectable_description": "I'm fine with doing these upgrades multiple times per year",
+        "lts-once-per-year-selectable_description": "I am willing to do one such update per year",
+        "lts-less-than-once-per-year-selectable_description": "I want to run multiple years on the same version",
+        "debian-lts-selectable_description": "Stable releases are supported for 3 years extended by a two year Long Term Support (LTS) phase",
+        "ubuntu-lts-all-two-years-selectable_description": "Long Term Support (LTS) editions are released each two years",
+        "opensuse-tumbleweed-selectable_description": "There is the Tumbleweed-Edition, which is a tested rolling release, requires multiple upgrades per year", 
+        "opensuse-leap-selectable_description": "The Leap-Edition is released once per year",
+        "generic-once-per-year-selectable_description": "There is a major release per year",
+        "generic-quick-updates-selectable_description": "There are multiple releases per year required to be installed",
+        "generic-rolling-updates-selectable_description": "Is a rolling release Linux distribution; There are frequent updates with possible upgrade steps required",
+        "rocky-rhel-support-selectable_description": "Major releases are supported for multiple years",
+        "zorin-support-selectable_description": "Major releases feature support up to 4 years",
+        "elementary-support-selectable_description": "Major releases receive maintenance updates for up to 4 years"
+    }
     for key, value in facette_map.items():
         facette_texts[value] = entries[key]
+        
     with open(locale_path + f"facette-{locale}.json", "w+") as file:
         file.write(dumps(facette_texts, indent=4))
     page_texts = {
         "version-page-text": "You can select a simplified questionaire edition, which removes some super technical questions",
-        "linux-knowledge-page-text": "How would you rate your knowledge with the Linux operating system?"
+        "linux-knowledge-page-text": "How would you rate your knowledge with the Linux operating system?",
+        "lts-category-name": "Long term support",
+        "lts-page-text": "How often do you want to apply major system upgrades, updating to a new version of a distribution?",
+        "lts-page-help": "LTS version allow users to remain on a stable and supported version without having to run major ugprades to newer versions. On the contrary, these verison might not offer the latest versions of software packages"
     }
     for key, value in page_map.items():
         page_texts[value] = entries[key]
