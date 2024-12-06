@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from django.conf.urls.static import static
 
 from web.routes.web import route_index, route_outgoing, route_feedback
@@ -26,6 +26,10 @@ from web.routes.ack import route_ack
 from web.routes.data import route_data
 from web.routes.bridge import route_distrochooser5_redirect
 from web.routes.crawlers import route_robots_txt, route_sitemap_xml
+
+from rest_framework import routers
+from web.rest.rest import ChoosableViewSet
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
 
@@ -40,6 +44,10 @@ dynamic_routes = [
     re_path('(?P<language_code>[a-z]{2,6})', route_index, name='route_index')
 ]
 
+router = routers.DefaultRouter()
+router.register(r'choosables', ChoosableViewSet)
+
+
 urlpatterns = [
     path("admin", admin.site.urls),
     path("feedback/<assignment_id>/<choosable_id>",  route_feedback, name="route_feedback"),
@@ -49,5 +57,8 @@ urlpatterns = [
     re_path("(?P<language_code>[a-z]+)/contact", route_contact, name="route_contact"),
     re_path("(?P<language_code>[a-z]+)/support", route_support, name="route_support"),
     re_path("data/(?P<version>[0-9]+)", route_data, name="route_data"),
+    path('rest/', include(router.urls)),
+    path('rest/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('rest/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui')
    
 ] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True) + dynamic_routes
