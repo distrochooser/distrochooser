@@ -27,8 +27,11 @@ from web.routes.data import route_data
 from web.routes.bridge import route_distrochooser5_redirect
 from web.routes.crawlers import route_robots_txt, route_sitemap_xml
 
-from rest_framework import routers
-from web.rest.rest import ChoosableViewSet
+from rest_framework_nested import routers
+from web.rest.choosable import ChoosableViewSet
+from web.rest.facette import FacetteViewSet
+from web.rest.page import PageViewSet
+from web.rest.session import SessionViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
@@ -44,8 +47,14 @@ dynamic_routes = [
     re_path('(?P<language_code>[a-z]{2,6})', route_index, name='route_index')
 ]
 
-router = routers.DefaultRouter()
+router = routers.SimpleRouter()
 router.register(r'choosables', ChoosableViewSet)
+router.register(r'sessions', SessionViewSet)
+
+
+router_sessions = routers.NestedDefaultRouter(router, r'sessions', lookup='sessions')
+router_sessions.register(r'pages', PageViewSet, basename='sessions-pages')
+router_sessions.register(r'facettes', FacetteViewSet, basename='sessions-facettes')
 
 
 urlpatterns = [
@@ -58,6 +67,7 @@ urlpatterns = [
     re_path("(?P<language_code>[a-z]+)/support", route_support, name="route_support"),
     re_path("data/(?P<version>[0-9]+)", route_data, name="route_data"),
     path('rest/', include(router.urls)),
+    path('rest/', include(router_sessions.urls)),
     path('rest/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('rest/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui')
    
