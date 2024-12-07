@@ -33,6 +33,7 @@ from web.rest.facette import FacetteViewSet
 from web.rest.page import PageViewSet
 from web.rest.session import SessionViewSet
 from web.rest.category import CategoryViewSet
+from web.rest.facetteselection import FacetteSelectionViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
@@ -57,6 +58,7 @@ router_sessions = routers.NestedDefaultRouter(router, r'session', lookup='sessio
 router_sessions.register(r'page', PageViewSet, basename='session-pages')
 router_sessions.register(r'facette', FacetteViewSet, basename='session-facettes')
 router_sessions.register(r'category', CategoryViewSet, basename='session-categories')
+router_sessions.register(r'facetteselection', FacetteSelectionViewSet, basename='session-selections')
 
 
 urlpatterns = [
