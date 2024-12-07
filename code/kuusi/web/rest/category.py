@@ -27,7 +27,7 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
-
+from web.rest.helper import get_categories_and_filtered_pages
 from typing import Dict, Any
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -48,30 +48,18 @@ class CategoryViewSet(ListModelMixin, GenericViewSet):
             status.HTTP_200_OK: OpenApiResponse(response=CategorySerializer, description="The list of Pages available to use"),
         },
         parameters=[ 
-          OpenApiParameter("current_category", OpenApiTypes.STR, OpenApiParameter.QUERY,description="Currently selected category", required=False),
+          OpenApiParameter("current_page", OpenApiTypes.STR, OpenApiParameter.QUERY,description="Currently selected PAGE", required=False),
         ],
     )
     def list(self, request,  *args, **kwargs):
         session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
-        all_categories = Category.objects.exclude(target_page__not_in_version=[session.pk]) if session.version else Category.objects.all()
-        
-        # FIXME: Need helper such as get_page_route in web.py
-        # FIXME: Redundancy towards page.py DRF module
-        pages = Page.objects.all() if session.version is None else Page.objects.exclude(not_in_versions__in=[session.version])
-        version_comp_pages = []
-        chained_page: Page
-        for chained_page in pages:
-            if chained_page.is_visible(session):
-                version_comp_pages.append(chained_page)
-
-        categories = []
-        for chained_page in pages:
-            # Child categories will be created later, when the steps are created.
-            used_in_category = Category.objects.filter(
-                target_page=chained_page, child_of__isnull=True
-            )
-            if used_in_category.count() > 0:
-                categories.append(used_in_category.first())
+        page_id =  request.query_params.get('page_id')
+        if not page_id:
+            page = Page.objects.first()
+        else:
+            page = Page.objects.filter(catalogue_id=page_id)
+        _, categories = get_categories_and_filtered_pages(page, session)
+       
 
         serializer = CategorySerializer(
             categories,
@@ -81,3 +69,4 @@ class CategoryViewSet(ListModelMixin, GenericViewSet):
         serializer.context["session_pk"] = kwargs["session_pk"]
         return Response(serializer.data)
 
+    

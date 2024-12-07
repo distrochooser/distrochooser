@@ -17,14 +17,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
+from django.shortcuts import get_object_or_404
 from web.models import Page, Session
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 from rest_framework import status
 from kuusi.settings import LANGUAGE_CODES
-from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import ListModelMixin
+from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 
 from typing import Dict, Any
 
@@ -38,21 +40,21 @@ class PageSerializer(serializers.ModelSerializer):
         return obj.__("text", session.language_code)
     
     
-class PageViewSet(ListModelMixin, GenericViewSet):
+class PageViewSet(ViewSet):
     serializer_class = PageSerializer
     @extend_schema(
-        description="Return the list of pages available to this session",
+        request=None,
+        parameters=[
+          OpenApiParameter("id", OpenApiTypes.STR, OpenApiParameter.PATH,description="A result id to retrieve", required=True),
+        ],
         responses={
-            status.HTTP_200_OK: OpenApiResponse(response=PageSerializer, description="The list of Pages available to use"),
+            status.HTTP_200_OK: PageSerializer,
         }
-    )
-    def list(self, request,  *args, **kwargs):
-        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
-        serializer = PageSerializer(
-            Page.objects.all() if session.version is None else Page.objects.exclude(not_in_versions__in=[session.version]), 
-            many=True
-        )
-
-        serializer.context["session_pk"] = kwargs["session_pk"]
+    ) 
+    def retrieve(self, request, session_pk, pk=None):
+        queryset = Page.objects.all()
+        session = get_object_or_404(queryset, catalogue_id=pk)
+        serializer = PageSerializer(session)
+        serializer.context["session_pk"] = session_pk
         return Response(serializer.data)
 
