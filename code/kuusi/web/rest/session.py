@@ -34,14 +34,14 @@ class SessionSerializer(serializers.ModelSerializer):
     session_origin = serializers.SerializerMethodField()
     class Meta:
         model = Session
-        fields = ('result_id', 'language_code', 'session_origin', 'started',)
+        fields = ('result_id', 'language_code', 'session_origin', 'started', 'version')
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
 
 class InitialSessionSerializer(SessionSerializer):
     class Meta:
         model = Session
-        fields = ('id', 'result_id', 'language_code', 'session_origin', 'started',)
+        fields = ('id', 'result_id', 'language_code', 'session_origin', 'started', 'version',)
 
     
 class SessionViewSet(ViewSet):
@@ -97,7 +97,7 @@ class SessionViewSet(ViewSet):
 
         
         queryset = Session.objects.all()
-        session = get_object_or_404(queryset, result_id=pk)
+        session = get_object_or_404(queryset, pk=pk)
         
         result_id = request.query_params.get('result_id')
         if session.result_id != result_id:

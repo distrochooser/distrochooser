@@ -32,6 +32,7 @@ from web.rest.choosable import ChoosableViewSet
 from web.rest.facette import FacetteViewSet
 from web.rest.page import PageViewSet
 from web.rest.session import SessionViewSet
+from web.rest.category import CategoryViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
@@ -48,13 +49,14 @@ dynamic_routes = [
 ]
 
 router = routers.SimpleRouter()
-router.register(r'choosables', ChoosableViewSet)
-router.register(r'sessions', SessionViewSet)
+router.register(r'choosable', ChoosableViewSet)
+router.register(r'session', SessionViewSet)
 
 
-router_sessions = routers.NestedDefaultRouter(router, r'sessions', lookup='sessions')
-router_sessions.register(r'pages', PageViewSet, basename='sessions-pages')
-router_sessions.register(r'facettes', FacetteViewSet, basename='sessions-facettes')
+router_sessions = routers.NestedDefaultRouter(router, r'session', lookup='session')
+router_sessions.register(r'page', PageViewSet, basename='session-pages')
+router_sessions.register(r'facette', FacetteViewSet, basename='session-facettes')
+router_sessions.register(r'category', CategoryViewSet, basename='session-categories')
 
 
 urlpatterns = [

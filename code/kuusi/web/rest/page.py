@@ -24,6 +24,7 @@ from rest_framework import status
 from kuusi.settings import LANGUAGE_CODES
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
+from rest_framework.response import Response
 
 from typing import Dict, Any
 
@@ -33,20 +34,25 @@ class PageSerializer(serializers.ModelSerializer):
         model = Page
         fields = '__all__'
     def get_text(self, obj: Page) -> str:
-        session: Session = Session.objects.filter(result_id=self.context['view'].kwargs["sessions_pk"]).first()
+        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
         return obj.__("text", session.language_code)
     
     
 class PageViewSet(ListModelMixin, GenericViewSet):
-    queryset = Page.objects.all()
     serializer_class = PageSerializer
-
     @extend_schema(
+        description="Return the list of pages available to this session",
         responses={
             status.HTTP_200_OK: OpenApiResponse(response=PageSerializer, description="The list of Pages available to use"),
         }
     )
     def list(self, request,  *args, **kwargs):
-        # TODO: Obey versions
-        return super().list(request, *args, **kwargs)
+        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
+        serializer = PageSerializer(
+            Page.objects.all() if session.version is None else Page.objects.exclude(not_in_versions__in=[session.version]), 
+            many=True
+        )
+
+        serializer.context["session_pk"] = kwargs["session_pk"]
+        return Response(serializer.data)
 
