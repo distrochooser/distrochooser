@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "django.contrib.humanize",
     "web",
+    'corsheaders'
 ]
 
 REST_FRAMEWORK = {
@@ -71,14 +72,18 @@ SPECTACULAR_SETTINGS = {
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "web.middleware.cors.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.locale.LocaleMiddleware"
+    "django.middleware.locale.LocaleMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 if DEBUG:
     MIDDLEWARE.append('django_cprofile_middleware.middleware.ProfilerMiddleware')

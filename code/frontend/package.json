@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "sdk-build": "openapi-generator-cli generate -i http://localhost:8000/rest/schema/ -g typescript-fetch -o ./sdk/"
+  },
+  "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.15.3",
+    "nuxt": "^3.14.1592",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
