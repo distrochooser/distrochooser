@@ -25,6 +25,18 @@ export const useSessionStore = defineStore('websiteStore', {
                     lang: lang
                 }
             )
+        },
+        async acknowledgeSession() {
+            if (this.session?.id && 
+                this.session.languageCode && 
+                this.session.resultId) {
+                await sessionApi.sessionPartialUpdate({
+                    id: this.session.id,
+                    lang: this.session.languageCode,
+                    resultId: this.session.resultId,
+                    versionId: this.session.version ?? undefined
+                })
+            }
         }
     }
 })
