@@ -28,20 +28,25 @@ from rest_framework.viewsets import ViewSet
 
 from django.shortcuts import get_object_or_404
 
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 class SessionSerializer(serializers.ModelSerializer):
     session_origin = serializers.SerializerMethodField()
+    language_codes = serializers.SerializerMethodField()
+
     class Meta:
         model = Session
-        fields = ('result_id', 'language_code', 'session_origin', 'started', 'version')
+        fields = ('result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version')
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
+    
+    def get_language_codes(self, obj: Session) -> Dict[str, str]:
+        return LANGUAGE_CODES
 
 class InitialSessionSerializer(SessionSerializer):
     class Meta:
         model = Session
-        fields = ('id', 'result_id', 'language_code', 'session_origin', 'started', 'version',)
+        fields = ('id', 'result_id', 'language_code', 'language_codes', 'session_origin', 'started', 'version',)
 
     
 class SessionViewSet(ViewSet):
