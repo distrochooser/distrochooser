@@ -27,7 +27,7 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
-from drf_spectacular.utils import extend_schema_field
+from drf_spectacular.utils import extend_schema_field, PolymorphicProxySerializer
 
 from typing import List
 
@@ -64,7 +64,6 @@ class FacetteRadioSelectionWidgetSerializer(WidgetSerializer):
 
 class PageSerializer(serializers.ModelSerializer):
     text = serializers.SerializerMethodField()
-    # FIXME: Wrong type, is bound to string...
     # https://github.com/axnsan12/drf-yasg/issues/584
     widget_list = serializers.SerializerMethodField()
 
@@ -76,8 +75,20 @@ class PageSerializer(serializers.ModelSerializer):
         session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
         return obj.__("text", session.language_code)
     
-    @extend_schema_field(serializers.ListField)
-    def get_widget_list(self, obj: Page) -> List[WidgetSerializer]:
+    # https://github.com/tfranzel/drf-spectacular/issues/382
+    @extend_schema_field(
+        field=PolymorphicProxySerializer(
+            serializers=[
+                WidgetSerializer,
+                HTMLWidgetSerializer,
+                FacetteRadioSelectionWidgetSerializer,
+                FacetteSelectionWidgetSerializer
+            ],
+            component_name="MetaWidget",
+            resource_type_field_name="List"
+        )
+    )
+    def get_widget_list(self, obj: Page) -> List[WidgetSerializer | FacetteSelectionWidgetSerializer | FacetteRadioSelectionWidgetSerializer | HTMLWidgetSerializer]:
         result = []
         # IMPORTANT
         # The serializers are ordered, specialized before generic
