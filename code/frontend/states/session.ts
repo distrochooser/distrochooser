@@ -1,21 +1,26 @@
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type InitialSession } from "~/sdk"
+import { Configuration, SessionApi, type Category, type InitialSession, type Page } from "~/sdk"
 
 interface SessionState {
     session: InitialSession | null;
+    categories: Category[];
+    currentPage?: string;
 }
 
 // TODO: Move this out of this sourcecode
-const sessionApi = new SessionApi(new Configuration({
+const apiConfig = new Configuration({
     basePath: "http://localhost:8000",
     headers: {
         "accept": "application/json"
     }
-}))
+})
+const sessionApi = new SessionApi(apiConfig)
+
 
 export const useSessionStore = defineStore('websiteStore', {
     state: (): SessionState => ({
-        session: null
+        session: null,
+        categories: []
     }),
     actions: {
         async createSession(lang: string, resultId?: string) {
@@ -25,6 +30,12 @@ export const useSessionStore = defineStore('websiteStore', {
                     lang: lang
                 }
             )
+            if (this.session.resultId) {
+                this.categories = await sessionApi.sessionCategoryList({
+                    sessionPk: this.session.resultId,
+                    currentPage: this.currentPage
+                });
+            }
         },
         async acknowledgeSession() {
             if (this.session?.id && 

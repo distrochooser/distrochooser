@@ -1,7 +1,7 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <Categories/>
   </div>
 </template>
 <script lang="ts" setup>
