@@ -4,7 +4,8 @@ import { Configuration, SessionApi, type Category, type InitialSession, type Pag
 interface SessionState {
     session: InitialSession | null;
     categories: Category[];
-    currentPage?: string;
+    pages: Page[],
+    currentPage: Page | null;
 }
 
 // TODO: Move this out of this sourcecode
@@ -16,11 +17,12 @@ const apiConfig = new Configuration({
 })
 const sessionApi = new SessionApi(apiConfig)
 
-
 export const useSessionStore = defineStore('websiteStore', {
     state: (): SessionState => ({
         session: null,
-        categories: []
+        categories: [],
+        pages: [],
+        currentPage: null,
     }),
     actions: {
         async createSession(lang: string, resultId?: string) {
@@ -33,8 +35,13 @@ export const useSessionStore = defineStore('websiteStore', {
             if (this.session.resultId) {
                 this.categories = await sessionApi.sessionCategoryList({
                     sessionPk: this.session.resultId,
-                    currentPage: this.currentPage
+                    currentPage: this.currentPage?.catalogueId ?? undefined
                 });
+                this.pages = await sessionApi.sessionPageList({
+                    sessionPk: this.session.resultId
+                })
+                /** Select the first available page, if any */
+                this.selectPage(-1)
             }
         },
         async acknowledgeSession() {
@@ -47,6 +54,15 @@ export const useSessionStore = defineStore('websiteStore', {
                     resultId: this.session.resultId,
                     versionId: this.session.version ?? undefined
                 })
+            }
+        },
+        selectPage(id: number) {
+            const matches = this.pages.filter(l => l.id == id)
+            if (matches.length == 1) {
+                this.currentPage = matches[0];
+            }
+            else if (matches.length == 0 && this.pages.length > 0){
+                this.currentPage = this.pages[0]
             }
         }
     }

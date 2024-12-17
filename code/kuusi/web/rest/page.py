@@ -29,7 +29,7 @@ from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from drf_spectacular.utils import extend_schema_field, PolymorphicProxySerializer
 
-from typing import List
+from typing import List, Tuple
 
 WIDGET_SERIALIZER_BASE_FIELDS = ("id", "row", "col", "width", "pages", "widget_type")
 
@@ -95,9 +95,6 @@ class PageSerializer(serializers.ModelSerializer):
         return obj.__("text", session.language_code)
     
     # https://github.com/tfranzel/drf-spectacular/issues/382
-
-    """
-    """
     @extend_schema_field(
         field=PolymorphicProxySerializer(
             serializers=[

@@ -2,6 +2,7 @@
   <div>
     <NuxtRouteAnnouncer />
     <Categories/>
+    <RenderField/>
   </div>
 </template>
 <script lang="ts" setup>
