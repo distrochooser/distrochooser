@@ -37,30 +37,49 @@ WIDGET_SERIALIZER_BASE_FIELDS = ("id", "row", "col", "width", "pages", "widget_t
 # MOve the render features into the serializers
 # E. g. selections needed facettes, question texts, hints ....
 class WidgetSerializer(serializers.ModelSerializer):
-    widget_type = serializers.SerializerMethodField()
+    widget_type = serializers.CharField(default="Widget")
     class Meta:
         model = Widget
         fields = WIDGET_SERIALIZER_BASE_FIELDS
     
-    def get_widget_type(self, obj: Widget) -> str:
-        return obj.__class__.__name__
-
-class HTMLWidgetSerializer(WidgetSerializer):
+    
+class HTMLWidgetSerializer(serializers.ModelSerializer):
+    widget_type = serializers.CharField(default="HTMLWidget")
     class Meta:
         model = HTMLWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("template",)
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("template", "widget_type")
 
-class FacetteSelectionWidgetSerializer(WidgetSerializer):
+class FacetteSelectionWidgetSerializer(serializers.ModelSerializer):
+    widget_type = serializers.CharField(default="FacetteSelectionWidget")
     class Meta:
         model = FacetteSelectionWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic",)
 
-class FacetteRadioSelectionWidgetSerializer(WidgetSerializer):
+
+class FacetteRadioSelectionWidgetSerializer(serializers.ModelSerializer):
+    widget_type = serializers.CharField(default="FacetteRadioSelectionWidget")
     class Meta:
         model = FacetteRadioSelectionWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic",)
 
 
+class NavigationWidgetSerializer(serializers.ModelSerializer):
+    widget_type = serializers.CharField(default="NavigationWidget")
+    class Meta:
+        model = NavigationWidget
+        fields = WIDGET_SERIALIZER_BASE_FIELDS
+
+class ResultShareWidgetSerializer(serializers.ModelSerializer):
+    widget_type = serializers.CharField(default="ResultShareWidget")
+    class Meta:
+        model = ResultShareWidget
+        fields = WIDGET_SERIALIZER_BASE_FIELDS
+
+class ResultListWidgetSerializer(serializers.ModelSerializer):
+    widget_type = serializers.CharField(default="ResultListWidget")
+    class Meta:
+        model = ResultListWidget
+        fields = WIDGET_SERIALIZER_BASE_FIELDS
 
 class PageSerializer(serializers.ModelSerializer):
     text = serializers.SerializerMethodField()
@@ -76,16 +95,23 @@ class PageSerializer(serializers.ModelSerializer):
         return obj.__("text", session.language_code)
     
     # https://github.com/tfranzel/drf-spectacular/issues/382
+
+    """
+    """
     @extend_schema_field(
         field=PolymorphicProxySerializer(
             serializers=[
-                WidgetSerializer,
                 HTMLWidgetSerializer,
                 FacetteRadioSelectionWidgetSerializer,
-                FacetteSelectionWidgetSerializer
+                FacetteSelectionWidgetSerializer,
+                NavigationWidgetSerializer,
+                ResultShareWidgetSerializer,
+                ResultListWidgetSerializer,
+                WidgetSerializer
             ],
             component_name="MetaWidget",
-            resource_type_field_name="List"
+            resource_type_field_name=None,
+            many=True
         )
     )
     def get_widget_list(self, obj: Page) -> List[WidgetSerializer | FacetteSelectionWidgetSerializer | FacetteRadioSelectionWidgetSerializer | HTMLWidgetSerializer]:
@@ -96,9 +122,9 @@ class PageSerializer(serializers.ModelSerializer):
             HTMLWidget: HTMLWidgetSerializer,
             FacetteRadioSelectionWidget: FacetteRadioSelectionWidgetSerializer,
             FacetteSelectionWidget: FacetteSelectionWidgetSerializer,
-            NavigationWidget: WidgetSerializer,
-            ResultListWidget: WidgetSerializer,
-            ResultShareWidget: WidgetSerializer
+            NavigationWidget: NavigationWidgetSerializer,
+            ResultListWidget: ResultListWidgetSerializer,
+            ResultShareWidget: ResultShareWidgetSerializer
         }
         widget: Widget
         for widget in obj.widget_list:
