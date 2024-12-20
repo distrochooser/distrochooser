@@ -1,20 +1,21 @@
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type InitialSession, type Page } from "~/sdk"
+import { Configuration, SessionApi, type Category, type FacetteSelection, type InitialSession, type Page } from "~/sdk"
 
 interface SessionState {
     session: InitialSession | null;
     categories: Category[];
     pages: Page[],
     currentPage: Page | null;
+    facetteSelections: FacetteSelection[]
 }
 
 // TODO: Move this out of this sourcecode
-const apiConfig = new Configuration({
+export const apiConfig = new Configuration({
     basePath: "http://localhost:8000",
     headers: {
         "accept": "application/json"
     }
-})
+});
 const sessionApi = new SessionApi(apiConfig)
 
 export const useSessionStore = defineStore('websiteStore', {
@@ -23,8 +24,31 @@ export const useSessionStore = defineStore('websiteStore', {
         categories: [],
         pages: [],
         currentPage: null,
+        facetteSelections: []
     }),
     actions: {
+        async updateFacetteSelections(id: number, weight: number, add: boolean) {
+
+            if (add) {
+                this.facetteSelections.push(await sessionApi.sessionFacetteselectionCreate({
+                    sessionPk: this.session.resultId,
+                    facetteSelection: {
+                        weight: weight,
+                        facette: id
+                    }
+                }));
+            } else {
+                this.deleteFacetteSelection(id);
+            }
+        },
+        async deleteFacetteSelection(facetteId: number){
+            const selection = this.facetteSelections.filter(f => f.facette == facetteId)[0]
+            await sessionApi.sessionFacetteselectionDestroy({
+                id: selection.id,
+                sessionPk: this.session.resultId
+            });
+            this.facetteSelections = this.facetteSelections.filter(s => s.id != selection.id);
+        },
         async createSession(lang: string, resultId?: string) {
             this.session = await sessionApi.sessionCreate(
                 {

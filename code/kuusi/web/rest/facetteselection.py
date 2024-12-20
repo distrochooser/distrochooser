@@ -25,9 +25,10 @@ from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiRespon
 from rest_framework import status
 from kuusi.settings import LANGUAGE_CODES
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import ListModelMixin
+from rest_framework.mixins import ListModelMixin, DestroyModelMixin
 from rest_framework.response import Response
 
+from typing import List
 
 class FacetteSelectionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,7 +36,7 @@ class FacetteSelectionSerializer(serializers.ModelSerializer):
         fields = ('id', 'facette', 'weight')
     
     
-class FacetteSelectionViewSet(ListModelMixin, GenericViewSet):
+class FacetteSelectionViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
     queryset = FacetteSelection.objects.all()
     serializer_class = FacetteSelectionSerializer
     @extend_schema(
@@ -55,23 +56,52 @@ class FacetteSelectionViewSet(ListModelMixin, GenericViewSet):
         )
         serializer.context["session_pk"] = kwargs["session_pk"]
         return Response(serializer.data)
+    
 
+    @extend_schema(
+        request=None,
+        parameters=[
+          OpenApiParameter("id", OpenApiTypes.INT, OpenApiParameter.PATH,description="The selection ID to delete", required=True),
+          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+        ]
+    ) 
+    def destroy(self, request, session_pk, pk):
+        # TODO: Make old session immutable
 
+        session: Session = Session.objects.filter(result_id=session_pk).first()
+        FacetteSelection.objects.filter(pk=pk).filter(session=session).delete()
+        return Response()
     @extend_schema(
         responses={
             status.HTTP_200_OK: OpenApiResponse(response=FacetteSelectionSerializer, description="The created facette selection"),
-            status.HTTP_404_NOT_FOUND: OpenApiResponse(response=None, description="Either session or facette are not found")
+            status.HTTP_404_NOT_FOUND: OpenApiResponse(response=None, description="Either session or facette are not found"),
+            status.HTTP_409_CONFLICT: OpenApiResponse(response=None, description="There is already a given selection with this ID and result Id combination")
         },
         parameters=[ 
           OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
         ],
     )
-    def create(self, request, session_pk):
+    def create(self, request, session_pk) -> FacetteSelection:
         session: Session = Session.objects.filter(result_id=session_pk).first()
         facette: Facette = Facette.objects.filter(pk=request.data["facette"]).first()
 
         if session is None or facette is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        # TODO: Store selection
+        
+        selections = FacetteSelection.objects.filter(session=session).filter(facette=facette)
+        if selections.count() != 0:
+            return Response(status=status.HTTP_409_CONFLICT)
+        
         # TODO: Check behaviour? Status code on error?
-        pass
+
+        selection = FacetteSelection(
+            facette=facette,
+            session=session,
+            weight=request.data["weight"]
+        )
+        selection.save()
+        serializer = FacetteSelectionSerializer(
+            selection,
+        )
+        serializer.context["session_pk"] = session_pk
+        return Response(serializer.data)
