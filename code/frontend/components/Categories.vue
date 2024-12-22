@@ -19,7 +19,4 @@ import { onMounted } from "vue";
 import { useSessionStore } from "~/states/session";
 
 let sessionStore = useSessionStore();
-
-
-
 </script>
