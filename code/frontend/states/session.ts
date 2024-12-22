@@ -29,7 +29,7 @@ export const useSessionStore = defineStore('websiteStore', {
         currentFacettes: []
     }),
     actions: {
-        async updateFacetteSelections(id: number, weight: number, add: boolean, reset: boolean) {
+        async updateFacetteSelections(id: number, weight: number, add: boolean, reset: string) {
 
             if (add) {
                 await sessionApi.sessionFacetteselectionCreate({
