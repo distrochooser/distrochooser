@@ -79,6 +79,7 @@ class FacetteSelectionViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin)
         },
         parameters=[ 
           OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+          OpenApiParameter("reset", OpenApiTypes.BOOL, OpenApiParameter.QUERY, required=False, description="Force existing selections on the same topic to be deleted. Used for facette selections bound to radio selections"),
         ],
     )
     def create(self, request, session_pk) -> FacetteSelection:
@@ -87,6 +88,10 @@ class FacetteSelectionViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin)
 
         if session is None or facette is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        is_reset = str(request.query_params.get('reset')).lower() == "true"
+        if is_reset:
+            FacetteSelection.objects.filter(session=session).filter(facette__topic=facette.topic).delete()
         
         selections = FacetteSelection.objects.filter(session=session).filter(facette=facette)
         if selections.count() != 0:

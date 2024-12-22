@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type FacetteSelection, type InitialSession, type Page } from "~/sdk"
+import { Configuration, SessionApi, type Category, type Facette, type FacetteSelection, type InitialSession, type Page } from "~/sdk"
 
 interface SessionState {
     session: InitialSession | null;
@@ -7,6 +7,7 @@ interface SessionState {
     pages: Page[],
     currentPage: Page | null;
     facetteSelections: FacetteSelection[]
+    currentFacettes: Facette[];
 }
 
 // TODO: Move this out of this sourcecode
@@ -24,22 +25,27 @@ export const useSessionStore = defineStore('websiteStore', {
         categories: [],
         pages: [],
         currentPage: null,
-        facetteSelections: []
+        facetteSelections: [],
+        currentFacettes: []
     }),
     actions: {
-        async updateFacetteSelections(id: number, weight: number, add: boolean) {
+        async updateFacetteSelections(id: number, weight: number, add: boolean, reset: boolean) {
 
             if (add) {
-                this.facetteSelections.push(await sessionApi.sessionFacetteselectionCreate({
+                await sessionApi.sessionFacetteselectionCreate({
                     sessionPk: this.session.resultId,
                     facetteSelection: {
                         weight: weight,
                         facette: id
-                    }
-                }));
+                    },
+                    reset: reset
+                });
             } else {
                 this.deleteFacetteSelection(id);
             }
+            this.facetteSelections = await sessionApi.sessionFacetteselectionList({
+                sessionPk: this.session.resultId
+            })
         },
         async deleteFacetteSelection(facetteId: number){
             const selection = this.facetteSelections.filter(f => f.facette == facetteId)[0]
@@ -47,7 +53,6 @@ export const useSessionStore = defineStore('websiteStore', {
                 id: selection.id,
                 sessionPk: this.session.resultId
             });
-            this.facetteSelections = this.facetteSelections.filter(s => s.id != selection.id);
         },
         async createSession(lang: string, resultId?: string) {
             this.session = await sessionApi.sessionCreate(
@@ -80,7 +85,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 })
             }
         },
-        selectPage(id: number) {
+        async selectPage(id: number) {
             const matches = this.pages.filter(l => l.id == id)
             if (matches.length == 1) {
                 this.currentPage = matches[0];

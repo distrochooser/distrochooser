@@ -18,7 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from django.shortcuts import get_object_or_404
-from web.models import Page, Session, Widget, HTMLWidget, FacetteRadioSelectionWidget, FacetteSelectionWidget, NavigationWidget, ResultListWidget, ResultShareWidget
+from web.models import Page, Session, Widget, HTMLWidget, FacetteRadioSelectionWidget, FacetteSelectionWidget, NavigationWidget, ResultListWidget, ResultShareWidget, Facette
+from web.rest.facette import FacetteSerializer
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 from rest_framework import status
@@ -49,18 +50,36 @@ class HTMLWidgetSerializer(serializers.ModelSerializer):
         model = HTMLWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("template", "widget_type")
 
-class FacetteSelectionWidgetSerializer(serializers.ModelSerializer):
+class WithFacetteWidgetSerializer(serializers.Serializer):
+    facettes = serializers.SerializerMethodField()
+
+    @extend_schema_field(
+        field=FacetteSerializer(
+            many=True
+        )
+    )
+    def get_facettes(self, obj: FacetteSelectionWidget) -> List[Facette]:
+        facettes: Facette = Facette.objects.filter(topic=obj.topic)
+
+        serializer = FacetteSerializer(
+            facettes,
+            many=True
+        )
+        serializer.context["session_pk"] = self.context['session_pk']
+        return serializer.data
+
+class FacetteSelectionWidgetSerializer(serializers.ModelSerializer, WithFacetteWidgetSerializer):
     widget_type = serializers.CharField(default="FacetteSelectionWidget")
     class Meta:
         model = FacetteSelectionWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic",)
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic", "facettes")
 
-
-class FacetteRadioSelectionWidgetSerializer(serializers.ModelSerializer):
+class FacetteRadioSelectionWidgetSerializer(serializers.ModelSerializer, WithFacetteWidgetSerializer):
     widget_type = serializers.CharField(default="FacetteRadioSelectionWidget")
     class Meta:
         model = FacetteRadioSelectionWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic",)
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic", "facettes")
+
 
 
 class NavigationWidgetSerializer(serializers.ModelSerializer):
@@ -131,6 +150,7 @@ class PageSerializer(serializers.ModelSerializer):
                     results = selected_serializer(
                         widget
                     )
+                    results.context["session_pk"] = self.context["session_pk"]
                     result.append(results.data)
                     break
         

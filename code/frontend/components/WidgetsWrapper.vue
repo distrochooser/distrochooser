@@ -6,8 +6,8 @@
       :class="'col-' + widget.width"
     >
     <NavigationWidget v-if="widget.widgetType == 'NavigationWidget'" :widget="widget"/>
-    <FacetteSelectionWidget v-if="widget.widgetType == 'FacetteSelectionWidget'" :widget="widget"/>
-    <FacetteRadioSelectionWidget v-if="widget.widgetType == 'FacetteRadioSelectionWidget'" :widget="widget"/>
+    <FacetteSelectionWidget v-if="widget.widgetType == 'FacetteSelectionWidget'" :checkbox="true" :widget="widget"/>
+    <FacetteSelectionWidget v-if="widget.widgetType == 'FacetteRadioSelectionWidget'" :checkbox="false" :widget="widget"/>
     <ResultListWidget v-if="widget.widgetType == 'ResultListWidget'" :widget="widget"/>
     <ResultShareWidget v-if="widget.widgetType == 'ResultShareWidget'" :widget="widget"/>
     <HTMLWidget v-if="widget.widgetType == 'HTMLWidget'" :widget="widget"/>
