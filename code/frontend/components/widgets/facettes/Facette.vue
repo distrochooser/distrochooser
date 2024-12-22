@@ -5,7 +5,7 @@
         type="checkbox"
         v-model="selected"
         v-on:change="registerChange"
-        :checked="isSelected()"
+        :checked="isSelected"
       />
       {{ props.facette.selectableDescription }}
     </div>
@@ -16,9 +16,9 @@
         v-model="selected"
         v-on:change="registerChange"
         v-bind:value="true"
-        :checked="isSelected()"
+        :checked="isSelected"
       />
-      {{ props.facette.selectableDescription }} {{  isSelected() }}
+      {{ props.facette.selectableDescription }} {{  isSelected }}
     </div>
     WEIGHT:
   </div>
@@ -43,7 +43,8 @@ const selected = useState(
       .length != 0
 );
 
-const isSelected = () => store.facetteSelections.filter((l) => l.facette == props.facette.id).length !=0;
+
+const isSelected = computed(() => store.facetteSelections.filter((l) => l.facette == props.facette.id).length !=0);
 
 const registerChange = async () => {
   await store.updateFacetteSelections(props.facette.id, 1, selected.value, !props.checkbox);

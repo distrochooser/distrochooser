@@ -41,7 +41,7 @@ export const useSessionStore = defineStore('websiteStore', {
                     reset: reset
                 });
             } else {
-                this.deleteFacetteSelection(id);
+                await this.deleteFacetteSelection(id);
             }
             this.facetteSelections = await sessionApi.sessionFacetteselectionList({
                 sessionPk: this.session.resultId

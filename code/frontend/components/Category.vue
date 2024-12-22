@@ -43,7 +43,6 @@ const isAnswered = computed(() => {
   targetPage.widgetList.filter(w => w.widgetType == "FacetteSelectionWidget" || w.widgetType == "FacetteRadioSelectionWidget").forEach((w: (FacetteSelectionWidget | FacetteRadioSelectionWidget)) => {
     allFacettesWithinPage = allFacettesWithinPage.concat(w.facettes)
   });
-  console.log(allFacettesWithinPage)
   const facettesWithinPage = facetteSelections.filter(s => allFacettesWithinPage.filter(f => f.id == s.facette).length != 0)
   return facettesWithinPage.length != 0
 })
