@@ -7,7 +7,6 @@ interface SessionState {
     pages: Page[],
     currentPage: Page | null;
     facetteSelections: FacetteSelection[]
-    currentFacettes: Facette[];
 }
 
 // TODO: Move this out of this sourcecode
@@ -25,8 +24,7 @@ export const useSessionStore = defineStore('websiteStore', {
         categories: [],
         pages: [],
         currentPage: null,
-        facetteSelections: [],
-        currentFacettes: []
+        facetteSelections: []
     }),
     actions: {
         async updateFacetteSelections(id: number, weight: number, add: boolean, reset: string) {
