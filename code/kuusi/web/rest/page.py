@@ -18,8 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from django.shortcuts import get_object_or_404
-from web.models import Page, Session, Widget, HTMLWidget, FacetteRadioSelectionWidget, FacetteSelectionWidget, NavigationWidget, ResultListWidget, ResultShareWidget, Facette
+from web.models import Page, Session, Widget, HTMLWidget, FacetteRadioSelectionWidget, FacetteSelectionWidget, NavigationWidget, ResultListWidget, ResultShareWidget, Facette, SessionVersionWidget, SessionVersion
 from web.rest.facette import FacetteSerializer
+from web.rest.session import SessionVersionSerializer
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 from rest_framework import status
@@ -30,80 +31,14 @@ from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from drf_spectacular.utils import extend_schema_field, PolymorphicProxySerializer
 
+from collections import OrderedDict
 from typing import List, Tuple
 
-WIDGET_SERIALIZER_BASE_FIELDS = ("id", "row", "col", "width", "pages", "widget_type")
-
-# TODO: For all serializers
-# MOve the render features into the serializers
-# E. g. selections needed facettes, question texts, hints ....
-class WidgetSerializer(serializers.ModelSerializer):
-    widget_type = serializers.CharField(default="Widget")
-    class Meta:
-        model = Widget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS
-    
-    
-class HTMLWidgetSerializer(serializers.ModelSerializer):
-    widget_type = serializers.CharField(default="HTMLWidget")
-    class Meta:
-        model = HTMLWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("template", "widget_type")
-
-class WithFacetteWidgetSerializer(serializers.Serializer):
-    facettes = serializers.SerializerMethodField()
-
-    @extend_schema_field(
-        field=FacetteSerializer(
-            many=True
-        )
-    )
-    def get_facettes(self, obj: FacetteSelectionWidget) -> List[Facette]:
-        facettes: Facette = Facette.objects.filter(topic=obj.topic)
-
-        serializer = FacetteSerializer(
-            facettes,
-            many=True
-        )
-        serializer.context["session_pk"] = self.context['session_pk']
-        return serializer.data
-
-class FacetteSelectionWidgetSerializer(serializers.ModelSerializer, WithFacetteWidgetSerializer):
-    widget_type = serializers.CharField(default="FacetteSelectionWidget")
-    class Meta:
-        model = FacetteSelectionWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic", "facettes")
-
-class FacetteRadioSelectionWidgetSerializer(serializers.ModelSerializer, WithFacetteWidgetSerializer):
-    widget_type = serializers.CharField(default="FacetteRadioSelectionWidget")
-    class Meta:
-        model = FacetteRadioSelectionWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic", "facettes")
 
 
-
-class NavigationWidgetSerializer(serializers.ModelSerializer):
-    widget_type = serializers.CharField(default="NavigationWidget")
-    class Meta:
-        model = NavigationWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS
-
-class ResultShareWidgetSerializer(serializers.ModelSerializer):
-    widget_type = serializers.CharField(default="ResultShareWidget")
-    class Meta:
-        model = ResultShareWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS
-
-class ResultListWidgetSerializer(serializers.ModelSerializer):
-    widget_type = serializers.CharField(default="ResultListWidget")
-    class Meta:
-        model = ResultListWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS
 
 class PageSerializer(serializers.ModelSerializer):
     text = serializers.SerializerMethodField()
-    # https://github.com/axnsan12/drf-yasg/issues/584
-    widget_list = serializers.SerializerMethodField()
 
     class Meta:
         model = Page
@@ -113,48 +48,6 @@ class PageSerializer(serializers.ModelSerializer):
         session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
         return obj.__("text", session.language_code)
     
-    # https://github.com/tfranzel/drf-spectacular/issues/382
-    @extend_schema_field(
-        field=PolymorphicProxySerializer(
-            serializers=[
-                HTMLWidgetSerializer,
-                FacetteRadioSelectionWidgetSerializer,
-                FacetteSelectionWidgetSerializer,
-                NavigationWidgetSerializer,
-                ResultShareWidgetSerializer,
-                ResultListWidgetSerializer,
-                WidgetSerializer
-            ],
-            component_name="MetaWidget",
-            resource_type_field_name=None,
-            many=True
-        )
-    )
-    def get_widget_list(self, obj: Page) -> List[WidgetSerializer | FacetteSelectionWidgetSerializer | FacetteRadioSelectionWidgetSerializer | HTMLWidgetSerializer]:
-        result = []
-        # IMPORTANT
-        # The serializers are ordered, specialized before generic
-        serializers = {
-            HTMLWidget: HTMLWidgetSerializer,
-            FacetteRadioSelectionWidget: FacetteRadioSelectionWidgetSerializer,
-            FacetteSelectionWidget: FacetteSelectionWidgetSerializer,
-            NavigationWidget: NavigationWidgetSerializer,
-            ResultListWidget: ResultListWidgetSerializer,
-            ResultShareWidget: ResultShareWidgetSerializer
-        }
-        widget: Widget
-        for widget in obj.widget_list:
-            for key, value in serializers.items():
-                if isinstance(widget, key):
-                    selected_serializer = serializers[type(widget)]
-                    results = selected_serializer(
-                        widget
-                    )
-                    results.context["session_pk"] = self.context["session_pk"]
-                    result.append(results.data)
-                    break
-        
-        return result
     
     
 class PageViewSet(GenericViewSet, ListModelMixin):

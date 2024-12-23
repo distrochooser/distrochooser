@@ -48,6 +48,7 @@ class CategoryViewSet(ListModelMixin, GenericViewSet):
             status.HTTP_200_OK: OpenApiResponse(response=CategorySerializer, description="The list of Pages available to use"),
         },
         parameters=[ 
+          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
           OpenApiParameter("current_page", OpenApiTypes.STR, OpenApiParameter.QUERY,description="Currently selected PAGE", required=False),
         ],
     )

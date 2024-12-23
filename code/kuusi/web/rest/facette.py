@@ -50,6 +50,7 @@ class FacetteViewSet(ListModelMixin, GenericViewSet):
         },
         parameters=[ 
           OpenApiParameter("topic", OpenApiTypes.STR, OpenApiParameter.QUERY,description="The topic of the facettes", required=True),
+          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
         ],
     )
     def list(self, request,  *args, **kwargs):    

@@ -34,6 +34,7 @@ from web.rest.page import PageViewSet
 from web.rest.session import SessionViewSet
 from web.rest.category import CategoryViewSet
 from web.rest.facetteselection import FacetteSelectionViewSet
+from web.rest.widget import WidgetViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from kuusi.settings import STATIC_URL, STATIC_ROOT
@@ -56,6 +57,11 @@ router.register(r'session', SessionViewSet)
 
 router_sessions = routers.NestedDefaultRouter(router, r'session', lookup='session')
 router_sessions.register(r'page', PageViewSet, basename='session-pages')
+
+router_page = routers.NestedDefaultRouter(router_sessions, r"page", lookup="page")
+router_page.register(r"widget", WidgetViewSet, basename="widget-page")
+
+
 router_sessions.register(r'facette', FacetteViewSet, basename='session-facettes')
 router_sessions.register(r'category', CategoryViewSet, basename='session-categories')
 router_sessions.register(r'facetteselection', FacetteSelectionViewSet, basename='session-selections')
@@ -72,6 +78,7 @@ urlpatterns = [
     re_path("data/(?P<version>[0-9]+)", route_data, name="route_data"),
     path('rest/', include(router.urls)),
     path('rest/', include(router_sessions.urls)),
+    path('rest/', include(router_page.urls)),
     path('rest/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('rest/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui')
    

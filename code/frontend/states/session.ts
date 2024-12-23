@@ -1,12 +1,13 @@
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type Facette, type FacetteSelection, type InitialSession, type Page } from "~/sdk"
+import { Configuration, SessionApi, type Category, type Facette, type FacetteSelection, type InitialSession, type MetaWidget, type Page, type Widget } from "~/sdk"
 
 interface SessionState {
     session: InitialSession | null;
     categories: Category[];
     pages: Page[],
     currentPage: Page | null;
-    facetteSelections: FacetteSelection[]
+    facetteSelections: FacetteSelection[];
+    currentWidgets: MetaWidget[];
 }
 
 // TODO: Move this out of this sourcecode
@@ -24,7 +25,8 @@ export const useSessionStore = defineStore('websiteStore', {
         categories: [],
         pages: [],
         currentPage: null,
-        facetteSelections: []
+        facetteSelections: [],
+        currentWidgets: []
     }),
     actions: {
         async updateFacetteSelections(id: number, weight: number, add: boolean, reset: string) {
@@ -45,7 +47,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 sessionPk: this.session.resultId
             })
         },
-        async deleteFacetteSelection(facetteId: number){
+        async deleteFacetteSelection(facetteId: number) {
             const selection = this.facetteSelections.filter(f => f.facette == facetteId)[0]
             await sessionApi.sessionFacetteselectionDestroy({
                 id: selection.id,
@@ -60,20 +62,23 @@ export const useSessionStore = defineStore('websiteStore', {
                 }
             )
             if (this.session.resultId) {
-                this.categories = await sessionApi.sessionCategoryList({
-                    sessionPk: this.session.resultId,
-                    currentPage: this.currentPage?.catalogueId ?? undefined
-                });
-                this.pages = await sessionApi.sessionPageList({
-                    sessionPk: this.session.resultId
-                })
+                await this.updateCategoriesAndPages();
                 /** Select the first available page, if any */
                 this.selectPage(-1)
             }
         },
+        async updateCategoriesAndPages() {
+            this.categories = await sessionApi.sessionCategoryList({
+                sessionPk: this.session.resultId,
+                currentPage: this.currentPage?.catalogueId ?? undefined
+            });
+            this.pages = await sessionApi.sessionPageList({
+                sessionPk: this.session.resultId
+            })
+        },
         async acknowledgeSession() {
-            if (this.session?.id && 
-                this.session.languageCode && 
+            if (this.session?.id &&
+                this.session.languageCode &&
                 this.session.resultId) {
                 await sessionApi.sessionPartialUpdate({
                     id: this.session.id,
@@ -88,9 +93,13 @@ export const useSessionStore = defineStore('websiteStore', {
             if (matches.length == 1) {
                 this.currentPage = matches[0];
             }
-            else if (matches.length == 0 && this.pages.length > 0){
+            else if (matches.length == 0 && this.pages.length > 0) {
                 this.currentPage = this.pages[0]
             }
+            this.currentWidgets = await sessionApi.sessionPageWidgetList({
+                sessionPk: this.session.resultId,
+                pagePk: this.currentPage.id
+            })
         }
     }
 })

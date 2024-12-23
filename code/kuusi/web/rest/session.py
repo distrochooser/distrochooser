@@ -43,6 +43,16 @@ class SessionSerializer(serializers.ModelSerializer):
     def get_language_codes(self, obj: Session) -> Dict[str, str]:
         return LANGUAGE_CODES
 
+class SessionVersionSerializer(serializers.ModelSerializer):
+    text = serializers.SerializerMethodField()
+    class Meta:
+        model = SessionVersion
+        fields = '__all__' 
+
+    def get_text(self, obj: SessionVersion) -> str:
+        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
+        return obj.__("version_name", session.language_code)
+
 class InitialSessionSerializer(SessionSerializer):
     class Meta:
         model = Session

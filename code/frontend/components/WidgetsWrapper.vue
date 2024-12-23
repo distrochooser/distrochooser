@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-for="(widget, index) in store.currentPage?.widgetList.filter((w ) => w.row == props.row)"
+      v-for="(widget, index) in store.currentWidgets.filter((w ) => w.row == props.row)"
       :key="index"
       :class="'col-' + widget.width"
     >
@@ -11,6 +11,7 @@
     <ResultListWidget v-if="widget.widgetType == 'ResultListWidget'" :widget="widget"/>
     <ResultShareWidget v-if="widget.widgetType == 'ResultShareWidget'" :widget="widget"/>
     <HTMLWidget v-if="widget.widgetType == 'HTMLWidget'" :widget="widget"/>
+    <SessionVersionWidget v-if="widget.widgetType == 'SessionVersionWidget'" :widget="widget"/>
     </div>
   </div>
 </template>
@@ -25,6 +26,7 @@ import FacetteRadioSelectionWidget from "./widgets/FacetteRadioSelectionWidget.v
 import ResultListWidget from "./widgets/ResultListWidget.vue";
 import ResultShareWidget from "./widgets/ResultShareWidget.vue";
 import HTMLWidget from "./widgets/HTMLWidget.vue";
+import SessionVersionWidget from "./widgets/SessionVersionWidget.vue";
 
 interface WidgetWrapperProps {
   row: Number;
@@ -32,9 +34,5 @@ interface WidgetWrapperProps {
 
 const props = defineProps<WidgetWrapperProps>();
 const store = useSessionStore();
-const widgets = store.currentPage?.widgetList.filter(
-  (w: Widget) => w.row == props.row
-);
-
 
 </script>
