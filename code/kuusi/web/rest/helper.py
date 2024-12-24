@@ -48,11 +48,12 @@ def get_categories_and_filtered_pages(page: Page, session: Session) -> Tuple[Lis
     version_comp_pages = []
     chained_page: Page
     for chained_page in pages:
+        print(chained_page.catalogue_id, chained_page.is_visible(session))
         if chained_page.is_visible(session):
             version_comp_pages.append(chained_page)
 
     categories = []
-    for chained_page in pages:
+    for chained_page in version_comp_pages:
         # Child categories will be created later, when the steps are created.
         used_in_category = Category.objects.filter(
             target_page=chained_page, child_of__isnull=True

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="sessionStore.categories.length != 0">
+    <div v-if="categories.length != 0">
       <span
-        v-for="(category, index) in sessionStore.categories"
+        v-for="(category, index) in categories"
         v-bind:key="index"
       >
         <Category :category="category" />
@@ -17,4 +17,6 @@
 import { useSessionStore } from "~/states/session";
 
 let sessionStore = useSessionStore();
+
+const categories = computed(() => sessionStore.categories);
 </script>

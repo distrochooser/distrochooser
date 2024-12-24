@@ -84,9 +84,13 @@ class PageViewSet(GenericViewSet, ListModelMixin):
         sessions = Session.objects.filter(result_id=kwargs["session_pk"])
         if sessions.count() == 0:
             return Response(status=status.HTTP_412_PRECONDITION_FAILED)
-       
+        session = sessions.first()
+        queryset = Page.objects.all() if not session.version else Page.objects.exclude(not_in_versions__in=[
+            session.version
+        ])
+        
         serializer = PageSerializer(
-            Page.objects.all(),
+            queryset,
             many=True
         )
 
