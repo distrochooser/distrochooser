@@ -48,7 +48,6 @@ const selected = useState(
 
 const weight = ref(0)
 
-
 const isSelected = computed(() => store.facetteSelections.filter((l) => l.facette == props.facette.id).length !=0);
 
 const registerChange = async () => {

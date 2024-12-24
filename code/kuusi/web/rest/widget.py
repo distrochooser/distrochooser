@@ -30,16 +30,19 @@ from web.models import (
     Facette,
     SessionVersionWidget,
     SessionVersion,
-    FacetteSelection
+    FacetteSelection,
+    Choosable,
+    FacetteAssignment
 )
 from web.rest.facette import FacetteSerializer
 from web.rest.session import SessionVersionSerializer
+from web.rest.choosable import ChoosableSerializer, CHOOSABLE_SERIALIZER_BASE_FIELDS
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES
+from kuusi.settings import LANGUAGE_CODES, WEIGHT_MAP
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
@@ -132,12 +135,57 @@ class ResultShareWidgetSerializer(WidgetSerializer):
         fields = WIDGET_SERIALIZER_BASE_FIELDS
 
 
-class ResultListWidgetSerializer(WidgetSerializer):
+class RankedChoosableSerializer(ChoosableSerializer):
+    rank = serializers.SerializerMethodField()
 
     class Meta:
-        model = ResultListWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS
+        model = Choosable
+        fields = CHOOSABLE_SERIALIZER_BASE_FIELDS + ("rank",)
 
+    def get_rank(self, obj: Choosable) -> int:
+        return self.context["ranking"][obj.pk] if obj.pk in self.context["ranking"] else 9999999999
+
+
+class ResultListWidgetSerializer(WidgetSerializer):
+    choosables = serializers.SerializerMethodField()
+    class Meta:
+        model = ResultListWidget
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("choosables",)
+
+
+    @extend_schema_field(field=RankedChoosableSerializer(many=True))
+    def get_choosables(self, obj: ResultListWidget) -> List[Choosable]:
+        session = Session.objects.filter(result_id=self.context["session_pk"]).first()
+        choosables = Choosable.objects.all()
+        selections = FacetteSelection.objects.filter(session=session)
+        ranking = {}
+        for choosable in choosables:
+            scores_by_type = {}
+            for key in FacetteAssignment.AssignmentType.choices:
+                identifier, _ = key
+                scores_by_type[identifier] = 0
+
+            for selection in selections:
+                facette = selection.facette
+                selection_weight_key = selection.weight
+                selection_weight_value = WEIGHT_MAP[selection_weight_key]
+                assignments = FacetteAssignment.objects.filter(facettes__in=[facette])
+
+                for assignment in assignments:
+                    weighted_score = 1 * selection_weight_value
+                    scores_by_type[assignment.assignment_type] += weighted_score
+            
+            
+            ranking[choosable.pk]  = FacetteAssignment.AssignmentType.get_score(scores_by_type)
+
+
+        serializer = RankedChoosableSerializer(
+            choosables,
+            many=True
+        )
+        serializer.context["session_pk"] = self.context["session_pk"]
+        serializer.context["ranking"] = ranking
+        return serializer.data
 
 
 
@@ -198,7 +246,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                 FacetteRadioSelectionWidget: FacetteRadioSelectionWidgetSerializer,
                 FacetteSelectionWidget: FacetteSelectionWidgetSerializer,
                 ResultListWidget: ResultListWidgetSerializer,
-                ResultShareWidget: ResultListWidgetSerializer
+                ResultShareWidget: ResultShareWidgetSerializer
             }
         )
         widget: Widget

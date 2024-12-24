@@ -1,8 +1,8 @@
 <template>
   <div>
-    <a v-if="canGoBack" href="#" v-on:click="goBack"> Back </a>
-    <a v-if="canGoNext" href="#" v-on:click="goNext"> Skip </a>
-    <a v-if="canGoNext" href="#" v-on:click="goNext"> Forward </a>
+    <a v-if="canGoBack" href="#" v-on:click="goBack">{{  store.__i("BTN_PREV_PAGE") }}</a>
+    <a v-if="canGoNext" href="#" v-on:click="goNext"> {{  store.__i("BTN_SKIP_PAGE") }} </a>
+    <a v-if="canGoNext" href="#" v-on:click="goNext"> {{  store.__i("BTN_NEXT_PAGE") }} </a>
   </div>
 </template>
 <script setup lang="ts">
