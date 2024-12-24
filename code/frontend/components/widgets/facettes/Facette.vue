@@ -52,7 +52,7 @@ const weight = ref(0)
 const isSelected = computed(() => store.facetteSelections.filter((l) => l.facette == props.facette.id).length !=0);
 
 const registerChange = async () => {
-  await store.updateFacetteSelections(props.facette.id, weight.value, selected.value, !props.checkbox ? 'all': '');
+  await store.updateFacetteSelections(store.currentPage.id, props.facette.id, weight.value, selected.value, !props.checkbox ? 'all': '');
   selected.value = store.facetteSelections.filter((l) => l.facette == props.facette.id).length != 0
   // reset the weight also if the selection was removed
   if (!selected.value) {
@@ -60,6 +60,6 @@ const registerChange = async () => {
   }
 };
 const registerWeightChange = async() => {
-  await store.updateFacetteSelections(props.facette.id, weight.value, selected.value, 'this');
+  await store.updateFacetteSelections(store.currentPage.id, props.facette.id, weight.value, selected.value, 'this');
 }
 </script>

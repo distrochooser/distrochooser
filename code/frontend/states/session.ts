@@ -8,6 +8,7 @@ interface SessionState {
     currentPage: Page | null;
     facetteSelections: FacetteSelection[];
     currentWidgets: MetaWidget[];
+    answeredPages: number[]
 }
 
 // TODO: Move this out of this sourcecode
@@ -26,10 +27,11 @@ export const useSessionStore = defineStore('websiteStore', {
         pages: [],
         currentPage: null,
         facetteSelections: [],
-        currentWidgets: []
+        currentWidgets: [],
+        answeredPages: []
     }),
     actions: {
-        async updateFacetteSelections(id: number, weight: number, add: boolean, reset: string) {
+        async updateFacetteSelections(currentPageId: number, id: number, weight: number, add: boolean, reset: string) {
 
             if (add) {
                 await sessionApi.sessionFacetteselectionCreate({
@@ -40,19 +42,23 @@ export const useSessionStore = defineStore('websiteStore', {
                     },
                     reset: reset
                 });
+                if (this.answeredPages.indexOf(currentPageId) == -1){
+                    this.answeredPages.push(currentPageId)
+                }
             } else {
-                await this.deleteFacetteSelection(id);
+                await this.deleteFacetteSelection(id, currentPageId);
             }
             this.facetteSelections = await sessionApi.sessionFacetteselectionList({
                 sessionPk: this.session.resultId
             })
         },
-        async deleteFacetteSelection(facetteId: number) {
+        async deleteFacetteSelection(facetteId: number, currentPageId: number) {
             const selection = this.facetteSelections.filter(f => f.facette == facetteId)[0]
             await sessionApi.sessionFacetteselectionDestroy({
                 id: selection.id,
                 sessionPk: this.session.resultId
             });
+            this.answeredPages = this.answeredPages.filter(s => s != currentPageId)
         },
         async createSession(lang: string, resultId?: string) {
             this.session = await sessionApi.sessionCreate(

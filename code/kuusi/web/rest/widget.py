@@ -30,6 +30,7 @@ from web.models import (
     Facette,
     SessionVersionWidget,
     SessionVersion,
+    FacetteSelection
 )
 from web.rest.facette import FacetteSerializer
 from web.rest.session import SessionVersionSerializer
@@ -49,7 +50,7 @@ from rest_polymorphic.serializers import PolymorphicSerializer
 
 from typing import Dict, Any, List
 
-WIDGET_SERIALIZER_BASE_FIELDS = ("id", "row", "col", "width", "pages", "widget_type")
+WIDGET_SERIALIZER_BASE_FIELDS = ("id", "row", "col", "width", "pages", "widget_type",)
 
 
 # TODO: For all serializers

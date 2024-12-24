@@ -6,6 +6,7 @@
     {{ props.category.name }}
     {{ props.category.icon }}
     {{ props.category.targetPage }}
+    {{  isAnswered }}
     <div
       v-if="props.category.targetPage"
       v-on:click="store.selectPage(props.category.targetPage)"
@@ -24,5 +25,8 @@ interface CategoryProps {
 
 const props = defineProps<CategoryProps>();
 const store = useSessionStore();
+const isAnswered = computed(() => {
+  return store.answeredPages.indexOf(props.category.targetPage) != -1
+})
 
 </script>

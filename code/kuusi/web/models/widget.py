@@ -34,6 +34,7 @@ class Widget(models.Model):
 
     def proceed(self, request: HttpRequest, page) -> bool:
         raise Exception()
+    
     @property
     def widget_type(self) -> str:
         return self.__class__.__name__

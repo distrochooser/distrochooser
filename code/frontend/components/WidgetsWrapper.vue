@@ -5,6 +5,7 @@
       :key="index"
       :class="'col-' + widget.width"
     >
+    {{  widget  }}
     <NavigationWidget v-if="widget.widgetType == 'NavigationWidget'" :widget="widget"/>
     <FacetteSelectionWidget v-if="widget.widgetType == 'FacetteSelectionWidget'" :checkbox="true" :widget="widget"/>
     <FacetteSelectionWidget v-if="widget.widgetType == 'FacetteRadioSelectionWidget'" :checkbox="false" :widget="widget"/>
