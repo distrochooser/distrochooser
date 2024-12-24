@@ -29,14 +29,16 @@ from rest_framework.mixins import ListModelMixin
 
 from typing import Dict, Any
 
+CHOOSABLE_SERIALIZER_BASE_FIELDS = ('id', 'name', 'description', 'bg_color', 'fg_color', 'meta')
+
 class ChoosableSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
     meta = serializers.SerializerMethodField()
     class Meta:
         model = Choosable
-        fields = ('id', 'name', 'description', 'bg_color', 'fg_color', 'meta')
+        fields = CHOOSABLE_SERIALIZER_BASE_FIELDS
     def get_description(self, obj: Choosable) -> str:
-        return obj.__("description",  self.context['request'].query_params["lang"])
+        return obj.__("description",   "en") # self.context['request'].query_params["lang"]) # FIXME: Decide how to inject this. Maybe get rid of this endpoint...
     def get_meta(self, obj: Choosable) -> Dict[str, Any]:
         meta_values = obj.meta
         for key, value in meta_values.items():
