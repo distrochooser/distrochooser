@@ -262,6 +262,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 KUUSI_URL = "http://localhost:8000"
 
+FRONTEND_URL = "http://localhost:3000"
+
 KUUSI_NAME = "Distrochooser"
 
 KUUSI_COPYRIGHT_STRING = None
