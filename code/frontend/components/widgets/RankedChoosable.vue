@@ -6,9 +6,6 @@
 </template>
 <script setup lang="ts">
 import type {  RankedChoosable } from '~/sdk';
-
-
-
 interface WidgetProps {
   choosable: RankedChoosable;
 }

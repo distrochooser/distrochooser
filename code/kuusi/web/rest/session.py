@@ -37,7 +37,7 @@ class SessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Session
-        fields = ('result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url')
+        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url')
 
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
@@ -57,12 +57,7 @@ class SessionVersionSerializer(serializers.ModelSerializer):
         session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
         return obj.__("version_name", session.language_code)
 
-class InitialSessionSerializer(SessionSerializer):
-    class Meta:
-        model = Session
-        fields = ('id', 'result_id', 'language_code', 'language_codes', 'session_origin', 'started', 'version', "base_url")
 
-    
 class SessionViewSet(ViewSet):
     serializer_class = Session
     queryset = Session.objects.all()    
@@ -138,7 +133,7 @@ class SessionViewSet(ViewSet):
           OpenApiParameter("referrer", OpenApiTypes.STR, OpenApiParameter.QUERY,description="An optional referrer header value for statistics", required=False),
         ],
         responses={
-            status.HTTP_200_OK: InitialSessionSerializer,
+            status.HTTP_200_OK: SessionSerializer,
             status.HTTP_404_NOT_FOUND: OpenApiResponse(description='Invalid result_id provided'),
             status.HTTP_406_NOT_ACCEPTABLE: OpenApiResponse(description='Invalid version_id provided'),
             status.HTTP_412_PRECONDITION_FAILED: OpenApiResponse(description='Invalid language'),
@@ -165,7 +160,7 @@ class SessionViewSet(ViewSet):
         session = self.get_fresh_session(lang, user_agent, referrer)
         if old_session:
             self.clone_selections(old_session, session)
-        serializer = InitialSessionSerializer(session)
+        serializer = SessionSerializer(session)
         return Response(serializer.data)
     
     def clone_selections(self, old_session: Session, session: Session) -> bool:
