@@ -31,6 +31,9 @@ export const useSessionStore = defineStore('websiteStore', {
         answeredPages: []
     }),
     actions: {
+        __i(key: string) {
+            return this.session.languageValues[key];
+        },
         async updateFacetteSelections(currentPageId: number, id: number, weight: number, add: boolean, reset: string) {
 
             if (add) {
