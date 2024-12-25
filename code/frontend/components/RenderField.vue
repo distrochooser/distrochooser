@@ -1,12 +1,10 @@
 <template>
   <div>
     <div v-if="store.currentPage">
-      {{  store.currentPage.text }}
-      {{  store.currentPage.help }}
+      {{ store.currentPage.text }}
+      {{ store.currentPage.help }}
       <div v-for="row in 12" :key="row" class="grid gap-4">
-        <WidgetsWrapper
-          :row="row"
-        />
+        <WidgetsWrapper :row="row" />
       </div>
     </div>
     <div v-else>
