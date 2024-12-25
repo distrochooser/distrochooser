@@ -22,7 +22,9 @@ const props = defineProps<WidgetProps>();
 const selection = ref(null)
 const store = useSessionStore();
 watch(selection, value => {
-     store.updateSession(selection.value)
+  if (store.session) {
+    store.updateSession(selection.value)
+  }
 }, {deep: true, immediate: true})
 
 </script>

@@ -214,6 +214,10 @@ LOCALE_MAPPING = {
     "fi": "fi_FI"
 }
 
+RTL_LANGUAGES = [
+    "he"
+]
+
 TIME_ZONE = "UTC"
 
 USE_I18N = False

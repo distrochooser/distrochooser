@@ -3,6 +3,7 @@
     <NuxtRouteAnnouncer />
     <div class="grid grid-cols-12 gap-3">
       <div class="col-span-2 bg-blue-100">
+        <Language v-if="sessionStore.session"/>
         <Categories />
       </div>
       <div class="col-span-10 bg-red-100">
@@ -20,8 +21,8 @@ const router = useRoute();
 const lang: string = (router.params.lang as string) ?? "en";
 const id: string | null = (router.params.id as string) ?? null;
 
+const sessionStore = useSessionStore();
 onMounted(async () => {
-  const sessionStore = useSessionStore();
   await sessionStore.createSession(lang, id);
 });
 </script>

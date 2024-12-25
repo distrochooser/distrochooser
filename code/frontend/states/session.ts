@@ -94,6 +94,15 @@ export const useSessionStore = defineStore('websiteStore', {
             })
             await this.updateCategoriesAndPages()
         },
+        async changeLanguage(language: string) {
+            this.session = await sessionApi.sessionPartialUpdate({
+                id: this.session.id,
+                lang:language,
+                resultId: this.session.resultId,
+                versionId: this.session.version
+            })
+            await this.updateCategoriesAndPages()
+        },
         async acknowledgeSession() {
             if (this.session?.id &&
                 this.session.languageCode &&
