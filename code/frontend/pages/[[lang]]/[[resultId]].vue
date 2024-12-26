@@ -18,7 +18,13 @@ import { useRoute } from "vue-router";
 import { useSessionStore } from "~/states/session";
 
 const router = useRoute();
-const lang: string = (router.params.lang as string) ?? "en";
+const lang: string = (router.params.lang as string);
+if (lang == "") {
+   navigateTo("/en", {
+    redirectCode: 301,
+    replace: true
+  })
+}
 const id: string | null = (router.params.id as string) ?? null;
 
 const sessionStore = useSessionStore();
