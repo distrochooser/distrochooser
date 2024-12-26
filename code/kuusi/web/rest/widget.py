@@ -144,6 +144,10 @@ class RankedChoosableSerializer(ChoosableSerializer):
 
     def get_rank(self, obj: Choosable) -> int:
         return self.context["ranking"][obj.pk] if obj.pk in self.context["ranking"] else 9999999999
+    
+    def get_description(self, obj:Choosable) -> str:
+        session = Session.objects.filter(result_id=self.context["session_pk"]).first()
+        return obj.__("description", session.language_code)
 
 
 class ResultListWidgetSerializer(WidgetSerializer):

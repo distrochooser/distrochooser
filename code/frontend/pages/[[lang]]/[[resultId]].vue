@@ -13,6 +13,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { navigateTo } from "nuxt/app";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useSessionStore } from "~/states/session";
