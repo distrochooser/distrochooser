@@ -84,6 +84,8 @@ export const useSessionStore = defineStore('websiteStore', {
             this.pages = await sessionApi.sessionPageList({
                 sessionPk: this.session.resultId
             })
+            const oldPageNumber = this.currentPage.id;
+            this.selectPage(oldPageNumber);
         },
         async updateSession(sessionVersion: number)  {
             this.session = await sessionApi.sessionPartialUpdate({
