@@ -214,6 +214,10 @@ LOCALE_MAPPING = {
     "fi": "fi_FI"
 }
 
+RTL_LANGUAGES = [
+    "he"
+]
+
 TIME_ZONE = "UTC"
 
 USE_I18N = False
@@ -261,6 +265,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 KUUSI_URL = "http://localhost:8000"
+
+FRONTEND_URL = "http://localhost:3000"
 
 KUUSI_NAME = "Distrochooser"
 

@@ -1,18 +1,11 @@
 
 
 <template>
-  <div>
-    {{ props.category.catalogueId }}
-    {{ props.category.name }}
-    {{ props.category.icon }}
-    {{ props.category.targetPage }}
-    {{  isAnswered }}
-    <div
-      v-if="props.category.targetPage"
-      v-on:click="store.selectPage(props.category.targetPage)"
-    >
-      test
-    </div>
+  <div
+    v-if="props.category.targetPage"
+    v-on:click="store.selectPage(props.category.targetPage)"
+  >
+    {{ props.category.name }} {{ isAnswered }}
   </div>
 </template>
     <script lang="ts" setup>
@@ -26,7 +19,6 @@ interface CategoryProps {
 const props = defineProps<CategoryProps>();
 const store = useSessionStore();
 const isAnswered = computed(() => {
-  return store.answeredPages.indexOf(props.category.targetPage) != -1
-})
-
+  return store.answeredPages.indexOf(props.category.targetPage) != -1;
+});
 </script>

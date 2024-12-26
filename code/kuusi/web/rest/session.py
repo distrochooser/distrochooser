@@ -22,7 +22,8 @@ from rest_framework import serializers
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES, DEFAULT_SESSION_META
+from kuusi.settings import LANGUAGE_CODES, DEFAULT_SESSION_META, FRONTEND_URL, RTL_LANGUAGES
+from web.models import TRANSLATIONS
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
@@ -33,15 +34,27 @@ from typing import Dict, Any, List
 class SessionSerializer(serializers.ModelSerializer):
     session_origin = serializers.SerializerMethodField()
     language_codes = serializers.SerializerMethodField()
+    language_values = serializers.SerializerMethodField()
+    is_language_rtl = serializers.SerializerMethodField()
+    base_url = serializers.CharField(default=FRONTEND_URL)
 
     class Meta:
         model = Session
-        fields = ('result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version')
+        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'is_language_rtl')
+
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
     
     def get_language_codes(self, obj: Session) -> Dict[str, str]:
         return LANGUAGE_CODES
+
+    def get_language_values(self, obj:Session) -> Dict[str, str]:
+        return TRANSLATIONS[obj.language_code]
+
+    def get_is_language_rtl(self, obj: Session) -> bool:
+        return obj.language_code in RTL_LANGUAGES
+    
+
 
 class SessionVersionSerializer(serializers.ModelSerializer):
     text = serializers.SerializerMethodField()
@@ -53,12 +66,7 @@ class SessionVersionSerializer(serializers.ModelSerializer):
         session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
         return obj.__("version_name", session.language_code)
 
-class InitialSessionSerializer(SessionSerializer):
-    class Meta:
-        model = Session
-        fields = ('id', 'result_id', 'language_code', 'language_codes', 'session_origin', 'started', 'version',)
 
-    
 class SessionViewSet(ViewSet):
     serializer_class = Session
     queryset = Session.objects.all()    
@@ -134,7 +142,7 @@ class SessionViewSet(ViewSet):
           OpenApiParameter("referrer", OpenApiTypes.STR, OpenApiParameter.QUERY,description="An optional referrer header value for statistics", required=False),
         ],
         responses={
-            status.HTTP_200_OK: InitialSessionSerializer,
+            status.HTTP_200_OK: SessionSerializer,
             status.HTTP_404_NOT_FOUND: OpenApiResponse(description='Invalid result_id provided'),
             status.HTTP_406_NOT_ACCEPTABLE: OpenApiResponse(description='Invalid version_id provided'),
             status.HTTP_412_PRECONDITION_FAILED: OpenApiResponse(description='Invalid language'),
@@ -161,7 +169,7 @@ class SessionViewSet(ViewSet):
         session = self.get_fresh_session(lang, user_agent, referrer)
         if old_session:
             self.clone_selections(old_session, session)
-        serializer = InitialSessionSerializer(session)
+        serializer = SessionSerializer(session)
         return Response(serializer.data)
     
     def clone_selections(self, old_session: Session, session: Session) -> bool:
