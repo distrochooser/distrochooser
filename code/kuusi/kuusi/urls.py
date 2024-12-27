@@ -34,6 +34,7 @@ from web.rest.page import PageViewSet
 from web.rest.session import SessionViewSet
 from web.rest.category import CategoryViewSet
 from web.rest.facetteselection import FacetteSelectionViewSet
+from web.rest.facettebehaviour import FacetteBehaviourViewSet
 from web.rest.widget import WidgetViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
@@ -65,6 +66,7 @@ router_page.register(r"widget", WidgetViewSet, basename="widget-page")
 router_sessions.register(r'facette', FacetteViewSet, basename='session-facettes')
 router_sessions.register(r'category', CategoryViewSet, basename='session-categories')
 router_sessions.register(r'facetteselection', FacetteSelectionViewSet, basename='session-selections')
+router_sessions.register(r'facettebehaviour', FacetteBehaviourViewSet, basename='session-behaviour')
 
 
 urlpatterns = [
