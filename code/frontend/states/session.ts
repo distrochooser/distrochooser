@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type Facette, type FacetteSelection, type InitialSession, type MetaWidget, type Page, type Session, type Widget } from "~/sdk"
+import { Configuration, SessionApi, type Category, type Facette, type FacetteBehaviour, type FacetteSelection, type InitialSession, type MetaWidget, type Page, type Session, type Widget } from "~/sdk"
 
 interface SessionState {
     session: Session | null;
@@ -8,7 +8,8 @@ interface SessionState {
     currentPage: Page | null;
     facetteSelections: FacetteSelection[];
     currentWidgets: MetaWidget[];
-    answeredPages: number[]
+    answeredPages: number[],
+    facetteBehaviours: FacetteBehaviour[]
 }
 
 // TODO: Move this out of this sourcecode
@@ -28,7 +29,8 @@ export const useSessionStore = defineStore('websiteStore', {
         currentPage: null,
         facetteSelections: [],
         currentWidgets: [],
-        answeredPages: []
+        answeredPages: [],
+        facetteBehaviours: []
     }),
     actions: {
         __i(key: string) {
@@ -88,6 +90,11 @@ export const useSessionStore = defineStore('websiteStore', {
                 const oldPageNumber = this.currentPage.id;
                 this.selectPage(oldPageNumber);
             }
+        },
+        async updateBehaviours() {
+            this.facetteBehaviours = await sessionApi.sessionFacettebehaviourList({
+                sessionPk: this.session.resultId
+            });
         },
         async updateSession(sessionVersion: number)  {
             this.session = await sessionApi.sessionPartialUpdate({

@@ -57,6 +57,7 @@ const registerChange = async () => {
   if (!selected.value) {
     weight.value = 0
   }
+  await store.updateBehaviours();
 };
 const registerWeightChange = async() => {
   await store.updateFacetteSelections(store.currentPage.id, props.facette.id, weight.value, selected.value, 'this');
