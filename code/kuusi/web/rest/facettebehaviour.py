@@ -34,7 +34,7 @@ from typing import List
 class FacetteBehaviourSerializer(serializers.ModelSerializer):
     class Meta:
         model = FacetteBehaviour
-        fields = ('description', 'criticality')
+        fields = ('description', 'criticality', 'affected_objects', 'affected_subjects', )
     
     
 class FacetteBehaviourViewSet(ListModelMixin, GenericViewSet):

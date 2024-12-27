@@ -34,7 +34,7 @@ from web.rest.page import PageViewSet
 from web.rest.session import SessionViewSet
 from web.rest.category import CategoryViewSet
 from web.rest.facetteselection import FacetteSelectionViewSet
-from web.rest.facetteehaviour import FacetteBehaviourViewSet
+from web.rest.facettebehaviour import FacetteBehaviourViewSet
 from web.rest.widget import WidgetViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
