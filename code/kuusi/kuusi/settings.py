@@ -218,6 +218,8 @@ RTL_LANGUAGES = [
     "he"
 ]
 
+FRONTEND_URL = "http://localhost:3000"
+
 TIME_ZONE = "UTC"
 
 USE_I18N = False
