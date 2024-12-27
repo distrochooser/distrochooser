@@ -37,7 +37,6 @@ from web.rest.facetteselection import FacetteSelectionViewSet
 from web.rest.facettebehaviour import FacetteBehaviourViewSet
 from web.rest.widget import WidgetViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
-
 from kuusi.settings import STATIC_URL, STATIC_ROOT
 
 dynamic_routes = [   
