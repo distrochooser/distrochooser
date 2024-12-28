@@ -77,6 +77,12 @@ export const useSessionStore = defineStore('websiteStore', {
                 /** Select the first available page, if any */
                 this.selectPage(-1)
             }
+            // if there was a resultId given -> update selections from it
+            if (resultId) {
+                this.facetteSelections = await sessionApi.sessionFacetteselectionList({
+                    sessionPk: this.session.resultId
+                })
+            }
         },
         async updateCategoriesAndPages() {
             this.categories = await sessionApi.sessionCategoryList({
