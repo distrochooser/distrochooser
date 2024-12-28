@@ -8,7 +8,6 @@ interface SessionState {
     currentPage: Page | null;
     facetteSelections: FacetteSelection[];
     currentWidgets: MetaWidget[];
-    answeredPages: number[],
     facetteBehaviours: FacetteBehaviour[]
 }
 
@@ -29,7 +28,6 @@ export const useSessionStore = defineStore('websiteStore', {
         currentPage: null,
         facetteSelections: [],
         currentWidgets: [],
-        answeredPages: [],
         facetteBehaviours: []
     }),
     actions: {
@@ -47,9 +45,6 @@ export const useSessionStore = defineStore('websiteStore', {
                     },
                     reset: reset
                 });
-                if (this.answeredPages.indexOf(currentPageId) == -1){
-                    this.answeredPages.push(currentPageId)
-                }
             } else {
                 await this.deleteFacetteSelection(id, currentPageId);
             }
@@ -63,7 +58,6 @@ export const useSessionStore = defineStore('websiteStore', {
                 id: selection.id,
                 sessionPk: this.session.resultId
             });
-            this.answeredPages = this.answeredPages.filter(s => s != currentPageId)
         },
         async createSession(lang: string, resultId?: string) {
             this.session = await sessionApi.sessionCreate(
@@ -76,6 +70,12 @@ export const useSessionStore = defineStore('websiteStore', {
                 await this.updateCategoriesAndPages();
                 /** Select the first available page, if any */
                 this.selectPage(-1)
+            }
+            // if there was a resultId given -> update selections from it
+            if (resultId) {
+                this.facetteSelections = await sessionApi.sessionFacetteselectionList({
+                    sessionPk: this.session.resultId
+                })
             }
         },
         async updateCategoriesAndPages() {

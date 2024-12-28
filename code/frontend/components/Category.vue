@@ -19,6 +19,6 @@ interface CategoryProps {
 const props = defineProps<CategoryProps>();
 const store = useSessionStore();
 const isAnswered = computed(() => {
-  return store.answeredPages.indexOf(props.category.targetPage) != -1;
+  return store.facetteSelections.filter(l => l.pagesOfFacettes.indexOf(props.category.targetPage) != -1).length > 0
 });
 </script>
