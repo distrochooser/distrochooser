@@ -17,7 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import FacetteSelection, Session, Facette
+from web.models import FacetteSelection, Session, Facette, Page, FacetteSelectionWidget
+from web.rest.page import PageSerializer
 from rest_framework import serializers
 from drf_spectacular.utils import  extend_schema, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
@@ -27,14 +28,30 @@ from kuusi.settings import LANGUAGE_CODES
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, DestroyModelMixin
 from rest_framework.response import Response
-
+from drf_spectacular.utils import extend_schema_field
 from typing import List
 
 class FacetteSelectionSerializer(serializers.ModelSerializer):
+    pages_of_facettes = serializers.SerializerMethodField()
     class Meta:
         model = FacetteSelection
-        fields = ('id', 'facette', 'weight')
-    
+        fields = ('id', 'facette', 'weight', 'pages_of_facettes', )
+
+
+    def get_pages_of_facettes(self, obj: FacetteSelection) ->List[int]:
+        facette = obj.facette
+
+        facette_selection_widgets = FacetteSelectionWidget.objects.filter(topic=facette.topic)
+        pages = []
+        
+        widget: FacetteSelectionWidget 
+        for widget in facette_selection_widgets:
+            page: Page
+            for page in widget.pages.all():
+                if page.pk not in pages:
+                    pages.append(page.pk)
+        
+        return pages
     
 class FacetteSelectionViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
     queryset = FacetteSelection.objects.all()
