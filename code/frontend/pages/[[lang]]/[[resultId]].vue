@@ -26,7 +26,7 @@ if (lang == "") {
     replace: true
   })
 }
-const id: string | null = (router.params.id as string) ?? null;
+const id: string | null = (router.params.resultId as string) ?? null;
 
 const sessionStore = useSessionStore();
 onMounted(async () => {

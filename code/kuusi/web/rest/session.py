@@ -158,6 +158,8 @@ class SessionViewSet(ViewSet):
         referrer= request.query_params.get('referrer')
         user_agent= request.query_params.get('user_agent')
 
+        
+        session = self.get_fresh_session(lang, user_agent, referrer)
         old_session = None
         if old_result_id:
             old_sessions = Session.objects.filter(result_id=old_result_id)
@@ -165,8 +167,22 @@ class SessionViewSet(ViewSet):
                 return Response(status=status.HTTP_404_NOT_FOUND)
             else:
                 old_session = old_sessions.first()
-        
-        session = self.get_fresh_session(lang, user_agent, referrer)
+            if not session.session_origin:
+                selections = FacetteSelection.objects.filter(session=old_session)
+                selection: FacetteSelection
+                for selection in selections:
+                    # prevent double copies
+                    if (
+                        FacetteSelection.objects.filter(
+                            session=session, facette=selection.facette
+                        ).count()
+                        == 0
+                    ):
+                        selection.pk = None
+                        selection.session = session
+                        selection.save()
+                session.session_origin = old_session
+                session.save()
         if old_session:
             self.clone_selections(old_session, session)
         serializer = SessionSerializer(session)
