@@ -1,7 +1,7 @@
 <template>
-  <div> 
+   <ul class="nav nav-pills row">
     <Category  v-for="(category, index) in categories"   v-bind:key="index" :category="category" />
-  </div>
+   </ul>
 </template>
   <script lang="ts" setup>
 import { useSessionStore } from "~/states/session";

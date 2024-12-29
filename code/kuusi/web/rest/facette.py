@@ -17,7 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import Facette, Session, FacetteAssignment
+from web.models import Facette, Session, FacetteAssignment, Choosable
+from web.rest.choosable import ChoosableSerializer
 from rest_framework import serializers
 from drf_spectacular.utils import  extend_schema, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
@@ -41,7 +42,7 @@ class FacetteSerializer(serializers.ModelSerializer):
     assignments = serializers.SerializerMethodField()
     class Meta:
         model = Facette
-        fields = ('id', 'topic', 'selectable_description', 'assignments')
+        fields = ('id', 'topic', 'selectable_description', 'assignments',)
     def get_selectable_description(self, obj: Facette) -> str:
         session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
         return obj.__("selectable_description",  session.language_code)

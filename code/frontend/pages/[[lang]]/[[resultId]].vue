@@ -1,15 +1,24 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <div class="grid grid-cols-12 gap-3">
-      <div class="col-span-2 bg-blue-100">
-        <Language v-if="sessionStore.session"/>
-        <Categories />
+    <main role="main" class="container">
+      <div class="text-center">
+        <div class="row">
+          <div class="col col-2">
+            <img class="mt-2" src="https://distrochooser.de/logo.min.svg" />
+          </div>
+          <div class="col">
+            <Categories />
+          </div>
+          <div class="col col-2">
+            <Language v-if="sessionStore.session" />
+          </div>
+        </div>
       </div>
-      <div class="col-span-10 bg-red-100">
+      <div class="page mt-1">
         <RenderField />
       </div>
-    </div>
+    </main>
   </div>
 </template>
 <script lang="ts" setup>
@@ -19,12 +28,12 @@ import { useRoute } from "vue-router";
 import { useSessionStore } from "~/states/session";
 
 const router = useRoute();
-const lang: string = (router.params.lang as string);
+const lang: string = router.params.lang as string;
 if (lang == "") {
-   navigateTo("/en", {
+  navigateTo("/en", {
     redirectCode: 301,
-    replace: true
-  })
+    replace: true,
+  });
 }
 const id: string | null = (router.params.resultId as string) ?? null;
 
