@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ props.widget.facettes  }}
     <Behaviour v-for="(facette, index) in props.widget.facettes" v-bind:key="index"  :facette="facette"/>
     <div v-for="(facette, index) in props.widget.facettes" v-bind:key="index">
       <Facette :facette="facette" :checkbox="props.checkbox"/>
