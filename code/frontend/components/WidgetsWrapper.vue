@@ -3,7 +3,7 @@
     <div
       v-for="(widget, index) in store.currentWidgets.filter((w ) => w.row == props.row)"
       :key="index"
-      :class="'col-' + widget.width"
+      :class="'col col-' + widget.width"
     >
     <NavigationWidget v-if="widget.widgetType == 'NavigationWidget'" :widget="widget"/>
     <FacetteSelectionWidget v-if="widget.widgetType == 'FacetteSelectionWidget'" :checkbox="true" :widget="widget"/>

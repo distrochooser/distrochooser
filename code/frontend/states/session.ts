@@ -11,6 +11,7 @@ interface SessionState {
     facetteBehaviours: FacetteBehaviour[]
 }
 
+
 // TODO: Move this out of this sourcecode
 export const apiConfig = new Configuration({
     basePath: "http://localhost:8000",

@@ -1,8 +1,20 @@
 <template>
-  <div>
-    <a v-if="canGoBack" href="#" v-on:click="goBack">{{  store.__i("BTN_PREV_PAGE") }}</a>
-    <a v-if="canGoNext" href="#" v-on:click="goNext"> {{  store.__i("BTN_SKIP_PAGE") }} </a>
-    <a v-if="canGoNext" href="#" v-on:click="goNext"> {{  store.__i("BTN_NEXT_PAGE") }} </a>
+  <div class="row">
+    <div class="col">
+      <a v-if="canGoBack" href="#" v-on:click="goBack">{{
+        store.__i("BTN_PREV_PAGE")
+      }}</a>
+    </div>
+    <div class="col">
+      <a v-if="canGoNext" href="#" v-on:click="goNext">
+        {{ store.__i("BTN_SKIP_PAGE") }}
+      </a>
+    </div>
+    <div class="col">
+      <a v-if="canGoNext" href="#" v-on:click="goNext">
+        {{ store.__i("BTN_NEXT_PAGE") }}
+      </a>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -24,10 +36,12 @@ const canGoBack = computed(() => {
 });
 const goBack = () =>
   store.selectPage(
-    store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) - 1].id
+    store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) - 1]
+      .id
   );
 const goNext = () =>
   store.selectPage(
-    store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) +1].id
+    store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) + 1]
+      .id
   );
 </script>

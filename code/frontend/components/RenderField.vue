@@ -3,7 +3,7 @@
     <div v-if="store.currentPage">
       {{ store.currentPage.text }}
       {{ store.currentPage.help }}
-      <div v-for="row in 12" :key="row" class="grid gap-4">
+      <div v-for="row in 12" :key="row" class="row">
         <WidgetsWrapper :row="row" />
       </div>
     </div>

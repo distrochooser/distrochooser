@@ -20,8 +20,13 @@
       />
       {{ props.facette.selectableDescription }} {{  isSelected }}
     </div>
+    <a href="#" v-on:click="toggleExpand">Why</a>
+    <div v-if="isExpanded.valueOf()">
+      <div v-for="key, index in props.facette.assignments" :key="index">
+        <Assignment :assignment="key"/>
+      </div>
+    </div>
     <div>
-
       <input v-if="isSelected" type="range" v-model="weight" min="-2" max="2" step="1" v-on:change="registerWeightChange"/> 
     </div>
   </div>
@@ -31,6 +36,7 @@ import { useState } from "nuxt/app";
 import { onMounted, ref } from "vue";
 import { SessionApi, type Facette } from "~/sdk";
 import { apiConfig, useSessionStore } from "../../../states/session";
+import Assignment from "./Assignment.vue";
 
 interface CheckboxFacetteProps {
   facette: Facette;
@@ -40,13 +46,15 @@ interface CheckboxFacetteProps {
 const props = defineProps<CheckboxFacetteProps>();
 const store = useSessionStore();
 const selected = useState(
-  props.facette.id.toString(),
+  props.facette.id.toString() + "_selected",
   () =>
     store.facetteSelections.filter((l) => l.facette == props.facette.id)
       .length != 0
 );
 
 const weight = ref(0)
+const isExpanded = useState(props.facette.id.toString() + "_expanded", () => false)
+const toggleExpand = () => isExpanded.value = !isExpanded.value
 
 const isSelected = computed(() => store.facetteSelections.filter((l) => l.facette == props.facette.id).length !=0);
 
