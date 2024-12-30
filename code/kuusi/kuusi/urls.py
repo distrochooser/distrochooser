@@ -35,6 +35,7 @@ from web.rest.session import SessionViewSet
 from web.rest.category import CategoryViewSet
 from web.rest.facetteselection import FacetteSelectionViewSet
 from web.rest.facettebehaviour import FacetteBehaviourViewSet
+from web.rest.facette import FeedbackViewSet
 from web.rest.widget import WidgetViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from kuusi.settings import STATIC_URL, STATIC_ROOT
@@ -56,6 +57,7 @@ router_sessions.register(r'category', CategoryViewSet, basename='session-categor
 router_sessions.register(r'facetteselection', FacetteSelectionViewSet, basename='session-selections')
 router_sessions.register(r'facettebehaviour', FacetteBehaviourViewSet, basename='session-behaviour')
 router_sessions.register(r'choosable', ChoosableViewSet, basename='session-choosables')
+router_sessions.register(r'feedback', FeedbackViewSet, basename='session-feedback')
 
 
 urlpatterns = [

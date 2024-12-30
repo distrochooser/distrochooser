@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <a href="#" v-on:click="toggleExpand">Why</a>
     <div v-if="isExpanded.valueOf()">
       <ul class="list-group">
-        <Assignment :assignment="key"  v-for="(key, index) in props.facette.assignments" :key="index" :query-choosables="true" />
+        <Assignment :assignment="key"  v-for="(key, index) in props.facette.assignments" :key="index" :query-choosables="true" :facette="props.facette"/>
       </ul>
     </div>
     <div>

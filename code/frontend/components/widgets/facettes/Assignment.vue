@@ -33,7 +33,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           "
           :title="store.choosables.filter((c) => c.id == value)[0].description"
         >
-          {{ store.choosables.filter((c) => c.id == value)[0].displayName }}
+          {{ store.choosables.filter((c) => c.id == value)[0].displayName }} {{hasFeedback(value)}}
+          <a
+            href="#"
+            v-on:click="
+              giveFeedback(store.choosables.filter((c) => c.id == value)[0], true)
+            "
+            >+1</a
+          >
+
+          <a
+            href="#"
+            v-on:click="
+              giveFeedback(store.choosables.filter((c) => c.id == value)[0], false)
+            "
+            >-1</a
+          >
+          <a
+            href="#"
+            v-on:click="
+              removeFeedback(store.choosables.filter((c) => c.id == value)[0])
+            "
+            >DEL</a
+          >
         </span>
       </div>
     </div>
@@ -46,12 +68,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </li>
 </template>
   <script setup lang="ts">
-import { AssignmentTypeEnum, type FacetteAssignment } from "~/sdk";
+import {
+  AssignmentTypeEnum,
+  type Choosable,
+  type Facette,
+  type FacetteAssignment,
+} from "~/sdk";
 import { useSessionStore } from "../../../states/session";
 
 interface AsssignmentProps {
   assignment: FacetteAssignment;
   queryChoosables: Boolean;
+  facette: Facette;
 }
 
 const assignmentTypeCssMap = {
@@ -63,4 +91,12 @@ const assignmentTypeCssMap = {
 const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
+
+const giveFeedback = (choosable: Choosable, is_positive: boolean) =>
+  store.giveFeedback(props.assignment, choosable, props.facette, is_positive);
+
+const removeFeedback = (choosable: Choosable) =>
+  store.removeFeedback(props.assignment, choosable);
+
+const hasFeedback = (choosableId: number) => store.assignmentFeedback.filter(f => f.assignment == props.assignment.id && f.choosable == choosableId).length != 0;
 </script>
