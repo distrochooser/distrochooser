@@ -69,4 +69,3 @@ The frontend uses Bootstrap 5. The folder structure is bound to Nuxt's structure
 ## Data model
 
 A description of the data model can be found in the file `HOW-TO-MAP.md`.
-
