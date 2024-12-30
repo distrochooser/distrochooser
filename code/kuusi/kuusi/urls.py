@@ -39,16 +39,6 @@ from web.rest.widget import WidgetViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from kuusi.settings import STATIC_URL, STATIC_ROOT
 
-dynamic_routes = [   
-    path("robots.txt",  route_robots_txt, name="route_robots_txt"),
-    path("sitemap.xml",  route_sitemap_xml, name="sitemap.xml"),
-    path("out/<id>/<property>",  route_outgoing, name="route_outgoing"),
-    path('', route_index, name='route_index'),
-    re_path('(?P<language_code>[a-z]{2,6})/(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
-    re_path('(?P<language_code>[a-z]{2,6})/(?P<id>d5[a-zA-Z0-9]+)', route_distrochooser5_redirect, name='route_distrochooser5_redirect'),
-    re_path('(?P<id>d6[a-zA-Z0-9]+)', route_index, name='route_index'),
-    re_path('(?P<language_code>[a-z]{2,6})', route_index, name='route_index')
-]
 
 router = routers.SimpleRouter()
 router.register(r'session', SessionViewSet)
@@ -69,18 +59,14 @@ router_sessions.register(r'choosable', ChoosableViewSet, basename='session-choos
 
 
 urlpatterns = [
-    path("admin", admin.site.urls),
-    path("feedback/<assignment_id>/<choosable_id>",  route_feedback, name="route_feedback"),
-    re_path('api/ack/(?P<result_id>[a-zA-Z0-9]+)', route_ack),
-    re_path("(?P<language_code>[a-z]+)/about", route_about, name="route_about"),
-    re_path("(?P<language_code>[a-z]+)/privacy", route_privacy, name="route_privacy"),
-    re_path("(?P<language_code>[a-z]+)/contact", route_contact, name="route_contact"),
-    re_path("(?P<language_code>[a-z]+)/support", route_support, name="route_support"),
-    re_path("data/(?P<version>[0-9]+)", route_data, name="route_data"),
     path('rest/', include(router.urls)),
     path('rest/', include(router_sessions.urls)),
     path('rest/', include(router_page.urls)),
     path('rest/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('rest/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui')
+    path('rest/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path("robots.txt",  route_robots_txt, name="route_robots_txt"),
+    path("sitemap.xml",  route_sitemap_xml, name="sitemap.xml"),
+    path("out/<id>/<property>",  route_outgoing, name="route_outgoing"),
+    path("admin", admin.site.urls)
    
-] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True) + dynamic_routes
+] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True) 

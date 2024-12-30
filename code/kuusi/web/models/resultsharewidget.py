@@ -22,18 +22,4 @@ from django.template import loader
 from kuusi.settings import KUUSI_URL
 
 class ResultShareWidget(Widget):
-    def proceed(self, request: WebHttpRequest, page: Page) -> bool:
-        return True
-
-    def render(self, request: WebHttpRequest, page: Page):
-        render_template = loader.get_template(f"widgets/result_share.html")
-        return render_template.render(
-            {
-                "is_rtl": request.session_obj.is_rtl,
-                "session": request.session_obj,
-                "page": page,
-                "language_code": request.session_obj.language_code,
-                "share_link": f"{KUUSI_URL}/{request.session_obj.language_code}/{request.session_obj.result_id}",
-            },
-            request,
-        )
+    pass
