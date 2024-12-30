@@ -21,18 +21,4 @@ from django.template import loader
 
 
 class NavigationWidget(Widget):
-    def proceed(self, request: WebHttpRequest, page: Page) -> bool:
-        return True
-
-    def render(self, request: WebHttpRequest, page: Page):
-        render_template = loader.get_template(f"widgets/navigation.html")
-        return render_template.render(
-            {
-                "page": page,
-                "has_errors": request.has_errors,
-                "is_marked": page.is_marked(request.session_obj),
-                "is_rtl": request.session_obj.is_rtl,
-                "language_code": request.session_obj.language_code
-            },
-            request,
-        )
+    pass

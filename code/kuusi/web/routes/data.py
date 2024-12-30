@@ -24,10 +24,9 @@ from time import time
 
 from web.models.http import WebHttpRequest
 from web.models import Choosable, Session, SessionMeta, Feedback
-from web.models.sessionversion import A11Y_OPTIONS
 from web.templatetags.web_extras import _i18n_get_value
 from web.opendata import OpenDataV1
-from kuusi.settings import DEFAULT_LANGUAGE_CODE, LANGUAGE_CODES, SESSION_NUMBER_OFFSET
+from kuusi.settings import SESSION_NUMBER_OFFSET
 
 from user_agents import parse
 
@@ -69,11 +68,6 @@ def data_v1():
                         data.Bots[session.user_agent] += 1
                 except:
                     pass # do nothing
-
-        for _, values in A11Y_OPTIONS.items():
-            for value in values:
-                count = SessionMeta.objects.filter(meta_key=value).count() + SessionMeta.objects.filter(meta_value=value).count()
-                data.AccessibilityOptionsActive[value] = count
                 
         feedbacks = Feedback.objects.all()
 

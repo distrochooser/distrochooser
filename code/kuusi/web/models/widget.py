@@ -28,12 +28,6 @@ class Widget(models.Model):
     col = models.IntegerField(default=1, null=False, blank=False)
     width = models.IntegerField(default=1, null=False, blank=False)
     pages = models.ManyToManyField(to="Page", blank=True, default=None)
-
-    def render(self, request: HttpRequest, page):
-        raise Exception()
-
-    def proceed(self, request: HttpRequest, page) -> bool:
-        raise Exception()
     
     @property
     def widget_type(self) -> str:

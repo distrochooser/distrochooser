@@ -28,26 +28,5 @@ from django.template import loader
 class HTMLWidget(Widget):
     template = models.CharField(null=False, blank=False, max_length=25)
 
-    def __init__(self, *args, **kwargs):
-        template_path = join(BASE_DIR, "web", "templates", "widgets")
-        raw_templates = listdir(template_path)
-        templates = []
-        for template in raw_templates:
-            templates.append((template, template))
-        self._meta.get_field("template").choices = templates
-        self._meta.get_field("template").widget = forms.Select(choices=templates)
-        super(HTMLWidget, self).__init__(*args, **kwargs)
-
     def __str__(self) -> str:
         return self.template
-
-    def render(self, request: HttpRequest, page: Page):
-        render_template = loader.get_template(f"widgets/{self.template}")
-        language_code = request.session_obj.language_code
-        return render_template.render({
-            "language_code": language_code
-        }, request)
-
-    def proceed(self, request: HttpRequest, page: Page) -> bool:
-        
-        return True
