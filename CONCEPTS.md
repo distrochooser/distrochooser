@@ -1,25 +1,17 @@
 # Core concepts
 
-This project is a Django applicaiton and utilizes some of Django's features.
 
 ## Concepts: Application
 
-- Views are rendered server-sided
-- The use of JavaScript is as small as possible
+- The application uses Django Rest Framework to provide a RESTful API
+- The Restful API is converted into a TypeScript SDK using a OpenAPI generator call 
+- A Nuxt powered frontend consumes the API
 
-## Concepts: Layout
-
-- The application has only one layout
-- Inside the layout a `Page` is displayed
-- The `Page` contains `Widgets`, which are located in an 12-column grid layout, each Widget has a fixed width
-- The navigation is linear. Each page features a `next_page` property
-- The navigation is derived from the `next_page` of the available `Page` objects as a kind of chain
 
 ## Concepts: Widgets
 
-Widgets are the contents of `Page` objects. All widgets overwrite the `proceed` and `render` functions of the `Widget` base class. If `proceed` returns false, the use will be held on the page, unless the uses forces a navigation.
-
-An navigation can be forced if the post value `BTN_FORCED_NAVIGATION` is present.
+- Widgets can be ordered in a 12-Grid Layout
+- The Navigation is not a Widget 8yet)
 
 ## Concepts: Internationalisation
 
@@ -67,26 +59,12 @@ To use this translation value, you can use the `_i18n_` helper function in `/cod
 
 ## Concepts: Design
 
-The frontend uses Bootstrap 5.
+The frontend uses Bootstrap 5. The folder structure is bound to Nuxt's structure, but has roughly following shape:
 
-The templates are located in the `/code/kuusi/web/templates` folder. There is the base layout file `_layout.html`, which defines the base page structure.
+- Widgets are located inside the `widgets` folder.
+- Components should be as small as possible to allow reusing them
+- Styling is done with SCSS
 
-Templates related to `Widget` classes are located in the folder `/code/kuusi/web/templates/widgets`, while templates used in template tags from `web_extras.py` are located in `/code/kuusi/web/template/tags`.
-
-SCSS components are located in the folder `/design`. The files are split based on a purpose.
-
-If additional class names are being introduced, the class prefix `ku-` should be used, e. g. in file `/design/scss/logo.scss`:
-
-```
-.ku-logo {
-    width: 250px;
-    margin-bottom: 1em;
-}
-```
-
-The SCSS files are embedded in a `/design/scss/custom.scss` file, which brings the Bootstrap 5 and Distrochooser theme parts together.
-
-To get these file compiled/ picked up by the webserver, the script `build-styles` is available inside the `/design/package.json`. Important: **Please execute this scripts from the folder `/design`, as the `build-styles` script uses relative paths.**
 
 ## Data model
 
