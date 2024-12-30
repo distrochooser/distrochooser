@@ -1,21 +1,24 @@
 <template>
   <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="ms-2 me-auto">
-      <div class="fw-bold">{{ assignment.catalogueId }}</div>
-      <span
-        :key="index"
-        v-for="(value, index) in assignment.choosables"
-        class="badge me-1"
-        :style="
-          'background-color: ' +
-          store.choosables.filter((c) => c.id == value)[0].bgColor + '; ' + 
-          'color: ' +
-          store.choosables.filter((c) => c.id == value)[0].fgColor
-        "
-        :title=" store.choosables.filter((c) => c.id == value)[0].description"
-      >
-        {{ store.choosables.filter((c) => c.id == value)[0].displayName }}
-      </span>
+      <div class="fw-bold">{{ assignment.description }}</div>
+      <div v-if="queryChoosables">
+        <span
+          :key="index"
+          v-for="(value, index) in assignment.choosables"
+          class="badge me-1"
+          :style="
+            'background-color: ' +
+            store.choosables.filter((c) => c.id == value)[0].bgColor +
+            '; ' +
+            'color: ' +
+            store.choosables.filter((c) => c.id == value)[0].fgColor
+          "
+          :title="store.choosables.filter((c) => c.id == value)[0].description"
+        >
+          {{ store.choosables.filter((c) => c.id == value)[0].displayName }}
+        </span>
+      </div>
     </div>
     <span
       :class="
@@ -31,6 +34,7 @@ import { useSessionStore } from "../../../states/session";
 
 interface AsssignmentProps {
   assignment: FacetteAssignment;
+  queryChoosables: Boolean;
 }
 
 const assignmentTypeCssMap = {

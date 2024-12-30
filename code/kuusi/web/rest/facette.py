@@ -33,9 +33,16 @@ from drf_spectacular.utils import extend_schema_field
 from typing import Dict, Any, List
 
 class FacetteAssignmentSerializer(serializers.ModelSerializer):
+    description = serializers.SerializerMethodField()
     class Meta:
         model = FacetteAssignment
-        fields = ('id', 'choosables', 'catalogue_id', 'long_description', 'assignment_type', )
+        fields = ('id', 'choosables', 'catalogue_id', 'description', 'assignment_type', )
+
+    def get_description(self, obj: Session):
+        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
+        return obj.__("long_description",  session.language_code)
+
+
 
 class FacetteSerializer(serializers.ModelSerializer):
     selectable_description = serializers.SerializerMethodField()
@@ -53,6 +60,7 @@ class FacetteSerializer(serializers.ModelSerializer):
             FacetteAssignment.objects.filter(facettes__in=[obj]),
             many=True
         )
+        serializer.context["session_pk"] = self.context["session_pk"]
         return serializer.data
     
     

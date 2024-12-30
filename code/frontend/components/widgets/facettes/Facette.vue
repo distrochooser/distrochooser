@@ -26,7 +26,7 @@
     <a href="#" v-on:click="toggleExpand">Why</a>
     <div v-if="isExpanded.valueOf()">
       <ul class="list-group">
-        <Assignment :assignment="key"  v-for="(key, index) in props.facette.assignments" :key="index" />
+        <Assignment :assignment="key"  v-for="(key, index) in props.facette.assignments" :key="index" :query-choosables="true" />
       </ul>
     </div>
     <div>
