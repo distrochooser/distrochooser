@@ -32,7 +32,8 @@ from web.models import (
     SessionVersion,
     FacetteSelection,
     Choosable,
-    FacetteAssignment
+    FacetteAssignment,
+    Feedback
 )
 from web.rest.facette import FacetteSerializer
 from web.rest.session import SessionVersionSerializer
@@ -168,7 +169,6 @@ class ResultListWidgetSerializer(WidgetSerializer):
             for key in FacetteAssignment.AssignmentType.choices:
                 identifier, _ = key
                 scores_by_type[identifier] = 0
-
             for selection in selections:
                 facette = selection.facette
                 selection_weight_key = selection.weight
@@ -176,8 +176,11 @@ class ResultListWidgetSerializer(WidgetSerializer):
                 assignments = FacetteAssignment.objects.filter(facettes__in=[facette])
 
                 for assignment in assignments:
-                    weighted_score = 1 * selection_weight_value
-                    scores_by_type[assignment.assignment_type] += weighted_score
+                    # Only include assignments without negative user feedback
+                    has_negative_feedback = Feedback.objects.filter(session=session).filter(assignment=assignment).filter(choosable=choosable).count() > 0
+                    if not has_negative_feedback:
+                        weighted_score = 1 * selection_weight_value
+                        scores_by_type[assignment.assignment_type] += weighted_score
             
             
             ranking[choosable.pk]  = FacetteAssignment.AssignmentType.get_score(scores_by_type)
