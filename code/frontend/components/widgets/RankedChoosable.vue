@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ props.choosable.name }}
+        {{ props.choosable.displayName }}
         <ChoosableMeta v-for="(key, value, index) in props.choosable.meta" :key="index" :metaKey="key" :metaValue="value"/>
     </div>
 </template>

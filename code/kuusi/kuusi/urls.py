@@ -51,7 +51,6 @@ dynamic_routes = [
 ]
 
 router = routers.SimpleRouter()
-router.register(r'choosable', ChoosableViewSet)
 router.register(r'session', SessionViewSet)
 
 
@@ -66,6 +65,7 @@ router_sessions.register(r'facette', FacetteViewSet, basename='session-facettes'
 router_sessions.register(r'category', CategoryViewSet, basename='session-categories')
 router_sessions.register(r'facetteselection', FacetteSelectionViewSet, basename='session-selections')
 router_sessions.register(r'facettebehaviour', FacetteBehaviourViewSet, basename='session-behaviour')
+router_sessions.register(r'choosable', ChoosableViewSet, basename='session-choosables')
 
 
 urlpatterns = [

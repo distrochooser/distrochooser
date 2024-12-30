@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type Facette, type FacetteBehaviour, type FacetteSelection, type InitialSession, type MetaWidget, type Page, type Session, type Widget } from "~/sdk"
+import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteBehaviour, type FacetteSelection, type InitialSession, type MetaWidget, type Page, type Session, type Widget } from "~/sdk"
 
 interface SessionState {
     session: Session | null;
@@ -8,7 +8,8 @@ interface SessionState {
     currentPage: Page | null;
     facetteSelections: FacetteSelection[];
     currentWidgets: MetaWidget[];
-    facetteBehaviours: FacetteBehaviour[]
+    facetteBehaviours: FacetteBehaviour[];
+    choosables: Choosable[]
 }
 
 
@@ -29,7 +30,8 @@ export const useSessionStore = defineStore('websiteStore', {
         currentPage: null,
         facetteSelections: [],
         currentWidgets: [],
-        facetteBehaviours: []
+        facetteBehaviours: [],
+        choosables: []
     }),
     actions: {
         __i(key: string) {
@@ -68,6 +70,9 @@ export const useSessionStore = defineStore('websiteStore', {
                 }
             )
             if (this.session.resultId) {
+                this.choosables = await sessionApi.sessionChoosableList({
+                    sessionPk: this.session.resultId
+                })
                 await this.updateCategoriesAndPages();
                 /** Select the first available page, if any */
                 this.selectPage(-1)
