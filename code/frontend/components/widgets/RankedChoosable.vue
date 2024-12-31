@@ -16,14 +16,50 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <div>
-        {{ props.choosable.displayName }}
-        <ChoosableMeta v-for="(key, value, index) in props.choosable.meta" :key="index" :metaKey="key" :metaValue="value"/>
+  <div>
+    <div class="card mb-4">
+      <div
+        class="card-body"
+        :style="
+          'background-color: ' +
+          props.choosable.bgColor +
+          '; ' +
+          'color: ' +
+          props.choosable.fgColor
+        "
+      >
+        <h5 class="card-title">
+          {{ props.choosable.displayName }}
+        </h5>
+        <p class="card-text">
+          {{ props.choosable.description }}
+        </p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="row">
+            <div
+              class="col"
+              v-for="(key, value, index) in props.choosable.meta"
+              :key="index"
+            >
+              <ChoosableMeta :metaKey="key" :metaValue="value" />
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="card-body">
+        <li class="list-group-item" v-for="(key, value, index) in props.choosable.assignments" :key="index">
+          <Assignment :assignment="key" :key="index" :query-choosables="false" :facette="null"/>
+        </li>
+      </div>
     </div>
+  </div>
 </template>
 <script setup lang="ts">
-import type {  RankedChoosable } from '~/sdk';
-import ChoosableMeta from './rankedchoosable/ChoosableMeta.vue';
+import type { RankedChoosable } from "~/sdk";
+import ChoosableMeta from "./rankedchoosable/ChoosableMeta.vue";
+import Assignment from "./facettes/Assignment.vue";
 interface WidgetProps {
   choosable: RankedChoosable;
 }

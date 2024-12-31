@@ -16,15 +16,25 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <div>
-        RESULT SHARE
-        {{  shareUrl }}
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="share-link">Share Icon</span>
+        <input
+          type="text"
+          class="form-control"
+          :value="shareUrl"
+          aria-label="Share URL"
+          aria-describedby="share-link"
+        />
+      </div>
     </div>
+  </div>
 </template>
 <script setup lang="ts">
-import type {ResultShareWidget } from '~/sdk';
-import { useSessionStore } from '../../states/session';
-
+import type { ResultShareWidget } from "~/sdk";
+import { useSessionStore } from "../../states/session";
 
 interface WidgetProps {
   widget: ResultShareWidget;
@@ -32,6 +42,8 @@ interface WidgetProps {
 
 const props = defineProps<WidgetProps>();
 const store = useSessionStore();
-const {resultId, languageCode} = store.session
-const shareUrl = computed(() => store.session.baseUrl + "/" + languageCode + "/" + resultId)
+const { resultId, languageCode } = store.session;
+const shareUrl = computed(
+  () => store.session.baseUrl + "/" + languageCode + "/" + resultId
+);
 </script>

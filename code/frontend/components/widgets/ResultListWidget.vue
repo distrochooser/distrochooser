@@ -16,23 +16,32 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <div>
-        RESULT LIST
+  <div>
+    RESULT LIST
 
-        <div v-for="(choosable, index) in props.widget.choosables.sort((a,b) => a.rank - b.rank)" :key="index">
-          <RankedChoosable :choosable="choosable"/>
-        </div>
+    <div v-if="store.assignmentFeedback.length > 0" class="alert alert-info">
+      Feedback received...
     </div>
+
+    <div
+      v-for="(choosable, index) in props.widget.choosables.sort(
+        (a, b) => b.rank - a.rank
+      )"
+      :key="index"
+    >
+      <RankedChoosable :choosable="choosable" />
+    </div>
+  </div>
 </template>
 <script setup lang="ts">
-import type {ResultListWidget } from '~/sdk';
-import RankedChoosable from './RankedChoosable.vue';
-
+import type { ResultListWidget } from "~/sdk";
+import RankedChoosable from "./RankedChoosable.vue";
+import { useSessionStore } from "../../states/session";
 
 interface WidgetProps {
   widget: ResultListWidget;
 }
 
 const props = defineProps<WidgetProps>();
-
+const store = useSessionStore();
 </script>
