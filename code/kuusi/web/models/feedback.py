@@ -22,8 +22,20 @@ from django.http import HttpRequest
 
 from .choosable import Choosable
 from .facette import FacetteAssignment
+from .session import Session
+
 
 class Feedback(models.Model):
     choosable = models.ForeignKey(to=Choosable, null=False, on_delete=models.CASCADE)
-    assignment = models.ForeignKey(to=FacetteAssignment, null=False, on_delete=models.CASCADE)
+    assignment = models.ForeignKey(
+        to=FacetteAssignment, null=False, on_delete=models.CASCADE
+    )
     is_positive = models.BooleanField(default=False)
+
+    session = models.ForeignKey(
+        to=Session,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        related_name="feedback_session",
+    )

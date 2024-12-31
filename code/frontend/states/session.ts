@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteBehaviour, type FacetteSelection, type InitialSession, type MetaWidget, type Page, type Session, type Widget } from "~/sdk"
+import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type MetaWidget, type Page, type Session, type Widget } from "~/sdk"
 
 interface SessionState {
     session: Session | null;
@@ -27,7 +27,8 @@ interface SessionState {
     facetteSelections: FacetteSelection[];
     currentWidgets: MetaWidget[];
     facetteBehaviours: FacetteBehaviour[];
-    choosables: Choosable[]
+    choosables: Choosable[];
+    assignmentFeedback: Feedback[];
 }
 
 
@@ -49,7 +50,8 @@ export const useSessionStore = defineStore('websiteStore', {
         facetteSelections: [],
         currentWidgets: [],
         facetteBehaviours: [],
-        choosables: []
+        choosables: [],
+        assignmentFeedback: []
     }),
     actions: {
         __i(key: string) {
@@ -120,7 +122,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 sessionPk: this.session.resultId
             });
         },
-        async updateSession(sessionVersion: number)  {
+        async updateSession(sessionVersion: number) {
             this.session = await sessionApi.sessionPartialUpdate({
                 id: this.session.id,
                 lang: this.session.languageCode,
@@ -132,7 +134,7 @@ export const useSessionStore = defineStore('websiteStore', {
         async changeLanguage(language: string) {
             this.session = await sessionApi.sessionPartialUpdate({
                 id: this.session.id,
-                lang:language,
+                lang: language,
                 resultId: this.session.resultId,
                 versionId: this.session.version
             })
@@ -161,6 +163,31 @@ export const useSessionStore = defineStore('websiteStore', {
             this.currentWidgets = await sessionApi.sessionPageWidgetList({
                 sessionPk: this.session.resultId,
                 pagePk: this.currentPage.id
+            })
+        },
+        async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
+            this.assignmentFeedback = this.assignmentFeedback.filter(a => a.choosable != choosable.id && a.assignment != assignment.id)
+            
+            const got = await sessionApi.sessionFeedbackCreate({
+                sessionPk: this.session.resultId,
+                createFeedback: {
+                    choosable: choosable.id,
+                    assignment: assignment.id,
+                    isPositive: isPositive
+                }
+            })
+            this.assignmentFeedback.push(got)
+        },
+        async removeFeedback(assignment: FacetteAssignment, choosable: Choosable) {
+            const toRemove = this.assignmentFeedback.filter(a => a.choosable == choosable.id && a.assignment == assignment.id)
+            console.log(toRemove)
+            this.assignmentFeedback = this.assignmentFeedback.filter(a => a.choosable != choosable.id && a.assignment != assignment.id)
+
+            toRemove.forEach(l => {
+                sessionApi.sessionFeedbackDestroy({
+                    sessionPk: this.session.resultId,
+                    id: l.id
+                })
             })
         }
     }

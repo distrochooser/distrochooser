@@ -16,15 +16,19 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <div>
-        {{  metaKey }}: {{metaValue}}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ metaValue }}</h5>
+      <p class="card-text">
+        {{ metaKey }}
+      </p>
     </div>
+  </div>
 </template>
 <script setup lang="ts">
-
 interface WidgetProps {
   metaKey: String;
-  metaValue: String
+  metaValue: String;
 }
 
 const props = defineProps<WidgetProps>();
