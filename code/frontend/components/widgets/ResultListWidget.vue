@@ -18,11 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div>
     RESULT LIST
-
-    <div v-if="store.assignmentFeedback.length > 0" class="alert alert-info">
-      Feedback received...
-    </div>
-
     <div
       v-for="(choosable, index) in props.widget.choosables.sort(
         (a, b) => b.rank - a.rank

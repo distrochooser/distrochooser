@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </ul>
       <div class="card-body">
         <li class="list-group-item" v-for="(key, value, index) in props.choosable.assignments" :key="index">
-          <Assignment :assignment="key" :key="index" :query-choosables="false" :facette="null"/>
+          <Assignment :assignment="key" :key="index" :query-choosables="false" :facette="null" :markWithFeedback="true"/>
         </li>
       </div>
     </div>

@@ -18,7 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="ms-2 me-auto">
-      <div class="fw-bold">{{ assignment.description }}</div>
+      <div class="fw-bold">{{ assignment.description }}
+        <span class="badge text-bg-info" v-if="props.markWithFeedback && store.assignmentFeedback.filter(l => l.assignment == assignment.id).length > 0">Feedback received</span>
+      </div>
       <div v-if="queryChoosables">
         <span
           :key="index"
@@ -79,6 +81,7 @@ import { useSessionStore } from "../../../states/session";
 interface AsssignmentProps {
   assignment: FacetteAssignment;
   queryChoosables: Boolean;
+  markWithFeedback: Boolean;
   facette: Facette;
 }
 
