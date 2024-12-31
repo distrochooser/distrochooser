@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="ms-2 me-auto">
       <div class="fw-bold">{{ assignment.description }}
-        <span class="badge text-bg-info" v-if="props.markWithFeedback && store.assignmentFeedback.filter(l => l.assignment == assignment.id).length > 0">Feedback received</span>
+        <span class="badge text-bg-info" v-if="props.choosable && store.assignmentFeedback.filter(l => l.assignment == assignment.id && props.choosable && props.choosable.id == l.choosable).length > 0">Feedback received</span>
       </div>
       <div v-if="queryChoosables">
         <span
@@ -81,8 +81,8 @@ import { useSessionStore } from "../../../states/session";
 interface AsssignmentProps {
   assignment: FacetteAssignment;
   queryChoosables: Boolean;
-  markWithFeedback: Boolean;
   facette: Facette;
+  choosable?: Choosable;
 }
 
 const assignmentTypeCssMap = {
