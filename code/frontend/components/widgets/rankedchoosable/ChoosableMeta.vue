@@ -20,15 +20,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div class="card-body">
       <h5 class="card-title">{{ metaValue }}</h5>
       <p class="card-text">
-        {{ metaKey }}
+        <MetaFlag v-if="metaValue == 'COUNTRY'" :code="metaKey"/>
+        <MetaAge v-if="metaValue == 'AGE'" :start="metaKey"/>
+        <MetaWebsite v-if="metaValue == 'WEBSITE'" :website="metaKey" :id="props.choosable.id"/>
       </p>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+
+
+import type { Choosable } from "~/sdk";
+import MetaAge from "./meta/MetaAge.vue";
+import MetaFlag from "./meta/MetaFlag.vue";
+import MetaWebsite from "./meta/MetaWebsite.vue";
 interface WidgetProps {
   metaKey: String;
   metaValue: String;
+  choosable: Choosable;
 }
 
 const props = defineProps<WidgetProps>();

@@ -5,5 +5,5 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt'
   ],
-  css: ["bootstrap/dist/css/bootstrap.min.css"]
+  css: ["bootstrap/dist/css/bootstrap.min.css", "flag-icons/css/flag-icons.min.css"]
 })

@@ -214,7 +214,7 @@ def route_outgoing(request: WebHttpRequest, id: int, property: str) -> HttpRespo
             else:
                 choosable.clicked += 1
                 choosable.save()
-                return HttpResponseRedirect(choosable.meta[property].meta_value)
+                return HttpResponse()
     raise Http404()
 
 

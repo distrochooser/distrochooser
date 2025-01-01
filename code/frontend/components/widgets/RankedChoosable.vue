@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               v-for="(key, value, index) in props.choosable.meta"
               :key="index"
             >
-              <ChoosableMeta :metaKey="key" :metaValue="value" />
+              <ChoosableMeta :metaKey="key" :metaValue="value" :choosable="props.choosable"/>
             </div>
           </div>
         </li>
