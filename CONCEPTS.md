@@ -1,5 +1,8 @@
 # Core concepts
 
+## Folder structure
+
+`/code/kuusi`  contains the backend, while `/code/frontend` contains the frontend.
 
 ## Concepts: Application
 
