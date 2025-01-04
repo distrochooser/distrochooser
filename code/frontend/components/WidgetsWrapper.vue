@@ -34,12 +34,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </template>
 
 <script setup lang="ts">
-import { Component } from "vue";
-import type { Widget } from "~/sdk";
 import { useSessionStore } from "~/states/session";
 import FacetteSelectionWidget from "./widgets/FacetteSelectionWidget.vue";
 import NavigationWidget from "./widgets/NavigationWidget.vue";
-import FacetteRadioSelectionWidget from "./widgets/FacetteRadioSelectionWidget.vue";
 import ResultListWidget from "./widgets/ResultListWidget.vue";
 import ResultShareWidget from "./widgets/ResultShareWidget.vue";
 import HTMLWidget from "./widgets/HTMLWidget.vue";
