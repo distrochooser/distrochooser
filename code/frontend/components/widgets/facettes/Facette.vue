@@ -61,9 +61,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </template>
 <script setup lang="ts">
 import { useState } from "nuxt/app";
-import { onMounted, ref } from "vue";
-import { SessionApi, type Facette } from "~/sdk";
-import { apiConfig, useSessionStore } from "../../../states/session";
+import { computed, ref } from "vue";
+import { type Facette } from "~/sdk";
+import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
 
 interface CheckboxFacetteProps {
