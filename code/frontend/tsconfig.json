@@ -1,6 +1,9 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
+  "include": [
+      "./code/frontend/**/*"
+  ],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
@@ -13,7 +16,7 @@
     ],
     "paths": {
       "~/sdk": [
-        "./sdk"
+        "./code/frontend/sdk"
       ]
     }
   }

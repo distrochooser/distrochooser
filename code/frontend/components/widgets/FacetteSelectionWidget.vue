@@ -24,8 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
 </template>
 <script setup lang="ts">
-import { useAsyncData, useState } from "nuxt/app";
-import { onMounted } from "vue";
 import { SessionApi, type FacetteSelectionWidget } from "~/sdk";
 import { apiConfig, useSessionStore } from "~/states/session";
 import Facette from "./facettes/Facette.vue";
