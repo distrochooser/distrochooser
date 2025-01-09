@@ -7,7 +7,7 @@
 ## Concepts: Application
 
 - The application uses Django Rest Framework to provide a RESTful API
-- The Restful API is converted into a TypeScript SDK using a OpenAPI generator call 
+- The Restful API is converted into a TypeScript SDK using a OpenAPI generator call defined in the frontend folder's `package.json`
 - A Nuxt powered frontend consumes the API
 
 
