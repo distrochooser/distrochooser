@@ -15,43 +15,13 @@ The overview process therefore includes:
 
 ## Requirements Overview
 
-<div class="formalpara-title">
+Distrochooser's main goal is to offer interested an easy questionnaire-based approach on giving a recommendation as a orientation help.
 
-**Contents**
-
-</div>
-
-Short description of the functional requirements, driving forces,
-extract (or abstract) of requirements. Link to (hopefully existing)
-requirements documents (with version number and information where to
-find it).
-
-<div class="formalpara-title">
-
-**Motivation**
-
-</div>
-
-From the point of view of the end users a system is created or modified
-to improve support of a business activity and/or improve the quality.
-
-<div class="formalpara-title">
-
-**Form**
-
-</div>
-
-Short textual description, probably in tabular use-case format. If
-requirements documents exist this overview should refer to these
-documents.
-
-Keep these excerpts as short as possible. Balance readability of this
-document with potential redundancy w.r.t to requirements documents.
-
-See [Introduction and Goals](https://docs.arc42.org/section-1/) in the
-arc42 documentation.
 
 ## Quality Goals
+|Nr|Quality|Motivation|
+|--|--|--|
+
 
 <div class="formalpara-title">
 
