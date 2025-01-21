@@ -21,167 +21,36 @@ Distrochooser's main goal is to offer interested an easy questionnaire-based app
 ## Quality Goals
 |Nr|Quality|Motivation|
 |--|--|--|
-
-
-<div class="formalpara-title">
-
-**Contents**
-
-</div>
-
-The top three (max five) quality goals for the architecture whose
-fulfillment is of highest importance to the major stakeholders. We
-really mean quality goals for the architecture. Don’t confuse them with
-project goals. They are not necessarily identical.
-
-Consider this overview of potential topics (based upon the ISO 25010
-standard):
-
-![Categories of Quality
-Requirements](images/01_2_iso-25010-topics-EN.drawio.png)
-
-<div class="formalpara-title">
-
-**Motivation**
-
-</div>
-
-You should know the quality goals of your most important stakeholders,
-since they will influence fundamental architectural decisions. Make sure
-to be very concrete about these qualities, avoid buzzwords. If you as an
-architect do not know how the quality of your work will be judged…
-
-<div class="formalpara-title">
-
-**Form**
-
-</div>
-
-A table with quality goals and concrete scenarios, ordered by priorities
+|1|Maintainability|The architecture aims to follow a simple, straight forward RESTful application.|
+|2|Transferability|The architecture is the foundation of allowing the application to cover other topics besides Linux distributions|
+|3|Operability|The architecture aims to suppor the understanding of the application and it's core concepts|
 
 ## Stakeholders
 
-<div class="formalpara-title">
 
-**Contents**
-
-</div>
-
-Explicit overview of stakeholders of the system, i.e. all person, roles
-or organizations that
-
--   should know the architecture
-
--   have to be convinced of the architecture
-
--   have to work with the architecture or with code
-
--   need the documentation of the architecture for their work
-
--   have to come up with decisions about the system or its development
-
-<div class="formalpara-title">
-
-**Motivation**
-
-</div>
-
-You should know all parties involved in development of the system or
-affected by the system. Otherwise, you may get nasty surprises later in
-the development process. These stakeholders determine the extent and the
-level of detail of your work and its results.
-
-<div class="formalpara-title">
-
-**Form**
-
-</div>
-
-Table with role names, person names, and their expectations with respect
-to the architecture and its documentation.
-
-| Role/Name   | Contact        | Expectations       |
-|-------------|----------------|--------------------|
-| *\<Role-1>* | *\<Contact-1>* | *\<Expectation-1>* |
-| *\<Role-2>* | *\<Contact-2>* | *\<Expectation-2>* |
+| Role/Name   |  Expectations       |
+|-------------|--------------------|
+| Interested users|  Should receive a simple way to get an overview in to be choosed entries, such as Linux distributions|
+| Developers | As the application is aimed to cover different topics, there should be an path to use this application in several contexts|
 
 # Architecture Constraints
 
-<div class="formalpara-title">
+## AC1: Limitation on RESTful API
 
-**Contents**
+The frontend, while developed based on a Nuxt.js application can only consume the SDK generated from the backend. Therefore, no non-restful calls can be implemented on the backend side.
 
-</div>
+## AC2: Deployment
 
-Any requirement that constraints software architects in their freedom of
-design and implementation decisions or decision about the development
-process. These constraints sometimes go beyond individual systems and
-are valid for whole organizations and companies.
+The application is designed to be deployed inside of containerized environments, so no constraints towards a defined operating system should be implemented.
 
-<div class="formalpara-title">
+## AC3: Limitation of Decision making
 
-**Motivation**
-
-</div>
-
-Architects should know exactly where they are free in their design
-decisions and where they must adhere to constraints. Constraints must
-always be dealt with; they may be negotiable, though.
-
-<div class="formalpara-title">
-
-**Form**
-
-</div>
-
-Simple tables of constraints with explanations. If needed you can
-subdivide them into technical constraints, organizational and political
-constraints and conventions (e.g. programming or versioning guidelines,
-documentation or naming conventions)
-
-See [Architecture Constraints](https://docs.arc42.org/section-2/) in the
-arc42 documentation.
+The project uses a defined decision making, therefore there are answer combination existing which are not coverable. These are known and shall not be adressed, as this exceeds the scope of the entire project.
 
 # Context and Scope
 
-<div class="formalpara-title">
+TODO
 
-**Contents**
-
-</div>
-
-Context and scope - as the name suggests - delimits your system (i.e.
-your scope) from all its communication partners (neighboring systems and
-users, i.e. the context of your system). It thereby specifies the
-external interfaces.
-
-If necessary, differentiate the business context (domain specific inputs
-and outputs) from the technical context (channels, protocols, hardware).
-
-<div class="formalpara-title">
-
-**Motivation**
-
-</div>
-
-The domain interfaces and technical interfaces to communication partners
-are among your system’s most critical aspects. Make sure that you
-completely understand them.
-
-<div class="formalpara-title">
-
-**Form**
-
-</div>
-
-Various options:
-
--   Context diagrams
-
--   Lists of communication partners and their interfaces.
-
-See [Context and Scope](https://docs.arc42.org/section-3/) in the arc42
-documentation.
 
 ## Business Context
 
