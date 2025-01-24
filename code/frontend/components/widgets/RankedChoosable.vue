@@ -57,7 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
 </template>
 <script setup lang="ts">
-import type { RankedChoosable } from "~/sdk";
+import type { RankedChoosable } from "../../sdk";
 import ChoosableMeta from "./rankedchoosable/ChoosableMeta.vue";
 import Assignment from "./facettes/Assignment.vue";
 interface WidgetProps {

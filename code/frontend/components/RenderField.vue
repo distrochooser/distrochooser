@@ -30,8 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
 </template>
 <script setup lang="ts">
-import type { Widget } from "~/sdk";
-import { useSessionStore } from "~/states/session";
+import { useSessionStore } from "../states/session";
 
 const store = useSessionStore();
 </script>

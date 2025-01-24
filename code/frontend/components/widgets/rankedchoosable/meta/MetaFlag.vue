@@ -6,7 +6,7 @@
 <script lang="ts" setup>
 
 interface FlagProps {
-  code: String;
+  code: string;
 }
 
 const props = defineProps<FlagProps>();

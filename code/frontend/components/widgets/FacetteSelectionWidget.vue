@@ -24,8 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
 </template>
 <script setup lang="ts">
-import { SessionApi, type FacetteSelectionWidget } from "~/sdk";
-import { apiConfig, useSessionStore } from "~/states/session";
+import { type FacetteSelectionWidget } from "../../sdk";
 import Facette from "./facettes/Facette.vue";
 import Behaviour from "./facettes/Behaviour.vue";
 

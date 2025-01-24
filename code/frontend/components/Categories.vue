@@ -21,7 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    </ul>
 </template>
   <script lang="ts" setup>
-import { useSessionStore } from "~/states/session";
+import { computed } from "vue";
+import { useSessionStore } from "../states/session";
 
 let sessionStore = useSessionStore();
 

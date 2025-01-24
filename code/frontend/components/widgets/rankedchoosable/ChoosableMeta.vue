@@ -30,13 +30,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <script setup lang="ts">
 
 
-import type { Choosable } from "~/sdk";
+import type { Choosable } from "../../../sdk";
 import MetaAge from "./meta/MetaAge.vue";
 import MetaFlag from "./meta/MetaFlag.vue";
 import MetaWebsite from "./meta/MetaWebsite.vue";
 interface WidgetProps {
-  metaKey: String;
-  metaValue: String;
+  metaKey: string;
+  metaValue: any;
   choosable: Choosable;
 }
 

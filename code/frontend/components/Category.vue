@@ -27,8 +27,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </li>
 </template>
     <script lang="ts" setup>
-import { Category } from "~/sdk/models";
-import { useSessionStore } from "~/states/session";
+import { computed } from "vue";
+import type { Category } from "../sdk/models";
+import { useSessionStore } from "../states/session";
 
 interface CategoryProps {
   category: Category;

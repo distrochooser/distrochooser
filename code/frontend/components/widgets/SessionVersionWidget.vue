@@ -27,7 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </div>
 </template>
 <script setup lang="ts">
-import type { SessionVersionWidget } from '~/sdk';
+import {ref,watch} from "vue";
+import type { SessionVersionWidget } from '../../sdk';
 import { useSessionStore } from '../../states/session';
 
 // FIXME: The widget looses the availableWidgets for some reasons

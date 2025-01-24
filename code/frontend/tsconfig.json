@@ -2,12 +2,12 @@
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
   "include": [
-      "./code/frontend/**/*"
+      "./**/*"
   ],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "strict": false,
     "allowJs": true,
     "resolveJsonModule": true,
@@ -17,6 +17,9 @@
     "paths": {
       "~/sdk": [
         "./code/frontend/sdk"
+      ],
+      "~/states": [
+        "./states"
       ]
     }
   }
