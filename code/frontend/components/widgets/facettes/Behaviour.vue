@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div>{{ behaviours }}</div>
 </template>
 <script setup lang="ts">
-import type { Facette } from "~/sdk";
+import type { Facette } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 
 interface BehaviourProps {

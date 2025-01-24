@@ -62,7 +62,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <script setup lang="ts">
 import { useState } from "nuxt/app";
 import { computed, ref } from "vue";
-import { type Facette } from "~/sdk";
+import { type Facette } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
 

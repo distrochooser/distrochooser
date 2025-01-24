@@ -75,7 +75,7 @@ import {
   type Choosable,
   type Facette,
   type FacetteAssignment,
-} from "~/sdk";
+} from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 
 interface AsssignmentProps {
