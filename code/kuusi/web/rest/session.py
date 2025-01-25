@@ -22,7 +22,7 @@ from rest_framework import serializers
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES, DEFAULT_SESSION_META, FRONTEND_URL, RTL_LANGUAGES
+from kuusi.settings import LANGUAGE_CODES, DEFAULT_SESSION_META, FRONTEND_URL, RTL_LANGUAGES, KUUSI_NAME, KUUSI_LOGO, KUUSI_META_TAGS
 from web.models import TRANSLATIONS, Feedback
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
@@ -37,9 +37,12 @@ class SessionSerializer(serializers.ModelSerializer):
     language_values = serializers.SerializerMethodField()
     is_language_rtl = serializers.SerializerMethodField()
     base_url = serializers.CharField(default=FRONTEND_URL)
+    name = serializers.SerializerMethodField()
+    logo = serializers.SerializerMethodField()
+    meta = serializers.SerializerMethodField()
     class Meta:
         model = Session
-        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'is_language_rtl',)
+        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'is_language_rtl', 'name', 'logo', 'meta')
 
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
@@ -53,6 +56,14 @@ class SessionSerializer(serializers.ModelSerializer):
     def get_is_language_rtl(self, obj: Session) -> bool:
         return obj.language_code in RTL_LANGUAGES
     
+    def get_logo(self, obj: Session) -> str:
+        return KUUSI_LOGO
+    
+    def get_name(self, obj: Session) -> str:
+        return KUUSI_NAME
+    
+    def get_meta(self, obj: Session) -> Dict[str, any]:
+        return KUUSI_META_TAGS
 
 
 class SessionVersionSerializer(serializers.ModelSerializer):

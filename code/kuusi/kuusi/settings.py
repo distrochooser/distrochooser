@@ -337,3 +337,5 @@ DEFAULT_SESSION_META = {
 # Add a beta background to the page
 
 BETA = True
+
+KUUSI_LOGO = "https://distrochooser.de/logo.min.svg"

@@ -17,12 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
+    <Head>
+      <PageMeta />
+    </Head>
     <NuxtRouteAnnouncer />
     <main role="main" class="container">
       <div class="text-center">
         <div class="row">
           <div class="col col-2">
-            <img class="mt-2" src="https://distrochooser.de/logo.min.svg" />
+            <Logo />
           </div>
           <div class="col">
             <Categories />
@@ -40,9 +43,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </template>
 <script lang="ts" setup>
 import { navigateTo } from "nuxt/app";
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { useSessionStore } from "~/states/session";
+import { useSessionStore } from "../../states/session";
+import PageMeta from "../../components/PageMeta.vue";
 
 const router = useRoute();
 const lang: string = router.params.lang as string;
