@@ -92,89 +92,21 @@ the communication partner, the inputs, and the outputs.
 **\<optionally: Explanation of external domain interfaces>**
 
 ## Technical Context
-
-<div class="formalpara-title">
-
-**Contents**
-
-</div>
-
-Technical interfaces (channels and transmission media) linking your
-system to its environment. In addition a mapping of domain specific
-input/output to the channels, i.e. an explanation which I/O uses which
-channel.
-
-<div class="formalpara-title">
-
-**Motivation**
-
-</div>
-
-Many stakeholders make architectural decision based on the technical
-interfaces between the system and its context. Especially infrastructure
-or hardware designers decide these technical interfaces.
-
-<div class="formalpara-title">
-
-**Form**
-
-</div>
-
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels
-and input/output.
-
-**\<Diagram or Table>**
-
-**\<optionally: Explanation of technical interfaces>**
-
-**\<Mapping Input/Output to Channels>**
-
+ 
+![technical context](technical_context.png)
 # Solution Strategy
 
-<div class="formalpara-title">
+The project utilizes a "classical" two tier approach, splitting the application into a backend and a frontend component.
 
-**Contents**
+## Backend
 
-</div>
+The backend is a Django based application, publishing a RESTful API. The application's API is designed to be used within OpenAPI specified parameters, offering a JSON file describing the endpoints.
 
-A short summary and explanation of the fundamental decisions and
-solution strategies, that shape system architecture. It includes
+## Frontend
 
--   technology decisions
+The frontend is a Nuxt.js (Vue 3) based application, accessing the API. The API is consumed using a generated SDK. The SDK is generated on build time of the frontend.
 
--   decisions about the top-level decomposition of the system, e.g.
-    usage of an architectural pattern or design pattern
-
--   decisions on how to achieve key quality goals
-
--   relevant organizational decisions, e.g. selecting a development
-    process or delegating certain tasks to third parties.
-
-<div class="formalpara-title">
-
-**Motivation**
-
-</div>
-
-These decisions form the cornerstones for your architecture. They are
-the foundation for many other detailed decisions or implementation
-rules.
-
-<div class="formalpara-title">
-
-**Form**
-
-</div>
-
-Keep the explanations of such key decisions short.
-
-Motivate what was decided and why it was decided that way, based upon
-problem statement, quality goals and key constraints. Refer to details
-in the following sections.
-
-See [Solution Strategy](https://docs.arc42.org/section-4/) in the arc42
-documentation.
+The application utilizes Pinia as a central state management, as much data is possible is managed in the central state, called `SessionState`.
 
 # Building Block View
 
