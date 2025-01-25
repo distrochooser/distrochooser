@@ -6,8 +6,7 @@
 
 
 <script lang="ts" setup>
-import { apiConfig } from '../../../../states/session';
-
+const basePath = useRuntimeConfig().public.basePath
 
 interface FlagProps {
   website: string;
@@ -17,7 +16,7 @@ interface FlagProps {
 const props = defineProps<FlagProps>();
 const handleClick = async (e: MouseEvent) => {
   e.preventDefault();
-  const target = apiConfig.basePath +  "/out/" + props.id.toString() + "/WEBSITE/"
+  const target = basePath +  "/out/" + props.id.toString() + "/WEBSITE/"
   console.log(target)
   await fetch(target)
   window.open(props.website, "_blank")
