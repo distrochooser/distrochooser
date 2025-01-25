@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import { defineStore } from "pinia";
 import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type MetaWidget, type Page, type Session, type Widget } from "~/sdk"
-
+import { useRuntimeConfig } from "nuxt/app";
 interface SessionState {
     session: Session | null;
     categories: Category[];
@@ -30,16 +30,7 @@ interface SessionState {
     choosables: Choosable[];
     assignmentFeedback: Feedback[];
 }
-
-
-// TODO: Move this out of this sourcecode
-export const apiConfig = new Configuration({
-    basePath: "http://localhost:8000",
-    headers: {
-        "accept": "application/json"
-    }
-});
-const sessionApi = new SessionApi(apiConfig)
+let sessionApi = null;
 
 export const useSessionStore = defineStore('websiteStore', {
     state: (): SessionState => ({
@@ -53,6 +44,20 @@ export const useSessionStore = defineStore('websiteStore', {
         choosables: [],
         assignmentFeedback: []
     }),
+    getters: {
+        sessionApi(): SessionApi {
+            if (sessionApi == null){
+                const apiConfig = new Configuration({
+                    basePath:  useRuntimeConfig().public.basePath,
+                    headers: {
+                        "accept": "application/json"
+                    }
+                });
+                sessionApi = new SessionApi(apiConfig)
+            }
+            return sessionApi;
+        }
+    },
     actions: {
         __i(key: string) {
             return this.session.languageValues[key];
@@ -60,7 +65,7 @@ export const useSessionStore = defineStore('websiteStore', {
         async updateFacetteSelections(currentPageId: number, id: number, weight: number, add: boolean, reset: string) {
 
             if (add) {
-                await sessionApi.sessionFacetteselectionCreate({
+                await this.sessionApi.sessionFacetteselectionCreate({
                     sessionPk: this.session.resultId,
                     facetteSelection: {
                         weight: weight,
@@ -71,26 +76,26 @@ export const useSessionStore = defineStore('websiteStore', {
             } else {
                 await this.deleteFacetteSelection(id, currentPageId);
             }
-            this.facetteSelections = await sessionApi.sessionFacetteselectionList({
+            this.facetteSelections = await this.sessionApi.sessionFacetteselectionList({
                 sessionPk: this.session.resultId
             })
         },
         async deleteFacetteSelection(facetteId: number, currentPageId: number) {
             const selection = this.facetteSelections.filter(f => f.facette == facetteId)[0]
-            await sessionApi.sessionFacetteselectionDestroy({
+            await this.sessionApi.sessionFacetteselectionDestroy({
                 id: selection.id,
                 sessionPk: this.session.resultId
             });
         },
         async createSession(lang: string, resultId?: string) {
-            this.session = await sessionApi.sessionCreate(
+            this.session = await this.sessionApi.sessionCreate(
                 {
                     resultId: resultId,
                     lang: lang
                 }
             )
             if (this.session.resultId) {
-                this.choosables = await sessionApi.sessionChoosableList({
+                this.choosables = await this.sessionApi.sessionChoosableList({
                     sessionPk: this.session.resultId
                 })
                 await this.updateCategoriesAndPages();
@@ -99,17 +104,17 @@ export const useSessionStore = defineStore('websiteStore', {
             }
             // if there was a resultId given -> update selections from it
             if (resultId) {
-                this.facetteSelections = await sessionApi.sessionFacetteselectionList({
+                this.facetteSelections = await this.sessionApi.sessionFacetteselectionList({
                     sessionPk: this.session.resultId
                 })
             }
         },
         async updateCategoriesAndPages() {
-            this.categories = await sessionApi.sessionCategoryList({
+            this.categories = await this.sessionApi.sessionCategoryList({
                 sessionPk: this.session.resultId,
                 currentPage: this.currentPage?.catalogueId ?? undefined
             });
-            this.pages = await sessionApi.sessionPageList({
+            this.pages = await this.sessionApi.sessionPageList({
                 sessionPk: this.session.resultId
             })
             if (this.currentPage) {
@@ -118,12 +123,12 @@ export const useSessionStore = defineStore('websiteStore', {
             }
         },
         async updateBehaviours() {
-            this.facetteBehaviours = await sessionApi.sessionFacettebehaviourList({
+            this.facetteBehaviours = await this.sessionApi.sessionFacettebehaviourList({
                 sessionPk: this.session.resultId
             });
         },
         async updateSession(sessionVersion: number) {
-            this.session = await sessionApi.sessionPartialUpdate({
+            this.session = await this.sessionApi.sessionPartialUpdate({
                 id: this.session.id,
                 lang: this.session.languageCode,
                 resultId: this.session.resultId,
@@ -132,7 +137,7 @@ export const useSessionStore = defineStore('websiteStore', {
             await this.updateCategoriesAndPages()
         },
         async changeLanguage(language: string) {
-            this.session = await sessionApi.sessionPartialUpdate({
+            this.session = await this.sessionApi.sessionPartialUpdate({
                 id: this.session.id,
                 lang: language,
                 resultId: this.session.resultId,
@@ -144,7 +149,7 @@ export const useSessionStore = defineStore('websiteStore', {
             if (this.session?.id &&
                 this.session.languageCode &&
                 this.session.resultId) {
-                await sessionApi.sessionPartialUpdate({
+                await this.sessionApi.sessionPartialUpdate({
                     id: this.session.id,
                     lang: this.session.languageCode,
                     resultId: this.session.resultId,
@@ -160,7 +165,7 @@ export const useSessionStore = defineStore('websiteStore', {
             else if (matches.length == 0 && this.pages.length > 0) {
                 this.currentPage = this.pages[0]
             }
-            this.currentWidgets = await sessionApi.sessionPageWidgetList({
+            this.currentWidgets = await this.sessionApi.sessionPageWidgetList({
                 sessionPk: this.session.resultId,
                 pagePk: this.currentPage.id
             })
@@ -168,7 +173,7 @@ export const useSessionStore = defineStore('websiteStore', {
         async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
             this.assignmentFeedback = this.assignmentFeedback.filter(a => a.choosable != choosable.id && a.assignment != assignment.id)
             
-            const got = await sessionApi.sessionFeedbackCreate({
+            const got = await this.sessionApi.sessionFeedbackCreate({
                 sessionPk: this.session.resultId,
                 createFeedback: {
                     choosable: choosable.id,
