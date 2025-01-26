@@ -34,7 +34,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </button>
             <ul class="dropdown-menu">
               <li v-for="(category, index) in categories" v-bind:key="index">
-                <a class="dropdown-item" :class="{'dropdown-item': true, 'fw-bold': category.catalogueId ==currentCategory.catalogueId}" href="#" v-on:click="sessionStore.selectPage(category.targetPage)">{{ index +1 }}. {{category.name}}</a>
+                <a class="dropdown-item" :class="{'dropdown-item': true, 'fw-bold': category.catalogueId ==currentCategory.catalogueId}" href="#" v-on:click="sessionStore.selectPage(category.targetPage)">
+                  
+                  <Category :index="index" :category="category"/>
+                </a>
               </li>
             </ul>
           </div>
