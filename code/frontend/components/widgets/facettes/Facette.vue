@@ -80,6 +80,7 @@ const isSelected = computed(
       .length != 0
 );
 const registerChange = async () => {
+  // FIXME: For Radio facettes: They can never be unchecked
   await store.updateFacetteSelections(
     store.currentPage.id,
     props.facette.id,
