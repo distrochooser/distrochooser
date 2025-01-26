@@ -16,17 +16,19 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div>
-    <div v-if="store.currentPage">
-      {{ store.currentPage.text }}
-      {{ store.currentPage.help }}
-      <div v-for="row in 12" :key="row" class="row">
-        <WidgetsWrapper :row="row" />
-      </div>
+  <div v-if="store.currentPage">
+    
+    
+    <h3 v-if="store.currentPage.text">
+      {{ store.currentPage.text }} <br/>
+      <small v-if="store.currentPage.help" class="text-body-secondary mt-3 d-block fs-5 fw-light">{{ store.currentPage.help }}</small>
+    </h3>
+    <div>
+      <WidgetsWrapper v-for="row in 12" :key="row" class="row" :row="row" />
     </div>
-    <div v-else>
-      <Loading />
-    </div>
+  </div>
+  <div v-else>
+    <Loading />
   </div>
 </template>
 <script setup lang="ts">

@@ -39,6 +39,7 @@ from typing import List, Tuple
 
 class PageSerializer(serializers.ModelSerializer):
     text = serializers.SerializerMethodField()
+    help = serializers.SerializerMethodField()
 
     class Meta:
         model = Page
@@ -47,6 +48,10 @@ class PageSerializer(serializers.ModelSerializer):
     def get_text(self, obj: Page) -> str:
         session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
         return obj.__("text", session.language_code)
+    
+    def get_help(self, obj: Page) -> str:
+        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
+        return obj.__("help", session.language_code)
     
     
     

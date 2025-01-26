@@ -17,45 +17,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
-    <div v-if="props.checkbox">
-      {{ selected }} {{ props.facette.id
-      }}<input
-        type="checkbox"
-        v-model="selected"
-        v-on:change="registerChange"
-        :checked="isSelected"
-      />
-      {{ props.facette.selectableDescription }}
+    <div class="form-check" v-if="props.checkbox">
+      <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
+        type="checkbox" :id="facette.id.toString()">
+      <label class="form-check-label" :for="facette.id.toString()">
+        {{ props.facette.selectableDescription }}
+      </label> <span class="badge text-bg-secondary"  v-on:click="toggleExpand">Why</span>
     </div>
-    <div v-else>
-      <pre>{{ selected }}</pre>
-      {{ props.facette.id
-      }}<input
-        type="radio"
-        v-bind:name="props.facette.topic"
-        v-model="selected"
-        v-on:change="registerChange"
-        v-bind:value="true"
-        :checked="isSelected"
-      />
-      {{ props.facette.selectableDescription }} {{ isSelected }}
+    <div class="form-check" v-else>
+      <input class="form-check-input" type="radio" name="flexRadioDefault" :id="facette.id.toString()"checked>
+      <label class="form-check-label" :for="facette.id.toString()">
+        {{ props.facette.selectableDescription }} 
+      </label><span class="badge text-bg-secondary"  v-on:click="toggleExpand">Why</span>
     </div>
-    <a href="#" v-on:click="toggleExpand">Why</a>
+   
     <div v-if="isExpanded.valueOf()">
       <ul class="list-group">
-        <Assignment :assignment="key"  v-for="(key, index) in props.facette.assignments" :key="index" :query-choosables="true" :facette="props.facette"/>
+        <Assignment :assignment="key" v-for="(key, index) in props.facette.assignments" :key="index"
+          :query-choosables="true" :facette="props.facette" />
       </ul>
     </div>
     <div>
-      <input
-        v-if="isSelected"
-        type="range"
-        v-model="weight"
-        min="-2"
-        max="2"
-        step="1"
-        v-on:change="registerWeightChange"
-      />
+      <input v-if="isSelected" type="range" v-model="weight" min="-2" max="2" step="1"
+        v-on:change="registerWeightChange" />
     </div>
   </div>
 </template>

@@ -17,9 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
-    <Behaviour v-for="(facette, index) in props.widget.facettes" v-bind:key="index"  :facette="facette"/>
+    <Behaviour v-for="(facette, index) in props.widget.facettes" v-bind:key="index" :facette="facette" />
     <div v-for="(facette, index) in props.widget.facettes" v-bind:key="index">
-      <Facette :facette="facette" :checkbox="props.checkbox"/>
+      <Facette :facette="facette" :checkbox="props.checkbox" />
     </div>
   </div>
 </template>
