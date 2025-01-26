@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <div>
-        <div v-if="store.session">
+        <div v-if="store.session" class="mt-2">
             <select v-model="selectedLanguage">
                 <option
                 v-for="(key, value, index) in Object.entries(store.session.languageCodes)" :key="index" :value="key[1]"> {{ key[0] }}</option>
