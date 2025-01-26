@@ -22,15 +22,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         type="checkbox" :id="facette.id.toString()">
       <label class="form-check-label" :for="facette.id.toString()">
         {{ props.facette.selectableDescription }}
-      </label> <span class="badge text-bg-secondary"  v-on:click="toggleExpand">Why</span>
+      </label> <span class="badge text-bg-secondary" v-on:click="toggleExpand">Why</span>
     </div>
     <div class="form-check" v-else>
-      <input class="form-check-input" type="radio" name="flexRadioDefault" :id="facette.id.toString()"checked>
+      <input class="form-check-input" type="radio" v-bind:name="props.facette.topic" v-model="selected"
+        v-on:change="registerChange" v-bind:value="true" :checked="isSelected"
+        :id="facette.id.toString()">
       <label class="form-check-label" :for="facette.id.toString()">
-        {{ props.facette.selectableDescription }} 
-      </label><span class="badge text-bg-secondary"  v-on:click="toggleExpand">Why</span>
+        {{ props.facette.selectableDescription }}
+      </label><span class="badge text-bg-secondary" v-on:click="toggleExpand">Why</span>
     </div>
-   
+
     <div v-if="isExpanded.valueOf()">
       <ul class="list-group">
         <Assignment :assignment="key" v-for="(key, index) in props.facette.assignments" :key="index"
@@ -53,6 +55,7 @@ import Assignment from "./Assignment.vue";
 interface CheckboxFacetteProps {
   facette: Facette;
   checkbox: boolean;
+  topic: string;
 }
 
 const props = defineProps<CheckboxFacetteProps>();
@@ -76,7 +79,6 @@ const isSelected = computed(
     store.facetteSelections.filter((l) => l.facette == props.facette.id)
       .length != 0
 );
-
 const registerChange = async () => {
   await store.updateFacetteSelections(
     store.currentPage.id,

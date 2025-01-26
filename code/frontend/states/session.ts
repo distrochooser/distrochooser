@@ -82,10 +82,13 @@ export const useSessionStore = defineStore('websiteStore', {
         },
         async deleteFacetteSelection(facetteId: number, currentPageId: number) {
             const selection = this.facetteSelections.filter(f => f.facette == facetteId)[0]
-            await this.sessionApi.sessionFacetteselectionDestroy({
-                id: selection.id,
-                sessionPk: this.session.resultId
-            });
+            // If there is no matching facette: Ignore
+            if (selection) {
+                await this.sessionApi.sessionFacetteselectionDestroy({
+                    id: selection.id,
+                    sessionPk: this.session.resultId
+                });
+            }
         },
         async createSession(lang: string, resultId?: string) {
             this.session = await this.sessionApi.sessionCreate(
