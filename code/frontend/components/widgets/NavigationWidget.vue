@@ -16,26 +16,22 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div class="col">
-    <div class="col">
-      <a v-if="canGoBack" href="#" v-on:click="goBack">{{
+  <div class="  text-center mt-3 border-top pt-3">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <a v-if="canGoBack" class="btn btn-outline-secondary" href="#" v-on:click="goBack">{{
         store.__i("BTN_PREV_PAGE")
-      }}</a>
-    </div>
-    <div class="col">
-      <a v-if="canGoNext" href="#" v-on:click="goNext">
+        }}</a>
+       <a v-if="canGoNext" href="#" class="btn btn-outline-secondary" v-on:click="goNext">
         {{ store.__i("BTN_SKIP_PAGE") }}
       </a>
-    </div>
-    <div class="col">
-      <a v-if="canGoNext" href="#" v-on:click="goNext">
+      <a v-if="canGoNext" href="#" class="btn btn-outline-primary" v-on:click="goNext">
         {{ store.__i("BTN_NEXT_PAGE") }}
       </a>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import {computed} from "vue";
+import { computed } from "vue";
 import type { NavigationWidget } from "../../sdk";
 import { useSessionStore } from "../../states/session";
 

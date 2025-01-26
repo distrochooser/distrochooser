@@ -16,9 +16,14 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div>{{ behaviours }}</div>
+  <div v-if="behaviours.length > 0">
+    <div class="alert alert-info">
+      {{  behaviours }}
+    </div>
+  </div>
 </template>
 <script setup lang="ts">
+import { computed } from "vue";
 import type { Facette } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 

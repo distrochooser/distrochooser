@@ -24,12 +24,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             {{
               categories[currentCategoryIndex -1].name
             }}
+            <Category :index="currentCategoryIndex -1" :category=" categories[currentCategoryIndex -1]"/>
           </button>
 
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-primary dropdown-toggle fs-5" data-bs-toggle="dropdown"
               aria-expanded="false">
-              {{ currentCategoryIndex +1 }}. {{ currentCategory.name }}
+              <Category :index="currentCategoryIndex" :category="currentCategory"/>
             </button>
             <ul class="dropdown-menu">
               <li v-for="(category, index) in categories" v-bind:key="index">
@@ -39,10 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </div>
 
           <button type="button" class="btn btn btn-outline-secondary" v-if="currentCategoryIndex < categories.length - 1"  v-on:click="sessionStore.selectPage(categories[currentCategoryIndex +1].targetPage)">
-            {{ currentCategoryIndex +2 }}. 
-            {{
-              categories[currentCategoryIndex + 1].name
-            }}
+            <Category :index="currentCategoryIndex +1" :category="categories[currentCategoryIndex + 1]"/>     
           </button>
         </div>
       </div>
