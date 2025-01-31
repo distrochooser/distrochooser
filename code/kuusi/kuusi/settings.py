@@ -338,4 +338,6 @@ DEFAULT_SESSION_META = {
 
 BETA = True
 
-KUUSI_LOGO = "https://distrochooser.de/logo.min.svg"
+KUUSI_LOGO = "http://localhost:8000/static/logo.svg"
+
+KUUSI_ICON = "http://localhost:8000/static/icon.svg"
