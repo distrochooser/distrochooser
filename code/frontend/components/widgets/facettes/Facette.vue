@@ -73,7 +73,7 @@ const selected = useState(
     store.facetteSelections.filter((l) => l.facette == props.facette.id)
       .length != 0
 );
-
+// FIXME: Read initial value from state
 const weight = ref(0);
 const isExpanded = useState(
   props.facette.id.toString() + "_expanded",
