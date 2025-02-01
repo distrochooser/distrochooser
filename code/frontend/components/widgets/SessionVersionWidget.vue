@@ -16,18 +16,22 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <div>
-        {{  selection  }}
-        <select v-model="selection" >
-          <option :value="null">bla</option>
-          <option :value="version.id" v-for="version, index in props.widget.versions" :key="index">
-            {{  version.text }}
-          </option>
-        </select>
-    </div>
+  <div>
+    <form>
+        <div class="mb-3">
+          <label for="edition" class="form-label">Questionaire edition</label>
+          <select v-model="selection" class="form-select" id="edition">
+            <option :value="null">Full</option>
+            <option :value="version.id" v-for="version, index in props.widget.versions" :key="index">
+              {{ version.text }}
+            </option>
+          </select>
+        </div>
+    </form>
+  </div>
 </template>
 <script setup lang="ts">
-import {ref,watch} from "vue";
+import { ref, watch } from "vue";
 import type { SessionVersionWidget } from '../../sdk';
 import { useSessionStore } from '../../states/session';
 
@@ -43,6 +47,6 @@ watch(selection, value => {
   if (store.session) {
     store.updateSession(selection.value)
   }
-}, {deep: true, immediate: true})
+}, { deep: true, immediate: true })
 
 </script>
