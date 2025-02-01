@@ -60,6 +60,9 @@ export const useSessionStore = defineStore('websiteStore', {
     },
     actions: {
         __i(key: string) {
+            if (typeof this.session.languageValues[key] == "undefined") {
+                return key
+            }
             return this.session.languageValues[key];
         },
         async updateFacetteSelections(currentPageId: number, id: number, weight: number, add: boolean, reset: string) {
