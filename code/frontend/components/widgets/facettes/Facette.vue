@@ -22,7 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         type="checkbox" :id="facette.id.toString()">
       <label class="form-check-label" :for="facette.id.toString()">
         {{ props.facette.selectableDescription }}
-      </label> <span class="badge text-bg-secondary" v-on:click="toggleExpand">Why</span>
+      </label>
+      <BehaviourButton :title="store.__i('why')" :click-handler="toggleExpand"/>
     </div>
     <div class="form-check" v-else>
       <input v-on:click="registerClick" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
@@ -30,7 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         :id="facette.id.toString()">
       <label v-on:click="registerClick"  class="form-check-label" :for="facette.id.toString()">
         {{ props.facette.selectableDescription }}
-      </label><span class="badge text-bg-secondary" v-on:click="toggleExpand">Why</span>
+      </label>
+      
+      <BehaviourButton :title="store.__i('why')" :click-handler="toggleExpand"/>
     </div>
 
     <div v-if="isExpanded.valueOf()">
@@ -51,6 +54,7 @@ import { computed, ref } from "vue";
 import { type Facette } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
+import BehaviourButton from "./BehaviourButton.vue";
 
 interface CheckboxFacetteProps {
   facette: Facette;
