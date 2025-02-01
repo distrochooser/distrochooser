@@ -18,14 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from django.shortcuts import get_object_or_404
-from web.models import Page, Session, Widget, HTMLWidget, FacetteRadioSelectionWidget, FacetteSelectionWidget, NavigationWidget, ResultListWidget, ResultShareWidget, Facette, SessionVersionWidget, SessionVersion
+from web.models import Page, PageMarking, Session, Widget, HTMLWidget, FacetteRadioSelectionWidget, FacetteSelectionWidget, NavigationWidget, ResultListWidget, ResultShareWidget, Facette, SessionVersionWidget, SessionVersion
 from web.rest.facette import FacetteSerializer
 from web.rest.session import SessionVersionSerializer
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 from rest_framework import status
 from rest_framework.viewsets import  GenericViewSet
-from rest_framework.mixins import ListModelMixin
+from rest_framework.mixins import ListModelMixin, DestroyModelMixin
 from rest_framework.response import Response
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
@@ -36,6 +36,82 @@ from typing import List, Tuple
 
 
 
+
+
+class PageMarkingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PageMarking
+        fields = ("id","page")
+
+
+class PageMarkingViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
+    queryset = PageMarking.objects.all()
+    serializer_class = PageMarkingSerializer
+    @extend_schema(
+        responses={
+            status.HTTP_200_OK: OpenApiResponse(response=PageMarkingSerializer, description="The list of page markings for the desired page"),
+        },
+        parameters=[ 
+          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+          OpenApiParameter("page_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+        ],
+    )
+    def list(self, request,  *args, **kwargs):    
+        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
+        results = PageMarking.objects.filter(session=session).filter(page__pk=kwargs["page_pk"])
+        serializer = PageMarkingSerializer(
+            results,
+            many=True
+        )
+        serializer.context["session_pk"] = kwargs["session_pk"]
+        return Response(serializer.data)
+    
+
+    @extend_schema(
+        request=None,
+        parameters=[
+          OpenApiParameter("id", OpenApiTypes.INT, OpenApiParameter.PATH,description="The marking ID to delete", required=True),
+          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+          OpenApiParameter("page_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+        ]
+    ) 
+    def destroy(self, request, session_pk, pk,*args, **kwargs):
+        session: Session = Session.objects.filter(result_id=session_pk).first()
+        PageMarking.objects.filter(page__pk=kwargs["page_pk"]).filter(pk=pk).filter(session=session).delete()
+        return Response()
+
+    @extend_schema(
+        request=None,
+        responses={
+            status.HTTP_200_OK: OpenApiResponse(response=PageMarkingSerializer, description="The to be created page marking"),
+            status.HTTP_404_NOT_FOUND: OpenApiResponse(response=None, description="Either session or page are not found")
+        },
+        parameters=[ 
+          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+          OpenApiParameter("page_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+        ],
+    )
+    def create(self, request, session_pk,  *args, **kwargs) -> PageMarking:
+        session: Session = Session.objects.filter(result_id=session_pk).first()
+        page: Page = Page.objects.filter(pk=kwargs["page_pk"]).first()
+
+        if session is None or page is None:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        # Delete duplicate page marking
+        PageMarking.objects.filter(session=session).filter(page=page).delete()
+        
+
+        marking = PageMarking(
+            page=page,
+            session=session,
+        )
+        marking.save()
+        serializer = PageMarkingSerializer(
+            marking,
+        )
+        serializer.context["session_pk"] = session_pk
+        return Response(serializer.data)
 
 class PageSerializer(serializers.ModelSerializer):
     text = serializers.SerializerMethodField()

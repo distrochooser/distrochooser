@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type MetaWidget, type Page, type Session, type Widget } from "~/sdk"
+import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
 import { useRuntimeConfig } from "nuxt/app";
 interface SessionState {
     session: Session | null;
@@ -29,8 +29,9 @@ interface SessionState {
     facetteBehaviours: FacetteBehaviour[];
     choosables: Choosable[];
     assignmentFeedback: Feedback[];
+    pageMarkings: PageMarking[];
 }
-let sessionApi = null;
+let sessionApi: SessionApi = null;
 
 export const useSessionStore = defineStore('websiteStore', {
     state: (): SessionState => ({
@@ -42,7 +43,8 @@ export const useSessionStore = defineStore('websiteStore', {
         currentWidgets: [],
         facetteBehaviours: [],
         choosables: [],
-        assignmentFeedback: []
+        assignmentFeedback: [],
+        pageMarkings: [] /* TODO: Implement and decide if these should persist */
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -200,6 +202,27 @@ export const useSessionStore = defineStore('websiteStore', {
                     id: l.id
                 })
             })
+        },
+        async toggleMarking() {
+            const isMarked = await sessionApi.sessionPageMarkingList({
+                sessionPk: this.session.resultId,
+                pagePk: this.currentPage.id.toString() /* TODO: this is disgusting. Please fix */
+            })
+            console.log(isMarked)
+            if (isMarked.length == 0) {
+                const got = await sessionApi.sessionPageMarkingCreate({
+                    sessionPk: this.session.resultId,
+                    pagePk: this.currentPage.id.toString()
+                })
+                this.pageMarkings.push(got)
+            } else {
+                await sessionApi.sessionPageMarkingDestroy({
+                    id: isMarked[0].id,
+                    sessionPk: this.session.resultId,
+                    pagePk: this.currentPage.id.toString()
+                })
+                this.pageMarkings = this.pageMarkings.filter(l => l.id != isMarked[0].id)
+            }
         }
     }
 })
