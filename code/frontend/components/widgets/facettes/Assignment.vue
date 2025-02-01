@@ -19,59 +19,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="ms-2 me-auto">
       <div class="fw-bold">{{ assignment.description }}
-        <span class="badge text-bg-info" v-if="props.choosable && store.assignmentFeedback.filter(l => l.assignment == assignment.id && props.choosable && props.choosable.id == l.choosable).length > 0">Feedback received</span>
+        <span class="badge text-bg-info"
+          v-if="props.choosable && store.assignmentFeedback.filter(l => l.assignment == assignment.id && props.choosable && props.choosable.id == l.choosable).length > 0">Feedback
+          received</span>
       </div>
       <div v-if="queryChoosables">
-        <span
-          :key="index"
-          v-for="(value, index) in assignment.choosables"
-          class="badge me-1"
-          :style="
-            'background-color: ' +
-            store.choosables.filter((c) => c.id == value)[0].bgColor +
-            '; ' +
-            'color: ' +
-            store.choosables.filter((c) => c.id == value)[0].fgColor
-          "
-          :title="store.choosables.filter((c) => c.id == value)[0].description"
-        >
-          {{ store.choosables.filter((c) => c.id == value)[0].displayName }} {{hasFeedback(value)}}
-          <a
-            href="#"
-            v-on:click="
-              giveFeedback(store.choosables.filter((c) => c.id == value)[0], true)
-            "
-            >+1</a
-          >
+        <span :key="index" v-for="(value, index) in assignment.choosables" class="badge me-1" :style="'background-color: ' +
+          store.choosables.filter((c) => c.id == value)[0].bgColor +
+          '; ' +
+          'color: ' +
+          store.choosables.filter((c) => c.id == value)[0].fgColor
+          " :title="store.choosables.filter((c) => c.id == value)[0].description">
+          {{ store.choosables.filter((c) => c.id == value)[0].displayName }} {{ hasFeedback(value) }}
+          <a href="#" v-on:click="
+            giveFeedback(store.choosables.filter((c) => c.id == value)[0], true)
+            ">+1</a>
 
-          <a
-            href="#"
-            v-on:click="
-              giveFeedback(store.choosables.filter((c) => c.id == value)[0], false)
-            "
-            >-1</a
-          >
-          <a
-            href="#"
-            v-on:click="
-              removeFeedback(store.choosables.filter((c) => c.id == value)[0])
-            "
-            >DEL</a
-          >
+          <a href="#" v-on:click="
+            giveFeedback(store.choosables.filter((c) => c.id == value)[0], false)
+            ">-1</a>
+          <a href="#" v-on:click="
+            removeFeedback(store.choosables.filter((c) => c.id == value)[0])
+            ">DEL</a>
         </span>
       </div>
     </div>
-    <span
-      :class="
-        'badge  rounded-pill ' + assignmentTypeCssMap[assignment.assignmentType]
-      "
-      >{{ assignment.assignmentType }}</span
-    >
+    <span :class="'badge  rounded-pill ' + assignmentTypeCssMap[assignment.assignmentType]
+      ">{{ assignment.assignmentType }}</span>
   </li>
 </template>
-  <script setup lang="ts">
+<script setup lang="ts">
 import {
-  AssignmentTypeEnum,
   type Choosable,
   type Facette,
   type FacetteAssignment,

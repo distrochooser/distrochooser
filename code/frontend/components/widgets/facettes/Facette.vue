@@ -38,6 +38,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <div v-if="isExpanded.valueOf()">
       <ul class="list-group">
+        <li v-if="props.facette.assignments.length == 0" class="list-group-item d-flex justify-content-between align-items-start">
+            {{ store.__i("no-mappings-for-this-facette") }}
+        </li>
         <Assignment :assignment="key" v-for="(key, index) in props.facette.assignments" :key="index"
           :query-choosables="true" :facette="props.facette" />
       </ul>
@@ -54,7 +57,7 @@ import { computed, ref } from "vue";
 import { type Facette } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
-import BehaviourButton from "./BehaviourButton.vue";
+import BehaviourButton from "./AssignmentButton.vue";
 
 interface CheckboxFacetteProps {
   facette: Facette;
