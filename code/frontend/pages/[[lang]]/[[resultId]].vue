@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <div class="col">
             <Categories />
           </div>
-          <div class="col col-2">
+          <div class="col col-1">
             <Language v-if="sessionStore.session" />
           </div>
         </div>
