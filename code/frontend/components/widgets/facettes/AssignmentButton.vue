@@ -3,10 +3,10 @@
 
 </template>
 <script setup lang="ts">
-interface BehaviourButtonProps {
+interface AssignmentButtonProps {
   clickHandler: () => {};
   title: string;
 }
-const props = defineProps<BehaviourButtonProps>();
+const props = defineProps<AssignmentButtonProps>();
 
 </script>
