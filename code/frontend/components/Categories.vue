@@ -20,10 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="col" v-if="currentCategory != null">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
           <button type="button" class="btn btn btn-outline-secondary" v-if="currentCategoryIndex != 0"  v-on:click="sessionStore.selectPage(categories[currentCategoryIndex -1].targetPage)">
-            {{ currentCategoryIndex }}. 
-            {{
-              categories[currentCategoryIndex -1].name
-            }}
             <Category :index="currentCategoryIndex -1" :category=" categories[currentCategoryIndex -1]"/>
           </button>
 

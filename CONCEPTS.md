@@ -24,6 +24,10 @@
 - The hyphen is required and can only be part once in each file name
 - The `<name>` part of the file does not serve a purpose rather than making it a bit easier to organize
 
+## Concepts: Icons
+
+Currently, icons are realized with the @nuxt/icon module and the Ion (https://icon-sets.iconify.design/ion/) Icon set
+
 ### Translateable
 
 Model instances might inherit the `Translateable` object. If inherited from this class, the inheriting class can use the `TranslateableField` field type, which is a char field. The `Translateable` class introduces a `catalogue_id`, which identifies the object.

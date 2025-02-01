@@ -20,7 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div class="col-4"></div>
     <div class="col-4">
       <div class="input-group mb-3">
-        <span class="input-group-text" id="share-link">Share Icon</span>
+        <span class="input-group-text" id="share-link">
+        <Icon name="ion:share-outline"></Icon>
+        </span>
         <input
           type="text"
           class="form-control"
