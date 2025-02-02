@@ -18,7 +18,7 @@ body:
   - type: dropdown
     id: mobile
     attributes:
-      label: Version
+      label: Mobile device
       description: Is the device a mobile device?
       options:
         - "Yes"
@@ -28,9 +28,10 @@ body:
     id: instance
     attributes:
       label: What page were you using?
+      description: Please add the URL to the page
       multiple: false
       options:
-        - distrochooser.de
+        - distrochooser.de (Default)
         - beta.distrochooser.de
     validations:
       required: false
