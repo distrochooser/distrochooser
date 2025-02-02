@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     
     <h3 v-if="store.currentPage.text">
       {{ store.currentPage.text }} 
-      <Icon role="button" class="align-middle ms-1" name="ion:bookmark" v-on:click="toggleMarking"></Icon>
+      <Icon v-if="store.currentPage.canBeMarked" role="button" class="align-middle ms-1" name="ion:bookmark" v-on:click="toggleMarking"></Icon>
       <br/>
       <small v-if="store.currentPage.help" class="text-body-secondary mt-3 d-block fs-5 fw-light">{{ store.currentPage.help }}</small>
     </h3>
