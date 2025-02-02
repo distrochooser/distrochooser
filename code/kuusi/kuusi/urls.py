@@ -72,6 +72,7 @@ urlpatterns = [
     path("robots.txt",  route_robots_txt, name="route_robots_txt"),
     path("sitemap.xml",  route_sitemap_xml, name="sitemap.xml"),
     path("out/<id>/<property>/",  route_outgoing, name="route_outgoing"),
+    re_path("data/(?P<version>[0-9]+)", route_data, name="route_data"),
     path("admin", admin.site.urls)
    
 ] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True)
