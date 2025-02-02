@@ -30,8 +30,9 @@ body:
       label: What page were you using?
       description: Please add the URL to the page
       multiple: false
+      default: 0
       options:
-        - distrochooser.de (Default)
+        - distrochooser.de
         - beta.distrochooser.de
     validations:
       required: false
