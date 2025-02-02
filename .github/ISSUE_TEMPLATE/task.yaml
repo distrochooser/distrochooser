@@ -1,8 +1,8 @@
-name: Frontend-Task
-description: Task for frontend implementation
-title: '[FE-Task]: '
-labels: ["frontend", "help wanted"]
-type: "Task"
+name: Task
+description: Task for implementation
+title: '[Task]: '
+labels: ["help wanted"]
+type: "task"
 body:
   - type: markdown
     attributes:
@@ -25,4 +25,15 @@ body:
     id: research
     attributes:
       label: Further information for implementation
-  
+    - type: dropdown
+    id: components
+    attributes:
+      label: Components
+      description: What components does this feature affect?
+      multiple: true
+      options:
+        - "Frontend"
+        - "Backend"
+        - "Decision finding"
+        - "Distribution addition"
+      default: 1
