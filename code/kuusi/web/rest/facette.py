@@ -114,13 +114,21 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
 
 class FacetteAssignmentSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
+    weight = serializers.SerializerMethodField()
     class Meta:
         model = FacetteAssignment
-        fields = ('id', 'choosables', 'catalogue_id', 'description', 'assignment_type', )
+        fields = ('id', 'choosables', 'catalogue_id', 'description', 'assignment_type', 'weight',)
 
-    def get_description(self, obj: Session):
+    def get_description(self, obj: FacetteAssignment):
         session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
         return obj.__("long_description",  session.language_code)
+    
+    def get_weight(self, obj: FacetteAssignment) -> int:
+        weight_value = None
+        if "weight_map" in self.context and obj.pk in self.context["weight_map"]:
+            weight_value = self.context["weight_map"][obj.pk]
+        return weight_value
+
 
 
 

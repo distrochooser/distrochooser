@@ -44,6 +44,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </span>
       </div>
     </div>
+    <span
+      :class="{ 'badge  rounded-pill me-3 ': true, 'text-bg-light': assignment.weight < 0, 'text-bg-dark': assignment.weight > 0 }"
+      v-if="props.displayWeigth && props.assignment.weight != null" :title="assignment.weight.toString() + 'x'">
+      
+      <Icon name="ion:chevron-up-sharp" v-if="props.assignment.weight > 0"></Icon>
+      <Icon name="ion:chevron-down-sharp" v-if="props.assignment.weight < 0"></Icon>
+      
+      {{ weightText
+      }}</span>
     <span :class="'badge  rounded-pill ' + assignmentTypeCssMap[assignment.assignmentType]
       ">{{ assignment.assignmentType }}</span>
   </li>
@@ -61,6 +70,7 @@ interface AsssignmentProps {
   queryChoosables: Boolean;
   facette: Facette;
   choosable?: Choosable;
+  displayWeigth: boolean;
 }
 
 const assignmentTypeCssMap = {
@@ -69,9 +79,12 @@ const assignmentTypeCssMap = {
   POSITIVE: "text-bg-success",
   NEUTRAL: "text-bg-light",
 };
+
+
 const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
+const weightText = props.assignment.weight < 0 ? store.__i("weight-less") : store.__i("weight_more");
 
 const giveFeedback = (choosable: Choosable, is_positive: boolean) =>
   store.giveFeedback(props.assignment, choosable, props.facette, is_positive);

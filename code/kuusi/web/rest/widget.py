@@ -158,6 +158,7 @@ class RankedChoosableSerializer(ChoosableSerializer):
             many=True
         )
         serializer.context["session_pk"] = self.context["session_pk"]
+        serializer.context["weight_map"] = self.context["weight_map"]
         return serializer.data
 
 
@@ -175,9 +176,11 @@ class ResultListWidgetSerializer(WidgetSerializer):
         selections = FacetteSelection.objects.filter(session=session)
         ranking = {}
         assignments_results = {}
+        assignments_weight_map = {}
         for choosable in choosables:
             scores_by_type = {}
             assignments_results[choosable.pk]  = []
+            assignments_weight_map = {}
             for key in FacetteAssignment.AssignmentType.choices:
                 identifier, _ = key
                 scores_by_type[identifier] = 0
@@ -194,11 +197,11 @@ class ResultListWidgetSerializer(WidgetSerializer):
                         weighted_score = 1 * selection_weight_value
                         scores_by_type[assignment.assignment_type] += weighted_score
                     assignments_results[choosable.pk].append(assignment)
-            
+                    assignments_weight_map[assignment.pk] = selection_weight_value
             
             ranking[choosable.pk]  = FacetteAssignment.AssignmentType.get_score(scores_by_type)
 
-
+        print(assignments_weight_map)
         serializer = RankedChoosableSerializer(
             choosables,
             many=True
@@ -206,6 +209,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         serializer.context["session_pk"] = self.context["session_pk"]
         serializer.context["ranking"] = ranking
         serializer.context["assignments"] = assignments_results
+        serializer.context["weight_map"] = assignments_weight_map
         return serializer.data
 
 

@@ -23,25 +23,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <label class="form-check-label" :for="facette.id.toString()">
         {{ props.facette.selectableDescription }}
       </label>
-      <BehaviourButton :title="store.__i('why')" :click-handler="toggleExpand"/>
+      <BehaviourButton :title="store.__i('why')" :click-handler="toggleExpand" />
     </div>
     <div class="form-check" v-else>
       <input v-on:click="registerClick" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
         v-model="selected" v-on:change="registerChange" v-bind:value="true" :checked="isSelected"
         :id="facette.id.toString()">
-      <label v-on:click="registerClick"  class="form-check-label" :for="facette.id.toString()">
+      <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
         {{ props.facette.selectableDescription }}
       </label>
-      
-      <BehaviourButton :title="store.__i('why')" :click-handler="toggleExpand"/>
+
+      <BehaviourButton :title="store.__i('why')" :click-handler="toggleExpand" />
     </div>
 
     <div v-if="isExpanded.valueOf()">
       <ul class="list-group">
-        <li v-if="props.facette.assignments.length == 0" class="list-group-item d-flex justify-content-between align-items-start">
-            {{ store.__i("no-mappings-for-this-facette") }}
+        <li v-if="props.facette.assignments.length == 0"
+          class="list-group-item d-flex justify-content-between align-items-start">
+          {{ store.__i("no-mappings-for-this-facette") }}
         </li>
-        <Assignment :assignment="key" v-for="(key, index) in props.facette.assignments" :key="index"
+        <Assignment :display-weigth="false" :assignment="key" v-for="(key, index) in props.facette.assignments" :key="index"
           :query-choosables="true" :facette="props.facette" />
       </ul>
     </div>
@@ -73,8 +74,10 @@ const selected = useState(
     store.facetteSelections.filter((l) => l.facette == props.facette.id)
       .length != 0
 );
-// FIXME: Read initial value from state
-const weight = ref(0);
+const weight = useState(
+  props.facette.id.toString() + "_weight",
+  () => selected.value ? store.facetteSelections.filter((l) => l.facette == props.facette.id)[0].weight : 0
+)
 const isExpanded = useState(
   props.facette.id.toString() + "_expanded",
   () => false
@@ -98,7 +101,6 @@ const registerClick = async () => {
   }
 }
 const registerChange = async () => {
-  // FIXME: For Radio facettes: They can never be unchecked
   await store.updateFacetteSelections(
     store.currentPage.id,
     props.facette.id,
