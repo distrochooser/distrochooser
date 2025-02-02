@@ -16,41 +16,56 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <div class="row mt-2">
-      <div class="col row" v-if="currentCategory != null">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <button type="button" class="col-4 btn btn btn-outline-secondary" v-if="currentCategoryIndex != 0"  v-on:click="sessionStore.selectPage(categories[currentCategoryIndex -1].targetPage)">
-            <Category :index="currentCategoryIndex -1" :category=" categories[currentCategoryIndex -1]"/>
+  <div class="row mt-2">
+    <div class="col row" v-if="currentCategory != null">
+      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <button type="button" class="col-4 btn btn btn-outline-secondary" v-if="currentCategoryIndex != 0"
+          v-on:click="sessionStore.selectPage(categories[currentCategoryIndex - 1].targetPage)">
+          <Category :index="currentCategoryIndex - 1" :category="categories[currentCategoryIndex - 1]" />
+        </button>
+        <button type="button" class="disabled col-4 btn btn btn-outline-secondary"
+          v-if="currentCategoryIndex == 0"></button>
+
+        <div class="btn-group col-4" role="group">
+          <button type="button" class="btn btn-primary dropdown-toggle fs-5" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <Category :index="currentCategoryIndex" :category="currentCategory" />
           </button>
-          <button type="button" class="disabled col-4 btn btn btn-outline-secondary" v-if="currentCategoryIndex == 0"></button>
+          <ul class="dropdown-menu">
+            <li v-for="(category, index) in categories" v-bind:key="index">
+              <a class="dropdown-item"
+                :class="{ 'dropdown-item': true, 'fw-bold': category.catalogueId == currentCategory.catalogueId }"
+                href="#" v-on:click="sessionStore.selectPage(category.targetPage)">
 
-          <div class="btn-group col-4" role="group">
-            <button type="button" class="btn btn-primary dropdown-toggle fs-5" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <Category :index="currentCategoryIndex" :category="currentCategory"/>
-            </button>
-            <ul class="dropdown-menu">
-              <li v-for="(category, index) in categories" v-bind:key="index">
-                <a class="dropdown-item" :class="{'dropdown-item': true, 'fw-bold': category.catalogueId ==currentCategory.catalogueId}" href="#" v-on:click="sessionStore.selectPage(category.targetPage)">
-                  
-                  <Category :index="index" :category="category"/>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button type="button" class="col-4 btn btn btn-outline-secondary" v-if="currentCategoryIndex < categories.length - 1"  v-on:click="sessionStore.selectPage(categories[currentCategoryIndex +1].targetPage)">
-            <Category :index="currentCategoryIndex +1" :category="categories[currentCategoryIndex + 1]"/>     
-          </button>
-          <button type="button" class="disabled col-4 btn btn btn-outline-secondary" v-else></button>
-
+                <Category :index="index" :category="category" />
+              </a>
+            </li>
+          </ul>
         </div>
+
+        <button type="button" class="col-4 btn btn btn-outline-secondary"
+          v-if="currentCategoryIndex < categories.length - 1"
+          v-on:click="sessionStore.selectPage(categories[currentCategoryIndex + 1].targetPage)">
+          <Category :index="currentCategoryIndex + 1" :category="categories[currentCategoryIndex + 1]" />
+        </button>
+        <button type="button" class="disabled col-4 btn btn btn-outline-secondary" v-else></button>
+
       </div>
     </div>
+    
+    <ul class="nav justify-content-center fs-6 mt-2" v-if="currentCategory != null">
+      <li class="nav-item" v-for="(category, index) in categories">
+        <a :title="category.name" class="nav-link active" aria-current="page" href="#" v-on:click="sessionStore.selectPage(category.targetPage)">
+          <CategoryIcon :category="category" :index="index" />
+        </a>
+      </li>
+    </ul>
+  </div>
 </template>
 <script lang="ts" setup>
 import { computed } from "vue";
 import { useSessionStore } from "../states/session";
+import CategoryIcon from "./CategoryIcon.vue";
 
 let sessionStore = useSessionStore();
 
