@@ -1,7 +1,7 @@
 name: Feature request
 description: Request feature you would like to see in the project. Also use this to suggest distributions.
 title: '[Feature-Request]: '
-labels: ["feature-request"]
+labels: ['feature-request']
 assignees: "cmllr"
 body:
   - type: markdown
