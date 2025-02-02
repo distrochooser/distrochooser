@@ -23,6 +23,7 @@ body:
       options:
         - "Yes"
         - "No"
+      default: 1
     
   - type: dropdown
     id: instance
