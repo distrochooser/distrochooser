@@ -29,7 +29,8 @@ body:
     attributes:
       label: What page were you using?
       multiple: false
-      required: true
       options:
         - distrochooser.de
         - beta.distrochooser.de
+    validations:
+      required: false
