@@ -57,6 +57,8 @@ def _i18n_get_value(language_code: str, translateable_object: Translateable | sa
     is_missing = language_code != "en" and default_value == value
     return {"value": value, "needle": needle, "is_missing": is_missing}
 
+
+@register.simple_tag
 def _i18n_(language_code: str, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
     got =  _i18n_get_value(language_code, translateable_object,key)
-    return got
+    return got["value"]

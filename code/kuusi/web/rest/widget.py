@@ -17,6 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from collections import OrderedDict
+
+from django.shortcuts import render
+from django.template import Context, Engine, Template
 from web.models import (
     Page,
     Session,
@@ -33,7 +36,7 @@ from web.models import (
     FacetteSelection,
     Choosable,
     FacetteAssignment,
-    Feedback
+    Feedback,
 )
 from web.rest.facette import FacetteSerializer, FacetteAssignmentSerializer
 from web.rest.session import SessionVersionSerializer
@@ -43,7 +46,7 @@ from drf_spectacular.utils import extend_schema, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES, WEIGHT_MAP
+from kuusi.settings import LANGUAGE_CODES, WEIGHT_MAP, BASE_DIR
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
@@ -54,7 +57,14 @@ from rest_polymorphic.serializers import PolymorphicSerializer
 
 from typing import Dict, Any, List
 
-WIDGET_SERIALIZER_BASE_FIELDS = ("id", "row", "col", "width", "pages", "widget_type",)
+WIDGET_SERIALIZER_BASE_FIELDS = (
+    "id",
+    "row",
+    "col",
+    "width",
+    "pages",
+    "widget_type",
+)
 
 
 # TODO: For all serializers
@@ -62,18 +72,43 @@ WIDGET_SERIALIZER_BASE_FIELDS = ("id", "row", "col", "width", "pages", "widget_t
 # E. g. selections needed facettes, question texts, hints ....
 class WidgetSerializer(serializers.ModelSerializer):
     widget_type = serializers.SerializerMethodField()
+
     class Meta:
         model = Widget
         fields = WIDGET_SERIALIZER_BASE_FIELDS
+
     def get_widget_type(self, obj):
         return obj.widget_type
 
 
 class HTMLWidgetSerializer(WidgetSerializer):
     widget_type = serializers.SerializerMethodField()
+    render_result = serializers.SerializerMethodField()
+
     class Meta:
         model = HTMLWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("template",)
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + (
+            "template",
+            "render_result",
+        )
+
+    def get_render_result(self, obj: HTMLWidget) -> str:
+        template_path = BASE_DIR.joinpath("web/templates").joinpath(obj.template)
+        contents = open(template_path, "r").read()
+        template = Template(
+            contents,
+            engine=Engine(
+                libraries={
+                    "web_extras": "web.templatetags.web_extras"
+                },
+            ),
+        )
+        session: Session = Session.objects.filter(result_id= self.context["session_pk"]).first()
+        context = Context({
+            "language_code": session.language_code
+        })
+        result = template.render(context)
+        return str(result)
 
 
 class WithFacetteWidgetSerializer(WidgetSerializer):
@@ -88,19 +123,14 @@ class WithFacetteWidgetSerializer(WidgetSerializer):
         return serializer.data
 
 
-
-class FacetteSelectionWidgetSerializer(
-    WithFacetteWidgetSerializer
-):
+class FacetteSelectionWidgetSerializer(WithFacetteWidgetSerializer):
 
     class Meta:
         model = FacetteSelectionWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic", "facettes")
 
 
-class FacetteRadioSelectionWidgetSerializer(
-    WithFacetteWidgetSerializer
-):
+class FacetteRadioSelectionWidgetSerializer(WithFacetteWidgetSerializer):
 
     class Meta:
         model = FacetteRadioSelectionWidget
@@ -145,17 +175,20 @@ class RankedChoosableSerializer(ChoosableSerializer):
         fields = CHOOSABLE_SERIALIZER_BASE_FIELDS + ("rank", "assignments")
 
     def get_rank(self, obj: Choosable) -> int:
-        return self.context["ranking"][obj.pk] if obj.pk in self.context["ranking"] else 9999999999
-    
-    def get_description(self, obj:Choosable) -> str:
+        return (
+            self.context["ranking"][obj.pk]
+            if obj.pk in self.context["ranking"]
+            else 9999999999
+        )
+
+    def get_description(self, obj: Choosable) -> str:
         session = Session.objects.filter(result_id=self.context["session_pk"]).first()
         return obj.__("description", session.language_code)
 
     @extend_schema_field(field=FacetteAssignmentSerializer(many=True))
     def get_assignments(self, obj: Choosable) -> List[FacetteAssignment]:
         serializer = FacetteAssignmentSerializer(
-            self.context["assignments"][obj.pk],
-            many=True
+            self.context["assignments"][obj.pk], many=True
         )
         serializer.context["session_pk"] = self.context["session_pk"]
         serializer.context["weight_map"] = self.context["weight_map"]
@@ -164,10 +197,10 @@ class RankedChoosableSerializer(ChoosableSerializer):
 
 class ResultListWidgetSerializer(WidgetSerializer):
     choosables = serializers.SerializerMethodField()
+
     class Meta:
         model = ResultListWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("choosables",)
-
 
     @extend_schema_field(field=RankedChoosableSerializer(many=True))
     def get_choosables(self, obj: ResultListWidget) -> List[Choosable]:
@@ -179,7 +212,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         assignments_weight_map = {}
         for choosable in choosables:
             scores_by_type = {}
-            assignments_results[choosable.pk]  = []
+            assignments_results[choosable.pk] = []
             assignments_weight_map = {}
             for key in FacetteAssignment.AssignmentType.choices:
                 identifier, _ = key
@@ -188,24 +221,31 @@ class ResultListWidgetSerializer(WidgetSerializer):
                 facette = selection.facette
                 selection_weight_key = selection.weight
                 selection_weight_value = WEIGHT_MAP[selection_weight_key]
-                assignments = FacetteAssignment.objects.filter(facettes__in=[facette]).filter(choosables__in=[choosable])
+                assignments = FacetteAssignment.objects.filter(
+                    facettes__in=[facette]
+                ).filter(choosables__in=[choosable])
 
                 for assignment in assignments:
                     # Only include assignments without negative user feedback
-                    has_negative_feedback = Feedback.objects.filter(session=session).filter(assignment=assignment).filter(choosable=choosable).count() > 0
+                    has_negative_feedback = (
+                        Feedback.objects.filter(session=session)
+                        .filter(assignment=assignment)
+                        .filter(choosable=choosable)
+                        .count()
+                        > 0
+                    )
                     if not has_negative_feedback:
                         weighted_score = 1 * selection_weight_value
                         scores_by_type[assignment.assignment_type] += weighted_score
                     assignments_results[choosable.pk].append(assignment)
                     assignments_weight_map[assignment.pk] = selection_weight_value
-            
-            ranking[choosable.pk]  = FacetteAssignment.AssignmentType.get_score(scores_by_type)
+
+            ranking[choosable.pk] = FacetteAssignment.AssignmentType.get_score(
+                scores_by_type
+            )
 
         print(assignments_weight_map)
-        serializer = RankedChoosableSerializer(
-            choosables,
-            many=True
-        )
+        serializer = RankedChoosableSerializer(choosables, many=True)
         serializer.context["session_pk"] = self.context["session_pk"]
         serializer.context["ranking"] = ranking
         serializer.context["assignments"] = assignments_results
@@ -213,9 +253,9 @@ class ResultListWidgetSerializer(WidgetSerializer):
         return serializer.data
 
 
-
 class WidgetViewSet(ListModelMixin, GenericViewSet):
     queryset = Page.objects.all()
+
     @extend_schema(
         responses={
             status.HTTP_200_OK: OpenApiResponse(
@@ -227,8 +267,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                         FacetteRadioSelectionWidgetSerializer,
                         FacetteSelectionWidgetSerializer,
                         ResultListWidgetSerializer,
-                        ResultShareWidgetSerializer
-                        
+                        ResultShareWidgetSerializer,
                     ],
                     component_name="MetaWidget",
                     resource_type_field_name="widget_type",
@@ -271,7 +310,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                 FacetteRadioSelectionWidget: FacetteRadioSelectionWidgetSerializer,
                 FacetteSelectionWidget: FacetteSelectionWidgetSerializer,
                 ResultListWidget: ResultListWidgetSerializer,
-                ResultShareWidget: ResultShareWidgetSerializer
+                ResultShareWidget: ResultShareWidgetSerializer,
             }
         )
         widget: Widget
@@ -283,6 +322,5 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                     results.context["session_pk"] = kwargs["session_pk"]
                     result.append(results.data)
                     break
-
 
         return Response(result)
