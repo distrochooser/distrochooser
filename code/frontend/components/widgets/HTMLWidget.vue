@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <script setup lang="ts">
 import type {HTMLWidget } from '../../sdk';
 
-
+// TODO: Plan to deprecate HTML widgets
 interface WidgetProps {
   widget: HTMLWidget;
 }
