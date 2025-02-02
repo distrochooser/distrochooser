@@ -1,0 +1,27 @@
+name: Frontend-Task
+description: Task for frontend implementation
+title: '[FE-Task]: '
+labels: ['frontend', 'help-wanted']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If this issue is unassigned and you want to contribute, mention @cmllr for assignment.
+  - type: textarea
+    id: request
+    attributes:
+      label: Describe your feature
+      description: Please be as specific as possible
+      placeholder: Tell us what you see!
+      value: "My feature request"
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: Definition of done
+      description: Add the definition of done
+  - type: textarea
+    id: research
+    attributes:
+      label: Further information for implementation
+  
