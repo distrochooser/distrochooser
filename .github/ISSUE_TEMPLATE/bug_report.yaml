@@ -21,8 +21,8 @@ body:
       label: Version
       description: Is the device a mobile device?
       options:
-        - Yes
-        - No
+        - "Yes"
+        - "No"
     
   - type: dropdown
     id: instance
