@@ -25,7 +25,7 @@ body:
     id: research
     attributes:
       label: Further information for implementation
-    - type: dropdown
+  - type: dropdown
     id: components
     attributes:
       label: Components
