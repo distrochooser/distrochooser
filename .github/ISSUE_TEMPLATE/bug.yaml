@@ -22,9 +22,10 @@ body:
       label: Mobile device
       description: Is the device a mobile device?
       options:
+        - "Not relevant"
         - "Yes"
         - "No"
-      default: 1
+      default: 0
     
   - type: dropdown
     id: instance
