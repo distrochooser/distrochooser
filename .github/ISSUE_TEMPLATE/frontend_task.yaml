@@ -1,7 +1,7 @@
 name: Frontend-Task
 description: Task for frontend implementation
 title: '[FE-Task]: '
-labels: ['frontend', 'help-wanted']
+labels: ["frontend", "help-wanted"]
 type: "Task"
 body:
   - type: markdown
