@@ -1,5 +1,5 @@
 name: Feature request
-description: Request feature you would like to see in the project
+description: Request feature you would like to see in the project. Also use this to suggest distributions.
 title: '[Feature-Request]: '
 labels: ["feature-request"]
 assignees: "cmllr"
@@ -14,7 +14,7 @@ body:
       label: Describe your feature
       description: Please be as specific as possible
       placeholder: Tell us what you see!
-      value: "A bug happened!"
+      value: "My feature request"
   - type: dropdown
     id: components
     attributes:
@@ -25,4 +25,5 @@ body:
         - "Frontend"
         - "Backend"
         - "Decision finding"
+        - "Distribution addition"
       default: 1
