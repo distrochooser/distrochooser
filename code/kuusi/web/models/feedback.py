@@ -39,3 +39,14 @@ class Feedback(models.Model):
         null=False,
         related_name="feedback_session",
     )
+
+class LanguageFeedback(models.Model):
+    session = models.ForeignKey(
+        to=Session,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        related_name="language_feedback_session",
+    )
+    language_key = models.CharField(max_length=255, null=False)
+    value = models.TextField(null=False)
