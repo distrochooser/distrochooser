@@ -139,9 +139,8 @@ class FacetteSerializer(serializers.ModelSerializer):
         model = Facette
         fields = ('id', 'topic', 'selectable_description', 'assignments',)
     def get_selectable_description(self, obj: Facette) -> str:
-        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
-        return obj.__("selectable_description",  session.language_code)
-    
+        return obj.get_msgd_id_of_field("selectable_description") 
+
     @extend_schema_field(field=FacetteAssignmentSerializer(many=True))
     def get_assignments(self, obj:Facette) -> List[FacetteAssignment]:
         serializer = FacetteAssignmentSerializer(

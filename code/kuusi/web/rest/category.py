@@ -36,8 +36,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
     def get_name(self, obj: Category) -> str:
-        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
-        return obj.__("name", session.language_code)
+        return obj.get_msgd_id_of_field("name")
     
     
 class CategoryViewSet(ListModelMixin, GenericViewSet):
