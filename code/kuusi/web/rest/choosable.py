@@ -39,8 +39,8 @@ class ChoosableSerializer(serializers.ModelSerializer):
         model = Choosable
         fields = CHOOSABLE_SERIALIZER_BASE_FIELDS
     def get_description(self, obj: Choosable) -> str:
-        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
-        return obj.__("description",   session.language_code)
+        return obj.get_msgd_id_of_field("description")
+    
     def get_meta(self, obj: Choosable) -> Dict[str, Any]:
         meta_values = obj.meta
         for key, value in meta_values.items():
@@ -48,8 +48,7 @@ class ChoosableSerializer(serializers.ModelSerializer):
         return meta_values
     
     def get_display_name(self, obj: Choosable) -> str:
-        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
-        return obj.__("name",   session.language_code)
+        return obj.get_msgd_id_of_field("name")
 
     
 class ChoosableViewSet(ListModelMixin, GenericViewSet):
