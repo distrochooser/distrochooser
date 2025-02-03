@@ -48,7 +48,15 @@ At this point, you have a filled database and basically can start the applicatio
 
 # Frontend requirement
 
-The frontend is a Nuxt (https://nuxt.com/) powered application. It requires Node.js to run.
+The frontend is a Nuxt (https://nuxt.com/) powered application. It requires Node.js to run, the frontend is based upon a SDK generated from the OpenAPI specification taken from the backend.
+
+1. Install the dependencies using `yarn install`
+2. Make sure the backend is running
+3. Execute `yarn run sdk-build` to generate the TypeScript SDK from the API
+4. Execute `yarn run dev`
+
+A frontend should not be accessible from `http://localhost:3000`
+
 
 # Further reading
 
