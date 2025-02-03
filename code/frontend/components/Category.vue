@@ -1,6 +1,7 @@
 <template>
     <span>
-        {{ props.index + 1 }}. {{ props.category.name }}
+        {{ props.index + 1 }}. 
+        <LanguageTranslation :translation-key="props.category.name"/>
         <Icon name="ion:checkmark-circle" v-if="isAnswered"></Icon>
         <Icon name="ion:bookmark" v-if="isMarked"></Icon>
     </span>
@@ -9,6 +10,7 @@
 import { computed } from 'vue';
 import type { Category } from '../sdk';
 import { useSessionStore } from '../states/session';
+import LanguageTranslation from './LanguageTranslation.vue';
 
 
 interface WidgetProps {

@@ -30,6 +30,7 @@ interface SessionState {
     choosables: Choosable[];
     assignmentFeedback: Feedback[];
     pageMarkings: PageMarking[];
+    isTranslating: boolean;
 }
 let sessionApi: SessionApi = null;
 
@@ -44,7 +45,8 @@ export const useSessionStore = defineStore('websiteStore', {
         facetteBehaviours: [],
         choosables: [],
         assignmentFeedback: [],
-        pageMarkings: [] /* TODO: Implement and decide if these should persist */
+        pageMarkings: [], /* TODO: Implement and decide if these should persist */
+        isTranslating: false
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -61,6 +63,9 @@ export const useSessionStore = defineStore('websiteStore', {
         }
     },
     actions: {
+        toggleTranslate() {
+            this.isTranslating = !this.isTranslating
+        },
         __i(key: string) {
             if (typeof this.session.languageValues[key] == "undefined") {
                 return key

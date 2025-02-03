@@ -39,6 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </div>
         </div>
         <RenderField />
+        <LanguageFeedback/>
       </div>
     </main>
   </div>
@@ -49,6 +50,7 @@ import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useSessionStore } from "../../states/session";
 import PageMeta from "../../components/PageMeta.vue";
+import LanguageFeedback from "../../components/LanguageFeedback.vue";
 
 const router = useRoute();
 const lang: string = router.params.lang as string;

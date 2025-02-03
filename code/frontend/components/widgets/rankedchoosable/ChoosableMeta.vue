@@ -18,7 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">{{ metaValue }}</h5>
+      <h5 class="card-title">
+        <LanguageTranslation :translation-key="metaValue"/></h5>
       <p class="card-text">
         <MetaFlag v-if="metaValue == 'COUNTRY'" :code="metaKey"/>
         <MetaAge v-if="metaValue == 'AGE'" :start="metaKey"/>
