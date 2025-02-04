@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from typing import Tuple, List
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
-from web.models import Session, Page, WebHttpRequest, FacetteSelection, Facette, FacetteBehaviour, PageMarking
+from web.models import Session, Page, WebHttpRequest, FacetteSelection, Facette, FacetteBehaviour, PageMarking, TRANSLATIONS
 from web.forms import WarningForm
 from kuusi.settings import DEFAULT_LANGUAGE_CODE
 from web.templatetags.web_extras import _i18n_get_value

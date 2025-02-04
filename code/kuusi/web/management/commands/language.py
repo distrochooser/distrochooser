@@ -27,15 +27,25 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("lang_code", type=str)
         parser.add_argument("--delete", type=int, nargs="*")
+        parser.add_argument("--approve", type=int, nargs="*")
+        parser.add_argument("--clear", type=bool, nargs="?")
     def handle(self, *args, **options):
         lang_code = options["lang_code"]
         to_delete = options["delete"]
+        to_approve = options["approve"]
+        remove_unapproved = options["clear"]
         if to_delete is not None:
             for pk in to_delete:
                 LanguageFeedback.objects.filter(pk=pk).delete()
+        if to_approve is not None:
+            for pk in to_approve:
+                obj = LanguageFeedback.objects.filter(pk=pk).first()
+                obj.is_approved = not obj.is_approved
+                obj.save()
+                LanguageFeedback.objects.filter(session__language_code=lang_code).filter(language_key=obj.language_key).exclude(pk=pk).delete()
+        if remove_unapproved:
+            LanguageFeedback.objects.filter(session__language_code=lang_code).exclude(is_approved=True).delete()
         data = LanguageFeedback.objects.filter(session__language_code=lang_code)
         for element in data:
-            print(f"{element.pk} {element.language_key} => {element.value}")
-            # ADD crud interface for review
-            # Store accepted translations in files
-            # Remove suggestions
+            print(f"[{'X' if element.is_approved else ' '}] {element.pk} {element.language_key} => {element.value}")
+            # TODO: Store accepted translations in files

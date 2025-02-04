@@ -24,6 +24,7 @@ from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiRespon
 from rest_framework import status
 from kuusi.settings import LANGUAGE_CODES, DEFAULT_SESSION_META, FRONTEND_URL, KUUSI_ICON, RTL_LANGUAGES, KUUSI_NAME, KUUSI_LOGO, KUUSI_META_TAGS, LOCALE_MAPPING
 from web.models import TRANSLATIONS, Feedback
+from web.models.translateable import get_translation_haystack
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
@@ -52,7 +53,7 @@ class SessionSerializer(serializers.ModelSerializer):
         return LANGUAGE_CODES
 
     def get_language_values(self, obj:Session) -> Dict[str, str]:
-        return TRANSLATIONS[obj.language_code]
+        return get_translation_haystack(obj.language_code)
 
     def get_is_language_rtl(self, obj: Session) -> bool:
         return obj.language_code in RTL_LANGUAGES

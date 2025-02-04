@@ -18,8 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Dict
 
+from django.apps import apps
 from django.db import models
 from django.db.models.signals import pre_delete
 from django.db.backends.signals import connection_created
@@ -28,6 +29,7 @@ from logging import getLogger
 from os.path import join, exists
 from json import loads, dumps
 from os import mkdir, listdir
+
 
 logger = getLogger("root")
 
@@ -137,7 +139,8 @@ class Translateable(models.Model):
         return self._meta.get_field(key).get_msg_id(self)
     def __(self, key: str, language_code: str = DEFAULT_LANGUAGE_CODE) -> str:
         msg_id = self.get_msgd_id_of_field(key)
-        return f"{TRANSLATIONS[language_code][msg_id]}" if language_code in TRANSLATIONS and msg_id in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][msg_id] is not None  else msg_id
+        haystack = get_translation_haystack(language_code)
+        return f"{haystack[msg_id]}" if  msg_id in haystack and haystack[msg_id] is not None  else msg_id
      
 
     def remove_translation_records(self):
@@ -163,3 +166,16 @@ def translateable_removing(sender, instance, using, **kwargs):
             entry.remove_translation_records()
     else:
         origin.remove_translation_records()
+
+
+
+def get_translation_haystack(language_code: str) ->Dict[str,str]:
+    """
+    As the user can provide translations -> use them 
+    """
+    raw = TRANSLATIONS[language_code]
+    approved_provided_feedback = apps.get_model("web", "LanguageFeedback").objects.filter(session__language_code=language_code).filter(is_approved=True)
+   
+    for element in approved_provided_feedback:
+        raw[element.language_key] = element.value
+    return raw
