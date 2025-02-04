@@ -50,3 +50,4 @@ class LanguageFeedback(models.Model):
     )
     language_key = models.CharField(max_length=255, null=False)
     value = models.TextField(null=False)
+    is_approved = models.BooleanField(default=False)

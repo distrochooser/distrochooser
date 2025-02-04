@@ -18,15 +18,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div>
     <form>
-        <div class="mb-3">
-          <label for="edition" class="form-label">Questionaire edition</label>
-          <select v-model="selection" class="form-select" id="edition">
-            <option :value="null">Full</option>
-            <option :value="version.id" v-for="version, index in props.widget.versions" :key="index">
-              {{ version.text }}
-            </option>
-          </select>
-        </div>
+      <div class="mb-3">
+        <label for="edition" class="form-label">
+
+          <LanguageTranslation translation-key="questionaire-edition" />
+        </label>
+        <select v-model="selection" class="form-select" id="edition">
+          <option :value="null">Full</option>
+          <option :value="version.id" v-for="version, index in props.widget.versions" :key="index">
+            {{ version.text }}
+          </option>
+        </select>
+      </div>
     </form>
   </div>
 </template>

@@ -88,6 +88,10 @@ export const useSessionStore = defineStore('websiteStore', {
             await this.getTranslationFeedback();
         },
         __i(key: string) {
+            const providedFeedback = this.languageFeedback.filter(l => l.languageKey == key)
+            if (providedFeedback.length > 0) {
+                return providedFeedback[0].value
+            }
             if (typeof this.session.languageValues[key] == "undefined") {
                 return key
             }
@@ -178,6 +182,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 versionId: this.session.version
             })
             await this.updateCategoriesAndPages()
+            await this.getTranslationFeedback()
         },
         async acknowledgeSession() {
             if (this.session?.id &&

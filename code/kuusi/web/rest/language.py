@@ -55,9 +55,8 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def list(self, request,  *args, **kwargs):    
-        # TODO: Decide scope
         session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
-        results = LanguageFeedback.objects.filter(session__language_code=session.language_code)
+        results = LanguageFeedback.objects.filter(session=session)
         serializer = LanguageFeedbackSerializer(
             results,
             many=True
@@ -75,13 +74,13 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         }
     ) 
     def create(self, request, session_pk) -> LanguageFeedbackSerializer:
-        # TODO: PRevent double entries, instead count up
         data = request.data
         language_key = data["language_key"]
         value = data["value"]
         session: Session = Session.objects.filter(result_id=session_pk).first()
         
 
+        LanguageFeedback.objects.filter(session=session).filter(language_key=language_key).delete()
         result = LanguageFeedback(
             language_key = language_key,
             value = value,

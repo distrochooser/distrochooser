@@ -54,7 +54,6 @@ def hot_load_translations(**kwargs):
             content = loads(open(full_path, "r").read())
             for key, value in content.items():
                 TRANSLATIONS[language][key] = value
-            print(f"Finished reading file {full_path} for translation. Language = {language}")
     # Use to display an information
     for locale in TRANSLATIONS:
         if locale != "en":
