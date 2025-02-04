@@ -17,8 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
+import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
 import { useRuntimeConfig } from "nuxt/app";
+import LanguageFeedback from "../components/LanguageFeedback.vue";
 interface SessionState {
     session: Session | null;
     categories: Category[];
@@ -31,6 +32,7 @@ interface SessionState {
     assignmentFeedback: Feedback[];
     pageMarkings: PageMarking[];
     isTranslating: boolean;
+    languageFeedback: LanguageFeedback[];
 }
 let sessionApi: SessionApi = null;
 
@@ -46,7 +48,8 @@ export const useSessionStore = defineStore('websiteStore', {
         choosables: [],
         assignmentFeedback: [],
         pageMarkings: [], /* TODO: Implement and decide if these should persist */
-        isTranslating: false
+        isTranslating: false,
+        languageFeedback: []
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -63,8 +66,13 @@ export const useSessionStore = defineStore('websiteStore', {
         }
     },
     actions: {
-        toggleTranslate() {
+        async toggleTranslate() {
             this.isTranslating = !this.isTranslating
+            if (this.isTranslating) {
+                await this.sessionApi.sessionLanguageList({
+                    sessionPk: this.session.resultId
+                })
+            }
         },
         __i(key: string) {
             if (typeof this.session.languageValues[key] == "undefined") {

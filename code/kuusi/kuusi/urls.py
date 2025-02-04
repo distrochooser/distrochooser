@@ -35,6 +35,7 @@ from web.rest.session import SessionViewSet
 from web.rest.category import CategoryViewSet
 from web.rest.facetteselection import FacetteSelectionViewSet
 from web.rest.facettebehaviour import FacetteBehaviourViewSet
+from web.rest.language import LanguageFeedbackViewSet
 from web.rest.page import PageMarkingViewSet
 from web.rest.facette import FeedbackViewSet
 from web.rest.widget import WidgetViewSet
@@ -61,6 +62,7 @@ router_sessions.register(r'facetteselection', FacetteSelectionViewSet, basename=
 router_sessions.register(r'facettebehaviour', FacetteBehaviourViewSet, basename='session-behaviour')
 router_sessions.register(r'choosable', ChoosableViewSet, basename='session-choosables')
 router_sessions.register(r'feedback', FeedbackViewSet, basename='session-feedback')
+router_sessions.register(r'language', LanguageFeedbackViewSet, basename="session-language")
 
 
 urlpatterns = [
