@@ -26,8 +26,13 @@ class Command(BaseCommand):
     help = "Review provided language feedback"
     def add_arguments(self, parser):
         parser.add_argument("lang_code", type=str)
+        parser.add_argument("--delete", type=int, nargs="*")
     def handle(self, *args, **options):
         lang_code = options["lang_code"]
+        to_delete = options["delete"]
+        if to_delete is not None:
+            for pk in to_delete:
+                LanguageFeedback.objects.filter(pk=pk).delete()
         data = LanguageFeedback.objects.filter(session__language_code=lang_code)
         for element in data:
             print(f"{element.pk} {element.language_key} => {element.value}")
