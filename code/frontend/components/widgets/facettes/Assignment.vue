@@ -18,7 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="ms-2 me-auto">
-      <div class="fw-bold">{{ assignment.description }}
+      <div class="fw-bold">
+        <LanguageTranslation :translation-key="assignment.description"/>
         <span class="badge text-bg-info"
           v-if="props.choosable && store.assignmentFeedback.filter(l => l.assignment == assignment.id && props.choosable && props.choosable.id == l.choosable).length > 0">Feedback
           received</span>
@@ -51,10 +52,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <Icon name="ion:chevron-up-sharp" v-if="props.assignment.weight > 0"></Icon>
       <Icon name="ion:chevron-down-sharp" v-if="props.assignment.weight < 0"></Icon>
       
-      {{ weightText
-      }}</span>
+      <LanguageTranslation :translation-key="weightText"/>
+      </span>
     <span :class="'badge  rounded-pill ' + assignmentTypeCssMap[assignment.assignmentType]
-      ">{{ assignment.assignmentType }}</span>
+      ">
+       <LanguageTranslation :translation-key="assignment.assignmentType"/>
+          
+  </span>
   </li>
 </template>
 <script setup lang="ts">
@@ -84,7 +88,7 @@ const assignmentTypeCssMap = {
 const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
-const weightText = props.assignment.weight < 0 ? store.__i("weight-less") : store.__i("weight_more");
+const weightText = props.assignment.weight < 0 ? "weight-less" : "weight_more";
 
 const giveFeedback = (choosable: Choosable, is_positive: boolean) =>
   store.giveFeedback(props.assignment, choosable, props.facette, is_positive);

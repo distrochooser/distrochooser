@@ -122,12 +122,10 @@ class PageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_text(self, obj: Page) -> str:
-        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
-        return obj.__("text", session.language_code)
+        return obj.get_msgd_id_of_field("text")
     
     def get_help(self, obj: Page) -> str:
-        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
-        return obj.__("help", session.language_code)
+        return obj.get_msgd_id_of_field("help")
     
     
     

@@ -18,14 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div class="  text-center mt-3 border-top pt-3">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <a v-if="canGoBack" class="btn btn-outline-secondary" href="#" v-on:click="goBack">{{
-        store.__i("BTN_PREV_PAGE")
-        }}</a>
-       <a v-if="canGoNext" href="#" class="btn btn-outline-secondary" v-on:click="goNext">
-        {{ store.__i("BTN_SKIP_PAGE") }}
+      <a v-if="canGoBack" class="btn btn-outline-secondary" href="#" v-on:click="goBack">
+        <LanguageTranslation translation-key="BTN_PREV_PAGE" />
+      </a>
+      <a v-if="canGoNext" href="#" class="btn btn-outline-secondary" v-on:click="goNext">
+        <LanguageTranslation translation-key="BTN_SKIP_PAGE" />
       </a>
       <a v-if="canGoNext" href="#" class="btn btn-outline-primary" v-on:click="goNext">
-        {{ store.__i("BTN_NEXT_PAGE") }}
+        <LanguageTranslation translation-key="BTN_NEXT_PAGE" />
       </a>
     </div>
   </div>
@@ -34,6 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import { computed } from "vue";
 import type { NavigationWidget } from "../../sdk";
 import { useSessionStore } from "../../states/session";
+import Language from "../Language.vue";
 
 interface WidgetProps {
   widget: NavigationWidget;

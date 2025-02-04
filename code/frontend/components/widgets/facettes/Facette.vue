@@ -21,26 +21,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
         type="checkbox" :id="facette.id.toString()">
       <label class="form-check-label" :for="facette.id.toString()">
-        {{ props.facette.selectableDescription }}
+        <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
       </label>
-      <BehaviourButton :title="store.__i('why')" :click-handler="toggleExpand" />
+      <BehaviourButton :click-handler="toggleExpand" />
     </div>
     <div class="form-check" v-else>
       <input v-on:click="registerClick" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
         v-model="selected" v-on:change="registerChange" v-bind:value="true" :checked="isSelected"
         :id="facette.id.toString()">
       <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
-        {{ props.facette.selectableDescription }}
+        <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
       </label>
 
-      <BehaviourButton :title="store.__i('why')" :click-handler="toggleExpand" />
+      <BehaviourButton :click-handler="toggleExpand" />
     </div>
 
     <div v-if="isExpanded.valueOf()">
       <ul class="list-group">
         <li v-if="props.facette.assignments.length == 0"
           class="list-group-item d-flex justify-content-between align-items-start">
-          {{ store.__i("no-mappings-for-this-facette") }}
+          <LanguageTranslation translation-key="no-mappings-for-this-facette"/>
         </li>
         <Assignment :display-weigth="false" :assignment="key" v-for="(key, index) in props.facette.assignments" :key="index"
           :query-choosables="true" :facette="props.facette" />
@@ -59,6 +59,7 @@ import { type Facette } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
 import BehaviourButton from "./AssignmentButton.vue";
+import LanguageTranslation from "../../LanguageTranslation.vue";
 
 interface CheckboxFacetteProps {
   facette: Facette;

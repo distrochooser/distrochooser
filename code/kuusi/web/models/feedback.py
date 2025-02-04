@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import annotations
 from django.db import models
-from django.http import HttpRequest
 
 from .choosable import Choosable
 from .facette import FacetteAssignment
@@ -39,3 +38,15 @@ class Feedback(models.Model):
         null=False,
         related_name="feedback_session",
     )
+
+class LanguageFeedback(models.Model):
+    session = models.ForeignKey(
+        to=Session,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        related_name="language_feedback_session",
+    )
+    language_key = models.CharField(max_length=255, null=False)
+    value = models.TextField(null=False)
+    is_approved = models.BooleanField(default=False)

@@ -17,13 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import Session, SessionMeta, FacetteSelection, Facette, SessionVersion
+from web.models import Session, SessionMeta, FacetteSelection, Facette, SessionVersion, LanguageFeedback
 from rest_framework import serializers
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
 from kuusi.settings import LANGUAGE_CODES, DEFAULT_SESSION_META, FRONTEND_URL, KUUSI_ICON, RTL_LANGUAGES, KUUSI_NAME, KUUSI_LOGO, KUUSI_META_TAGS, LOCALE_MAPPING
 from web.models import TRANSLATIONS, Feedback
+from web.models.translateable import get_translation_haystack
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
@@ -52,7 +53,7 @@ class SessionSerializer(serializers.ModelSerializer):
         return LANGUAGE_CODES
 
     def get_language_values(self, obj:Session) -> Dict[str, str]:
-        return TRANSLATIONS[obj.language_code]
+        return get_translation_haystack(obj.language_code)
 
     def get_is_language_rtl(self, obj: Session) -> bool:
         return obj.language_code in RTL_LANGUAGES
@@ -141,7 +142,11 @@ class SessionViewSet(ViewSet):
         result_id = request.query_params.get('result_id')
         if session.result_id != result_id:
             return Response(status=status.HTTP_404_NOT_FOUND) 
-
+        
+        # TODO: This is a side effect. Find something more elegant
+        if session.language_code != lang:
+            LanguageFeedback.objects.filter(session=session).delete()
+        
         session.language_code = lang
         session.version = version
         session.save()

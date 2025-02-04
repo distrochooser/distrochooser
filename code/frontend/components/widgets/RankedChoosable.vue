@@ -29,10 +29,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         "
       >
         <h5 class="card-title">
-          {{ props.choosable.displayName }}
+          <LanguageTranslation :translation-key="props.choosable.displayName"/>
         </h5>
         <p class="card-text">
-          {{ props.choosable.description }}
+          <LanguageTranslation :translation-key="props.choosable.description"/>
         </p>
       </div>
       <ul class="list-group list-group-flush">
