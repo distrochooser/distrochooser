@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { useSessionStore } from '../states/session';
 const sessionStore = useSessionStore();
-const toggleTranslate = () => sessionStore.toggleTranslate()
+const toggleTranslate = () => sessionStore.toggleTranslateFeedback()
 </script>
 <style lang="scss" scoped>
 

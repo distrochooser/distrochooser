@@ -31,6 +31,12 @@ from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema_field
 
 
+
+class CreateLanguageFeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LanguageFeedback
+        fields = ('id','language_key', 'value',)
+
 class LanguageFeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = LanguageFeedback
@@ -50,7 +56,8 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
     )
     def list(self, request,  *args, **kwargs):    
         # TODO: Decide scope
-        results = LanguageFeedback.objects.filter(session__result_id=kwargs["session_pk"])
+        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
+        results = LanguageFeedback.objects.filter(session__language_code=session.language_code)
         serializer = LanguageFeedbackSerializer(
             results,
             many=True
@@ -59,7 +66,7 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         return Response(serializer.data)
 
     @extend_schema(
-        request=LanguageFeedbackSerializer,
+        request=CreateLanguageFeedbackSerializer,
         parameters=[ 
           OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
         ],

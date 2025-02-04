@@ -66,13 +66,26 @@ export const useSessionStore = defineStore('websiteStore', {
         }
     },
     actions: {
-        async toggleTranslate() {
+        async toggleTranslateFeedback() {
             this.isTranslating = !this.isTranslating
             if (this.isTranslating) {
-                await this.sessionApi.sessionLanguageList({
-                    sessionPk: this.session.resultId
-                })
+                this.getTranslationFeedback();
             }
+        },
+        async getTranslationFeedback() {
+            this.languageFeedback =  await this.sessionApi.sessionLanguageList({
+                sessionPk: this.session.resultId
+            })
+        },
+        async provideTranslation(key: string, value: string) {
+            await this.sessionApi.sessionLanguageCreate({
+                sessionPk: this.session.resultId,        
+                createLanguageFeedback: {
+                    languageKey: key,
+                    value: value
+                }
+            })
+            await this.getTranslationFeedback();
         },
         __i(key: string) {
             if (typeof this.session.languageValues[key] == "undefined") {
