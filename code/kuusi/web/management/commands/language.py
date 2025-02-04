@@ -16,24 +16,34 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from genericpath import exists
+from json import dumps, loads
+from os import listdir
 from web.models import LanguageFeedback
 from django.core.management.base import BaseCommand
 from logging import getLogger, ERROR
+from os.path import join
+from kuusi.settings import LOCALE_PATHS
 
-logger = getLogger('command')
+logger = getLogger("command")
+
 
 class Command(BaseCommand):
     help = "Review provided language feedback"
+
     def add_arguments(self, parser):
         parser.add_argument("lang_code", type=str)
         parser.add_argument("--delete", type=int, nargs="*")
         parser.add_argument("--approve", type=int, nargs="*")
-        parser.add_argument("--clear", type=bool, nargs="?")
+        parser.add_argument("--clear", action="store_true", default=False)
+        parser.add_argument("--persist", action="store_true", default=False)
+
     def handle(self, *args, **options):
         lang_code = options["lang_code"]
         to_delete = options["delete"]
         to_approve = options["approve"]
         remove_unapproved = options["clear"]
+        to_persist = options["persist"]
         if to_delete is not None:
             for pk in to_delete:
                 LanguageFeedback.objects.filter(pk=pk).delete()
@@ -42,10 +52,59 @@ class Command(BaseCommand):
                 obj = LanguageFeedback.objects.filter(pk=pk).first()
                 obj.is_approved = not obj.is_approved
                 obj.save()
-                LanguageFeedback.objects.filter(session__language_code=lang_code).filter(language_key=obj.language_key).exclude(pk=pk).delete()
+                LanguageFeedback.objects.filter(
+                    session__language_code=lang_code
+                ).filter(language_key=obj.language_key).exclude(pk=pk).delete()
         if remove_unapproved:
-            LanguageFeedback.objects.filter(session__language_code=lang_code).exclude(is_approved=True).delete()
+            LanguageFeedback.objects.filter(session__language_code=lang_code).exclude(
+                is_approved=True
+            ).delete()
         data = LanguageFeedback.objects.filter(session__language_code=lang_code)
         for element in data:
-            print(f"[{'X' if element.is_approved else ' '}] {element.pk} {element.language_key} => {element.value}")
-            # TODO: Store accepted translations in files
+            print(
+                f"[{'X' if element.is_approved else ' '}] {element.pk} {element.language_key} => {element.value}"
+            )
+
+        if to_persist is not None:
+            target_path = LOCALE_PATHS[0]
+            files = listdir(target_path)
+
+            for element in data:
+                was_found = False
+                if element.is_approved:
+                    for file in files:
+                        needs_update = False
+                        if file.endswith("json") and file.endswith(
+                            f"-{lang_code}.json"
+                        ):
+                            old_data = {}
+                            json_path = join(target_path, file)
+                            if exists(json_path):
+                                old_data = loads(open(json_path, "r").read())
+                            if element.language_key in old_data:
+                                needs_update = True
+                                was_found = True
+                                old_data[element.language_key] = element.value
+
+                            if needs_update:
+                                print(f"File {json_path} will be updated")
+                                with open(json_path, "w") as file:
+                                    file.write(dumps(old_data))
+
+                    if not was_found:
+                        # Create and update the additional-<lang code>.json if needed
+                        print(f"The value {element.language_key} was not found. Putting it into additional json file")
+                        # TODO: Put this and above into function
+                        old_data = {}
+                        json_path = join(target_path, f"additional-{lang_code}.json")
+                        if exists(json_path):
+                            old_data = loads(open(json_path, "r").read())
+                        old_data[element.language_key] = element.value
+
+                        print(f"File {json_path} will be updated")
+                        with open(json_path, "w") as file:
+                            file.write(dumps(old_data))
+                    
+                    element.delete()
+
+
