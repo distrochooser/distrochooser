@@ -19,14 +19,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div class="row mt-2">
     <div class="col row" v-if="currentCategory != null">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="col-4 btn btn btn-outline-secondary" v-if="currentCategoryIndex != 0"
+        <div class="col-2"/>
+        <button type="button" class="col-1 btn btn btn-outline-secondary" v-if="currentCategoryIndex != 0"
           v-on:click="sessionStore.selectPage(categories[currentCategoryIndex - 1].targetPage)">
-          <Category :index="currentCategoryIndex - 1" :category="categories[currentCategoryIndex - 1]" />
+
+          <Icon name="ion:caret-back" class="fs-3"></Icon>
         </button>
-        <button type="button" class="disabled col-4 btn btn btn-outline-secondary"
+        <button type="button" class="disabled col-1 btn btn btn-outline-secondary"
           v-if="currentCategoryIndex == 0"></button>
 
-        <div class="btn-group col-4" role="group">
+        <div class="btn-group col-6 dropdown-center" role="group">
           <button type="button" class="btn btn-primary dropdown-toggle fs-5" data-bs-toggle="dropdown"
             aria-expanded="false">
             <Category :index="currentCategoryIndex" :category="currentCategory" />
@@ -43,13 +45,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </ul>
         </div>
 
-        <button type="button" class="col-4 btn btn btn-outline-secondary"
+        <button type="button" class="col-1 btn btn btn-outline-secondary"
           v-if="currentCategoryIndex < categories.length - 1"
           v-on:click="sessionStore.selectPage(categories[currentCategoryIndex + 1].targetPage)">
-          <Category :index="currentCategoryIndex + 1" :category="categories[currentCategoryIndex + 1]" />
+          <Icon name="ion:caret-forward"  class="fs-3"></Icon>
         </button>
-        <button type="button" class="disabled col-4 btn btn btn-outline-secondary" v-else></button>
+        <button type="button" class="disabled col-1 btn btn btn-outline-secondary" v-else></button>
 
+        <div class="col-2"/>
       </div>
     </div>
     
