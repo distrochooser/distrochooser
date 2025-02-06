@@ -26,13 +26,12 @@ This version of distrochooser consists out of a single monolith, based in Django
 
 You can find an in-depth guide in the file HOW-TO-MAP.md
 
-# Contributing translations 🌍
 
-https://github.com/distrochooser/translations is your starting point for translations. You can either use the Weblate instance (details in the Readme) or use a PR.
+# Translations
 
-This version uses the branch `6-new-baseline` currently as long as it's in beta.
+> This aspect is currently being overhauled
 
-The english translation is the leading translation.
+You can provide translations within the app.
 
 Thank you for your support 😁
 
