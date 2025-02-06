@@ -1,12 +1,22 @@
 <template>
-  <span v-if="sessionStore.session && !sessionStore.isTranslating">{{ computedValue }}</span>
-  <span v-else :title="computedValue" class="w-100 d-block">
-    <textarea class="form-control w-100" :style="{'border-color': colorCode(computedValue)}" v-on:click.prevent.stop="() => {}" v-on:change="provideFeedback" >{{  computedValue }}</textarea>
+  <span :id="props.translationKey">
+    {{ computedValue }}
+    <a href="#" v-on:click.prevent.stop="toggleEditing" v-if="!isEditing">
+      <Icon name="ion:edit" v-if="sessionStore.isTranslating"></Icon>
+    </a>
+  </span>
+  <span v-if="isEditing" class="d-inline-block" :title="computedValue" :style="{'width': width.toString() + 'px', 'height': height.toString() + 'px'}">
+    <textarea class="col form-control d-inline-block" :style="{'width': 90 + '%', 'border-color': colorCode(computedValue)}" v-on:click.prevent.stop="() => {}" v-on:change="provideFeedback" >{{  computedValue }}</textarea>
+  
+    <a href="#" class="d-inline-block " v-on:click.prevent.stop="toggleEditing">
+      <Icon name="ion:save-outline"></Icon>
+    </a>
   </span>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useSessionStore } from '../states/session';
+import { useState } from 'nuxt/app';
 
 interface TranslationProps {
   translationKey: string;
@@ -15,10 +25,22 @@ interface TranslationProps {
 const sessionStore = useSessionStore();
 const props = defineProps<TranslationProps>();
 const computedValue = computed(() => sessionStore.__i(props.translationKey))
-
+const isEditing = ref(false);
 const provideFeedback = async (e: Event) => {
   const newValue = (e.target as HTMLInputElement).value;
   await sessionStore.provideTranslation(props.translationKey,  newValue);
+}
+
+const width = ref(0)
+const height = ref(0)
+
+const toggleEditing = () => {
+  // get dimensions
+  const element = document.querySelector("#" + props.translationKey)
+  const rect= element.getBoundingClientRect()
+  width.value = rect.width
+  height.value = rect.height
+  isEditing.value = !isEditing.value
 }
 
 // Based upon https://gist.github.com/0x263b/2bdd90886c2036a1ad5bcf06d6e6fb37
