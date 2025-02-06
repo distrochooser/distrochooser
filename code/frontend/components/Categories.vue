@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div class="row mt-2">
+  <div class="row mt-2 mb-2">
     <div class="col row" v-if="currentCategory != null">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
         <div class="col-2"/>
@@ -56,13 +56,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </div>
     </div>
     
-    <ul class="nav justify-content-center fs-6 mt-2" v-if="currentCategory != null">
-      <li class="nav-item" v-for="(category, index) in categories">
-        <a :title="category.name" class="nav-link active" aria-current="page" href="#" v-on:click="sessionStore.selectPage(category.targetPage)">
-          <CategoryIcon :category="category" :index="index" />
-        </a>
-      </li>
-    </ul>
   </div>
 </template>
 <script lang="ts" setup>

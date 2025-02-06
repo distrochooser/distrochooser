@@ -25,15 +25,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <main role="main" class="container">
       <div class="page mt-3  position-relative top-40">
         <div class="row text-center mb-3">
-            <div class="col-4">
-              <LanguageFeedback/>
-            </div>
-            <div class="col col-3">
-              <Logo />
-            </div>
-            <div class="col col-1">
-              <Language v-if="sessionStore.session" />
-            </div>
+          <div class="col-4">
+            <LanguageFeedback />
+          </div>
+          <div class="col col-3">
+            <Logo />
+          </div>
+          <div class="col col-1">
+            <Language v-if="sessionStore.session" />
+          </div>
         </div>
         <div class="row text-center mb-3">
           <div class="col-12">
@@ -43,15 +43,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <RenderField />
       </div>
     </main>
+    <Progress/>
   </div>
 </template>
 <script lang="ts" setup>
 import { navigateTo } from "nuxt/app";
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useSessionStore } from "../../states/session";
 import PageMeta from "../../components/PageMeta.vue";
 import LanguageFeedback from "../../components/LanguageFeedback.vue";
+import Progress from "../../components/Progress.vue";
 
 const router = useRoute();
 const lang: string = router.params.lang as string;
