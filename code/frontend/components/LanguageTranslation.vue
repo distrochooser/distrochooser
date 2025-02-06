@@ -1,8 +1,8 @@
 <template>
-  <span v-if="!isEditing" v-on:click.right.prevent="toggleEditing">
+  <span v-on:click.right.prevent="toggleEditing">
     {{ computedValue }}
   </span>
-  <div v-if="isEditing"  style="z-index: 100000" class="card position-absolute top-50 start-50 translate-middle" :title="computedValue">
+  <div v-if="isEditing"  style="z-index: 100000" class="card position-fixed top-50 start-50 translate-middle" :title="computedValue">
     <div class="card-body">
       <h5 class="card-title">{{ computedValue }}</h5>
       <h6 class="card-subtitle mb-2 text-body-secondary">{{ props.translationKey }}</h6>
