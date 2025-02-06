@@ -61,3 +61,10 @@ class LanguageFeedbackVote(models.Model):
         related_name="vote_language_feedback",
     )
     is_positive = models.BooleanField(default=False)
+    session = models.ForeignKey(
+        to=Session,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        related_name="language_feedback_vote_session",
+    )

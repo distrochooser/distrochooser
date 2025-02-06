@@ -9,12 +9,17 @@
       <h6 class="card-subtitle mb-2 text-body-secondary">{{ props.translationKey }}</h6>
       <div class="card-text">
         <form class="row g-3">
-          <ul>
-            <li v-for="(item, index) in proposals" :key="index">
-              {{ item.value }}
-              {{ item.votes.filter((l => l.isPositive)).length }}x <Icon name="ion:thumbs-up-outline" </Icon>
+          <ul class="list-group list-group">
+            <li v-for="(item, index) in proposals" :key="index" class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">{{  item.value }}</div>
+                Cras justo odio
+              </div>
+              <span class="badge bg-success rounded-pill me-1">{{ item.votes.filter((l => l.isPositive)).length }}x <Icon v-on:click="vote(item.id, true)"
+                name="ion:thumbs-up-outline" </Icon></span>
 
-                {{ item.votes.filter((l => !l.isPositive)).length }}x <Icon name="ion:thumbs-down-outline"></Icon>
+                <span class="badge bg-danger rounded-pill">  {{ item.votes.filter((l => !l.isPositive)).length }}x <Icon v-on:click="vote(item.id, false)"
+                  name="ion:thumbs-down-outline"></Icon></span>
             </li>
           </ul>
           <textarea rows="8" class="form-control" v-on:click.prevent.stop="() => { }"
@@ -44,6 +49,8 @@ const provideFeedback = async (e: Event) => {
   const newValue = (e.target as HTMLInputElement).value;
   await sessionStore.provideTranslation(props.translationKey, newValue);
 }
+
+const vote = (id: number, isPositive) => sessionStore.voteForLanguageFeedback(id, isPositive)
 
 const proposals = computed(() => sessionStore.languageFeedback.filter(f => f.languageKey == props.translationKey))
 

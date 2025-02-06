@@ -79,6 +79,18 @@ export const useSessionStore = defineStore('websiteStore', {
                 sessionPk: this.session.resultId
             })
         },
+        async voteForLanguageFeedback(feedbackId: number, isPositive: boolean) {
+            await this.sessionApi.sessionLanguagevoteCreate(
+                {
+                    sessionPk: this.session.resultId,
+                    createLanguageFeedbackVote: {
+                        languageFeedback: feedbackId,
+                        isPositive: isPositive
+                    }
+                }
+            )
+            await this.getTranslationFeedback()
+        },
         async provideTranslation(key: string, value: string) {
             await this.sessionApi.sessionLanguageCreate({
                 sessionPk: this.session.resultId,        

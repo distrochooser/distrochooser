@@ -35,12 +35,12 @@ from drf_spectacular.utils import extend_schema_field
 class CreateLanguageFeedbackVoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = LanguageFeedbackVote
-        fields = ('language_feedback', 'is_positive',)
+        fields = ('language_feedback', 'is_positive','session')
 
 class LanguageFeedbackVoteSerializer(CreateLanguageFeedbackVoteSerializer):
     class Meta:
         model = LanguageFeedbackVote
-        fields = ('id','language_feedback', 'is_positive',)
+        fields = ('id','language_feedback', 'is_positive', 'session')
 
 
 class LanguageFeedbackVoteViewset(ListModelMixin, GenericViewSet):
@@ -77,8 +77,13 @@ class LanguageFeedbackVoteViewset(ListModelMixin, GenericViewSet):
         data = request.data
         language_feedback = data["language_feedback"]
         is_positive = data["is_positive"]
-        
+        session: Session = Session.objects.filter(result_id=session_pk).first()
+        LanguageFeedbackVote.objects.filter(
+            session=session,
+            language_feedback__pk=language_feedback
+        ).delete()
         result = LanguageFeedbackVote(
+            session=session,
             language_feedback = LanguageFeedback.objects.filter(pk=language_feedback).first(),
             is_positive =is_positive
         )
