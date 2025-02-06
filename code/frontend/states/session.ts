@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
+import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
 import { useRuntimeConfig } from "nuxt/app";
 interface SessionState {
     session: Session | null;
@@ -31,6 +31,7 @@ interface SessionState {
     assignmentFeedback: Feedback[];
     pageMarkings: PageMarking[];
     languageFeedback: LanguageFeedback[];
+    languageFeedbackVotes: LanguageFeedbackVote[];
 }
 let sessionApi: SessionApi = null;
 
@@ -46,7 +47,8 @@ export const useSessionStore = defineStore('websiteStore', {
         choosables: [],
         assignmentFeedback: [],
         pageMarkings: [], /* TODO: Implement and decide if these should persist */
-        languageFeedback: []
+        languageFeedback: [],
+        languageFeedbackVotes: []
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -71,6 +73,9 @@ export const useSessionStore = defineStore('websiteStore', {
         },
         async getTranslationFeedback() {
             this.languageFeedback =  await this.sessionApi.sessionLanguageList({
+                sessionPk: this.session.resultId
+            })
+            this.languageFeedbackVotes = await this.sessionApi.sessionLanguagevoteList({
                 sessionPk: this.session.resultId
             })
         },

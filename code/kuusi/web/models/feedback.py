@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from __future__ import annotations
-from django.db import models
+from django.db import models    
 
 from .choosable import Choosable
 from .facette import FacetteAssignment
@@ -50,3 +50,14 @@ class LanguageFeedback(models.Model):
     language_key = models.CharField(max_length=255, null=False)
     value = models.TextField(null=False)
     is_approved = models.BooleanField(default=False)
+
+
+class LanguageFeedbackVote(models.Model):
+    language_feedback = models.ForeignKey(
+        to=LanguageFeedback,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        related_name="vote_language_feedback",
+    )
+    is_positive = models.BooleanField(default=False)

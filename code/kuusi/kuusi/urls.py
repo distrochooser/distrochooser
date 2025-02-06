@@ -37,6 +37,7 @@ from web.rest.facetteselection import FacetteSelectionViewSet
 from web.rest.facettebehaviour import FacetteBehaviourViewSet
 from web.rest.language import LanguageFeedbackViewSet
 from web.rest.page import PageMarkingViewSet
+from web.rest.languagevote import LanguageFeedbackVoteViewset
 from web.rest.facette import FeedbackViewSet
 from web.rest.widget import WidgetViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
@@ -63,7 +64,7 @@ router_sessions.register(r'facettebehaviour', FacetteBehaviourViewSet, basename=
 router_sessions.register(r'choosable', ChoosableViewSet, basename='session-choosables')
 router_sessions.register(r'feedback', FeedbackViewSet, basename='session-feedback')
 router_sessions.register(r'language', LanguageFeedbackViewSet, basename="session-language")
-
+router_sessions.register(r"languagevote", LanguageFeedbackVoteViewset, basename="session-languagevote")
 
 urlpatterns = [
     path('rest/', include(router.urls)),

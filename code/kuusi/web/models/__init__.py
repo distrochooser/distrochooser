@@ -27,7 +27,7 @@ from .facette import Facette, FacetteAssignment, FacetteBehaviour, FacetteSelect
 from .page import Page, PageMarking
 from .facetteselectionwidget import FacetteSelectionWidget
 from .facetteradioselectionwidget import FacetteRadioSelectionWidget
-from .feedback import Feedback, LanguageFeedback
+from .feedback import Feedback, LanguageFeedback, LanguageFeedbackVote
 
 from .category import Category
 from .htmlwidget import HTMLWidget

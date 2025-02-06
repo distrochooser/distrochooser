@@ -17,8 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import LanguageFeedback, Session, LanguageFeedbackVote
-from web.rest.languagevote import LanguageFeedbackVoteSerializer
+from web.models import LanguageFeedback, LanguageFeedbackVote, Session
 from web.rest.choosable import ChoosableSerializer
 from rest_framework import serializers
 from drf_spectacular.utils import  extend_schema, OpenApiResponse
@@ -30,39 +29,26 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema_field
-from typing import List
 
 
-class CreateLanguageFeedbackSerializer(serializers.ModelSerializer):
+
+class CreateLanguageFeedbackVoteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = LanguageFeedback
-        fields = ('id','language_key', 'value',)
+        model = LanguageFeedbackVote
+        fields = ('language_feedback', 'is_positive',)
 
-class LanguageFeedbackSerializer(serializers.ModelSerializer):
-    votes = serializers.SerializerMethodField()
+class LanguageFeedbackVoteSerializer(CreateLanguageFeedbackVoteSerializer):
     class Meta:
-        model = LanguageFeedback
-        fields = ('id', 'session', 'language_key', 'value', 'votes')
-
-    @extend_schema_field(field=LanguageFeedbackVoteSerializer(many=True))
-    def get_votes(self, obj: LanguageFeedback) -> List[LanguageFeedbackVote]:
-        objects = LanguageFeedbackVote.objects.filter(
-            language_feedback=obj
-        )
-
-        serializer = LanguageFeedbackVoteSerializer(
-            objects,
-            many=True
-        )
-        return serializer.data
+        model = LanguageFeedbackVote
+        fields = ('id','language_feedback', 'is_positive',)
 
 
-class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
-    queryset = LanguageFeedback.objects.all()
-    serializer_class = LanguageFeedbackSerializer
+class LanguageFeedbackVoteViewset(ListModelMixin, GenericViewSet):
+    queryset = LanguageFeedbackVote.objects.all()
+    serializer_class = LanguageFeedbackVote
     @extend_schema(
         responses={
-            status.HTTP_200_OK: OpenApiResponse(response=LanguageFeedbackSerializer, description="The list of Language feedbacks available"),
+            status.HTTP_200_OK: OpenApiResponse(response=LanguageFeedbackVoteSerializer, description="The list of Language feedbacks votes available for the language extracted from the session language"),
         },
         parameters=[ 
           OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
@@ -70,8 +56,8 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
     )
     def list(self, request,  *args, **kwargs):    
         session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
-        results = LanguageFeedback.objects.filter(session__language_code=session.language_code)
-        serializer = LanguageFeedbackSerializer(
+        results = LanguageFeedbackVote.objects.filter(language_feedback__session__language_code=session.language_code)
+        serializer = LanguageFeedbackVoteSerializer(
             results,
             many=True
         )
@@ -79,30 +65,26 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         return Response(serializer.data)
 
     @extend_schema(
-        request=CreateLanguageFeedbackSerializer,
+        request=CreateLanguageFeedbackVoteSerializer,
         parameters=[ 
           OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
         ],
         responses={
-            status.HTTP_200_OK: LanguageFeedbackSerializer,
+            status.HTTP_200_OK: CreateLanguageFeedbackVoteSerializer,
         }
     ) 
-    def create(self, request, session_pk) -> LanguageFeedbackSerializer:
+    def create(self, request, session_pk) -> CreateLanguageFeedbackVoteSerializer:
         data = request.data
-        language_key = data["language_key"]
-        value = data["value"]
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        language_feedback = data["language_feedback"]
+        is_positive = data["is_positive"]
         
-
-        LanguageFeedback.objects.filter(session=session).filter(language_key=language_key).delete()
-        result = LanguageFeedback(
-            language_key = language_key,
-            value = value,
-            session=session
+        result = LanguageFeedbackVote(
+            language_feedback = LanguageFeedback.objects.filter(pk=language_feedback).first(),
+            is_positive =is_positive
         )
         result.save()
 
-        serializer = LanguageFeedbackSerializer(
+        serializer = LanguageFeedbackVoteSerializer(
             result
         )
 
@@ -119,5 +101,5 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
     ) 
     def destroy(self, request, session_pk, pk):
         session: Session = Session.objects.filter(result_id=session_pk).first()
-        LanguageFeedbackSerializer.objects.filter(pk=pk).filter(session=session).delete()
+        LanguageFeedbackVote.objects.filter(pk=pk).filter(language_feedback__session=session).delete()
         return Response()
