@@ -88,6 +88,9 @@ export const useSessionStore = defineStore('websiteStore', {
             await this.getTranslationFeedback();
         },
         __i(key: string) {
+            if (!this.session) {
+                return key
+            }
             const providedFeedback = this.languageFeedback.filter(l => l.languageKey == key)
             if (providedFeedback.length > 0) {
                 return providedFeedback[0].value

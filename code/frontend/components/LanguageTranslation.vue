@@ -1,5 +1,5 @@
 <template>
-  <span v-if="!sessionStore.isTranslating">{{ computedValue }}</span>
+  <span v-if="sessionStore.session && !sessionStore.isTranslating">{{ computedValue }}</span>
   <span v-else :title="computedValue" class="w-100 d-block">
     <textarea class="form-control w-100" :style="{'border-color': colorCode(computedValue)}" v-on:click.prevent.stop="() => {}" v-on:change="provideFeedback" >{{  computedValue }}</textarea>
   </span>
