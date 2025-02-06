@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="page mt-3  position-relative top-40">
         <div class="row text-center mb-3">
           <div class="col-4">
-            <LanguageFeedback />
           </div>
           <div class="col col-3">
             <Logo />
