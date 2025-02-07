@@ -1,6 +1,9 @@
 <template>
-  <span v-on:click.right.prevent="toggleEditing">
+  <span v-on:mouseover="isIconShowed=true" v-on:mouseleave="isIconShowed=false">
     {{ computedValue }}
+    <a href="#" v-on:click.prevent.stop="toggleEditing">
+      <Icon class="text-muted fs-6" name="ion:language" v-if="isIconShowed"></Icon>
+    </a>
   </span>
   <div v-if="isEditing" style="z-index: 100000" class="card position-fixed top-50 start-50 translate-middle"
     :title="computedValue">
@@ -47,6 +50,7 @@ const sessionStore = useSessionStore();
 const props = defineProps<TranslationProps>();
 const computedValue = computed(() => sessionStore.__i(props.translationKey))
 const isEditing = ref(false);
+const isIconShowed = ref(false);
 const provideFeedback = async (e: Event) => {
   const newValue = (e.target as HTMLInputElement).value;
   await sessionStore.provideTranslation(props.translationKey, newValue);
@@ -65,5 +69,9 @@ const closeEdit = () => {
   isEditing.value = !isEditing.value
 }
 
+
+const toggleEditIcon = () => {
+  isIconShowed.value = !isIconShowed.value
+}
 
 </script>
