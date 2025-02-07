@@ -16,14 +16,17 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <div v-html="widget.renderResult">
-        
+    <div>
+      <WelcomeHTML v-if="props.widget.template == 'welcome.html'"/>
     </div>
 </template>
 <script setup lang="ts">
 import type {HTMLWidget } from '../../sdk';
+import WelcomeHTML from "../widgets/html/HTMLWelcome.vue";
 
-// TODO: Plan to deprecate HTML widgets
+
+// TODO: Naming for "templates" and documentation
+// TODO: Mapping for child components
 interface WidgetProps {
   widget: HTMLWidget;
 }

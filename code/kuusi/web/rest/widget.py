@@ -83,32 +83,13 @@ class WidgetSerializer(serializers.ModelSerializer):
 
 class HTMLWidgetSerializer(WidgetSerializer):
     widget_type = serializers.SerializerMethodField()
-    render_result = serializers.SerializerMethodField()
 
     class Meta:
         model = HTMLWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + (
             "template",
-            "render_result",
         )
 
-    def get_render_result(self, obj: HTMLWidget) -> str:
-        template_path = BASE_DIR.joinpath("web/templates").joinpath(obj.template)
-        contents = open(template_path, "r").read()
-        template = Template(
-            contents,
-            engine=Engine(
-                libraries={
-                    "web_extras": "web.templatetags.web_extras"
-                },
-            ),
-        )
-        session: Session = Session.objects.filter(result_id= self.context["session_pk"]).first()
-        context = Context({
-            "language_code": session.language_code
-        })
-        result = template.render(context)
-        return str(result)
 
 
 class WithFacetteWidgetSerializer(WidgetSerializer):
