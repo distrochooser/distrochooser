@@ -54,7 +54,7 @@ const provideFeedback = async (e: Event) => {
 
 const vote = (id: number, isPositive) => sessionStore.voteForLanguageFeedback(id, isPositive)
 
-const proposals = computed(() => sessionStore.languageFeedback.filter(f => f.languageKey == props.translationKey))
+const proposals = computed(() => sessionStore.languageFeedback.filter(f => f.languageKey == props.translationKey && f.session != sessionStore.session.id))
 
 
 const toggleEditing = () => {
