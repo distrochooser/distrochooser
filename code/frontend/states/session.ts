@@ -105,7 +105,10 @@ export const useSessionStore = defineStore('websiteStore', {
             if (!this.session) {
                 return key
             }
-            const providedFeedback = this.languageFeedback.filter(l => l.languageKey == key)
+            const providedFeedback = this.languageFeedback.filter(l => l.languageKey == key && (
+                l.session == this.session.id ||
+                l.votes.filter((v => v.session == this.session.id && v.isPositive)).length > 0
+            ))
             if (providedFeedback.length > 0) {
                 return providedFeedback[0].value
             }

@@ -12,13 +12,15 @@
           <ul class="list-group list-group">
             <li v-for="(item, index) in proposals" :key="index" class="list-group-item d-flex justify-content-between align-items-start">
               <div class="ms-2 me-auto">
-                <div class="fw-bold">{{  item.value }}</div>
-                Cras justo odio
+                <div class="fw-bold">
+                  <LanguageTranslation translation-key="language-proposal"/>#{{ item.id }}
+                  </div>
+                  {{  item.value }}
               </div>
-              <span class="badge bg-success rounded-pill me-1">{{ item.votes.filter((l => l.isPositive)).length }}x <Icon v-on:click="vote(item.id, true)"
+              <span class="badge bg-success rounded-pill me-1"  v-on:click="vote(item.id, true)">{{ item.votes.filter((l => l.isPositive)).length }}x <Icon 
                 name="ion:thumbs-up-outline" </Icon></span>
 
-                <span class="badge bg-danger rounded-pill">  {{ item.votes.filter((l => !l.isPositive)).length }}x <Icon v-on:click="vote(item.id, false)"
+                <span class="badge bg-danger rounded-pill" v-on:click="vote(item.id, false)">  {{ item.votes.filter((l => !l.isPositive)).length }}x <Icon
                   name="ion:thumbs-down-outline"></Icon></span>
             </li>
           </ul>
