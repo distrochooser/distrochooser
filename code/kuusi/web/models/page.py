@@ -135,6 +135,7 @@ class Page(Translateable):
             + list(apps.get_model("web", "ResultListWidget").objects.filter(pages__pk__in=[self]))
             + list(apps.get_model("web", "ResultShareWidget").objects.filter(pages__pk__in=[self]))
             + list(apps.get_model("web", "NavigationWidget").objects.filter(pages__pk__in=[self]))
+            + list(apps.get_model("web", "MetaFilterWidget").objects.filter(pages__pk__in=[self]))
         )
 
     def proceed(self, request: WebHttpRequest) -> bool:

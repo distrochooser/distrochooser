@@ -36,4 +36,4 @@ from .navigationwidget import NavigationWidget
 from .resultsharewidget import ResultShareWidget
 from .resultlistwidget import ResultListWidget
 
-from .metafilterwidget import MetaFilterWidget
+from .metafilterwidget import MetaFilterWidget,  MetaFilterWidgetStructure, MetaFilterWidgetElement

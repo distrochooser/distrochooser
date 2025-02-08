@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from collections import OrderedDict
+from json import loads
 
 from django.shortcuts import render
 from django.template import Context, Engine, Template
@@ -30,6 +31,9 @@ from web.models import (
     NavigationWidget,
     ResultListWidget,
     ResultShareWidget,
+    MetaFilterWidget,
+    MetaFilterWidgetElement,
+    MetaFilterWidgetStructure,
     Facette,
     SessionVersionWidget,
     SessionVersion,
@@ -50,6 +54,8 @@ from kuusi.settings import LANGUAGE_CODES, WEIGHT_MAP, BASE_DIR
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
+from rest_framework.serializers import ListSerializer
+from rest_framework.fields import CharField
 
 from drf_spectacular.utils import extend_schema_field, PolymorphicProxySerializer
 
@@ -86,10 +92,7 @@ class HTMLWidgetSerializer(WidgetSerializer):
 
     class Meta:
         model = HTMLWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + (
-            "template",
-        )
-
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("template",)
 
 
 class WithFacetteWidgetSerializer(WidgetSerializer):
@@ -116,6 +119,24 @@ class FacetteRadioSelectionWidgetSerializer(WithFacetteWidgetSerializer):
     class Meta:
         model = FacetteRadioSelectionWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic", "facettes")
+
+
+class MetaFilterWidgetSerializer(WidgetSerializer):
+    structure = serializers.SerializerMethodField()
+
+    class Meta:
+        model = MetaFilterWidget
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("structure",)
+
+    @extend_schema_field(
+        field=ListSerializer(
+            child=ListSerializer(
+                child=CharField()
+            )
+        )
+    )
+    def get_structure(self, obj: MetaFilterWidget) -> List[str]:
+        return loads(obj.structure)
 
 
 class SessionVersionWidgetSerializer(WidgetSerializer):
@@ -249,6 +270,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                         FacetteSelectionWidgetSerializer,
                         ResultListWidgetSerializer,
                         ResultShareWidgetSerializer,
+                        MetaFilterWidgetSerializer,
                     ],
                     component_name="MetaWidget",
                     resource_type_field_name="widget_type",
@@ -292,6 +314,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                 FacetteSelectionWidget: FacetteSelectionWidgetSerializer,
                 ResultListWidget: ResultListWidgetSerializer,
                 ResultShareWidget: ResultShareWidgetSerializer,
+                MetaFilterWidget: MetaFilterWidgetSerializer,
             }
         )
         widget: Widget

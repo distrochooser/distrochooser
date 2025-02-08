@@ -32,6 +32,7 @@ interface SessionState {
     pageMarkings: PageMarking[];
     languageFeedback: LanguageFeedback[];
     languageFeedbackVotes: LanguageFeedbackVote[];
+    metaFilterArgs: { [id: string] : any; }
 }
 let sessionApi: SessionApi = null;
 
@@ -48,7 +49,8 @@ export const useSessionStore = defineStore('websiteStore', {
         assignmentFeedback: [],
         pageMarkings: [], /* TODO: Implement and decide if these should persist */
         languageFeedback: [],
-        languageFeedbackVotes: []
+        languageFeedbackVotes: [],
+        metaFilterArgs: {}
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -65,10 +67,11 @@ export const useSessionStore = defineStore('websiteStore', {
         }
     },
     actions: {
-        async toggleTranslateFeedback() {
-            this.isTranslating = !this.isTranslating
-            if (this.isTranslating) {
-                this.getTranslationFeedback();
+        updateMetaFilterArgs(key: string, value: any) {
+            if (value == null) {
+                delete this.metaFilterArgs[key]
+            } else {
+                this.metaFilterArgs[key] = value
             }
         },
         async getTranslationFeedback() {
