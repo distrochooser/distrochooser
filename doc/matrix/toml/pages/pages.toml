@@ -106,8 +106,7 @@ not_in_versions = ["simplified"]
 [widget.metafilter.old-hardware-page-widget-name]
 structure = [
    [
-    "number.computer-age.filter_age",
-    "text.computer-age.filter_age"
+    "number.distro_age.filter_number_gt",
    ]
 ]
 pages = ["old-hardware-page"]

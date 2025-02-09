@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from json import dumps
+from json import dumps, loads
 from web.models import Widget, Choosable, FacetteAssignment, Session
 from django.db import models
 from typing import List
@@ -32,7 +32,7 @@ class MetaFilterWidgetElement:
     
     def get_func_map(self):
         func_map = {
-            "filter_age": self.func_filter_age
+            "filter_number_gt": self.filter_number_gt
         }
         return func_map
     
@@ -40,11 +40,20 @@ class MetaFilterWidgetElement:
         if self.cell_func not in self.get_func_map():
             raise Exception(f"Function {self.cell_func} not found")
 
-    def apply_cell_func(self, obj: Choosable) -> FacetteAssignment:
-        return None
+    def apply_cell_func(self, obj: Choosable, value: any) -> FacetteAssignment:
+        method = self.get_func_map()[self.cell_func]
+        return method(obj, value)
     
-    def func_filter_age(self, obj: Choosable, value: any):
-        pass 
+    def filter_number_gt(self, obj: Choosable, value: any) -> FacetteAssignment:
+        if "AGE" not in obj.meta:
+            return None
+        matches = int(obj.meta["AGE"].years_since) < int(value)
+        result = FacetteAssignment(
+            catalogue_id = self.cell_name,
+            long_description="suitable" if matches else "not-suitable",
+            assignment_type=FacetteAssignment.AssignmentType.POSITIVE if matches else FacetteAssignment.AssignmentType.NEGATIVE
+        )
+        return result
 
 
 class MetaFilterWidgetStructure:
@@ -55,7 +64,7 @@ class MetaFilterWidgetStructure:
         self.raw_input = raw_input
         self.structure = []
     
-    def parse(self) -> str:
+    def parse(self):
         for _, row in enumerate(self.raw_input):
             row_list = []
             for _, cell in enumerate(row):
@@ -66,6 +75,13 @@ class MetaFilterWidgetStructure:
     
     def stringify(self):
         return dumps(self.raw_input)
+    
+    def get_cell_from_structure(self, key: str) -> MetaFilterWidgetElement:
+        for line in self.structure:
+            for cell in line:
+                if cell.cell_name == key:
+                    return cell
+        return None
 
 
     def get_cell_content(self, raw_input: str) -> MetaFilterWidgetElement:
@@ -86,6 +102,11 @@ class MetaFilterWidget(Widget):
     # To keep this simple, this is for now one field instead of an additional nested structure
     structure = models.TextField(default=None, null=True, blank=True)
 
+    @property
+    def parsed_structure(self) -> MetaFilterWidgetStructure:
+        obj = MetaFilterWidgetStructure(loads(self.structure))
+        obj.parse()
+        return obj
 
 class MetaFilterValue(models.Model):
 

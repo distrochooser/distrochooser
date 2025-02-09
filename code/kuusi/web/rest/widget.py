@@ -34,6 +34,7 @@ from web.models import (
     MetaFilterWidget,
     MetaFilterWidgetElement,
     MetaFilterWidgetStructure,
+    MetaFilterValue,
     Facette,
     SessionVersionWidget,
     SessionVersion,
@@ -223,9 +224,25 @@ class ResultListWidgetSerializer(WidgetSerializer):
                 facette = selection.facette
                 selection_weight_key = selection.weight
                 selection_weight_value = WEIGHT_MAP[selection_weight_key]
-                assignments = FacetteAssignment.objects.filter(
+                assignments_stored = FacetteAssignment.objects.filter(
                     facettes__in=[facette]
                 ).filter(choosables__in=[choosable])
+
+                assignments = list(assignments_stored)
+
+                # Append "virtual" assignments caused by stored meta values
+                # TODO: Decide to append these also when no selection was given
+                stored_meta_filter_values = MetaFilterValue.objects.filter(session=session)
+                meta_filter_widgets = MetaFilterWidget.objects.all()
+
+                for meta_filter_widget in meta_filter_widgets:
+                    structure = meta_filter_widget.parsed_structure
+                    for stored_value in stored_meta_filter_values:
+                       cell_obj =  structure.get_cell_from_structure(stored_value.key)
+                       stored_value_value = stored_value.value
+                       result = cell_obj.apply_cell_func(choosable, stored_value_value)
+                       if result is not None:
+                        assignments.append(result)
 
                 for assignment in assignments:
                     # Only include assignments without negative user feedback
