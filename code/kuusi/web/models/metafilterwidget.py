@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from json import dumps
-from web.models import Widget, Choosable, FacetteAssignment
+from web.models import Widget, Choosable, FacetteAssignment, Session
 from django.db import models
 from typing import List
 
@@ -85,3 +85,16 @@ class MetaFilterWidgetStructure:
 class MetaFilterWidget(Widget):
     # To keep this simple, this is for now one field instead of an additional nested structure
     structure = models.TextField(default=None, null=True, blank=True)
+
+
+class MetaFilterValue(models.Model):
+
+    session = models.ForeignKey(
+        to=Session,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        related_name="meta_filter_value_session",
+    )
+    key = models.CharField(null=False, blank=False, max_length=255)
+    value = models.CharField(null=False, blank=False, max_length=255)

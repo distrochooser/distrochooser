@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
+import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaFilterValue, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
 import { useRuntimeConfig } from "nuxt/app";
 interface SessionState {
     session: Session | null;
@@ -32,7 +32,7 @@ interface SessionState {
     pageMarkings: PageMarking[];
     languageFeedback: LanguageFeedback[];
     languageFeedbackVotes: LanguageFeedbackVote[];
-    metaFilterArgs: { [id: string] : any; }
+    metaValues: MetaFilterValue[]
 }
 let sessionApi: SessionApi = null;
 
@@ -50,7 +50,7 @@ export const useSessionStore = defineStore('websiteStore', {
         pageMarkings: [], /* TODO: Implement and decide if these should persist */
         languageFeedback: [],
         languageFeedbackVotes: [],
-        metaFilterArgs: {}
+        metaValues: []
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -67,12 +67,27 @@ export const useSessionStore = defineStore('websiteStore', {
         }
     },
     actions: {
-        updateMetaFilterArgs(key: string, value: any) {
+        async updateMetaFilterArgs(key: string, value: any) {
             if (value == null) {
-                delete this.metaFilterArgs[key]
+                await this.sessionApi.sessionMetafiltervalueDestroy({
+                    sessionPk: this.session.resultId,
+                    id: this.metaValues.filter(m => m.key == key)[0].id
+                })
             } else {
-                this.metaFilterArgs[key] = value
+                await this.sessionApi.sessionMetafiltervalueCreate({
+                    sessionPk: this.session.resultId,
+                    metaFilterValue: {
+                        key: key,
+                        value: value
+                    }
+                })
             }
+            this.getMetaValues()
+        },
+        async getMetaValues() {
+            this.metaValues = await this.sessionApi.sessionMetafiltervalueList({
+                sessionPk: this.session.resultId
+            })
         },
         async getTranslationFeedback() {
             this.languageFeedback =  await this.sessionApi.sessionLanguageList({
@@ -168,6 +183,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 this.facetteSelections = await this.sessionApi.sessionFacetteselectionList({
                     sessionPk: this.session.resultId
                 })
+                this.getMetaValues();
             }
         },
         async updateCategoriesAndPages() {

@@ -9,7 +9,7 @@
                         <LanguageTranslation :translation-key="cell.split('.')[1]" />
                     </label>
 
-                    <input class="form-control" :type="cell.split('.')[0]" :id="cell.split('.')[1]" v-on:change="updateValue" />
+                    <input :value="value(cell)" class="form-control" :type="cell.split('.')[0]" :id="cell.split('.')[1]" v-on:change="updateValue" />
                 </div>
 
             </div>
@@ -17,6 +17,7 @@
     </div>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { MetaFilterWidget } from '../../sdk';
 import { useSessionStore } from '../../states/session';
 
@@ -35,6 +36,14 @@ const updateValue = (e: Event) => {
         value = null;
     }
     store.updateMetaFilterArgs(key, value)
+}
+
+const value = (cell) => {
+    const matches = store.metaValues.filter((m) => m.key =cell.split(".")[0])
+    if (matches.length == 0){
+        return ""
+    } 
+    return matches[0].value
 }
 
 const props = defineProps<WidgetProps>();
