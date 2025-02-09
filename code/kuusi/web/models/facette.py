@@ -131,6 +131,8 @@ class FacetteAssignment(Translateable):
     )
 
     def __str__(self) -> str:
+        if self.pk is None:
+            return f"Virtual: ({self.assignment_type})" 
         choosables_str = [c.name for c in self.choosables.all()]
         facettes_str = [f.catalogue_id for f in self.facettes.all()]
         return f"{choosables_str} -> {facettes_str} ({self.assignment_type})"

@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from collections import OrderedDict
+from json import loads
 
 from django.shortcuts import render
 from django.template import Context, Engine, Template
@@ -30,6 +31,10 @@ from web.models import (
     NavigationWidget,
     ResultListWidget,
     ResultShareWidget,
+    MetaFilterWidget,
+    MetaFilterWidgetElement,
+    MetaFilterWidgetStructure,
+    MetaFilterValue,
     Facette,
     SessionVersionWidget,
     SessionVersion,
@@ -50,6 +55,8 @@ from kuusi.settings import LANGUAGE_CODES, WEIGHT_MAP, BASE_DIR
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
+from rest_framework.serializers import ListSerializer
+from rest_framework.fields import CharField
 
 from drf_spectacular.utils import extend_schema_field, PolymorphicProxySerializer
 
@@ -86,10 +93,7 @@ class HTMLWidgetSerializer(WidgetSerializer):
 
     class Meta:
         model = HTMLWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + (
-            "template",
-        )
-
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("template",)
 
 
 class WithFacetteWidgetSerializer(WidgetSerializer):
@@ -116,6 +120,24 @@ class FacetteRadioSelectionWidgetSerializer(WithFacetteWidgetSerializer):
     class Meta:
         model = FacetteRadioSelectionWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic", "facettes")
+
+
+class MetaFilterWidgetSerializer(WidgetSerializer):
+    structure = serializers.SerializerMethodField()
+
+    class Meta:
+        model = MetaFilterWidget
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("structure",)
+
+    @extend_schema_field(
+        field=ListSerializer(
+            child=ListSerializer(
+                child=CharField()
+            )
+        )
+    )
+    def get_structure(self, obj: MetaFilterWidget) -> List[str]:
+        return loads(obj.structure)
 
 
 class SessionVersionWidgetSerializer(WidgetSerializer):
@@ -202,9 +224,25 @@ class ResultListWidgetSerializer(WidgetSerializer):
                 facette = selection.facette
                 selection_weight_key = selection.weight
                 selection_weight_value = WEIGHT_MAP[selection_weight_key]
-                assignments = FacetteAssignment.objects.filter(
+                assignments_stored = FacetteAssignment.objects.filter(
                     facettes__in=[facette]
                 ).filter(choosables__in=[choosable])
+
+                assignments = list(assignments_stored)
+
+                # Append "virtual" assignments caused by stored meta values
+                # TODO: Decide to append these also when no selection was given
+                stored_meta_filter_values = MetaFilterValue.objects.filter(session=session)
+                meta_filter_widgets = MetaFilterWidget.objects.all()
+
+                for meta_filter_widget in meta_filter_widgets:
+                    structure = meta_filter_widget.parsed_structure
+                    for stored_value in stored_meta_filter_values:
+                       cell_obj =  structure.get_cell_from_structure(stored_value.key)
+                       stored_value_value = stored_value.value
+                       result = cell_obj.apply_cell_func(choosable, stored_value_value)
+                       if result is not None:
+                        assignments.append(result)
 
                 for assignment in assignments:
                     # Only include assignments without negative user feedback
@@ -249,6 +287,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                         FacetteSelectionWidgetSerializer,
                         ResultListWidgetSerializer,
                         ResultShareWidgetSerializer,
+                        MetaFilterWidgetSerializer,
                     ],
                     component_name="MetaWidget",
                     resource_type_field_name="widget_type",
@@ -292,6 +331,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                 FacetteSelectionWidget: FacetteSelectionWidgetSerializer,
                 ResultListWidget: ResultListWidgetSerializer,
                 ResultShareWidget: ResultShareWidgetSerializer,
+                MetaFilterWidget: MetaFilterWidgetSerializer,
             }
         )
         widget: Widget

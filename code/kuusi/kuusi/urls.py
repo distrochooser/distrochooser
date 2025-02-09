@@ -34,6 +34,7 @@ from web.rest.page import PageViewSet
 from web.rest.session import SessionViewSet
 from web.rest.category import CategoryViewSet
 from web.rest.facetteselection import FacetteSelectionViewSet
+from web.rest.metafilter import MetaFilterValueViewSet
 from web.rest.facettebehaviour import FacetteBehaviourViewSet
 from web.rest.language import LanguageFeedbackViewSet
 from web.rest.page import PageMarkingViewSet
@@ -65,6 +66,7 @@ router_sessions.register(r'choosable', ChoosableViewSet, basename='session-choos
 router_sessions.register(r'feedback', FeedbackViewSet, basename='session-feedback')
 router_sessions.register(r'language', LanguageFeedbackViewSet, basename="session-language")
 router_sessions.register(r"languagevote", LanguageFeedbackVoteViewset, basename="session-languagevote")
+router_sessions.register(r"metafiltervalue", MetaFilterValueViewSet, basename="session-metafiltervalue")
 
 urlpatterns = [
     path('rest/', include(router.urls)),

@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import Session, SessionMeta, FacetteSelection, Facette, SessionVersion, LanguageFeedback
+from web.models import Session, SessionMeta, FacetteSelection, Facette, SessionVersion, LanguageFeedback, MetaFilterValue
 from rest_framework import serializers
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
@@ -189,6 +189,17 @@ class SessionViewSet(ViewSet):
             else:
                 old_session = old_sessions.first()
             if not session.session_origin:
+                # copy old meta values
+                values = MetaFilterValue.objects.filter(session=old_session) 
+
+                value: MetaFilterValue
+                for value in values:
+                    value.pk = None
+                    value.session = session
+                    value.save()
+
+
+                # copy old selections
                 selections = FacetteSelection.objects.filter(session=old_session)
                 selection: FacetteSelection
                 for selection in selections:

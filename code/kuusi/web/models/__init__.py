@@ -35,3 +35,5 @@ from .htmlwidget import HTMLWidget
 from .navigationwidget import NavigationWidget
 from .resultsharewidget import ResultShareWidget
 from .resultlistwidget import ResultListWidget
+
+from .metafilterwidget import MetaFilterWidget,  MetaFilterWidgetStructure, MetaFilterWidgetElement, MetaFilterValue

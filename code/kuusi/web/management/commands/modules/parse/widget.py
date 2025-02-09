@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from typing import Dict, List, Callable, Type
-from web.models import Category, Page, Widget, HTMLWidget, SessionVersionWidget, FacetteSelectionWidget, NavigationWidget, ResultShareWidget, ResultListWidget, FacetteRadioSelectionWidget
+from web.models import MetaFilterWidget, MetaFilterWidgetStructure, Page, Widget, HTMLWidget, SessionVersionWidget, FacetteSelectionWidget, NavigationWidget, ResultShareWidget, ResultListWidget, FacetteRadioSelectionWidget
 from logging import getLogger
 logger = getLogger('command') 
 def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[Widget]:
@@ -29,12 +29,14 @@ def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -
         "radio": FacetteRadioSelectionWidget,
         "share": ResultShareWidget,
         "result": ResultListWidget,  
-        "navigation": NavigationWidget
+        "navigation": NavigationWidget,
+        "metafilter": MetaFilterWidget
     }
     prop_map: Dict[str, Dict[str, Type]]= {
         "html": {"template": str},
         "selection": {"topic":str},
-        "radio": {"topic":str}
+        "radio": {"topic":str},
+        "metafilter": {"structure": MetaFilterWidgetStructure}
     }
     # check validity in terms of type definitions:
     for key in haystack.keys():
@@ -63,6 +65,10 @@ def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -
                     # TODO: Make this assignment more variable (especially for List[Type] szenarios). Currently, it is only possible to premap atomic types
                     if value in [str, int, float]:
                         new_widget.__setattr__(prop_key, properties[prop_key])
+                    elif value == MetaFilterWidgetStructure:
+                        structure = MetaFilterWidgetStructure(properties[prop_key])
+                        structure.parse()
+                        new_widget.__setattr__(prop_key, structure.stringify())
                     else:
                         raise NotImplementedError()
 

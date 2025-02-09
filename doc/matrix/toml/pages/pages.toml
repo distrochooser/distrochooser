@@ -103,8 +103,12 @@ target_page = "installation-page"
 next_page = "help-page"
 not_in_versions = ["simplified"]
 
-[widget.radio.old-hardware-page-widget-name]
-topic = "old-hardware"
+[widget.metafilter.old-hardware-page-widget-name]
+structure = [
+   [
+    "number.distro_age.filter_number_gt",
+   ]
+]
 pages = ["old-hardware-page"]
 
 [category.old-hardware-category]
