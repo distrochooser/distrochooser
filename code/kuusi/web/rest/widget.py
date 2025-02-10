@@ -253,10 +253,12 @@ class ResultListWidgetSerializer(WidgetSerializer):
                         .count()
                         > 0
                     )
+                    # FIXME: Prevent the virtual assignments from getting weighted
                     if not has_negative_feedback:
                         weighted_score = 1 * selection_weight_value
                         scores_by_type[assignment.assignment_type] += weighted_score
                     assignments_results[choosable.pk].append(assignment)
+
                     assignments_weight_map[assignment.pk] = selection_weight_value
 
             ranking[choosable.pk] = FacetteAssignment.AssignmentType.get_score(
