@@ -32,6 +32,7 @@ const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
 
+// TODO: Decide if these feedback must be persisted to be resumed after a share
 const newChoosables = useState<Choosable[]>("new-choosable-feedback-" + props.assignment.id, () => [])
 
 const missingChoosables = computed(() => store.choosables.filter(
