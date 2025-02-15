@@ -224,6 +224,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
                 facette = selection.facette
                 selection_weight_key = selection.weight
                 selection_weight_value = WEIGHT_MAP[selection_weight_key]
+                # TODO: Decicide what to to with feedback relating to assignments, but not yet mapped to them.
                 assignments_stored = FacetteAssignment.objects.filter(
                     facettes__in=[facette]
                 ).filter(choosables__in=[choosable])
