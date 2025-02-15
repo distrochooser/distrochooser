@@ -16,49 +16,31 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">
-        <LanguageTranslation :translation-key="assignment.description"/>
-        <span class="badge text-bg-info"
-          v-if="props.choosable && store.assignmentFeedback.filter(l => l.assignment == assignment.id && props.choosable && props.choosable.id == l.choosable).length > 0">Feedback
-          received</span>
-      </div>
-      <div v-if="queryChoosables">
-        <span :key="index" v-for="(value, index) in assignment.choosables" class="badge me-1" :style="'background-color: ' +
-          store.choosables.filter((c) => c.id == value)[0].bgColor +
-          '; ' +
-          'color: ' +
-          store.choosables.filter((c) => c.id == value)[0].fgColor
-          " :title="store.choosables.filter((c) => c.id == value)[0].description">
-          {{ store.choosables.filter((c) => c.id == value)[0].displayName }} {{ hasFeedback(value) }}
-          <a href="#" v-on:click="
-            giveFeedback(store.choosables.filter((c) => c.id == value)[0], true)
-            ">+1</a>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col row">
+        <div class="col">
 
-          <a href="#" v-on:click="
-            giveFeedback(store.choosables.filter((c) => c.id == value)[0], false)
-            ">-1</a>
-          <a href="#" v-on:click="
-            removeFeedback(store.choosables.filter((c) => c.id == value)[0])
-            ">DEL</a>
-        </span>
+          <LanguageTranslation :translation-key="assignment.description" />
+        </div>
+        <div class="col text-end">
+
+          <span class="badge text-bg-info"
+            v-if="props.choosable && store.assignmentFeedback.filter(l => l.assignment == assignment.id && props.choosable && props.choosable.id == l.choosable).length > 0">Feedback
+            received</span>
+
+          <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
+        </div>
       </div>
     </div>
-    <span
-      :class="{ 'badge  rounded-pill me-3 ': true, 'text-bg-light': assignment.weight < 0, 'text-bg-dark': assignment.weight > 0 }"
-      v-if="props.displayWeigth && props.assignment.weight != null" :title="assignment.weight.toString() + 'x'">
-      
-      <Icon name="ion:chevron-up-sharp" v-if="props.assignment.weight > 0"></Icon>
-      <Icon name="ion:chevron-down-sharp" v-if="props.assignment.weight < 0"></Icon>
-      
-      <LanguageTranslation :translation-key="weightText"/>
-      </span>
-    <span :class="'badge  rounded-pill ' + assignmentTypeCssMap[assignment.assignmentType]
-      ">
-       <LanguageTranslation :translation-key="assignment.assignmentType"/>
-          
-  </span>
+
+
+    <div v-if="queryChoosables" class="row">
+      <div class="col-4" :key="index" v-for="(value, index) in assignment.choosables">
+        <ChoosableAssignments :facette="props.facette" :choosable-id="value" :assignment="props.assignment" />
+      </div>
+    </div>
+
   </li>
 </template>
 <script setup lang="ts">
@@ -68,6 +50,8 @@ import {
   type FacetteAssignment,
 } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
+import AssignmentType from "./AssignmentType.vue";
+import ChoosableAssignments from "./ChoosableAssignments.vue";
 
 interface AsssignmentProps {
   assignment: FacetteAssignment;
@@ -77,24 +61,10 @@ interface AsssignmentProps {
   displayWeigth: boolean;
 }
 
-const assignmentTypeCssMap = {
-  BLOCKING: "text-bg-dark",
-  NEGATIVE: "text-bg-danger",
-  POSITIVE: "text-bg-success",
-  NEUTRAL: "text-bg-light",
-};
 
 
 const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
-const weightText = props.assignment.weight < 0 ? "weight-less" : "weight_more";
 
-const giveFeedback = (choosable: Choosable, is_positive: boolean) =>
-  store.giveFeedback(props.assignment, choosable, props.facette, is_positive);
-
-const removeFeedback = (choosable: Choosable) =>
-  store.removeFeedback(props.assignment, choosable);
-
-const hasFeedback = (choosableId: number) => store.assignmentFeedback.filter(f => f.assignment == props.assignment.id && f.choosable == choosableId).length != 0;
 </script>
