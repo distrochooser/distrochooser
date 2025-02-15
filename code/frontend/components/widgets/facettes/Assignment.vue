@@ -40,18 +40,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <ChoosableAssignments :facette="props.facette" :choosable-id="value" :assignment="props.assignment" />
       </div>
     </div>
-
+    <LanguageTranslation translation-key="add-new-choosables" />
+    <NewAssignmentChoosable :assignment="assignment" :facette="props.facette"/>
   </li>
 </template>
 <script setup lang="ts">
 import {
   type Choosable,
   type Facette,
-  type FacetteAssignment,
+  type FacetteAssignment
 } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 import AssignmentType from "./AssignmentType.vue";
 import ChoosableAssignments from "./ChoosableAssignments.vue";
+import NewAssignmentChoosable from "./NewAssignmentChoosable.vue";
 
 interface AsssignmentProps {
   assignment: FacetteAssignment;
@@ -61,10 +63,7 @@ interface AsssignmentProps {
   displayWeigth: boolean;
 }
 
-
-
 const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
-
 </script>

@@ -31,6 +31,12 @@
             ">
             <Icon name="ion:arrow-undo"></Icon>
         </a>
+
+        <a href="#" v-if="props.removeDelegate" class="btn btn-outline-primary" v-on:click.prevent="
+            props.removeDelegate(choosable)
+            ">
+            <Icon name="ion:remove-circle"></Icon>
+        </a>
     </div>
 
 </template>
@@ -44,6 +50,7 @@ interface ChoosableAssignmentProps {
     choosableId: number;
     assignment: FacetteAssignment;
     facette: Facette;
+    removeDelegate?: (c: Choosable) => void
 }
 const store = useSessionStore();
 
