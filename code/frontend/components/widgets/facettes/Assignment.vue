@@ -24,11 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <LanguageTranslation :translation-key="assignment.description" />
         </div>
         <div class="col text-end">
-
-          <span class="badge text-bg-info"
-            v-if="props.choosable && store.assignmentFeedback.filter(l => l.assignment == assignment.id && props.choosable && props.choosable.id == l.choosable).length > 0">Feedback
-            received</span>
-
           <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
         </div>
       </div>
@@ -36,15 +31,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
     <div v-if="queryChoosables" class="row">
-      <div class="col-4" :key="index" v-for="(value, index) in assignment.choosables">
-        <ChoosableAssignments :facette="props.facette" :choosable-id="value" :assignment="props.assignment" />
+      <div class="col-4" :key="index" v-for="(value, index) in allChoosables">
+        <ChoosableAssignments :is-pending="newChoosables.filter(c => c.id == value).length > 0" :facette="props.facette" :choosable-id="value" :assignment="props.assignment"
+          :remove-delegate="getRemovalFunc(value)" />
       </div>
     </div>
     <LanguageTranslation translation-key="add-new-choosables" />
-    <NewAssignmentChoosable :assignment="assignment" :facette="props.facette"/>
+    <NewAssignmentChoosable :removal-func="removalFunc" :new-choosables="newChoosables" :assignment="assignment"
+      :facette="props.facette" />
   </li>
 </template>
 <script setup lang="ts">
+import { useState } from "nuxt/app";
 import {
   type Choosable,
   type Facette,
@@ -54,6 +52,7 @@ import { useSessionStore } from "../../../states/session";
 import AssignmentType from "./AssignmentType.vue";
 import ChoosableAssignments from "./ChoosableAssignments.vue";
 import NewAssignmentChoosable from "./NewAssignmentChoosable.vue";
+import { computed, ref } from "vue";
 
 interface AsssignmentProps {
   assignment: FacetteAssignment;
@@ -66,4 +65,21 @@ interface AsssignmentProps {
 const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
+
+const otherUserVotes = computed(() => {
+  const ids = props.assignment.votes.map(v => v[0])
+  const allChoosables = store.choosables;
+  const choosablesOutsideAssignment = allChoosables.filter(c => props.assignment.choosables.indexOf(c.id) == -1)
+  const choosablesOutsideAssignmentWithVotes = choosablesOutsideAssignment.filter(c => ids.indexOf(c.id) != -1)
+  return choosablesOutsideAssignmentWithVotes
+})
+console.log(otherUserVotes.value)
+// TODO: Decide if these feedback must be persisted to be resumed after a share
+const newChoosables = ref<Choosable[]>(otherUserVotes.value);
+const removalFunc = (c: Choosable) => {
+  newChoosables.value = newChoosables.value.filter(l => l.id != c.id)
+}
+
+const allChoosables = computed(() => props.assignment.choosables.concat(newChoosables.value.map(c => c.id)))
+const getRemovalFunc = ((id: number) => props.assignment.votes.filter(v => v[0] == id).length == 0 && newChoosables.value.filter(c => c.id == id).length > 0 ? removalFunc : null)
 </script>

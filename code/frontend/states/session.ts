@@ -249,9 +249,8 @@ export const useSessionStore = defineStore('websiteStore', {
             })
         },
         async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
-            this.assignmentFeedback = this.assignmentFeedback.filter(a => a.choosable != choosable.id && a.assignment != assignment.id)
-            
-            const got = await this.sessionApi.sessionFeedbackCreate({
+        
+            await this.sessionApi.sessionFeedbackCreate({
                 sessionPk: this.session.resultId,
                 createFeedback: {
                     choosable: choosable.id,
@@ -259,7 +258,9 @@ export const useSessionStore = defineStore('websiteStore', {
                     isPositive: isPositive
                 }
             })
-            this.assignmentFeedback.push(got)
+            this.assignmentFeedback = await this.sessionApi.sessionFeedbackList({
+                sessionPk: this.session.resultId
+            })
         },
         async removeFeedback(assignment: FacetteAssignment, choosable: Choosable) {
             const toRemove = this.assignmentFeedback.filter(a => a.choosable == choosable.id && a.assignment == assignment.id)

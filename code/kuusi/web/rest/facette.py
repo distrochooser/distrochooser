@@ -29,6 +29,8 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema_field
+from rest_framework.serializers import ListSerializer
+from rest_framework.fields import IntegerField
 
 from typing import Dict, Any, List
 
@@ -115,14 +117,39 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
 class FacetteAssignmentSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
     weight = serializers.SerializerMethodField()
+    votes = serializers.SerializerMethodField()
     class Meta:
         model = FacetteAssignment
-        fields = ('id', 'choosables', 'catalogue_id', 'description', 'assignment_type', 'weight',)
+        fields = ('id', 'choosables', 'catalogue_id', 'description', 'assignment_type', 'weight', 'votes', )
 
     def get_description(self, obj: FacetteAssignment):
         session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
         return obj.__("long_description",  session.language_code)
     
+    @extend_schema_field(
+        field=ListSerializer(
+            child=ListSerializer(
+                child=IntegerField()
+            )
+        )
+    )
+    def get_votes(self, obj: FacetteAssignment):
+        # TODO: This is good for a MVP, but array nesting is utterly ugly. Wrap somewhere into the choosables at some point
+        choosables = Choosable.objects.all()
+        result = []
+        votes = Feedback.objects.filter(assignment=obj)
+        choosable: Choosable
+        for choosable in choosables:
+            votes_choosable =  votes.filter(choosable=choosable)
+            item = [
+                choosable.pk,
+                votes_choosable.filter(is_positive=True).count(),
+                votes_choosable.filter(is_positive=False).count(),
+            ]
+            if item[1] > 0 or item[2] > 0:
+                result.append(item)
+        return result
+
     def get_weight(self, obj: FacetteAssignment) -> int:
         weight_value = None
         if "weight_map" in self.context and obj.pk in self.context["weight_map"]:
