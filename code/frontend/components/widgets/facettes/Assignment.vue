@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="col row">
         <div class="col">
 
-          <LanguageTranslation :translation-key="assignment.description" />
+          <h4><LanguageTranslation :translation-key="assignment.description" /></h4> 
         </div>
         <div class="col text-end">
           <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
@@ -36,9 +36,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           :remove-delegate="getRemovalFunc(value)" />
       </div>
     </div>
+    <div class="row pt-2  mt-3 border-top">
+      
     <LanguageTranslation translation-key="add-new-choosables" />
-    <NewAssignmentChoosable :removal-func="removalFunc" :new-choosables="newChoosables" :assignment="assignment"
+    <NewAssignmentChoosable class="mt-2 mb-2" :removal-func="removalFunc" :new-choosables="newChoosables" :assignment="assignment"
       :facette="props.facette" />
+    </div>
   </li>
 </template>
 <script setup lang="ts">

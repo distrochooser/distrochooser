@@ -1,5 +1,5 @@
 <template>
-  <span v-on:mouseover="isIconShowed=true" v-on:mouseleave="isIconShowed=false">
+  <span v-on:mouseover="isIconShowed = true" v-on:mouseleave="isIconShowed = false">
     {{ computedValue }}
     <a href="#" v-on:click.prevent.stop="toggleEditing">
       <Icon class="text-muted fs-6" name="ion:language" v-if="isIconShowed"></Icon>
@@ -13,28 +13,30 @@
       <div class="card-text">
         <form class="row g-3">
           <ul class="list-group list-group">
-            <li v-for="(item, index) in proposals" :key="index" class="list-group-item d-flex justify-content-between align-items-start">
+            <li v-for="(item, index) in proposals" :key="index"
+              class="list-group-item d-flex justify-content-between align-items-start">
               <div class="ms-2 me-auto">
                 <div class="fw-bold">
-                  <LanguageTranslation translation-key="language-proposal"/>#{{ item.id }}
-                  </div>
-                  {{  item.value }}
+                  <LanguageTranslation translation-key="language-proposal" />#{{ item.id }}
+                </div>
+                {{ item.value }}
               </div>
-              <span class="badge bg-success rounded-pill me-1"  v-on:click="vote(item.id, true)">{{ item.votes.filter((l => l.isPositive)).length }}x <Icon 
-                name="ion:thumbs-up-outline" </Icon></span>
+              <span class="badge bg-success rounded-pill me-1" v-on:click="vote(item.id, true)">{{ item.votes.filter((l => l.isPositive)).length }}x <Icon name="ion:thumbs-up-outline" </Icon></span>
 
-                <span class="badge bg-danger rounded-pill" v-on:click="vote(item.id, false)">  {{ item.votes.filter((l => !l.isPositive)).length }}x <Icon
-                  name="ion:thumbs-down-outline"></Icon></span>
+              <span class="badge bg-danger rounded-pill" v-on:click="vote(item.id, false)"> {{ item.votes.filter((l =>
+                !l.isPositive)).length }}x <Icon name="ion:thumbs-down-outline"></Icon></span>
             </li>
           </ul>
           <textarea rows="8" class="form-control" v-on:click.prevent.stop="() => { }"
             v-on:change="provideFeedback">{{ computedValue }}</textarea>
 
-          <a href="#" class="card-link" v-on:click.prevent.stop="closeEdit">
-            <Icon name="ion:save-outline"></Icon>
-          </a>
         </form>
       </div>
+    </div>
+    <div class="card-footer">
+      <a href="#" class="card-link" v-on:click.prevent.stop="closeEdit">
+        <Icon name="ion:save-outline"></Icon>
+      </a>
     </div>
   </div>
 </template>
