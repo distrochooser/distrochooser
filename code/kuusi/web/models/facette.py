@@ -140,6 +140,22 @@ class FacetteAssignment(Translateable):
     def is_flagged(self, choosable: Choosable) -> bool:
         return apps.get_model("web", "Feedback").objects.filter(assignment=self, choosable=choosable).count() != 0
 
+    def get_votes(self) -> List[List[int, int, int]]:
+        # TODO: This is good for a MVP, but array nesting is utterly ugly. Wrap somewhere into the choosables at some point
+        choosables = Choosable.objects.all()
+        result = []
+        votes = apps.get_model("web", "Feedback").objects.filter(assignment=self)
+        choosable: Choosable
+        for choosable in choosables:
+            votes_choosable =  votes.filter(choosable=choosable)
+            item = [
+                choosable.pk,
+                votes_choosable.filter(is_positive=True).count(),
+                votes_choosable.filter(is_positive=False).count(),
+            ]
+            if item[1] > 0 or item[2] > 0:
+                result.append(item)
+        return result
 
     def __lt__(self, other):
         order = [

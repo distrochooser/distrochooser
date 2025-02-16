@@ -134,21 +134,7 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
         )
     )
     def get_votes(self, obj: FacetteAssignment):
-        # TODO: This is good for a MVP, but array nesting is utterly ugly. Wrap somewhere into the choosables at some point
-        choosables = Choosable.objects.all()
-        result = []
-        votes = Feedback.objects.filter(assignment=obj)
-        choosable: Choosable
-        for choosable in choosables:
-            votes_choosable =  votes.filter(choosable=choosable)
-            item = [
-                choosable.pk,
-                votes_choosable.filter(is_positive=True).count(),
-                votes_choosable.filter(is_positive=False).count(),
-            ]
-            if item[1] > 0 or item[2] > 0:
-                result.append(item)
-        return result
+        return obj.get_votes()
 
     def get_weight(self, obj: FacetteAssignment) -> int:
         weight_value = None

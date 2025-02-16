@@ -39,6 +39,10 @@ class Feedback(models.Model):
         related_name="feedback_session",
     )
 
+    @property
+    def is_pending(self):
+        return self.assignment.choosables.filter(pk=self.choosable.pk).count() == 0
+
 class LanguageFeedback(models.Model):
     session = models.ForeignKey(
         to=Session,
