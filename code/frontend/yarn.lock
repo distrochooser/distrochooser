@@ -533,6 +533,13 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.24.0.tgz#168ab1c7e1c318b922637fad8f339d48b01e1244"
   integrity sha512-7IAFPrjSQIJrGsK6flwg7NFmwBoSTyF3rl7If0hNUFQU4ilTsEPL6GuMuU9BfIWVVGuRnuIidkSMC+c0Otu8IA==
 
+"@iconify-json/ion@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@iconify-json/ion/-/ion-1.2.2.tgz#ec1afaa19b82c2856eaa6a0ec976209538cd1bae"
+  integrity sha512-GysHYDAyy3K4R2Xxsab3I0ZFmQA4oorfIkwX0g6xfZJNVZcFyAlA4pa1jAJC9Bk3cLiWUtnN8ZyWs6cP3nxlnw==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify/collections@^1.0.496":
   version "1.0.510"
   resolved "https://registry.yarnpkg.com/@iconify/collections/-/collections-1.0.510.tgz#476c14f3b17a3385d97de43f3d97ee90d7f068e4"
