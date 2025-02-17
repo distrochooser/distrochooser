@@ -1,0 +1,31 @@
+# distrochooser
+# Copyright (C) 2014-2025  Christoph Müller  <mail@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+FROM node:23.1.0-slim as build-stage
+ADD code/frontend /frontend
+WORKDIR /frontend
+RUN yarn install && yarn build
+
+FROM node:23.1.0-slim as run-stage
+RUN adduser --disabled-password --gecos '' frontend
+
+
+COPY --from=build-stage /frontend/.output /frontend-build
+RUN ls /frontend-build/server
+WORKDIR /frontend-build
+USER frontend
+EXPOSE 3000
+CMD [ "node", "server/index.mjs" ]
