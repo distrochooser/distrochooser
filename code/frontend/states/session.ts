@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaFilterValue, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
+import { Configuration, SessionApi, type AssignmentFeedback, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaFilterValue, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
 import { useRuntimeConfig } from "nuxt/app";
 interface SessionState {
     session: Session | null;
@@ -28,7 +28,8 @@ interface SessionState {
     currentWidgets: MetaWidget[];
     facetteBehaviours: FacetteBehaviour[];
     choosables: Choosable[];
-    assignmentFeedback: Feedback[];
+    choosableAssignmentFeedback: Feedback[];
+    assignmentFeedback: AssignmentFeedback[];
     pageMarkings: PageMarking[];
     languageFeedback: LanguageFeedback[];
     languageFeedbackVotes: LanguageFeedbackVote[];
@@ -47,6 +48,7 @@ export const useSessionStore = defineStore('websiteStore', {
         facetteBehaviours: [],
         choosables: [],
         assignmentFeedback: [],
+        choosableAssignmentFeedback: [],
         pageMarkings: [], /* TODO: Implement and decide if these should persist */
         languageFeedback: [],
         languageFeedbackVotes: [],
@@ -88,6 +90,33 @@ export const useSessionStore = defineStore('websiteStore', {
             this.metaValues = await this.sessionApi.sessionMetafiltervalueList({
                 sessionPk: this.session.resultId
             })
+        },
+        async getAssignmentFeedback() {
+            this.assignmentFeedback = await this.sessionApi.sessionAssignmentfeedbackList({
+                sessionPk: this.session.resultId
+            })
+        },
+        async createAssignmentFeedback(assignmentId: number, isPositive: boolean) {
+            await this.sessionApi.sessionAssignmentfeedbackCreate({
+                sessionPk: this.session.resultId,
+                assignmentFeedback: {
+                    assignment: assignmentId,
+                    isPositive: isPositive,
+                    session: this.session.id
+                }
+            })
+            await this.getAssignmentFeedback()
+        },
+        async deleteAssignmentFeedback(assignmentId: number) {
+            const assignments = this.assignmentFeedback.filter(l => l.assignment == assignmentId && l.session == this.session.id)
+            
+            for (var i=0; i< assignments.length;i++) {
+                await this.sessionApi.sessionAssignmentfeedbackDestroy({
+                    sessionPk: this.session.resultId,
+                    id: assignments[i].id
+                })
+            }
+            await this.getAssignmentFeedback() 
         },
         async getTranslationFeedback() {
             this.languageFeedback =  await this.sessionApi.sessionLanguageList({
@@ -247,6 +276,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 sessionPk: this.session.resultId,
                 pagePk: this.currentPage.id
             })
+            await this.getAssignmentFeedback()
         },
         async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
         
@@ -258,14 +288,14 @@ export const useSessionStore = defineStore('websiteStore', {
                     isPositive: isPositive
                 }
             })
-            this.assignmentFeedback = await this.sessionApi.sessionFeedbackList({
+            this.choosableAssignmentFeedback = await this.sessionApi.sessionFeedbackList({
                 sessionPk: this.session.resultId
             })
         },
         async removeFeedback(assignment: FacetteAssignment, choosable: Choosable) {
-            const toRemove = this.assignmentFeedback.filter(a => a.choosable == choosable.id && a.assignment == assignment.id)
+            const toRemove = this.choosableAssignmentFeedback.filter(a => a.choosable == choosable.id && a.assignment == assignment.id)
             console.log(toRemove)
-            this.assignmentFeedback = this.assignmentFeedback.filter(a => a.choosable != choosable.id && a.assignment != assignment.id)
+            this.choosableAssignmentFeedback = this.choosableAssignmentFeedback.filter(a => a.choosable != choosable.id && a.assignment != assignment.id)
 
             toRemove.forEach(l => {
                 sessionApi.sessionFeedbackDestroy({

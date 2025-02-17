@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import Facette, Session, FacetteAssignment, Choosable, Feedback
+from web.models import Facette, Session, FacetteAssignment, Choosable, Feedback, AssignmentFeedback
 from web.rest.choosable import ChoosableSerializer
 from rest_framework import serializers
 from drf_spectacular.utils import  extend_schema, OpenApiResponse
@@ -45,6 +45,81 @@ class FeedbackSerializer(serializers.ModelSerializer):
         model = Feedback
         fields = ('id', 'choosable', 'assignment', 'is_positive', 'session')
 
+
+class AssignmentFeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AssignmentFeedback
+        fields = ('id', 'assignment', 'is_positive', 'session')
+
+
+class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
+    queryset = AssignmentFeedback.objects.all()
+    serializer_class = AssignmentFeedbackSerializer
+    @extend_schema(
+        responses={
+            status.HTTP_200_OK: OpenApiResponse(response=AssignmentFeedbackSerializer, description="The list of assignment feedback available to use"),
+        },
+        parameters=[ 
+          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
+        ],
+    )
+    def list(self, request,  *args, **kwargs):    
+        results = AssignmentFeedback.objects.all()
+        serializer = AssignmentFeedbackSerializer(
+            results,
+            many=True
+        )
+        serializer.context["session_pk"] = kwargs["session_pk"]
+        return Response(serializer.data)
+
+    @extend_schema(
+        request=AssignmentFeedbackSerializer,
+        parameters=[ 
+          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
+        ],
+        responses={
+            status.HTTP_200_OK: AssignmentFeedbackSerializer,
+        }
+    ) 
+    def create(self, request, session_pk) -> Feedback:
+
+        data = request.data
+        assignment = data["assignment"]
+        is_positive = data["is_positive"]
+        session: Session = Session.objects.filter(result_id=session_pk).first()
+        has_old = AssignmentFeedback.objects.filter(assignment__pk=assignment).filter(session=session).count() > 0
+
+        if has_old:
+             AssignmentFeedback.objects.filter(assignment__pk=assignment).delete()
+
+        assignment_obj = FacetteAssignment.objects.filter(pk=assignment).first()
+        result = AssignmentFeedback(
+            assignment=assignment_obj,
+            is_positive=is_positive,
+            session=session
+        )
+        result.save()
+
+        serializer = AssignmentFeedbackSerializer(
+            result
+        )
+
+        serializer.context["session_pk"] = session_pk
+        return Response(serializer.data)
+    
+
+    @extend_schema(
+        request=None,
+        parameters=[
+          OpenApiParameter("id", OpenApiTypes.INT, OpenApiParameter.PATH,description="The feedback ID to delete", required=True),
+          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+        ]
+    ) 
+    def destroy(self, request, session_pk, pk):
+        session: Session = Session.objects.filter(result_id=session_pk).first()
+        AssignmentFeedback.objects.filter(pk=pk).filter(session=session).delete()
+        return Response()
+    
 
 class FeedbackViewSet(ListModelMixin, GenericViewSet):
     queryset = Feedback.objects.all()
@@ -112,7 +187,7 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
     def destroy(self, request, session_pk, pk):
         session: Session = Session.objects.filter(result_id=session_pk).first()
         Feedback.objects.filter(pk=pk).filter(session=session).delete()
-        return Response()
+        return Response() 
 
 class FacetteAssignmentSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()

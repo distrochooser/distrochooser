@@ -43,6 +43,21 @@ class Feedback(models.Model):
     def is_pending(self):
         return self.assignment.choosables.filter(pk=self.choosable.pk).count() == 0
 
+
+class AssignmentFeedback(models.Model):
+    session = models.ForeignKey(
+        to=Session,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        related_name="feedback_assignment",
+    )
+    assignment = models.ForeignKey(
+        to=FacetteAssignment, null=False, on_delete=models.CASCADE
+    )
+    is_positive = models.BooleanField(default=False)
+
+
 class LanguageFeedback(models.Model):
     session = models.ForeignKey(
         to=Session,

@@ -69,10 +69,10 @@ const giveFeedback = (choosable: Choosable, is_positive: boolean) =>
 const removeFeedback = (choosable: Choosable) =>
     store.removeFeedback(props.assignment, choosable);
 
-const hasAnyFeedback = (choosableId: number) => store.assignmentFeedback.filter(f => f.assignment == props.assignment.id && f.choosable == choosableId).length != 0;
+const hasAnyFeedback = (choosableId: number) => store.choosableAssignmentFeedback.filter(f => f.assignment == props.assignment.id && f.choosable == choosableId).length != 0;
 
 
-const hasFeedback = (choosableId: number, positive: boolean) => store.assignmentFeedback.filter(f => f.assignment == props.assignment.id && f.choosable == choosableId && f.isPositive == positive).length != 0;
+const hasFeedback = (choosableId: number, positive: boolean) => store.choosableAssignmentFeedback.filter(f => f.assignment == props.assignment.id && f.choosable == choosableId && f.isPositive == positive).length != 0;
 
 
 

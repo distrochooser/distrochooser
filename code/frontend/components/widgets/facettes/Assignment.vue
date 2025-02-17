@@ -21,10 +21,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="col row">
         <div class="col">
 
-          <h4><LanguageTranslation :translation-key="assignment.description" /></h4> 
+          <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
+          <h4>
+            <LanguageTranslation :translation-key="assignment.description" />
+          </h4>
         </div>
         <div class="col text-end">
-          <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
+          <div class="row">
+            <div class="col">
+              <div class="btn-group mt-3" role="group">
+                <a href="#" :class='{
+                  "btn btn-outline-success": true,
+                  "btn-success link-light": hasPositiveVote
+                }' v-on:click.prevent="async () => await store.createAssignmentFeedback(assignment.id, true)
+                  ">
+                  <Icon name="ion:thumbs-up"></Icon>
+                  <span>({{ votes[0] }})</span>
+                </a>
+
+                <a href="#" :class='{
+                  "btn btn-outline-danger": true,
+                  "btn-danger link-light": hasNegativeVote
+                }' v-on:click.prevent="async () => await store.createAssignmentFeedback(assignment.id, false)
+                  ">
+                  <Icon name="ion:thumbs-down"></Icon>
+                  <span>({{ votes[1] }})</span>
+                </a>
+
+                <a href="#" v-if="hasNegativeVote || hasPositiveVote" class="btn btn-outline-primary" v-on:click.prevent="
+                  store.deleteAssignmentFeedback(assignment.id)
+                  ">
+                  <Icon name="ion:arrow-undo"></Icon>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -32,15 +63,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <div v-if="queryChoosables" class="row">
       <div class="col-4" :key="index" v-for="(value, index) in allChoosables">
-        <ChoosableAssignments :is-pending="newChoosables.filter(c => c.id == value).length > 0" :facette="props.facette" :choosable-id="value" :assignment="props.assignment"
-          :remove-delegate="getRemovalFunc(value)" />
+        <ChoosableAssignments :is-pending="newChoosables.filter(c => c.id == value).length > 0" :facette="props.facette"
+          :choosable-id="value" :assignment="props.assignment" :remove-delegate="getRemovalFunc(value)" />
       </div>
     </div>
     <div class="row pt-2  mt-3 border-top">
-      
-    <LanguageTranslation translation-key="add-new-choosables" />
-    <NewAssignmentChoosable class="mt-2 mb-2" :removal-func="removalFunc" :new-choosables="newChoosables" :assignment="assignment"
-      :facette="props.facette" />
+
+      <LanguageTranslation translation-key="add-new-choosables" />
+      <NewAssignmentChoosable class="mt-2 mb-2" :removal-func="removalFunc" :new-choosables="newChoosables"
+        :assignment="assignment" :facette="props.facette" />
     </div>
   </li>
 </template>
@@ -85,4 +116,16 @@ const removalFunc = (c: Choosable) => {
 
 const allChoosables = computed(() => props.assignment.choosables.concat(newChoosables.value.map(c => c.id)))
 const getRemovalFunc = ((id: number) => props.assignment.votes.filter(v => v[0] == id).length == 0 && newChoosables.value.filter(c => c.id == id).length > 0 ? removalFunc : null)
+
+const hasPositiveVote = computed(() => store.assignmentFeedback.filter(a => a.assignment == props.assignment.id && a.session == store.session.id && a.isPositive).length > 0)
+const hasNegativeVote = computed(() => store.assignmentFeedback.filter(a => a.assignment == props.assignment.id && a.session == store.session.id && !a.isPositive).length > 0)
+
+const votes = computed(() => {
+  const matchingvotes = store.assignmentFeedback.filter(a => a.assignment == props.assignment.id)
+
+  return [
+    matchingvotes.filter(v => v.isPositive).length,
+    matchingvotes.filter(v => !v.isPositive).length
+  ]
+})
 </script>

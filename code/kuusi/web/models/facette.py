@@ -129,6 +129,7 @@ class FacetteAssignment(Translateable):
     long_description = TranslateableField(
         null=True, blank=True, default=None, max_length=800
     )
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         if self.pk is None:
