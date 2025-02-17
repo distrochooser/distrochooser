@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   css: ["bootstrap/dist/css/bootstrap.min.css", "flag-icons/css/flag-icons.min.css"],
   runtimeConfig: {
     public: {
-      basePath: "http://localhost:8000"
+      basePath: process.env.NUXT_PUBLIC_BASE_PATH || "http://localhost:8000"
     }
   }
 })

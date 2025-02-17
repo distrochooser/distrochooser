@@ -7,7 +7,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "sdk-build": "openapi-generator-cli generate -i http://localhost:8000/rest/schema/ -g typescript-fetch -o ./sdk/"
+    "sdk-build": "openapi-generator-cli generate -i http://localhost:8000/rest/schema/ -g typescript-fetch -o ./sdk/",
+    "sdk-build-deployment": "openapi-generator-cli generate -i $NUXT_PUBLIC_BASE_PATH/rest/schema/  -g typescript-fetch -o ./sdk/"
   },
   "dependencies": {
     "@iconify-json/ion": "^1.2.2",

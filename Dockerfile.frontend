@@ -14,14 +14,22 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-FROM node:23.1.0-slim as build-stage
+
+FROM node:23-slim as build-stage
+ARG NUXT_PUBLIC_BASE_PATH="http://localhost:8000"
+ENV NUXT_PUBLIC_BASE_PATH=$NUXT_PUBLIC_BASE_PATH
+RUN apt update && apt-get -y  install  default-jre
 ADD code/frontend /frontend
 WORKDIR /frontend
-RUN yarn install && yarn build
+RUN yarn install
+RUN yarn run sdk-build-deployment && yarn build 
 
-FROM node:23.1.0-slim as run-stage
+
+FROM node:23-slim as run-stage
+ARG NUXT_PUBLIC_BASE_PATH="http://localhost:8000"
+ENV NUXT_PUBLIC_BASE_PATH=$NUXT_PUBLIC_BASE_PATH
+
 RUN adduser --disabled-password --gecos '' frontend
-
 
 COPY --from=build-stage /frontend/.output /frontend-build
 RUN ls /frontend-build/server
