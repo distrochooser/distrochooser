@@ -43,10 +43,11 @@ from web.rest.facette import FeedbackViewSet, AssignmentFeedbackViewSet
 from web.rest.widget import WidgetViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from kuusi.settings import STATIC_URL, STATIC_ROOT
-
+from web.rest.session import MetaTagViewset
 
 router = routers.SimpleRouter()
 router.register(r'session', SessionViewSet)
+router.register(r'metatags', MetaTagViewset, basename="metatags")
 
 
 router_sessions = routers.NestedDefaultRouter(router, r'session', lookup='session')

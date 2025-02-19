@@ -28,20 +28,74 @@ from web.models.translateable import get_translation_haystack
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import ListModelMixin
+
 from django.shortcuts import get_object_or_404
 
 from typing import Dict, Any, List
 
-class SessionSerializer(serializers.ModelSerializer):
-    session_origin = serializers.SerializerMethodField()
-    language_codes = serializers.SerializerMethodField()
-    language_values = serializers.SerializerMethodField()
-    is_language_rtl = serializers.SerializerMethodField()
+class MetaTagsSerializer(serializers.Serializer):
     base_url = serializers.CharField(default=FRONTEND_URL)
     name = serializers.SerializerMethodField()
     logo = serializers.SerializerMethodField()
     meta = serializers.SerializerMethodField()
     icon = serializers.SerializerMethodField()
+
+    def get_language_codes(self, _: None) -> Dict[str, str]:
+        return LANGUAGE_CODES
+
+    def get_logo(self, _: None) -> str:
+        return KUUSI_LOGO
+    
+    def get_name(self, _: None) -> str:
+        return KUUSI_NAME
+    
+    def get_icon(self, _: None) -> str:
+        return KUUSI_ICON
+    
+    def get_meta(self, _: None) -> Dict[str, any]:
+        tags = KUUSI_META_TAGS.copy()
+        # TODO: Make more dynamic
+        lang =  self.context["lang"]
+        if "DESCRIPTION_TEXT" in TRANSLATIONS[lang]:
+            tags["og:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
+            tags["twitter:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
+        # Redundant with below serializer
+        tags["og:locale"] = LOCALE_MAPPING[lang]
+        return tags
+
+
+class MetaTagViewset(ListModelMixin, GenericViewSet):
+    serializer_class = MetaTagsSerializer
+    @extend_schema(
+        description="Return the list of configured meta tags",
+        responses={
+            status.HTTP_200_OK: OpenApiResponse(response=MetaTagsSerializer, description="The list of meta tags available to use"),
+            status.HTTP_412_PRECONDITION_FAILED: OpenApiResponse(description='Invalid language'),
+        },
+        parameters=[
+          OpenApiParameter("lang", OpenApiTypes.STR, OpenApiParameter.QUERY,description="The language code to translate this values", required=False),
+        ]
+    )
+    def list(self, request,  *args, **kwargs):
+        lang = request.query_params.get('lang')
+        if lang not in LANGUAGE_CODES:
+            return Response(status=status.HTTP_412_PRECONDITION_FAILED) 
+        serializer = MetaTagsSerializer(
+            {},
+            many=False
+        )
+        serializer.context["lang"] =  lang
+
+        return Response(serializer.data)
+
+
+class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
+    session_origin = serializers.SerializerMethodField()
+    language_codes = serializers.SerializerMethodField()
+    language_values = serializers.SerializerMethodField()
+    is_language_rtl = serializers.SerializerMethodField()
     class Meta:
         model = Session
         fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'is_language_rtl', 'name', 'logo', 'meta', 'icon')
@@ -49,28 +103,16 @@ class SessionSerializer(serializers.ModelSerializer):
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
     
-    def get_language_codes(self, obj: Session) -> Dict[str, str]:
-        return LANGUAGE_CODES
-
-    def get_language_values(self, obj:Session) -> Dict[str, str]:
-        return get_translation_haystack(obj.language_code)
-
-    def get_is_language_rtl(self, obj: Session) -> bool:
-        return obj.language_code in RTL_LANGUAGES
-    
-    def get_logo(self, obj: Session) -> str:
-        return KUUSI_LOGO
-    
-    def get_name(self, obj: Session) -> str:
-        return KUUSI_NAME
-    
-    def get_icon(self, obj: Session) -> str:
-        return KUUSI_ICON
-    
     def get_meta(self, obj: Session) -> Dict[str, any]:
         meta =  KUUSI_META_TAGS.copy()
         meta["og:locale"] = LOCALE_MAPPING[obj.language_code]
         return meta
+   
+    def get_is_language_rtl(self, obj: Session) -> bool:
+        return obj.language_code in RTL_LANGUAGES
+    
+    def get_language_values(self, obj:Session) -> Dict[str, str]:
+        return get_translation_haystack(obj.language_code)
 
 
 class SessionVersionSerializer(serializers.ModelSerializer):

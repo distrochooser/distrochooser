@@ -49,7 +49,7 @@ class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
     user_agent = models.CharField(default=None, null=True, blank=True, max_length=150)
     result_id = models.CharField(
-        default=get_session_result_id, max_length=10, null=False, blank=False
+        default=get_session_result_id, max_length=30, null=False, blank=False
     )
     version = models.ForeignKey(
         to="SessionVersion",
@@ -95,7 +95,7 @@ class SessionMeta(models.Model):
         blank=True,
         related_name="sessionmeta_session",
     )
-    meta_key = models.CharField(max_length=10, null=False, blank=False)
-    meta_value = models.CharField(max_length=10, null=False, blank=False)
+    meta_key = models.CharField(max_length=30, null=False, blank=False)
+    meta_value = models.CharField(max_length=30, null=False, blank=False)
     def __str__(self) -> str:
         return f"{self.session}: {self.meta_key} -> {self.meta_value}"

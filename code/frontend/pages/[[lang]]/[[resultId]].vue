@@ -47,11 +47,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </template>
 <script lang="ts" setup>
 import { navigateTo } from "nuxt/app";
-import { computed, onMounted } from "vue";
+import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useSessionStore } from "../../states/session";
 import PageMeta from "../../components/PageMeta.vue";
-import LanguageFeedback from "../../components/LanguageFeedback.vue";
 import Progress from "../../components/Progress.vue";
 
 const router = useRoute();
