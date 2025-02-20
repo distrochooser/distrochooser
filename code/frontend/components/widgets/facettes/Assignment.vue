@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <div class="col text-end">
           <div class="row">
             <div class="col">
-              <div class="btn-group mt-3" role="group">
+              <div class="btn-group mt-3" role="group" v-if="queryChoosables">
                 <a href="#" :class='{
                   "btn btn-outline-success": true,
                   "btn-success link-light": hasPositiveVote
@@ -67,7 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           :choosable-id="value" :assignment="props.assignment" :remove-delegate="getRemovalFunc(value)" />
       </div>
     </div>
-    <div class="row pt-2  mt-3 border-top">
+    <div v-if="queryChoosables" class="row pt-2  mt-3 border-top">
 
       <LanguageTranslation translation-key="add-new-choosables" />
       <NewAssignmentChoosable class="mt-2 mb-2" :removal-func="removalFunc" :new-choosables="newChoosables"
