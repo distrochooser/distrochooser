@@ -15,7 +15,7 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from typing import Tuple, List
+from typing import Tuple, List, Callable
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
 from web.models import Session, Page, WebHttpRequest, FacetteSelection, Facette, FacetteBehaviour, PageMarking, TRANSLATIONS

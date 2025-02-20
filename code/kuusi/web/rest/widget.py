@@ -51,7 +51,7 @@ from drf_spectacular.utils import extend_schema, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES, WEIGHT_MAP, BASE_DIR
+from kuusi.settings import LANGUAGE_CODES, WEIGHT_MAP, BASE_DIR, CACHE_TIMEOUT
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
@@ -61,8 +61,10 @@ from rest_framework.fields import CharField
 from drf_spectacular.utils import extend_schema_field, PolymorphicProxySerializer
 
 from rest_polymorphic.serializers import PolymorphicSerializer
-
-from typing import Dict, Any, List
+from django.core.cache import cache
+from typing import List
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 WIDGET_SERIALIZER_BASE_FIELDS = (
     "id",
@@ -315,8 +317,13 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
             ),
         ],
     )
+    
     def list(self, request, *args, **kwargs):
         page_pk = kwargs.get("page_pk")
+        cache_key = f"page-{page_pk}-widget"
+        cache_data = cache.get(cache_key)
+        if cache_data is not None:
+            return Response(cache_data)
         obj: Page = None
         if page_pk:
             obj = Page.objects.filter(pk=page_pk).first()
@@ -345,5 +352,6 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                     results.context["session_pk"] = kwargs["session_pk"]
                     result.append(results.data)
                     break
-
+        
+        cache.set(cache_key, result)
         return Response(result)

@@ -344,3 +344,14 @@ BETA = True
 KUUSI_LOGO = "http://localhost:8000/static/logo.svg"
 
 KUUSI_ICON = "http://localhost:8000/static/icon.svg"
+
+# Some selected endpoints will create an individual cache to prevent overboarding load times
+CACHE_TIMEOUT = 120
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": join(dirname(dirname(BASE_DIR)), "cache"),
+        "TIMEOUT": CACHE_TIMEOUT,
+        "OPTIONS": {"MAX_ENTRIES": 1000},
+    }
+}
