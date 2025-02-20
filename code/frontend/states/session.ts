@@ -33,7 +33,8 @@ interface SessionState {
     pageMarkings: PageMarking[];
     languageFeedback: LanguageFeedback[];
     languageFeedbackVotes: LanguageFeedbackVote[];
-    metaValues: MetaFilterValue[]
+    metaValues: MetaFilterValue[];
+    isLoading: boolean;
 }
 let sessionApi: SessionApi = null;
 
@@ -52,7 +53,8 @@ export const useSessionStore = defineStore('websiteStore', {
         pageMarkings: [], /* TODO: Implement and decide if these should persist */
         languageFeedback: [],
         languageFeedbackVotes: [],
-        metaValues: []
+        metaValues: [],
+        isLoading: false
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -265,6 +267,7 @@ export const useSessionStore = defineStore('websiteStore', {
             }
         },
         async selectPage(id: number) {
+            this.isLoading = true;
             const matches = this.pages.filter(l => l.id == id)
             if (matches.length == 1) {
                 this.currentPage = matches[0];
@@ -277,6 +280,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 pagePk: this.currentPage.id
             })
             await this.getAssignmentFeedback()
+            this.isLoading = false;
         },
         async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
         

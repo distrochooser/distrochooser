@@ -16,12 +16,13 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-<div>
-  Loading
-</div>
+  <div class="fixed-bottom row ms-2 mb-3">
+    <div class="spinner-border spinner-grow-lg" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 </template>
 <script lang="ts" setup>
-  
-  
-  
+
+
 </script>

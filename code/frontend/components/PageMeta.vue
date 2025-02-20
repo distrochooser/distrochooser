@@ -12,6 +12,7 @@ import { useSessionStore } from "../states/session";
 
 const router = useRoute();
 const store = useSessionStore();
+// TODO: Replace with proper TS mapping
 const { data } = await useAsyncData("post", async () => {
   return await $fetch(useRuntimeConfig().public.basePath + "/rest/metatags?lang=" + router.params.lang);
 });
