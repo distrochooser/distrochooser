@@ -17,13 +17,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import Session, SessionMeta, FacetteSelection, Facette, SessionVersion, LanguageFeedback, MetaFilterValue
+from web.models import Session, SessionMeta, FacetteSelection, SessionVersion, LanguageFeedback, MetaFilterValue
 from rest_framework import serializers
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
 from kuusi.settings import LANGUAGE_CODES, DEFAULT_SESSION_META, FRONTEND_URL, KUUSI_ICON, RTL_LANGUAGES, KUUSI_NAME, KUUSI_LOGO, KUUSI_META_TAGS, LOCALE_MAPPING
-from web.models import TRANSLATIONS, Feedback
+from web.models import TRANSLATIONS
 from web.models.translateable import get_translation_haystack
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
@@ -33,7 +33,7 @@ from rest_framework.mixins import ListModelMixin
 
 from django.shortcuts import get_object_or_404
 
-from typing import Dict, Any, List
+from typing import Dict
 
 class MetaTagsSerializer(serializers.Serializer):
     base_url = serializers.CharField(default=FRONTEND_URL)

@@ -277,7 +277,6 @@ class ResultListWidgetSerializer(WidgetSerializer):
 
 class WidgetViewSet(ListModelMixin, GenericViewSet):
     queryset = Page.objects.all()
-
     @extend_schema(
         responses={
             status.HTTP_200_OK: OpenApiResponse(

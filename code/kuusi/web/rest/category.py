@@ -21,14 +21,12 @@ from web.models import Category, Session, Page
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from web.rest.helper import get_categories_and_filtered_pages
-from typing import Dict, Any
 
 class CategorySerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()

@@ -17,16 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import Choosable, Session
+from web.models import Choosable
 from rest_framework import serializers
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
-
 from typing import Dict, Any
 
 CHOOSABLE_SERIALIZER_BASE_FIELDS = ('id', 'display_name', 'description', 'bg_color', 'fg_color', 'meta')

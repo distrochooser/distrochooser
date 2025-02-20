@@ -18,17 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from web.models import FacetteSelection, Session, Facette, Page, FacetteSelectionWidget
-from web.rest.page import PageSerializer
 from rest_framework import serializers
 from drf_spectacular.utils import  extend_schema, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, DestroyModelMixin
 from rest_framework.response import Response
-from drf_spectacular.utils import extend_schema_field
 from typing import List
 
 class FacetteSelectionSerializer(serializers.ModelSerializer):

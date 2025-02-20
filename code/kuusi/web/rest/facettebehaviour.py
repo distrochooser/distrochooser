@@ -17,19 +17,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import FacetteSelection, Session, Facette, FacetteBehaviour
+from web.models import FacetteSelection, Session, FacetteBehaviour
 from rest_framework import serializers
 from drf_spectacular.utils import  extend_schema, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
 from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import ListModelMixin, DestroyModelMixin
+from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from django.db.models import Q
 
-from typing import List
 
 class FacetteBehaviourSerializer(serializers.ModelSerializer):
     class Meta:
