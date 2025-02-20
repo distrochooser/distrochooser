@@ -58,6 +58,8 @@ class MetaTagsSerializer(serializers.Serializer):
         tags = KUUSI_META_TAGS.copy()
         # TODO: Make more dynamic
         lang =  self.context["lang"]
+        if not lang:
+            lang = "en"
         if "DESCRIPTION_TEXT" in TRANSLATIONS[lang]:
             tags["og:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
             tags["twitter:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
@@ -80,8 +82,6 @@ class MetaTagViewset(ListModelMixin, GenericViewSet):
     )
     def list(self, request,  *args, **kwargs):
         lang = request.query_params.get('lang')
-        if lang not in LANGUAGE_CODES:
-            return Response(status=status.HTTP_412_PRECONDITION_FAILED) 
         serializer = MetaTagsSerializer(
             {},
             many=False
