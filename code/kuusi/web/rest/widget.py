@@ -321,9 +321,6 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
     def list(self, request, *args, **kwargs):
         page_pk = kwargs.get("page_pk")
         cache_key = f"page-{page_pk}-widget"
-        cache_data = cache.get(cache_key)
-        if cache_data is not None:
-            return Response(cache_data)
         obj: Page = None
         if page_pk:
             obj = Page.objects.filter(pk=page_pk).first()
@@ -343,6 +340,24 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                 MetaFilterWidget: MetaFilterWidgetSerializer,
             }
         )
+
+        # Check if the detail results _can_ be ignored
+        # TODO: Increase performance
+        ignore_cache_serializers = [ResultListWidget]
+        ignore_cache = False
+        widget: Widget
+        for widget in obj.widget_list:
+            for key in ignore_cache_serializers:
+                if isinstance(widget, key):
+                    ignore_cache = True
+                    break
+
+
+        if not ignore_cache:
+            cache_data = cache.get(cache_key)
+            if cache_data is not None:
+                return Response(cache_data)
+            
         widget: Widget
         for widget in obj.widget_list:
             for key, value in serializers.items():
