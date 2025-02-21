@@ -1,0 +1,141 @@
+# kuusi
+# Copyright (C) 2014-2024  Christoph Müller  <mail@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The LTS assignment is a "positive open" group
+# This means there are some positive matches
+# while some distros remain without mapping
+# Only for the facettes "lts-once-per-year" and "lts-less-than-once-per-year"
+# negative mappings are given for updates with high update/ upgrade frequency
+
+# TODO: Consider adding behaviour if conflicting with fast updates facette
+
+# Ubuntu has LTS editions
+# leave the other facettes untouched.
+# Mint mapped according to on the same assignment due to https://de.wikipedia.org/wiki/Linux_Mint
+[assignment.ubuntu-lts]
+long_description = "ubuntu-lts-all-two-years"
+from = ["lts-less-than-once-per-year"]
+to = ["ubuntu", "mint"]
+how = "positive"
+
+# Debian _is_ a LTS distro
+# https://www.debian.org/releases/
+# leave the other facettes untouched.
+# According to https://endoflife.date/devuan, the devuan cycle follows the Debian cycle -> reuse match here
+# Adding MX Linux also here as it's based on debian and so inherits it's schedule https://en.wikipedia.org/wiki/MX_Linux
+[assignment.debian-lts]
+long_description = "debian-lts"
+from = ["lts-less-than-once-per-year"]
+to = ["debian", "devuan", "mxlinux"]
+how = "positive"
+
+# tails has a rather quick schedule, make it match positive for multiple times answer and negative for the other answers
+# https://tails.net/contribute/release_schedule/
+[assignment.tails-lts]
+long_description = "generic-quick-updates"
+from = ["lts-multiple-times-per-year"]
+to = ["tails"]
+how = "positive"
+
+[assignment.tails-lts-blocker]
+long_description = "generic-quick-updates"
+from = ["lts-less-than-once-per-year", "lts-once-per-year"]
+to = ["tails"]
+how = "negative"
+
+# Arch
+# Also adding Manjaro to this mapping, for now
+[assignment.arch-lts]
+long_description = "generic-quick-updates"
+from = ["lts-multiple-times-per-year"]
+to = ["arch", "manjaro", "gentoo"]
+how = "positive"
+
+[assignment.arch-lts-blocker]
+long_description = "generic-rolling-updates"
+from = ["lts-less-than-once-per-year", "lts-once-per-year"]
+to = ["arch", "manjaro", "gentoo"]
+how = "negative"
+
+# OpenSuse
+# https://en.wikipedia.org/wiki/OpenSUSE#Version_history
+[assignment.opensuse-lts]
+long_description = "opensuse-tumbleweed"
+from = ["lts-multiple-times-per-year"]
+to = ["opensuse"]
+how = "positive"
+
+[assignment.opensuse-lts-leap]
+long_description = "generic-quick-updates"
+from = ["lts-once-per-year"]
+to = ["opensuse"]
+how = "positive"
+
+[assignment.opensuse-lts-blocker]
+long_description = "generic-quick-updates"
+from = ["lts-less-than-once-per-year"]
+to = ["opensuse"]
+how = "negative"
+
+# Solus, PCLinuxOS
+# https://en.wikipedia.org/wiki/Solus_(operating_system)
+# https://en.wikipedia.org/wiki/PCLinuxOS#History
+# According to wiki there is a major rlease switch per year and the rest is rolling
+# Mapping it to a positive match to once-per-year
+[assignment.solus-lts]
+long_description = "generic-once-per-year"
+from = ["lts-once-per-year"]
+to = ["solus", "pclinuxos"]
+how = "positive"
+
+# Rocky, RHEL
+# https://endoflife.date/rocky-linux
+[assignment.rocky-rhel-lts]
+long_description = "rocky-rhel-support"
+from = ["lts-less-than-once-per-year"]
+to = ["rocky", "rhel"]
+how = "positive"
+
+# Fedora
+[assignment.fedora-lts]
+long_description = "generic-once-per-year"
+from = ["lts-once-per-year"]
+to = ["fedora"]
+how = "positive"
+
+
+# Knoppix
+# TODO: Decide if Knoppix should have a positive mapping here at all as the last version is according to wiki from 2022.
+
+# Crux
+# TODO: Decide if Crux should be removed
+
+# Zorin OS
+# https://zorin.com/os/details/
+[assignment.zorin-lts]
+long_description = "zorin-support"
+from = ["lts-less-than-once-per-year"]
+to = ["zorinos"]
+how = "positive"
+
+# Elementary OS
+# https://github.com/elementary/os/wiki/Release-Upgrades
+[assignment.elementaryos-lts]
+long_description = "elementary-support"
+from = ["lts-less-than-once-per-year"]
+to = ["elementaryos"]
+how = "positive"
+

@@ -30,7 +30,9 @@
 #include ./facettes/scope.toml
 #include ./facettes/updates.toml
 #include ./facettes/ux.toml
+#include ./facettes/lts.toml
 
 #include ./choosables/choosables.toml
 
 #include ./assignments/assignments.toml
+#include ./assignments/lts.toml
