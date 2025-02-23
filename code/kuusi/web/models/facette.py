@@ -194,6 +194,14 @@ class FacetteAssignment(Translateable):
                 score += score_map[key] * value
             
             return score
+        
+        def get_score_map_by_type():
+            scores_by_type = {}
+            for key in FacetteAssignment.AssignmentType.choices:
+                identifier, _ = key
+                scores_by_type[identifier] = 0
+            return scores_by_type
+
 
     assignment_type = models.CharField(
         max_length=20, choices=AssignmentType.choices, default=AssignmentType.NEUTRAL

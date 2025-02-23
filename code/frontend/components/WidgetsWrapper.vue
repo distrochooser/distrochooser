@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
+    <Loading  v-if="store.isLoading" />
     <div
       v-for="(widget, index) in store.currentWidgets.filter((w ) => w.row == props.row)"
       :key="index"

@@ -57,7 +57,7 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.serializers import ListSerializer
 from rest_framework.fields import CharField
-
+from time import time
 from drf_spectacular.utils import extend_schema_field, PolymorphicProxySerializer
 
 from rest_polymorphic.serializers import PolymorphicSerializer
@@ -211,69 +211,70 @@ class ResultListWidgetSerializer(WidgetSerializer):
     def get_choosables(self, obj: ResultListWidget) -> List[Choosable]:
         session = Session.objects.filter(result_id=self.context["session_pk"]).first()
         choosables = Choosable.objects.all()
+        meta_filter_widgets = MetaFilterWidget.objects.all()
+        facette_assignments = FacetteAssignment.objects.all()
         selections = FacetteSelection.objects.filter(session=session)
         ranking = {}
         assignments_results = {}
         assignments_weight_map = {}
+        stored_meta_filter_values = MetaFilterValue.objects.filter(session=session)
+        feedback_in_session = Feedback.objects.filter(session=session)
+
         for choosable in choosables:
-            scores_by_type = {}
+            scores_by_type = FacetteAssignment.AssignmentType.get_score_map_by_type()
             assignments_results[choosable.pk] = []
             assignments_weight_map = {}
-            for key in FacetteAssignment.AssignmentType.choices:
-                identifier, _ = key
-                scores_by_type[identifier] = 0
+            
+            assignments_with_choosable = facette_assignments.filter(choosables__in=[choosable])
+   
             for selection in selections:
                 facette = selection.facette
                 selection_weight_key = selection.weight
                 selection_weight_value = WEIGHT_MAP[selection_weight_key]
                 # TODO: Decicide what to to with feedback relating to assignments, but not yet mapped to them.
-                assignments_stored = FacetteAssignment.objects.filter(
+                
+                assignments_stored = assignments_with_choosable.filter(
                     facettes__in=[facette]
-                ).filter(choosables__in=[choosable])
-
+                )
                 assignments = list(assignments_stored)
-
                 # Append "virtual" assignments caused by stored meta values
                 # TODO: Decide to append these also when no selection was given
-                stored_meta_filter_values = MetaFilterValue.objects.filter(session=session)
-                meta_filter_widgets = MetaFilterWidget.objects.all()
-
+    
                 for meta_filter_widget in meta_filter_widgets:
-                    structure = meta_filter_widget.parsed_structure
-                    for stored_value in stored_meta_filter_values:
-                       cell_obj =  structure.get_cell_from_structure(stored_value.key)
-                       stored_value_value = stored_value.value
-                       result = cell_obj.apply_cell_func(choosable, stored_value_value)
-                       if result is not None:
-                        assignments.append(result)
+                    results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosable)
+                    if results.__len__() != 0:
+                        assignments = assignments + results
 
                 for assignment in assignments:
-                    # Only include assignments without negative user feedback
-                    has_negative_feedback = (
-                        Feedback.objects.filter(session=session)
-                        .filter(assignment=assignment)
-                        .filter(choosable=choosable)
-                        .count()
-                        > 0
-                    )
-                    # FIXME: Prevent the virtual assignments from getting weighted
-                    if not has_negative_feedback:
-                        weighted_score = 1 * selection_weight_value
-                        scores_by_type[assignment.assignment_type] += weighted_score
-                    assignments_results[choosable.pk].append(assignment)
+                    # Don't collect assignments twice
+                    is_assignment_collected = len(list(filter(lambda l: l.catalogue_id == assignment.catalogue_id, assignments_results[choosable.pk]))) == 0
+                    if is_assignment_collected:
+                        # Only include assignments without negative user feedback
+                        has_negative_feedback = (
+                            feedback_in_session
+                            .filter(assignment=assignment)
+                            .filter(choosable=choosable)
+                            .count()
+                            > 0
+                        )
+                        # FIXME: Prevent the virtual assignments from getting weighted
+                        if not has_negative_feedback:
+                            weighted_score = 1 * selection_weight_value
+                            scores_by_type[assignment.assignment_type] += weighted_score
+                        assignments_results[choosable.pk].append(assignment)
 
-                    assignments_weight_map[assignment.pk] = selection_weight_value
-
+                        assignments_weight_map[assignment.pk] = selection_weight_value
+            
             ranking[choosable.pk] = FacetteAssignment.AssignmentType.get_score(
                 scores_by_type
             )
 
-        print(assignments_weight_map)
         serializer = RankedChoosableSerializer(choosables, many=True)
         serializer.context["session_pk"] = self.context["session_pk"]
         serializer.context["ranking"] = ranking
         serializer.context["assignments"] = assignments_results
         serializer.context["weight_map"] = assignments_weight_map
+
         return serializer.data
 
 
@@ -319,6 +320,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
     )
     
     def list(self, request, *args, **kwargs):
+
         page_pk = kwargs.get("page_pk")
         cache_key = f"page-{page_pk}-widget"
         obj: Page = None
@@ -369,4 +371,5 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                     break
         
         cache.set(cache_key, result)
+
         return Response(result)

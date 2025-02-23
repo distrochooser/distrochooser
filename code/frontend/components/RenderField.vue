@@ -16,7 +16,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <Loading  v-if="!store.currentPage || store.isLoading" />
   <div v-if="store.currentPage">
     <h3 v-if="store.currentPage.text">
       <LanguageTranslation :translation-key="store.currentPage.text" :key="store.currentPage.text"/> 

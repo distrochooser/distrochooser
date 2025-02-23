@@ -22,6 +22,7 @@ from django.db.models import Max, Min
 from web.models import SessionVersionWidget, Translateable, TranslateableField, Session, WebHttpRequest, Widget, Facette, FacetteSelection
 from typing import List
 from logging import getLogger
+from django.core.cache import cache
 
 from django.apps import apps
 logger = getLogger("root")
@@ -116,10 +117,11 @@ class Page(Translateable):
 
     @property
     def widget_list(self) -> List[Widget]:
+        cached = cache.get(f"widget_list-{self.pk}")
+        if cached is not None:
+            return cached
+
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
-        # TODO: Add hardware requirements widget (which requires some widgets to store abitrary data)
-
-
         # filter out the FacetteSelectionWidgets acting as parent for radio selections
         radio_selections = apps.get_model("web", "FacetteRadioSelectionWidget").objects.filter(pages__pk__in=[self])
         ignore_parent_selections = []
@@ -127,7 +129,8 @@ class Page(Translateable):
             parent = radio_selection.__dict__["facetteselectionwidget_ptr_id"]
             ignore_parent_selections.append(parent)
         facette_selections = list( apps.get_model("web", "FacetteSelectionWidget").objects.exclude(pk__in=ignore_parent_selections).filter(pages__pk__in=[self]))
-        return (
+        
+        result = (
             list(SessionVersionWidget.objects.filter(pages__pk__in=[self]))
             + list(apps.get_model("web", "HTMLWidget").objects.filter(pages__pk__in=[self]))
             + list(radio_selections)
@@ -137,6 +140,8 @@ class Page(Translateable):
             + list(apps.get_model("web", "NavigationWidget").objects.filter(pages__pk__in=[self]))
             + list(apps.get_model("web", "MetaFilterWidget").objects.filter(pages__pk__in=[self]))
         )
+        cache.set(f"widget_list-{self.pk}", result)
+        return result
 
     def proceed(self, request: WebHttpRequest) -> bool:
         for widget in self.widget_list:

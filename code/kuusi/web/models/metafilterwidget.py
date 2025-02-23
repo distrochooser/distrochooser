@@ -20,6 +20,7 @@ from json import dumps, loads
 from web.models import Widget, Choosable, FacetteAssignment, Session
 from django.db import models
 from typing import List
+from django.core.cache import cache
 
 class MetaFilterWidgetElement:
     def __init__(self):
@@ -60,9 +61,10 @@ class MetaFilterWidgetStructure:
     """
     Virtual class. do not persist.
     """
-    def __init__(self, raw_input: List):
+    def __init__(self, raw_input: List, pk):
         self.raw_input = raw_input
         self.structure = []
+        self.original_pk = pk
     
     def parse(self):
         for _, row in enumerate(self.raw_input):
@@ -77,9 +79,14 @@ class MetaFilterWidgetStructure:
         return dumps(self.raw_input)
     
     def get_cell_from_structure(self, key: str) -> MetaFilterWidgetElement:
+        cache_key = f"meta-widget-structure-{self.original_pk}-key-{key}-cell"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
         for line in self.structure:
             for cell in line:
                 if cell.cell_name == key:
+                    cache.set(cache_key, cell)
                     return cell
         return None
 
@@ -104,9 +111,25 @@ class MetaFilterWidget(Widget):
 
     @property
     def parsed_structure(self) -> MetaFilterWidgetStructure:
-        obj = MetaFilterWidgetStructure(loads(self.structure))
+        cache_key = f"metafilterwidget-parsed-structure-{self.pk}"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+        obj = MetaFilterWidgetStructure(loads(self.structure), self.pk)
         obj.parse()
+        cache.set(cache_key, obj)
         return obj
+    
+    def get_virtual_assignments(self, meta_filter_values, choosable) -> List[FacetteAssignment]:
+        assignments = []
+        structure = self.parsed_structure
+        for stored_value in meta_filter_values:
+            cell_obj =  structure.get_cell_from_structure(stored_value.key)
+            stored_value_value = stored_value.value
+            result = cell_obj.apply_cell_func(choosable, stored_value_value)
+            if result is not None:
+                assignments.append(result)
+        return assignments
 
 class MetaFilterValue(models.Model):
 

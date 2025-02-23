@@ -107,7 +107,6 @@ const otherUserVotes = computed(() => {
   const choosablesOutsideAssignmentWithVotes = choosablesOutsideAssignment.filter(c => ids.indexOf(c.id) != -1)
   return choosablesOutsideAssignmentWithVotes
 })
-console.log(otherUserVotes.value)
 // TODO: Decide if these feedback must be persisted to be resumed after a share
 const newChoosables = ref<Choosable[]>(otherUserVotes.value);
 const removalFunc = (c: Choosable) => {
