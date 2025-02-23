@@ -226,24 +226,23 @@ class ResultListWidgetSerializer(WidgetSerializer):
             assignments_weight_map = {}
             
             assignments_with_choosable = facette_assignments.filter(choosables__in=[choosable])
-   
+
+            # Append "virtual" assignments caused by stored meta values
+            if stored_meta_filter_values.count() > 0:
+                for meta_filter_widget in meta_filter_widgets:
+                    results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosable)
+                    if results.__len__() != 0:
+                        assignments_results[choosable.pk] = assignments_results[choosable.pk] + results
+
             for selection in selections:
                 facette = selection.facette
                 selection_weight_key = selection.weight
                 selection_weight_value = WEIGHT_MAP[selection_weight_key]
                 # TODO: Decicide what to to with feedback relating to assignments, but not yet mapped to them.
-                
                 assignments_stored = assignments_with_choosable.filter(
                     facettes__in=[facette]
                 )
                 assignments = list(assignments_stored)
-                # Append "virtual" assignments caused by stored meta values
-                # TODO: Decide to append these also when no selection was given
-    
-                for meta_filter_widget in meta_filter_widgets:
-                    results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosable)
-                    if results.__len__() != 0:
-                        assignments = assignments + results
 
                 for assignment in assignments:
                     # Don't collect assignments twice
