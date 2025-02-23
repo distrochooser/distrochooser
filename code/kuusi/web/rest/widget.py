@@ -237,7 +237,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
                     if results.__len__() != 0:
                         for result in results:
                             if result.catalogue_id not in assignments_catalogue_ids:
-                                assignments_results[choosable.pk].append(results)
+                                assignments_results[choosable.pk].append(result)
                                 assignments_catalogue_ids.append(result.catalogue_id)
 
             for selection in selections:
