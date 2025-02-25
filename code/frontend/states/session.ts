@@ -71,27 +71,28 @@ export const useSessionStore = defineStore('websiteStore', {
         }
     },
     actions: {
+        async removeMetaFilterArg(id) {
+            await this.sessionApi.sessionMetafiltervalueDestroy({
+                sessionPk: this.session.resultId,
+                id: id
+            })
+            this.getMetaValues()
+        },
         async updateMetaFilterArgs(key: string, value: any) {
-            if (value == null) {
-                await this.sessionApi.sessionMetafiltervalueDestroy({
-                    sessionPk: this.session.resultId,
-                    id: this.metaValues.filter(m => m.key == key)[0].id
-                })
-            } else {
-                await this.sessionApi.sessionMetafiltervalueCreate({
-                    sessionPk: this.session.resultId,
-                    metaFilterValue: {
-                        key: key,
-                        value: value
-                    }
-                })
-            }
+            await this.sessionApi.sessionMetafiltervalueCreate({
+                sessionPk: this.session.resultId,
+                metaFilterValue: {
+                    key: key,
+                    value: value
+                }
+            })
             this.getMetaValues()
         },
         async getMetaValues() {
-            this.metaValues = await this.sessionApi.sessionMetafiltervalueList({
+            const got = await this.sessionApi.sessionMetafiltervalueList({
                 sessionPk: this.session.resultId
             })
+            this.metaValues = got
         },
         async getAssignmentFeedback() {
             this.assignmentFeedback = await this.sessionApi.sessionAssignmentfeedbackList({

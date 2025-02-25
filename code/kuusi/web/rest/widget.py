@@ -230,16 +230,6 @@ class ResultListWidgetSerializer(WidgetSerializer):
             assignments_with_choosable = facette_assignments.filter(choosables__in=[choosable])
             feedback_for_this_choosable = feedback_in_session.filter(choosable=choosable)
 
-            # Append "virtual" assignments caused by stored meta values
-            if stored_meta_filter_values.count() > 0:
-                for meta_filter_widget in meta_filter_widgets:
-                    results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosable)
-                    if results.__len__() != 0:
-                        for result in results:
-                            if result.catalogue_id not in assignments_catalogue_ids:
-                                assignments_results[choosable.pk].append(result)
-                                assignments_catalogue_ids.append(result.catalogue_id)
-
             for selection in selections:
                 facette = selection.facette
                 selection_weight_key = selection.weight
@@ -268,7 +258,18 @@ class ResultListWidgetSerializer(WidgetSerializer):
                         assignments_results[choosable.pk].append(assignment)
                         assignments_catalogue_ids.append(assignment.catalogue_id)
                         assignments_weight_map[assignment.pk] = selection_weight_value
-            
+    
+            # Append "virtual" assignments caused by stored meta values
+            # TODO: Introduce entry point for filtering
+            if stored_meta_filter_values.count() > 0:
+                for meta_filter_widget in meta_filter_widgets:
+                    results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosable,  assignments_results[choosable.pk])
+                    if results.__len__() != 0:
+                        for result in results:
+                            if result.catalogue_id not in assignments_catalogue_ids:
+                                assignments_results[choosable.pk].append(result)
+                                assignments_catalogue_ids.append(result.catalogue_id)
+
             ranking[choosable.pk] = FacetteAssignment.AssignmentType.get_score(
                 scores_by_type
             )

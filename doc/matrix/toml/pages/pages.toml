@@ -97,23 +97,23 @@ pages = ["installation-page"]
 icon = "bi bi-device-hdd"
 target_page = "installation-page"
 
-# old-hardware-page
 
-[page.old-hardware-page]
+[page.personal-requirements-page]
 next_page = "help-page"
 not_in_versions = ["simplified"]
 
-[widget.metafilter.old-hardware-page-widget-name]
+[widget.metafilter.personal-requirements-page]
 structure = [
    [
     "number.distro_age.filter_number_gt",
+    "checkbox.must_have_assignment.filter_must_have_assignments",
    ]
 ]
-pages = ["old-hardware-page"]
+pages = ["personal-requirements-page"]
 
-[category.old-hardware-category]
+[category.personal-requirements-category]
 icon = "bi bi-calendar-x"
-target_page = "old-hardware-page"
+target_page = "personal-requirements-page"
 
 # help page
 

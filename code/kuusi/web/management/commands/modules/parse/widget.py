@@ -66,7 +66,7 @@ def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -
                     if value in [str, int, float]:
                         new_widget.__setattr__(prop_key, properties[prop_key])
                     elif value == MetaFilterWidgetStructure:
-                        structure = MetaFilterWidgetStructure(properties[prop_key])
+                        structure = MetaFilterWidgetStructure(properties[prop_key], -1)
                         structure.parse()
                         new_widget.__setattr__(prop_key, structure.stringify())
                     else:

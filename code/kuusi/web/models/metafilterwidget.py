@@ -33,7 +33,8 @@ class MetaFilterWidgetElement:
     
     def get_func_map(self):
         func_map = {
-            "filter_number_gt": self.filter_number_gt
+            "filter_number_gt": self.filter_number_gt,
+            "filter_must_have_assignments": self.filter_must_have_assignments
         }
         return func_map
     
@@ -41,13 +42,23 @@ class MetaFilterWidgetElement:
         if self.cell_func not in self.get_func_map():
             raise Exception(f"Function {self.cell_func} not found")
 
-    def apply_cell_func(self, obj: Choosable, value: any) -> FacetteAssignment:
+    def apply_cell_func(self, obj: Choosable, value: any, collected_assignments: List[FacetteAssignment]) -> List[FacetteAssignment]:
         method = self.get_func_map()[self.cell_func]
-        return method(obj, value)
+        return method(obj, value, collected_assignments)
     
-    def filter_number_gt(self, obj: Choosable, value: any) -> FacetteAssignment:
+    def filter_must_have_assignments(self, obj: Choosable, value: any, collected_assignments) -> FacetteAssignment:
+        if value == "true" and len(collected_assignments) == 0: # all meta filter values are strings, basically
+            result = FacetteAssignment(
+                catalogue_id = self.cell_name,
+                long_description="not-suitable",
+                assignment_type=FacetteAssignment.AssignmentType.BLOCKING
+            )
+            return [result]
+        return []
+    
+    def filter_number_gt(self, obj: Choosable, value: any, collected_assignments) -> FacetteAssignment:
         if "AGE" not in obj.meta:
-            return None
+            return []
         matches = int(obj.meta["AGE"].years_since) < int(value)
         result = FacetteAssignment(
             catalogue_id = self.cell_name,
@@ -120,15 +131,15 @@ class MetaFilterWidget(Widget):
         cache.set(cache_key, obj)
         return obj
     
-    def get_virtual_assignments(self, meta_filter_values, choosable) -> List[FacetteAssignment]:
+    def get_virtual_assignments(self, meta_filter_values, choosable, collected_assignments: List[FacetteAssignment]) -> List[FacetteAssignment]:
         assignments = []
         structure = self.parsed_structure
         for stored_value in meta_filter_values:
             cell_obj =  structure.get_cell_from_structure(stored_value.key)
             stored_value_value = stored_value.value
-            result = cell_obj.apply_cell_func(choosable, stored_value_value)
-            if result is not None:
-                assignments.append(result)
+            result = cell_obj.apply_cell_func(choosable, stored_value_value, collected_assignments)
+            if result.__len__() > 0:
+                assignments = assignments + result
         return assignments
 
 class MetaFilterValue(models.Model):

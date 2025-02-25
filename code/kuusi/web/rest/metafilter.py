@@ -94,7 +94,6 @@ class MetaFilterValueViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
             return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
 
         MetaFilterValue.objects.filter(session=session).filter(key=key).delete()
-
         obj = MetaFilterValue(
             key=key,
             session=session,
