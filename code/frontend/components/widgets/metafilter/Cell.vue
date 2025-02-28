@@ -1,18 +1,24 @@
 <template>
 
     <div class="mb-3">
-        <label :for="props.cellString.split('.')[1]" class="form-label">
-            <LanguageTranslation :translation-key="props.cellString.split('.')[1]" />
-        </label>
-        {{ cellString }}
 
-        <input v-if="['radio', 'checkbox'].indexOf(props.cellString.split('.')[0]) == -1" :value="formValue"
+        <div v-if="['radio', 'checkbox'].indexOf(props.cellString.split('.')[0]) == -1">
+            <label for="exampleFormControlInput1" class="form-label">
+                <LanguageTranslation :translation-key="props.cellString.split('.')[1]" />
+            </label>
+            <input  :value="formValue"
             class="form-control" :type="props.cellString.split('.')[0]" :id="props.cellString.split('.')[1]"
-            v-on:change="updateValue($event)" />
+            v-on:change="updateValue($event)">
+        </div>
 
-        <input v-else 
-           :type="props.cellString.split('.')[0]" :id="props.cellString.split('.')[1]"
-            v-on:change="updateValue($event)" :checked="formValue.length > 0" />
+        <div v-else class="form-check">   
+            <label class="form-check-label" for="flexCheckChecked">
+                <LanguageTranslation :translation-key="props.cellString.split('.')[1]" />
+            </label>
+            <input v-on:change="updateValue($event)" :checked="formValue.length > 0" class="form-check-input"
+                :type="props.cellString.split('.')[0]" :id="props.cellString.split('.')[1]" checked>
+         
+        </div>
     </div>
 </template>
 <script lang="ts" setup>
