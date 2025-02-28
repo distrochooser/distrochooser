@@ -67,7 +67,7 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
             results,
             many=True
         )
-        serializer.context["session_pk"] = kwargs["session_pk"]
+        serializer.context["session"] =  Session.objects.filter(result_id=kwargs["session_pk"]).first()
         return Response(serializer.data)
 
     @extend_schema(
@@ -196,7 +196,7 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
         fields = ('id', 'choosables', 'catalogue_id', 'description', 'assignment_type', 'weight', 'votes', )
 
     def get_description(self, obj: FacetteAssignment):
-        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
+        session: Session =self.context['session']
         return obj.__("long_description",  session.language_code)
     
     @extend_schema_field(
@@ -233,7 +233,7 @@ class FacetteSerializer(serializers.ModelSerializer):
             FacetteAssignment.objects.filter(facettes__in=[obj]),
             many=True
         )
-        serializer.context["session_pk"] = self.context["session_pk"]
+        serializer.context["session"] = self.context["session"]
         return serializer.data
     
     
@@ -256,5 +256,5 @@ class FacetteViewSet(ListModelMixin, GenericViewSet):
             results,
             many=True
         )
-        serializer.context["session_pk"] = kwargs["session_pk"]
+        serializer.context["session"] = Session.objects.filter(pk=kwargs["session_pk"]).first()
         return Response(serializer.data)

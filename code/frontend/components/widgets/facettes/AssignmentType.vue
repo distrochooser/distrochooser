@@ -2,7 +2,7 @@
 
     <span
         :class="{ 'badge  rounded-pill me-3 ': true, 'text-bg-light': assignment.weight < 0, 'text-bg-dark': assignment.weight > 0 }"
-        v-if="props.displayWeigth && props.assignment.weight != null" :title="assignment.weight.toString() + 'x'">
+        v-if="props.displayWeigth && props.assignment.weight != null && weightText != null" :title="assignment.weight.toString() + 'x'">
 
         <Icon name="ion:chevron-up-sharp" v-if="props.assignment.weight > 0"></Icon>
         <Icon name="ion:chevron-down-sharp" v-if="props.assignment.weight < 0"></Icon>
@@ -32,6 +32,6 @@ const assignmentTypeCssMap = {
 };
 
 const props = defineProps<AssignmentTypeProps>();
-const weightText = props.assignment.weight < 0 ? "weight-less" : "weight_more";
+const weightText = props.assignment.weight < 1 ? "weight-less" :  (props.assignment.weight > 1 ? "weight_more" : null);
 
 </script>

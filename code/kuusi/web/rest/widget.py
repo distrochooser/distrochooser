@@ -106,7 +106,7 @@ class WithFacetteWidgetSerializer(WidgetSerializer):
         facettes: Facette = Facette.objects.filter(topic=obj.topic)
 
         serializer = FacetteSerializer(facettes, many=True)
-        serializer.context["session_pk"] = self.context["session_pk"]
+        serializer.context["session"] = Session.objects.filter(result_id=self.context["session_pk"]).first()
         return serializer.data
 
 
@@ -185,17 +185,18 @@ class RankedChoosableSerializer(ChoosableSerializer):
             if obj.pk in self.context["ranking"]
             else 9999999999
         )
-
+    
     def get_description(self, obj: Choosable) -> str:
-        session = Session.objects.filter(result_id=self.context["session_pk"]).first()
+        session = self.context["session"]
         return obj.__("description", session.language_code)
 
     @extend_schema_field(field=FacetteAssignmentSerializer(many=True))
     def get_assignments(self, obj: Choosable) -> List[FacetteAssignment]:
+        # A choosable _might_ not have any assingments -> overrule
         serializer = FacetteAssignmentSerializer(
-            self.context["assignments"][obj.pk], many=True
+            self.context["assignments"][obj.pk] if obj.pk in self.context["assignments"] else [], many=True
         )
-        serializer.context["session_pk"] = self.context["session_pk"]
+        serializer.context["session"] = self.context["session"]
         serializer.context["weight_map"] = self.context["weight_map"]
         return serializer.data
 
@@ -212,74 +213,53 @@ class ResultListWidgetSerializer(WidgetSerializer):
         session = Session.objects.filter(result_id=self.context["session_pk"]).first()
         choosables = Choosable.objects.all()
         meta_filter_widgets = MetaFilterWidget.objects.all()
-        facette_assignments = FacetteAssignment.objects.all()
         selections = FacetteSelection.objects.filter(session=session)
         ranking = {}
         assignments_results = {}
         assignments_weight_map = {}
         stored_meta_filter_values = MetaFilterValue.objects.filter(session=session)
-        feedback_in_session = Feedback.objects.filter(session=session)
-
-    
-        for choosable in choosables:
-            scores_by_type = FacetteAssignment.AssignmentType.get_score_map_by_type()
-            assignments_results[choosable.pk] = []
-            assignments_catalogue_ids = [] # for simple duplicate checks
-            assignments_weight_map = {}
-            
-            assignments_with_choosable = facette_assignments.filter(choosables__in=[choosable])
-            feedback_for_this_choosable = feedback_in_session.filter(choosable=choosable)
-
-            for selection in selections:
-                facette = selection.facette
-                selection_weight_key = selection.weight
-                selection_weight_value = WEIGHT_MAP[selection_weight_key]
-                # TODO: Decicide what to to with feedback relating to assignments, but not yet mapped to them.
-                assignments_stored = assignments_with_choosable.filter(
-                    facettes__in=[facette]
-                )
-                assignments = list(assignments_stored)
-
-                for assignment in assignments:
-                    # Don't collect assignments twice
+        assignments_catalogue_ids = []
+        score_map = {} 
+        for selection in selections:
+            facette = selection.facette
+            selection_weight_key = selection.weight
+            selection_weight_value = WEIGHT_MAP[selection_weight_key]
+            # TODO: Decicide what to to with feedback relating to assignments, but not yet mapped to them.
+            for assignment in facette.assignments:
+                # Don't collect assignments twice
+                for choosable in assignment.choosables.all():
+                    if choosable.pk not in assignments_results:
+                        assignments_results[choosable.pk] = []
+                    if choosable.pk not in score_map:
+                        score_map[choosable.pk] = FacetteAssignment.AssignmentType.get_score_map_by_type()
                     is_assignment_not_collected = assignment.catalogue_id not in assignments_catalogue_ids
                     if is_assignment_not_collected:
-                        # Only include assignments without negative user feedback
-                        has_negative_feedback = (
-                            feedback_for_this_choosable
-                            .filter(assignment=assignment)
-                            .count()
-                            > 0
-                        )
-                        # FIXME: Prevent the virtual assignments from getting weighted
-                        if not has_negative_feedback:
-                            weighted_score = 1 * selection_weight_value
-                            scores_by_type[assignment.assignment_type] += weighted_score
                         assignments_results[choosable.pk].append(assignment)
                         assignments_catalogue_ids.append(assignment.catalogue_id)
                         assignments_weight_map[assignment.pk] = selection_weight_value
-    
-            # Append "virtual" assignments caused by stored meta values
+                        score_map[choosable.pk][assignment.assignment_type] += 1
+
+        # Append "virtual" assignments caused by stored meta values
+        # FIXME: This is utterly slow
+        # FIXME: The score is not properly calculated  
+        if stored_meta_filter_values.count() > 0:
             # TODO: Introduce entry point for filtering
-            if stored_meta_filter_values.count() > 0:
-                for meta_filter_widget in meta_filter_widgets:
-                    results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosable,  assignments_results[choosable.pk])
-                    if results.__len__() != 0:
-                        for result in results:
-                            if result.catalogue_id not in assignments_catalogue_ids:
-                                assignments_results[choosable.pk].append(result)
-                                assignments_catalogue_ids.append(result.catalogue_id)
-
-            ranking[choosable.pk] = FacetteAssignment.AssignmentType.get_score(
-                scores_by_type
-            )
-
+            for meta_filter_widget in meta_filter_widgets:
+                score_map, assignments_results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosables,  assignments_results, score_map)
+      
+        for choosable in choosables:
+            if choosable.pk not in score_map:
+                # choosable never appeared
+                ranking[choosable.pk] = 0
+            else:
+                ranking[choosable.pk] = FacetteAssignment.AssignmentType.get_score(
+                    score_map[choosable.pk]
+                )    
         serializer = RankedChoosableSerializer(choosables, many=True)
-        serializer.context["session_pk"] = self.context["session_pk"]
+        serializer.context["session"] = session
         serializer.context["ranking"] = ranking
         serializer.context["assignments"] = assignments_results
-        serializer.context["weight_map"] = assignments_weight_map
-
+        serializer.context["weight_map"] = assignments_weight_map      
         return serializer.data
 
 
@@ -334,7 +314,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
         result = []
         # IMPORTANT
         # The serializers are ordered, specialized before generic
-
+        
         serializers = OrderedDict(
             {
                 HTMLWidget: HTMLWidgetSerializer,
@@ -347,7 +327,6 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                 MetaFilterWidget: MetaFilterWidgetSerializer,
             }
         )
-
         # Check if the detail results _can_ be ignored
         # TODO: Increase performance
         ignore_cache_serializers = [ResultListWidget]
@@ -364,17 +343,17 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
             cache_data = cache.get(cache_key)
             if cache_data is not None:
                 return Response(cache_data)
-            
+          
         widget: Widget
         for widget in obj.widget_list:
             for key, value in serializers.items():
                 if isinstance(widget, key):
-                    selected_serializer = serializers[type(widget)]
+                    selected_serializer = value
                     results = selected_serializer(widget)
                     results.context["session_pk"] = kwargs["session_pk"]
                     result.append(results.data)
                     break
-        
+
         cache.set(cache_key, result)
 
         return Response(result)

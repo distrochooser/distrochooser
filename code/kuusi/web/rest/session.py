@@ -60,6 +60,8 @@ class MetaTagsSerializer(serializers.Serializer):
         lang =  self.context["lang"]
         if not lang:
             lang = "en"
+        if lang not in TRANSLATIONS:
+            lang = "en"
         if "DESCRIPTION_TEXT" in TRANSLATIONS[lang]:
             tags["og:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
             tags["twitter:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]

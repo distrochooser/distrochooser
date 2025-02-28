@@ -25,6 +25,7 @@ from django.db import models
 from django.db.models import  QuerySet
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.apps import apps
+from django.core.cache import cache
 
 class Facette(Translateable):
     """
@@ -45,6 +46,18 @@ class Facette(Translateable):
     @property
     def has_child(self) -> bool:
         return self.child_facettes.count() > 0
+    
+    @property
+    def assignments(self) -> QuerySet[FacetteAssignment]:
+        cache_key = f"facette-{self.pk}-assignments"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+        assignments = FacetteAssignment.objects.filter(
+            facettes__in=[self]
+        )
+        cache.set(cache_key, assignments)
+        return assignments
 
     def __str__(self) -> str:
         return f"[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) (select: {self.selectable_description})"
@@ -191,7 +204,8 @@ class FacetteAssignment(Translateable):
             }
             score = 0
             for key, value in haystack.items():
-                score += score_map[key] * value
+                if key in haystack:
+                    score += score_map[key] * value
             
             return score
         

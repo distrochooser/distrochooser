@@ -86,7 +86,7 @@ target_page = "linux-knowledge-page"
 # Installation page
 
 [page.installation-page]
-next_page = "old-hardware-page"
+next_page = "personal-requirements-page"
 hide_help = true
 
 [widget.selection.installation-page-widget-name]
@@ -255,4 +255,4 @@ target_page = "result-page"
 [widget.navigation.global-nav]
 row = 4
 col = 1
-pages = ["welcome-page", "version-page", "scenario-page", "pc-knowledge-page", "linux-knowledge-page", "installation-page", "old-hardware-page", "help-page","ux-page", "pricing-page", "scope-page", "ideology-page", "updates-page", "administration-page", "privacy-page"]
+pages = ["welcome-page", "version-page", "scenario-page", "pc-knowledge-page", "linux-knowledge-page", "installation-page", "personal-requirements-page", "help-page","ux-page", "pricing-page", "scope-page", "ideology-page", "updates-page", "administration-page", "privacy-page"]

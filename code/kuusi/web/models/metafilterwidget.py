@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from json import dumps, loads
 from web.models import Widget, Choosable, FacetteAssignment, Session
 from django.db import models
-from typing import List
+from typing import List, Dict
 from django.core.cache import cache
 
 class MetaFilterWidgetElement:
@@ -49,19 +49,19 @@ class MetaFilterWidgetElement:
     def filter_must_have_assignments(self, obj: Choosable, value: any, collected_assignments) -> FacetteAssignment:
         if value == "true" and len(collected_assignments) == 0: # all meta filter values are strings, basically
             result = FacetteAssignment(
-                catalogue_id = self.cell_name,
+                catalogue_id = f"{self.cell_name}-{obj.name}",
                 long_description="not-suitable",
                 assignment_type=FacetteAssignment.AssignmentType.BLOCKING
             )
-            return [result]
-        return []
+            return result
+        return None
     
     def filter_number_gt(self, obj: Choosable, value: any, collected_assignments) -> FacetteAssignment:
         if "AGE" not in obj.meta:
-            return []
+            return None
         matches = int(obj.meta["AGE"].years_since) < int(value)
         result = FacetteAssignment(
-            catalogue_id = self.cell_name,
+            catalogue_id = f"{self.cell_name}-{obj.name}",
             long_description="suitable" if matches else "not-suitable",
             assignment_type=FacetteAssignment.AssignmentType.POSITIVE if matches else FacetteAssignment.AssignmentType.NEGATIVE
         )
@@ -131,17 +131,21 @@ class MetaFilterWidget(Widget):
         cache.set(cache_key, obj)
         return obj
     
-    def get_virtual_assignments(self, meta_filter_values, choosable, collected_assignments: List[FacetteAssignment]) -> List[FacetteAssignment]:
-        assignments = []
+    def get_virtual_assignments(self, meta_filter_values, choosables: List[Choosable], collected_assignments: Dict[int, List[FacetteAssignment]], score_map: Dict[int, Dict]):
         structure = self.parsed_structure
         for stored_value in meta_filter_values:
             cell_obj =  structure.get_cell_from_structure(stored_value.key)
             stored_value_value = stored_value.value
-            result = cell_obj.apply_cell_func(choosable, stored_value_value, collected_assignments)
-            if result.__len__() > 0:
-                assignments = assignments + result
-        return assignments
-
+            for choosable in choosables:
+                result = cell_obj.apply_cell_func(choosable, stored_value_value, collected_assignments)
+                if result is not None:
+                    if choosable.pk not in collected_assignments:
+                        collected_assignments[choosable.pk] = []
+                    if choosable.pk not in score_map:
+                        score_map[choosable.pk] = FacetteAssignment.AssignmentType.get_score_map_by_type()
+                    collected_assignments[choosable.pk].append(result)
+  
+        return score_map, collected_assignments
 class MetaFilterValue(models.Model):
 
     session = models.ForeignKey(
