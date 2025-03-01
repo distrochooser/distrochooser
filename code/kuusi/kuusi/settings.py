@@ -355,3 +355,10 @@ CACHES = {
         "OPTIONS": {"MAX_ENTRIES": 1000},
     }
 }
+
+IMPRINT = """
+ich
+da
+dort
+bla
+"""

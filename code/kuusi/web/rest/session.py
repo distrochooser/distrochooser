@@ -25,7 +25,7 @@ from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
                                    extend_schema)
 from kuusi.settings import (DEFAULT_SESSION_META, FRONTEND_URL, KUUSI_ICON,
                             KUUSI_LOGO, KUUSI_META_TAGS, KUUSI_NAME,
-                            LANGUAGE_CODES, LOCALE_MAPPING, RTL_LANGUAGES)
+                            LANGUAGE_CODES, LOCALE_MAPPING, RTL_LANGUAGES, SESSION_NUMBER_OFFSET, IMPRINT)
 from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
@@ -98,9 +98,12 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     language_codes = serializers.SerializerMethodField()
     language_values = serializers.SerializerMethodField()
     is_language_rtl = serializers.SerializerMethodField()
+    test_count = serializers.SerializerMethodField()
+    imprint_data = serializers.SerializerMethodField()
+
     class Meta:
         model = Session
-        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'is_language_rtl', 'name', 'logo', 'meta', 'icon')
+        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'is_language_rtl', 'name', 'logo', 'meta', 'icon', 'test_count', 'imprint_data')
 
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
@@ -109,6 +112,12 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         meta =  KUUSI_META_TAGS.copy()
         meta["og:locale"] = LOCALE_MAPPING[obj.language_code]
         return meta
+    
+    def get_test_count(self, _) -> int:
+        return SESSION_NUMBER_OFFSET
+    
+    def get_imprint_data(self, _) -> str:
+        return IMPRINT
    
     def get_is_language_rtl(self, obj: Session) -> bool:
         return obj.language_code in RTL_LANGUAGES

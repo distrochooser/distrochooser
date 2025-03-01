@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </Head>
     <NuxtRouteAnnouncer />
     <main role="main" class="container">
+      <MainNavigation/>
       <div class="page mt-3  position-relative top-40">
         <div class="row text-center mb-3">
           <div class="col-4">
@@ -31,7 +32,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <Logo />
           </div>
           <div class="col col-1">
-            <Language v-if="sessionStore.session" />
           </div>
         </div>
         <div class="row text-center mb-3">
@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <RenderField />
       </div>
     </main>
-    <Progress/>
+    <Progress />
   </div>
 </template>
 <script lang="ts" setup>
@@ -52,6 +52,7 @@ import { useRoute } from "vue-router";
 import { useSessionStore } from "../../states/session";
 import PageMeta from "../../components/PageMeta.vue";
 import Progress from "../../components/Progress.vue";
+import MainNavigation from "../../components/MainNavigation.vue";
 
 const router = useRoute();
 const lang: string = router.params.lang as string;

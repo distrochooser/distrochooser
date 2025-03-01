@@ -16,33 +16,20 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <div>
-        <form>
-            <div class="mt-2">
-                <select class="form-control" v-model="selectedLanguage" id="language" aria-label="Language">
-                    <option v-for="(key, value, index) in Object.entries(store.session.languageCodes)" :key="index"
-                        :value="key[1]"> {{ key[0] }}</option>
-                </select>
-            </div>
-        </form>
-    </div>
+    <ul class="dropdown-menu">
+        <li v-for="(key, value, index) in Object.entries(store.session.languageCodes)">
+            <a class="dropdown-item"  href="#" v-on:click.prevent="store.changeLanguage(key[0])">
+                <span :class="'fi fi-' + key[0]">
+                </span>
+                {{ key[0] }}
+            </a>
+        </li>
+    </ul>
 </template>
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { useSessionStore } from '../states/session';
 
-
 const store = useSessionStore();
 
-
-
-const sessionBoundLanguage = computed(() => store.session.languageCode)
-const selectedLanguage = ref(sessionBoundLanguage.value)
-
-
-watch(selectedLanguage, value => {
-    if (store.session) {
-        store.changeLanguage(selectedLanguage.value)
-    }
-}, { deep: true, immediate: true })
 </script>

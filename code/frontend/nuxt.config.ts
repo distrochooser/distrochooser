@@ -6,12 +6,16 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@pinia/nuxt',
-    '@nuxt/icon'
+    '@nuxt/icon',
+    '@nuxtjs/robots'
   ],
   css: ["bootstrap/dist/css/bootstrap.min.css", "flag-icons/css/flag-icons.min.css"],
   runtimeConfig: {
     public: {
       basePath: process.env.NUXT_PUBLIC_BASE_PATH || "http://localhost:8000"
     }
+  },
+  robots: {
+    disallow: ['/pages/contact'],
   }
 })
