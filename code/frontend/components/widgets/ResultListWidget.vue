@@ -25,6 +25,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     >
       <RankedChoosable :choosable="choosable" />
     </div>
+    <div class="alert alert-info" v-if="props.widget.choosables.length == 0">
+      <b><LanguageTranslation translation-key="NO_RESULTS_TITLE"/></b>
+      <p>
+        <LanguageTranslation translation-key="NO_RESULTS_TEXT"/>
+      </p>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
