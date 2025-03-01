@@ -26,12 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <MainNavigation/>
       <div class="page mt-3  position-relative top-40">
         <div class="row text-center mb-3">
-          <div class="col-4">
+          <div class="col-4 d-none d-sm-block">
           </div>
-          <div class="col col-3">
+          <div class="col-xl-3 col-sm-12">
             <Logo />
           </div>
-          <div class="col col-1">
+          <div class="col col-1  d-none d-sm-block">
           </div>
         </div>
         <div class="row text-center mb-3">

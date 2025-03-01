@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div class="row mt-2 mb-2">
     <div class="col row" v-if="currentCategory != null">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <div class="col-2"/>
-        <button type="button" class="col-1 btn btn btn-outline-secondary" v-if="currentCategoryIndex != 0"
+        <div class="col-2   d-none d-sm-block"/>
+        <button type="button" class="col-1 btn btn btn-outline-secondary  d-none d-sm-block" v-if="currentCategoryIndex != 0"
           v-on:click="sessionStore.selectPage(categories[currentCategoryIndex - 1].targetPage)">
 
           <Icon name="ion:caret-back" class="fs-3"></Icon>
@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <button type="button" class="disabled col-1 btn btn btn-outline-secondary"
           v-if="currentCategoryIndex == 0"></button>
 
-        <div class="btn-group col-6 dropdown-center" role="group">
+        <div class="btn-group col-xs-12 col-xl-6  dropdown-center" role="group">
           <button type="button" class="btn btn-primary dropdown-toggle fs-5" data-bs-toggle="dropdown"
             aria-expanded="false">
             <Category :index="currentCategoryIndex" :category="currentCategory" />
@@ -45,14 +45,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </ul>
         </div>
 
-        <button type="button" class="col-1 btn btn btn-outline-secondary"
+        <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-sm-block"
           v-if="currentCategoryIndex < categories.length - 1"
           v-on:click="sessionStore.selectPage(categories[currentCategoryIndex + 1].targetPage)">
           <Icon name="ion:caret-forward"  class="fs-3"></Icon>
         </button>
         <button type="button" class="disabled col-1 btn btn btn-outline-secondary" v-else></button>
 
-        <div class="col-2"/>
+        <div class="col-2   d-none d-sm-block"/>
       </div>
     </div>
     
