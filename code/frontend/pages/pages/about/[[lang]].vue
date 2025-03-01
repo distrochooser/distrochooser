@@ -37,6 +37,9 @@
                 <p>
                     <LanguageTranslation translation-key="ABOUT_PAGE_OPENDATA_TEXT"/>
                 </p>
+                <code>
+                    GET {{openDataPath }}
+                </code>
             </div>
         </div>
     </main>
@@ -45,6 +48,7 @@
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useSessionStore } from '../../../states/session';
+import { useRuntimeConfig } from 'nuxt/app';
 
 
 const sessionStore = useSessionStore();
@@ -55,4 +59,5 @@ onMounted(async () => {
         await sessionStore.createSession(lang);
     }
 });
+const openDataPath = useRuntimeConfig().public.basePath + "/data/1"
 </script>
