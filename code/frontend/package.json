@@ -22,6 +22,8 @@
     "language-icons": "^0.3.0",
     "nuxt": "^3.14.1592",
     "pinia": "^2.3.0",
+    "sass": "^1.85.1",
+    "sass-loader": "^16.0.5",
     "vue": "latest",
     "vue-router": "latest"
   },

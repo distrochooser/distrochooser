@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from "nuxt/config";
+import { deprecations } from "sass";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -9,7 +10,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/robots'
   ],
-  css: ["bootstrap/dist/css/bootstrap.min.css", "flag-icons/css/flag-icons.min.css"],
+  css: ["./style/main.scss", "flag-icons/css/flag-icons.min.css"],
   runtimeConfig: {
     public: {
       basePath: process.env.NUXT_PUBLIC_BASE_PATH || "http://localhost:8000"
@@ -17,5 +18,18 @@ export default defineNuxtConfig({
   },
   robots: {
     disallow: ['/pages/contact'],
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          silenceDeprecations: [
+            "import" // FIXME: This mutes the deprecation. Requires research
+          ],
+          quietDeps: true,
+          api: 'modern-compiler', // or 'modern'
+        },
+      },
+    }
   }
 })
