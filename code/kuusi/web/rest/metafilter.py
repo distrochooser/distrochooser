@@ -24,18 +24,18 @@ from rest_framework import serializers, status
 from rest_framework.mixins import DestroyModelMixin, ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from web.models import MetaFilterValue, Session
+from web.models import MetaFilterValue, Session, Page
 
 
 class MetaFilterValueSerializer(serializers.ModelSerializer):
     class Meta:
         model = MetaFilterValue
-        fields = ('id', 'key', 'value', )
+        fields = ('id', 'key', 'value', 'page' )
 
 class CreateMetaFilterValueSerializer(serializers.ModelSerializer):
     class Meta:
         model = MetaFilterValue
-        fields = ( 'key', 'value',  )   
+        fields = ( 'key', 'value',  'page')   
 
 class MetaFilterValueViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
     queryset = MetaFilterValue.objects.all()
@@ -89,15 +89,18 @@ class MetaFilterValueViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
         
         key = request.data["key"]
         value = request.data["value"]
+        page = request.data["page"]
 
-        if key is None or value is None:
+        if key is None or value is None or page is None:
             return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
 
+        page_obj = Page.objects.get(pk=page)
         MetaFilterValue.objects.filter(session=session).filter(key=key).delete()
         obj = MetaFilterValue(
             key=key,
             session=session,
-            value=value
+            value=value,
+            page=page_obj
         )
         obj.save()
         serializer = MetaFilterValueSerializer(

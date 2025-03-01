@@ -78,12 +78,13 @@ export const useSessionStore = defineStore('websiteStore', {
             })
             this.getMetaValues()
         },
-        async updateMetaFilterArgs(key: string, value: any) {
+        async updateMetaFilterArgs(key: string, value: any, page) {
             await this.sessionApi.sessionMetafiltervalueCreate({
                 sessionPk: this.session.resultId,
                 metaFilterValue: {
                     key: key,
-                    value: value
+                    value: value,
+                    page: page
                 }
             })
             this.getMetaValues()

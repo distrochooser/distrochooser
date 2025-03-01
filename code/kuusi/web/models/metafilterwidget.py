@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from json import dumps, loads
-from web.models import Widget, Choosable, FacetteAssignment, Session
+from web.models import Widget, Choosable, FacetteAssignment, Session, Page
 from django.db import models
 from typing import List, Dict
 from django.core.cache import cache
@@ -157,3 +157,10 @@ class MetaFilterValue(models.Model):
     )
     key = models.CharField(null=False, blank=False, max_length=255)
     value = models.CharField(null=False, blank=False, max_length=255)
+    page = models.ForeignKey(
+        to=Page,
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        related_name="meta_filter_value_page",
+    )

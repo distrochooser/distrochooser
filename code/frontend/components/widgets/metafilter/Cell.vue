@@ -49,7 +49,7 @@ const updateValue = (e: Event) => {
         store.removeMetaFilterArg(oldId)
         formValue.value = ""
     } else {
-        store.updateMetaFilterArgs(key, value)
+        store.updateMetaFilterArgs(key, value, store.currentPage.id)
         formValue.value = value
     }
 }

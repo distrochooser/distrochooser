@@ -22,7 +22,7 @@ const props = defineProps<WidgetProps>();
 
 const store = useSessionStore();
 const isAnswered = computed(() => {
-  return store.facetteSelections.filter(l => l.pagesOfFacettes.indexOf(props.category.targetPage) != -1).length > 0
+  return store.facetteSelections.filter(l => l.pagesOfFacettes.indexOf(props.category.targetPage) != -1).length > 0 || store.metaValues.filter(m => m.page == props.category.targetPage).length > 0
 });
 const isMarked = computed(() => {
     return store.pageMarkings.filter(l => l.page == props.category.targetPage).length > 0;
