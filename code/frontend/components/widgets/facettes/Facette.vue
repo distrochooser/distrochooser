@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div class="row">
-    <div class="col-8">
+    <div class="col-9">
       <div class="form-check mb-2 fs-5" v-if="props.checkbox">
         <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
           type="checkbox" :id="facette.id.toString()">
@@ -37,10 +37,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <BehaviourButton :click-handler="toggleExpand" />
       </div>
     </div>
-    <div class="col-4 row" v-if="isSelected" >
-      <label for="'importance-'+ props.facette.id" class="col-6 form-label fs-6"> <LanguageTranslation translation-key="IMPORTANCE"/></label>
-      <input :id="'importance-'+ props.facette.id" type="range" v-model="weight" min="-2" max="2" step="1" class="col-6"
-        v-on:change="registerWeightChange" />
+    <div class="col-3 row" v-if="isSelected" >
+      <Icon class="col fs-2 less-weight-icon" name="ion:trending-down-outline"></Icon>
+      <div class="col">
+        <input :id="'importance-'+ props.facette.id" type="range" v-model="weight" min="-2" max="2" step="1" class="align-middle"  v-on:change="registerWeightChange" />
+      </div>
+      <Icon class="col fs-2 more-weight-icon" name="ion:trending-up-outline"></Icon>
     </div>
   </div>
 
@@ -131,3 +133,12 @@ const registerWeightChange = async () => {
   );
 };
 </script>
+<style scoped lang="scss">
+@import "../../../style/variables.scss";
+.less-weight-icon {
+  color: $weightLessColor;
+}
+.more-weight-icon {
+  color: $weightMoreColor;
+}
+</style>

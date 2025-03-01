@@ -161,12 +161,16 @@ export const useSessionStore = defineStore('websiteStore', {
                 l.votes.filter((v => v.session == this.session.id && v.isPositive)).length > 0
             ))
             if (providedFeedback.length > 0 && providedFeedback[0].value.length > 0) {
-                return providedFeedback[0].value
+                return providedFeedback[0].value ?? key
             }
             if (typeof this.session.languageValues[key] == "undefined") {
                 return key
             }
-            return this.session.languageValues[key];
+            const languageValue = this.session.languageValues[key];
+            if (languageValue == null) {
+                return key;
+            }
+            return languageValue
         },
         async updateFacetteSelections(currentPageId: number, id: number, weight: number, add: boolean, reset: string) {
 

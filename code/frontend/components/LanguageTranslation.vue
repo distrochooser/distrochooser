@@ -1,6 +1,6 @@
 <template>
   <span  v-on:click.prevent.right.once="toggleEditing">
-    {{ computedValue }}
+    {{ computedValue }} 
   </span>
   <div v-if="isEditing" style="z-index: 100000" class="card position-fixed top-50 start-50 translate-middle"
     :title="computedValue">
@@ -47,7 +47,7 @@ interface TranslationProps {
 
 const sessionStore = useSessionStore();
 const props = defineProps<TranslationProps>();
-const computedValue = computed(() => sessionStore.__i(props.translationKey))
+const computedValue = computed(() => sessionStore.__i(props.translationKey) )
 const isEditing = ref(false);
 const provideFeedback = async (e: Event) => {
   const newValue = (e.target as HTMLInputElement).value;

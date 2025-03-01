@@ -1,11 +1,11 @@
 <template>
 
     <span
-        :class="{ 'badge  rounded-pill me-3 ': true, 'text-bg-light': assignment.weight < 0, 'text-bg-dark': assignment.weight > 0 }"
+        :class="{ 'badge  rounded-pill me-3 ': true, 'less-weight-badge': assignment.weight < 0, 'more-weight-badge': assignment.weight > 0 }"
         v-if="props.displayWeigth && props.assignment.weight != null && weightText != null" :title="assignment.weight.toString() + 'x'">
 
-        <Icon name="ion:chevron-up-sharp" v-if="props.assignment.weight > 0"></Icon>
-        <Icon name="ion:chevron-down-sharp" v-if="props.assignment.weight < 0"></Icon>
+        <Icon name="ion:trending-up-outline" class="me-1" v-if="props.assignment.weight > 0"></Icon>
+        <Icon name="ion:trending-down-outline" class="me-1" v-if="props.assignment.weight < 0"></Icon>
 
         <LanguageTranslation :translation-key="weightText" />
     </span>
@@ -35,3 +35,16 @@ const props = defineProps<AssignmentTypeProps>();
 const weightText = props.assignment.weight < 1 ? "weight-less" :  (props.assignment.weight > 1 ? "weight_more" : null);
 
 </script>
+
+<style lang="scss" scoped>
+@import "../../../style/variables.scss";
+.less-weight-badge {
+   background-color: $weightLessColor;
+   color: $weightBadgeFontColor;
+}
+.more-weight-badge {
+  background-color: $weightMoreColor;
+  color: $weightBadgeFontColor;
+}
+
+</style>

@@ -1,6 +1,31 @@
+/*
+distrochooser
+Copyright (C) 2014-2025 Christoph Müller  <mail@chmr.eu>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+// Bootstrap overwrites
+
 $primary: #05396b;
 $secondary: #909093;
 $red: rgb(196, 1, 1);
 $green: rgb(50, 164, 50);
 $border-radius: 0px;
 $orange: #fd7e14;
+
+// non overwrite 
+
+$weightMoreColor: rgb(4, 0, 255);
+$weightLessColor: rgb(0, 191, 255);
+$weightBadgeFontColor: white;
