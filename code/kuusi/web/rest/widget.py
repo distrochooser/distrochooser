@@ -225,16 +225,16 @@ class ResultListWidgetSerializer(WidgetSerializer):
             # TODO: Introduce entry point for filtering
             for meta_filter_widget in meta_filter_widgets:
                 score_map, assignments_results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosables,  assignments_results, score_map)
-      
+
+        results = []
         for choosable in choosables:
-            if choosable.pk not in score_map:
-                # choosable never appeared
-                ranking[choosable.pk] = 0
-            else:
+            # only include choosables actually having results
+            if choosable.pk  in score_map and  assignments_results[choosable.pk].__len__() != 0:
                 ranking[choosable.pk] = FacetteAssignment.AssignmentType.get_score(
                     score_map[choosable.pk]
                 )    
-        serializer = RankedChoosableSerializer(choosables, many=True)
+                results.append(choosable)
+        serializer = RankedChoosableSerializer(results, many=True)
         serializer.context["session"] = session
         serializer.context["ranking"] = ranking
         serializer.context["assignments"] = assignments_results
