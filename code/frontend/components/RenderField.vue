@@ -18,10 +18,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div v-if="store.currentPage">
     <h3 v-if="store.currentPage.text">
-      <LanguageTranslation :translation-key="store.currentPage.text" :key="store.currentPage.text"/> 
-      <Icon v-if="store.currentPage.canBeMarked" role="button" class="align-middle ms-1" name="ion:bookmark" v-on:click="toggleMarking"></Icon>
-      <br/>
-      <small v-if="store.currentPage.help" :key="store.currentPage.help" class="text-body-secondary mt-3 d-block fs-5 fw-light"><LanguageTranslation :translation-key="store.currentPage.help"/></small>
+      <LanguageTranslation :translation-key="store.currentPage.text" :key="store.currentPage.text" />
+      <Icon v-if="store.currentPage.canBeMarked" :class="{ 'page-icon page-icon-inner fs-6': true, 'marked': isMarked }"
+        v-on:click="toggleMarking"
+        name="ion:bookmark"></Icon>
+
+      <br />
+      <small v-if="store.currentPage.help" :key="store.currentPage.help"
+        class="text-body-secondary mt-3 d-block fs-5 fw-light">
+        <LanguageTranslation :translation-key="store.currentPage.help" />
+      </small>
     </h3>
     <div>
       <WidgetsWrapper v-for="row in 12" :key="row" class="row" :row="row" />
@@ -29,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
 </template>
 <script setup lang="ts">
+import { computed } from "vue";
 import { useSessionStore } from "../states/session";
 import LanguageTranslation from "./LanguageTranslation.vue";
 
@@ -36,4 +43,29 @@ const store = useSessionStore();
 const toggleMarking = async () => {
   store.toggleMarking()
 }
+
+const isMarked = computed(() => {
+  return store.pageMarkings.filter(l => l.page == store.currentPage.id).length > 0;
+})
 </script>
+
+<style lang="scss" scoped>
+@use 'sass:color';
+@import "../style/variables.scss";
+
+.page-icon {
+  width: 2em;
+  height: 2em;
+  border-radius: 3em;
+  transition: all 0.5s;
+  cursor: pointer;
+
+  &.marked {
+    color: $orange;
+
+    .page-icon-inner::after {
+      filter: drop-shadow(30px 10px 4px #4444dd);
+    }
+  }
+}
+</style>

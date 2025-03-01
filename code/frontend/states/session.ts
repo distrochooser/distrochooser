@@ -160,7 +160,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 l.session == this.session.id ||
                 l.votes.filter((v => v.session == this.session.id && v.isPositive)).length > 0
             ))
-            if (providedFeedback.length > 0) {
+            if (providedFeedback.length > 0 && providedFeedback[0].value.length > 0) {
                 return providedFeedback[0].value
             }
             if (typeof this.session.languageValues[key] == "undefined") {

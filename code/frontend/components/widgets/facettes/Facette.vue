@@ -16,27 +16,35 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div>
-    <div class="form-check" v-if="props.checkbox">
-      <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
-        type="checkbox" :id="facette.id.toString()">
-      <label class="form-check-label" :for="facette.id.toString()">
-        <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
-      </label>
-      <BehaviourButton :click-handler="toggleExpand" />
-    </div>
-    <div class="form-check" v-else>
-      <input v-on:click="registerClick" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
-        v-model="selected" v-on:change="registerChange" v-bind:value="true" :checked="isSelected"
-        :id="facette.id.toString()">
-      <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
-        <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
-      </label>
+  <div class="row">
+    <div class="col-8">
+      <div class="form-check mb-2 fs-5" v-if="props.checkbox">
+        <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
+          type="checkbox" :id="facette.id.toString()">
+        <label class="form-check-label" :for="facette.id.toString()">
+          <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
+        </label>
+        <BehaviourButton :click-handler="toggleExpand" />
+      </div>
+      <div class="form-check mb-2 fs-5" v-else>
+        <input v-on:click="registerClick" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
+          v-model="selected" v-on:change="registerChange" v-bind:value="true" :checked="isSelected"
+          :id="facette.id.toString()">
+        <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
+          <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
+        </label>
 
-      <BehaviourButton :click-handler="toggleExpand" />
+        <BehaviourButton :click-handler="toggleExpand" />
+      </div>
     </div>
+    <div class="col-4 row" v-if="isSelected" >
+      <label for="'importance-'+ props.facette.id" class="col-6 form-label fs-6"> <LanguageTranslation translation-key="IMPORTANCE"/></label>
+      <input :id="'importance-'+ props.facette.id" type="range" v-model="weight" min="-2" max="2" step="1" class="col-6"
+        v-on:change="registerWeightChange" />
+    </div>
+  </div>
 
-    <div v-if="isExpanded.valueOf()">
+  <div v-if="isExpanded.valueOf()">
       <ul class="list-group">
         <li v-if="props.facette.assignments.length == 0"
           class="list-group-item d-flex justify-content-between align-items-start">
@@ -45,11 +53,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <Assignment :display-weigth="false" :assignment="key" v-for="(key, index) in props.facette.assignments" :key="index"
           :query-choosables="true" :facette="props.facette" />
       </ul>
-    </div>
-    <div>
-      <input v-if="isSelected" type="range" v-model="weight" min="-2" max="2" step="1"
-        v-on:change="registerWeightChange" />
-    </div>
   </div>
 </template>
 <script setup lang="ts">

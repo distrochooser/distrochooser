@@ -2,8 +2,8 @@
     <span>
         {{ props.index + 1 }}. 
         <LanguageTranslation :translation-key="props.category.name"/>
-        <Icon name="ion:checkmark-circle" v-if="isAnswered"></Icon>
-        <Icon name="ion:bookmark" v-if="isMarked"></Icon>
+        <Icon name="ion:checkmark-circle"  class="ms-1" v-if="isAnswered"></Icon>
+        <Icon name="ion:bookmark" :class="{'ms-1 marked': isMarked}" v-if="isMarked"></Icon>
     </span>
 </template>
 <script setup lang="ts">
@@ -28,3 +28,10 @@ const isMarked = computed(() => {
     return store.pageMarkings.filter(l => l.page == props.category.targetPage).length > 0;
 })
 </script>
+<style lang="scss" scoped>
+
+@import "../style/variables.scss";
+.marked {
+    color: $orange;
+}
+</style>
