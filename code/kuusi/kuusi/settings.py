@@ -40,7 +40,9 @@ ALLOWED_HOSTS = [
 
 # Application definition
 
-INSTALLED_APPS = [
+ENABLE_PROFILING = False
+
+INSTALLED_APPS = (["silk"] if ENABLE_PROFILING else []) + [
     "rest_framework",
     "drf_spectacular",
     "drf_spectacular_sidecar",
@@ -50,8 +52,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "crispy_forms",
-    "crispy_bootstrap5",
     "django.contrib.humanize",
     "web",
     'corsheaders'
@@ -72,7 +72,7 @@ SPECTACULAR_SETTINGS = {
     # OTHER SETTINGS
 }
 
-MIDDLEWARE = [
+MIDDLEWARE = (['silk.middleware.SilkyMiddleware'] if ENABLE_PROFILING else []) + [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

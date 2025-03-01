@@ -17,22 +17,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import Session, WebHttpRequest
-from django.http import (
-    HttpResponse
-)
+from django.http import HttpResponse
 from django.template import loader
 from django.utils.translation import gettext_lazy as _
-from django.utils import translation
-from os.path import join
-
-from kuusi.settings import (
-    SESSION_NUMBER_OFFSET
-)
 from kuusi.legal import LEGAL_TEXT, LEGAL_TEXT_DISCLAIMER
+from kuusi.settings import SESSION_NUMBER_OFFSET
 from web.models import Session, WebHttpRequest
-from web.helper import forward_helper
-from logging import getLogger
+
 
 def route_about(request: WebHttpRequest, language_code: str = None):
     template = loader.get_template("about.html")

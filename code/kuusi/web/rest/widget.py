@@ -18,53 +18,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from collections import OrderedDict
 from json import loads
+from typing import List
 
-from django.shortcuts import render
-from django.template import Context, Engine, Template
-from web.models import (
-    Page,
-    Session,
-    Widget,
-    HTMLWidget,
-    FacetteRadioSelectionWidget,
-    FacetteSelectionWidget,
-    NavigationWidget,
-    ResultListWidget,
-    ResultShareWidget,
-    MetaFilterWidget,
-    MetaFilterWidgetElement,
-    MetaFilterWidgetStructure,
-    MetaFilterValue,
-    Facette,
-    SessionVersionWidget,
-    SessionVersion,
-    FacetteSelection,
-    Choosable,
-    FacetteAssignment,
-    Feedback,
-)
-from web.rest.facette import FacetteSerializer, FacetteAssignmentSerializer
-from web.rest.session import SessionVersionSerializer
-from web.rest.choosable import ChoosableSerializer, CHOOSABLE_SERIALIZER_BASE_FIELDS
-from rest_framework import serializers
-from drf_spectacular.utils import extend_schema, OpenApiResponse
+from django.core.cache import cache
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
-from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES, WEIGHT_MAP, BASE_DIR, CACHE_TIMEOUT
-from rest_framework.viewsets import GenericViewSet
+from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
+                                   PolymorphicProxySerializer, extend_schema,
+                                   extend_schema_field)
+from kuusi.settings import WEIGHT_MAP
+from rest_framework import serializers, status
+from rest_framework.fields import CharField
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.serializers import ListSerializer
-from rest_framework.fields import CharField
-from time import time
-from drf_spectacular.utils import extend_schema_field, PolymorphicProxySerializer
-
-from rest_polymorphic.serializers import PolymorphicSerializer
-from django.core.cache import cache
-from typing import List
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
+from rest_framework.viewsets import GenericViewSet
+from web.models import (Choosable, Facette, FacetteAssignment,
+                        FacetteRadioSelectionWidget, FacetteSelection,
+                        FacetteSelectionWidget, HTMLWidget,
+                        MetaFilterValue, MetaFilterWidget,
+                        NavigationWidget, Page, ResultListWidget,
+                        ResultShareWidget, Session, SessionVersion,
+                        SessionVersionWidget, Widget)
+from web.rest.choosable import (CHOOSABLE_SERIALIZER_BASE_FIELDS,
+                                ChoosableSerializer)
+from web.rest.facette import FacetteAssignmentSerializer, FacetteSerializer
+from web.rest.session import SessionVersionSerializer
 
 WIDGET_SERIALIZER_BASE_FIELDS = (
     "id",
@@ -106,7 +84,7 @@ class WithFacetteWidgetSerializer(WidgetSerializer):
         facettes: Facette = Facette.objects.filter(topic=obj.topic)
 
         serializer = FacetteSerializer(facettes, many=True)
-        serializer.context["session"] = Session.objects.filter(result_id=self.context["session_pk"]).first()
+        serializer.context["session"] = self.context["session"]
         return serializer.data
 
 
@@ -153,7 +131,7 @@ class SessionVersionWidgetSerializer(WidgetSerializer):
     def get_versions(self, obj: SessionVersionWidget) -> List[SessionVersion]:
         serializer = SessionVersionSerializer(SessionVersion.objects.all(), many=True)
 
-        serializer.context["session_pk"] = self.context["session_pk"]
+        serializer.context["session"] = self.context["session"]
         return serializer.data
 
 
@@ -210,7 +188,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
 
     @extend_schema_field(field=RankedChoosableSerializer(many=True))
     def get_choosables(self, obj: ResultListWidget) -> List[Choosable]:
-        session = Session.objects.filter(result_id=self.context["session_pk"]).first()
+        session = self.context["session"]
         choosables = Choosable.objects.all()
         meta_filter_widgets = MetaFilterWidget.objects.all()
         selections = FacetteSelection.objects.filter(session=session)
@@ -242,6 +220,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         # Append "virtual" assignments caused by stored meta values
         # FIXME: This is utterly slow
         # FIXME: The score is not properly calculated  
+
         if stored_meta_filter_values.count() > 0:
             # TODO: Introduce entry point for filtering
             for meta_filter_widget in meta_filter_widgets:
@@ -260,6 +239,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         serializer.context["ranking"] = ranking
         serializer.context["assignments"] = assignments_results
         serializer.context["weight_map"] = assignments_weight_map      
+        
         return serializer.data
 
 
@@ -308,6 +288,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
 
         page_pk = kwargs.get("page_pk")
         cache_key = f"page-{page_pk}-widget"
+        session: Session = Session.objects.get(result_id=kwargs["session_pk"])
         obj: Page = None
         if page_pk:
             obj = Page.objects.filter(pk=page_pk).first()
@@ -350,7 +331,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                 if isinstance(widget, key):
                     selected_serializer = value
                     results = selected_serializer(widget)
-                    results.context["session_pk"] = kwargs["session_pk"]
+                    results.context["session"] = session
                     result.append(results.data)
                     break
 

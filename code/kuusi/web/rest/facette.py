@@ -29,6 +29,7 @@ from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema_field
 from rest_framework.serializers import ListSerializer
 from rest_framework.fields import IntegerField
+from django.core.cache import cache
 
 from typing import List
 
@@ -97,6 +98,9 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
             session=session
         )
         result.save()
+        # Clear the cache that has might been created previously
+        cache_key = f"facetteassignment-{assignment_obj.pk}-votes"
+        cache.delete(cache_key)
 
         serializer = AssignmentFeedbackSerializer(
             result

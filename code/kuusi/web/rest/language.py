@@ -17,18 +17,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import LanguageFeedback, Session, LanguageFeedbackVote
-from web.rest.languagevote import LanguageFeedbackVoteSerializer
-from rest_framework import serializers
-from drf_spectacular.utils import  extend_schema, OpenApiResponse
+from typing import List
+
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
-from rest_framework import status
-from rest_framework.viewsets import GenericViewSet
+from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
+                                   extend_schema, extend_schema_field)
+from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
-from drf_spectacular.utils import extend_schema_field
-from typing import List
+from rest_framework.viewsets import GenericViewSet
+from web.models import LanguageFeedback, LanguageFeedbackVote, Session
+from web.rest.languagevote import LanguageFeedbackVoteSerializer
 
 
 class CreateLanguageFeedbackSerializer(serializers.ModelSerializer):

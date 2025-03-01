@@ -29,6 +29,7 @@ from logging import getLogger
 from os.path import join, exists
 from json import loads, dumps
 from os import mkdir, listdir
+from django.core.cache import cache
 
 
 logger = getLogger("root")
@@ -174,8 +175,14 @@ def get_translation_haystack(language_code: str) ->Dict[str,str]:
     As the user can provide translations -> use them 
     """
     raw = TRANSLATIONS[language_code]
-    approved_provided_feedback = apps.get_model("web", "LanguageFeedback").objects.filter(session__language_code=language_code).filter(is_approved=True)
-   
+    cache_key = f"translation-{language_code}-feedback"
+    cached = cache.get(cache_key)
+    approved_provided_feedback = None
+    if cached:
+        approved_provided_feedback = cached
+    else:
+        approved_provided_feedback = apps.get_model("web", "LanguageFeedback").objects.filter(session__language_code=language_code).filter(is_approved=True)
+        cache.set(cache_key, approved_provided_feedback)
     for element in approved_provided_feedback:
         raw[element.language_key] = element.value
     return raw

@@ -16,10 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from web.models import Widget, WebHttpRequest, Page
-from django.template import loader
-
-from kuusi.settings import KUUSI_URL
+from web.models import Widget
 
 class ResultShareWidget(Widget):
     pass

@@ -16,9 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from web.models import Translateable, TranslateableField, Widget, SessionMeta
-from django.template import loader
-from django.apps import apps
+from web.models import Translateable, TranslateableField, Widget
 
 class SessionVersion(Translateable):
     version_name = TranslateableField(null=False, blank=False, max_length=120)

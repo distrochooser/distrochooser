@@ -17,7 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from typing import List, Tuple
-from web.models import Page, Session, Category
+
+from web.models import Category, Page, Session
+
 
 def get_page_route(page: Page) -> List[Page]: 
     """

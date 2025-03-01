@@ -24,7 +24,6 @@ from kuusi.settings import SESSION_NUMBER_OFFSET
 
 from django.db import models
 from django.utils import timezone
-from django.apps import apps
 
 from web.models.translateable import RTL_TRANSLATIONS
 

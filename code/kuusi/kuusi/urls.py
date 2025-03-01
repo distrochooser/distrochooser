@@ -16,34 +16,28 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from django.contrib import admin
-from django.urls import path, re_path, include
 from django.conf.urls.static import static
-
-from web.routes.web import route_index, route_outgoing, route_feedback
-from web.routes.static import  route_about, route_contact, route_privacy, route_support
-from web.routes.ack import route_ack
-from web.routes.data import route_data
-from web.routes.bridge import route_distrochooser5_redirect
-from web.routes.crawlers import route_robots_txt, route_sitemap_xml
-
+from django.contrib import admin
+from django.urls import include, path, re_path
+from drf_spectacular.views import (SpectacularAPIView,
+                                   SpectacularSwaggerView)
+from kuusi.settings import ENABLE_PROFILING, STATIC_ROOT, STATIC_URL
 from rest_framework_nested import routers
-from web.rest.choosable import ChoosableViewSet
-from web.rest.facette import FacetteViewSet
-from web.rest.page import PageViewSet
-from web.rest.session import SessionViewSet
 from web.rest.category import CategoryViewSet
-from web.rest.facetteselection import FacetteSelectionViewSet
-from web.rest.metafilter import MetaFilterValueViewSet
+from web.rest.choosable import ChoosableViewSet
+from web.rest.facette import (AssignmentFeedbackViewSet, FacetteViewSet,
+                              FeedbackViewSet)
 from web.rest.facettebehaviour import FacetteBehaviourViewSet
+from web.rest.facetteselection import FacetteSelectionViewSet
 from web.rest.language import LanguageFeedbackViewSet
-from web.rest.page import PageMarkingViewSet
 from web.rest.languagevote import LanguageFeedbackVoteViewset
-from web.rest.facette import FeedbackViewSet, AssignmentFeedbackViewSet
+from web.rest.metafilter import MetaFilterValueViewSet
+from web.rest.page import PageMarkingViewSet, PageViewSet
+from web.rest.session import MetaTagViewset, SessionViewSet
 from web.rest.widget import WidgetViewSet
-from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
-from kuusi.settings import STATIC_URL, STATIC_ROOT
-from web.rest.session import MetaTagViewset
+from web.routes.crawlers import route_robots_txt, route_sitemap_xml
+from web.routes.data import route_data
+from web.routes.web import route_outgoing
 
 router = routers.SimpleRouter()
 router.register(r'session', SessionViewSet)
@@ -82,4 +76,4 @@ urlpatterns = [
     re_path("data/(?P<version>[0-9]+)", route_data, name="route_data"),
     path("admin", admin.site.urls)
    
-] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True)
+] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True) + ([path('silk/', include('silk.urls', namespace='silk'))] if ENABLE_PROFILING else [])

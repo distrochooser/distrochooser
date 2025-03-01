@@ -156,6 +156,13 @@ class FacetteAssignment(Translateable):
 
     def get_votes(self) -> List[List[int, int, int]]:
         # TODO: This is good for a MVP, but array nesting is utterly ugly. Wrap somewhere into the choosables at some point
+        # If the Assignment is virtual (no pk) -> there are no votes
+        if self.pk is None:
+            return []
+        cache_key = f"facetteassignment-{self.pk}-votes"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
         choosables = Choosable.objects.all()
         result = []
         votes = apps.get_model("web", "Feedback").objects.filter(assignment=self)
@@ -169,6 +176,7 @@ class FacetteAssignment(Translateable):
             ]
             if item[1] > 0 or item[2] > 0:
                 result.append(item)
+        cache.set(cache_key, result)
         return result
 
     def __lt__(self, other):

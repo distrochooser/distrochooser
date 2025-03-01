@@ -16,14 +16,8 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from web.models import Widget, Page
-from os.path import join
-from os import listdir
+from web.models import Widget
 from django.db import models
-from kuusi.settings import BASE_DIR
-from django import forms
-from django.http import HttpRequest
-from django.template import loader
 
 class HTMLWidget(Widget):
     template = models.CharField(null=False, blank=False, max_length=25)

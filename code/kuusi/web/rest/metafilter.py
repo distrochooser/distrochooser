@@ -17,15 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import MetaFilterValue, Session
-from rest_framework import serializers
-from drf_spectacular.utils import  extend_schema, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
-from rest_framework import status
-from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import ListModelMixin, DestroyModelMixin
+from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
+                                   extend_schema)
+from rest_framework import serializers, status
+from rest_framework.mixins import DestroyModelMixin, ListModelMixin
 from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
+from web.models import MetaFilterValue, Session
+
 
 class MetaFilterValueSerializer(serializers.ModelSerializer):
     class Meta:

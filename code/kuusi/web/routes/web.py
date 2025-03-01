@@ -15,33 +15,23 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from django.core.cache import cache
-from typing import List, Tuple, Dict
-from django.http import (
-    HttpResponse,
-    HttpResponseNotAllowed,
-    HttpResponseRedirect
-)
-from django.http import Http404
-from django.template import loader
-from django.utils.translation import gettext_lazy as _
-from django.utils import translation
-from re import match
-
-from kuusi.settings import (
-    KUUSI_NAME,
-    ACCELERATION,
-    DEBUG,
-    BETA,
-    LANGUAGE_CODES,
-    DEFAULT_LANGUAGE_CODE,
-    KUUSI_TRANSLATION_URL,
-    DEFAULT_SESSION_META
-)
-from web.models import Page, Session, WebHttpRequest, Category, FacetteSelection, Choosable, ChoosableMeta, FacetteAssignment, Feedback, SessionMeta
-from web.helper import forward_helper
-from web.models.translateable import INCOMPLETE_TRANSLATIONS
 from logging import getLogger
+from typing import List, Tuple
+
+from django.core.cache import cache
+from django.http import (Http404, HttpResponse, HttpResponseNotAllowed,
+                         HttpResponseRedirect)
+from django.template import loader
+from django.utils import translation
+from django.utils.translation import gettext_lazy as _
+from kuusi.settings import (ACCELERATION, BETA, DEBUG, DEFAULT_LANGUAGE_CODE,
+                            DEFAULT_SESSION_META, KUUSI_NAME,
+                            KUUSI_TRANSLATION_URL, LANGUAGE_CODES)
+from web.helper import forward_helper
+from web.models import (Category, Choosable, FacetteAssignment,
+                        FacetteSelection, Feedback, Page, Session, SessionMeta,
+                        WebHttpRequest)
+from web.models.translateable import INCOMPLETE_TRANSLATIONS
 
 logger = getLogger("root")
 

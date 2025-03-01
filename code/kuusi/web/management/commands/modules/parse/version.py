@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from typing import Dict, List, Callable
 from web.models import SessionVersion
-from logging import getLogger, ERROR
+from logging import getLogger
 
 logger = getLogger('command')
 

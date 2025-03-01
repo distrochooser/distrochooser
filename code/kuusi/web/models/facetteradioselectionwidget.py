@@ -16,14 +16,8 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from typing import Tuple, Dict, List
-from web.models import Facette, Session, FacetteSelectionWidget, FacetteSelection, WebHttpRequest, Page
-from web.forms import WarningForm
+from web.models import FacetteSelectionWidget
 from logging import getLogger
-from django import forms
-from django.forms import Form
-from django.template import loader
-from web.helper import trigger_behaviours, get_active_facettes
 
 logger = getLogger("root");
 

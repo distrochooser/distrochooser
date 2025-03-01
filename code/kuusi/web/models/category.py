@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from typing import Dict
 from web.models.http import WebHttpRequest
-from web.models import Translateable, TranslateableField, Session, Page
+from web.models import Translateable, TranslateableField, Page
 from django.db import models
 
 class Category(Translateable):

@@ -17,23 +17,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import Session, SessionMeta, FacetteSelection, SessionVersion, LanguageFeedback, MetaFilterValue
-from rest_framework import serializers
-from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
-from rest_framework import status
-from kuusi.settings import LANGUAGE_CODES, DEFAULT_SESSION_META, FRONTEND_URL, KUUSI_ICON, RTL_LANGUAGES, KUUSI_NAME, KUUSI_LOGO, KUUSI_META_TAGS, LOCALE_MAPPING
-from web.models import TRANSLATIONS
-from web.models.translateable import get_translation_haystack
-from rest_framework.response import Response
-from rest_framework.viewsets import ViewSet
-
-from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import ListModelMixin
+from typing import Dict
 
 from django.shortcuts import get_object_or_404
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
+                                   extend_schema)
+from kuusi.settings import (DEFAULT_SESSION_META, FRONTEND_URL, KUUSI_ICON,
+                            KUUSI_LOGO, KUUSI_META_TAGS, KUUSI_NAME,
+                            LANGUAGE_CODES, LOCALE_MAPPING, RTL_LANGUAGES)
+from rest_framework import serializers, status
+from rest_framework.mixins import ListModelMixin
+from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet, ViewSet
+from web.models import (TRANSLATIONS, FacetteSelection, LanguageFeedback,
+                        MetaFilterValue, Session, SessionMeta, SessionVersion)
+from web.models.translateable import get_translation_haystack
 
-from typing import Dict
 
 class MetaTagsSerializer(serializers.Serializer):
     base_url = serializers.CharField(default=FRONTEND_URL)

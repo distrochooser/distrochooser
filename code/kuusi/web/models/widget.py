@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import annotations
 from django.db import models
-from django.http import HttpRequest
 
 
 

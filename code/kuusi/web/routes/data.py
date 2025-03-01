@@ -23,7 +23,7 @@ from django.core.cache import cache
 from time import time
 
 from web.models.http import WebHttpRequest
-from web.models import Choosable, Session, SessionMeta, Feedback
+from web.models import Choosable, Session, Feedback
 from web.templatetags.web_extras import _i18n_get_value
 from web.opendata import OpenDataV1
 from kuusi.settings import SESSION_NUMBER_OFFSET
