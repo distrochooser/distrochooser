@@ -124,7 +124,7 @@ class SessionVersionSerializer(serializers.ModelSerializer):
         fields = '__all__' 
 
     def get_text(self, obj: SessionVersion) -> str:
-        session: Session = Session.objects.filter(result_id=self.context['session_pk']).first()
+        session: Session = self.context["session"]
         return obj.__("version_name", session.language_code)
 
 

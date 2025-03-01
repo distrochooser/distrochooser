@@ -161,7 +161,7 @@ class FacetteAssignment(Translateable):
             return []
         cache_key = f"facetteassignment-{self.pk}-votes"
         cached = cache.get(cache_key)
-        if cached:
+        if cached is not None:
             return cached
         choosables = Choosable.objects.all()
         result = []
