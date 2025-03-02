@@ -29,6 +29,10 @@ from rest_framework.viewsets import GenericViewSet
 from web.models import (Facette, FacetteSelection, FacetteSelectionWidget,
                         Page, Session)
 
+class CreateFacetteSelectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FacetteSelection
+        fields = ('id', 'facette', 'weight', )
 
 class FacetteSelectionSerializer(serializers.ModelSerializer):
     pages_of_facettes = serializers.SerializerMethodField()
@@ -89,7 +93,7 @@ class FacetteSelectionViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin)
         return Response()
     @extend_schema(
         responses={
-            status.HTTP_200_OK: OpenApiResponse(response=FacetteSelectionSerializer, description="The created facette selection"),
+            status.HTTP_200_OK: OpenApiResponse(response=CreateFacetteSelectionSerializer, description="The created facette selection"),
             status.HTTP_404_NOT_FOUND: OpenApiResponse(response=None, description="Either session or facette are not found"),
             status.HTTP_409_CONFLICT: OpenApiResponse(response=None, description="There is already a given selection with this ID and result Id combination")
         },

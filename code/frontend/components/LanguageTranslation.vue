@@ -38,7 +38,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useSessionStore } from '../states/session';
 
 interface TranslationProps {
@@ -66,4 +66,13 @@ const toggleEditing = () => {
 const closeEdit = () => {
   isEditing.value = !isEditing.value
 }
+
+watch(computedValue, value => {
+  if (computedValue.value == props.translationKey && sessionStore.missingLanguageValues.indexOf(props.translationKey) == -1) {
+    sessionStore.addMissingLanguageValue(props.translationKey)
+  }
+  else if (computedValue.value != props.translationKey && sessionStore.missingLanguageValues.indexOf(props.translationKey) != -1) {
+    sessionStore.removeMissingLanguageValue(props.translationKey)
+  }
+}, { deep: true, immediate: true })
 </script>

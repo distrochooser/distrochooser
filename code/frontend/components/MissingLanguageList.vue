@@ -16,23 +16,17 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <div>
-      <HTMLWelcome v-if="props.widget.template == 'welcomeHTML'"/>
-      <HTMLLanguage v-if="props.widget.template == 'languageHTML'"/>
-    </div>
+    <ul class="list-group">
+        <li class="list-group-item" v-for="(value, key) in sessionStore.missingLanguageValues" :key="key">
+
+          <LanguageTranslation :translation-key="value"/>
+        </li>
+    </ul>
 </template>
 <script setup lang="ts">
-import type {HTMLWidget } from '../../sdk';
-import HTMLWelcome from "../widgets/html/HTMLWelcome.vue";
-import HTMLLanguage from './html/HTMLLanguage.vue';
+import { useSessionStore } from '../states/session';
 
 
-// TODO: Naming for "templates" and documentation
-// TODO: Mapping for child components
-interface WidgetProps {
-  widget: HTMLWidget;
-}
-
-const props = defineProps<WidgetProps>();
+const sessionStore = useSessionStore();
 
 </script>

@@ -35,6 +35,7 @@ interface SessionState {
     languageFeedbackVotes: LanguageFeedbackVote[];
     metaValues: MetaFilterValue[];
     isLoading: boolean;
+    missingLanguageValues: String[];
 }
 let sessionApi: SessionApi = null;
 
@@ -54,7 +55,8 @@ export const useSessionStore = defineStore('websiteStore', {
         languageFeedback: [],
         languageFeedbackVotes: [],
         metaValues: [],
-        isLoading: false
+        isLoading: false,
+        missingLanguageValues: []
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -152,6 +154,14 @@ export const useSessionStore = defineStore('websiteStore', {
             })
             await this.getTranslationFeedback();
         },
+        addMissingLanguageValue(key: string) {
+            if (this.missingLanguageValues.indexOf(key) == -1) {
+                this.missingLanguageValues.push(key)
+            }
+        },
+        removeMissingLanguageValue(key: string) {
+            this.missingLanguageValues = this.missingLanguageValues.filter(l => l != key);
+        },
         __i(key: string) {
             if (!this.session) {
                 return key
@@ -161,7 +171,9 @@ export const useSessionStore = defineStore('websiteStore', {
                 l.votes.filter((v => v.session == this.session.id && v.isPositive)).length > 0
             ))
             if (providedFeedback.length > 0 && providedFeedback[0].value.length > 0) {
-                return providedFeedback[0].value ?? key
+                const result = providedFeedback[0].value ?? key
+
+                return result;
             }
             if (typeof this.session.languageValues[key] == "undefined") {
                 return key

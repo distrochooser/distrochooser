@@ -21,7 +21,7 @@ next_page = "version-page"
 hide_text = true
 
 [widget.html.welcome-page-widget-name]
-template = "welcome.html"
+template = "welcomeHTML"
 pages = ["welcome-page"]
 
 [category.welcome-page-category]
@@ -242,8 +242,13 @@ can_be_marked=false
 topic = "result"
 pages = ["result-page"]
 
-[widget.result.result-page-widget-name]
+[widget.html.result-page-language-list]
+template = "languageHTML"
 row = 2
+pages = ["result-page"]
+
+[widget.result.result-page-widget-name]
+row = 3
 topic = "result"
 pages = ["result-page"]
 
