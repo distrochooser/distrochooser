@@ -68,10 +68,14 @@ const closeEdit = () => {
 }
 
 watch(computedValue, value => {
-  if (computedValue.value == props.translationKey && sessionStore.missingLanguageValues.indexOf(props.translationKey) == -1) {
+  if (!sessionStore.session) {
+    return
+  }
+  if (typeof sessionStore.session.languageValues[props.translationKey] != "undefined" && computedValue.value == props.translationKey && sessionStore.missingLanguageValues.indexOf(props.translationKey) == -1) {
+    console.log("add", computedValue.value, props.translationKey)
     sessionStore.addMissingLanguageValue(props.translationKey)
   }
-  else if (computedValue.value != props.translationKey && sessionStore.missingLanguageValues.indexOf(props.translationKey) != -1) {
+  if (computedValue.value != props.translationKey && sessionStore.missingLanguageValues.indexOf(props.translationKey) != -1) {
     sessionStore.removeMissingLanguageValue(props.translationKey)
   }
 }, { deep: true, immediate: true })
