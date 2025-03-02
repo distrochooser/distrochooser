@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         name="ion:bookmark"></Icon>
 
       <br />
-      <small v-if="store.currentPage.help" :key="store.currentPage.help"
+      <small v-if="store.currentPage.help && !store.currentPage.hideHelp" :key="store.currentPage.help"
         class="text-body-secondary mt-3 d-block fs-5 fw-light">
         <LanguageTranslation :translation-key="store.currentPage.help" />
       </small>
