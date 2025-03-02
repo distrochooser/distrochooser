@@ -1,1 +1,19 @@
-{"version-page-category-name": "Questionaire edition", "welcome-page-category-name": "Welcome!", "scenario-page-category-name": "Software: Use case", "pc-knowledge-page-category-name": "Computer knowledge", "linux-knowledge-page-category-name": "Linux and you", "installation-page-category-name": "Installation: Presets", "old-hardware-category-name": "Hardware support", "help-category-name": "Source for help", "ux-category-name": "User experience", "pricing-category-name": "Distributions: Price", "scope-category-name": "Distributions: Scope", "ideology-category-name": "Distributions: Ideology", "privacy-category-name": "Distributions: Privacy", "administration-category-name": "Administration", "updates-category-name": "Software: Updates", "result-category-name": "Show your results", "personal-requirements-category-name": "Personal recommendation requirements"}
+{
+    "version-page-category-name": "Questionaire edition",
+    "welcome-page-category-name": "Welcome!",
+    "scenario-page-category-name": "Software: Use case",
+    "pc-knowledge-page-category-name": "Computer knowledge",
+    "linux-knowledge-page-category-name": "Linux and you",
+    "installation-page-category-name": "Installation: Presets",
+    "old-hardware-category-name": "Hardware support",
+    "help-category-name": "Source for help",
+    "ux-category-name": "User experience",
+    "pricing-category-name": "Distributions: Price",
+    "scope-category-name": "Distributions: Scope",
+    "ideology-category-name": "Distributions: Ideology",
+    "privacy-category-name": "Distributions: Privacy",
+    "administration-category-name": "Administration",
+    "updates-category-name": "Software: Updates",
+    "result-category-name": "Show your results",
+    "personal-requirements-category-name": "Personal recommendation requirements"
+}
