@@ -1,0 +1,19 @@
+{
+    "version-page-category-name": "Questionaire edition",
+    "welcome-page-category-name": "Benvenuto!",
+    "scenario-page-category-name": "Software: Caso d'uso",
+    "pc-knowledge-page-category-name": "Conoscenza del computer",
+    "linux-knowledge-page-category-name": "Tu e Linux",
+    "installation-page-category-name": "Installazione: Preimpostazioni",
+    "old-hardware-category-name": "Supporto hardware",
+    "help-category-name": "Aiuto",
+    "ux-category-name": "Esperienza utente",
+    "pricing-category-name": "Distribuzioni: Prezzo",
+    "scope-category-name": "Distribuzioni: Ambiente",
+    "ideology-category-name": "Distribuzioni: Ideologia",
+    "privacy-category-name": "Distribuzioni: Privacy",
+    "administration-category-name": "Amministrazione",
+    "updates-category-name": "Software: Aggiornamenti",
+    "result-category-name": "la tua raccomandazione",
+    "personal-requirements-category-name": null
+}
