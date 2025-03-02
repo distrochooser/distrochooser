@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             model_name="metafiltervalue",
             name="origin_page",
             field=models.ForeignKey(
-                default=36553,
+                default=None,
                 on_delete=django.db.models.deletion.CASCADE,
                 related_name="meta_filter_value_page",
                 to="web.page",

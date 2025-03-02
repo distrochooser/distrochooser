@@ -61,7 +61,7 @@ class MetaFilterWidgetElement:
             return None
         matches = int(obj.meta["AGE"].years_since) < int(value)
         result = FacetteAssignment(
-            catalogue_id = f"{self.cell_name}-{obj.name}-" + ("suitable" if matches else "not-suitable"),
+            catalogue_id = f"{self.cell_name}-" + ("suitable" if matches else "not-suitable"),
             long_description="suitable" if matches else "not-suitable",
             assignment_type=FacetteAssignment.AssignmentType.POSITIVE if matches else FacetteAssignment.AssignmentType.NEGATIVE
         )
@@ -160,7 +160,8 @@ class MetaFilterValue(models.Model):
     page = models.ForeignKey(
         to=Page,
         on_delete=models.CASCADE,
-        blank=False,
-        null=False,
+        blank=True,
+        default=None,
+        null=True,
         related_name="meta_filter_value_page",
     )
