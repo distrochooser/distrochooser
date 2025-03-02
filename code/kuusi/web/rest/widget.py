@@ -210,13 +210,13 @@ class ResultListWidgetSerializer(WidgetSerializer):
                         assignments_results[choosable.pk] = []
                     if choosable.pk not in score_map:
                         score_map[choosable.pk] = FacetteAssignment.AssignmentType.get_score_map_by_type()
-                    is_assignment_not_collected = assignment.catalogue_id not in assignments_catalogue_ids
+                    # add a needle with the choosable into the catalogue_list
+                    is_assignment_not_collected = f"{choosable.pk}-{assignment.catalogue_id}" not in assignments_catalogue_ids
                     if is_assignment_not_collected:
                         assignments_results[choosable.pk].append(assignment)
-                        assignments_catalogue_ids.append(assignment.catalogue_id)
+                        assignments_catalogue_ids.append(f"{choosable.pk}-{assignment.catalogue_id}")
                         assignments_weight_map[assignment.pk] = selection_weight_value
                         score_map[choosable.pk][assignment.assignment_type] += 1
-
         # Append "virtual" assignments caused by stored meta values
         # FIXME: This is utterly slow
         # FIXME: The score is not properly calculated  
