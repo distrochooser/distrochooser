@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <PageMeta />
     </Head>
     <NuxtRouteAnnouncer />
-    <main role="main" class="container">
+    <main role="main" :class="{'container': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl}">
       <MainNavigation/>
       <div class="page mt-3  position-relative top-40">
         <div class="row text-center mb-3">
@@ -69,3 +69,8 @@ onMounted(async () => {
   await sessionStore.createSession(lang, id);
 });
 </script>
+<style lang="scss" scoped>
+.rtl {
+  direction: rtl;
+}
+</style>
