@@ -97,13 +97,14 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     session_origin = serializers.SerializerMethodField()
     language_codes = serializers.SerializerMethodField()
     language_values = serializers.SerializerMethodField()
+    default_language_values = serializers.SerializerMethodField()
     is_language_rtl = serializers.SerializerMethodField()
     test_count = serializers.SerializerMethodField()
     imprint_data = serializers.SerializerMethodField()
 
     class Meta:
         model = Session
-        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'is_language_rtl', 'name', 'logo', 'meta', 'icon', 'test_count', 'imprint_data')
+        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'default_language_values', 'is_language_rtl', 'name', 'logo', 'meta', 'icon', 'test_count', 'imprint_data')
 
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
@@ -124,6 +125,10 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     
     def get_language_values(self, obj:Session) -> Dict[str, str]:
         return get_translation_haystack(obj.language_code)
+    
+    def get_default_language_values(self, obj:Session) -> Dict[str, str]:
+        return get_translation_haystack("en")
+
 
 
 class SessionVersionSerializer(serializers.ModelSerializer):
