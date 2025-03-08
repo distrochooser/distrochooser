@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             aria-expanded="false">
             <Category :index="currentCategoryIndex" :category="currentCategory" />
           </button>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" v-if="!sessionStore.isTranslating">
             <li v-for="(category, index) in categories" v-bind:key="index">
               <a class="dropdown-item"
                 :class="{ 'dropdown-item': true, 'fw-bold': category.catalogueId == currentCategory.catalogueId }"
@@ -56,6 +56,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </div>
     </div>
     
+  </div>
+  <div class="row alert alert-warning" v-if="sessionStore.session && sessionStore.isTranslating">
+    <LanguageTranslation translation-key="translation-mode-description" />
   </div>
 </template>
 <script lang="ts" setup>

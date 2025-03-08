@@ -1,8 +1,8 @@
 <template>
-  <span v-on:click.prevent.right="toggleEditing" :class="{ 'needs-translation': isUntranslated }">
+  <span v-on:click="toggleEditing($event)" :class="{ 'needs-translation': isUntranslated }">
     {{ computedValue }}
   </span>
-  <div v-if="isEditing" style="z-index: 100000" class="card position-fixed top-50 start-50 translate-middle"
+  <div v-if="isEditing" style="z-index: 100000" class="card translation-window"
     :title="computedValue">
     <div class="card-body">
       <h5 class="card-title mb-3">
@@ -69,13 +69,19 @@ const vote = (id: number, isPositive) => sessionStore.voteForLanguageFeedback(id
 
 const proposals = computed(() => sessionStore.languageFeedback.filter(f => f.languageKey == props.translationKey && f.session != sessionStore.session.id))
 
-
-const toggleEditing = () => {
-  isEditing.value = !isEditing.value
+const toggleEditing = (e: MouseEvent) => {
+  if (sessionStore.isTranslating && sessionStore.session && !sessionStore.isTranslationOpen) {
+    e.preventDefault()
+    e.stopPropagation()
+    e.stopImmediatePropagation()
+    isEditing.value = !isEditing.value
+    sessionStore.isTranslationOpen = true
+  }
 }
 
 const closeEdit = () => {
-  isEditing.value = !isEditing.value
+  isEditing.value = false
+  sessionStore.isTranslationOpen = false
 }
 
 const isUntranslated = computed(() => sessionStore.missingLanguageValues.indexOf(props.translationKey) !== -1 || typeof sessionStore.session.languageValues[props.translationKey] === "undefined");
@@ -97,5 +103,11 @@ watch(computedValue, value => {
 
 .needs-translation {
   border-bottom: 1px dotted $missingLanguageColor;
+}
+.translation-window {
+  position: fixed;
+  top: 25%;
+  left: 33%;
+  width: 33%;
 }
 </style>

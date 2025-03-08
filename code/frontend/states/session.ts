@@ -36,6 +36,8 @@ interface SessionState {
     metaValues: MetaFilterValue[];
     isLoading: boolean;
     missingLanguageValues: String[];
+    isTranslating: boolean;
+    isTranslationOpen: boolean;
 }
 let sessionApi: SessionApi = null;
 
@@ -56,7 +58,9 @@ export const useSessionStore = defineStore('websiteStore', {
         languageFeedbackVotes: [],
         metaValues: [],
         isLoading: false,
-        missingLanguageValues: []
+        missingLanguageValues: [],
+        isTranslating: false,
+        isTranslationOpen: false
     }),
     getters: {
         sessionApi(): SessionApi {
