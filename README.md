@@ -3,9 +3,7 @@
 
 <img src="https://github.com/distrochooser/distrochooser/blob/kuusi/static/logo.svg" width="50%" >
 
-![GitHub License](https://img.shields.io/github/license/distrochooser/distrochooser) 
-
-![Static Badge](https://img.shields.io/badge/Open_data-ODbL_1.0-brightgreen)
+![GitHub License](https://img.shields.io/github/license/distrochooser/distrochooser) ![Static Badge](https://img.shields.io/badge/Open_data-ODbL_1.0-brightgreen)
 
 
 
