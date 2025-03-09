@@ -9,8 +9,8 @@ import { computed } from 'vue';
 import { useSessionStore } from '../states/session';
 
 const store = useSessionStore();
-const selectedLanguage = computed(() => store.session ? store.session.languageCode : "en")
+const selectedLanguage = computed(() => store.session ? store.session.languageCode : "eng")
 const allLanguages = computed(() => store.session ? Object.keys(store.session.languageCodes) : [])
-const browserLanguage = computed(() => import.meta.client ? navigator.language : "en")
-const browserLanguageOffered = computed(() => allLanguages.value.indexOf(browserLanguage.value) !== -1 && browserLanguage.value !== selectedLanguage.value && browserLanguage.value !== "en")
+const browserLanguage = computed(() => import.meta.client ? navigator.language : "eng")
+const browserLanguageOffered = computed(() => allLanguages.value.indexOf(browserLanguage.value) !== -1 && browserLanguage.value !== selectedLanguage.value && browserLanguage.value !== "eng")
 </script>

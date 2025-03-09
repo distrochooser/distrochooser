@@ -155,7 +155,7 @@ LANGUAGES = [
 ]
 
 RTL_LANGUAGES = [
-    "he"
+    "heb"
 ]
 
 FRONTEND_URL = "http://localhost:3000"
