@@ -1,5 +1,5 @@
 <template>
-  <span v-on:click="toggleEditing($event)" :class="{ 'needs-translation': isUntranslated, 'hover-translation': sessionStore.isTranslating }">
+  <span v-on:click="toggleEditing($event)" :class="{ 'needs-translation':  sessionStore.isTranslating && isUntranslated, 'hover-translation': sessionStore.isTranslating }">
     {{ computedValue }}
   </span>
   <div v-if="isEditing" style="z-index: 100000" class="card translation-window"

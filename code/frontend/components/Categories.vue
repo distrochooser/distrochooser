@@ -19,8 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div class="row mt-2 mb-2">
     <div class="col row" v-if="currentCategory != null">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <div class="col-2   d-none d-sm-block"/>
-        <button type="button" class="col-1 btn btn btn-outline-secondary  d-none d-sm-block" v-if="currentCategoryIndex != 0"
+        <div class="col-2   d-none d-sm-block" />
+        <button type="button" class="col-1 btn btn btn-outline-secondary  d-none d-sm-block"
+          v-if="currentCategoryIndex != 0"
           v-on:click="sessionStore.selectPage(categories[currentCategoryIndex - 1].targetPage)">
 
           <Icon name="ion:caret-back" class="fs-3"></Icon>
@@ -33,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             aria-expanded="false">
             <Category :index="currentCategoryIndex" :category="currentCategory" />
           </button>
-          <ul class="dropdown-menu" v-if="!sessionStore.isTranslating">
+          <ul class="dropdown-menu" v-show="!sessionStore.isTranslating">
             <li v-for="(category, index) in categories" v-bind:key="index">
               <a class="dropdown-item"
                 :class="{ 'dropdown-item': true, 'fw-bold': category.catalogueId == currentCategory.catalogueId }"
@@ -48,17 +49,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-sm-block"
           v-if="currentCategoryIndex < categories.length - 1"
           v-on:click="sessionStore.selectPage(categories[currentCategoryIndex + 1].targetPage)">
-          <Icon name="ion:caret-forward"  class="fs-3"></Icon>
+          <Icon name="ion:caret-forward" class="fs-3"></Icon>
         </button>
         <button type="button" class="disabled col-1 btn btn btn-outline-secondary" v-else></button>
 
-        <div class="col-2   d-none d-sm-block"/>
+        <div class="col-2   d-none d-sm-block" />
       </div>
     </div>
-    
+
   </div>
-  <div class="row alert alert-warning" v-if="sessionStore.session && sessionStore.isTranslating">
-    <LanguageTranslation translation-key="translation-mode-description" />
+  <div class="row alert alert-warning text-start" v-if="sessionStore.session && sessionStore.isTranslating">
+    <div class="row">
+      <div class="col-1 text-center">
+
+        <Icon name="ion:chatbubbles" class="fs-1"></Icon>
+      </div>
+      <div class="col-11">
+        <b class="me-1">
+          <LanguageTranslation translation-key="translation-mode-description-title" />
+        </b>
+        <LanguageTranslation translation-key="translation-mode-description" />
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
