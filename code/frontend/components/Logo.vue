@@ -16,11 +16,11 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <NuxtLink v-if="store.session && router.path.startsWith('/pages')" :to="'/' + store.session.languageCode">
-        <img v-if="store.session" class="mt-2 d-none d-sm-block" :src="store.session.logo" />
+    <NuxtLink  class="mt-2 d-none d-xl-block  mb-3" v-if="store.session && router.path.startsWith('/pages')" :to="'/' + store.session.languageCode">
+        <img v-if="store.session" :src="store.session.logo" />
     </NuxtLink>
-    <a v-else-if="store.session && !router.path.startsWith('/pages')" href="#" v-on:click="store.selectPage(-1)">
-        <img v-if="store.session" class="mt-2 d-none d-sm-block" :src="store.session.logo" />
+    <a class="mt-2 d-none d-xl-block  mb-3" v-else-if="store.session && !router.path.startsWith('/pages')" href="#" v-on:click="store.selectPage(-1)">
+        <img v-if="store.session"  :src="store.session.logo" />
     </a>
 </template>
 <script setup>

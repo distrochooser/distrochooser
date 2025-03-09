@@ -3,7 +3,6 @@
         <li class="list-group-item">
             <Icon class="text-muted me-1" name="ion:play-skip-forward-outline"></Icon>
             <LanguageTranslation translation-key="WELCOME_WIDGET_SKIP_QUESTIONS" />
-
         </li>
         <li class="list-group-item"><i class="bi bi-view-list me-1"></i>
 

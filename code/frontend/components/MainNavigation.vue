@@ -3,9 +3,6 @@
     <div class="col-3 d-none d-sm-block"></div>
     <div class="col-xl-7 col-sm-12 text-center mt-2">
       <div class="btn-group mt-2" role="group" aria-label="Navigation" v-if="sessionStore.session">
-        <div class="btn mt-2 d-block d-sm-none">
-          <img class=" mobile-icon" :src="sessionStore.session.icon"/>
-        </div>
         <NuxtLink type="button"
           :to="!sessionStore.isTranslating ? '/pages/about/' + sessionStore.session.languageCode : null"
           class="btn btn btn-outline-primary">
@@ -62,9 +59,3 @@ import { useSessionStore } from '../states/session';
 
 const sessionStore = useSessionStore();
 </script>
-<style lang="scss">
-.mobile-icon {
-  height: 32px;
-}
-
-</style>

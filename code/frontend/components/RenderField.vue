@@ -19,9 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div v-if="store.currentPage">
     <h3 v-if="store.currentPage.text">
       <LanguageTranslation :translation-key="store.currentPage.text" :key="store.currentPage.text" />
-      <Icon v-if="store.currentPage.canBeMarked" :class="{ 'page-icon page-icon-inner fs-6': true, 'marked': isMarked }"
-        v-on:click="toggleMarking"
-        name="ion:bookmark"></Icon>
 
       <br />
       <small v-if="store.currentPage.help && !store.currentPage.hideHelp" :key="store.currentPage.help"
@@ -52,20 +49,4 @@ const isMarked = computed(() => {
 <style lang="scss" scoped>
 @use 'sass:color';
 @import "../style/variables.scss";
-
-.page-icon {
-  width: 2em;
-  height: 2em;
-  border-radius: 3em;
-  transition: all 0.5s;
-  cursor: pointer;
-
-  &.marked {
-    color: $orange;
-
-    .page-icon-inner::after {
-      filter: drop-shadow(30px 10px 4px #4444dd);
-    }
-  }
-}
 </style>

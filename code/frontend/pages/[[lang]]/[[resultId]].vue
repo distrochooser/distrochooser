@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <main role="main" :class="{'container': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl}">
       <MainNavigation/>
       <div class="page mt-3  position-relative top-40">
-        <div class="row text-center mb-3">
+        <div class="row text-center">
           <div class="col-4 d-none d-sm-block">
           </div>
           <div class="col-xl-3 col-sm-12">

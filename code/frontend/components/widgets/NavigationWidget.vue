@@ -17,14 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div class="  text-center mt-3 border-top pt-3">
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <a v-if="canGoBack" class="btn btn-outline-secondary" href="#" v-on:click="goBack">
+    <div class="btn-group" role="group">
+      <a v-if="store.currentPage.canBeMarked" href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
+        <LanguageTranslation :translation-key="!isMarked ? 'BTN_MARK' : 'BTN_UNMARK'" />
+      </a>
+      <a v-if="canGoBack" class="btn btn-secondary" href="#" v-on:click="goBack">
         <LanguageTranslation translation-key="BTN_PREV_PAGE" />
       </a>
-      <a v-if="canGoNext" href="#" class="btn btn-outline-secondary" v-on:click="goNext">
-        <LanguageTranslation translation-key="BTN_SKIP_PAGE" />
-      </a>
-      <a v-if="canGoNext" href="#" class="btn btn-outline-primary" v-on:click="goNext">
+      <a v-if="canGoNext" href="#" class="btn btn-primary" v-on:click="goNext">
         <LanguageTranslation translation-key="BTN_NEXT_PAGE" />
       </a>
     </div>
@@ -59,4 +59,19 @@ const goNext = () =>
     store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) + 1]
       .id
   );
+
+const toggleMarking = async () => {
+  store.toggleMarking()
+}
+
+const isMarked = computed(() => {
+  return store.pageMarkings.filter(l => l.page == store.currentPage.id).length > 0;
+})
 </script>
+<style lang="scss" scoped>
+@import "../../style/variables.scss";
+
+.btn-outline-marking {
+  border-color: $orange;
+}
+</style>

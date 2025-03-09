@@ -19,14 +19,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div class="row mt-2 mb-2 g-0">
     <div class="col row g-0 " v-if="currentCategory != null">
       <div class="btn-group row col-12 text-center g-0" role="group">
-        <div class="col-2   d-none d-sm-block" />
-        <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-sm-block"
+        <div class="col-2   d-none d-xl-block" />
+        <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-xl-block"
           v-if="currentCategoryIndex != 0"
           v-on:click="sessionStore.selectPage(categories[currentCategoryIndex - 1].targetPage)">
 
           <Icon name="ion:caret-back" class="fs-3"></Icon>
         </button>
-        <button type="button" class="disabled col-1 btn btn d-none d-sm-block btn-outline-secondary"
+        <button type="button" class="disabled col-1 btn btn d-none d-xl-block btn-outline-secondary"
           v-if="currentCategoryIndex == 0"></button>
 
         <div class="btn-group col-xs-12 col-xl-6  dropdown-center" role="group">
@@ -46,14 +46,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </ul>
         </div>
 
-        <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-sm-block"
+        <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-xl-block"
           v-if="currentCategoryIndex < categories.length - 1"
           v-on:click="sessionStore.selectPage(categories[currentCategoryIndex + 1].targetPage)">
           <Icon name="ion:caret-forward" class="fs-3"></Icon>
         </button>
         <button type="button" class="disabled col-1 d-none d-sm-block b btn btn btn-outline-secondary" v-else></button>
 
-        <div class="col-2   d-none d-sm-block" />
+        <div class="col-2   d-none d-xl-block" />
       </div>
     </div>
 
