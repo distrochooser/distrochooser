@@ -107,12 +107,16 @@ export const useSessionStore = defineStore('websiteStore', {
             })
         },
         async createAssignmentFeedback(assignmentId: number, isPositive: boolean) {
+            const origin = this.getVoterId()
+            localStorage.setItem(this.getVoterIdKey(), origin)
+
             await this.sessionApi.sessionAssignmentfeedbackCreate({
                 sessionPk: this.session.resultId,
-                assignmentFeedback: {
+                createAssignmentFeedback: {
                     assignment: assignmentId,
                     isPositive: isPositive,
-                    session: this.session.id
+                    session: this.session.id,
+                    origin: origin
                 }
             })
             await this.getAssignmentFeedback()
@@ -136,13 +140,28 @@ export const useSessionStore = defineStore('websiteStore', {
                 sessionPk: this.session.resultId
             })
         },
+        getVoterIdKey() {
+            return this.session.baseUrl.replace(":", "").replace("//", "") + "_voter_id"
+        },
+        removeVoterId() {
+            localStorage.removeItem(this.getVoterIdKey())
+        },
+        getVoterId() {
+            return localStorage.getItem(this.getVoterIdKey()) ?? [...Array(30)].map(() => Math.random().toString(36)[2]).join('')
+        },
+        hasVoterId() {
+            return localStorage.getItem(this.getVoterIdKey()) !== null
+        },
         async voteForLanguageFeedback(feedbackId: number, isPositive: boolean) {
+            const origin = this.getVoterId()
+            localStorage.setItem(this.getVoterIdKey(), origin)
             await this.sessionApi.sessionLanguagevoteCreate(
                 {
                     sessionPk: this.session.resultId,
                     createLanguageFeedbackVote: {
                         languageFeedback: feedbackId,
-                        isPositive: isPositive
+                        isPositive: isPositive,
+                        origin: origin
                     }
                 }
             )
@@ -238,7 +257,6 @@ export const useSessionStore = defineStore('websiteStore', {
                 })
                 this.getMetaValues();
             }
-            await this.getTranslationFeedback()
         },
         async updateCategoriesAndPages() {
             this.categories = await this.sessionApi.sessionCategoryList({
@@ -307,12 +325,15 @@ export const useSessionStore = defineStore('websiteStore', {
         },
         async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
         
+            const origin = this.getVoterId()
+            localStorage.setItem(this.getVoterIdKey(), origin)
             await this.sessionApi.sessionFeedbackCreate({
                 sessionPk: this.session.resultId,
                 createFeedback: {
                     choosable: choosable.id,
                     assignment: assignment.id,
-                    isPositive: isPositive
+                    isPositive: isPositive,
+                    origin: origin
                 }
             })
             this.choosableAssignmentFeedback = await this.sessionApi.sessionFeedbackList({

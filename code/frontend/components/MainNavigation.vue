@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <div class="col-4 d-none d-sm-block"></div>
-    <div class="col-xl-6 col-sm-12 text-center mt-2">
+    <div class="col-3 d-none d-sm-block"></div>
+    <div class="col-xl-7 col-sm-12 text-center mt-2">
       <div class="btn-group mt-2" role="group" aria-label="Navigation" v-if="sessionStore.session">
         <div class="btn mt-2 d-block d-sm-none">
           <img class=" mobile-icon" :src="sessionStore.session.icon"/>
@@ -15,6 +15,11 @@
           :to="!sessionStore.isTranslating ? '/pages/contact/' + sessionStore.session.languageCode : null"
           class="btn btn btn-outline-primary">
           <LanguageTranslation translation-key="CONTACT" />
+        </NuxtLink>
+        <NuxtLink type="button"
+          :to="!sessionStore.isTranslating ? '/pages/privacy/' + sessionStore.session.languageCode : null"
+          class="btn btn btn-outline-primary">
+          <LanguageTranslation translation-key="PRIVACY" />
         </NuxtLink>
 
         <div class="btn-group" role="group">

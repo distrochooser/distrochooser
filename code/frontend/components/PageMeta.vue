@@ -29,6 +29,7 @@ watch(isTranslating, value => {
         if (haystack.length > 0) {
             if (store.isTranslating) {
                 haystack[0].classList.add("is-translating")
+                store.getTranslationFeedback()
             } else {
                 haystack[0].classList.remove("is-translating")
             }

@@ -69,6 +69,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <LanguageTranslation translation-key="translation-mode-description-title" />
         </b>
         <LanguageTranslation translation-key="translation-mode-description" />
+        <span class="ms-1"><LanguageTranslation translation-key="language-vote-privacy" /></span>
       </div>
     </div>
   </div>

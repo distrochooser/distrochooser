@@ -19,12 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 @import "variables.scss";
 
 
-.is-translating {
-    box-shadow: inset 0 0 10px $orange;
-}
-
 body {
     height: 100% !important;
     position: absolute;
     width: 100%;
+    height: 100%;
 }

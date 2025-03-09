@@ -2,8 +2,7 @@
   <span v-on:click="toggleEditing($event)" :class="{ 'needs-translation':  sessionStore.isTranslating && isUntranslated, 'hover-translation': sessionStore.isTranslating }">
     {{ computedValue }}
   </span>
-  <div v-if="isEditing" style="z-index: 100000" class="card translation-window"
-    :title="computedValue">
+  <div v-if="isEditing" style="z-index: 100000" class="card translation-window">
     <div class="card-body">
       <h5 class="card-title mb-3">
         Translation
@@ -20,6 +19,9 @@
                 }}</span> {{ computedValue }}</li>
           </ul>
         <form class="g-3 mt-3">
+          <h5 class="card-title mb-3">
+            Other user suggestions
+          </h5>
           <ul class="list-group list-group">
             <li v-for="(item, index) in proposals" :key="index"
               class="list-group-item d-flex justify-content-between align-items-start">
@@ -29,12 +31,14 @@
                 </div>
                 {{ item.value }}
               </div>
-              <span class="badge bg-success rounded-pill me-1" v-on:click="vote(item.id, true)">{{item.votes.filter((l => l.isPositive)).length}}x <Icon name="ion:thumbs-up-outline" </Icon></span>
+              <span class="badge bg-success rounded-pill me-1 vote-button" v-on:click="vote(item.id, true)"> {{item.votes.filter((l => l.isPositive)).length}}x <Icon name="ion:thumbs-up-outline" </Icon></span>
 
-              <span class="badge bg-danger rounded-pill" v-on:click="vote(item.id, false)"> {{item.votes.filter((l =>
-                !l.isPositive)).length}}x <Icon name="ion:thumbs-down-outline"></Icon></span>
+              <span class="badge bg-danger rounded-pill vote-button" v-on:click="vote(item.id, false)"> {{item.votes.filter((l => !l.isPositive)).length}}x <Icon name="ion:thumbs-down-outline"></Icon></span>
             </li>
           </ul>
+          <h5 class="card-title mb-3 mt-3">
+           Your suggestions
+          </h5>
           <textarea rows="8" class="form-control" v-on:click.prevent.stop="() => { }"
             v-on:change="provideFeedback">{{ computedValue }}</textarea>
 
@@ -51,6 +55,7 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
 import { useSessionStore } from '../states/session';
+import type { LanguageFeedback } from '../sdk';
 
 interface TranslationProps {
   translationKey: string;
@@ -65,7 +70,10 @@ const provideFeedback = async (e: Event) => {
   await sessionStore.provideTranslation(props.translationKey, newValue);
 }
 
-const vote = (id: number, isPositive) => sessionStore.voteForLanguageFeedback(id, isPositive)
+const vote = (id: number, isPositive) => {
+  sessionStore.voteForLanguageFeedback(id, isPositive)
+}
+
 
 const proposals = computed(() => sessionStore.languageFeedback.filter(f => f.languageKey == props.translationKey && f.session != sessionStore.session.id))
 
@@ -112,5 +120,8 @@ watch(computedValue, value => {
 }
 .hover-translation {
   cursor:crosshair;
+}
+.vote-button {
+  cursor: pointer;
 }
 </style>
