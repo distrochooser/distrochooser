@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from pathlib import Path
 from os.path import dirname, join
-
+from kuusi.legal import LEGAL_TEXT
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -362,3 +362,5 @@ da
 dort
 bla
 """
+
+PRIVACY = LEGAL_TEXT
