@@ -17,9 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div class="row">
-    <div class="col-4">
+    <div class="col-xl-4 d-none d-sm-block">
     </div>
-    <div class="col-4">
+    <div class="col-xl-4 col-sm-12">
 
       <div class="row mb-2">
         <div class="col">

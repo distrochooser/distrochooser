@@ -17,10 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <NuxtLink v-if="store.session && router.path.startsWith('/pages')" :to="'/' + store.session.languageCode">
-        <img v-if="store.session" class="mt-2" :src="store.session.logo" />
+        <img v-if="store.session" class="mt-2 d-none d-sm-block" :src="store.session.logo" />
     </NuxtLink>
     <a v-else-if="store.session && !router.path.startsWith('/pages')" href="#" v-on:click="store.selectPage(-1)">
-        <img v-if="store.session" class="mt-2" :src="store.session.logo" />
+        <img v-if="store.session" class="mt-2 d-none d-sm-block" :src="store.session.logo" />
     </a>
 </template>
 <script setup>
