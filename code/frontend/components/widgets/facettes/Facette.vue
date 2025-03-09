@@ -20,21 +20,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div class="col-lg-12 col-xl-9">
       <div :class="{'form-check mb-2 fs-6': true, 'a11y-larger-text': store.fontSizeModifier == 5}" v-if="props.checkbox">
         <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
-          type="checkbox" :id="facette.id.toString()">
+          type="checkbox" :id="facette.id.toString()" v-show="!store.isTranslating">
         <label class="form-check-label" :for="facette.id.toString()">
           <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
         </label>
-        <BehaviourButton :click-handler="toggleExpand" />
+        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating" />
       </div>
       <div :class="{'form-check mb-2 fs-6': true, 'a11y-larger-text': store.fontSizeModifier == 5}" v-else>
-        <input v-on:click="registerClick" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
+        <input v-on:click="registerClick"  v-show="!store.isTranslating" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
           v-model="selected" v-on:change="registerChange" v-bind:value="true" :checked="isSelected"
           :id="facette.id.toString()">
         <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
           <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
         </label>
 
-        <BehaviourButton :click-handler="toggleExpand" />
+        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"/>
       </div>
     </div>
     <div class="col-lg-12 col-xl-3 row mb-2" v-if="isSelected" >
