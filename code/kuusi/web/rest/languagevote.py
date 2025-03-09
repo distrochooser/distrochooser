@@ -30,12 +30,12 @@ from web.models import LanguageFeedback, LanguageFeedbackVote, Session
 class CreateLanguageFeedbackVoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = LanguageFeedbackVote
-        fields = ('language_feedback', 'is_positive','session')
+        fields = ('language_feedback', 'is_positive','session', 'origin')
 
 class LanguageFeedbackVoteSerializer(CreateLanguageFeedbackVoteSerializer):
     class Meta:
         model = LanguageFeedbackVote
-        fields = ('id','language_feedback', 'is_positive', 'session')
+        fields = ('language_feedback', 'is_positive', 'session')
 
 
 class LanguageFeedbackVoteViewset(ListModelMixin, GenericViewSet):
@@ -72,6 +72,18 @@ class LanguageFeedbackVoteViewset(ListModelMixin, GenericViewSet):
         data = request.data
         language_feedback = data["language_feedback"]
         is_positive = data["is_positive"]
+        origin = data["origin"]
+
+        if origin is not None and  LanguageFeedbackVote.objects.filter(
+            language_feedback__pk=language_feedback,
+            origin=origin,
+            is_positive=is_positive
+        ).count() > 0:
+            LanguageFeedbackVote.objects.filter(
+                language_feedback__pk=language_feedback,
+                origin=origin
+            ).delete()
+        
         session: Session = Session.objects.filter(result_id=session_pk).first()
         LanguageFeedbackVote.objects.filter(
             session=session,
@@ -80,7 +92,8 @@ class LanguageFeedbackVoteViewset(ListModelMixin, GenericViewSet):
         result = LanguageFeedbackVote(
             session=session,
             language_feedback = LanguageFeedback.objects.filter(pk=language_feedback).first(),
-            is_positive =is_positive
+            is_positive =is_positive,
+            origin=origin
         )
         result.save()
 

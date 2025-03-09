@@ -25,7 +25,7 @@ from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
                                    extend_schema)
 from kuusi.settings import (DEFAULT_SESSION_META, FRONTEND_URL, KUUSI_ICON,
                             KUUSI_LOGO, KUUSI_META_TAGS, KUUSI_NAME,
-                            LANGUAGE_CODES, LOCALE_MAPPING, RTL_LANGUAGES, SESSION_NUMBER_OFFSET, IMPRINT)
+                            LANGUAGE_CODES, LOCALE_MAPPING, RTL_LANGUAGES, SESSION_NUMBER_OFFSET, IMPRINT, PRIVACY)
 from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
@@ -101,10 +101,11 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     is_language_rtl = serializers.SerializerMethodField()
     test_count = serializers.SerializerMethodField()
     imprint_data = serializers.SerializerMethodField()
+    privacy_data = serializers.SerializerMethodField()
 
     class Meta:
         model = Session
-        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'default_language_values', 'is_language_rtl', 'name', 'logo', 'meta', 'icon', 'test_count', 'imprint_data')
+        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'default_language_values', 'is_language_rtl', 'name', 'logo', 'meta', 'icon', 'test_count', 'imprint_data', 'privacy_data')
 
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
@@ -119,6 +120,10 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     
     def get_imprint_data(self, _) -> str:
         return IMPRINT
+    
+    def get_privacy_data(self, _) -> str:
+        return PRIVACY
+   
    
     def get_is_language_rtl(self, obj: Session) -> bool:
         return obj.language_code in RTL_LANGUAGES

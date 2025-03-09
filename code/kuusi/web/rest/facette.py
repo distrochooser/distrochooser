@@ -37,12 +37,17 @@ from typing import List
 class CreateFeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
-        fields = ('id', 'choosable', 'assignment', 'is_positive',)
+        fields = ('id', 'choosable', 'assignment', 'is_positive', 'origin')
 
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
         fields = ('id', 'choosable', 'assignment', 'is_positive', 'session')
+
+class CreateAssignmentFeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AssignmentFeedback
+        fields = ('id', 'assignment', 'is_positive', 'session', 'origin')
 
 
 class AssignmentFeedbackSerializer(serializers.ModelSerializer):
@@ -72,7 +77,7 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
         return Response(serializer.data)
 
     @extend_schema(
-        request=AssignmentFeedbackSerializer,
+        request=CreateAssignmentFeedbackSerializer,
         parameters=[ 
           OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
         ],
@@ -85,6 +90,8 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
         data = request.data
         assignment = data["assignment"]
         is_positive = data["is_positive"]
+        origin = data["origin"]
+
         session: Session = Session.objects.filter(result_id=session_pk).first()
         has_old = AssignmentFeedback.objects.filter(assignment__pk=assignment).filter(session=session).count() > 0
 
@@ -92,6 +99,18 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
              AssignmentFeedback.objects.filter(assignment__pk=assignment).delete()
 
         assignment_obj = FacetteAssignment.objects.filter(pk=assignment).first()
+
+        if origin is not None and  AssignmentFeedback.objects.filter(
+            assignment=assignment_obj,
+            origin=origin,
+            is_positive=is_positive
+        ).count() > 0:
+            AssignmentFeedback.objects.filter(
+                assignment=assignment_obj,
+                origin=origin,
+                is_positive=is_positive
+            ).delete()
+
         result = AssignmentFeedback(
             assignment=assignment_obj,
             is_positive=is_positive,
@@ -158,11 +177,23 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
         choosable = data["choosable"]
         assignment = data["assignment"]
         is_positive = data["is_positive"]
+        origin = data["origin"]
         session: Session = Session.objects.filter(result_id=session_pk).first()
         has_old = Feedback.objects.filter(choosable__pk=choosable).filter(assignment__pk=assignment).filter(session=session).count() > 0
 
         if has_old:
              Feedback.objects.filter(choosable__pk=choosable).filter(assignment__pk=assignment).delete()
+
+        if origin is not None and  Feedback.objects.filter(
+            choosable=choosable,
+            origin=origin,
+            is_positive=is_positive
+        ).count() > 0:
+            AssignmentFeedback.objects.filter(
+                choosable=choosable,
+                origin=origin,
+                is_positive=is_positive
+            ).delete()
         result = Feedback(
             choosable=Choosable.objects.filter(pk=choosable).first(),
             assignment=FacetteAssignment.objects.filter(pk=assignment).first(),
