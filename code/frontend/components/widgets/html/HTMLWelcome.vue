@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import LanguageSuggestion from '../../LanguageSuggestion.vue';
+
+</script>
+
 <template>
     <ul class="list-group mt-2">
         <li class="list-group-item">
@@ -37,6 +42,7 @@
 
             <LanguageTranslation translation-key="WELCOME_WIDGET_TRANSLATION" />
         </li>
+        <LanguageSuggestion/>
     </ul>
 
 </template>
