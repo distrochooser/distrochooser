@@ -38,6 +38,7 @@ class Feedback(models.Model):
         null=False,
         related_name="feedback_session",
     )
+    origin = models.CharField(max_length=255, default=None, null=True, blank=True)
 
     @property
     def is_pending(self):
@@ -56,6 +57,7 @@ class AssignmentFeedback(models.Model):
         to=FacetteAssignment, null=False, on_delete=models.CASCADE
     )
     is_positive = models.BooleanField(default=False)
+    origin = models.CharField(max_length=255, default=None, null=True, blank=True)
 
 
 class LanguageFeedback(models.Model):
@@ -87,3 +89,4 @@ class LanguageFeedbackVote(models.Model):
         null=False,
         related_name="language_feedback_vote_session",
     )
+    origin = models.CharField(max_length=255, default=None, null=True, blank=True)
