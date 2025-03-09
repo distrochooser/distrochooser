@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     }
   },
   robots: {
-    disallow: ['/pages/contact'],
+    disallow: ['/pages/contact', '/pages/privacy'],
   },
   vite: {
     css: {
