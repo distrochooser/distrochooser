@@ -151,7 +151,8 @@ LANGUAGES = [
     ("esp", "Spanish"),
     ("rus", "Russian"),
     ("fra", "French"),
-    ("por", "Portuguese")
+    ("por", "Portuguese"),
+    ("gsw", "Swiss German")
 ]
 
 RTL_LANGUAGES = [
@@ -223,7 +224,7 @@ KUUSI_META_TAGS = {
     "og:image:width": "100",
     "og:image:height": "100",
     "og:description": "",
-    "og:locale": "en_US",
+    "og:locale": "eng",
     "og:site_name": "Distrochooser",
     "theme-color": "#158cba"
 }
