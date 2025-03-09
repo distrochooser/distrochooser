@@ -144,7 +144,6 @@ class MetaFilterWidget(Widget):
                     if choosable.pk not in score_map:
                         score_map[choosable.pk] = FacetteAssignment.AssignmentType.get_score_map_by_type()
                     collected_assignments[choosable.pk].append(result)
-  
         return score_map, collected_assignments
 class MetaFilterValue(models.Model):
 

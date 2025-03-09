@@ -238,6 +238,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 })
                 this.getMetaValues();
             }
+            await this.getTranslationFeedback()
         },
         async updateCategoriesAndPages() {
             this.categories = await this.sessionApi.sessionCategoryList({
