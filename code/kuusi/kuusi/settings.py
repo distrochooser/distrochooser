@@ -20,7 +20,6 @@ from pathlib import Path
 from os.path import dirname, join
 from kuusi.legal import LEGAL_TEXT
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -66,10 +65,9 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'REST API specification',
     'VERSION': '6.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
-    'SWAGGER_UI_DIST': 'SIDECAR',  # shorthand to use the sidecar instead
+    'SWAGGER_UI_DIST': 'SIDECAR',
     'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
     'REDOC_DIST': 'SIDECAR',
-    # OTHER SETTINGS
 }
 
 MIDDLEWARE = (['silk.middleware.SilkyMiddleware'] if ENABLE_PROFILING else []) + [
@@ -112,20 +110,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "kuusi.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -141,10 +131,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
 
@@ -229,10 +215,6 @@ USE_I18N = False
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 STATIC_URL = "/static/"
 
 # per default, the /static/ folder is located on the repo root, which is two levels above the BASE_DIR
@@ -264,10 +246,6 @@ LOGGING = {
         },
     },
 }
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
-CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 KUUSI_URL = "http://localhost:8000"
 

@@ -23,12 +23,11 @@ from typing import Any, Dict
 from django.apps import apps
 from django.db import models
 from django.db.models.signals import pre_delete
-from django.db.backends.signals import connection_created
 from django.dispatch import receiver
 from logging import getLogger
 from os.path import join, exists
 from json import loads, dumps
-from os import mkdir, listdir
+from os import listdir
 from django.core.cache import cache
 
 
