@@ -39,3 +39,4 @@ static_root/*
 !static_root/.gitkeep
 
 code/frontend/sdk
+code/kuusi/kuusi/legal.py
