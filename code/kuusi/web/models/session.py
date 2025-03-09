@@ -20,12 +20,11 @@ from __future__ import annotations
 import string
 import random
 
-from kuusi.settings import SESSION_NUMBER_OFFSET
+from kuusi.settings import SESSION_NUMBER_OFFSET, RTL_LANGUAGES
 
 from django.db import models
 from django.utils import timezone
 
-from web.models.translateable import RTL_TRANSLATIONS
 
 def random_str():
     letters = string.ascii_lowercase + "1234567890"
@@ -83,7 +82,7 @@ class Session(models.Model):
     
     @property
     def is_rtl(self):
-        return self.language_code in RTL_TRANSLATIONS
+        return self.language_code in RTL_LANGUAGES
 
 class SessionMeta(models.Model):
     session = models.ForeignKey(

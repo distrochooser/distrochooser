@@ -3,7 +3,7 @@
 The application stores all translation inside of *.json files inside of the first path defined within the `settings.py`
 `LOCALES_PATH`.
 
-All files follow the format `<scope>-<iso-639-2>.json`. Translations can be updated using the JSON files or can be
+All files follow the format `<scope>-<iso-639-3>.json`. Translations can be updated using the JSON files or can be
 updated during runtime.
 
 ## Inline translate

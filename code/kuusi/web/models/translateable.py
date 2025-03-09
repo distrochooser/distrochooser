@@ -35,13 +35,11 @@ logger = getLogger("root")
 
 from kuusi.settings import (
     LOCALE_PATHS,
-    LANGUAGE_CODES,
+    LANGUAGES,
     DEFAULT_LANGUAGE_CODE
 )
 
 TRANSLATIONS = {}
-INCOMPLETE_TRANSLATIONS = []
-RTL_TRANSLATIONS = ["he"]
 
 def hot_load_translations(**kwargs):
     path = join(LOCALE_PATHS[0])
@@ -56,13 +54,6 @@ def hot_load_translations(**kwargs):
             content = loads(open(full_path, "r").read())
             for key, value in content.items():
                 TRANSLATIONS[language][key] = value
-    # Use to display an information
-    for locale in TRANSLATIONS:
-        if locale != "en":
-            for key, value in TRANSLATIONS[locale].items():
-                if value == TRANSLATIONS["en"][key]:
-                    INCOMPLETE_TRANSLATIONS.append(locale)
-                    break
 
 
 class TranslateableField(models.CharField):
@@ -100,7 +91,7 @@ class TranslateableField(models.CharField):
         return super().pre_save(model_instance, add)
 
     def update_json(self, model_type: str, msg_id: str):
-        for locale in LANGUAGE_CODES:
+        for locale in LANGUAGES:
             lowercase_locale = locale.lower()
             lowercase_model_type =model_type.lower()
             path = join(LOCALE_PATHS[0], f"{lowercase_model_type}-{lowercase_locale}.json")

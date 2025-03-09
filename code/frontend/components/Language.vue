@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <a class="dropdown-item"  href="#" v-on:click.prevent="store.changeLanguage(key[0])">
                 <span :class="'fi fi-' + key[0]">
                 </span>
-                {{ key[0] }}
+                {{ key[1] }}
             </a>
         </li>
     </ul>

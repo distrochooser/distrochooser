@@ -26,7 +26,7 @@ from web.models.http import WebHttpRequest
 from web.models import Choosable, Session, Feedback
 from web.templatetags.web_extras import _i18n_get_value
 from web.opendata import OpenDataV1
-from kuusi.settings import SESSION_NUMBER_OFFSET
+from kuusi.settings import SESSION_NUMBER_OFFSET, DEFAULT_LANGUAGE_CODE
 
 from user_agents import parse
 
@@ -43,7 +43,7 @@ def data_v1():
         choosables = Choosable.objects.all()
         choosable: Choosable
         for choosable in choosables:
-            data.ChoosableClicks[_i18n_get_value("en", choosable, "name")["value"]] = choosable.clicked
+            data.ChoosableClicks[_i18n_get_value(DEFAULT_LANGUAGE_CODE, choosable, "name")["value"]] = choosable.clicked
 
         sessions = Session.objects.all()
         data.Tests = sessions.count()

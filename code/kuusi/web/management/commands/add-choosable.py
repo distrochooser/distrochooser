@@ -22,6 +22,7 @@ from django.template.defaultfilters import slugify
 from web.models.choosable import ChoosableMeta
 from web.models.facette import FacetteAssignment, Facette
 from web.templatetags.web_extras import _i18n_
+from kuusi.settings import DEFAULT_LANGUAGE_CODE
 
 from termcolor import colored
 import os
@@ -37,13 +38,13 @@ class Command(BaseCommand):
         for index, facette in enumerate(facettes):
             cat_id = facette.catalogue_id
             topic = facette.topic
-            translate_value = _i18n_("en", f"{cat_id}-selectable_description")["value"]
+            translate_value = _i18n_(DEFAULT_LANGUAGE_CODE, f"{cat_id}-selectable_description")["value"]
             
             print(f"[{colored(index, 'blue')}] [{colored(topic, 'yellow')}] {colored(translate_value, 'magenta')}")
 
     def print_assignment(self, assignment: FacetteAssignment, index, selected_assignments, with_details: bool = False):
         translate_id = assignment.catalogue_id   
-        translate_value = _i18n_("en", f"{translate_id}-long_description")["value"]
+        translate_value = _i18n_(DEFAULT_LANGUAGE_CODE, f"{translate_id}-long_description")["value"]
         assignment_type = assignment.assignment_type
         color_map = {
             FacetteAssignment.AssignmentType.BLOCKING: "white",

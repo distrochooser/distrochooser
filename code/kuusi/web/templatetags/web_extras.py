@@ -16,20 +16,14 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from typing import Dict, List
 from django import template
 
 from django.utils.translation import gettext as _
 from django.utils import safestring
-from django.utils.html import strip_tags
-from django.http import HttpRequest
-from django.forms import Form, Field, ValidationError
-from django.forms.utils import ErrorDict
 
-from web.models import SessionMeta, Widget, Page, FacetteSelection, WebHttpRequest, Translateable, Choosable, FacetteAssignment, ChoosableMeta, Session
-from web.models import TRANSLATIONS, RTL_TRANSLATIONS
-from web.forms import WarningForm
-from kuusi.settings import KUUSI_COPYRIGHT_STRING, KUUSI_INFO_STRING, LANGUAGE_CODES, KUUSI_META_TAGS, DEFAULT_LANGUAGE_CODE, LOCALE_MAPPING
+from web.models import Translateable
+from web.models import TRANSLATIONS
+from kuusi.settings import DEFAULT_LANGUAGE_CODE
 
 import logging
 
@@ -52,9 +46,9 @@ def _i18n_get_value(language_code: str, translateable_object: Translateable | sa
         default_value =  translateable_object.__(key, language_code=DEFAULT_LANGUAGE_CODE)
     else:
         needle = str(translateable_object)
-        default_value = TRANSLATIONS["en"][needle]  if needle in TRANSLATIONS["en"] and TRANSLATIONS["en"][needle] is not None else needle
+        default_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][needle]  if needle in TRANSLATIONS[DEFAULT_LANGUAGE_CODE] and TRANSLATIONS[DEFAULT_LANGUAGE_CODE][needle] is not None else needle
         value = TRANSLATIONS[language_code][needle] if needle in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][needle] is not None else needle
-    is_missing = language_code != "en" and default_value == value
+    is_missing = language_code != DEFAULT_LANGUAGE_CODE and default_value == value
     return {"value": value, "needle": needle, "is_missing": is_missing}
 
 

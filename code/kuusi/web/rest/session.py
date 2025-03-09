@@ -25,7 +25,7 @@ from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
                                    extend_schema)
 from kuusi.settings import (DEFAULT_SESSION_META, FRONTEND_URL, KUUSI_ICON,
                             KUUSI_LOGO, KUUSI_META_TAGS, KUUSI_NAME,
-                            LANGUAGE_CODES, LOCALE_MAPPING, RTL_LANGUAGES, SESSION_NUMBER_OFFSET, IMPRINT, PRIVACY)
+                            LANGUAGES, RTL_LANGUAGES, SESSION_NUMBER_OFFSET, IMPRINT, PRIVACY, DEFAULT_LANGUAGE_CODE)
 from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
@@ -33,6 +33,15 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 from web.models import (TRANSLATIONS, FacetteSelection, LanguageFeedback,
                         MetaFilterValue, Session, SessionMeta, SessionVersion)
 from web.models.translateable import get_translation_haystack
+
+def is_language_present(lang):
+    found_lang = False
+    for lang_tuple in LANGUAGES:
+        lang_key = lang_tuple[0]
+        if lang_key== lang:
+            found_lang = True
+            break
+    return found_lang
 
 
 class MetaTagsSerializer(serializers.Serializer):
@@ -43,7 +52,10 @@ class MetaTagsSerializer(serializers.Serializer):
     icon = serializers.SerializerMethodField()
 
     def get_language_codes(self, _: None) -> Dict[str, str]:
-        return LANGUAGE_CODES
+        result = {}
+        for lang in LANGUAGES:
+            result[lang[0]] = lang[1]
+        return result
 
     def get_logo(self, _: None) -> str:
         return KUUSI_LOGO
@@ -59,14 +71,14 @@ class MetaTagsSerializer(serializers.Serializer):
         # TODO: Make more dynamic
         lang =  self.context["lang"]
         if not lang:
-            lang = "en"
+            lang = DEFAULT_LANGUAGE_CODE
         if lang not in TRANSLATIONS:
-            lang = "en"
+            lang = DEFAULT_LANGUAGE_CODE
         if "DESCRIPTION_TEXT" in TRANSLATIONS[lang]:
             tags["og:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
             tags["twitter:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
         # Redundant with below serializer
-        tags["og:locale"] = LOCALE_MAPPING[lang]
+        tags["og:locale"] = lang
         return tags
 
 
@@ -112,7 +124,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     
     def get_meta(self, obj: Session) -> Dict[str, any]:
         meta =  KUUSI_META_TAGS.copy()
-        meta["og:locale"] = LOCALE_MAPPING[obj.language_code]
+        meta["og:locale"] = obj.language_code
         return meta
     
     def get_test_count(self, _) -> int:
@@ -132,7 +144,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         return get_translation_haystack(obj.language_code)
     
     def get_default_language_values(self, obj:Session) -> Dict[str, str]:
-        return get_translation_haystack("en")
+        return get_translation_haystack(DEFAULT_LANGUAGE_CODE)
 
 
 
@@ -186,7 +198,7 @@ class SessionViewSet(ViewSet):
     ) 
     def partial_update(self, request, pk=None):
         lang = request.query_params.get('lang')
-        if lang not in LANGUAGE_CODES:
+        if not is_language_present(lang):
             return Response(status=status.HTTP_412_PRECONDITION_FAILED) 
         version_id = request.query_params.get('version_id')
         version = None
@@ -234,9 +246,8 @@ class SessionViewSet(ViewSet):
     ) 
     def create(self, request):
         lang = request.query_params.get('lang')
-        if lang not in LANGUAGE_CODES:
+        if not is_language_present(lang):
             return Response(status=status.HTTP_412_PRECONDITION_FAILED)
-        
         
         old_result_id= request.query_params.get('result_id')
         referrer= request.query_params.get('referrer')

@@ -4,6 +4,25 @@
 
 - Clone the Distrochooser repository https://github.com/distrochooser/distrochooser
 
+## Configuration values
+
+|Value|Description|
+|--|--|
+|BASE_DIR|Do not touch.|
+|SECRET_KEY|Set to something random|
+|DEBUG|Disable in production|
+|ALLOWED_HOSTS|Required in case your application runs behind a reverse proxy -> needs accessing domain entry then|
+|ENABLE_PROFILING|Enables or disables Silk module. Disable in production|
+|INSTALLED_APPS|Do not touch|
+|REST_FRAMEWORK|Do not touch|
+|SPECTACULAR_SETTINGS|Do not touch|
+|MIDDLEWARE|Do not touch|
+|CORS_ALLOW_ALL_ORIGINS|Do not touch|
+|ROOT_URLCONF|Do not touch|
+|Templates|Do not touch|
+|WSGI_APPLICATION|Do not touch|
+|AUTH_PASSWORD_VALIDATORS|Do not touch|
+
 ## Install
 
 > We assume you use a venv-like approach here. If you use another approach, replace this step with the tool of your choice.

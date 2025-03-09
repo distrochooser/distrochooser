@@ -135,73 +135,24 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-us"
 
 LANGUAGES = [
-    ("en", "en"),
-    ("fr","fr"),
-    ("nl","nl"),
-    ("gr","gr"),
-    ("sv","sv"),
-    ("tr","tr"),
-    ("vn","vn"),
-    ("zh-hans","zh-hans"),
-    ("it","it"),
-    ("es","es"),
-    ("de","de"),
-    ("pt-br","pt-br"),
-    ("gsw","gsw"),
-    ("he","he"),
-    ("id","id"),
-    ("az","az"),
-    ("pl","pl"),
-    ("zh-hant","zh-hant"),
-    ("ru","ru"),
-    ("fi","fi"),
+    ("ger", "Deutsch"),
+    ("eng", "English"),
+    ("aze", "Azerbaijani"),
+    ("vie", "Vietnamese"),
+    ("tur", "Turkish"),
+    ("swe", "Swedish"),
+    ("fin", "Finnish"),
+    ("pol", "Polnish"),
+    ("nld", "Dutch"),
+    ("ita", "Italian"),
+    ("ind", "Indonesian"),
+    ("ell", "Greek"),
+    ("heb", "Hebrew"),
+    ("esp", "Spanish"),
+    ("rus", "Russian"),
+    ("fra", "French"),
+    ("por", "Portuguese")
 ]
-
-LANGUAGE_CODES = {
-    "en": "en",
-    "fr": "fr",
-    "nl": "nl",
-    "gr": "gr",
-    "sv": "sv",
-    "tr": "tr",
-    "vn": "vn",
-    "zh-hans": "zh-hans",
-    "it": "it",
-    "es": "es",
-    "de": "de",
-    "pt-br": "pt-br",
-    "gsw": "gsw",
-    "he": "he",
-    "id": "id",
-    "az": "az",
-    "pl": "pl",
-    "zh-hant": "zh-hant",
-    "ru": "ru",
-    "fi": "fi"
-}
-
-LOCALE_MAPPING = {
-    "en": "en_US",
-    "fr": "fr_FR",
-    "nl": "nl_NL",
-    "gr": "el_GR",
-    "sv": "sv_SE",
-    "tr": "tr_TR",
-    "vn": "vi_VN",
-    "zh-hans": "zh_Hans",
-    "it": "it_IT",
-    "es": "es_ES",
-    "de": "de_DE",
-    "pt-br": "pt_BR",
-    "gsw": "gsw_CH",
-    "he": "he_IL",
-    "id": "id_ID",
-    "az": "az_AZ",
-    "pl": "pl_PL",
-    "zh-hant": "zh_Hant",
-    "ru": "ru_RU",
-    "fi": "fi_FI"
-}
 
 RTL_LANGUAGES = [
     "he"
@@ -285,27 +236,7 @@ SESSION_NUMBER_OFFSET = 1754516
 
 WEIGHT_MAP = {-2: -0.5, -1: -0.25, 0: 1, 1: 2, 2: 4}
 
-DEFAULT_LANGUAGE_CODE = "en"
-
-# Privacy related settings.
-
-# We won't touch the CSRF_COOKIE_AGE because of the reasons mentioned in https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-cookie-age
-
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True # The cookie is not really used for anything rather than picking up data between requests. After the session, it should not be valid anymore
-
-# Forbid certain page from crawling using the robots.txt standard.
-# If a rule contains language_code, it will be applied multiple times for all available LANGUAGE_CODES
-ROBOTS_TXT = {
-    "*": [
-        "/language_code/contact",
-        "/language_code/privacy"
-    ]
-}
-
-SITEMAP_PUBLIC_URL = "http://localhost:8000" # please no trailing slash
-SITEMAP_ADDITIONAL_ENTRIES = [
-    "/language_code/about"
-]
+DEFAULT_LANGUAGE_CODE = "eng"
 
 # Decide which default session meta keys/ values will be set.
 
