@@ -26,9 +26,11 @@
         </li>
         <li class="list-group-item">
 
-            <Icon class="text-muted me-1" name="ion:scale-outline"></Icon>
+            <Icon class="text-muted me-1" name="ion:chevron-down-circle-sharp"></Icon>/
+      <Icon class="text-muted me-1" name="ion:alert-circle-sharp"></Icon>
 
             <LanguageTranslation translation-key="WELCOME_WIDGET_MARK_WEIGHT" />
+
         </li>
         <li class="list-group-item">
             <Icon class="text-muted me-1" name="ion:language"></Icon>
