@@ -5,7 +5,7 @@
 | Version | Supported          |
 | ------- | ------------------ |
 | 6.x (currently beta.distrochooser.de)  | :white_check_mark: |
-| 5.x (currently distrochooser.de)  | :white_check_mark: |
+| 5.x (currently distrochooser.de)  | :exclamation: (only security)|
 | 4.x (offline)   | :x:    |
 | 3.x (offline)  | :x:                |
 | 2.x (offline)  | :x:                |
