@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <LanguageTranslation translation-key="questionaire-edition" />
         </label>
         <select v-model="selection" class="form-select" id="edition">
-          <option :value="null">Full</option>
+          <option :value="null">{{fullVersionText}}</option>
           <option :value="version.id" v-for="version, index in props.widget.versions" :key="index">
             {{ version.text }}
           </option>
@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import type { SessionVersionWidget } from '../../sdk';
 import { useSessionStore } from '../../states/session';
 
@@ -46,6 +46,9 @@ interface WidgetProps {
 const props = defineProps<WidgetProps>();
 const selection = ref(null)
 const store = useSessionStore();
+
+const fullVersionText = computed(() => store.session && typeof store.session.languageValues["full-version"] !== "undefined" ? store.session.languageValues["full-version"] : "full-version")
+
 watch(selection, value => {
   if (store.session) {
     store.updateSession(selection.value)
