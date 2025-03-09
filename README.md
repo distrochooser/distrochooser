@@ -3,9 +3,8 @@
 
 <img src="https://github.com/distrochooser/distrochooser/blob/kuusi/static/logo.svg" width="50%" >
 
-![GitHub License](https://img.shields.io/github/license/distrochooser/distrochooser) ![Static Badge](https://img.shields.io/badge/Open_data-ODbL_1.0-brightgreen) [![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/171-shield.svg)](https://madewithvuejs.com/p/distrochooser/shield-link)
+![GitHub License](https://img.shields.io/github/license/distrochooser/distrochooser) ![Static Badge](https://img.shields.io/badge/Open_data-ODbL_1.0-brightgreen) [![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/171-shield.svg)](https://madewithvuejs.com/p/distrochooser/shield-link) ![Discord](https://img.shields.io/discord/1269641977293443073?logo=discord&label=Discord&link=https%3A%2F%2Fdiscord.gg%2FaDkCutfqak)
 
-Copy
 
 
 
