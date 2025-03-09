@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div  :class="{'a11y-larger-main-menu': sessionStore.fontSizeModifier == 5, 'row': true}">
     <div class="col-3 d-none d-sm-block"></div>
     <div class="col-xl-7 col-sm-12 text-center mt-2">
       <div class="btn-group mt-2" role="group" aria-label="Navigation" v-if="sessionStore.session">
@@ -59,3 +59,6 @@ import { useSessionStore } from '../states/session';
 
 const sessionStore = useSessionStore();
 </script>
+<style lang="scss" scoped>
+@import "../style/a11y.scss";
+</style>

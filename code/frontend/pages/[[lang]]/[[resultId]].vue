@@ -43,6 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </div>
     </main>
     <Progress />
+    <A11y/>
   </div>
 </template>
 <script lang="ts" setup>
@@ -53,6 +54,7 @@ import { useSessionStore } from "../../states/session";
 import PageMeta from "../../components/PageMeta.vue";
 import Progress from "../../components/Progress.vue";
 import MainNavigation from "../../components/MainNavigation.vue";
+import A11y from "../../components/A11y.vue";
 
 const router = useRoute();
 const lang: string = router.params.lang as string;

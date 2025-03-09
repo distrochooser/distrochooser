@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div v-if="store.currentPage">
+  <div v-if="store.currentPage" :class="{'a11y-larger-larger': store.fontSizeModifier == 5}">
     <h3 v-if="store.currentPage.text">
       <LanguageTranslation :translation-key="store.currentPage.text" :key="store.currentPage.text" />
 
@@ -49,4 +49,5 @@ const isMarked = computed(() => {
 <style lang="scss" scoped>
 @use 'sass:color';
 @import "../style/variables.scss";
+@import "../style/a11y.scss";
 </style>

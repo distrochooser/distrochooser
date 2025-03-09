@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div class="  text-center mt-3 border-top pt-3">
+  <div :class="{'a11y-larger-text': store.fontSizeModifier == 5, 'text-center mt-3 border-top pt-3 ': true}">
     <div class="btn-group" role="group">
       <a v-if="store.currentPage.canBeMarked" href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
         <LanguageTranslation :translation-key="!isMarked ? 'BTN_MARK' : 'BTN_UNMARK'" />
@@ -70,6 +70,7 @@ const isMarked = computed(() => {
 </script>
 <style lang="scss" scoped>
 @import "../../style/variables.scss";
+@import "../../style/a11y.scss";
 
 .btn-outline-marking {
   border-color: $orange;

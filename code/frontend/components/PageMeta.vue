@@ -37,8 +37,28 @@ watch(isTranslating, value => {
     }
 }, { deep: true, immediate: true })
 
+const isBWMode = computed(() => store.session && store.isBWMode)
 
+watch(isBWMode, value => {
+    if (import.meta.client) {
+        const haystack = document.getElementsByTagName("body")
+        if (haystack.length > 0) {
+            if (store.isBWMode) {
+                haystack[0].classList.add("a11y-color-bw")
+                store.getTranslationFeedback()
+            } else {
+                haystack[0].classList.remove("a11y-color-bw")
+            }
+        }
+    }
+}, { deep: true, immediate: true })
 </script>
 <style lang="scss">
-@import "../style/global.scss"
+@import "../style/global.scss";
+
+.a11y-color-bw {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
 </style>

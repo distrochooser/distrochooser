@@ -1,10 +1,9 @@
 <template>
-    <div class="fixed-bottom">
+    <div class="fixed-top">
         <div class="progress" role="progressbar" :aria-valuenow="percent" aria-valuemin="0" aria-valuemax="100"
             style="height: 1vh">
             <div class="progress-bar" :style="'width: ' + percent + '%'"></div>
         </div>
-
     </div>
 </template>
 

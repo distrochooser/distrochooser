@@ -38,6 +38,8 @@ interface SessionState {
     missingLanguageValues: String[];
     isTranslating: boolean;
     isTranslationOpen: boolean;
+    isBWMode: boolean;
+    fontSizeModifier: number;
 }
 let sessionApi: SessionApi = null;
 
@@ -60,7 +62,9 @@ export const useSessionStore = defineStore('websiteStore', {
         isLoading: false,
         missingLanguageValues: [],
         isTranslating: false,
-        isTranslationOpen: false
+        isTranslationOpen: false,
+        isBWMode: false,
+        fontSizeModifier: 1
     }),
     getters: {
         sessionApi(): SessionApi {
