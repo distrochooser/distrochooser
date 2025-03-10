@@ -49,7 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </li>
       </ul>
       <div class="card-body">
-        <li class="list-group-item" v-for="(key, value, index) in props.choosable.assignments" :key="index">
+        <li class="list-group-item" v-for="(key, index) in props.choosable.assignments" :key="index">
           <Assignment :display-weigth="true" :assignment="key" :key="index" :query-choosables="false" :facette="null" :choosable="props.choosable"/>
         </li>
       </div>
