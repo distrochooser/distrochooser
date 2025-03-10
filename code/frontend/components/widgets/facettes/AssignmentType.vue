@@ -26,8 +26,8 @@ interface AssignmentTypeProps {
 
 const assignmentTypeCssMap = {
   BLOCKING: "text-bg-dark",
-  NEGATIVE: "text-bg-danger",
-  POSITIVE: "text-bg-success",
+  NEGATIVE: "text-bg-danger ",
+  POSITIVE: "text-bg-success text-light",
   NEUTRAL: "text-bg-light",
 };
 
