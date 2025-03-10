@@ -143,7 +143,7 @@ class PageViewSet(GenericViewSet, ListModelMixin):
         description="Return the list of pages available to this session",
         responses={
             status.HTTP_200_OK: OpenApiResponse(response=PageSerializer, description="The list of Pages available to use"),
-            status.HTTP_412_PRECONDITION_FAILED: OpenApiResponse(description='The session was not found')
+            status.HTTP_404_NOT_FOUND: OpenApiResponse(description='The session was not found')
         },
         parameters=[ 
           OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
@@ -152,7 +152,7 @@ class PageViewSet(GenericViewSet, ListModelMixin):
     def list(self, request,  *args, **kwargs):
         sessions = Session.objects.filter(result_id=kwargs["session_pk"])
         if sessions.count() == 0:
-            return Response(status=status.HTTP_412_PRECONDITION_FAILED)
+            return Response(status=status.HTTP_404_NOT_FOUND)
         session = sessions.first()
         queryset = Page.objects.all() if not session.version else Page.objects.exclude(not_in_versions__in=[
             session.version

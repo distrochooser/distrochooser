@@ -59,7 +59,6 @@ class ChoosableViewSet(ListModelMixin, GenericViewSet):
         ],
         responses={
             status.HTTP_200_OK: OpenApiResponse(response=ChoosableSerializer, description="The list of Choosables available to use"),
-            status.HTTP_412_PRECONDITION_FAILED: OpenApiResponse(description='Invalid language'),
         }
     )
     def list(self, request,  *args, **kwargs):

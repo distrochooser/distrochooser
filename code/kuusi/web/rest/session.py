@@ -88,7 +88,6 @@ class MetaTagViewset(ListModelMixin, GenericViewSet):
         description="Return the list of configured meta tags",
         responses={
             status.HTTP_200_OK: OpenApiResponse(response=MetaTagsSerializer, description="The list of meta tags available to use"),
-            status.HTTP_412_PRECONDITION_FAILED: OpenApiResponse(description='Invalid language'),
         },
         parameters=[
           OpenApiParameter("lang", OpenApiTypes.STR, OpenApiParameter.QUERY,description="The language code to translate this values", required=False),
@@ -172,7 +171,6 @@ class SessionViewSet(ViewSet):
         responses={
             status.HTTP_200_OK: SessionSerializer,
             status.HTTP_404_NOT_FOUND: OpenApiResponse(description='Invalid result_id provided'),
-            status.HTTP_412_PRECONDITION_FAILED: OpenApiResponse(description='Invalid language'),
         }
     ) 
     def retrieve(self, request, pk=None):
@@ -193,13 +191,12 @@ class SessionViewSet(ViewSet):
             status.HTTP_200_OK: SessionSerializer,
             status.HTTP_404_NOT_FOUND: OpenApiResponse(description='Invalid id or result_id provided'),
             status.HTTP_406_NOT_ACCEPTABLE: OpenApiResponse(description='Invalid version_id provided'),
-            status.HTTP_412_PRECONDITION_FAILED: OpenApiResponse(description='Invalid language'),
         }
     ) 
     def partial_update(self, request, pk=None):
         lang = request.query_params.get('lang')
         if not is_language_present(lang):
-            return Response(status=status.HTTP_412_PRECONDITION_FAILED) 
+            lang = DEFAULT_LANGUAGE_CODE
         version_id = request.query_params.get('version_id')
         version = None
         if version_id:
@@ -241,14 +238,12 @@ class SessionViewSet(ViewSet):
             status.HTTP_200_OK: SessionSerializer,
             status.HTTP_404_NOT_FOUND: OpenApiResponse(description='Invalid result_id provided'),
             status.HTTP_406_NOT_ACCEPTABLE: OpenApiResponse(description='Invalid version_id provided'),
-            status.HTTP_412_PRECONDITION_FAILED: OpenApiResponse(description='Invalid language'),
         }
     ) 
     def create(self, request):
         lang = request.query_params.get('lang')
         if not is_language_present(lang):
-            return Response(status=status.HTTP_412_PRECONDITION_FAILED)
-        
+            lang = DEFAULT_LANGUAGE_CODE    
         old_result_id= request.query_params.get('result_id')
         referrer= request.query_params.get('referrer')
         user_agent= request.query_params.get('user_agent')
