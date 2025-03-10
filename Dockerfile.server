@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-FROM python:3.11
+FROM python:3.11-slim
 ADD code/kuusi /kuusi
 RUN apt-get update && \
     apt-get install -y gcc nano libpq-dev python3-psycopg postgresql-client && \
