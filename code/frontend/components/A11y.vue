@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <div class="fixed-top row">
-        <div class="accordion fixed-bottom col-lg-1 col-xs-12" id="a11yacc">
+        <div class="accordion fixed-bottom col-lg-2 col-xs-12" id="a11yacc">
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"

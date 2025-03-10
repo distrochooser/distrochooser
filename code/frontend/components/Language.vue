@@ -17,10 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <ul class="dropdown-menu">
-        <li v-for="(key, value, index) in Object.entries(store.session.languageCodes)">
+        <li v-for="(key, value) in Object.entries(store.session.languageCodes)">
             <a class="dropdown-item"  href="#" v-on:click.prevent="store.changeLanguage(key[0])">
-                <span :class="'fi fi-' + key[0]">
-                </span>
                 {{ key[1] }}
             </a>
         </li>

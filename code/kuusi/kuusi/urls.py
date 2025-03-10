@@ -21,7 +21,7 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 from drf_spectacular.views import (SpectacularAPIView,
                                    SpectacularSwaggerView)
-from kuusi.settings import ENABLE_PROFILING, STATIC_ROOT, STATIC_URL
+from kuusi.settings import ENABLE_PROFILING, STATIC_ROOT, STATIC_URL, DEBUG
 from rest_framework_nested import routers
 from web.rest.category import CategoryViewSet
 from web.rest.choosable import ChoosableViewSet
@@ -73,4 +73,4 @@ urlpatterns = [
     re_path("data/(?P<version>[0-9]+)", route_data, name="route_data"),
     path("admin", admin.site.urls)
    
-] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True) + ([path('silk/', include('silk.urls', namespace='silk'))] if ENABLE_PROFILING else [])
+] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True) + ([path('silk/', include('silk.urls', namespace='silk'))] if ENABLE_PROFILING else []) + ([path("admin", admin.site.urls)] if DEBUG else [])

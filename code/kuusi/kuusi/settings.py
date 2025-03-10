@@ -132,6 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# This is only relevant for the admin dashboard (if enabled)
 LANGUAGE_CODE = "en-us"
 
 LANGUAGES = [
@@ -205,12 +206,6 @@ FRONTEND_URL = "http://localhost:3000"
 
 KUUSI_NAME = "Distrochooser"
 
-KUUSI_COPYRIGHT_STRING = None
-
-KUUSI_INFO_STRING = "Made by <a href='https://chmr.eu'>chmr.eu</a>"
-
-KUUSI_TRANSLATION_URL = "https://translate.distrochooser.de"
-
 KUUSI_META_TAGS = {
     "twitter:card": "summary",
     "twitter:title": "Distrochooser",
@@ -228,10 +223,6 @@ KUUSI_META_TAGS = {
     "og:site_name": "Distrochooser",
     "theme-color": "#158cba"
 }
-
-# use https://turbo.hotwired.dev to prevent flicker
-# requires the status codes to be altered.
-ACCELERATION = False
 
 SESSION_NUMBER_OFFSET = 1754516
 
@@ -257,6 +248,7 @@ KUUSI_ICON = "http://localhost:8000/static/icon.svg"
 
 # Some selected endpoints will create an individual cache to prevent overboarding load times
 CACHE_TIMEOUT = 120
+
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",

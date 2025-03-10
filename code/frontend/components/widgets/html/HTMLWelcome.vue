@@ -42,7 +42,6 @@ import LanguageSuggestion from '../../LanguageSuggestion.vue';
 
             <LanguageTranslation translation-key="WELCOME_WIDGET_TRANSLATION" />
         </li>
-        <LanguageSuggestion/>
     </ul>
 
 </template>
