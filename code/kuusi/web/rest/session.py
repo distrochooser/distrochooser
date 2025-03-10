@@ -23,7 +23,7 @@ from django.shortcuts import get_object_or_404
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
                                    extend_schema)
-from kuusi.settings import (DEFAULT_SESSION_META, FRONTEND_URL, KUUSI_ICON,
+from kuusi.settings import (FRONTEND_URL, KUUSI_ICON,
                             KUUSI_LOGO, KUUSI_META_TAGS, KUUSI_NAME,
                             LANGUAGES, RTL_LANGUAGES, SESSION_NUMBER_OFFSET, IMPRINT, PRIVACY, DEFAULT_LANGUAGE_CODE)
 from rest_framework import serializers, status
@@ -321,13 +321,6 @@ class SessionViewSet(ViewSet):
         session = Session(user_agent=user_agent)
         session.save()
         session.referrer = referrer
-        for group, items in DEFAULT_SESSION_META.items():
-            for item in items:
-                meta = SessionMeta()
-                meta.meta_key = group
-                meta.meta_value = item
-                meta.session = session
-                meta.save()
         session.language_code = language_code
         session.referrer = referrer
         session.save()

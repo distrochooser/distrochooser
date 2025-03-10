@@ -6,22 +6,28 @@
 
 ## Configuration values
 
+> Django values skipped here
+> Django values see https://docs.djangoproject.com/en/4.2/topics/settings/#top
+
 |Value|Description|
 |--|--|
-|BASE_DIR|Do not touch.|
 |SECRET_KEY|Set to something random|
 |DEBUG|Disable in production|
 |ALLOWED_HOSTS|Required in case your application runs behind a reverse proxy -> needs accessing domain entry then|
 |ENABLE_PROFILING|Enables or disables Silk module. Disable in production|
-|INSTALLED_APPS|Do not touch|
-|REST_FRAMEWORK|Do not touch|
-|SPECTACULAR_SETTINGS|Do not touch|
-|MIDDLEWARE|Do not touch|
-|CORS_ALLOW_ALL_ORIGINS|Do not touch|
-|ROOT_URLCONF|Do not touch|
-|Templates|Do not touch|
-|WSGI_APPLICATION|Do not touch|
-|AUTH_PASSWORD_VALIDATORS|Do not touch|
+|LANGUAGES|A list of tuples of available languages `(<iso-639-3-code>, Display text)`|
+|RTL_LANGUAGES|A list of language codes (iso-639-3) considered right-to-left|
+|FRONTEND_URL|The URL without trailing slash representing the frontend URL|
+|KUUSI_NAME|The name of the application. Will be used e. g. in OGP tags and the frontend|
+|KUUSI_META_TAGS|Meta tags to be rendered client sided
+|SESSION_NUMBER_OFFSET|The amount of tests to be added to the current database count|
+|WEIGHT_MAP|Factor to give to each weight|
+|DEFAULT_LANGUAGE_CODE|The `iso-639-3` code to use from `LANGUAGES` representing the default language|
+|KUUSI_LOGO|The logo to add to frontend sessions|
+|KUUSI_ICON|The favicon to add to frontend sessions|
+|CACHE_TIMEOUT|The default cache timeout to use|
+|Imprint|A text to be used as contact (legal imprint info)|
+|PRIVACY|Privacy text. Can be HTML|
 
 ## Install
 

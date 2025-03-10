@@ -1,7 +1,6 @@
 asgiref==3.7.2
 attrs==24.2.0
 contourpy==1.3.0
-crispy-bootstrap5==0.7
 cycler==0.12.1
 Django==4.2.20
 django-cors-headers==4.3.1
@@ -34,7 +33,6 @@ pytz==2024.2
 PyYAML==6.0.2
 referencing==0.35.1
 rpds-py==0.22.3
-scikit-learn==1.5.2
 scipy==1.14.1
 six==1.16.0
 snakeviz==2.2.0

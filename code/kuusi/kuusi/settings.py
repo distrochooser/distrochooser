@@ -208,10 +208,10 @@ KUUSI_NAME = "Distrochooser"
 
 KUUSI_META_TAGS = {
     "twitter:card": "summary",
-    "twitter:title": "Distrochooser",
+    "twitter:title": KUUSI_NAME,
     "twitter:description": "",
     "twitter:image": KUUSI_URL + "/logo.png",
-    "og:title": "Distrochooser",
+    "og:title": KUUSI_NAME,
     "og:type": "website",
     "og:url": KUUSI_URL,
     "og:image": KUUSI_URL + "/logo.png",
@@ -229,18 +229,6 @@ SESSION_NUMBER_OFFSET = 1754516
 WEIGHT_MAP = {-2: -0.5, -1: -0.25, 0: 1, 1: 2, 2: 4}
 
 DEFAULT_LANGUAGE_CODE = "eng"
-
-# Decide which default session meta keys/ values will be set.
-
-DEFAULT_SESSION_META = {
-    "RESULT_STATS_FILTER": [
-        "RESULT_NEEDS_POSITIVE"
-    ]
-}
-
-# Add a beta background to the page
-
-BETA = True
 
 KUUSI_LOGO = "http://localhost:8000/static/logo.svg"
 
