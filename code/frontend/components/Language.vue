@@ -17,15 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <ul class="dropdown-menu">
-        <li v-for="(key, value) in Object.entries(store.session.languageCodes)">
-            <a class="dropdown-item"  href="#" v-on:click.prevent="store.changeLanguage(key[0])">
-                {{ key[1] }}
+        <li v-for="(key, index) in Object.keys(store.session.languageCodes)" :key="index">
+            <a class="dropdown-item"  href="#" v-on:click.prevent="store.changeLanguage(key)">
+                {{ store.session.languageCodes[key] }} 
             </a>
         </li>
     </ul>
 </template>
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
 import { useSessionStore } from '../states/session';
 
 const store = useSessionStore();
