@@ -113,11 +113,16 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     test_count = serializers.SerializerMethodField()
     imprint_data = serializers.SerializerMethodField()
     privacy_data = serializers.SerializerMethodField()
+    default_language = serializers.SerializerMethodField()
 
     class Meta:
         model = Session
-        fields = ('id', 'result_id', 'language_code', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'default_language_values', 'is_language_rtl', 'name', 'logo', 'meta', 'icon', 'test_count', 'imprint_data', 'privacy_data')
+        fields = ('id', 'result_id', 'language_code', 'default_language', 'language_codes',  'session_origin', 'started', 'version', 'base_url', 'language_values', 'default_language_values', 'is_language_rtl', 'name', 'logo', 'meta', 'icon', 'test_count', 'imprint_data', 'privacy_data')
 
+    
+    def get_default_language(self, _: None) -> str:
+        return DEFAULT_LANGUAGE_CODE
+    
     def get_session_origin(self, obj: Session) -> str:
         return obj.session_origin.result_id if obj.session_origin else None
     

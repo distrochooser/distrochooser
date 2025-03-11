@@ -38,7 +38,7 @@ from web.models import (Choosable, Facette, FacetteAssignment,
                         MetaFilterValue, MetaFilterWidget,
                         NavigationWidget, Page, ResultListWidget,
                         ResultShareWidget, Session, SessionVersion,
-                        SessionVersionWidget, Widget)
+                        SessionVersionWidget, FeedbackWidget, Widget)
 from web.rest.choosable import (CHOOSABLE_SERIALIZER_BASE_FIELDS,
                                 ChoosableSerializer)
 from web.rest.facette import FacetteAssignmentSerializer, FacetteSerializer
@@ -146,6 +146,12 @@ class ResultShareWidgetSerializer(WidgetSerializer):
 
     class Meta:
         model = ResultShareWidget
+        fields = WIDGET_SERIALIZER_BASE_FIELDS
+
+class FeedbackWidgetSerializer(WidgetSerializer):
+
+    class Meta:
+        model = FeedbackWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS
 
 
@@ -257,6 +263,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                         FacetteSelectionWidgetSerializer,
                         ResultListWidgetSerializer,
                         ResultShareWidgetSerializer,
+                        FeedbackWidgetSerializer,
                         MetaFilterWidgetSerializer,
                     ],
                     component_name="MetaWidget",
@@ -305,6 +312,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                 FacetteSelectionWidget: FacetteSelectionWidgetSerializer,
                 ResultListWidget: ResultListWidgetSerializer,
                 ResultShareWidget: ResultShareWidgetSerializer,
+                FeedbackWidget: FeedbackWidgetSerializer,
                 MetaFilterWidget: MetaFilterWidgetSerializer,
             }
         )

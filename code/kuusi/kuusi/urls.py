@@ -35,6 +35,7 @@ from web.rest.metafilter import MetaFilterValueViewSet
 from web.rest.page import PageMarkingViewSet, PageViewSet
 from web.rest.session import MetaTagViewset, SessionViewSet
 from web.rest.widget import WidgetViewSet
+from web.rest.feedback import GivenFeedbackViewset
 from web.routes.data import route_data
 from web.routes.web import route_outgoing
 
@@ -45,6 +46,7 @@ router.register(r'metatags', MetaTagViewset, basename="metatags")
 
 router_sessions = routers.NestedDefaultRouter(router, r'session', lookup='session')
 router_sessions.register(r'page', PageViewSet, basename='session-pages')
+router_sessions.register(r'givenfeedback', GivenFeedbackViewset, basename='session-givenfeedback')
 
 router_page = routers.NestedDefaultRouter(router_sessions, r"page", lookup="page")
 router_page.register(r"widget", WidgetViewSet, basename="widget-page")

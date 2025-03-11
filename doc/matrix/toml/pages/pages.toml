@@ -238,13 +238,19 @@ hide_help = true
 hide_text =true 
 css_classes = "ku-result"
 can_be_marked=false
+
 [widget.share.result-page-widget-name]
 topic = "result"
 pages = ["result-page"]
 
+[widget.feedback.result-page-feedback-widget]
+topic = "result"
+row = 2
+pages = ["result-page"]
+
 [widget.html.result-page-language-list]
 template = "languageHTML"
-row = 2
+row = 3
 pages = ["result-page"]
 
 [widget.result.result-page-widget-name]

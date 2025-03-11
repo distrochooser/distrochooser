@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from typing import Dict, List, Callable, Type
-from web.models import MetaFilterWidget, MetaFilterWidgetStructure, Page, Widget, HTMLWidget, SessionVersionWidget, FacetteSelectionWidget, NavigationWidget, ResultShareWidget, ResultListWidget, FacetteRadioSelectionWidget
+from web.models import FeedbackWidget, MetaFilterWidget, MetaFilterWidgetStructure, Page, Widget, HTMLWidget, SessionVersionWidget, FacetteSelectionWidget, NavigationWidget, ResultShareWidget, ResultListWidget, FacetteRadioSelectionWidget
 from logging import getLogger
 logger = getLogger('command') 
 def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[Widget]:
@@ -30,7 +30,8 @@ def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -
         "share": ResultShareWidget,
         "result": ResultListWidget,  
         "navigation": NavigationWidget,
-        "metafilter": MetaFilterWidget
+        "metafilter": MetaFilterWidget,
+        "feedback": FeedbackWidget
     }
     prop_map: Dict[str, Dict[str, Type]]= {
         "html": {"template": str},

@@ -10,7 +10,7 @@
       <div class="card-text">
 
           <ul class="list-group col">
-            <li class="list-group-item"><span class="badge text-bg-light me-2">en</span>{{
+            <li class="list-group-item"><span class="badge text-bg-light me-2">{{sessionStore.session.defaultLanguage}}</span>{{
               sessionStore.session.defaultLanguageValues[props.translationKey] ?? props.translationKey }} </li>
             <li class="list-group-item text-center fs-3 pt-2">
               <Icon name="ion:arrow-down-sharp"></Icon>

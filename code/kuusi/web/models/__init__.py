@@ -37,3 +37,5 @@ from .resultsharewidget import ResultShareWidget
 from .resultlistwidget import ResultListWidget
 
 from .metafilterwidget import MetaFilterWidget,  MetaFilterWidgetStructure, MetaFilterWidgetElement, MetaFilterValue
+
+from .feedbackwidget import FeedbackWidget, GivenFeedback

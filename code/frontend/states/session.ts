@@ -40,6 +40,7 @@ interface SessionState {
     isTranslationOpen: boolean;
     isBWMode: boolean;
     fontSizeModifier: number;
+    givenFeedback: String;
 }
 let sessionApi: SessionApi = null;
 
@@ -64,7 +65,8 @@ export const useSessionStore = defineStore('websiteStore', {
         isTranslating: false,
         isTranslationOpen: false,
         isBWMode: false,
-        fontSizeModifier: 1
+        fontSizeModifier: 1,
+        givenFeedback: null
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -81,6 +83,14 @@ export const useSessionStore = defineStore('websiteStore', {
         }
     },
     actions: {
+        async updateGivenFeedback() {
+            await this.sessionApi.sessionGivenfeedbackCreate({
+                sessionPk: this.session.resultId,
+                createGivenFeedback: {
+                    text: this.givenFeedback.toString()
+                }
+            })
+        },
         async removeMetaFilterArg(id) {
             await this.sessionApi.sessionMetafiltervalueDestroy({
                 sessionPk: this.session.resultId,

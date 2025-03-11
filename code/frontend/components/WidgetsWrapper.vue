@@ -31,6 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <HTMLWidget v-if="widget.widgetType == 'HTMLWidget'" :widget="widget"/>
     <SessionVersionWidget v-if="widget.widgetType == 'SessionVersionWidget'" :widget="widget"/>
     <MetaFilterWidget v-if="widget.widgetType == 'MetaFilterWidget'" :widget="widget"/>
+    <FeedbackWidget v-if="widget.widgetType == 'FeedbackWidget'" :widget="widget"/>
+    
     </div>
   </div>
 </template>
@@ -44,6 +46,7 @@ import ResultShareWidget from "./widgets/ResultShareWidget.vue";
 import HTMLWidget from "./widgets/HTMLWidget.vue";
 import SessionVersionWidget from "./widgets/SessionVersionWidget.vue";
 import MetaFilterWidget from "./widgets/MetaFilterWidget.vue";
+import FeedbackWidget from "./widgets/FeedbackWidget.vue";
 
 interface WidgetWrapperProps {
   row: Number;
