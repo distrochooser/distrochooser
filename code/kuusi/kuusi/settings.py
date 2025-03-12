@@ -135,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # This is only relevant for the admin dashboard (if enabled)
 LANGUAGE_CODE = "en-us"
 
-LANGUAGES = [
+AVAILABLE_LANGUAGES = [
     ("ger", "Deutsch"),
     ("eng", "English"),
     ("aze", "Azerbaijani"),

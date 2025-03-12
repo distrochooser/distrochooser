@@ -25,7 +25,7 @@ from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
                                    extend_schema)
 from kuusi.settings import (FRONTEND_URL, KUUSI_ICON,
                             KUUSI_LOGO, KUUSI_META_TAGS, KUUSI_NAME,
-                            LANGUAGES, RTL_LANGUAGES, SESSION_NUMBER_OFFSET, IMPRINT, PRIVACY, DEFAULT_LANGUAGE_CODE)
+                            AVAILABLE_LANGUAGES, RTL_LANGUAGES, SESSION_NUMBER_OFFSET, IMPRINT, PRIVACY, DEFAULT_LANGUAGE_CODE)
 from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
@@ -36,7 +36,7 @@ from web.models.translateable import get_translation_haystack
 
 def is_language_present(lang):
     found_lang = False
-    for lang_tuple in LANGUAGES:
+    for lang_tuple in AVAILABLE_LANGUAGES:
         lang_key = lang_tuple[0]
         if lang_key== lang:
             found_lang = True
@@ -53,7 +53,7 @@ class MetaTagsSerializer(serializers.Serializer):
 
     def get_language_codes(self, _: None) -> Dict[str, str]:
         result = {}
-        for lang in LANGUAGES:
+        for lang in AVAILABLE_LANGUAGES:
             result[lang[0]] = lang[1]
         return result
 

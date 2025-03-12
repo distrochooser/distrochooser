@@ -15,7 +15,7 @@
 |DEBUG|Disable in production|
 |ALLOWED_HOSTS|Required in case your application runs behind a reverse proxy -> needs accessing domain entry then|
 |ENABLE_PROFILING|Enables or disables Silk module. Disable in production|
-|LANGUAGES|A list of tuples of available languages `(<iso-639-3-code>, Display text)`|
+|AVAILABLE_LANGUAGES|A list of tuples of available languages `(<iso-639-3-code>, Display text)`|
 |RTL_LANGUAGES|A list of language codes (iso-639-3) considered right-to-left|
 |FRONTEND_URL|The URL without trailing slash representing the frontend URL|
 |KUUSI_NAME|The name of the application. Will be used e. g. in OGP tags and the frontend|

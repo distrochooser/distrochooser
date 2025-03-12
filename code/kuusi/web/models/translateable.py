@@ -35,7 +35,7 @@ logger = getLogger("root")
 
 from kuusi.settings import (
     LOCALE_PATHS,
-    LANGUAGES,
+    AVAILABLE_LANGUAGES,
     DEFAULT_LANGUAGE_CODE
 )
 
@@ -91,7 +91,7 @@ class TranslateableField(models.CharField):
         return super().pre_save(model_instance, add)
 
     def update_json(self, model_type: str, msg_id: str):
-        for locale in LANGUAGES:
+        for locale in AVAILABLE_LANGUAGES:
             lowercase_locale = locale[0].lower()
             lowercase_model_type =model_type.lower()
             path = join(LOCALE_PATHS[0], f"{lowercase_model_type}-{lowercase_locale}.json")
