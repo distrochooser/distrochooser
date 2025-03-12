@@ -18,17 +18,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div>
     <form>
-      <div class="mb-3">
-        <label for="edition" class="form-label">
-
-          <LanguageTranslation translation-key="questionaire-edition" />
+      <div class="form-check">
+        <input class="form-check-input" v-model="selection"  :checked='selection == null' type="radio" :value="null" name="flexRadioDefault" id="version_default">
+        <label class="form-check-label" for="version_default">
+          <LanguageTranslation translation-key="full-version" />
         </label>
-        <select v-model="selection" class="form-select" id="edition">
-          <option :value="null">{{fullVersionText}}</option>
-          <option :value="version.id" v-for="version, index in props.widget.versions" :key="index">
-            {{ version.text }}
-          </option>
-        </select>
+      </div>
+      <div class="form-check" v-for="version, index in props.widget.versions" :key="index">
+        <input v-model="selection"  :checked='selection == version.id' class="form-check-input" :value="version.id" type="radio" name="flexRadioDefault" :id="'version_' +version.id">
+        <label class="form-check-label" :for="'version_' +version.id">
+          {{ version.text }}
+        </label>
       </div>
     </form>
   </div>
@@ -44,10 +44,8 @@ interface WidgetProps {
 }
 
 const props = defineProps<WidgetProps>();
-const selection = ref(null)
 const store = useSessionStore();
-
-const fullVersionText = computed(() => store.session && typeof store.session.languageValues["full-version"] !== "undefined" ? store.session.languageValues["full-version"] : "full-version")
+const selection = ref(store.session ? store.session.version : null)
 
 watch(selection, value => {
   if (store.session) {

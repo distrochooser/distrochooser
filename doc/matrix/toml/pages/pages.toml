@@ -19,6 +19,7 @@
 can_be_marked = false
 next_page = "version-page"
 hide_text = true
+hide_help = true
 
 [widget.html.welcome-page-widget-name]
 template = "welcomeHTML"

@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import LanguageSuggestion from '../../LanguageSuggestion.vue';
 
 </script>
 
 <template>
+    
+    <p>
+        <LanguageTranslation translation-key="DESCRIPTION_TEXT" />
+    </p>
     <ul class="list-group mt-2">
         <li class="list-group-item">
             <Icon class="text-muted me-1" name="ion:play-skip-forward-outline"></Icon>
