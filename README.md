@@ -23,11 +23,11 @@ The Distrochooser is a service to help Linux beginners to orientate. The service
 
 ## Building locally
 
-See SETUP.md
+See doc/SETUP.md
 
 ## How to provide distribution mappings?
 
-See HOW-TO-MAP.md
+See doc/HOW-TO-MAP.md
 
 ## License
 
