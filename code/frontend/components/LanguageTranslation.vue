@@ -10,16 +10,16 @@
       <div class="card-text">
 
           <ul class="list-group col">
-            <li class="list-group-item"><span class="badge text-bg-light me-2">{{sessionStore.session.defaultLanguage}}</span>{{
+            <li class="list-group-item fs-6"><span class="badge text-bg-light me-2">{{sessionStore.session.defaultLanguage}}</span>{{
               sessionStore.session.defaultLanguageValues[props.translationKey] ?? props.translationKey }} </li>
             <li class="list-group-item text-center fs-3 pt-2">
               <Icon name="ion:arrow-down-sharp"></Icon>
             </li>
-            <li class="list-group-item"><span class="badge text-bg-dark me-2">{{ sessionStore.session.languageCode
+            <li class="list-group-item fs-6"><span class="badge text-bg-dark me-2">{{ sessionStore.session.languageCode
                 }}</span> {{ computedValue }}</li>
           </ul>
         <form class="g-3 mt-3">
-          <h5 class="card-title mb-3">
+          <h5 class="card-title mb-3"  v-if="proposals.length > 0">
             Other user suggestions
           </h5>
           <ul class="list-group list-group">
@@ -39,7 +39,7 @@
           <h5 class="card-title mb-3 mt-3">
            Your suggestions
           </h5>
-          <textarea rows="8" class="form-control" v-on:click.prevent.stop="() => { }"
+          <textarea rows="2" class="form-control" v-on:click.prevent.stop="() => { }"
             v-on:change="provideFeedback">{{ computedValue }}</textarea>
 
         </form>
@@ -114,7 +114,7 @@ watch(computedValue, value => {
 }
 .translation-window {
   position: fixed;
-  top: 25%;
+  top: 5%;
   left: 33%;
   width: 33%;
 }
