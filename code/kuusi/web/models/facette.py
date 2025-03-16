@@ -205,8 +205,8 @@ class FacetteAssignment(Translateable):
             The calculation is located here to allow the assignment types to be extended without altering major parts of the code.
             """
             score_map = {
-                FacetteAssignment.AssignmentType.POSITIVE: 1,
-                FacetteAssignment.AssignmentType.NEGATIVE: -1,
+                FacetteAssignment.AssignmentType.POSITIVE: 1.2,
+                FacetteAssignment.AssignmentType.NEGATIVE: -0.9,
                 FacetteAssignment.AssignmentType.NEUTRAL: 0,
                 FacetteAssignment.AssignmentType.BLOCKING: -100,
             }
