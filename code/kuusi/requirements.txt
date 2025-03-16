@@ -19,3 +19,5 @@ sqlparse==0.5.0
 termcolor==2.4.0
 tzdata==2024.2
 user-agents==2.2.0
+requests==2.32.3
+langcodes==3.5.0

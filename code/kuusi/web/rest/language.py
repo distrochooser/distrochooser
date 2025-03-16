@@ -31,6 +31,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from web.models import LanguageFeedback, LanguageFeedbackVote, Session
 from web.rest.languagevote import LanguageFeedbackVoteSerializer
+from web.rest.hooks import fire_hook
 
 
 class CreateLanguageFeedbackSerializer(serializers.ModelSerializer):
@@ -118,6 +119,8 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
             language_key=language_key, value=value, session=session
         )
         result.save()
+
+        fire_hook(f"{language_key} ➡️ {session.language_code} ➡️ {value}", session, "🗣️ Language suggestion", 	2420928)
 
         serializer = LanguageFeedbackSerializer(result)
 

@@ -25,6 +25,7 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from web.models import GivenFeedback, Session
+from web.rest.hooks import fire_hook
 
 
 class CreateGivenFeedbackSerializer(serializers.ModelSerializer):
@@ -66,6 +67,8 @@ class GivenFeedbackViewset(GenericViewSet):
             text=text
         )
         result.save()
+
+        fire_hook(text, session, "💬 Text Feedback", 15545396)
 
         serializer = GivenFeedbackSerializer(
             result

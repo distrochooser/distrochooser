@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 from web.models import Facette, Session, FacetteAssignment, Choosable, Feedback, AssignmentFeedback
+from web.rest.hooks import fire_hook
 from rest_framework import serializers
 from drf_spectacular.utils import  extend_schema, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
@@ -117,6 +118,7 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
             session=session
         )
         result.save()
+        fire_hook(f"[{assignment_obj}]: {assignment_obj.__('long_description')}", session,  f"{'👍' if is_positive else '👎'} Assignment vote", 15762475)
         # Clear the cache that has might been created previously
         cache_key = f"facetteassignment-{assignment_obj.pk}-votes"
         cache.delete(cache_key)
@@ -194,13 +196,18 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
                 origin=origin,
                 is_positive=is_positive
             ).delete()
+        assignment = FacetteAssignment.objects.filter(pk=assignment).first()
+        choosable_obj = Choosable.objects.filter(pk=choosable).first()
         result = Feedback(
-            choosable=Choosable.objects.filter(pk=choosable).first(),
-            assignment=FacetteAssignment.objects.filter(pk=assignment).first(),
+            choosable=choosable_obj,
+            assignment=assignment,
             is_positive=is_positive,
             session=session
         )
         result.save()
+
+
+        fire_hook(f"{choosable_obj.__('name')}@{assignment.__('long_description')}", session,  f"{'👍' if is_positive else '👎'} Choosable feedback vote", 	15864269)
 
         serializer = FeedbackSerializer(
             result
