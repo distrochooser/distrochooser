@@ -30,6 +30,6 @@ $orange: #fd7e14;
 
 $unmarkedPage: rgb(156, 156, 156);
 $weightMoreColor: $primary;
-$weightLessColor: lighten($primary, 60);
+$weightLessColor: color.adjust($primary, $lightness: 60%);
 $weightBadgeFontColor: white;
 $missingLanguageColor: $red;
