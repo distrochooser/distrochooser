@@ -16,7 +16,12 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div :class="{ 'a11y-larger-text': store.fontSizeModifier == 5, 'text-center mt-3 border-top pt-3 ': true }">
+  <div class="row border-top pt-3 ">
+    <span v-if="willBeEmpty" class="ms-2 badge rounded-pill text-bg-warning">
+        <LanguageTranslation translation-key="RESULT_WILL_BE_EMPTY" />
+    </span>
+  </div>
+  <div :class="{ 'a11y-larger-text': store.fontSizeModifier == 5, 'text-center mt-3 ': true }">
     <div class="btn-group" role="group">
       <a v-if="store.currentPage.canBeMarked" href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
         <LanguageTranslation :translation-key="!isMarked ? 'BTN_MARK' : 'BTN_UNMARK'" />
@@ -57,6 +62,7 @@ const goBack = () => {
     );
   }
 }
+const willBeEmpty = computed(() => (store.metaValues.length + store.facetteSelections.length) == 0 && typeof store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) + 2] == 'undefined')
 const goNext = () => {
   if (!store.isTranslating) {
     store.selectPage(
