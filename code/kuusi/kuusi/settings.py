@@ -254,3 +254,5 @@ bla
 """
 
 PRIVACY = LEGAL_TEXT
+
+DISCORD_HOOK = ""
