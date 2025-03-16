@@ -67,7 +67,9 @@ const goNext = () => {
 }
 
 const toggleMarking = async () => {
-  store.toggleMarking()
+  if (!store.isTranslating) {
+    store.toggleMarking()
+  }
 }
 
 const isMarked = computed(() => {
