@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="col">
         <input :id="'importance-'+ props.facette.id" type="range" v-model="weight" min="-2" max="2" step="1" class="align-middle"  v-on:change="registerWeightChange" />
       </div>
-      <Icon class="col fs-2 more-weight-icon" name="ion:alert-circle-sharp"></Icon>
+      <Icon class="col fs-2 more-weight-icon" name="ion:chevron-up-circle-sharp"></Icon>
     </div>
   </div>
 
