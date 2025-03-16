@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div :class="{'a11y-larger-text': store.fontSizeModifier == 5, 'text-center mt-3 border-top pt-3 ': true}">
+  <div :class="{ 'a11y-larger-text': store.fontSizeModifier == 5, 'text-center mt-3 border-top pt-3 ': true }">
     <div class="btn-group" role="group">
       <a v-if="store.currentPage.canBeMarked" href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
         <LanguageTranslation :translation-key="!isMarked ? 'BTN_MARK' : 'BTN_UNMARK'" />
@@ -49,16 +49,22 @@ const canGoBack = computed(() => {
   const index = store.pages.findIndex((p) => p.id == store.currentPage.id);
   return index > 0;
 });
-const goBack = () =>
-  store.selectPage(
-    store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) - 1]
-      .id
-  );
-const goNext = () =>
-  store.selectPage(
-    store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) + 1]
-      .id
-  );
+const goBack = () => {
+  if (!store.isTranslating) {
+    store.selectPage(
+      store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) - 1]
+        .id
+    );
+  }
+}
+const goNext = () => {
+  if (!store.isTranslating) {
+    store.selectPage(
+      store.pages[store.pages.findIndex((p) => p.id == store.currentPage.id) + 1]
+        .id
+    );
+  }
+}
 
 const toggleMarking = async () => {
   store.toggleMarking()
