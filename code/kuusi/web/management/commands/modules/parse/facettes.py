@@ -23,19 +23,35 @@ from logging import getLogger
 logger = getLogger('command') 
 def create_facettes(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[Facette]:
     got = []
-
+    Facette.objects.all().update(
+        is_invalidated = True
+    )
     for element, data in haystack.items():
+        existing_facette = Facette.objects.filter(catalogue_id=element)
         new_facette = Facette(
             catalogue_id = element,
-            topic = data["topic"]
+            topic = data["topic"],
+            is_invalidated=False
         )
+
+        if existing_facette.count() != 0:
+            new_facette.pk = existing_facette.first().pk
+            logger.info(f"There is a facette with catalogue_id={element}. Re-Using PK.")
 
         new_facette.save()
         got.append(new_facette)
+    
+    # delete old, unused ones
+    objects = Facette.objects.filter(is_invalidated=True)
+    logger.info(f"Removing {objects.count()} orphan facettess.")
+    objects.delete()
     return got
 
 def create_facette_behaviours(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[FacetteBehaviour]:
     got = []
+
+    # We won't preserve behaviours.
+    FacetteBehaviour.objects.all().delete()
 
     for element, data in haystack.items():
         new_behaviour = FacetteBehaviour(

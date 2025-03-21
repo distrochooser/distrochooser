@@ -30,7 +30,6 @@ def create_pages(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> 
         
         # Create the stub pages in the first loop
         for catalogue_id, properties in haystack.items():
-            logger.info(f"Current: {catalogue_id}")
             new_page = Page(
                 catalogue_id = catalogue_id,
                 can_be_marked = get_or_default("can_be_marked", properties),
@@ -48,7 +47,6 @@ def create_pages(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> 
             # Only assign a next page if there is one
             next_catalogue_id = properties["next_page"] if "next_page" in properties else None
             if next_catalogue_id:
-                logger.info(f"Trying to assign next page from {next_catalogue_id} to {page}")
                 page.next_page =  Page.objects.get(catalogue_id=next_catalogue_id)
             not_in_versions = get_or_default("not_in_versions", properties)
 

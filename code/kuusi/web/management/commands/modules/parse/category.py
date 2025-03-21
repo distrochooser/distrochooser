@@ -29,8 +29,6 @@ def create_categories(get_or_default: Callable[[str, Dict], any], haystack: Dict
     """
     got = []
     for catalogue_id, properties in haystack.items():
-        logger.info(f"Current: {catalogue_id}")
-        
         new_category = Category(
             catalogue_id=catalogue_id, # preserve the catalogue id for translation purposes to uniquely identify the translateable field
             name=catalogue_id,

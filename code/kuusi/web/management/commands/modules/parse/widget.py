@@ -47,8 +47,7 @@ def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -
 
     for key, widget_class in key_map.items():
         elements = haystack[key]
-        for type_id, properties in elements.items():
-            logger.debug(f"Current widget: {type_id}")
+        for _, properties in elements.items():
             new_widget: Widget = widget_class(
                 row = get_or_default("row", properties),
                 col = get_or_default("col", properties),

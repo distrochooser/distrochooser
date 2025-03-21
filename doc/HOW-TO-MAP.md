@@ -127,9 +127,7 @@ If your assingment(s) `long_description` fields are not already present within t
 
 Step 5: **Test your changes**
 
-Use the command `python manage.py parse ../../doc/matrix/toml/matrix.toml --wipe` to reimport everything. It is recommended to use the `--wipe` flag, as this will clear the database before importing.
-
-> If you have empty screens after importing, clear the session cookie in the browser.
+Use the command `python manage.py parse ../../doc/matrix/toml/matrix.toml` to reimport everything.
 
 Step 6: **All good? Commit them**
 

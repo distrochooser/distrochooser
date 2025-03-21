@@ -23,7 +23,11 @@ from logging import getLogger
 logger = getLogger('command') 
 def create_choosables(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[Choosable]:
     got = []
-
+    # Meta will just be re-created
+    ChoosableMeta.objects.all().delete()
+    Choosable.objects.all().update(
+        is_invalidated=True
+    )
     for element in haystack:
         catalogue_id = element["catalogue_id"]
 
@@ -31,9 +35,19 @@ def create_choosables(get_or_default: Callable[[str, Dict], any], haystack: Dict
             catalogue_id = catalogue_id,
             name = catalogue_id,
             fg_color = get_or_default("fg_color", element),
-            bg_color = get_or_default("bg_color", element)
+            bg_color = get_or_default("bg_color", element),
+            is_invalidated=False
         )
+
+        existing_choosables = Choosable.objects.filter(
+            catalogue_id = catalogue_id
+        )
+        if existing_choosables.count() != 0:
+            new_choosable.pk = existing_choosables.first().pk
+            logger.info(f"There is already a choosable with catalogue_id={catalogue_id}. Re-Using PK.")
+
         new_choosable.save()
+        
         # Only assign meta values if there are any
         if "meta" in element:
             for meta in element["meta"]:
@@ -47,4 +61,9 @@ def create_choosables(get_or_default: Callable[[str, Dict], any], haystack: Dict
                 new_choosable_meta.save()
 
         got.append(new_choosable)
+    
+    # delete old, unused ones
+    objects = Choosable.objects.filter(is_invalidated=True)
+    logger.info(f"Removing {objects.count()} orphan choosables")
+    objects.delete()
     return got

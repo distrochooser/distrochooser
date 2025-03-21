@@ -24,7 +24,7 @@ from tomllib import loads
 from typing import Dict, List
 
 
-from web.models import TranslateableFieldRecord, Widget, Facette, Category, FacetteAssignment, Choosable, FacetteSelection, Page, SessionVersion
+from web.models import TranslateableFieldRecord, Widget, Facette, Category, FacetteAssignment, Choosable, FacetteBehaviour, Page, SessionVersion
 from web.management.commands.modules.parse import create_version, create_pages, create_categories, create_widgets, create_choosables, create_facettes, create_facette_behaviours, create_assignments
 
 from logging import getLogger, ERROR
@@ -36,21 +36,6 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("file_path", type=str)
-        parser.add_argument("--wipe",action='store_true', default=False)
-
-    def wipe_records(self):
-        """
-        Removes all content from the database
-        """
-        Choosable.objects.all().delete()
-        Facette.objects.all().delete()
-        FacetteSelection.objects.all().delete()
-        FacetteAssignment.objects.all().delete()
-        Category.objects.all().delete()
-        Page.objects.all().delete()
-        Widget.objects.all().delete()
-        SessionVersion.objects.all().delete()
-        TranslateableFieldRecord.objects.all().delete()
 
     def resolve(self, file_path: str) -> str:
         """
@@ -75,8 +60,6 @@ class Command(BaseCommand):
         return content
 
     def handle(self, *args, **options):
-        if options["wipe"]:
-            self.wipe_records()
         
         file_path = options["file_path"]
         
@@ -98,24 +81,42 @@ class Command(BaseCommand):
         # 5: Choosables
         # 6: Facettes
         # 7: Assignments
-        new_versions = create_version(self.get_or_default, parsed_toml["version"])
+        
+        # This components have no binding towards the result -> just delete them and start over
+        Page.objects.all().delete()
+        Category.objects.all().delete()
+        Widget.objects.all().delete()
         new_pages = create_pages(self.get_or_default, parsed_toml["page"])
         new_categories = create_categories(self.get_or_default, parsed_toml["category"])
         new_widgets = create_widgets(self.get_or_default, parsed_toml["widget"])
+
+        # Versions are bound to results and sessions -> do "light" recreation only
+        new_versions = create_version(self.get_or_default, parsed_toml["version"])
+
+        # Choosables will be re-used, if possible
         new_choosables = create_choosables(self.get_or_default, parsed_toml["choosable"])
+
+        # facettes will be re-used, if possible
         new_facettes = create_facettes(self.get_or_default, parsed_toml["facette"])
+
+        # Assignments will attempt re-use
         new_assignments = create_assignments(self.get_or_default, parsed_toml["assignment"])
+
+        # Behaviours will be wiped upon running this method
         new_behaviours = create_facette_behaviours(self.get_or_default, parsed_toml["behaviour"])
 
+
+        logger.info("")
         logger.info(f"Summary for file {file_path}")
-        logger.info(f"Created {len(new_versions)} versions")
-        logger.info(f"Created {len(new_pages)} pages")
-        logger.info(f"Created {len(new_categories)} categories")
-        logger.info(f"Created {len(new_widgets)} widgets")
-        logger.info(f"Created {len(new_choosables)} choosables")
-        logger.info(f"Created {len(new_facettes)} facettes")
-        logger.info(f"Created {len(new_assignments)} assignments")
-        logger.info(f"Created {len(new_behaviours)} behaviours")
+        logger.info("")
+        logger.info(f"Created/ updated {len(new_versions)} versions. In DB={SessionVersion.objects.all().count()}")
+        logger.info(f"Created/ updated {len(new_pages)} pages. In DB={Page.objects.all().count()}")
+        logger.info(f"Created/ updated {len(new_categories)} categories. In DB={Category.objects.all().count()}")
+        logger.info(f"Created/ updated {len(new_widgets)} widgets. In DB={Widget.objects.all().count()}")
+        logger.info(f"Created/ updated {len(new_choosables)} choosables. In DB={Choosable.objects.all().count()}")
+        logger.info(f"Created/ updated {len(new_facettes)} facettes. In DB={Facette.objects.all().count()}")
+        logger.info(f"Created/ updated {len(new_assignments)} assignments. In DB={FacetteAssignment.objects.all().count()}")
+        logger.info(f"Created/ updated {len(new_behaviours)} behaviours. In DB={FacetteBehaviour.objects.all().count()}")
         
         
         
