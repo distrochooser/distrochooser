@@ -39,6 +39,9 @@ class Command(BaseCommand):
         parser.add_argument("--persist", action="store_true", default=False)
 
     def update_locale_files(lang_code, lang_key, lang_value):
+        lang_code = lang_code.strip()
+        lang_key = lang_key.strip()
+        lang_value = lang_value.strip()
         target_path = LOCALE_PATHS[0]
         files = listdir(target_path)
 

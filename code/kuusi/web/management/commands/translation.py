@@ -15,17 +15,16 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
+from typing import List, Tuple
 from genericpath import exists
-from json import dumps, loads
-from os import listdir, linesep, unlink
+from os import linesep, unlink
 from web.models import TRANSLATIONS
 from web.management.commands.language import Command as LanguageCommand
 from django.core.management.base import BaseCommand 
-from logging import getLogger, ERROR
+from logging import getLogger
 from os.path import join
-from kuusi.settings import LOCALE_PATHS, AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_CODE
-from termcolor import colored, COLORS
+from kuusi.settings import  AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_CODE
+from termcolor import colored
 logger = getLogger("command")
 
 
@@ -36,24 +35,46 @@ class Command(BaseCommand):
         parser.add_argument("lang_code",  type=str)
         parser.add_argument("path", type=str)
         parser.add_argument("--read", action="store_true", default=False)
+        parser.add_argument("--dry_run", action="store_true", default=False)
 
     def dump(self, path: str, wanted_lang: str):
         for lang in AVAILABLE_LANGUAGES:
             lang_code = lang[0]
             if lang_code != DEFAULT_LANGUAGE_CODE and lang_code == wanted_lang:
-                missing = []
-                for key, value in TRANSLATIONS[lang_code].items():
-
-                    default_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][key]
-                    if  default_value is not None  and value == None:
-                        missing.append(default_value + linesep)
+                _, missing= self.get_missing_values(lang_code)
                 
                 lang_path = join(path, f"{lang_code}.txt")
                 logger.info(f"Locale {colored(lang_code, 'magenta')} has {colored(len(missing), 'red')} missing values.")
-                with open(lang_path, "w") as file:
-                    file.writelines(missing)
+                if len(missing) != 0:
+                    with open(lang_path, "w") as file:
+                        file.writelines(missing)
+                else:
+                    logger.info("Not creating a file")
+    
+    def get_missing_values(self, lang_code) -> Tuple[List[str], List[str]]:
+        missing = []
+        missing_key = []
+        for key, default_value in TRANSLATIONS[DEFAULT_LANGUAGE_CODE].items():
+            if "-name" not in key: # Avoid translating names
+                lang_value = TRANSLATIONS[lang_code][key] if key in TRANSLATIONS[lang_code] else None
+                if lang_value is not None:
+                    lang_value = lang_value.strip()
+                value = f"{lang_value}\n"
 
-    def read(self, path: str, wanted_lang: str):
+                if  default_value is not None  and lang_value == default_value and len(value) != "":
+                    missing.append(value)
+                    missing_key.append(key)
+
+                if default_value is not None and lang_value is None:
+                    default_replacement = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][key].strip()
+                    value = f"{default_replacement}\n"
+                    missing.append(value)
+                    missing_key.append(key)
+            
+        return missing_key, missing
+
+
+    def read(self, path: str, wanted_lang: str, dry_run: bool=False):
         for lang in AVAILABLE_LANGUAGES:
             lang_code = lang[0]
             if lang_code != DEFAULT_LANGUAGE_CODE and wanted_lang == lang_code:
@@ -62,26 +83,28 @@ class Command(BaseCommand):
                     lines = open(full_path, "r").readlines()
                     lines = [l.replace("\n","") for l in lines]
 
-                    missing = []
-                    for key, value in TRANSLATIONS[lang_code].items():
-                        default_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][key]
-                        if  default_value is not None  and value == None:
-                            missing.append(key)
+                    missing_key, missing = self.get_missing_values(lang_code)
+
                     if len(missing) != len(lines):
                         logger.error(f"Mismatch of keys and values ({colored(len(missing), 'red')}vs{colored(len(lines), 'green')})")
                     else:
-                        for i in range(0, len(missing)):
-                            lang_key = missing[i]
+                        for i in range(0, len(missing_key)):
+                            lang_key = missing_key[i]
                             lang_value = lines[i]
-                            LanguageCommand.update_locale_files(lang_code, lang_key, lang_value)
-                        unlink(full_path)
+                            if not dry_run:
+                                LanguageCommand.update_locale_files(lang_code, lang_key, lang_value)
+                            else:
+                                logger.debug(f"Would update as following: {lang_key} -> {lang_value}")
+                        if not dry_run:
+                            unlink(full_path)
 
 
     def handle(self, *args, **options):
         path = options["path"]
         read = options["read"]
         lang = options["lang_code"]
+        dry_run = options["dry_run"]
         if not read:
             self.dump(path, lang)
         else:
-            self.read(path, lang)
+            self.read(path, lang, dry_run)
