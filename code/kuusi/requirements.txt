@@ -11,7 +11,7 @@ djangorestframework==3.15.2
 drf-nested-routers==0.94.1
 drf-spectacular==0.28.0
 drf-spectacular-sidecar==2024.12.1
-gunicorn==22.0.0
+gunicorn==23.0.0
 python-dateutil==2.9.0.post0
 pytz==2024.2
 PyYAML==6.0.2
