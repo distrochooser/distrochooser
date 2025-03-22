@@ -11,7 +11,7 @@ updated during runtime.
 There is the command `translation` to export and import locale values for external translation. It can be called with `python manage.py language <lang_code> <path>`. Invoking this command will create a file `lang_code.txt`  in `path`.
 The content can be used in external api's for translation. To read this, drop the translated content into the file again (make sure line amount and order matches) and execute:
 
-`python manage.py language <lang_code> <path> --read`. The file will be read, the locales be updated an the txt file will be removed.
+`python manage.py language <lang_code> <path> --read`. The file will be read, the locales be updated an the txt file will be removed. There is the option for a dry run without altering files (`--dry_run`). 
 
 🚨 Do not approve or change language values between drop and read of these txt files. Otherwise you will mess up with the ordering.
 
