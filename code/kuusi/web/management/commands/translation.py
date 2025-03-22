@@ -84,8 +84,7 @@ class Command(BaseCommand):
                     lines = [l.replace("\n","") for l in lines]
 
                     missing_key, missing = self.get_missing_values(lang_code)
-
-                    if len(missing) != len(lines):
+                    if len(missing_key) != len(lines):
                         logger.error(f"Mismatch of keys and values ({colored(len(missing), 'red')}vs{colored(len(lines), 'green')})")
                     else:
                         for i in range(0, len(missing_key)):
