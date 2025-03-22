@@ -38,6 +38,45 @@ class Command(BaseCommand):
         parser.add_argument("--clear", action="store_true", default=False)
         parser.add_argument("--persist", action="store_true", default=False)
 
+    def update_locale_files(lang_code, lang_key, lang_value):
+        target_path = LOCALE_PATHS[0]
+        files = listdir(target_path)
+
+        was_found = False
+        for file in files:
+            needs_update = False
+            if file.endswith("json") and file.endswith(
+                f"-{lang_code}.json"
+            ):
+                old_data = {}
+                json_path = join(target_path, file)
+                if exists(json_path):
+                    old_data = loads(open(json_path, "r").read())
+                if lang_key in old_data:
+                    needs_update = True
+                    was_found = True
+                    old_data[lang_key] = lang_value
+
+                if needs_update:
+                    print(f"File {json_path} will be updated")
+                    with open(json_path, "w") as file:
+                        file.write(dumps(old_data))
+
+        if not was_found:
+            # Create and update the additional-<lang code>.json if needed
+            print(f"The value {lang_key} was not found. Putting it into additional json file")
+            old_data = {}
+            json_path = join(target_path, f"additional-{lang_code}.json")
+            if exists(json_path):
+                old_data = loads(open(json_path, "r").read())
+            old_data[lang_key] = lang_value
+
+            print(f"File {json_path} will be updated")
+            with open(json_path, "w") as file:
+                file.write(dumps(old_data))
+            
+
+
     def handle(self, *args, **options):
         lang_code = options["lang_code"]
         to_delete = options["delete"]
@@ -66,45 +105,9 @@ class Command(BaseCommand):
             )
 
         if to_persist is not None:
-            target_path = LOCALE_PATHS[0]
-            files = listdir(target_path)
-
             for element in data:
-                was_found = False
                 if element.is_approved:
-                    for file in files:
-                        needs_update = False
-                        if file.endswith("json") and file.endswith(
-                            f"-{lang_code}.json"
-                        ):
-                            old_data = {}
-                            json_path = join(target_path, file)
-                            if exists(json_path):
-                                old_data = loads(open(json_path, "r").read())
-                            if element.language_key in old_data:
-                                needs_update = True
-                                was_found = True
-                                old_data[element.language_key] = element.value
-
-                            if needs_update:
-                                print(f"File {json_path} will be updated")
-                                with open(json_path, "w") as file:
-                                    file.write(dumps(old_data))
-
-                    if not was_found:
-                        # Create and update the additional-<lang code>.json if needed
-                        print(f"The value {element.language_key} was not found. Putting it into additional json file")
-                        # TODO: Put this and above into function
-                        old_data = {}
-                        json_path = join(target_path, f"additional-{lang_code}.json")
-                        if exists(json_path):
-                            old_data = loads(open(json_path, "r").read())
-                        old_data[element.language_key] = element.value
-
-                        print(f"File {json_path} will be updated")
-                        with open(json_path, "w") as file:
-                            file.write(dumps(old_data))
-                    
+                    Command.update_locale_files(lang_code, element.language_key, element.value)
                     element.delete()
 
 
