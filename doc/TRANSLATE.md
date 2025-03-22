@@ -6,6 +6,15 @@ The application stores all translation inside of *.json files inside of the firs
 All files follow the format `<scope>-<iso-639-3>.json`. Translations can be updated using the JSON files or can be
 updated during runtime.
 
+## Third party translation.
+
+There is the command `translation` to export and import locale values for external translation. It can be called with `python manage.py language <lang_code> <path>`. Invoking this command will create a file `lang_code.txt`  in `path`.
+The content can be used in external api's for translation. To read this, drop the translated content into the file again (make sure line amount and order matches) and execute:
+
+`python manage.py language <lang_code> <path> --read`. The file will be read, the locales be updated an the txt file will be removed.
+
+🚨 Do not approve or change language values between drop and read of these txt files. Otherwise you will mess up with the ordering.
+
 ## Inline translate
 
 The app features a button, labelled with "help translation". This button triggers the mode to be able to change
