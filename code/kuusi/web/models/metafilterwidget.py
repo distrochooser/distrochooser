@@ -34,7 +34,8 @@ class MetaFilterWidgetElement:
     def get_func_map(self):
         func_map = {
             "filter_number_gt": self.filter_number_gt,
-            "filter_must_have_assignments": self.filter_must_have_assignments
+            "filter_must_have_assignments": self.filter_must_have_assignments,
+            "filter_must_match_language": self.filter_must_match_language
         }
         return func_map
     
@@ -42,11 +43,21 @@ class MetaFilterWidgetElement:
         if self.cell_func not in self.get_func_map():
             raise Exception(f"Function {self.cell_func} not found")
 
-    def apply_cell_func(self, obj: Choosable, value: any, collected_assignments: List[FacetteAssignment]) -> List[FacetteAssignment]:
+    def apply_cell_func(self, obj: Choosable, value: any, collected_assignments: List[FacetteAssignment], session: Session) -> List[FacetteAssignment]:
         method = self.get_func_map()[self.cell_func]
-        return method(obj, value, collected_assignments)
+        return method(obj, value, collected_assignments, session)
     
-    def filter_must_have_assignments(self, obj: Choosable, value: any, collected_assignments) -> FacetteAssignment:
+
+    def filter_must_match_language(self, obj: Choosable, value: any, collected_assignments, session: Session) -> FacetteAssignment:
+        matches = "LANGUAGES" in obj.meta and session.language_code in obj.meta["LANGUAGES"].meta_value
+        result = FacetteAssignment(
+            catalogue_id = f"{self.cell_name}-" + ("suitable" if matches else "not-suitable"),
+            long_description="suitable" if matches else "not-suitable",
+            assignment_type=FacetteAssignment.AssignmentType.POSITIVE if matches else FacetteAssignment.AssignmentType.NEGATIVE
+        )
+        return result
+    
+    def filter_must_have_assignments(self, obj: Choosable, value: any, collected_assignments, session) -> FacetteAssignment:
         if value == "true" and len(collected_assignments) == 0: # all meta filter values are strings, basically
             result = FacetteAssignment(
                 catalogue_id = f"{self.cell_name}-{obj.name}",
@@ -56,7 +67,7 @@ class MetaFilterWidgetElement:
             return result
         return None
     
-    def filter_number_gt(self, obj: Choosable, value: any, collected_assignments) -> FacetteAssignment:
+    def filter_number_gt(self, obj: Choosable, value: any, collected_assignments, session) -> FacetteAssignment:
         if "AGE" not in obj.meta:
             return None
         matches = int(obj.meta["AGE"].years_since) < int(value)
@@ -131,13 +142,13 @@ class MetaFilterWidget(Widget):
         cache.set(cache_key, obj)
         return obj
     
-    def get_virtual_assignments(self, meta_filter_values, choosables: List[Choosable], collected_assignments: Dict[int, List[FacetteAssignment]], score_map: Dict[int, Dict]):
+    def get_virtual_assignments(self, meta_filter_values, choosables: List[Choosable], collected_assignments: Dict[int, List[FacetteAssignment]], score_map: Dict[int, Dict], session: Session):
         structure = self.parsed_structure
         for stored_value in meta_filter_values:
             cell_obj =  structure.get_cell_from_structure(stored_value.key)
             stored_value_value = stored_value.value
             for choosable in choosables:
-                result = cell_obj.apply_cell_func(choosable, stored_value_value, collected_assignments)
+                result = cell_obj.apply_cell_func(choosable, stored_value_value, collected_assignments, session)
                 if result is not None:
                     if choosable.pk not in collected_assignments:
                         collected_assignments[choosable.pk] = []

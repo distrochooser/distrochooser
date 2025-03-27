@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from web.models import Choosable
+from web.models import Choosable, ChoosableMeta
 from rest_framework import serializers
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
@@ -41,9 +41,13 @@ class ChoosableSerializer(serializers.ModelSerializer):
     
     def get_meta(self, obj: Choosable) -> Dict[str, Any]:
         meta_values = obj.meta
+        new_meta = {}
         for key, value in meta_values.items():
-            meta_values[key] = value.meta_value
-        return meta_values
+            meta_type: str =  str(value.meta_type)
+            meta_value: str = str(value.meta_value)
+            if meta_type !=  ChoosableMeta.MetaType.HIDDEN:
+                new_meta[key] =  meta_value
+        return new_meta
     
     def get_display_name(self, obj: Choosable) -> str:
         return obj.get_msgd_id_of_field("name")

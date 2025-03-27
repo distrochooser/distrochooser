@@ -66,6 +66,7 @@ class ChoosableMeta(Translateable):
         TEXT = "TEXT", "TEXT"
         FLAG = "FLAG", "FLAG"
         LINK = "LINK", "LINK"
+        HIDDEN = "HIDDEN", "HIDDEN"
         DATE = "DATE", "DATE"
 
     class MetaName(models.TextChoices):
@@ -73,6 +74,7 @@ class ChoosableMeta(Translateable):
         COUNTRY = "COUNTRY",  _("COUNTRY")
         LICENSES = "LICENSES",  _("LICENSES")
         WEBSITE = "WEBSITE",  _("WEBSITE")
+        LANGUAGES = "LANGUAGES", _("LANGUAGES")
 
     meta_type = models.CharField(
         max_length=20, choices=MetaType.choices, default=MetaType.TEXT

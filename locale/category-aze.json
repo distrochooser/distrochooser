@@ -1,1 +1,19 @@
-{"version-page-category-name": "Sor\u011fu n\u0259\u015fri", "welcome-page-category-name": "Xo\u015f g\u0259ldiniz!", "scenario-page-category-name": "Proqram T\u0259minat\u0131: \u0130stifad\u0259 s\u0259b\u0259biniz", "pc-knowledge-page-category-name": "Komp\u00fcter biliyiniz", "linux-knowledge-page-category-name": "Linux v\u0259 siz", "installation-page-category-name": "Qura\u015fd\u0131rma: Haz\u0131r Parametrl\u0259r", "old-hardware-category-name": "Aparat T\u0259minat\u0131 d\u0259st\u0259yi", "help-category-name": "K\u00f6m\u0259k \u00fc\u00e7\u00fcn m\u0259nb\u0259", "ux-category-name": "\u0130stifad\u0259\u00e7i t\u0259cr\u00fcb\u0259si", "pricing-category-name": "Paylanmalar (Distribution) : Qiym\u0259tl\u0259ndirilm\u0259", "scope-category-name": "Paylanmalar (Distribution) : \u018fhat\u0259 dair\u0259si", "ideology-category-name": "Paylanmalar (Distribution) : \u0130deologiya", "privacy-category-name": "Paylanmalar (Distribution) : M\u0259xfilik", "administration-category-name": "\u0130dar\u0259", "updates-category-name": "Proqram T\u0259minat\u0131: Yenil\u0259m\u0259l\u0259r", "result-category-name": "N\u0259tic\u0259l\u0259rinizi g\u00f6st\u0259rin", "personal-requirements-category-name": "\u015e\u0259xsi t\u00f6vsiy\u0259 t\u0259l\u0259bl\u0259ri"}
+{
+    "version-page-category-name": "Sor\u011fu n\u0259\u015fri",
+    "welcome-page-category-name": "Xo\u015f g\u0259ldiniz!",
+    "scenario-page-category-name": "Proqram T\u0259minat\u0131: \u0130stifad\u0259 s\u0259b\u0259biniz",
+    "pc-knowledge-page-category-name": "Komp\u00fcter biliyiniz",
+    "linux-knowledge-page-category-name": "Linux v\u0259 siz",
+    "installation-page-category-name": "Qura\u015fd\u0131rma: Haz\u0131r Parametrl\u0259r",
+    "old-hardware-category-name": "Aparat T\u0259minat\u0131 d\u0259st\u0259yi",
+    "help-category-name": "K\u00f6m\u0259k \u00fc\u00e7\u00fcn m\u0259nb\u0259",
+    "ux-category-name": "\u0130stifad\u0259\u00e7i t\u0259cr\u00fcb\u0259si",
+    "pricing-category-name": "Paylanmalar (Distribution) : Qiym\u0259tl\u0259ndirilm\u0259",
+    "scope-category-name": "Paylanmalar (Distribution) : \u018fhat\u0259 dair\u0259si",
+    "ideology-category-name": "Paylanmalar (Distribution) : \u0130deologiya",
+    "privacy-category-name": "Paylanmalar (Distribution) : M\u0259xfilik",
+    "administration-category-name": "\u0130dar\u0259",
+    "updates-category-name": "Proqram T\u0259minat\u0131: Yenil\u0259m\u0259l\u0259r",
+    "result-category-name": "N\u0259tic\u0259l\u0259rinizi g\u00f6st\u0259rin",
+    "personal-requirements-category-name": "\u015e\u0259xsi t\u00f6vsiy\u0259 t\u0259l\u0259bl\u0259ri"
+}

@@ -230,7 +230,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         if stored_meta_filter_values.count() > 0:
             # TODO: Introduce entry point for filtering
             for meta_filter_widget in meta_filter_widgets:
-                score_map, assignments_results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosables,  assignments_results, score_map)
+                score_map, assignments_results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosables,  assignments_results, score_map, session)
 
         results = []
         for choosable in choosables:
