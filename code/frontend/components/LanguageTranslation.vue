@@ -1,7 +1,7 @@
 <template>
   <span v-on:click="toggleEditing($event)"
     :class="{ 'needs-translation': sessionStore.isTranslating && isUntranslated, 'hover-translation': sessionStore.isTranslating }">
-    <span class="me-4">{{ computedValue }}</span>
+    <span>{{ computedValue }}</span>
     <span class="fs-6 top-0 start-100 translate-middle badge rounded-pill bg-warning translation-tooltip" v-if="sessionStore.isTranslating && proposals.length >0">
       <Icon name="ion:chatbubbles-sharp"></Icon> {{proposals.length}}
     </span>

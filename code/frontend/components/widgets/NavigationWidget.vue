@@ -24,13 +24,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div :class="{ 'a11y-larger-text': store.fontSizeModifier == 5, 'text-center mt-3 ': true }">
     <div class="btn-group" role="group">
       <a v-if="store.currentPage.canBeMarked" href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
+        <Icon class="align-middle" :name="isMarked ? 'ion:bookmark' : 'ion:bookmark-outline'"></Icon>
         <LanguageTranslation :translation-key="!isMarked ? 'BTN_MARK' : 'BTN_UNMARK'" />
       </a>
       <a v-if="canGoBack" class="btn btn-secondary" href="#" v-on:click="goBack">
+        <Icon class="align-middle" name="ion:caret-back-circle-sharp"></Icon>
         <LanguageTranslation translation-key="BTN_PREV_PAGE" />
       </a>
       <a v-if="canGoNext" href="#" class="btn btn-primary" v-on:click="goNext">
-        <LanguageTranslation translation-key="BTN_NEXT_PAGE" />
+        <LanguageTranslation translation-key="BTN_NEXT_PAGE"/>
+        <Icon class="align-middle ms-1" name="ion:chevron-forward-circle"></Icon>
       </a>
     </div>
   </div>
