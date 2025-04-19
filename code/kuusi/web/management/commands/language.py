@@ -63,7 +63,7 @@ class Command(BaseCommand):
                 if needs_update:
                     print(f"File {json_path} will be updated")
                     with open(json_path, "w") as file:
-                        file.write(dumps(old_data))
+                        file.write(dumps(old_data, ensure_ascii=False))
 
         if not was_found:
             # Create and update the additional-<lang code>.json if needed
@@ -76,7 +76,7 @@ class Command(BaseCommand):
 
             print(f"File {json_path} will be updated")
             with open(json_path, "w") as file:
-                file.write(dumps(old_data))
+                file.write(dumps(old_data, ensure_ascii=False))
             
 
 
