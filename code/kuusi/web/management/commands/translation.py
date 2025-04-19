@@ -56,7 +56,7 @@ class Command(BaseCommand):
         missing_key = []
         for key, default_value in TRANSLATIONS[DEFAULT_LANGUAGE_CODE].items():
             if "-name" not in key: # Avoid translating names
-                lang_value = TRANSLATIONS[lang_code][key] if key in TRANSLATIONS[lang_code] else None
+                lang_value =TRANSLATIONS[lang_code][key] if  lang_code in TRANSLATIONS and key in TRANSLATIONS[lang_code] else None
                 if lang_value is not None:
                     lang_value = lang_value.strip()
                 value = f"{lang_value}\n"
