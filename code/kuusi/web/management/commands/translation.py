@@ -17,8 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from typing import List, Tuple
 from genericpath import exists
-from os import linesep, unlink
-from web.models import TRANSLATIONS
+from os import unlink
+from web.models import TRANSLATIONS, Choosable
 from web.management.commands.language import Command as LanguageCommand
 from django.core.management.base import BaseCommand 
 from logging import getLogger
@@ -30,6 +30,7 @@ logger = getLogger("command")
 
 class Command(BaseCommand):
     help = "Generate and read text files to update translations"
+    line_sep = "|||\n" # if users desire to use services for translation, use asome kind of 'identifiable' line sep rather than \n
 
     def add_arguments(self, parser):
         parser.add_argument("lang_code",  type=str)
@@ -54,12 +55,17 @@ class Command(BaseCommand):
     def get_missing_values(self, lang_code) -> Tuple[List[str], List[str]]:
         missing = []
         missing_key = []
+        # Excempt the choosables names, because they shall not be translated at all
+        choosables = Choosable.objects.all()
+        exceptions = []
+        for choosable in choosables:
+            exceptions.append(f"{choosable.catalogue_id}-name")
         for key, default_value in TRANSLATIONS[DEFAULT_LANGUAGE_CODE].items():
-            if "-name" not in key: # Avoid translating names
+            if key not in exceptions: # Avoid translating names
                 lang_value =TRANSLATIONS[lang_code][key] if  lang_code in TRANSLATIONS and key in TRANSLATIONS[lang_code] else None
                 if lang_value is not None:
                     lang_value = lang_value.strip()
-                value = f"{lang_value}\n"
+                value = f"{lang_value}{self.line_sep}"
 
                 if  default_value is not None  and lang_value == default_value and len(value) != "":
                     missing.append(value)
@@ -67,7 +73,7 @@ class Command(BaseCommand):
 
                 if default_value is not None and lang_value is None:
                     default_replacement = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][key].strip()
-                    value = f"{default_replacement}\n"
+                    value = f"{default_replacement}{self.line_sep}"
                     missing.append(value)
                     missing_key.append(key)
             
@@ -81,7 +87,7 @@ class Command(BaseCommand):
                 full_path = join(path, f"{lang_code}.txt")
                 if exists(full_path):
                     lines = open(full_path, "r").readlines()
-                    lines = [l.replace("\n","") for l in lines]
+                    lines = [l.replace(self.line_sep,"") for l in lines]
 
                     missing_key, missing = self.get_missing_values(lang_code)
                     if len(missing_key) != len(lines):
