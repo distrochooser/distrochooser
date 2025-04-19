@@ -17,12 +17,22 @@ The content can be used in external api's for translation. To read this, drop th
 
 🚨 Do not approve or change language values between drop and read of these txt files. Otherwise you will mess up with the ordering.
 
-## Inline translate
+## How to provide translations
+
+There are two ways to translate: Using the _in app translation_ or by updating the JSON files itself.
+
+### In-App-Translation
 
 The app features a button, labelled with "help translation". This button triggers the mode to be able to change
 any translatable value within the application. If the data ist stored, the user session will continue use this proposal.
 
 This approach aims to replace the need for third-party tools and services.
+
+### JSON file update
+
+Translations are stored in `locale/<prefix>-<languagecode>.json`, while the `prefix` just serves for grouping purposes, but can be omitted with using `additional` as prefix. For example, if you creaete a japanese translation, you can use `locale/additional-jpn.json` as a file name.
+
+The content of all translation files is a JSON dictionary, describing the values.
 
 ## Persist proposals
 
