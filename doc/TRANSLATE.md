@@ -8,6 +8,8 @@ updated during runtime.
 
 ## Third party translation.
 
+🚨 If the language is new, add it into the `AVAILABLE_LANGUAGES` list before continuing. Please use the ISO-639-3 codes as first tuple element, followed by an name for the language.
+
 There is the command `translation` to export and import locale values for external translation. It can be called with `python manage.py language <lang_code> <path>`. Invoking this command will create a file `lang_code.txt`  in `path`.
 The content can be used in external api's for translation. To read this, drop the translated content into the file again (make sure line amount and order matches) and execute:
 
