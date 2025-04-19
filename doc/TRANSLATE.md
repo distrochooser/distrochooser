@@ -28,13 +28,7 @@ any translatable value within the application. If the data ist stored, the user 
 
 This approach aims to replace the need for third-party tools and services.
 
-### JSON file update
-
-Translations are stored in `locale/<prefix>-<languagecode>.json`, while the `prefix` just serves for grouping purposes, but can be omitted with using `additional` as prefix. For example, if you creaete a japanese translation, you can use `locale/additional-jpn.json` as a file name.
-
-The content of all translation files is a JSON dictionary, describing the values.
-
-## Persist proposals
+### Persist proposals
 
 To persist proposals, the backend CLI interface can be used. the command `python manage.py language` is to be used here with following commands:
 
@@ -45,3 +39,11 @@ To persist proposals, the backend CLI interface can be used. the command `python
 - `python manage.py language en --persist` - All approved proposals will be written into files. If the language key is present within the json files, the file will be updated (first hit counts). If not, a file `additional-<langcode>.json` will be read 
 
 > Please note that changes on the json files require a restart
+
+### JSON file update
+
+Translations are stored in `locale/<prefix>-<languagecode>.json`, while the `prefix` just serves for grouping purposes, but can be omitted with using `additional` as prefix. For example, if you creaete a japanese translation, you can use `locale/additional-jpn.json` as a file name.
+
+The content of all translation files is a JSON dictionary, describing the values.
+
+🚨 All types of translation updates require a restart.
