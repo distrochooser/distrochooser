@@ -153,7 +153,8 @@ AVAILABLE_LANGUAGES = [
     ("rus", "Russian"),
     ("fra", "French"),
     ("por", "Portuguese"),
-    ("gsw", "Swiss German")
+    ("gsw", "Swiss German"),
+    ("jpn", "Japanese")
 ]
 
 RTL_LANGUAGES = [
