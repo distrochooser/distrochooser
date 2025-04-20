@@ -238,6 +238,8 @@ KUUSI_ICON = "http://localhost:8000/static/icon.svg"
 # Some selected endpoints will create an individual cache to prevent overboarding load times
 CACHE_TIMEOUT = 120
 
+LONG_CACHE_TIMEOUT = 60 * 60 * 24 
+
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",

@@ -26,6 +26,7 @@
 |KUUSI_LOGO|The logo to add to frontend sessions|
 |KUUSI_ICON|The favicon to add to frontend sessions|
 |CACHE_TIMEOUT|The default cache timeout to use|
+|LONG_CACHE_TIMEOUT|The default cache timeout to use for semi-static content, such as pages or categories|
 |Imprint|A text to be used as contact (legal imprint info)|
 |PRIVACY|Privacy text. Can be HTML|
 |DISCORD_HOOK|A URL to use for notifications about text feedback and votes. Is ignored if null or empty|
