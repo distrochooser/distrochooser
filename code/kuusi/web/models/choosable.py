@@ -22,6 +22,8 @@ from web.models import Translateable, TranslateableField
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from django.core.cache import cache
+from kuusi.settings import LONG_CACHE_TIMEOUT
 class Choosable(Translateable):
     """
     Element ot be choosed.
@@ -42,6 +44,11 @@ class Choosable(Translateable):
 
     @property
     def meta(self) -> Dict[str, any]:
+        cache_key = f"choosable-{self.pk}-metas"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+        
         meta_objects = ChoosableMeta.objects.filter(meta_choosable=self).order_by(
             "meta_name"
         )
@@ -50,6 +57,7 @@ class Choosable(Translateable):
         meta_object: ChoosableMeta
         for meta_object in meta_objects:
             result[meta_object.meta_name.upper()] = meta_object
+        cache.set(cache_key, result, LONG_CACHE_TIMEOUT)
         return result
 
 
@@ -101,5 +109,3 @@ class ChoosableMeta(Translateable):
         delta = relativedelta(now, date)
         return delta.years
 
-    def __str__(self) -> str:
-        return f"{self.meta_choosable}: {self.meta_name} ({self.meta_type}) -> {self.meta_value}"

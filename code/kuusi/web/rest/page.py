@@ -109,7 +109,7 @@ class PageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Page
-        fields = '__all__'
+        fields = ("id", "text", "help")
 
     def get_text(self, obj: Page) -> str:
         return obj.get_msgd_id_of_field("text")
@@ -151,12 +151,10 @@ class PageViewSet(GenericViewSet, ListModelMixin):
     )
     def list(self, request,  *args, **kwargs):
         sessions = Session.objects.filter(result_id=kwargs["session_pk"])
-        if sessions.count() == 0:
-            return Response(status=status.HTTP_404_NOT_FOUND)
         session = sessions.first()
-        queryset = Page.objects.all() if not session.version else Page.objects.exclude(not_in_versions__in=[
-            session.version
-        ])
+        if not session:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        queryset = Page.get_session_version_pages(session.version)
         
         serializer = PageSerializer(
             queryset,

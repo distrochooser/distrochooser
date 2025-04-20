@@ -206,15 +206,18 @@ class SessionViewSet(ViewSet):
         version = None
         if version_id:
             versions = SessionVersion.objects.filter(pk=version_id)
-            if versions.count() == 0:
+            if versions.first() is None:
                 return Response(status=status.HTTP_406_NOT_ACCEPTABLE) 
             else:
                 version = versions.first()
         
 
         
-        queryset = Session.objects.all()
-        session = get_object_or_404(queryset, pk=pk)
+        sessions = Session.objects.filter(pk=pk)
+
+        session = sessions.first()
+        if not session:
+            return Response(status=status.HTTP_404_NOT_FOUND)  
         
         result_id = request.query_params.get('result_id')
         if session.result_id != result_id:
@@ -258,7 +261,7 @@ class SessionViewSet(ViewSet):
         old_session = None
         if old_result_id:
             old_sessions = Session.objects.filter(result_id=old_result_id)
-            if old_sessions.count() == 0:
+            if old_sessions.first() is None:
                 return Response(status=status.HTTP_404_NOT_FOUND)
             else:
                 old_session = old_sessions.first()

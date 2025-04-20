@@ -18,8 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import annotations
 from django.db import models
+from django.db.models.manager import BaseManager
+from kuusi.settings import LONG_CACHE_TIMEOUT
 from django.db.models import Max, Min
-from web.models import SessionVersionWidget, Translateable, TranslateableField, Session, WebHttpRequest, Widget, Facette, FacetteSelection
+from web.models import SessionVersionWidget, Translateable, TranslateableField, Session, WebHttpRequest, Widget, Facette, FacetteSelection, SessionVersion
 from typing import List
 from logging import getLogger
 from django.core.cache import cache
@@ -222,6 +224,18 @@ class Page(Translateable):
         logger.debug(result)
 
         return result
+
+    def get_session_version_pages(version: SessionVersion) -> BaseManager[Page]:
+        cache_key = f"{version}-pages"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+        queryset= Page.objects.all() if not version else Page.objects.exclude(not_in_versions__in=[
+           version
+        ])
+        cache.set(cache_key, queryset, LONG_CACHE_TIMEOUT)
+        return queryset
+
 
     def is_marked(self, session: Session):
         return PageMarking.objects.filter(page=self, session=session, is_error=False, is_warning=False, is_info=False).count() > 0

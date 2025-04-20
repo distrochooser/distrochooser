@@ -29,19 +29,15 @@ from django.utils import timezone
 def random_str():
     letters = string.ascii_lowercase + "1234567890"
     result_str = "".join(random.choice(letters) for i in range(5))
-    return result_str
-
-def get_session_result_id():
-    result_str = random_str()
-    is_existing = Session.objects.filter(result_id=result_str).count() != 0
-    while is_existing:
-        result_str = random_str()
-        is_existing = Session.objects.filter(result_id=result_str).count() != 0
     return "d6" + result_str
 
+def get_session_result_id():
+    is_existing = True
+    while is_existing:
+        result_str = random_str()
+        is_existing = Session.objects.filter(result_id=result_str).first() != None
+    return result_str
 
-def get_session_number():
-    return SESSION_NUMBER_OFFSET + Session.objects.all().count() + 1
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
@@ -57,7 +53,6 @@ class Session(models.Model):
         blank=True,
         related_name="session_version",
     )
-    number = models.IntegerField(default=get_session_number, null=True, blank=True)
     session_origin = models.ForeignKey(
         to="Session",
         on_delete=models.SET_NULL,

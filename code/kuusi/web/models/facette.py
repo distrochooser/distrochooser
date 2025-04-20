@@ -26,6 +26,7 @@ from django.db.models import  QuerySet
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.apps import apps
 from django.core.cache import cache
+from kuusi.settings import LONG_CACHE_TIMEOUT
 
 class Facette(Translateable):
     """
@@ -176,7 +177,7 @@ class FacetteAssignment(Translateable):
             ]
             if item[1] > 0 or item[2] > 0:
                 result.append(item)
-        cache.set(cache_key, result)
+        cache.set(cache_key, result, LONG_CACHE_TIMEOUT)
         return result
 
     def __lt__(self, other):

@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             model_name="session",
             name="number",
             field=models.IntegerField(
-                blank=True, default=web.models.get_session_number, null=True
+                blank=True, default=None, null=True
             ),
         ),
     ]
