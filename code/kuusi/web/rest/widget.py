@@ -238,8 +238,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
             if choosable.pk  in score_map and  assignments_results[choosable.pk].__len__() != 0:
                 ranking[choosable.pk] = FacetteAssignment.AssignmentType.get_score(
                     score_map[choosable.pk]
-                )    
-                print(ranking[choosable.pk], choosable)
+                )
                 results.append(choosable)
         serializer = RankedChoosableSerializer(results, many=True)
         serializer.context["session"] = session
