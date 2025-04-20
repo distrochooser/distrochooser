@@ -330,12 +330,13 @@ export const useSessionStore = defineStore('websiteStore', {
             else if (matches.length == 0 && this.pages.length > 0) {
                 this.currentPage = this.pages[0]
             }
-            this.currentWidgets = await this.sessionApi.sessionPageWidgetList({
+            this.sessionApi.sessionPageWidgetList({
                 sessionPk: this.session.resultId,
                 pagePk: this.currentPage.id
+            }).then((value) => this.currentWidgets = value)
+            this.getAssignmentFeedback().finally(() => {
+                this.isLoading = false;
             })
-            await this.getAssignmentFeedback()
-            this.isLoading = false;
         },
         async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
         
