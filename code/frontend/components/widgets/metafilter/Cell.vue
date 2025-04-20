@@ -2,21 +2,21 @@
 
     <div class="mb-3">
 
-        <div v-if="['radio', 'checkbox'].indexOf(props.cellString.split('.')[0]) == -1">
-            <label for="exampleFormControlInput1" class="form-label">
-                <LanguageTranslation :translation-key="props.cellString.split('.')[1]" />
+        <div v-if="['radio', 'checkbox'].indexOf(type) == -1">
+            <label :for="id" class="form-label">
+                <LanguageTranslation :translation-key="id" />
             </label>
             <input  :value="formValue"
-            class="form-control" :type="props.cellString.split('.')[0]" :id="props.cellString.split('.')[1]"
+            class="form-control" :type="type" :id="id"
             v-on:change="updateValue($event)">
         </div>
 
         <div v-else class="form-check">   
-            <label class="form-check-label" for="flexCheckChecked">
-                <LanguageTranslation :translation-key="props.cellString.split('.')[1]" />
+            <label class="form-check-label" :for="id">
+                <LanguageTranslation :translation-key="id" />
             </label>
             <input v-on:change="updateValue($event)" :checked="formValue.length > 0" class="form-check-input"
-                :type="props.cellString.split('.')[0]" :id="props.cellString.split('.')[1]" checked>
+                :type="type" :id="id">
          
         </div>
     </div>
@@ -24,6 +24,7 @@
 <script lang="ts" setup>
 import { useState } from 'nuxt/app';
 import { useSessionStore } from '../../../states/session';
+import { computed } from 'vue';
 
 
 
@@ -31,6 +32,9 @@ interface MetaFilterCellProps {
     cellString: string;
 }
 const props = defineProps<MetaFilterCellProps>();
+
+const type = computed(() => props.cellString.split('.')[0])
+const id = computed(() => props.cellString.split('.')[1])
 
 const formValue = useState(props.cellString, () => "")
 
