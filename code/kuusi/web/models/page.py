@@ -63,28 +63,6 @@ class Page(Translateable):
         if self.hide_if_no_selections and FacetteSelection.objects.filter(session=session).count() == 0:
             is_page_visible = False
         return is_page_visible
-
-
-    def is_answered(self, session: Session):
-        # TODO: Make this more variable if an answer could result in a text field value, for example.
-        # It works at the moment, as radio selection widGet also inherits the FacetteSelectionWidget
-        facette_widgets = apps.get_model("web", "FacetteSelectionWidget").objects.filter(
-            pages__pk__in=[self.pk]
-        )
-        if facette_widgets.count() > 0:
-            for widget in facette_widgets:
-                has_selections = (
-                    apps.get_model("web", "FacetteSelection").objects.filter(
-                        session=session, facette__topic=widget.topic
-                    ).count()
-                    > 0
-                )
-                if has_selections:
-                    return True
-        return False
-    
-    def is_active(self, request: WebHttpRequest):
-        return "page" in request.GET and request.GET.get("page") == self.catalogue_id
     
     @property
     def get_category(self) -> str:

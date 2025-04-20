@@ -44,48 +44,5 @@ class Category(Translateable):
         related_name="category_target_page",
     )
 
-    def to_step(
-        self,
-        request: WebHttpRequest, 
-        is_last: bool = False,
-    ) -> Dict | None:
-        """
-        Returns the structure so that the custom tag "steps" can generate the navigation element.
-
-        If the target page is not fitting the version of the session, None is returned.
-        """
-        language_code = request.LANGUAGE_CODE
-        session = request.session_obj
-
-        target = None
-        target_page: Page = self.target_page
-        is_error = False
-        is_warning = False
-        is_marked = False
-        is_active = False
-        css_classes = None
-
-        if target_page:
-            target = target_page.href
-            css_classes = target_page.css_classes
-
-            if not target_page.is_visible(session):
-                return None
-            is_answered = target_page.is_answered(session)
-            is_marked = target_page.is_marked(session)
-            is_error = target_page.is_error(session) or target_page.is_info(session) or target_page.is_warning(session)
-            is_active = target_page.is_active(request)
-
-        return {
-            "title": self.__("name", language_code),
-            "href": target,
-            "active": is_active,
-            "answered": is_answered,
-            "marked": is_marked,
-            "error": is_error,
-            "last": is_last,
-            "css_classes": css_classes
-        }
-
     def __str__(self) -> str:
         return f"[{self.icon}] {self.name} -> {self.target_page} (child of: {self.child_of})"
