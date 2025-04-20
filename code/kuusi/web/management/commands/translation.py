@@ -37,12 +37,13 @@ class Command(BaseCommand):
         parser.add_argument("path", type=str)
         parser.add_argument("--read", action="store_true", default=False)
         parser.add_argument("--dry_run", action="store_true", default=False)
+        parser.add_argument("--mask", action="store_true", default=False)
 
-    def dump(self, path: str, wanted_lang: str):
+    def dump(self, path: str, wanted_lang: str, mask: bool):
         for lang in AVAILABLE_LANGUAGES:
             lang_code = lang[0]
             if lang_code != DEFAULT_LANGUAGE_CODE and lang_code == wanted_lang:
-                _, missing= self.get_missing_values(lang_code)
+                _, missing= self.get_missing_values(lang_code, mask)
                 
                 lang_path = join(path, f"{lang_code}.txt")
                 logger.info(f"Locale {colored(lang_code, 'magenta')} has {colored(len(missing), 'red')} missing values.")
@@ -51,8 +52,17 @@ class Command(BaseCommand):
                         file.writelines(missing)
                 else:
                     logger.info("Not creating a file")
+
+    def mask(self, value: str, do_masking: bool) -> str:
+        # Sometimes, translators attempt to translate this aswell -> omit it
+        if not do_masking:
+            return value
+        return value.replace("distrochooser", "###").replace("Distrochooser", "###")
     
-    def get_missing_values(self, lang_code) -> Tuple[List[str], List[str]]:
+    def unmask(self, value: str) -> str:
+        return value.replace("###", "distrochooser")
+
+    def get_missing_values(self, lang_code, mask: bool) -> Tuple[List[str], List[str]]:
         missing = []
         missing_key = []
         # Excempt the choosables names, because they shall not be translated at all
@@ -64,15 +74,15 @@ class Command(BaseCommand):
             if key not in exceptions: # Avoid translating names
                 lang_value =TRANSLATIONS[lang_code][key] if  lang_code in TRANSLATIONS and key in TRANSLATIONS[lang_code] else None
                 if lang_value is not None:
-                    lang_value = lang_value.strip()
+                    lang_value = self.mask(lang_value.strip(), mask)
                 value = f"{lang_value}{self.line_sep}"
 
                 if  default_value is not None  and lang_value == default_value and len(value) != "":
-                    missing.append(value)
+                    missing.append(self.mask(value, mask))
                     missing_key.append(key)
 
                 if default_value is not None and lang_value is None:
-                    default_replacement = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][key].strip()
+                    default_replacement = self.mask(TRANSLATIONS[DEFAULT_LANGUAGE_CODE][key].strip(), mask)
                     value = f"{default_replacement}{self.line_sep}"
                     missing.append(value)
                     missing_key.append(key)
@@ -95,7 +105,7 @@ class Command(BaseCommand):
                     else:
                         for i in range(0, len(missing_key)):
                             lang_key = missing_key[i]
-                            lang_value = lines[i]
+                            lang_value = self.unmask(lines[i])
                             if not dry_run:
                                 LanguageCommand.update_locale_files(lang_code, lang_key, lang_value)
                             else:
@@ -107,9 +117,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         path = options["path"]
         read = options["read"]
+        mask = options["mask"]
         lang = options["lang_code"]
         dry_run = options["dry_run"]
         if not read:
-            self.dump(path, lang)
+            self.dump(path, lang, mask)
         else:
             self.read(path, lang, dry_run)
