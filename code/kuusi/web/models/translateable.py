@@ -29,6 +29,7 @@ from os.path import join, exists
 from json import loads, dumps
 from os import listdir
 from django.core.cache import cache
+from kuusi.settings import LONG_CACHE_TIMEOUT
 
 
 logger = getLogger("root")
@@ -169,10 +170,11 @@ def get_translation_haystack(language_code: str) ->Dict[str,str]:
     cached = cache.get(cache_key)
     approved_provided_feedback = None
     if cached:
-        approved_provided_feedback = cached
+        return cached
     else:
-        approved_provided_feedback = apps.get_model("web", "LanguageFeedback").objects.filter(session__language_code=language_code).filter(is_approved=True)
-        cache.set(cache_key, approved_provided_feedback)
-    for element in approved_provided_feedback:
-        raw[element.language_key] = element.value
+        approved_provided_feedback = apps.get_model("web", "LanguageFeedback").objects.filter(is_approved=True).filter(session__language_code=language_code)
+        for element in approved_provided_feedback:
+            raw[element.language_key] = element.value
+
+    cache.set(cache_key, raw, LONG_CACHE_TIMEOUT)
     return raw

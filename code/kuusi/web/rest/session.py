@@ -321,8 +321,8 @@ class SessionViewSet(ViewSet):
         """
         Create a new session.
         """
-        session = Session(user_agent=user_agent)
-        session.save()
+        session = Session()
+        session.user_agent = user_agent
         session.referrer = referrer
         session.language_code = language_code
         session.referrer = referrer

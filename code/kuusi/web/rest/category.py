@@ -50,7 +50,8 @@ class CategoryViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def list(self, request,  *args, **kwargs):
-        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
+        sessions =  Session.objects.filter(result_id=kwargs["session_pk"])
+        session: Session = sessions[0]
         page_id =  request.query_params.get('page_id')
         if not page_id:
             page = Page.objects.first()

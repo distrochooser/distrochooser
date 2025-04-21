@@ -32,6 +32,7 @@ from rest_framework.viewsets import GenericViewSet
 from web.models import LanguageFeedback, LanguageFeedbackVote, Session
 from web.rest.languagevote import LanguageFeedbackVoteSerializer
 from web.rest.hooks import fire_hook
+from django.core.cache import cache
 
 
 class CreateLanguageFeedbackSerializer(serializers.ModelSerializer):
@@ -124,6 +125,11 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
 
         serializer = LanguageFeedbackSerializer(result)
 
+        # Clear the cache possibly built by get_translation_haystack
+        cache.delete(
+           f"translation-{session.language_code}-feedback"
+        )
+
         serializer.context["session_pk"] = session_pk
         return Response(serializer.data)
 
@@ -147,4 +153,8 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         LanguageFeedbackSerializer.objects.filter(pk=pk).filter(
             session=session
         ).delete()
+        # Clear the cache possibly built by get_translation_haystack
+        cache.delete(
+           f"translation-{session.language_code}-feedback"
+        )
         return Response()

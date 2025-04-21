@@ -24,26 +24,18 @@ from kuusi.settings import SESSION_NUMBER_OFFSET, RTL_LANGUAGES
 
 from django.db import models
 from django.utils import timezone
-
-
-def random_str():
-    letters = string.ascii_lowercase + "1234567890"
-    result_str = "".join(random.choice(letters) for i in range(5))
-    return "d6" + result_str
+from uuid import uuid4
 
 def get_session_result_id():
-    is_existing = True
-    while is_existing:
-        result_str = random_str()
-        is_existing = Session.objects.filter(result_id=result_str).first() != None
-    return result_str
-
+    # We consider UUID v4 "safe" for now without checking for collisions
+    # If this shall be changed in the future, consider makeing sure the length of result_id is adapted accordingly first.
+    return uuid4() 
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
     user_agent = models.CharField(default=None, null=True, blank=True, max_length=150)
     result_id = models.CharField(
-        default=get_session_result_id, max_length=30, null=False, blank=False
+        default=get_session_result_id, max_length=36, null=False, blank=False
     )
     version = models.ForeignKey(
         to="SessionVersion",
