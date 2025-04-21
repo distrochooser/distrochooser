@@ -116,6 +116,8 @@ const removalFunc = (c: Choosable) => {
 const allChoosables = computed(() => props.assignment.choosables.concat(newChoosables.value.map(c => c.id)))
 const getRemovalFunc = ((id: number) => props.assignment.votes.filter(v => v[0] == id).length == 0 && newChoosables.value.filter(c => c.id == id).length > 0 ? removalFunc : null)
 
+
+// FIXME: The votes are not properly displayed
 const hasPositiveVote = computed(() => store.assignmentFeedback.filter(a => a.assignment == props.assignment.id && a.session == store.session.id && a.isPositive).length > 0)
 const hasNegativeVote = computed(() => store.assignmentFeedback.filter(a => a.assignment == props.assignment.id && a.session == store.session.id && !a.isPositive).length > 0)
 

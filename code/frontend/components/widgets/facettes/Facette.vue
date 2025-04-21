@@ -88,7 +88,12 @@ const isExpanded = useState(
   props.facette.id.toString() + "_expanded",
   () => false
 );
-const toggleExpand = () => (isExpanded.value = !isExpanded.value);
+const toggleExpand = async () =>  {
+  isExpanded.value = !isExpanded.value
+  if (isExpanded.value) {
+    await store.getAssignmentFeedback() 
+  }
+};
 
 const isSelected = computed(
   () =>

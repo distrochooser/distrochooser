@@ -333,10 +333,10 @@ export const useSessionStore = defineStore('websiteStore', {
             this.sessionApi.sessionPageWidgetList({
                 sessionPk: this.session.resultId,
                 pagePk: this.currentPage.id
-            }).then((value) => this.currentWidgets = value)
-            this.getAssignmentFeedback().finally(() => {
+            }).then((value) =>{
+                this.currentWidgets = value
                 this.isLoading = false;
-            })
+            } )
         },
         async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
         
