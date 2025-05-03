@@ -42,6 +42,7 @@ class CreateLanguageFeedbackSerializer(serializers.ModelSerializer):
             "id",
             "language_key",
             "value",
+            "voter_id"
         )
 
 
@@ -50,7 +51,7 @@ class LanguageFeedbackSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LanguageFeedback
-        fields = ("id", "session", "language_key", "value", "votes")
+        fields = ("id", "session", "language_key", "value", "votes", "voter_id")
 
     @extend_schema_field(field=LanguageFeedbackVoteSerializer(many=True))
     def get_votes(self, obj: LanguageFeedback) -> List[LanguageFeedbackVote]:
@@ -79,6 +80,13 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
                 description="The session resultid",
                 required=True,
             ),
+            OpenApiParameter(
+                "voter_id",
+                OpenApiTypes.STR,
+                OpenApiParameter.QUERY,
+                description="A optional voter id to identify user owned proposals",
+                required=False
+            ),
         ],
     )
     def list(self, request, *args, **kwargs):
@@ -88,6 +96,16 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         results = LanguageFeedback.objects.filter(
             session__language_code=session.language_code
         )
+        # Censor the other users voter id's, but let the "own"
+        # Voter id prevail.
+        if "voter_id" in request.query_params:
+            for result in results:
+                if result.voter_id != request.query_params["voter_id"]:
+                    result.voter_id = None
+        else:
+            for result in results:
+                result.voter_id = None
+
         serializer = LanguageFeedbackSerializer(results, many=True)
         serializer.context["session_pk"] = kwargs["session_pk"]
         return Response(serializer.data)
@@ -111,13 +129,19 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         data = request.data
         language_key = data["language_key"]
         value = data["value"]
+        voter_id = data["voter_id"]
         session: Session = Session.objects.filter(result_id=session_pk).first()
 
+        # Delete old session proposals or, after reload, old proposals based on the voter id
         LanguageFeedback.objects.filter(session=session).filter(
             language_key=language_key
         ).delete()
+        LanguageFeedback.objects.filter(voter_id=voter_id).filter(
+            language_key=language_key
+        ).delete()
+
         result = LanguageFeedback(
-            language_key=language_key, value=value, session=session
+            language_key=language_key, value=value, session=session, voter_id=voter_id
         )
         result.save()
 
