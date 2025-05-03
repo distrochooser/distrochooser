@@ -86,7 +86,7 @@ const vote = (id: number, isPositive) => {
 const isAdded = computed(() => sessionStore.languageFeedback.filter(l => l.session == sessionStore.session.id && l.languageKey == props.translationKey).length != 0)
 
 
-const proposals = computed(() => sessionStore.languageFeedback.filter(f => f.languageKey == props.translationKey && (f.session != sessionStore.session.id || f.voterId != sessionStore.getVoterId()) ))
+const proposals = computed(() => sessionStore.languageFeedback.filter(f => f.languageKey == props.translationKey && (f.voterId != sessionStore.getVoterId()) ))
 
 const toggleEditing = (e: MouseEvent) => {
   if (sessionStore.isTranslating && sessionStore.session && !sessionStore.isTranslationOpen) {
