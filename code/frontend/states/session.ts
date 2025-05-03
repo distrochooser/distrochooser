@@ -121,7 +121,7 @@ export const useSessionStore = defineStore('websiteStore', {
             })
         },
         async createAssignmentFeedback(assignmentId: number, isPositive: boolean) {
-            const origin = this.getVoterId()
+            const origin = this.getOrCreateVoterId()
             localStorage.setItem(this.getVoterIdKey(), origin)
 
             await this.sessionApi.sessionAssignmentfeedbackCreate({
@@ -148,7 +148,8 @@ export const useSessionStore = defineStore('websiteStore', {
         },
         async getTranslationFeedback() {
             this.languageFeedback =  await this.sessionApi.sessionLanguageList({
-                sessionPk: this.session.resultId
+                sessionPk: this.session.resultId,
+                voterId: this.getVoterId() /* this may be empty, but this is on purpose as people not interacting with the voting features shall not have such an ID*/
             })
             this.languageFeedbackVotes = await this.sessionApi.sessionLanguagevoteList({
                 sessionPk: this.session.resultId
@@ -160,14 +161,22 @@ export const useSessionStore = defineStore('websiteStore', {
         removeVoterId() {
             localStorage.removeItem(this.getVoterIdKey())
         },
+        createVoterID() {
+            const id = [...Array(30)].map(() => Math.random().toString(36)[2]).join('')
+            localStorage.setItem(this.getVoterIdKey(), id)
+            return id
+        },
         getVoterId() {
-            return localStorage.getItem(this.getVoterIdKey()) ?? [...Array(30)].map(() => Math.random().toString(36)[2]).join('')
+            return localStorage.getItem(this.getVoterIdKey())
         },
         hasVoterId() {
             return localStorage.getItem(this.getVoterIdKey()) !== null
         },
+        getOrCreateVoterId() {
+            return this.getVoterId() ?? this.createVoterID()
+        }, 
         async voteForLanguageFeedback(feedbackId: number, isPositive: boolean) {
-            const origin = this.getVoterId()
+            const origin = this.getOrCreateVoterId()
             localStorage.setItem(this.getVoterIdKey(), origin)
             await this.sessionApi.sessionLanguagevoteCreate(
                 {
@@ -182,11 +191,13 @@ export const useSessionStore = defineStore('websiteStore', {
             await this.getTranslationFeedback()
         },
         async provideTranslation(key: string, value: string) {
+            const origin = this.getOrCreateVoterId()
             await this.sessionApi.sessionLanguageCreate({
                 sessionPk: this.session.resultId,        
                 createLanguageFeedback: {
                     languageKey: key,
-                    value: value
+                    value: value,
+                    voterId: origin
                 }
             })
             await this.getTranslationFeedback();
@@ -205,12 +216,12 @@ export const useSessionStore = defineStore('websiteStore', {
             }
             const providedFeedback = this.languageFeedback.filter(l => l.languageKey == key && (
                 l.session == this.session.id ||
-                l.votes.filter((v => v.session == this.session.id && v.isPositive)).length > 0
-            ))
+                l.votes.filter((v => v.session == this.session.id && v.isPositive)).length > 0 ||
+                (this.getVoterId() && l.voterId == this.getVoterId())
+            )).sort((a, b) => b.id - a.id)
             if (providedFeedback.length > 0 && providedFeedback[0].value.length > 0) {
                 const result = providedFeedback[0].value ?? key
-
-                return result;
+                return result; 
             }
             if (typeof this.session.languageValues[key] == "undefined") {
                 return key
@@ -271,6 +282,9 @@ export const useSessionStore = defineStore('websiteStore', {
                 })
                 this.getMetaValues();
             }
+
+            // Load translation feedback
+            await this.getTranslationFeedback();
         },
         async updateCategoriesAndPages() {
             this.categories = await this.sessionApi.sessionCategoryList({
@@ -340,7 +354,7 @@ export const useSessionStore = defineStore('websiteStore', {
         },
         async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
         
-            const origin = this.getVoterId()
+            const origin = this.getOrCreateVoterId()
             localStorage.setItem(this.getVoterIdKey(), origin)
             await this.sessionApi.sessionFeedbackCreate({
                 sessionPk: this.session.resultId,
