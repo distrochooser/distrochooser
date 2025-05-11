@@ -98,6 +98,7 @@ pages = ["installation-page"]
 icon = "bi bi-device-hdd"
 target_page = "installation-page"
 
+# Personal requirement page
 
 [page.personal-requirements-page]
 next_page = "help-page"
@@ -108,6 +109,8 @@ structure = [
    [
     "number.distro_age.filter_number_gt",
     "checkbox.must_have_assignment.filter_must_have_assignments",
+   ],
+   [
     "checkbox.must_match_language.filter_must_match_language",
    ]
 ]
