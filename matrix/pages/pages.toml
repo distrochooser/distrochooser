@@ -1,4 +1,4 @@
-# kuusi
+# distrochooser
 # Copyright (C) 2014-2025 Christoph Müller  <mail@chmr.eu>
 # 
 # This program is free software: you can redistribute it and/or modify
@@ -107,12 +107,12 @@ not_in_versions = ["simplified"]
 [widget.metafilter.personal-requirements-page]
 structure = [
    [
-    "number.distro_age.filter_number_gt",
-    "checkbox.must_have_assignment.filter_must_have_assignments",
+      "number.distro_age.filter_number_gt",
+      "checkbox.must_have_assignment.filter_must_have_assignments",
    ],
    [
-    "checkbox.must_match_language.filter_must_match_language",
-   ]
+      "checkbox.must_match_language.filter_must_match_language",
+   ],
 ]
 pages = ["personal-requirements-page"]
 
@@ -240,9 +240,9 @@ target_page = "updates-page"
 
 [page.result-page]
 hide_help = true
-hide_text =true 
+hide_text = true
 css_classes = "ku-result"
-can_be_marked=false
+can_be_marked = false
 
 [widget.share.result-page-widget-name]
 topic = "result"
@@ -272,4 +272,20 @@ target_page = "result-page"
 [widget.navigation.global-nav]
 row = 4
 col = 1
-pages = ["welcome-page", "version-page", "scenario-page", "pc-knowledge-page", "linux-knowledge-page", "installation-page", "personal-requirements-page", "help-page","ux-page", "pricing-page", "scope-page", "ideology-page", "updates-page", "administration-page", "privacy-page"]
+pages = [
+   "welcome-page",
+   "version-page",
+   "scenario-page",
+   "pc-knowledge-page",
+   "linux-knowledge-page",
+   "installation-page",
+   "personal-requirements-page",
+   "help-page",
+   "ux-page",
+   "pricing-page",
+   "scope-page",
+   "ideology-page",
+   "updates-page",
+   "administration-page",
+   "privacy-page",
+]

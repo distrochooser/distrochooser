@@ -44,7 +44,7 @@ class Command(BaseCommand):
 
     def print_assignment(self, assignment: FacetteAssignment, index, selected_assignments, with_details: bool = False):
         translate_id = assignment.catalogue_id   
-        translate_value = _i18n_(DEFAULT_LANGUAGE_CODE, f"{translate_id}-long_description")["value"]
+        translate_value = _i18n_(DEFAULT_LANGUAGE_CODE, f"{translate_id}-description")["value"]
         assignment_type = assignment.assignment_type
         color_map = {
             FacetteAssignment.AssignmentType.BLOCKING: "white",

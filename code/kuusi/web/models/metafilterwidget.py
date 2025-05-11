@@ -52,7 +52,7 @@ class MetaFilterWidgetElement:
         matches = "LANGUAGES" in obj.meta and session.language_code in obj.meta["LANGUAGES"].meta_value
         result = FacetteAssignment(
             catalogue_id = f"{self.cell_name}-" + ("suitable" if matches else "not-suitable"),
-            long_description="suitable" if matches else "not-suitable",
+            description="suitable" if matches else "not-suitable",
             assignment_type=FacetteAssignment.AssignmentType.POSITIVE if matches else FacetteAssignment.AssignmentType.NEGATIVE
         )
         return result
@@ -61,7 +61,7 @@ class MetaFilterWidgetElement:
         if value == "true" and len(collected_assignments) == 0: # all meta filter values are strings, basically
             result = FacetteAssignment(
                 catalogue_id = f"{self.cell_name}-{obj.name}",
-                long_description="not-suitable",
+                description="not-suitable",
                 assignment_type=FacetteAssignment.AssignmentType.BLOCKING
             )
             return result
@@ -73,7 +73,7 @@ class MetaFilterWidgetElement:
         matches = int(obj.meta["AGE"].years_since) < int(value)
         result = FacetteAssignment(
             catalogue_id = f"{self.cell_name}-" + ("suitable" if matches else "not-suitable"),
-            long_description="suitable" if matches else "not-suitable",
+            description="suitable" if matches else "not-suitable",
             assignment_type=FacetteAssignment.AssignmentType.POSITIVE if matches else FacetteAssignment.AssignmentType.NEGATIVE
         )
         return result

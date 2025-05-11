@@ -31,6 +31,7 @@ def create_assignments(get_or_default: Callable[[str, Dict], any], haystack: Dic
         old_assignment = FacetteAssignment.objects.filter(catalogue_id=element)
         new_assignment = FacetteAssignment(
             catalogue_id = element,
+            description = data["description"],
             assignment_type = data["how"].upper(),
             is_invalidated = False
         )
@@ -40,8 +41,8 @@ def create_assignments(get_or_default: Callable[[str, Dict], any], haystack: Dic
 
         new_assignment.save()
 
-        new_assignment.choosables.set(Choosable.objects.filter(name__in=data["to"]))
-        new_assignment.facettes.set(Facette.objects.filter(catalogue_id__in=data["from"]))
+        new_assignment.choosables.set(Choosable.objects.filter(name__in=data["choosables"]))
+        new_assignment.facettes.set(Facette.objects.filter(catalogue_id__in=data["facettes"]))
 
         new_assignment.save()
         got.append(new_assignment)

@@ -100,9 +100,9 @@ Step 3: **Create the assignment**
 
 ```
 [assignment.my-matrix-addition] <-- this is an internal descriptor. Should be alphanumeric, can have hyphens
-long_description = "my-matrix-addition" <-- This is the key for the translation
-from = ["gaming-usage"] <-- This is the facette
-to = ["debian"] <-- This is the choosable ID
+description = "my-matrix-addition" <-- This is the key for the translation
+facettes = ["gaming-usage"] <-- This is the facette
+choosables = ["debian"] <-- This is the choosable ID
 how = "positive" <-- This is the mapping value (see below)
 ```
 
@@ -120,7 +120,7 @@ The value of `how` can be either:
 
 Step 4: **Add translation values**
 
-If your assingment(s) `long_description` fields are not already present within the translations, it must be added to them. It's recommeded to start with `en-<scope>.json` as the start point. E. g. if you introduced an assignment, add values into `facetteassignment-en.json`. Same applies for `facettes`, `choosables`, `pages` or UI changes (`ui-<lang>.json`).
+If your assingment(s) `description` fields are not already present within the translations, it must be added to them. It's recommeded to start with `en-<scope>.json` as the start point. E. g. if you introduced an assignment, add values into `facetteassignment-en.json`. Same applies for `facettes`, `choosables`, `pages` or UI changes (`ui-<lang>.json`).
 
 
 > The mapping is already exhausting task. For this we will focus for the moment on having the translation complete in the `en.json` file, adding the translations for other languages at a secondary task, done by me or other focused contributors.
