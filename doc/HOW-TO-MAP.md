@@ -15,11 +15,11 @@ The Distrochooser data model describes as follows:
 
 ## Where does the decision matrix comes from?
 
-The matrix is defined in the `/doc/matrix/toml` folder. Basically everything is defined in TOML-files. The Id's of the elements are used as `catalogue_id` mentioned earlier and are used to reference objects.
+The matrix is defined in the `/matrix/` folder. Basically everything is defined in TOML-files. The Id's of the elements are used as `catalogue_id` mentioned earlier and are used to reference objects.
 
 **Important: If you introduce new mappings keep in mind that the translation requires updating as well!**
 
-## Folder structure of /doc/matrix/toml/
+## Folder structure of /matrix/
 
 |folder|description|
 |--|--|
@@ -127,13 +127,13 @@ If your assingment(s) `long_description` fields are not already present within t
 
 Step 5: **Test your changes**
 
-Use the command `python manage.py parse ../../doc/matrix/toml/matrix.toml` to reimport everything.
+Use the command `python manage.py parse /matrix/matrix.toml` to reimport everything.
 
 Step 6: **All good? Commit them**
 
 Definition of done in short:
 
-1. Pull Request with changes in distrochooser: `/doc/matrix/toml/`
+1. Pull Request with changes in distrochooser: `/matrix/`
 2. If required: Pull request with changes in translations: `*-en.json` files
 3. Your PR should feature some descriptive text about your changes
 
