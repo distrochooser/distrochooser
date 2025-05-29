@@ -17,19 +17,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from __future__ import annotations
-import string
-import random
-
-from kuusi.settings import SESSION_NUMBER_OFFSET, RTL_LANGUAGES
+from uuid import uuid4
 
 from django.db import models
 from django.utils import timezone
-from uuid import uuid4
 
-def get_session_result_id():
+from kuusi.settings import RTL_LANGUAGES
+
+def get_session_result_id() -> str:
     # We consider UUID v4 "safe" for now without checking for collisions
     # If this shall be changed in the future, consider makeing sure the length of result_id is adapted accordingly first.
-    return uuid4() 
+    return str(uuid4())
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
@@ -61,8 +59,8 @@ class Session(models.Model):
         matches = SessionMeta.objects.filter(session=self, meta_key=key)
         if matches.count() < 1:
             return None
-        
-        return matches.first().meta_value
+        match: SessionMeta = matches[0]
+        return match.meta_value
 
     def __str__(self) -> str:
         return f"{self.started}: {self.result_id}"

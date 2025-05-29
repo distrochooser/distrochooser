@@ -17,20 +17,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from __future__ import annotations
+from typing import Any
 
-from typing import Any, Dict
-
-from django.apps import apps
-from django.db import models
-from django.db.models.signals import pre_delete
-from django.dispatch import receiver
 from logging import getLogger
 from os.path import join, exists
 from json import loads, dumps
 from os import listdir
-from django.core.cache import cache
-from kuusi.settings import LONG_CACHE_TIMEOUT
 
+from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+
+from web.util import get_translation_haystack
 
 logger = getLogger("root")
 
@@ -128,10 +126,13 @@ class Translateable(models.Model):
     def __str__(self) -> str:
         return f"({self.catalogue_id})"
     def get_msgd_id_of_field(self, key: str) -> str:
-        return self._meta.get_field(key).get_msg_id(self)
+        # get_field returns a Field[any, any], while we need something useable as
+        # TranslateableField, so we ignore typing here
+        field: TranslateableField = self._meta.get_field(key)  # type: ignore
+        return field.get_msg_id(self)
     def __(self, key: str, language_code: str = DEFAULT_LANGUAGE_CODE) -> str:
         msg_id = self.get_msgd_id_of_field(key)
-        haystack = get_translation_haystack(language_code)
+        haystack = get_translation_haystack(TRANSLATIONS, language_code)
         return f"{haystack[msg_id]}" if  msg_id in haystack and haystack[msg_id] is not None  else msg_id
      
 
@@ -142,8 +143,7 @@ class Translateable(models.Model):
         fields = self._meta.get_fields()
 
         field: models.Field | TranslateableField
-        for field in fields:
-
+        for field in fields:  # type:ignore
             if isinstance(field, TranslateableField):
                 TranslateableFieldRecord.objects.filter(
                     msg_id=field.get_msg_id(self)
@@ -158,23 +158,3 @@ def translateable_removing(sender, instance, using, **kwargs):
             entry.remove_translation_records()
     else:
         origin.remove_translation_records()
-
-
-
-def get_translation_haystack(language_code: str) ->Dict[str,str]:
-    """
-    As the user can provide translations -> use them 
-    """
-    raw = TRANSLATIONS[language_code]
-    cache_key = f"translation-{language_code}-feedback"
-    cached = cache.get(cache_key)
-    approved_provided_feedback = None
-    if cached:
-        return cached
-    else:
-        approved_provided_feedback = apps.get_model("web", "LanguageFeedback").objects.filter(is_approved=True).filter(session__language_code=language_code)
-        for element in approved_provided_feedback:
-            raw[element.language_key] = element.value
-
-    cache.set(cache_key, raw, LONG_CACHE_TIMEOUT)
-    return raw
