@@ -24,25 +24,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <label class="form-check-label" :for="facette.id.toString()">
           <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
         </label>
+        <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
         <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating" />
       </div>
       <div :class="{'form-check mb-2 fs-6': true, 'a11y-larger-text': store.fontSizeModifier == 5}" v-else>
         <input v-on:click="registerClick"  v-show="!store.isTranslating" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
           v-model="selected" v-on:change="registerChange" v-bind:value="true" :checked="isSelected"
           :id="facette.id.toString()">
-        <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
-          <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
-        </label>
+          <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
+            <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
+          </label>
+          <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
 
         <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"/>
       </div>
-    </div>
-    <div class="col-lg-12 col-xl-3 row mb-2" v-if="isSelected" >
-      <Icon class="col fs-2 less-weight-icon" name="ion:chevron-down-circle-sharp"></Icon>
-      <div class="col">
-        <input :id="'importance-'+ props.facette.id" type="range" v-model="weight" min="-2" max="2" step="1" class="align-middle"  v-on:change="registerWeightChange" />
-      </div>
-      <Icon class="col fs-2 more-weight-icon" name="ion:chevron-up-circle-sharp"></Icon>
     </div>
   </div>
 
@@ -65,6 +60,7 @@ import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
 import BehaviourButton from "./AssignmentButton.vue";
 import LanguageTranslation from "../../LanguageTranslation.vue";
+import Importance from "./Importance.vue";
 
 interface CheckboxFacetteProps {
   facette: Facette;
