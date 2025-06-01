@@ -1,4 +1,4 @@
-# kuusi
+# distrochooser
 # Copyright (C) 2014-2025 Christoph Müller  <mail@chmr.eu>
 # 
 # This program is free software: you can redistribute it and/or modify
@@ -14,23 +14,26 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+[facette.daily-usage]
+topic = "scenario"
 
-#include ./versions/simplified.toml
-#include ./pages/pages.toml
-#include ./facettes/administration.toml
-#include ./facettes/help.toml
-#include ./facettes/ideology.toml
-#include ./facettes/installation.toml
-#include ./facettes/linux-knowledge.toml
-#include ./facettes/old-hardware.toml
-#include ./facettes/pc-knowledge.toml
-#include ./facettes/pricing.toml
-#include ./facettes/privacy.toml
-#include ./facettes/scenario.toml
-#include ./facettes/scope.toml
-#include ./facettes/updates.toml
-#include ./facettes/ux.toml
+[facette.privacy-usage]
+topic = "scenario"
 
-#include ./choosables/choosables.toml
+[facette.gaming-usage]
+topic = "scenario"
 
-#include ./assignments/assignments.toml
+[facette.privacy-isolation-usage]
+topic = "scenario"
+
+[facette.impaired-view-usage]
+topic = "scenario"
+
+[facette.live-mode-usage]
+topic = "scenario"
+
+[behaviour.not-both]
+subjects = ["live-mode-usage"]
+objects = ["gaming-usage"]
+direction = "bidrectional"
+criticality = "error"

@@ -22,6 +22,7 @@ from posixpath import abspath, dirname, isabs, join
 from django.core.management.base import BaseCommand
 from tomllib import loads
 from typing import Dict, List
+from django.core.cache import cache
 
 
 from web.models import TranslateableFieldRecord, Widget, Facette, Category, FacetteAssignment, Choosable, FacetteBehaviour, Page, SessionVersion
@@ -105,7 +106,7 @@ class Command(BaseCommand):
         # Behaviours will be wiped upon running this method
         new_behaviours = create_facette_behaviours(self.get_or_default, parsed_toml["behaviour"])
 
-
+        cache.clear()
         logger.info("")
         logger.info(f"Summary for file {file_path}")
         logger.info("")

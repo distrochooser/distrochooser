@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             model_name="session",
             name="result_id",
             field=models.CharField(
-                default=web.models.random_str, max_length=15 # changed to random_str, so Django has a chance to migrate it.
+                default="", max_length=15 # changed to an empty string, so Django has a chance to migrate it.
             ),
         ),
     ]

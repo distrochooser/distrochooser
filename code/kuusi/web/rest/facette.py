@@ -118,7 +118,7 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
             session=session
         )
         result.save()
-        fire_hook(f"[{assignment_obj}]: {assignment_obj.__('long_description')}", session,  f"{'👍' if is_positive else '👎'} Assignment vote", 15762475)
+        fire_hook(f"[{assignment_obj}]: {assignment_obj.__('description')}", session,  f"{'👍' if is_positive else '👎'} Assignment vote", 15762475)
         # Clear the cache that has might been created previously
         cache_key = f"facetteassignment-{assignment_obj.pk}-votes"
         cache.delete(cache_key)
@@ -207,7 +207,7 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
         result.save()
 
 
-        fire_hook(f"{choosable_obj.__('name')}@{assignment.__('long_description')}", session,  f"{'👍' if is_positive else '👎'} Choosable feedback vote", 	15864269)
+        fire_hook(f"{choosable_obj.__('name')}@{assignment.__('description')}", session,  f"{'👍' if is_positive else '👎'} Choosable feedback vote", 	15864269)
 
         serializer = FeedbackSerializer(
             result
@@ -239,7 +239,7 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
 
     def get_description(self, obj: FacetteAssignment):
         session: Session =self.context['session']
-        return obj.__("long_description",  session.language_code)
+        return obj.__("description",  session.language_code)
     
     @extend_schema_field(
         field=ListSerializer(

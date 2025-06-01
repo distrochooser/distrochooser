@@ -29,7 +29,32 @@ $orange: #fd7e14;
 // non overwrite 
 
 $unmarkedPage: rgb(156, 156, 156);
-$weightMoreColor: $primary;
+$weightMoreColor: rgb(243, 171, 1);
 $weightLessColor: color.adjust($primary, $lightness: 60%);
 $weightBadgeFontColor: white;
 $missingLanguageColor: $red;
+
+// Animations
+
+
+@keyframes tilt-shaking {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(0eg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

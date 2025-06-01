@@ -54,7 +54,6 @@ def create_choosables(get_or_default: Callable[[str, Dict], any], haystack: Dict
                 new_choosable_meta = ChoosableMeta(
                     catalogue_id = meta["meta_name"],
                     meta_choosable = new_choosable,
-                    meta_type = meta["meta_type"].upper(),
                     meta_name = meta["meta_name"].upper(),
                     meta_value = meta["meta_value"]
                 )

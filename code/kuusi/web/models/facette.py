@@ -140,7 +140,7 @@ class FacetteSelection(models.Model):
 class FacetteAssignment(Translateable):
     choosables = models.ManyToManyField(to=Choosable)
     facettes = models.ManyToManyField(to=Facette)
-    long_description = TranslateableField(
+    description = TranslateableField(
         null=True, blank=True, default=None, max_length=800
     )
     is_approved = models.BooleanField(default=False)

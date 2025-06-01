@@ -17,33 +17,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from __future__ import annotations
-import string
-import random
-
-from kuusi.settings import SESSION_NUMBER_OFFSET, RTL_LANGUAGES
+from uuid import uuid4
 
 from django.db import models
 from django.utils import timezone
 
+from kuusi.settings import RTL_LANGUAGES
 
-def random_str():
-    letters = string.ascii_lowercase + "1234567890"
-    result_str = "".join(random.choice(letters) for i in range(5))
-    return "d6" + result_str
-
-def get_session_result_id():
-    is_existing = True
-    while is_existing:
-        result_str = random_str()
-        is_existing = Session.objects.filter(result_id=result_str).first() != None
-    return result_str
-
+def get_session_result_id() -> str:
+    # We consider UUID v4 "safe" for now without checking for collisions
+    # If this shall be changed in the future, consider makeing sure the length of result_id is adapted accordingly first.
+    return str(uuid4())
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
     user_agent = models.CharField(default=None, null=True, blank=True, max_length=150)
     result_id = models.CharField(
-        default=get_session_result_id, max_length=30, null=False, blank=False
+        default=get_session_result_id, max_length=36, null=False, blank=False
     )
     version = models.ForeignKey(
         to="SessionVersion",
@@ -69,8 +59,8 @@ class Session(models.Model):
         matches = SessionMeta.objects.filter(session=self, meta_key=key)
         if matches.count() < 1:
             return None
-        
-        return matches.first().meta_value
+        match: SessionMeta = matches[0]
+        return match.meta_value
 
     def __str__(self) -> str:
         return f"{self.started}: {self.result_id}"

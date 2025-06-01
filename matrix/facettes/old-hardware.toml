@@ -1,4 +1,4 @@
-# kuusi
+# distrochooser
 # Copyright (C) 2014-2025 Christoph Müller  <mail@chmr.eu>
 # 
 # This program is free software: you can redistribute it and/or modify
@@ -14,26 +14,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-[facette.daily-usage]
-topic = "scenario"
 
-[facette.privacy-usage]
-topic = "scenario"
+[facette.64bit]
+topic = "old-hardware"
 
-[facette.gaming-usage]
-topic = "scenario"
+[facette.no64bit]
+topic = "old-hardware"
 
-[facette.privacy-isolation-usage]
-topic = "scenario"
-
-[facette.impaired-view-usage]
-topic = "scenario"
-
-[facette.live-mode-usage]
-topic = "scenario"
-
-[behaviour.not-both]
-subjects = ["live-mode-usage"]
-objects = ["gaming-usage"]
+[behaviour.64bit-gaming-most-likely-issues]
+subjects = ["gaming-usage"]
+objects = ["no64bit"]
 direction = "bidrectional"
 criticality = "error"
+

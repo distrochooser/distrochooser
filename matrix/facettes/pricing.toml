@@ -1,4 +1,4 @@
-# kuusi
+# distrochooser
 # Copyright (C) 2014-2025 Christoph Müller  <mail@chmr.eu>
 # 
 # This program is free software: you can redistribute it and/or modify
@@ -15,8 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-[facette.license-open-source]
-topic = "ideology"
+[facette.pricing-free]
+topic = "pricing"
 
-[facette.proprietary-okay-when-working]
-topic = "ideology"
+[facette.paid-support-ok]
+topic = "pricing"

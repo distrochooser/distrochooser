@@ -97,7 +97,8 @@ class Page(Translateable):
 
     @property
     def widget_list(self) -> List[Widget]:
-        cached = cache.get(f"widget_list-{self.pk}")
+        cache_key = f"widget_list-{self.pk}"
+        cached = cache.get(cache_key)
         if cached is not None:
             return cached
 
@@ -121,7 +122,7 @@ class Page(Translateable):
             + list(apps.get_model("web", "NavigationWidget").objects.filter(pages__pk__in=[self]))
             + list(apps.get_model("web", "MetaFilterWidget").objects.filter(pages__pk__in=[self]))
         )
-        cache.set(f"widget_list-{self.pk}", result)
+        cache.set(cache_key, result, LONG_CACHE_TIMEOUT)
         return result
 
     def proceed(self, request: WebHttpRequest) -> bool:

@@ -43,9 +43,8 @@ class ChoosableSerializer(serializers.ModelSerializer):
         meta_values = obj.meta
         new_meta = {}
         for key, value in meta_values.items():
-            meta_type: str =  str(value.meta_type)
             meta_value: str = str(value.meta_value)
-            if meta_type !=  ChoosableMeta.MetaType.HIDDEN:
+            if not value.is_hidden:
                 new_meta[key] =  meta_value
         return new_meta
     

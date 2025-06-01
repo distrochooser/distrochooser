@@ -1,4 +1,4 @@
-# kuusi
+# distrochooser
 # Copyright (C) 2014-2025 Christoph Müller  <mail@chmr.eu>
 # 
 # This program is free software: you can redistribute it and/or modify
@@ -14,16 +14,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+[facette.no-linux-contact]
+topic = "linux-knowledge"
 
-[facette.64bit]
-topic = "old-hardware"
+[facette.already-used]
+topic = "linux-knowledge"
 
-[facette.no64bit]
-topic = "old-hardware"
-
-[behaviour.64bit-gaming-most-likely-issues]
-subjects = ["gaming-usage"]
-objects = ["no64bit"]
-direction = "bidrectional"
-criticality = "error"
-
+[facette.knowledge-present]
+topic = "linux-knowledge"

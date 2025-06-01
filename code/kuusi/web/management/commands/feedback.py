@@ -69,7 +69,7 @@ class Command(BaseCommand):
                 duplicates = data.exclude(pk=element.pk).filter(choosable=element.choosable).filter(assignment=element.assignment).filter(is_positive=element.is_positive)
 
                 print(
-                    f"[{element.pk}] {positive_string}, {pending_string} {element.choosable}[+{positive_votes}/-{negative_votes}] => " + element.assignment.__("long_description")  + f" ({duplicates.count()}) duplicates"
+                    f"[{element.pk}] {positive_string}, {pending_string} {element.choosable}[+{positive_votes}/-{negative_votes}] => " + element.assignment.__("description")  + f" ({duplicates.count()}) duplicates"
                 )
                 ignore_duplicate_list.append(ignore_needle)
 

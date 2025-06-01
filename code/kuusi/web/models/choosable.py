@@ -70,23 +70,28 @@ class ChoosableMeta(Translateable):
         related_name="choosablemeta_choosable",
     )
 
-    class MetaType(models.TextChoices):
-        TEXT = "TEXT", "TEXT"
-        FLAG = "FLAG", "FLAG"
-        LINK = "LINK", "LINK"
-        HIDDEN = "HIDDEN", "HIDDEN"
-        DATE = "DATE", "DATE"
-
     class MetaName(models.TextChoices):
         CREATED = "AGE", _("AGE")
         COUNTRY = "COUNTRY",  _("COUNTRY")
         LICENSES = "LICENSES",  _("LICENSES")
         WEBSITE = "WEBSITE",  _("WEBSITE")
         LANGUAGES = "LANGUAGES", _("LANGUAGES")
+    
+    @property 
+    def meta_type(self) -> str:
+        default_type = "hidden";
+        map = {
+            "AGE": "date",
+            "COUNTRY": "flag",
+            "LICENSES": "text",
+            "WEBSITE": "link",
+        }
+        return map[self.meta_name] if self.meta_name in map  else default_type
 
-    meta_type = models.CharField(
-        max_length=20, choices=MetaType.choices, default=MetaType.TEXT
-    )
+    @property 
+    def is_hidden(self) -> bool:
+        return self.meta_type == "hidden"
+
     meta_name = models.CharField(
         max_length=25,
         blank=False,

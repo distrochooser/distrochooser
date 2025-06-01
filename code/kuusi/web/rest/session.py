@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
-from typing import Dict
+from typing import Dict, Any
 
 from django.shortcuts import get_object_or_404
 from drf_spectacular.types import OpenApiTypes
@@ -31,8 +31,8 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
 from web.models import (TRANSLATIONS, FacetteSelection, LanguageFeedback,
-                        MetaFilterValue, Session, SessionMeta, SessionVersion)
-from web.models.translateable import get_translation_haystack
+                        MetaFilterValue, Session, SessionVersion)
+from web.util import get_translation_haystack
 
 def is_language_present(lang):
     found_lang = False
@@ -66,7 +66,7 @@ class MetaTagsSerializer(serializers.Serializer):
     def get_icon(self, _: None) -> str:
         return KUUSI_ICON
     
-    def get_meta(self, _: None) -> Dict[str, any]:
+    def get_meta(self, _: None) -> Dict[str, Any]:
         tags = KUUSI_META_TAGS.copy()
         # TODO: Make more dynamic
         lang =  self.context["lang"]
@@ -123,10 +123,10 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     def get_default_language(self, _: None) -> str:
         return DEFAULT_LANGUAGE_CODE
     
-    def get_session_origin(self, obj: Session) -> str:
+    def get_session_origin(self, obj: Session) -> str | None:
         return obj.session_origin.result_id if obj.session_origin else None
     
-    def get_meta(self, obj: Session) -> Dict[str, any]:
+    def get_meta(self, obj: Session) -> Dict[str, Any]:
         meta =  KUUSI_META_TAGS.copy()
         meta["og:locale"] = obj.language_code
         return meta
@@ -145,10 +145,10 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         return obj.language_code in RTL_LANGUAGES
     
     def get_language_values(self, obj:Session) -> Dict[str, str]:
-        return get_translation_haystack(obj.language_code)
+        return get_translation_haystack(TRANSLATIONS, obj.language_code)
     
     def get_default_language_values(self, obj:Session) -> Dict[str, str]:
-        return get_translation_haystack(DEFAULT_LANGUAGE_CODE)
+        return get_translation_haystack(TRANSLATIONS, DEFAULT_LANGUAGE_CODE)
 
 
 
@@ -203,13 +203,13 @@ class SessionViewSet(ViewSet):
         if not is_language_present(lang):
             lang = DEFAULT_LANGUAGE_CODE
         version_id = request.query_params.get('version_id')
-        version = None
+        version: SessionVersion | None = None
         if version_id:
             versions = SessionVersion.objects.filter(pk=version_id)
             if versions.first() is None:
                 return Response(status=status.HTTP_406_NOT_ACCEPTABLE) 
             else:
-                version = versions.first()
+                version = versions[0]
         
 
         
@@ -228,7 +228,9 @@ class SessionViewSet(ViewSet):
             LanguageFeedback.objects.filter(session=session).delete()
         
         session.language_code = lang
-        session.version = version
+        # TODO: Fix typing warning
+        # Error complains about version not being able to be set, which should not be the case
+        session.version = version # type: ignore
         session.save()
 
         serializer = SessionSerializer(session)
@@ -290,7 +292,9 @@ class SessionViewSet(ViewSet):
                         selection.pk = None
                         selection.session = session
                         selection.save()
-                session.session_origin = old_session
+                # TODO: Find reason for typing error
+                # Find way to remove # type: ignore
+                session.session_origin = old_session # type: ignore
                 session.save()
         if old_session:
             self.clone_selections(old_session, session)
@@ -313,7 +317,9 @@ class SessionViewSet(ViewSet):
                 selection.pk = None
                 selection.session = session
                 selection.save()
-        session.session_origin = old_session
+        # TODO: Find reason for typing error
+        # Find way to remove # type: ignore
+        session.session_origin = old_session # type: ignore
         session.save()
         return True
 
@@ -321,8 +327,8 @@ class SessionViewSet(ViewSet):
         """
         Create a new session.
         """
-        session = Session(user_agent=user_agent)
-        session.save()
+        session = Session()
+        session.user_agent = user_agent
         session.referrer = referrer
         session.language_code = language_code
         session.referrer = referrer
