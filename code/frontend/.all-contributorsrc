@@ -378,6 +378,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "7654jp",
+      "name": "yoshi-jp",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137300301?v=4",
+      "profile": "https://github.com/7654jp",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
