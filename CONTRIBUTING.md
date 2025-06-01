@@ -29,7 +29,7 @@ You can find an in-depth guide in the file HOW-TO-MAP.md
 
 # Translations
 
-A translation guide can be found in the file TRANSLATE.md
+A translation guide can be found in the file doc/TRANSLATE.md
 
 Thank you for your support 😁
 
