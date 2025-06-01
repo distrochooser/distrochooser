@@ -29,9 +29,7 @@ You can find an in-depth guide in the file HOW-TO-MAP.md
 
 # Translations
 
-> This aspect is currently being overhauled
-
-You can provide translations within the app.
+A translation guide can be found in the file TRANSLATE.md
 
 Thank you for your support 😁
 
