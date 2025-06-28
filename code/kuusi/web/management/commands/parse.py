@@ -118,7 +118,7 @@ class Command(BaseCommand):
         
         
         
-    def get_or_default(self, prop: str, raw: str) -> Any:
+    def get_or_default(self, prop: str, raw: Dict) -> Any:
         defaults = {
             "col": 1,
             "row": 1,
