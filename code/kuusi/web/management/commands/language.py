@@ -38,7 +38,7 @@ class Command(BaseCommand):
         parser.add_argument("--clear", action="store_true", default=False)
         parser.add_argument("--persist", action="store_true", default=False)
 
-    def update_locale_files(lang_code, lang_key, lang_value):
+    def update_locale_files(lang_code: str, lang_key: str, lang_value:str ): # type: ignore
         lang_code = lang_code.strip()
         lang_key = lang_key.strip()
         lang_value = lang_value.strip()
