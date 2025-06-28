@@ -86,22 +86,25 @@ class TranslateableField(models.CharField):
             msg_id=msg_id,
             model_type=model_type
         )
-        self.update_json(model_type, msg_id)
+        self.update_json(msg_id)
         return super().pre_save(model_instance, add)
 
-    def update_json(self, model_type: str, msg_id: str):
+    def update_json(self, msg_id: str):
         for locale in AVAILABLE_LANGUAGES:
             lowercase_locale = locale[0].lower()
-            lowercase_model_type =model_type.lower()
-            path = join(LOCALE_PATHS[0], f"{lowercase_model_type}-{lowercase_locale}.json")
+            path = join(LOCALE_PATHS[0], f"lang-{lowercase_locale}.json")
             entries = {}
             if exists(path):
                 with open(path, "r") as file:
                     entries = loads(file.read())
             if msg_id not in entries:
                 entries[msg_id] = None
+            without_empty = {}
+            for key, value in entries.items():
+                if value is not None:
+                    without_empty[key] = value
             with open(path, "w") as file:
-                file.write(dumps(entries, indent=4))
+                file.write(dumps(without_empty, indent=4))
 
 
 

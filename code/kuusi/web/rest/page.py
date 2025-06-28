@@ -119,6 +119,7 @@ class PageSerializer(serializers.ModelSerializer):
     
     
     
+    
 class PageViewSet(GenericViewSet, ListModelMixin):
     serializer_class = PageSerializer
     @extend_schema(

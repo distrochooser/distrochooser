@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from web.models import Translateable, TranslateableField, Widget
 
 class SessionVersion(Translateable):
-    version_name = TranslateableField(null=False, blank=False, max_length=120)
+    description = TranslateableField(null=False, blank=False, max_length=120)
 
 class SessionVersionWidget(Widget):
     pass

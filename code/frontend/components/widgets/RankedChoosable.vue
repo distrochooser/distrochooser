@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         "
       >
         <h5 class="card-title">
-          <LanguageTranslation :translation-key="props.choosable.displayName"/>
+          {{ props.choosable.name }}
         </h5>
         <p class="card-text">
           <LanguageTranslation :translation-key="props.choosable.description"/>

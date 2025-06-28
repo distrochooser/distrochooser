@@ -27,12 +27,11 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from typing import Dict, Any
 
-CHOOSABLE_SERIALIZER_BASE_FIELDS = ('id', 'display_name', 'description', 'bg_color', 'fg_color', 'meta')
+CHOOSABLE_SERIALIZER_BASE_FIELDS = ('id', 'name', 'description', 'bg_color', 'fg_color', 'meta')
 
 class ChoosableSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
     meta = serializers.SerializerMethodField()
-    display_name = serializers.SerializerMethodField()
     class Meta:
         model = Choosable
         fields = CHOOSABLE_SERIALIZER_BASE_FIELDS
@@ -47,9 +46,6 @@ class ChoosableSerializer(serializers.ModelSerializer):
             if not value.is_hidden:
                 new_meta[key] =  meta_value
         return new_meta
-    
-    def get_display_name(self, obj: Choosable) -> str:
-        return obj.get_msgd_id_of_field("name")
 
     
 class ChoosableViewSet(ListModelMixin, GenericViewSet):

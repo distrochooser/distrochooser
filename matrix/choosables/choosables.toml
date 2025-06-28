@@ -15,456 +15,667 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-[[choosable]]
-catalogue_id = "ubuntu"
+
+[choosable.ubuntu]
 bg_color = "#E95420"
 fg_color = "#FFFFFF"
-[[choosable.meta]]
+name = "Ubuntu"
+
+[[meta]]
+choosable="ubuntu"
 meta_name = "website"
 meta_value = "https://ubuntu.com"
-[[choosable.meta]]
+
+
+[[meta]]
+choosable="ubuntu"
 meta_name = "age"
 meta_value = "2004-10-20"
-[[choosable.meta]]
+
+
+[[meta]]
+choosable="ubuntu"
 meta_name = "country"
 meta_value = "gb"
-[[choosable.meta]]
+
+
+[[meta]]
+choosable="ubuntu"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "debian"
+
+[choosable.debian]
+name = "Debian"
 bg_color = "#d70a53"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="debian"
 meta_name = "website"
 meta_value = "https://debian.org"
-[[choosable.meta]]
+
+[[meta]]
+choosable="debian"
 meta_name = "age"
 meta_value = "1993-09-15"
-[[choosable.meta]]
+
+[[meta]]
+choosable="debian"
 meta_name = "country"
 meta_value = "us"
-[[choosable.meta]]
+
+[[meta]]
+choosable="debian"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "tails"
+[choosable.tails]
+name = "Tails"
 bg_color = "#56347c"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="tails"
 meta_name = "website"
 meta_value = "https://tails.boum.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="tails"
 meta_name = "age"
 meta_value = "2009-06-23"
-[[choosable.meta]]
+
+[[meta]]
+choosable="tails"
 meta_name = "country"
 meta_value = "us"
-[[choosable.meta]]
+
+[[meta]]
+choosable="tails"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "devuan"
+[choosable.devuan]
 bg_color = "#E5EDB0"
 fg_color = "#662984"
-[[choosable.meta]]
+name = "Devuan"
+
+[[meta]]
+choosable="devuan"
 meta_name = "website"
 meta_value = "https://devuan.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="devuan"
 meta_name = "age"
 meta_value = "2016-05-03"
-[[choosable.meta]]
+
+[[meta]]
+choosable="devuan"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "arch"
+[choosable.arch]
+name = "Arch"
 bg_color = "#08c"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="arch"
 meta_name = "website"
 meta_value = "https://www.archlinux.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="arch"
 meta_name = "age"
 meta_value = "2002-03-11"
-[[choosable.meta]]
+
+[[meta]]
+choosable="arch"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "mint"
+[choosable.mint]
+name = "Linux Mint"
 bg_color = "#a4e265"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="mint"
 meta_name = "website"
 meta_value = "https://www.linuxmint.com/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="mint"
 meta_name = "age"
 meta_value = "2006-08-27"
-[[choosable.meta]]
+
+[[meta]]
+choosable="mint"
 meta_name = "country"
 meta_value = "fr"
-[[choosable.meta]]
+
+[[meta]]
+choosable="mint"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "opensuse"
+[choosable.opensuse]
+name = "Linux openSUSE"
 bg_color = "#173f4f"
 fg_color = "#35b9ab"
-[[choosable.meta]]
+
+[[meta]]
+choosable="opensuse"
 meta_name = "website"
 meta_value = "https://www.opensuse.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="opensuse"
 meta_name = "age"
 meta_value = "1993-03-01"
-[[choosable.meta]]
+
+[[meta]]
+choosable="opensuse"
 meta_name = "country"
 meta_value = "lu"
-[[choosable.meta]]
+
+[[meta]]
+choosable="opensuse"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "solus"
+[choosable.solus]
+name = "Solus OS"
 bg_color = "#5294E2"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="solus"
 meta_name = "website"
 meta_value = "https://getsol.us/home/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="solus"
 meta_name = "age"
 meta_value = "2015-12-27"
-[[choosable.meta]]
+
+[[meta]]
+choosable="solus"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "manjaro"
+[choosable.manjaro]
+name = "Manjaro"
 bg_color = "#34be5b"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="manjaro"
 meta_name = "website"
 meta_value = "https://manjaro.org"
-[[choosable.meta]]
+
+[[meta]]
+choosable="manjaro"
 meta_name = "age"
 meta_value = "2011-06-11"
-[[choosable.meta]]
+
+[[meta]]
+choosable="manjaro"
 meta_name = "country"
 meta_value = "de"
-[[choosable.meta]]
+
+[[meta]]
+choosable="manjaro"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "pclinuxos"
+[choosable.pclinuxos]
+name = "PCLinuxOS"
 bg_color = "black"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="pclinuxos"
 meta_name = "website"
 meta_value = "http://www.pclinuxos.com/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="pclinuxos"
 meta_name = "age"
 meta_value = "2003-10-24"
-[[choosable.meta]]
+
+[[meta]]
+choosable="pclinuxos"
 meta_name = "country"
 meta_value = "us"
-[[choosable.meta]]
+
+[[meta]]
+choosable="pclinuxos"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "rocky"
+[choosable.rocky]
+name = "Rocky Linux"
 bg_color = "#10b981"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="rocky"
 meta_name = "website"
 meta_value = "https://rockylinux.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="rocky"
 meta_name = "age"
 meta_value = "2021-03-01"
-[[choosable.meta]]
+
+[[meta]]
+choosable="rocky"
 meta_name = "country"
 meta_value = "us"
-[[choosable.meta]]
+
+[[meta]]
+choosable="rocky"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "rhel"
+[choosable.rhel]
+name = "Red Hat Enterprise Linux (RHEL)"
 bg_color = "#cf0000"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="rhel"
 meta_name = "website"
 meta_value = "https://www.redhat.com/de/technologies/linux-platforms/enterprise-linux"
-[[choosable.meta]]
+
+[[meta]]
+choosable="rhel"
 meta_name = "age"
 meta_value = "2000-02-22"
-[[choosable.meta]]
+
+[[meta]]
+choosable="rhel"
 meta_name = "country"
 meta_value = "us"
-[[choosable.meta]]
+
+[[meta]]
+choosable="rhel"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "mxlinux"
+[choosable.mxlinux]
+name = "MX Linux"
 bg_color = "#134452"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="mxlinux"
 meta_name = "website"
 meta_value = "https://mxlinux.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="mxlinux"
 meta_name = "age"
 meta_value = "2003-11-04"
-[[choosable.meta]]
+
+[[meta]]
+choosable="mxlinux"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "fedora"
+[choosable.fedora]
+name = "Fedora"
 bg_color = "#3c6eb4"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="fedora"
 meta_name = "website"
 meta_value = "https://getfedora.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="fedora"
 meta_name = "age"
 meta_value = "2014-03-24"
-[[choosable.meta]]
+
+[[meta]]
+choosable="fedora"
 meta_name = "country"
 meta_value = "us"
-[[choosable.meta]]
+
+[[meta]]
+choosable="fedora"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "gentoo"
+[choosable.gentoo]
+name = "Gentoo"
 bg_color = "#4d4270"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="gentoo"
 meta_name = "website"
 meta_value = "https://www.gentoo.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="gentoo"
 meta_name = "age"
 meta_value = "2002-03-31"
-[[choosable.meta]]
+
+[[meta]]
+choosable="gentoo"
 meta_name = "country"
 meta_value = "us"
-[[choosable.meta]]
+
+[[meta]]
+choosable="gentoo"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "knoppix"
+[choosable.knoppix]
+name = "Knoppix"
 bg_color = "#dddddd"
 fg_color = "blue"
-[[choosable.meta]]
+
+[[meta]]
+choosable="knoppix"
 meta_name = "website"
 meta_value = "http://www.knoppix.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="knoppix"
 meta_name = "age"
 meta_value = "2000-09-30"
-[[choosable.meta]]
+
+[[meta]]
+choosable="knoppix"
 meta_name = "country"
 meta_value = "de"
-[[choosable.meta]]
+
+[[meta]]
+choosable="knoppix"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "cruxlinux"
+[choosable.cruxlinux]
+name = "Crux Linux"
 bg_color = "#dfeeee"
 fg_color = "black"
-[[choosable.meta]]
+
+[[meta]]
+choosable="cruxlinux"
 meta_name = "website"
 meta_value = "https://crux.nu/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="cruxlinux"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "zorinos"
+[choosable.zorinos]
+name = "Zorin OS"
 bg_color = "#15a6f0"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="zorinos"
 meta_name = "website"
 meta_value = "https://zorin.com/os/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="zorinos"
 meta_name = "age"
 meta_value = "2009-01-01"
-[[choosable.meta]]
+
+[[meta]]
+choosable="zorinos"
 meta_name = "country"
 meta_value = "ie"
-[[choosable.meta]]
+
+[[meta]]
+choosable="zorinos"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "elementaryos"
+[choosable.elementaryos]
+name = "elementary OS"
 bg_color = "#555761"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="elementaryos"
 meta_name = "website"
 meta_value = "https://elementary.io/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="elementaryos"
 meta_name = "age"
 meta_value = "2011-03-31"
-[[choosable.meta]]
+
+[[meta]]
+choosable="elementaryos"
 meta_name = "country"
 meta_value = "us"
-[[choosable.meta]]
+
+[[meta]]
+choosable="elementaryos"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "qubesos"
+[choosable.qubesos]
+name = "Qubes OS"
 bg_color = "#f5f5f5"
 fg_color = "black"
-[[choosable.meta]]
+
+[[meta]]
+choosable="qubesos"
 meta_name = "website"
 meta_value = "https://www.qubes-os.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="qubesos"
 meta_name = "age"
 meta_value = "2012-09-03"
-[[choosable.meta]]
+
+[[meta]]
+choosable="qubesos"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "nixos"
+[choosable.nixos]
+name = "NixOS"
 bg_color = "None"
 fg_color = "None"
-[[choosable.meta]]
+
+[[meta]]
+choosable="nixos"
 meta_name = "website"
 meta_value = "None"
-[[choosable.meta]]
+
+[[meta]]
+choosable="nixos"
 meta_name = "age"
 meta_value = "2003-06-03"
-[[choosable.meta]]
+
+[[meta]]
+choosable="nixos"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "xubuntu"
+[choosable.xubuntu]
+name = "Xubuntu"
 bg_color = "#0c72b7"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="xubuntu"
 meta_name = "website"
 meta_value = "https://xubuntu.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="xubuntu"
 meta_name = "age"
 meta_value = "2006-06-23"
-[[choosable.meta]]
+
+[[meta]]
+choosable="xubuntu"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "lubuntu"
+[choosable.lubuntu]
+name = "Lubuntu"
 bg_color = "#3e2e53"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="lubuntu"
 meta_name = "website"
 meta_value = "https://lubuntu.me/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="lubuntu"
 meta_name = "age"
 meta_value = "2008-10-01"
-[[choosable.meta]]
+
+[[meta]]
+choosable="lubuntu"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "ubuntumate"
+[choosable.ubuntumate]
+name = "Ubuntu MATE"
 bg_color = "#87a556"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="ubuntumate"
 meta_name = "website"
 meta_value = "https://ubuntu-mate.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="ubuntumate"
 meta_name = "age"
 meta_value = "2014-10-23"
-[[choosable.meta]]
+
+[[meta]]
+choosable="ubuntumate"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "void"
+[choosable.void]
+name = "Void Linux"
 bg_color = "#478061"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="void"
 meta_name = "website"
 meta_value = "https://voidlinux.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="void"
 meta_name = "age"
 meta_value = "2008-01-01"
-[[choosable.meta]]
+
+[[meta]]
+choosable="void"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "artix"
+[choosable.artix]
+name = "Artix"
 bg_color = "black"
 fg_color = "#8bf"
-[[choosable.meta]]
+
+[[meta]]
+choosable="artix"
 meta_name = "website"
 meta_value = "https://artixlinux.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="artix"
 meta_name = "age"
 meta_value = "2017-01-01"
-[[choosable.meta]]
+
+[[meta]]
+choosable="artix"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "kubuntu"
+[choosable.kubuntu]
+name = "Kubuntu"
 bg_color = "#0079C1"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="kubuntu"
 meta_name = "website"
 meta_value = "https://kubuntu.org/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="kubuntu"
 meta_name = "age"
 meta_value = "2005-04-08"
-[[choosable.meta]]
+
+[[meta]]
+choosable="kubuntu"
 meta_name = "country"
 meta_value = "us,de"
-[[choosable.meta]]
+
+[[meta]]
+choosable="kubuntu"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "popos"
+[choosable.popos]
+name = "Pop!_OS"
 bg_color = "#48b9c7"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="popos"
 meta_name = "website"
 meta_value = "https://pop.system76.com/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="popos"
 meta_name = "age"
 meta_value = "2017-10-27"
-[[choosable.meta]]
+
+[[meta]]
+choosable="popos"
 meta_name = "country"
 meta_value = "us"
-[[choosable.meta]]
+
+[[meta]]
+choosable="popos"
 meta_name = "languages"
 meta_value = "eng"
 
-[[choosable]]
-catalogue_id = "deepin"
+[choosable.deepin]
+name = "Deepin"
 bg_color = "#2fc6ff"
 fg_color = "white"
-[[choosable.meta]]
+
+[[meta]]
+choosable="deepin"
 meta_name = "website"
 meta_value = "https://www.deepin.org/en/"
-[[choosable.meta]]
+
+[[meta]]
+choosable="deepin"
 meta_name = "age"
 meta_value = "2004-02-28"
-[[choosable.meta]]
+
+[[meta]]
+choosable="deepin"
 meta_name = "country"
 meta_value = "cn"
-[[choosable.meta]]
+
+[[meta]]
+choosable="deepin"
 meta_name = "languages"
 meta_value = "eng"

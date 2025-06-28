@@ -31,7 +31,7 @@ class Choosable(Translateable):
     Must be translated
     """
 
-    name = TranslateableField(null=False, blank=False, max_length=120) # the name will be used for results lists mostly
+    name = models.CharField(null=False, blank=False, max_length=120) # the name will be used for results lists mostly
     description = TranslateableField(
         null=True, blank=True, default=None, max_length=120
     )

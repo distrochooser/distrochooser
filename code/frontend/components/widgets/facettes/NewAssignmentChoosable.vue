@@ -4,7 +4,7 @@
             <select class="form-select" v-model="newChoosable">
                 <option value="select"> Select</option>
                 <option :key="index" v-for="(value, index) in missingChoosables" :value="value">
-                    <LanguageTranslation :translation-key="value.displayName" />
+                    <LanguageTranslation :translation-key="value.name" />
                 </option>
             </select>
         </div>

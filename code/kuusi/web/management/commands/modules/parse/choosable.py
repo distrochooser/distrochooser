@@ -21,23 +21,23 @@ from logging import getLogger
 
 
 logger = getLogger('command') 
-def create_choosables(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[Choosable]:
+def create_choosables(get_or_default: Callable[[str, Dict], Any], haystack: Dict, meta_list: List) -> List[Choosable]:
     got = []
     # Meta will just be re-created
     ChoosableMeta.objects.all().delete()
     Choosable.objects.all().update(
         is_invalidated=True
     )
-    for element in haystack:
-        catalogue_id = element["catalogue_id"]
+    for catalogue_id, element in haystack.items():
 
         new_choosable = Choosable(
             catalogue_id = catalogue_id,
-            name = catalogue_id,
+            name = get_or_default("name", element),
             fg_color = get_or_default("fg_color", element),
             bg_color = get_or_default("bg_color", element),
             is_invalidated=False
         )
+
 
         existing_choosables = Choosable.objects.filter(
             catalogue_id = catalogue_id
@@ -49,15 +49,16 @@ def create_choosables(get_or_default: Callable[[str, Dict], Any], haystack: Dict
         new_choosable.save()
         
         # Only assign meta values if there are any
-        if "meta" in element:
-            for meta in element["meta"]:
-                new_choosable_meta = ChoosableMeta(
-                    catalogue_id = meta["meta_name"],
-                    meta_choosable = new_choosable,
-                    meta_name = meta["meta_name"].upper(),
-                    meta_value = meta["meta_value"]
-                )
-                new_choosable_meta.save()
+        matching_meta = list(filter(lambda l: l["choosable"] == new_choosable.catalogue_id, meta_list))
+        for meta in matching_meta:
+          
+            new_choosable_meta = ChoosableMeta(
+                catalogue_id = meta["meta_name"],
+                meta_choosable = new_choosable,
+                meta_name = meta["meta_name"].upper(),
+                meta_value = meta["meta_value"]
+            )
+            new_choosable_meta.save()
 
         got.append(new_choosable)
     

@@ -93,7 +93,7 @@ class Command(BaseCommand):
         new_versions = create_version(self.get_or_default, parsed_toml["version"])
 
         # Choosables will be re-used, if possible
-        new_choosables = create_choosables(self.get_or_default, parsed_toml["choosable"])
+        new_choosables = create_choosables(self.get_or_default, parsed_toml["choosable"],parsed_toml["meta"])
 
         # facettes will be re-used, if possible
         new_facettes = create_facettes(self.get_or_default, parsed_toml["facette"])

@@ -56,7 +56,7 @@ def create_facette_behaviours(get_or_default: Callable[[str, Dict], Any], haysta
     for element, data in haystack.items():
         new_behaviour = FacetteBehaviour(
             catalogue_id = element,
-            description = get_or_default("description", element),
+            description = f"{element}-description",
             direction = data["direction"].upper(),
             criticality = data["criticality"].upper()
         )

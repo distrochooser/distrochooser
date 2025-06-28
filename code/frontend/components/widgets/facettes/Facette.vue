@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
           type="checkbox" :id="facette.id.toString()" v-show="!store.isTranslating">
         <label class="form-check-label" :for="facette.id.toString()">
-          <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
+          <LanguageTranslation :translation-key="props.facette.description"/>
         </label>
         <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
         <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating" />
@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           v-model="selected" v-on:change="registerChange" v-bind:value="true" :checked="isSelected"
           :id="facette.id.toString()">
           <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
-            <LanguageTranslation :translation-key="props.facette.selectableDescription"/>
+            <LanguageTranslation :translation-key="props.facette.description"/>
           </label>
           <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
 

@@ -160,7 +160,7 @@ class SessionVersionSerializer(serializers.ModelSerializer):
 
     def get_text(self, obj: SessionVersion) -> str:
         session: Session = self.context["session"]
-        return obj.__("version_name", session.language_code)
+        return obj.__("description", session.language_code)
 
 
 class SessionViewSet(ViewSet):

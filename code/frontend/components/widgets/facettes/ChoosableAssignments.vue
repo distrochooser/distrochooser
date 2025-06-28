@@ -4,7 +4,7 @@
         <span class="btn btn-outline-primary" :style="'border-color: ' +
             choosable.bgColor +
             '; '">
-          <LanguageTranslation :translation-key="choosable.displayName"/>
+          <LanguageTranslation :translation-key="choosable.name"/>
 
           <Icon name="ion:chatbubbles" v-if="props.isPending"></Icon>
         </span>
