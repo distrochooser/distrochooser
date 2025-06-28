@@ -19,7 +19,7 @@ from typing import List, Tuple
 from genericpath import exists
 from os import unlink
 from web.models import TRANSLATIONS, Choosable
-from web.management.commands.language import Command as LanguageCommand
+from web.management.commands.languagefeedback import Command as LanguageCommand
 from django.core.management.base import BaseCommand 
 from logging import getLogger
 from os.path import join
@@ -38,6 +38,7 @@ class Command(BaseCommand):
         parser.add_argument("--read", action="store_true", default=False)
         parser.add_argument("--dry_run", action="store_true", default=False)
         parser.add_argument("--mask", action="store_true", default=False)
+        parser.add_argument("--missing", action="store_true", default=False)
 
     def dump(self, path: str, wanted_lang: str, mask: bool):
         for lang in AVAILABLE_LANGUAGES:
