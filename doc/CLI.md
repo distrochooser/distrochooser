@@ -16,13 +16,13 @@ Using `--clear`, all feedback can be deleted. Using `--persist`, feedback will b
 
 Examples:
 
-`python3 manage.py language --delete <id1> <idn>`
+`python3 manage.py languagefeedback --delete <id1> <idn>`
 
-`python3 manage.py language --approve <id1> <idn>`
+`python3 manage.py languagefeedback --approve <id1> <idn>`
 
-`python3 manage.py language --persist <id1> <idn>`
+`python3 manage.py languagefeedback --persist <id1> <idn>`
 
-`python3 manage.py language --clear`
+`python3 manage.py languagefeedback --clear`
 
 ## feedback: 
 
@@ -32,8 +32,8 @@ Feedback has two stages: A _pending_ feedback is a proposal for a new mapping be
 
 A non-pending _feedback_ is a feedback on top of an existing mapping between `choosable` and `assignment`. This feedback currently only has informational character.
 
-If no parameters to `feedback` are given, all existing items will be printed out.
+If no parameters to `matrixfeedback` are given, all existing items will be printed out.
 
-`python3 manage.py feedback --delete <id1> <idn>`
+`python3 manage.py matrixfeedback --delete <id1> <idn>`
 
-`python3 manage.py feedback --approve <id1> <idn>`
+`python3 manage.py matrixfeedback --approve <id1> <idn>`
