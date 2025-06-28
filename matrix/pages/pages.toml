@@ -20,14 +20,9 @@ can_be_marked = false
 next_page = "version-page"
 hide_text = true
 hide_help = true
-
 [widget.html.welcome-page-widget-name]
 template = "welcomeHTML"
 pages = ["welcome-page"]
-
-[category.welcome-page-category]
-icon = "bi bi-house-door"
-target_page = "welcome-page"
 
 # Version page
 
@@ -37,10 +32,6 @@ next_page = "scenario-page"
 
 [widget.version.version-page-widget-name]
 pages = ["version-page"]
-
-[category.version-page-category]
-icon = "bi bi-signpost-2"
-target_page = "version-page"
 
 # Scenario page
 
@@ -52,10 +43,6 @@ hide_help = true
 topic = "scenario"
 pages = ["scenario-page"]
 
-[category.scenario-page-category]
-icon = "bi bi-controller"
-target_page = "scenario-page"
-
 # PC knowledge page
 
 [page.pc-knowledge-page]
@@ -65,10 +52,6 @@ hide_help = true
 [widget.radio.pc-knowledge-page-widget-name]
 topic = "pc-knowledge"
 pages = ["pc-knowledge-page"]
-
-[category.pc-knowledge-page-category]
-icon = "bi bi-pc-display"
-target_page = "pc-knowledge-page"
 
 # Linux knowledge page
 
@@ -80,9 +63,6 @@ hide_help = true
 topic = "linux-knowledge"
 pages = ["linux-knowledge-page"]
 
-[category.linux-knowledge-page-category]
-icon = "bi bi-list-ol"
-target_page = "linux-knowledge-page"
 
 # Installation page
 
@@ -94,9 +74,6 @@ hide_help = true
 topic = "installation"
 pages = ["installation-page"]
 
-[category.installation-page-category]
-icon = "bi bi-device-hdd"
-target_page = "installation-page"
 
 # Personal requirement page
 
@@ -116,10 +93,6 @@ structure = [
 ]
 pages = ["personal-requirements-page"]
 
-[category.personal-requirements-category]
-icon = "bi bi-calendar-x"
-target_page = "personal-requirements-page"
-
 # help page
 
 [page.help-page]
@@ -129,10 +102,6 @@ hide_help = true
 [widget.selection.help-page-widget-name]
 topic = "installation"
 pages = ["help-page"]
-
-[category.help-category]
-icon = "bi bi-question"
-target_page = "help-page"
 
 # UX Page
 
@@ -145,10 +114,6 @@ hide_help = true
 topic = "ux"
 pages = ["ux-page"]
 
-[category.ux-category]
-icon = "bi bi-window-fullscreen"
-target_page = "ux-page"
-
 # Pricing page
 
 [page.pricing-page]
@@ -160,10 +125,6 @@ hide_help = true
 topic = "pricing"
 pages = ["pricing-page"]
 
-[category.pricing-category]
-icon = "bi bi-currency-exchange"
-target_page = "pricing-page"
-
 # Scope
 
 [page.scope-page]
@@ -173,10 +134,6 @@ next_page = "ideology-page"
 [widget.selection.scope-page-widget-name]
 topic = "scope"
 pages = ["scope-page"]
-
-[category.scope-category]
-icon = "bi bi-list-check"
-target_page = "scope-page"
 
 # Ideology
 
@@ -189,10 +146,6 @@ topic = "ideology"
 not_in_versions = ["simplified"]
 pages = ["ideology-page"]
 
-[category.ideology-category]
-icon = "bi bi-patch-exclamation"
-target_page = "ideology-page"
-
 # Privacy
 
 [page.privacy-page]
@@ -202,10 +155,6 @@ next_page = "administration-page"
 [widget.selection.privacy-page-widget-name]
 topic = "privacy"
 pages = ["privacy-page"]
-
-[category.privacy-category]
-icon = "bi bi-shield-lock"
-target_page = "privacy-page"
 
 # Administration 
 
@@ -217,10 +166,6 @@ topic = "administration"
 pages = ["administration-page"]
 not_in_versions = ["simplified"]
 
-[category.administration-category]
-icon = "bi bi-gear-wide-connected"
-target_page = "administration-page"
-
 # Updates 
 
 [page.updates-page]
@@ -231,10 +176,6 @@ not_in_versions = ["simplified"]
 [widget.selection.updates-page-widget-name]
 topic = "updates"
 pages = ["updates-page"]
-
-[category.updates-category]
-icon = "bi bi-gear-wide-connected"
-target_page = "updates-page"
 
 # Results
 
@@ -262,10 +203,6 @@ pages = ["result-page"]
 row = 3
 topic = "result"
 pages = ["result-page"]
-
-[category.result-category]
-icon = "bi bi-list-nested"
-target_page = "result-page"
 
 # Widgets present on all (or many) pages
 
