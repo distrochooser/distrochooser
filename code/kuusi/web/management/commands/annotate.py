@@ -40,8 +40,9 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("file_path", type=str)
         parser.add_argument("--remove", action="store_true", default=False, help="Remove the annotations, if any")
+        parser.add_argument("--lang", nargs="*",help="limit languages to be checked for", default=[],)
 
-    def annotate_block(self, pattern: str, line: str, search_for: str) -> Tuple[str| None, List[str], List[str]]:
+    def annotate_block(self, pattern: str, line: str, search_for: str, explicit_lang_list: List[str]) -> Tuple[str| None, List[str], List[str]]:
         new_lines = []
 
         missing_languages = []
@@ -67,20 +68,22 @@ class Command(BaseCommand):
                     annotation + f"{self.kuusi_prefix}translation::key::{translation}\n"
                 )
                 for lang_tuple in AVAILABLE_LANGUAGES:
-                    lang = lang_tuple[0]
                     
-                    is_lang_there = lang in TRANSLATIONS
-                    if is_lang_there:
-                        is_translation_missing = translation not in TRANSLATIONS[lang]
-                        if is_translation_missing:
-                            missing_languages.append(lang)
-                        else: 
-                            if lang != DEFAULT_LANGUAGE_CODE:
-                                english_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][translation]
-                                translation_value = TRANSLATIONS[lang][translation]
-                                still_english_value =english_value == translation_value
-                                if still_english_value:
-                                    missing_languages.append(lang)
+                    lang = lang_tuple[0]
+                    continue_check = explicit_lang_list.__len__() > 0 and lang in explicit_lang_list or explicit_lang_list.__len__() == 0
+                    if continue_check:
+                        is_lang_there = lang in TRANSLATIONS
+                        if is_lang_there:
+                            is_translation_missing = translation not in TRANSLATIONS[lang]
+                            if is_translation_missing:
+                                missing_languages.append(lang)
+                            else: 
+                                if lang != DEFAULT_LANGUAGE_CODE:
+                                    english_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][translation]
+                                    translation_value = TRANSLATIONS[lang][translation]
+                                    still_english_value =english_value == translation_value
+                                    if still_english_value:
+                                        missing_languages.append(lang)
 
                 missing_languages_str = (",".join(missing_languages)).strip(",")
                 if missing_languages.__len__() > 0:
@@ -90,7 +93,7 @@ class Command(BaseCommand):
         missing_languages.sort()
         return catalogue_id, new_lines, missing_languages
 
-    def handle_file(self, file_path: str, remove: bool):
+    def handle_file(self, file_path: str, remove: bool, explicit_lang_list: List[str]):
 
         new_lines = []
         summary_text = {}
@@ -133,7 +136,7 @@ class Command(BaseCommand):
                     for block, search_for in blocks.items():
                         exit_block = False
                         for element in search_for:
-                            catalogue_id, additions, missing_languages = self.annotate_block(block, line, element)
+                            catalogue_id, additions, missing_languages = self.annotate_block(block, line, element, explicit_lang_list)
                             if additions.__len__() != 0:
                                 new_lines += additions
                                 if missing_languages.__len__() != 0: 
@@ -158,11 +161,11 @@ class Command(BaseCommand):
             for matched_line, text in summary_text.items():
                 line_number = new_content.index(matched_line) + 1
                 print(f"Line={colored(line_number, color='red')} {text}")
-
                 
     def handle(self, *args, **options):
         file_path = options["file_path"]
         remove = options["remove"]
+        lang = options["lang"]
 
         if isdir(file_path):
             result = [
@@ -172,6 +175,6 @@ class Command(BaseCommand):
                 if f.endswith(".toml")
             ]
             for file in result:
-                self.handle_file(file, remove)
+                self.handle_file(file, remove, lang)
         else:
-            self.handle_file(file_path, remove)
+            self.handle_file(file_path, remove, lang)
