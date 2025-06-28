@@ -99,7 +99,7 @@ class Command(BaseCommand):
                     lines = open(full_path, "r").readlines()
                     lines = [l.replace(self.line_sep,"") for l in lines]
 
-                    missing_key, missing = self.get_missing_values(lang_code)
+                    missing_key, missing = self.get_missing_values(lang_code, False)
                     if len(missing_key) != len(lines):
                         logger.error(f"Mismatch of keys and values ({colored(len(missing), 'red')}vs{colored(len(lines), 'green')})")
                     else:
@@ -107,7 +107,7 @@ class Command(BaseCommand):
                             lang_key = missing_key[i]
                             lang_value = self.unmask(lines[i])
                             if not dry_run:
-                                LanguageCommand.update_locale_files(lang_code, lang_key, lang_value)
+                                LanguageCommand.update_locale_files(lang_code, lang_key, lang_value) # type: ignore
                             else:
                                 logger.debug(f"Would update as following: {lang_key} -> {lang_value}")
                         if not dry_run:
