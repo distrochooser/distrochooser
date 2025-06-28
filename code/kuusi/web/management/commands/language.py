@@ -92,11 +92,12 @@ class Command(BaseCommand):
         if to_approve is not None:
             for pk in to_approve:
                 obj = LanguageFeedback.objects.filter(pk=pk).first()
-                obj.is_approved = not obj.is_approved
-                obj.save()
-                LanguageFeedback.objects.filter(
-                    session__language_code=lang_code
-                ).filter(language_key=obj.language_key).exclude(pk=pk).delete()
+                if obj is not None:
+                    obj.is_approved = not obj.is_approved
+                    obj.save()
+                    LanguageFeedback.objects.filter(
+                        session__language_code=lang_code
+                    ).filter(language_key=obj.language_key).exclude(pk=pk).delete()
         if remove_unapproved:
             LanguageFeedback.objects.filter(session__language_code=lang_code).exclude(
                 is_approved=True
@@ -110,7 +111,7 @@ class Command(BaseCommand):
         if to_persist is not None:
             for element in data:
                 if element.is_approved:
-                    Command.update_locale_files(lang_code, element.language_key, element.value)
+                    Command.update_locale_files(lang_code, element.language_key, element.value) # type: ignore
                     element.delete()
 
 
