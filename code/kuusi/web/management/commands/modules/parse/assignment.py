@@ -15,38 +15,46 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 from typing import Dict, List, Callable, Any
 from web.models import FacetteAssignment, Choosable, Facette
 from logging import getLogger
 
 
-logger = getLogger('command') 
-def create_assignments(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[FacetteAssignment]:
+logger = getLogger("command")
+
+
+def create_assignments(
+    get_or_default: Callable[[str, Dict], Any], haystack: Dict
+) -> List[FacetteAssignment]:
     got = []
-    FacetteAssignment.objects.update(
-        is_invalidated = True
-    )
+    FacetteAssignment.objects.update(is_invalidated=True)
     for element, data in haystack.items():
 
         old_assignment = FacetteAssignment.objects.filter(catalogue_id=element)
         new_assignment = FacetteAssignment(
-            catalogue_id = element,
-            description = data["description"],
-            assignment_type = data["how"].upper(),
-            is_invalidated = False
+            catalogue_id=element,
+            description=f"{element}-description",
+            assignment_type=data["how"].upper(),
+            is_invalidated=False,
         )
         if old_assignment.count() != 0:
-            logger.info(f"There is an old assignment with catalogue_id={element}. Attempting re-use")
-            new_assignment.pk = old_assignment.first().pk   
+            logger.info(
+                f"There is an old assignment with catalogue_id={element}. Attempting re-use"
+            )
+            new_assignment.pk = old_assignment.first().pk
 
         new_assignment.save()
 
-        new_assignment.choosables.set(Choosable.objects.filter(name__in=data["choosables"]))
-        new_assignment.facettes.set(Facette.objects.filter(catalogue_id__in=data["facettes"]))
+        new_assignment.choosables.set(
+            Choosable.objects.filter(name__in=data["choosables"])
+        )
+        new_assignment.facettes.set(
+            Facette.objects.filter(catalogue_id__in=data["facettes"])
+        )
 
         new_assignment.save()
         got.append(new_assignment)
-    
 
     # delete old, unused ones
     objects = FacetteAssignment.objects.filter(is_invalidated=True)

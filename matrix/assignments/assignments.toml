@@ -16,7 +16,6 @@
 
 
 [assignment.matrix-supports-daily-usage-facette-daily-usage]
-description = "matrix-supports-daily-usage-facette-daily-usage"
 facettes = ["daily-usage"]
 choosables = [
     "ubuntu",
@@ -51,28 +50,24 @@ how = "positive"
 
 
 [assignment.daily-usage-possibly-difficult-facette-daily-usage]
-description = "daily-usage-possibly-difficult-facette-daily-usage"
 facettes = ["daily-usage"]
 choosables = ["tails"]
 how = "negative"
 
 
 [assignment.matrix-supports-daily-usage-but-built-for-livemode-facette-daily-usage]
-description = "matrix-supports-daily-usage-but-built-for-livemode-facette-daily-usage"
 facettes = ["daily-usage"]
 choosables = ["Knoppix"]
 how = "negative"
 
 
 [assignment.matrix-privacy-not-beneficial-facette-privacy-usage]
-description = "matrix-privacy-not-beneficial-facette-privacy-usage"
 facettes = ["privacy-usage"]
 choosables = ["ubuntu", "deepin"]
 how = "blocking"
 
 
 [assignment.matrix-packages-available-facette-privacy-usage]
-description = "matrix-packages-available-facette-privacy-usage"
 facettes = ["privacy-usage"]
 choosables = [
     "debian",
@@ -105,14 +100,12 @@ how = "neutral"
 
 
 [assignment.built-for-anonymization-facette-privacy-usage]
-description = "built-for-anonymization-facette-privacy-usage"
 facettes = ["privacy-usage"]
 choosables = ["tails"]
 how = "positive"
 
 
 [assignment.matrix-supports-gaming-usage-facette-gaming-usage]
-description = "matrix-supports-gaming-usage-facette-gaming-usage"
 facettes = ["gaming-usage"]
 choosables = [
     "ubuntu",
@@ -130,21 +123,18 @@ how = "positive"
 
 
 [assignment.matrix-packages-may-too-old-gaming-facette-gaming-usage]
-description = "matrix-packages-may-too-old-gaming-facette-gaming-usage"
 facettes = ["gaming-usage"]
 choosables = ["debian", "devuan", "rocky", "MXLinux"]
 how = "negative"
 
 
 [assignment.live-mode-only-facette-gaming-usage]
-description = "live-mode-only-facette-gaming-usage"
 facettes = ["gaming-usage"]
 choosables = ["tails"]
 how = "blocking"
 
 
 [assignment.matrix-gaming-may-require-additional-configuration-facette-gaming-usage]
-description = "matrix-gaming-may-require-additional-configuration-facette-gaming-usage"
 facettes = ["gaming-usage"]
 choosables = [
     "arch",
@@ -161,21 +151,18 @@ how = "neutral"
 
 
 [assignment.matrix-built-for-enterprise-facette-gaming-usage]
-description = "matrix-built-for-enterprise-facette-gaming-usage"
 facettes = ["gaming-usage"]
 choosables = ["rhel"]
 how = "negative"
 
 
 [assignment.matrix-not-built-for-gaming-facette-gaming-usage]
-description = "matrix-not-built-for-gaming-facette-gaming-usage"
 facettes = ["gaming-usage"]
 choosables = ["Knoppix", "CruxLinux", "qubesos"]
 how = "negative"
 
 
 [assignment.matrix-beginner-knowledge-facette-beginner-usage]
-description = "matrix-beginner-knowledge-facette-beginner-usage"
 facettes = ["beginner-usage"]
 choosables = [
     "ubuntu",
@@ -196,7 +183,6 @@ how = "positive"
 
 
 [assignment.requires-some-computer-knowledge-facette-beginner-usage]
-description = "requires-some-computer-knowledge-facette-beginner-usage"
 facettes = ["beginner-usage"]
 choosables = [
     "debian",
@@ -220,7 +206,6 @@ how = "negative"
 
 
 [assignment.matrix-requires-advanced-knowledge-facette-advanced-usage]
-description = "matrix-requires-advanced-knowledge-facette-advanced-usage"
 facettes = ["advanced-usage"]
 choosables = [
     "debian",
@@ -242,7 +227,6 @@ how = "positive"
 
 
 [assignment.matrix-requires-advanced-knowledge-facette-professional-usage]
-description = "matrix-requires-advanced-knowledge-facette-professional-usage"
 facettes = ["professional-usage"]
 choosables = [
     "debian",
@@ -261,7 +245,6 @@ how = "positive"
 
 
 [assignment.matrix-beginner-knowledge-facette-no-linux-contact]
-description = "matrix-beginner-knowledge-facette-no-linux-contact"
 facettes = ["no-linux-contact"]
 choosables = [
     "ubuntu",
@@ -282,7 +265,6 @@ how = "positive"
 
 
 [assignment.matrix-not-for-beginner-facette-no-linux-contact]
-description = "matrix-not-for-beginner-facette-no-linux-contact"
 facettes = ["no-linux-contact"]
 choosables = [
     "debian",
@@ -303,14 +285,12 @@ how = "blocking"
 
 
 [assignment.matrix-maybe-not-for-beginner-facette-no-linux-contact]
-description = "matrix-maybe-not-for-beginner-facette-no-linux-contact"
 facettes = ["no-linux-contact"]
 choosables = ["MXLinux", "Fedora", "Knoppix", "CruxLinux", "qubesos", "nixOS"]
 how = "negative"
 
 
 [assignment.matrix-requires-manual-facette-already-used]
-description = "matrix-requires-manual-facette-already-used"
 facettes = ["already-used"]
 choosables = [
     "debian",
@@ -333,7 +313,6 @@ how = "positive"
 
 
 [assignment.matrix-installation-assistant-present-facette-many-preselections]
-description = "matrix-installation-assistant-present-facette-many-preselections"
 facettes = ["many-preselections"]
 choosables = [
     "ubuntu",
@@ -362,7 +341,6 @@ how = "positive"
 
 
 [assignment.matrix-has-default-settings-facette-many-preselections]
-description = "matrix-has-default-settings-facette-many-preselections"
 facettes = ["many-preselections"]
 choosables = [
     "ubuntu",
@@ -384,14 +362,12 @@ how = "positive"
 
 
 [assignment.matrix-installation-facettes-shell-facette-many-preselections]
-description = "matrix-installation-facettes-shell-facette-many-preselections"
 facettes = ["many-preselections"]
 choosables = ["arch", "Gentoo", "void", "artix"]
 how = "blocking"
 
 
 [assignment.matrix-installs-range-of-programs-facette-commandline-setup]
-description = "matrix-installs-range-of-programs-facette-commandline-setup"
 facettes = ["commandline-setup"]
 choosables = [
     "ubuntu",
@@ -416,7 +392,6 @@ how = "negative"
 
 
 [assignment.matrix-selection-by-user-facette-commandline-setup]
-description = "matrix-selection-by-user-facette-commandline-setup"
 facettes = ["commandline-setup"]
 choosables = [
     "debian",
@@ -434,7 +409,6 @@ how = "positive"
 
 
 [assignment.matrix-installation-presets-gui-facette-many-choices-gui]
-description = "matrix-installation-presets-gui-facette-many-choices-gui"
 facettes = ["many-choices-gui"]
 choosables = [
     "ubuntu",
@@ -458,7 +432,6 @@ how = "positive"
 
 
 [assignment.matrix-has-control-panel-facette-many-choices-gui]
-description = "matrix-has-control-panel-facette-many-choices-gui"
 facettes = ["many-choices-gui"]
 choosables = [
     "ubuntu",
@@ -481,14 +454,12 @@ how = "positive"
 
 
 [assignment.matrix-configuration-facettes-shell-facette-many-choices-gui]
-description = "matrix-configuration-facettes-shell-facette-many-choices-gui"
 facettes = ["many-choices-gui"]
 choosables = ["arch", "Gentoo"]
 how = "blocking"
 
 
 [assignment.matrix-oldpc-no-32bit-facette-no64bit]
-description = "matrix-oldpc-no-32bit-facette-no64bit"
 facettes = ["no64bit"]
 choosables = [
     "ubuntu",
@@ -506,28 +477,24 @@ how = "blocking"
 
 
 [assignment.matrix-middleweight-facette-no64bit]
-description = "matrix-middleweight-facette-no64bit"
 facettes = ["no64bit"]
 choosables = ["MXLinux"]
 how = "positive"
 
 
 [assignment.matrix-has-high-range-hardware-support-facette-no64bit]
-description = "matrix-has-high-range-hardware-support-facette-no64bit"
 facettes = ["no64bit"]
 choosables = ["Knoppix"]
 how = "positive"
 
 
 [assignment.matrix-has-zorin-lite-version-facette-no64bit]
-description = "matrix-has-zorin-lite-version-facette-no64bit"
 facettes = ["no64bit"]
 choosables = ["ZorinOS"]
 how = "positive"
 
 
 [assignment.matrix-oldpc-no-32bit-desc-facette-no64bit]
-description = "matrix-oldpc-no-32bit-desc-facette-no64bit"
 facettes = ["no64bit"]
 choosables = [
     "ubuntu",
@@ -557,14 +524,12 @@ how = "negative"
 
 
 [assignment.matrix-lightweight-facette-no64bit]
-description = "matrix-lightweight-facette-no64bit"
 facettes = ["no64bit"]
 choosables = ["elementaryOS", "Xubuntu", "Lubuntu", "UbuntuMATE"]
 how = "positive"
 
 
 [assignment.matrix-tutorial-facette-manuals]
-description = "matrix-tutorial-facette-manuals"
 facettes = ["manuals"]
 choosables = [
     "debian",
@@ -588,7 +553,6 @@ how = "positive"
 
 
 [assignment.matrix-user-exchange-facette-need-human-help]
-description = "matrix-user-exchange-facette-need-human-help"
 facettes = ["need-human-help"]
 choosables = [
     "ubuntu",
@@ -608,28 +572,24 @@ how = "positive"
 
 
 [assignment.matrix-has-windows-like-variant-cinnamon-facette-ux-concept-answer-windows-like]
-description = "matrix-has-windows-like-variant-cinnamon-facette-ux-concept-answer-windows-like"
 facettes = ["ux-concept-answer-windows-like"]
 choosables = ["mint"]
 how = "positive"
 
 
 [assignment.matrix-has-windows-like-variant-facette-ux-concept-answer-windows-like]
-description = "matrix-has-windows-like-variant-facette-ux-concept-answer-windows-like"
 facettes = ["ux-concept-answer-windows-like"]
 choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu"]
 how = "positive"
 
 
 [assignment.matrix-mac-like-facette-ux-concept-answer-mac-like]
-description = "matrix-mac-like-facette-ux-concept-answer-mac-like"
 facettes = ["ux-concept-answer-mac-like"]
 choosables = ["popos", "deepin"]
 how = "positive"
 
 
 [assignment.matrix-without-fee-facette-pricing-free]
-description = "matrix-without-fee-facette-pricing-free"
 facettes = ["pricing-free"]
 choosables = [
     "ubuntu",
@@ -665,14 +625,12 @@ how = "positive"
 
 
 [assignment.matrix-paid-version-existing-facette-paid-support-ok]
-description = "matrix-paid-version-existing-facette-paid-support-ok"
 facettes = ["paid-support-ok"]
 choosables = ["ubuntu", "opensuse", "rhel", "ZorinOS", "elementaryOS"]
 how = "positive"
 
 
 [assignment.matrix-fullinstall-facette-scope-out-of-the-box]
-description = "matrix-fullinstall-facette-scope-out-of-the-box"
 facettes = ["scope-out-of-the-box"]
 choosables = [
     "ubuntu",
@@ -700,7 +658,6 @@ how = "positive"
 
 
 [assignment.matrix-free-software-unfree-per-default-facette-license-open-source]
-description = "matrix-free-software-unfree-per-default-facette-license-open-source"
 facettes = ["license-open-source"]
 choosables = [
     "ubuntu",
@@ -717,21 +674,18 @@ how = "blocking"
 
 
 [assignment.matrix-free-userselection-facette-license-open-source]
-description = "matrix-free-userselection-facette-license-open-source"
 facettes = ["license-open-source"]
 choosables = ["debian", "devuan", "arch", "rocky", "Gentoo", "artix"]
 how = "positive"
 
 
 [assignment.matrix-enforces-free-facette-license-open-source]
-description = "matrix-enforces-free-facette-license-open-source"
 facettes = ["license-open-source"]
 choosables = ["Fedora"]
 how = "positive"
 
 
 [assignment.matrix-free-software-unfree-per-default-facette-proprietary-okay-when-working]
-description = "matrix-free-software-unfree-per-default-facette-proprietary-okay-when-working"
 facettes = ["proprietary-okay-when-working"]
 choosables = [
     "ubuntu",
@@ -751,14 +705,12 @@ how = "positive"
 
 
 [assignment.matrix-privacy-thirdparty-facette-privacy-no-connections-unless-wanted]
-description = "matrix-privacy-thirdparty-facette-privacy-no-connections-unless-wanted"
 facettes = ["privacy-no-connections-unless-wanted"]
 choosables = []
 how = "blocking"
 
 
 [assignment.matrix-user-selection-affects-privacy-facette-privacy-no-connections-unless-wanted]
-description = "matrix-user-selection-affects-privacy-facette-privacy-no-connections-unless-wanted"
 facettes = ["privacy-no-connections-unless-wanted"]
 choosables = [
     "debian",
@@ -786,21 +738,18 @@ how = "positive"
 
 
 [assignment.matrix-supports-privacy-facette-privacy-no-connections-unless-wanted]
-description = "matrix-supports-privacy-facette-privacy-no-connections-unless-wanted"
 facettes = ["privacy-no-connections-unless-wanted"]
 choosables = ["elementaryOS"]
 how = "positive"
 
 
 [assignment.matrix-privacy-thirdparty-facette-okay-when-working]
-description = "matrix-privacy-thirdparty-facette-okay-when-working"
 facettes = ["okay-when-working"]
 choosables = ["ubuntu"]
 how = "negative"
 
 
 [assignment.matrix-appstore-facette-app-store-gui]
-description = "matrix-appstore-facette-app-store-gui"
 facettes = ["app-store-gui"]
 choosables = [
     "ubuntu",
@@ -821,7 +770,6 @@ how = "positive"
 
 
 [assignment.matrix-console-facette-software-admin-answer-console]
-description = "matrix-console-facette-software-admin-answer-console"
 facettes = ["software-admin-answer-console"]
 choosables = [
     "ubuntu",
@@ -836,7 +784,6 @@ how = "neutral"
 
 
 [assignment.matrix-administration-shell-facette-software-admin-answer-console]
-description = "matrix-administration-shell-facette-software-admin-answer-console"
 facettes = ["software-admin-answer-console"]
 choosables = [
     "debian",
@@ -859,7 +806,6 @@ how = "positive"
 
 
 [assignment.matrix-uses-systemd-facette-no-systemd]
-description = "matrix-uses-systemd-facette-no-systemd"
 facettes = ["no-systemd"]
 choosables = [
     "ubuntu",
@@ -886,28 +832,24 @@ how = "blocking"
 
 
 [assignment.matrix-avoids-systemd-facette-no-systemd]
-description = "matrix-avoids-systemd-facette-no-systemd"
 facettes = ["no-systemd"]
 choosables = ["devuan", "pclinuxos", "Knoppix", "CruxLinux", "artix"]
 how = "positive"
 
 
 [assignment.systemd-is-avoidable-per-selection-facette-no-systemd]
-description = "systemd-is-avoidable-per-selection-facette-no-systemd"
 facettes = ["no-systemd"]
 choosables = ["Gentoo", "void"]
 how = "positive"
 
 
 [assignment.matrix-ships-systemd-but-disabled-facette-no-systemd]
-description = "matrix-ships-systemd-but-disabled-facette-no-systemd"
 facettes = ["no-systemd"]
 choosables = ["MXLinux"]
 how = "positive"
 
 
 [assignment.matrix-updates-fast-facette-prefer-fast]
-description = "matrix-updates-fast-facette-prefer-fast"
 facettes = ["prefer-fast"]
 choosables = [
     "arch",
@@ -924,7 +866,6 @@ how = "positive"
 
 
 [assignment.matrix-stable-updates-facette-prefer-stable]
-description = "matrix-stable-updates-facette-prefer-stable"
 facettes = ["prefer-stable"]
 choosables = [
     "ubuntu",
@@ -951,28 +892,24 @@ how = "positive"
 
 
 [assignment.debian-updates-slow-facette-prefer-fast]
-description = "debian-updates-slow-facette-prefer-fast"
 facettes = ["prefer-fast"]
 choosables = ["debian"]
 how = "negative"
 
 
 [assignment.matrix-runs-in-isolation-facette-privacy-isolation-usage]
-description = "matrix-runs-in-isolation-facette-privacy-isolation-usage"
 facettes = ["privacy-isolation-usage"]
 choosables = ["qubesos"]
 how = "positive"
 
 
 [assignment.matrix-knoppix-adriane-facette-impaired-view-usage]
-description = "matrix-knoppix-adriane-facette-impaired-view-usage"
 facettes = ["impaired-view-usage"]
 choosables = ["Knoppix"]
 how = "positive"
 
 
 [assignment.matrix-has-software-for-blind-facette-impaired-view-usage]
-description = "matrix-has-software-for-blind-facette-impaired-view-usage"
 facettes = ["impaired-view-usage"]
 choosables = [
     "ubuntu",
@@ -1005,7 +942,6 @@ how = "positive"
 
 
 [assignment.matrix-has-live-mode-facette-live-mode-usage]
-description = "matrix-has-live-mode-facette-live-mode-usage"
 facettes = ["live-mode-usage"]
 choosables = [
     "ubuntu",
@@ -1031,35 +967,30 @@ how = "positive"
 
 
 [assignment.slow-release-model-facette-prefer-stable]
-description = "slow-release-model-facette-prefer-stable"
 facettes = ["prefer-stable"]
 choosables = ["debian", "rocky"]
 how = "neutral"
 
 
 [assignment.requires-payment-facette-pricing-free]
-description = "requires-payment-facette-pricing-free"
 facettes = ["pricing-free"]
 choosables = ["rhel"]
 how = "blocking"
 
 
 [assignment.matrix-configuration-facettes-shell-desc-facette-many-choices-gui]
-description = "matrix-configuration-facettes-shell-desc-facette-many-choices-gui"
 facettes = ["many-choices-gui"]
 choosables = ["artix"]
 how = "neutral"
 
 
 [assignment.matrix-general-remark-additional-eula-facette-privacy-no-connections-unless-wanted]
-description = "matrix-general-remark-additional-eula-facette-privacy-no-connections-unless-wanted"
 facettes = ["privacy-no-connections-unless-wanted"]
 choosables = ["deepin"]
 how = "neutral"
 
 
 [assignment.matrix-general-remark-additional-eula-facette-okay-when-working]
-description = "matrix-general-remark-additional-eula-facette-okay-when-working"
 facettes = ["okay-when-working"]
 choosables = ["ubuntu", "deepin"]
 how = "neutral"

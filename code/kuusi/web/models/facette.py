@@ -32,11 +32,11 @@ class Facette(Translateable):
     """
     A facette describes a fact narrowing down the selection for choosables.
 
-    The selectable_description is displayed for selection within a page
+    The description is displayed for selection within a page
 
     The topic reduces a facette to a certain subarea, e. g. "licenses" for Linux distributions
     """ 
-    selectable_description = TranslateableField(null=False, blank=False, max_length=120)
+    description = TranslateableField(null=False, blank=False, max_length=120)
     topic = models.CharField(null=False, blank=False, max_length=120)
     child_facettes = models.ManyToManyField(to="Facette", blank=True)
 
@@ -61,7 +61,7 @@ class Facette(Translateable):
         return assignments
 
     def __str__(self) -> str:
-        return f"[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) (select: {self.selectable_description})"
+        return f"[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) (select: {self.description})"
 
 
 class FacetteBehaviour(Translateable):

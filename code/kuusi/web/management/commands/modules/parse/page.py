@@ -35,7 +35,7 @@ def create_pages(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> 
                 can_be_marked = get_or_default("can_be_marked", properties),
                 text = f"{catalogue_id}-text",
                 help= f"{catalogue_id}-help",
-                title = f"{catalogue_id}-title",
+                title = get_or_default("title", catalogue_id),
                 icon=get_or_default("icon", properties),
                 hide_text = get_or_default("hide_text", properties),
                 hide_help = get_or_default("hide_help", properties),

@@ -47,7 +47,7 @@ def create_facettes(get_or_default: Callable[[str, Dict], Any], haystack: Dict) 
     objects.delete()
     return got
 
-def create_facette_behaviours(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[FacetteBehaviour]:
+def create_facette_behaviours(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[FacetteBehaviour]:
     got = []
 
     # We won't preserve behaviours.
@@ -56,7 +56,7 @@ def create_facette_behaviours(get_or_default: Callable[[str, Dict], any], haysta
     for element, data in haystack.items():
         new_behaviour = FacetteBehaviour(
             catalogue_id = element,
-            description = element,
+            description = get_or_default("description", element),
             direction = data["direction"].upper(),
             criticality = data["criticality"].upper()
         )

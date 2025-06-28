@@ -261,13 +261,13 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
 
 
 class FacetteSerializer(serializers.ModelSerializer):
-    selectable_description = serializers.SerializerMethodField()
+    description = serializers.SerializerMethodField()
     assignments = serializers.SerializerMethodField()
     class Meta:
         model = Facette
-        fields = ('id', 'topic', 'selectable_description', 'assignments',)
-    def get_selectable_description(self, obj: Facette) -> str:
-        return obj.get_msgd_id_of_field("selectable_description") 
+        fields = ('id', 'topic', 'description', 'assignments',)
+    def get_description(self, obj: Facette) -> str:
+        return obj.get_msgd_id_of_field("description") 
 
     @extend_schema_field(field=FacetteAssignmentSerializer(many=True))
     def get_assignments(self, obj:Facette) -> List[FacetteAssignment]:
