@@ -208,10 +208,16 @@ export const useSessionStore = defineStore('websiteStore', {
         removeMissingLanguageValue(key: string) {
             this.missingLanguageValues = this.missingLanguageValues.filter(l => l != key);
         },
+        /**
+         * Return a given translation
+         * @param key the language key to search. The key will be converted to lower casing.
+         * @returns a matching translation
+         */
         __i(key: string) {
             if (!this.session) {
                 return key
             }
+            key = key.toLowerCase()
             const providedFeedback = this.languageFeedback.filter(l => l.languageKey == key && (
                 l.session == this.session.id ||
                 l.votes.filter((v => v.session == this.session.id && v.isPositive)).length > 0 ||

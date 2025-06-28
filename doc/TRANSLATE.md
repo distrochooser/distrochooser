@@ -42,8 +42,8 @@ To persist proposals, the backend CLI interface can be used. the command `python
 
 ### JSON file update
 
-Translations are stored in `locale/<prefix>-<languagecode>.json`, while the `prefix` just serves for grouping purposes, but can be omitted with using `additional` as prefix. For example, if you creaete a japanese translation, you can use `locale/additional-jpn.json` as a file name.
+Translations are stored in `locale/lang-<languagecode>.json`.
 
-The content of all translation files is a JSON dictionary, describing the values.
+The content of all translation files is a JSON dictionary, describing the values. The keys inside the dictionary should be kept lower case.
 
 🚨 All types of translation updates require a restart.
