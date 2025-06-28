@@ -129,6 +129,8 @@ Step 5: **Test your changes**
 
 Use the command `python manage.py parse /matrix/matrix.toml` to reimport everything.
 
+The command `python manage.py annotate ../matrix/` adds comments to each file, showing relevant missing translations
+
 Step 6: **All good? Commit them**
 
 Definition of done in short:
