@@ -46,7 +46,6 @@ class Page(Translateable):
     text = TranslateableField(null=True, blank=True,  max_length=80)
     title = TranslateableField(null=True, blank=True,  max_length=80)
     help = TranslateableField(null=True, blank=True,  max_length=80)
-    css_classes = models.CharField(max_length=50, null=True,default=None)
     hide_if_no_selections = models.BooleanField(default=False)
     icon = models.CharField(
         null=False, blank=False, default="bi bi-clipboard2-data", max_length=100

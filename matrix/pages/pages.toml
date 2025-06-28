@@ -182,7 +182,6 @@ pages = ["updates-page"]
 [page.result-page]
 hide_help = true
 hide_text = true
-css_classes = "ku-result"
 can_be_marked = false
 
 [widget.share.result-page-widget-name]

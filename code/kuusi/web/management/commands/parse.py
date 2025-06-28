@@ -127,7 +127,6 @@ class Command(BaseCommand):
             "not_in_versions": [],
             "hide_text": False,
             "hide_help": False,
-            "css_classes": None,
             "bg_color": "black",
             "fg_color": "white",
             "icon": "bi bi-clipboard2-data"

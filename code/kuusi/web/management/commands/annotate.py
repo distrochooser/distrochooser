@@ -24,6 +24,7 @@ from web.management.commands.languagefeedback import Command as LanguageCommand
 from django.core.management.base import BaseCommand
 from logging import getLogger
 from os.path import join, isdir
+from pathlib import Path
 from kuusi.settings import AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_CODE
 from termcolor import colored
 from re import match, Pattern
@@ -38,11 +39,13 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("file_path", type=str)
-        parser.add_argument("--remove", action="store_true", default=False)
+        parser.add_argument("--remove", action="store_true", default=False, help="Remove the annotations, if any")
 
-    def annotate_block(self, pattern: str, line: str, search_for: str) -> List[str]:
+    def annotate_block(self, pattern: str, line: str, search_for: str) -> Tuple[str| None, List[str], List[str]]:
         new_lines = []
 
+        missing_languages = []
+        catalogue_id= None
         if not line.startswith(self.kuusi_prefix):
             result = match(pattern, line)
             if result is not None:
@@ -50,7 +53,8 @@ class Command(BaseCommand):
                     f"{self.kuusi_prefix}translation::{DEFAULT_LANGUAGE_CODE}::"
                 )
                 groups = result.groupdict()
-                translation = f"{groups['catalogue_id']}-{search_for}"
+                catalogue_id = groups['catalogue_id']
+                translation = f"{catalogue_id}-{search_for}"
                 if translation in TRANSLATIONS[DEFAULT_LANGUAGE_CODE]:
                     default_translation = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][
                         translation
@@ -62,35 +66,34 @@ class Command(BaseCommand):
                 annotation = (
                     annotation + f"{self.kuusi_prefix}translation::key::{translation}\n"
                 )
-                missing_languages = ""
                 for lang_tuple in AVAILABLE_LANGUAGES:
                     lang = lang_tuple[0]
+                    
                     is_lang_there = lang in TRANSLATIONS
                     if is_lang_there:
                         is_translation_missing = translation not in TRANSLATIONS[lang]
                         if is_translation_missing:
-                            missing_languages = missing_languages + lang + ","
-                        else:
-                            if not lang == DEFAULT_LANGUAGE_CODE:
-                                is_english = (
-                                    TRANSLATIONS[lang][translation]
-                                    == TRANSLATIONS[DEFAULT_LANGUAGE_CODE][translation]
-                                )
-                                if is_english:
-                                    missing_languages = missing_languages + lang + ","
+                            missing_languages.append(lang)
+                        else: 
+                            if lang != DEFAULT_LANGUAGE_CODE:
+                                english_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][translation]
+                                translation_value = TRANSLATIONS[lang][translation]
+                                still_english_value =english_value == translation_value
+                                if still_english_value:
+                                    missing_languages.append(lang)
 
-                missing_languages = missing_languages.strip(",")
-                if missing_languages != "":
-                    annotation += f"{self.kuusi_prefix}issue::missing translation::{missing_languages}\n"
+                missing_languages_str = (",".join(missing_languages)).strip(",")
+                if missing_languages.__len__() > 0:
+                    annotation += f"{self.kuusi_prefix}issue::missing translation::{missing_languages_str}\n"
                 new_lines.append(annotation)
 
-
-        return new_lines
+        missing_languages.sort()
+        return catalogue_id, new_lines, missing_languages
 
     def handle_file(self, file_path: str, remove: bool):
 
         new_lines = []
-
+        summary_text = {}
         """
         Iterate all lines of the file
 
@@ -98,10 +101,11 @@ class Command(BaseCommand):
         - Default value (taken from DEFAULT_LANGUAGE_CODE)
         - Missing translations (listing just the code)
         """
+        path_info = Path(file_path)
         with open(file_path, "r") as file:
-            contents = file.readlines()
-            contents = list(filter(lambda l: not l.startswith(self.kuusi_prefix), contents))
-            for line in contents:
+            raw_contents = file.readlines()
+            contents = list(filter(lambda l: not l.startswith(self.kuusi_prefix), raw_contents))
+            for index, line in enumerate(contents):
                 if not remove:
                     additions = []
                     blocks = {
@@ -129,15 +133,16 @@ class Command(BaseCommand):
                     for block, search_for in blocks.items():
                         exit_block = False
                         for element in search_for:
-                            additions = self.annotate_block(block, line, element)
+                            catalogue_id, additions, missing_languages = self.annotate_block(block, line, element)
                             if additions.__len__() != 0:
                                 new_lines += additions
+                                if missing_languages.__len__() != 0: 
+                                    summary_text[line] = f"File={colored(path_info.name, color='cyan')} Component={colored(line.strip(), color='blue')} Key={colored(f'{catalogue_id}-{element}', color='light_magenta')} Missing={colored(','.join(missing_languages), color='yellow')}"
+                                
                                 exit_block = True
                         
                         if exit_block:
                             break
-
-                  
                     new_lines.append(line)
                 else:
                     # remove annotations
@@ -148,6 +153,13 @@ class Command(BaseCommand):
             for line in new_lines:
                 file.write(line)
 
+        new_content = open(file_path, "r").readlines()
+        if not remove:
+            for matched_line, text in summary_text.items():
+                line_number = new_content.index(matched_line) + 1
+                print(f"Line={colored(line_number, color='red')} {text}")
+
+                
     def handle(self, *args, **options):
         file_path = options["file_path"]
         remove = options["remove"]

@@ -161,7 +161,7 @@ meta_name = "languages"
 meta_value = "eng"
 
 [choosable.opensuse]
-name = "Linux openSUSE"
+name = "openSUSE"
 bg_color = "#173f4f"
 fg_color = "#35b9ab"
 
