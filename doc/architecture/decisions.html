@@ -1,0 +1,513 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+        <title>ADR Viewer - distrochooser</title>
+
+        <style type="text/css">
+            body {
+                display: grid;
+                width: auto;
+                height: auto;
+                align-items: center;
+                justify-items: center;
+                grid-template-rows: 2fr minmax(80%, auto) 2fr;
+            }
+
+            @media only screen and (min-width: 1025px) {
+                body {
+                    grid-template-columns: 1fr 3fr 1fr;
+                }
+
+                header, .panel-group, footer {
+                    grid-column: 2;
+                }
+            }
+
+            .panel-group {
+                width: 100%
+            }
+
+            .panel-heading.adr-accepted {
+                background-color: lightgreen;
+            }
+
+            .panel-heading.adr-superseded {
+                background-color: lightgrey;
+            }
+
+            .panel-heading.adr-amended {
+                background-color: yellow;
+            }
+
+            .panel-heading.adr-unknown {
+                background-color: white;
+            }
+
+            .panel-heading.adr-pending {
+                background-color: lightblue;
+            }
+
+            .adr-superseded > .panel-title > a {
+                text-decoration: line-through;
+            }
+
+            .adr-icon {
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>ADR Viewer - distrochooser</h1>
+        </header>
+        <div class="panel-group">
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse0">1. Record architecture decisions</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse0" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>1. Record architecture decisions</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>We need to record the architectural decisions made on this project.</p>
+<h2>Decision</h2>
+<p>We will use Architecture Decision Records, as <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">described by Michael Nygard</a>.</p>
+<h2>Consequences</h2>
+<p>See Michael Nygard's article, linked above. For a lightweight ADR toolset, see Nat Pryce's <a href="https://github.com/npryce/adr-tools">adr-tools</a>.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">2. Data persistence</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>2. Data persistence</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>The application requires to store data aswell as it's decision matrix. For this, a database is required.
+In the past, several different database-like approaches were used, such as:</p>
+<p>Distrochooser 1,2: Flat file (especially <code>JSON</code>)
+Distrochooser 3, 4: MySQL/ MariaDB
+Distrochooser 5: Postgres</p>
+<p>As the nature of the database, there is the need for high performing databases, especially in the context as the database must be performing well on limited resources
+inside of a container.</p>
+<h2>Decision</h2>
+<p>Based on the current available infrastrcture, Postgres showed the best performance and the project will stick to that database vendor for now.</p>
+<p>Local dev environments can fall back to SQLite for testing, <strong>no Postgres-specific features shall be used</strong></p>
+<h2>Consequences</h2>
+<p>We need some kind of ORM to prevent having to write the SQL by ourself and to be indepenendend as far as possible from the database itself.
+The infrastructure needs to provide a suitable database server.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse2">3. General stack</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>3. General stack</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>The application requires a stack of frameworks to be used. In the past, there were several stacks utilized, such as:</p>
+<ul>
+<li>PHP and Bootstrap</li>
+<li>Node.js, Bootstrap and Rust</li>
+<li>Node.js, Vue, Skeleton.js and Django</li>
+<li>Node.js, Nuxt and Django</li>
+</ul>
+<p>As an experiment, a monolithic Django approach was developed, but showed additional effort in handling the form management, resulting in larger functions to be implemented.
+Thus, it resulted in a non feasible code, causing the approach to be aborted.</p>
+<p>In the past, the application was based Vue.js and Nuxt, even while running on older versions. A migration from Nuxt 2 to Nuxt 3 was not attempted due to the differences
+in the API. Another option was in switching to React.js due to gained knowledge in the past.</p>
+<p>Even as it is quite large, the project will stay on Django for the time being due to it's maturity and easy to use.</p>
+<h2>Decision</h2>
+<p>The project will stick to Vue.js and will be utilizing Nuxt.js v3. With this, proper usage of TypeScript will be also introduced to the project as these Frameworks tend to be
+TypeScript centered anyways</p>
+<h2>Consequences</h2>
+<p>Learning of the new Nuxt.js and Vue.js API, including requirements to bound a new API, as described in the next ADR.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse3">4. HTTP Interface</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>4. HTTP Interface</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>The new frontend needs to communicate with the backend.</p>
+<h2>Decision</h2>
+<p>In past versions, the components utilize simple HTTP calls to communicate, using hand-written endpoints as a medium.
+This requires double effort, as the interface needs to be written on the server and an consuming API needs to be written
+on the client aswell.</p>
+<p>As this is not feasible for a one man project. As the backend is defined in the previous ADR to conitnue to use Django, the
+Django-Rest-Framework will be use das often as possible to implement the REST interface.</p>
+<p>The client shall not consume this API directly, instead the application utilizes the drf_spectactular package to offere an
+OpenAPI/ Swagger interface to properly describe the behaviour of the offered endpoints. The client utilizes it as a generated
+fetch API.</p>
+<h2>Consequences</h2>
+<p>The fetch API of the used openapi-generator-tools package does not work well with server side rendering of Nuxt, as Nuxt uses
+a kind of wrapper for this. The project currently does not feature many server side calls, so this consequency can be accepted.</p>
+<p>The only server side call as of now consist out of <code>PageMeta</code>, which requires to get the meta tags server side for SEO optimization.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-superseded">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse4">5. i18n (Gettext)</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-times"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>5. i18n (Gettext)</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Superseded by <a href="0012-i18n.md">12. i18n (JSON)</a></p>
+<h2>Context</h2>
+<p>Django offers a Translation module, which shall be used.</p>
+<h2>Decision</h2>
+<p>Frontend an backend need to utilize and read the files. Users must be given an option to provide feedback.</p>
+<h2>Consequences</h2>
+<p>An parsing must be offered for the files to be altered.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse5">6. a11y</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse5" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>6. a11y</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>The issue motivating this decision, and any context that influences or constrains the decision.2</p>
+<h2>Decision</h2>
+<p>The change that we're proposing or have agreed to implement.</p>
+<h2>Consequences</h2>
+<p>What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse6">7. Used Icon sets</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse6" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>7. Used Icon sets</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>The application requires icons to look good and direct users on the UI.</p>
+<h2>Decision</h2>
+<p>As the frontend already heavily relies on Nuxt.js, instead of attaching external frameworks and/or Icon fonts, the <code>@nuxt/icon</code> package is utilized.</p>
+<h2>Consequences</h2>
+<p>The icons must be downloaded at build to avoid connecting to third party services at build.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse7">8. Used Widgets as a page structure</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse7" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>8. Used Widgets as a page structure</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>In previous versions, the project UI structure consists out pages chaned together, in v5, the page order was defined in a database,
+but only allows separation between media, checkbox or radio questions. This limits the page structure and options.</p>
+<h2>Decision</h2>
+<p>The page structure consists out of a fixed outer structure which is defined on the client template. Each page consist out of a 12-grid
+like structure where each content is a <code>Widget</code>.</p>
+<p>Each <code>Widget</code> needs to be serialized (using Django Rest Framework) and rendered on the client (using the <code>WidgetWrapper.vue</code>), allowing different page structures based on user feedback.</p>
+<h2>Consequences</h2>
+<p>This enlarges the code base quite a lot, but based on the advantages of variable page layout this approach will be followed.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse8">9. ISO Language Code usage</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse8" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>9. ISO Language Code usage</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Translations must be identified.</p>
+<h2>Decision</h2>
+<p>In the past, a pseudo ISO-639-1 code was used, but does not covere related languages and/ or languages of the same family.
+To address this issue, ISO-639-3 shall be used.</p>
+<h2>Consequences</h2>
+<p>Browsers seem to utilize ISO-639-1, so no language identification can be used on the client directly, thus only the fallback to the english locale
+is available then.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse9">10. Mapping</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse9" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>10. Mapping</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Past version had a database based mapping, not being published as open source.</p>
+<p>The handling of these mapping is fiddly.</p>
+<h2>Decision</h2>
+<p>The future mappings are to be released in the main repository.</p>
+<p>The mapping consist out of several files, which are required to be parsed in a defined order to properly resolve dependencies:</p>
+<pre><code># Parse order
+# 1: Versions
+# 2: Pages
+# 3: Widgets
+# 4: Choosables
+# 5: Facettes
+# 6: Assignments     
+</code></pre>
+<p>To prevent the parser from reading a large amount of files as a list, a central <code>toml</code> file will be utilized as an entry point,
+utilizing a &quot;hack&quot; to include files, e. g.</p>
+<p><code>#include ./versions/simplified.toml</code></p>
+<p>Each file change must be imported into the database, on runtime, the decisions are being made solely based on the contents of the database.</p>
+<h2>Consequences</h2>
+<p>The <code>#include </code> call in the main toml file makes the TOML file not compilant with some TOML parsers.
+The matrix is still large and hard to understand for new mappers.</p>
+<p>The matrix content should configure the Distrochooser aspects, but not <em>think</em> in it. For example, there is no <code>LinuxDistribution</code> like type. Instead,
+<code>Choosables</code> are being selected based on mappings towards defined <code>Facettes</code>. This might allow to use the codebase for similar projects outside of the
+Linux topic, aswell.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-pending">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse10">11. Feedback</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-hourglass-half"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse10" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>11. Feedback</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Proposed</p>
+<h2>Context</h2>
+<p>Users have opinions. They shall have the option to provide this feedback using</p>
+<ul>
+<li>Text feedback</li>
+<li>In App feedback</li>
+</ul>
+<h2>Decision</h2>
+<p>The UI offers a &quot;translation mode&quot;, where users can provide new translations in the UI directly.
+The UI searches for these proposals and displays them for the proposing user only.</p>
+<p>Administrative staff will still need to approve these changes.</p>
+<p>For mappings, users can click on a <code>&lt;&gt;</code> icon, allowing to give thumbs up/ down for mappings. These mappings
+require approval also.</p>
+<p>All of these approvals are being carried out form the CLI only.</p>
+<h2>Consequences</h2>
+<p>The user needs to be remembered, which conflicts with the projects &quot;no tracking&quot; policy.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse11">12. i18n (JSON)</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse11" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>12. i18n (JSON)</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<p>Supercedes <a href="0005-i18n.md">0005. i18n (Gettext)</a></p>
+<h2>Context</h2>
+<p>Django offers a Translation module, which shall be used. The previous approach using the onboard tools was identified as not suitable for the project context, due to:</p>
+<ul>
+<li>The po files are tricky to handle to to it's line-related structure</li>
+<li>Flat files might be easier to utilzes, such as plain text or JSON, especially from a frontend perspective.</li>
+</ul>
+<h2>Decision</h2>
+<p>Implementation of a JSON based translation approach, the project received it's own translation approach, implemented with the <code>Translatable</code> base class and it's <code>TranslateableField</code>.
+While the fields exist in the database, the translation values are read from the <code>locale</code> (as <code>LOCALE_PATH[0]</code>) path as JSON files. The files consist out of a plain dictionary.</p>
+<h2>Consequences</h2>
+<p>The JSON files lack a descriptive text, might cause issues for users at translation without having a proper context.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse12">13. Frontend translation</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse12" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>13. Frontend translation</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Translation needs to be properly used.</p>
+<h2>Decision</h2>
+<p>The frontend implements and refers translation only by their key and uses a central <code>__i</code> function to receive the translation.</p>
+<h2>Consequences</h2>
+<p>The translation &quot;haystack&quot; need to be delivered to the client at all times and the function needs to distiguish between &quot;static&quot; translation values
+and the values referring to an <code>Translatable</code> (see <a href="0012-i18n.md">0012. i18n (JSON)</a>).</p>
+<p>Also this must work properly with the feedback defined in <a href="0011-feedback.md">0011. Feedback</a></p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse13">14. Questionnaire Versions</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse13" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>14. Questionnaire Versions</h1>
+<p>Date: 2025-06-28</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Some users have a hard time with technical questions. For this users, an adapted variant of the questionnaire shall be avaiable.</p>
+<h2>Decision</h2>
+<p><code>Pages</code> are negatively bound to <code>SessionVersion</code> objects to allow them being hidden for these <code>SessionVersion</code>. On import, e. g. a
+&quot;simplified&quot; version is created and each technical question cannow be hidden.</p>
+<h2>Consequences</h2>
+<p>Only <code>Page</code> objects relate to the <code>SessionVersion</code>. While the pages can be hidden, some result descriptions might be still technical
+as they do not correlate with the <code>SessionVersion</code> itself.</p>
+</div>
+                </div>
+            </div>
+            
+        </div>
+        <footer>
+            Generated with &lt;3 using ADR Viewer
+        </footer>
+        
+    </body>
+</html>
