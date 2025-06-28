@@ -15,13 +15,13 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from typing import Dict, List, Callable
+from typing import Dict, List, Callable, Any
 from web.models import Facette, FacetteBehaviour
 from logging import getLogger
 
 
 logger = getLogger('command') 
-def create_facettes(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[Facette]:
+def create_facettes(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[Facette]:
     got = []
     Facette.objects.all().update(
         is_invalidated = True

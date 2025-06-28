@@ -15,11 +15,11 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from typing import Dict, List, Callable, Type
+from typing import Dict, List, Callable, Type, Any
 from web.models import FeedbackWidget, MetaFilterWidget, MetaFilterWidgetStructure, Page, Widget, HTMLWidget, SessionVersionWidget, FacetteSelectionWidget, NavigationWidget, ResultShareWidget, ResultListWidget, FacetteRadioSelectionWidget
 from logging import getLogger
 logger = getLogger('command') 
-def create_widgets(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[Widget]:
+def create_widgets(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[Widget]:
     got = []
 
     key_map = {

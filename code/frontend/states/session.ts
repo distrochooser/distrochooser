@@ -17,11 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type AssignmentFeedback, type Category, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaFilterValue, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
+import { Configuration, SessionApi, type AssignmentFeedback, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaFilterValue, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
 import { useRuntimeConfig } from "nuxt/app";
 interface SessionState {
     session: Session | null;
-    categories: Category[];
     pages: Page[],
     currentPage: Page | null;
     facetteSelections: FacetteSelection[];
@@ -47,7 +46,6 @@ let sessionApi: SessionApi = null;
 export const useSessionStore = defineStore('websiteStore', {
     state: (): SessionState => ({
         session: null,
-        categories: [],
         pages: [],
         currentPage: null,
         facetteSelections: [],
@@ -271,7 +269,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 this.choosables = await this.sessionApi.sessionChoosableList({
                     sessionPk: this.session.resultId
                 })
-                await this.updateCategoriesAndPages();
+                await this.updatePages();
                 /** Select the first available page, if any */
                 this.selectPage(-1)
             }
@@ -286,11 +284,7 @@ export const useSessionStore = defineStore('websiteStore', {
             // Load translation feedback
             await this.getTranslationFeedback();
         },
-        async updateCategoriesAndPages() {
-            this.categories = await this.sessionApi.sessionCategoryList({
-                sessionPk: this.session.resultId,
-                currentPage: this.currentPage?.catalogueId ?? undefined
-            });
+        async updatePages() {
             this.pages = await this.sessionApi.sessionPageList({
                 sessionPk: this.session.resultId
             })
@@ -311,7 +305,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 resultId: this.session.resultId,
                 versionId: sessionVersion
             })
-            await this.updateCategoriesAndPages()
+            await this.updatePages()
         },
         async changeLanguage(language: string) {
             this.session = await this.sessionApi.sessionPartialUpdate({
@@ -320,7 +314,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 resultId: this.session.resultId,
                 versionId: this.session.version
             })
-            await this.updateCategoriesAndPages()
+            await this.updatePages()
             await this.getTranslationFeedback()
         },
         async acknowledgeSession() {

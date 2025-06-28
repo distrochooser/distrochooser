@@ -6,7 +6,7 @@ The Distrochooser data model describes as follows:
 
 - Translateable objects have a `catalogue_id` attribute, which is used in the translation as a search key
 - A distribution is a `Choosable`, which can have multiple `ChoosableMeta` objects, which define a specified property of the entry.
-- Each displayed page is a `Page` object, which is related to one `Category` object, which controls the navigation
+- Each displayed page is a `Page` object
 - Each page can have multiple `Widget` objects (which can also be inherited ones from `Widget`), which are aligned in a row/ col/ width structure
 - For `SelectionWidgets`, they have a topic which is used to map the answers `Facettes`
 - Each `Facette` should point to `FacetteAssignments`, which map a descriptive text in a defined way ("blocking", "negative", "neutral", "positive") to the selected answer (this is the decision part)

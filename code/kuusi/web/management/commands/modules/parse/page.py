@@ -15,12 +15,12 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from typing import Dict, List, Callable
+from typing import Dict, List, Callable, Any
 from web.models import Page, SessionVersion
 from logging import getLogger
 
 logger = getLogger('command') 
-def create_pages(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[Page]:
+def create_pages(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[Page]:
         """
         Create the pages in two loops:
         1. Create the pages without next_page set
@@ -35,6 +35,8 @@ def create_pages(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> 
                 can_be_marked = get_or_default("can_be_marked", properties),
                 text = f"{catalogue_id}-text",
                 help= f"{catalogue_id}-help",
+                title = f"{catalogue_id}-title",
+                icon=get_or_default("icon", properties),
                 hide_text = get_or_default("hide_text", properties),
                 hide_help = get_or_default("hide_help", properties),
                 css_classes = get_or_default("css_classes", properties)

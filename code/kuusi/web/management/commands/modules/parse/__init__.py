@@ -17,7 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from .assignment import *
-from .category import *
 from .choosable import *
 from .facettes import *
 from .page import *

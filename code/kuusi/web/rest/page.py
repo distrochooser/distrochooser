@@ -109,7 +109,7 @@ class PageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Page
-        fields = ("id", "text", "help", "next_page", "can_be_marked", "hide_help")
+        fields = ("id", "text", "help", "next_page", "can_be_marked", "hide_help", "icon", "title")
 
     def get_text(self, obj: Page) -> str:
         return obj.get_msgd_id_of_field("text")

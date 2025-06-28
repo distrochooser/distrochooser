@@ -15,13 +15,13 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from typing import Dict, List, Callable
+from typing import Dict, List, Callable, Any
 from web.models import Choosable, ChoosableMeta
 from logging import getLogger
 
 
 logger = getLogger('command') 
-def create_choosables(get_or_default: Callable[[str, Dict], any], haystack: Dict) -> List[Choosable]:
+def create_choosables(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[Choosable]:
     got = []
     # Meta will just be re-created
     ChoosableMeta.objects.all().delete()

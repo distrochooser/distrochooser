@@ -44,9 +44,13 @@ class Page(Translateable):
     hide_help = models.BooleanField(default=False)
     no_header = models.BooleanField(default=False)
     text = TranslateableField(null=True, blank=True,  max_length=80)
+    title = TranslateableField(null=True, blank=True,  max_length=80)
     help = TranslateableField(null=True, blank=True,  max_length=80)
     css_classes = models.CharField(max_length=50, null=True,default=None)
     hide_if_no_selections = models.BooleanField(default=False)
+    icon = models.CharField(
+        null=False, blank=False, default="bi bi-clipboard2-data", max_length=100
+    )
 
     @property
     def href(self):
@@ -64,10 +68,6 @@ class Page(Translateable):
             is_page_visible = False
         return is_page_visible
     
-    @property
-    def get_category(self) -> str:
-        return apps.get_model("web", "Category").objects.get(target_page=self)
-
     @property
     def previous_page(self) -> Page | None:
         return Page.objects.filter(next_page=self).first()

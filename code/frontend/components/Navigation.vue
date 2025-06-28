@@ -17,38 +17,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div class="row mt-2 mb-2 g-0">
-    <div class="col row g-0 " v-if="currentCategory != null">
+    
+    <div class="col row g-0 " v-if="currentPage != null">
       <div class="btn-group row col-12 text-center g-0" role="group">
         <div class="col-2   d-none d-xl-block" />
         <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-xl-block"
-          v-if="currentCategoryIndex != 0"
-          v-on:click="sessionStore.selectPage(categories[currentCategoryIndex - 1].targetPage)">
+          v-if="currentPageIndex != 0"
+          v-on:click="sessionStore.selectPage(pages[currentPageIndex - 1].id)">
 
           <Icon name="ion:caret-back" class="fs-3"></Icon>
         </button>
         <button type="button" class="disabled col-1 btn btn d-none d-xl-block btn-outline-secondary"
-          v-if="currentCategoryIndex == 0"></button>
+          v-if="currentPageIndex == 0"></button>
 
         <div class="btn-group col-xs-12 col-xl-6  dropdown-center" role="group">
           <button type="button" class="btn btn-primary dropdown-toggle fs-5" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <Category :index="currentCategoryIndex" :category="currentCategory" />
+            <NavigationItem :index="currentPageIndex" :page="currentPage" />
           </button>
           <ul class="dropdown-menu" v-show="!sessionStore.isTranslating">
-            <li v-for="(category, index) in categories" v-bind:key="index">
+            <li v-for="(page, index) in pages" v-bind:key="index">
               <a class="dropdown-item"
-                :class="{ 'dropdown-item': true, 'fw-bold': category.catalogueId == currentCategory.catalogueId }"
-                href="#" v-on:click="sessionStore.selectPage(category.targetPage)">
+                :class="{ 'dropdown-item': true, 'fw-bold': currentPage != null && page.id == currentPage.id }"
+                href="#" v-on:click="sessionStore.selectPage(page.id)">
 
-                <Category :index="index" :category="category" />
+                <NavigationItem :index="index" :page="page" />
               </a>
             </li>
           </ul>
         </div>
 
         <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-xl-block"
-          v-if="currentCategoryIndex < categories.length - 1"
-          v-on:click="sessionStore.selectPage(categories[currentCategoryIndex + 1].targetPage)">
+          v-if="currentPageIndex < pages.length - 1"
+          v-on:click="sessionStore.selectPage(pages[currentPageIndex + 1].id)">
           <Icon name="ion:caret-forward" class="fs-3"></Icon>
         </button>
         <button type="button" class="disabled col-1 d-none d-sm-block b btn btn btn-outline-secondary" v-else></button>
@@ -77,12 +78,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <script lang="ts" setup>
 import { computed } from "vue";
 import { useSessionStore } from "../states/session";
-import CategoryIcon from "./CategoryIcon.vue";
+import NavigationItem from "./NavigationItem.vue";
 
 let sessionStore = useSessionStore();
 
-const categories = computed(() => sessionStore.categories);
-const currentCategories = computed(() => sessionStore.categories.filter(c => sessionStore.currentPage != null && sessionStore.currentPage.id == c.targetPage))
-const currentCategory = computed(() => currentCategories.value.length > 0 ? currentCategories.value[0] : null)
-const currentCategoryIndex = computed(() => currentCategory != null ? categories.value.indexOf(currentCategory.value) : -1)
+const pages = computed(() => sessionStore.pages);
+const currentPage =  computed(() => sessionStore.currentPage == null ? null : sessionStore.currentPage)
+const currentPageIndex = computed(() => currentPage != null ? pages.value.indexOf(currentPage.value) : -1)
 </script>

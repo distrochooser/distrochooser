@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </div>
         <div class="row text-center mb-3">
           <div class="col-12">
-            <Categories />
+            <Navigation />
           </div>
         </div>
         <RenderField />
@@ -54,6 +54,7 @@ import { useSessionStore } from "../../states/session";
 import PageMeta from "../../components/PageMeta.vue";
 import Progress from "../../components/Progress.vue";
 import MainNavigation from "../../components/MainNavigation.vue";
+import Navigation from "../../components/Navigation.vue";
 import A11y from "../../components/A11y.vue";
 
 const router = useRoute();

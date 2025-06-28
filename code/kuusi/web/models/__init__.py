@@ -29,7 +29,6 @@ from .facetteselectionwidget import FacetteSelectionWidget
 from .facetteradioselectionwidget import FacetteRadioSelectionWidget
 from .feedback import Feedback, LanguageFeedback, LanguageFeedbackVote, AssignmentFeedback
 
-from .category import Category
 from .htmlwidget import HTMLWidget
 
 from .navigationwidget import NavigationWidget

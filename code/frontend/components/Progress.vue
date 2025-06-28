@@ -13,10 +13,10 @@ import { useSessionStore } from '../states/session';
 
 
 const sessionStore = useSessionStore();
-const categories = computed(() => sessionStore.categories);
-const currentCategory = computed(() => sessionStore.categories.filter(c => sessionStore.currentPage != null && sessionStore.currentPage.id == c.targetPage)[0])
-const currentCategoryIndex = computed(() => categories.value.indexOf(currentCategory.value))
+const categories = null // computed(() => sessionStore.categories);
+const currentCategory = null //computed(() => sessionStore.categories.filter(c => sessionStore.currentPage != null && sessionStore.currentPage.id == c.targetPage)[0])
+const currentCategoryIndex = -1 // computed(() => categories.value.indexOf(currentCategory.value))
 
-const maxIndex = computed(() => categories.value.length - 1)
-const percent = computed(() => 100 / (maxIndex.value / currentCategoryIndex.value))
+const maxIndex = -1 // computed(() => categories.value.length - 1)
+const percent = -1 // computed(() => 100 / (maxIndex.value / currentCategoryIndex.value))
 </script>

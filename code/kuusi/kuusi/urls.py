@@ -23,7 +23,6 @@ from drf_spectacular.views import (SpectacularAPIView,
                                    SpectacularSwaggerView)
 from kuusi.settings import ENABLE_PROFILING, STATIC_ROOT, STATIC_URL, DEBUG
 from rest_framework_nested import routers
-from web.rest.category import CategoryViewSet
 from web.rest.choosable import ChoosableViewSet
 from web.rest.facette import (AssignmentFeedbackViewSet, FacetteViewSet,
                               FeedbackViewSet)
@@ -39,7 +38,7 @@ from web.rest.feedback import GivenFeedbackViewset
 from web.routes.data import route_data
 from web.routes.web import route_outgoing
 
-router = routers.SimpleRouter()
+router = routers.SimpleRouter() # type: ignore
 router.register(r'session', SessionViewSet)
 router.register(r'metatags', MetaTagViewset, basename="metatags")
 
@@ -55,7 +54,6 @@ router_page.register(r"marking", PageMarkingViewSet, basename="marking-page")
 
 
 router_sessions.register(r'facette', FacetteViewSet, basename='session-facettes')
-router_sessions.register(r'category', CategoryViewSet, basename='session-categories')
 router_sessions.register(r'facetteselection', FacetteSelectionViewSet, basename='session-selections')
 router_sessions.register(r'facettebehaviour', FacetteBehaviourViewSet, basename='session-behaviour')
 router_sessions.register(r'choosable', ChoosableViewSet, basename='session-choosables')
