@@ -35,5 +35,3 @@ topic = "scenario"
 [behaviour.not-both]
 subjects = ["live-mode-usage"]
 objects = ["gaming-usage"]
-direction = "bidrectional"
-criticality = "error"

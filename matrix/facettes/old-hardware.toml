@@ -24,6 +24,4 @@ topic = "old-hardware"
 [behaviour.64bit-gaming-most-likely-issues]
 subjects = ["gaming-usage"]
 objects = ["no64bit"]
-direction = "bidrectional"
-criticality = "error"
 
