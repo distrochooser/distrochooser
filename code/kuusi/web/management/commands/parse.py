@@ -86,11 +86,11 @@ class Command(BaseCommand):
         # This components have no binding towards the result -> just delete them and start over
         Page.objects.all().delete()
         Widget.objects.all().delete()
+        # Versions are bound to results and sessions -> do "light" recreation only
+        new_versions = create_version(self.get_or_default, parsed_toml["version"])
         new_pages = create_pages(self.get_or_default, parsed_toml["page"])
         new_widgets = create_widgets(self.get_or_default, parsed_toml["widget"])
 
-        # Versions are bound to results and sessions -> do "light" recreation only
-        new_versions = create_version(self.get_or_default, parsed_toml["version"])
 
         # Choosables will be re-used, if possible
         new_choosables = create_choosables(self.get_or_default, parsed_toml["choosable"],parsed_toml["meta"])
