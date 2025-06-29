@@ -160,6 +160,7 @@ pages = ["privacy-page"]
 
 [page.administration-page]
 next_page = "updates-page"
+hide_help = true
 
 [widget.selection.administration-page-widget-name]
 topic = "administration"

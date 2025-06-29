@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from typing import List, Tuple, Literal
 from genericpath import exists
 from os import unlink, walk
-from web.models import TRANSLATIONS, Choosable
+from web.models import TRANSLATIONS, Page
 from web.management.commands.languagefeedback import Command as LanguageCommand
 from django.core.management.base import BaseCommand
 from logging import getLogger
@@ -56,39 +56,50 @@ class Command(BaseCommand):
                 groups = result.groupdict()
                 catalogue_id = groups['catalogue_id']
                 translation = f"{catalogue_id}-{search_for}"
-                if translation in TRANSLATIONS[DEFAULT_LANGUAGE_CODE]:
-                    default_translation = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][
-                        translation
-                    ]
-                    annotation = annotation + default_translation + "\n"
-                else:
-                    annotation = annotation + "None\n"  #
 
-                annotation = (
-                    annotation + f"{self.kuusi_prefix}translation::key::{translation}\n"
-                )
-                for lang_tuple in AVAILABLE_LANGUAGES:
-                    
-                    lang = lang_tuple[0]
-                    continue_check = explicit_lang_list.__len__() > 0 and lang in explicit_lang_list or explicit_lang_list.__len__() == 0
-                    if continue_check:
-                        is_lang_there = lang in TRANSLATIONS
-                        if is_lang_there:
-                            is_translation_missing = translation not in TRANSLATIONS[lang]
-                            if is_translation_missing:
-                                missing_languages.append(lang)
-                            else: 
-                                if lang != DEFAULT_LANGUAGE_CODE:
-                                    english_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][translation]
-                                    translation_value = TRANSLATIONS[lang][translation]
-                                    still_english_value =english_value == translation_value
-                                    if still_english_value:
-                                        missing_languages.append(lang)
+                # Special handling for pages, some elements might not be needed at all
+                stop = False
+                if "page" in pattern:
+                    page_obj = Page.objects.get(catalogue_id=catalogue_id)
+                    if page_obj.hide_help and  search_for == "text":
+                        stop = True
 
-                missing_languages_str = (",".join(missing_languages)).strip(",")
-                if missing_languages.__len__() > 0:
-                    annotation += f"{self.kuusi_prefix}issue::missing translation::{missing_languages_str}\n"
-                new_lines.append(annotation)
+
+                
+                if not stop:
+                    if translation in TRANSLATIONS[DEFAULT_LANGUAGE_CODE]:
+                        default_translation = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][
+                            translation
+                        ]
+                        annotation = annotation + default_translation + "\n"
+                    else:
+                        annotation = annotation + "None\n"  #
+
+                    annotation = (
+                        annotation + f"{self.kuusi_prefix}translation::key::{translation}\n"
+                    )
+                    for lang_tuple in AVAILABLE_LANGUAGES:
+                        
+                        lang = lang_tuple[0]
+                        continue_check = explicit_lang_list.__len__() > 0 and lang in explicit_lang_list or explicit_lang_list.__len__() == 0
+                        if continue_check:
+                            is_lang_there = lang in TRANSLATIONS
+                            if is_lang_there:
+                                is_translation_missing = translation not in TRANSLATIONS[lang]
+                                if is_translation_missing:
+                                    missing_languages.append(lang)
+                                else: 
+                                    if lang != DEFAULT_LANGUAGE_CODE:
+                                        english_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][translation]
+                                        translation_value = TRANSLATIONS[lang][translation]
+                                        still_english_value =english_value == translation_value
+                                        if still_english_value:
+                                            missing_languages.append(lang)
+
+                    missing_languages_str = (",".join(missing_languages)).strip(",")
+                    if missing_languages.__len__() > 0:
+                        annotation += f"{self.kuusi_prefix}issue::missing translation::{missing_languages_str}\n"
+                    new_lines.append(annotation)
 
         missing_languages.sort()
         return catalogue_id, new_lines, missing_languages

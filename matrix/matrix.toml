@@ -22,7 +22,6 @@
 #include ./facettes/ideology.toml
 #include ./facettes/installation.toml
 #include ./facettes/linux-knowledge.toml
-#include ./facettes/old-hardware.toml
 #include ./facettes/pc-knowledge.toml
 #include ./facettes/pricing.toml
 #include ./facettes/privacy.toml
