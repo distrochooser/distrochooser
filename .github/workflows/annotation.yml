@@ -13,6 +13,21 @@ jobs:
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - run: echo "${{ github.action_ref }}"
+      - name: Add workflow result as comment on PR
+        uses: actions/github-script@v6
+        if: always()
+        with:
+          script: |
+            const name = '${{ github.workflow	}}';
+            const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+            const body = `test`;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            })
       # - name: Check out repository code
       #   uses: actions/checkout@v4
       # - uses: actions/setup-python@v5
@@ -24,9 +39,3 @@ jobs:
       # - run: cd code/kuusi/ &&python manage.py migrate
       # - run: cd code/kuusi/ &&python manage.py parse ../../matrix/matrix.toml
       # - run: cd code/kuusi/ &&python manage.py annotate ../../matrix/ > ./annotation.txt
-      # - run: echo ${{ github.event.pull_request.number }}
-      # - name: Comment PR
-      #   uses: thollander/actions-comment-pull-request@v3
-      #   with:
-      #     file-path:  code/kuusi/annotation.txt
-      #     pr-number: ${{ github.event.pull_request.number }}
