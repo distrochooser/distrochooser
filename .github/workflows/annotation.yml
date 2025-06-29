@@ -32,7 +32,7 @@ jobs:
             const name = '${{ github.workflow	}}';
             const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
             const fs = require('fs')
-            const annotationText = fs.readFileSync('./code/kuusi/annotation.txt')
+            const annotationText = fs.readFileSync('./code/kuusi/annotation.txt',  { encoding: 'utf8', flag: 'r' })
             console.log(annotationText)
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
