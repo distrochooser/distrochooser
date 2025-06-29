@@ -1,5 +1,4 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: Annotation
 
 on:
   issue_comment:
@@ -8,7 +7,7 @@ on:
 
 
 jobs:
-  Explore-GitHub-Actions:
+  annotate:
     runs-on: ubuntu-latest
     if: github.event.issue.pull_request && contains(github.event.comment.body, '/check')
     steps:
