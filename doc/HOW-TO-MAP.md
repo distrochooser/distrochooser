@@ -10,7 +10,7 @@ The Distrochooser data model describes as follows:
 - Each page can have multiple `Widget` objects (which can also be inherited ones from `Widget`), which are aligned in a row/ col/ width structure
 - For `SelectionWidgets`, they have a topic which is used to map the answers `Facettes`
 - Each `Facette` should point to `FacetteAssignments`, which map a descriptive text in a defined way ("blocking", "negative", "neutral", "positive") to the selected answer (this is the decision part)
-- A `Facette` can have `FacetteBehaviours`, which can be triggered when answers might exclude themselves. `FacetteBehaviours` have a severity from warning to critical to be displayed in the UI. `FacetteBehaviour` are optional.
+- A `Facette` can have `FacetteBehaviours`, which can be triggered when answers might exclude themselves. `FacetteBehaviours` are considered critical errors for conflicting answers and are being displayed in the UI. `FacetteBehaviour` are optional.
 - Each selected answer is a `FacetteSelection` and is part of a `Session`
 
 ## Where does the decision matrix comes from?

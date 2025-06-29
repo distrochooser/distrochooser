@@ -115,9 +115,6 @@ class Command(BaseCommand):
                         r"\[\s{0,}assignment.(?P<catalogue_id>[^[\]]+)": [
                             "description"
                         ],
-                        r"\[\s{0,}behaviour.(?P<catalogue_id>[^[\]]+)": [
-                            "description"
-                        ],
                         r"\[\s{0,}facette.(?P<catalogue_id>[^[\]]+)": [
                             "description"
                         ],

@@ -31,7 +31,7 @@ from web.models import FacetteBehaviour, FacetteSelection, Session
 class FacetteBehaviourSerializer(serializers.ModelSerializer):
     class Meta:
         model = FacetteBehaviour
-        fields = ('description', 'criticality', 'affected_objects', 'affected_subjects', )
+        fields = ('affected_objects', 'affected_subjects', )
     
     
 class FacetteBehaviourViewSet(ListModelMixin, GenericViewSet):
@@ -46,21 +46,24 @@ class FacetteBehaviourViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def list(self, request,  *args, **kwargs):    
-        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
-        active_facette_selections = FacetteSelection.objects.filter(session=session)
+        session: Session | None = Session.objects.filter(result_id=kwargs["session_pk"]).first()
         results = []
-        for active_facette_selection in active_facette_selections:
-            facette = active_facette_selection.facette
-            behaviours = FacetteBehaviour.objects.filter(
-                Q(affected_subjects__pk__in=[facette.pk])|
-                Q(affected_objects__pk__in=[facette.pk])
-            )
-            # TODO: Identify others
-            behaviour: FacetteBehaviour
-            for behaviour in behaviours:
-                result = behaviour.is_true(facette, [])
-                if result:
-                    results.append(behaviour)
+        if  session:
+            active_facette_selections = FacetteSelection.objects.filter(session=session)
+            for active_facette_selection in active_facette_selections:
+                facette = active_facette_selection.facette
+                behaviours = FacetteBehaviour.objects.filter(
+                    Q(affected_subjects__pk__in=[facette.pk])|
+                    Q(affected_objects__pk__in=[facette.pk])
+                )
+
+                behaviour: FacetteBehaviour
+                for behaviour in behaviours:
+                    result = behaviour.is_true(facette, active_facette_selections)
+
+                    print(behaviours, result)
+                    if result:
+                        results.append(behaviour)
 
         serializer = FacetteBehaviourSerializer(
             results,

@@ -61,11 +61,11 @@ class Facette(Translateable):
         return assignments
 
     def __str__(self) -> str:
-        return f"[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) (select: {self.description})"
+        msg_id = self.get_msgd_id_of_field("description")
+        return f"[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) (msgid: {msg_id})"
 
 
 class FacetteBehaviour(Translateable):
-    description = TranslateableField(null=False, blank=False, max_length=120)
     affected_objects = models.ManyToManyField(
         to="Facette", blank=True, related_name="facette_behaviour_objects"
     )
@@ -73,47 +73,22 @@ class FacetteBehaviour(Translateable):
         to="Facette", blank=True, related_name="facette_behaviour_subjects"
     )
 
-    class Direction(models.TextChoices):
-        SUBJECT_TO_OBJECT = "SUBJECT_TO_OBJECT", "SUBJECT_TO_OBJECT"
-        OBJECT_TO_SUBJECT = "OBJECT_TO_SUBJECT", "OBJECT_TO_SUBJECT"
-        BIDIRECTIONAL = "BIDIRECTIONAL", "BIDIRECTIONAL"
-        
-    direction = models.CharField(
-        max_length=20, choices=Direction.choices, default=Direction.BIDIRECTIONAL
-    )
-
-    class Criticality(models.TextChoices):
-        WARNING = "WARNING", "WARNING"
-        ERROR = "ERROR", "ERROR"
-        INFO = "INFO", "INFO"
-
-    criticality = models.CharField(
-        max_length=20, choices=Criticality.choices, default=Criticality.ERROR
-    )
-
-    def facette_in_queryset(self, facettes: List[Facette], queryset: QuerySet):
-        for facette in facettes:
+    def facette_in_queryset(self, selections: QuerySet[FacetteSelection], queryset: QuerySet):
+        for selection in selections:
+            facette = selection.facette
             if queryset.filter(pk=facette.pk).count() > 0:
                 return True
         return False
 
-    def is_true(self, facette: Facette, others: List[Facette]) -> bool:
+    def is_true(self, facette: Facette, all_selections: QuerySet[FacetteSelection]) -> bool:
         is_subject = self.affected_subjects.filter(pk=facette.pk).count() > 0
         is_object = self.affected_objects.filter(pk=facette.pk).count() > 0
-        is_subjects_others = self.facette_in_queryset(others, self.affected_subjects)
-        is_objects_others = self.facette_in_queryset(others, self.affected_objects)
+        is_subjects_others = self.facette_in_queryset(all_selections.exclude(facette=facette), self.affected_subjects)
+        is_objects_others = self.facette_in_queryset(all_selections.exclude(facette=facette), self.affected_objects)
 
-        if self.direction == FacetteBehaviour.Direction.BIDIRECTIONAL:
-            if (is_subject or is_object) and (is_subjects_others or is_objects_others):
-                return True
+        if (is_subject or is_object) and (is_subjects_others or is_objects_others):
+            return True
 
-        if self.direction == FacetteBehaviour.Direction.SUBJECT_TO_OBJECT:
-            if is_subject and is_objects_others or is_subjects_others and is_object:
-                return True
-
-        if self.direction == FacetteBehaviour.Direction.OBJECT_TO_SUBJECT:
-            if is_object and is_objects_others or is_subjects_others and is_object:
-                return True
         return False
 
 

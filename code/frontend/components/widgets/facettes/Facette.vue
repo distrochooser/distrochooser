@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <LanguageTranslation :translation-key="props.facette.description"/>
         </label>
         <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
+        <BehaviourAlert v-if="hasIssues"/>
+
         <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating" />
       </div>
       <div :class="{'form-check mb-2 fs-6': true, 'a11y-larger-text': store.fontSizeModifier == 5}" v-else>
@@ -35,7 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <LanguageTranslation :translation-key="props.facette.description"/>
           </label>
           <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
-
+         
+        <BehaviourAlert v-if="hasIssues"/>
         <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"/>
       </div>
     </div>
@@ -54,13 +57,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </template>
 <script setup lang="ts">
 import { useState } from "nuxt/app";
-import { computed, ref } from "vue";
-import { type Facette } from "../../../sdk";
+import { computed, ref, type ComputedRef } from "vue";
+import { type Facette, type FacetteBehaviour } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
 import BehaviourButton from "./AssignmentButton.vue";
 import LanguageTranslation from "../../LanguageTranslation.vue";
 import Importance from "./Importance.vue";
+import BehaviourAlert from "./BehaviourAlert.vue";
 
 interface CheckboxFacetteProps {
   facette: Facette;
@@ -96,6 +100,15 @@ const isSelected = computed(
     store.facetteSelections.filter((l) => l.facette == props.facette.id)
       .length != 0
 );
+
+const hasIssues: ComputedRef<FacetteBehaviour> = computed<FacetteBehaviour>((b) =>
+  store.facetteBehaviours.filter(
+    (fb) =>
+      fb.affectedObjects.filter((ao) => ao == props.facette.id).length > 0 ||
+      fb.affectedSubjects.filter((ao) => ao == props.facette.id).length > 0
+  ).length > 0
+);
+
 const registerClick = async () => {
   if (isSelected.value) {
     await store.updateFacetteSelections(

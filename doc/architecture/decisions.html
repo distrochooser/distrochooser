@@ -504,6 +504,34 @@ as they do not correlate with the <code>SessionVersion</code> itself.</p>
                 </div>
             </div>
             
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse14">15. Reduction of FacetteBehaviours</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse14" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>15. Reduction of <code>FacetteBehaviours</code></h1>
+<p>Date: 2025-06-29</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Facette Behaviours have a criticality, a description and a direction. This complexity increases maintenance effort.</p>
+<h2>Decision</h2>
+<p>As the core function behind the behaviours is to display conflicting answers, the <code>FacetteBehaviour</code> is reduced to this functionality.
+Also, no descriptivie text is displayed to reduce translation efforts.</p>
+<p>Additionally, there is no direction anymore, a bidirectional relationship is assumed.</p>
+<h2>Consequences</h2>
+<p>Complex relationships between <code>Facettes</code> can't be implemented for now.</p>
+</div>
+                </div>
+            </div>
+            
         </div>
         <footer>
             Generated with &lt;3 using ADR Viewer
