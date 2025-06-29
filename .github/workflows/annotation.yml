@@ -9,7 +9,7 @@ on:
 jobs:
   annotate:
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request && contains(github.event.comment.body, '/check')
+    if: github.actor == 'cmllr' && github.event.issue.pull_request && contains(github.event.comment.body, '/check')
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - run: echo "${{ github.action_ref }}"

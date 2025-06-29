@@ -27,7 +27,7 @@ from os.path import join, isdir
 from pathlib import Path
 from kuusi.settings import AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_CODE
 from termcolor import colored
-from re import match, Pattern
+from re import match, Pattern, compile
 
 logger = getLogger("command")
 
@@ -40,6 +40,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("file_path", type=str)
         parser.add_argument("--remove", action="store_true", default=False, help="Remove the annotations, if any")
+        parser.add_argument("--markdown", action="store_true", default=False, help="Return the summary as markdown")
         parser.add_argument("--lang", nargs="*",help="limit languages to be checked for", default=[],)
 
     def annotate_block(self, pattern: str, line: str, search_for: str, explicit_lang_list: List[str]) -> Tuple[str| None, List[str], List[str]]:
@@ -104,7 +105,7 @@ class Command(BaseCommand):
         missing_languages.sort()
         return catalogue_id, new_lines, missing_languages
 
-    def handle_file(self, file_path: str, remove: bool, explicit_lang_list: List[str]):
+    def handle_file(self, file_path: str, remove: bool, explicit_lang_list: List[str], markdown: bool):
 
         new_lines = []
         summary_text = {}
@@ -165,15 +166,34 @@ class Command(BaseCommand):
                 file.write(line)
 
         new_content = open(file_path, "r").readlines()
-        if not remove:
+        collected_markdown =""
+        if not remove: 
             for matched_line, text in summary_text.items():
-                line_number = new_content.index(matched_line) + 1
-                print(f"Line={colored(line_number, color='red')} {text}")
+                if markdown:
+                    # TODO: This is awfully disgusting
+                    ansi_escape = compile(r'(?:\x1B[@-_]|[\x80-\x9F])[0-?]*[ -/]*[@-~]')
+                    parts = ansi_escape.sub('', text).split("=")
+                    
+                    file = parts[1].replace(" Component", "")
+                    element = parts[2].replace(" Key", "")
+                    key = parts[3].replace(" Missing", "")
+                    missing_langs = parts[4]
+                    collected_markdown += f"🧩 {element}: 🔑 {key} -> 🗣️: {missing_langs}\n"
+                else:
+                    line_number = new_content.index(matched_line) + 1
+                    print(f"Line={colored(line_number, color='red')} {text}")
                 
+        
+        if markdown and len(collected_markdown) > 0:
+            print(f"<details><summary>{file_path}</summary>");
+            print(collected_markdown)
+            print(f"</details>");
+    
     def handle(self, *args, **options):
         file_path = options["file_path"]
         remove = options["remove"]
         lang = options["lang"]
+        markdown = options["markdown"]
 
         if isdir(file_path):
             result = [
@@ -183,6 +203,6 @@ class Command(BaseCommand):
                 if f.endswith(".toml")
             ]
             for file in result:
-                self.handle_file(file, remove, lang)
+                self.handle_file(file, remove, lang, markdown)
         else:
-            self.handle_file(file_path, remove, lang)
+            self.handle_file(file_path, remove, lang, markdown)
