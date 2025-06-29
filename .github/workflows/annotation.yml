@@ -33,10 +33,11 @@ jobs:
             const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
             const fs = require('fs')
             const annotationText = fs.readFileSync('./code/kuusi/annotation.txt')
+            console.log(annotationText)
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: annotationText
+              body: `annotationText`
             })
 
