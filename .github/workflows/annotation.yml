@@ -53,12 +53,20 @@ jobs:
             
             let result = fs.readFileSync('./code/kuusi/annotation.txt',  { encoding: 'utf8', flag: 'r' })
 
-            github.rest.issues.addLabels({
+            
+            github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: []
+              label: "check-result-action-needed"
             })
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              label: "check-result-success"
+            })
+
             let label = "check-result-action-needed"
             if (result.length == 0) {
               result +="\n\n🥳 All language values are being updated!"
