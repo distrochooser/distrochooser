@@ -57,7 +57,7 @@ jobs:
             const name = '${{ github.workflow	}}';
             const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
             const fs = require('fs')
-            const annotationText = "🗣️ Localization check result - ${{ github.event.issue.pull_request.url }}\n\n"
+            const annotationText = "🗣️ Localization check result - ${{ fromJSON(steps.get-pr.outputs.result).head.ref }}\n\n"
             
             let result = fs.readFileSync('./code/kuusi/annotation.txt',  { encoding: 'utf8', flag: 'r' })
 
