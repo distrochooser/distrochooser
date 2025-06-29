@@ -11,6 +11,28 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor == 'cmllr' && github.event.issue.pull_request && contains(github.event.comment.body, '/check')
     steps:
+      - name: Remove old labels, if any
+        uses: actions/github-script@v6
+        if: always()
+        with:
+          script: |
+            const allLabels = [
+              "check-result-action-needed",
+              "check-result-success"
+            ]
+            allLabels.forEach((element) =>
+            {
+              try {
+                github.rest.issues.removeLabel({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  label: "check-result-action-needed"
+                })
+              } catch (error) {
+              // removeLabel might fail, but we just ignore that.
+              }
+            })
       - uses: actions/github-script@v3
         id: get-pr
         with:
@@ -52,20 +74,6 @@ jobs:
             const annotationText = "🗣️ Localization check result - ${{ github.event.issue.pull_request.url }}\n\n"
             
             let result = fs.readFileSync('./code/kuusi/annotation.txt',  { encoding: 'utf8', flag: 'r' })
-
-            
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              label: "check-result-action-needed"
-            })
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              label: "check-result-success"
-            })
 
             let label = "check-result-action-needed"
             if (result.length == 0) {
