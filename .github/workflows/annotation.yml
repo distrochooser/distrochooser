@@ -32,12 +32,31 @@ jobs:
             const name = '${{ github.workflow	}}';
             const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
             const fs = require('fs')
-            const annotationText = fs.readFileSync('./code/kuusi/annotation.txt',  { encoding: 'utf8', flag: 'r' })
-            console.log(annotationText)
+            const annotationText = "🗣️ Localization check result\n\n"
+            
+            const result = fs.readFileSync('./code/kuusi/annotation.txt',  { encoding: 'utf8', flag: 'r' })
+            let label = "check-result-action-needed"
+            if (result.length == 0) {
+              result +="\n\n🥳 All language values are being updated!"
+              label = "check-result-success"
+            } else {
+              result +="\n\n🚨 Please note that a distribution can only be added when all localizations are updated."
+            }
+            
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: annotationText
+              body: annotationText + result
+            })
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [label]
             })
 
+
+          
+          
