@@ -17,4 +17,7 @@
 
 # The simplified version will omit super technical topics for a more mainstream expierience
 
+# distrochooser::translation::eng::Simplified version
+# distrochooser::translation::key::simplified-description
+# distrochooser::issue::missing translation::vie,tur,swe,fin,pol,ind,ell,fra,por
 [version.simplified]

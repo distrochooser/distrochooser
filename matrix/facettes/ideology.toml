@@ -15,8 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+# distrochooser::translation::eng::I want to use free licenses as much as I can
+# distrochooser::translation::key::license-open-source-description
 [facette.license-open-source]
 topic = "ideology"
 
+# distrochooser::translation::eng::I'm fine with non-free licenses as long as my system works
+# distrochooser::translation::key::proprietary-okay-when-working-description
 [facette.proprietary-okay-when-working]
 topic = "ideology"

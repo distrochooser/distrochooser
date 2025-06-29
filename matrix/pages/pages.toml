@@ -15,6 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Welcome Page
+# distrochooser::translation::eng::Welcome!
+# distrochooser::translation::key::welcome-page-title
 [page.welcome-page]
 can_be_marked = false
 next_page = "version-page"
@@ -26,6 +28,12 @@ pages = ["welcome-page"]
 
 # Version page
 
+# distrochooser::translation::eng::You can select a simplified questionaire edition, which removes some super technical questions
+# distrochooser::translation::key::version-page-text
+# distrochooser::issue::missing translation::tur,swe,fin,pol,nld,ita,ind,ell,heb,rus,fra,por
+# distrochooser::translation::eng::Questionaire edition
+# distrochooser::translation::key::version-page-title
+# distrochooser::issue::missing translation::vie,tur,swe,fin,pol,nld,ita,ind,ell,heb,rus,fra,por
 [page.version-page]
 can_be_marked = false
 next_page = "scenario-page"
@@ -35,6 +43,9 @@ pages = ["version-page"]
 
 # Scenario page
 
+# distrochooser::translation::eng::Software: Use case
+# distrochooser::translation::key::scenario-page-title
+# distrochooser::issue::missing translation::ind
 [page.scenario-page]
 next_page = "pc-knowledge-page"
 hide_help = true
@@ -45,6 +56,8 @@ pages = ["scenario-page"]
 
 # PC knowledge page
 
+# distrochooser::translation::eng::Computer knowledge
+# distrochooser::translation::key::pc-knowledge-page-title
 [page.pc-knowledge-page]
 next_page = "linux-knowledge-page"
 hide_help = true
@@ -55,6 +68,8 @@ pages = ["pc-knowledge-page"]
 
 # Linux knowledge page
 
+# distrochooser::translation::eng::Linux and you
+# distrochooser::translation::key::linux-knowledge-page-title
 [page.linux-knowledge-page]
 next_page = "installation-page"
 hide_help = true
@@ -66,6 +81,8 @@ pages = ["linux-knowledge-page"]
 
 # Installation page
 
+# distrochooser::translation::eng::Installation: Presets
+# distrochooser::translation::key::installation-page-title
 [page.installation-page]
 next_page = "personal-requirements-page"
 hide_help = true
@@ -77,6 +94,12 @@ pages = ["installation-page"]
 
 # Personal requirement page
 
+# distrochooser::translation::eng::Personal recommendation requirements
+# distrochooser::translation::key::personal-requirements-page-text
+# distrochooser::issue::missing translation::tur,swe,fin,pol,nld,ita,ind,ell,heb,rus,fra,por,gsw
+# distrochooser::translation::eng::Personal recommendation requirements
+# distrochooser::translation::key::personal-requirements-page-title
+# distrochooser::issue::missing translation::vie,tur,swe,fin,pol,nld,ita,ind,ell,heb,rus,fra,por,gsw
 [page.personal-requirements-page]
 next_page = "help-page"
 not_in_versions = ["simplified"]
@@ -95,6 +118,8 @@ pages = ["personal-requirements-page"]
 
 # help page
 
+# distrochooser::translation::eng::Source for help
+# distrochooser::translation::key::help-page-title
 [page.help-page]
 next_page = "ux-page"
 hide_help = true
@@ -105,6 +130,8 @@ pages = ["help-page"]
 
 # UX Page
 
+# distrochooser::translation::eng::User experience
+# distrochooser::translation::key::ux-page-title
 [page.ux-page]
 next_page = "pricing-page"
 hide_help = true
@@ -116,6 +143,8 @@ pages = ["ux-page"]
 
 # Pricing page
 
+# distrochooser::translation::eng::Distributions: Price
+# distrochooser::translation::key::pricing-page-title
 [page.pricing-page]
 next_page = "scope-page"
 not_in_versions = ["simplified"]
@@ -127,6 +156,8 @@ pages = ["pricing-page"]
 
 # Scope
 
+# distrochooser::translation::eng::Distributions: Scope
+# distrochooser::translation::key::scope-page-title
 [page.scope-page]
 hide_help = true
 next_page = "ideology-page"
@@ -137,6 +168,10 @@ pages = ["scope-page"]
 
 # Ideology
 
+# distrochooser::translation::eng::The (license) ideology of a distribution is a contentious debate. There are distributions using mostly "free-licenses", others also use "non-free" software.
+# distrochooser::translation::key::ideology-page-text
+# distrochooser::translation::eng::Distributions: Ideology
+# distrochooser::translation::key::ideology-page-title
 [page.ideology-page]
 next_page = "privacy-page"
 not_in_versions = ["simplified"]
@@ -148,6 +183,8 @@ pages = ["ideology-page"]
 
 # Privacy
 
+# distrochooser::translation::eng::Distributions: Privacy
+# distrochooser::translation::key::privacy-page-title
 [page.privacy-page]
 hide_help = true
 next_page = "administration-page"
@@ -158,6 +195,9 @@ pages = ["privacy-page"]
 
 # Administration 
 
+# distrochooser::translation::eng::Administration
+# distrochooser::translation::key::administration-page-title
+# distrochooser::issue::missing translation::fra,gsw
 [page.administration-page]
 next_page = "updates-page"
 hide_help = true
@@ -169,6 +209,9 @@ not_in_versions = ["simplified"]
 
 # Updates 
 
+# distrochooser::translation::eng::Software: Updates
+# distrochooser::translation::key::updates-page-title
+# distrochooser::issue::missing translation::nld,gsw
 [page.updates-page]
 next_page = "result-page"
 hide_help = true
@@ -180,6 +223,8 @@ pages = ["updates-page"]
 
 # Results
 
+# distrochooser::translation::eng::Show your results
+# distrochooser::translation::key::result-page-title
 [page.result-page]
 hide_help = true
 hide_text = true

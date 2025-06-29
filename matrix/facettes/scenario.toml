@@ -14,21 +14,33 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# distrochooser::translation::eng::I want a distribution for daily use
+# distrochooser::translation::key::daily-usage-description
 [facette.daily-usage]
 topic = "scenario"
 
+# distrochooser::translation::eng::I want to use Linux for anonymous web browsing.
+# distrochooser::translation::key::privacy-usage-description
 [facette.privacy-usage]
 topic = "scenario"
 
+# distrochooser::translation::eng::I prefer a distribution which is supported by game publishers.
+# distrochooser::translation::key::gaming-usage-description
 [facette.gaming-usage]
 topic = "scenario"
 
+# distrochooser::translation::eng::I want to execute all programs in an isolated area
+# distrochooser::translation::key::privacy-isolation-usage-description
 [facette.privacy-isolation-usage]
 topic = "scenario"
 
+# distrochooser::translation::eng::The user is visually impaired
+# distrochooser::translation::key::impaired-view-usage-description
 [facette.impaired-view-usage]
 topic = "scenario"
 
+# distrochooser::translation::eng::Has Live Mode: Can be started using discs or usb sticks to test it out (before installing)
+# distrochooser::translation::key::live-mode-usage-description
 [facette.live-mode-usage]
 topic = "scenario"
 

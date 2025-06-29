@@ -14,11 +14,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# distrochooser::translation::eng::I have little or no knowledge about Linux-based operating systems
+# distrochooser::translation::key::no-linux-contact-description
 [facette.no-linux-contact]
 topic = "linux-knowledge"
 
+# distrochooser::translation::eng::I have already used Linux-based operating systems for some purposes
+# distrochooser::translation::key::already-used-description
 [facette.already-used]
 topic = "linux-knowledge"
 
+# distrochooser::translation::eng::I have a good understanding about Linux-based operating systems
+# distrochooser::translation::key::knowledge-present-description
 [facette.knowledge-present]
 topic = "linux-knowledge"

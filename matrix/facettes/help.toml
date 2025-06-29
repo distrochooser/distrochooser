@@ -14,8 +14,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# distrochooser::translation::eng::I am able to solve my problems using guides from wiki pages or tutorials
+# distrochooser::translation::key::manuals-description
 [facette.manuals]
 topic = "help"
 
+# distrochooser::translation::eng::I prefer asking others for help
+# distrochooser::translation::key::need-human-help-description
 [facette.need-human-help]
 topic = "help"
