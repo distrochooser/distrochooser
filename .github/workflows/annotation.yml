@@ -34,7 +34,7 @@ jobs:
             const fs = require('fs')
             const annotationText = "🗣️ Localization check result\n\n"
             
-            const result = fs.readFileSync('./code/kuusi/annotation.txt',  { encoding: 'utf8', flag: 'r' })
+            let result = fs.readFileSync('./code/kuusi/annotation.txt',  { encoding: 'utf8', flag: 'r' })
             let label = "check-result-action-needed"
             if (result.length == 0) {
               result +="\n\n🥳 All language values are being updated!"
