@@ -15,6 +15,8 @@ jobs:
           python-version: '3.11'
           cache: 'pip' # caching pip dependencies
       - run: pip install -r code/kuusi/requirements.txt
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: cd code/kuusi/ &&  python manage.py annotate ../../matrix/
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: cd code/kuusi/
+      - run: python manage.py makemigrations
+      - run: python manage.py migrate
+      - run: python manage.py parse ../../matrix/matrix.toml
+      - run: python manage.py annotate ../../matrix/
