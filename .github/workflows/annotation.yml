@@ -11,10 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor == 'cmllr' && github.event.issue.pull_request && contains(github.event.comment.body, '/check')
     steps:
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - run: echo "${{ github.action_ref }}"
       - name: Check out repository code
         uses: actions/checkout@v4
+      - name: Checkout Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_URL="${{ github.event.issue.pull_request.url }}"
+          PR_NUM=${PR_URL##*/}
+          echo "Checking out from PR #$PR_NUM based on URL: $PR_URL"
+          hub pr checkout $PR_NUM
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -32,9 +38,16 @@ jobs:
             const name = '${{ github.workflow	}}';
             const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
             const fs = require('fs')
-            const annotationText = "🗣️ Localization check result\n\n"
+            const annotationText = "🗣️ Localization check result - ${{ github.event.issue.pull_request.url }}\n\n"
             
             let result = fs.readFileSync('./code/kuusi/annotation.txt',  { encoding: 'utf8', flag: 'r' })
+
+            github.rest.issues.removeLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["check-result-success", "check-result-action-needed"]
+            })
             let label = "check-result-action-needed"
             if (result.length == 0) {
               result +="\n\n🥳 All language values are being updated!"
