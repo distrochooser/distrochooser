@@ -10,6 +10,7 @@ jobs:
     steps:
       - run: echo "🎉 ${{ github.event_name }} event."
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - run: echo "${{ github.event.issue.number }}"
       - name: Check out repository code
         uses: actions/checkout@v4
       - uses: actions/setup-python@v5
