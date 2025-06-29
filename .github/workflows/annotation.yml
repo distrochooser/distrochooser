@@ -1,0 +1,32 @@
+name: Annotation
+
+on:
+  issue_comment:
+    types: [created]
+
+
+
+jobs:
+  annotate:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/check')
+    steps:
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - run: echo "${{ github.action_ref }}"
+      # - name: Check out repository code
+      #   uses: actions/checkout@v4
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.11'
+      #     cache: 'pip' # caching pip dependencies
+      # - run: pip install -r code/kuusi/requirements.txt
+      # - run: cd code/kuusi/ && python manage.py makemigrations
+      # - run: cd code/kuusi/ &&python manage.py migrate
+      # - run: cd code/kuusi/ &&python manage.py parse ../../matrix/matrix.toml
+      # - run: cd code/kuusi/ &&python manage.py annotate ../../matrix/ > ./annotation.txt
+      # - run: echo ${{ github.event.pull_request.number }}
+      # - name: Comment PR
+      #   uses: thollander/actions-comment-pull-request@v3
+      #   with:
+      #     file-path:  code/kuusi/annotation.txt
+      #     pr-number: ${{ github.event.pull_request.number }}

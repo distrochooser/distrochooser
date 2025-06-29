@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from pathlib import Path
 from os.path import dirname, join
-from kuusi.legal import LEGAL_TEXT
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -149,7 +148,6 @@ AVAILABLE_LANGUAGES = [
     ("ind", "Indonesian"),
     ("ell", "Greek"),
     ("heb", "Hebrew"),
-    ("esp", "Spanish"),
     ("rus", "Russian"),
     ("fra", "French"),
     ("por", "Portuguese"),
@@ -256,6 +254,6 @@ dort
 bla
 """
 
-PRIVACY = LEGAL_TEXT
+PRIVACY = ""
 
 DISCORD_HOOK = ""
