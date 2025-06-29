@@ -16,5 +16,5 @@ jobs:
           cache: 'pip' # caching pip dependencies
       - run: pip install -r code/kuusi/requirements.txt
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: python code/kuusi/python3 manage.py matrix/
+      - run: python code/kuusi/manage.py matrix/
       - run: echo "🍏 This job's status is ${{ job.status }}."
