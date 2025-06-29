@@ -178,7 +178,7 @@ class Command(BaseCommand):
                     element = parts[2].replace(" Key", "")
                     key = parts[3].replace(" Missing", "")
                     missing_langs = parts[4]
-                    collected_markdown += f"🧩 {element}: 🔑 {key} -> 🗣️: {missing_langs}\n"
+                    collected_markdown += f"🧩 {element}: 🔑 {key} -> 🗣️: {missing_langs}\n\n"
                 else:
                     line_number = new_content.index(matched_line) + 1
                     print(f"Line={colored(line_number, color='red')} {text}")
