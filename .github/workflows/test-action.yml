@@ -18,4 +18,8 @@ jobs:
       - run: cd code/kuusi/ && python manage.py makemigrations
       - run: cd code/kuusi/ &&python manage.py migrate
       - run: cd code/kuusi/ &&python manage.py parse ../../matrix/matrix.toml
-      - run: cd code/kuusi/ &&python manage.py annotate ../../matrix/
+      - run: cd code/kuusi/ &&python manage.py annotate ../../matrix/ > ./annotation.txt
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          file-path:  code/kuusi/annotation.txt
