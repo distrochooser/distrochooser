@@ -43,7 +43,7 @@
     "debian-description": "Debian es una distribución con un alto enfoque en la estabilidad",
     "debian-updates-slow-facette-prefer-fast-description": "Las actualizaciones de Debian suelen ser lentas a favor de la estabilidad",
     "deepin-description": "Deepin es una distribución china basada en Debian que ofrece un escritorio propio llamado Deepin Desktop Environment.",
-    "description_text": "The Distrochooser helps you to find the suitable Linux distribution based on your needs!",
+    "description_text": "El Distrochooser le ayuda a encontrar la distribución de Linux adecuada según sus necesidades",
     "description_text_long": "En el siguiente cuestionario se le harán varias preguntas sobre distintos temas para ayudarnos a identificar sus necesidades personales. Puede omitir preguntas si lo desea o cambiar sus respuestas en cualquier momento. Al final del cuestionario, obtendrá el resultado de su recomendación personal.",
     "devuan-description": "Devuan es un clon de Debian sin el uso del kit de herramientas systemd",
     "distro_age": "Linux Distribución debe establecerse más de:",

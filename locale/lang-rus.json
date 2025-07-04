@@ -43,7 +43,7 @@
     "debian-description": "Debian — дистрибутив с высоким приоритетом стабильности",
     "debian-updates-slow-facette-prefer-fast-description": "Обновления у Debian обычно нечастые ради стабильности",
     "deepin-description": "Deepin - это китайский дистрибутив на базе Debian, предлагающий собственный рабочий стол под названием Deepin Desktop Environment.",
-    "description_text": "The Distrochooser helps you to find the suitable Linux distribution based on your needs!",
+    "description_text": "Distrochooser поможет вам найти подходящий дистрибутив Linux в соответствии с вашими потребностями!",
     "description_text_long": "СтранааВ следующей анкете вам будет задано несколько вопросов на разные темы, чтобы помочь нам определить ваши личные потребности. При желании вы можете пропустить вопросы или изменить свои ответы в любой момент. В конце анкеты вы получите результат вашей персональной рекомендации.",
     "devuan-description": "Devuan — клон Debian но без использования инструментов systemd",
     "distro_age": "Дистрибутив Linux должен быть установлен более чем:",
