@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# distrochooser::translation::eng::I prefer a free-to-use distribution
+# distrochooser::translation::eng::I prefer a free-to-use Linux distribution
 # distrochooser::translation::key::pricing-free-description
 [facette.pricing-free]
 topic = "pricing"

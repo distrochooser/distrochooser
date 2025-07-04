@@ -16,7 +16,7 @@
 
 
 
-# distrochooser::translation::eng::Ubuntu is a Distribution built by the company Canonical
+# distrochooser::translation::eng::Ubuntu is a Linux distribution built by the company Canonical
 # distrochooser::translation::key::ubuntu-description
 [choosable.ubuntu]
 bg_color = "#E95420"
@@ -47,7 +47,7 @@ meta_name = "languages"
 meta_value = "eng"
 
 
-# distrochooser::translation::eng::Debian is a distribution with high focus on stability
+# distrochooser::translation::eng::Debian is a Linux distribution with high focus on stability
 # distrochooser::translation::key::debian-description
 [choosable.debian]
 name = "Debian"
@@ -123,7 +123,7 @@ choosable="devuan"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Arch is a rolling release distribution based on the KISS principle
+# distrochooser::translation::eng::Arch is a rolling release Linux distribution based on the KISS principle
 # distrochooser::translation::key::arch-description
 [choosable.arch]
 name = "Arch"
@@ -145,7 +145,7 @@ choosable="arch"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Linux Mint is a Ubuntu based distribution with pre-installed proprietary components, such as multimedia codecs.
+# distrochooser::translation::eng::Linux Mint is a Ubuntu based Linux distribution with pre-installed proprietary components, such as multimedia codecs.
 # distrochooser::translation::key::mint-description
 [choosable.mint]
 name = "Linux Mint"
@@ -172,9 +172,8 @@ choosable="mint"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::openSUSE aims to deliver a stable and user-friendly distribution, mostly for end users
+# distrochooser::translation::eng::openSUSE aims to deliver a stable and user-friendly Linux distribution, mostly for end users
 # distrochooser::translation::key::opensuse-description
-# distrochooser::issue::missing translation::fin
 [choosable.opensuse]
 name = "openSUSE"
 bg_color = "#173f4f"
@@ -200,7 +199,7 @@ choosable="opensuse"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Solus OS is a rolling release distribution which started as a Chrome OS clone
+# distrochooser::translation::eng::Solus OS is a rolling release Linux distribution which started as a Chrome OS clone
 # distrochooser::translation::key::solus-description
 [choosable.solus]
 name = "Solus OS"
@@ -222,7 +221,7 @@ choosable="solus"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Manjaro is a rolling release distribution focused on user friendliness
+# distrochooser::translation::eng::Manjaro is a rolling release Linux distribution focused on user friendliness
 # distrochooser::translation::key::manjaro-description
 [choosable.manjaro]
 name = "Manjaro"
@@ -249,7 +248,7 @@ choosable="manjaro"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::PCLinuxOS is a Mandrake-based distribution focused on a user-friendly interface.
+# distrochooser::translation::eng::PCLinuxOS is a Mandrake-based Linux distribution focused on a user-friendly interface.
 # distrochooser::translation::key::pclinuxos-description
 [choosable.pclinuxos]
 name = "PCLinuxOS"
@@ -276,7 +275,7 @@ choosable="pclinuxos"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Rocky Linux is a open source distribution targeted to be 100% compatible with Red Hat Enterprise Linux (RHEL)
+# distrochooser::translation::eng::Rocky Linux is a open source Linux distribution targeted to be 100% compatible with Red Hat Enterprise Linux (RHEL)
 # distrochooser::translation::key::rocky-description
 [choosable.rocky]
 name = "Rocky Linux"
@@ -303,7 +302,7 @@ choosable="rocky"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Red Hat Enterprise Linux (RHEL) is a enterprise and stability focused distribution
+# distrochooser::translation::eng::Red Hat Enterprise Linux (RHEL) is a enterprise and stability focused Linux distribution
 # distrochooser::translation::key::rhel-description
 [choosable.rhel]
 name = "Red Hat Enterprise Linux (RHEL)"
@@ -330,7 +329,7 @@ choosable="rhel"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::MX Linux is a middleweight resource usage distribution with focus on a efficient and elegant daily usage.
+# distrochooser::translation::eng::MX Linux is a middleweight resource usage Linux distribution with focus on a efficient and elegant daily usage.
 # distrochooser::translation::key::mxlinux-description
 [choosable.mxlinux]
 name = "MX Linux"
@@ -352,7 +351,7 @@ choosable="mxlinux"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Fedora is a Red Hat backed distribution with a large focus on free software
+# distrochooser::translation::eng::Fedora is a Red Hat backed Linux distribution with a large focus on free software
 # distrochooser::translation::key::fedora-description
 [choosable.fedora]
 name = "Fedora"
@@ -379,7 +378,7 @@ choosable="fedora"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Gentoo is a flexible distribution for advanced users
+# distrochooser::translation::eng::Gentoo is a flexible Linux distribution for advanced users
 # distrochooser::translation::key::gentoo-description
 [choosable.gentoo]
 name = "Gentoo"
@@ -450,7 +449,7 @@ choosable="cruxlinux"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Zorin OS is a beginner focused distribution with a windows-like user interface
+# distrochooser::translation::eng::Zorin OS is a beginner focused Linux distribution with a windows-like user interface
 # distrochooser::translation::key::zorinos-description
 [choosable.zorinos]
 name = "Zorin OS"
@@ -477,7 +476,7 @@ choosable="zorinos"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::elementary OS is a Ubuntu-based distribution, focused on an elegant and fast user experience
+# distrochooser::translation::eng::elementary OS is a Ubuntu-based Linux distribution, focused on an elegant and fast user experience
 # distrochooser::translation::key::elementaryos-description
 [choosable.elementaryos]
 name = "elementary OS"
@@ -548,7 +547,7 @@ choosable="nixos"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Xubuntu is an Ubuntu-based distribution powered by the lightweight XFCE desktop environment
+# distrochooser::translation::eng::Xubuntu is an Ubuntu-based Linux distribution powered by the lightweight XFCE desktop environment
 # distrochooser::translation::key::xubuntu-description
 [choosable.xubuntu]
 name = "Xubuntu"
@@ -570,7 +569,7 @@ choosable="xubuntu"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Lubuntu is an Ubuntu-based distribution powered by the lightweight LXQt desktop environment
+# distrochooser::translation::eng::Lubuntu is an Ubuntu-based Linux distribution powered by the lightweight LXQt desktop environment
 # distrochooser::translation::key::lubuntu-description
 [choosable.lubuntu]
 name = "Lubuntu"
@@ -592,7 +591,7 @@ choosable="lubuntu"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Ubuntu MATE is an Ubuntu-based distribution powered by the lightweight MATE desktop environment
+# distrochooser::translation::eng::Ubuntu MATE is an Ubuntu-based Linux distribution powered by the lightweight MATE desktop environment
 # distrochooser::translation::key::ubuntumate-description
 [choosable.ubuntumate]
 name = "Ubuntu MATE"
@@ -614,7 +613,7 @@ choosable="ubuntumate"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Void Linux is a rolling release distribution without systemd
+# distrochooser::translation::eng::Void Linux is a rolling release Linux distribution without systemd
 # distrochooser::translation::key::void-description
 [choosable.void]
 name = "Void Linux"
@@ -636,7 +635,7 @@ choosable="void"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Artix is an Arch Linux based distribution which can use several init systems besides systemd, for example OpenRC
+# distrochooser::translation::eng::Artix is an Arch Linux based Linux distribution which can use several init systems besides systemd, for example OpenRC
 # distrochooser::translation::key::artix-description
 [choosable.artix]
 name = "Artix"
@@ -658,7 +657,7 @@ choosable="artix"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Kubuntu is an Ubuntu-based distribution with a pre-installed KDE as a desktop
+# distrochooser::translation::eng::Kubuntu is an Ubuntu-based Linux distribution with a pre-installed KDE as a desktop
 # distrochooser::translation::key::kubuntu-description
 [choosable.kubuntu]
 name = "Kubuntu"
@@ -685,7 +684,7 @@ choosable="kubuntu"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Pop!_OS is an Ubuntu-based distribution powered by the GNOME desktop environment customized from System76
+# distrochooser::translation::eng::Pop!_OS is an Ubuntu-based Linux distribution powered by the GNOME desktop environment customized from System76
 # distrochooser::translation::key::popos-description
 [choosable.popos]
 name = "Pop!_OS"
@@ -712,7 +711,7 @@ choosable="popos"
 meta_name = "languages"
 meta_value = "eng"
 
-# distrochooser::translation::eng::Deepin is a chinese, Debian based Distribution offering an own desktop called Deepin Desktop Environment.
+# distrochooser::translation::eng::Deepin is a chinese, Debian based Linux distribution offering an own desktop called Deepin Desktop Environment.
 # distrochooser::translation::key::deepin-description
 [choosable.deepin]
 name = "Deepin"

@@ -26,7 +26,6 @@ topic = "administration"
 
 # distrochooser::translation::eng::I want to avoid systemd
 # distrochooser::translation::key::no-systemd-description
-# distrochooser::issue::missing translation::swe
 [facette.no-systemd]
 topic = "administration"
 

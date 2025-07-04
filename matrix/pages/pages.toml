@@ -30,10 +30,8 @@ pages = ["welcome-page"]
 
 # distrochooser::translation::eng::You can select a simplified questionaire edition, which removes some super technical questions
 # distrochooser::translation::key::version-page-text
-# distrochooser::issue::missing translation::tur,swe,fin,pol,nld,ita,ind,ell,heb,rus,fra,por
 # distrochooser::translation::eng::Questionaire edition
 # distrochooser::translation::key::version-page-title
-# distrochooser::issue::missing translation::vie,tur,swe,fin,pol,nld,ita,ind,ell,heb,rus,fra,por
 [page.version-page]
 can_be_marked = false
 next_page = "scenario-page"
@@ -45,7 +43,6 @@ pages = ["version-page"]
 
 # distrochooser::translation::eng::Software: Use case
 # distrochooser::translation::key::scenario-page-title
-# distrochooser::issue::missing translation::ind
 [page.scenario-page]
 next_page = "pc-knowledge-page"
 hide_help = true
@@ -96,10 +93,8 @@ pages = ["installation-page"]
 
 # distrochooser::translation::eng::Personal recommendation requirements
 # distrochooser::translation::key::personal-requirements-page-text
-# distrochooser::issue::missing translation::tur,swe,fin,pol,nld,ita,ind,ell,heb,rus,fra,por,gsw
 # distrochooser::translation::eng::Personal recommendation requirements
 # distrochooser::translation::key::personal-requirements-page-title
-# distrochooser::issue::missing translation::vie,tur,swe,fin,pol,nld,ita,ind,ell,heb,rus,fra,por,gsw
 [page.personal-requirements-page]
 next_page = "help-page"
 not_in_versions = ["simplified"]
@@ -168,7 +163,7 @@ pages = ["scope-page"]
 
 # Ideology
 
-# distrochooser::translation::eng::The (license) ideology of a distribution is a contentious debate. There are distributions using mostly "free-licenses", others also use "non-free" software.
+# distrochooser::translation::eng::The (license) ideology of a Linux distribution is a contentious debate. There are Linux distributions using mostly "free-licenses", others also use "non-free" software.
 # distrochooser::translation::key::ideology-page-text
 # distrochooser::translation::eng::Distributions: Ideology
 # distrochooser::translation::key::ideology-page-title
@@ -197,7 +192,6 @@ pages = ["privacy-page"]
 
 # distrochooser::translation::eng::Administration
 # distrochooser::translation::key::administration-page-title
-# distrochooser::issue::missing translation::fra,gsw
 [page.administration-page]
 next_page = "updates-page"
 hide_help = true
@@ -211,7 +205,6 @@ not_in_versions = ["simplified"]
 
 # distrochooser::translation::eng::Software: Updates
 # distrochooser::translation::key::updates-page-title
-# distrochooser::issue::missing translation::nld,gsw
 [page.updates-page]
 next_page = "result-page"
 hide_help = true
