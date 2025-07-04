@@ -50,7 +50,6 @@
     "elementaryos-description": "elementary OS — дистрибутив, основанный на Ubuntu, с упором на элегантное и быстрое пользование",
     "enforces-free-facette-license-open-source-description": "Принуждает к использованию свободного ПО",
     "fedora-description": "Fedora — дистрибутив, поддерживаемый Red Hat и с упором на свободное ПО",
-    "foo": "!!bar",
     "free-software-unfree-per-default-facette-license-open-source-description": "Программы с закрытым исходным кодом устанавливаются по умолчанию",
     "free-software-unfree-per-default-facette-proprietary-okay-when-working-description": "Программы с закрытым исходным кодом устанавливаются по умолчанию",
     "free-userselection-facette-license-open-source-description": "Использование свободного ПО зависит от выбора пользователя",

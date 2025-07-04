@@ -50,7 +50,6 @@
     "elementaryos-description": "elementary OS är en Ubuntu-baserad distribution, fokuserad på en elegant och snabb användarupplevelse",
     "enforces-free-facette-license-open-source-description": "Framtvingar användning av fri programvara",
     "fedora-description": "Fedora är en Red Hat-stödd distribution med stort fokus på fri mjukvara",
-    "foo": "!!bar",
     "free-software-unfree-per-default-facette-license-open-source-description": "Program med stängd källkod installeras som standard",
     "free-software-unfree-per-default-facette-proprietary-okay-when-working-description": "Program med stängd källkod installeras som standard",
     "free-userselection-facette-license-open-source-description": "Användning av fri programvara beror på användarens val",

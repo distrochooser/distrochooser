@@ -50,7 +50,6 @@
     "elementaryos-description": "elementary OS on Ubuntu-pohjainen jakelu, joka keskittyy eleganttiin ja nopeaan käyttäjäkokemukseen",
     "enforces-free-facette-license-open-source-description": "Ylläpitää vapaiden ohjelmistojen käyttöä",
     "fedora-description": "Fedora on Red Hat:in takaama jakelu joka keskittyy lähtökohtaisesti vapaisiin ohjelmistoihin. Hyvinkin uudet paketit",
-    "foo": "!!bar",
     "free-software-unfree-per-default-facette-license-open-source-description": "Suljetun ohjelmakoodin ohjelmia on asennettuna vakiollisesti",
     "free-software-unfree-per-default-facette-proprietary-okay-when-working-description": "Suljetun ohjelmakoodin ohjelmia on asennettuna vakiollisesti",
     "free-userselection-facette-license-open-source-description": "Vapaiden ohjelmien käyttö riippuu käyttäjän omasta valinnasta",

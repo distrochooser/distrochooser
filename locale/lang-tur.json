@@ -50,7 +50,6 @@
     "elementaryos-description": "elementary OS, zarif ve hızlı bir kullanıcı deneyimine odaklanan Ubuntu tabanlı bir dağıtımdır",
     "enforces-free-facette-license-open-source-description": "Özgür yazılım kullanımını zorunlu kılar",
     "fedora-description": "Fedora, büyük ölçüde özgür yazılıma odaklanan Red hat destekli bir dağıtımdır",
-    "foo": "!!bar",
     "free-software-unfree-per-default-facette-license-open-source-description": "Kapalı kaynak programlar varsayılan olarak yüklenir",
     "free-software-unfree-per-default-facette-proprietary-okay-when-working-description": "Kapalı kaynak programlar varsayılan olarak yüklenir",
     "free-userselection-facette-license-open-source-description": "Özgür yazılımın kullanımı kullanıcı seçimlerine bağlıdır",
