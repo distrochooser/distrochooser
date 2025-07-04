@@ -40,5 +40,3 @@ static_root/*
 
 code/frontend/sdk
 code/kuusi/kuusi/legal.py
-
-locale/*.py
