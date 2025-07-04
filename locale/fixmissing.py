@@ -14,7 +14,7 @@ target_translation = loads(open(file, "r").read())
 for key in base_translation:
     try:
         value = target_translation[key]
-        if "!!" in value:
+        if "!!" in value or value == base_translation[key]:
             input_value = value.replace('!!', '').replace("distrochooser", "ABC").replace("Distrochooser", "ABC")
             copy(input_value)
             got = input(f"Get value for: {key}: {input_value}: ")
