@@ -125,7 +125,7 @@ next_page = "ux-page"
 hide_help = true
 
 [widget.selection.help-page-widget-name]
-topic = "installation"
+topic = "help"
 pages = ["help-page"]
 
 # UX Page
