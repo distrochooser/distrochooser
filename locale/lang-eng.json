@@ -50,7 +50,6 @@
     "elementaryos-description": "elementary OS is a Ubuntu-based Linux distribution, focused on an elegant and fast user experience",
     "enforces-free-facette-license-open-source-description": "Enforces usage of free software",
     "fedora-description": "Fedora is a Red Hat backed Linux distribution with a large focus on free software",
-    "font_size": "Font sizing",
     "free-software-unfree-per-default-facette-license-open-source-description": "Closed source programs are installed by default",
     "free-software-unfree-per-default-facette-proprietary-okay-when-working-description": "Closed source programs are installed by default",
     "free-userselection-facette-license-open-source-description": "Usage of free software depends on user selection",
