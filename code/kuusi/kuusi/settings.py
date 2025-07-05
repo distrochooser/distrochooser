@@ -135,28 +135,30 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-us"
 
 AVAILABLE_LANGUAGES = [
-    ("ger", "Deutsch"),
-    ("eng", "English"),
-    ("aze", "Azerbaijani"),
-    ("vie", "Vietnamese"),
-    ("tur", "Turkish"),
-    ("swe", "Swedish"),
-    ("fin", "Finnish"),
-    ("pol", "Polnish"),
-    ("nld", "Dutch"),
-    ("ita", "Italian"),
-    ("ind", "Indonesian"),
-    ("ell", "Greek"),
-    ("heb", "Hebrew"),
-    ("rus", "Russian"),
-    ("fra", "French"),
-    ("por", "Portuguese"),
+    ("de", "Deutsch"),
+    ("en", "English"),
+    ("az", "Azerbaijani"),
+    ("vi", "Vietnamese"),
+    ("tr", "Turkish"),
+    ("sv", "Swedish"),
+    ("fi", "Finnish"),
+    ("pl", "Polnish"),
+    ("es", "Spanish"),
+    ("nl", "Dutch"),
+    ("it", "Italian"),
+    ("id", "Indonesian"),
+    ("el", "Greek"),
+    ("he", "Hebrew"),
+    ("ru", "Russian"),
+    ("fr", "French"),
+    ("pt", "Portuguese"),
     ("gsw", "Swiss German"),
-    ("jpn", "Japanese")
+    ("ja", "Japanese"),
+    ("zh-hans", "Chinese (simplified)")
 ]
 
 RTL_LANGUAGES = [
-    "heb"
+    "he"
 ]
 
 FRONTEND_URL = "http://localhost:3000"
@@ -205,6 +207,7 @@ FRONTEND_URL = "http://localhost:3000"
 
 KUUSI_NAME = "Distrochooser"
 
+DEFAULT_LANGUAGE_CODE = "en"
 KUUSI_META_TAGS = {
     "twitter:card": "summary",
     "twitter:title": KUUSI_NAME,
@@ -218,7 +221,7 @@ KUUSI_META_TAGS = {
     "og:image:width": "100",
     "og:image:height": "100",
     "og:description": "",
-    "og:locale": "eng",
+    "og:locale": DEFAULT_LANGUAGE_CODE,
     "og:site_name": "Distrochooser",
     "theme-color": "#158cba"
 }
@@ -227,7 +230,6 @@ SESSION_NUMBER_OFFSET = 1754516
 
 WEIGHT_MAP = {-2: -0.5, -1: -0.25, 0: 1, 1: 2, 2: 4}
 
-DEFAULT_LANGUAGE_CODE = "eng"
 
 KUUSI_LOGO = "http://localhost:8000/static/logo.svg"
 
