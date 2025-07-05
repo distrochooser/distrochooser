@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="form-check">
         <input class="form-check-input" v-model="selection"  :checked='selection == null' type="radio" :value="null" name="flexRadioDefault" id="version_default">
         <label class="form-check-label" for="version_default">
-          <LanguageTranslation translation-key="full-version" />
+          <LanguageTranslation translation-key="full_version" />
         </label>
       </div>
       <div class="form-check" v-for="version, index in props.widget.versions" :key="index">
