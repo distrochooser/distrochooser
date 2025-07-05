@@ -24,10 +24,16 @@ from django.utils import timezone
 
 from kuusi.settings import RTL_LANGUAGES
 
+from sqids import Sqids
+from time import time
+from random import randint
+
 def get_session_result_id() -> str:
-    # We consider UUID v4 "safe" for now without checking for collisions
-    # If this shall be changed in the future, consider makeing sure the length of result_id is adapted accordingly first.
-    return str(uuid4())
+    sqids = Sqids()
+    seed = int(time())
+    random_component = randint(0, 100000)
+    id = sqids.encode([seed, random_component]) 
+    return id
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
