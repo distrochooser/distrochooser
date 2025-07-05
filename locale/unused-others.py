@@ -1,12 +1,12 @@
 from json import dumps, loads
 from os import listdir
 
-file = "./lang-eng.json"
+file = "./lang-en.json"
 data = loads(open(file, "r").read())
 
 for file in listdir():
     if "json" in file:
-        if "-eng" not in file:
+        if "-en" not in file:
             translation = loads(open(file, "r").read())
 
             expected_keys = list(data.keys())

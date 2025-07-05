@@ -2,7 +2,7 @@ from json import dumps, loads
 from sys import argv
 from pyperclip import copy
 
-file = "./lang-eng.json"
+file = "./lang-en.json"
 base_translation = loads(open(file, "r").read())
 
 

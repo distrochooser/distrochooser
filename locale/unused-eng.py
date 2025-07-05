@@ -2,7 +2,7 @@ from json import dumps, loads
 from subprocess import getoutput
 
 
-file = "./lang-eng.json"
+file = "./lang-en.json"
 data = loads(open(file, "r").read())
 
 def find(what: str):
@@ -11,7 +11,7 @@ def find(what: str):
     return len(output) > 0
 
 
-# find translations in the leading eng translation which are not used in a python, vue, ts nor a toml file.
+# find translations in the leading en translation which are not used in a python, vue, ts nor a toml file.
 
 new_dict = {}
 
