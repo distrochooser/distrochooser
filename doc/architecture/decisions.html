@@ -310,12 +310,12 @@ like structure where each content is a <code>Widget</code>.</p>
             </div>
             
             <div class="panel panel-default">
-                <div class="panel-heading adr-accepted">
+                <div class="panel-heading adr-superseded">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapse8">9. ISO Language Code usage</a>
 
                         
-                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        <i class="adr-icon fas fa-fw fa-times"></i>
                         
 
                     </h4>
@@ -324,7 +324,7 @@ like structure where each content is a <code>Widget</code>.</p>
                     <div class="panel-body"><h1>9. ISO Language Code usage</h1>
 <p>Date: 2025-06-28</p>
 <h2>Status</h2>
-<p>Accepted</p>
+<p>Superseded by <a href="0009-iso-language-code-usage.md">9.</a></p>
 <h2>Context</h2>
 <p>Translations must be identified.</p>
 <h2>Decision</h2>
@@ -559,6 +559,34 @@ This generates a significantly shorter result id.</p>
 <p>The database field was not altered to avoid breaking UUID-using results.</p>
 <h2>Consequences</h2>
 <p>This increases the danger of collisions, but based on the expected user traffic this should be acceptible.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse16">17. Language codes</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse16" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>17. Language codes</h1>
+<p>Date: 2025-07-05</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<p>Supercedes <a href="0009-iso-language-code-usage.md">9. ISO Language Code usage</a></p>
+<h2>Context</h2>
+<p>Users are not used to ISO-639-3 codes, additionally, <em>some</em> users have ISO-639-1 like codes in <code>navigator.language</code>.</p>
+<h2>Decision</h2>
+<p>We are moving back to ISO-639-1 codes.</p>
+<h2>Consequences</h2>
+<p>We can add some kind of language check to the frontend.
+The language keys must be reconfigured.</p>
 </div>
                 </div>
             </div>

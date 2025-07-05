@@ -17,12 +17,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div class="row mt-2 mb-2 g-0">
-    
+    <div class="col g-0 text-center alert alert-success alert-dismissible" v-if="browserLanguageAvailable">
+      <a href="#" v-on:click="sessionStore.changeLanguage(browserLanguage)">This questionnaire is also available in your language!</a>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="row mt-2 mb-2 g-0">
+
     <div class="col row g-0 " v-if="currentPage != null">
       <div class="btn-group row col-12 text-center g-0" role="group">
         <div class="col-2   d-none d-xl-block" />
-        <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-xl-block"
-          v-if="currentPageIndex != 0"
+        <button type="button" class="col-1 btn btn btn-outline-secondary d-none d-xl-block" v-if="currentPageIndex != 0"
           v-on:click="sessionStore.selectPage(pages[currentPageIndex - 1].id)">
 
           <Icon name="ion:caret-back" class="fs-3"></Icon>
@@ -38,8 +43,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <ul class="dropdown-menu" v-show="!sessionStore.isTranslating">
             <li v-for="(page, index) in pages" v-bind:key="index">
               <a class="dropdown-item"
-                :class="{ 'dropdown-item': true, 'fw-bold': currentPage != null && page.id == currentPage.id }"
-                href="#" v-on:click="sessionStore.selectPage(page.id)">
+                :class="{ 'dropdown-item': true, 'fw-bold': currentPage != null && page.id == currentPage.id }" href="#"
+                v-on:click="sessionStore.selectPage(page.id)">
 
                 <NavigationItem :index="index" :page="page" />
               </a>
@@ -70,7 +75,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <LanguageTranslation translation-key="translation-mode-description-title" />
         </b>
         <LanguageTranslation translation-key="translation-mode-description" />
-        <span class="ms-1"><LanguageTranslation translation-key="language-vote-privacy" /></span>
+        <span class="ms-1">
+          <LanguageTranslation translation-key="language-vote-privacy" />
+        </span>
       </div>
     </div>
   </div>
@@ -82,7 +89,9 @@ import NavigationItem from "./NavigationItem.vue";
 
 let sessionStore = useSessionStore();
 
+const browserLanguage = computed(() => navigator.language)
+const browserLanguageAvailable = computed(() => sessionStore.session != null && Object.keys(sessionStore.session.languageCodes).indexOf(navigator.language) != -1 && !sessionStore.languageHintDismissed && sessionStore.session.languageCode != navigator.language && sessionStore.session.languageCode == sessionStore.session.defaultLanguage)
 const pages = computed(() => sessionStore.pages);
-const currentPage =  computed(() => sessionStore.currentPage == null ? null : sessionStore.currentPage)
+const currentPage = computed(() => sessionStore.currentPage == null ? null : sessionStore.currentPage)
 const currentPageIndex = computed(() => currentPage != null ? pages.value.indexOf(currentPage.value) : -1)
 </script>

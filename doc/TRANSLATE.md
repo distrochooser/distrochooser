@@ -3,19 +3,10 @@
 The application stores all translation inside of *.json files inside of the first path defined within the `settings.py`
 `LOCALES_PATH`.
 
-All files follow the format `<scope>-<iso-639-3>.json`. Translations can be updated using the JSON files or can be
+All files follow the format `<scope>-<iso-639-1>.json`. Translations can be updated using the JSON files or can be
 updated during runtime.
 
-## Third party translation.
-
-🚨 If the language is new, add it into the `AVAILABLE_LANGUAGES` list before continuing. Please use the ISO-639-3 codes as first tuple element, followed by an name for the language.
-
-There is the command `translation` to export and import locale values for external translation. It can be called with `python manage.py language <lang_code> <path>`. Invoking this command will create a file `lang_code.txt`  in `path`.
-The content can be used in external api's for translation. To read this, drop the translated content into the file again (make sure line amount and order matches) and execute:
-
-`python manage.py language <lang_code> <path> --read`. The file will be read, the locales be updated an the txt file will be removed. There is the option for a dry run without altering files (`--dry_run`). 
-
-🚨 Do not approve or change language values between drop and read of these txt files. Otherwise you will mess up with the ordering.
+🚨 If the language is new, add it into the `AVAILABLE_LANGUAGES` list before continuing. Please use the ISO-639-1 codes as first tuple element, followed by an name for the language.
 
 ## How to provide translations
 
@@ -47,3 +38,12 @@ Translations are stored in `locale/lang-<languagecode>.json`.
 The content of all translation files is a JSON dictionary, describing the values. The keys inside the dictionary should be kept lower case.
 
 🚨 All types of translation updates require a restart.
+
+# Tools inside of /locale
+
+
+- `dump.py`: Dumps the english baseline into stdout, e. g. for machine based translation (e. g. pipe into text file `dump.py > raw.txt`). The script uses `lang-eng.json` as baseline.
+- `read.py <lang_code>`: Read the file `raw.txt` (created by `dumpy.py` and translated somewhere else) to generate a `lang-<lang_code>.json` file. The script uses `lang-eng.json` as baseline.
+- `fixmissing.py <lang_code>`: Prompts missing values of a given `lang_code` for individual translation.
+- `unused-eng.py`: Searchs if a string is most likely unused.  The script uses `lang-eng.json` as baseline.
+- `unused-others.py`: Searchs if a string is most likely unused in any translation EXCEPT the english baseline.
