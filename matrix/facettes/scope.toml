@@ -14,12 +14,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# distrochooser::translation::eng::I prefer a Linux distribution shipping all the basic programs I need to start working immediately after installation
+# distrochooser::translation::en::I prefer a Linux distribution shipping all the basic programs I need to start working immediately after installation
 # distrochooser::translation::key::scope-out-of-the-box-description
 [facette.scope-out-of-the-box]
 topic = "scope"
 
-# distrochooser::translation::eng::I want to choose the basic programs to install myself
+# distrochooser::translation::en::I want to choose the basic programs to install myself
 # distrochooser::translation::key::scope-own-selection-description
 [facette.scope-own-selection]
 topic = "scope"

@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# distrochooser::translation::eng::Suitable for daily use
+# distrochooser::translation::en::Suitable for daily use
 # distrochooser::translation::key::supports-daily-usage-facette-daily-usage-description
 [assignment.supports-daily-usage-facette-daily-usage]
 facettes = ["daily-usage"]
@@ -51,7 +51,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Daily usage may result in major difficulties
+# distrochooser::translation::en::Daily usage may result in major difficulties
 # distrochooser::translation::key::daily-usage-possibly-difficult-facette-daily-usage-description
 [assignment.daily-usage-possibly-difficult-facette-daily-usage]
 facettes = ["daily-usage"]
@@ -59,7 +59,7 @@ choosables = ["tails"]
 how = "negative"
 
 
-# distrochooser::translation::eng::Can be used for daily work, but is built for live-mode
+# distrochooser::translation::en::Can be used for daily work, but is built for live-mode
 # distrochooser::translation::key::supports-daily-usage-but-built-for-livemode-facette-daily-usage-description
 [assignment.supports-daily-usage-but-built-for-livemode-facette-daily-usage]
 facettes = ["daily-usage"]
@@ -67,7 +67,7 @@ choosables = ["Knoppix"]
 how = "negative"
 
 
-# distrochooser::translation::eng::Distribution concept is not beneficial for anonymization purposes
+# distrochooser::translation::en::Distribution concept is not beneficial for anonymization purposes
 # distrochooser::translation::key::privacy-not-beneficial-facette-privacy-usage-description
 [assignment.privacy-not-beneficial-facette-privacy-usage]
 facettes = ["privacy-usage"]
@@ -75,7 +75,7 @@ choosables = ["ubuntu", "deepin"]
 how = "blocking"
 
 
-# distrochooser::translation::eng::Programs for anonymization purposes are available
+# distrochooser::translation::en::Programs for anonymization purposes are available
 # distrochooser::translation::key::packages-available-facette-privacy-usage-description
 [assignment.packages-available-facette-privacy-usage]
 facettes = ["privacy-usage"]
@@ -109,7 +109,7 @@ choosables = [
 how = "neutral"
 
 
-# distrochooser::translation::eng::Built for anonymization purposes
+# distrochooser::translation::en::Built for anonymization purposes
 # distrochooser::translation::key::built-for-anonymization-facette-privacy-usage-description
 [assignment.built-for-anonymization-facette-privacy-usage]
 facettes = ["privacy-usage"]
@@ -117,7 +117,7 @@ choosables = ["tails"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Distribution is actively supported by game publishers
+# distrochooser::translation::en::Distribution is actively supported by game publishers
 # distrochooser::translation::key::supports-gaming-usage-facette-gaming-usage-description
 [assignment.supports-gaming-usage-facette-gaming-usage]
 facettes = ["gaming-usage"]
@@ -136,7 +136,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Programs versions may not be up-to-date enough for gaming
+# distrochooser::translation::en::Programs versions may not be up-to-date enough for gaming
 # distrochooser::translation::key::packages-may-too-old-gaming-facette-gaming-usage-description
 [assignment.packages-may-too-old-gaming-facette-gaming-usage]
 facettes = ["gaming-usage"]
@@ -144,7 +144,7 @@ choosables = ["debian", "devuan", "rocky", "MXLinux"]
 how = "negative"
 
 
-# distrochooser::translation::eng::Has Live Mode: Can be started using discs or usb sticks to test it out (before installing)
+# distrochooser::translation::en::Has Live Mode: Can be started using discs or usb sticks to test it out (before installing)
 # distrochooser::translation::key::live-mode-only-facette-gaming-usage-description
 [assignment.live-mode-only-facette-gaming-usage]
 facettes = ["gaming-usage"]
@@ -152,7 +152,7 @@ choosables = ["tails"]
 how = "blocking"
 
 
-# distrochooser::translation::eng::May require additional configuration for gaming
+# distrochooser::translation::en::May require additional configuration for gaming
 # distrochooser::translation::key::gaming-may-require-additional-configuration-facette-gaming-usage-description
 [assignment.gaming-may-require-additional-configuration-facette-gaming-usage]
 facettes = ["gaming-usage"]
@@ -170,7 +170,7 @@ choosables = [
 how = "neutral"
 
 
-# distrochooser::translation::eng::Primary goal is enterprise usage
+# distrochooser::translation::en::Primary goal is enterprise usage
 # distrochooser::translation::key::built-for-enterprise-facette-gaming-usage-description
 [assignment.built-for-enterprise-facette-gaming-usage]
 facettes = ["gaming-usage"]
@@ -178,7 +178,7 @@ choosables = ["rhel"]
 how = "negative"
 
 
-# distrochooser::translation::eng::Not optimized for gaming
+# distrochooser::translation::en::Not optimized for gaming
 # distrochooser::translation::key::not-built-for-gaming-facette-gaming-usage-description
 [assignment.not-built-for-gaming-facette-gaming-usage]
 facettes = ["gaming-usage"]
@@ -186,7 +186,7 @@ choosables = ["Knoppix", "CruxLinux", "qubesos"]
 how = "negative"
 
 
-# distrochooser::translation::eng::Suitable for beginners
+# distrochooser::translation::en::Suitable for beginners
 # distrochooser::translation::key::beginner-knowledge-facette-beginner-usage-description
 [assignment.beginner-knowledge-facette-beginner-usage]
 facettes = ["beginner-usage"]
@@ -208,7 +208,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Requires further knowledge about computers
+# distrochooser::translation::en::Requires further knowledge about computers
 # distrochooser::translation::key::requires-some-computer-knowledge-facette-beginner-usage-description
 [assignment.requires-some-computer-knowledge-facette-beginner-usage]
 facettes = ["beginner-usage"]
@@ -233,7 +233,7 @@ choosables = [
 how = "negative"
 
 
-# distrochooser::translation::eng::Requires reading up in manuals for usage
+# distrochooser::translation::en::Requires reading up in manuals for usage
 # distrochooser::translation::key::requires-advanced-knowledge-facette-advanced-usage-description
 [assignment.requires-advanced-knowledge-facette-advanced-usage]
 facettes = ["advanced-usage"]
@@ -256,7 +256,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Requires reading up in manuals for usage
+# distrochooser::translation::en::Requires reading up in manuals for usage
 # distrochooser::translation::key::requires-advanced-knowledge-facette-professional-usage-description
 [assignment.requires-advanced-knowledge-facette-professional-usage]
 facettes = ["professional-usage"]
@@ -276,7 +276,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Suitable for beginners
+# distrochooser::translation::en::Suitable for beginners
 # distrochooser::translation::key::beginner-knowledge-facette-no-linux-contact-description
 [assignment.beginner-knowledge-facette-no-linux-contact]
 facettes = ["no-linux-contact"]
@@ -298,7 +298,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Not suitable for beginners
+# distrochooser::translation::en::Not suitable for beginners
 # distrochooser::translation::key::not-for-beginner-facette-no-linux-contact-description
 [assignment.not-for-beginner-facette-no-linux-contact]
 facettes = ["no-linux-contact"]
@@ -320,7 +320,7 @@ choosables = [
 how = "blocking"
 
 
-# distrochooser::translation::eng::Not suitable for beginners
+# distrochooser::translation::en::Not suitable for beginners
 # distrochooser::translation::key::maybe-not-for-beginner-facette-no-linux-contact-description
 [assignment.maybe-not-for-beginner-facette-no-linux-contact]
 facettes = ["no-linux-contact"]
@@ -328,7 +328,7 @@ choosables = ["MXLinux", "Fedora", "Knoppix", "CruxLinux", "qubesos", "nixOS"]
 how = "negative"
 
 
-# distrochooser::translation::eng::Requires reading of manuals and tutorials
+# distrochooser::translation::en::Requires reading of manuals and tutorials
 # distrochooser::translation::key::requires-manual-facette-already-used-description
 [assignment.requires-manual-facette-already-used]
 facettes = ["already-used"]
@@ -352,7 +352,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::The installation uses a installation 'wizard' with default settings
+# distrochooser::translation::en::The installation uses a installation 'wizard' with default settings
 # distrochooser::translation::key::installation-assistant-present-facette-many-preselections-description
 [assignment.installation-assistant-present-facette-many-preselections]
 facettes = ["many-preselections"]
@@ -382,7 +382,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Has default settings
+# distrochooser::translation::en::Has default settings
 # distrochooser::translation::key::has-default-settings-facette-many-preselections-description
 [assignment.has-default-settings-facette-many-preselections]
 facettes = ["many-preselections"]
@@ -405,7 +405,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::The amount of installed software is based on a selection made from the terminal based installation
+# distrochooser::translation::en::The amount of installed software is based on a selection made from the terminal based installation
 # distrochooser::translation::key::installation-facettes-shell-facette-many-preselections-description
 [assignment.installation-facettes-shell-facette-many-preselections]
 facettes = ["many-preselections"]
@@ -413,7 +413,7 @@ choosables = ["arch", "Gentoo", "void", "artix"]
 how = "blocking"
 
 
-# distrochooser::translation::eng::Installs a range of programs by default
+# distrochooser::translation::en::Installs a range of programs by default
 # distrochooser::translation::key::installs-range-of-programs-facette-commandline-setup-description
 [assignment.installs-range-of-programs-facette-commandline-setup]
 facettes = ["commandline-setup"]
@@ -439,7 +439,7 @@ choosables = [
 how = "negative"
 
 
-# distrochooser::translation::eng::Scope of pre-installed programs is decided by user
+# distrochooser::translation::en::Scope of pre-installed programs is decided by user
 # distrochooser::translation::key::selection-by-user-facette-commandline-setup-description
 [assignment.selection-by-user-facette-commandline-setup]
 facettes = ["commandline-setup"]
@@ -458,7 +458,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Many settings can be done via a graphical interface
+# distrochooser::translation::en::Many settings can be done via a graphical interface
 # distrochooser::translation::key::installation-presets-gui-facette-many-choices-gui-description
 [assignment.installation-presets-gui-facette-many-choices-gui]
 facettes = ["many-choices-gui"]
@@ -483,7 +483,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Contains a pre-installed control center
+# distrochooser::translation::en::Contains a pre-installed control center
 # distrochooser::translation::key::has-control-panel-facette-many-choices-gui-description
 [assignment.has-control-panel-facette-many-choices-gui]
 facettes = ["many-choices-gui"]
@@ -507,7 +507,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::The installation is based on an installation wizard with a graphical user interface
+# distrochooser::translation::en::The installation is based on an installation wizard with a graphical user interface
 # distrochooser::translation::key::configuration-facettes-shell-facette-many-choices-gui-description
 [assignment.configuration-facettes-shell-facette-many-choices-gui]
 facettes = ["many-choices-gui"]
@@ -515,7 +515,7 @@ choosables = ["arch", "Gentoo"]
 how = "blocking"
 
 
-# distrochooser::translation::eng::There are tutorials for troubleshooting and problem-solving
+# distrochooser::translation::en::There are tutorials for troubleshooting and problem-solving
 # distrochooser::translation::key::tutorial-facette-manuals-description
 [assignment.tutorial-facette-manuals]
 facettes = ["manuals"]
@@ -540,7 +540,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::There are user communities for knowledge sharing
+# distrochooser::translation::en::There are user communities for knowledge sharing
 # distrochooser::translation::key::user-exchange-facette-need-human-help-description
 [assignment.user-exchange-facette-need-human-help]
 facettes = ["need-human-help"]
@@ -561,7 +561,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::A variant ships the 'cinnamon' desktop environment, which has a Windows-like appearance
+# distrochooser::translation::en::A variant ships the 'cinnamon' desktop environment, which has a Windows-like appearance
 # distrochooser::translation::key::has-windows-like-variant-cinnamon-facette-ux-concept-answer-windows-like-description
 [assignment.has-windows-like-variant-cinnamon-facette-ux-concept-answer-windows-like]
 facettes = ["ux-concept-answer-windows-like"]
@@ -569,7 +569,7 @@ choosables = ["mint"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Has variants with a windows-like user interface
+# distrochooser::translation::en::Has variants with a windows-like user interface
 # distrochooser::translation::key::has-windows-like-variant-facette-ux-concept-answer-windows-like-description
 [assignment.has-windows-like-variant-facette-ux-concept-answer-windows-like]
 facettes = ["ux-concept-answer-windows-like"]
@@ -577,7 +577,7 @@ choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu"]
 how = "positive"
 
 
-# distrochooser::translation::eng::GUI concept has elements of macOS
+# distrochooser::translation::en::GUI concept has elements of macOS
 # distrochooser::translation::key::mac-like-facette-ux-concept-answer-mac-like-description
 [assignment.mac-like-facette-ux-concept-answer-mac-like]
 facettes = ["ux-concept-answer-mac-like"]
@@ -585,7 +585,7 @@ choosables = ["popos", "deepin"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Usable without fee
+# distrochooser::translation::en::Usable without fee
 # distrochooser::translation::key::without-fee-facette-pricing-free-description
 [assignment.without-fee-facette-pricing-free]
 facettes = ["pricing-free"]
@@ -622,7 +622,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::There is a non-free version of this Linux distribution
+# distrochooser::translation::en::There is a non-free version of this Linux distribution
 # distrochooser::translation::key::paid-version-existing-facette-paid-support-ok-description
 [assignment.paid-version-existing-facette-paid-support-ok]
 facettes = ["paid-support-ok"]
@@ -630,7 +630,7 @@ choosables = ["ubuntu", "opensuse", "rhel", "ZorinOS", "elementaryOS"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Installs all needed programs
+# distrochooser::translation::en::Installs all needed programs
 # distrochooser::translation::key::fullinstall-facette-scope-out-of-the-box-description
 [assignment.fullinstall-facette-scope-out-of-the-box]
 facettes = ["scope-out-of-the-box"]
@@ -659,7 +659,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Closed source programs are installed by default
+# distrochooser::translation::en::Closed source programs are installed by default
 # distrochooser::translation::key::free-software-unfree-per-default-facette-license-open-source-description
 [assignment.free-software-unfree-per-default-facette-license-open-source]
 facettes = ["license-open-source"]
@@ -677,7 +677,7 @@ choosables = [
 how = "blocking"
 
 
-# distrochooser::translation::eng::Usage of free software depends on user selection
+# distrochooser::translation::en::Usage of free software depends on user selection
 # distrochooser::translation::key::free-userselection-facette-license-open-source-description
 [assignment.free-userselection-facette-license-open-source]
 facettes = ["license-open-source"]
@@ -685,7 +685,7 @@ choosables = ["debian", "devuan", "arch", "rocky", "Gentoo", "artix"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Enforces usage of free software
+# distrochooser::translation::en::Enforces usage of free software
 # distrochooser::translation::key::enforces-free-facette-license-open-source-description
 [assignment.enforces-free-facette-license-open-source]
 facettes = ["license-open-source"]
@@ -693,7 +693,7 @@ choosables = ["Fedora"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Closed source programs are installed by default
+# distrochooser::translation::en::Closed source programs are installed by default
 # distrochooser::translation::key::free-software-unfree-per-default-facette-proprietary-okay-when-working-description
 [assignment.free-software-unfree-per-default-facette-proprietary-okay-when-working]
 facettes = ["proprietary-okay-when-working"]
@@ -714,7 +714,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Connects to third party services by default
+# distrochooser::translation::en::Connects to third party services by default
 # distrochooser::translation::key::privacy-thirdparty-facette-privacy-no-connections-unless-wanted-description
 [assignment.privacy-thirdparty-facette-privacy-no-connections-unless-wanted]
 facettes = ["privacy-no-connections-unless-wanted"]
@@ -722,7 +722,7 @@ choosables = []
 how = "blocking"
 
 
-# distrochooser::translation::eng::User has to select the software to use
+# distrochooser::translation::en::User has to select the software to use
 # distrochooser::translation::key::user-selection-affects-privacy-facette-privacy-no-connections-unless-wanted-description
 [assignment.user-selection-affects-privacy-facette-privacy-no-connections-unless-wanted]
 facettes = ["privacy-no-connections-unless-wanted"]
@@ -751,7 +751,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Only collects data when online services are used
+# distrochooser::translation::en::Only collects data when online services are used
 # distrochooser::translation::key::supports-privacy-facette-privacy-no-connections-unless-wanted-description
 [assignment.supports-privacy-facette-privacy-no-connections-unless-wanted]
 facettes = ["privacy-no-connections-unless-wanted"]
@@ -759,7 +759,7 @@ choosables = ["elementaryOS"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Connects to third party services by default
+# distrochooser::translation::en::Connects to third party services by default
 # distrochooser::translation::key::privacy-thirdparty-facette-okay-when-working-description
 [assignment.privacy-thirdparty-facette-okay-when-working]
 facettes = ["okay-when-working"]
@@ -767,7 +767,7 @@ choosables = ["ubuntu"]
 how = "negative"
 
 
-# distrochooser::translation::eng::Software installation can be done using an app store
+# distrochooser::translation::en::Software installation can be done using an app store
 # distrochooser::translation::key::appstore-facette-app-store-gui-description
 [assignment.appstore-facette-app-store-gui]
 facettes = ["app-store-gui"]
@@ -789,7 +789,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Software installation can be done using the terminal
+# distrochooser::translation::en::Software installation can be done using the terminal
 # distrochooser::translation::key::console-facette-software-admin-answer-console-description
 [assignment.console-facette-software-admin-answer-console]
 facettes = ["software-admin-answer-console"]
@@ -805,7 +805,7 @@ choosables = [
 how = "neutral"
 
 
-# distrochooser::translation::eng::Administration is mostly done by using shell commands
+# distrochooser::translation::en::Administration is mostly done by using shell commands
 # distrochooser::translation::key::administration-shell-facette-software-admin-answer-console-description
 [assignment.administration-shell-facette-software-admin-answer-console]
 facettes = ["software-admin-answer-console"]
@@ -829,7 +829,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::uses systemd
+# distrochooser::translation::en::uses systemd
 # distrochooser::translation::key::uses-systemd-facette-no-systemd-description
 [assignment.uses-systemd-facette-no-systemd]
 facettes = ["no-systemd"]
@@ -857,7 +857,7 @@ choosables = [
 how = "blocking"
 
 
-# distrochooser::translation::eng::Avoids systemd
+# distrochooser::translation::en::Avoids systemd
 # distrochooser::translation::key::avoids-systemd-facette-no-systemd-description
 [assignment.avoids-systemd-facette-no-systemd]
 facettes = ["no-systemd"]
@@ -865,7 +865,7 @@ choosables = ["devuan", "pclinuxos", "Knoppix", "CruxLinux", "artix"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Systemd can be avoided per user selection
+# distrochooser::translation::en::Systemd can be avoided per user selection
 # distrochooser::translation::key::systemd-is-avoidable-per-selection-facette-no-systemd-description
 [assignment.systemd-is-avoidable-per-selection-facette-no-systemd]
 facettes = ["no-systemd"]
@@ -873,7 +873,7 @@ choosables = ["Gentoo", "void"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Systemd is shipped, but disabled by default
+# distrochooser::translation::en::Systemd is shipped, but disabled by default
 # distrochooser::translation::key::ships-systemd-but-disabled-facette-no-systemd-description
 [assignment.ships-systemd-but-disabled-facette-no-systemd]
 facettes = ["no-systemd"]
@@ -881,7 +881,7 @@ choosables = ["MXLinux"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Updates are fast, but can be unstable
+# distrochooser::translation::en::Updates are fast, but can be unstable
 # distrochooser::translation::key::updates-fast-facette-prefer-fast-description
 [assignment.updates-fast-facette-prefer-fast]
 facettes = ["prefer-fast"]
@@ -899,7 +899,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Updates are mostly stable when published
+# distrochooser::translation::en::Updates are mostly stable when published
 # distrochooser::translation::key::stable-updates-facette-prefer-stable-description
 [assignment.stable-updates-facette-prefer-stable]
 facettes = ["prefer-stable"]
@@ -927,7 +927,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Debian updates are usually slow in favor of stability
+# distrochooser::translation::en::Debian updates are usually slow in favor of stability
 # distrochooser::translation::key::debian-updates-slow-facette-prefer-fast-description
 [assignment.debian-updates-slow-facette-prefer-fast]
 facettes = ["prefer-fast"]
@@ -935,7 +935,7 @@ choosables = ["debian"]
 how = "negative"
 
 
-# distrochooser::translation::eng::Software execution happens in isolated environments
+# distrochooser::translation::en::Software execution happens in isolated environments
 # distrochooser::translation::key::runs-in-isolation-facette-privacy-isolation-usage-description
 [assignment.runs-in-isolation-facette-privacy-isolation-usage]
 facettes = ["privacy-isolation-usage"]
@@ -943,7 +943,7 @@ choosables = ["qubesos"]
 how = "positive"
 
 
-# distrochooser::translation::eng::The ADRIANE project offers tools and solutions for visually impaired people
+# distrochooser::translation::en::The ADRIANE project offers tools and solutions for visually impaired people
 # distrochooser::translation::key::knoppix-adriane-facette-impaired-view-usage-description
 [assignment.knoppix-adriane-facette-impaired-view-usage]
 facettes = ["impaired-view-usage"]
@@ -951,7 +951,7 @@ choosables = ["Knoppix"]
 how = "positive"
 
 
-# distrochooser::translation::eng::Software for visually impaired people are installable (e. g. 'Orca')
+# distrochooser::translation::en::Software for visually impaired people are installable (e. g. 'Orca')
 # distrochooser::translation::key::has-software-for-blind-facette-impaired-view-usage-description
 [assignment.has-software-for-blind-facette-impaired-view-usage]
 facettes = ["impaired-view-usage"]
@@ -985,7 +985,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Has a live mode which allows starting from disc
+# distrochooser::translation::en::Has a live mode which allows starting from disc
 # distrochooser::translation::key::has-live-mode-facette-live-mode-usage-description
 [assignment.has-live-mode-facette-live-mode-usage]
 facettes = ["live-mode-usage"]
@@ -1012,7 +1012,7 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::eng::Available software versions may be older than latest version from vendor
+# distrochooser::translation::en::Available software versions may be older than latest version from vendor
 # distrochooser::translation::key::slow-release-model-facette-prefer-stable-description
 [assignment.slow-release-model-facette-prefer-stable]
 facettes = ["prefer-stable"]
@@ -1020,7 +1020,7 @@ choosables = ["debian", "rocky"]
 how = "neutral"
 
 
-# distrochooser::translation::eng::Long term usage requires payment
+# distrochooser::translation::en::Long term usage requires payment
 # distrochooser::translation::key::requires-payment-facette-pricing-free-description
 [assignment.requires-payment-facette-pricing-free]
 facettes = ["pricing-free"]
@@ -1029,7 +1029,7 @@ how = "blocking"
 
 
 
-# distrochooser::translation::eng::The privacy policy of the Linux distribution should be read carefully during installation
+# distrochooser::translation::en::The privacy policy of the Linux distribution should be read carefully during installation
 # distrochooser::translation::key::general-remark-additional-eula-facette-privacy-no-connections-unless-wanted-description
 [assignment.general-remark-additional-eula-facette-privacy-no-connections-unless-wanted]
 facettes = ["privacy-no-connections-unless-wanted"]
@@ -1037,7 +1037,7 @@ choosables = ["deepin"]
 how = "neutral"
 
 
-# distrochooser::translation::eng::The privacy policy of the Linux distribution should be read carefully during installation
+# distrochooser::translation::en::The privacy policy of the Linux distribution should be read carefully during installation
 # distrochooser::translation::key::general-remark-additional-eula-facette-okay-when-working-description
 [assignment.general-remark-additional-eula-facette-okay-when-working]
 facettes = ["okay-when-working"]

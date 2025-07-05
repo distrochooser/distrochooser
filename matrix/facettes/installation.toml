@@ -14,17 +14,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# distrochooser::translation::eng::I want to use the default preset values in the installation assistant
+# distrochooser::translation::en::I want to use the default preset values in the installation assistant
 # distrochooser::translation::key::many-preselections-description
 [facette.many-preselections]
 topic = "installation"
 
-# distrochooser::translation::eng::I want to choose the settings by myself
+# distrochooser::translation::en::I want to choose the settings by myself
 # distrochooser::translation::key::commandline-setup-description
 [facette.commandline-setup]
 topic = "installation"
 
-# distrochooser::translation::eng::I want to configure as much as possible using graphical applications
+# distrochooser::translation::en::I want to configure as much as possible using graphical applications
 # distrochooser::translation::key::many-choices-gui-description
 [facette.many-choices-gui]
 topic = "installation"

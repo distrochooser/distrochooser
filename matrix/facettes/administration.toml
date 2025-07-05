@@ -14,17 +14,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# distrochooser::translation::eng::I want to install my programs using a kind of "App store"
+# distrochooser::translation::en::I want to install my programs using a kind of "App store"
 # distrochooser::translation::key::app-store-gui-description
 [facette.app-store-gui]
 topic = "administration"
 
-# distrochooser::translation::eng::I want to install software mostly using terminal commands
+# distrochooser::translation::en::I want to install software mostly using terminal commands
 # distrochooser::translation::key::software-admin-answer-console-description
 [facette.software-admin-answer-console]
 topic = "administration"
 
-# distrochooser::translation::eng::I want to avoid systemd
+# distrochooser::translation::en::I want to avoid systemd
 # distrochooser::translation::key::no-systemd-description
 [facette.no-systemd]
 topic = "administration"
