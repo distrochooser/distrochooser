@@ -1,0 +1,225 @@
+Accessibility
+About
+ABC.de is Open Source software. You can find more information about the license on 
+License
+ABC offers an Open Data access point for own statistical purposes. Please note the license displayed in the HTTP response.
+ABC and Open Data
+ABC.de attempts to help Linux beginners to choose a Linux Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers.
+Amount of tests created since 14.06.2024:
+About this project
+Propose a new Linux distribution:
+There are many ways to administrate a Linux Linux distribution, e. g. to install software.
+Administration
+Administration is mostly done by using shell commands
+I am already able to solve some computer problems by myself
+Age in years
+I have already used Linux-based operating systems for some purposes
+I want to install my programs using a kind of "App store"
+Software installation can be done using an app store
+Arch is a rolling release Linux distribution based on the KISS principle
+Artix is an Arch Linux based Linux distribution which can use several init systems besides systemd, for example OpenRC
+Avoids systemd
+Suitable for beginners
+Suitable for beginners
+I often need help from others to fix problems with my computer
+Color reduced mode
+阻塞問題
+標記
+繼續
+回去
+取消標記
+為匿名目的而構建
+主要目標是企業使用
+我想自己選擇設置
+安裝基於具有圖形使用者介面的安裝精靈
+這些答案可能會有衝突
+可使用終端進行軟體安裝
+接觸
+國家
+Crux Linux 是一款輕量級的 64 位元作業系統，配備最新的工具和函式庫
+我想要一個適合日常使用的 Linux 發行版
+日常使用可能造成重大困難
+Debian 是一個高度注重穩定性的 Linux 發行版
+Debian 更新通常較慢，以保持穩定性
+Deepin 是一個基於 Debian 的中文 Linux 發行版，提供名為 Deepin 桌面環境的桌面。
+ABC 幫助您根據您的需求找到合適的 Linux 發行版！
+在以下的問卷中，我們會詢問您幾個關於不同主題的問題，以幫助我們了解您的個人需求。如果需要，您可以跳過問題或隨時更改答案。問卷調查結束後，您將獲得您的個人推薦結果。
+Devuan 是 Debian 的克隆版本，沒有使用 systemd 工具包
+應建立分佈於：
+elementary OS 是一個基於 Ubuntu 的 Linux 發行版，專注於優雅、快速的使用者體驗
+強制使用免費軟體
+Fedora 是 Red Hat 支援的 Linux 發行版，主要專注於免費軟體
+預設安裝閉源程式
+預設安裝閉源程式
+免費軟體的使用取決於使用者的選擇
+完整版本
+安裝所有需要的程式
+可能需要額外的遊戲配置
+我更喜歡受到遊戲發行商支援的 Linux 發行版。
+安裝過程中應仔細閱讀Linux發行版的隱私權政策
+安裝過程中應仔細閱讀Linux發行版的隱私權政策
+Gentoo 是一個靈活的 Linux 發行版，適合高級用戶
+對我們有什麼回饋嗎？
+包含預先安裝的控制中心
+具有預設設定
+支援多種硬體
+具有允許從光碟啟動的即時模式
+可安裝適合視障人士使用的軟體（例如「Orca」）
+變體附帶“cinnamon”桌面環境，具有類似 Windows 的外觀
+具有類似 Windows 使用者介面的變體
+有適用於舊電腦的「Zorin Lite」版本
+有些 Linux 發行版喜歡使用 wiki 中的文章來進行故障排除。你喜歡什麼？
+幫助來源
+免費許可證允許使用者修改、重新分發和使用該軟體用於任何目的。在某些情況下，Linux 發行版必須使用非自由軟體，例如硬體驅動程式。非自由軟體不分發其原始碼，也不允許修改。
+Linux 發行版的（許可）意識形態是一個有爭議的話題。有些 Linux 發行版主要使用“自由許可證”，其他發行版也使用“非自由”軟體。
+分佈：意識形態
+使用者有視力障礙
+我們對本服務中連結的頁面不承擔任何責任。如果您發現本網站存在惡意鏈接，請使用我們的聯絡資訊告知我們。
+免責聲明
+版本說明
+幫助使用翻譯此服務！
+安裝使用具有預設設定的安裝“嚮導”
+安裝的軟體數量取決於終端安裝的選擇
+安裝 Linux Linux 發行版有多種方法。有些可能需要更多 Linux 專業知識，而有些則更適合新用戶採用更簡單的方法。
+在安裝過程中您希望自己調整多少設定？多少個配置變數應該填充預設值？
+安裝：預設
+許多設定可以透過圖形介面完成
+預設安裝一系列程式
+ADRIANE 計畫為視障人士提供工具和解決方案
+Knoppix 是一款專注於即時模式的作業系統，具有廣泛的硬體支援
+我對基於 Linux 的作業系統有深入的了解
+Kubuntu 是一個基於 Ubuntu 的 Linux 發行版，預先安裝了 KDE 作為桌面
+語言
+雖然可以匿名提供翻譯，但對其他使用者翻譯建議的投票使用隨機 ID 以防止濫用。您可以在我們的隱私頁面上找到更多相關資訊。
+更改語言
+我想盡可能多地使用免費許可證
+輕量級 Linux 發行版
+一些 Linux Linux 發行版的安裝和使用比其他發行版更複雜。整體而言，您如何評價自己對 Linux 的個人專業知識？
+您如何評價自己對 Linux 作業系統的了解？
+Linux 和你
+具有即時模式：可以使用光碟或 USB 啟動來測試（安裝前）
+具有即時模式：可以使用光碟或 USB 啟動來測試（安裝前）
+Lubuntu 是一個基於 Ubuntu 的 Linux 發行版，由輕量級的 LXQt 桌面環境提供支援
+GUI 概念具有 macOS 元素
+Manjaro 是一個滾動發布的 Linux 發行版，專注於用戶友好性
+我能夠使用維基頁面或教程中的指南來解決我的問題
+我希望使用圖形應用程式進行盡可能多的配置
+我想使用安裝助手中的預設預設值
+不適合初學者
+Linux Mint 是一個基於 Ubuntu 的 Linux 發行版，預先安裝了專有元件，例如多媒體編解碼器。
+優先選擇結果清單中至少包含一個已指派的 Linux 發行版
+分發必須與問卷的語言相匹配
+MX Linux 是一個中量級資源使用 Linux 發行版，專注於高效、優雅的日常使用。
+我更喜歡向別人尋求幫助
+根據您的回答，不適合
+中性財產
+NixOS 使用 Nix 套件管理器。它使用聲明性配置並允許可靠的系統升級。
+我對基於 Linux 的作業系統了解甚少或一無所知
+我想避免使用 systemd
+我對此不確定，或者我的電腦已經存在效能問題，或者僅支援 32 位
+根據給出的答案，我們的資料庫中沒有一個 Linux 發行版符合您的偏好。請檢查您的答案！
+哎呀！沒有結果！
+您還沒有身分證。
+未針對遊戲進行最佳化
+不適合初學者
+如果它能改善我的用戶體驗，我同意使用此類線上服務
+openSUSE 旨在為最終用戶提供穩定且用戶友好的 Linux 發行版
+提供匿名程序
+程式版本可能不夠新，無法進行遊戲
+我願意支付費用
+此 Linux 發行版有一個非免費版本
+一些 Linux Linux 發行版的安裝和使用比其他發行版更複雜。您如何評價您個人對電腦的專業知識？
+您如何評估自己使用計算機的熟練程度？
+電腦知識
+PCLinuxOS 是一個基於 Mandrake 的 Linux 發行版，專注於使用者友善的介面。
+在此步驟中，您可以為結果建議定義一些額外的過濾器。
+個人推薦要求
+個人推薦要求
+Pop!_OS 是一個基於 Ubuntu 的 Linux 發行版，由 System76 定制的 GNOME 桌面環境提供支持
+肯定匹配
+我更喜歡快速更新
+我更喜歡穩定的更新
+我比較喜歡免費使用的 Linux 發行版
+大多數 Linux 發行版都是免費的。一些 Linux 發行版提供一次性收費的額外支援。
+分佈：價格
+隱私
+我想在一個隔離區域執行所有程序
+我不想要這個
+分發概念不利於匿名化
+一些 Linux 發行版使用線上服務來改善用戶體驗。這可能會影響用戶的隱私，即用戶在使用此類線上功能時可能會被追蹤。
+發行版：隱私
+預設連接到第三方服務
+預設連接到第三方服務
+我想使用 Linux 進行匿名網頁瀏覽。
+外部連結
+我可以自己解決大多數或所有計算機問題
+只要我的系統能正常運作，我就可以接受非自由許可證
+Qubes OS 在虛擬機器中執行進程以提高安全性
+需要閱讀手冊才能使用
+需要閱讀手冊才能使用
+需要閱讀手冊和教程
+長期使用需付費
+需要進一步了解計算機
+您的結果列表
+您的推薦
+顯示您的結果
+您未做出任何選擇。結果將為空。
+Red Hat Enterprise Linux（RHEL）是一款專注於企業與穩定性的 Linux 發行版
+Rocky Linux 是一個開源 Linux 發行版，旨在與 Red Hat Enterprise Linux (RHEL) 100% 相容
+軟體執行發生在隔離環境中
+透過設定您所需的 Linux 使用範圍來幫助我們。
+有些 Linux 發行版是為特殊目的而製作的，有些則是為日常使用而製作的。你需要什麼？
+軟體：用例
+我更喜歡 Linux 發行版，它能提供我安裝後立即開始工作所需的所有基本程序
+我想選擇自己安裝的基本程序
+不同的 Linux 發行版預先安裝了不同數量的軟體。有些安裝了一整套基本程序，可以「開箱即用」。其他 Linux 發行版僅提供基礎安裝，然後讓使用者安裝他們想要使用的程式。
+分佈：範圍
+預裝程序的範圍由使用者決定
+分享你的結果！
+Systemd 已發布，但預設為停用
+簡化版
+可用的軟體版本可能比供應商提供的最新版本更舊
+我想主要使用終端命令來安裝軟體
+Solus OS 是一個滾動發布的 Linux 發行版，最初是作為 Chrome OS 的克隆版發布的。
+更新發佈時基本穩定
+透過提供翻譯來幫助我們！
+可用於日常工作，但專為即時模式打造
+適合日常使用
+遊戲發行商積極支持發行
+僅在使用線上服務時收集數據
+可根據使用者的選擇避免使用 Systemd
+Tails 的主要功能是匿名化，可以透過 USB 或光碟使用
+謝謝你！
+點選文字即可翻譯。使用中央導航的導航下拉式選單被停用；但您仍然可以使用箭頭按鈕來回導航。可翻譯的文字在懸停時顯示十字線樣式的遊標。
+歡迎來到翻譯模式！
+有故障排除和解決問題的教程
+Ubuntu 是由 Canonical 公司開發的 Linux 發行版
+Ubuntu MATE 是一個基於 Ubuntu 的 Linux 發行版，由輕量級 MATE 桌面環境提供支援
+更新速度很快，但可能不穩定
+發行版在打包更新時遵循不同的方法。一些 Linux 發行版註重快速更新，這會影響系統的穩定性。其他 Linux 發行版專注於穩定更新，這導致等待新版本的時間更長。
+一些 Linux 發行版提供更快的更新，這可能會影響系統穩定性。你喜歡什麼？
+軟體：更新
+有使用者社群可以共享知識
+使用者必須選擇要使用的軟體
+使用 systemd
+我更喜歡類似 macOS 的使用者介面
+我更喜歡類似 Windows 的使用者介面
+Linux 可以使用許多不同的使用者介面（「桌面」）。許多 Linux 發行版預設提供一個桌面。了解您對桌面概念是否有任何偏好非常重要。您可以隨時切換和安裝新的桌面！
+使用者體驗
+ABC.de 上的問卷有多個版本。簡化版本是為技術知識較少的使用者設計的。
+您可以選擇簡化版問卷，其中刪除了一些非常技術性的問題
+問卷版
+Void Linux 是一個不帶 systemd 的滾動發布 Linux 發行版
+清除該ID。
+該服務在為其他用戶的建議投票時會產生隨機文字。這樣做是為了防止投票垃圾郵件。此ID僅在投票時轉移，不用於其他任何用途。
+投票隱私
+分銷首頁
+標記為不太重要
+加權因子
+標記為更重要
+歡迎！
+歡迎來到 ABC.de！
+歡迎！
+可免費使用
+Xubuntu 是一個基於 Ubuntu 的 Linux 發行版，由輕量級 XFCE 桌面環境提供支援
+Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面
