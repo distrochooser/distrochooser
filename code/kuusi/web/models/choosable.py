@@ -61,6 +61,12 @@ class Choosable(Translateable):
         return result
 
 
+    def as_toml(self):
+        result = ""
+        result += f"[choosable.{self.catalogue_id}]\n"
+        result += f"name = \"{self.name}\"\nbg_color = \"{self.bg_color}\"\nfg_color = \"{self.fg_color}\"\n"
+        return result + "\n"
+
 class ChoosableMeta(Translateable):
     meta_choosable = models.ForeignKey(
         to=Choosable,
@@ -89,6 +95,18 @@ class ChoosableMeta(Translateable):
         return map[self.meta_name] if self.meta_name in map  else default_type
 
     @property 
+    def meta_description(self) -> str:
+        # used as with as_toml
+        map = {
+            "AGE": "To provide the age of the distribution, an age can be given. The value shall be in ISO 8601 format, e. g. 2017-10-27",
+            "COUNTRY": "If the choosable is e. g. developed by a company based in a certain country, the value represents an ISO-639-1 code, e. g. 'it' for italy.",
+            "LANGUAGES": "The list of languages supported by the choosable, comma separated as ISO-639-1 code, e. g. en,de,jp",
+            "LICENSES": "A list of licenses used by the project in a SPDX format, e. g. AGPL-3.0-or-later",
+            "WEBSITE": "The link to the project. Shall start with http(s)"
+        }
+        return map[self.meta_name]
+
+    @property 
     def is_hidden(self) -> bool:
         return self.meta_type == "hidden"
 
@@ -113,4 +131,13 @@ class ChoosableMeta(Translateable):
         date = datetime.fromisoformat(self.meta_value)
         delta = relativedelta(now, date)
         return delta.years
-
+    
+    def as_toml(self):
+        result = ""
+        if self.meta_choosable:
+            result += f"# {self.meta_description}\n"
+            result += f"[[meta]]\n"
+            result += f"choosable=\"{self.meta_choosable.catalogue_id}\"\n"
+            result += f"meta_name=\"{self.meta_name.lower()}\"\n"
+            result += f"meta_value=\"{self.meta_value}\"\n"
+        return result + "\n"

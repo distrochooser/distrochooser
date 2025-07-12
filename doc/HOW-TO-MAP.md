@@ -37,6 +37,8 @@ In general, distributions should be "open towards generic". E. g. a distribution
 
 ## Example: Update a distribution  mapping or introduce a new distribution
 
+> You can create new choosable entries with the manage.py newchoosable <file_with_choosables.toml> --catalogue_id <id for the new distribution>
+
 In this example, we want to add the mapping of the question `I want to game` of the distribution `Debian`.
 
 Step 1: **Identify the desired distribution** in `choosable.toml` (it's defined as a `choosable`)
