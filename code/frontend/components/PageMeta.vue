@@ -10,6 +10,7 @@
 import { useRoute } from "vue-router";
 import { useSessionStore } from "../states/session";
 import { computed, watch } from "vue";
+import { useHead } from "nuxt/app";
 
 const router = useRoute();
 const store = useSessionStore();
@@ -20,6 +21,16 @@ const { data } = await useAsyncData("post", async () => {
 const metatags = data.value.meta
 metatags["title"] = data.value.name
 useSeoMeta(metatags)
+
+let defaultTheme = "light";
+if (import.meta.client && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+   defaultTheme = "dark"
+}
+useHead({
+  bodyAttrs: {
+    "data-bs-theme": defaultTheme
+  }
+})
 
 const isTranslating = computed(() => store.session && store.isTranslating)
 
