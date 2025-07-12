@@ -40,6 +40,8 @@ interface SessionState {
     isBWMode: boolean;
     fontSizeModifier: number;
     givenFeedback: String;
+    isDarkMode: boolean;
+    darkModeControlledByUser: boolean;
 }
 let sessionApi: SessionApi = null;
 
@@ -64,7 +66,9 @@ export const useSessionStore = defineStore('websiteStore', {
         isTranslationOpen: false,
         isBWMode: false,
         fontSizeModifier: 1,
-        givenFeedback: null
+        givenFeedback: null,
+        isDarkMode: false,
+        darkModeControlledByUser: false
     }),
     getters: {
         sessionApi(): SessionApi {

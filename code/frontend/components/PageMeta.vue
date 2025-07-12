@@ -22,13 +22,14 @@ const metatags = data.value.meta
 metatags["title"] = data.value.name
 useSeoMeta(metatags)
 
-let defaultTheme = "light";
-if (import.meta.client && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-   defaultTheme = "dark"
+/* set the dark mode as some kind of default if the browser demands is */
+if (import.meta.client  && !store.isDarkModeControlledByUser && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+   store.isDarkMode = true
 }
+
 useHead({
   bodyAttrs: {
-    "data-bs-theme": defaultTheme
+    "data-bs-theme": () => store.isDarkMode  ? "dark": "light"
   }
 })
 
