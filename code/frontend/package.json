@@ -24,7 +24,7 @@
     "bootstrap": "^5.3.3",
     "flag-icons": "^7.2.3",
     "language-icons": "^0.3.0",
-    "nuxt": "^3.16.0",
+    "nuxt": "^3.19.0",
     "pinia": "^2.3.0",
     "sass": "^1.85.1",
     "sass-loader": "^16.0.5",
