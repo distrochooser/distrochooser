@@ -97,7 +97,7 @@ pages = ["installation-page"]
 # distrochooser::translation::key::personal-requirements-page-title
 [page.personal-requirements-page]
 next_page = "help-page"
-not_in_versions = ["simplified"]
+not_in_versions = ["simplified", "full"]
 
 [widget.metafilter.personal-requirements-page]
 structure = [

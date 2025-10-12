@@ -15,7 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+#include ./versions/full.toml
 #include ./versions/simplified.toml
+#include ./versions/beta.toml
 #include ./pages/pages.toml
 #include ./facettes/administration.toml
 #include ./facettes/help.toml
