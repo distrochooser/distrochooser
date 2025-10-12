@@ -154,7 +154,8 @@ AVAILABLE_LANGUAGES = [
     ("pt", "Portuguese"),
     ("gsw", "Swiss German"),
     ("ja", "Japanese"),
-    ("zh-hans", "Chinese (simplified)")
+    ("zh-hans", "Chinese (simplified)"),
+    ("sl", "Slowenian")
 ]
 
 RTL_LANGUAGES = [

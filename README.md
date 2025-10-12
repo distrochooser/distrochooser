@@ -100,6 +100,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Indrajeet-S"><img src="https://avatars.githubusercontent.com/u/94740794?v=4?s=100" width="100px;" alt="QBit"/><br /><sub><b>QBit</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=Indrajeet-S" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://spageektti.cc/"><img src="https://avatars.githubusercontent.com/u/155078792?v=4?s=100" width="100px;" alt="Wiktor Perskawiec"/><br /><sub><b>Wiktor Perskawiec</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=spageektti" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/7654jp"><img src="https://avatars.githubusercontent.com/u/137300301?v=4?s=100" width="100px;" alt="yoshi-jp"/><br /><sub><b>yoshi-jp</b></sub></a><br /><a href="#translation-7654jp" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/matjazjeran"><img src="https://avatars.githubusercontent.com/u/56273441?v=4?s=100" width="100px;" alt="Matjaž Jeran"/><br /><sub><b>Matjaž Jeran</b></sub></a><br /><a href="#translation-matjazjeran" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
