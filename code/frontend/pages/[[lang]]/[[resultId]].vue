@@ -60,7 +60,8 @@ import A11y from "../../components/A11y.vue";
 const router = useRoute();
 const lang: string = router.params.lang as string;
 if (lang == "") {
-  navigateTo("/eng", {
+  // TODO: Make this more intelligent
+  navigateTo("/en", {
     redirectCode: 301,
     replace: true,
   });
