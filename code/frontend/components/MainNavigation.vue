@@ -1,7 +1,7 @@
 <template>
   <div  :class="{'a11y-larger-main-menu': sessionStore.fontSizeModifier == 5, 'row': true}">
     <div class="col-3 d-none d-sm-block"></div>
-    <div class="col-xl-7 col-sm-12 text-center mt-2">
+    <div v-if="sessionStore.session" :class="{'col-sm-12 text-center mt-2': true,  'col-xl-6' : !sessionStore.session.isTranslationModeEnabled,  'col-xl-7': sessionStore.session.isTranslationModeEnabled}">
       <div class="btn-group mt-2" role="group" aria-label="Navigation" v-if="sessionStore.session">
         <NuxtLink type="button"
           :to="!sessionStore.isTranslating ? '/pages/about/' + sessionStore.session.languageCode : null"
