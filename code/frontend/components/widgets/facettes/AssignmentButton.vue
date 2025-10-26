@@ -15,6 +15,5 @@ const props = defineProps<AssignmentButtonProps>();
 
 .assignment-button {
   font-size: small;
-  color: $secondary;
 }
 </style>
