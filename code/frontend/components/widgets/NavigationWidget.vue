@@ -18,21 +18,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div class="row border-top pt-3 ">
     <span v-if="willBeEmpty" class="ms-2 badge rounded-pill text-bg-warning">
-        <LanguageTranslation translation-key="RESULT_WILL_BE_EMPTY" />
+      <LanguageTranslation translation-key="RESULT_WILL_BE_EMPTY" />
     </span>
   </div>
   <div :class="{ 'a11y-larger-text': store.fontSizeModifier == 5, 'text-center mt-3 ': true }">
-    <div class="btn-group" role="group">
+    <div class="btn-group me-2" role="group">
       <a v-if="store.currentPage.canBeMarked" href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
         <Icon class="align-middle" :name="isMarked ? 'ion:bookmark' : 'ion:bookmark-outline'"></Icon>
         <LanguageTranslation :translation-key="!isMarked ? 'BTN_MARK' : 'BTN_UNMARK'" />
       </a>
+    </div>
+    <div class="btn-group me-2" role="group">
       <a v-if="canGoBack" class="btn btn-secondary" href="#" v-on:click="goBack">
         <Icon class="align-middle" name="ion:caret-back-circle-sharp"></Icon>
         <LanguageTranslation translation-key="BTN_PREV_PAGE" />
       </a>
+    </div>
+    <div class="btn-group me-2" role="group">
       <a v-if="canGoNext" href="#" class="btn btn-primary" v-on:click="goNext">
-        <LanguageTranslation translation-key="BTN_NEXT_PAGE"/>
+        <LanguageTranslation translation-key="BTN_NEXT_PAGE" />
         <Icon class="align-middle ms-1" name="ion:chevron-forward-circle"></Icon>
       </a>
     </div>
