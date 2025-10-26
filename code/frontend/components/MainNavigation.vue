@@ -5,22 +5,22 @@
       <div class="btn-group mt-2" role="group" aria-label="Navigation" v-if="sessionStore.session">
         <NuxtLink type="button"
           :to="!sessionStore.isTranslating ? '/pages/about/' + sessionStore.session.languageCode : null"
-          class="btn btn btn-outline-primary">
+          class="btn">
           <LanguageTranslation translation-key="ABOUT" />
         </NuxtLink>
         <NuxtLink type="button"
           :to="!sessionStore.isTranslating ? '/pages/contact/' + sessionStore.session.languageCode : null"
-          class="btn btn btn-outline-primary">
+          class="btn">
           <LanguageTranslation translation-key="CONTACT" />
         </NuxtLink>
         <NuxtLink type="button"
           :to="!sessionStore.isTranslating ? '/pages/privacy/' + sessionStore.session.languageCode : null"
-          class="btn btn btn-outline-primary">
+          class="btn">
           <LanguageTranslation translation-key="PRIVACY" />
         </NuxtLink>
 
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown"
+          <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
             <LanguageTranslation translation-key="LANGUAGE" />
           </button>
