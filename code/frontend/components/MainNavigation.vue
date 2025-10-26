@@ -27,7 +27,7 @@
           <Language v-if="sessionStore.session" />
         </div>
         <!-- Desktop translate switch -->
-        <div class="form-check form-switch mt-2 ms-2 text-center d-none d-sm-block">
+        <div class="form-check form-switch mt-2 ms-2 text-center d-none d-sm-block" v-if="sessionStore.session.isTranslationModeEnabled">
           <input class="form-check-input" type="checkbox" role="switch" id="toggle-translation-mode"
               v-model="sessionStore.isTranslating">
             <label class="form-check-label" for="toggle-translation-mode">

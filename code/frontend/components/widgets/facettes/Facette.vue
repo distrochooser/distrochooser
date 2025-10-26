@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
         <BehaviourAlert v-if="hasIssues"/>
 
-        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating" />
+        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"  v-if="store.session.isFeedbackModeEnabled"/>
       </div>
       <div :class="{'form-check mb-2 fs-6': true, 'a11y-larger-text': store.fontSizeModifier == 5}" v-else>
         <input v-on:click="registerClick"  v-show="!store.isTranslating" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
          
         <BehaviourAlert v-if="hasIssues"/>
-        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"/>
+        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"  v-if="store.session.isFeedbackModeEnabled"/>
       </div>
     </div>
   </div>

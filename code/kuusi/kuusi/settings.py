@@ -208,6 +208,9 @@ FRONTEND_URL = "http://localhost:3000"
 
 KUUSI_NAME = "Distrochooser"
 
+ENABLE_TRANSLATION_MODE = False
+ENABLE_FEEDBACK_MODE = False
+
 DEFAULT_LANGUAGE_CODE = "en"
 KUUSI_META_TAGS = {
     "twitter:card": "summary",

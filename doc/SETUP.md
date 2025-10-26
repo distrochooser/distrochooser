@@ -30,6 +30,8 @@
 |Imprint|A text to be used as contact (legal imprint info)|
 |PRIVACY|Privacy text. Can be HTML|
 |DISCORD_HOOK|A URL to use for notifications about text feedback and votes. Is ignored if null or empty|
+|ENABLE_TRANSLATION_MODE|Controls if the user can provide translations inside the UI|
+|ENABLE_FEEDBACK_MODE|Controls if the user can give feedback to mappings inside the UI|
 
 ## Install
 
