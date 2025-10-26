@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         </div>
                         <div class="form-check mb-3">
                             <input :key="store.isDarkMode ? 'dark-mode-render-trigger' : ''" class="form-check-input" type="checkbox"  id="darkMode"
-                                v-model="store.isDarkMode" :checked="store.isDarkMode" v-on:change="store.isDarkModeControlledByUser=true">
+                                v-model="store.isDarkMode" :checked="store.isDarkMode">
                             <label class="form-check-label" for="darkMode">
                                 Dark Mode
                             </label>
