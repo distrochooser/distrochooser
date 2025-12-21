@@ -37,7 +37,7 @@
       </div>
     </div>
     <!-- Mobile translate switch -->
-    <div class="col-xl-12 col-sm-12 d-block d-sm-none"  v-if="sessionStore.session.isTranslationModeEnabled">
+    <div class="col-xl-12 col-sm-12 d-block d-sm-none"  v-if="sessionStore.session && sessionStore.session.isTranslationModeEnabled">
       <div class="row form-check form-switch mt-3 ms-2 text-center">
         <div class="col-1">
           <input class="form-check-input" type="checkbox" role="switch" id="toggle-translation-mode"
