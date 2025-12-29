@@ -1045,6 +1045,13 @@ choosables = ["ubuntu", "deepin"]
 how = "neutral"
 
 
+[assignment.has-no-ai-policy]
+facettes = ["no-ai"]
+choosables = [
+    "Gentoo" # itsfoss.gitlab.io/post/gentoo-linux-says-no-to-ai-bans-ai-generated-code-submissions/
+]
+how = "positive"
+
 [behaviour.gaming-usage-0]
 subjects = ["gaming-usage"]
 objects = ["privacy-usage"]

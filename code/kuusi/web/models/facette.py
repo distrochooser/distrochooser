@@ -114,6 +114,7 @@ class FacetteSelection(models.Model):
 
 class FacetteAssignment(Translateable):
     choosables = models.ManyToManyField(to=Choosable)
+    # TODO: The facette is actually never an n=2 set...
     facettes = models.ManyToManyField(to=Facette)
     description = TranslateableField(
         null=True, blank=True, default=None, max_length=800
