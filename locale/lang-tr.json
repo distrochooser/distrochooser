@@ -224,5 +224,6 @@
     "welcome-page-title": "Ho\u015f geldin!",
     "without-fee-facette-pricing-free-description": "\u00dccretsiz kullan\u0131labilir",
     "xubuntu-description": "Xubuntu, hafif XFCE masa\u00fcst\u00fc ortam\u0131 taraf\u0131ndan desteklenen Ubuntu tabanl\u0131 bir da\u011f\u0131t\u0131md\u0131r",
-    "zorinos-description": "Zorin OS, Windows benzeri bir kullan\u0131c\u0131 aray\u00fcz\u00fc ile ba\u015flang\u0131\u00e7 odakl\u0131 bir da\u011f\u0131t\u0131md\u0131r"
+    "zorinos-description": "Zorin OS, Windows benzeri bir kullan\u0131c\u0131 aray\u00fcz\u00fc ile ba\u015flang\u0131\u00e7 odakl\u0131 bir da\u011f\u0131t\u0131md\u0131r",
+    "no-ai-description": "Linux dağıtımı, yapay zeka temelli katkıları reddetmek için bir kılavuz oluşturmalı ve bunu desteklemelidir."
 }

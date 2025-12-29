@@ -224,5 +224,7 @@
     "welcome-page-title": "Selamat datang!",
     "without-fee-facette-pricing-free-description": "Dapat digunakan tanpa membayar",
     "xubuntu-description": "Xubuntu adalah distribusi berbasis Ubuntu dengan XFCE terinstall sejak awal",
-    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows"
+    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows",
+    "no-ai-description": "Distribusi Linux harus mendukung dan menetapkan pedoman untuk menolak kontribusi yang didasarkan pada kecerdasan buatan."
+
 }
