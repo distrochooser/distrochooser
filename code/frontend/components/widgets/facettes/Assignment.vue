@@ -26,10 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <LanguageTranslation :translation-key="assignment.description" />
           </h4>
         </div>
-        <div class="col text-end">
+        <div class="col text-end"  v-if="queryChoosables">
           <div class="row">
             <div class="col">
-              <div class="btn-group mt-3" role="group" v-if="queryChoosables">
+              <div class="btn-group mt-3" role="group">
                 <a href="#" :class='{
                   "btn btn-outline-success": true,
                   "btn-success link-light": hasPositiveVote
