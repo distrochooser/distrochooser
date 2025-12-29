@@ -24,3 +24,6 @@ topic = "ideology"
 # distrochooser::translation::key::proprietary-okay-when-working-description
 [facette.proprietary-okay-when-working]
 topic = "ideology"
+
+[facette.no-ai]
+topic ="ideology"
