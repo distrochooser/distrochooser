@@ -54,7 +54,7 @@ python manage.py migrate
 # to get a user and password for the admin panel on /admin
 python manage.py createsuperuser
 # Import the base questionaire structure
-python manage.py parse ../../doc/matrix/toml/matrix.toml --wipe 
+python manage.py parse ../../matrix/matrix.toml
 # Add static files
 python manage.py collectstatic
 ```
