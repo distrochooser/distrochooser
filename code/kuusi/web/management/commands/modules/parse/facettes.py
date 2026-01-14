@@ -43,7 +43,7 @@ def create_facettes(get_or_default: Callable[[str, Dict], Any], haystack: Dict) 
     
     # delete old, unused ones
     objects = Facette.objects.filter(is_invalidated=True)
-    logger.info(f"Removing {objects.count()} orphan facettess.")
+    logger.info(f"Removing {objects.count()} orphan facettes.")
     objects.delete()
     return got
 
