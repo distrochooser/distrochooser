@@ -225,5 +225,7 @@
     "without-fee-facette-pricing-free-description": "Mo\u017cliwo\u015b\u0107 korzystania bez op\u0142at",
     "xubuntu-description": "Xubuntu to dystrybucja oparta na Ubuntu, zasilana lekkim \u015brodowiskiem graficznym XFCE",
     "zorinos-description": "Zorin OS to dystrybucja dla pocz\u0105tkuj\u0105cych z interfejsem u\u017cytkownika przypominaj\u0105cym Windows",
-    "no-ai-description": "Dystrybucja systemu Linux powinna poprze\u0107 i ustanowi\u0107 wytyczne dotycz\u0105ce odrzucania wk\u0142adu opartego na sztucznej inteligencji."
+    "no-ai-description": "Dystrybucja systemu Linux powinna poprze\u0107 i ustanowi\u0107 wytyczne dotycz\u0105ce odrzucania wk\u0142adu opartego na sztucznej inteligencji.",
+    "advanced-administration-page-title": "Zaawansowana administracja",
+    "advanced-administration-page-text": "Dla zaawansowanych użytkowników niektóre niskopoziomowe komponenty ich systemu mogą stanowić ważne wybory."
 }

@@ -225,5 +225,7 @@
     "without-fee-facette-pricing-free-description": "Uporabno brez pristojbine",
     "xubuntu-description": "Xubuntu je distribucija Linuxa, ki temelji na Ubuntuju in jo poganja lahko namizno okolje XFCE.",
     "zorinos-description": "Zorin OS je distribucija Linuxa, osredoto\u010dena na za\u010detnike, z uporabni\u0161kim vmesnikom, podobnim sistemu Windows",
-    "no-ai-description": "Distribucija Linuxa bi morala podpreti in vzpostaviti smernice za zavra\u010danje prispevkov, ki temeljijo na umetni inteligenci."
+    "no-ai-description": "Distribucija Linuxa bi morala podpreti in vzpostaviti smernice za zavra\u010danje prispevkov, ki temeljijo na umetni inteligenci.",
+    "advanced-administration-page-title": "napredno upravljanje",
+    "advanced-administration-page-text": "Za napredne uporabnike so lahko nekatere komponente njihovega sistema na nizki ravni pomembna izbira."
 }

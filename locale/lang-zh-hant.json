@@ -225,5 +225,7 @@
     "without-fee-facette-pricing-free-description": "可免費使用",
     "xubuntu-description": "Xubuntu 是一個基於 Ubuntu 的 Linux 發行版，由輕量級 XFCE 桌面環境提供支援",
     "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面",
-    "no-ai-description": "Linux 發行版應支持並制定一項準則，以拒絕基於人工智慧的貢獻。"
+    "no-ai-description": "Linux 發行版應支持並制定一項準則，以拒絕基於人工智慧的貢獻。",
+    "advanced-administration-page-title": "進階管理",
+    "advanced-administration-page-text": "對於進階使用者而言，系統中某些低階元件可能是重要的選擇。"
 }

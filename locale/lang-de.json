@@ -225,5 +225,7 @@
     "without-fee-facette-pricing-free-description": "Kann ohne Geb\u00fchren genutzt werden",
     "xubuntu-description": "Xubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem XFCE-Desktop.",
     "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfl\u00e4che",
-    "no-ai-description": "Die Distribution sollte eine Richtlinie ohne KI bef\u00fcrworten und etablieren."
+    "no-ai-description": "Die Distribution sollte eine Richtlinie ohne KI bef\u00fcrworten und etablieren.",
+    "advanced-administration-page-title": "Erweiterte Systemverwaltung",
+    "advanced-administration-page-text": "Für erfahrende Nutzer können verschiedene Systemkomponenten die Auswahl von großer Wichtigkeit sein."
 }

@@ -225,5 +225,7 @@
     "without-fee-facette-pricing-free-description": "Utilizable sin cargo",
     "xubuntu-description": "Xubuntu es una distribuci\u00f3n basada en Ubuntu impulsada por el entorno de escritorio ligero XFCE",
     "zorinos-description": "Zorin OS es una distribuci\u00f3n enfocada para principiantes con una interfaz de usuario similar a Windows",
-    "no-ai-description": "La distribuci\u00f3n Linux deber\u00eda respaldar y establecer una directriz para rechazar las contribuciones basadas en inteligencia artificial."
+    "no-ai-description": "La distribuci\u00f3n Linux deber\u00eda respaldar y establecer una directriz para rechazar las contribuciones basadas en inteligencia artificial.",
+    "advanced-administration-page-title": "Administración avanzada",
+    "advanced-administration-page-text": "Para los usuarios avanzados, algunos componentes de bajo nivel de su sistema pueden ser opciones importantes."
 }
