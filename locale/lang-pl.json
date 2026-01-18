@@ -12,6 +12,8 @@
     "administration-page-text": "Istnieje wiele sposob\u00f3w aby zarz\u0105dza\u0107 dystrybucj\u0105 Linuksa, np. instalowa\u0107 oprogramowanie.",
     "administration-page-title": "Administracja",
     "administration-shell-facette-software-admin-answer-console-description": "Administracja odbywa si\u0119 g\u0142\u00f3wnie za pomoc\u0105 polece\u0144 pow\u0142oki (terminala)",
+    "advanced-administration-page-text": "Dla zaawansowanych u\u017cytkownik\u00f3w niekt\u00f3re niskopoziomowe komponenty ich systemu mog\u0105 stanowi\u0107 wa\u017cne wybory.",
+    "advanced-administration-page-title": "Zaawansowana administracja",
     "advanced-usage-description": "Potrafi\u0119 samodzielnie rozwi\u0105za\u0107 niekt\u00f3re problemy z komputerem",
     "age": "Wiek w latach",
     "already-used-description": "U\u017cywa\u0142em ju\u017c Linuksa do pewnych cel\u00f3w",
@@ -116,6 +118,7 @@
     "negative": "Nieodpowiednie na podstawie udzielonych odpowiedzi",
     "neutral": "Neutralna w\u0142a\u015bciwo\u015b\u0107",
     "nixos-description": "NixOS korzysta z mened\u017cera pakiet\u00f3w Nix. Wykorzystuje on deklaratywn\u0105 konfiguracj\u0119 i pozwala na niezawodne aktualizacje systemu.",
+    "no-ai-description": "Dystrybucja systemu Linux powinna poprze\u0107 i ustanowi\u0107 wytyczne dotycz\u0105ce odrzucania wk\u0142adu opartego na sztucznej inteligencji.",
     "no-linux-contact-description": "Mam ma\u0142\u0105 lub zerow\u0105 wiedz\u0119 o Linuksie",
     "no-systemd-description": "Chc\u0119 unikn\u0105\u0107 korzystania z systemd",
     "no64bit-description": "Nie jestem tego pewien i/lub m\u00f3j komputer ma ju\u017c problemy z wydajno\u015bci\u0105 i/lub obs\u0142uguje tylko 32 bity",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Witamy!",
     "without-fee-facette-pricing-free-description": "Mo\u017cliwo\u015b\u0107 korzystania bez op\u0142at",
     "xubuntu-description": "Xubuntu to dystrybucja oparta na Ubuntu, zasilana lekkim \u015brodowiskiem graficznym XFCE",
-    "zorinos-description": "Zorin OS to dystrybucja dla pocz\u0105tkuj\u0105cych z interfejsem u\u017cytkownika przypominaj\u0105cym Windows",
-    "no-ai-description": "Dystrybucja systemu Linux powinna poprze\u0107 i ustanowi\u0107 wytyczne dotycz\u0105ce odrzucania wk\u0142adu opartego na sztucznej inteligencji.",
-    "advanced-administration-page-title": "Zaawansowana administracja",
-    "advanced-administration-page-text": "Dla zaawansowanych użytkowników niektóre niskopoziomowe komponenty ich systemu mogą stanowić ważne wybory."
+    "zorinos-description": "Zorin OS to dystrybucja dla pocz\u0105tkuj\u0105cych z interfejsem u\u017cytkownika przypominaj\u0105cym Windows"
 }

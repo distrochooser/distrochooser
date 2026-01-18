@@ -12,6 +12,8 @@
     "administration-page-text": "Unter Linux werden Programme h\u00e4ufig \u00fcber eine Paketverwaltung installiert und aktualisiert. Manche Programme werden aus ihrem Quellcode erstellt und dann installiert. Welchen Weg bevorzuge ich?",
     "administration-page-title": "Systemverwaltung",
     "administration-shell-facette-software-admin-answer-console-description": "Administration wird gr\u00f6\u00dftenteils \u00fcber die Shell realisiert",
+    "advanced-administration-page-text": "F\u00fcr erfahrende Nutzer k\u00f6nnen verschiedene Systemkomponenten die Auswahl von gro\u00dfer Wichtigkeit sein.",
+    "advanced-administration-page-title": "Erweiterte Systemverwaltung",
     "advanced-usage-description": "Ich kann einige Probleme selbstst\u00e4ndig l\u00f6sen.",
     "age": "Existiert seit x Jahren",
     "already-used-description": "Ich habe bereits Linux eingesetzt.",
@@ -116,6 +118,7 @@
     "negative": "M\u00f6glicherweise unpassend f\u00fcr dich",
     "neutral": "Neutrale Wertung",
     "nixos-description": "NixOS baut auf dem gleichnamigen Paketmanager auf, der dem Prinzip deklarativer Systemkonfiguration folgt, um Aktualisierungen reproduzierbar zu machen.",
+    "no-ai-description": "Die Distribution sollte eine Richtlinie ohne KI bef\u00fcrworten und etablieren.",
     "no-linux-contact-description": "Ich habe noch nie mit Linux gearbeitet.",
     "no-systemd-description": "Ich wei\u00df was \"systemd\" ist und m\u00f6chte dieses meiden. ",
     "no64bit-description": "Ich bin mir nicht sicher / mein Rechner hat bereits Probleme, Programme ausreichend schnell zu \u00f6ffnen. ",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Willkommen!",
     "without-fee-facette-pricing-free-description": "Kann ohne Geb\u00fchren genutzt werden",
     "xubuntu-description": "Xubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem XFCE-Desktop.",
-    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfl\u00e4che",
-    "no-ai-description": "Die Distribution sollte eine Richtlinie ohne KI bef\u00fcrworten und etablieren.",
-    "advanced-administration-page-title": "Erweiterte Systemverwaltung",
-    "advanced-administration-page-text": "Für erfahrende Nutzer können verschiedene Systemkomponenten die Auswahl von großer Wichtigkeit sein."
+    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfl\u00e4che"
 }

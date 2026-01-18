@@ -12,6 +12,8 @@
     "administration-page-text": "Il existe de nombreuses fa\u00e7ons d'administrer une distribution Linux, par exemple pour installer des logiciels.",
     "administration-page-title": "Administration des syst\u00e8mes",
     "administration-shell-facette-software-admin-answer-console-description": "L'administration se fait principalement via des commandes dans le terminal",
+    "advanced-administration-page-text": "Pour les utilisateurs avanc\u00e9s, certains composants de bas niveau de leur syst\u00e8me peuvent constituer des choix importants.",
+    "advanced-administration-page-title": "Administration avanc\u00e9e",
     "advanced-usage-description": "Je suis d\u00e9j\u00e0 capable de r\u00e9soudre certains probl\u00e8mes informatiques par moi-m\u00eame",
     "age": "\u00c2ge en ann\u00e9es",
     "already-used-description": "J'ai d\u00e9j\u00e0 utilis\u00e9 Linux pour diverses raisons",
@@ -116,6 +118,7 @@
     "negative": "Ne convient pas d'apr\u00e8s vos r\u00e9ponses",
     "neutral": "Propri\u00e9t\u00e9 neutre",
     "nixos-description": "NixOS utilise le gestionnaire de paquets Nix. Il utilise une configuration d\u00e9clarative et permet des mises \u00e0 jour fiables du syst\u00e8me.",
+    "no-ai-description": "La distribution Linux devrait approuver et \u00e9tablir une ligne directrice visant \u00e0 rejeter les contributions bas\u00e9es sur l'intelligence artificielle.",
     "no-linux-contact-description": "J'ai peu ou pas de connaissances sur Linux",
     "no-systemd-description": "Je veux \u00e9viter d'utiliser systemd",
     "no64bit-description": "Je ne suis pas s\u00fbr et/ou mon ordinateur a d\u00e9j\u00e0 des probl\u00e8mes de performance et/ou ne supporte que le 32 bits",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Bienvenue !",
     "without-fee-facette-pricing-free-description": "Utilisable gratuitement",
     "xubuntu-description": "Xubuntu est une distribution bas\u00e9e sur Ubuntu et fonctionnant avec l'environnement de bureau l\u00e9ger XFCE",
-    "zorinos-description": "Zorin OS est une distribution destin\u00e9e aux d\u00e9butants avec une interface utilisateur de type Windows",
-    "no-ai-description": "La distribution Linux devrait approuver et \u00e9tablir une ligne directrice visant \u00e0 rejeter les contributions bas\u00e9es sur l'intelligence artificielle.",
-    "advanced-administration-page-title": "Administration avancée",
-    "advanced-administration-page-text": "Pour les utilisateurs avancés, certains composants de bas niveau de leur système peuvent constituer des choix importants."
+    "zorinos-description": "Zorin OS est une distribution destin\u00e9e aux d\u00e9butants avec une interface utilisateur de type Windows"
 }

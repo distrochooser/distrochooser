@@ -12,6 +12,8 @@
     "administration-page-text": "Unger Linux w\u00e4rde d Programm h\u00fcfig \u00fcber e Paketverwaltig installiert u aktualisiert. Es paar Programm w\u00e4rde us Ihrem Quellcode erstellt u denn installiert. Wele w\u00e4g bevorzugeni?",
     "administration-page-title": "Paketverwaltig",
     "administration-shell-facette-software-admin-answer-console-description": "D Administration wird gr\u00f6ssteteils \u00fcber d Shell realisiert",
+    "advanced-administration-page-text": "F\u00fcr erfahrende Nutzer k\u00f6nnen verschiedene Systemkomponenten die Auswahl von gro\u00dfer Wichtigkeit sein.",
+    "advanced-administration-page-title": "Erweiterte Systemverwaltung",
     "advanced-usage-description": "I cha es paar Problem s\u00e4uber l\u00f6se.",
     "age": "Alter i Jahr",
     "already-used-description": "I ha scho mau Linux bruucht.",
@@ -116,6 +118,7 @@
     "negative": "Passt nid zu dine Antworte",
     "neutral": "Neutral property",
     "nixos-description": "NixOS bout ufem gliichnamite Paketmanager uf, wo am Prinzip vor deklarative Systemkonfiguration folgt, demit Aktualisierige ch\u00f6i reproduzierbar gmacht w\u00e4rde.",
+    "no-ai-description": "Die Distribution sollte eine Richtlinie ohne KI bef\u00fcrworten und etablieren.",
     "no-linux-contact-description": "I ha no nie mit Linux gschaffet.",
     "no-systemd-description": "I weiss was \"systemd\" isch u m\u00f6cht das lieber vermide.",
     "no64bit-description": "I bi mer nid sicher / mi R\u00e4chner het jitze scho Problem, Programm gnue schn\u00e4u ufztue.",
@@ -224,8 +227,5 @@
     "welcome-page-title": "H\u00e4rzlech Wiukomme!",
     "without-fee-facette-pricing-free-description": "Cha ohni Geb\u00fchre verw\u00e4ndet w\u00e4rde",
     "xubuntu-description": "Xubuntu isch e Distribution wo uf Ubuntu basiert und e XFCE-Desktop vorinstalliert het.",
-    "zorinos-description": "ZorinOS isch e benutzerfr\u00fcndlechi Distribution mitere Oberflechi wo a Windows erinneret",
-    "no-ai-description": "Die Distribution sollte eine Richtlinie ohne KI bef\u00fcrworten und etablieren.",
-    "advanced-administration-page-title": "Erweiterte Systemverwaltung",
-    "advanced-administration-page-text": "Für erfahrende Nutzer können verschiedene Systemkomponenten die Auswahl von großer Wichtigkeit sein."
+    "zorinos-description": "ZorinOS isch e benutzerfr\u00fcndlechi Distribution mitere Oberflechi wo a Windows erinneret"
 }

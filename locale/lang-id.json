@@ -12,6 +12,8 @@
     "administration-page-text": "Ada banyak cara untuk mengelola distribusi linux, Contoh: menginstal perangkat lunak.",
     "administration-page-title": "Administrasi",
     "administration-shell-facette-software-admin-answer-console-description": "Administrasi dilakukan melalui perintah shell",
+    "advanced-administration-page-text": "Bagi pengguna tingkat lanjut, beberapa komponen tingkat rendah dari sistem mereka dapat menjadi pilihan yang penting.",
+    "advanced-administration-page-title": "Administrasi tingkat lanjut",
     "advanced-usage-description": "Saya mampu mengatasi beberapa masalah komputer sendiri",
     "age": "Usia dalam tahun",
     "already-used-description": "Saya sudah menggunakan Linux untuk tujuan tertentu",
@@ -116,6 +118,7 @@
     "negative": "Tidak cocok berdasarkan jawaban Anda",
     "neutral": "Properti netral",
     "nixos-description": "NixOS menggunakan Nix Package Manager. NixOS menggunakan pengaturan deklaratif dan memungkinkan pembaruan sistem yang handal.",
+    "no-ai-description": "Distribusi Linux harus mendukung dan menetapkan pedoman untuk menolak kontribusi yang didasarkan pada kecerdasan buatan.",
     "no-linux-contact-description": "Saya hampir atau tidak tahu apapun mengenai Linux",
     "no-systemd-description": "Saya ingin menghindari systemd",
     "no64bit-description": "Saya tidak yakin mengenai hal ini dan/atau komputer saya memiliki masalah kinerja dan/atau hanya mendukung 32 bit",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Selamat datang!",
     "without-fee-facette-pricing-free-description": "Dapat digunakan tanpa membayar",
     "xubuntu-description": "Xubuntu adalah distribusi berbasis Ubuntu dengan XFCE terinstall sejak awal",
-    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows",
-    "no-ai-description": "Distribusi Linux harus mendukung dan menetapkan pedoman untuk menolak kontribusi yang didasarkan pada kecerdasan buatan.",
-    "advanced-administration-page-title": "Administrasi tingkat lanjut",
-    "advanced-administration-page-text": "Bagi pengguna tingkat lanjut, beberapa komponen tingkat rendah dari sistem mereka dapat menjadi pilihan yang penting."
+    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows"
 }

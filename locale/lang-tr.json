@@ -12,6 +12,8 @@
     "administration-page-text": "Bir Linux da\u011f\u0131t\u0131m\u0131n\u0131 y\u00f6netmenin bir\u00e7ok yolu vard\u0131r. \u00d6rne\u011fin uygulama kurmak.",
     "administration-page-title": "Y\u00f6netim",
     "administration-shell-facette-software-admin-answer-console-description": "Y\u00f6netim \u00e7o\u011funlukla Shell komutlar\u0131 kullan\u0131larak yap\u0131l\u0131r",
+    "advanced-administration-page-text": "\u0130leri d\u00fczey kullan\u0131c\u0131lar i\u00e7in, sistemlerinin baz\u0131 d\u00fc\u015f\u00fck seviyeli bile\u015fenleri \u00f6nemli se\u00e7imler olabilir.",
+    "advanced-administration-page-title": "Geli\u015fmi\u015f y\u00f6netim",
     "advanced-usage-description": "Bilgisayar\u0131mdaki baz\u0131 problemleri zaten kendi ba\u015f\u0131ma \u00e7\u00f6zebiliyorum",
     "age": "Ya\u015f y\u0131l olarak",
     "already-used-description": "Baz\u0131 ama\u00e7lar i\u00e7in zaten Linux kulland\u0131m",
@@ -116,6 +118,7 @@
     "negative": "Cevaplar\u0131n\u0131za g\u00f6re uygun de\u011fil",
     "neutral": "Tarafs\u0131z m\u00fclkiyet",
     "nixos-description": "NixOS, Nix paket y\u00f6neticisini kullan\u0131r. Bildirimsel yap\u0131land\u0131rma kullan\u0131r ve g\u00fcvenilir sistem y\u00fckseltmelerine izin verir.",
+    "no-ai-description": "Linux da\u011f\u0131t\u0131m\u0131, yapay zeka temelli katk\u0131lar\u0131 reddetmek i\u00e7in bir k\u0131lavuz olu\u015fturmal\u0131 ve bunu desteklemelidir.",
     "no-linux-contact-description": "\u00c7ok az ya da hi\u00e7 Linux kullanmad\u0131m",
     "no-systemd-description": "Systemd'den ka\u00e7\u0131nmak istiyorum",
     "no64bit-description": "Bundan emin de\u011filim ve/veya bilgisayar\u0131mda zaten performans sorunlar\u0131 var ve/veya yaln\u0131zca 32 biti destekliyor",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Ho\u015f geldin!",
     "without-fee-facette-pricing-free-description": "\u00dccretsiz kullan\u0131labilir",
     "xubuntu-description": "Xubuntu, hafif XFCE masa\u00fcst\u00fc ortam\u0131 taraf\u0131ndan desteklenen Ubuntu tabanl\u0131 bir da\u011f\u0131t\u0131md\u0131r",
-    "zorinos-description": "Zorin OS, Windows benzeri bir kullan\u0131c\u0131 aray\u00fcz\u00fc ile ba\u015flang\u0131\u00e7 odakl\u0131 bir da\u011f\u0131t\u0131md\u0131r",
-    "no-ai-description": "Linux da\u011f\u0131t\u0131m\u0131, yapay zeka temelli katk\u0131lar\u0131 reddetmek i\u00e7in bir k\u0131lavuz olu\u015fturmal\u0131 ve bunu desteklemelidir.",
-    "advanced-administration-page-title": "Gelişmiş yönetim",
-    "advanced-administration-page-text": "İleri düzey kullanıcılar için, sistemlerinin bazı düşük seviyeli bileşenleri önemli seçimler olabilir."
+    "zorinos-description": "Zorin OS, Windows benzeri bir kullan\u0131c\u0131 aray\u00fcz\u00fc ile ba\u015flang\u0131\u00e7 odakl\u0131 bir da\u011f\u0131t\u0131md\u0131r"
 }

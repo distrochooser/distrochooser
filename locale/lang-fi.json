@@ -12,6 +12,8 @@
     "administration-page-text": "On lukuisia eri tapoja hallinnoida Linux jakelua, esim. kuten ohjelmien asennuksen kohdalla.",
     "administration-page-title": "Hallinta",
     "administration-shell-facette-software-admin-answer-console-description": "Hallinta tapahtuu p\u00e4\u00e4asiassa komentotulkissa komentojen kautta",
+    "advanced-administration-page-text": "Kokeneille k\u00e4ytt\u00e4jille j\u00e4rjestelm\u00e4n jotkin alemman tason komponentit voivat olla t\u00e4rkeit\u00e4 valintoja.",
+    "advanced-administration-page-title": "Edistynyt hallinta",
     "advanced-usage-description": "Osaan jo selvitt\u00e4\u00e4 joitakin tietokoneongelmiani itse",
     "age": "Ik\u00e4 vuosina",
     "already-used-description": "Olen jo k\u00e4ytt\u00e4nyt Linuxia joihinkin tarkoituksiin",
@@ -116,6 +118,7 @@
     "negative": "Ei sovellu vastaustenne perusteella",
     "neutral": "Neutraali ominaisuus",
     "nixos-description": "NixOS k\u00e4ytt\u00e4\u00e4 Nix -pakettihallintaa. Se k\u00e4ytt\u00e4\u00e4 deklaratiivista asetusmallia ja tuo mukanaan luotettavat j\u00e4rjestelm\u00e4p\u00e4ivitykset.",
+    "no-ai-description": "Linux-jakelijan tulisi hyv\u00e4ksy\u00e4 ja laatia ohjeet, joiden mukaan teko\u00e4lyyn perustuvat lahjoitukset hyl\u00e4t\u00e4\u00e4n.",
     "no-linux-contact-description": "Minulla on v\u00e4h\u00e4n tai ei ollenkaan tietoa Linuxista",
     "no-systemd-description": "Haluan j\u00e4tt\u00e4\u00e4 systemd:n pois",
     "no64bit-description": "En ole varma t\u00e4st\u00e4 ja/tai minun tietokoneeni ilment\u00e4\u00e4 jo valmiiksi suorituskyvyn ongelmia ja/tai tukee ainoastaan 32 bittisyytt\u00e4",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Tervetuloa!",
     "without-fee-facette-pricing-free-description": "K\u00e4ytett\u00e4viss\u00e4 ilman rahallista veloitusta",
     "xubuntu-description": "Xubuntu on Ubuntu-pohjainen jakelu jossa on vakiollisesti kevyt ja perinteisen yksinkertainen Xfce-ty\u00f6p\u00f6yt\u00e4ymp\u00e4rist\u00f6",
-    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen k\u00e4ytt\u00f6liittym\u00e4",
-    "no-ai-description": "Linux-jakelijan tulisi hyv\u00e4ksy\u00e4 ja laatia ohjeet, joiden mukaan teko\u00e4lyyn perustuvat lahjoitukset hyl\u00e4t\u00e4\u00e4n.",
-    "advanced-administration-page-title": "Edistynyt hallinta",
-    "advanced-administration-page-text": "Kokeneille käyttäjille järjestelmän jotkin alemman tason komponentit voivat olla tärkeitä valintoja."
+    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen k\u00e4ytt\u00f6liittym\u00e4"
 }

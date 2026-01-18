@@ -12,6 +12,8 @@
     "administration-page-text": "Det finns m\u00e5nga s\u00e4tt att administrera en Linux-distribution, t.ex. f\u00f6r att installera mjukvara.",
     "administration-page-title": "Administrering",
     "administration-shell-facette-software-admin-answer-console-description": "Administration sker mestadels med hj\u00e4lp av skalkommandon",
+    "advanced-administration-page-text": "F\u00f6r avancerade anv\u00e4ndare kan vissa l\u00e5g niv\u00e5komponenter i deras system vara viktiga val.",
+    "advanced-administration-page-title": "Avancerad administration",
     "advanced-usage-description": "Jag kan redan l\u00f6sa vissa datorproblem sj\u00e4lv",
     "age": "\u00c5lder i \u00e5r",
     "already-used-description": "Jag har redan anv\u00e4nt Linux f\u00f6r vissa \u00e4ndam\u00e5l",
@@ -116,6 +118,7 @@
     "negative": "Inte l\u00e4mpligt baserat p\u00e5 dina svar",
     "neutral": "Neutral egendom",
     "nixos-description": "NixOS anv\u00e4nder pakethanteraren Nix. Den anv\u00e4nder deklarativ konfiguration och till\u00e5ter tillf\u00f6rlitliga systemuppgraderingar.",
+    "no-ai-description": "Linux-distributionen b\u00f6r st\u00f6dja och fastst\u00e4lla riktlinjer f\u00f6r att avvisa bidrag baserade p\u00e5 artificiell intelligens.",
     "no-linux-contact-description": "Jag har lite eller inga kunskaper om Linux",
     "no-systemd-description": "Jag vill undvika systemd",
     "no64bit-description": "Jag \u00e4r inte s\u00e4ker p\u00e5 detta och/eller min dator har redan prestandaproblem och/eller st\u00f6der bara 32 bitar",
@@ -224,8 +227,5 @@
     "welcome-page-title": "V\u00e4lkommen!",
     "without-fee-facette-pricing-free-description": "Kan anv\u00e4ndas utan avgift",
     "xubuntu-description": "Xubuntu \u00e4r en Ubuntu-baserad distribution som drivs av den l\u00e4tta XFCE-skrivbordsmilj\u00f6n",
-    "zorinos-description": "Zorin OS \u00e4r en nyb\u00f6rjarfokuserad distribution med ett Windows-liknande anv\u00e4ndargr\u00e4nssnitt",
-    "no-ai-description": "Linux-distributionen b\u00f6r st\u00f6dja och fastst\u00e4lla riktlinjer f\u00f6r att avvisa bidrag baserade p\u00e5 artificiell intelligens.",
-    "advanced-administration-page-title": "Avancerad administration",
-    "advanced-administration-page-text": "För avancerade användare kan vissa låg nivåkomponenter i deras system vara viktiga val."
+    "zorinos-description": "Zorin OS \u00e4r en nyb\u00f6rjarfokuserad distribution med ett Windows-liknande anv\u00e4ndargr\u00e4nssnitt"
 }

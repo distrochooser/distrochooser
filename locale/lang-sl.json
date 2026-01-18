@@ -12,6 +12,8 @@
     "administration-page-text": "Obstaja veliko na\u010dinov za upravljanje distribucije Linuxa, npr. za name\u0161\u010danje programske opreme.",
     "administration-page-title": "Administracija",
     "administration-shell-facette-software-admin-answer-console-description": "Administracija se ve\u010dinoma izvaja z uporabo ukazov lupine",
+    "advanced-administration-page-text": "Za napredne uporabnike so lahko nekatere komponente njihovega sistema na nizki ravni pomembna izbira.",
+    "advanced-administration-page-title": "napredno upravljanje",
     "advanced-usage-description": "Nekatere te\u017eave z ra\u010dunalnikom \u017ee znam re\u0161iti sam",
     "age": "Starost v letih",
     "already-used-description": "Za nekatere namene sem \u017ee uporabljal operacijske sisteme, ki temeljijo na Linuxu",
@@ -116,6 +118,7 @@
     "negative": "Ni primerna glede na va\u0161e odgovore",
     "neutral": "Nevtralna lastnost",
     "nixos-description": "NixOS uporablja upravitelja paketov Nix. Uporablja deklarativno konfiguracijo in omogo\u010da zanesljive nadgradnje sistema.",
+    "no-ai-description": "Distribucija Linuxa bi morala podpreti in vzpostaviti smernice za zavra\u010danje prispevkov, ki temeljijo na umetni inteligenci.",
     "no-linux-contact-description": "Imam malo ali ni\u010d znanja o operacijskih sistemih, ki temeljijo na Linuxu",
     "no-systemd-description": "\u017delim se izogniti systemd",
     "no64bit-description": "Nisem prepri\u010dan glede tega in/ali ima moj ra\u010dunalnik \u017ee te\u017eave z delovanjem in/ali podpira samo 32-bitne razli\u010dice",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Dobrodo\u0161li!",
     "without-fee-facette-pricing-free-description": "Uporabno brez pristojbine",
     "xubuntu-description": "Xubuntu je distribucija Linuxa, ki temelji na Ubuntuju in jo poganja lahko namizno okolje XFCE.",
-    "zorinos-description": "Zorin OS je distribucija Linuxa, osredoto\u010dena na za\u010detnike, z uporabni\u0161kim vmesnikom, podobnim sistemu Windows",
-    "no-ai-description": "Distribucija Linuxa bi morala podpreti in vzpostaviti smernice za zavra\u010danje prispevkov, ki temeljijo na umetni inteligenci.",
-    "advanced-administration-page-title": "napredno upravljanje",
-    "advanced-administration-page-text": "Za napredne uporabnike so lahko nekatere komponente njihovega sistema na nizki ravni pomembna izbira."
+    "zorinos-description": "Zorin OS je distribucija Linuxa, osredoto\u010dena na za\u010detnike, z uporabni\u0161kim vmesnikom, podobnim sistemu Windows"
 }

@@ -12,6 +12,8 @@
     "administration-page-text": "Er zijn veel manieren om een \u200b\u200bLinux-distributie te beheren, bijvoorbeeld om software te installeren.",
     "administration-page-title": "Administratie",
     "administration-shell-facette-software-admin-answer-console-description": "Beheer wordt meestal gedaan met behulp van shell-commando's",
+    "advanced-administration-page-text": "Voor gevorderde gebruikers kunnen sommige laagwaardige componenten van hun systeem belangrijke keuzes zijn.",
+    "advanced-administration-page-title": "Geavanceerd beheer",
     "advanced-usage-description": "Ik kan al wat computerproblemen zelf oplossen",
     "age": "Leeftijd in jaren",
     "already-used-description": "Ik heb Linux al voor sommige doeleinden gebruikt",
@@ -116,6 +118,7 @@
     "negative": "Niet geschikt op basis van uw antwoorden",
     "neutral": "Neutraal eigendom",
     "nixos-description": "NixOS gebruikt de Nix-pakketbeheerder. Het gebruikt declaratieve configuratie en maakt betrouwbare systeemupgrades mogelijk.",
+    "no-ai-description": "De Linux-distributie moet een richtlijn goedkeuren en vaststellen om bijdragen op basis van kunstmatige intelligentie te weigeren.",
     "no-linux-contact-description": "Ik heb weinig of geen kennis van Linux",
     "no-systemd-description": "Ik wil systemd vermijden",
     "no64bit-description": "Ik weet het niet zeker en/of mijn computer heeft al prestatieproblemen en/of ondersteunt alleen 32 bits",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Welkom!",
     "without-fee-facette-pricing-free-description": "Te gebruiken zonder kosten",
     "xubuntu-description": "Xubuntu is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht XFCE-desktopomgeving",
-    "zorinos-description": "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface",
-    "no-ai-description": "De Linux-distributie moet een richtlijn goedkeuren en vaststellen om bijdragen op basis van kunstmatige intelligentie te weigeren.",
-    "advanced-administration-page-title": "Geavanceerd beheer",
-    "advanced-administration-page-text": "Voor gevorderde gebruikers kunnen sommige laagwaardige componenten van hun systeem belangrijke keuzes zijn."
+    "zorinos-description": "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface"
 }

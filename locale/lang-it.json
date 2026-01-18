@@ -12,6 +12,8 @@
     "administration-page-text": "Esistono molti modi per amministrare una distribuzione Linux, e. g. per installare i software.",
     "administration-page-title": "Amministrazione",
     "administration-shell-facette-software-admin-answer-console-description": "L'amministrazione viene eseguita principalmente utilizzando i comandi della shell",
+    "advanced-administration-page-text": "Per gli utenti esperti, alcuni componenti di basso livello del proprio sistema possono rappresentare scelte importanti.",
+    "advanced-administration-page-title": "Amministrazione avanzata",
     "advanced-usage-description": "Sono gia' in grado di risolvere alcuni problemi del computer da solo",
     "age": "Et\u00e0 in anni",
     "already-used-description": "Ho gi\u00e0 utilizzato Linux per alcuni motivi",
@@ -116,6 +118,7 @@
     "negative": "Non adatto in base alle vostre risposte",
     "neutral": "Propriet\u00e0 neutrale",
     "nixos-description": "NixOS utilizza il gestore di pacchetti Nix.  Utilizza una configurazione dichiarativa e consente aggiornamenti affidabili del sistema.",
+    "no-ai-description": "La distribuzione Linux dovrebbe approvare e stabilire una linea guida per rifiutare i contributi basati sull'intelligenza artificiale.",
     "no-linux-contact-description": "Non ho nessuna conoscenza di Linux o solamente una conoscenza base",
     "no-systemd-description": "Voglio evitare systemd",
     "no64bit-description": "Non sono sicuro e/o il mio computer ha gi\u00e0 problemi di performance e/o supporta solo 32 bit",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Benvenuto!",
     "without-fee-facette-pricing-free-description": "Utilizzabile senza spese",
     "xubuntu-description": "Xubuntu \u00e8 una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop XFCE",
-    "zorinos-description": "Zorin OS \u00e8 una distribuzione focalizzata per principianti con un'interfaccia utente simile a Windows",
-    "no-ai-description": "La distribuzione Linux dovrebbe approvare e stabilire una linea guida per rifiutare i contributi basati sull'intelligenza artificiale.",
-    "advanced-administration-page-title": "Amministrazione avanzata",
-    "advanced-administration-page-text": "Per gli utenti esperti, alcuni componenti di basso livello del proprio sistema possono rappresentare scelte importanti."
+    "zorinos-description": "Zorin OS \u00e8 una distribuzione focalizzata per principianti con un'interfaccia utente simile a Windows"
 }

@@ -12,6 +12,8 @@
     "administration-page-text": "Linux paylanmas\u0131n\u0131 idar\u0259 etm\u0259yin bir \u00e7ox yolu var, m\u0259s. proqram t\u0259minat\u0131 qura\u015fd\u0131rmaq \u00fc\u00e7\u00fcn.",
     "administration-page-title": "\u0130dar\u0259",
     "administration-shell-facette-software-admin-answer-console-description": "\u0130dar\u0259etm\u0259 \u0259sas\u0259n shell \u0259mrl\u0259rind\u0259n istifad\u0259 etm\u0259kl\u0259 h\u0259yata ke\u00e7irilir",
+    "advanced-administration-page-text": "\u0130r\u0259li istifad\u0259\u00e7il\u0259r \u00fc\u00e7\u00fcn sisteml\u0259rinin b\u0259zi a\u015fa\u011f\u0131 s\u0259viyy\u0259li komponentl\u0259ri vacib se\u00e7iml\u0259r ola bil\u0259r.",
+    "advanced-administration-page-title": "Geli\u015fmi\u015f idar\u0259etm\u0259",
     "advanced-usage-description": "M\u0259n art\u0131q b\u0259zi komp\u00fcter probleml\u0259rini \u00f6z\u00fcm h\u0259ll ed\u0259 bilir\u0259m",
     "age": "\u0130ll\u0259rl\u0259 ya\u015f",
     "already-used-description": "M\u0259n art\u0131q Linuxdan b\u0259zi m\u0259qs\u0259dl\u0259r \u00fc\u00e7\u00fcn istifad\u0259 etmi\u015f\u0259m",
@@ -116,6 +118,7 @@
     "negative": "Cavablar\u0131n\u0131za \u0259sas\u0259n uy\u011fun deyil",
     "neutral": "Neytral \u0259mlak",
     "nixos-description": "NixOS, Nix paket menecerind\u0259n istifad\u0259 edir. Deklarativ konfiqurasiyadan istifad\u0259 edir v\u0259 etibarl\u0131 sistem t\u0259kmill\u0259\u015fdirm\u0259l\u0259rin\u0259 imkan verir.",
+    "no-ai-description": "Linux distribyutivi s\u00fcni intellekt\u0259 qada\u011fa qoyan siyas\u0259ti d\u0259st\u0259kl\u0259m\u0259lidir v\u0259 t\u0259tbiq etm\u0259lidir.",
     "no-linux-contact-description": "Linux haqq\u0131nda m\u0259lumat\u0131m azd\u0131r v\u0259 ya he\u00e7 yoxdur",
     "no-systemd-description": "M\u0259n systemd'd\u0259n yay\u0131nmaq ist\u0259yir\u0259m",
     "no64bit-description": "M\u0259n bunun haqq\u0131nda \u0259min deyil\u0259m v\u0259/yaxud m\u0259nim komp\u00fcterimd\u0259 \u00e7oxdand\u0131r performans probleml\u0259rin\u0259 sahiblik edir v\u0259/yaxud yaln\u0131z 32 biti d\u0259st\u0259kl\u0259yir",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Xo\u015f g\u0259ldiniz!",
     "without-fee-facette-pricing-free-description": "\u00d6d\u0259ni\u015fsiz istifad\u0259 edil\u0259 bil\u0259r",
     "xubuntu-description": "Xubuntu, y\u00fcng\u00fcl XFCE i\u015f masas\u0131 m\u00fchiti il\u0259 t\u0259chiz edilmi\u015f Ubuntu \u0259sasl\u0131 paylanmad\u0131r",
-    "zorinos-description": "Zorin OS, Windows-a b\u0259nz\u0259r istifad\u0259\u00e7i interfeysi il\u0259 yeni ba\u015flayanlar m\u0259rk\u0259zli paylanmad\u0131r",
-    "no-ai-description": "Linux distribyutivi s\u00fcni intellekt\u0259 qada\u011fa qoyan siyas\u0259ti d\u0259st\u0259kl\u0259m\u0259lidir v\u0259 t\u0259tbiq etm\u0259lidir.",
-    "advanced-administration-page-title": "Gelişmiş idarəetmə",
-    "advanced-administration-page-text": "İrəli istifadəçilər üçün sistemlərinin bəzi aşağı səviyyəli komponentləri vacib seçimlər ola bilər."
+    "zorinos-description": "Zorin OS, Windows-a b\u0259nz\u0259r istifad\u0259\u00e7i interfeysi il\u0259 yeni ba\u015flayanlar m\u0259rk\u0259zli paylanmad\u0131r"
 }

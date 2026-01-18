@@ -12,6 +12,8 @@
     "administration-page-text": "There are many ways to administrate a Linux Linux distribution, e. g. to install software.",
     "administration-page-title": "Administration",
     "administration-shell-facette-software-admin-answer-console-description": "Administration is mostly done by using shell commands",
+    "advanced-administration-page-text": "For advanced users, some low level components of their system can be important choices.",
+    "advanced-administration-page-title": "Advanced administration",
     "advanced-usage-description": "I am already able to solve some computer problems by myself",
     "age": "Age in years",
     "already-used-description": "I have already used Linux-based operating systems for some purposes",
@@ -116,6 +118,7 @@
     "negative": "Not suitable based on your answers",
     "neutral": "Neutral property",
     "nixos-description": "NixOS uses the Nix package manager. It uses declarative configuration and allows reliable system upgrades.",
+    "no-ai-description": "The Linux distribution should endorse and establish a guideline to reject contributions based on artificial intelligence.",
     "no-linux-contact-description": "I have little or no knowledge about Linux-based operating systems",
     "no-systemd-description": "I want to avoid systemd",
     "no64bit-description": "I'm not sure about this and/or my computer already has performance issues and/or only supports 32 bit",
@@ -224,8 +227,5 @@
     "welcome-page-title": "Welcome!",
     "without-fee-facette-pricing-free-description": "Usable without fee",
     "xubuntu-description": "Xubuntu is an Ubuntu-based Linux distribution powered by the lightweight XFCE desktop environment",
-    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface",
-    "no-ai-description": "The Linux distribution should endorse and establish a guideline to reject contributions based on artificial intelligence.",
-    "advanced-administration-page-title": "Advanced administration",
-    "advanced-administration-page-text": "For advanced users, some low level components of their system can be important choices."
+    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface"
 }
