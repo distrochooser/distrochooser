@@ -36,5 +36,5 @@ tzdata==2025.2
 ua-parser==1.0.1
 ua-parser-builtins==0.18.0.post1
 uritemplate==4.2.0
-urllib3==2.6.0
+urllib3==2.6.3
 user-agents==2.2.0
