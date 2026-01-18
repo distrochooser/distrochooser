@@ -193,13 +193,23 @@ pages = ["privacy-page"]
 # distrochooser::translation::en::Administration
 # distrochooser::translation::key::administration-page-title
 [page.administration-page]
-next_page = "updates-page"
+next_page = "advanced-administration-page"
 hide_help = true
 
 [widget.selection.administration-page-widget-name]
 topic = "administration"
 pages = ["administration-page"]
 not_in_versions = ["simplified"]
+
+[page.advanced-administration-page]
+next_page = "updates-page"
+hide_help = true
+
+[widget.selection.advanced-administration-page-widget-name]
+topic = "advanced-administration"
+pages = ["advanced-administration-page"]
+not_in_versions = ["simplified"]
+
 
 # Updates 
 
@@ -262,5 +272,6 @@ pages = [
    "ideology-page",
    "updates-page",
    "administration-page",
+   "advanced-administration-page",
    "privacy-page",
 ]

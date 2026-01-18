@@ -20,6 +20,7 @@
 #include ./versions/beta.toml
 #include ./pages/pages.toml
 #include ./facettes/administration.toml
+#include ./facettes/advanced-administration.toml
 #include ./facettes/help.toml
 #include ./facettes/ideology.toml
 #include ./facettes/installation.toml
