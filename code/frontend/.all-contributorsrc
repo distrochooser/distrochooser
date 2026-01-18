@@ -396,6 +396,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "akx",
+      "name": "Aarni Koskela",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58669?v=4",
+      "profile": "https://akx.github.io/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7

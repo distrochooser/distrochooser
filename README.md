@@ -102,6 +102,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/7654jp"><img src="https://avatars.githubusercontent.com/u/137300301?v=4?s=100" width="100px;" alt="yoshi-jp"/><br /><sub><b>yoshi-jp</b></sub></a><br /><a href="#translation-7654jp" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/matjazjeran"><img src="https://avatars.githubusercontent.com/u/56273441?v=4?s=100" width="100px;" alt="Matjaž Jeran"/><br /><sub><b>Matjaž Jeran</b></sub></a><br /><a href="#translation-matjazjeran" title="Translation">🌍</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://akx.github.io/"><img src="https://avatars.githubusercontent.com/u/58669?v=4?s=100" width="100px;" alt="Aarni Koskela"/><br /><sub><b>Aarni Koskela</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=akx" title="Documentation">📖</a></td>
+    </tr>
   </tbody>
 </table>
 
