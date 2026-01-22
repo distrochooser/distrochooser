@@ -27,6 +27,7 @@ class MetaFilterWidgetElement:
         self.cell_type = None
         self.cell_name = None
         self.cell_func = None
+        self.cell_arg = None
     
     def __str__(self):
         return f"{self.cell_name} ({self.cell_type}) -> {self.cell_func}"
@@ -35,7 +36,8 @@ class MetaFilterWidgetElement:
         func_map = {
             "filter_number_gt": self.filter_number_gt,
             "filter_must_have_assignments": self.filter_must_have_assignments,
-            "filter_must_match_language": self.filter_must_match_language
+            "filter_must_match_language": self.filter_must_match_language,
+            "filter_archs": self.filter_archs
         }
         return func_map
     
@@ -48,26 +50,28 @@ class MetaFilterWidgetElement:
         return method(obj, value, collected_assignments, session)
     
 
-    def filter_must_match_language(self, obj: Choosable, value: any, collected_assignments, session: Session) -> FacetteAssignment:
+    def filter_must_match_language(self, obj: Choosable, value: any, collected_assignments, session: Session) -> FacetteAssignment | None:
         matches = "LANGUAGES" in obj.meta and session.language_code in obj.meta["LANGUAGES"].meta_value
         result = FacetteAssignment(
             catalogue_id = f"{self.cell_name}-" + ("suitable" if matches else "not-suitable"),
             description="suitable" if matches else "not-suitable",
             assignment_type=FacetteAssignment.AssignmentType.POSITIVE if matches else FacetteAssignment.AssignmentType.NEGATIVE
         )
+        result.save()
         return result
     
-    def filter_must_have_assignments(self, obj: Choosable, value: any, collected_assignments, session) -> FacetteAssignment:
+    def filter_must_have_assignments(self, obj: Choosable, value: any, collected_assignments, session) -> FacetteAssignment | None:
         if value == "true" and len(collected_assignments) == 0: # all meta filter values are strings, basically
             result = FacetteAssignment(
                 catalogue_id = f"{self.cell_name}-{obj.name}",
                 description="not-suitable",
                 assignment_type=FacetteAssignment.AssignmentType.BLOCKING
             )
+            result.save()
             return result
         return None
     
-    def filter_number_gt(self, obj: Choosable, value: any, collected_assignments, session) -> FacetteAssignment:
+    def filter_number_gt(self, obj: Choosable, value: any, collected_assignments, session) -> FacetteAssignment | None:
         if "AGE" not in obj.meta:
             return None
         matches = int(obj.meta["AGE"].years_since) < int(value)
@@ -76,7 +80,30 @@ class MetaFilterWidgetElement:
             description="suitable" if matches else "not-suitable",
             assignment_type=FacetteAssignment.AssignmentType.POSITIVE if matches else FacetteAssignment.AssignmentType.NEGATIVE
         )
+        result.save()
         return result
+    
+    def filter_archs(self, obj: Choosable, value: any, collected_assignments, session) -> FacetteAssignment | None:
+        if "ARCHS" not in obj.meta:
+            return None
+        
+        # Python dislikes the '' possibly serialized here
+        value_parsed = loads(value.replace("'", "\""))
+        
+        for arch in value_parsed:
+            arch_string = str(arch)
+            if arch_string in obj.meta["ARCHS"].as_list:
+                result = FacetteAssignment(
+                    catalogue_id = f"{self.cell_name}-" + arch_string,
+                    description="suitable",
+                    assignment_type=FacetteAssignment.AssignmentType.POSITIVE
+                )
+                result.save()
+                return result
+
+        # TODO: Decide if absence what a absence of an ARCH meta or a missing match results in a negative match
+        return None
+
 
 
 class MetaFilterWidgetStructure:
@@ -115,15 +142,17 @@ class MetaFilterWidgetStructure:
 
     def get_cell_content(self, raw_input: str) -> MetaFilterWidgetElement:
         parts = raw_input.split(".")
-        if parts.__len__() != 3:
+        if parts.__len__() < 3:
             raise Exception(f"Cell content not parseable: {raw_input}")
         cell_type = parts[0]
         cell_name = parts[1]
         cell_func = parts[2]
+        cell_arg = parts[3] if parts.__len__() > 4 else None
         cell_obj = MetaFilterWidgetElement()
         cell_obj.cell_name = cell_name
         cell_obj.cell_func = cell_func
         cell_obj.cell_type = cell_type
+        cell_obj.cell_arg = cell_arg
         cell_obj.verify()
         return cell_obj
 

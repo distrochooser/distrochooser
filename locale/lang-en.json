@@ -227,5 +227,8 @@
     "welcome-page-title": "Welcome!",
     "without-fee-facette-pricing-free-description": "Usable without fee",
     "xubuntu-description": "Xubuntu is an Ubuntu-based Linux distribution powered by the lightweight XFCE desktop environment",
-    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface"
+    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface",
+    "archs": "Following processor architectures should be supported",
+    "archs-apple-silicon": "Apple Silicon",
+    "asahi-still-under-development-description": "The Asahi Linux project is still under development. Some features might still be not available."
 }

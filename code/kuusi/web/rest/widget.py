@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from collections import OrderedDict
 from json import loads
-from typing import List
+from typing import List, Dict
 
 from django.core.cache import cache
 from drf_spectacular.types import OpenApiTypes
@@ -30,7 +30,7 @@ from rest_framework import serializers, status
 from rest_framework.fields import CharField
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
-from rest_framework.serializers import ListSerializer
+from rest_framework.serializers import ListSerializer, Serializer
 from rest_framework.viewsets import GenericViewSet
 from web.models import (Choosable, Facette, FacetteAssignment,
                         FacetteRadioSelectionWidget, FacetteSelection,
@@ -102,12 +102,14 @@ class FacetteRadioSelectionWidgetSerializer(WithFacetteWidgetSerializer):
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic", "facettes")
 
 
+
 class MetaFilterWidgetSerializer(WidgetSerializer):
     structure = serializers.SerializerMethodField()
+    options = serializers.SerializerMethodField()
 
     class Meta:
         model = MetaFilterWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("structure",)
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("structure", "options",)
 
     @extend_schema_field(
         field=ListSerializer(
@@ -118,6 +120,11 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
     )
     def get_structure(self, obj: MetaFilterWidget) -> List[str]:
         return loads(obj.structure)
+    
+    def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
+        return {
+            "archs": ["apple-silicon"]
+        }
 
 
 class SessionVersionWidgetSerializer(WidgetSerializer):

@@ -737,3 +737,23 @@ meta_value = "cn"
 choosable="deepin"
 meta_name = "languages"
 meta_value = "en"
+
+[choosable.asahi]
+name = "Asahi"
+bg_color = "#d3506f"
+fg_color = "white"
+
+[[meta]]
+choosable="asahi"
+meta_name = "website"
+meta_value = "https://asahilinux.org/"
+
+[[meta]]
+choosable="asahi"
+meta_name = "age"
+meta_value = "2020-03-01"
+
+[[meta]]
+choosable="asahi"
+meta_name = "archs"
+meta_value = "apple-silicon"

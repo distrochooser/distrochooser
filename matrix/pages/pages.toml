@@ -106,6 +106,9 @@ structure = [
       "checkbox.must_have_assignment.filter_must_have_assignments",
    ],
    [
+      "select.archs.filter_archs.archs",
+   ],
+   [
       "checkbox.must_match_language.filter_must_match_language",
    ],
 ]

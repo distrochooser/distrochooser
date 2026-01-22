@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from typing import Dict, List, Callable, Any
 from web.models import FacetteAssignment, Choosable, Facette
 from logging import getLogger
-
+from django.db.models import Q
 
 logger = getLogger("command")
 
@@ -47,7 +47,7 @@ def create_assignments(
         new_assignment.save()
 
         new_assignment.choosables.set(
-            Choosable.objects.filter(name__in=data["choosables"])
+            Choosable.objects.filter(Q(name__in=data["choosables"]) | Q(catalogue_id__in=data["choosables"]))
         )
         new_assignment.facettes.set(
             Facette.objects.filter(catalogue_id__in=data["facettes"])
