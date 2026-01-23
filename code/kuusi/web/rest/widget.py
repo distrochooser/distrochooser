@@ -123,7 +123,7 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
     
     def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
         return {
-            "archs": ["apple-silicon"]
+            "archs": ["apple-silicon", "arm","x86", "x86_64"]
         }
 
 
