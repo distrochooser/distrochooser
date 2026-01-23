@@ -119,7 +119,9 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
         )
     )
     def get_structure(self, obj: MetaFilterWidget) -> List[str]:
-        return loads(obj.structure)
+        if not obj.structure:
+            return []
+        return list(loads(obj.structure))
     
     def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
         return {

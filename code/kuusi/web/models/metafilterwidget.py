@@ -101,8 +101,15 @@ class MetaFilterWidgetElement:
                 result.save()
                 return result
 
-        # TODO: Decide if absence what a absence of an ARCH meta or a missing match results in a negative match
-        return None
+        # as the choosable has a set of archs, but none matched -> create a negative hit
+        # but use the name of the field as translateable catalogue_id
+        result = FacetteAssignment(
+            catalogue_id = "archs",
+            description= "not-suitable",
+            assignment_type=FacetteAssignment.AssignmentType.NEGATIVE
+        )
+        result.save()
+        return result
 
 
 
