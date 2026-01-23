@@ -5,7 +5,7 @@
             <label :for="id" class="form-label">
                 <LanguageTranslation :translation-key="id" />
             </label>
-            <input :value="formValue" class="form-control" :type="type" :id="id"
+            <input :value="formValue.length > 0 ? formValue[0] : ''" class="form-control" :type="type" :id="id"
                 v-on:change="updateValue($event, type)">
         </div>
 
@@ -14,7 +14,7 @@
                 <LanguageTranslation :translation-key="id" />
             </label>
             <select class="form-select" multiple="true" :id="id" v-on:change="updateValue($event, type)">
-                <option v-for="(value, index) in arg" :key="index" :value="value">
+                <option v-for="(value, index) in arg" :key="index" :value="value" :selected="formValue.indexOf(value) !== -1">
                     <LanguageTranslation :translation-key="argName+'-'+value" />
                 </option>
             </select>
@@ -53,7 +53,7 @@ const type: ComputedRef<MetaFilterType> = computed<MetaFilterType>(() => MetaFil
 const id: ComputedRef<string> = computed(() => props.cellString.split('.')[1])
 const argName: ComputedRef<string> = computed(() => props.cellString.split('.')[3])
 const arg: ComputedRef<string[]> = computed(() => props.widget.options[argName.value])
-const formValue = useState(props.cellString, () => "")
+const formValue = useState<string[]>(props.cellString, () => [])
 
 const getValue = (el: HTMLInputElement, type: MetaFilterType): string => {
     return type == MetaFilterType.number ? el.value : "" + el.checked;
@@ -69,12 +69,14 @@ const updateValue = (e: Event, type: MetaFilterType) => {
         let value = (e.target as HTMLSelectElement).selectedOptions
 
         if (value.length == 0) {
+            formValue.value = []
             store.removeMetaFilterArg(oldId)
         } else {
             let metaFilterValues = []
             for (let i = 0; i < value.length; i++) {
                 metaFilterValues.push(value[i].value)
             }
+            formValue.value = metaFilterValues
             store.updateMetaFilterArgs(key, metaFilterValues, store.currentPage.id)
         }
     } else {
@@ -96,10 +98,10 @@ const updateValue = (e: Event, type: MetaFilterType) => {
         if (value.length == 0) {
             console.log(oldId)
             store.removeMetaFilterArg(oldId)
-            formValue.value = ""
+            formValue.value = []
         } else {
             store.updateMetaFilterArgs(key, value, store.currentPage.id)
-            formValue.value = value
+            formValue.value = [value]
         }
     }
 
