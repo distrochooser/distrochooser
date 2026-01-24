@@ -18,47 +18,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from collections import OrderedDict
 from json import loads
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
-from django.db.models import Q
 from django.core.cache import cache
+from django.db.models import Q
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import (
-    OpenApiParameter,
-    OpenApiResponse,
-    PolymorphicProxySerializer,
-    extend_schema,
-    extend_schema_field,
-)
-from kuusi.settings import WEIGHT_MAP, DEBUG
+from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
+                                   PolymorphicProxySerializer, extend_schema,
+                                   extend_schema_field)
+from kuusi.settings import WEIGHT_MAP
 from rest_framework import serializers, status
 from rest_framework.fields import CharField
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
-from rest_framework.serializers import ListSerializer, Serializer
+from rest_framework.serializers import ListSerializer
+from rest_framework.utils.serializer_helpers import ReturnDict, ReturnList
 from rest_framework.viewsets import GenericViewSet
-from web.models import (
-    Choosable,
-    Facette,
-    FacetteAssignment,
-    FacetteRadioSelectionWidget,
-    FacetteSelection,
-    FacetteSelectionWidget,
-    HTMLWidget,
-    MetaFilterValue,
-    MetaFilterWidget,
-    NavigationWidget,
-    Page,
-    ResultListWidget,
-    ResultShareWidget,
-    Session,
-    SessionVersion,
-    SessionVersionWidget,
-    FeedbackWidget,
-    Widget,
-)
-from rest_framework.utils.serializer_helpers import ReturnList, ReturnDict
-from web.rest.choosable import CHOOSABLE_SERIALIZER_BASE_FIELDS, ChoosableSerializer
+from web.models import (Choosable, Facette, FacetteAssignment,
+                        FacetteRadioSelectionWidget, FacetteSelection,
+                        FacetteSelectionWidget, FeedbackWidget, HTMLWidget,
+                        MetaFilterValue, MetaFilterWidget, NavigationWidget,
+                        Page, ResultListWidget, ResultShareWidget, Session,
+                        SessionVersion, SessionVersionWidget, Widget)
+from web.rest.choosable import (CHOOSABLE_SERIALIZER_BASE_FIELDS,
+                                ChoosableSerializer)
 from web.rest.facette import FacetteAssignmentSerializer, FacetteSerializer
 from web.rest.session import SessionVersionSerializer
 
