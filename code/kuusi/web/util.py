@@ -37,7 +37,6 @@ def get_translation_haystack(translations: Dict[str, Dict[str, str]], language_c
         approved_provided_feedback = cached
     else:
         approved_provided_feedback = apps.get_model("web", "LanguageFeedback").objects.filter(is_approved=True).filter(session__language_code=language_code)
-        print(approved_provided_feedback)
         cache.set(cache_key, approved_provided_feedback, LONG_CACHE_TIMEOUT)
 
     
