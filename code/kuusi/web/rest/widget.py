@@ -39,7 +39,7 @@ from web.models import (Choosable, Facette, FacetteAssignment,
                         FacetteSelectionWidget, FeedbackWidget, HTMLWidget,
                         MetaFilterValue, MetaFilterWidget, NavigationWidget,
                         Page, ResultListWidget, ResultShareWidget, Session,
-                        SessionVersion, SessionVersionWidget, Widget)
+                        SessionVersion, SessionVersionWidget, Widget, ChoosableMeta)
 from web.rest.choosable import (CHOOSABLE_SERIALIZER_BASE_FIELDS,
                                 ChoosableSerializer)
 from web.rest.facette import FacetteAssignmentSerializer, FacetteSerializer
@@ -121,7 +121,18 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
         return list(loads(obj.structure))
 
     def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
-        return {"archs": ["apple-silicon", "arm", "x86", "x86_64"]}
+        metas = ChoosableMeta.objects.filter(
+            meta_name = ChoosableMeta.MetaName.ARCHS
+        )
+        values_raw = list(metas.values_list("meta_value", flat=True))
+        result = []
+        for arch_list in values_raw:
+            archs_as_list = arch_list.split(",")
+            for arch in archs_as_list:
+                if arch not in result:
+                    result.append(arch)
+        result.sort()
+        return {"archs": result}
 
 
 class SessionVersionWidgetSerializer(WidgetSerializer):

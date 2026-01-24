@@ -15,7 +15,7 @@
             </label>
             <select class="form-select" multiple="true" :id="id" v-on:change="updateValue($event, type)">
                 <option v-for="(value, index) in arg" :key="index" :value="value" :selected="formValue.indexOf(value) !== -1">
-                    <LanguageTranslation :translation-key="argName+'-'+value" />
+                    {{ value}}
                 </option>
             </select>
         </div>

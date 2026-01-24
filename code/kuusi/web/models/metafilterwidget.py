@@ -120,17 +120,20 @@ class MetaFilterWidgetElement:
 
         # Python dislikes the '' possibly serialized here
         value_parsed = loads(value.replace("'", '"'))
-
+        matched_archs_str = ""
         for arch in value_parsed:
             arch_string = str(arch)
             if arch_string in obj.meta["ARCHS"].as_list:
-                result = FacetteAssignment(
-                    catalogue_id=f"{self.cell_name}-" + arch_string,
-                    description="suitable",
-                    assignment_type=FacetteAssignment.AssignmentType.POSITIVE,
-                )
-                result.save()
-                return result
+               matched_archs_str += "," + arch_string
+        matched_archs_str = matched_archs_str.strip(",")
+        if matched_archs_str != "":
+            result = FacetteAssignment(
+                catalogue_id=matched_archs_str,
+                description=self.cell_name,
+                assignment_type=FacetteAssignment.AssignmentType.POSITIVE,
+            )
+            result.save()
+            return result
 
         # as the choosable has a set of archs, but none matched -> create a negative hit
         # but use the name of the field as translateable catalogue_id

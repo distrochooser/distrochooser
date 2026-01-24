@@ -46,6 +46,12 @@ choosable="ubuntu"
 meta_name = "languages"
 meta_value = "en"
 
+# https://documentation.ubuntu.com/project/how-ubuntu-is-made/concepts/supported-architectures/
+# i386 is ommitted due to https://documentation.ubuntu.com/project/how-ubuntu-is-made/concepts/supported-architectures/#id3
+[[meta]]
+choosable="ubuntu"
+meta_name = "archs"
+meta_value = "amd64,arm64,armhf,ppc64el,s390x,riscv64"
 
 # distrochooser::translation::en::Debian is a Linux distribution with high focus on stability
 # distrochooser::translation::key::debian-description
@@ -53,6 +59,12 @@ meta_value = "en"
 name = "Debian"
 bg_color = "#d70a53"
 fg_color = "white"
+
+# https://www.debian.org/ports/#portlist-released
+[[meta]]
+choosable="debian"
+meta_name = "archs"
+meta_value = "amd64,arm64,armhf,i386,ppc64el,s390x,riscv64"
 
 [[meta]]
 choosable="debian"
@@ -81,6 +93,13 @@ name = "Tails"
 bg_color = "#56347c"
 fg_color = "white"
 
+
+# https://tails.net/doc/about/requirements/
+[[meta]]
+choosable="debian"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="tails"
 meta_name = "website"
@@ -108,6 +127,12 @@ bg_color = "#E5EDB0"
 fg_color = "#662984"
 name = "Devuan"
 
+# https://www.devuan.org/os/
+[[meta]]
+choosable="devuan"
+meta_name = "archs"
+meta_value = "amd64,arm64,armel,armhf,ppc64el"
+
 [[meta]]
 choosable="devuan"
 meta_name = "website"
@@ -130,6 +155,12 @@ name = "Arch"
 bg_color = "#08c"
 fg_color = "white"
 
+# https://wiki.archlinux.org/title/Frequently_asked_questions#What_architectures_does_Arch_support?
+[[meta]]
+choosable="arch"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="arch"
 meta_name = "website"
@@ -151,6 +182,12 @@ meta_value = "en"
 name = "Linux Mint"
 bg_color = "#a4e265"
 fg_color = "white"
+
+# https://en.wikipedia.org/wiki/Linux_Mint (in lack of a better source)
+[[meta]]
+choosable="mint"
+meta_name = "archs"
+meta_value = "amd64"
 
 [[meta]]
 choosable="mint"
@@ -179,6 +216,13 @@ name = "openSUSE"
 bg_color = "#173f4f"
 fg_color = "#35b9ab"
 
+# https://en.wikipedia.org/wiki/OpenSUSE
+# i386 excluded as this choosable is not equals tumbleweed
+[[meta]]
+choosable="opensuse"
+meta_name = "archs"
+meta_value = "amd64,aarch64,armv6hl,armv7hl,s390,riscv64,ppc64,ppc64le"
+
 [[meta]]
 choosable="opensuse"
 meta_name = "website"
@@ -206,6 +250,12 @@ name = "Solus OS"
 bg_color = "#5294E2"
 fg_color = "white"
 
+# https://en.wikipedia.org/wiki/Solus_(operating_system)
+[[meta]]
+choosable="solus"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="solus"
 meta_name = "website"
@@ -227,6 +277,12 @@ meta_value = "en"
 name = "Manjaro"
 bg_color = "#34be5b"
 fg_color = "white"
+
+# https://manjaro.org/products
+[[meta]]
+choosable="manjaro"
+meta_name = "archs"
+meta_value = "amd64"
 
 [[meta]]
 choosable="manjaro"
@@ -255,6 +311,12 @@ name = "PCLinuxOS"
 bg_color = "black"
 fg_color = "white"
 
+# https://pclosusers.com/wiki/index.php?title=Hardware_recommendations
+[[meta]]
+choosable="pclinuxos"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="pclinuxos"
 meta_name = "website"
@@ -281,6 +343,12 @@ meta_value = "en"
 name = "Rocky Linux"
 bg_color = "#10b981"
 fg_color = "white"
+
+# https://docs.rockylinux.org/10/guides/minimum_hardware_requirements/
+[[meta]]
+choosable="pclinuxos"
+meta_name = "archs"
+meta_value = "amd64,aarch64,ppc64le,s390x,riscv64"
 
 [[meta]]
 choosable="rocky"
@@ -309,6 +377,13 @@ name = "Red Hat Enterprise Linux (RHEL)"
 bg_color = "#cf0000"
 fg_color = "white"
 
+# https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux 
+# (not full list)
+[[meta]]
+choosable="rhel"
+meta_name = "archs"
+meta_value = "amd64,arm64"
+
 [[meta]]
 choosable="rhel"
 meta_name = "website"
@@ -336,6 +411,12 @@ name = "MX Linux"
 bg_color = "#134452"
 fg_color = "white"
 
+# https://en.wikipedia.org/wiki/MX_Linux
+[[meta]]
+choosable="mxlinux"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="mxlinux"
 meta_name = "website"
@@ -357,6 +438,12 @@ meta_value = "en"
 name = "Fedora"
 bg_color = "#3c6eb4"
 fg_color = "white"
+
+# https://www.fedoraproject.org/workstation/download
+[[meta]]
+choosable="fedora"
+meta_name = "archs"
+meta_value = "amd64,aarch64,ppc64le"
 
 [[meta]]
 choosable="fedora"
@@ -385,6 +472,12 @@ name = "Gentoo"
 bg_color = "#4d4270"
 fg_color = "white"
 
+# https://wiki.gentoo.org/wiki/Handbook:Main_Page#Viewing_the_Handbook
+[[meta]]
+choosable="gentoo"
+meta_name = "archs"
+meta_value = "amd64,arm,arm64,hppa,ia64,mips,ppc64,riscv64,sparc,i486,i686"
+
 [[meta]]
 choosable="gentoo"
 meta_name = "website"
@@ -411,6 +504,12 @@ meta_value = "en"
 name = "Knoppix"
 bg_color = "#dddddd"
 fg_color = "blue"
+
+# https://de.wikipedia.org/wiki/Knoppix
+[[meta]]
+choosable="knoppix"
+meta_name = "archs"
+meta_value = "amd64,x86"
 
 [[meta]]
 choosable="knoppix"
@@ -439,6 +538,12 @@ name = "Crux Linux"
 bg_color = "#dfeeee"
 fg_color = "black"
 
+# https://crux.nu/Main/Handbook3-8-Install
+[[meta]]
+choosable="cruxlinux"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="cruxlinux"
 meta_name = "website"
@@ -455,6 +560,12 @@ meta_value = "en"
 name = "Zorin OS"
 bg_color = "#15a6f0"
 fg_color = "white"
+
+# https://help.zorin.com/docs/getting-started/system-requirements/
+[[meta]]
+choosable="zorinos"
+meta_name = "archs"
+meta_value = "amd64"
 
 [[meta]]
 choosable="zorinos"
@@ -483,6 +594,12 @@ name = "elementary OS"
 bg_color = "#555761"
 fg_color = "white"
 
+# https://elementary.io/docs/installation#installation
+[[meta]]
+choosable="zorinos"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="elementaryos"
 meta_name = "website"
@@ -510,6 +627,12 @@ name = "Qubes OS"
 bg_color = "#f5f5f5"
 fg_color = "black"
 
+# https://doc.qubes-os.org/en/latest/user/hardware/system-requirements.html
+[[meta]]
+choosable="qubesos"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="qubesos"
 meta_name = "website"
@@ -531,6 +654,12 @@ meta_value = "en"
 name = "NixOS"
 bg_color = "None"
 fg_color = "None"
+
+# https://en.wikipedia.org/wiki/NixOS
+[[meta]]
+choosable="nixos"
+meta_name = "archs"
+meta_value = "amd64,aarch64,i686"
 
 [[meta]]
 choosable="nixos"
@@ -554,6 +683,12 @@ name = "Xubuntu"
 bg_color = "#0c72b7"
 fg_color = "white"
 
+# https://xubuntu.org/download/
+[[meta]]
+choosable="xubuntu"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="xubuntu"
 meta_name = "website"
@@ -575,6 +710,12 @@ meta_value = "en"
 name = "Lubuntu"
 bg_color = "#3e2e53"
 fg_color = "white"
+
+# https://manual.lubuntu.me/stable/1/1.1/retrieving_the_image.html
+[[meta]]
+choosable="lubuntu"
+meta_name = "archs"
+meta_value = "amd64"
 
 [[meta]]
 choosable="lubuntu"
@@ -598,6 +739,14 @@ name = "Ubuntu MATE"
 bg_color = "#87a556"
 fg_color = "white"
 
+# https://ubuntu-mate.org/about/requirements/
+# there might be arm support, but this will kept out for now
+[[meta]]
+choosable="ubuntumate"
+meta_name = "archs"
+meta_value = "amd64"
+
+
 [[meta]]
 choosable="ubuntumate"
 meta_name = "website"
@@ -619,6 +768,12 @@ meta_value = "en"
 name = "Void Linux"
 bg_color = "#478061"
 fg_color = "white"
+
+# https://docs.voidlinux.org/installation/index.html
+[[meta]]
+choosable="void"
+meta_name = "archs"
+meta_value = "amd64,i686,aarch64,armv7l,armv6l"
 
 [[meta]]
 choosable="void"
@@ -642,6 +797,12 @@ name = "Artix"
 bg_color = "black"
 fg_color = "#8bf"
 
+# https://en.wikipedia.org/wiki/Artix_Linux
+[[meta]]
+choosable="artix"
+meta_name = "archs"
+meta_value = "amd64,arm64"
+
 [[meta]]
 choosable="artix"
 meta_name = "website"
@@ -663,6 +824,12 @@ meta_value = "en"
 name = "Kubuntu"
 bg_color = "#0079C1"
 fg_color = "white"
+
+# https://en.wikipedia.org/wiki/Kubuntu
+[[meta]]
+choosable="kubuntu"
+meta_name = "archs"
+meta_value = "amd64,arm64"
 
 [[meta]]
 choosable="kubuntu"
@@ -691,6 +858,12 @@ name = "Pop!_OS"
 bg_color = "#48b9c7"
 fg_color = "white"
 
+# https://system76.com/pop/download/
+[[meta]]
+choosable="popos"
+meta_name = "archs"
+meta_value = "amd64"
+
 [[meta]]
 choosable="popos"
 meta_name = "website"
@@ -717,6 +890,12 @@ meta_value = "en"
 name = "Deepin"
 bg_color = "#2fc6ff"
 fg_color = "white"
+
+# https://simple.wikipedia.org/wiki/Deepin
+[[meta]]
+choosable="deepin"
+meta_name = "archs"
+meta_value = "amd64"
 
 [[meta]]
 choosable="deepin"
