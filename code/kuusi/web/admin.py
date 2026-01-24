@@ -20,6 +20,9 @@ from django.contrib import admin
 
 from web.models import MetaFilterValue, Choosable,Feedback, AssignmentFeedback, MetaFilterWidget, LanguageFeedback, TranslateableFieldRecord, Translateable, Page, Widget, FacetteRadioSelectionWidget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionMeta, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking, ChoosableMeta
 
+class FacetteAssignmentAdmin(admin.ModelAdmin):
+    list_display = ('catalogue_id','description', 'is_approved')
+
 [admin.site.register(*models) for models in [
     (Choosable,),
     (ChoosableMeta,),
@@ -42,7 +45,7 @@ from web.models import MetaFilterValue, Choosable,Feedback, AssignmentFeedback, 
     (ResultShareWidget,),
     (ResultListWidget,),
     (SessionVersionWidget,),
-    (FacetteAssignment,),
+    (FacetteAssignment,FacetteAssignmentAdmin),
     (PageMarking,),
     (Feedback,),
     (AssignmentFeedback,),

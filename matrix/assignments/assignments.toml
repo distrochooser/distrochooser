@@ -51,6 +51,13 @@ choosables = [
 how = "positive"
 
 
+[assignment.asahi-still-under-development]
+facettes = ["daily-usage"]
+choosables = [
+    "asahi"
+]
+how = "negative"
+
 # distrochooser::translation::en::Daily usage may result in major difficulties
 # distrochooser::translation::key::daily-usage-possibly-difficult-facette-daily-usage-description
 [assignment.daily-usage-possibly-difficult-facette-daily-usage]

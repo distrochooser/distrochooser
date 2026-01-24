@@ -16,29 +16,22 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from web.models import (
-    Facette,
-    Session,
-    FacetteAssignment,
-    Choosable,
-    Feedback,
-    AssignmentFeedback,
-)
-from web.rest.hooks import fire_hook
-from rest_framework import serializers
-from drf_spectacular.utils import extend_schema, OpenApiResponse
+from typing import Any, List
+
+from django.core.cache import cache
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter, extend_schema, OpenApiResponse
-from rest_framework import status
-from rest_framework.viewsets import GenericViewSet
+from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
+                                   extend_schema, extend_schema_field)
+from rest_framework import serializers, status
+from rest_framework.fields import IntegerField
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
-from drf_spectacular.utils import extend_schema_field
 from rest_framework.serializers import ListSerializer
-from rest_framework.fields import IntegerField
-from django.core.cache import cache
-
-from typing import List
+from rest_framework.utils.serializer_helpers import ReturnDict, ReturnList
+from rest_framework.viewsets import GenericViewSet
+from web.models import (AssignmentFeedback, Choosable, Facette,
+                        FacetteAssignment, Feedback, Session)
+from web.rest.hooks import fire_hook
 
 
 class CreateFeedbackSerializer(serializers.ModelSerializer):
@@ -109,14 +102,16 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
             status.HTTP_200_OK: AssignmentFeedbackSerializer,
         },
     )
-    def create(self, request, session_pk) -> Feedback:
+    def create(self, request, session_pk) -> ReturnList | ReturnDict | Any:
 
         data = request.data
         assignment = data["assignment"]
         is_positive = data["is_positive"]
         origin = data["origin"]
 
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session = Session.objects.filter(result_id=session_pk).first()
+        if not session:
+            raise Exception("Session not found")
         has_old = (
             AssignmentFeedback.objects.filter(assignment__pk=assignment)
             .filter(session=session)
@@ -128,6 +123,9 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
             AssignmentFeedback.objects.filter(assignment__pk=assignment).delete()
 
         assignment_obj = FacetteAssignment.objects.filter(pk=assignment).first()
+
+        if not assignment_obj:
+            raise Exception("Assignment not found")
 
         if (
             origin is not None
@@ -175,7 +173,7 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def destroy(self, request, session_pk, pk):
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session = Session.objects.filter(result_id=session_pk).first()
         AssignmentFeedback.objects.filter(pk=pk).filter(session=session).delete()
         return Response()
 
@@ -222,14 +220,16 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
             status.HTTP_200_OK: FeedbackSerializer,
         },
     )
-    def create(self, request, session_pk) -> Feedback:
+    def create(self, request, session_pk) -> ReturnList | ReturnDict | Any:
 
         data = request.data
         choosable = data["choosable"]
         assignment = data["assignment"]
         is_positive = data["is_positive"]
         origin = data["origin"]
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session = Session.objects.filter(result_id=session_pk).first()
+        if not session:
+            raise Exception("Session not found")
         has_old = (
             Feedback.objects.filter(choosable__pk=choosable)
             .filter(assignment__pk=assignment)
@@ -255,6 +255,10 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
             ).delete()
         assignment = FacetteAssignment.objects.filter(pk=assignment).first()
         choosable_obj = Choosable.objects.filter(pk=choosable).first()
+        if not choosable_obj:
+            raise Exception("Choosable not found")
+        if not assignment:
+            raise Exception("Assignment not found")
         result = Feedback(
             choosable=choosable_obj,
             assignment=assignment,
@@ -262,7 +266,7 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
             session=session,
         )
         result.save()
-
+        
         fire_hook(
             f"{choosable_obj.__('name')}@{assignment.__('description')}",
             session,
@@ -291,7 +295,7 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def destroy(self, request, session_pk, pk):
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session = Session.objects.filter(result_id=session_pk).first()
         Feedback.objects.filter(pk=pk).filter(session=session).delete()
         return Response()
 
@@ -324,19 +328,21 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
                 return facette.__("description", session.language_code)
             return obj.catalogue_id
         return translation
+    
+    def get_weight(self, obj: FacetteAssignment) -> int:
+        weight_value = None
+        if "weight_map" in self.context and obj.pk in self.context["weight_map"]:
+            weight_value = self.context["weight_map"][obj.pk]
+        # If ta given assignment does not feature a weight map, return just
+        if weight_value is None:
+            weight_value = 1
+        return weight_value
 
     @extend_schema_field(
         field=ListSerializer(child=ListSerializer(child=IntegerField()))
     )
     def get_votes(self, obj: FacetteAssignment):
         return obj.get_votes()
-
-    def get_weight(self, obj: FacetteAssignment) -> int:
-        weight_value = None
-        if "weight_map" in self.context and obj.pk in self.context["weight_map"]:
-            weight_value = self.context["weight_map"][obj.pk]
-        return weight_value
-
 
 class FacetteSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
@@ -355,7 +361,7 @@ class FacetteSerializer(serializers.ModelSerializer):
         return obj.get_msgd_id_of_field("description")
 
     @extend_schema_field(field=FacetteAssignmentSerializer(many=True))
-    def get_assignments(self, obj: Facette) -> List[FacetteAssignment]:
+    def get_assignments(self, obj: Facette) -> ReturnList | ReturnDict | Any:
         serializer = FacetteAssignmentSerializer(
             FacetteAssignment.objects.filter(facettes__in=[obj]), many=True
         )

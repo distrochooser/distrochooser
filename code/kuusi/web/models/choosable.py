@@ -75,13 +75,14 @@ class ChoosableMeta(Translateable):
         blank=True,
         related_name="choosablemeta_choosable",
     )
-
+    # TODO: Properly fix upper <> lowercase issue
     class MetaName(models.TextChoices):
         CREATED = "AGE", _("AGE")
         COUNTRY = "COUNTRY",  _("COUNTRY")
         LICENSES = "LICENSES",  _("LICENSES")
         WEBSITE = "WEBSITE",  _("WEBSITE")
         LANGUAGES = "LANGUAGES", _("LANGUAGES")
+        ARCHS = "ARCHS", _("ARCHS")
     
     @property 
     def meta_type(self) -> str:
@@ -102,7 +103,8 @@ class ChoosableMeta(Translateable):
             "COUNTRY": "If the choosable is e. g. developed by a company based in a certain country, the value represents an ISO-639-1 code, e. g. 'it' for italy.",
             "LANGUAGES": "The list of languages supported by the choosable, comma separated as ISO-639-1 code, e. g. en,de,jp",
             "LICENSES": "A list of licenses used by the project in a SPDX format, e. g. AGPL-3.0-or-later",
-            "WEBSITE": "The link to the project. Shall start with http(s)"
+            "WEBSITE": "The link to the project. Shall start with http(s)",
+            "ARCHS": "Supported cpu architectures"
         }
         return map[self.meta_name]
 
