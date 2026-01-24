@@ -172,35 +172,15 @@ class FacetteAssignment(Translateable):
         NEGATIVE = "NEGATIVE", "NEGATIVE"
         NEUTRAL = "NEUTRAL", "NEUTRAL"
         BLOCKING = "BLOCKING", "BLOCKING"
-
-        def get_score(haystack: Dict) -> float:
-            """
-            Calculate a numeric score for a given result set.
-
-            The result set is keys from this class with numeric values.
-
-            The calculation is located here to allow the assignment types to be extended without altering major parts of the code.
-            """
-            score_map = {
-                FacetteAssignment.AssignmentType.POSITIVE: 1.2,
-                FacetteAssignment.AssignmentType.NEGATIVE: -0.9,
-                FacetteAssignment.AssignmentType.NEUTRAL: 0,
-                FacetteAssignment.AssignmentType.BLOCKING: -100,
-            }
-            score = 0
-            for key, value in haystack.items():
-                if key in haystack:
-                    score += score_map[key] * value
-            
-            return score
         
-        def get_score_map_by_type():
-            scores_by_type = {}
+        @staticmethod
+        def get_score_map():
+            score_map = {}
             for key in FacetteAssignment.AssignmentType.choices:
                 identifier, _ = key
-                scores_by_type[identifier] = 0
-            return scores_by_type
-
+                score_map[identifier] = 0
+            score_map["SCORE"] = 0
+            return score_map
 
     assignment_type = models.CharField(
         max_length=20, choices=AssignmentType.choices, default=AssignmentType.NEUTRAL

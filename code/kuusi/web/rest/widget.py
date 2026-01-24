@@ -18,29 +18,47 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from collections import OrderedDict
 from json import loads
-from typing import List, Dict
+from typing import List, Dict, Any
 
+from django.db.models import Q
 from django.core.cache import cache
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
-                                   PolymorphicProxySerializer, extend_schema,
-                                   extend_schema_field)
-from kuusi.settings import WEIGHT_MAP
+from drf_spectacular.utils import (
+    OpenApiParameter,
+    OpenApiResponse,
+    PolymorphicProxySerializer,
+    extend_schema,
+    extend_schema_field,
+)
+from kuusi.settings import WEIGHT_MAP, DEBUG
 from rest_framework import serializers, status
 from rest_framework.fields import CharField
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.serializers import ListSerializer, Serializer
 from rest_framework.viewsets import GenericViewSet
-from web.models import (Choosable, Facette, FacetteAssignment,
-                        FacetteRadioSelectionWidget, FacetteSelection,
-                        FacetteSelectionWidget, HTMLWidget,
-                        MetaFilterValue, MetaFilterWidget,
-                        NavigationWidget, Page, ResultListWidget,
-                        ResultShareWidget, Session, SessionVersion,
-                        SessionVersionWidget, FeedbackWidget, Widget)
-from web.rest.choosable import (CHOOSABLE_SERIALIZER_BASE_FIELDS,
-                                ChoosableSerializer)
+from web.models import (
+    Choosable,
+    Facette,
+    FacetteAssignment,
+    FacetteRadioSelectionWidget,
+    FacetteSelection,
+    FacetteSelectionWidget,
+    HTMLWidget,
+    MetaFilterValue,
+    MetaFilterWidget,
+    NavigationWidget,
+    Page,
+    ResultListWidget,
+    ResultShareWidget,
+    Session,
+    SessionVersion,
+    SessionVersionWidget,
+    FeedbackWidget,
+    Widget,
+)
+from rest_framework.utils.serializer_helpers import ReturnList, ReturnDict
+from web.rest.choosable import CHOOSABLE_SERIALIZER_BASE_FIELDS, ChoosableSerializer
 from web.rest.facette import FacetteAssignmentSerializer, FacetteSerializer
 from web.rest.session import SessionVersionSerializer
 
@@ -102,31 +120,25 @@ class FacetteRadioSelectionWidgetSerializer(WithFacetteWidgetSerializer):
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("topic", "facettes")
 
 
-
 class MetaFilterWidgetSerializer(WidgetSerializer):
     structure = serializers.SerializerMethodField()
     options = serializers.SerializerMethodField()
 
     class Meta:
         model = MetaFilterWidget
-        fields = WIDGET_SERIALIZER_BASE_FIELDS + ("structure", "options",)
-
-    @extend_schema_field(
-        field=ListSerializer(
-            child=ListSerializer(
-                child=CharField()
-            )
+        fields = WIDGET_SERIALIZER_BASE_FIELDS + (
+            "structure",
+            "options",
         )
-    )
+
+    @extend_schema_field(field=ListSerializer(child=ListSerializer(child=CharField())))
     def get_structure(self, obj: MetaFilterWidget) -> List[str]:
         if not obj.structure:
             return []
         return list(loads(obj.structure))
-    
+
     def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
-        return {
-            "archs": ["apple-silicon", "arm","x86", "x86_64"]
-        }
+        return {"archs": ["apple-silicon", "arm", "x86", "x86_64"]}
 
 
 class SessionVersionWidgetSerializer(WidgetSerializer):
@@ -157,6 +169,7 @@ class ResultShareWidgetSerializer(WidgetSerializer):
         model = ResultShareWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS
 
+
 class FeedbackWidgetSerializer(WidgetSerializer):
 
     class Meta:
@@ -173,12 +186,8 @@ class RankedChoosableSerializer(ChoosableSerializer):
         fields = CHOOSABLE_SERIALIZER_BASE_FIELDS + ("rank", "assignments")
 
     def get_rank(self, obj: Choosable) -> int:
-        return (
-            self.context["ranking"][obj.pk]
-            if obj.pk in self.context["ranking"]
-            else 9999999999
-        )
-    
+        return self.context["score_map"][obj.pk]["SCORE"] if obj.pk in  self.context["score_map"] else 999999999
+
     def get_description(self, obj: Choosable) -> str:
         session = self.context["session"]
         return obj.__("description", session.language_code)
@@ -187,7 +196,12 @@ class RankedChoosableSerializer(ChoosableSerializer):
     def get_assignments(self, obj: Choosable) -> List[FacetteAssignment]:
         # A choosable _might_ not have any assingments -> overrule
         serializer = FacetteAssignmentSerializer(
-            self.context["assignments"][obj.pk] if obj.pk in self.context["assignments"] else [], many=True
+            (
+                self.context["assignments"][obj.pk]
+                if obj.pk in self.context["assignments"]
+                else []
+            ),
+            many=True,
         )
         serializer.context["session"] = self.context["session"]
         serializer.context["weight_map"] = self.context["weight_map"]
@@ -202,59 +216,81 @@ class ResultListWidgetSerializer(WidgetSerializer):
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("choosables",)
 
     @extend_schema_field(field=RankedChoosableSerializer(many=True))
-    def get_choosables(self, obj: ResultListWidget) -> List[Choosable]:
+    def get_choosables(self, obj: ResultListWidget) -> ReturnList | Any | ReturnDict:
         session = self.context["session"]
         choosables = Choosable.objects.all()
         meta_filter_widgets = MetaFilterWidget.objects.all()
         selections = FacetteSelection.objects.filter(session=session)
-        ranking = {}
         assignments_results = {}
         assignments_weight_map = {}
         stored_meta_filter_values = MetaFilterValue.objects.filter(session=session)
-        assignments_catalogue_ids = []
-        score_map = {} 
-        for selection in selections:
-            facette = selection.facette
-            selection_weight_key = selection.weight
-            selection_weight_value = WEIGHT_MAP[selection_weight_key]
-            # TODO: Decicide what to to with feedback relating to assignments, but not yet mapped to them.
-            for assignment in facette.assignments:
-                # Don't collect assignments twice
-                for choosable in assignment.choosables.all():
-                    if choosable.pk not in assignments_results:
-                        assignments_results[choosable.pk] = []
-                    if choosable.pk not in score_map:
-                        score_map[choosable.pk] = FacetteAssignment.AssignmentType.get_score_map_by_type()
-                    # add a needle with the choosable into the catalogue_list
-                    is_assignment_not_collected = f"{choosable.pk}-{assignment.catalogue_id}" not in assignments_catalogue_ids
-                    if is_assignment_not_collected:
-                        assignments_results[choosable.pk].append(assignment)
-                        assignments_catalogue_ids.append(f"{choosable.pk}-{assignment.catalogue_id}")
-                        assignments_weight_map[assignment.pk] = selection_weight_value
-                        score_map[choosable.pk][assignment.assignment_type] += 1
-        # Append "virtual" assignments caused by stored meta values
-        # FIXME: This is utterly slow
-        # FIXME: The score is not properly calculated  
+        score_map = {}
 
-        if stored_meta_filter_values.count() > 0:
-            # TODO: Introduce entry point for filtering
-            for meta_filter_widget in meta_filter_widgets:
-                score_map, assignments_results = meta_filter_widget.get_virtual_assignments(stored_meta_filter_values, choosables,  assignments_results, score_map, session)
-
+        selected_facettes = selections.values_list("facette", flat=True)
+        assignments = FacetteAssignment.objects.filter(
+            Q(facettes__in=selected_facettes) &
+            Q(is_invalidated=False)
+        )
         results = []
         for choosable in choosables:
-            # only include choosables actually having results
-            if choosable.pk  in score_map and  assignments_results[choosable.pk].__len__() != 0:
-                ranking[choosable.pk] = FacetteAssignment.AssignmentType.get_score(
-                    score_map[choosable.pk]
-                )
+            if choosable.pk not in assignments_results:
+                assignments_results[choosable.pk] = []
+            # Step 1: Get Assignments from given Facettes
+            choosable_assignments = assignments.filter(choosables__in=[choosable])
+            for assignment in choosable_assignments:
+                # FIXME: The facettes must be at some point converted to a many to one field
+                selection = selections.get(
+                    facette = assignment.facettes.first(),
+                )     
+                selection_weight_key = selection.weight
+                selection_weight_value = WEIGHT_MAP[selection_weight_key]
+                
+                assignments_results[choosable.pk].append(assignment)
+                assignments_weight_map[assignment.pk] = selection_weight_value
+                
+
+            # Step 2: Get Assignments from given Meta filters
+            if stored_meta_filter_values.count() > 0:
+                for meta_filter_widget in meta_filter_widgets:
+                    for meta_filter_widget in meta_filter_widgets:
+                        meta_results = (
+                            meta_filter_widget.get_assignments_for_meta_values(
+                                stored_meta_filter_values,
+                                choosable,
+                                assignments_results,
+                                session,
+                            )
+                        )
+                        if meta_results is not None:
+                            if choosable.pk not in assignments_results:
+                                assignments_results[choosable.pk] = []
+                            assignments_results[choosable.pk].append(meta_results)
+
+            # Step 3: Calculate final scores
+            choosable_scores = FacetteAssignment.AssignmentType.get_score_map()
+            if choosable.pk in assignments_results:
+                assignments_this_choosable = assignments_results[choosable.pk]
+                for assignment in assignments_this_choosable:
+                    assignment_type = assignment.assignment_type
+                    choosable_scores[assignment_type] += 1
+                    score_map = {
+                        FacetteAssignment.AssignmentType.POSITIVE: 1.2,
+                        FacetteAssignment.AssignmentType.NEGATIVE: -0.9,
+                        FacetteAssignment.AssignmentType.NEUTRAL: 0,
+                        FacetteAssignment.AssignmentType.BLOCKING: -100,
+                    }
+                    choosable_scores["SCORE"] += choosable_scores[assignment_type] * score_map[assignment_type]
+
+                score_map[choosable.pk] = choosable_scores
                 results.append(choosable)
+
+
         serializer = RankedChoosableSerializer(results, many=True)
         serializer.context["session"] = session
-        serializer.context["ranking"] = ranking
+        serializer.context["score_map"] = score_map
         serializer.context["assignments"] = assignments_results
-        serializer.context["weight_map"] = assignments_weight_map      
-        
+        serializer.context["weight_map"] = assignments_weight_map
+
         return serializer.data
 
 
@@ -299,7 +335,6 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
             ),
         ],
     )
-    
     def list(self, request, *args, **kwargs):
 
         page_pk = kwargs.get("page_pk")
@@ -311,7 +346,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
         result = []
         # IMPORTANT
         # The serializers are ordered, specialized before generic
-        
+
         serializers = OrderedDict(
             {
                 HTMLWidget: HTMLWidgetSerializer,
@@ -336,12 +371,11 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                     ignore_cache = True
                     break
 
-
         if not ignore_cache:
             cache_data = cache.get(cache_key)
             if cache_data is not None:
                 return Response(cache_data)
-          
+
         widget: Widget
         for widget in obj.widget_list:
             for key, value in serializers.items():

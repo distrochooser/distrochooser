@@ -110,7 +110,7 @@ how = "positive" <-- This is the mapping value (see below)
 
 The value of `how` can be either:
 
-> The defined weight on the `how` values might change at some point. The currently valid values can bee derived from `AssignmentType.get_score()`
+> The defined weight on the `how` values might change at some point. The currently valid values can bee derived from `ResultListWidgetSerializer.get_choosables()`
 
 - `positive` - Results in +1 point at calculation
 - `negative` - Results in -1 point at calculation
