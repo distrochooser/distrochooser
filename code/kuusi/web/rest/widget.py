@@ -98,8 +98,8 @@ class WithFacetteWidgetSerializer(WidgetSerializer):
     facettes = serializers.SerializerMethodField()
 
     @extend_schema_field(field=FacetteSerializer(many=True))
-    def get_facettes(self, obj: FacetteSelectionWidget) -> List[Facette]:
-        facettes: Facette = Facette.objects.filter(topic=obj.topic)
+    def get_facettes(self, obj: FacetteSelectionWidget) -> ReturnList | ReturnDict | Any:
+        facettes = Facette.objects.filter(topic=obj.topic)
 
         serializer = FacetteSerializer(facettes, many=True)
         serializer.context["session"] = self.context["session"]
@@ -149,7 +149,7 @@ class SessionVersionWidgetSerializer(WidgetSerializer):
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("versions",)
 
     @extend_schema_field(field=SessionVersionSerializer(many=True))
-    def get_versions(self, obj: SessionVersionWidget) -> List[SessionVersion]:
+    def get_versions(self, obj: SessionVersionWidget) -> ReturnList | ReturnDict | Any:
         serializer = SessionVersionSerializer(SessionVersion.objects.all(), many=True)
 
         serializer.context["session"] = self.context["session"]
@@ -193,7 +193,7 @@ class RankedChoosableSerializer(ChoosableSerializer):
         return obj.__("description", session.language_code)
 
     @extend_schema_field(field=FacetteAssignmentSerializer(many=True))
-    def get_assignments(self, obj: Choosable) -> List[FacetteAssignment]:
+    def get_assignments(self, obj: Choosable) -> ReturnList | ReturnDict | Any:
         # A choosable _might_ not have any assingments -> overrule
         serializer = FacetteAssignmentSerializer(
             (
@@ -340,7 +340,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
         page_pk = kwargs.get("page_pk")
         cache_key = f"page-{page_pk}-widget"
         session: Session = Session.objects.get(result_id=kwargs["session_pk"])
-        obj: Page = None
+        obj: Page | None = None
         if page_pk:
             obj = Page.objects.filter(pk=page_pk).first()
         result = []
@@ -364,28 +364,29 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
         # TODO: Increase performance
         ignore_cache_serializers = [ResultListWidget]
         ignore_cache = False
-        widget: Widget
-        for widget in obj.widget_list:
-            for key in ignore_cache_serializers:
-                if isinstance(widget, key):
-                    ignore_cache = True
-                    break
+        if obj:
+            widget: Widget
+            for widget in obj.widget_list:
+                for key in ignore_cache_serializers:
+                    if isinstance(widget, key):
+                        ignore_cache = True
+                        break
 
-        if not ignore_cache:
-            cache_data = cache.get(cache_key)
-            if cache_data is not None:
-                return Response(cache_data)
+            if not ignore_cache:
+                cache_data = cache.get(cache_key)
+                if cache_data is not None:
+                    return Response(cache_data)
 
-        widget: Widget
-        for widget in obj.widget_list:
-            for key, value in serializers.items():
-                if isinstance(widget, key):
-                    selected_serializer = value
-                    results = selected_serializer(widget)
-                    results.context["session"] = session
-                    result.append(results.data)
-                    break
+            widget: Widget
+            for widget in obj.widget_list:
+                for key, value in serializers.items():
+                    if isinstance(widget, key):
+                        selected_serializer = value
+                        results = selected_serializer(widget)
+                        results.context["session"] = session
+                        result.append(results.data)
+                        break
 
-        cache.set(cache_key, result)
+            cache.set(cache_key, result)
 
         return Response(result)
