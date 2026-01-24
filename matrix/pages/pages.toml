@@ -105,9 +105,6 @@ structure = [
       "checkbox.must_have_assignment.filter_must_have_assignments",
    ],
    [
-      "select.archs.filter_archs.archs",
-   ],
-   [
       "checkbox.must_match_language.filter_must_match_language",
    ],
 ]
@@ -211,6 +208,14 @@ hide_help = true
 topic = "advanced-administration"
 pages = ["advanced-administration-page"]
 not_in_versions = ["simplified"]
+
+[widget.metafilter.arch-selection]
+structure = [
+   [
+      "select.archs.filter_archs.archs",
+   ],
+]
+pages = ["advanced-administration-page"]
 
 
 # Updates 
