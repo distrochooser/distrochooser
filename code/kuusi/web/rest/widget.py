@@ -246,19 +246,18 @@ class ResultListWidgetSerializer(WidgetSerializer):
             # Step 2: Get Assignments from given Meta filters
             if stored_meta_filter_values.count() > 0:
                 for meta_filter_widget in meta_filter_widgets:
-                    for meta_filter_widget in meta_filter_widgets:
-                        meta_results = (
-                            meta_filter_widget.get_assignments_for_meta_values(
-                                stored_meta_filter_values,
-                                choosable,
-                                assignments_results,
-                                session,
-                            )
+                    meta_results = (
+                        meta_filter_widget.get_assignments_for_meta_values(
+                            stored_meta_filter_values,
+                            choosable,
+                            assignments_results,
+                            session,
                         )
-                        if meta_results is not None:
-                            if choosable.pk not in assignments_results:
-                                assignments_results[choosable.pk] = []
-                            assignments_results[choosable.pk].append(meta_results)
+                    )
+                    if meta_results is not None:
+                        if choosable.pk not in assignments_results:
+                            assignments_results[choosable.pk] = []
+                        assignments_results[choosable.pk].append(meta_results)
 
             # Step 3: Calculate final scores
             choosable_scores = FacetteAssignment.AssignmentType.get_score_map()
