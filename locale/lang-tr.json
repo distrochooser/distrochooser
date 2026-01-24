@@ -20,6 +20,7 @@
     "app-store-gui-description": "Programlar\u0131m\u0131 bir \u00e7e\u015fit \"Uygulama Y\u00fckleyicisi\" kullanarak y\u00fcklemek isterim",
     "appstore-facette-app-store-gui-description": "Bir uygulama ma\u011fazas\u0131 kullan\u0131larak uygulama kurulumu yap\u0131labilir",
     "arch-description": "Arch, KISS ilkesine dayal\u0131 bir yuvarlanan s\u00fcr\u00fcm da\u011f\u0131t\u0131m\u0131d\u0131r",
+    "archs": "Desteklenen CPU mimarileri",
     "artix-description": "Artix, systemd'nin yan\u0131 s\u0131ra OpenRC gibi birka\u00e7 init sistemini de kullanabilen Arch Linux tabanl\u0131 bir da\u011f\u0131t\u0131md\u0131r",
     "avoids-systemd-facette-no-systemd-description": "Systemd'den ka\u00e7\u0131n\u0131r",
     "beginner-knowledge-facette-beginner-usage-description": "Yeni ba\u015flayanlar i\u00e7in uygun",

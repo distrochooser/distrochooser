@@ -20,6 +20,7 @@
     "app-store-gui-description": "Haluan asentaa sovelluksia tai \"appeja\" k\u00e4ytt\u00e4en tavanomaista \"Ohjelmakauppaa\"",
     "appstore-facette-app-store-gui-description": "Sovellusasennukset voidaan suorittaa ohjelmakaupasta napsauttamalla",
     "arch-description": "Arch on rullaavan mallin jakelu jonka l\u00e4ht\u00f6kohta on perinteinen yksinkertaisuus. K\u00e4ytt\u00e4j\u00e4 rakentaa sen usein aivan alusta itse. P\u00e4\u00e4teosaamista vaaditaan paljon",
+    "archs": "Tuetut CPU-arkkitehtuurit",
     "artix-description": "Artix on Arch Linuxiin perustuva jakelu, joka voi k\u00e4ytt\u00e4\u00e4 useita init-j\u00e4rjestelmi\u00e4 systemd:n lis\u00e4ksi, esimerkiksi OpenRC:\u00e4\u00e4",
     "avoids-systemd-facette-no-systemd-description": "Ei sis\u00e4ll\u00e4 systemd:t\u00e4",
     "beginner-knowledge-facette-beginner-usage-description": "Soveltuu aloittelijoille",

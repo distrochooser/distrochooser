@@ -20,6 +20,7 @@
     "app-store-gui-description": "Saya ingin menginstal program menggunakan sesuati seperti \"App store\"",
     "appstore-facette-app-store-gui-description": "Instalasi perangkat lunak dapat dilakukan melalui sebuah pusat aplikasi",
     "arch-description": "Arch adalah distribusi rilis bergilir berdasarkan prinsip KISS",
+    "archs": "Arsitektur CPU yang didukung",
     "artix-description": "Artix adalah distribusi berbasis Arch Linux yang dapat menggunakan berbagai macam sistem init selain systemd, contohnya OpenRC",
     "avoids-systemd-facette-no-systemd-description": "Menghindari systemd",
     "beginner-knowledge-facette-beginner-usage-description": "Cocok untuk para pemula",

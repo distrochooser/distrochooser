@@ -20,6 +20,7 @@
     "app-store-gui-description": "\u017delim namestiti svoje programe z uporabo neke vrste trgovine \"App Store\"",
     "appstore-facette-app-store-gui-description": "Name\u0161\u010danje programske opreme je mogo\u010de s pomo\u010djo trgovine z aplikacijami",
     "arch-description": "Arch je distribucija Linuxa, ki se postopoma izdaja in temelji na na\u010delu KISS",
+    "archs": "Podprte arhitekture CPU",
     "artix-description": "Artix je distribucija Linuxa, ki temelji na Arch Linuxu in lahko poleg systemd uporablja ve\u010d sistemov inicializacije, na primer OpenRC",
     "avoids-systemd-facette-no-systemd-description": "Se izogiba systemd",
     "beginner-knowledge-facette-beginner-usage-description": "Primerno za za\u010detnike",

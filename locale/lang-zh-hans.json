@@ -20,6 +20,7 @@
     "app-store-gui-description": "\u6211\u60f3\u4f7f\u7528\u67d0\u79cd\u5e94\u7528\u5546\u5e97\u6765\u5b89\u88c5\u6211\u7684\u7a0b\u5e8f$$",
     "appstore-facette-app-store-gui-description": "\u53ef\u4ee5\u4f7f\u7528\u5e94\u7528\u5546\u5e97\u5b89\u88c5\u8f6f\u4ef6$",
     "arch-description": "Arch \u662f\u4e00\u4e2a\u57fa\u4e8e KISS \u539f\u5219\u7684\u6eda\u52a8\u53d1\u5e03 Linux \u53d1\u884c\u7248$",
+    "archs": "\u652f\u6301\u7684CPU\u67b6\u6784",
     "artix-description": "Artix \u662f\u4e00\u4e2a\u57fa\u4e8e Arch Linux \u7684 Linux \u53d1\u884c\u7248\uff0c\u9664\u4e86 systemd \u4e4b\u5916\uff0c\u5b83\u8fd8\u53ef\u4ee5\u4f7f\u7528\u591a\u4e2a init \u7cfb\u7edf\uff0c\u4f8b\u5982 OpenRC$",
     "avoids-systemd-facette-no-systemd-description": "\u907f\u514d\u4f7f\u7528 systemd$",
     "beginner-knowledge-facette-beginner-usage-description": "\u9002\u5408\u521d\u5b66\u8005$",

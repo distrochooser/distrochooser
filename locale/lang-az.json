@@ -20,6 +20,7 @@
     "app-store-gui-description": "M\u0259n proqramlar\u0131m\u0131 bir n\u00f6v \"Proqram Ma\u011fazas\u0131\" vasit\u0259sil\u0259 qura\u015fd\u0131rmaq ist\u0259yir\u0259m",
     "appstore-facette-app-store-gui-description": "Proqram t\u0259minat\u0131n\u0131n qura\u015fd\u0131r\u0131lmas\u0131 proqram ma\u011fazas\u0131ndan istifad\u0259 etm\u0259kl\u0259 h\u0259yata ke\u00e7iril\u0259 bil\u0259r",
     "arch-description": "Arch KISS prinsipin\u0259 \u0259saslanan davaml\u0131 yenil\u0259n\u0259n paylanmad\u0131r",
+    "archs": "D\u0259st\u0259kl\u0259n\u0259n CPU memarl\u0131qlar\u0131",
     "artix-description": "Artix, Arch Linux \u0259sasl\u0131 paylanmad\u0131r v\u0259 systemd'd\u0259n ba\u015fqa bir ne\u00e7\u0259 init sistemind\u0259n istifad\u0259 ed\u0259 bilir, m\u0259s\u0259l\u0259n OpenRC",
     "avoids-systemd-facette-no-systemd-description": "Systemd'd\u0259n yay\u0131n\u0131r",
     "beginner-knowledge-facette-beginner-usage-description": "Yeni ba\u015flayanlar \u00fc\u00e7\u00fcn uy\u011fundur",

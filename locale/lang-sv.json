@@ -20,6 +20,7 @@
     "app-store-gui-description": "Jag vill installera mina program med en slags \"App store\"",
     "appstore-facette-app-store-gui-description": "Installation av programvara kan g\u00f6ras med hj\u00e4lp av en appbutik",
     "arch-description": "Arch \u00e4r en rullande releasedistribution som bygger p\u00e5 KISS-principen",
+    "archs": "St\u00f6dda CPU-arkitekturer",
     "artix-description": "Artix \u00e4r en Arch Linux-baserad distribution som kan anv\u00e4nda flera init-system f\u00f6rutom systemd, till exempel OpenRC",
     "avoids-systemd-facette-no-systemd-description": "Undviker systemd",
     "beginner-knowledge-facette-beginner-usage-description": "L\u00e4mplig f\u00f6r nyb\u00f6rjare",

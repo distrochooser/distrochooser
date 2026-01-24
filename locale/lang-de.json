@@ -20,6 +20,7 @@
     "app-store-gui-description": "Ich m\u00f6chte Programme grafisch \u00fcber eine Art \"App Store\" verwalten, in dem ich Programme suchen und installieren kann. ",
     "appstore-facette-app-store-gui-description": "Installation neuer Programme ist \u00fcber einen Appstore m\u00f6glich",
     "arch-description": "Arch ist eine Rolling-Release Distribution, die dem KISS-Prinzip folgt (\"Keep it Simple and Stable\")",
+    "archs": "Unterst\u00fctzte CPU-Architekturen",
     "artix-description": "Artix ist eine auf Arch Linux basierte Distribution, die neben systemd auch OpenRC einsetzen kann.",
     "avoids-systemd-facette-no-systemd-description": "Vermeidet die Nutzung von systemd",
     "beginner-knowledge-facette-beginner-usage-description": "F\u00fcr Anf\u00e4nger geeignet",

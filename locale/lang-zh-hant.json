@@ -20,6 +20,7 @@
     "app-store-gui-description": "I want to install my programs using a kind of \"App store\"",
     "appstore-facette-app-store-gui-description": "Software installation can be done using an app store",
     "arch-description": "Arch is a rolling release Linux distribution based on the KISS principle",
+    "archs": "\u652f\u63f4\u7684 CPU \u67b6\u69cb",
     "artix-description": "Artix is an Arch Linux based Linux distribution which can use several init systems besides systemd, for example OpenRC",
     "avoids-systemd-facette-no-systemd-description": "Avoids systemd",
     "beginner-knowledge-facette-beginner-usage-description": "Suitable for beginners",

@@ -20,6 +20,7 @@
     "app-store-gui-description": "Quiero instalar mis programas usando una especie de \"tienda de aplicaciones\"",
     "appstore-facette-app-store-gui-description": "La instalaci\u00f3n del software se puede hacer usando una tienda de aplicaciones",
     "arch-description": "Arch es una distribuci\u00f3n de lanzamiento continuo basada en el principio KISS",
+    "archs": "Arquitecturas de CPU compatibles",
     "artix-description": "Artix es una distribuci\u00f3n basada en Arch Linux que puede usar varios sistemas de inicio adem\u00e1s de systemd, por ejemplo OpenRC",
     "avoids-systemd-facette-no-systemd-description": "Evita systemd",
     "beginner-knowledge-facette-beginner-usage-description": "Adecuado para principiantes",

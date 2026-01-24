@@ -20,6 +20,7 @@
     "app-store-gui-description": "I m\u00f6cht d Programm grafisch \u00fcbere Art \"App Store\" verwaute, woni drmit cha Programm sueche u installiere.",
     "appstore-facette-app-store-gui-description": "Installation vo n\u00f6ie Programm cha \u00fcber e Appstore gmacht w\u00e4rde",
     "arch-description": "Arch isch e Rolling-Release Distribution, wo am KISS-Prinzip folgt (\"Keep it Simple and Stable\")",
+    "archs": "Unterst\u00fctzte CPU-Architekturen",
     "artix-description": "Artix isch e Distribution wo uf Arch Linux basiert, cha n\u00e4be OpenRC ou systemd verw\u00e4nde.",
     "avoids-systemd-facette-no-systemd-description": "Vermidet d Nutzig vo systemd",
     "beginner-knowledge-facette-beginner-usage-description": "F\u00fcr Af\u00e4nger geignet",

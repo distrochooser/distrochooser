@@ -20,6 +20,7 @@
     "app-store-gui-description": "T\u00f4i mu\u1ed1n c\u00e0i \u0111\u1eb7t c\u00e1c ch\u01b0\u01a1ng tr\u00ecnh c\u1ee7a m\u00ecnh b\u1eb1ng m\u1ed9t lo\u1ea1i \"C\u1eeda h\u00e0ng \u1ee9ng d\u1ee5ng\"",
     "appstore-facette-app-store-gui-description": "C\u00e0i \u0111\u1eb7t ph\u1ea7n m\u1ec1m c\u00f3 th\u1ec3 \u0111\u01b0\u1ee3c th\u1ef1c hi\u1ec7n b\u1eb1ng c\u1eeda h\u00e0ng \u1ee9ng d\u1ee5ng",
     "arch-description": "Arch l\u00e0 b\u1ea3n ph\u00e2n ph\u1ed1i ph\u00e1t h\u00e0nh lu\u00e2n phi\u00ean d\u1ef1a tr\u00ean nguy\u00ean t\u1eafc KISS",
+    "archs": "C\u00e1c ki\u1ebfn tr\u00fac CPU \u0111\u01b0\u1ee3c h\u1ed7 tr\u1ee3",
     "artix-description": "Artix l\u00e0 b\u1ea3n ph\u00e2n ph\u1ed1i d\u1ef1a tr\u00ean Arch Linux c\u00f3 th\u1ec3 s\u1eed d\u1ee5ng m\u1ed9t s\u1ed1 h\u1ec7 th\u1ed1ng init b\u00ean c\u1ea1nh systemd, v\u00ed d\u1ee5 OpenRC",
     "avoids-systemd-facette-no-systemd-description": "Tr\u00e1nh systemd",
     "beginner-knowledge-facette-beginner-usage-description": "Th\u00edch h\u1ee3p cho ng\u01b0\u1eddi m\u1edbi b\u1eaft \u0111\u1ea7u",

@@ -20,7 +20,10 @@
     "app-store-gui-description": "I want to install my programs using a kind of \"App store\"",
     "appstore-facette-app-store-gui-description": "Software installation can be done using an app store",
     "arch-description": "Arch is a rolling release Linux distribution based on the KISS principle",
+    "archs": "Supported CPU architectures",
+    "archs-apple-silicon": "Apple Silicon",
     "artix-description": "Artix is an Arch Linux based Linux distribution which can use several init systems besides systemd, for example OpenRC",
+    "asahi-still-under-development-description": "The Asahi Linux project is still under development. Some features might still be not available.",
     "avoids-systemd-facette-no-systemd-description": "Avoids systemd",
     "beginner-knowledge-facette-beginner-usage-description": "Suitable for beginners",
     "beginner-knowledge-facette-no-linux-contact-description": "Suitable for beginners",
@@ -227,8 +230,5 @@
     "welcome-page-title": "Welcome!",
     "without-fee-facette-pricing-free-description": "Usable without fee",
     "xubuntu-description": "Xubuntu is an Ubuntu-based Linux distribution powered by the lightweight XFCE desktop environment",
-    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface",
-    "archs": "Following processor architectures should be supported",
-    "archs-apple-silicon": "Apple Silicon",
-    "asahi-still-under-development-description": "The Asahi Linux project is still under development. Some features might still be not available."
+    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface"
 }

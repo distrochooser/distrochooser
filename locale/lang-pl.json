@@ -20,6 +20,7 @@
     "app-store-gui-description": "Chc\u0119 instalowa\u0107 swoje programy za pomoc\u0105 czego\u015b w rodzaju \"sklepu z aplikacjami\"",
     "appstore-facette-app-store-gui-description": "Instalacja oprogramowania mo\u017ce odbywa\u0107 si\u0119 za pomoc\u0105 sklepu z aplikacjami",
     "arch-description": "Arch jest dystrybucj\u0105 typu rolling release opart\u0105 na zasadzie KISS",
+    "archs": "Obs\u0142ugiwane architektury procesor\u00f3w",
     "artix-description": "Artix jest dystrybucj\u0105 opart\u0105 na Linuksie Arch, kt\u00f3ra mo\u017ce u\u017cywa\u0107 kilku system\u00f3w init poza systemd, na przyk\u0142ad OpenRC",
     "avoids-systemd-facette-no-systemd-description": "Unika korzystania z systemd",
     "beginner-knowledge-facette-beginner-usage-description": "Odpowiednia dla pocz\u0105tkuj\u0105cych",

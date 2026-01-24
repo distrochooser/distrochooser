@@ -20,6 +20,7 @@
     "app-store-gui-description": "Quero instalar meus programas usando algo similar a uma \"Loja de aplicativos\"",
     "appstore-facette-app-store-gui-description": "A instala\u00e7\u00e3o do software pode ser feita usando uma loja de aplicativos",
     "arch-description": "Arch \u00e9 uma distribui\u00e7\u00e3o \"rolling release\" baseada no principio KISS",
+    "archs": "Arquiteturas de CPU suportadas",
     "artix-description": "Artix \u00e9 uma distribui\u00e7\u00e3o baseada na Arch Linux que possui v\u00e1rios sistemas de inicializa\u00e7\u00e3o fora o systemd, por exemplo OpenRC",
     "avoids-systemd-facette-no-systemd-description": "Evitar systemd",
     "beginner-knowledge-facette-beginner-usage-description": "Adequado para iniciantes",
