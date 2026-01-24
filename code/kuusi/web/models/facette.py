@@ -26,7 +26,7 @@ from django.db.models import  QuerySet
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.apps import apps
 from django.core.cache import cache
-from kuusi.settings import LONG_CACHE_TIMEOUT
+from kuusi.settings import LONG_CACHE_TIMEOUT, ENABLE_FEEDBACK_MODE
 
 class Facette(Translateable):
     """
@@ -132,6 +132,9 @@ class FacetteAssignment(Translateable):
         return apps.get_model("web", "Feedback").objects.filter(assignment=self, choosable=choosable).count() != 0
 
     def get_votes(self) -> List[List[int, int, int]]:
+        # do not search for anythin if the feedback mode is inactive
+        if not ENABLE_FEEDBACK_MODE:
+            return []
         # TODO: This is good for a MVP, but array nesting is utterly ugly. Wrap somewhere into the choosables at some point
         # If the Assignment is virtual (no pk) -> there are no votes
         if self.pk is None:

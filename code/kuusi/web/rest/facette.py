@@ -33,7 +33,6 @@ from web.models import (AssignmentFeedback, Choosable, Facette,
                         FacetteAssignment, Feedback, Session)
 from web.rest.hooks import fire_hook
 
-
 class CreateFeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
@@ -320,6 +319,10 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
     def get_description(self, obj: FacetteAssignment):
         session: Session = self.context["session"]
         translation = obj.__("description", session.language_code)
+        
+        if obj.pk is None: # meta filter caused assignments, which are not stored in the DB
+            return obj.description # the virtual assignment creation already provides a translated value
+
         # The assignment does not feature a translation -> try to fallback to the (first) facette text
         if translation == obj.catalogue_id + "-description": # type: ignore
             # first facette

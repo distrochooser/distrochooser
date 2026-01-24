@@ -117,7 +117,6 @@ class MetaFilterWidgetElement:
     ) -> FacetteAssignment | None:
         if "ARCHS" not in obj.meta:
             return None
-
         # Python dislikes the '' possibly serialized here
         value_parsed = loads(value.replace("'", '"'))
         matched_archs_str = ""
@@ -129,20 +128,18 @@ class MetaFilterWidgetElement:
         if matched_archs_str != "":
             result = FacetteAssignment(
                 catalogue_id=matched_archs_str,
-                description=self.cell_name,
+                description=matched_archs_str,
                 assignment_type=FacetteAssignment.AssignmentType.POSITIVE,
             )
-            result.save()
             return result
 
         # as the choosable has a set of archs, but none matched -> create a negative hit
         # but use the name of the field as translateable catalogue_id
         result = FacetteAssignment(
             catalogue_id="archs",
-            description="not-suitable",
+            description="archs",
             assignment_type=FacetteAssignment.AssignmentType.NEGATIVE,
         )
-        result.save()
         return result
 
 
@@ -228,7 +225,6 @@ class MetaFilterWidget(Widget):
             cell_obj = structure.get_cell_from_structure(stored_value.key)
             if cell_obj:
                 stored_value_value = stored_value.value
-
                 result = cell_obj.apply_cell_func(
                     choosable, stored_value_value, collected_assignments, session
                 )
