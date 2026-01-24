@@ -171,7 +171,7 @@ class RankedChoosableSerializer(ChoosableSerializer):
     def get_rank(self, obj: Choosable) -> int:
         return self.context["score_map"][obj.pk]["SCORE"] if obj.pk in  self.context["score_map"] else 999999999
 
-    def get_description(self, obj: Choosable) -> str:
+    def get_description(self, obj: Choosable) -> str: 
         session = self.context["session"]
         return obj.__("description", session.language_code)
 
@@ -256,17 +256,17 @@ class ResultListWidgetSerializer(WidgetSerializer):
                 for assignment in assignments_this_choosable:
                     assignment_type = assignment.assignment_type
                     choosable_scores[assignment_type] += 1
-                    score_map = {
+                    # TODO: Consider moving this into settings.py
+                    score_points = {
                         FacetteAssignment.AssignmentType.POSITIVE: 1.2,
                         FacetteAssignment.AssignmentType.NEGATIVE: -0.9,
                         FacetteAssignment.AssignmentType.NEUTRAL: 0,
                         FacetteAssignment.AssignmentType.BLOCKING: -100,
                     }
-                    choosable_scores["SCORE"] += choosable_scores[assignment_type] * score_map[assignment_type]
+                    choosable_scores["SCORE"] += choosable_scores[assignment_type] * score_points[assignment_type]
 
-                score_map[choosable.pk] = choosable_scores
-                results.append(choosable)
-
+            score_map[choosable.pk] = choosable_scores
+            results.append(choosable)
 
         serializer = RankedChoosableSerializer(results, many=True)
         serializer.context["session"] = session

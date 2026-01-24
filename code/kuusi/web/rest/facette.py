@@ -328,6 +328,15 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
                 return facette.__("description", session.language_code)
             return obj.catalogue_id
         return translation
+    
+    def get_weight(self, obj: FacetteAssignment) -> int:
+        weight_value = None
+        if "weight_map" in self.context and obj.pk in self.context["weight_map"]:
+            weight_value = self.context["weight_map"][obj.pk]
+        # If ta given assignment does not feature a weight map, return just
+        if weight_value is None:
+            weight_value = 1
+        return weight_value
 
     @extend_schema_field(
         field=ListSerializer(child=ListSerializer(child=IntegerField()))

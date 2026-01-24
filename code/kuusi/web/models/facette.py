@@ -181,7 +181,6 @@ class FacetteAssignment(Translateable):
                 score_map[identifier] = 0
             score_map["SCORE"] = 0
             return score_map
-
     assignment_type = models.CharField(
         max_length=20, choices=AssignmentType.choices, default=AssignmentType.NEUTRAL
     )
