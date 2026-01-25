@@ -33,7 +33,7 @@ def get_session_result_id() -> str:
     seed = int(time())
     random_component = randint(0, 100000)
     id = sqids.encode([seed, random_component]) 
-    return id
+    return "d6" + id
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
