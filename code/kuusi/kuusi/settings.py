@@ -207,6 +207,10 @@ KUUSI_URL = "http://localhost:8000"
 
 FRONTEND_URL = "http://localhost:3000"
 
+PREVIOUS_VERSION_URL = "https://old.distrochooser.de"
+
+PREVIOUS_VERSION_PREFIX = "d5"
+
 KUUSI_NAME = "Distrochooser"
 
 ENABLE_TRANSLATION_MODE = False

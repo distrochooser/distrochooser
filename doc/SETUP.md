@@ -32,6 +32,8 @@
 |DISCORD_HOOK|A URL to use for notifications about text feedback and votes. Is ignored if null or empty|
 |ENABLE_TRANSLATION_MODE|Controls if the user can provide translations inside the UI|
 |ENABLE_FEEDBACK_MODE|Controls if the user can give feedback to mappings inside the UI|
+|PREVIOUS_VERSION_URL|Can be empty. If set, a remark is displayed for session id's starting with a given `PREVIOUS_VERSION_PREFIX`|
+|PREVIOUS_VERSION_PREFIX|Can be empty. If set, it can be use to show an alert to users, allowing redirecting to `PREVIOUS_VERSION_URL/<language>/<id>`|
 
 ## Install
 

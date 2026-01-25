@@ -24,6 +24,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </div>
   </div>
   <div class="row mt-2 mb-2 g-0">
+    <div class="col g-0 text-center alert alert-danger" v-if="previousVersionUrl">
+        <LanguageTranslation translation-key="old-version-alert"/>: 
+        <a :href="previousVersionUrl" target="_blank">{{ previousVersionUrl}}</a>
+    </div>
+  </div>
+  <div class="row mt-2 mb-2 g-0">
     <div class="col text-center" v-if="currentPage != null">
       <div class="btn-group col-xs-12 col-xl-6  dropdown-center" role="group">
         <button type="button" class="btn btn-primary dropdown-toggle fs-5 attention-dropdown" data-bs-toggle="dropdown"
@@ -74,6 +80,7 @@ const browserLanguageAvailable = computed(() => sessionStore.session != null && 
 const pages = computed(() => sessionStore.pages);
 const currentPage = computed(() => sessionStore.currentPage == null ? null : sessionStore.currentPage)
 const currentPageIndex = computed(() => currentPage != null ? pages.value.indexOf(currentPage.value) : -1)
+const previousVersionUrl = computed(() => sessionStore.previousVersionResultId && sessionStore.session && sessionStore.session.previousVersionUrl ? sessionStore.session.previousVersionUrl + "/" + sessionStore.session.languageCode + "/" + sessionStore.previousVersionResultId : null)
 </script>
 
 <style lang="scss" scoped>

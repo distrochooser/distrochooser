@@ -42,6 +42,7 @@ interface SessionState {
     givenFeedback: String;
     isDarkMode: boolean;
     darkModeControlledByUser: boolean;
+    previousVersionResultId: string | null;
 }
 let sessionApi: SessionApi = null;
 
@@ -68,7 +69,8 @@ export const useSessionStore = defineStore('websiteStore', {
         fontSizeModifier: 1,
         givenFeedback: null,
         isDarkMode: false,
-        darkModeControlledByUser: false
+        darkModeControlledByUser: false,
+        previousVersionResultId: null
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -269,9 +271,14 @@ export const useSessionStore = defineStore('websiteStore', {
             }
         },
         async createSession(lang: string, resultId?: string) {
+            let isOldResult = false;
+            if (resultId && resultId.startsWith("d5")) {
+                isOldResult = true;
+                this.previousVersionResultId = resultId
+            }
             this.session = await this.sessionApi.sessionCreate(
                 {
-                    resultId: resultId,
+                    resultId: isOldResult ? null : resultId,
                     lang: lang
                 }
             )
@@ -284,7 +291,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 this.selectPage(-1)
             }
             // if there was a resultId given -> update selections from it
-            if (resultId) {
+            if (!isOldResult && resultId) {
                 this.facetteSelections = await this.sessionApi.sessionFacetteselectionList({
                     sessionPk: this.session.resultId
                 })

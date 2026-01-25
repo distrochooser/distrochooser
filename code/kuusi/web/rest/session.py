@@ -35,6 +35,7 @@ from kuusi.settings import (
     DEFAULT_LANGUAGE_CODE,
     ENABLE_TRANSLATION_MODE,
     ENABLE_FEEDBACK_MODE,
+    PREVIOUS_VERSION_URL
 )
 from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
@@ -141,6 +142,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     is_translation_mode_enabled = serializers.SerializerMethodField()
     is_feedback_mode_enabled = serializers.SerializerMethodField()
 
+    previous_version_url = serializers.CharField(default=PREVIOUS_VERSION_URL)
     class Meta:
         model = Session
         fields = (
@@ -164,7 +166,8 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "imprint_data",
             "privacy_data",
             "is_translation_mode_enabled",
-            "is_feedback_mode_enabled"
+            "is_feedback_mode_enabled",
+            "previous_version_url"
         )
     def get_is_translation_mode_enabled(self, _: None) -> bool:
         return ENABLE_TRANSLATION_MODE

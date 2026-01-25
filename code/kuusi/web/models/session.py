@@ -22,7 +22,7 @@ from uuid import uuid4
 from django.db import models
 from django.utils import timezone
 
-from kuusi.settings import RTL_LANGUAGES
+from kuusi.settings import RTL_LANGUAGES,PREVIOUS_VERSION_PREFIX
 
 from sqids import Sqids
 from time import time
@@ -33,7 +33,8 @@ def get_session_result_id() -> str:
     seed = int(time())
     random_component = randint(0, 100000)
     id = sqids.encode([seed, random_component]) 
-    return "d6" + id
+    # Add a prefix to the ID itself, to allow redirection
+    return PREVIOUS_VERSION_PREFIX + id
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
