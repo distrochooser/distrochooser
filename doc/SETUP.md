@@ -15,14 +15,14 @@
 |DEBUG|Disable in production|
 |ALLOWED_HOSTS|Required in case your application runs behind a reverse proxy -> needs accessing domain entry then|
 |ENABLE_PROFILING|Enables or disables Silk module. Disable in production|
-|AVAILABLE_LANGUAGES|A list of tuples of available languages `(<iso-639-3-code>, Display text)`|
-|RTL_LANGUAGES|A list of language codes (iso-639-3) considered right-to-left|
+|AVAILABLE_LANGUAGES|A list of tuples of available languages `(<iso-639-1-code>, Display text)`|
+|RTL_LANGUAGES|A list of language codes (iso-639-1) considered right-to-left|
 |FRONTEND_URL|The URL without trailing slash representing the frontend URL|
 |KUUSI_NAME|The name of the application. Will be used e. g. in OGP tags and the frontend|
 |KUUSI_META_TAGS|Meta tags to be rendered client sided
 |SESSION_NUMBER_OFFSET|The amount of tests to be added to the current database count|
 |WEIGHT_MAP|Factor to give to each weight|
-|DEFAULT_LANGUAGE_CODE|The `iso-639-3` code to use from `LANGUAGES` representing the default language|
+|DEFAULT_LANGUAGE_CODE|The `iso-639-1` code to use from `LANGUAGES` representing the default language|
 |KUUSI_LOGO|The logo to add to frontend sessions|
 |KUUSI_ICON|The favicon to add to frontend sessions|
 |CACHE_TIMEOUT|The default cache timeout to use|
