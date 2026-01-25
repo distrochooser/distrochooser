@@ -1055,9 +1055,12 @@ how = "neutral"
 [assignment.has-no-ai-policy]
 facettes = ["no-ai"]
 choosables = [
-    "Gentoo" # https://wiki.gentoo.org/wiki/Project:Council/AI_policy
+    "Gentoo"
 ]
 how = "positive"
+sources = [
+    "https://wiki.gentoo.org/wiki/Project:Council/AI_policy"
+]
 
 [behaviour.gaming-usage-0]
 subjects = ["gaming-usage"]

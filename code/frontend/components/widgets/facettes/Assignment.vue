@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <div class="col">
 
           <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
+          <a  class="assignment-source" v-for="(source, source_key) in sources" :key="source_key" :title="source" target="_blank" :href="source">[{{  source_key +1 }}]</a>
           <h4>
             <LanguageTranslation :translation-key="assignment.description" />
           </h4>
@@ -100,6 +101,8 @@ const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
 
+const sources = computed(() => props.assignment.sources ? props.assignment.sources.split(",") : [])
+
 const otherUserVotes = computed(() => {
   const ids = props.assignment.votes.map(v => v[0])
   const allChoosables = store.choosables;
@@ -130,3 +133,13 @@ const votes = computed(() => {
   ]
 })
 </script>
+<style lang="scss" scoped>
+  .assignment-source {
+    &:first-of-type {
+      margin-left: 0.25em;
+    }
+    margin-right: 0.25em;
+    font-size: smaller;
+    vertical-align: top;
+  }
+</style>

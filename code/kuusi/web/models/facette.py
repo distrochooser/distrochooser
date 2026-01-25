@@ -121,6 +121,10 @@ class FacetteAssignment(Translateable):
     )
     is_approved = models.BooleanField(default=False)
 
+    # The sources is just a comma separated list of links
+    # to keep this simple & stupid, no new entity will be introduced.
+    sources = models.CharField(null=True,blank=True,default=None, max_length=5000)
+
     def __str__(self) -> str:
         if self.pk is None:
             return f"Virtual: ({self.assignment_type})" 

@@ -29,14 +29,20 @@ def create_assignments(
 ) -> List[FacetteAssignment]:
     got = []
     FacetteAssignment.objects.update(is_invalidated=True)
-    for element, data in haystack.items():
-
+    for element, data in haystack.items():        
         old_assignment = FacetteAssignment.objects.filter(catalogue_id=element)
+
+        # Create a source string
+        sources_str = None
+        if "sources" in data:
+            sources_str = ",".join(data["sources"])
+            sources_str = sources_str.strip(",")
         new_assignment = FacetteAssignment(
             catalogue_id=element,
             description=f"{element}-description",
             assignment_type=data["how"].upper(),
             is_invalidated=False,
+            sources = sources_str 
         )
         if old_assignment.count() != 0:
             logger.info(

@@ -129,7 +129,8 @@ class Command(BaseCommand):
             "hide_help": False,
             "bg_color": "black",
             "fg_color": "white",
-            "icon": "bi bi-clipboard2-data"
+            "icon": "bi bi-clipboard2-data",
+            "sources": []
         }
         if prop in raw:
             return raw[prop]

@@ -314,6 +314,7 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
             "assignment_type",
             "weight",
             "votes",
+            "sources"
         )
 
     def get_description(self, obj: FacetteAssignment):
