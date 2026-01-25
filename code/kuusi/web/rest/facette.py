@@ -329,9 +329,9 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
             # first facette
             facette = obj.facettes.first()
             if facette:
-                return facette.__("description", session.language_code)
+                return facette.catalogue_id+ "-description" # do not translate it server side!
             return obj.catalogue_id
-        return translation
+        return obj.catalogue_id+ "-description"
     
     def get_weight(self, obj: FacetteAssignment) -> int:
         weight_value = None

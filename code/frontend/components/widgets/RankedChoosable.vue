@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           {{ props.choosable.name }}
         </h5>
         <p class="card-text">
-          <LanguageTranslation :translation-key="props.choosable.description"/>
+          <LanguageTranslation :translation-key="props.choosable.name + '-description'"/>
         </p>
       </div>
       <ul class="list-group list-group-flush">

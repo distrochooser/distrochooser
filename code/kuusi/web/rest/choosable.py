@@ -27,16 +27,13 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from typing import Dict, Any
 
-CHOOSABLE_SERIALIZER_BASE_FIELDS = ('id', 'name', 'description', 'bg_color', 'fg_color', 'meta')
+CHOOSABLE_SERIALIZER_BASE_FIELDS = ('id', 'name',  'bg_color', 'fg_color', 'meta')
 
 class ChoosableSerializer(serializers.ModelSerializer):
-    description = serializers.SerializerMethodField()
     meta = serializers.SerializerMethodField()
     class Meta:
         model = Choosable
         fields = CHOOSABLE_SERIALIZER_BASE_FIELDS
-    def get_description(self, obj: Choosable) -> str:
-        return obj.get_msgd_id_of_field("description")
     
     def get_meta(self, obj: Choosable) -> Dict[str, Any]:
         meta_values = obj.meta
