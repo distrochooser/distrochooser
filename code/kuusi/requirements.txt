@@ -30,7 +30,7 @@ requests==2.32.5
 rpds-py==0.27.1
 six==1.17.0
 sqids==0.5.2
-sqlparse==0.5.3
+sqlparse==0.5.4
 termcolor==3.1.0
 tzdata==2025.2
 ua-parser==1.0.1
