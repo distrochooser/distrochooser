@@ -405,6 +405,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "kongvut",
+      "name": "Kongvut Sangkla",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2748894?v=4",
+      "profile": "https://github.com/kongvut",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
