@@ -17,13 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <span>
-      <a :href="props.website" @click="handleClick">{{ props.website }}</a>
+      <a :href="url.toString()" target="_blank">{{ props.website }}</a>
     </span>
 </template>
 
 
 <script lang="ts" setup>
-const basePath = useRuntimeConfig().public.basePath
+import { useSessionStore } from '../../../../states/session';
+import { getExternalLink } from '../../../../util/links';
+
 
 interface FlagProps {
   website: string;
@@ -31,11 +33,6 @@ interface FlagProps {
 }
 
 const props = defineProps<FlagProps>();
-const handleClick = async (e: MouseEvent) => {
-  e.preventDefault();
-  const target = basePath +  "/out/" + props.id.toString() + "/WEBSITE/"
-  console.log(target)
-  await fetch(target)
-  window.open(props.website, "_blank")
-}
+const store = useSessionStore();
+const url = getExternalLink(store.session.baseUrl, store.session.languageCode, "noprefix", props.website, true) + "/" + props.id
 </script>

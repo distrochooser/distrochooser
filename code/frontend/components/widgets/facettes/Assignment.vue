@@ -22,12 +22,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <div class="col">
 
           <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
-          <a  class="assignment-source" v-for="(source, source_key) in sources" :key="source_key" :title="source" target="_blank" :href="source">[{{  getSourceUrl(source) }}]</a>
+          <a class="assignment-source" v-for="(source, source_key) in sources" :key="source_key" :title="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name,source, false).toString()"
+            target="_blank" :href="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, true).toString()">[{{ getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name,source, false).hostname }}]</a>
           <h4>
             <LanguageTranslation :translation-key="assignment.description" />
           </h4>
         </div>
-        <div class="col text-end"  v-if="queryChoosables">
+        <div class="col text-end" v-if="queryChoosables">
           <div class="row">
             <div class="col">
               <div class="btn-group mt-3" role="group">
@@ -35,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   "btn btn-outline-success": true,
                   "btn-success link-light": hasPositiveVote
                 }' v-on:click.prevent="async () => await store.createAssignmentFeedback(assignment.id, true)
-                  ">
+                ">
                   <Icon name="ion:thumbs-up"></Icon>
                   <span>({{ votes[0] }})</span>
                 </a>
@@ -44,14 +45,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   "btn btn-outline-danger": true,
                   "btn-danger link-light": hasNegativeVote
                 }' v-on:click.prevent="async () => await store.createAssignmentFeedback(assignment.id, false)
-                  ">
+                ">
                   <Icon name="ion:thumbs-down"></Icon>
                   <span>({{ votes[1] }})</span>
                 </a>
 
-                <a href="#" v-if="hasNegativeVote || hasPositiveVote" class="btn btn-outline-primary" v-on:click.prevent="
-                  store.deleteAssignmentFeedback(assignment.id)
-                  ">
+                <a href="#" v-if="hasNegativeVote || hasPositiveVote" class="btn btn-outline-primary"
+                  v-on:click.prevent="
+                    store.deleteAssignmentFeedback(assignment.id)
+                    ">
                   <Icon name="ion:arrow-undo"></Icon>
                 </a>
               </div>
@@ -88,6 +90,7 @@ import AssignmentType from "./AssignmentType.vue";
 import ChoosableAssignments from "./ChoosableAssignments.vue";
 import NewAssignmentChoosable from "./NewAssignmentChoosable.vue";
 import { computed, ref } from "vue";
+import { getExternalLink } from "../../../util/links";
 
 interface AsssignmentProps {
   assignment: FacetteAssignment;
@@ -101,11 +104,13 @@ const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
 
-const sources = computed(() => props.assignment.sources ? props.assignment.sources.split(",") : [])
-
-const getSourceUrl = (source: string) => {
-  return new URL(source).hostname
-}
+const sources = computed(() => 
+  props.assignment.sources ? 
+  props.assignment.sources.split(",").filter(
+    (source) => source.indexOf(props.choosable.name) !== -1 || source.indexOf(";") === -1
+  )
+  : []
+)
 
 const otherUserVotes = computed(() => {
   const ids = props.assignment.votes.map(v => v[0])
@@ -138,12 +143,13 @@ const votes = computed(() => {
 })
 </script>
 <style lang="scss" scoped>
-  .assignment-source {
-    &:first-of-type {
-      margin-left: 0.25em;
-    }
-    margin-right: 0.25em;
-    font-size: smaller;
-    vertical-align: top;
+.assignment-source {
+  &:first-of-type {
+    margin-left: 0.25em;
   }
+
+  margin-right: 0.25em;
+  font-size: smaller;
+  vertical-align: top;
+}
 </style>
