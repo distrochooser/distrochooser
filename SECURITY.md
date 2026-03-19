@@ -13,6 +13,6 @@
 
 ## Reporting a Vulnerability
 
-Please give me a ping to mail@chmr.eu if you have found any security issues in the project.
+Please give me a ping to distrochooser-security@chmr.eu if you have found any security issues in the project.
 
 Thank you!
