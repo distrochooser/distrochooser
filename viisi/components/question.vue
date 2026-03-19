@@ -30,6 +30,10 @@
             div(v-if="!inVisuallyImpairedMode")
               i.w-icon-eye-o
               a(href="/?vim=true") {{ __i("welcome-text-a11y") }}
+            div.alert
+              span Want to try something new? 
+                a(href="https://beta.distrochooser.de", target="_blank") We have a new version in development
+
             div
               button.start-test-button.next-step.step(@click="startTest") {{ __i("start-test") }}
     div(v-else)
@@ -553,6 +557,13 @@ a {
         padding-right: unset;
       }
     }
+  }
+}
+.alert {
+  background-color:lightblue;
+  padding: 0.25em;
+  a {
+    font-weight: bold;
   }
 }
 </style>
