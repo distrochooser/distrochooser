@@ -12,14 +12,21 @@ This repository contains the code of [distrochooser.de](http://distrochooser.de)
 
 The Distrochooser is a service to help Linux beginners to orientate. The service is not an oracle and can not calculate 100% accurate results, but it helps to orientate.
 
-> If you plan to contribute, feel free to give a ping first, so work can be coordinated and efforts can be used in the best possible way. Thank you!
-
 ## Versions
 
 |Version|Branch|Remarks
 |--|--|--|
 |distrochooser.de|`viisi`|The production version|
 |beta.distrochooser.de|`main`|The next version, currently in active development|
+
+# Contribution and code platforms
+
+The distrochooser project is present on following code hosting platforms:
+
+- Github: https://github.com/distrochooser/distrochooser
+- Codeberg: https://codeberg.org/distrochooser/distrochooser
+
+If you plan to contribute, feel free to give a ping first, so work can be coordinated (between plattforms) and efforts can be used in the best possible way. Thank you!
 
 ## Building locally
 
