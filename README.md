@@ -28,25 +28,11 @@ The distrochooser project is present on following code hosting platforms:
 
 If you plan to contribute, feel free to give a ping first, so work can be coordinated (between plattforms) and efforts can be used in the best possible way. Thank you!
 
-## Building locally
+You can find additional informations about contributions in `CONTRIBUTING.md`.
 
-See doc/SETUP.md
+Contributions of any kind are welcome!
 
-## How to provide distribution mappings?
-
-See doc/HOW-TO-MAP.md
-
-## License
-
-See LICENSE
-
-## Contact
-
-Project discord server: https://discord.gg/aDkCutfqak
-
-## Contributors ✨
-
-> If you are interesting in contributing, see `CONTRIBUTING.md`!
+### Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -122,4 +108,20 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://allcontributors.org) specification.
-Contributions of any kind are welcome!
+
+
+## Building locally
+
+See doc/SETUP.md
+
+## How to provide distribution mappings?
+
+See doc/HOW-TO-MAP.md
+
+## License
+
+See LICENSE
+
+## Contact
+
+Project discord server: https://discord.gg/aDkCutfqak
