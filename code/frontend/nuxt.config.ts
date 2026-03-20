@@ -16,10 +16,14 @@ export default defineNuxtConfig({
       basePath: process.env.NUXT_PUBLIC_BASE_PATH || "http://localhost:8000"
     }
   },
-  robots: {
-    disallow: ['/pages/contact', '/pages/privacy'],
-  },
   vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'bootstrap/dist/js/bootstrap.bundle', // CJS
+      ]
+    },
     css: {
       preprocessorOptions: {
         scss: {
