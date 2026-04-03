@@ -5542,9 +5542,9 @@ source-map@^0.7.4, source-map@^0.7.6:
   integrity sha512-i5uvt8C3ikiWeNZSVZNWcfZPItFQOsYTUAOkcUPGd8DqDy1uOUikjt5dG+uRlwyvR108Fb9DOd4GvXfT0N2/uQ==
 
 srvx@^0.11.9:
-  version "0.11.12"
-  resolved "https://registry.yarnpkg.com/srvx/-/srvx-0.11.12.tgz#ed59866cd0cec580b119e161ead3fecd2a546fee"
-  integrity sha512-AQfrGqntqVPXgP03pvBDN1KyevHC+KmYVqb8vVf4N+aomQqdhaZxjvoVp+AOm4u6x+GgNQY3MVzAUIn+TqwkOA==
+  version "0.11.13"
+  resolved "https://registry.yarnpkg.com/srvx/-/srvx-0.11.13.tgz#cc77a98cb9a459c34f75ee4345bd0eef9f613a54"
+  integrity sha512-oknN6qduuMPafxKtHucUeG32Q963pjriA5g3/Bl05cwEsUe5VVbIU4qR9LrALHbipSCyBe+VmfDGGydqazDRkw==
 
 standard-as-callback@^2.1.0:
   version "2.1.0"
