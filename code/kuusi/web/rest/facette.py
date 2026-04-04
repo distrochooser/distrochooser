@@ -32,7 +32,7 @@ from rest_framework.viewsets import GenericViewSet
 from web.models import (AssignmentFeedback, Choosable, Facette,
                         FacetteAssignment, Feedback, Session)
 from web.rest.hooks import fire_hook
-
+from web.util import get_translation
 class CreateFeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
@@ -142,7 +142,7 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
         )
         result.save()
         fire_hook(
-            f"[{assignment_obj}]: {assignment_obj.__('description')}",
+            f"[{assignment_obj}]: {assignment_obj.description}",
             session,
             f"{'👍' if is_positive else '👎'} Assignment vote",
             15762475,
@@ -267,7 +267,7 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
         result.save()
         
         fire_hook(
-            f"{choosable_obj.__('name')}@{assignment.__('description')}",
+            f"{choosable_obj.name}@{assignment.description}",
             session,
             f"{'👍' if is_positive else '👎'} Choosable feedback vote",
             15864269,
@@ -300,7 +300,6 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
 
 
 class FacetteAssignmentSerializer(serializers.ModelSerializer):
-    description = serializers.SerializerMethodField()
     weight = serializers.SerializerMethodField()
     votes = serializers.SerializerMethodField()
 
@@ -316,22 +315,6 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
             "votes",
             "sources"
         )
-
-    def get_description(self, obj: FacetteAssignment):
-        session: Session = self.context["session"]
-        translation = obj.__("description", session.language_code)
-        
-        if obj.pk is None: # meta filter caused assignments, which are not stored in the DB
-            return obj.description # the virtual assignment creation already provides a translated value
-
-        # The assignment does not feature a translation -> try to fallback to the (first) facette text
-        if translation == obj.catalogue_id + "-description": # type: ignore
-            # first facette
-            facette = obj.facettes.first()
-            if facette:
-                return facette.catalogue_id+ "-description" # do not translate it server side!
-            return obj.catalogue_id
-        return obj.catalogue_id+ "-description"
     
     def get_weight(self, obj: FacetteAssignment) -> int:
         weight_value = None
@@ -362,7 +345,7 @@ class FacetteSerializer(serializers.ModelSerializer):
         )
 
     def get_description(self, obj: Facette) -> str:
-        return obj.get_msgd_id_of_field("description")
+        return obj.description
 
     @extend_schema_field(field=FacetteAssignmentSerializer(many=True))
     def get_assignments(self, obj: Facette) -> ReturnList | ReturnDict | Any:

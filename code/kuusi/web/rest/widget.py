@@ -44,7 +44,8 @@ from web.rest.choosable import (CHOOSABLE_SERIALIZER_BASE_FIELDS,
                                 ChoosableSerializer)
 from web.rest.facette import FacetteAssignmentSerializer, FacetteSerializer
 from web.rest.session import SessionVersionSerializer
-
+from web.util import get_translation
+import importlib
 WIDGET_SERIALIZER_BASE_FIELDS = (
     "id",
     "row",
@@ -55,8 +56,9 @@ WIDGET_SERIALIZER_BASE_FIELDS = (
 )
 
 
-# TODO: For all serializers
-# MOve the render features into the serializers
+# Note: ALL serializers must follow the name of the to be serialized widget, e.g.:
+# SampleWidget -> SampleWidgetSerializer
+# FooWidget -> FooWidgetSerializer
 # E. g. selections needed facettes, question texts, hints ....
 class WidgetSerializer(serializers.ModelSerializer):
     widget_type = serializers.SerializerMethodField()
@@ -184,7 +186,7 @@ class RankedChoosableSerializer(ChoosableSerializer):
 
     def get_description(self, obj: Choosable) -> str: 
         session = self.context["session"]
-        return obj.__("description", session.language_code)
+        return get_translation(f"{obj.catalogue_id}-description", session.language_code)
 
     @extend_schema_field(field=FacetteAssignmentSerializer(many=True))
     def get_assignments(self, obj: Choosable) -> ReturnList | ReturnDict | Any:
@@ -222,8 +224,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
 
         selected_facettes = selections.values_list("facette", flat=True)
         assignments = FacetteAssignment.objects.filter(
-            Q(facettes__in=selected_facettes) &
-            Q(is_invalidated=False)
+            Q(facettes__in=selected_facettes)
         )
         has_meta_values = stored_meta_filter_values.count() > 0
         results = []
@@ -331,54 +332,44 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
 
         page_pk = kwargs.get("page_pk")
         cache_key = f"page-{page_pk}-widget"
+
+        # If there is something in the cache, retrurn that
+        cache_data = cache.get(cache_key)
+        if cache_data:
+            return Response(cache_data, headers={"cached": True})
         session: Session = Session.objects.get(result_id=kwargs["session_pk"])
         obj: Page | None = None
         if page_pk:
             obj = Page.objects.filter(pk=page_pk).first()
         result = []
-        # IMPORTANT
-        # The serializers are ordered, specialized before generic
 
-        serializers = OrderedDict(
-            {
-                HTMLWidget: HTMLWidgetSerializer,
-                NavigationWidget: NavigationWidgetSerializer,
-                SessionVersionWidget: SessionVersionWidgetSerializer,
-                FacetteRadioSelectionWidget: FacetteRadioSelectionWidgetSerializer,
-                FacetteSelectionWidget: FacetteSelectionWidgetSerializer,
-                ResultListWidget: ResultListWidgetSerializer,
-                ResultShareWidget: ResultShareWidgetSerializer,
-                FeedbackWidget: FeedbackWidgetSerializer,
-                MetaFilterWidget: MetaFilterWidgetSerializer,
-            }
-        )
+        if not obj:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
         # Check if the detail results _can_ be ignored
-        # TODO: Increase performance
-        ignore_cache_serializers = [ResultListWidget]
         ignore_cache = False
-        if obj:
-            widget: Widget
-            for widget in obj.widget_list:
-                for key in ignore_cache_serializers:
-                    if isinstance(widget, key):
-                        ignore_cache = True
-                        break
+        widget: Widget
+        for widget in obj.widget_list:
+            if widget.ignore_cache():
+                ignore_cache = True
+                break
 
-            if not ignore_cache:
-                cache_data = cache.get(cache_key)
-                if cache_data is not None:
-                    return Response(cache_data)
+        widget: Widget
+        for widget in obj.widget_list:
+            type_str = f"{type(widget).__name__}Serializer" 
+            
+            serializer_class = getattr(importlib.import_module("web.rest.widget"), type_str)
+            # If no class was found -> Abort
+            if serializer_class is None:
+                return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-            widget: Widget
-            for widget in obj.widget_list:
-                for key, value in serializers.items():
-                    if isinstance(widget, key):
-                        selected_serializer = value
-                        results = selected_serializer(widget)
-                        results.context["session"] = session
-                        result.append(results.data)
-                        break
-
+            # Initialize the Serializer and carry out the serialization process
+            results = serializer_class(widget)
+            results.context["session"] = session
+            result.append(results.data)
+            
+        # if there is no widget denying the cache, create one        
+        if not ignore_cache:
             cache.set(cache_key, result)
 
         return Response(result)

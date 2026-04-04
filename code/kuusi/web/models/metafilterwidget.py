@@ -81,16 +81,7 @@ class MetaFilterWidgetElement:
     def filter_must_have_assignments(
         self, obj: Choosable, value: Any, collected_assignments, session
     ) -> FacetteAssignment | None:
-        if (
-            value == "true" and len(collected_assignments) == 0
-        ):  # all meta filter values are strings, basically
-            result = FacetteAssignment(
-                catalogue_id=f"{self.cell_name}-{obj.name}",
-                description="not-suitable",
-                assignment_type=FacetteAssignment.AssignmentType.BLOCKING,
-            )
-            result.save()
-            return result
+        # this filter will be ran on the client side inside of ResultListWidget
         return None
 
     def filter_number_gt(
@@ -134,7 +125,6 @@ class MetaFilterWidgetElement:
             return result
 
         # as the choosable has a set of archs, but none matched -> create a negative hit
-        # but use the name of the field as translateable catalogue_id
         result = FacetteAssignment(
             catalogue_id="archs",
             description="archs",

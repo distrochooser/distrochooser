@@ -18,16 +18,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import annotations
 from django.db import models
-
-
-
+from rest_framework import serializers
 
 class Widget(models.Model):
     row = models.IntegerField(default=1, null=False, blank=False)
     col = models.IntegerField(default=1, null=False, blank=False)
     width = models.IntegerField(default=1, null=False, blank=False)
     pages = models.ManyToManyField(to="Page", blank=True, default=None)
-    
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
+
     @property
     def widget_type(self) -> str:
         return self.__class__.__name__
+    
+    def ignore_cache(self) -> bool:
+        return False
+    
+    def get_serializer(self) -> serializers.ModelSerializer:
+        raise NotImplementedError("This widget type does not hava a serializer")

@@ -21,15 +21,25 @@ from __future__ import annotations
 from typing import Any, Dict
 from django.apps import apps
 from django.core.cache import cache
+from os.path import join, exists
 
 from kuusi.settings import LONG_CACHE_TIMEOUT
+from json import loads, dumps
 
+
+from kuusi.settings import (
+    LOCALE_PATHS,
+    ENABLE_TRANSLATION_MODE 
+)
+from os import listdir
 
 def get_translation_haystack(translations: Dict[str, Dict[str, str]], language_code: str) -> Dict[str,str]:
     """
     As the user can provide translations -> use them 
     """
     raw = translations[language_code]
+    if not ENABLE_TRANSLATION_MODE:
+        return raw
     cache_key = f"translation-{language_code}-feedback"
     cached = cache.get(cache_key)
     approved_provided_feedback = None
@@ -49,3 +59,29 @@ def get_translation_haystack(translations: Dict[str, Dict[str, str]], language_c
         raw[key] = value
     
     return raw
+
+
+TRANSLATIONS = {}
+
+def hot_load_translations(**kwargs):
+    path = join(LOCALE_PATHS[0])
+    files = listdir(path)
+    for file in files:
+        if ".json" in file:
+            parts = file.split("-")
+            language = parts[1].replace(".json", "").lower()
+            if language not in TRANSLATIONS:
+                TRANSLATIONS[language] = {}
+            full_path = join(path, file)
+            content = loads(open(full_path, "r").read())
+            for key, value in content.items():
+                TRANSLATIONS[language][key] = value
+
+def get_translation(key: str, language_code: str) -> str:
+    if language_code not in TRANSLATIONS:
+        return key
+    
+    if key not in TRANSLATIONS[language_code]:
+        return key
+    
+    return TRANSLATIONS[language_code][key]

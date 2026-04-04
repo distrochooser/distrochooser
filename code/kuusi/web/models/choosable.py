@@ -18,21 +18,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from typing import Dict
 from django.db import models
-from web.models import Translateable, TranslateableField
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.core.cache import cache
 from kuusi.settings import LONG_CACHE_TIMEOUT
-class Choosable(Translateable):
+class Choosable(models.Model):
     """
     Element ot be choosed.
 
     Must be translated
     """
-
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
     name = models.CharField(null=False, blank=False, max_length=120) # the name will be used for results lists mostly
-    description = TranslateableField(
+    description = models.CharField(
         null=True, blank=True, default=None, max_length=120
     )
     clicked = models.IntegerField(default=0)
@@ -67,7 +66,8 @@ class Choosable(Translateable):
         result += f"name = \"{self.name}\"\nbg_color = \"{self.bg_color}\"\nfg_color = \"{self.fg_color}\"\n"
         return result + "\n"
 
-class ChoosableMeta(Translateable):
+class ChoosableMeta(models.Model):
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
     meta_choosable = models.ForeignKey(
         to=Choosable,
         on_delete=models.CASCADE,

@@ -26,7 +26,7 @@ from typing import Dict, List
 from django.core.cache import cache
 
 
-from web.models import TranslateableFieldRecord, Widget, Facette, FacetteAssignment, Choosable, FacetteBehaviour, Page, SessionVersion
+from web.models import Widget, Facette, FacetteAssignment, Choosable, FacetteBehaviour, Page, SessionVersion
 from web.management.commands.modules.parse import create_version, create_pages, create_widgets, create_choosables, create_facettes, create_facette_behaviours, create_assignments
 
 from logging import getLogger, ERROR

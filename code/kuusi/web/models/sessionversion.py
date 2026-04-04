@@ -16,10 +16,10 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from web.models import Translateable, TranslateableField, Widget
-
-class SessionVersion(Translateable):
-    description = TranslateableField(null=False, blank=False, max_length=120)
+from web.models import Widget
+from django.db import models
+class SessionVersion(models.Model):
+    description = models.CharField(null=False, blank=False, max_length=120)
 
 class SessionVersionWidget(Widget):
     pass

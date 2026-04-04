@@ -18,11 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django import template
 
-from django.utils.translation import gettext as _
-from django.utils import safestring
-
-from web.models import Translateable
-from web.models import TRANSLATIONS
+from web.util import TRANSLATIONS
 from kuusi.settings import DEFAULT_LANGUAGE_CODE
 
 import logging
@@ -32,7 +28,7 @@ logger = logging.getLogger(__name__)
 register = template.Library()
 
 
-def _i18n_get_value(language_code: str, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
+def _i18n_get_value(language_code: str, key: str):
     value = None
     needle = None
     default_value =  None
@@ -40,19 +36,7 @@ def _i18n_get_value(language_code: str, translateable_object: Translateable | sa
         return {"value": "", "needle": needle, "is_missing": True}
     if not str:
         raise Exception("Key is required")
-    if isinstance(translateable_object, Translateable):
-        needle = key
-        value =  translateable_object.__(key, language_code=language_code)
-        default_value =  translateable_object.__(key, language_code=DEFAULT_LANGUAGE_CODE)
-    else:
-        needle = str(translateable_object)
-        default_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][needle]  if needle in TRANSLATIONS[DEFAULT_LANGUAGE_CODE] and TRANSLATIONS[DEFAULT_LANGUAGE_CODE][needle] is not None else needle
-        value = TRANSLATIONS[language_code][needle] if needle in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][needle] is not None else needle
+    default_value = TRANSLATIONS[DEFAULT_LANGUAGE_CODE][needle]  if needle in TRANSLATIONS[DEFAULT_LANGUAGE_CODE] and TRANSLATIONS[DEFAULT_LANGUAGE_CODE][needle] is not None else needle
+    value = TRANSLATIONS[language_code][needle] if needle in TRANSLATIONS[language_code] and TRANSLATIONS[language_code][needle] is not None else needle
     is_missing = language_code != DEFAULT_LANGUAGE_CODE and default_value == value
     return {"value": value, "needle": needle, "is_missing": is_missing}
-
-
-@register.simple_tag
-def _i18n_(language_code: str, translateable_object: Translateable | safestring.SafeString | str, key: str = None):
-    got =  _i18n_get_value(language_code, translateable_object,key)
-    return got["value"]

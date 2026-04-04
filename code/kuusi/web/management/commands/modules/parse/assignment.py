@@ -28,7 +28,6 @@ def create_assignments(
     get_or_default: Callable[[str, Dict], Any], haystack: Dict
 ) -> List[FacetteAssignment]:
     got = []
-    FacetteAssignment.objects.update(is_invalidated=True)
     for element, data in haystack.items():        
         old_assignment = FacetteAssignment.objects.filter(catalogue_id=element)
 
@@ -41,7 +40,6 @@ def create_assignments(
             catalogue_id=element,
             description=f"{element}-description",
             assignment_type=data["how"].upper(),
-            is_invalidated=False,
             sources = sources_str 
         )
         if old_assignment.count() != 0:
@@ -62,8 +60,4 @@ def create_assignments(
         new_assignment.save()
         got.append(new_assignment)
 
-    # delete old, unused ones
-    objects = FacetteAssignment.objects.filter(is_invalidated=True)
-    logger.info(f"Removing {objects.count()} orphan facette assignments.")
-    objects.delete()
     return got

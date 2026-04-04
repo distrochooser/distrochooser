@@ -104,18 +104,11 @@ class PageMarkingViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
         return Response(serializer.data)
 
 class PageSerializer(serializers.ModelSerializer):
-    text = serializers.SerializerMethodField()
-    help = serializers.SerializerMethodField()
 
     class Meta:
         model = Page
         fields = ("id", "text", "help", "next_page", "can_be_marked", "hide_help", "icon", "title")
 
-    def get_text(self, obj: Page) -> str:
-        return obj.get_msgd_id_of_field("text")
-    
-    def get_help(self, obj: Page) -> str:
-        return obj.get_msgd_id_of_field("help")
     
     
     

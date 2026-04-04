@@ -25,9 +25,6 @@ def create_choosables(get_or_default: Callable[[str, Dict], Any], haystack: Dict
     got = []
     # Meta will just be re-created
     ChoosableMeta.objects.all().delete()
-    Choosable.objects.all().update(
-        is_invalidated=True
-    )
     for catalogue_id, element in haystack.items():
 
         new_choosable = Choosable(
@@ -35,7 +32,6 @@ def create_choosables(get_or_default: Callable[[str, Dict], Any], haystack: Dict
             name = get_or_default("name", element),
             fg_color = get_or_default("fg_color", element),
             bg_color = get_or_default("bg_color", element),
-            is_invalidated=False
         )
 
 
@@ -62,8 +58,4 @@ def create_choosables(get_or_default: Callable[[str, Dict], Any], haystack: Dict
 
         got.append(new_choosable)
     
-    # delete old, unused ones
-    objects = Choosable.objects.filter(is_invalidated=True)
-    logger.info(f"Removing {objects.count()} orphan choosables")
-    objects.delete()
     return got

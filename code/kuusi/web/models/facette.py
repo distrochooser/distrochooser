@@ -20,7 +20,7 @@ from __future__ import annotations
 from typing import List, Dict
 
 
-from web.models import Translateable, TranslateableField, Session, Choosable
+from web.models import  Session, Choosable
 from django.db import models
 from django.db.models import  QuerySet
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -28,7 +28,7 @@ from django.apps import apps
 from django.core.cache import cache
 from kuusi.settings import LONG_CACHE_TIMEOUT, ENABLE_FEEDBACK_MODE
 
-class Facette(Translateable):
+class Facette(models.Model):
     """
     A facette describes a fact narrowing down the selection for choosables.
 
@@ -36,7 +36,9 @@ class Facette(Translateable):
 
     The topic reduces a facette to a certain subarea, e. g. "licenses" for Linux distributions
     """ 
-    description = TranslateableField(null=False, blank=False, max_length=120)
+    
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
+    description = models.CharField(null=False, blank=False, max_length=120)
     topic = models.CharField(null=False, blank=False, max_length=120)
     child_facettes = models.ManyToManyField(to="Facette", blank=True)
 
@@ -61,11 +63,12 @@ class Facette(Translateable):
         return assignments
 
     def __str__(self) -> str:
-        msg_id = self.get_msgd_id_of_field("description")
+        msg_id = self.description
         return f"[{self.topic}] (is_child: {self.is_child}, has_child: {self.has_child}) (msgid: {msg_id})"
 
 
-class FacetteBehaviour(Translateable):
+class FacetteBehaviour(models.Model):
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
     affected_objects = models.ManyToManyField(
         to="Facette", blank=True, related_name="facette_behaviour_objects"
     )
@@ -112,11 +115,12 @@ class FacetteSelection(models.Model):
     )
 
 
-class FacetteAssignment(Translateable):
+class FacetteAssignment(models.Model):
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
     choosables = models.ManyToManyField(to=Choosable)
     # TODO: The facette is actually never an n=2 set...
     facettes = models.ManyToManyField(to=Facette)
-    description = TranslateableField(
+    description = models.CharField(
         null=True, blank=True, default=None, max_length=800
     )
     is_approved = models.BooleanField(default=False)

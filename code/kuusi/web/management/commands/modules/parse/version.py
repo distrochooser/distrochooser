@@ -30,8 +30,7 @@ def create_version(_: Callable, haystack: Dict) -> List[SessionVersion]:
     for catalogue_id, _ in haystack.items():
         logger.info(f"New version: {catalogue_id}")
         with_same_catalogue_id = SessionVersion.objects.filter(
-            catalogue_id=catalogue_id,
-            description=f"{catalogue_id}-description"
+            catalogue_id=catalogue_id
         )
         if with_same_catalogue_id.count() == 0:
             new_version = SessionVersion(

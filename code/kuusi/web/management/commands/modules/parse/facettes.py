@@ -23,15 +23,12 @@ from logging import getLogger
 logger = getLogger('command') 
 def create_facettes(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[Facette]:
     got = []
-    Facette.objects.all().update(
-        is_invalidated = True
-    )
     for element, data in haystack.items():
         existing_facette = Facette.objects.filter(catalogue_id=element)
         new_facette = Facette(
             catalogue_id = element,
+            description = f"{element}-description",
             topic = data["topic"],
-            is_invalidated=False
         )
 
         if existing_facette.count() != 0:
@@ -41,10 +38,7 @@ def create_facettes(get_or_default: Callable[[str, Dict], Any], haystack: Dict) 
         new_facette.save()
         got.append(new_facette)
     
-    # delete old, unused ones
-    objects = Facette.objects.filter(is_invalidated=True)
-    logger.info(f"Removing {objects.count()} orphan facettes.")
-    objects.delete()
+  
     return got
 
 def create_facette_behaviours(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[FacetteBehaviour]:

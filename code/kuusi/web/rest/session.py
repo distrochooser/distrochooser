@@ -42,15 +42,13 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
 from web.models import (
-    TRANSLATIONS,
     FacetteSelection,
     LanguageFeedback,
     MetaFilterValue,
     Session,
     SessionVersion,
 )
-from web.util import get_translation_haystack
-
+from web.util import get_translation_haystack, TRANSLATIONS, get_translation
 
 def is_language_present(lang):
     found_lang = False
@@ -196,7 +194,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         return PRIVACY
 
     def get_is_language_rtl(self, obj: Session) -> bool:
-        return obj.language_code in RTL_LANGUAGES
+        return obj.is_rtl
 
     def get_language_values(self, obj: Session) -> Dict[str, str]:
         return get_translation_haystack(TRANSLATIONS, obj.language_code)
@@ -214,7 +212,7 @@ class SessionVersionSerializer(serializers.ModelSerializer):
 
     def get_text(self, obj: SessionVersion) -> str:
         session: Session = self.context["session"]
-        return obj.__("description", session.language_code)
+        return get_translation(f"{obj.description}-description", session.language_code)
 
 
 class SessionViewSet(ViewSet):

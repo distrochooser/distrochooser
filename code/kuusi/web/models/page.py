@@ -21,7 +21,7 @@ from django.db import models
 from django.db.models.manager import BaseManager
 from kuusi.settings import LONG_CACHE_TIMEOUT
 from django.db.models import Max, Min
-from web.models import SessionVersionWidget, Translateable, TranslateableField, Session, WebHttpRequest, Widget, Facette, FacetteSelection, SessionVersion
+from web.models import SessionVersionWidget, Session, WebHttpRequest, Widget, Facette, FacetteSelection, SessionVersion
 from typing import List
 from logging import getLogger
 from django.core.cache import cache
@@ -29,7 +29,8 @@ from django.core.cache import cache
 from django.apps import apps
 logger = getLogger("root")
 
-class Page(Translateable):
+class Page(models.Model):
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
     next_page = models.ForeignKey(
         to="Page",
         on_delete=models.CASCADE,
@@ -43,9 +44,9 @@ class Page(Translateable):
     hide_text = models.BooleanField(default=False)
     hide_help = models.BooleanField(default=False)
     no_header = models.BooleanField(default=False)
-    text = TranslateableField(null=True, blank=True,  max_length=80)
-    title = TranslateableField(null=True, blank=True,  max_length=80)
-    help = TranslateableField(null=True, blank=True,  max_length=80)
+    text = models.CharField(null=True, blank=True,  max_length=80)
+    title = models.CharField(null=True, blank=True,  max_length=80)
+    help = models.CharField(null=True, blank=True,  max_length=80)
     hide_if_no_selections = models.BooleanField(default=False)
     icon = models.CharField(
         null=False, blank=False, default="bi bi-clipboard2-data", max_length=100
@@ -103,23 +104,24 @@ class Page(Translateable):
 
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
         # filter out the FacetteSelectionWidgets acting as parent for radio selections
-        radio_selections = apps.get_model("web", "FacetteRadioSelectionWidget").objects.filter(pages__pk__in=[self])
+        target_pk = self.pk
+        radio_selections = apps.get_model("web", "FacetteRadioSelectionWidget").objects.filter(pages__pk__in=[target_pk])
         ignore_parent_selections = []
         for radio_selection in radio_selections:
             parent = radio_selection.__dict__["facetteselectionwidget_ptr_id"]
             ignore_parent_selections.append(parent)
-        facette_selections = list( apps.get_model("web", "FacetteSelectionWidget").objects.exclude(pk__in=ignore_parent_selections).filter(pages__pk__in=[self]))
+        facette_selections = list( apps.get_model("web", "FacetteSelectionWidget").objects.exclude(pk__in=ignore_parent_selections).filter(pages__pk__in=[target_pk]))
         
         result = (
-            list(SessionVersionWidget.objects.filter(pages__pk__in=[self]))
-            + list(apps.get_model("web", "HTMLWidget").objects.filter(pages__pk__in=[self]))
+            list(SessionVersionWidget.objects.filter(pages__pk__in=[target_pk]))
+            + list(apps.get_model("web", "HTMLWidget").objects.filter(pages__pk__in=[target_pk]))
             + list(radio_selections)
             + facette_selections
-            + list(apps.get_model("web", "ResultListWidget").objects.filter(pages__pk__in=[self]))
-            + list(apps.get_model("web", "ResultShareWidget").objects.filter(pages__pk__in=[self]))
-            + list(apps.get_model("web", "FeedbackWidget").objects.filter(pages__pk__in=[self]))
-            + list(apps.get_model("web", "NavigationWidget").objects.filter(pages__pk__in=[self]))
-            + list(apps.get_model("web", "MetaFilterWidget").objects.filter(pages__pk__in=[self]))
+            + list(apps.get_model("web", "ResultListWidget").objects.filter(pages__pk__in=[target_pk]))
+            + list(apps.get_model("web", "ResultShareWidget").objects.filter(pages__pk__in=[target_pk]))
+            + list(apps.get_model("web", "FeedbackWidget").objects.filter(pages__pk__in=[target_pk]))
+            + list(apps.get_model("web", "NavigationWidget").objects.filter(pages__pk__in=[target_pk]))
+            + list(apps.get_model("web", "MetaFilterWidget").objects.filter(pages__pk__in=[target_pk]))
         )
         cache.set(cache_key, result, LONG_CACHE_TIMEOUT)
         return result

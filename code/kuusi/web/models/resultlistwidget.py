@@ -26,4 +26,6 @@ logger = getLogger("root")
 
 
 class ResultListWidget(Widget):
-    pass
+
+    def ignore_cache(self) -> bool:
+        return True

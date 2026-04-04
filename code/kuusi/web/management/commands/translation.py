@@ -18,7 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from typing import List, Tuple
 from genericpath import exists
 from os import unlink
-from web.models import TRANSLATIONS, Choosable
+from web.util import TRANSLATIONS
+from web.models import Choosable
 from web.management.commands.languagefeedback import Command as LanguageCommand
 from django.core.management.base import BaseCommand 
 from logging import getLogger
