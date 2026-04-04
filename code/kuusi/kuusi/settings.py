@@ -210,7 +210,7 @@ FRONTEND_URL = "http://localhost:3000"
 
 PREVIOUS_VERSION_URL = "https://old.distrochooser.de"
 
-PREVIOUS_VERSION_PREFIX = "d5"
+PREVIOUS_VERSION_PREFIX = "d6"
 
 KUUSI_NAME = "Distrochooser"
 
