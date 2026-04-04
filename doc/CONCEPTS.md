@@ -28,18 +28,6 @@
 
 Currently, icons are realized with the @nuxt/icon module and the Ion (https://icon-sets.iconify.design/ion/) Icon set
 
-### Translateable
-
-Model instances might inherit the `Translateable` object. If inherited from this class, the inheriting class can use the `TranslateableField` field type, which is a char field. The `Translateable` class introduces a `catalogue_id`, which identifies the object.
-
-E. g. if a class inheriting from `Translateable` has following attribute:
-
-```
-    description = TranslateableField(
-        null=True, blank=True, default=None, max_length=120
-    )
-```
-
 The JSON file will require following attributes:
 
 ```
