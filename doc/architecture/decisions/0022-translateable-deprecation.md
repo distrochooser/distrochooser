@@ -27,3 +27,8 @@ Following steps has been carried out:
 
 The translation feedback mode is disabled for now as it requires a rework. Translation values will be delivered to the client using the translation keys, wher possible.
 Translated values shall not be transferred to the client.
+
+Additionally, in this context following changes were carried out
+
+- Removal of the opne data endpoints
+- Changes in the documentation
