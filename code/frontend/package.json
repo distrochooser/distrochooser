@@ -20,7 +20,6 @@
     "@pinia/nuxt": "^0.11.3",
     "@popperjs/core": "^2.11.8",
     "all-contributors-cli": "^6.26.1",
-    "animate.css": "^4.1.1",
     "bootstrap": "^5.3.3",
     "nuxt": "^4.4.2",
     "pinia": "^3.0.4",
