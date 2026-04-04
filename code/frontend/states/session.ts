@@ -151,6 +151,10 @@ export const useSessionStore = defineStore('websiteStore', {
             await this.getAssignmentFeedback() 
         },
         async getTranslationFeedback() {
+            if (!this.session.isTranslationModeEnabled) {
+                // if no translation mode is enabled -> do not attempt to query anything
+                return;
+            }
             this.languageFeedback =  await this.sessionApi.sessionLanguageList({
                 sessionPk: this.session.resultId,
                 voterId: this.getVoterId() /* this may be empty, but this is on purpose as people not interacting with the voting features shall not have such an ID*/

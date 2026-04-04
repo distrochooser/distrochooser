@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       )"
       :key="index"
     >
-      <RankedChoosable :choosable="choosable" />
+      <RankedChoosable :choosable="choosable" v-if="isChoosableDisplayed(choosable)" />
     </div>
     <div class="alert alert-info" v-if="props.widget.choosables.length == 0">
       <b><LanguageTranslation translation-key="NO_RESULTS_TITLE"/></b>
@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
 </template>
 <script setup lang="ts">
-import type { ResultListWidget } from "../../sdk";
+import type { Choosable, ResultListWidget } from "../../sdk";
 import RankedChoosable from "./RankedChoosable.vue";
 import { useSessionStore } from "../../states/session";
 
@@ -44,4 +44,8 @@ interface WidgetProps {
 
 const props = defineProps<WidgetProps>();
 const store = useSessionStore();
+
+const isChoosableDisplayed = (choosable: RankedChoosable) => {
+  return store.metaValues.filter(m => m.key == "must_have_assignment" && m.value === "true").length == 1 ? choosable.assignments.length > 0 : true;
+}
 </script>

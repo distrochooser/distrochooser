@@ -35,7 +35,6 @@ from web.rest.page import PageMarkingViewSet, PageViewSet
 from web.rest.session import MetaTagViewset, SessionViewSet
 from web.rest.widget import WidgetViewSet
 from web.rest.feedback import GivenFeedbackViewset
-from web.routes.data import route_data
 from web.routes.web import route_outgoing
 
 router = routers.SimpleRouter() # type: ignore
@@ -70,6 +69,5 @@ urlpatterns = [
     path('rest/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('rest/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path("out/<id>/<property>/",  route_outgoing, name="route_outgoing"),
-    re_path("data/(?P<version>[0-9]+)", route_data, name="route_data")
    
 ] + static(STATIC_URL, document_root=STATIC_ROOT,show_indexes=True) + ([path('silk/', include('silk.urls', namespace='silk'))] if ENABLE_PROFILING else []) + ([path("admin", admin.site.urls)] if DEBUG else [])
