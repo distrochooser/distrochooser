@@ -943,7 +943,7 @@
     std-env "^3.10.0"
     ufo "^1.6.3"
 
-"@openapitools/openapi-generator-cli@^2.15.3":
+"@openapitools/openapi-generator-cli@^2.31.0":
   version "2.31.0"
   resolved "https://registry.yarnpkg.com/@openapitools/openapi-generator-cli/-/openapi-generator-cli-2.31.0.tgz#b4bfbd0b8945c33015d54ccb43ae0d9dc30629ad"
   integrity sha512-sd+VIr5vx4PSknJLzh9thyRC8pw0r8ayCB4xH4G383BRClc3uFxIIz5EkBVndOumRsvPDip4wbszf5RRtxbmGA==

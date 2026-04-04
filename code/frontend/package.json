@@ -16,7 +16,7 @@
     "@iconify-json/ion": "^1.2.7",
     "@nuxt/icon": "^2.2.1",
     "@nuxtjs/robots": "^5.2.4",
-    "@openapitools/openapi-generator-cli": "^2.15.3",
+    "@openapitools/openapi-generator-cli": "^2.31.0",
     "@pinia/nuxt": "^0.11.3",
     "@popperjs/core": "^2.11.8",
     "all-contributors-cli": "^6.26.1",
