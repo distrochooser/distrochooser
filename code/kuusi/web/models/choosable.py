@@ -78,7 +78,7 @@ class ChoosableMeta(models.Model):
     # TODO: Properly fix upper <> lowercase issue
     class MetaName(models.TextChoices):
         CREATED = "AGE", _("AGE")
-        COUNTRY = "COUNTRY",  _("COUNTRY")
+        OPERATIONAL_CENTER = "OPERATIONAL_CENTER",  _("OPERATIONAL_CENTER")
         LICENSES = "LICENSES",  _("LICENSES")
         WEBSITE = "WEBSITE",  _("WEBSITE")
         LANGUAGES = "LANGUAGES", _("LANGUAGES")
@@ -89,7 +89,7 @@ class ChoosableMeta(models.Model):
         default_type = "hidden";
         map = {
             "AGE": "date",
-            "COUNTRY": "flag",
+            "OPERATIONAL_CENTER": "flag",
             "LICENSES": "text",
             "WEBSITE": "link",
         }
@@ -100,7 +100,7 @@ class ChoosableMeta(models.Model):
         # used as with as_toml
         map = {
             "AGE": "To provide the age of the distribution, an age can be given. The value shall be in ISO 8601 format, e. g. 2017-10-27",
-            "COUNTRY": "If the choosable is e. g. developed by a company based in a certain country, the value represents an ISO-639-1 code, e. g. 'it' for italy.",
+            "OPERATIONAL_CENTER": "If the choosable is e. g. developed by a company based in a certain country, the value represents an ISO-639-1 code, e. g. 'it' for italy. Comma separate multiple country codes",
             "LANGUAGES": "The list of languages supported by the choosable, comma separated as ISO-639-1 code, e. g. en,de,jp",
             "LICENSES": "A list of licenses used by the project in a SPDX format, e. g. AGPL-3.0-or-later",
             "WEBSITE": "The link to the project. Shall start with http(s)",

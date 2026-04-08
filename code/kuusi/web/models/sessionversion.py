@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from web.models import Widget
 from django.db import models
 class SessionVersion(models.Model):
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
     description = models.CharField(null=False, blank=False, max_length=120)
 
 class SessionVersionWidget(Widget):

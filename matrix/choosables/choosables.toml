@@ -37,7 +37,7 @@ meta_value = "2004-10-20"
 
 [[meta]]
 choosable="ubuntu"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "gb"
 
 
@@ -78,7 +78,7 @@ meta_value = "1993-09-15"
 
 [[meta]]
 choosable="debian"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us"
 
 [[meta]]
@@ -112,7 +112,7 @@ meta_value = "2009-06-23"
 
 [[meta]]
 choosable="tails"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us"
 
 [[meta]]
@@ -201,7 +201,7 @@ meta_value = "2006-08-27"
 
 [[meta]]
 choosable="mint"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "fr"
 
 [[meta]]
@@ -235,7 +235,7 @@ meta_value = "1993-03-01"
 
 [[meta]]
 choosable="opensuse"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "lu"
 
 [[meta]]
@@ -296,7 +296,7 @@ meta_value = "2011-06-11"
 
 [[meta]]
 choosable="manjaro"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "de"
 
 [[meta]]
@@ -329,7 +329,7 @@ meta_value = "2003-10-24"
 
 [[meta]]
 choosable="pclinuxos"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us"
 
 [[meta]]
@@ -362,7 +362,7 @@ meta_value = "2021-03-01"
 
 [[meta]]
 choosable="rocky"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us"
 
 [[meta]]
@@ -396,7 +396,7 @@ meta_value = "2000-02-22"
 
 [[meta]]
 choosable="rhel"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us"
 
 [[meta]]
@@ -457,7 +457,7 @@ meta_value = "2014-03-24"
 
 [[meta]]
 choosable="fedora"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us"
 
 [[meta]]
@@ -490,7 +490,7 @@ meta_value = "2002-03-31"
 
 [[meta]]
 choosable="gentoo"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us"
 
 [[meta]]
@@ -523,7 +523,7 @@ meta_value = "2000-09-30"
 
 [[meta]]
 choosable="knoppix"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "de"
 
 [[meta]]
@@ -579,7 +579,7 @@ meta_value = "2009-01-01"
 
 [[meta]]
 choosable="zorinos"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "ie"
 
 [[meta]]
@@ -612,7 +612,7 @@ meta_value = "2011-03-31"
 
 [[meta]]
 choosable="elementaryos"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us"
 
 [[meta]]
@@ -843,7 +843,7 @@ meta_value = "2005-04-08"
 
 [[meta]]
 choosable="kubuntu"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us,de"
 
 [[meta]]
@@ -876,7 +876,7 @@ meta_value = "2017-10-27"
 
 [[meta]]
 choosable="popos"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "us"
 
 [[meta]]
@@ -909,7 +909,7 @@ meta_value = "2004-02-28"
 
 [[meta]]
 choosable="deepin"
-meta_name = "country"
+meta_name = "operational_center"
 meta_value = "cn"
 
 [[meta]]

@@ -16,15 +16,25 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <span :class="'fi fi-'  + props.code"/>
+    <span v-for="(flag, key) in flags" :key="key" :class="'fi fi-'  + flag"/>
 </template>
 
 
 <script lang="ts" setup>
+import { computed } from 'vue';
+
 
 interface FlagProps {
   code: string;
 }
 
+const flags = computed(() => props.code.split(","))
+
 const props = defineProps<FlagProps>();
 </script>
+
+<style lang="scss" scoped>
+.fi {
+  margin-right: 0.5em;
+}
+</style>

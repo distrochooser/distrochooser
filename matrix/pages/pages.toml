@@ -98,6 +98,8 @@ pages = ["installation-page"]
 next_page = "help-page"
 not_in_versions = ["simplified", "full"]
 
+# selects use the syntax select.<field ID>.<server side selection function>.
+
 [widget.metafilter.personal-requirements-page]
 structure = [
    [
@@ -105,7 +107,7 @@ structure = [
       "checkbox.must_have_assignment.filter_must_have_assignments",
    ],
    [
-      "checkbox.must_match_language.filter_must_match_language",
+      "select.operational_center.filter_countries.countries",
    ],
 ]
 pages = ["personal-requirements-page"]
@@ -134,6 +136,15 @@ hide_help = true
 [widget.selection.ux-page-widget-name]
 topic = "ux"
 pages = ["ux-page"]
+
+[widget.metafilter.ux-meta-filter]
+structure = [
+   [
+      "checkbox.must_match_language.filter_must_match_language",
+   ],
+]
+pages = ["ux-page"]
+
 
 # Pricing page
 

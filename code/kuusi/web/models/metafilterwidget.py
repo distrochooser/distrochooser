@@ -39,6 +39,7 @@ class MetaFilterWidgetElement:
             "filter_must_have_assignments": self.filter_must_have_assignments,
             "filter_must_match_language": self.filter_must_match_language,
             "filter_archs": self.filter_archs,
+            "filter_countries": self.filter_countries,
         }
         return func_map
 
@@ -103,34 +104,47 @@ class MetaFilterWidgetElement:
         result.save()
         return result
 
-    def filter_archs(
-        self, obj: Choosable, value: Any, collected_assignments, session
-    ) -> FacetteAssignment | None:
-        if "ARCHS" not in obj.meta:
+    def filter_by_meta(self, obj: Choosable, value: Any, collected_assignments, session, meta_name: str):
+        """
+        Serves as a common base for filter_archs and filter_countries
+
+        See also ADR 0023
+        """
+        if meta_name.upper() not in obj.meta:
             return None
         # Python dislikes the '' possibly serialized here
         value_parsed = loads(value.replace("'", '"'))
-        matched_archs_str = ""
+        matched_value_str = ""
         for arch in value_parsed:
             arch_string = str(arch)
-            if arch_string in obj.meta["ARCHS"].as_list:
-               matched_archs_str += "," + arch_string
-        matched_archs_str = matched_archs_str.strip(",")
-        if matched_archs_str != "":
+            if arch_string in obj.meta[meta_name.upper()].as_list:
+               matched_value_str += "," + arch_string
+        matched_value_str = matched_value_str.strip(",")
+        if matched_value_str != "":
             result = FacetteAssignment(
-                catalogue_id=matched_archs_str,
-                description=matched_archs_str,
+                catalogue_id=matched_value_str,
+                description=meta_name,
                 assignment_type=FacetteAssignment.AssignmentType.POSITIVE,
             )
             return result
 
-        # as the choosable has a set of archs, but none matched -> create a negative hit
+        # as the choosable has a set of meta values, but none matched -> create a negative hit
         result = FacetteAssignment(
-            catalogue_id="archs",
-            description="archs",
+            catalogue_id=meta_name,
+            description=meta_name,
             assignment_type=FacetteAssignment.AssignmentType.NEGATIVE,
         )
         return result
+    
+    def filter_countries(
+            self, obj: Choosable, value: Any, collected_assignments, session
+        ) -> FacetteAssignment | None:
+        return self.filter_by_meta(obj, value, collected_assignments, session, "operational_center")
+    
+    def filter_archs(
+        self, obj: Choosable, value: Any, collected_assignments, session
+    ) -> FacetteAssignment | None:
+        return self.filter_by_meta(obj, value, collected_assignments, session, "archs")
 
 
 class MetaFilterWidgetStructure:

@@ -123,18 +123,27 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
         return list(loads(obj.structure))
 
     def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
-        metas = ChoosableMeta.objects.filter(
-            meta_name = ChoosableMeta.MetaName.ARCHS
-        )
-        values_raw = list(metas.values_list("meta_value", flat=True))
-        result = []
-        for arch_list in values_raw:
-            archs_as_list = arch_list.split(",")
-            for arch in archs_as_list:
-                if arch not in result:
-                    result.append(arch)
-        result.sort()
-        return {"archs": result}
+        option_keys = {
+            "archs": ChoosableMeta.MetaName.ARCHS,
+            "countries": ChoosableMeta.MetaName.OPERATIONAL_CENTER
+        }
+        results = {}
+        for key, value in option_keys.items():
+            metas = ChoosableMeta.objects.filter(
+                meta_name = value
+            )
+            values_raw = list(metas.values_list("meta_value", flat=True))
+
+            result = []
+            for meta_value in values_raw:
+                meta_value_as_list = meta_value.split(",")
+                for element in meta_value_as_list:
+                    if element not in result:
+                        result.append(element)
+            result.sort()
+            results[key] = result
+        
+        return results
 
 
 class SessionVersionWidgetSerializer(WidgetSerializer):

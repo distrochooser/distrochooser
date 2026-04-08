@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <h5 class="card-title">
         <LanguageTranslation :translation-key="metaValue"/></h5>
       <p class="card-text">
-        <MetaFlag v-if="metaValue == 'COUNTRY'" :code="metaKey"/>
+        <MetaFlag v-if="metaValue == 'OPERATIONAL_CENTER'" :code="metaKey"/>
         <MetaAge v-if="metaValue == 'AGE'" :start="metaKey"/>
         <MetaWebsite v-if="metaValue == 'WEBSITE'" :website="metaKey" :id="props.choosable.id"/>
       </p>

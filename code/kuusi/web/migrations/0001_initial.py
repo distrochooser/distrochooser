@@ -147,7 +147,7 @@ class Migration(migrations.Migration):
                     models.CharField(
                         choices=[
                             ("AGE", "AGE"),
-                            ("COUNTRY", "COUNTRY"),
+                            ("OPERATIONAL_CENTER", "OPERATIONAL_CENTER"),
                             ("LICENSES", "LICENSES"),
                             ("WEBSITE", "WEBSITE"),
                             ("LANGUAGES", "LANGUAGES"),
