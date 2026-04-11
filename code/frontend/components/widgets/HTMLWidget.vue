@@ -19,11 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div>
       <HTMLWelcome v-if="props.widget.template == 'welcomeHTML'"/>
       <HTMLLanguage v-if="props.widget.template == 'languageHTML'"/>
+      <HTMLA11y v-if="props.widget.template == 'a11yHTML'"/>
     </div>
 </template>
 <script setup lang="ts">
 import type {HTMLWidget } from '../../sdk';
 import HTMLWelcome from "../widgets/html/HTMLWelcome.vue";
+import HTMLA11y from './html/HTMLA11y.vue';
 import HTMLLanguage from './html/HTMLLanguage.vue';
 
 

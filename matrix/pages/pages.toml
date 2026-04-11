@@ -25,6 +25,9 @@ hide_help = true
 [widget.html.welcome-page-widget-name]
 template = "welcomeHTML"
 pages = ["welcome-page"]
+[widget.html.welcome-page-widget-a11y]
+template = "a11yHTML"
+pages = ["welcome-page"]
 # Version page
 
 # distrochooser::translation::en::You can select a simplified questionaire edition, which removes some super technical questions
