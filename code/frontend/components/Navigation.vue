@@ -76,7 +76,7 @@ import NavigationItem from "./NavigationItem.vue";
 let sessionStore = useSessionStore();
 
 const browserLanguage = computed(() => navigator.language)
-const browserLanguageAvailable = computed(() => sessionStore.session != null && Object.keys(sessionStore.session.languageCodes).indexOf(navigator.language) != -1 && !sessionStore.languageHintDismissed && sessionStore.session.languageCode != navigator.language && sessionStore.session.languageCode == sessionStore.session.defaultLanguage)
+const browserLanguageAvailable = computed(() => sessionStore.session != null && Object.keys(sessionStore.session.languageCodes).indexOf(navigator.language) != -1 && !sessionStore.languageHintDismissed && sessionStore.session.languageCode != navigator.language && sessionStore.session.languageCode == sessionStore.session.defaultLanguage && sessionStore.isOnFirstPage())
 const pages = computed(() => sessionStore.pages);
 const currentPage = computed(() => sessionStore.currentPage == null ? null : sessionStore.currentPage)
 const currentPageIndex = computed(() => currentPage != null ? pages.value.indexOf(currentPage.value) : -1)

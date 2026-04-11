@@ -352,6 +352,19 @@ export const useSessionStore = defineStore('websiteStore', {
                 })
             }
         },
+        isOnFirstPage() {
+            if (this.pages.length == 0) {
+                return false;
+            }
+            if (this.currentPage === null) {
+                return false;
+            }
+            if (this.pages[0].id === this.currentPage.id) 
+            {
+                return true;
+            }
+            return false;
+        },
         async selectPage(id: number) {
             this.isLoading = true;
             const matches = this.pages.filter(l => l.id == id)
