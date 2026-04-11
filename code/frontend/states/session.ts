@@ -41,6 +41,7 @@ interface SessionState {
     fontSizeModifier: number;
     givenFeedback: String;
     isDarkMode: boolean;
+    mustHaveAssignment: boolean;
     darkModeControlledByUser: boolean;
     previousVersionResultId: string | null;
 }
@@ -69,6 +70,7 @@ export const useSessionStore = defineStore('websiteStore', {
         fontSizeModifier: 1,
         givenFeedback: null,
         isDarkMode: false,
+        mustHaveAssignment: true,
         darkModeControlledByUser: false,
         previousVersionResultId: null
     }),

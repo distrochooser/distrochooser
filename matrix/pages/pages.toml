@@ -104,7 +104,6 @@ not_in_versions = ["simplified", "full"]
 structure = [
    [
       "number.distro_age.filter_number_gt",
-      "checkbox.must_have_assignment.filter_must_have_assignments",
    ],
    [
       "select.operational_center.filter_countries.countries",

@@ -36,7 +36,6 @@ class MetaFilterWidgetElement:
     def get_func_map(self):
         func_map = {
             "filter_number_gt": self.filter_number_gt,
-            "filter_must_have_assignments": self.filter_must_have_assignments,
             "filter_must_match_language": self.filter_must_match_language,
             "filter_archs": self.filter_archs,
             "filter_countries": self.filter_countries,
@@ -78,12 +77,6 @@ class MetaFilterWidgetElement:
         )
         result.save()
         return result
-
-    def filter_must_have_assignments(
-        self, obj: Choosable, value: Any, collected_assignments, session
-    ) -> FacetteAssignment | None:
-        # this filter will be ran on the client side inside of ResultListWidget
-        return None
 
     def filter_number_gt(
         self, obj: Choosable, value: Any, collected_assignments, session

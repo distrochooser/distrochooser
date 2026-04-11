@@ -46,6 +46,6 @@ const props = defineProps<WidgetProps>();
 const store = useSessionStore();
 
 const isChoosableDisplayed = (choosable: RankedChoosable) => {
-  return store.metaValues.filter(m => m.key == "must_have_assignment" && m.value === "true").length == 1 ? choosable.assignments.length > 0 : true;
+  return store.mustHaveAssignment ? choosable.assignments.length > 0 : true;
 }
 </script>

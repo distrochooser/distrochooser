@@ -18,39 +18,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div>
     <div class="card mb-4">
-      <div
-        class="card-body"
-        :style="
-          'background-color: ' +
-          props.choosable.bgColor +
-          '; ' +
-          'color: ' +
-          props.choosable.fgColor
-        "
-      >
-        <h5 class="card-title">
-          {{ props.choosable.name }}
-        </h5>
-        <p class="card-text">
-          <LanguageTranslation :translation-key="props.choosable.catalogueId + '-description'"/>
-        </p>
+      <div class="card-body" :style="'background-color: ' +
+        props.choosable.bgColor +
+        '; ' +
+        'color: ' +
+        props.choosable.fgColor
+        ">
+        <div class="card-text">
+          <b class="me-1">{{ props.choosable.name }}</b> 
+          <LanguageTranslation :translation-key="props.choosable.catalogueId + '-description'" />
+        </div>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
           <div class="row">
-            <div
-              class="col"
-              v-for="(key, value, index) in props.choosable.meta"
-              :key="index"
-            >
-              <ChoosableMeta :metaKey="key" :metaValue="value" :choosable="props.choosable"/>
+            <div class="col" v-for="(key, value, index) in props.choosable.meta" :key="index">
+              <ChoosableMeta :metaKey="key" :metaValue="value" :choosable="props.choosable" />
             </div>
           </div>
         </li>
       </ul>
       <div class="card-body">
         <li class="list-group-item" v-for="(key, index) in props.choosable.assignments" :key="index">
-          <Assignment :display-weigth="true" :assignment="key" :key="index" :query-choosables="false" :facette="null" :choosable="props.choosable"/>
+          <Assignment :display-weigth="true" :assignment="key" :key="index" :query-choosables="false" :facette="null"
+            :choosable="props.choosable" />
         </li>
       </div>
     </div>

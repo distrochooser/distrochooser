@@ -41,6 +41,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 Dark Mode
                             </label>
                         </div>
+                        <div class="form-check mb-3">
+                            <input :key="store.mustHaveAssignment ? 'must-have-assignment' : ''" class="form-check-input" type="checkbox"  id="mustHaveAssignment"
+                                v-model="store.mustHaveAssignment" :checked="store.mustHaveAssignment">
+                            <label class="form-check-label" for="mustHaveAssignment">
+                                <LanguageTranslation translation-key="must_have_assignment" />
+                            </label>
+                        </div>
                         <select class="form-select" v-model.number="store.fontSizeModifier">
                             <option value="1">1x Font</option>
                             <option value="5">5x Font</option>
