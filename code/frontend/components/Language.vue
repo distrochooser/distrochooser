@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
     <ul class="dropdown-menu">
         <li v-for="(key, index) in Object.keys(store.session.languageCodes)" :key="index">
-            <a class="dropdown-item"  href="#" v-on:click.prevent="store.changeLanguage(key)">
-                {{ store.session.languageCodes[key] }} 
+            <a class="dropdown-item" href="#" v-on:click.prevent="store.changeLanguage(key)">
+                {{ store.session.languageCodes[key] }}
             </a>
         </li>
     </ul>
@@ -30,3 +30,10 @@ import { useSessionStore } from '../states/session';
 const store = useSessionStore();
 
 </script>
+
+<style lang="scss" scoped>
+ul.dropdown-menu {
+    overflow: auto;
+    max-height: 50vh;
+}
+</style>
