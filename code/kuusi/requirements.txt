@@ -38,3 +38,4 @@ ua-parser-builtins==0.18.0.post1
 uritemplate==4.2.0
 urllib3==2.6.3
 user-agents==2.2.0
+pycountry==26.2.16

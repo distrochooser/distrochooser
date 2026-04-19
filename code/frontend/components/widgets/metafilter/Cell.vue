@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <LanguageTranslation :translation-key="id" />
             </label>
             <select class="form-select" multiple="true" :id="id" v-on:change="updateValue($event, type)">
-                <option v-for="(value, index) in arg" :key="index" :value="value" :selected="formValue.indexOf(value) !== -1">
+                <option v-for="(value, key) in arg" :key="key" :value="key" :selected="formValue.indexOf(key.toString()) !== -1">
                     {{ value}}
                 </option>
             </select>

@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from collections import OrderedDict
 from json import loads
 from typing import Any, Dict, List
-
+import pycountry
 from django.core.cache import cache
 from django.db.models import Q
 from drf_spectacular.types import OpenApiTypes
@@ -122,10 +122,19 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
             return []
         return list(loads(obj.structure))
 
+    def _translate_countries(self, country: str) -> str:
+        got = pycountry.countries.get(alpha_2=country)
+        if got: 
+           return f"{got.flag} {got.name}"
+        return country
+
     def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
         option_keys = {
             "archs": ChoosableMeta.MetaName.ARCHS,
             "countries": ChoosableMeta.MetaName.OPERATIONAL_CENTER
+        }
+        option_names = {
+            "countries": self._translate_countries
         }
         results = {}
         for key, value in option_keys.items():
@@ -134,15 +143,16 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
             )
             values_raw = list(metas.values_list("meta_value", flat=True))
 
-            result = []
+            result = {}
             for meta_value in values_raw:
                 meta_value_as_list = meta_value.split(",")
                 for element in meta_value_as_list:
                     if element not in result:
-                        result.append(element)
-            result.sort()
+                        name = option_names[key](element) if key in option_names else element
+                        result[element] = name
+            
+            result = dict(sorted(result.items()))
             results[key] = result
-        
         return results
 
 
