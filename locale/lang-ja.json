@@ -3,8 +3,6 @@
     "about": "概要",
     "about_page_license_text": "Distrochooser.de はオープンソースソフトウェアです。ライセンスの詳細については、",
     "about_page_license_title": "ライセンス",
-    "about_page_opendata_text": "Distrochooser は、独自の統計目的でオープンデータ アクセス ポイントを提供しています。HTTP レスポンスに表示されるライセンスにご注意ください。",
-    "about_page_opendata_title": "Distrochooser とオープンデータ",
     "about_page_text": "Distrochooser.de は、Linux 初心者がニーズに合った Linux ディストリビューションを選択できるように支援します。<br>表示される結果は、回答に基づいた提案です。回答間の複雑な相互作用により、結果が必ずしも適切ではない場合があります。",
     "about_page_text_stats": "2024年6月14日以降に作成されたテストの数:",
     "about_page_title": "このプロジェクトについて",

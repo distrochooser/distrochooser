@@ -3,8 +3,6 @@
     "about": "A propos de ce projet",
     "about_page_license_text": "Distrochooser.de est un logiciel Open Source. Vous pouvez trouver plus d'informations sur la licence sur",
     "about_page_license_title": "Licence",
-    "about_page_opendata_text": "L'Distrochooser offre un point d'accès aux données ouvertes pour ses propres besoins statistiques. Veuillez noter la licence affichée dans la réponse HTTP.",
-    "about_page_opendata_title": "Distrochooser et les données ouvertes",
     "about_page_text": "distrochooser.de tente d'aider les débutants à choisir une distribution Linux adaptée à leurs besoins.<br>Les résultats donnés sont des suggestions basées sur vos réponses. Les résultats peuvent parfois ne pas être aussi pertinents, en raison des interactions complexes entre les réponses.",
     "about_page_text_stats": "Nombre de tests créés depuis le 14.06.2024 :",
     "about_page_title": "A propos de ce projet",

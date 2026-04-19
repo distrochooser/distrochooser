@@ -48,15 +48,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <p>
                     <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TEXT"/> <a target="_blank" href="https://codeberg.org/distrochooser/distrochooser">Codeberg</a>/ <a target="_blank" href="https://github.com/distrochooser/distrochooser">GitHub</a> (<LanguageTranslation translation-key="PRIVACY_PAGE_EXTERNAL_LINK"/>)
                 </p>
-                <h1>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_OPENDATA_TITLE"/>
-                </h1>
-                <p>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_OPENDATA_TEXT"/>
-                </p>
-                <code>
-                    GET {{openDataPath }}
-                </code>
             </div>
         </div>
     </main>

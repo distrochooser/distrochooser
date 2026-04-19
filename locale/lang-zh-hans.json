@@ -3,8 +3,6 @@
     "about": "关于$",
     "about_page_license_text": "Distrochooser.de 是开源软件。您可以在$",
     "about_page_license_title": "许可证$ 上找到更多关于许可证的信息。",
-    "about_page_opendata_text": "Distrochooser 提供了一个开放数据访问点，用于自身的统计目的。请注意 HTTP 响应中显示的许可证。$",
-    "about_page_opendata_title": "Distrochooser 和开放数据$",
     "about_page_text": "Distrochooser.de 致力于帮助 Linux 初学者选择适合其需求的 Linux 发行版。<br>给出的结果是基于您的答案的建议。有时，由于答案之间存在复杂的相互作用，结果可能不太合适。$",
     "about_page_text_stats": "自 2024 年 6 月 14 日以来创建的测试数量：$",
     "about_page_title": "关于此项目$",

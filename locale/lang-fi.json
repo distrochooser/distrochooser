@@ -3,8 +3,6 @@
     "about": "Tietoja",
     "about_page_license_text": "Distrochooser.de on avoimen lähdekoodin ohjelmisto. Lisätietoja lisenssistä löydät osoitteesta",
     "about_page_license_title": "Lisenssi",
-    "about_page_opendata_text": "Distrochooser arjoaa avoimen datan käyttöpisteen omia tilastointitarkoituksia varten. Huomaa HTTP-vastauksessa näkyvä lisenssi.",
-    "about_page_opendata_title": "Distrochooser ja avoin data",
     "about_page_text": "distrochooser.de koettaa auttaa Linuxin kanssa aloittelijoita valitsemaan jakelun joka vastaa heidän tarpeitaan.<br>Annetut tulokset ovat ehdotuksia jotka perustuvat vastauksiisi. Joskus käy niinkin että tulokset eivät täsmää, syystä että: vaikeita kanssakäyntejä vastausten kesken.",
     "about_page_text_stats": "14.06.2024 jälkeen luotujen testien määrä:",
     "about_page_title": "Tietoa tästä hankkeesta",

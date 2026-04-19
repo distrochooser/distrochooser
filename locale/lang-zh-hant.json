@@ -3,8 +3,6 @@
     "about": "About",
     "about_page_license_text": "Distrochooser.de is Open Source software. You can find more information about the license on",
     "about_page_license_title": "License",
-    "about_page_opendata_text": "Distrochooser offers an Open Data access point for own statistical purposes. Please note the license displayed in the HTTP response.",
-    "about_page_opendata_title": "Distrochooser and Open Data",
     "about_page_text": "Distrochooser.de attempts to help Linux beginners to choose a Linux Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers.",
     "about_page_text_stats": "Amount of tests created since 14.06.2024:",
     "about_page_title": "About this project",
