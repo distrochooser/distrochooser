@@ -47,6 +47,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -139,6 +140,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -211,6 +213,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -385,6 +388,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -408,6 +412,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -442,6 +447,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "negative"
 
@@ -486,6 +492,7 @@ choosables = [
     "UbuntuMATE",
     "kubuntu",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -510,6 +517,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -543,6 +551,7 @@ choosables = [
     "nixOS",
     "void",
     "artix",
+    "bazzite"
 ]
 how = "positive"
 
@@ -564,6 +573,7 @@ choosables = [
     "UbuntuMATE",
     "kubuntu",
     "popos",
+    "bazzite"
 ]
 how = "positive"
 
@@ -580,7 +590,7 @@ how = "positive"
 # distrochooser::translation::key::has-windows-like-variant-facette-ux-concept-answer-windows-like-description
 [assignment.has-windows-like-variant-facette-ux-concept-answer-windows-like]
 facettes = ["ux-concept-answer-windows-like"]
-choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu"]
+choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu", "bazzite"]
 how = "positive"
 
 
@@ -625,6 +635,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -662,6 +673,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -680,6 +692,7 @@ choosables = [
     "Lubuntu",
     "UbuntuMATE",
     "popos",
+    "bazzite"
 ]
 how = "blocking"
 
@@ -717,6 +730,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
@@ -792,6 +806,7 @@ choosables = [
     "UbuntuMATE",
     "kubuntu",
     "popos",
+    "bazzite"
 ]
 how = "positive"
 
@@ -860,6 +875,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "blocking"
 
@@ -1025,6 +1041,7 @@ choosables = [
     "void",
     "popos",
     "deepin",
+    "bazzite"
 ]
 how = "positive"
 
