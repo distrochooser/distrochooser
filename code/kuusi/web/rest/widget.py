@@ -232,7 +232,10 @@ class ResultListWidgetSerializer(WidgetSerializer):
 
     @extend_schema_field(field=RankedChoosableSerializer(many=True))
     def get_choosables(self, obj: ResultListWidget) -> ReturnList | Any | ReturnDict:
-        session = self.context["session"]
+        session: Session = self.context["session"]
+
+        session.is_ack = True
+        session.save()
         choosables = Choosable.objects.all()
         meta_filter_widgets = MetaFilterWidget.objects.all()
         selections = FacetteSelection.objects.filter(session=session)

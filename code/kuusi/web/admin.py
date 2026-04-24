@@ -20,6 +20,9 @@ from django.contrib import admin
 
 from web.models import MetaFilterValue, Choosable,Feedback, AssignmentFeedback, MetaFilterWidget, LanguageFeedback, Page, FacetteRadioSelectionWidget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionMeta, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking, ChoosableMeta
 
+class SessionAdmin(admin.ModelAdmin):
+    list_display=("started", "language_code", "result_id", "user_agent", "version", "session_origin", "is_ack", )
+
 [admin.site.register(*models) for models in [
     (Choosable,),
     (ChoosableMeta,),
@@ -32,7 +35,7 @@ from web.models import MetaFilterValue, Choosable,Feedback, AssignmentFeedback, 
     (MetaFilterValue,),
     (Facette,),
     (FacetteBehaviour,),
-    (Session,),
+    (Session,SessionAdmin),
     (SessionMeta,),
     (SessionVersion,),
     (FacetteSelection,),

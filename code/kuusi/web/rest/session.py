@@ -49,6 +49,7 @@ from web.models import (
     SessionVersion,
 )
 from web.util import get_translation_haystack, TRANSLATIONS, get_translation
+from django.core.cache import cache
 
 def is_language_present(lang):
     found_lang = False
@@ -185,7 +186,16 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         return meta
 
     def get_test_count(self, _) -> int:
-        return SESSION_NUMBER_OFFSET
+        # Cache the results for the default amount of time
+        # to prevent unwanted database load
+        cache_key = f"test-count"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+
+        count =  SESSION_NUMBER_OFFSET + Session.objects.filter(is_ack=True).count()
+        cache.set(cache_key, count)
+        return count
 
     def get_imprint_data(self, _) -> str:
         return IMPRINT

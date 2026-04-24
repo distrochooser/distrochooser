@@ -59,7 +59,9 @@ class Session(models.Model):
         related_name="session_sessionorigin",
     )
     referrer = models.TextField(blank=True, default=None, null=True)
-    is_ack = models.BooleanField(default=False) # A session will be 'acknowledged' by a JS snippet to exclude curl() calls
+    # This is set at the time when a result is received
+    # Crawler like sessions won't be acknowledged automatically
+    is_ack = models.BooleanField(default=False)
     language_code = models.CharField(max_length=10, default="en", null=False, blank=False)
 
     def get_meta_value(self, key: str) -> str | None:

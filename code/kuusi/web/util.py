@@ -77,7 +77,9 @@ def hot_load_translations(**kwargs):
             for key, value in content.items():
                 TRANSLATIONS[language][key] = value
 
-def get_translation(key: str, language_code: str) -> str:
+def get_translation(key: str | None, language_code: str) -> str:
+    if not key:
+        return "no-translation"
     if language_code not in TRANSLATIONS:
         return key
     
