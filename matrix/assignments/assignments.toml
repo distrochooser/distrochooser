@@ -887,6 +887,16 @@ facettes = ["no-systemd"]
 choosables = ["MXLinux"]
 how = "positive"
 
+[assignment.uses-immutable-design]
+facettes = ["distro-with-immutable-design"]
+choosables = [
+    "Bazzite",
+]
+how = "positive"
+sources = [
+    "Bazzite;https://docs.bazzite.gg/Installing_and_Managing_Software/rpm-ostree/?h=rpm+os#using-rpm-ostree"
+]
+
 
 # distrochooser::translation::en::Updates are fast, but can be unstable
 # distrochooser::translation::key::updates-fast-facette-prefer-fast-description
@@ -1062,13 +1072,18 @@ sources = [
     "Gentoo;https://wiki.gentoo.org/wiki/Project:Council/AI_policy"
 ]
 
+
+# if the user demands that there is no AI used in the distribution
+# this will be interpreted as a blocking issue which
+# cannot be overruled by other assignments
+
 [assignment.has-ai-policy]
 facettes = ["no-ai"]
 choosables = [
     "Fedora",
     "Deepin"
 ]
-how = "negative"
+how = "blocking"
 sources = [
     "Fedora;https://docs.fedoraproject.org/en-US/council/policy/ai-contribution-policy/",
     "Deepin;https://www.theregister.com/2026/01/23/deepin_25010/",

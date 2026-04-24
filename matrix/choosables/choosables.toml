@@ -936,3 +936,23 @@ meta_value = "2020-03-01"
 choosable="asahi"
 meta_name = "archs"
 meta_value = "apple-silicon"
+
+[choosable.bazzite]
+name = "Bazzite"
+bg_color = "#5934cf"
+fg_color = "#e0e0f5"
+
+[[meta]]
+choosable="bazzite"
+meta_name = "age"
+meta_value = "2023-11-01"
+
+[[meta]]
+choosable="bazzite"
+meta_name = "website"
+meta_value = "https://bazzite.gg/"
+
+[[meta]]
+choosable="bazzite"
+meta_name = "archs"
+meta_value = "amd64"

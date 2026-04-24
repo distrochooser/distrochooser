@@ -17,3 +17,5 @@
 [facette.no-systemd]
 topic = "advanced-administration"
 
+[facette.distro-with-immutable-design]
+topic = "advanced-administration"
