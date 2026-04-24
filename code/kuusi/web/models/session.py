@@ -72,7 +72,7 @@ class Session(models.Model):
         return match.meta_value
 
     def __str__(self) -> str:
-        return f"{self.started}: {self.result_id}"
+        return f"{self.result_id}"
     
     @property
     def is_rtl(self):

@@ -22,6 +22,9 @@ class SessionVersion(models.Model):
     catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
     description = models.CharField(null=False, blank=False, max_length=120)
 
+    def __str__(self):
+        return f"{self.catalogue_id}"
+
 class SessionVersionWidget(Widget):
     pass
  
