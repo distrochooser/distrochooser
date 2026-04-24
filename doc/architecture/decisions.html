@@ -591,6 +591,262 @@ The language keys must be reconfigured.</p>
                 </div>
             </div>
             
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse17">18. Assignment localization</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse17" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>18. Assignment localization</h1>
+<p>Date: 2026-01-18</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>The translation process is a high effort task. As a consequency, shortcuts must be taken where available.</p>
+<h2>Decision</h2>
+<p>For assignments, if no assignment text is given, the translation of the first related facettes is taken.</p>
+<h2>Consequences</h2>
+<p>Between assignments and linked facettes, a more strong bond is created. It results in the possbile need to change the relation between facettes and assignments in the future, as currently, a facette only is assigned to one assignment.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse18">19. Annotation workflow</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse18" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>19. Annotation workflow</h1>
+<p>Date: 2026-01-18</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>If a user provides a new distribution, the matrix must be updated.
+The process is quite complex, and there is a management command <code>annotate</code> to help identify missing translation values.</p>
+<h2>Decision</h2>
+<p>No automated processes will be executed (was previously evaluated on https://github.com/distrochooser/distrochooser/pull/396)</p>
+<h2>Consequences</h2>
+<p>The <code>annotate</code> command must be run locally, therefore must be either carried out by a maintainer of the repo or by the user themself.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse19">20. Source Links</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse19" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>20. Source Links</h1>
+<p>Date: 2026-02-01</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>To properly debug assignments to identify mapping errors, the assignments require an option to list it's primary sources.</p>
+<h2>Decision</h2>
+<p>Mappings receive a ˙sources˙ array, which is a flat array containing one of following string structures:</p>
+<p><code>&lt;distro_identifier&gt;;&lt;url&gt;</code></p>
+<p>or</p>
+<p><code>&lt;url&gt;</code></p>
+<p>resulting in:</p>
+<pre><code>[assignment.some-id]
+facettes = [&quot;facette-id&quot;]
+choosables = [
+    &quot;Distro1&quot;,
+    &quot;Distro2&quot;
+]
+how = &quot;negative&quot;
+sources = [
+    &quot;Distro1;https://some-url.tld&quot;
+    &quot;https://some-other-url.tld&quot;
+]
+</code></pre>
+<p>Sources prefixed with a distro ID only get displayed for the given distro while unprefixed sources get displayed for all choosables mapped to this assignment.</p>
+<h2>Consequences</h2>
+<p>The project will now display external links more significantly, possibly requiring further GDPR-related features.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse20">21. Nuxt4</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse20" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>21. Nuxt4</h1>
+<p>Date: 2026-03-20</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>There is a newer Nuxt version (v4)</p>
+<h2>Decision</h2>
+<p>The app is updated to v4.</p>
+<p>The folder structure is kept at the v3 version:</p>
+<p>We will use the old v3 structure for now, which is possible. See https://nuxt.com/docs/4.x/getting-started/upgrade#new-directory-structure</p>
+<blockquote>
+<p>Nuxt now defaults to a new directory structure, with backwards compatibility (so if Nuxt detects you are using the old structure, such as with a top-level app/pages/ directory, this new structure will not apply).</p>
+</blockquote>
+<h2>Consequences</h2>
+<p>Further changes will be applied if needed.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse21">22. Translateable-Deprecation</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse21" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>22. Translateable-Deprecation</h1>
+<p>Date: 2026-04-03</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Models which feature a translation of eat least one field use a <code>Translateable</code> as a basis.
+This base model offers the features to provide the translation.
+This approach worked, but caused an longer load time during runtime, resulting in not-acceptable delays on load.</p>
+<h2>Decision</h2>
+<p>The <code>Translateable</code> approach is deprecated.</p>
+<p>Following steps has been carried out:</p>
+<ul>
+<li>Removal of the <code>Translateable</code> base class</li>
+<li>Merge of the migrations (which will require a reset of the beta)</li>
+<li>Introduction of a individual <code>catalogue_id</code></li>
+<li>Removal of the <code>is_invalidated</code> attribute</li>
+</ul>
+<h2>Consequences</h2>
+<p>The translation feedback mode is disabled for now as it requires a rework. Translation values will be delivered to the client using the translation keys, wher possible.
+Translated values shall not be transferred to the client.</p>
+<p>Additionally, in this context following changes were carried out</p>
+<ul>
+<li>Removal of the opne data endpoints</li>
+<li>Changes in the documentation</li>
+</ul>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse22">23. Meta-Names</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse22" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>23. Meta-Names</h1>
+<p>Date: 2026-04-08</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Choosables have metas in defined categories, such as created (age), countries (&quot;headquarter&quot; location), website, supported languages and architectures.</p>
+<h2>Decision</h2>
+<p>The meta types are defined within <code>ChoosableMeta.MetaName</code>, while the names are defined in uppercase letters. During runtime, they might be referred by lowercase letters.</p>
+<h2>Consequences</h2>
+<p>The &quot;fixed&quot; relation between e. g. &quot;COUNTRIES&quot; and &quot;countries&quot; might cause discrepancies in the code and shall be addressed in the future.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse23">24. country-meta-deprecation</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse23" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>24. country-meta-deprecation</h1>
+<p>Date: 2026-04-08</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Currently, the system has two country related fields:</p>
+<ul>
+<li>Country as in organisational center</li>
+<li>Language as in supported language</li>
+</ul>
+<h2>Decision</h2>
+<p>The Country meta field itself is deprecated and will be rescoped into a meta field describing a operational center.</p>
+<p>The Language meta field won't be changed.</p>
+<h2>Consequences</h2>
+<p>Requires re import of the entire matrix.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse24">25. session-counting</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse24" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>25. session-counting</h1>
+<p>Date: 2026-04-24</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>The project features a &quot;global&quot; test count. The count result consists out of a offset (derived from the sum of all previous versions) and the amount of finished sessions. Parallel operations of versions are not included in the count as &quot;old.distrochooser.de&quot; instances are only kept for a limited time after release switch.</p>
+<p>As the site is crawled, there must be some distinguishing done to separate &quot;visitors&quot; from &quot;results&quot;. There is no persistend tracking and/ or canvas fingerprinting (or similar) done. Returning users will be considered as a new visitor and/ or new result, if requested.</p>
+<h2>Decision</h2>
+<ul>
+<li>Sessions (as in <code>.all().count()</code>) are considered as visitors</li>
+<li>Sessions (as in <code>.exclude(is_ack=True).count()</code>) are considered as results</li>
+</ul>
+<h2>Consequences</h2>
+<p>A session is only considered as a result when a list of choosables was delivered.
+During generation of the result list, the <code>is_ack</code>-flag is set.</p>
+</div>
+                </div>
+            </div>
+            
         </div>
         <footer>
             Generated with &lt;3 using ADR Viewer
