@@ -14,22 +14,15 @@ Please note that there will be no discussions with deleted accounts (on PR/ Issu
 
 Following documents are important for any contribution in the distrochooser repository
 
-👉 [Code of conduct](https://github.com/distrochooser/distrochooser/blob/master/CODE_OF_CONDUCT.md)
+👉 [Code of conduct](CODE_OF_CONDUCT.md)
 
-👉 [License](https://github.com/distrochooser/distrochooser/blob/master/LICENSE)
+👉 [License](LICENSE)
 
 # Contributing to the code 💻
 
-This version of distrochooser consists out of a single monolith, based in Django 4.2.x.
+The project is based on a "classical" client server application. The client utilizes a Nuxt.js based approach, while the backend is based on Django.
 
-# Contributing to the decision matrix ✅
-
-You can find an in-depth guide in the file HOW-TO-MAP.md
-
-
-# Translations
-
-A translation guide can be found in the file doc/TRANSLATE.md
+You can find detailed information on the project structure in the docs/ folder!
 
 Thank you for your support 😁
 
