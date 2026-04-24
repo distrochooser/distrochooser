@@ -1072,7 +1072,6 @@ how = "negative"
 sources = [
     "Fedora;https://docs.fedoraproject.org/en-US/council/policy/ai-contribution-policy/",
     "Deepin;https://www.theregister.com/2026/01/23/deepin_25010/",
-    "https://this-is-for-all.tld"
 ]
 
 [behaviour.gaming-usage-0]

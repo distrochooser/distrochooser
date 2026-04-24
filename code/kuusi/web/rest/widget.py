@@ -125,7 +125,7 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
     def _translate_countries(self, country: str) -> str:
         got = pycountry.countries.get(alpha_2=country)
         if got: 
-           return f"{got.flag} {got.name}"
+           return f"{got.name} {got.flag}"
         return country
 
     def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
@@ -151,7 +151,7 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
                         name = option_names[key](element) if key in option_names else element
                         result[element] = name
             
-            result = dict(sorted(result.items()))
+            result = dict(sorted(result.items(), key=lambda x: x[1]))
             results[key] = result
         return results
 
