@@ -28,9 +28,10 @@ def create_assignments(
     get_or_default: Callable[[str, Dict], Any], haystack: Dict
 ) -> List[FacetteAssignment]:
     got = []
+    catalogue_ids = []
     for element, data in haystack.items():        
         old_assignment = FacetteAssignment.objects.filter(catalogue_id=element)
-
+        catalogue_ids.append(element)
         # Create a source string
         sources_str = None
         if "sources" in data:
@@ -59,5 +60,10 @@ def create_assignments(
 
         new_assignment.save()
         got.append(new_assignment)
+    
+    # Get rid of assignments not processed above
+    # These are considered orphans
+    orphans = FacetteAssignment.objects.exclude(catalogue_id__in=catalogue_ids)
+    orphans.delete()
 
     return got
