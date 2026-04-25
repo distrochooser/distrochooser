@@ -34,6 +34,7 @@
     "btn_unmark": "Unmark this question",
     "built-for-anonymization-facette-privacy-usage-description": "Сделан с целью анонимизации",
     "built-for-enterprise-facette-gaming-usage-description": "Первостепенная цель - корпоративное пользование",
+    "cachyos-description": "CachyOS — это оптимизированный под высокую производительность дистрибутив Linux для повседневного использования.",
     "commandline-setup-description": "Я хочу выбирать настройки сам",
     "configuration-facettes-shell-facette-many-choices-gui-description": "Установка основана на мастере установки с графическим интерфейсом пользователя",
     "conflicting_answer": "\u001b[3~Эти ответы могут противоречить",

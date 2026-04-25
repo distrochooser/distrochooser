@@ -956,3 +956,23 @@ meta_value = "https://bazzite.gg/"
 choosable="bazzite"
 meta_name = "archs"
 meta_value = "amd64"
+
+[choosable.cachyos]
+name = "CachyOS"
+bg_color = "#40bfbf"
+fg_color = "#020202"
+
+[[meta]]
+choosable="cachyos"
+meta_name = "age"
+meta_value = "2024-04-01"
+
+[[meta]]
+choosable="cachyos"
+meta_name = "website"
+meta_value = "https://cachyos.org/"
+
+[[meta]]
+choosable="cachyos"
+meta_name = "archs"
+meta_value = "amd64"

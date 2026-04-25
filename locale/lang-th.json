@@ -36,6 +36,7 @@
     "btn_unmark": "เอาเครื่องหมายออก",
     "built-for-anonymization-facette-privacy-usage-description": "สร้างขึ้นเพื่อวัตถุประสงค์ในการปกปิดตัวตน",
     "built-for-enterprise-facette-gaming-usage-description": "เป้าหมายหลักคือการใช้งานในองค์กร",
+    "cachyos-description": "CachyOS เป็นระบบปฏิบัติการ Linux-Distribution ที่ใช้งานร่วมกันได้",
     "commandline-setup-description": "ฉันต้องการเลือกการตั้งค่าต่างๆ ด้วยตัวเอง",
     "configuration-facettes-shell-facette-many-choices-gui-description": "การติดตั้งใช้ตัวช่วยติดตั้ง (Wizard) พร้อมส่วนติดต่อผู้ใช้แบบกราฟิก",
     "conflicting_answer": "คำตอบนี้อาจขัดแย้งกัน",
