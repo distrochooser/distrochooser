@@ -236,7 +236,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
 
         session.is_ack = True
         session.save()
-        choosables = Choosable.objects.all()
+        choosables = Choosable.objects.all().order_by("name")
         meta_filter_widgets = MetaFilterWidget.objects.all()
         selections = FacetteSelection.objects.filter(session=session)
         assignments_results = {}
