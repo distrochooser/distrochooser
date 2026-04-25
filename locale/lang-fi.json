@@ -20,6 +20,7 @@
     "arch-description": "Arch on rullaavan mallin jakelu jonka lähtökohta on perinteinen yksinkertaisuus. Käyttäjä rakentaa sen usein aivan alusta itse. Pääteosaamista vaaditaan paljon",
     "archs": "Tuetut CPU-arkkitehtuurit",
     "artix-description": "Artix on Arch Linuxiin perustuva jakelu, joka voi käyttää useita init-järjestelmiä systemd:n lisäksi, esimerkiksi OpenRC:ää",
+    "asahi-description": "Asahi Linux on Apple Silicon -pohjaisille järjestelmille kehitetty Linux-jakelu.",
     "avoids-systemd-facette-no-systemd-description": "Ei sisällä systemd:tä",
     "bazzite-description": "Bazzite on pelikäyttöön ja jokapäiväiseen käyttöön optimoitu jakelu.",
     "beginner-knowledge-facette-beginner-usage-description": "Soveltuu aloittelijoille",

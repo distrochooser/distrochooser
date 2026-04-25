@@ -20,6 +20,7 @@
     "arch-description": "Το Arch είναι μια διανομή κυλιόμενων εκδόσεων βασισμένη στην αρχή KISS",
     "archs": "Υποστηριζόμενες αρχιτεκτονικές CPU",
     "artix-description": "Το Artix είναι μια διανομή βασισμένη στο Arch Linux η οποία μπορεί να χρησιμοποιήσει διάφορα συστήματα init εκτός από το systemd, για παράδειγμα το OpenRC",
+    "asahi-description": "Το Asahi Linux είναι μια διανομή Linux που έχει αναπτυχθεί για συστήματα με Apple Silicon.",
     "avoids-systemd-facette-no-systemd-description": "Αποφεύγει το systemd",
     "bazzite-description": "Το Bazzite είναι μια διανομή που έχει βελτιστοποιηθεί για gaming και καθημερινή χρήση.",
     "beginner-knowledge-facette-beginner-usage-description": "Κατάλληλο για αρχάριους",

@@ -21,6 +21,7 @@
     "archs": "Supported CPU architectures",
     "archs-apple-silicon": "Apple Silicon",
     "artix-description": "Artix is an Arch Linux based Linux distribution which can use several init systems besides systemd, for example OpenRC",
+    "asahi-description": "Asahi Linux is a Linux distribution designed for systems with Apple Silicon.",
     "asahi-still-under-development-description": "The Asahi Linux project is still under development. Some features might still be not available.",
     "avoids-systemd-facette-no-systemd-description": "Avoids systemd",
     "bazzite-description": "Bazzite is a Distribution optimized for gaming and everyday use.",

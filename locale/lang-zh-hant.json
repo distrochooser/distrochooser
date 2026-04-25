@@ -20,6 +20,7 @@
     "arch-description": "Arch is a rolling release Linux distribution based on the KISS principle",
     "archs": "支援的 CPU 架構",
     "artix-description": "Artix is an Arch Linux based Linux distribution which can use several init systems besides systemd, for example OpenRC",
+    "asahi-description": "Asahi Linux 是一款專為搭載 Apple Silicon 的系統所開發的 Linux 發行版。",
     "avoids-systemd-facette-no-systemd-description": "Avoids systemd",
     "bazzite-description": "Bazzite 是一款專為遊戲和日常使用所優化的發行版。",
     "beginner-knowledge-facette-beginner-usage-description": "Suitable for beginners",

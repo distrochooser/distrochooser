@@ -20,6 +20,7 @@
     "arch-description": "Arch adalah distribusi rilis bergilir berdasarkan prinsip KISS",
     "archs": "Arsitektur CPU yang didukung",
     "artix-description": "Artix adalah distribusi berbasis Arch Linux yang dapat menggunakan berbagai macam sistem init selain systemd, contohnya OpenRC",
+    "asahi-description": "Asahi Linux adalah distribusi Linux yang dikembangkan untuk sistem dengan Apple Silicon.",
     "avoids-systemd-facette-no-systemd-description": "Menghindari systemd",
     "bazzite-description": "Bazzite adalah distribusi yang dioptimalkan untuk bermain game dan penggunaan sehari-hari.",
     "beginner-knowledge-facette-beginner-usage-description": "Cocok untuk para pemula",

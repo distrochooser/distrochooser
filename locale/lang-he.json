@@ -20,6 +20,7 @@
     "arch-description": "‏Arch היא הפצה מתגלגלת המבוססת על עיקרון KISS (תשאירו אותה פשוטה, טיפשה)",
     "archs": "ארכיטקטורות מעבד נתמכות",
     "artix-description": "‏Artix היא הפצה מבוססת Arch Linux שיכולה להשתמש במספר מערכות init מלבד systemd, למשל OpenRC",
+    "asahi-description": "Asahi Linux היא הפצת לינוקס שפותחה עבור מערכות עם Apple Silicon.",
     "avoids-systemd-facette-no-systemd-description": "ללא systemd",
     "bazzite-description": "Bazzite היא הפצה המותאמת למשחקים ולשימוש יומיומי.",
     "beginner-knowledge-facette-beginner-usage-description": "מתאימה למתחילים",

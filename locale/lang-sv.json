@@ -20,6 +20,7 @@
     "arch-description": "Arch är en rullande releasedistribution som bygger på KISS-principen",
     "archs": "Stödda CPU-arkitekturer",
     "artix-description": "Artix är en Arch Linux-baserad distribution som kan använda flera init-system förutom systemd, till exempel OpenRC",
+    "asahi-description": "Asahi Linux är en Linux-distribution som har utvecklats för system med Apple Silicon.",
     "avoids-systemd-facette-no-systemd-description": "Undviker systemd",
     "bazzite-description": "Bazzite är en distribution som är optimerad för spel och vardagsbruk.",
     "beginner-knowledge-facette-beginner-usage-description": "Lämplig för nybörjare",

@@ -20,6 +20,7 @@
     "arch-description": "Arch は KISS 原則に基づくローリングリリース ディストリビューションです。",
     "archs": "サポート対象のCPUアーキテクチャ",
     "artix-description": "Artix は、systemd に加えて、OpenRC など、いくつかの init システムを使用できます。",
+    "asahi-description": "Asahi Linuxは、Apple Silicon搭載システム向けに開発されたLinuxディストリビューションです。",
     "avoids-systemd-facette-no-systemd-description": "systemdを回避する",
     "bazzite-description": "Bazziteは、ゲームや日常的な使用に最適化されたディストリビューションです。",
     "beginner-knowledge-facette-beginner-usage-description": "初心者向け",

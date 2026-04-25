@@ -21,6 +21,7 @@
     "archs": "สถาปัตยกรรม CPU ที่รองรับ",
     "archs-apple-silicon": "Apple Silicon",
     "artix-description": "Artix เป็น Linux distribution ที่พัฒนาต่อจาก Arch Linux ซึ่งสามารถใช้ระบบ init ได้หลายแบบนอกจาก systemd เช่น OpenRC",
+    "asahi-description": "Asahi Linux เป็นระบบเดียวกับ Apple-Silicon ที่มาพร้อม Linux-Distribution",
     "asahi-still-under-development-description": "โครงการ Asahi Linux ยังอยู่ระหว่างการพัฒนา ฟีเจอร์บางอย่างอาจยังไม่พร้อมใช้งาน",
     "avoids-systemd-facette-no-systemd-description": "หลีกเลี่ยงการใช้ systemd",
     "bazzite-description": "Bazzite เป็นดิสทริบิวชันที่ได้รับการปรับแต่งมาเพื่อการเล่นเกมและการใช้งานทั่วไป",

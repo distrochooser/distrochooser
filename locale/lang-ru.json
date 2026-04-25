@@ -20,6 +20,7 @@
     "arch-description": "Arch — дистрибутив, основанный на rolling release и на принципе KISS",
     "archs": "Поддерживаемые архитектуры процессоров",
     "artix-description": "Artix — это дистрибутив на основе Arch Linux, который может использовать несколько систем инициализации помимо systemd, например OpenRC.",
+    "asahi-description": "Asahi Linux — это дистрибутив Linux, разработанный для систем на базе Apple Silicon.",
     "avoids-systemd-facette-no-systemd-description": "Избегает systemd",
     "bazzite-description": "Bazzite — это дистрибутив, оптимизированный для игр и повседневного использования.",
     "beginner-knowledge-facette-beginner-usage-description": "Подходит для начинающих",

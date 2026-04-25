@@ -20,6 +20,7 @@
     "arch-description": "Arch 是一个基于 KISS 原则的滚动发布 Linux 发行版$",
     "archs": "支持的CPU架构",
     "artix-description": "Artix 是一个基于 Arch Linux 的 Linux 发行版，除了 systemd 之外，它还可以使用多个 init 系统，例如 OpenRC$",
+    "asahi-description": "Asahi Linux 是一款专为搭载 Apple Silicon 的系统开发的 Linux 发行版。",
     "avoids-systemd-facette-no-systemd-description": "避免使用 systemd$",
     "bazzite-description": "Bazzite 是一款专为游戏和日常使用优化的发行版。",
     "beginner-knowledge-facette-beginner-usage-description": "适合初学者$",

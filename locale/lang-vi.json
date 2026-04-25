@@ -20,6 +20,7 @@
     "arch-description": "Arch là bản phân phối phát hành luân phiên dựa trên nguyên tắc KISS",
     "archs": "Các kiến trúc CPU được hỗ trợ",
     "artix-description": "Artix là bản phân phối dựa trên Arch Linux có thể sử dụng một số hệ thống init bên cạnh systemd, ví dụ OpenRC",
+    "asahi-description": "Asahi Linux là một bản phân phối Linux được phát triển dành cho các hệ thống sử dụng chip Apple Silicon.",
     "avoids-systemd-facette-no-systemd-description": "Tránh systemd",
     "bazzite-description": "Bazzite là một bản phân phối được tối ưu hóa cho việc chơi game và sử dụng hàng ngày.",
     "beginner-knowledge-facette-beginner-usage-description": "Thích hợp cho người mới bắt đầu",

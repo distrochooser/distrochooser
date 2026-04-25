@@ -20,6 +20,7 @@
     "arch-description": "Arch ist eine Rolling-Release Distribution, die dem KISS-Prinzip folgt (\"Keep it Simple and Stable\")",
     "archs": "Unterstützte CPU-Architekturen",
     "artix-description": "Artix ist eine auf Arch Linux basierte Distribution, die neben systemd auch OpenRC einsetzen kann.",
+    "asahi-description": "Asahi Linux ist eine für Systeme mit Apple-Silicon entwickelte Linux-Distribution.",
     "avoids-systemd-facette-no-systemd-description": "Vermeidet die Nutzung von systemd",
     "bazzite-description": "Bazzite ist eine Distribution, die für Spiele und den täglichen Gebrauch optimiert ist.",
     "beginner-knowledge-facette-beginner-usage-description": "Für Anfänger geeignet",
