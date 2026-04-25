@@ -975,4 +975,4 @@ meta_value = "https://cachyos.org/"
 [[meta]]
 choosable="cachyos"
 meta_name = "archs"
-meta_value = "amd64"
+meta_value = "x86-64-v3,x86-64-v4"
