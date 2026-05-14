@@ -82,7 +82,7 @@
     "has-zorin-lite-version-facette-no64bit-description": "Has a 'Zorin Lite' version for older computers",
     "help-page-text": "Some Linux distributions prefer articles in wikis for troubleshooting. What do you prefer?",
     "help-page-title": "Source for help",
-    "ideology-page-help": "Free licenses allow the user to modify, redistribute and use the software for any purpose. There are situations where a Linux distribution has to use non-free software, for example for hardware drivers. Non-free software does not distribute its sourcecode and modifications are not allowed.",
+    "ideology-page-help": "The term \"free licences\" should not be confused with the purchase price. Here, \"free licences\" refer to the concept whereby users are permitted to use, modify and redistribute the software \"freely\" for any purpose. Non-free licences restrict these freedoms, but are used, for example, for certain hardware drivers (such as those for graphics cards).",
     "ideology-page-text": "The (license) ideology of a Linux distribution is a contentious debate. There are Linux distributions using mostly \"free-licenses\", others also use \"non-free\" software.",
     "ideology-page-title": "Distributions: Ideology",
     "impaired-view-usage-description": "The user is visually impaired",

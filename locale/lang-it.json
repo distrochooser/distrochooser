@@ -78,7 +78,7 @@
     "has-zorin-lite-version-facette-no64bit-description": "Ha una versione 'Zorin Lite' per computer più vecchi",
     "help-page-text": "Alcune distribuzioni Linux preferiscono gli articoli nei wiki per la risoluzione dei problemi. Voi cosa preferite?",
     "help-page-title": "Aiuto",
-    "ideology-page-help": "Le licenze libere consentono all'utente di modificare, ridistribuire e utilizzare il software per qualsiasi scopo. Esistono situazioni in cui una distribuzione deve utilizzare software non-libero, ad esempio per i driver hardware. Il software non-libero non distribuisce il codice sorgente e non sono consentite modifiche.",
+    "ideology-page-help": "Il termine «licenze libere» non va confuso con il prezzo di acquisto. In questo contesto, per «licenze libere» si intende il concetto secondo cui agli utenti è consentito utilizzare, modificare e ridistribuire il software «liberamente» per qualsiasi scopo. Le licenze non libere limitano queste libertà, ma vengono utilizzate, ad esempio, per alcuni driver hardware (come quelli delle schede grafiche).",
     "ideology-page-text": "L'ideologia (della licenza) di una distribuzione è un dibattito continuo. Ci sono distribuzioni che usano principalmente \"licenze-libere\", altre usano anche software \"non-libero\".",
     "ideology-page-title": "Distribuzioni: Ideologia",
     "impaired-view-usage-description": "L'utente ha una disabilità visiva",

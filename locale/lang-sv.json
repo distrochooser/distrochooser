@@ -78,7 +78,7 @@
     "has-zorin-lite-version-facette-no64bit-description": "Har en \"Zorin Lite\" version för äldre datorer",
     "help-page-text": "Vissa Linuxdistributioner föredrar artiklar i wikis för felsökning. Vad föredrar du?",
     "help-page-title": "Källa för hjälp",
-    "ideology-page-help": "Gratis licenser tillåter användaren att modifiera, omdistribuera och använda programvaran för alla ändamål. Det finns situationer där en distribution måste använda icke-fri programvara, till exempel för hårdvarudrivrutiner. Icke-fri mjukvara distribuerar inte sin källkod och ändringar är inte tillåtna.",
+    "ideology-page-help": "Begreppet ”fria licenser” ska inte förväxlas med inköpspriset. Här avser ”fria licenser” principen att användare har rätt att använda, ändra och sprida programvaran ”fritt” för vilket ändamål som helst. Icke-fria licenser begränsar dessa friheter, men används till exempel för vissa hårdvarudrivrutiner (som de för grafikkort).",
     "ideology-page-text": "En distributions (licens)ideologi är en omtvistad debatt. Det finns distributioner som mest använder \"gratis-licenser\", andra använder också \"icke-fri\" programvara.",
     "ideology-page-title": "Distributioner: Ideologi",
     "impaired-view-usage-description": "Användaren är synskadad",

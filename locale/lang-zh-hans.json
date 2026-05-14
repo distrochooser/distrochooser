@@ -78,7 +78,7 @@
     "has-zorin-lite-version-facette-no64bit-description": "具有适用于旧电脑的“Zorin Lite”版本$",
     "help-page-text": "一些 Linux 发行版更喜欢使用 Wiki 中的文章进行故障排除。您更喜欢哪个版本？$",
     "help-page-title": "帮助来源$",
-    "ideology-page-help": "免费许可证允许用户修改、重新分发和将软件用于任何目的。在某些情况下，Linux 发行版必须使用非自由软件，例如硬件驱动程序。非自由软件不分发其源代码，也不允许修改。$",
+    "ideology-page-help": "“自由许可证”一词不应与购买价格混为一谈。此处的“自由许可证”指的是允许用户出于任何目的“自由”地使用、修改和再分发软件的概念。非自由许可证则限制了这些自由，但仍被用于某些硬件驱动程序（例如显卡驱动程序）。",
     "ideology-page-text": "Linux 发行版的（许可证）理念一直存在争议。有些 Linux 发行版主要使用“自由许可证”，而有些发行版也使用“非自由”软件。$",
     "ideology-page-title": "发行版：理念$",
     "impaired-view-usage-description": "用户有视力障碍$",
