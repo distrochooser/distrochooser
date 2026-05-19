@@ -14,7 +14,7 @@ drf-nested-routers==0.94.2
 drf-spectacular==0.28.0
 drf-spectacular-sidecar==2025.9.1
 gunicorn==23.0.0
-idna==3.10
+idna==3.15
 inflection==0.5.1
 jsonschema==4.25.1
 jsonschema-specifications==2025.4.1
