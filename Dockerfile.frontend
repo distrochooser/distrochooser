@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-FROM node:23-slim as build-stage
+FROM node:24-slim as build-stage
 ARG NUXT_PUBLIC_BASE_PATH="http://localhost:8000"
 ENV NUXT_PUBLIC_BASE_PATH=$NUXT_PUBLIC_BASE_PATH
 RUN apt update && apt-get -y  install  default-jre
@@ -25,7 +25,7 @@ RUN yarn install
 RUN yarn run sdk-build-deployment && yarn build 
 
 
-FROM node:23-slim as run-stage
+FROM node:24-slim as run-stage
 ARG NUXT_PUBLIC_BASE_PATH="http://localhost:8000"
 ENV NUXT_PUBLIC_BASE_PATH=$NUXT_PUBLIC_BASE_PATH
 
