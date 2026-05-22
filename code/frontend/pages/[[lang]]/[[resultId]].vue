@@ -22,8 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <PageMeta />
     </Head>
     <NuxtRouteAnnouncer />
-    <main role="main" :class="{'container': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl}">
-      <MainNavigation/>
+    <main role="main" :class="{ 'container': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
+      <MainNavigation />
       <div class="page mt-3  position-relative top-40">
         <div class="row text-center">
           <div class="col-4 d-none d-sm-block">
@@ -57,18 +57,20 @@ import Navigation from "../../components/Navigation.vue";
 
 const router = useRoute();
 const lang: string = router.params.lang as string;
-if (lang == "") {
-  // TODO: Make this more intelligent
-  navigateTo("/en", {
-    redirectCode: 301,
-    replace: true,
-  });
-}
+
 const id: string | null = (router.params.resultId as string) ?? null;
 
 const sessionStore = useSessionStore();
 onMounted(async () => {
-  await sessionStore.createSession(lang, id);
+  if (!lang) {
+    // TODO: Make this more intelligent
+    navigateTo("/en", {
+      redirectCode: 301,
+      replace: true,
+    });
+  } else {
+    await sessionStore.createSession(lang, id);
+  }
 });
 </script>
 <style lang="scss" scoped>
