@@ -178,6 +178,7 @@
     "rhel-description": "Red Hat Enterprise Linux (RHEL) on yhtiöille ja yrityksille suunnattu hyvin vakaa jakelu. Kehittäjäryhmä on vapauden nimeen vannova Red Hat",
     "rocky-description": "Rocky Linux on avoimen lähdekoodin jakelu, jonka tavoitteena on olla 100% yhteensopiva Red Hat Enterprise Linuxin (RHEL) kanssa.",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Ohjelmien ajo tapahtuu eristetysti",
+    "save_feedback": "Tallenna palaute",
     "scenario-page-help": "Auta meitä asettamalla haluamasi Linux-käytön laajuus.",
     "scenario-page-text": "Jotkut jakelut ovat tehdyt erityisiin käyttötarkoituksiin, toiset taas päivittäiseen käyttöön. Mitä luulisit että tarvitsisit?",
     "scenario-page-title": "Ohjelmistot: käyttökohta",

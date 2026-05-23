@@ -90,6 +90,9 @@ export const useSessionStore = defineStore('websiteStore', {
         }
     },
     actions: {
+        resetGivenFeedbackInStore() {
+            this.givenFeedback = ""
+        },
         async updateGivenFeedback() {
             await this.sessionApi.sessionGivenfeedbackCreate({
                 sessionPk: this.session.resultId,

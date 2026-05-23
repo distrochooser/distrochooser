@@ -178,6 +178,7 @@
     "rhel-description": "Red hat Enterprise Linux (RHEL) — корпоративный и ориентированный на стабильность дистрибутив",
     "rocky-description": "Rocky Linux — это дистрибутив с открытым исходным кодом, который должен быть на 100% совместим с Red Hat Enterprise Linux (RHEL).",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Запуск программ происходит в изолированных средах",
+    "save_feedback": "Сохранить отзыв",
     "scenario-page-help": "Помогите нам, установив желаемую область использования Linux.",
     "scenario-page-text": "Некоторые дистрибутивы созданы для специальных нужд, а некоторые - для повседневного использования. Что нужно Вам?",
     "scenario-page-title": "ПО: сценарий использования",

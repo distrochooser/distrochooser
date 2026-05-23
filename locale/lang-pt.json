@@ -178,6 +178,7 @@
     "rhel-description": "Red Hat Enterprise Linux (RHEL) é uma distribuição focada em empresas focada e estabilidade",
     "rocky-description": "Rocky Linux é uma distribuição de código aberto destinada a ser 100% compatível com Red Hat Enterprise Linux (RHEL)",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "A execução do software ocorre em ambientes isolados",
+    "save_feedback": "Guardar comentários",
     "scenario-page-help": "Ajude-nos a definir um âmbito para a sua utilização desejada do Linux.",
     "scenario-page-text": "Algumas distribuições tem um propósito especial, algumas para uso diário. Qual é a sua necessidade?",
     "scenario-page-title": "Software: caso de uso",

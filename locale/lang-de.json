@@ -178,6 +178,7 @@
     "rhel-description": "Red hat Enterprise Linux (RHEL) ist eine für den betrieblichen Einsatz optimierte Distribution",
     "rocky-description": "Als Ziel versucht Rocky Linux eine mit RHEL kompatible Distribution auf Basis freier Software bereitzustellen",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Führt Programme per Standard in Isolation aus",
+    "save_feedback": "Feedback speichern",
     "scenario-page-help": "Helfen Sie uns, indem Sie den Umfang Ihrer gewünschten Linux-Nutzung festlegen.",
     "scenario-page-text": "Es gibt Distributionen für bestimmte Einsatzzwecke, andere sind eher allgemeiner Natur. Was benötige ich?",
     "scenario-page-title": "Software: Einsatzzweck",

@@ -178,6 +178,7 @@
     "rhel-description": "Red Hat Enterprise Linux (RHEL) 是一款注重企业级和稳定性的 Linux 发行版$",
     "rocky-description": "Rocky Linux 是一款开源 Linux 发行版，旨在与 Red Hat Enterprise Linux (RHEL) 100% 兼容$",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "软件在隔离环境中运行$",
+    "save_feedback": "保存反馈",
     "scenario-page-help": "请帮助我们设定您所需的 Linux 使用范围。$",
     "scenario-page-text": "有些 Linux 发行版是为特殊用途而设计的，有些则适合日常使用。您需要什么？$",
     "scenario-page-title": "软件：用例$",

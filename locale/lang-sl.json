@@ -178,6 +178,7 @@
     "rhel-description": "Red Hat Enterprise Linux (RHEL) je distribucija Linuxa, osredotočena na podjetja in stabilnost",
     "rocky-description": "Rocky Linux je odprtokodna distribucija Linuxa, ki je 100-odstotno združljiva z Red Hat Enterprise Linuxom (RHEL)",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Izvajanje programske opreme poteka v izoliranih okoljih",
+    "save_feedback": "Shrani povratne informacije",
     "scenario-page-help": "Pomagajte nam tako, da nastavite obseg glede na želeno uporabo Linuxa.",
     "scenario-page-text": "Nekatere distribucije Linuxa so narejene za poseben namen, nekatere pa za vsakodnevno uporabo. Kaj potrebujete?",
     "scenario-page-title": "Programska oprema: Namen uporabe",

@@ -178,6 +178,7 @@
     "rhel-description": "Το Red Hat Enterprise Linux (RHEL) είναι μια διανομή που εστιάζει στην επιχείρηση και τη σταθερότητα.",
     "rocky-description": "Το Rocky Linux είναι μια διανομή ανοιχτού κώδικα που στοχεύει να είναι 100% συμβατή με το Red Hat Enterprise Linux (RHEL)",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Η εκτέλεση του λογισμικού γίνεται σε απομονωμένα περιβάλλοντα",
+    "save_feedback": "Αποθήκευση σχολίων",
     "scenario-page-help": "Βοηθήστε μας ορίζοντας ένα εύρος για την επιθυμητή χρήση Linux.",
     "scenario-page-text": "Ορισμένες διανομές γίνονται για ειδικό σκοπό, άλλες για καθημερινή χρήση. Τι χρειάζεστε;",
     "scenario-page-title": "Λογισμικό: Χρήση",

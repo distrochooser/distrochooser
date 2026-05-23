@@ -178,6 +178,7 @@
     "rhel-description": "Red hat Enterprise Linux (RHEL), kurumsal ve istikrar odaklı bir dağıtımdır",
     "rocky-description": "Rocky Linux, Red Hat Enterprise Linux (RHEL) ile %100 uyumlu olması hedeflenen açık kaynaklı bir dağıtımdır",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Yazılım yürütme izole ortamlarda gerçekleşir",
+    "save_feedback": "Geri bildirimi kaydet",
     "scenario-page-help": "İstediğiniz Linux kullanımına bir kapsam belirleyerek bize yardımcı olun.",
     "scenario-page-text": "Bazı dağıtımlar özel bir amaç için yapılır, bazılarıysa günlük kullanım için. Size ne gerekiyor?",
     "scenario-page-title": "Yazılım: Kullanım amacınız",

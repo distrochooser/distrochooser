@@ -6,19 +6,25 @@
                     <div class="card">
                         <div class="card-header">
                             <LanguageTranslation translation-key="GIVE_YOUR_FEEDBACK" />
+                        </div>
+                        <form class="card-body">
+                            <div class="mb-3">
+                                <label for="feedbacktext" class="form-label">
+                                    <LanguageTranslation translation-key="give_your_feedback" />
+                                </label>
+                                <textarea class="form-control" rows="5" id="feedbacktext" v-model="givenFeedback"
+                                    v-on:change="store.resetGivenFeedbackInStore()"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" v-on:click.prevent="updateFeedback">
+                                <LanguageTranslation translation-key="SAVE_FEEDBACK" />
+                            </button>
+                            <span class="ms-2 badge  rounded-pill text-bg-success text-light"
+                                v-if="store.givenFeedback !== null && store.givenFeedback !== ''">
 
-                            <span class="ms-2 badge  rounded-pill text-bg-success text-light" v-if="store.givenFeedback !== null && store.givenFeedback !== ''">
+                                <Icon name="ion:ios-save" class="align-bottom me-1"></Icon>
                                 <LanguageTranslation translation-key="THANK_YOU_FOR_YOUR_FEEDBACK" />
                             </span>
-                        </div>
-                        <ul class="list-group list-group-flush mt-2">
-                            <li class="list-group-item">
-
-                                <div class="mb-3">
-                                    <textarea class="form-control"  rows="5" v-model="givenFeedback" @change="updateFeedback"></textarea>
-                                </div>
-                            </li>
-                        </ul>
+                        </form>
                     </div>
                 </div>
             </div>
