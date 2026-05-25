@@ -64,6 +64,9 @@ class Session(models.Model):
     is_ack = models.BooleanField(default=False)
     language_code = models.CharField(max_length=10, default="en", null=False, blank=False)
 
+    # to mark session imported from previous versions
+    imported_from_session = models.CharField(max_length=10, default=None, null=True, blank=True)
+
     def get_meta_value(self, key: str) -> str | None:
         matches = SessionMeta.objects.filter(session=self, meta_key=key)
         if matches.count() < 1:
