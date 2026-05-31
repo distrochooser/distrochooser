@@ -281,16 +281,11 @@ export const useSessionStore = defineStore('websiteStore', {
             }
         },
         async createSession(lang: string, resultId?: string) {
-            let isOldResult = false;
             const userAgent = window.navigator.userAgent
             const referrer = document.referrer
-            if (resultId && resultId.startsWith("d5")) {
-                isOldResult = true;
-                this.previousVersionResultId = resultId
-            }
             this.session = await this.sessionApi.sessionCreate(
                 {
-                    resultId: isOldResult ? null : resultId,
+                    resultId: resultId,
                     lang: lang,
                     userAgent: userAgent,
                     referrer: referrer
@@ -305,11 +300,16 @@ export const useSessionStore = defineStore('websiteStore', {
                 this.selectPage(-1)
             }
             // if there was a resultId given -> update selections from it
-            if (!isOldResult && resultId) {
+            if (resultId) {
                 this.facetteSelections = await this.sessionApi.sessionFacetteselectionList({
                     sessionPk: this.session.resultId
                 })
                 this.getMetaValues();
+            }
+
+            /* Only display the remark about session if actually needed */
+            if (this.session.importedFromSession) {
+                this.previousVersionResultId = resultId
             }
 
             // Load translation feedback
