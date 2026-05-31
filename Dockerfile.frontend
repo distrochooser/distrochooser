@@ -18,7 +18,7 @@
 FROM node:24-slim as build-stage
 ARG NUXT_PUBLIC_BASE_PATH="http://localhost:8000"
 ENV NUXT_PUBLIC_BASE_PATH=$NUXT_PUBLIC_BASE_PATH
-RUN apt update && apt-get -y  install  default-jre
+RUN apt update && apt-get -y  install  default-jre-headless
 ADD code/frontend /frontend
 WORKDIR /frontend
 RUN yarn install
