@@ -31,7 +31,8 @@ from web.models import FacetteBehaviour, FacetteSelection, Session
 class FacetteBehaviourSerializer(serializers.ModelSerializer):
     class Meta:
         model = FacetteBehaviour
-        fields = ('affected_objects', 'affected_subjects', )
+        fields = ('affected_objects', 'affected_subjects', 'catalogue_id')
+        depth = 1
     
     
 class FacetteBehaviourViewSet(ListModelMixin, GenericViewSet):
@@ -59,11 +60,11 @@ class FacetteBehaviourViewSet(ListModelMixin, GenericViewSet):
 
                 behaviour: FacetteBehaviour
                 for behaviour in behaviours:
-                    result = behaviour.is_true(facette, active_facette_selections)
+                    if behaviour not in results:
+                        result = behaviour.is_true(facette, active_facette_selections)
 
-                    print(behaviours, result)
-                    if result:
-                        results.append(behaviour)
+                        if result:
+                            results.append(behaviour)
 
         serializer = FacetteBehaviourSerializer(
             results,
