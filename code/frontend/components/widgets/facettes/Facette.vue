@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <LanguageTranslation :translation-key="props.facette.description"/>
         </label>
         <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
-        <BehaviourAlert v-if="hasIssues"/>
+        <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours"/>
 
         <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"  v-if="store.session.isFeedbackModeEnabled"/>
       </div>
@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </label>
           <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
          
-        <BehaviourAlert v-if="hasIssues"/>
+        <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours"/>
         <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"  v-if="store.session.isFeedbackModeEnabled"/>
       </div>
     </div>
@@ -101,12 +101,12 @@ const isSelected = computed(
       .length != 0
 );
 
-const hasIssues: ComputedRef<FacetteBehaviour> = computed<FacetteBehaviour>((b) =>
+const behaviours = computed<FacetteBehaviour[]>((b) =>
   store.facetteBehaviours.filter(
     (fb) =>
-      fb.affectedObjects.filter((ao) => ao == props.facette.id).length > 0 ||
-      fb.affectedSubjects.filter((ao) => ao == props.facette.id).length > 0
-  ).length > 0
+      fb.affectedObjects.filter((ao) => ao.id == props.facette.id).length > 0 ||
+      fb.affectedSubjects.filter((ao) => ao.id == props.facette.id).length > 0
+  )
 );
 
 const registerClick = async () => {

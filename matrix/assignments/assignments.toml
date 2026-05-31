@@ -1123,26 +1123,6 @@ sources = [
     "Deepin;https://www.theregister.com/2026/01/23/deepin_25010/",
 ]
 
-[behaviour.gaming-usage-0]
-subjects = ["gaming-usage"]
-objects = ["privacy-usage"]
-
-
-[behaviour.already-used-0]
-subjects = ["already-used"]
-objects = ["beginner-usage"]
-
-
-[behaviour.knowledge-present-0]
-subjects = ["knowledge-present"]
-objects = ["beginner-usage", "advanced-usage"]
-
-
-[behaviour.knowledge-present-1]
-subjects = ["knowledge-present"]
-objects = ["beginner-usage", "advanced-usage"]
-
-
 [behaviour.software-admin-answer-console-0]
 subjects = ["software-admin-answer-console"]
 objects = ["beginner-usage", "no-linux-contact"]
@@ -1154,14 +1134,5 @@ objects = ["beginner-usage", "no-linux-contact"]
 
 
 [behaviour.privacy-isolation-usage-0]
-subjects = ["privacy-isolation-usage"]
-objects = ["beginner-usage", "no-linux-contact", "okay-when-working"]
-
-[behaviour.privacy-isolation-usage-1]
-subjects = ["privacy-isolation-usage"]
-objects = ["beginner-usage", "no-linux-contact", "okay-when-working"]
-
-
-[behaviour.privacy-isolation-usage-2]
 subjects = ["privacy-isolation-usage"]
 objects = ["beginner-usage", "no-linux-contact", "okay-when-working"]
