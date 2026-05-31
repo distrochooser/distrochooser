@@ -18,13 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
 
-from web.models import MetaFilterValue, Choosable,Feedback, AssignmentFeedback, MetaFilterWidget, LanguageFeedback, Page, FacetteRadioSelectionWidget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionMeta, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking, ChoosableMeta
+from web.models import GivenFeedback, MetaFilterValue, Choosable,Feedback, AssignmentFeedback, MetaFilterWidget, LanguageFeedback, Page, FacetteRadioSelectionWidget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionMeta, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking, ChoosableMeta
 
 class SessionAdmin(admin.ModelAdmin):
-    list_display=("started", "language_code", "result_id", "user_agent", "version", "session_origin", "is_ack", )
+    list_display=("started", "language_code", "result_id", "user_agent", "version", "session_origin", "is_ack", "imported_from_session", )
 
 [admin.site.register(*models) for models in [
     (Choosable,),
+    (GivenFeedback,),
     (ChoosableMeta,),
     (Page,),
     (HTMLWidget,),
