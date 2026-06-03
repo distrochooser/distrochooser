@@ -47,7 +47,7 @@ class FacetteBehaviourViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def list(self, request,  *args, **kwargs):    
-        session: Session | None = Session.objects.filter(result_id=kwargs["session_pk"]).first()
+        session: Session | None = Session.get(kwargs["session_pk"])
         results = []
         if  session:
             active_facette_selections = FacetteSelection.objects.filter(session=session)

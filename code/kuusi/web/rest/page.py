@@ -47,7 +47,7 @@ class PageMarkingViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
         ],
     )
     def list(self, request,  *args, **kwargs):    
-        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
+        session: Session = Session.get(kwargs["session_pk"])
         results = PageMarking.objects.filter(session=session).filter(page__pk=kwargs["page_pk"])
         serializer = PageMarkingSerializer(
             results,
@@ -66,7 +66,7 @@ class PageMarkingViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
         ]
     ) 
     def destroy(self, request, session_pk, pk,*args, **kwargs):
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
         PageMarking.objects.filter(page__pk=kwargs["page_pk"]).filter(pk=pk).filter(session=session).delete()
         return Response()
 
@@ -82,7 +82,7 @@ class PageMarkingViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
         ],
     )
     def create(self, request, session_pk,  *args, **kwargs) -> PageMarking:
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
         page: Page = Page.objects.filter(pk=kwargs["page_pk"]).first()
 
         if session is None or page is None:
@@ -144,10 +144,7 @@ class PageViewSet(GenericViewSet, ListModelMixin):
         ],
     )
     def list(self, request,  *args, **kwargs):
-        sessions = Session.objects.filter(result_id=kwargs["session_pk"])
-        session = sessions.first()
-        if not session:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        session = Session.get(kwargs["session_pk"])
         queryset = Page.get_session_version_pages(session.version)
         
         serializer = PageSerializer(

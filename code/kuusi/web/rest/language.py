@@ -90,9 +90,7 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def list(self, request, *args, **kwargs):
-        session: Session = Session.objects.filter(
-            result_id=kwargs["session_pk"]
-        ).first()
+        session: Session = Session.get(kwargs["session_pk"])
         results = LanguageFeedback.objects.filter(
             session__language_code=session.language_code
         )
@@ -130,7 +128,7 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         language_key = data["language_key"]
         value = data["value"]
         voter_id = data["voter_id"]
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
 
         # Delete old session proposals or, after reload, old proposals based on the voter id
         LanguageFeedback.objects.filter(session=session).filter(
@@ -173,7 +171,7 @@ class LanguageFeedbackViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def destroy(self, request, session_pk, pk):
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
         LanguageFeedbackSerializer.objects.filter(pk=pk).filter(
             session=session
         ).delete()

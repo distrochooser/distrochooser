@@ -379,7 +379,7 @@ class SessionViewSet(ViewSet):
         session = self.get_fresh_session(lang, user_agent, referrer)
         old_session = None
         if old_result_id:
-            old_sessions = Session.objects.filter(result_id=old_result_id)
+            old_sessions = Session.get(old_result_id)
             if old_sessions.first() is None:
                 return Response(status=status.HTTP_404_NOT_FOUND)
             else:

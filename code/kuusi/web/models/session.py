@@ -21,6 +21,7 @@ from uuid import uuid4
 
 from django.db import models
 from django.utils import timezone
+from django.core.cache import cache
 
 from kuusi.settings import RTL_LANGUAGES,PREVIOUS_VERSION_PREFIX
 
@@ -80,6 +81,24 @@ class Session(models.Model):
     @property
     def is_rtl(self):
         return self.language_code in RTL_LANGUAGES
+
+    def get(result_id: str) -> Session:
+        cache_key = f"session-{result_id}"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+        non_cached = Session.objects.get(result_id=result_id)
+        cache.set(cache_key, non_cached)
+        return non_cached
+    
+    def cache(self):
+        cache_key = f"session-{self.result_id}"
+        cache.delete(cache_key)
+        cache.set(cache_key, self)
+    
+    def save(self, **kwargs):
+        super().save(**kwargs)
+        self.cache()
 
 class SessionMeta(models.Model):
     session = models.ForeignKey(

@@ -50,7 +50,7 @@ class LanguageFeedbackVoteViewset(ListModelMixin, GenericViewSet):
         ],
     )
     def list(self, request,  *args, **kwargs):    
-        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
+        session: Session = Session.get(kwargs["session_pk"])
         results = LanguageFeedbackVote.objects.filter(language_feedback__session__language_code=session.language_code)
         serializer = LanguageFeedbackVoteSerializer(
             results,
@@ -84,7 +84,7 @@ class LanguageFeedbackVoteViewset(ListModelMixin, GenericViewSet):
                 origin=origin
             ).delete()
         
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
         LanguageFeedbackVote.objects.filter(
             session=session,
             language_feedback__pk=language_feedback
@@ -113,6 +113,6 @@ class LanguageFeedbackVoteViewset(ListModelMixin, GenericViewSet):
         ]
     ) 
     def destroy(self, request, session_pk, pk):
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
         LanguageFeedbackVote.objects.filter(pk=pk).filter(language_feedback__session=session).delete()
         return Response()

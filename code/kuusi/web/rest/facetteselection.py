@@ -68,7 +68,7 @@ class FacetteSelectionViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin)
         ],
     )
     def list(self, request,  *args, **kwargs):    
-        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
+        session: Session = Session.get(kwargs["session_pk"])
         results = FacetteSelection.objects.filter(session=session)
         serializer = FacetteSelectionSerializer(
             results,
@@ -86,16 +86,13 @@ class FacetteSelectionViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin)
         ]
     ) 
     def destroy(self, request, session_pk, pk):
-        # TODO: Make old session immutable
-
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
         FacetteSelection.objects.filter(pk=pk).filter(session=session).delete()
         return Response()
     @extend_schema(
         responses={
             status.HTTP_200_OK: OpenApiResponse(response=CreateFacetteSelectionSerializer, description="The created facette selection"),
             status.HTTP_404_NOT_FOUND: OpenApiResponse(response=None, description="Either session or facette are not found"),
-            status.HTTP_409_CONFLICT: OpenApiResponse(response=None, description="There is already a given selection with this ID and result Id combination")
         },
         parameters=[ 
           OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
@@ -103,29 +100,25 @@ class FacetteSelectionViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin)
         ],
     )
     def create(self, request, session_pk) -> FacetteSelection:
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
         facette: Facette = Facette.objects.filter(pk=request.data["facette"]).first()
+        weight: int = request.data["weight"]
 
         if session is None or facette is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
         
         is_reset = str(request.query_params.get('reset')).lower()
-        if is_reset:
+        if is_reset != "":
+            selections = FacetteSelection.objects.filter(session=session)
             if is_reset == "all":
-                FacetteSelection.objects.filter(session=session).filter(facette__topic=facette.topic).delete()
+                selections.filter(facette__topic=facette.topic).delete()
             if is_reset == "this":
-                FacetteSelection.objects.filter(session=session).filter(facette=facette).delete()
-    
-        selections = FacetteSelection.objects.filter(session=session).filter(facette=facette)
-        if selections.count() != 0:
-            return Response(status=status.HTTP_409_CONFLICT)
+                selections.get(facette=facette).delete()
         
-        # TODO: Check behaviour? Status code on error?
-
         selection = FacetteSelection(
             facette=facette,
             session=session,
-            weight=request.data["weight"]
+            weight=weight
         )
         selection.save()
         serializer = FacetteSelectionSerializer(

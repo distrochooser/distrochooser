@@ -55,7 +55,7 @@ class GivenFeedbackViewset(GenericViewSet):
     def create(self, request, session_pk) -> CreateGivenFeedbackSerializer:
         data = request.data
         text = data["text"]
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
 
        
         GivenFeedback.objects.filter(

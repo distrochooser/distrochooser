@@ -49,7 +49,7 @@ class MetaFilterValueViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
         ],
     )
     def list(self, request,  *args, **kwargs):    
-        session: Session = Session.objects.filter(result_id=kwargs["session_pk"]).first()
+        session: Session = Session.get(kwargs["session_pk"])
         results = MetaFilterValue.objects.filter(session=session)
         serializer = MetaFilterValueSerializer(
             results,
@@ -67,7 +67,7 @@ class MetaFilterValueViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
         ]
     ) 
     def destroy(self, request, session_pk, pk):
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
         MetaFilterValue.objects.filter(pk=pk).filter(session=session).delete()
         return Response()
 
@@ -82,7 +82,7 @@ class MetaFilterValueViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
         ],
     )
     def create(self, request, session_pk) -> MetaFilterValue:
-        session: Session = Session.objects.filter(result_id=session_pk).first()
+        session: Session = Session.get(session_pk)
         if session is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
         

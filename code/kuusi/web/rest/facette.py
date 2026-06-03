@@ -81,9 +81,7 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
     def list(self, request, *args, **kwargs):
         results = AssignmentFeedback.objects.all()
         serializer = AssignmentFeedbackSerializer(results, many=True)
-        serializer.context["session"] = Session.objects.filter(
-            result_id=kwargs["session_pk"]
-        ).first()
+        serializer.context["session"] = Session.get(kwargs["session_pk"])
         return Response(serializer.data)
 
     @extend_schema(
@@ -108,7 +106,7 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
         is_positive = data["is_positive"]
         origin = data["origin"]
 
-        session = Session.objects.filter(result_id=session_pk).first()
+        session = Session.get(session_pk)
         if not session:
             raise Exception("Session not found")
         has_old = (
@@ -172,7 +170,7 @@ class AssignmentFeedbackViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def destroy(self, request, session_pk, pk):
-        session = Session.objects.filter(result_id=session_pk).first()
+        session = Session.get(session_pk)
         AssignmentFeedback.objects.filter(pk=pk).filter(session=session).delete()
         return Response()
 
@@ -226,7 +224,7 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
         assignment = data["assignment"]
         is_positive = data["is_positive"]
         origin = data["origin"]
-        session = Session.objects.filter(result_id=session_pk).first()
+        session = Session.get(session_pk)
         if not session:
             raise Exception("Session not found")
         has_old = (
@@ -294,7 +292,7 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
         ],
     )
     def destroy(self, request, session_pk, pk):
-        session = Session.objects.filter(result_id=session_pk).first()
+        session = Session.get(session_pk)
         Feedback.objects.filter(pk=pk).filter(session=session).delete()
         return Response()
 
@@ -388,7 +386,5 @@ class FacetteViewSet(ListModelMixin, GenericViewSet):
         topic = request.query_params.get("topic")
         results = Facette.objects.filter(topic=topic)
         serializer = FacetteSerializer(results, many=True)
-        serializer.context["session"] = Session.objects.filter(
-            pk=kwargs["session_pk"]
-        ).first()
+        serializer.context["session"] = Session.get(kwargs["session_pk"])
         return Response(serializer.data)
