@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </small>
     </h3>
     <div>
-      <WidgetsWrapper v-for="row in 12" :key="row" class="row" :row="row" />
+      <WidgetsWrapper v-for="row in rows" :key="row" class="row" :row="row" />
     </div>
   </div>
 </template>
@@ -37,12 +37,15 @@ import { useSessionStore } from "../states/session";
 import LanguageTranslation from "./LanguageTranslation.vue";
 
 const store = useSessionStore();
-const toggleMarking = async () => {
-  store.toggleMarking()
-}
 
-const isMarked = computed(() => {
-  return store.pageMarkings.filter(l => l.page == store.currentPage.id).length > 0;
+const rows = computed(() => {
+  const min = Math.min(...store.currentWidgets.map(w => w.row))
+  const max = Math.max(...store.currentWidgets.map(w => w.row))
+  let range = []
+  for (var i=min;i<=max;i++) {
+    range.push(i)
+  }
+  return range
 })
 </script>
 
