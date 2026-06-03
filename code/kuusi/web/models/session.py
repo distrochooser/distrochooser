@@ -84,15 +84,25 @@ class Session(models.Model):
 
 
     def get(result_id: str) -> Session:
+        """
+        Abstraction layer to allow access to Session objects
+
+        Will use the Django cache as primar source, if not cached, return the live object. 
+
+        If the live object is returned, it will be cached.
+        """
         cache_key = f"session-{result_id}"
         cached = cache.get(cache_key)
         if cached:
             return cached
         non_cached = Session.objects.get(result_id=result_id)
-        cache.set(cache_key, non_cached)
+        non_cached.cache()
         return non_cached
     
     def cache(self):
+        """
+        Put the object into Django's cache
+        """
         cache_key = f"session-{self.result_id}"
         cache.delete(cache_key)
         cache.set(cache_key, self)
