@@ -44,11 +44,11 @@ def create_widgets(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -
         if key not in key_map:
             raise Exception(f"Key of widget type not found: {key}")
     
-
     for key, widget_class in key_map.items():
         elements = haystack[key]
-        for _, properties in elements.items():
+        for catalogue_id, properties in elements.items():
             new_widget: Widget = widget_class(
+                catalogue_id=catalogue_id,
                 row = get_or_default("row", properties),
                 col = get_or_default("col", properties),
                 width = get_or_default("width", properties)
@@ -71,7 +71,7 @@ def create_widgets(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -
                         new_widget.__setattr__(prop_key, structure.stringify())
                     else:
                         raise NotImplementedError()
-
+            print(f"Created new widget {new_widget.catalogue_id} (Type={new_widget.widget_type}, Row={new_widget.row}, Col={new_widget.col})")
             new_widget.save()
             got.append(new_widget)
 
