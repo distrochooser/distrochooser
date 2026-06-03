@@ -374,6 +374,7 @@ class SessionViewSet(ViewSet):
         user_agent = request.query_params.get("user_agent")
 
         session = self.get_fresh_session(lang, user_agent, referrer)
+        old_session = None
         if old_result_id:
             old_session = Session.get(old_result_id)
             if not session.session_origin:
