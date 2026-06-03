@@ -360,9 +360,6 @@ class SessionViewSet(ViewSet):
         ],
         responses={
             status.HTTP_200_OK: SessionSerializer,
-            status.HTTP_404_NOT_FOUND: OpenApiResponse(
-                description="Invalid result_id provided"
-            ),
             status.HTTP_406_NOT_ACCEPTABLE: OpenApiResponse(
                 description="Invalid version_id provided"
             ),
@@ -377,13 +374,8 @@ class SessionViewSet(ViewSet):
         user_agent = request.query_params.get("user_agent")
 
         session = self.get_fresh_session(lang, user_agent, referrer)
-        old_session = None
         if old_result_id:
-            old_sessions = Session.get(old_result_id)
-            if old_sessions.first() is None:
-                return Response(status=status.HTTP_404_NOT_FOUND)
-            else:
-                old_session = old_sessions.first()
+            old_session = Session.get(old_result_id)
             if not session.session_origin:
                 # copy old meta values
                 values = MetaFilterValue.objects.filter(session=old_session)

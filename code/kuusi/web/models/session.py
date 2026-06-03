@@ -82,6 +82,7 @@ class Session(models.Model):
     def is_rtl(self):
         return self.language_code in RTL_LANGUAGES
 
+
     def get(result_id: str) -> Session:
         cache_key = f"session-{result_id}"
         cached = cache.get(cache_key)
