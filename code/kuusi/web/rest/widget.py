@@ -359,7 +359,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
         cache_data = cache.get(cache_key)
         if cache_data:
             return Response(cache_data, headers={"cached": True})
-        session: Session = Session.objects.get(result_id=kwargs["session_pk"])
+        session: Session = Session.get(kwargs["session_pk"])
         obj: Page | None = None
         if page_pk:
             obj = Page.objects.filter(pk=page_pk).first()
