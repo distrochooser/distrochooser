@@ -16,4 +16,4 @@ The app is constantly changing, causing results to change and evolve over time e
 
 ## Consequences
 
-The UI might display some kind of remark at some point.
+The UI might display some kind of remark at some point. Additional, we assume here that all matrix changes are properly populated inside of the version control.
