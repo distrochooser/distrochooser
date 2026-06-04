@@ -24,9 +24,12 @@ class SessionAdmin(admin.ModelAdmin):
     list_display=("started", "duration", "entry_point", "referrer", "language_code", "result_id", "user_agent", "is_ack", "imported_from_session", )
     def has_change_permission(self, request, obj=None):
         return False
+    list_filter = ["is_ack", "language_code", "entry_point"]
 
 class FacetteSelectionAdmin(admin.ModelAdmin):
     list_display=("facette", "weight", "session", "imported_from_answer",)
+    def has_change_permission(self, request, obj=None):
+        return False
 
 [admin.site.register(*models) for models in [
     (Choosable,),

@@ -28,7 +28,6 @@ from kuusi.settings import RTL_LANGUAGES,PREVIOUS_VERSION_PREFIX
 from sqids import Sqids
 from time import time
 from random import randint
-
 from os import environ
 
 def get_session_result_id() -> str:
@@ -82,6 +81,7 @@ class Session(models.Model):
 
     # See ADR 0028
     git_hash = models.CharField(max_length=50, default=None, null=True, blank=True)
+
 
 
     def get_meta_value(self, key: str) -> str | None:

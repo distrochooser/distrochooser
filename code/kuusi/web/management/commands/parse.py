@@ -97,9 +97,6 @@ class Command(BaseCommand):
         logger.info(f"Created/ updated {len(new_behaviours)} behaviours. In DB={FacetteBehaviour.objects.all().count()}")
         
 
-        matrix_hash_path = join(STATIC_ROOT, "MATRIX_HASH")
-        with open(matrix_hash_path, "w") as file:
-            file.write(hash_code)
 
         
         
