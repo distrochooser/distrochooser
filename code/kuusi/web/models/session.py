@@ -29,6 +29,8 @@ from sqids import Sqids
 from time import time
 from random import randint
 
+from os import environ
+
 def get_session_result_id() -> str:
     sqids = Sqids()
     seed = int(time())
@@ -78,6 +80,10 @@ class Session(models.Model):
     # to mark session imported from previous versions
     imported_from_session = models.CharField(max_length=10, default=None, null=True, blank=True)
 
+    # See ADR 0028
+    git_hash = models.CharField(max_length=50, default=None, null=True, blank=True)
+
+
     def get_meta_value(self, key: str) -> str | None:
         matches = SessionMeta.objects.filter(session=self, meta_key=key)
         if matches.count() < 1:
@@ -125,7 +131,15 @@ class Session(models.Model):
         cache.delete(cache_key)
         cache.set(cache_key, self)
     
+    def get_current_git_hash(self):
+        if "GIT_HASH" in environ:
+            return environ["GIT_HASH"]
+        return None
+
     def save(self, **kwargs):
+        git_hash = self.get_current_git_hash()
+        if git_hash:
+            self.git_hash = git_hash
         super().save(**kwargs)
         self.cache()
 

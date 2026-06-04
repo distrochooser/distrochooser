@@ -34,6 +34,7 @@
 |ENABLE_FEEDBACK_MODE|Controls if the user can give feedback to mappings inside the UI|
 |PREVIOUS_VERSION_URL|Can be empty. If set, a remark is displayed for session id's starting with a given `PREVIOUS_VERSION_PREFIX`|
 |PREVIOUS_VERSION_PREFIX|Can be empty. If set, it can be use to show an alert to users, allowing redirecting to `PREVIOUS_VERSION_URL/<language>/<id>`|
+|GIT_HASH_PATH|A path to a file containing an hash/ tag/ version to store in sessions. Used to identify if a session and the current app contents might differ|
 
 ## Install
 

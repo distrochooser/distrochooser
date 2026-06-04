@@ -180,6 +180,8 @@ STATICFILES_DIRS = (join(dirname(dirname(BASE_DIR)), "static"),)
 # per default, the /static_root/ folder is located on the repo root and is used as the target for the static files to server
 STATIC_ROOT = join(dirname(dirname(BASE_DIR)), "static_root")
 
+GIT_HASH_PATH = join(dirname(dirname(BASE_DIR)), "GIT_HASH")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

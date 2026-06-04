@@ -14,7 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 FROM python:3.14-slim
 ADD code/kuusi /kuusi
 RUN cd /kuusi && \
@@ -27,7 +26,7 @@ RUN cd /kuusi && \
 RUN mkdir /kuusi/static-buildtime
 ADD static /kuusi/static-buildtime/
 ADD doc /kuusi/doc
-
+ADD GIT_HASH /kuusi/GIT_HASH
 # Add locales
 
 ADD locale /kuusi/locale

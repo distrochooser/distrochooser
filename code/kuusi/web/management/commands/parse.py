@@ -28,8 +28,10 @@ from django.core.cache import cache
 
 from web.models import Widget, Facette, FacetteAssignment, Choosable, FacetteBehaviour, Page, SessionVersion
 from web.management.commands.modules.parse import create_version, create_pages, create_widgets, create_choosables, create_facettes, create_facette_behaviours, create_assignments
-
+from web.matrix import get_matrix_content
 from logging import getLogger, ERROR
+
+from kuusi.settings import STATIC_ROOT
 
 logger = getLogger('command')
 
@@ -39,33 +41,11 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("file_path", type=str)
 
-    def resolve(self, file_path: str) -> str:
-        """
-        Return the TOML contents as a string, includes resolved.
-        """
-        content = open(file_path, "r").read()
-        path_file = Path(file_path)
-        folder_path = path_file.parent.resolve()
-
-
-        matches = finditer(r"#include\s{1,}([^\n]+)", content)
-
-        match: Match
-        for match in matches:
-            full_match = match.group(0)
-            raw_path = match.group(1)
-            full_file_path = PurePath(folder_path, raw_path)
-
-            included_content = self.resolve(str(full_file_path))
-            content = content.replace(full_match, included_content)
-    
-        return content
-
     def handle(self, *args, **options):
         
         file_path = options["file_path"]
         
-        got = self.resolve(file_path)
+        got = get_matrix_content(file_path)
         parsed_toml = loads(got)
 
 
@@ -115,6 +95,12 @@ class Command(BaseCommand):
         logger.info(f"Created/ updated {len(new_facettes)} facettes. In DB={Facette.objects.all().count()}")
         logger.info(f"Created/ updated {len(new_assignments)} assignments. In DB={FacetteAssignment.objects.all().count()}")
         logger.info(f"Created/ updated {len(new_behaviours)} behaviours. In DB={FacetteBehaviour.objects.all().count()}")
+        
+
+        matrix_hash_path = join(STATIC_ROOT, "MATRIX_HASH")
+        with open(matrix_hash_path, "w") as file:
+            file.write(hash_code)
+
         
         
         
