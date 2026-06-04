@@ -98,7 +98,7 @@ class Session(models.Model):
         if not self.is_ack or not self.ack_date_time:
             return "No duration"
         duration = self.ack_date_time - self.started 
-        return duration.total_seconds()
+        return str(duration)
 
 
     def get(result_id: str) -> Session:
