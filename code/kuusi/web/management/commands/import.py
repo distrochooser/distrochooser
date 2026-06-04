@@ -183,7 +183,7 @@ class Command(BaseCommand):
 
             session_id = str(answer["fields"]["session"])
             answer_pk = answer["fields"]["answer"]
-            if answer_pk in runtime_answer_map:
+            if answer_pk in runtime_answer_map and session_id in session_map:
                 is_important = answer["fields"]["isImportant"]
                 selection = FacetteSelection(
                     facette=runtime_answer_map[answer_pk],
@@ -205,8 +205,9 @@ class Command(BaseCommand):
         remarks_count = remarks.keys().__len__()
         print(f"Found {colored(remarks_count, 'cyan')} remarks")
         for old_id, remark_text in tqdm(remarks.items()):
-            obj = GivenFeedback(
-                session_id=session_map[old_id],
-                text=f"Migrated from v5: {remark_text}"
-            )
-            obj.save()
+            if old_id in session_map:
+                obj = GivenFeedback(
+                    session_id=session_map[old_id],
+                    text=f"Migrated from v5: {remark_text}"
+                )
+                obj.save()
