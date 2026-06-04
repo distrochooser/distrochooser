@@ -21,6 +21,7 @@ from json import loads
 from typing import Any, Dict, List
 import pycountry
 from django.core.cache import cache
+from django.utils import timezone
 from django.db.models import Q
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
@@ -48,6 +49,7 @@ from web.util import get_translation
 import importlib
 WIDGET_SERIALIZER_BASE_FIELDS = (
     "id",
+    "catalogue_id",
     "row",
     "col",
     "width",
@@ -235,6 +237,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         session: Session = self.context["session"]
 
         session.is_ack = True
+        session.ack_date_time = timezone.now()
         session.save()
         choosables = Choosable.objects.all().order_by("name")
         meta_filter_widgets = MetaFilterWidget.objects.all()

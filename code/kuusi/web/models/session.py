@@ -63,6 +63,9 @@ class Session(models.Model):
     # This is set at the time when a result is received
     # Crawler like sessions won't be acknowledged automatically
     is_ack = models.BooleanField(default=False)
+    # A date time shall help to identify stay times for users
+    ack_date_time =  models.DateTimeField(default=None, null=True, blank=True)
+    
     language_code = models.CharField(max_length=10, default="en", null=False, blank=False)
 
     # to mark session imported from previous versions
@@ -81,6 +84,14 @@ class Session(models.Model):
     @property
     def is_rtl(self):
         return self.language_code in RTL_LANGUAGES
+
+    
+    @property
+    def duration(self):
+        if not self.is_ack or not self.ack_date_time:
+            return "No duration"
+        duration = self.ack_date_time - self.started 
+        return duration.total_seconds()
 
 
     def get(result_id: str) -> Session:
