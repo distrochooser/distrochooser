@@ -59,6 +59,13 @@ class Session(models.Model):
         blank=True,
         related_name="session_sessionorigin",
     )
+    class EntryPointChoice(models.TextChoices):
+        STARTPAGE = "STARTPAGE", "Start"
+        ABOUT = "ABOUT", "About"
+        CONTACT = "CONTACT", "Contact"
+        PRIVACY = "PRIVACY", "Privacy"
+        OUTGOING = "OUTGOING", "Outgoing link"
+    entry_point = models.CharField(max_length=10,choices=EntryPointChoice.choices, default=None, null=True, blank=True)
     referrer = models.TextField(blank=True, default=None, null=True)
     # This is set at the time when a result is received
     # Crawler like sessions won't be acknowledged automatically

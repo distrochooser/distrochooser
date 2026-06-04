@@ -50,6 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useSessionStore } from '../../../../../states/session';
+import { EntryPointEnum } from '../../../../../sdk';
 
 
 const sessionStore = useSessionStore();
@@ -61,7 +62,7 @@ const id: string = router.params.id as string;
 console.log(id)
 onMounted(async () => {
     if (sessionStore.session == null) {
-        await sessionStore.createSession(lang);
+        await sessionStore.createSession(lang, EntryPointEnum.Outgoing);
     }
 });
 

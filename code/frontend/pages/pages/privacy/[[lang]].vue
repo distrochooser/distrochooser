@@ -64,10 +64,11 @@ const router = useRoute();
 const lang: string = router.params.lang as string;
 onMounted(async () => {
     if (sessionStore.session == null) {
-        await sessionStore.createSession(lang);
+        await sessionStore.createSession(lang, EntryPointEnum.Privacy);
     }
 });
 import { useRobotsRule } from '#imports'
+import { EntryPointEnum } from '../../../sdk';
 
 const rule = useRobotsRule()
 rule.value = 'noindex, nofollow'

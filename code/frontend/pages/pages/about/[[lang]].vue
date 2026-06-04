@@ -57,6 +57,7 @@ import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useSessionStore } from '../../../states/session';
 import { useRuntimeConfig } from 'nuxt/app';
+import { EntryPointEnum } from '../../../sdk';
 
 
 const sessionStore = useSessionStore();
@@ -64,7 +65,7 @@ const router = useRoute();
 const lang: string = router.params.lang as string;
 onMounted(async () => {
     if (sessionStore.session == null) {
-        await sessionStore.createSession(lang);
+        await sessionStore.createSession(lang,EntryPointEnum.About);
     }
 });
 const openDataPath = useRuntimeConfig().public.basePath + "/data/1"

@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { defineStore } from "pinia";
-import { Configuration, SessionApi, type AssignmentFeedback, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaFilterValue, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
+import { Configuration, EntryPointEnum, SessionApi, type AssignmentFeedback, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaFilterValue, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
 import { useRuntimeConfig } from "nuxt/app";
 import { ref } from "vue";
 interface SessionState {
@@ -280,7 +280,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 });
             }
         },
-        async createSession(lang: string, resultId?: string) {
+        async createSession(lang: string, entryPoint: EntryPointEnum, resultId?: string) {
             const userAgent = window.navigator.userAgent
             const referrer = document.referrer
             this.session = await this.sessionApi.sessionCreate(
@@ -288,7 +288,8 @@ export const useSessionStore = defineStore('websiteStore', {
                     resultId: resultId,
                     lang: lang,
                     userAgent: userAgent,
-                    referrer: referrer
+                    referrer: referrer,
+                    entryPoint: entryPoint
                 }
             )
             if (this.session.resultId) {

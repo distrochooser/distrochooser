@@ -54,6 +54,7 @@ import PageMeta from "../../components/PageMeta.vue";
 import Progress from "../../components/Progress.vue";
 import MainNavigation from "../../components/MainNavigation.vue";
 import Navigation from "../../components/Navigation.vue";
+import { EntryPointEnum } from "../../sdk";
 
 const router = useRoute();
 const lang: string = router.params.lang as string;
@@ -69,7 +70,7 @@ onMounted(async () => {
       replace: true,
     });
   } else {
-    await sessionStore.createSession(lang, id);
+    await sessionStore.createSession(lang, EntryPointEnum.Startpage, id);
   }
 });
 </script>

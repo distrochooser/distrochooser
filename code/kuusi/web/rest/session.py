@@ -168,6 +168,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "is_feedback_mode_enabled",
             "previous_version_url",
             "imported_from_session",
+            "entry_point"
         )
     def get_is_translation_mode_enabled(self, _: None) -> bool:
         return ENABLE_TRANSLATION_MODE
@@ -212,6 +213,8 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
 
     def get_default_language_values(self, obj: Session) -> Dict[str, str]:
         return get_translation_haystack(TRANSLATIONS, DEFAULT_LANGUAGE_CODE)
+
+    
 
 
 class SessionVersionSerializer(serializers.ModelSerializer):
@@ -357,6 +360,14 @@ class SessionViewSet(ViewSet):
                 description="An optional referrer header value for statistics",
                 required=False,
             ),
+            OpenApiParameter(
+                name="entry_point",
+                location=OpenApiParameter.QUERY,
+                description="See EntryPointChoice",
+                required=True,
+                type=OpenApiTypes.STR,
+                enum=Session.EntryPointChoice
+            ),
         ],
         responses={
             status.HTTP_200_OK: SessionSerializer,
@@ -372,8 +383,9 @@ class SessionViewSet(ViewSet):
         old_result_id = request.query_params.get("result_id")
         referrer = request.query_params.get("referrer")
         user_agent = request.query_params.get("user_agent")
+        entry_point = request.query_params.get("entry_point")
 
-        session = self.get_fresh_session(lang, user_agent, referrer)
+        session = self.get_fresh_session(lang, user_agent, referrer, entry_point)
         old_session = None
         if old_result_id:
             old_session = Session.get(old_result_id)
@@ -437,7 +449,7 @@ class SessionViewSet(ViewSet):
         return True
 
     def get_fresh_session(
-        self, language_code: str, user_agent: str, referrer: str
+        self, language_code: str, user_agent: str, referrer: str, entry_point: str
     ) -> Session:
         """
         Create a new session.
@@ -447,5 +459,6 @@ class SessionViewSet(ViewSet):
         session.referrer = referrer
         session.language_code = language_code
         session.referrer = referrer
+        session.entry_point = entry_point
         session.save()
         return session

@@ -21,7 +21,7 @@ from django.contrib import admin
 from web.models import GivenFeedback, MetaFilterValue, Choosable,Feedback, AssignmentFeedback, MetaFilterWidget, LanguageFeedback, Page, FacetteRadioSelectionWidget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionMeta, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking, ChoosableMeta
 
 class SessionAdmin(admin.ModelAdmin):
-    list_display=("started", "duration", "language_code", "result_id", "user_agent", "version", "session_origin", "is_ack", "imported_from_session", )
+    list_display=("started", "duration", "entry_point", "language_code", "result_id", "user_agent", "version", "session_origin", "is_ack", "imported_from_session", )
 
 class FacetteSelectionAdmin(admin.ModelAdmin):
     list_display=("facette", "weight", "session", "imported_from_answer",)
