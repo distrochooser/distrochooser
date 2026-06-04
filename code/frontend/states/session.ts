@@ -281,6 +281,7 @@ export const useSessionStore = defineStore('websiteStore', {
             }
         },
         async createSession(lang: string, entryPoint: EntryPointEnum, resultId?: string) {
+            this.isLoading = true;
             const userAgent = window.navigator.userAgent
             const referrer = document.referrer
             this.session = await this.sessionApi.sessionCreate(
@@ -315,6 +316,7 @@ export const useSessionStore = defineStore('websiteStore', {
 
             // Load translation feedback
             await this.getTranslationFeedback();
+            this.isLoading = false;
         },
         async updatePages() {
             this.pages = await this.sessionApi.sessionPageList({

@@ -17,10 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
-
     <Head>
       <PageMeta />
     </Head>
+    <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
     <main role="main" :class="{ 'container': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
       <MainNavigation />
@@ -42,20 +42,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <RenderField />
       </div>
     </main>
-    <Progress />
   </div>
 </template>
 <script lang="ts" setup>
 import { navigateTo } from "nuxt/app";
-import { onMounted } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useSessionStore } from "../../states/session";
 import PageMeta from "../../components/PageMeta.vue";
-import Progress from "../../components/Progress.vue";
 import MainNavigation from "../../components/MainNavigation.vue";
 import Navigation from "../../components/Navigation.vue";
 import { EntryPointEnum } from "../../sdk";
 
+const { start, finish } = useLoadingIndicator()
 const router = useRoute();
 const lang: string = router.params.lang as string;
 
@@ -73,6 +72,16 @@ onMounted(async () => {
     await sessionStore.createSession(lang, EntryPointEnum.Startpage, id);
   }
 });
+
+const loading = computed(() => sessionStore.isLoading)
+
+watch(loading, (value) => {
+  if (value) {
+    start({ force: true })
+  } else {
+    finish({ force: true })
+  }
+})
 </script>
 <style lang="scss" scoped>
 .rtl {

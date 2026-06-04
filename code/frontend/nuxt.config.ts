@@ -5,6 +5,9 @@ import { deprecations } from "sass";
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  app: {
+    loadingIndicator: true
+  },
   modules: [
     '@pinia/nuxt',
     '@nuxt/icon',

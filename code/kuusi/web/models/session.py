@@ -119,7 +119,8 @@ class Session(models.Model):
         cached = cache.get(cache_key)
         if cached:
             return cached
-        non_cached = Session.objects.get(result_id=result_id)
+        # To allow easier local debugging, we use .filter() instead of .get()
+        non_cached = Session.objects.filter(result_id=result_id).first()
         non_cached.cache()
         return non_cached
     

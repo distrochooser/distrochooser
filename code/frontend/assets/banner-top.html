@@ -1,0 +1,22 @@
+<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
+<script>
+    window.googletag = window.googletag || { cmd: [] };
+
+    googletag.cmd.push(() => {
+        // Define an ad slot for div with id "banner-ad".
+        googletag
+            .defineSlot("/6355419/Travel/Europe/France/Paris", [700, 250], "banner-ad")
+            .addService(googletag.pubads());
+
+        // Enable the PubAdsService.
+        googletag.enableServices();
+    });
+</script>
+<style></style>
+<div id="banner-ad" style="width: 700px; height: 250px"></div>
+<script>
+    googletag.cmd.push(() => {
+        // Request and render an ad for the "banner-ad" slot.
+        googletag.display("banner-ad");
+    });
+</script>
