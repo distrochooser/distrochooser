@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <p class="d-inline-flex gap-1" v-if="sessionStore.missingLanguageValues.length > 0">
+    <p class="d-inline-flex gap-1" v-if="sessionStore.missingLanguageValues.length > 0 && sessionStore.isTranslating">
         <a class="btn btn-primary" data-bs-toggle="collapse" href="#missingLanguageList" role="button" aria-expanded="false"
             aria-controls="missingLanguageList">
             
