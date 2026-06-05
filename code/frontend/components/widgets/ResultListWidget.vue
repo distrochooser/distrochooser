@@ -17,18 +17,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
-    <div
-      v-for="(choosable, index) in props.widget.choosables.sort(
-        (a, b) => b.rank - a.rank
-      )"
-      :key="index"
-    >
-      <RankedChoosable :choosable="choosable" v-if="isChoosableDisplayed(choosable)" />
+    <div v-for="(choosable, index) in orderedChoosables" :key="index">
+      <RankedChoosable :choosable="choosable"
+        :others="orderedChoosables.filter(c => c.catalogueId !== choosable.catalogueId)"/>
     </div>
-    <div class="alert alert-info" v-if="props.widget.choosables.length == 0">
-      <b><LanguageTranslation translation-key="NO_RESULTS_TITLE"/></b>
+    <div class="alert alert-info" v-if="orderedChoosables.length == 0">
+      <b>
+        <LanguageTranslation translation-key="NO_RESULTS_TITLE" />
+      </b>
       <p>
-        <LanguageTranslation translation-key="NO_RESULTS_TEXT"/>
+        <LanguageTranslation translation-key="NO_RESULTS_TEXT" />
       </p>
     </div>
   </div>
@@ -37,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import type { Choosable, ResultListWidget } from "../../sdk";
 import RankedChoosable from "./RankedChoosable.vue";
 import { useSessionStore } from "../../states/session";
+import { computed } from "vue";
 
 interface WidgetProps {
   widget: ResultListWidget;
@@ -45,7 +44,8 @@ interface WidgetProps {
 const props = defineProps<WidgetProps>();
 const store = useSessionStore();
 
-const isChoosableDisplayed = (choosable: RankedChoosable) => {
-  return store.mustHaveAssignment ? choosable.assignments.length > 0 : true;
-}
+const orderedChoosables = computed(() => props.widget.choosables.sort(
+  (a, b) => b.rank - a.rank
+).filter(c => store.mustHaveAssignment ? c.assignments.length > 0 : true))
+
 </script>

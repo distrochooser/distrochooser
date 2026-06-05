@@ -16,44 +16,78 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div>
-    <div class="card mb-4">
-      <div class="card-body" :style="'background-color: ' +
-        props.choosable.bgColor +
-        '; ' +
-        'color: ' +
-        props.choosable.fgColor
-        ">
-        <div class="card-text">
-          <b class="me-1">{{ props.choosable.name }}</b> 
-          <LanguageTranslation :translation-key="props.choosable.catalogueId + '-description'" />
-        </div>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col" v-for="(key, value, index) in props.choosable.meta" :key="index">
-              <ChoosableMeta :metaKey="key" :metaValue="value" :choosable="props.choosable" />
+  <div class="row">
+    <div class="col">
+      <div class="card mb-4">
+        <div class="card-body" :style="'background-color: ' +
+          props.choosable.bgColor +
+          '; ' +
+          'color: ' +
+          props.choosable.fgColor
+          ">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-8">
+                <b class="me-1">{{ props.choosable.name }}</b>
+                <LanguageTranslation :translation-key="props.choosable.catalogueId + '-description'" />
+              </div>
+              <div class="col-4" v-if="others.length > 0">
+                <select class="form-control" v-model="choosableToCompare">
+                  <option selected :value="null">
+                    <LanguageTranslation translation-key="compare-with" />
+                  </option>
+                  <option v-for="(choosable, key) in props.others" :key="key" :value="choosable">{{ choosable.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-4 text-end" v-else>
+                <button type="button" class="btn btn-danger" v-on:click.prevent="props.onComparisonClose">
+                  <LanguageTranslation translation-key="hide" />
+                </button>
+              </div>
             </div>
           </div>
-        </li>
-      </ul>
-      <div class="card-body">
-        <li class="list-group-item" v-for="(key, index) in props.choosable.assignments" :key="index">
-          <Assignment :display-weigth="true" :assignment="key" :key="index" :query-choosables="false" :facette="null"
-            :choosable="props.choosable" />
-        </li>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col" v-for="(key, value, index) in props.choosable.meta" :key="index">
+                <ChoosableMeta :metaKey="key" :metaValue="value" :choosable="props.choosable" />
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="card-body">
+          <li class="list-group-item" v-for="(key, index) in props.choosable.assignments" :key="index">
+            <Assignment :display-weigth="true" :assignment="key" :key="index" :query-choosables="false" :facette="null"
+              :choosable="props.choosable" />
+          </li>
+        </div>
       </div>
     </div>
+    <div class="col" v-if="choosableToCompare">
+      <RankedChoosable v-if="choosableToCompare" :choosable="choosableToCompare" :others="[]"
+        :on-comparison-close="onComparisonClose" />
+    </div>
   </div>
+
 </template>
 <script setup lang="ts">
 import type { RankedChoosable } from "../../sdk";
 import ChoosableMeta from "./rankedchoosable/ChoosableMeta.vue";
 import Assignment from "./facettes/Assignment.vue";
+import { ref } from "vue";
 interface WidgetProps {
   choosable: RankedChoosable;
+  others: RankedChoosable[];
+  onComparisonClose?: () => void;
 }
 
 const props = defineProps<WidgetProps>();
+
+const choosableToCompare = ref<RankedChoosable | null>(null)
+
+const onComparisonClose = () => {
+  choosableToCompare.value = null
+}
 </script>
