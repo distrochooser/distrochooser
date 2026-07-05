@@ -4,7 +4,7 @@ Date: 2025-06-28
 
 ## Status
 
-Accepted
+Superceded by [29. questionnaire versions](0029-questionnaire-versions.md)
 
 ## Context
 

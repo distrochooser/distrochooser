@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 from typing import Dict, List, Callable, Any
-from web.models import Facette, FacetteBehaviour
+from web.models import Facette, FacetteBehaviour, SessionVersion
 from logging import getLogger
 
 
@@ -25,6 +25,7 @@ def create_facettes(get_or_default: Callable[[str, Dict], Any], haystack: Dict) 
     got = []
     for element, data in haystack.items():
         existing_facette = Facette.objects.filter(catalogue_id=element)
+        not_in_versions = get_or_default("not_in_versions", data)
         new_facette = Facette(
             catalogue_id = element,
             description = f"{element}-description",
@@ -36,6 +37,12 @@ def create_facettes(get_or_default: Callable[[str, Dict], Any], haystack: Dict) 
             logger.info(f"There is a facette with catalogue_id={element}. Re-Using PK.")
 
         new_facette.save()
+
+        if len(not_in_versions) > 0:
+            description: str
+            for description in not_in_versions:
+                new_facette.not_in_versions.add(SessionVersion.objects.get(catalogue_id=description))
+            new_facette.save()
         got.append(new_facette)
     
   

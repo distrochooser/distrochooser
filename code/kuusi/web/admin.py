@@ -31,6 +31,10 @@ class FacetteSelectionAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
+class FacetteAdmin(admin.ModelAdmin):
+    list_display = ("catalogue_id","description", "topic" )
+    pass
+
 [admin.site.register(*models) for models in [
     (Choosable,),
     (GivenFeedback,),
@@ -42,7 +46,7 @@ class FacetteSelectionAdmin(admin.ModelAdmin):
     (FacetteRadioSelectionWidget,),
     (MetaFilterWidget,),
     (MetaFilterValue,),
-    (Facette,),
+    (Facette,FacetteAdmin),
     (FacetteBehaviour,),
     (Session,SessionAdmin),
     (SessionMeta,),

@@ -33,6 +33,7 @@ topic = "scenario"
 # distrochooser::translation::key::privacy-isolation-usage-description
 [facette.privacy-isolation-usage]
 topic = "scenario"
+not_in_versions = ["simplified"]
 
 # distrochooser::translation::en::The user is visually impaired
 # distrochooser::translation::key::impaired-view-usage-description

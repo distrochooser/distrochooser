@@ -17,13 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
-    <div v-for="(facette, index) in props.widget.facettes" v-bind:key="index">
+    <div v-for="(facette, index) in facettes" v-bind:key="index">
       <Facette :facette="facette" :checkbox="props.checkbox" :topic="props.widget.topic" />
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import { computed } from "vue";
 import { type FacetteSelectionWidget } from "../../sdk";
+import { useSessionStore } from "../../states/session";
 import Facette from "./facettes/Facette.vue";
 
 interface WidgetProps {
@@ -32,4 +34,19 @@ interface WidgetProps {
 }
 
 const props = defineProps<WidgetProps>();
+const store = useSessionStore();
+
+/** Facettes will be filtered client sided, see ADR 0029 for details */
+
+const facettes = computed(() => {
+  const version = store.session.version
+  if (version) {
+    const versionId = version;
+    return props.widget.facettes.filter(f => !f.notInVersions || f.notInVersions.indexOf(versionId) === -1)
+  } else {
+    return props.widget.facettes
+  }
+})
+
+
 </script>
