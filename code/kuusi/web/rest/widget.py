@@ -27,7 +27,7 @@ from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
                                    PolymorphicProxySerializer, extend_schema,
                                    extend_schema_field)
-from kuusi.settings import WEIGHT_MAP
+from kuusi.settings import WEIGHT_MAP, SCORE_MAP
 from rest_framework import serializers, status
 from rest_framework.fields import CharField
 from rest_framework.mixins import ListModelMixin
@@ -196,14 +196,18 @@ class FeedbackWidgetSerializer(WidgetSerializer):
 
 class RankedChoosableSerializer(ChoosableSerializer):
     rank = serializers.SerializerMethodField()
+    position = serializers.SerializerMethodField()
     assignments = serializers.SerializerMethodField()
 
     class Meta:
         model = Choosable
-        fields = CHOOSABLE_SERIALIZER_BASE_FIELDS + ("rank", "assignments")
+        fields = CHOOSABLE_SERIALIZER_BASE_FIELDS + ("rank", "assignments", "position")
 
     def get_rank(self, obj: Choosable) -> int:
         return self.context["score_map"][obj.pk]["SCORE"] if obj.pk in  self.context["score_map"] else 999999999
+    
+    def get_position(self, obj:Choosable) -> int:
+        return self.context["position_map"][obj.pk] if obj.pk in  self.context["position_map"] else 999999999
 
     def get_description(self, obj: Choosable) -> str: 
         session = self.context["session"]
@@ -231,6 +235,12 @@ class ResultListWidgetSerializer(WidgetSerializer):
     class Meta:
         model = ResultListWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("choosables",)
+    
+    def get_position(self, score_map: Dict,  choosable_id: number) -> number:
+        own_score = score_map[choosable_id]["SCORE"]
+        scores = list(set(map(lambda s: s["SCORE"], score_map.values())))
+        scores.sort(reverse=True)
+        return scores.index(own_score) + 1
 
     @extend_schema_field(field=RankedChoosableSerializer(many=True))
     def get_choosables(self, obj: ResultListWidget) -> ReturnList | Any | ReturnDict:
@@ -246,6 +256,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         assignments_weight_map = {}
         stored_meta_filter_values = MetaFilterValue.objects.filter(session=session)
         score_map = {}
+        position_map = {}
 
         selected_facettes = selections.values_list("facette", flat=True)
         assignments = FacetteAssignment.objects.filter(
@@ -291,21 +302,16 @@ class ResultListWidgetSerializer(WidgetSerializer):
                 for assignment in assignments_this_choosable:
                     assignment_type = assignment.assignment_type
                     choosable_scores[assignment_type] += 1
-                    # TODO: Consider moving this into settings.py
-                    score_points = {
-                        FacetteAssignment.AssignmentType.POSITIVE: 1.2,
-                        FacetteAssignment.AssignmentType.NEGATIVE: -0.9,
-                        FacetteAssignment.AssignmentType.NEUTRAL: 0,
-                        FacetteAssignment.AssignmentType.BLOCKING: -100,
-                    }
-                    choosable_scores["SCORE"] += choosable_scores[assignment_type] * score_points[assignment_type]
+                    choosable_scores["SCORE"] += choosable_scores[assignment_type] * SCORE_MAP[assignment_type]
 
             score_map[choosable.pk] = choosable_scores
             results.append(choosable)
-
+        for key, value in score_map.items():
+            position_map[key] = self.get_position(score_map, key)
         serializer = RankedChoosableSerializer(results, many=True)
         serializer.context["session"] = session
         serializer.context["score_map"] = score_map
+        serializer.context["position_map"] = position_map
         serializer.context["assignments"] = assignments_results
         serializer.context["weight_map"] = assignments_weight_map
 

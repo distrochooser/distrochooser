@@ -17,9 +17,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
+    <div class="accordion mb-2" >
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="false" aria-controls="collapseOne">
+            <LanguageTranslation translation-key="SCORE_HEADER" />
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>
+              <LanguageTranslation translation-key="SCORE_TEXT" />
+            </p>
+            <div v-for="(value, key) in store.session.scoreMap" :key="key">
+              <LanguageTranslation :translation-key="key"/> ({{ key }}): <span :class="'badge ' + (value < 0 ? 'text-bg-danger' : 'text-bg-success')">{{  value }}</span>
+            </div>
+            <br/>
+            <p>
+              <LanguageTranslation translation-key="SCORE_TEXT_Positions" />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div v-for="(choosable, index) in orderedChoosables" :key="index">
       <RankedChoosable :choosable="choosable"
-        :others="orderedChoosables.filter(c => c.catalogueId !== choosable.catalogueId)"/>
+        :others="orderedChoosables.filter(c => c.catalogueId !== choosable.catalogueId)" />
     </div>
     <div class="alert alert-info" v-if="orderedChoosables.length == 0">
       <b>

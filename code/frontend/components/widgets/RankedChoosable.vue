@@ -16,18 +16,26 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div :class="'row ' + (choosableToCompare != null ? 'row border border-info rounded-end rounded-start pt-4 ps-1 pb-0 mb-2 pe-1' : '')">
+  <div
+    :class="'row ' + (choosableToCompare != null ? 'row border border-info rounded-end rounded-start pt-4 ps-1 pb-0 mb-2 pe-1' : '')">
     <div class="col">
       <div class="card mb-4">
-        <div class="card-body" :style="'background-color: ' +
+        <div class="card-body choosable-body" :style="'background-color: ' +
           props.choosable.bgColor +
           '; ' +
           'color: ' +
           props.choosable.fgColor
           ">
+
           <div class="card-text">
             <div class="row">
               <div class="col-8">
+                <span class="choosable-position badge  me-1" :style="'background-color: ' +
+                  props.choosable.fgColor +
+                  '; ' +
+                  'color: ' +
+                  props.choosable.bgColor
+                  ">{{ props.choosable.position }}.</span>
                 <b class="me-1">{{ props.choosable.name }}</b>
                 <LanguageTranslation :translation-key="props.choosable.catalogueId + '-description'" />
               </div>
@@ -91,3 +99,14 @@ const onComparisonClose = () => {
   choosableToCompare.value = null
 }
 </script>
+
+<style lang="scss" scoped>
+.choosable-position {
+  display: inline-flex;
+  vertical-align: center;
+}
+
+.choosable-body {
+  z-index: 99999;
+}
+</style>

@@ -242,6 +242,14 @@ SESSION_NUMBER_OFFSET = 1754516
 
 WEIGHT_MAP = {-2: -0.5, -1: -0.25, 0: 1, 1: 2, 2: 4}
 
+# TODO: Keys must be AssignmentTypes
+
+SCORE_MAP = {
+    "POSITIVE": 1.2,
+    "NEGATIVE": -0.9,
+    "NEUTRAL": 0,
+    "BLOCKING": -100,
+}
 
 KUUSI_LOGO = "http://localhost:8000/static/logo.svg"
 

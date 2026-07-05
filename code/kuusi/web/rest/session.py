@@ -35,7 +35,8 @@ from kuusi.settings import (
     DEFAULT_LANGUAGE_CODE,
     ENABLE_TRANSLATION_MODE,
     ENABLE_FEEDBACK_MODE,
-    PREVIOUS_VERSION_URL
+    PREVIOUS_VERSION_URL,
+    SCORE_MAP
 )
 from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
@@ -140,6 +141,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     default_language = serializers.SerializerMethodField()
     is_translation_mode_enabled = serializers.SerializerMethodField()
     is_feedback_mode_enabled = serializers.SerializerMethodField()
+    score_map = serializers.SerializerMethodField()
 
     previous_version_url = serializers.CharField(default=PREVIOUS_VERSION_URL)
     class Meta:
@@ -168,7 +170,8 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "is_feedback_mode_enabled",
             "previous_version_url",
             "imported_from_session",
-            "entry_point"
+            "entry_point",
+            "score_map"
         )
     def get_is_translation_mode_enabled(self, _: None) -> bool:
         return ENABLE_TRANSLATION_MODE
@@ -186,6 +189,9 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         meta = KUUSI_META_TAGS.copy()
         meta["og:locale"] = obj.language_code
         return meta
+    
+    def get_score_map(self, obj: Session) -> Dict:
+        return SCORE_MAP
 
     def get_test_count(self, _) -> int:
         # Cache the results for the default amount of time
