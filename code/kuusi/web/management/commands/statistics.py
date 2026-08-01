@@ -33,7 +33,7 @@ import user_agents
 import statistics
 
 class Command(BaseCommand):
-    help = "test"
+    help = "Generate statistics from a Distrochooser 5 session fixture"
 
     def add_arguments(self, parser):
         parser.add_argument("user_session_path",  type=str)

@@ -15,21 +15,26 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 from typing import Dict, List, Callable, Any
 from web.models import Facette, FacetteBehaviour, SessionVersion
 from logging import getLogger
 
 
-logger = getLogger('command') 
-def create_facettes(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[Facette]:
+logger = getLogger("command")
+
+
+def create_facettes(
+    get_or_default: Callable[[str, Dict], Any], haystack: Dict
+) -> List[Facette]:
     got = []
     for element, data in haystack.items():
         existing_facette = Facette.objects.filter(catalogue_id=element)
         not_in_versions = get_or_default("not_in_versions", data)
         new_facette = Facette(
-            catalogue_id = element,
-            description = f"{element}-description",
-            topic = data["topic"],
+            catalogue_id=element,
+            description=f"{element}-description",
+            topic=data["topic"],
         )
 
         if existing_facette.count() != 0:
@@ -41,14 +46,18 @@ def create_facettes(get_or_default: Callable[[str, Dict], Any], haystack: Dict) 
         if len(not_in_versions) > 0:
             description: str
             for description in not_in_versions:
-                new_facette.not_in_versions.add(SessionVersion.objects.get(catalogue_id=description))
+                new_facette.not_in_versions.add(
+                    SessionVersion.objects.get(catalogue_id=description)
+                )
             new_facette.save()
         got.append(new_facette)
-    
-  
+
     return got
 
-def create_facette_behaviours(get_or_default: Callable[[str, Dict], Any], haystack: Dict) -> List[FacetteBehaviour]:
+
+def create_facette_behaviours(
+    get_or_default: Callable[[str, Dict], Any], haystack: Dict
+) -> List[FacetteBehaviour]:
     got = []
 
     # We won't preserve behaviours.
@@ -56,13 +65,17 @@ def create_facette_behaviours(get_or_default: Callable[[str, Dict], Any], haysta
 
     for element, data in haystack.items():
         new_behaviour = FacetteBehaviour(
-            catalogue_id = element,
+            catalogue_id=element,
         )
 
         new_behaviour.save()
 
-        new_behaviour.affected_objects.set(Facette.objects.filter(catalogue_id__in=data["objects"]))
-        new_behaviour.affected_subjects.set(Facette.objects.filter(catalogue_id__in=data["subjects"]))
+        new_behaviour.affected_objects.set(
+            Facette.objects.filter(catalogue_id__in=data["objects"])
+        )
+        new_behaviour.affected_subjects.set(
+            Facette.objects.filter(catalogue_id__in=data["subjects"])
+        )
         new_behaviour.save()
         got.append(new_behaviour)
     return got

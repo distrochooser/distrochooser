@@ -24,9 +24,13 @@ from django.core.cache import cache
 from django.utils import timezone
 from django.db.models import Q
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
-                                   PolymorphicProxySerializer, extend_schema,
-                                   extend_schema_field)
+from drf_spectacular.utils import (
+    OpenApiParameter,
+    OpenApiResponse,
+    PolymorphicProxySerializer,
+    extend_schema,
+    extend_schema_field,
+)
 from kuusi.settings import WEIGHT_MAP, SCORE_MAP
 from rest_framework import serializers, status
 from rest_framework.fields import CharField
@@ -35,18 +39,33 @@ from rest_framework.response import Response
 from rest_framework.serializers import ListSerializer
 from rest_framework.utils.serializer_helpers import ReturnDict, ReturnList
 from rest_framework.viewsets import GenericViewSet
-from web.models import (Choosable, Facette, FacetteAssignment,
-                        FacetteRadioSelectionWidget, FacetteSelection,
-                        FacetteSelectionWidget, FeedbackWidget, HTMLWidget,
-                        MetaFilterValue, MetaFilterWidget, NavigationWidget,
-                        Page, ResultListWidget, ResultShareWidget, Session,
-                        SessionVersion, SessionVersionWidget, Widget, ChoosableMeta)
-from web.rest.choosable import (CHOOSABLE_SERIALIZER_BASE_FIELDS,
-                                ChoosableSerializer)
+from web.models import (
+    Choosable,
+    Facette,
+    FacetteAssignment,
+    FacetteRadioSelectionWidget,
+    FacetteSelection,
+    FacetteSelectionWidget,
+    FeedbackWidget,
+    HTMLWidget,
+    MetaFilterValue,
+    MetaFilterWidget,
+    NavigationWidget,
+    Page,
+    ResultListWidget,
+    ResultShareWidget,
+    Session,
+    SessionVersion,
+    SessionVersionWidget,
+    Widget,
+    ChoosableMeta,
+)
+from web.rest.choosable import CHOOSABLE_SERIALIZER_BASE_FIELDS, ChoosableSerializer
 from web.rest.facette import FacetteAssignmentSerializer, FacetteSerializer
 from web.rest.session import SessionVersionSerializer
 from web.util import get_translation
 import importlib
+
 WIDGET_SERIALIZER_BASE_FIELDS = (
     "id",
     "catalogue_id",
@@ -85,7 +104,9 @@ class WithFacetteWidgetSerializer(WidgetSerializer):
     facettes = serializers.SerializerMethodField()
 
     @extend_schema_field(field=FacetteSerializer(many=True))
-    def get_facettes(self, obj: FacetteSelectionWidget) -> ReturnList | ReturnDict | Any:
+    def get_facettes(
+        self, obj: FacetteSelectionWidget
+    ) -> ReturnList | ReturnDict | Any:
         facettes = Facette.objects.filter(topic=obj.topic)
 
         serializer = FacetteSerializer(facettes, many=True)
@@ -126,23 +147,19 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
 
     def _translate_countries(self, country: str) -> str:
         got = pycountry.countries.get(alpha_2=country)
-        if got: 
-           return f"{got.name} {got.flag}"
+        if got:
+            return f"{got.name} {got.flag}"
         return country
 
     def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
         option_keys = {
             "archs": ChoosableMeta.MetaName.ARCHS,
-            "countries": ChoosableMeta.MetaName.OPERATIONAL_CENTER
+            "countries": ChoosableMeta.MetaName.OPERATIONAL_CENTER,
         }
-        option_names = {
-            "countries": self._translate_countries
-        }
+        option_names = {"countries": self._translate_countries}
         results = {}
         for key, value in option_keys.items():
-            metas = ChoosableMeta.objects.filter(
-                meta_name = value
-            )
+            metas = ChoosableMeta.objects.filter(meta_name=value)
             values_raw = list(metas.values_list("meta_value", flat=True))
 
             result = {}
@@ -150,9 +167,13 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
                 meta_value_as_list = meta_value.split(",")
                 for element in meta_value_as_list:
                     if element not in result:
-                        name = option_names[key](element) if key in option_names else element
+                        name = (
+                            option_names[key](element)
+                            if key in option_names
+                            else element
+                        )
                         result[element] = name
-            
+
             result = dict(sorted(result.items(), key=lambda x: x[1]))
             results[key] = result
         return results
@@ -204,12 +225,20 @@ class RankedChoosableSerializer(ChoosableSerializer):
         fields = CHOOSABLE_SERIALIZER_BASE_FIELDS + ("rank", "assignments", "position")
 
     def get_rank(self, obj: Choosable) -> int:
-        return self.context["score_map"][obj.pk]["SCORE"] if obj.pk in  self.context["score_map"] else 999999999
-    
-    def get_position(self, obj:Choosable) -> int:
-        return self.context["position_map"][obj.pk] if obj.pk in  self.context["position_map"] else 999999999
+        return (
+            self.context["score_map"][obj.pk]["SCORE"]
+            if obj.pk in self.context["score_map"]
+            else 999999999
+        )
 
-    def get_description(self, obj: Choosable) -> str: 
+    def get_position(self, obj: Choosable) -> int:
+        return (
+            self.context["position_map"][obj.pk]
+            if obj.pk in self.context["position_map"]
+            else 999999999
+        )
+
+    def get_description(self, obj: Choosable) -> str:
         session = self.context["session"]
         return get_translation(f"{obj.catalogue_id}-description", session.language_code)
 
@@ -235,8 +264,8 @@ class ResultListWidgetSerializer(WidgetSerializer):
     class Meta:
         model = ResultListWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS + ("choosables",)
-    
-    def get_position(self, score_map: Dict,  choosable_id: number) -> number:
+
+    def get_position(self, score_map: Dict, choosable_id: number) -> number:
         own_score = score_map[choosable_id]["SCORE"]
         scores = list(set(map(lambda s: s["SCORE"], score_map.values())))
         scores.sort(reverse=True)
@@ -272,25 +301,22 @@ class ResultListWidgetSerializer(WidgetSerializer):
             for assignment in choosable_assignments:
                 # FIXME: The facettes must be at some point converted to a many to one field
                 selection = selections.get(
-                    facette = assignment.facettes.first(),
-                )     
+                    facette=assignment.facettes.first(),
+                )
                 selection_weight_key = selection.weight
                 selection_weight_value = WEIGHT_MAP[selection_weight_key]
-                
+
                 assignments_results[choosable.pk].append(assignment)
                 assignments_weight_map[assignment.pk] = selection_weight_value
-                
 
             # Step 2: Get Assignments from given Meta filters
             if has_meta_values:
                 for meta_filter_widget in meta_filter_widgets:
-                    meta_results = (
-                        meta_filter_widget.get_assignments_for_meta_values(
-                            stored_meta_filter_values,
-                            choosable,
-                            assignments_results,
-                            session,
-                        )
+                    meta_results = meta_filter_widget.get_assignments_for_meta_values(
+                        stored_meta_filter_values,
+                        choosable,
+                        assignments_results,
+                        session,
                     )
                     if meta_results is not None:
                         assignments_results[choosable.pk].append(meta_results)
@@ -302,7 +328,9 @@ class ResultListWidgetSerializer(WidgetSerializer):
                 for assignment in assignments_this_choosable:
                     assignment_type = assignment.assignment_type
                     choosable_scores[assignment_type] += 1
-                    choosable_scores["SCORE"] += choosable_scores[assignment_type] * SCORE_MAP[assignment_type]
+                    choosable_scores["SCORE"] += (
+                        choosable_scores[assignment_type] * SCORE_MAP[assignment_type]
+                    )
 
             score_map[choosable.pk] = choosable_scores
             results.append(choosable)
@@ -320,6 +348,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
 
 class WidgetViewSet(ListModelMixin, GenericViewSet):
     queryset = Page.objects.all()
+
     @extend_schema(
         responses={
             status.HTTP_200_OK: OpenApiResponse(
@@ -387,9 +416,11 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
 
         widget: Widget
         for widget in obj.widget_list:
-            type_str = f"{type(widget).__name__}Serializer" 
-            
-            serializer_class = getattr(importlib.import_module("web.rest.widget"), type_str)
+            type_str = f"{type(widget).__name__}Serializer"
+
+            serializer_class = getattr(
+                importlib.import_module("web.rest.widget"), type_str
+            )
             # If no class was found -> Abort
             if serializer_class is None:
                 return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -398,8 +429,8 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
             results = serializer_class(widget)
             results.context["session"] = session
             result.append(results.data)
-            
-        # if there is no widget denying the cache, create one        
+
+        # if there is no widget denying the cache, create one
         if not ignore_cache:
             cache.set(cache_key, result)
 
