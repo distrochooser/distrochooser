@@ -24,26 +24,50 @@ from unicodedata import lookup
 from urllib3.util import parse_url
 from threading import Thread
 
-def get_flag_str(lang_code:str) -> str:
+
+def get_flag_str(lang_code: str) -> str:
     flag_str = ""
     for char in lang_code:
-        flag_str += lookup(f'REGIONAL INDICATOR SYMBOL LETTER {char}')
+        try:
+            flag_str += lookup(f"REGIONAL INDICATOR SYMBOL LETTER {char}")
+        except:
+            flag_str += "❓"
     return flag_str
-def fire_hook(content, session: Session,  title: str, color: int):
+
+
+def do_hook_request(payload: dict):
+    if not DISCORD_HOOK:
+        return
+
+    headers = {"content-type": "application/json"}
+    # run into separate thread
+    try:
+        t = Thread(
+            target=post,
+            kwargs={
+                "url": DISCORD_HOOK,
+                "headers": headers,
+                "json": payload,
+            },
+        )
+        t.start()
+    except:
+        pass
+
+
+def fire_hook(content, session: Session, title: str, color: int):
     if not DISCORD_HOOK:
         return
     if not content or len(content) == 0:
         return
     instance_url = parse_url(KUUSI_URL)
 
-    headers = {"content-type": "application/json"}
     lang_code = standardize_tag(session.language_code, macro=True)
     flag_str = get_flag_str(lang_code)
-    
-    user_agent = "" if not session.user_agent else session.user_agent
+
     ref = "" if not session.referrer else f" from: {session.referrer}"
     data = {
-        "username": f"[{instance_url.host}] {session.result_id} ({session.language_code}-{flag_str}) {user_agent}{ref}"
+        "username": f"[{instance_url.host}] {session.result_id} ({session.language_code}-{flag_str}) {ref}"
     }
     # leave this out if you dont want an embed
     # for all params, see https://discordapp.com/developers/docs/resources/channel#embed-object
@@ -54,17 +78,4 @@ def fire_hook(content, session: Session,  title: str, color: int):
             "color": color,
         }
     ]
-
-    # run into separate thread
-    try:
-        t = Thread(
-            target = post,
-            kwargs={
-                "url":DISCORD_HOOK,
-                "headers":headers,
-                "json":data,
-            }
-        )
-        t.start()
-    except:
-        pass
+    do_hook_request(data)
