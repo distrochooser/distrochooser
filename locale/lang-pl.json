@@ -241,6 +241,6 @@
     "without-fee-facette-pricing-free-description": "Możliwość korzystania bez opłat",
     "xubuntu-description": "Xubuntu to dystrybucja oparta na Ubuntu, zasilana lekkim środowiskiem graficznym XFCE",
     "zorinos-description": "Zorin OS to dystrybucja dla początkujących z interfejsem użytkownika przypominającym Windows",
-    "major_update_interval": "Okres, w latach, pomiędzy głównymi aktualizacjami systemu operacyjnego nie powinien być krótszy niż",
+    "major_update_interval": "Interwał aktualizacji w latach między głównymi aktualizacjami systemu operacyjnego",
     "major_update_interval_unit": "lata"
 }

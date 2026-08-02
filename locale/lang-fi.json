@@ -241,6 +241,6 @@
     "without-fee-facette-pricing-free-description": "Käytettävissä ilman rahallista veloitusta",
     "xubuntu-description": "Xubuntu on Ubuntu-pohjainen jakelu jossa on vakiollisesti kevyt ja perinteisen yksinkertainen Xfce-työpöytäympäristö",
     "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen käyttöliittymä",
-    "major_update_interval": "Tärkeiden käyttöjärjestelmäpäivitysten välinen aika, vuosina, ei saa olla pienempi kuin",
+    "major_update_interval": "Päivitysaikaväli vuosina suurten käyttöjärjestelmäpäivitysten välillä",
     "major_update_interval_unit": "v uodet"
 }

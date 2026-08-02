@@ -241,6 +241,6 @@
     "without-fee-facette-pricing-free-description": "無料で利用可能",
     "xubuntu-description": "Xubuntu は、軽量の XFCE デスクトップ環境を搭載した Ubuntu ベースのディストリビューションです。",
     "zorinos-description": "Zorin OS は、Windows ライクなユーザーインターフェースを備えた、初心者向けのディストリビューションです。",
-    "major_update_interval": "主要なオペレーティングシステムのアップグレード間の期間（年単位）は、少なくとも",
+    "major_update_interval": "主要なオペレーティングシステムアップグレード間の年単位での更新間隔",
     "major_update_interval_unit": "年"
 }

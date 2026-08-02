@@ -241,6 +241,6 @@
     "without-fee-facette-pricing-free-description": "免费使用$",
     "xubuntu-description": "Xubuntu 是一款基于 Ubuntu 的 Linux 发行版，搭载轻量级 XFCE 桌面环境$",
     "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$",
-    "major_update_interval": "主要操作系统升级之间的周期，以年计，不应少于",
+    "major_update_interval": "主要操作系统升级之间的年更新间隔",
     "major_update_interval_unit": "年"
 }

@@ -241,6 +241,6 @@
     "without-fee-facette-pricing-free-description": "Работает без оплаты",
     "xubuntu-description": "Xubuntu — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола XFCE",
     "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих",
-    "major_update_interval": "Период в годах между крупными обновлениями операционной системы не должен быть меньше чем",
+    "major_update_interval": "Период обновления в годах между крупными обновлениями операционной системы",
     "major_update_interval_unit": "лет"
 }

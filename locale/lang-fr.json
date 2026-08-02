@@ -241,6 +241,6 @@
     "without-fee-facette-pricing-free-description": "Utilisable gratuitement",
     "xubuntu-description": "Xubuntu est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger XFCE",
     "zorinos-description": "Zorin OS est une distribution destinée aux débutants avec une interface utilisateur de type Windows",
-    "major_update_interval": "La période, en années, entre les mises à jour majeures du système d'exploitation ne doit pas être inférieure à",
+    "major_update_interval": "Intervalle de mise à jour en années entre les grandes mises à jour du système d'exploitation",
     "major_update_interval_unit": "ans"
 }
