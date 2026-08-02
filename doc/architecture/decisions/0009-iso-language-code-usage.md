@@ -4,7 +4,7 @@ Date: 2025-06-28
 
 ## Status
 
-Superseded by [9.](0009-iso-language-code-usage.md)
+Superseded by [17.](0017-language-codes.md)
 
 ## Context
 

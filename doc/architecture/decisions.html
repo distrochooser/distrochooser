@@ -324,7 +324,7 @@ like structure where each content is a <code>Widget</code>.</p>
                     <div class="panel-body"><h1>9. ISO Language Code usage</h1>
 <p>Date: 2025-06-28</p>
 <h2>Status</h2>
-<p>Superseded by <a href="0009-iso-language-code-usage.md">9.</a></p>
+<p>Superseded by <a href="0017-language-codes.md">17.</a></p>
 <h2>Context</h2>
 <p>Translations must be identified.</p>
 <h2>Decision</h2>
@@ -477,12 +477,12 @@ and the values referring to an <code>Translatable</code> (see <a href="0012-i18n
             </div>
             
             <div class="panel panel-default">
-                <div class="panel-heading adr-accepted">
+                <div class="panel-heading adr-superseded">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapse13">14. Questionnaire Versions</a>
 
                         
-                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        <i class="adr-icon fas fa-fw fa-times"></i>
                         
 
                     </h4>
@@ -491,7 +491,7 @@ and the values referring to an <code>Translatable</code> (see <a href="0012-i18n
                     <div class="panel-body"><h1>14. Questionnaire Versions</h1>
 <p>Date: 2025-06-28</p>
 <h2>Status</h2>
-<p>Accepted</p>
+<p>Superseded by  <a href="0029-questionnaire-versions.md">29. questionnaire versions</a></p>
 <h2>Context</h2>
 <p>Some users have a hard time with technical questions. For this users, an adapted variant of the questionnaire shall be avaiable.</p>
 <h2>Decision</h2>
@@ -843,6 +843,232 @@ Translated values shall not be transferred to the client.</p>
 <h2>Consequences</h2>
 <p>A session is only considered as a result when a list of choosables was delivered.
 During generation of the result list, the <code>is_ack</code>-flag is set.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse25">26. Release of version 6</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse25" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>26. Release of version 6</h1>
+<p>Date: 2026-05-25</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Currently, there are two instances</p>
+<ul>
+<li>distrochooser.de -&gt; <code>v5</code></li>
+<li>beta.distrochooser.de -&gt; <code>v6</code></li>
+</ul>
+<p><code>v6</code> shall soon replace the <code>v5</code> instance.</p>
+<h3>Option 1: Bridge (used in the past)</h3>
+<p><code>v5</code> moves to old.distrochooser.de, <code>v6</code> moves to distrochooser.de, beta.distrochooser.de is retired</p>
+<p>Pro/ Con:</p>
+<ul>
+<li>🙂 Easy to carry out</li>
+<li>🙁 Requires old version to remain online</li>
+<li>🙁 Requires new version to display hint for &quot;old&quot; results to forward to the old version</li>
+<li>🙁 When the <code>v5</code> is shut down finally, the old results are lost</li>
+</ul>
+<h3>Option 2: Migrate data</h3>
+<p><code>v6</code> moves to distrochooser.de, beta.distrochooser.de is retired</p>
+<p>Selected data from <code>v5</code> is migrated into <code>v6</code>database:</p>
+<blockquote>
+<p>Idea here:
+The bare minimum shall be migrated: The sessions and the given answers. The given answers are mapped to the catalogue id's in the new distrochooser version, allowing carrying over of the user input.
+Importance - Flags (previously boolean) will be reflected as score &quot;0&quot; (not important) and &quot;2&quot; important to utilize the
+scoring via WEIGHT_MAP in settings.py</p>
+</blockquote>
+<ul>
+<li>Sessions (Date, Id, User-Agent, Referrer, Language)</li>
+<li>GivenAnswer (Session, Answer, Importance)</li>
+</ul>
+<p>Other information, such as page structure, feedback, etc. will NOT be migrated to keep the import compact.</p>
+<p>Pro/ Con:</p>
+<ul>
+<li>🙂 &quot;Clean&quot; approach, no bridge needed</li>
+<li>🙂 Historic data remains accessible (limited)</li>
+<li>🙁 Requires large migration effort (2400000 + 16000000 rows as of 25.05.2026)</li>
+<li>🙁 Requires new version to display alert</li>
+<li>🙁 Requires database update to flag migrated data</li>
+</ul>
+<h2>Decision</h2>
+<p>Both options require some additions to the frontend. In the past, only #1 was carried out. For the <code>v5</code> to <code>v6</code> switch, <strong>option #2</strong> is attempted to allow a seamless transistion between the versions.</p>
+<p>For fallback purposes, <code>v5</code> will be kept as old.distrochooser.de for a limited time, most likely until the end of the year (assuming the switch is carried out in summer of 2026).</p>
+<p>The import shall be carried out in following stages</p>
+<ul>
+<li>Export of the Django models <code>distrochooser.UserSession</code> and <code>distrochooser.GivenAnswer</code> in separate(!) runs using the <code>dumpdata</code> command (<code>--format json -o file.json</code>). A possible downtime might be considered.</li>
+<li>The files will be tested in a local test environment.</li>
+<li>The import will be carried out using the <code>import</code> management command</li>
+</ul>
+<p>The domain configuration shall be adapted to reflect the switches:</p>
+<ul>
+<li><code>v5</code> moves to old.distrochooser.de</li>
+<li><code>v6</code> moves to distrochooser.de</li>
+<li>beta.distrochooser will be shut down</li>
+</ul>
+<h2>Consequences</h2>
+<p>Due to the data amount to be migrated, some time planning must be carried out to refine the <code>import &lt;session.json&gt; &lt;givenanswer.json&gt;</code> management command introduced in #13ca236b1f749b39d322fe777b2feb3b0a75a251. As of time of writing, the import might take &gt; 100h, improvements pending.</p>
+<p>The frontend need to reflect the change in the relase option, displaying a remark in case a migrated result is opened. This also applies for the cloning process, so a cloned result also retains that flag.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse26">27. Session model access</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse26" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>27. Session model access</h1>
+<p>Date: 2026-06-03</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>After import, the <code>Session</code> table consist out of more than 2 million rows of data. This causes significant delay on load time when <code>Session.objects.filter()</code>or <code>Session.objects.get()</code> is called.</p>
+<h2>Decision</h2>
+<p>The access to <code>Session</code> instances is abstracted using the method <code>Session.get(result_id)</code>. This method searches for the session inside the cache and returns this data. If not cached, the object will be queried once and cached (even as all <code>Session</code> objects should be cached cached).</p>
+<p>On <code>Session.save()</code>, the cache will be filled with the data, so in case of updates and partial updates, the session should remain up to date, not requiring altering the logic of the DRF viewsets.</p>
+<h2>Consequences</h2>
+<p>All calls for <code>Session.objects.filter()</code>or <code>Session.objects.get()</code>  are not replaced by <code>Session.get(result_id)</code>. The statistics update does a <code>filter</code> once, but is cached anyways. At some point, it might cause issues with cache hits/ non hits, but they must be addressed separately.</p>
+<p>On local environments, this action reduces the response times by about ~500ms (having 2300000 rows of sessions).</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse27">28. matrix versions</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse27" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>28. matrix versions</h1>
+<p>Date: 2026-06-04</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>The app is constantly changing, causing results to change and evolve over time even after the user has requested the initial result. Therefore there is the need to identify if the session results derive from a &quot;latest&quot; configuration or not.</p>
+<h2>Decision</h2>
+<p><code>Session</code> objects receive the Git hash on save. The hash is derived from the setting <code>GIT_HASH_PATH</code>, which will be filled externally (on Docker image build). The hash from <code>GIT_HASH_PATH</code> is loaded into the environment variable <code>GIT_HASH</code>.</p>
+<h2>Consequences</h2>
+<p>The UI might display some kind of remark at some point. Additional, we assume here that all matrix changes are properly populated inside of the version control.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse28">29. questionnaire versions</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse28" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>29. questionnaire versions</h1>
+<p>Date: 2026-07-05</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<p>Supercedes <a href="0014-questionnaire-versions.md">14. Questionnaire Versions</a></p>
+<h2>Context</h2>
+<p>Some users have a hard time with technical questions. For this users, an adapted variant of the questionnaire shall be avaiable.</p>
+<h2>Decision</h2>
+<p><code>Pages</code> are negatively bound to <code>SessionVersion</code> objects to allow them being hidden for these <code>SessionVersion</code>. On import, e. g. a
+&quot;simplified&quot; version is created and each technical question cannow be hidden.</p>
+<p>The results are static and <code>Session</code>-agnostic. As some <code>Facettes</code> within a <code>Page</code> (and it's corresponding <code>Widget</code>) require <code>SessionVersion</code> based display or hiding, these are filtered on the client side to prevent the need to have to cleanup caches frequently and deep when a <code>Version</code> is switched.</p>
+<p>The session will be created without an actual <code>SessionVersion</code>, on switch there is the option to switch to a <code>full</code> version, which has no meta-feature, it's just selected, but not referred in a <code>Page.not_in_versions</code> nor <code>Facette.not_in_versions</code>.</p>
+<h2>Consequences</h2>
+<p><code>Page</code> objects relate to the <code>SessionVersion</code>. While the pages can be hidden server-sided, some result descriptions might be still technical
+as they do not correlate with the <code>SessionVersion</code> itself.</p>
+<p><code>Facette</code> objects can also link a given `SessionVersion, but will still be transferred for the client for clients-die filtering.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse29">30. positions</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse29" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>30. positions</h1>
+<p>Date: 2026-07-05</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Based on user feedback, the result list lacks an identifier about the ranking of the list.</p>
+<h2>Decision</h2>
+<p><code>RankedChoosables</code> wil retrieve a numberic position.</p>
+<h2>Consequences</h2>
+<p>If two <code>RankedChoosables</code> have an identical score, they will retrieve the same position. No further ranking will be carried out.</p>
+<p>To explain this, the <code>ResultListWidget</code> receives an explanatory text.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse30">31. range meta filter</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse30" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>31. range meta filter</h1>
+<p>Date: 2026-08-02</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Distrochooser impelements <code>MetaFilterValues</code> which allow the user to filter by additional values not covered by <code>Facette</code>objects.</p>
+<p>Examples:</p>
+<ul>
+<li>Countries (as in operational centers) (select, multiple)</li>
+<li>Supported architectures (select, multiple)</li>
+<li>Age of the distribution (number, single)</li>
+</ul>
+<h2>Decision</h2>
+<p>To cover the release interval of a given distribution, a new type is implemented, adding a <code>&lt;input type='range'/&gt;</code> to the <code>Cell</code> component.
+The user can name a minimal interval in years. Distributions receive a <code>positive</code> hit and no hit if not matching.</p>
+<h2>Consequences</h2>
+<ol>
+<li>It might be required to add a <code>negative</code> hit when the minimal does not match the user requirement.</li>
+<li>Mapping updates are required</li>
+<li>There are currently no options for additional attributes, such as <code>step=&lt;number&gt;</code></li>
+</ol>
 </div>
                 </div>
             </div>
