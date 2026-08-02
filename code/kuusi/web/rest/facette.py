@@ -20,8 +20,12 @@ from typing import Any, List
 
 from django.core.cache import cache
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
-                                   extend_schema, extend_schema_field)
+from drf_spectacular.utils import (
+    OpenApiParameter,
+    OpenApiResponse,
+    extend_schema,
+    extend_schema_field,
+)
 from rest_framework import serializers, status
 from rest_framework.fields import IntegerField
 from rest_framework.mixins import ListModelMixin
@@ -29,10 +33,18 @@ from rest_framework.response import Response
 from rest_framework.serializers import ListSerializer
 from rest_framework.utils.serializer_helpers import ReturnDict, ReturnList
 from rest_framework.viewsets import GenericViewSet
-from web.models import (AssignmentFeedback, Choosable, Facette,
-                        FacetteAssignment, Feedback, Session)
+from web.models import (
+    AssignmentFeedback,
+    Choosable,
+    Facette,
+    FacetteAssignment,
+    Feedback,
+    Session,
+)
 from web.rest.hooks import fire_hook
 from web.util import get_translation
+
+
 class CreateFeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
@@ -263,7 +275,7 @@ class FeedbackViewSet(ListModelMixin, GenericViewSet):
             session=session,
         )
         result.save()
-        
+
         fire_hook(
             f"{choosable_obj.name}@{assignment.description}",
             session,
@@ -308,12 +320,13 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
             "choosables",
             "catalogue_id",
             "description",
+            "context_argument",
             "assignment_type",
             "weight",
             "votes",
-            "sources"
+            "sources",
         )
-    
+
     def get_weight(self, obj: FacetteAssignment) -> int:
         weight_value = None
         if "weight_map" in self.context and obj.pk in self.context["weight_map"]:
@@ -329,6 +342,7 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
     def get_votes(self, obj: FacetteAssignment):
         return obj.get_votes()
 
+
 class FacetteSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
     assignments = serializers.SerializerMethodField()
@@ -340,7 +354,7 @@ class FacetteSerializer(serializers.ModelSerializer):
             "topic",
             "description",
             "assignments",
-            "not_in_versions" # Transfer the version Id's also to the client, to allow the UI to filter it. See ADR 0029 for details.
+            "not_in_versions",  # Transfer the version Id's also to the client, to allow the UI to filter it. See ADR 0029 for details.
         )
 
     def get_description(self, obj: Facette) -> str:

@@ -151,30 +151,50 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
             return f"{got.name} {got.flag}"
         return country
 
-    def get_options(self, obj: MetaFilterWidget) -> Dict[str, List[str]]:
+    def _get_option_values(
+        self, metas, option_names: dict[str, str], key: str
+    ) -> dict[str, str]:
+        values_raw = list(metas.values_list("meta_value", flat=True))
+        result = {}
+        for meta_value in values_raw:
+            meta_value_as_list = meta_value.split(",")
+            for element in meta_value_as_list:
+                if element not in result:
+                    name = (
+                        option_names[key](element) if key in option_names else element
+                    )
+                    result[element] = name
+
+        result = dict(sorted(result.items(), key=lambda x: x[1]))
+        return result
+
+    def _get_min_max_values(
+        self, metas, option_names: dict[str, str], key: str
+    ) -> dict[str, int]:
+        values_raw = list(metas.values_list("meta_value", flat=True))
+        if len(values_raw) == 0:
+            return {"min": 0, "max": 0}
+        result = {"min": min(values_raw), "max": max(values_raw)}
+
+        return result
+
+    def get_options(self, obj: MetaFilterWidget) -> Dict[str, Dict[str, str]]:
         option_keys = {
             "archs": ChoosableMeta.MetaName.ARCHS,
             "countries": ChoosableMeta.MetaName.OPERATIONAL_CENTER,
+            "major_update_interval": ChoosableMeta.MetaName.MAJOR_UPDATE_INTERVAL,
         }
+        option_values = {
+            "archs": self._get_option_values,
+            "countries": self._get_option_values,
+            "major_update_interval": self._get_min_max_values,
+        }
+
         option_names = {"countries": self._translate_countries}
         results = {}
         for key, value in option_keys.items():
             metas = ChoosableMeta.objects.filter(meta_name=value)
-            values_raw = list(metas.values_list("meta_value", flat=True))
-
-            result = {}
-            for meta_value in values_raw:
-                meta_value_as_list = meta_value.split(",")
-                for element in meta_value_as_list:
-                    if element not in result:
-                        name = (
-                            option_names[key](element)
-                            if key in option_names
-                            else element
-                        )
-                        result[element] = name
-
-            result = dict(sorted(result.items(), key=lambda x: x[1]))
+            result = option_values[key](metas, option_names, key)
             results[key] = result
         return results
 

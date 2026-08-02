@@ -23,17 +23,20 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.core.cache import cache
 from kuusi.settings import LONG_CACHE_TIMEOUT
+
+
 class Choosable(models.Model):
     """
     Element ot be choosed.
 
     Must be translated
     """
-    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
-    name = models.CharField(null=False, blank=False, max_length=120) # the name will be used for results lists mostly
-    description = models.CharField(
-        null=True, blank=True, default=None, max_length=120
-    )
+
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255)
+    name = models.CharField(
+        null=False, blank=False, max_length=120
+    )  # the name will be used for results lists mostly
+    description = models.CharField(null=True, blank=True, default=None, max_length=120)
     clicked = models.IntegerField(default=0)
     bg_color = models.CharField(max_length=10, default=None, null=True)
     fg_color = models.CharField(max_length=10, default=None, null=True)
@@ -47,7 +50,7 @@ class Choosable(models.Model):
         cached = cache.get(cache_key)
         if cached:
             return cached
-        
+
         meta_objects = ChoosableMeta.objects.filter(meta_choosable=self).order_by(
             "meta_name"
         )
@@ -59,15 +62,15 @@ class Choosable(models.Model):
         cache.set(cache_key, result, LONG_CACHE_TIMEOUT)
         return result
 
-
     def as_toml(self):
         result = ""
         result += f"[choosable.{self.catalogue_id}]\n"
-        result += f"name = \"{self.name}\"\nbg_color = \"{self.bg_color}\"\nfg_color = \"{self.fg_color}\"\n"
+        result += f'name = "{self.name}"\nbg_color = "{self.bg_color}"\nfg_color = "{self.fg_color}"\n'
         return result + "\n"
 
+
 class ChoosableMeta(models.Model):
-    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255)
     meta_choosable = models.ForeignKey(
         to=Choosable,
         on_delete=models.CASCADE,
@@ -75,27 +78,30 @@ class ChoosableMeta(models.Model):
         blank=True,
         related_name="choosablemeta_choosable",
     )
+
     # TODO: Properly fix upper <> lowercase issue
+    # TODO: Move this out of the ChooosableMeta itself ot make it more generic
     class MetaName(models.TextChoices):
         CREATED = "AGE", _("AGE")
-        OPERATIONAL_CENTER = "OPERATIONAL_CENTER",  _("OPERATIONAL_CENTER")
-        LICENSES = "LICENSES",  _("LICENSES")
-        WEBSITE = "WEBSITE",  _("WEBSITE")
+        OPERATIONAL_CENTER = "OPERATIONAL_CENTER", _("OPERATIONAL_CENTER")
+        LICENSES = "LICENSES", _("LICENSES")
+        WEBSITE = "WEBSITE", _("WEBSITE")
         LANGUAGES = "LANGUAGES", _("LANGUAGES")
         ARCHS = "ARCHS", _("ARCHS")
-    
-    @property 
+        MAJOR_UPDATE_INTERVAL = "MAJOR_UPDATE_INTERVAL", _("MAJOR_UPDATE_INTERVAL")
+
+    @property
     def meta_type(self) -> str:
-        default_type = "hidden";
+        default_type = "hidden"
         map = {
             "AGE": "date",
             "OPERATIONAL_CENTER": "flag",
             "LICENSES": "text",
             "WEBSITE": "link",
         }
-        return map[self.meta_name] if self.meta_name in map  else default_type
+        return map[self.meta_name] if self.meta_name in map else default_type
 
-    @property 
+    @property
     def meta_description(self) -> str:
         # used as with as_toml
         map = {
@@ -104,11 +110,11 @@ class ChoosableMeta(models.Model):
             "LANGUAGES": "The list of languages supported by the choosable, comma separated as ISO-639-1 code, e. g. en,de,jp",
             "LICENSES": "A list of licenses used by the project in a SPDX format, e. g. AGPL-3.0-or-later",
             "WEBSITE": "The link to the project. Shall start with http(s)",
-            "ARCHS": "Supported cpu architectures"
+            "ARCHS": "Supported cpu architectures",
         }
         return map[self.meta_name]
 
-    @property 
+    @property
     def is_hidden(self) -> bool:
         return self.meta_type == "hidden"
 
@@ -133,13 +139,16 @@ class ChoosableMeta(models.Model):
         date = datetime.fromisoformat(self.meta_value)
         delta = relativedelta(now, date)
         return delta.years
-    
+
     def as_toml(self):
         result = ""
         if self.meta_choosable:
             result += f"# {self.meta_description}\n"
             result += f"[[meta]]\n"
-            result += f"choosable=\"{self.meta_choosable.catalogue_id}\"\n"
-            result += f"meta_name=\"{self.meta_name.lower()}\"\n"
-            result += f"meta_value=\"{self.meta_value}\"\n"
+            result += f'choosable="{self.meta_choosable.catalogue_id}"\n'
+            result += f'meta_name="{self.meta_name.lower()}"\n'
+            result += f'meta_value="{self.meta_value}"\n'
         return result + "\n"
+
+    def __str__(self):
+        return f"{self.meta_choosable} -> {self.meta_name}: {self.meta_value}"

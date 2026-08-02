@@ -23,6 +23,7 @@ from typing import List, Dict, Any, Tuple
 from django.core.cache import cache
 from django.db.models.manager import BaseManager
 
+
 class MetaFilterWidgetElement:
     def __init__(self, type: str, name: str, func: str, args: Any):
         self.cell_type = type
@@ -39,6 +40,7 @@ class MetaFilterWidgetElement:
             "filter_must_match_language": self.filter_must_match_language,
             "filter_archs": self.filter_archs,
             "filter_countries": self.filter_countries,
+            "filter_by_update_interval": self.filter_by_update_interval,
         }
         return func_map
 
@@ -97,7 +99,9 @@ class MetaFilterWidgetElement:
         result.save()
         return result
 
-    def filter_by_meta(self, obj: Choosable, value: Any, collected_assignments, session, meta_name: str):
+    def filter_by_meta(
+        self, obj: Choosable, value: Any, collected_assignments, session, meta_name: str
+    ):
         """
         Serves as a common base for filter_archs and filter_countries
 
@@ -111,7 +115,7 @@ class MetaFilterWidgetElement:
         for arch in value_parsed:
             arch_string = str(arch)
             if arch_string in obj.meta[meta_name.upper()].as_list:
-               matched_value_str += "," + arch_string
+                matched_value_str += "," + arch_string
         matched_value_str = matched_value_str.strip(",")
         if matched_value_str != "":
             result = FacetteAssignment(
@@ -128,12 +132,33 @@ class MetaFilterWidgetElement:
             assignment_type=FacetteAssignment.AssignmentType.NEGATIVE,
         )
         return result
-    
+
     def filter_countries(
-            self, obj: Choosable, value: Any, collected_assignments, session
-        ) -> FacetteAssignment | None:
-        return self.filter_by_meta(obj, value, collected_assignments, session, "operational_center")
-    
+        self, obj: Choosable, value: Any, collected_assignments, session
+    ) -> FacetteAssignment | None:
+        return self.filter_by_meta(
+            obj, value, collected_assignments, session, "operational_center"
+        )
+
+    def filter_by_update_interval(
+        self, obj: Choosable, raw_value: str, collected_assignments, session
+    ):
+        value = float(raw_value)
+        meta_name = "major_update_interval".upper()
+        if meta_name not in obj.meta:
+            return None
+        meta_value = float(obj.meta[meta_name].meta_value)
+        if meta_value >= value:
+            result = FacetteAssignment(
+                catalogue_id=meta_name,
+                description=meta_name,
+                context_argument=meta_value,
+                assignment_type=FacetteAssignment.AssignmentType.POSITIVE,
+            )
+            return result
+        else:
+            return None
+
     def filter_archs(
         self, obj: Choosable, value: Any, collected_assignments, session
     ) -> FacetteAssignment | None:
@@ -212,12 +237,12 @@ class MetaFilterWidget(Widget):
         session: Session,
     ) -> FacetteAssignment | None:
         """
-        Get a FacetteAssignment caused by a given choosable by a given meta        
+        Get a FacetteAssignment caused by a given choosable by a given meta
         """
         structure = self.parsed_structure
         if not structure:
             return None
-        
+
         for stored_value in meta_filter_values:
             cell_obj = structure.get_cell_from_structure(stored_value.key)
             if cell_obj:

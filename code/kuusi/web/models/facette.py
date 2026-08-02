@@ -20,13 +20,14 @@ from __future__ import annotations
 from typing import List, Dict
 
 
-from web.models import  Session, Choosable
+from web.models import Session, Choosable
 from django.db import models
-from django.db.models import  QuerySet
+from django.db.models import QuerySet
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.apps import apps
 from django.core.cache import cache
 from kuusi.settings import LONG_CACHE_TIMEOUT, ENABLE_FEEDBACK_MODE
+
 
 class Facette(models.Model):
     """
@@ -35,9 +36,9 @@ class Facette(models.Model):
     The description is displayed for selection within a page
 
     The topic reduces a facette to a certain subarea, e. g. "licenses" for Linux distributions
-    """ 
-    
-    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
+    """
+
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255)
     description = models.CharField(null=False, blank=False, max_length=120)
     topic = models.CharField(null=False, blank=False, max_length=120)
     child_facettes = models.ManyToManyField(to="Facette", blank=True)
@@ -53,16 +54,14 @@ class Facette(models.Model):
     @property
     def has_child(self) -> bool:
         return self.child_facettes.count() > 0
-    
+
     @property
     def assignments(self) -> QuerySet[FacetteAssignment]:
         cache_key = f"facette-{self.pk}-assignments"
         cached = cache.get(cache_key)
         if cached:
             return cached
-        assignments = FacetteAssignment.objects.filter(
-            facettes__in=[self]
-        )
+        assignments = FacetteAssignment.objects.filter(facettes__in=[self])
         cache.set(cache_key, assignments)
         return assignments
 
@@ -72,7 +71,7 @@ class Facette(models.Model):
 
 
 class FacetteBehaviour(models.Model):
-    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255)
     affected_objects = models.ManyToManyField(
         to="Facette", blank=True, related_name="facette_behaviour_objects"
     )
@@ -80,18 +79,26 @@ class FacetteBehaviour(models.Model):
         to="Facette", blank=True, related_name="facette_behaviour_subjects"
     )
 
-    def facette_in_queryset(self, selections: QuerySet[FacetteSelection], queryset: QuerySet):
+    def facette_in_queryset(
+        self, selections: QuerySet[FacetteSelection], queryset: QuerySet
+    ):
         for selection in selections:
             facette = selection.facette
             if queryset.filter(pk=facette.pk).count() > 0:
                 return True
         return False
 
-    def is_true(self, facette: Facette, all_selections: QuerySet[FacetteSelection]) -> bool:
+    def is_true(
+        self, facette: Facette, all_selections: QuerySet[FacetteSelection]
+    ) -> bool:
         is_subject = self.affected_subjects.filter(pk=facette.pk).count() > 0
         is_object = self.affected_objects.filter(pk=facette.pk).count() > 0
-        is_subjects_others = self.facette_in_queryset(all_selections.exclude(facette=facette), self.affected_subjects)
-        is_objects_others = self.facette_in_queryset(all_selections.exclude(facette=facette), self.affected_objects)
+        is_subjects_others = self.facette_in_queryset(
+            all_selections.exclude(facette=facette), self.affected_subjects
+        )
+        is_objects_others = self.facette_in_queryset(
+            all_selections.exclude(facette=facette), self.affected_objects
+        )
 
         if (is_subject or is_object) and (is_subjects_others or is_objects_others):
             return True
@@ -118,32 +125,41 @@ class FacetteSelection(models.Model):
         default=0, validators=[MaxValueValidator(2), MinValueValidator(-2)]
     )
     # to mark selections imported from a old answer (Distrochooser 5)
-    imported_from_answer = models.CharField(max_length=10, default=None, null=True, blank=True)
+    imported_from_answer = models.CharField(
+        max_length=10, default=None, null=True, blank=True
+    )
 
 
 class FacetteAssignment(models.Model):
-    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255)
     choosables = models.ManyToManyField(to=Choosable)
     # TODO: The facette is actually never an n=2 set...
     facettes = models.ManyToManyField(to=Facette)
-    description = models.CharField(
-        null=True, blank=True, default=None, max_length=800
+    description = models.CharField(null=True, blank=True, default=None, max_length=800)
+    # Use to display contexts e. g. when the user wants update once per year to display that with the translation
+    context_argument = models.CharField(
+        null=True, blank=True, default=None, max_length=10
     )
     is_approved = models.BooleanField(default=False)
 
     # The sources is just a comma separated list of links
     # to keep this simple & stupid, no new entity will be introduced.
-    sources = models.CharField(null=True,blank=True,default=None, max_length=5000)
+    sources = models.CharField(null=True, blank=True, default=None, max_length=5000)
 
     def __str__(self) -> str:
         if self.pk is None:
-            return f"Virtual: ({self.assignment_type})" 
+            return f"Virtual: ({self.assignment_type})"
         choosables_str = [c.name for c in self.choosables.all()]
         facettes_str = [f.catalogue_id for f in self.facettes.all()]
         return f"{choosables_str} -> {facettes_str} ({self.assignment_type})"
 
     def is_flagged(self, choosable: Choosable) -> bool:
-        return apps.get_model("web", "Feedback").objects.filter(assignment=self, choosable=choosable).count() != 0
+        return (
+            apps.get_model("web", "Feedback")
+            .objects.filter(assignment=self, choosable=choosable)
+            .count()
+            != 0
+        )
 
     def get_votes(self) -> List[List[int, int, int]]:
         # do not search for anythin if the feedback mode is inactive
@@ -162,7 +178,7 @@ class FacetteAssignment(models.Model):
         votes = apps.get_model("web", "Feedback").objects.filter(assignment=self)
         choosable: Choosable
         for choosable in choosables:
-            votes_choosable =  votes.filter(choosable=choosable)
+            votes_choosable = votes.filter(choosable=choosable)
             item = [
                 choosable.pk,
                 votes_choosable.filter(is_positive=True).count(),
@@ -183,13 +199,13 @@ class FacetteAssignment(models.Model):
         my_index = order.index(self.assignment_type)
         other_index = order.index(other.assignment_type)
         return my_index > other_index
-    
+
     class AssignmentType(models.TextChoices):
         POSITIVE = "POSITIVE", "POSITIVE"
         NEGATIVE = "NEGATIVE", "NEGATIVE"
         NEUTRAL = "NEUTRAL", "NEUTRAL"
         BLOCKING = "BLOCKING", "BLOCKING"
-        
+
         @staticmethod
         def get_score_map():
             score_map = {}
@@ -198,6 +214,7 @@ class FacetteAssignment(models.Model):
                 score_map[identifier] = 0
             score_map["SCORE"] = 0
             return score_map
+
     assignment_type = models.CharField(
         max_length=20, choices=AssignmentType.choices, default=AssignmentType.NEUTRAL
     )

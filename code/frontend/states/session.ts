@@ -77,9 +77,9 @@ export const useSessionStore = defineStore('websiteStore', {
     }),
     getters: {
         sessionApi(): SessionApi {
-            if (sessionApi == null){
+            if (sessionApi == null) {
                 const apiConfig = new Configuration({
-                    basePath:  useRuntimeConfig().public.basePath,
+                    basePath: useRuntimeConfig().public.basePath,
                     headers: {
                         "accept": "application/json"
                     }
@@ -147,21 +147,21 @@ export const useSessionStore = defineStore('websiteStore', {
         },
         async deleteAssignmentFeedback(assignmentId: number) {
             const assignments = this.assignmentFeedback.filter(l => l.assignment == assignmentId && l.session == this.session.id)
-            
-            for (var i=0; i< assignments.length;i++) {
+
+            for (var i = 0; i < assignments.length; i++) {
                 await this.sessionApi.sessionAssignmentfeedbackDestroy({
                     sessionPk: this.session.resultId,
                     id: assignments[i].id
                 })
             }
-            await this.getAssignmentFeedback() 
+            await this.getAssignmentFeedback()
         },
         async getTranslationFeedback() {
             if (!this.session.isTranslationModeEnabled) {
                 // if no translation mode is enabled -> do not attempt to query anything
                 return;
             }
-            this.languageFeedback =  await this.sessionApi.sessionLanguageList({
+            this.languageFeedback = await this.sessionApi.sessionLanguageList({
                 sessionPk: this.session.resultId,
                 voterId: this.getVoterId() /* this may be empty, but this is on purpose as people not interacting with the voting features shall not have such an ID*/
             })
@@ -188,7 +188,7 @@ export const useSessionStore = defineStore('websiteStore', {
         },
         getOrCreateVoterId() {
             return this.getVoterId() ?? this.createVoterID()
-        }, 
+        },
         async voteForLanguageFeedback(feedbackId: number, isPositive: boolean) {
             const origin = this.getOrCreateVoterId()
             localStorage.setItem(this.getVoterIdKey(), origin)
@@ -207,7 +207,7 @@ export const useSessionStore = defineStore('websiteStore', {
         async provideTranslation(key: string, value: string) {
             const origin = this.getOrCreateVoterId()
             await this.sessionApi.sessionLanguageCreate({
-                sessionPk: this.session.resultId,        
+                sessionPk: this.session.resultId,
                 createLanguageFeedback: {
                     languageKey: key,
                     value: value,
@@ -241,7 +241,7 @@ export const useSessionStore = defineStore('websiteStore', {
             )).sort((a, b) => b.id - a.id)
             if (providedFeedback.length > 0 && providedFeedback[0].value.length > 0) {
                 const result = providedFeedback[0].value ?? key
-                return result; 
+                return result;
             }
             if (typeof this.session.languageValues[key] == "undefined") {
                 return key
@@ -370,8 +370,7 @@ export const useSessionStore = defineStore('websiteStore', {
             if (this.currentPage === null) {
                 return false;
             }
-            if (this.pages[0].id === this.currentPage.id) 
-            {
+            if (this.pages[0].id === this.currentPage.id) {
                 return true;
             }
             return false;
@@ -388,13 +387,13 @@ export const useSessionStore = defineStore('websiteStore', {
             this.sessionApi.sessionPageWidgetList({
                 sessionPk: this.session.resultId,
                 pagePk: this.currentPage.id
-            }).then((value) =>{
+            }).then((value) => {
                 this.currentWidgets = value
                 this.isLoading = false;
-            } )
+            })
         },
         async giveFeedback(assignment: FacetteAssignment, choosable: Choosable, facette: Facette, isPositive: boolean) {
-        
+
             const origin = this.getOrCreateVoterId()
             localStorage.setItem(this.getVoterIdKey(), origin)
             await this.sessionApi.sessionFeedbackCreate({

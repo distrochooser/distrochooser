@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
 
     <div class="mb-3">
-        <div v-if="['radio', 'checkbox', 'select'].indexOf(type) == -1">
+        <div v-if="['radio', 'checkbox', 'select', 'range'].indexOf(type) == -1">
             <label :for="id" class="form-label">
                 <LanguageTranslation :translation-key="id" />
             </label>
@@ -31,13 +31,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <LanguageTranslation :translation-key="id" />
             </label>
             <select class="form-select" multiple="true" :id="id" v-on:change="updateValue($event, type)">
-                <option v-for="(value, key) in arg" :key="key" :value="key" :selected="formValue.indexOf(key.toString()) !== -1">
-                    {{ value}}
+                <option v-for="(value, key) in arg" :key="key" :value="key"
+                    :selected="formValue.indexOf(key.toString()) !== -1">
+                    {{ value }}
                 </option>
             </select>
         </div>
 
-        <div v-else class="form-check">
+        <div v-else-if="type == 'range'">
+            <label :for="id" class="form-label">
+                <LanguageTranslation :translation-key="id" />
+            </label>
+            <span>
+                {{ ": " + currentValue }}
+                <LanguageTranslation translation-key="major_update_interval_unit" />
+            </span>
+            <input type="range" class="form-range" :id="id" :min="arg.min" :max="arg.max" step="0.25"
+                v-on:change="updateValue($event, type)" :value="currentValue" v-on:input="updateCurrentValue($event)">
+
+        </div>
+
+        <div v-else class=" form-check">
             <label class="form-check-label" :for="id">
                 <LanguageTranslation :translation-key="id" />
             </label>
@@ -49,7 +63,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <script lang="ts" setup>
 import { useState } from 'nuxt/app';
 import { useSessionStore } from '../../../states/session';
-import { computed, type ComputedRef } from 'vue';
+import { computed, useTemplateRef, type ComputedRef } from 'vue';
 import type { MetaFilterWidget } from '../../../sdk';
 
 interface MetaFilterCellProps {
@@ -61,7 +75,8 @@ enum MetaFilterType {
     number = "number",
     radio = "radio",
     checkbox = "checkbox",
-    select = "select"
+    select = "select",
+    range = "range"
 }
 
 const props = defineProps<MetaFilterCellProps>();
@@ -69,12 +84,22 @@ const props = defineProps<MetaFilterCellProps>();
 const type: ComputedRef<MetaFilterType> = computed<MetaFilterType>(() => MetaFilterType[props.cellString.split('.')[0]])
 const id: ComputedRef<string> = computed(() => props.cellString.split('.')[1])
 const argName: ComputedRef<string> = computed(() => props.cellString.split('.')[3])
-const arg: ComputedRef<string[]> = computed(() => props.widget.options[argName.value])
+const arg = computed(() => props.widget.options[argName.value])
 const formValue = useState<string[]>(props.cellString, () => [])
 
 const getValue = (el: HTMLInputElement, type: MetaFilterType): string => {
-    return type == MetaFilterType.number ? el.value : "" + el.checked;
+    if (el === null) {
+        return null
+    }
+    return type == MetaFilterType.number || MetaFilterType.range ? el.value : "" + el.checked;
 }
+
+const currentValue = useState("slider-value", () => 0)
+
+const updateCurrentValue = (el: InputEvent) => {
+    currentValue.value = Number.parseFloat((el.target as HTMLInputElement).value)
+}
+
 const store = useSessionStore();
 
 const updateValue = (e: Event, type: MetaFilterType) => {
@@ -96,7 +121,13 @@ const updateValue = (e: Event, type: MetaFilterType) => {
             formValue.value = metaFilterValues
             store.updateMetaFilterArgs(key, metaFilterValues, store.currentPage.id)
         }
-    } else {
+    }
+    else if (type === MetaFilterType.range) {
+        let value = el.value
+        currentValue.value = value
+        store.updateMetaFilterArgs(key, value, store.currentPage.id)
+    }
+    else {
         let value = getValue(el, type)
         /**
          * In case of checkboxes or radio buttons, in case the value is not true -> remove it from store entirely

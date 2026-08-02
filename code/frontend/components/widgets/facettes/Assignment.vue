@@ -22,10 +22,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <div class="col">
 
           <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
-          <a class="assignment-source" v-for="(source, source_key) in sources" :key="source_key" :title="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name,source, false).toString()"
-            target="_blank" :href="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, true).toString()">[{{ getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name,source, false).hostname }}]</a>
+          <a class="assignment-source" v-for="(source, source_key) in sources" :key="source_key"
+            :title="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, false).toString()"
+            target="_blank"
+            :href="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, true).toString()">[{{
+              getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source,
+            false).hostname }}]</a>
           <h4>
-            <LanguageTranslation :translation-key="assignment.description" />
+            <LanguageTranslation :translation-key="assignment.description" /><span v-if="assignment.contextArgument">:
+              {{ assignment.contextArgument }}</span>
           </h4>
         </div>
         <div class="col text-end" v-if="queryChoosables">
@@ -104,12 +109,12 @@ const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
 
-const sources = computed(() => 
-  props.assignment.sources ? 
-  props.assignment.sources.split(",").filter(
-    (source) => source.indexOf(props.choosable.name) !== -1 || source.indexOf(";") === -1
-  )
-  : []
+const sources = computed(() =>
+  props.assignment.sources ?
+    props.assignment.sources.split(",").filter(
+      (source) => source.indexOf(props.choosable.name) !== -1 || source.indexOf(";") === -1
+    )
+    : []
 )
 
 const otherUserVotes = computed(() => {
