@@ -240,5 +240,7 @@
     "welcome-page-title": "Chào mừng!",
     "without-fee-facette-pricing-free-description": "Có thể sử dụng mà không mất phí",
     "xubuntu-description": "Xubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là XFCE",
-    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows"
+    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows",
+    "major_update_interval": "Khoảng thời gian, tính bằng năm, giữa các nâng cấp hệ điều hành lớn không nên ít hơn",
+    "major_update_interval_unit": "năm"
 }

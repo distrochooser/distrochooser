@@ -240,5 +240,7 @@
     "welcome-page-title": "Καλώς ήρθες!",
     "without-fee-facette-pricing-free-description": "Χρησιμοποιείται χωρίς χρέωση",
     "xubuntu-description": "Το Xubuntu είναι μια διανομή βασισμένη στο Ubuntu που τροφοδοτείται από το ελαφρύ περιβάλλον επιφάνειας εργασίας XFCE",
-    "zorinos-description": "Το Zorin OS είναι μια διανομή που εστιάζει σε αρχάριους που μοιάζει με τα Windows"
+    "zorinos-description": "Το Zorin OS είναι μια διανομή που εστιάζει σε αρχάριους που μοιάζει με τα Windows",
+    "major_update_interval": "Η περίοδος, σε έτη, μεταξύ των βασικών αναβαθμίσεων λειτουργικού συστήματος δεν πρέπει να είναι λιγότερο από",
+    "major_update_interval_unit": "Έτη"
 }

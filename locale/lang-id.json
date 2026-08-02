@@ -240,5 +240,7 @@
     "welcome-page-title": "Selamat datang!",
     "without-fee-facette-pricing-free-description": "Dapat digunakan tanpa membayar",
     "xubuntu-description": "Xubuntu adalah distribusi berbasis Ubuntu dengan XFCE terinstall sejak awal",
-    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows"
+    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows",
+    "major_update_interval": "Periode, dalam tahun, antara upgrade sistem operasi utama tidak boleh kurang dari",
+    "major_update_interval_unit": "tahun"
 }

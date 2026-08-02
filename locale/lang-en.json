@@ -244,5 +244,7 @@
     "welcome-page-title": "Welcome!",
     "without-fee-facette-pricing-free-description": "Usable without fee",
     "xubuntu-description": "Xubuntu is an Ubuntu-based Linux distribution powered by the lightweight XFCE desktop environment",
-    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface"
+    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface",
+    "major_update_interval": "The period, in years, between major operating system upgrades should not be less than",
+    "major_update_interval_unit": "years"
 }

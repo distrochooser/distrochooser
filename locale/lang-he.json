@@ -240,5 +240,7 @@
     "welcome-page-title": "ברוך בואך!",
     "without-fee-facette-pricing-free-description": "ניתנת לשימוש בחינם",
     "xubuntu-description": "‏Xubuntu היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה הקלילה XFCE",
-    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows"
+    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows",
+    "major_update_interval": "התקופה, בשנים, בין עדכוני מערכת ההפעלה המרכזיים לא צריכה להיות קטנה מ",
+    "major_update_interval_unit": "שנים"
 }

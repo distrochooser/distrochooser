@@ -240,5 +240,7 @@
     "welcome-page-title": "Dobrodošli!",
     "without-fee-facette-pricing-free-description": "Uporabno brez pristojbine",
     "xubuntu-description": "Xubuntu je distribucija Linuxa, ki temelji na Ubuntuju in jo poganja lahko namizno okolje XFCE.",
-    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows"
+    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows",
+    "major_update_interval": "Časovni interval v letih med velikimi posodobitvami operacijskega sistema ne sme biti manjši od",
+    "major_update_interval_unit": "let"
 }
