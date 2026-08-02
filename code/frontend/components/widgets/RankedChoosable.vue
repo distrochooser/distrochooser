@@ -48,7 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   </option>
                 </select>
               </div>
-              <div class="col-4 text-end" v-else>
+              <div class="col-4 text-end" v-if="choosableToCompare !== null">
                 <button type="button" class="btn btn-danger" v-on:click.prevent="props.onComparisonClose">
                   <LanguageTranslation translation-key="hide" />
                 </button>
