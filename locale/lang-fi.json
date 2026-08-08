@@ -247,5 +247,6 @@
     "welcome-page-title": "Tervetuloa!",
     "without-fee-facette-pricing-free-description": "Käytettävissä ilman rahallista veloitusta",
     "xubuntu-description": "Xubuntu on Ubuntu-pohjainen jakelu jossa on vakiollisesti kevyt ja perinteisen yksinkertainen Xfce-työpöytäympäristö",
-    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen käyttöliittymä"
+    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen käyttöliittymä",
+    "rolling": "Nopea, roollautuva ohjelmistopäivitys ilman pistejulkaisua"
 }

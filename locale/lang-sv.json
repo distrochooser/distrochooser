@@ -247,5 +247,6 @@
     "welcome-page-title": "Välkommen!",
     "without-fee-facette-pricing-free-description": "Kan användas utan avgift",
     "xubuntu-description": "Xubuntu är en Ubuntu-baserad distribution som drivs av den lätta XFCE-skrivbordsmiljön",
-    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt"
+    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt",
+    "rolling": "Snabb, rollande programvaruuppdatering utan ett fast släppdatum"
 }

@@ -247,5 +247,6 @@
     "welcome-page-title": "Добро пожаловать!",
     "without-fee-facette-pricing-free-description": "Работает без оплаты",
     "xubuntu-description": "Xubuntu — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола XFCE",
-    "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих"
+    "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих",
+    "rolling": "Быстрое, «роллинг» обновление программного обеспечения без фиксированного релиза"
 }

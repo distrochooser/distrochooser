@@ -249,5 +249,6 @@
     "welcome-page-title": "ยินดีต้อนรับ!",
     "without-fee-facette-pricing-free-description": "ใช้งานได้โดยไม่มีค่าธรรมเนียม",
     "xubuntu-description": "Xubuntu เป็น Linux distribution ที่มีฐานมาจาก Ubuntu ขับเคลื่อนโดย XFCE desktop environment ที่มีน้ำหนักเบา",
-    "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows"
+    "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows",
+    "rolling": "การอัปเดตซอฟต์แวร์แบบต่อเนื่องที่รวดเร็วโดยไม่มีการปล่อยเวอร์ชันเฉพาะ"
 }

@@ -247,5 +247,6 @@
     "welcome-page-title": "欢迎！$",
     "without-fee-facette-pricing-free-description": "免费使用$",
     "xubuntu-description": "Xubuntu 是一款基于 Ubuntu 的 Linux 发行版，搭载轻量级 XFCE 桌面环境$",
-    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$"
+    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$",
+    "rolling": "快速、滚动式软件更新，没有固定版本发布"
 }

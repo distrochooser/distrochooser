@@ -247,5 +247,6 @@
     "welcome-page-title": "Hoş geldin!",
     "without-fee-facette-pricing-free-description": "Ücretsiz kullanılabilir",
     "xubuntu-description": "Xubuntu, hafif XFCE masaüstü ortamı tarafından desteklenen Ubuntu tabanlı bir dağıtımdır",
-    "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır"
+    "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır",
+    "rolling": "Noktasal bir sürüm olmaksızın hızlı, sürekli yazılım güncellemesi"
 }

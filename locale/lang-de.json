@@ -247,5 +247,6 @@
     "welcome-page-title": "Willkommen!",
     "without-fee-facette-pricing-free-description": "Kann ohne Gebühren genutzt werden",
     "xubuntu-description": "Xubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem XFCE-Desktop.",
-    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche"
+    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche",
+    "rolling": "Schnelles, Rolling-Update der Software ohne festes Release"
 }
