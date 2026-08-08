@@ -15,47 +15,58 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 from typing import Dict, List, Callable, Any
 from web.models import Choosable, ChoosableMeta
 from logging import getLogger
 
 
-logger = getLogger('command') 
-def create_choosables(get_or_default: Callable[[str, Dict], Any], haystack: Dict, meta_list: List) -> List[Choosable]:
+logger = getLogger("command")
+
+
+def create_choosables(
+    get_or_default: Callable[[str, Dict], Any], haystack: Dict, meta_list: List
+) -> List[Choosable]:
     got = []
     # Meta will just be re-created
     ChoosableMeta.objects.all().delete()
     for catalogue_id, element in haystack.items():
 
         new_choosable = Choosable(
-            catalogue_id = catalogue_id,
-            name = get_or_default("name", element),
-            fg_color = get_or_default("fg_color", element),
-            bg_color = get_or_default("bg_color", element),
+            catalogue_id=catalogue_id,
+            name=get_or_default("name", element),
+            fg_color=get_or_default("fg_color", element),
+            bg_color=get_or_default("bg_color", element),
         )
 
-
-        existing_choosables = Choosable.objects.filter(
-            catalogue_id = catalogue_id
-        )
+        existing_choosables = Choosable.objects.filter(catalogue_id=catalogue_id)
         if existing_choosables.count() != 0:
             new_choosable.pk = existing_choosables.first().pk
-            logger.info(f"There is already a choosable with catalogue_id={catalogue_id}. Re-Using PK.")
+            logger.info(
+                f"There is already a choosable with catalogue_id={catalogue_id}. Re-Using PK."
+            )
 
         new_choosable.save()
-        
+
         # Only assign meta values if there are any
-        matching_meta = list(filter(lambda l: l["choosable"] == new_choosable.catalogue_id, meta_list))
+        matching_meta = list(
+            filter(lambda l: l["choosable"] == new_choosable.catalogue_id, meta_list)
+        )
         for meta in matching_meta:
-          
+            sources = meta["meta_sources"] if "meta_sources" in meta else None
+            sources_str = ""
+            if sources:
+                sources_str = ",".join(sources)
+                sources_str = sources_str.strip(",")
             new_choosable_meta = ChoosableMeta(
-                catalogue_id = meta["meta_name"],
-                meta_choosable = new_choosable,
-                meta_name = meta["meta_name"].upper(),
-                meta_value = meta["meta_value"]
+                catalogue_id=meta["meta_name"],
+                meta_choosable=new_choosable,
+                meta_name=meta["meta_name"].upper(),
+                meta_value=meta["meta_value"],
+                meta_sources=sources_str,
             )
             new_choosable_meta.save()
 
         got.append(new_choosable)
-    
+
     return got

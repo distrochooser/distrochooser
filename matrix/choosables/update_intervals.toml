@@ -14,26 +14,36 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# 
+[[meta]]
+choosable="ubuntu"
+meta_name = "major_update_interval"
+meta_value = "0.5"
+meta_sources = [
+    "https://endoflife.date/ubuntu"
+]
 
-#include ./versions/full.toml
-#include ./versions/simplified.toml
-#include ./versions/beta.toml
-#include ./pages/pages.toml
-#include ./facettes/administration.toml
-#include ./facettes/advanced-administration.toml
-#include ./facettes/help.toml
-#include ./facettes/ideology.toml
-#include ./facettes/installation.toml
-#include ./facettes/linux-knowledge.toml
-#include ./facettes/pc-knowledge.toml
-#include ./facettes/pricing.toml
-#include ./facettes/privacy.toml
-#include ./facettes/scenario.toml
-#include ./facettes/scope.toml
-#include ./facettes/updates.toml
-#include ./facettes/ux.toml
+[[meta]]
+choosable="debian"
+meta_name = "major_update_interval"
+meta_value = "3"
+meta_sources = [
+    "https://endoflife.date/debian"
+]
 
-#include ./choosables/choosables.toml
-#include ./choosables/update_intervals.toml
+[[meta]]
+choosable="tails"
+meta_name = "major_update_interval"
+meta_value = "0.0384615384615"
+meta_sources = [
+    "https://tails.net/contribute/release_schedule/"
+]
 
-#include ./assignments/assignments.toml
+
+[[meta]]
+choosable="arch"
+meta_name = "major_update_interval"
+meta_value = "0"
+meta_sources = [
+    "https://wiki.archlinux.org/title/Arch_Linux"
+]

@@ -128,6 +128,11 @@ class ChoosableMeta(models.Model):
     meta_value = models.CharField(
         max_length=255, blank=False, null=False, default="A value"
     )
+    # Similar to the FacetteAssignment.sources, this contains
+    # A set of comma separated links to display in the UI as sources
+    meta_sources = models.CharField(
+        null=True, blank=True, default=None, max_length=5000
+    )
 
     @property
     def as_list(self):

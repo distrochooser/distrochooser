@@ -22,7 +22,8 @@ from django.db import models
 from typing import List, Dict, Any, Tuple
 from django.core.cache import cache
 from django.db.models.manager import BaseManager
-from web.util import get_translation
+from web.util import get_interval_string, get_translation
+from datetime import timedelta
 
 
 class MetaFilterWidgetElement:
@@ -144,18 +145,21 @@ class MetaFilterWidgetElement:
     def filter_by_update_interval(
         self, obj: Choosable, raw_value: str, collected_assignments, session
     ):
-        value = float(raw_value)
         meta_name = "major_update_interval".upper()
         if meta_name not in obj.meta:
             return None
+        value_parsed = loads(raw_value.replace("'", '"'))[0]
+        value = float(value_parsed)
         meta_value = float(obj.meta[meta_name].meta_value)
+        sources = obj.meta[meta_name].meta_sources
         unit = get_translation("major_update_interval_unit", session.language_code)
         if meta_value >= value:
             result = FacetteAssignment(
                 catalogue_id=meta_name,
                 description=meta_name,
-                context_argument=f"{meta_value} {unit}",
+                context_argument=get_interval_string(meta_value, session.language_code),
                 assignment_type=FacetteAssignment.AssignmentType.POSITIVE,
+                sources=sources,
             )
             return result
         else:

@@ -63,7 +63,7 @@ from web.models import (
 from web.rest.choosable import CHOOSABLE_SERIALIZER_BASE_FIELDS, ChoosableSerializer
 from web.rest.facette import FacetteAssignmentSerializer, FacetteSerializer
 from web.rest.session import SessionVersionSerializer
-from web.util import get_translation
+from web.util import get_translation, get_interval_string
 import importlib
 
 WIDGET_SERIALIZER_BASE_FIELDS = (
@@ -168,15 +168,21 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
         result = dict(sorted(result.items(), key=lambda x: x[1]))
         return result
 
-    def _get_min_max_values(
+    def _get_interval_values(
         self, metas, option_names: dict[str, str], key: str
     ) -> dict[str, int]:
         values_raw = list(metas.values_list("meta_value", flat=True))
-        if len(values_raw) == 0:
-            return {"min": 0, "max": 0}
-        result = {"min": min(values_raw), "max": max(values_raw)}
-
-        return result
+        values_raw = list(set(values_raw))  # get rid of duplicates
+        values_raw.sort(reverse=True)
+        options = {}
+        for value in values_raw:
+            text = ""
+            if f"{float(value):.2f}" == f"0.00":
+                text = "rolling"
+            else:
+                text = get_interval_string(float(value), None)
+            options[value] = text
+        return options
 
     def get_options(self, obj: MetaFilterWidget) -> Dict[str, Dict[str, str]]:
         option_keys = {
@@ -187,7 +193,7 @@ class MetaFilterWidgetSerializer(WidgetSerializer):
         option_values = {
             "archs": self._get_option_values,
             "countries": self._get_option_values,
-            "major_update_interval": self._get_min_max_values,
+            "major_update_interval": self._get_interval_values,
         }
 
         option_names = {"countries": self._translate_countries}

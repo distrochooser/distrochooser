@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
 
     <div class="mb-3">
-        <div v-if="['radio', 'checkbox', 'select', 'range'].indexOf(type) == -1">
+        <div v-if="['radio', 'checkbox', 'select', 'singleSelect'].indexOf(type) == -1">
             <label :for="id" class="form-label">
                 <LanguageTranslation :translation-key="id" />
             </label>
@@ -38,17 +38,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </select>
         </div>
 
-        <div v-else-if="type == 'range'">
+        <div v-else-if="type == 'singleSelect'">
             <label :for="id" class="form-label">
                 <LanguageTranslation :translation-key="id" />
             </label>
-            <span>
-                {{ ": " + currentValue }}
-                <LanguageTranslation translation-key="major_update_interval_unit" />
-            </span>
-            <input type="range" class="form-range" :id="id" :min="arg.min" :max="arg.max" step="0.25"
-                v-on:change="updateValue($event, type)" :value="currentValue" v-on:input="updateCurrentValue($event)">
-
+            <select class="form-select" :id="id" v-on:change="updateValue($event, type)">
+                <option v-for="(value, key) in arg" :key="key" :value="key"
+                    :selected="formValue.indexOf(key.toString()) !== -1">
+                    {{ translateSelectValue(value) }}
+                </option>
+            </select>
         </div>
 
         <div v-else class=" form-check">
@@ -76,7 +75,7 @@ enum MetaFilterType {
     radio = "radio",
     checkbox = "checkbox",
     select = "select",
-    range = "range"
+    singleSelect = "singleSelect"
 }
 
 const props = defineProps<MetaFilterCellProps>();
@@ -93,21 +92,26 @@ const getValue = (el: HTMLInputElement, type: MetaFilterType): string => {
     }
     return type == MetaFilterType.number || MetaFilterType.range ? el.value : "" + el.checked;
 }
+const store = useSessionStore();
 
-const currentValue = useState("slider-value", () => 0)
-
-const updateCurrentValue = (el: InputEvent) => {
-    currentValue.value = Number.parseFloat((el.target as HTMLInputElement).value)
+const translateSelectValue = (key: string) => {
+    if (key.indexOf(" ") == -1) {
+        return store.__i(key)
+    }
+    const parts = key.split(" ")
+    const value = parts[0]
+    const translationId = parts[1]
+    const translation = store.__i(translationId)
+    return `${value}  ${translation}`
 }
 
-const store = useSessionStore();
 
 const updateValue = (e: Event, type: MetaFilterType) => {
     const el = (e.target as HTMLInputElement)
 
     const key = el.getAttribute("id")
     const oldId = store.metaValues.filter(m => m.key == key).map(m => m.id)
-    if (type == MetaFilterType.select) {
+    if (type == MetaFilterType.select || type == MetaFilterType.singleSelect) {
         let value = (e.target as HTMLSelectElement).selectedOptions
 
         if (value.length == 0) {
