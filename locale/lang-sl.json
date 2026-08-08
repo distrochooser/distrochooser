@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Ima živi način delovanja: Za preizkus (pred namestitvijo) se lahko zažene z diska ali z USB ključka",
     "lubuntu-description": "Lubuntu je distribucija Linuxa na osnovi Ubuntuja in jo poganja lahko namizno okolje LXQt",
     "mac-like-facette-ux-concept-answer-mac-like-description": "Koncept grafičnega uporabniškega vmesnika ima elemente macOS",
+    "major_update_interval": "Najkrajši čas med velikimi posodobitvami",
     "manjaro-description": "Manjaro je distribucija Linuxa, ki se postopoma izdaja in je osredotočena na uporabniku prijaznost",
     "manuals-description": "Svoje težave lahko rešim z vodniki z wiki strani ali vadnicami",
     "many-choices-gui-description": "Želim čim več konfigurirati z grafičnimi aplikacijami",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Na voljo so vadnice za odpravljanje težav in reševanje težav",
     "ubuntu-description": "Ubuntu je distribucija Linuxa, ki jo je izdelalo podjetje Canonical",
     "ubuntumate-description": "Ubuntu MATE je distribucija Linuxa na osnovi Ubuntuja in jo poganja lahko namizno okolje MATE",
+    "update_interval_month": "mesec",
+    "update_interval_months": "mesici",
+    "update_interval_week": "teden",
+    "update_interval_weeks": "tedne",
+    "update_interval_year": "leto",
+    "update_interval_years": "let",
     "updates-fast-facette-prefer-fast-description": "Posodobitve so hitre, vendar so lahko nestabilne",
     "updates-page-help": "Distribucije pri pakiranju posodobitev uporabljajo različne pristope. Nekatere distribucije Linuxa se osredotočajo na hitre posodobitve, kar lahko vpliva na stabilnost sistema. Druge distribucije Linuxa se osredotočajo na stabilne posodobitve, kar ima za posledico daljši čas čakanja na nove različice.",
     "updates-page-text": "Nekatere distribucije Linuxa ponujajo hitrejše posodobitve, kar lahko vpliva na stabilnost sistema. Kaj imate raje?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Dobrodošli!",
     "without-fee-facette-pricing-free-description": "Uporabno brez pristojbine",
     "xubuntu-description": "Xubuntu je distribucija Linuxa, ki temelji na Ubuntuju in jo poganja lahko namizno okolje XFCE.",
-    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows",
-    "major_update_interval": "Časovni interval posodobitev v letih med večjimi nadgradnjami operacijskega sistema",
-    "major_update_interval_unit": "let"
+    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows"
 }

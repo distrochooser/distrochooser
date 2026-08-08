@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Può essere usato da cd/dvd o chiavetta usb",
     "lubuntu-description": "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop LXQt",
     "mac-like-facette-ux-concept-answer-mac-like-description": "Il concetto di GUI (interfaccia grafica) ha elementi di macOS",
+    "major_update_interval": "Periodo più breve tra i grandi aggiornamenti",
     "manjaro-description": "Manjaro è una distribuzione a rilascio continuo focalizzata sulla facilità d'uso",
     "manuals-description": "Sono in grado di risolvere problemi usando guide da pagine wiki o tutorial",
     "many-choices-gui-description": "Voglio configurare il più possibile usando interfacce grafiche",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Esistono tutorial per la risoluzione dei problemi e problem-solving",
     "ubuntu-description": "Ubuntu è una distribuzione sviluppata dalla società Canonical",
     "ubuntumate-description": "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop MATE",
+    "update_interval_month": "mese",
+    "update_interval_months": "mesi",
+    "update_interval_week": "settimana",
+    "update_interval_weeks": "settimane",
+    "update_interval_year": "anno",
+    "update_interval_years": "anni",
     "updates-fast-facette-prefer-fast-description": "Gli aggiornamenti sono veloci, ma possono essere instabili",
     "updates-page-help": "Le distribuzioni Linux seguono approcci diversi quando confezionano gli aggiornamenti. Alcune distribuzioni Linux si concentrano su aggiornamenti veloci, che possono influenzare la stabilità del sistema. Altre distribuzioni Linux si concentrano su aggiornamenti stabili, che comportano tempi di attesa più lunghi per le nuove versioni.",
     "updates-page-text": "Alcune distribuzioni offrono aggiornamenti più rapidi, che possono influire sulla stabilità del sistema. Cosa preferisci?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Benvenuto!",
     "without-fee-facette-pricing-free-description": "Utilizzabile senza spese",
     "xubuntu-description": "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop XFCE",
-    "zorinos-description": "Zorin OS è una distribuzione focalizzata per principianti con un'interfaccia utente simile a Windows",
-    "major_update_interval": "Intervallo di aggiornamento in anni tra i principali aggiornamenti del sistema operativo",
-    "major_update_interval_unit": "anni"
+    "zorinos-description": "Zorin OS è una distribuzione focalizzata per principianti con un'interfaccia utente simile a Windows"
 }

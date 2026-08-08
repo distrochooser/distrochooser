@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Har Live Mode: Kan startas med hjälp av skivor eller usb-stickor för att testa det (innan du installerar)",
     "lubuntu-description": "Lubuntu är en Ubuntu-baserad distribution som drivs av den lätta skrivbordsmiljön LXQt",
     "mac-like-facette-ux-concept-answer-mac-like-description": "GUI-konceptet har inslag av macOS",
+    "major_update_interval": "Kortast tid mellan stora uppdateringar",
     "manjaro-description": "Manjaro är en rullande releasedistribution med fokus på användarvänlighet",
     "manuals-description": "Jag kan lösa mina problem med hjälp av guider från wikisidor eller tutorials",
     "many-choices-gui-description": "Jag vill konfigurera så mycket som möjligt med hjälp av grafiska applikationer",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Det finns handledningar för felsökning och problemlösning",
     "ubuntu-description": "Ubuntu är en distribution byggd av företaget Canonical",
     "ubuntumate-description": "Ubuntu MATE är en Ubuntu-baserad distribution som drivs av den lätta skrivbordsmiljön MATE",
+    "update_interval_month": "månad",
+    "update_interval_months": "månader",
+    "update_interval_week": "vecka",
+    "update_interval_weeks": "veckor",
+    "update_interval_year": "år",
+    "update_interval_years": "år",
     "updates-fast-facette-prefer-fast-description": "Uppdateringar går snabbt, men kan vara instabila",
     "updates-page-help": "Linuxdistributioner följer olika metoder när de paketerar uppdateringar. Vissa Linuxdistributioner fokuserar på snabba uppdateringar, vilket kan påverka systemets stabilitet. Andra Linuxdistributioner fokuserar på stabila uppdateringar, vilket resulterar i längre väntetid för nya versioner.",
     "updates-page-text": "Vissa distributioner erbjuder snabbare uppdateringar, vilket kan påverka systemets stabilitet. Vad föredrar du?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Välkommen!",
     "without-fee-facette-pricing-free-description": "Kan användas utan avgift",
     "xubuntu-description": "Xubuntu är en Ubuntu-baserad distribution som drivs av den lätta XFCE-skrivbordsmiljön",
-    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt",
-    "major_update_interval": "Uppdateringsintervall i år mellan stora operativsystemuppgraderingar",
-    "major_update_interval_unit": "år"
+    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt"
 }

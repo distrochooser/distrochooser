@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Mempunyai Mode Live: Dapat dijalankan menggunakan kaset atau USB Flash Drive agar dapat dicoba sebelum diinstall",
     "lubuntu-description": "Lubuntu adalah distribusi berbasis Ubuntu dengan LXQt terinstall sejak awal",
     "mac-like-facette-ux-concept-answer-mac-like-description": "Konsep GUI seperti macOS",
+    "major_update_interval": "Waktu terpendek antara pembaruan besar",
     "manjaro-description": "Manjaro adalah distribusi rilis bergirir yang berfokus pada kemudahan pengguna",
     "manuals-description": "Saya dapat menyelesaikan permasalahan menggunakan panduan dari halaman wiki atau tutorial",
     "many-choices-gui-description": "Saya ingin mengatur sebanyak mungkin menggunakan aplikasi grafis",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Ada tutorial untuk mencari dan menyelesaikan masalah",
     "ubuntu-description": "Ubuntu adalah distribusi yang dibuat oleh perusahaan Canonical",
     "ubuntumate-description": "Ubuntu MATE adalah distribusi berbasis Ubuntu dengan MATE terinstall sejak awal",
+    "update_interval_month": "bulan",
+    "update_interval_months": "bulan-bulan",
+    "update_interval_week": "minggu",
+    "update_interval_weeks": "minggu-minggu",
+    "update_interval_year": "tahun",
+    "update_interval_years": "tahun",
     "updates-fast-facette-prefer-fast-description": "Pembaruan cepat, tapi kurang stabil",
     "updates-page-help": "Distribusi Linux mengikuti pendekatan yang berbeda saat mengemas pembaruan. Beberapa distribusi berfokus pada pembaruan cepat, yang dapat memengaruhi stabilitas sistem. Distribusi lain berfokus pada pembaruan stabil, yang mengakibatkan waktu tunggu lebih lama untuk versi baru.",
     "updates-page-text": "Beberapa distribusi menawarkan pembaruan yang cepat, yang dapat memengaruhi kestabilan sistem. Yang mana yang anda lebih suka?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Selamat datang!",
     "without-fee-facette-pricing-free-description": "Dapat digunakan tanpa membayar",
     "xubuntu-description": "Xubuntu adalah distribusi berbasis Ubuntu dengan XFCE terinstall sejak awal",
-    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows",
-    "major_update_interval": "Interval pembaruan dalam tahun antara peningkatan sistem operasi utama",
-    "major_update_interval_unit": "tahun"
+    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows"
 }

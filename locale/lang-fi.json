@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Mukana on myös asentumaton LIVE-tila: voidaan aloittaa levyltä tai USB-tikulta jakelun kokeilemista varten (ennen varsinaista asennusta)",
     "lubuntu-description": "Lubuntu on Ubuntu-pohjainen vanhoihin tietokoneisiin soveltuva jakelu jossa on vakiollisesti erittäin kevyt LXQt-työpöytäympäristö",
     "mac-like-facette-ux-concept-answer-mac-like-description": "Käyttöliittymässä on vaikutteita macOS -käyttöjärjestelmästä",
+    "major_update_interval": "Lyhyin aika suurten päivitysten välillä",
     "manjaro-description": "Manjaro on rullaavan mallin jakelu joka keksittyy käyttäjäystävällisyyteen",
     "manuals-description": "Kykenen ratkaisemaan ongelmani käyttäen oppaita wiki-sivuilta tai sitten käyttökirjoista",
     "many-choices-gui-description": "Haluan säätää niin paljon kuin mahdollista käyttäen graafisia käyttöliittymiä",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "On olemassa käyttöoppaita ongelmanratkaisua varten",
     "ubuntu-description": "Ubuntu on suosittu aloittelijaystävällinen jakelu jota ylläpitää yhtiö nimeltä Canonical",
     "ubuntumate-description": "Ubuntu MATE on Ubuntu-pohjainen jakelu jonka työpöytänä toimii perinteinen ja kevyt MATE",
+    "update_interval_month": "kuukausi",
+    "update_interval_months": "kuukausia",
+    "update_interval_week": "viikko",
+    "update_interval_weeks": "viikot",
+    "update_interval_year": "vuosi",
+    "update_interval_years": "vuotta",
     "updates-fast-facette-prefer-fast-description": "Nopeat päivitykset, mutta epävakautta voi esiintyä",
     "updates-page-help": "Linux-jakelut noudattavat erilaisia lähestymistapoja päivitysten pakkaamisessa. Jotkin jakelut keskittyvät nopeisiin päivityksiin, mikä voi vaikuttaa järjestelmän vakauteen. Toiset Linux-jakelut keskittyvät vakaisiin päivityksiin, jolloin uusien versioiden odotusaika pitenee.",
     "updates-page-text": "Jotkut jakelut tarjoavat päivitykset erittäin pikaisesti, mutta tämä saattaa sitten vaikuttaa ajoittain käyttöjärjestelmän vakauteen. Millaista mallia ajattelisit suosivasi?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Tervetuloa!",
     "without-fee-facette-pricing-free-description": "Käytettävissä ilman rahallista veloitusta",
     "xubuntu-description": "Xubuntu on Ubuntu-pohjainen jakelu jossa on vakiollisesti kevyt ja perinteisen yksinkertainen Xfce-työpöytäympäristö",
-    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen käyttöliittymä",
-    "major_update_interval": "Päivitysaikaväli vuosina suurten käyttöjärjestelmäpäivitysten välillä",
-    "major_update_interval_unit": "v uodet"
+    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen käyttöliittymä"
 }

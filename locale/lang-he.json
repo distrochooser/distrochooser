@@ -111,6 +111,7 @@
     "live-mode-usage-description": "עם מצב המחשה: ניתן להפעילה מתוך תקליטורים או החסנים ניידים (USB) כדי לבדוק אותה (לפני ההתקנה)",
     "lubuntu-description": "‏Lubuntu היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה הקלילה LXQt",
     "mac-like-facette-ux-concept-answer-mac-like-description": "סגנון ממשק המשתמש הגרפי מכיל אלמנטים מ־macOS",
+    "major_update_interval": "המרווח הקצר ביותר בין עדכונים גדולים",
     "manjaro-description": "‏Manjaro היא הפצה מתגלגלת המתמקדת בידידותיות למשתמש",
     "manuals-description": "יש לי כישורים לפתור בעצמי את הבעיות במחשב בעזרת מדריכים מדפי ויקי או מדריכים",
     "many-choices-gui-description": "ברצוני להגדיר כמה יותר דברים שאפשר באמצעות ממשק משתמש גרפי",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "ישנם מדריכים לפתרון בעיות ותקלות",
     "ubuntu-description": "‏Ubuntu היא הפצה שפותחה על ידי החברה Canonical",
     "ubuntumate-description": "‏Ubuntu MATE היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה MATE",
+    "update_interval_month": "חודש",
+    "update_interval_months": "חודשים",
+    "update_interval_week": "שבוע",
+    "update_interval_weeks": "שבועות",
+    "update_interval_year": "שנה",
+    "update_interval_years": "שנים",
     "updates-fast-facette-prefer-fast-description": "עדכונים מהירים, אך עלולים להיות בלתי־יציבים",
     "updates-page-help": "הפצות לינוקס נוקטות בגישות שונות בעת אריזת עדכונים. חלק מההפצות של לינוקס מתמקדות בעדכונים מהירים, אשר יכולים להשפיע על יציבות המערכת. הפצות לינוקס אחרות מתמקדות בעדכונים יציבים, מה שגורם לזמן המתנה ארוך יותר לגרסאות חדשות.",
     "updates-page-text": "חלק מההפצות מציעות עדכונים מהירים, שיכולים להשפיע על יציבות המערכת. מה העדפתך?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "ברוך בואך!",
     "without-fee-facette-pricing-free-description": "ניתנת לשימוש בחינם",
     "xubuntu-description": "‏Xubuntu היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה הקלילה XFCE",
-    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows",
-    "major_update_interval": "רוחב זמן עדכון בשנים בין שדרוגים גדולים של מערכת ההפעלה",
-    "major_update_interval_unit": "שנים"
+    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows"
 }

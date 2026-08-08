@@ -111,6 +111,7 @@
     "live-mode-usage-description": "支持 Live 模式：可使用光盘或 U 盘启动并进行测试（安装前）$",
     "lubuntu-description": "Lubuntu 是一款基于 Ubuntu 的 Linux 发行版，搭载轻量级 LXQt 桌面环境$",
     "mac-like-facette-ux-concept-answer-mac-like-description": "GUI 概念融合了 macOS 的元素$",
+    "major_update_interval": "大版本更新之间的最短时间",
     "manjaro-description": "Manjaro 是一款滚动发布的 Linux 发行版，注重用户友好性$",
     "manuals-description": "我可以使用 wiki 页面或教程中的指南来解决问题$",
     "many-choices-gui-description": "我希望尽可能使用图形应用程序进行配置$",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "提供故障排除和问题解决教程$",
     "ubuntu-description": "Ubuntu 是由 Canonical 公司构建的 Linux 发行版$",
     "ubuntumate-description": "Ubuntu MATE 是基于 Ubuntu 的 Linux 发行版，由轻量级 MATE 桌面环境提供支持$",
+    "update_interval_month": "月",
+    "update_interval_months": "月份",
+    "update_interval_week": "周",
+    "update_interval_weeks": "周",
+    "update_interval_year": "年",
+    "update_interval_years": "年",
     "updates-fast-facette-prefer-fast-description": "更新速度快，但可能不稳定$",
     "updates-page-help": "不同发行版在打包更新时采用不同的方法。一些 Linux 发行版注重快速更新，这可能会影响系统的稳定性。另一些 Linux 发行版则注重稳定更新，这会导致新版本更新的等待时间更长。$",
     "updates-page-text": "一些 Linux 发行版提供更快的更新，这可能会影响系统的稳定性。您更喜欢哪种方式？$",
@@ -240,7 +247,5 @@
     "welcome-page-title": "欢迎！$",
     "without-fee-facette-pricing-free-description": "免费使用$",
     "xubuntu-description": "Xubuntu 是一款基于 Ubuntu 的 Linux 发行版，搭载轻量级 XFCE 桌面环境$",
-    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$",
-    "major_update_interval": "主要操作系统升级之间的年更新间隔",
-    "major_update_interval_unit": "年"
+    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$"
 }

@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Dispose d'un mode « live » : Peut être démarré à l'aide d'un disque ou d'une clé USB pour la tester (avant l'installation)",
     "lubuntu-description": "Lubuntu est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger LXQt",
     "mac-like-facette-ux-concept-answer-mac-like-description": "L'interface graphique comporte des éléments similaires à macOS",
+    "major_update_interval": "Temps minimum entre les grandes mises à jour",
     "manjaro-description": "Manjaro est une distribution à diffusion continue axée sur la simplicité d'utilisation",
     "manuals-description": "Je suis capable de résoudre les problèmes que je rencontre en utilisant les guides des pages du wiki ou des tutoriels.",
     "many-choices-gui-description": "Je veux configurer autant de paramètres que possible à travers des applications graphiques",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Il existe des tutoriels pour le dépannage et la résolution de problèmes",
     "ubuntu-description": "Ubuntu est une distribution développée par Canonical",
     "ubuntumate-description": "Ubuntu MATE est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger MATE",
+    "update_interval_month": "mois",
+    "update_interval_months": "mois",
+    "update_interval_week": "semaine",
+    "update_interval_weeks": "semaines",
+    "update_interval_year": "année",
+    "update_interval_years": "années",
     "updates-fast-facette-prefer-fast-description": "Les mises à jour sont publiées rapidement, mais peuvent être instables",
     "updates-page-help": "Les distributions Linux adoptent des approches différentes lorsqu'il s'agit d'intégrer des mises à jour. Certaines distributions Linux privilégient les mises à jour rapides, ce qui peut avoir une incidence sur la stabilité du système. D'autres distributions Linux se concentrent sur des mises à jour stables, ce qui entraîne un temps d'attente plus long pour les nouvelles versions.",
     "updates-page-text": "Certaines distributions offrent des mises à jour plus rapidement, ce qui peut affecter la stabilité du système. Que préférez-vous ?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Bienvenue !",
     "without-fee-facette-pricing-free-description": "Utilisable gratuitement",
     "xubuntu-description": "Xubuntu est une distribution basée sur Ubuntu et fonctionnant avec l'environnement de bureau léger XFCE",
-    "zorinos-description": "Zorin OS est une distribution destinée aux débutants avec une interface utilisateur de type Windows",
-    "major_update_interval": "Intervalle de mise à jour en années entre les grandes mises à jour du système d'exploitation",
-    "major_update_interval_unit": "ans"
+    "zorinos-description": "Zorin OS est une distribution destinée aux débutants avec une interface utilisateur de type Windows"
 }

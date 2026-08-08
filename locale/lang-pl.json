@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Posiada tryb Live: Dystrybucja może być uruchomiona za pomocą płyty lub pamięci USB, aby ją przetestować (przed instalacją)",
     "lubuntu-description": "Lubuntu to dystrybucja oparta na Ubuntu, zasilana lekkim środowiskiem graficznym LXQt",
     "mac-like-facette-ux-concept-answer-mac-like-description": "Posiada interfejs użytkownika typowy dla macOS",
+    "major_update_interval": "Najkrótszy czas między dużymi aktualizacjami",
     "manjaro-description": "Manjaro jest dystrybucją typu rolling release skupiającą się na przyjazności dla użytkownika",
     "manuals-description": "Jestem w stanie rozwiązać problemy używając instrukcji ze stron wiki lub poradników",
     "many-choices-gui-description": "Chcę skonfigurować jak najwięcej za pomocą aplikacji graficznych",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Posiada poradniki pomagające w rozwiązywaniu problemów",
     "ubuntu-description": "Ubuntu to dystrybucja zbudowana przez firmę Canonical",
     "ubuntumate-description": "Ubuntu MATE to dystrybucja oparta na Ubuntu, zasilana lekkim środowiskiem graficznym MATE",
+    "update_interval_month": "miesiąc",
+    "update_interval_months": "miesiące",
+    "update_interval_week": "tydzień",
+    "update_interval_weeks": "tygodnie",
+    "update_interval_year": "rok",
+    "update_interval_years": "lata",
     "updates-fast-facette-prefer-fast-description": "Aktualizacje są szybkie, ale mogą być niestabilne",
     "updates-page-help": "Dystrybucje Linuksa stosują różne podejścia podczas pakowania aktualizacji. Niektóre dystrybucje Linuksa koncentrują się na szybkich aktualizacjach, co może wpływać na stabilność systemu. Inne dystrybucje Linuksa koncentrują się na stabilnych aktualizacjach, co skutkuje dłuższym czasem oczekiwania na nowe wersje.",
     "updates-page-text": "Niektóre dystrybucje oferują szybsze aktualizacje, co może wpłynąć na stabilność systemu. Jaką opcję preferujesz?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Witamy!",
     "without-fee-facette-pricing-free-description": "Możliwość korzystania bez opłat",
     "xubuntu-description": "Xubuntu to dystrybucja oparta na Ubuntu, zasilana lekkim środowiskiem graficznym XFCE",
-    "zorinos-description": "Zorin OS to dystrybucja dla początkujących z interfejsem użytkownika przypominającym Windows",
-    "major_update_interval": "Interwał aktualizacji w latach między głównymi aktualizacjami systemu operacyjnego",
-    "major_update_interval_unit": "lata"
+    "zorinos-description": "Zorin OS to dystrybucja dla początkujących z interfejsem użytkownika przypominającym Windows"
 }

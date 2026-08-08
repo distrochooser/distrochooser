@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Canlı Modu Var: Test etmek için disk veya USB'den başlatılabilir.(Kurulumdan önce)",
     "lubuntu-description": "Lubuntu, hafif LXQt masaüstü ortamını kullanan Ubuntu tabanlı bir dağıtımdır",
     "mac-like-facette-ux-concept-answer-mac-like-description": "Kullanıcı arayüzünde macOS unsurları bulunur",
+    "major_update_interval": "Büyük güncellemeler arasındaki en kısa süre",
     "manjaro-description": "Manjaro kullanıcı dostu olmaya odaklanan, sürekli güncelleme olarak bir Dağıtımdır",
     "manuals-description": "Sorunlarımı Wiki sayfalarındaki kılavuzları veya öğreticileri kullanarak çözebiliyorum",
     "many-choices-gui-description": "Grafik uygulamaları kullanarak mümkün olduğunca yapılandırmak istiyorum",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Sorun giderme ve problem çözme için öğreticiler var",
     "ubuntu-description": "Ubuntu, Cannonical şirketi tarafından yapılan bir Dağıtımdır",
     "ubuntumate-description": "Ubuntu MATE, hafif MATE masaüstü ortamı tarafından desteklenen Ubuntu tabanlı bir dağıtımdır",
+    "update_interval_month": "ay",
+    "update_interval_months": "ay",
+    "update_interval_week": "hafta",
+    "update_interval_weeks": "haftalar",
+    "update_interval_year": "yıl",
+    "update_interval_years": "yıl",
     "updates-fast-facette-prefer-fast-description": "Güncellemeler hızlıdır ama stabil olmayabilir",
     "updates-page-help": "Linux Dağıtımları güncellemeleri paketlerken farklı yaklaşımlar izler. Bazı Linux dağıtımları sistemin istikrarını etkileyebilecek hızlı güncellemelere odaklanır. Diğer Linux dağıtımları kararlı güncellemelere odaklanır ve bu da yeni sürümler için daha uzun bekleme süresiyle sonuçlanır.",
     "updates-page-text": "Bazı Dağıtımlar, sistem kararlılığını etkileyebilecek daha hızlı güncellemeler sunar. Hangisini tercih edersin?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Hoş geldin!",
     "without-fee-facette-pricing-free-description": "Ücretsiz kullanılabilir",
     "xubuntu-description": "Xubuntu, hafif XFCE masaüstü ortamı tarafından desteklenen Ubuntu tabanlı bir dağıtımdır",
-    "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır",
-    "major_update_interval": "Büyük işletim sistemi yükseltmeleri arasında yıllar cinsinden güncelleme aralığı",
-    "major_update_interval_unit": "yıllar"
+    "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır"
 }

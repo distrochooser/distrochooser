@@ -111,6 +111,7 @@
     "live-mode-usage-description": "ライブモードを使用したいです: USB メモリなどを使用して起動し、インストール前にテストできます。",
     "lubuntu-description": "Lubuntu は、軽量な LXQt デスクトップ環境を搭載した Ubuntu ベースのディストリビューションです。",
     "mac-like-facette-ux-concept-answer-mac-like-description": "GUIコンセプトにはmacOSの要素がある",
+    "major_update_interval": "大きなアップデート間の最短時間",
     "manjaro-description": "Manjaro はユーザーフレンドリーなインターフェースに重点を置いたローリングリリース ディストリビューションです。",
     "manuals-description": "Wiki ページやチュートリアルのガイドを使って問題を解決できる",
     "many-choices-gui-description": "できる限りマウス（やキーボード）を使って設定したい",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "トラブルシューティングと問題解決のためのチュートリアルがあります",
     "ubuntu-description": "Ubuntu は Canonical 社が開発したディストリビューションです。",
     "ubuntumate-description": "Ubuntu MATE は、軽量な MATE デスクトップ環境を搭載した Ubuntu ベースのディストリビューションです。",
+    "update_interval_month": "月",
+    "update_interval_months": "か月",
+    "update_interval_week": "週 (shū)",
+    "update_interval_weeks": "週",
+    "update_interval_year": "年",
+    "update_interval_years": "年",
     "updates-fast-facette-prefer-fast-description": "アップデートは速いが、不安定になることがある",
     "updates-page-help": "ディストリビューションは、アップデートをパッケージ化する際に異なるアプローチを採用しています。一部のディストリビューションは高速アップデートに重点を置いており、システムの安定性に影響を与える可能性があります。他のディストリビューションは安定したアップデートに重点を置いており、新しいバージョンのリリースに時間がかかる場合があります。",
     "updates-page-text": "一部のディストリビューションはアップデートが高速ですが、システムの安定性に影響を与える可能性があります。どちらをご希望ですか？",
@@ -240,7 +247,5 @@
     "welcome-page-title": "ようこそ！",
     "without-fee-facette-pricing-free-description": "無料で利用可能",
     "xubuntu-description": "Xubuntu は、軽量の XFCE デスクトップ環境を搭載した Ubuntu ベースのディストリビューションです。",
-    "zorinos-description": "Zorin OS は、Windows ライクなユーザーインターフェースを備えた、初心者向けのディストリビューションです。",
-    "major_update_interval": "主要なオペレーティングシステムアップグレード間の年単位での更新間隔",
-    "major_update_interval_unit": "年"
+    "zorinos-description": "Zorin OS は、Windows ライクなユーザーインターフェースを備えた、初心者向けのディストリビューションです。"
 }

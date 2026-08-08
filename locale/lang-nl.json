@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Heeft Live-modus: Kan worden gestart met CD, DVD of usb-sticks om het uit te testen (voor de installatie)",
     "lubuntu-description": "Lubuntu is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht LXQt-desktopomgeving",
     "mac-like-facette-ux-concept-answer-mac-like-description": "GUI-concept heeft elementen van macOS",
+    "major_update_interval": "Kortste tijd tussen grote updates",
     "manjaro-description": "Manjaro is een rolling release-distributie gericht op gebruiksvriendelijkheid",
     "manuals-description": "Ik kan mijn problemen oplossen met behulp van handleidingen van wiki-pagina's of tutorials",
     "many-choices-gui-description": "Ik wil zoveel mogelijk configureren met grafische toepassingen",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Er zijn tutorials voor het oplossen van problemen en het oplossen van problemen",
     "ubuntu-description": "Ubuntu is een distributie gebouwd door het bedrijf Canonical",
     "ubuntumate-description": "Ubuntu MATE is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht MATE-desktopomgeving",
+    "update_interval_month": "maan",
+    "update_interval_months": "maanden",
+    "update_interval_week": "week",
+    "update_interval_weeks": "weken",
+    "update_interval_year": "jaar",
+    "update_interval_years": "jaren",
     "updates-fast-facette-prefer-fast-description": "Updates zijn snel, maar kunnen onstabiel zijn",
     "updates-page-help": "Distributies hanteren verschillende benaderingen bij het verpakken van updates. Sommige distributies richten zich op snelle updates, wat de stabiliteit van het systeem kan beïnvloeden. Andere distributies richten zich op stabiele updates, wat resulteert in langere wachttijden voor nieuwe versies.",
     "updates-page-text": "Sommige distributies bieden snellere updates, die de stabiliteit van het systeem kunnen beïnvloeden. Wat heeft jouw voorkeur?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Welkom!",
     "without-fee-facette-pricing-free-description": "Te gebruiken zonder kosten",
     "xubuntu-description": "Xubuntu is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht XFCE-desktopomgeving",
-    "zorinos-description": "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface",
-    "major_update_interval": "Updateinterval in jaren tussen grote besturingssysteem-updates",
-    "major_update_interval_unit": "jaren"
+    "zorinos-description": "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface"
 }

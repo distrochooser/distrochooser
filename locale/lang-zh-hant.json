@@ -111,6 +111,7 @@
     "live-mode-usage-description": "具有即時模式：可以使用光碟或 USB 啟動來測試（安裝前）",
     "lubuntu-description": "Lubuntu 是一個基於 Ubuntu 的 Linux 發行版，由輕量級的 LXQt 桌面環境提供支援",
     "mac-like-facette-ux-concept-answer-mac-like-description": "GUI 概念具有 macOS 元素",
+    "major_update_interval": "大型更新之間的最短時間",
     "manjaro-description": "Manjaro 是一個滾動發布的 Linux 發行版，專注於用戶友好性",
     "manuals-description": "我能夠使用維基頁面或教程中的指南來解決我的問題",
     "many-choices-gui-description": "我希望使用圖形應用程式進行盡可能多的配置",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "有故障排除和解決問題的教程",
     "ubuntu-description": "Ubuntu 是由 Canonical 公司開發的 Linux 發行版",
     "ubuntumate-description": "Ubuntu MATE 是一個基於 Ubuntu 的 Linux 發行版，由輕量級 MATE 桌面環境提供支援",
+    "update_interval_month": "月",
+    "update_interval_months": "月份",
+    "update_interval_week": "週",
+    "update_interval_weeks": "週",
+    "update_interval_year": "年",
+    "update_interval_years": "年",
     "updates-fast-facette-prefer-fast-description": "更新速度很快，但可能不穩定",
     "updates-page-help": "發行版在打包更新時遵循不同的方法。一些 Linux 發行版註重快速更新，這會影響系統的穩定性。其他 Linux 發行版專注於穩定更新，這導致等待新版本的時間更長。",
     "updates-page-text": "一些 Linux 發行版提供更快的更新，這可能會影響系統穩定性。你喜歡什麼？",
@@ -240,7 +247,5 @@
     "welcome-page-title": "歡迎！",
     "without-fee-facette-pricing-free-description": "可免費使用",
     "xubuntu-description": "Xubuntu 是一個基於 Ubuntu 的 Linux 發行版，由輕量級 XFCE 桌面環境提供支援",
-    "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面",
-    "major_update_interval": "主要作業系統升級之間的年度更新間隔",
-    "major_update_interval_unit": "年"
+    "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面"
 }

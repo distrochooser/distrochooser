@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Есть живой режим: может быть запущен с диска или USB-носителя для пробы (до установки)",
     "lubuntu-description": "Lubuntu — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола LXQt",
     "mac-like-facette-ux-concept-answer-mac-like-description": "Концепция GUI имеет элементы macOS",
+    "major_update_interval": "Минимальный промежуток между крупными обновлениями",
     "manjaro-description": "Manjaro — дистрибутив, основанный на rolling release с приоритетом на дружелюбие к пользователю",
     "manuals-description": "Я способен решать мои проблемы по инструкциям из вики страниц или учебных материалов",
     "many-choices-gui-description": "Я хочу настроить столько, сколько смогу настроить приложениями с графическим интерфейсом",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Есть учебные материалы по выявлению и решению проблем",
     "ubuntu-description": "Ubuntu — дистрибутив, созданный компанией Canonical",
     "ubuntumate-description": "Ubuntu MATE — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола MATE",
+    "update_interval_month": "месяц",
+    "update_interval_months": "месяцев",
+    "update_interval_week": "неделя",
+    "update_interval_weeks": "недель",
+    "update_interval_year": "год",
+    "update_interval_years": "лет",
     "updates-fast-facette-prefer-fast-description": "Обновления быстрые, но могут быть нестабильными",
     "updates-page-help": "Дистрибутивы Linux используют разные подходы при упаковке обновлений. Некоторые дистрибутивы Linux фокусируются на быстрых обновлениях, что может повлиять на стабильность системы. Другие дистрибутивы Linux фокусируются на стабильных обновлениях, что приводит к более длительному времени ожидания новых версий.",
     "updates-page-text": "Некоторые дистрибутивы предлагают быстрые обновления, которые могут повлиять на стабильность системы. Что предпочитаете Вы?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Добро пожаловать!",
     "without-fee-facette-pricing-free-description": "Работает без оплаты",
     "xubuntu-description": "Xubuntu — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола XFCE",
-    "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих",
-    "major_update_interval": "Период обновления в годах между крупными обновлениями операционной системы",
-    "major_update_interval_unit": "лет"
+    "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих"
 }

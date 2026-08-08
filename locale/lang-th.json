@@ -113,6 +113,7 @@
     "live-mode-usage-description": "มี Live Mode: สามารถเริ่มระบบจากแผ่นหรือ USB เพื่อทดลองใช้งานได้ (ก่อนติดตั้งจริง)",
     "lubuntu-description": "Lubuntu เป็น Linux distribution ที่มีฐานมาจาก Ubuntu ขับเคลื่อนโดย LXQt desktop environment ที่มีน้ำหนักเบา",
     "mac-like-facette-ux-concept-answer-mac-like-description": "แนวคิด GUI มีองค์ประกอบคล้าย macOS",
+    "major_update_interval": "ช่วงเวลาน้อยที่สุดระหว่างการอัปเดตครั้งใหญ่",
     "manjaro-description": "Manjaro เป็น Linux distribution แบบ Rolling release ที่เน้นความเป็นมิตรต่อผู้ใช้",
     "manuals-description": "ฉันสามารถแก้ปัญหาโดยใช้คู่มือจากหน้าวิกิหรือบทเรียนสอนการใช้งานได้",
     "many-choices-gui-description": "ฉันต้องการปรับแต่งให้มากที่สุดเท่าที่จะทำได้ผ่านโปรแกรมที่มีหน้าต่างกราฟิก",
@@ -214,6 +215,12 @@
     "tutorial-facette-manuals-description": "มีบทเรียนสอนการใช้งานสำหรับการแก้ปัญหา",
     "ubuntu-description": "Ubuntu เป็น Linux distribution ที่สร้างโดยบริษัท Canonical",
     "ubuntumate-description": "Ubuntu MATE เป็น Linux distribution ที่มีฐานมาจาก Ubuntu ขับเคลื่อนโดย MATE desktop environment ที่มีน้ำหนักเบา",
+    "update_interval_month": "เดือน",
+    "update_interval_months": "เดือน",
+    "update_interval_week": "สัปดาห์",
+    "update_interval_weeks": "สัปดาห์",
+    "update_interval_year": "ปี",
+    "update_interval_years": "ปี",
     "updates-fast-facette-prefer-fast-description": "การอัปเดตรวดเร็ว แต่อาจไม่เสถียร",
     "updates-page-help": "Distributions มีแนวทางที่แตกต่างกันในการทำแพ็กเกจการอัปเดต บางตัวเน้นการอัปเดตที่รวดเร็ว ซึ่งอาจส่งผลต่อความเสถียรของระบบ บางตัวเน้นการอัปเดตที่เสถียร ซึ่งส่งผลให้ต้องรอนานขึ้นสำหรับเวอร์ชันใหม่",
     "updates-page-text": "Linux distribution บางตัวเสนอการอัปเดตที่เร็วกว่า ซึ่งอาจส่งผลต่อความเสถียรของระบบ คุณชอบแบบไหน?",
@@ -242,7 +249,5 @@
     "welcome-page-title": "ยินดีต้อนรับ!",
     "without-fee-facette-pricing-free-description": "ใช้งานได้โดยไม่มีค่าธรรมเนียม",
     "xubuntu-description": "Xubuntu เป็น Linux distribution ที่มีฐานมาจาก Ubuntu ขับเคลื่อนโดย XFCE desktop environment ที่มีน้ำหนักเบา",
-    "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows",
-    "major_update_interval": "ช่วงเวลาการอัปเดตเป็นปีระหว่างการอัปเกรดระบบปฏิบัติการหลัก",
-    "major_update_interval_unit": "ปี"
+    "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows"
 }

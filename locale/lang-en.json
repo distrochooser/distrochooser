@@ -115,6 +115,7 @@
     "live-mode-usage-description": "Has Live Mode: Can be started using discs or usb sticks to test it out (before installing)",
     "lubuntu-description": "Lubuntu is an Ubuntu-based Linux distribution powered by the lightweight LXQt desktop environment",
     "mac-like-facette-ux-concept-answer-mac-like-description": "GUI concept has elements of macOS",
+    "major_update_interval": "Smallest time between large updates",
     "manjaro-description": "Manjaro is a rolling release Linux distribution focused on user friendliness",
     "manuals-description": "I am able to solve my problems using guides from wiki pages or tutorials",
     "many-choices-gui-description": "I want to configure as much as possible using graphical applications",
@@ -216,6 +217,12 @@
     "tutorial-facette-manuals-description": "There are tutorials for troubleshooting and problem-solving",
     "ubuntu-description": "Ubuntu is a Linux distribution built by the company Canonical",
     "ubuntumate-description": "Ubuntu MATE is an Ubuntu-based Linux distribution powered by the lightweight MATE desktop environment",
+    "update_interval_month": "month",
+    "update_interval_months": "months",
+    "update_interval_week": "week",
+    "update_interval_weeks": "weeks",
+    "update_interval_year": "year",
+    "update_interval_years": "years",
     "updates-fast-facette-prefer-fast-description": "Updates are fast, but can be unstable",
     "updates-page-help": "Distributions follow different approaches when packaging updates. Some Linux distributions focus on fast updates, which can influence the stability of the system. Other Linux distributions focus on stable updates, which result in longer wait time for new versions.",
     "updates-page-text": "Some Linux distributions offer faster updates, which can affect system stability. What do you prefer?",
@@ -244,7 +251,5 @@
     "welcome-page-title": "Welcome!",
     "without-fee-facette-pricing-free-description": "Usable without fee",
     "xubuntu-description": "Xubuntu is an Ubuntu-based Linux distribution powered by the lightweight XFCE desktop environment",
-    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface",
-    "major_update_interval": "Update interval in years between major operating system upgrades",
-    "major_update_interval_unit": "years"
+    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface"
 }

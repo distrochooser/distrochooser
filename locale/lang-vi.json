@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Có Chế độ Live: Có thể khởi động bằng đĩa hoặc thẻ USB để kiểm tra (trước khi cài đặt)",
     "lubuntu-description": "Lubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là LXQt",
     "mac-like-facette-ux-concept-answer-mac-like-description": "GUI có các thành phần giống macOS",
+    "major_update_interval": "Thời gian ngắn nhất giữa các bản cập nhật lớn",
     "manjaro-description": "Manjaro là một bản phân phối phát hành luân phiên, tập trung vào sự thân thiện với người dùng",
     "manuals-description": "Tôi có thể giải quyết vấn đề của mình bằng cách sử dụng các trang wiki hoặc các hướng dẫn",
     "many-choices-gui-description": "Tôi muốn có càng nhiều các thiết lập càng tốt bằng các ứng dụng có giao diện đồ họa",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Có các hướng dẫn để khắc phục sự cố và giải quyết vấn đề",
     "ubuntu-description": "Ubuntu là một bản phân phối được xây dựng bởi công ty Canonical",
     "ubuntumate-description": "Ubuntu MATE là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là MATE",
+    "update_interval_month": "tháng",
+    "update_interval_months": "tháng",
+    "update_interval_week": "tuần",
+    "update_interval_weeks": "tuần",
+    "update_interval_year": "năm",
+    "update_interval_years": "năm",
     "updates-fast-facette-prefer-fast-description": "Cập nhật nhanh nhưng có thể không ổn định",
     "updates-page-help": "Các bản phân phối tuân theo các cách tiếp cận khác nhau khi đóng gói các bản cập nhật. Một số bản phân phối tập trung vào các bản cập nhật nhanh, có thể ảnh hưởng đến tính ổn định của hệ thống. Các bản phân phối khác tập trung vào các bản cập nhật ổn định, dẫn đến thời gian chờ đợi lâu hơn cho các phiên bản mới.",
     "updates-page-text": "Một số bản phân phối cung cấp các bản cập nhật nhanh hơn, điều này có thể ảnh hưởng đến sự ổn định của hệ thống. Bạn thích thế nào hơn?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Chào mừng!",
     "without-fee-facette-pricing-free-description": "Có thể sử dụng mà không mất phí",
     "xubuntu-description": "Xubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là XFCE",
-    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows",
-    "major_update_interval": "Khoảng thời gian cập nhật theo năm giữa các bản nâng cấp hệ điều hành chính",
-    "major_update_interval_unit": "năm"
+    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows"
 }

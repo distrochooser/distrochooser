@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Ich möchte die Distribution über CD/ DVD oder USB-Stick ausprobieren (Live-Mode)",
     "lubuntu-description": "Lubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem LXQt-Desktop.",
     "mac-like-facette-ux-concept-answer-mac-like-description": "Oberfläche ähnelt grundsätzlich macOS.",
+    "major_update_interval": "Kürzeste Zeit zwischen großen Updates",
     "manjaro-description": "Manjaro ist eine auf Benutzerfreundlichkeit fokussierte Distribution mit dem Rolling Release-Modell",
     "manuals-description": "Ich ziehe gerne Anleitungen und Tutorials aus Wikis zur Problemlösung heran. ",
     "many-choices-gui-description": "Ich bevorzuge viele Auswahlmöglichkeiten und möchte viele Dinge über die grafische Oberfläche konfigurieren können. ",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Problemlösung häufig über Tutorials",
     "ubuntu-description": "Ubuntu ist eine von Canonical entwickelte Distribution.",
     "ubuntumate-description": "Ubuntu MATE ist eine auf Ubuntu basierende Distribution mit vorinstalliertem MATE-Desktop.",
+    "update_interval_month": "Monat",
+    "update_interval_months": "Monate",
+    "update_interval_week": "Woche",
+    "update_interval_weeks": "Wochen",
+    "update_interval_year": "Jahr",
+    "update_interval_years": "Jahre",
     "updates-fast-facette-prefer-fast-description": "Updates werden häufig veröffentlicht",
     "updates-page-help": "Die Distributionen verfolgen unterschiedliche Ansätze bei der Paketierung von Updates. Manche Distributionen konzentrieren sich auf schnelle Updates, die die Stabilität des Systems beeinträchtigen können. Andere Distributionen konzentrieren sich auf stabile Updates, was zu einer längeren Wartezeit auf neue Versionen führt.",
     "updates-page-text": "Wann Updates für Programmpakete auf den Distributionen erscheinen hängt von den Zielen der Distribution ab. Manche Distribution bieten schnelle Updates, was sich aber negativ auf die Stabilität des Systems auswirken kann.",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Willkommen!",
     "without-fee-facette-pricing-free-description": "Kann ohne Gebühren genutzt werden",
     "xubuntu-description": "Xubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem XFCE-Desktop.",
-    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche",
-    "major_update_interval": "Aktualisierungsintervall in Jahren zwischen großen Betriebssystem-Updates",
-    "major_update_interval_unit": "Jahre"
+    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche"
 }

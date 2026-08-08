@@ -111,6 +111,7 @@
     "live-mode-usage-description": "I möcht d Distribution über e CD/ DVD oder e USB-Stick usprobiere (Live-Mode)",
     "lubuntu-description": "Lubuntu isch e Distribution wo uf Ubuntu basiert und e LXQt -Desktop vorinstalliert het.",
     "mac-like-facette-ux-concept-answer-mac-like-description": "D Oberflächi gseht fasch us wie macOS.",
+    "major_update_interval": "Muda mfupi zaidi kati ya masasisho makubwa",
     "manjaro-description": "Manjaro isch e Distribution wo uf Benutzerfründlechkeit fokussiert isch u es Rolling Relase Modäll het.",
     "manuals-description": "I ha lieber Aleitige u Tutorials us Wikis für d Problemlösig.",
     "many-choices-gui-description": "I möcht ganz viu Uswahlmüglechkeite ha und möcht am liebschte aues über die grafischi Oberflächi chönne konfiguriere.",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "D Problemlösig erfolgt hüüfig über Tutorials",
     "ubuntu-description": "Ubuntu isch e Distribution wo vo Canonical entwicklet wird.",
     "ubuntumate-description": "Ubuntu MATE isch e Distribution wo uf Ubuntu basiert und e MATE-Desktop vorinstalliert het.",
+    "update_interval_month": "Maa",
+    "update_interval_months": "Mönet",
+    "update_interval_week": "Wuche",
+    "update_interval_weeks": "Wuche",
+    "update_interval_year": "Johr",
+    "update_interval_years": "Johr",
     "updates-fast-facette-prefer-fast-description": "Updates wärde hüüfig veröffentlecht",
     "updates-page-help": "Wenn nöii Updates für Programmpaket uf de Distributione erschine, hanget vo de Ziel vor Distribution ab. Es paar Distributione biete schnäui Updates a, was sech aber negativ uf d Stabilität vom System chönnt uswürke.",
     "updates-page-text": "Wenn nöii Updates für Programmpaket uf de Distributione erschine, hanget vo de Ziel vor Distribution ab. Es paar Distributione biete schnäui Updates a, was sech aber negativ uf d Stabilität vom System chönnt uswürke.",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Härzlech Wiukomme!",
     "without-fee-facette-pricing-free-description": "Cha ohni Gebühre verwändet wärde",
     "xubuntu-description": "Xubuntu isch e Distribution wo uf Ubuntu basiert und e XFCE-Desktop vorinstalliert het.",
-    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret",
-    "major_update_interval": "Aktualisierig Intervall i Johr zwüsche grossä Betriebssystem-Updates",
-    "major_update_interval_unit": "Johr"
+    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret"
 }

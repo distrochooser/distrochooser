@@ -111,6 +111,7 @@
     "live-mode-usage-description": "Canlı rejimi var: onu yoxlamaq üçün disk və ya usb yaddaş qurğularından istifadə edərək işə salmaq olur (quraşdırmadan əvvəl)",
     "lubuntu-description": "Lubuntu, yüngül LXQt iş masası mühiti ilə təchiz edilmiş Ubuntu əsaslı paylanmadır",
     "mac-like-facette-ux-concept-answer-mac-like-description": "Qrafik İstifadəçi İnterfeysi (Qİİ) konsepti macOS elementlərini daşıyır",
+    "major_update_interval": "Böyük yeniləmələr arasındakı ən qısa vaxt",
     "manjaro-description": "Manjaro, istifadəçinin rahatlığına yönəlmiş davamlı yeniləmə alan bir paylanmadır",
     "manuals-description": "Problemlərimi viki səhifələrindən və ya tyutoriallardan istifadə edərək həll edə bilirəm",
     "many-choices-gui-description": "Qrafik proqramlardan istifadə edərək mümkün olduğu qədər konfiqurasiya etmək istəyirəm",
@@ -212,6 +213,12 @@
     "tutorial-facette-manuals-description": "Problemlərin aradan qaldırılması və problemlərin həlli üçün tyutoriallar var",
     "ubuntu-description": "Ubuntu, Canonical şirkəti tərəfindən qurulmuş bir Paylanmadır",
     "ubuntumate-description": "Ubuntu MATE, yüngül MATE iş masası mühiti ilə təchiz edilmiş Ubuntu əsaslı paylanmadır",
+    "update_interval_month": "ay",
+    "update_interval_months": "aylar",
+    "update_interval_week": "həftə",
+    "update_interval_weeks": "həftələr",
+    "update_interval_year": "il",
+    "update_interval_years": "ամեծ տարիներ",
     "updates-fast-facette-prefer-fast-description": "Yeniləmələr sürətlidir, lakin qeyri-stabil ola bilər",
     "updates-page-help": "Yeniləmələri qablaşdırarkən paylamalar müxtəlif yanaşmalara əməl edir. Bəzi paylamalar sistemin sabitliyinə təsir edə biləcək sürətli yeniləmələrə diqqət yetirir. Digər paylamalar sabit yeniləmələrə diqqət yetirir ki, bu da yeni versiyalar üçün daha uzun gözləmə müddəti ilə nəticələnir.",
     "updates-page-text": "Bəzi paylanmalar sistemin sabitliyinə təsir edə biləcək daha sürətli yeniləmələr təklif edir. Siz nəyə üstünlük verirsiniz?",
@@ -240,7 +247,5 @@
     "welcome-page-title": "Xoş gəldiniz!",
     "without-fee-facette-pricing-free-description": "Ödənişsiz istifadə edilə bilər",
     "xubuntu-description": "Xubuntu, yüngül XFCE iş masası mühiti ilə təchiz edilmiş Ubuntu əsaslı paylanmadır",
-    "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır",
-    "major_update_interval": "Əsas əməliyyat sistemi yeniləmələri arasında illik yeniləmə aralığı",
-    "major_update_interval_unit": "İllər"
+    "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır"
 }
