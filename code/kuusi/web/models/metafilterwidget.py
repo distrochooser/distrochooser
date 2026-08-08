@@ -22,6 +22,7 @@ from django.db import models
 from typing import List, Dict, Any, Tuple
 from django.core.cache import cache
 from django.db.models.manager import BaseManager
+from web.util import get_translation
 
 
 class MetaFilterWidgetElement:
@@ -148,11 +149,12 @@ class MetaFilterWidgetElement:
         if meta_name not in obj.meta:
             return None
         meta_value = float(obj.meta[meta_name].meta_value)
+        unit = get_translation("major_update_interval_unit", session.language_code)
         if meta_value >= value:
             result = FacetteAssignment(
                 catalogue_id=meta_name,
                 description=meta_name,
-                context_argument=meta_value,
+                context_argument=f"{meta_value} {unit}",
                 assignment_type=FacetteAssignment.AssignmentType.POSITIVE,
             )
             return result
