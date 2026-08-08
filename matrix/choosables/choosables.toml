@@ -41,6 +41,12 @@ meta_name = "operational_center"
 meta_value = "gb"
 
 
+# https://endoflife.date/ubuntu
+[[meta]]
+choosable="ubuntu"
+meta_name = "major_update_interval"
+meta_value = "0.75"
+
 [[meta]]
 choosable="ubuntu"
 meta_name = "languages"
@@ -80,6 +86,12 @@ meta_value = "1993-09-15"
 choosable="debian"
 meta_name = "operational_center"
 meta_value = "us"
+
+# https://endoflife.date/debian
+[[meta]]
+choosable="debian"
+meta_name = "major_update_interval"
+meta_value = "3"
 
 [[meta]]
 choosable="debian"

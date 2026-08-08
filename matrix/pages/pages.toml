@@ -244,6 +244,14 @@ not_in_versions = ["simplified"]
 topic = "updates"
 pages = ["updates-page"]
 
+[widget.metafilter.major-update-interval]
+structure = [
+   [
+      "range.major_update_interval.filter_by_update_interval.major_update_interval",
+   ],
+]
+pages = ["updates-page"]
+
 # Results
 
 # distrochooser::translation::en::Show your results
