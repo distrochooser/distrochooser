@@ -5,7 +5,7 @@ django-debug-toolbar==6.0.0
 django-filter==25.1
 django-polymorphic==4.1.0
 django-rest-polymorphic==0.1.10
-djangorestframework==3.16.1
+djangorestframework==3.17.2
 drf-nested-routers==0.94.2
 drf-spectacular==0.28.0
 drf-spectacular-sidecar==2025.9.1
