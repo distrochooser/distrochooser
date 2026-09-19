@@ -29,7 +29,7 @@ def create_assignments(
 ) -> List[FacetteAssignment]:
     got = []
     catalogue_ids = []
-    for element, data in haystack.items():        
+    for element, data in haystack.items():
         old_assignment = FacetteAssignment.objects.filter(catalogue_id=element)
         catalogue_ids.append(element)
         # Create a source string
@@ -41,7 +41,7 @@ def create_assignments(
             catalogue_id=element,
             description=f"{element}-description",
             assignment_type=data["how"].upper(),
-            sources = sources_str 
+            sources=sources_str,
         )
         if old_assignment.count() != 0:
             logger.info(
@@ -52,15 +52,23 @@ def create_assignments(
         new_assignment.save()
 
         new_assignment.choosables.set(
-            Choosable.objects.filter(Q(name__in=data["choosables"]) | Q(catalogue_id__in=data["choosables"]))
+            Choosable.objects.filter(
+                Q(name__in=data["choosables"]) | Q(catalogue_id__in=data["choosables"])
+            )
         )
+
+        facettes = Facette.objects.filter(catalogue_id__in=data["facettes"])
+
+        if facettes.count() == 0:
+            raise Exception(f"The assignment {element} has no matching facettes")
+
         new_assignment.facettes.set(
             Facette.objects.filter(catalogue_id__in=data["facettes"])
         )
 
         new_assignment.save()
         got.append(new_assignment)
-    
+
     # Get rid of assignments not processed above
     # These are considered orphans
     orphans = FacetteAssignment.objects.exclude(catalogue_id__in=catalogue_ids)
