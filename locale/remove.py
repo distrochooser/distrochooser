@@ -17,9 +17,12 @@ for locale in locales:
         with open(locale, "r") as file:
             contents = file.read()
         data = loads(contents)
-        del data[key]
-        data = dict(sorted(data.items()))
-        with open(locale, "w") as file:
-            file.write(
-                dumps(data, ensure_ascii=False, indent=4).encode("utf-8").decode()
-            )
+        if key not in data:
+            print(f"key is not in {locale}")
+        else:
+            del data[key]
+            data = dict(sorted(data.items()))
+            with open(locale, "w") as file:
+                file.write(
+                    dumps(data, ensure_ascii=False, indent=4).encode("utf-8").decode()
+                )
