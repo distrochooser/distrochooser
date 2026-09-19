@@ -17,7 +17,7 @@ pytz==2025.2
 PyYAML==6.0.2
 requests==2.33.0
 sqids==0.5.2
-sqlparse==0.5.4
+sqlparse==0.6.0
 termcolor==3.1.0
 tzdata==2025.2
 uritemplate==4.2.0
