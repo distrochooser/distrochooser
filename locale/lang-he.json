@@ -45,6 +45,7 @@
     "cruxlinux-description": "‏Crux Linux היא מערכת הפעלה קלילה שמתמקדת ב־64 סיביות עם כלים וספריות עדכניים",
     "daily-usage-description": "אני רוצה הפצה לשימוש יומיומי.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "ייתכנו קשיים מהותיים בשימוש יומיומי",
+    "debian-ai-usage-description": "לפרויקט יש החלטה בנושא השימוש בבינה מלאכותית: החלטה זו מאשרת אם כן כי בינה מלאכותית גנרטיבית אינה פטורה, ואינה כפופה לתקנות מיוחדות מעבר לתקנים הצפויים כבר מהתורמים של Debian. האחריות על כל תרומה מוטלת על התורם שהגיש אותה, אשר נותר אחראי על איכותה הטכנית, הבהירות המשפטית וההתאמתה לשילוב ב-Debian.",
     "debian-description": "‏Debian היא הפצה שמתמקדת מאוד ביציבות",
     "debian-updates-slow-facette-prefer-fast-description": "העדכונים של Debian איטיים לרוב מטעמי יציבות",
     "deepin-description": "Deepin היא הפצה סינית מבוססת דביאן המציעה שולחן עבודה משלו בשם Deepin Desktop Environment.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "לא ביצעת בחירות. התוצאה תהיה ריקה.",
     "rhel-description": "‏Red hat Enterprise Linux (ר״ת: RHEL) היא הפצה שמתמקדת בשימוש על ידי ארגונים וביציבות",
     "rocky-description": "‏Rocky Linux היא הפצת קוד פתוח שמטרתה להיות תואמת ב-100% ל-Red Hat Enterprise Linux (RHEL)",
+    "rolling": "עדכון תוכנה מהיר ומתגלגל ללא גרסה קבועה",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "הפעלת התוכנה נעשית בסביבות מבודדות",
     "save_feedback": "שמור את המשוב",
     "scenario-page-help": "עזרו לנו על ידי הגדרת טווח לשימוש הרצוי בלינוקס.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "ברוך בואך!",
     "without-fee-facette-pricing-free-description": "ניתנת לשימוש בחינם",
     "xubuntu-description": "‏Xubuntu היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה הקלילה XFCE",
-    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows",
-    "rolling": "עדכון תוכנה מהיר ומתגלגל ללא גרסה קבועה"
+    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows"
 }

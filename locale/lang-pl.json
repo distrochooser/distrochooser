@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux jest lekkim 64 bitowym systemem operacyjnym z najnowszymi narzędziami i bibliotekami",
     "daily-usage-description": "Chcę dystrybucję do codziennego użytkowania.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Codzienne użytkowanie może powodować trudności",
+    "debian-ai-usage-description": "Projekt ma uchwałę dotyczącą wykorzystania AI: Uchwała ta zatem potwierdza, że generatywna sztuczna inteligencja nie jest zwolniona ani objęta specjalnymi zasadami wykraczającymi poza standardy już oczekiwane od kontrybutorów Debian. Odpowiedzialność za każdy wkład spoczywa na kontrybutorze, który go przedłożył, a on pozostaje odpowiedzialny za jego jakość techniczną, akceptowalność prawną i przydatność do włączenia do Debian.",
     "debian-description": "Debian jest dystrybucją z dużym naciskiem na stabilność",
     "debian-updates-slow-facette-prefer-fast-description": "Aktualizacje Debiana są zazwyczaj powolne na rzecz stabilności",
     "deepin-description": "Deepin to chińska dystrybucja oparta na Debianie, oferująca własny pulpit o nazwie Deepin Desktop Environment.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Nie dokonano żadnych wyborów. Wynik będzie pusty.",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) jest dystrybucją skupiającą się na przedsiębiorstwach i stabilności",
     "rocky-description": "Rocky Linux jest dystrybucją o otwartym kodzie źródłowym, która ma być w 100% kompatybilna z Red Hat Enterprise Linux (RHEL)",
+    "rolling": "Szybka, ciągła aktualizacja oprogramowania bez konkretnego wydania",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Oprogramowanie działa w odizolowanych środowiskach",
     "save_feedback": "Zapisz opinię",
     "scenario-page-help": "Pomóż nam, określając zakres pożądanego wykorzystania systemu Linux.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Witamy!",
     "without-fee-facette-pricing-free-description": "Możliwość korzystania bez opłat",
     "xubuntu-description": "Xubuntu to dystrybucja oparta na Ubuntu, zasilana lekkim środowiskiem graficznym XFCE",
-    "zorinos-description": "Zorin OS to dystrybucja dla początkujących z interfejsem użytkownika przypominającym Windows",
-    "rolling": "Szybka, ciągła aktualizacja oprogramowania bez konkretnego wydania"
+    "zorinos-description": "Zorin OS to dystrybucja dla początkujących z interfejsem użytkownika przypominającym Windows"
 }

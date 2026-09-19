@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux är ett lättviktigt 64-bitars fokuserat operativsystem med nya verktyg och bibliotek",
     "daily-usage-description": "Jag vill ha en distribution för daglig användning.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Daglig användning kan resultera i stora svårigheter",
+    "debian-ai-usage-description": "Projektet har ett beslut om användningen av AI: Detta beslut bekräftar därför att generativ AI varken är undantagen från eller föremål för särskilda regler utöver de standarder som redan förväntas av Debian-bidragsgivare. Ansvaret för varje bidrag ligger hos bidragsgivaren som lämnar in det, som förblir ansvarig för dess tekniska kvalitet, juridiska acceptans och lämplighet för inkludering i Debian.",
     "debian-description": "Debian är en distribution med stort fokus på stabilitet",
     "debian-updates-slow-facette-prefer-fast-description": "Uppdateringar av Debian är vanligtvis långsamma till förmån för stabilitet",
     "deepin-description": "Deepin är en kinesisk, Debianbaserad distribution som erbjuder ett eget skrivbord som kallas Deepin Desktop Environment.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Du gjorde inga val. Resultatet kommer att vara tomt.",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) är en företags- och stabilitetsfokuserad distribution",
     "rocky-description": "Rocky Linux är en distribution med öppen källkod som är inriktad på att vara 100 % kompatibel med Red Hat Enterprise Linux (RHEL)",
+    "rolling": "Snabb, rollande programvaruuppdatering utan ett fast släppdatum",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Mjukvarukörning sker i isolerade miljöer",
     "save_feedback": "Spara synpunkter",
     "scenario-page-help": "Hjälp oss genom att ange ett scope för din önskade Linux-användning.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Välkommen!",
     "without-fee-facette-pricing-free-description": "Kan användas utan avgift",
     "xubuntu-description": "Xubuntu är en Ubuntu-baserad distribution som drivs av den lätta XFCE-skrivbordsmiljön",
-    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt",
-    "rolling": "Snabb, rollande programvaruuppdatering utan ett fast släppdatum"
+    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt"
 }

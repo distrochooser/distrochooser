@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux là một hệ điều hành tập trung vào 64 bit, nhẹ, với các công cụ và thư viện gần đây",
     "daily-usage-description": "Tôi muốn một bản phân phối để sử dụng hàng ngày.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Việc sử dụng hàng ngày có thể dẫn đến những khó khăn lớn",
+    "debian-ai-usage-description": "Dự án có nghị quyết về việc sử dụng AI: Nghị quyết này do đó khẳng định rằng AI tạo sinh không được miễn trừ hay phải tuân theo các quy tắc đặc biệt nào vượt ra ngoài các tiêu chuẩn đã được mong đợi từ những người đóng góp của Debian. Trách nhiệm đối với mọi đóng góp thuộc về người đóng góp gửi nó, người vẫn chịu trách nhiệm về chất lượng kỹ thuật, tính chấp nhận pháp lý và sự phù hợp để đưa vào Debian.",
     "debian-description": "Debian là bản phân phối tập trung cao vào tính ổn định",
     "debian-updates-slow-facette-prefer-fast-description": "Cập nhật Debian thường chậm vì tập trung vào sự ổn định",
     "deepin-description": "Deepin là một bản Phân phối dựa trên Debian của Trung Quốc, cung cấp một màn hình nền riêng có tên là Deepin Desktop Environment.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Bạn không thực hiện bất kỳ lựa chọn nào. Kết quả sẽ trống.",
     "rhel-description": "Red hat Enterprise Linux (RHEL) là một bản phân phối tập trung vào doanh nghiệp và sự ổn định",
     "rocky-description": "Rocky Linux là một bản phân phối mã nguồn mở được nhắm mục tiêu để tương thích 100% với Red Hat Enterprise Linux (RHEL)",
+    "rolling": "Cập nhật phần mềm nhanh chóng và liên tục mà không có bản phát hành cụ thể",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Thực thi phần mềm trong môi trường biệt lập",
     "save_feedback": "Lưu phản hồi",
     "scenario-page-help": "Hãy giúp chúng tôi bằng cách đặt phạm vi sử dụng Linux mong muốn của bạn.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Chào mừng!",
     "without-fee-facette-pricing-free-description": "Có thể sử dụng mà không mất phí",
     "xubuntu-description": "Xubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là XFCE",
-    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows",
-    "rolling": "Cập nhật phần mềm nhanh chóng và liên tục mà không có bản phát hành cụ thể"
+    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows"
 }

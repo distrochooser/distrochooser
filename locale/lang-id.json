@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux adalah distribusi 64 bit yang ringan dengan alat dan library terbaru",
     "daily-usage-description": "Saya ingin distribusi untuk penggunaan sehari-hari.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Penggunaan sehari-hari dapat mengalami kesulitan",
+    "debian-ai-usage-description": "Proyek ini memiliki resolusi tentang penggunaan AI: Resolusi ini dengan demikian menegaskan bahwa AI generatif tidak dikecualikan dan tidak tunduk pada aturan khusus di luar standar yang sudah diharapkan dari kontributor Debian. Tanggung jawab atas setiap kontribusi terletak pada kontributor yang menyerahkannya, yang tetap bertanggung jawab atas kualitas teknis, penerimaan hukum, dan kesesuaiannya untuk dimasukkan ke dalam Debian.",
     "debian-description": "Debian adalah distribusi dengan fokus utama pada kestabilan",
     "debian-updates-slow-facette-prefer-fast-description": "Pembaruan Debian cenderung lambat demu kestabilan",
     "deepin-description": "Deepin adalah Distribusi berbasis Debian dari Tiongkok yang menawarkan desktop tersendiri, yaitu Deepin Desktop Environment.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Anda tidak membuat pilihan apa pun. Hasilnya akan kosong.",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) adalah distribusi yang berfokus pada perusahaan dan kestabilan",
     "rocky-description": "Rocky Linux adalah distribusi sumber terbuka yang menargetkan kompatibilitas total dengan Red Hat Enterprise Linux (RHEL)",
+    "rolling": "Pembaruan perangkat lunak yang cepat dan berkelanjutan tanpa rilis versi tertentu",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Perangkat lunak dijalankan pada lingkungan terisolasi",
     "save_feedback": "Simpan umpan balik",
     "scenario-page-help": "Bantu kami dengan menetapkan cakupan penggunaan Linux yang Anda inginkan.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Selamat datang!",
     "without-fee-facette-pricing-free-description": "Dapat digunakan tanpa membayar",
     "xubuntu-description": "Xubuntu adalah distribusi berbasis Ubuntu dengan XFCE terinstall sejak awal",
-    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows",
-    "rolling": "Pembaruan perangkat lunak yang cepat dan berkelanjutan tanpa rilis versi tertentu"
+    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows"
 }

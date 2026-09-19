@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux, ən son alətlər və kitabxanalara malik yüngül 64 bit fokuslanmış əməliyyat sistemidir",
     "daily-usage-description": "Mən gündəlik istifadə üçün bir paylanma istəyirəm.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Gündəlik istifadə böyük çətinliklərlə nəticələnə bilər",
+    "debian-ai-usage-description": "Layih-da AI-dan istifadəyə dair qərarı var: Bu qərar buna görə də təsdiq edir ki, generativ süni intellekt neç bir xüsusi qaydadan azad deyil və nə də Debian tövsiyəçilərindən gözlənilən standartlardan artıq hər hansı bir xüsusi qayda ilə bağlıdır. Hər bir töhfə üçün məsuliyyət onu təqdim edən tövsiyəçi üzərinə düşür və o, texniki keyfiyyəti, hüquqi qəbul edilməsi və Debian-a daxil olmaq üçün uyğunluğundan cavabdeh qalır.",
     "debian-description": "Debian stabilliyə yüksək diqqət yetirən bir paylanmadır",
     "debian-updates-slow-facette-prefer-fast-description": "Debian yeniləmələri adətən stabillik lehinə yavaş olur",
     "deepin-description": "Deepin, (DDE) Deepin Desktop Environment adlı öz iş masası ilə birlikdə gələn, Debian əsaslı Çindən bir paylanmadır.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Siz heç bir seçim etməmisiniz. Nəticə boş olacaq.",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) müəssisə və stabilliyə yönəlmiş paylanmadır",
     "rocky-description": "Rocky Linux, Red Hat Enterprise Linux (RHEL) ilə 100% uyğun olmağı hədəfləyən açıq mənbə paylanmadır",
+    "rolling": "Tez, roll-update proqram təminat yeniləməsi sabit buraxılış olmadan",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Proqram təminatının icrası təcrid olunmuş mühitlərdə baş verir",
     "save_feedback": "Rəy saxla",
     "scenario-page-help": "Arzuladığınız Linux istifadə dairəsini təyin etməklə bizə kömək edin.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Xoş gəldiniz!",
     "without-fee-facette-pricing-free-description": "Ödənişsiz istifadə edilə bilər",
     "xubuntu-description": "Xubuntu, yüngül XFCE iş masası mühiti ilə təchiz edilmiş Ubuntu əsaslı paylanmadır",
-    "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır",
-    "rolling": "Tez, roll-update proqram təminat yeniləməsi sabit buraxılış olmadan"
+    "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır"
 }

@@ -47,6 +47,7 @@
     "cruxlinux-description": "Crux Linux เป็นระบบปฏิบัติการน้ำหนักเบาที่เน้น 64 bit มาพร้อมเครื่องมือและไลบรารีที่ทันสมัย",
     "daily-usage-description": "ฉันต้องการ Linux distribution สำหรับการใช้งานในชีวิตประจำวัน",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "การใช้งานในชีวิตประจำวันอาจมีความยุ่งยาก",
+    "debian-ai-usage-description": "โครงการมีมติเกี่ยวกับการใช้ AI: มตินี้จึงรับรองว่า AI แบบสร้าง (Generative AI) ไม่ได้รับการยกเว้นหรืออยู่ภายใต้กฎพิเศษใด ๆ ที่เกินกว่ามาตรฐานที่คาดหวังจากผู้มีส่วนร่วมของ Debian ความรับผิดชอบสำหรับทุกการมีส่วนร่วมอยู่ที่ผู้ที่มีส่วนร่วมซึ่งส่งมอบ ซึ่งยังคงรับผิดชอบต่อคุณภาพทางเทคนิค การยอมรับทางกฎหมาย และความเหมาะสมสำหรับการรวมเข้าใน Debian",
     "debian-description": "Debian เป็น Linux distribution ที่ให้ความสำคัญสูงกับความเสถียร",
     "debian-updates-slow-facette-prefer-fast-description": "การอัปเดตของ Debian มักจะช้าเพื่อแลกกับความเสถียร",
     "deepin-description": "Deepin เป็น Linux distribution จากจีนที่มีฐานมาจาก Debian และนำเสนอเดสก์ท็อปของตัวเองที่เรียกว่า Deepin Desktop Environment",
@@ -182,6 +183,7 @@
     "result_will_be_empty": "คุณไม่ได้ทำการเลือกใดๆ ผลลัพธ์จะว่างเปล่า",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) เป็น Linux distribution ที่เน้นระดับองค์กรและความเสถียร",
     "rocky-description": "Rocky Linux เป็น Linux distribution แบบโอเพนซอร์สที่มีเป้าหมายให้เข้ากันได้ 100% กับ Red Hat Enterprise Linux (RHEL)",
+    "rolling": "การอัปเดตซอฟต์แวร์แบบต่อเนื่องที่รวดเร็วโดยไม่มีการปล่อยเวอร์ชันเฉพาะ",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "การทำงานของซอฟต์แวร์เกิดขึ้นในสภาพแวดล้อมที่แยกตัว",
     "save_feedback": "บันทึกความคิดเห็น",
     "scenario-page-help": "ช่วยเราโดยการกำหนดขอบเขตการใช้งาน Linux ที่คุณต้องการ",
@@ -249,6 +251,5 @@
     "welcome-page-title": "ยินดีต้อนรับ!",
     "without-fee-facette-pricing-free-description": "ใช้งานได้โดยไม่มีค่าธรรมเนียม",
     "xubuntu-description": "Xubuntu เป็น Linux distribution ที่มีฐานมาจาก Ubuntu ขับเคลื่อนโดย XFCE desktop environment ที่มีน้ำหนักเบา",
-    "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows",
-    "rolling": "การอัปเดตซอฟต์แวร์แบบต่อเนื่องที่รวดเร็วโดยไม่มีการปล่อยเวอร์ชันเฉพาะ"
+    "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows"
 }

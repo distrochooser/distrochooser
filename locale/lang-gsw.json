@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux isch e 64 bit optimierti Distribution mit aktueller Software u Tools",
     "daily-usage-description": "I möcht Linux für die täglechi Nutzig verwände.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Die täglechi Nutzig isch durchuus mit grössere Hürde verbunde",
+    "debian-ai-usage-description": "Das Projekt het en Beschlüsslig uf d'Nutzig vo AI: Dä Beschlüss bestätigt also, dass generativ KI weder usègno isch no unter spezielle Regle fällt, wo über die Standards usechönd sind, wo vo de Debian-Mitwirkende scho erwartet werde. D'Verantwortig für jede Beitrag liggt bi em Beitragendi Mitwirkende, wo ihn iireichd, und er/si blibt verantwortlich für sini technischi Qualität, d'rechtlichi Akzeptanz und d'Eignig für d'Iinschlüssig in Debian.",
     "debian-description": "Debian isch e Distribution wo uf Stabilität fokussiert isch",
     "debian-updates-slow-facette-prefer-fast-description": "Debian-Updates chöme gwöhnlech speter, was dr Vorteil het, dass es stabiler isch.",
     "deepin-description": "Deepin is kommt aus China und basiert uff Debian.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Du hesch nüt usgwählt, d Resultat wird läär sii",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) isch e Distribution wo füre betrieblech Iisatz optimiert isch",
     "rocky-description": "Rocky Linux het sech als Ziel gsetzt e Distribution uf Basis vo freier Software bereitzstelle, wo mit RHEL kompatibel isch",
+    "rolling": "Schnells, rolling Software-Update ohni fixsä Release",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Füehrt Programm standardmässig isoliert us",
     "save_feedback": "Feedback speichern",
     "scenario-page-help": "Hilf üs dür das dass du e Umfang für dini gwünschti Linux-Nützig definiersch",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Härzlech Wiukomme!",
     "without-fee-facette-pricing-free-description": "Cha ohni Gebühre verwändet wärde",
     "xubuntu-description": "Xubuntu isch e Distribution wo uf Ubuntu basiert und e XFCE-Desktop vorinstalliert het.",
-    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret",
-    "rolling": "Schnells, rolling Software-Update ohni fixsä Release"
+    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret"
 }

@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux ist eine 64-bit optimierte Distribution mit aktueller Software und Tools",
     "daily-usage-description": "Ich möchte Linux für die tägliche Nutzung verwenden.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Tägliche Nutzung ist mitunter mit großen Hürden verbunden",
+    "debian-ai-usage-description": "Das Projekt hat einen Beschluss zur Nutzung von KI: Dieser Beschluss bestätigt daher, dass generatives KI weder von besonderen Regeln ausgenommen noch von ihnen erfasst ist, die über die bereits von den Debian-Beitragenden erwarteten Standards hinausgehen. Die Verantwortung für jeden Beitrag liegt beim beitragenden Mitwirkenden, der/die weiterhin für dessen technische Qualität, rechtliche Akzeptanz und Eignung zur Aufnahme in Debian verantwortlich bleibt.",
     "debian-description": "Debian ist eine auf Stabilität fokussierte Distribution",
     "debian-updates-slow-facette-prefer-fast-description": "Debian-Updates kommen gewöhnlich später, was der Stabilität zu Gute kommt.",
     "deepin-description": "Deepin ist eine chinesische Distribution, die auf Debian aufbaut und die mit dem Deepin Desktop Environment einen eigenen Desktop bereitstellt",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Du hast keine Angaben gemacht. Das Ergebnis wird leer sein.",
     "rhel-description": "Red hat Enterprise Linux (RHEL) ist eine für den betrieblichen Einsatz optimierte Distribution",
     "rocky-description": "Als Ziel versucht Rocky Linux eine mit RHEL kompatible Distribution auf Basis freier Software bereitzustellen",
+    "rolling": "Schnelles, Rolling-Update der Software ohne festes Release",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Führt Programme per Standard in Isolation aus",
     "save_feedback": "Feedback speichern",
     "scenario-page-help": "Helfen Sie uns, indem Sie den Umfang Ihrer gewünschten Linux-Nutzung festlegen.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Willkommen!",
     "without-fee-facette-pricing-free-description": "Kann ohne Gebühren genutzt werden",
     "xubuntu-description": "Xubuntu ist eine auf Ubuntu basierende Distribution mit vorinstalliertem XFCE-Desktop.",
-    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche",
-    "rolling": "Schnelles, Rolling-Update der Software ohne festes Release"
+    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche"
 }

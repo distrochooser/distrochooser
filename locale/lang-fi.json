@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux on 64 bittinen kevytjakelu joka painottaa viimeaikaisia työkaluja ja kirjastoja",
     "daily-usage-description": "Haluan jakelun päivittäiseen käyttöön.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Päivittäinen käyttö voi olla valtavien ongelmien täyteistä",
+    "debian-ai-usage-description": "Projektilla on päätös tekoälyn käytöstä: Tämä päätös vahvistaa siten, ettei generatiivinen tekoäly ole luonnollisesti poissa tai alainen erityisille säännöksille sen lisäksi, mitä Debian-osallistujilta jo odotetaan. Jokaisen panoksen vastuu lepää sillä osallistujalla, joka se lähettää, ja hän on edelleen vastuussa sen teknisestä laadusta, laillisesta hyväksyttävyydestä ja soveltuvuudesta sisällytettäväksi Debianiin.",
     "debian-description": "Debian on itsenäinen jakelu jossa painopiste on vahvasti nimenomaisesti vakauden puolella",
     "debian-updates-slow-facette-prefer-fast-description": "Debianissa päivitykset ovat yleensä hyvin hitaasti tapahtuvia mutta tämä tukee äärimmäistä vakautta",
     "deepin-description": "Deepin on kiinalainen, Debian-pohjainen jakelu, joka tarjoaa oman työpöydän nimeltä Deepin Desktop Environment.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Et tehnyt mitään valintoja. Tulos on tyhjä.",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) on yhtiöille ja yrityksille suunnattu hyvin vakaa jakelu. Kehittäjäryhmä on vapauden nimeen vannova Red Hat",
     "rocky-description": "Rocky Linux on avoimen lähdekoodin jakelu, jonka tavoitteena on olla 100% yhteensopiva Red Hat Enterprise Linuxin (RHEL) kanssa.",
+    "rolling": "Nopea, roollautuva ohjelmistopäivitys ilman pistejulkaisua",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Ohjelmien ajo tapahtuu eristetysti",
     "save_feedback": "Tallenna palaute",
     "scenario-page-help": "Auta meitä asettamalla haluamasi Linux-käytön laajuus.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Tervetuloa!",
     "without-fee-facette-pricing-free-description": "Käytettävissä ilman rahallista veloitusta",
     "xubuntu-description": "Xubuntu on Ubuntu-pohjainen jakelu jossa on vakiollisesti kevyt ja perinteisen yksinkertainen Xfce-työpöytäympäristö",
-    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen käyttöliittymä",
-    "rolling": "Nopea, roollautuva ohjelmistopäivitys ilman pistejulkaisua"
+    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen käyttöliittymä"
 }

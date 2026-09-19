@@ -37,3 +37,4 @@
 #include ./choosables/update_intervals.toml
 
 #include ./assignments/assignments.toml
+#include ./assignments/ai.toml

@@ -45,6 +45,7 @@
     "cruxlinux-description": "Το Crux Linux είναι ένα ελαφρύ λειτουργικό σύστημα 64 bit με πρόσφατα εργαλεία και βιβλιοθήκες.",
     "daily-usage-description": "Θέλω μια διανομή για καθημερινή χρήση.",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Η καθημερινή χρήση μπορεί να οδηγήσει σε σημαντικές δυσκολίες",
+    "debian-ai-usage-description": "Το έργο έχει απόφαση για τη χρήση της ΤΝ: Αυτή η απόφαση επιβεβαιώνει λοιπόν ότι η γενετική τεχνητή νοημοσύνη δεν είναι ούτε απα exemptα από κανόνες ούτε υπόκειται σε ειδικούς κανόνες πέρα από τα πρότυπα που περιμένονται ήδη από τους συν contributors του Debian. Η ευθύνη για κάθε συνεισφορά αποβαίνει στον συν contributor που την υποβάλλει, ο οποίος παραμένει υπεύθυνος για την τεχνική της ποιότητα, τη νομική αποδεκτικότητά και την καταλληλότητα για ενσωμάτωση στο Debian.",
     "debian-description": "Το Debian είναι μια διανομή με μεγάλη έμφαση στη σταθερότητα",
     "debian-updates-slow-facette-prefer-fast-description": "Οι ενημερώσεις του Debian είναι συνήθως αργές υπέρ της σταθερότητας",
     "deepin-description": "Το Deepin είναι μια κινέζικη, βασισμένη στο Debian διανομή που προσφέρει μια δική της επιφάνεια εργασίας που ονομάζεται Deepin Desktop Environment.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Δεν κάνατε καμία επιλογή. Το αποτέλεσμα θα είναι κενό.",
     "rhel-description": "Το Red Hat Enterprise Linux (RHEL) είναι μια διανομή που εστιάζει στην επιχείρηση και τη σταθερότητα.",
     "rocky-description": "Το Rocky Linux είναι μια διανομή ανοιχτού κώδικα που στοχεύει να είναι 100% συμβατή με το Red Hat Enterprise Linux (RHEL)",
+    "rolling": "Γρήγορη, ρολά ενημέρωση λογισμικού χωρίς σταθερό release",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Η εκτέλεση του λογισμικού γίνεται σε απομονωμένα περιβάλλοντα",
     "save_feedback": "Αποθήκευση σχολίων",
     "scenario-page-help": "Βοηθήστε μας ορίζοντας ένα εύρος για την επιθυμητή χρήση Linux.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Καλώς ήρθες!",
     "without-fee-facette-pricing-free-description": "Χρησιμοποιείται χωρίς χρέωση",
     "xubuntu-description": "Το Xubuntu είναι μια διανομή βασισμένη στο Ubuntu που τροφοδοτείται από το ελαφρύ περιβάλλον επιφάνειας εργασίας XFCE",
-    "zorinos-description": "Το Zorin OS είναι μια διανομή που εστιάζει σε αρχάριους που μοιάζει με τα Windows",
-    "rolling": "Γρήγορη, ρολά ενημέρωση λογισμικού χωρίς σταθερό release"
+    "zorinos-description": "Το Zorin OS είναι μια διανομή που εστιάζει σε αρχάριους που μοιάζει με τα Windows"
 }

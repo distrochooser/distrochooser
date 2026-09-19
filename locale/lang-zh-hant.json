@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux 是一款輕量級的 64 位元作業系統，配備最新的工具和函式庫",
     "daily-usage-description": "我想要一個適合日常使用的 Linux 發行版",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "日常使用可能造成重大困難",
+    "debian-ai-usage-description": "專案就人工智慧使用制訂了決議：該決議因此確認，生成式AI既不豁免於任何特殊規則，也不受超出Debian貢獻者已預期的標準之外的任何特殊規則約束。每個貢獻的責任在於提交它的貢獻者，他/她仍需對其技術品質、法律可接受性以及包含在Debian中的適用性負責。",
     "debian-description": "Debian 是一個高度注重穩定性的 Linux 發行版",
     "debian-updates-slow-facette-prefer-fast-description": "Debian 更新通常較慢，以保持穩定性",
     "deepin-description": "Deepin 是一個基於 Debian 的中文 Linux 發行版，提供名為 Deepin 桌面環境的桌面。",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "您未做出任何選擇。結果將為空。",
     "rhel-description": "Red Hat Enterprise Linux（RHEL）是一款專注於企業與穩定性的 Linux 發行版",
     "rocky-description": "Rocky Linux 是一個開源 Linux 發行版，旨在與 Red Hat Enterprise Linux (RHEL) 100% 相容",
+    "rolling": "快速、滾動式的軟件更新，沒有固定的版本發佈",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "軟體執行發生在隔離環境中",
     "save_feedback": "儲存回饋",
     "scenario-page-help": "透過設定您所需的 Linux 使用範圍來幫助我們。",
@@ -247,6 +249,5 @@
     "welcome-page-title": "歡迎！",
     "without-fee-facette-pricing-free-description": "可免費使用",
     "xubuntu-description": "Xubuntu 是一個基於 Ubuntu 的 Linux 發行版，由輕量級 XFCE 桌面環境提供支援",
-    "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面",
-    "rolling": "快速、滾動式的軟件更新，沒有固定的版本發佈"
+    "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面"
 }

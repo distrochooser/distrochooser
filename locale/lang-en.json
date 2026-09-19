@@ -47,6 +47,7 @@
     "cruxlinux-description": "Crux Linux is a lightweight 64 bit focused operating system with recent tools and libraries",
     "daily-usage-description": "I want a Linux distribution for daily use",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Daily usage may result in major difficulties",
+    "debian-ai-usage-description": "Project has resolution on AI usage: This resolution therefore affirms that generative AI is neither exempt from nor subject to special rules beyond the standards already expected of Debian contributors. The responsibility for every contribution rests with the contributor who submits it, who remains accountable for its technical quality, legal acceptability, and suitability for inclusion in Debian.",
     "debian-description": "Debian is a Linux distribution with high focus on stability",
     "debian-updates-slow-facette-prefer-fast-description": "Debian updates are usually slow in favor of stability",
     "deepin-description": "Deepin is a chinese, Debian based Linux distribution offering an own desktop called Deepin Desktop Environment.",
@@ -184,6 +185,7 @@
     "result_will_be_empty": "You did not make any selections. The result will be empty.",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) is a enterprise and stability focused Linux distribution",
     "rocky-description": "Rocky Linux is a open source Linux distribution targeted to be 100% compatible with Red Hat Enterprise Linux (RHEL)",
+    "rolling": "Quick, Rolling software update without a point release",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Software execution happens in isolated environments",
     "save_feedback": "Save feedback",
     "scenario-page-help": "Help us by setting a scope on your desired Linux usage.",
@@ -251,6 +253,5 @@
     "welcome-page-title": "Welcome!",
     "without-fee-facette-pricing-free-description": "Usable without fee",
     "xubuntu-description": "Xubuntu is an Ubuntu-based Linux distribution powered by the lightweight XFCE desktop environment",
-    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface",
-    "rolling": "Quick, Rolling software update without a point release"
+    "zorinos-description": "Zorin OS is a beginner focused Linux distribution with a windows-like user interface"
 }

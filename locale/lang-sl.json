@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux je lahek 64-bitni operacijski sistem z najnovejšimi orodji in knjižnicami",
     "daily-usage-description": "Želim si distribucijo Linuxa za vsakodnevno uporabo",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "Vsakodnevna uporaba lahko povzroči večje težave",
+    "debian-ai-usage-description": "Projekt ima rezolucijo glede uporabe umetne inteligence (UI): Ta rezolucija zato potrjuje, da generativna umetna inteligenca ni v posebni pravilni isklonjen niti podvržena pravilima, ki bi presegale standarde, že so že pričakovani od prispevkovateljev Debianja. Odgovornost za vsak prispevek spada na prisebkovatelja, ki ga odda, in ostaja odgovoren za njegovo tehnično kakovost, pravno prihzivost in primernost za vključitev v Debian.",
     "debian-description": "Debian je distribucija Linuxa z velikim poudarkom na stabilnosti",
     "debian-updates-slow-facette-prefer-fast-description": "Posodobitve Debiana so običajno počasne v korist stabilnosti",
     "deepin-description": "Deepin je kitajska distribucija Linuxa, na osnovi Debiana in ponuja lastno namizje, imenovano Deepin Desktop Environment.",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "Niste izbrali nobene možnosti. Rezultat bo prazen.",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) je distribucija Linuxa, osredotočena na podjetja in stabilnost",
     "rocky-description": "Rocky Linux je odprtokodna distribucija Linuxa, ki je 100-odstotno združljiva z Red Hat Enterprise Linuxom (RHEL)",
+    "rolling": "Hitra, rolgende nadgradnja programske opreme brez točkastoega izdanja",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "Izvajanje programske opreme poteka v izoliranih okoljih",
     "save_feedback": "Shrani povratne informacije",
     "scenario-page-help": "Pomagajte nam tako, da nastavite obseg glede na želeno uporabo Linuxa.",
@@ -247,6 +249,5 @@
     "welcome-page-title": "Dobrodošli!",
     "without-fee-facette-pricing-free-description": "Uporabno brez pristojbine",
     "xubuntu-description": "Xubuntu je distribucija Linuxa, ki temelji na Ubuntuju in jo poganja lahko namizno okolje XFCE.",
-    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows",
-    "rolling": "Hitra, rolgende nadgradnja programske opreme brez točkastoega izdanja"
+    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows"
 }

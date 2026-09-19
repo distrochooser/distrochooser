@@ -45,6 +45,7 @@
     "cruxlinux-description": "Crux Linux は、最新のツールとライブラリを備えた、軽量の 64 ビットオペレーティングシステムです。",
     "daily-usage-description": "日常使用のためのディストリビューションが必要です。",
     "daily-usage-possibly-difficult-facette-daily-usage-description": "毎日使用すると大きな問題が発生する可能性があります",
+    "debian-ai-usage-description": "プロジェクトはAIの使用に関する決議を採択しています：したがって、この決議は、生成AIがDebianの貢献者からすでに期待されている基準を超える特別な規則から免除されるものでも、また従うべきものでもないことを確認しています。すべての貢献に対する責任は、それを提出した貢献者にあります。その貢献者は、技術的な品質、法的受容性、およびDebianへの組み込みの適切性について引き続き責任を負います。",
     "debian-description": "Debian は安定性を重視したディストリビューションです。",
     "debian-updates-slow-facette-prefer-fast-description": "Debianのアップデートは安定性を優先するため、通常は遅くなります",
     "deepin-description": "Deepin は、Deepin デスクトップ環境と呼ばれる独自のデスクトップを提供する、中国の Debian ベースのディストリビューションです。",
@@ -180,6 +181,7 @@
     "result_will_be_empty": "選択が行われていません。結果は空白になります。",
     "rhel-description": "Red Hat Enterprise Linux (RHEL) は、エンタープライズと安定性に重点を置いたディストリビューションです。",
     "rocky-description": "Rocky Linux は Red Hat Enterprise Linux (RHEL) との 100% 互換性を目標としたオープンソース ディストリビューションです。",
+    "rolling": "ポイントリリースを伴わない、迅速なローリングソフトウェアアップデート",
     "runs-in-isolation-facette-privacy-isolation-usage-description": "ソフトウェアの実行は隔離された環境で行われる",
     "save_feedback": "フィードバックを保存",
     "scenario-page-help": "ご希望の Linux の使用方法について、範囲を指定してご協力ください。",
@@ -247,6 +249,5 @@
     "welcome-page-title": "ようこそ！",
     "without-fee-facette-pricing-free-description": "無料で利用可能",
     "xubuntu-description": "Xubuntu は、軽量の XFCE デスクトップ環境を搭載した Ubuntu ベースのディストリビューションです。",
-    "zorinos-description": "Zorin OS は、Windows ライクなユーザーインターフェースを備えた、初心者向けのディストリビューションです。",
-    "rolling": "ポイントリリースを伴わない、迅速なローリングソフトウェアアップデート"
+    "zorinos-description": "Zorin OS は、Windows ライクなユーザーインターフェースを備えた、初心者向けのディストリビューションです。"
 }
