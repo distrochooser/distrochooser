@@ -22,16 +22,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <div class="col">
 
           <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
-          <a class="assignment-source" v-for="(source, source_key) in sources" :key="source_key"
-            :title="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, false).toString()"
-            target="_blank"
-            :href="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, true).toString()">[{{
-              getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source,
-            false).hostname }}]</a>
-          <h4>
+
+          <div class="description">
             <LanguageTranslation :translation-key="assignment.description" /><span v-if="assignment.contextArgument">:
               {{ assignment.contextArgument }}</span>
-          </h4>
+            <a class="assignment-source" v-for="(source, source_key) in sources" :key="source_key"
+              :title="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, false).toString()"
+              target="_blank"
+              :href="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, true).toString()">[{{
+                getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source,
+                  false).hostname }}]</a>
+          </div>
         </div>
         <div class="col text-end" v-if="queryChoosables">
           <div class="row">
@@ -154,7 +155,10 @@ const votes = computed(() => {
   }
 
   margin-right: 0.25em;
+}
+
+.description {
+  margin-top: 0.25em;
   font-size: smaller;
-  vertical-align: top;
 }
 </style>
