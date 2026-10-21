@@ -14,24 +14,24 @@
   },
   "dependencies": {
     "@iconify-json/ion": "^1.2.7",
-    "@nuxt/icon": "^2.2.1",
-    "@nuxtjs/robots": "^5.2.4",
-    "@openapitools/openapi-generator-cli": "^2.31.0",
-    "@pinia/nuxt": "^0.11.3",
+    "@nuxt/icon": "^2.5.1",
+    "@nuxtjs/robots": "^7.0.2",
+    "@openapitools/openapi-generator-cli": "^2.42.0",
+    "@pinia/nuxt": "^1.0.3",
     "@popperjs/core": "^2.11.8",
     "all-contributors-cli": "^6.26.1",
-    "bootstrap": "^5.3.3",
-    "flag-icons": "^7.5.0",
-    "nuxt": "^4.5.1",
-    "pinia": "^3.0.4",
-    "sass": "^1.99.0",
-    "sass-loader": "^16.0.7",
-    "vue": "^3.5.32",
-    "vue-router": "^5.0.4"
+    "bootstrap": "^5.3.8",
+    "flag-icons": "^7.6.0",
+    "nuxt": "^4.6.2",
+    "pinia": "^4.1.0",
+    "sass": "^1.106.0",
+    "sass-loader": "^17.0.1",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {
-    "sass-embedded": "^1.83.4",
+    "sass-embedded": "^1.106.0",
     "tsconfig-paths": "^4.2.0"
   }
 }

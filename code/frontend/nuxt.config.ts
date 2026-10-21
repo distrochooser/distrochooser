@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/robots'
   ],
-  css: ["./style/main.scss", "flag-icons/css/flag-icons.min.css"],
+  css: ["~/style/main.scss", "flag-icons/css/flag-icons.min.css"],
   runtimeConfig: {
     public: {
       basePath: process.env.NUXT_PUBLIC_BASE_PATH || "http://localhost:8000"
