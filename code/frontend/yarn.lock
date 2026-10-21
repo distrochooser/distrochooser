@@ -5582,9 +5582,9 @@ serialize-javascript@^7.0.3:
   integrity sha512-F4LcB0UqUl1zErq+1nYEEzSHJnIwb3AF2XWB94b+afhrekOUijwooAYqFyRbjYkm2PAKBabx6oYv/xDxNi8IBw==
 
 seroval@^1.5.6:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/seroval/-/seroval-1.6.2.tgz#93ecff62ca1312a565e37146b2a332b9d625194d"
-  integrity sha512-mPT+SD2TrlB6wvte1KkYOYUkubaTbd6pZ/6Kk3C9nxzrHmCZyhxOO7XGAeL7f+yLKZglzGtM9odUVvg/EhO+vQ==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/seroval/-/seroval-1.7.0.tgz#5a476575d17e74f24a030d4ccd3b9d0698517d3d"
+  integrity sha512-FU+LUkmDzWNsJ6oubZFN3dGPKny53DRhPJG6nftEaXDL8MIn19+kEE1Gvc+63Go+qPOwVUlKIdKhsu2HN6tksw==
 
 serve-placeholder@^2.0.2:
   version "2.0.2"
