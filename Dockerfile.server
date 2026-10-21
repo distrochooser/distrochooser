@@ -26,7 +26,6 @@ RUN cd /kuusi && \
 RUN mkdir /kuusi/static-buildtime
 ADD static /kuusi/static-buildtime/
 ADD doc /kuusi/doc
-ADD GIT_HASH /kuusi/GIT_HASH
 # Add locales
 
 ADD locale /kuusi/locale

@@ -4,7 +4,7 @@ Date: 2026-06-04
 
 ## Status
 
-Accepted
+Superceded by [33. Matrix versions](0033-matrix-versions.md)
 
 ## Context
 

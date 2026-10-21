@@ -18,18 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.apps import AppConfig
 from os.path import exists, join
-from kuusi.settings import GIT_HASH_PATH
 from os import environ
+
 
 class WebConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "web"
+
     def ready(self):
         from web.util import hot_load_translations
+
         hot_load_translations()
-
-        # See ADR 0028
-        # Attempt to identify git hash to identify changed environments
-
-        if exists(GIT_HASH_PATH):
-            environ["GIT_HASH"] = open(GIT_HASH_PATH, "r").read()

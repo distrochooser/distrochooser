@@ -952,12 +952,12 @@ scoring via WEIGHT_MAP in settings.py</p>
             </div>
             
             <div class="panel panel-default">
-                <div class="panel-heading adr-accepted">
+                <div class="panel-heading adr-unknown">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapse27">28. matrix versions</a>
 
                         
-                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        <i class="adr-icon fas fa-fw fa-question"></i>
                         
 
                     </h4>
@@ -966,7 +966,7 @@ scoring via WEIGHT_MAP in settings.py</p>
                     <div class="panel-body"><h1>28. matrix versions</h1>
 <p>Date: 2026-06-04</p>
 <h2>Status</h2>
-<p>Accepted</p>
+<p>Superceded by <a href="0033-matrix-versions.md">33. Matrix versions</a></p>
 <h2>Context</h2>
 <p>The app is constantly changing, causing results to change and evolve over time even after the user has requested the initial result. Therefore there is the need to identify if the session results derive from a &quot;latest&quot; configuration or not.</p>
 <h2>Decision</h2>
@@ -1069,6 +1069,83 @@ The user can name a minimal interval in years. Distributions receive a <code>pos
 <li>Mapping updates are required</li>
 <li>There are currently no options for additional attributes, such as <code>step=&lt;number&gt;</code></li>
 </ol>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse31">32. commit-messages</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse31" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>32. commit-messages</h1>
+<p>Date: 2026-10-21</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<h2>Context</h2>
+<p>Commits message were not structured before.</p>
+<p>The lack of a structure makes commits messy and possibly hard to follow.</p>
+<h2>Decision</h2>
+<p>Orienting on the discussion on https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716, the solution of https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716?permalink_comment_id=5747564#gistcomment-5747564 is adopted, the Author agreed to consider this snippet as CC0-ish.</p>
+<p>The prefixes of commit messages are limited to following options:</p>
+<ul>
+<li>feat:     A new feature.</li>
+<li>fix:      A bug fix.</li>
+<li>docs:     Documentation changes.</li>
+<li>style:    Code style changes (formatting, missing semicolons, etc.).</li>
+<li>refactor: Code refactoring (neither fixes a bug nor adds a feature).</li>
+<li>chore:    Routine tasks like updating dependencies or build tools.</li>
+</ul>
+<p>Following prefixes are <strong>not</strong> adopted (as of 3c4081e60fa872ef4ef4e7fd762f9fd079790bd7):</p>
+<ul>
+<li>test:     Adding or updating tests.</li>
+<li>build:    Changes affecting the build system or external dependencies.</li>
+<li>ci:       Changes to CI configuration files or scripts.</li>
+<li>perf:     Performance improvements.</li>
+</ul>
+<p>Reasons:</p>
+<ul>
+<li>The project does not have tests due to the fact this is a one-man project. Therefore <code>test:</code> has no purpose.</li>
+<li>The build pipeline is not part of the project build, ci. Changes to Dockerfiles, runscripts etc. are considered either <code>chore:</code>, <code>fix:</code> or <code>feat:</code></li>
+<li><code>perf:</code> is considered a nonfunctional requirement, therefore improvements are a <code>fix:</code>.</li>
+</ul>
+<p>The commit message shall have the format. <code>&lt;type&gt;(&lt;optional scope&gt;): &lt;description&gt;</code>. More information will be included in <code>doc/COMMITS.md</code>.</p>
+<h2>Consequences</h2>
+<p>Previous comments will not be altered.</p>
+</div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading adr-accepted">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse32">33. Matrix versions</a>
+
+                        
+                        <i class="adr-icon fas fa-fw fa-check"></i>
+                        
+
+                    </h4>
+                </div>
+                <div id="collapse32" class="panel-collapse collapse">
+                    <div class="panel-body"><h1>33. Matrix versions</h1>
+<p>Date: 2026-10-21</p>
+<h2>Status</h2>
+<p>Accepted</p>
+<p>Supercedes <a href="0028-matrix-versions.md">28. matrix versions</a></p>
+<h2>Context</h2>
+<p>See ADR 0028.</p>
+<h2>Decision</h2>
+<p>The decision has been revoked.</p>
+<h2>Consequences</h2>
+<p>The matrix is considered version-less and there is only the latest version valid.</p>
 </div>
                 </div>
             </div>
