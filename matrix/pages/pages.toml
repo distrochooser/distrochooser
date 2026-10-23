@@ -22,6 +22,7 @@ can_be_marked = false
 next_page = "version-page"
 hide_text = true
 hide_help = true
+icon = "ion:arrow-forward-circle-outline"
 [widget.html.welcome-page-widget-name]
 template = "welcomeHTML"
 pages = ["welcome-page"]
@@ -35,6 +36,7 @@ pages = ["welcome-page"]
 # distrochooser::translation::en::Questionaire edition
 # distrochooser::translation::key::version-page-title
 [page.version-page]
+icon = "ion:git-branch"
 can_be_marked = false
 next_page = "scenario-page"
 
@@ -48,6 +50,7 @@ pages = ["version-page"]
 [page.scenario-page]
 next_page = "pc-knowledge-page"
 hide_help = true
+icon = "ion:stats-chart"
 
 [widget.selection.scenario-page-widget-name]
 topic = "scenario"
@@ -60,6 +63,7 @@ pages = ["scenario-page"]
 [page.pc-knowledge-page]
 next_page = "linux-knowledge-page"
 hide_help = true
+icon = "ion:monitor"
 
 [widget.radio.pc-knowledge-page-widget-name]
 topic = "pc-knowledge"
@@ -72,6 +76,7 @@ pages = ["pc-knowledge-page"]
 [page.linux-knowledge-page]
 next_page = "installation-page"
 hide_help = true
+icon = "ion:ios-list"
 
 [widget.radio.linux-knowledge-page-widget-name]
 topic = "linux-knowledge"
@@ -85,6 +90,7 @@ pages = ["linux-knowledge-page"]
 [page.installation-page]
 next_page = "personal-requirements-page"
 hide_help = true
+icon = "ion:ios-list"
 
 [widget.selection.installation-page-widget-name]
 topic = "installation"
@@ -100,6 +106,7 @@ pages = ["installation-page"]
 [page.personal-requirements-page]
 next_page = "help-page"
 not_in_versions = ["simplified", "full"]
+icon = "ion:extension-puzzle"
 
 # selects use the syntax select.<field ID>.<server side selection function>.
 
@@ -121,6 +128,7 @@ pages = ["personal-requirements-page"]
 [page.help-page]
 next_page = "ux-page"
 hide_help = true
+icon = "ion:md-help-circle"
 
 [widget.selection.help-page-widget-name]
 topic = "help"
@@ -133,6 +141,7 @@ pages = ["help-page"]
 [page.ux-page]
 next_page = "pricing-page"
 hide_help = true
+icon = "ion:logo-windows"
 
 # TODO:  The UX question should be a media selection
 [widget.selection.ux-page-widget-name]
@@ -156,6 +165,7 @@ pages = ["ux-page"]
 next_page = "scope-page"
 not_in_versions = ["simplified"]
 hide_help = true
+icon = "ion:ios-cart"
 
 [widget.selection.pricing-page-widget-name]
 topic = "pricing"
@@ -168,6 +178,7 @@ pages = ["pricing-page"]
 [page.scope-page]
 hide_help = true
 next_page = "ideology-page"
+icon = "ion:checkbox-sharp"
 
 [widget.selection.scope-page-widget-name]
 topic = "scope"
@@ -182,6 +193,7 @@ pages = ["scope-page"]
 [page.ideology-page]
 next_page = "privacy-page"
 not_in_versions = ["simplified"]
+icon = "ion:md-globe"
 
 [widget.selection.ideology-page-widget-name]
 topic = "ideology"
@@ -195,6 +207,7 @@ pages = ["ideology-page"]
 [page.privacy-page]
 hide_help = true
 next_page = "administration-page"
+icon = "ion:shield-checkmark-sharp"
 
 [widget.selection.privacy-page-widget-name]
 topic = "privacy"
@@ -207,6 +220,7 @@ pages = ["privacy-page"]
 [page.administration-page]
 next_page = "advanced-administration-page"
 hide_help = true
+icon = "ion:settings-outline"
 
 [widget.selection.administration-page-widget-name]
 topic = "administration"
@@ -239,6 +253,7 @@ pages = ["advanced-administration-page"]
 next_page = "result-page"
 hide_help = true
 not_in_versions = ["simplified"]
+icon = "ion:md-cloud-download"
 
 [widget.selection.updates-page-widget-name]
 topic = "updates"
@@ -260,6 +275,7 @@ pages = ["updates-page"]
 hide_help = true
 hide_text = true
 can_be_marked = false
+icon = "ion:ios-arrow-dropright-circle"
 
 [widget.share.result-page-widget-name]
 topic = "result"

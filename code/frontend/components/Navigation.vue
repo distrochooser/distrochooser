@@ -16,54 +16,55 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div class="row mt-2 mb-2 g-0">
-    <div class="col g-0 text-center alert alert-success alert-dismissible" v-if="browserLanguageAvailable">
-      <a href="#" v-on:click="sessionStore.changeLanguage(browserLanguage)">This questionnaire is also available in your
-        language!</a>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  </div>
-  <div class="row mt-2 mb-2 g-0">
-    <div class="col g-0 text-center alert alert-danger" v-if="previousVersionUrl">
-        <LanguageTranslation translation-key="old-version-alert"/>: 
-        <a :href="previousVersionUrl" target="_blank">{{ previousVersionUrl}}</a>
-    </div>
-  </div>
-  <div class="row mt-2 mb-2 g-0">
-    <div class="col text-center" v-if="currentPage != null">
-      <div class="btn-group col-xs-12 col-xl-6  dropdown-center" role="group">
-        <button type="button" class="btn btn-primary dropdown-toggle fs-5 attention-dropdown" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          <NavigationItem :index="currentPageIndex" :page="currentPage" />
-        </button>
-        <ul class="dropdown-menu" v-show="!sessionStore.isTranslating">
-          <li v-for="(page, index) in pages" v-bind:key="index">
-            <a class="dropdown-item"
-              :class="{ 'dropdown-item': true, 'fw-bold': currentPage != null && page.id == currentPage.id }" href="#"
-              v-on:click="sessionStore.selectPage(page.id)">
 
-              <NavigationItem :index="index" :page="page" />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div class="row text-center mb-3">
+    <div class="col-12">
+      <LanguageHint />
+      <div class="d-block d-lg-block d-xl-none">
+        <div class="row mt-2 mb-2 g-0">
+          <div class="col g-0 text-center alert alert-danger" v-if="previousVersionUrl">
+            <LanguageTranslation translation-key="old-version-alert" />:
+            <a :href="previousVersionUrl" target="_blank">{{ previousVersionUrl }}</a>
+          </div>
+        </div>
+        <div class="row mt-2 mb-2 g-0">
+          <div class="col text-center" v-if="currentPage != null">
+            <div class="btn-group col-12  dropdown-center" role="group">
+              <button type="button" class="btn btn-primary dropdown-toggle fs-5 attention-dropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <NavigationItem :index="currentPageIndex" :page="currentPage" />
+              </button>
+              <ul class="dropdown-menu" v-show="!sessionStore.isTranslating">
+                <li v-for="(page, index) in pages" v-bind:key="index">
+                  <a class="dropdown-item"
+                    :class="{ 'dropdown-item': true, 'fw-bold': currentPage != null && page.id == currentPage.id }"
+                    href="#" v-on:click="sessionStore.selectPage(page.id)">
 
-  </div>
-  <div class="row alert alert-warning text-start" v-if="sessionStore.session && sessionStore.isTranslating">
-    <div class="row">
-      <div class="col-1 text-center">
+                    <NavigationItem :index="index" :page="page" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-        <Icon name="ion:chatbubbles" class="fs-1"></Icon>
-      </div>
-      <div class="col-11">
-        <b class="me-1">
-          <LanguageTranslation translation-key="translation-mode-description-title" />
-        </b>
-        <LanguageTranslation translation-key="translation-mode-description" />
-        <span class="ms-1">
-          <LanguageTranslation translation-key="language-vote-privacy" />
-        </span>
+        </div>
+        <div class="row alert alert-warning text-start" v-if="sessionStore.session && sessionStore.isTranslating">
+          <div class="row">
+            <div class="col-1 text-center">
+
+              <Icon name="ion:chatbubbles" class="fs-1"></Icon>
+            </div>
+            <div class="col-11">
+              <b class="me-1">
+                <LanguageTranslation translation-key="translation-mode-description-title" />
+              </b>
+              <LanguageTranslation translation-key="translation-mode-description" />
+              <span class="ms-1">
+                <LanguageTranslation translation-key="language-vote-privacy" />
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -72,11 +73,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import { computed } from "vue";
 import { useSessionStore } from "../states/session";
 import NavigationItem from "./NavigationItem.vue";
+import LanguageHint from "./LanguageHint.vue";
 
 let sessionStore = useSessionStore();
 
-const browserLanguage = computed(() => navigator.language)
-const browserLanguageAvailable = computed(() => sessionStore.session != null && Object.keys(sessionStore.session.languageCodes).indexOf(navigator.language) != -1 && !sessionStore.languageHintDismissed && sessionStore.session.languageCode != navigator.language && sessionStore.session.languageCode == sessionStore.session.defaultLanguage && sessionStore.isOnFirstPage())
 const pages = computed(() => sessionStore.pages);
 const currentPage = computed(() => sessionStore.currentPage == null ? null : sessionStore.currentPage)
 const currentPageIndex = computed(() => currentPage != null ? pages.value.indexOf(currentPage.value) : -1)

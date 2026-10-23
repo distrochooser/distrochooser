@@ -17,29 +17,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
+
     <Head>
       <PageMeta />
     </Head>
     <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
-    <main role="main" :class="{ 'container': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
-      <MainNavigation />
-      <div class="page mt-3  position-relative top-40">
-        <div class="row text-center">
-          <div class="col-4 d-none d-sm-block">
-          </div>
-          <div class="col-xl-3 col-sm-12">
-            <Logo />
-          </div>
-          <div class="col col-1  d-none d-sm-block">
+    <main role="main"
+      :class="{ 'container-fluid': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
+      <div class="row">
+        <div class="col-xl-4">
+        </div>
+        <div class="col-12 col-xl-4">
+          <MainNavigation />
+          <LogoContainer />
+          <Navigation />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 d-none d-xl-block ">
+          <div class="ms-5 sticky-top">
+            <SideNavigation />
           </div>
         </div>
-        <div class="row text-center mb-3">
-          <div class="col-12">
-            <Navigation />
+        <div class="col-12 col-xl-6">
+          <div class="page position-relative top-40">
+            <RenderField />
           </div>
         </div>
-        <RenderField />
+        <div class="col-xl-3 col-3">
+        </div>
       </div>
     </main>
   </div>
@@ -53,6 +60,8 @@ import PageMeta from "../../components/PageMeta.vue";
 import MainNavigation from "../../components/MainNavigation.vue";
 import Navigation from "../../components/Navigation.vue";
 import { EntryPointEnum } from "../../sdk";
+import SideNavigation from "../../components/SideNavigation.vue";
+import LogoContainer from "../../components/LogoContainer.vue";
 
 const { start, finish } = useLoadingIndicator()
 const router = useRoute();
