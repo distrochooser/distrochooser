@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <NuxtRouteAnnouncer />
     <main role="main"
       :class="{ 'container-fluid': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
+      <DarkMode />
       <div class="row">
         <div class="col-xl-3">
         </div>
@@ -62,6 +63,7 @@ import Navigation from "../../components/Navigation.vue";
 import { EntryPointEnum } from "../../sdk";
 import SideNavigation from "../../components/SideNavigation.vue";
 import LogoContainer from "../../components/LogoContainer.vue";
+import DarkMode from "../../components/DarkMode.vue";
 
 const { start, finish } = useLoadingIndicator()
 const router = useRoute();
