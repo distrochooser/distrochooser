@@ -1,5 +1,5 @@
 {
-    "a11y": "Toegankelijkheid",
+    "a11y": "Toegankelijkheidsopties",
     "about": "Over",
     "about_page_license_text": "Distrochooser.de is opensourcesoftware. Meer informatie over de licentie vindt u op",
     "about_page_license_title": "Licentie",
@@ -248,5 +248,11 @@
     "welcome-page-title": "Welkom!",
     "without-fee-facette-pricing-free-description": "Te gebruiken zonder kosten",
     "xubuntu-description": "Xubuntu is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht XFCE-desktopomgeving",
-    "zorinos-description": "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface"
+    "zorinos-description": "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface",
+    "welcome-skip-questions": "Je kunt de vragen altijd overslaan.",
+    "welcome-get-result": "Je kunt altijd een resultaat tonen om je aanbevolen lijst te bekijken.",
+    "welcome-delete-order": "Je kunt antwoorden op elk moment verwijderen.",
+    "welcome-mark-important": "Je kunt antwoorden als belangrijk markeren om ons te helpen je prioriteiten te herkennen.",
+    "welcome-question-order": "Je kunt in willekeurige volgorde antwoorden",
+    "welcome-mark-questions": "Je kunt vragen markeren als je onzeker bent over je voorkeuren op een onderwerp."
 }

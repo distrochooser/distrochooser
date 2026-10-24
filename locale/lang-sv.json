@@ -1,5 +1,5 @@
 {
-    "a11y": "Tillgänglighet",
+    "a11y": "Tillgänglighetsalternativ",
     "about": "Om",
     "about_page_license_text": "Distrochooser.de är programvara med öppen källkod. Du hittar mer information om licensen på",
     "about_page_license_title": "Distrochooser.de är programvara med öppen källkod. Du hittar mer information om licensen på",
@@ -248,5 +248,11 @@
     "welcome-page-title": "Välkommen!",
     "without-fee-facette-pricing-free-description": "Kan användas utan avgift",
     "xubuntu-description": "Xubuntu är en Ubuntu-baserad distribution som drivs av den lätta XFCE-skrivbordsmiljön",
-    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt"
+    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt",
+    "welcome-skip-questions": "Du kan alltid hoppa över frågorna.",
+    "welcome-get-result": "Du kan alltid visa ett resultat för att se din rekommendationslista.",
+    "welcome-delete-order": "Du kan radera svar när som helst.",
+    "welcome-mark-important": "Du kan markera svar som viktiga för att hjälpa oss att identifiera dina prioriteringar.",
+    "welcome-question-order": "Du kan svara i godtyckligt ordning",
+    "welcome-mark-questions": "Du kan markera frågor om du är osäker på dina preferenser inom ett ämne."
 }

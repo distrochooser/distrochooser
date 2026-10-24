@@ -1,5 +1,5 @@
 {
-    "a11y": "Saavutettavuus",
+    "a11y": "Saavutettavuusasetukset",
     "about": "Tietoja",
     "about_page_license_text": "Distrochooser.de on avoimen lähdekoodin ohjelmisto. Lisätietoja lisenssistä löydät osoitteesta",
     "about_page_license_title": "Lisenssi",
@@ -248,5 +248,11 @@
     "welcome-page-title": "Tervetuloa!",
     "without-fee-facette-pricing-free-description": "Käytettävissä ilman rahallista veloitusta",
     "xubuntu-description": "Xubuntu on Ubuntu-pohjainen jakelu jossa on vakiollisesti kevyt ja perinteisen yksinkertainen Xfce-työpöytäympäristö",
-    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen käyttöliittymä"
+    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windowsinkaltainen käyttöliittymä",
+    "welcome-skip-questions": "Voit aina ohittaa kysymykset.",
+    "welcome-get-result": "Voit aina näyttää tuloksen nähdäksesi suositusluettelosi.",
+    "welcome-delete-order": "Voit poistaa vastauksia milloin tahansa.",
+    "welcome-mark-important": "Voit merkitä vastaukset tärkeiksi auttaaksesi meitä tunnistamaan prioriteettisi.",
+    "welcome-question-order": "Voit vastata mielivaltaisessa järjestyksessä",
+    "welcome-mark-questions": "Voit merkitä kysymyksiä, jos olet epävarma mielipiteistäsi jossain aiheessa."
 }

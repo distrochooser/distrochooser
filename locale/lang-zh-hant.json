@@ -1,5 +1,5 @@
 {
-    "a11y": "Accessibility",
+    "a11y": "可訪問性選項",
     "about": "About",
     "about_page_license_text": "Distrochooser.de is Open Source software. You can find more information about the license on",
     "about_page_license_title": "License",
@@ -248,5 +248,11 @@
     "welcome-page-title": "歡迎！",
     "without-fee-facette-pricing-free-description": "可免費使用",
     "xubuntu-description": "Xubuntu 是一個基於 Ubuntu 的 Linux 發行版，由輕量級 XFCE 桌面環境提供支援",
-    "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面"
+    "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面",
+    "welcome-skip-questions": "你隨時可以跳過問題。",
+    "welcome-get-result": "您隨時可以顯示結果以查看您的推薦列表。",
+    "welcome-delete-order": "你可以隨時刪除答案。",
+    "welcome-mark-important": "你可以標記重要的答案，幫助我們識別你的優先事項。",
+    "welcome-question-order": "您可以按任意順序回答",
+    "welcome-mark-questions": "如果您不確定某個主題的偏好，您可以標記該問題。"
 }

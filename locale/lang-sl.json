@@ -1,5 +1,5 @@
 {
-    "a11y": "Dostopnost",
+    "a11y": "Dostopnostne možnosti",
     "about": "O nas",
     "about_page_license_text": "Distrochooser.de je odprtokodna programska oprema. Več informacij o licenci najdete na ",
     "about_page_license_title": "Licenca",
@@ -248,5 +248,11 @@
     "welcome-page-title": "Dobrodošli!",
     "without-fee-facette-pricing-free-description": "Uporabno brez pristojbine",
     "xubuntu-description": "Xubuntu je distribucija Linuxa, ki temelji na Ubuntuju in jo poganja lahko namizno okolje XFCE.",
-    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows"
+    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows",
+    "welcome-skip-questions": "Lahko vedno preskočiti vprašanja.",
+    "welcome-get-result": "Lahko vedno prikazati rezultat, da vidite seznam priporočil.",
+    "welcome-delete-order": "Lahaveš lahko odgovore izbrisalši kdaj koli.",
+    "welcome-mark-important": "Svoje odgovore lahko označiš kot pomembne, da nam pomagaš identificirati svoje prioritete.",
+    "welcome-question-order": "Slobodno odgovorite v proizvolnem vrstnem zaporedju",
+    "welcome-mark-questions": "Lahkoči označite vprašanja, če niste prepričan o svojih preferencah na določenem temi."
 }

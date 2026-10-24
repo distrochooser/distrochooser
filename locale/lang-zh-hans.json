@@ -1,5 +1,5 @@
 {
-    "a11y": "可访问性$",
+    "a11y": "可访问性选项",
     "about": "关于$",
     "about_page_license_text": "Distrochooser.de 是开源软件。您可以在$",
     "about_page_license_title": "许可证$ 上找到更多关于许可证的信息。",
@@ -248,5 +248,11 @@
     "welcome-page-title": "欢迎！$",
     "without-fee-facette-pricing-free-description": "免费使用$",
     "xubuntu-description": "Xubuntu 是一款基于 Ubuntu 的 Linux 发行版，搭载轻量级 XFCE 桌面环境$",
-    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$"
+    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$",
+    "welcome-skip-questions": "你随时可以跳过问题。",
+    "welcome-get-result": "您随时可以显示结果以查看您的推荐列表。",
+    "welcome-delete-order": "你可以随时删除答案。",
+    "welcome-mark-important": "你可以标记重要的答案，帮助我们识别你的优先事项。",
+    "welcome-question-order": "您可以按任意顺序回答",
+    "welcome-mark-questions": "如果您不确定某个主题的偏好，您可以标记该问题。"
 }

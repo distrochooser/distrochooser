@@ -1,5 +1,5 @@
 {
-    "a11y": "Erişilebilirlik",
+    "a11y": "Erişilebilirlik seçenekleri",
     "about": "Hakkında",
     "about_page_license_text": "Distrochooser.de Açık Kaynaklı bir yazılımdır. Lisans hakkında daha fazla bilgiyi şu adreste bulabilirsiniz:",
     "about_page_license_title": "Lisans",
@@ -248,5 +248,11 @@
     "welcome-page-title": "Hoş geldin!",
     "without-fee-facette-pricing-free-description": "Ücretsiz kullanılabilir",
     "xubuntu-description": "Xubuntu, hafif XFCE masaüstü ortamı tarafından desteklenen Ubuntu tabanlı bir dağıtımdır",
-    "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır"
+    "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır",
+    "welcome-skip-questions": "Soruları her zaman atlayabilirsiniz.",
+    "welcome-get-result": "Önerilen listenizi görmek için her zaman bir sonuç gösterebilirsiniz.",
+    "welcome-delete-order": "Cevapları istediğin zaman silebilirsin.",
+    "welcome-mark-important": "Önceliklerinizi belirlememize yardımcı olmak için cevapları önemli olarak işaretleyebilirsiniz.",
+    "welcome-question-order": "Keyfi istediğiniz sırada cevap verebilirsiniz",
+    "welcome-mark-questions": "Konuyla ilgili tercihlerinize emin değilseniz, soruları işaretleyebilirsiniz."
 }

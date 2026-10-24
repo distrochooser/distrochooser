@@ -1,5 +1,5 @@
 {
-    "a11y": "Zuegänglechkeit",
+    "a11y": "Accessibility Options",
     "about": "Über",
     "about_page_license_text": "Distrochooser.de is Open Source software. You can find more information about the license on",
     "about_page_license_title": "License",
@@ -248,5 +248,11 @@
     "welcome-page-title": "Härzlech Wiukomme!",
     "without-fee-facette-pricing-free-description": "Cha ohni Gebühre verwändet wärde",
     "xubuntu-description": "Xubuntu isch e Distribution wo uf Ubuntu basiert und e XFCE-Desktop vorinstalliert het.",
-    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret"
+    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret",
+    "welcome-skip-questions": "Du chasch d Frogä immer überspringe.",
+    "welcome-get-result": "Du chasch immer en Resultat aazeige, zum dini Empfehligslistä z’gseh.",
+    "welcome-delete-order": "Du kannst Antworten jederzeit löschen.",
+    "welcome-mark-important": "Du chasch d Antworte als wichtig markiere, zum eus dini Prioritäte z'finde.",
+    "welcome-question-order": "Du chasch in beliegiger Ornig antworte",
+    "welcome-mark-questions": "Du chasch d’Frage markiere, wänn du nöd sicher bisch bi eme Thema."
 }

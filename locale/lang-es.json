@@ -1,5 +1,5 @@
 {
-    "a11y": "Accesibilidad",
+    "a11y": "Opciones de accesibilidad",
     "about": "Acerca de",
     "about_page_license_text": "Distrochooser.de es un software de código abierto. Encontrará más información sobre la licencia en",
     "about_page_license_title": "Licencia",
@@ -248,5 +248,11 @@
     "welcome-page-title": "¡Bienvenidos!",
     "without-fee-facette-pricing-free-description": "Utilizable sin cargo",
     "xubuntu-description": "Xubuntu es una distribución basada en Ubuntu impulsada por el entorno de escritorio ligero XFCE",
-    "zorinos-description": "Zorin OS es una distribución enfocada para principiantes con una interfaz de usuario similar a Windows"
+    "zorinos-description": "Zorin OS es una distribución enfocada para principiantes con una interfaz de usuario similar a Windows",
+    "welcome-skip-questions": "Siempre puedes saltarte las preguntas.",
+    "welcome-get-result": "Siempre puedes mostrar un resultado para ver tu lista de recomendaciones.",
+    "welcome-delete-order": "Puedes borrar las respuestas en cualquier momento.",
+    "welcome-mark-important": "Puedes marcar las respuestas como importantes para ayudarnos a identificar tus prioridades.",
+    "welcome-question-order": "Puedes responder en cualquier orden",
+    "welcome-mark-questions": "Puedes marcar preguntas si no estás seguro de tus preferencias en un tema."
 }

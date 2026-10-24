@@ -1,5 +1,5 @@
 {
-    "a11y": "Aksesibilitas",
+    "a11y": "Opsi Aksesibilitas",
     "about": "Tentang",
     "about_page_license_text": "Distrochooser.de adalah perangkat lunak Open Source. Anda dapat menemukan informasi lebih lanjut tentang lisensi di",
     "about_page_license_title": "Lisensi",
@@ -248,5 +248,11 @@
     "welcome-page-title": "Selamat datang!",
     "without-fee-facette-pricing-free-description": "Dapat digunakan tanpa membayar",
     "xubuntu-description": "Xubuntu adalah distribusi berbasis Ubuntu dengan XFCE terinstall sejak awal",
-    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows"
+    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows",
+    "welcome-skip-questions": "Kamu selalu bisa melewatkan pertanyaan.",
+    "welcome-get-result": "Anda selalu bisa menampilkan hasil untuk melihat daftar rekomendasi Anda.",
+    "welcome-delete-order": "Kamu bisa menghapus jawaban kapan saja.",
+    "welcome-mark-important": "Anda bisa menandai jawaban sebagai penting untuk membantu kami mengidentifikasi prioritas Anda.",
+    "welcome-question-order": "Anda bisa menjawab dalam urutan acak",
+    "welcome-mark-questions": "Anda dapat menandai pertanyaan jika Anda tidak yakin tentang preferensi Anda pada suatu topik."
 }

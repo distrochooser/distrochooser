@@ -1,5 +1,5 @@
 {
-    "a11y": "נגישות",
+    "a11y": "אפשרויות נגישות",
     "about": "עלינו",
     "about_page_license_text": "Distrochooser.de היא תוכנה בקוד פתוח. ניתן למצוא מידע נוסף על הרישיון ב",
     "about_page_license_title": "רישיון",
@@ -248,5 +248,11 @@
     "welcome-page-title": "ברוך בואך!",
     "without-fee-facette-pricing-free-description": "ניתנת לשימוש בחינם",
     "xubuntu-description": "‏Xubuntu היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה הקלילה XFCE",
-    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows"
+    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows",
+    "welcome-skip-questions": "אתה תמיד יכול לדלג על השאלות.",
+    "welcome-get-result": "תמיד אפשר להציג תוצאה כדי לראות את רשימת ההמלצות שלך.",
+    "welcome-delete-order": "אתה יכול למחוק תשובות בכל עת.",
+    "welcome-mark-important": "אתה יכול לסמן תשובות כחשובות כדי לעזור לנו לזהות את סדרי העדיפויות שלך.",
+    "welcome-question-order": "אתה יכול לענות בכל סדר",
+    "welcome-mark-questions": "אתה יכול לסמן שאלות אם אינך בטוח לגבי ההעדפות שלך בנושא."
 }

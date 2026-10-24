@@ -1,5 +1,5 @@
 {
-    "a11y": "Khả năng truy cập",
+    "a11y": "Tùy chọn trợ năng",
     "about": "Giới thiệu",
     "about_page_license_text": "Distrochooser.de là phần mềm nguồn mở. Bạn có thể tìm thêm thông tin về giấy phép trên",
     "about_page_license_title": "Giấy phép",
@@ -248,5 +248,11 @@
     "welcome-page-title": "Chào mừng!",
     "without-fee-facette-pricing-free-description": "Có thể sử dụng mà không mất phí",
     "xubuntu-description": "Xubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là XFCE",
-    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows"
+    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows",
+    "welcome-skip-questions": "Bạn luôn có thể bỏ qua các câu hỏi.",
+    "welcome-get-result": "Bạn luôn có thể hiển thị kết quả để xem danh sách đề xuất của mình.",
+    "welcome-delete-order": "Bạn có thể xóa câu trả lời bất cứ lúc nào.",
+    "welcome-mark-important": "Bạn có thể đánh dấu câu trả lời là quan trọng để giúp chúng tôi xác định các ưu tiên của bạn.",
+    "welcome-question-order": "Bạn có thể trả lời theo bất kỳ thứ tự nào",
+    "welcome-mark-questions": "Bạn có thể đánh dấu các câu hỏi nếu bạn không chắc chắn về sở thích của mình về chủ đề đó."
 }
