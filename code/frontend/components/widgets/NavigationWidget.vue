@@ -23,7 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
   <div class="row">
     <div class="col-8">
-      <div class="btn btn-outline-secondary text-center" @click="a11yShown = !a11yShown">
+      <div class="btn text-center" @click="a11yShown = !a11yShown"
+        :class="a11yShown ? 'btn-secondary' : 'btn-outline-secondary'">
         <Icon class="align-middle me-1" name="ion:accessibility"></Icon>
         <LanguageTranslation translation-key="A11y" />
       </div>

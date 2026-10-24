@@ -13,9 +13,18 @@
                 Dark Mode
             </label>
         </div>
-        <label for="font-size" class="form-label">Font: {{ store.fontSize }}x</label>
-        <input id="font-size" type="range" min="1" max="5" step="0.1" @change="alignFontSize()" class="form-range"
-            v-model="store.fontSize" />
+        <label class="form-check-label" for="font">
+            Font
+        </label>
+        <div id="font">
+            <span v-for="n in 3">
+                <button type="button" class="btn btn-outline-primary me-2" :style="'font-size: ' + n + 'rem'"
+                    @click="alignFontSize(n)"> {{ n }}x</button>
+                <button type="button" class="btn btn-outline-primary me-2" :style="'font-size: ' + (n + 0.5) + 'rem'"
+                    @click="alignFontSize(n + 0.5)"> {{ n + 0.5 }}x</button>
+            </span>
+
+        </div>
     </div>
 
 </template>
@@ -24,7 +33,8 @@
 import { useSessionStore } from '../../../states/session';
 
 const store = useSessionStore();
-const alignFontSize = () => {
+const alignFontSize = (size) => {
+    store.fontSize = size
     document.body.style.setProperty("--bs-body-font-size", `${store.fontSize}rem`)
 }
 </script>
