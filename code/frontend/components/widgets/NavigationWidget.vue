@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div class="row mt-1">
+  <div class="row mt-2">
     <span v-if="willBeEmpty" class="ms-2 badge rounded-pill text-bg-warning">
       <LanguageTranslation translation-key="RESULT_WILL_BE_EMPTY" />
     </span>

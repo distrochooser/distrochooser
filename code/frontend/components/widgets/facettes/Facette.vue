@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-lg-12 col-xl-9">
       <div :class="{ 'form-check mb-2': true }" v-if="props.checkbox">
         <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
