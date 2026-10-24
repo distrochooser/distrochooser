@@ -99,6 +99,7 @@ watch(loading, (value) => {
   direction: rtl;
 }
 
+
 body[data-bs-theme='dark'] {
   .page {
     background-color: $page-bg-dark;

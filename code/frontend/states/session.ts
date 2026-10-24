@@ -39,7 +39,7 @@ interface SessionState {
     isTranslating: boolean;
     isTranslationOpen: boolean;
     isBWMode: boolean;
-    fontSizeModifier: number;
+    fontSize: number;
     givenFeedback: String;
     isDarkMode: boolean;
     mustHaveAssignment: boolean;
@@ -68,7 +68,7 @@ export const useSessionStore = defineStore('websiteStore', {
         isTranslating: false,
         isTranslationOpen: false,
         isBWMode: false,
-        fontSizeModifier: 1,
+        fontSize: 1.5,
         givenFeedback: null,
         isDarkMode: false,
         mustHaveAssignment: true,

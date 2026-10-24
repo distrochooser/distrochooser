@@ -19,9 +19,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div>
     <form>
       <div class="form-check" v-for="version, index in props.widget.versions" :key="index">
-        <input v-model="selection"  :checked='selection == version.id' class="form-check-input" :value="version.id" type="radio" name="flexRadioDefault" :id="'version_' +version.id">
-        <label class="form-check-label" :for="'version_' +version.id">
+        <input v-model="selection" :checked='selection == version.id' class="form-check-input" :value="version.id"
+          type="radio" name="flexRadioDefault" :id="'version_' + version.id">
+        <label class="form-check-label" :for="'version_' + version.id">
           <LanguageTranslation :translation-key="version.description" />
+        </label>
+      </div>
+    </form>
+    <form class="mt-3">
+      <div class="form-check mb-3">
+        <input :key="store.mustHaveAssignment ? 'must-have-assignment' : ''" class="form-check-input" type="checkbox"
+          id="mustHaveAssignment" v-model="store.mustHaveAssignment" :checked="store.mustHaveAssignment">
+        <label class="form-check-label" for="mustHaveAssignment">
+          <LanguageTranslation translation-key="must_have_assignment" />
         </label>
       </div>
     </form>

@@ -21,42 +21,54 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <LanguageTranslation translation-key="RESULT_WILL_BE_EMPTY" />
     </span>
   </div>
-  <div :class="{ 'a11y-larger-text': store.fontSizeModifier == 5, 'text-end ': true }">
-    <div class="btn-group me-2" role="group" :title="store.__i(!isMarked ? 'BTN_MARK' : 'BTN_UNMARK')">
-      <a v-if="store.currentPage.canBeMarked" href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
-        <Icon class="align-middle me-1" :name="isMarked ? 'ion:bookmark' : 'ion:bookmark-outline'"></Icon>
-        <span class="d-none d-sm-inline">
-          <LanguageTranslation :translation-key="!isMarked ? 'BTN_MARK' : 'BTN_UNMARK'" />
-        </span>
-      </a>
+  <div class="row">
+    <div class="col-8">
+      <div class="btn btn-outline-secondary text-center" @click="a11yShown = !a11yShown">
+        <Icon class="align-middle me-1" name="ion:accessibility"></Icon>
+        <LanguageTranslation translation-key="A11y" />
+      </div>
     </div>
-    <div class="btn-group me-2" role="group" :title="store.__i('BTN_PREV_PAGE')">
-      <a v-if="canGoBack" class="btn btn-secondary " href="#" v-on:click="goBack">
-        <Icon class="align-middle me-1" name="ion:caret-back-circle-sharp"></Icon>
-        <span class="d-none d-sm-inline">
-          <LanguageTranslation translation-key="BTN_PREV_PAGE" class="" />
-        </span>
-      </a>
+    <div class="col-4 text-end">
+      <div class="btn-group me-2" role="group" :title="store.__i(!isMarked ? 'BTN_MARK' : 'BTN_UNMARK')">
+        <a v-if="store.currentPage.canBeMarked" href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
+          <Icon class="align-middle me-1" :name="isMarked ? 'ion:bookmark' : 'ion:bookmark-outline'"></Icon>
+          <span class="d-none d-sm-inline">
+            <LanguageTranslation :translation-key="!isMarked ? 'BTN_MARK' : 'BTN_UNMARK'" />
+          </span>
+        </a>
+      </div>
+      <div class="btn-group me-2" role="group" :title="store.__i('BTN_PREV_PAGE')">
+        <a v-if="canGoBack" class="btn btn-secondary " href="#" v-on:click="goBack">
+          <Icon class="align-middle me-1" name="ion:caret-back-circle-sharp"></Icon>
+          <span class="d-none d-sm-inline">
+            <LanguageTranslation translation-key="BTN_PREV_PAGE" class="" />
+          </span>
+        </a>
+      </div>
+      <div class="btn-group" role="group" :title="store.__i('BTN_NEXT_PAGE')">
+        <a v-if="canGoNext" href="#" class="btn btn-primary" v-on:click="goNext">
+          <span class="d-none d-sm-inline">
+            <LanguageTranslation translation-key="BTN_NEXT_PAGE" />
+          </span>
+          <Icon class="align-middle ms-1" name="ion:chevron-forward-circle"></Icon>
+        </a>
+      </div>
     </div>
-    <div class="btn-group" role="group" :title="store.__i('BTN_NEXT_PAGE')">
-      <a v-if="canGoNext" href="#" class="btn btn-primary" v-on:click="goNext">
-        <span class="d-none d-sm-inline">
-          <LanguageTranslation translation-key="BTN_NEXT_PAGE" />
-        </span>
-        <Icon class="align-middle ms-1" name="ion:chevron-forward-circle"></Icon>
-      </a>
-    </div>
+
   </div>
+
+  <HTMLA11y v-if="a11yShown" />
 </template>
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import type { NavigationWidget } from "../../sdk";
 import { useSessionStore } from "../../states/session";
+import HTMLA11y from "./html/HTMLA11y.vue";
 
 interface WidgetProps {
   widget: NavigationWidget;
 }
-
+const a11yShown = ref(false)
 const props = defineProps<WidgetProps>();
 const store = useSessionStore();
 const canGoNext = computed(() => {
@@ -96,7 +108,6 @@ const isMarked = computed(() => {
 </script>
 <style lang="scss" scoped>
 @import "../../style/variables.scss";
-@import "../../style/a11y.scss";
 
 .btn-outline-marking {
   border-color: $orange;

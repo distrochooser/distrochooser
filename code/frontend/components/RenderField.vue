@@ -16,12 +16,12 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div v-if="store.currentPage" :class="{ 'a11y-larger-larger': store.fontSizeModifier == 5 }">
+  <div v-if="store.currentPage">
     <div v-if="store.currentPage.text" class="page-text">
       <LanguageTranslation :translation-key="store.currentPage.text" :key="store.currentPage.text" />
     </div>
     <small v-if="store.currentPage.help && !store.currentPage.hideHelp" :key="store.currentPage.help"
-      class="text-body-secondary mt-1 d-block fw-light page-help">
+      class="text-body-secondary mt-1 fw-light page-help">
       <LanguageTranslation :translation-key="store.currentPage.help" />
     </small>
     <div class="mt-3">
@@ -50,13 +50,12 @@ const rows = computed(() => {
 <style lang="scss" scoped>
 @use 'sass:color';
 @import "../style/variables.scss";
-@import "../style/a11y.scss";
 
 .page-text {
   font-size: larger;
 }
 
 .page-help {
-  font-size: large;
+  font-size: smaller;
 }
 </style>

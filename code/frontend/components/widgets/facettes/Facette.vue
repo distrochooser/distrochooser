@@ -18,8 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div class="row">
     <div class="col-lg-12 col-xl-9">
-      <div :class="{ 'form-check mb-2 fs-6': true, 'a11y-larger-text': store.fontSizeModifier == 5 }"
-        v-if="props.checkbox">
+      <div :class="{ 'form-check mb-2': true }" v-if="props.checkbox">
         <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
           type="checkbox" :id="facette.id.toString()" v-show="!store.isTranslating">
         <label class="form-check-label" :for="facette.id.toString()">
@@ -31,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"
           v-if="store.session.isFeedbackModeEnabled" />
       </div>
-      <div :class="{ 'form-check mb-2': true, 'a11y-larger-text': store.fontSizeModifier == 5 }" v-else>
+      <div :class="{ 'form-check mb-2': true }" v-else>
         <input v-on:click="registerClick" v-show="!store.isTranslating" class="form-check-input" type="radio"
           v-bind:name="props.facette.topic" v-model="selected" v-on:change="registerChange" v-bind:value="true"
           :checked="isSelected" :id="facette.id.toString()">
@@ -152,7 +151,6 @@ const registerWeightChange = async () => {
 </script>
 <style scoped lang="scss">
 @import "../../../style/variables.scss";
-@import "../../../style/a11y.scss";
 
 .less-weight-icon {
   color: $less-weight-color;
