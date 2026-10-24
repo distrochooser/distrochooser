@@ -18,41 +18,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
   <div class="row">
     <div class="col-lg-12 col-xl-9">
-      <div :class="{'form-check mb-2 fs-6': true, 'a11y-larger-text': store.fontSizeModifier == 5}" v-if="props.checkbox">
+      <div :class="{ 'form-check mb-2 fs-6': true, 'a11y-larger-text': store.fontSizeModifier == 5 }"
+        v-if="props.checkbox">
         <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
           type="checkbox" :id="facette.id.toString()" v-show="!store.isTranslating">
         <label class="form-check-label" :for="facette.id.toString()">
-          <LanguageTranslation :translation-key="props.facette.description"/>
+          <LanguageTranslation :translation-key="props.facette.description" />
         </label>
-        <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
-        <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours"/>
+        <Importance v-if="isSelected" :selected="selected" :facette="facette" />
+        <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours" />
 
-        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"  v-if="store.session.isFeedbackModeEnabled"/>
+        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"
+          v-if="store.session.isFeedbackModeEnabled" />
       </div>
-      <div :class="{'form-check mb-2 fs-6': true, 'a11y-larger-text': store.fontSizeModifier == 5}" v-else>
-        <input v-on:click="registerClick"  v-show="!store.isTranslating" class="form-check-input" type="radio" v-bind:name="props.facette.topic"
-          v-model="selected" v-on:change="registerChange" v-bind:value="true" :checked="isSelected"
-          :id="facette.id.toString()">
-          <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
-            <LanguageTranslation :translation-key="props.facette.description"/>
-          </label>
-          <Importance v-if="isSelected" :selected="selected" :facette="facette"/>
-         
-        <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours"/>
-        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"  v-if="store.session.isFeedbackModeEnabled"/>
+      <div :class="{ 'form-check mb-2': true, 'a11y-larger-text': store.fontSizeModifier == 5 }" v-else>
+        <input v-on:click="registerClick" v-show="!store.isTranslating" class="form-check-input" type="radio"
+          v-bind:name="props.facette.topic" v-model="selected" v-on:change="registerChange" v-bind:value="true"
+          :checked="isSelected" :id="facette.id.toString()">
+        <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
+          <LanguageTranslation :translation-key="props.facette.description" />
+        </label>
+        <Importance v-if="isSelected" :selected="selected" :facette="facette" />
+
+        <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours" />
+        <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"
+          v-if="store.session.isFeedbackModeEnabled" />
       </div>
     </div>
   </div>
 
   <div v-if="isExpanded.valueOf()">
-      <ul class="list-group">
-        <li v-if="props.facette.assignments.length == 0"
-          class="list-group-item d-flex justify-content-between align-items-start">
-          <LanguageTranslation translation-key="no-mappings-for-this-facette"/>
-        </li>
-        <Assignment :display-weigth="false" :assignment="key" v-for="(key, index) in props.facette.assignments" :key="index"
-          :query-choosables="true" :facette="props.facette" />
-      </ul>
+    <ul class="list-group">
+      <li v-if="props.facette.assignments.length == 0"
+        class="list-group-item d-flex justify-content-between align-items-start">
+        <LanguageTranslation translation-key="no-mappings-for-this-facette" />
+      </li>
+      <Assignment :display-weigth="false" :assignment="key" v-for="(key, index) in props.facette.assignments"
+        :key="index" :query-choosables="true" :facette="props.facette" />
+    </ul>
   </div>
 </template>
 <script setup lang="ts">
@@ -88,10 +91,10 @@ const isExpanded = useState(
   props.facette.id.toString() + "_expanded",
   () => false
 );
-const toggleExpand = async () =>  {
+const toggleExpand = async () => {
   isExpanded.value = !isExpanded.value
   if (isExpanded.value) {
-    await store.getAssignmentFeedback() 
+    await store.getAssignmentFeedback()
   }
 };
 
@@ -150,10 +153,12 @@ const registerWeightChange = async () => {
 <style scoped lang="scss">
 @import "../../../style/variables.scss";
 @import "../../../style/a11y.scss";
+
 .less-weight-icon {
-  color: $weightLessColor;
+  color: $less-weight-color;
 }
+
 .more-weight-icon {
-  color: $weightMoreColor;
+  color: $more-weight-color
 }
 </style>

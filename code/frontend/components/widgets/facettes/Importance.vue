@@ -65,7 +65,7 @@ const registerWeightChange = async () => {
 
     &.marked-important {
         animation: tilt-shaking 0.2s linear;
-        color: $weightMoreColor;
+        color: $more-weight-color;
     }
 }
 </style>

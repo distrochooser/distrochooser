@@ -17,12 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <div class="row text-center">
-        <div class="col-4 d-none d-sm-block">
+        <div class="col-5 d-none d-sm-block">
         </div>
-        <div class="col-xl-3 col-sm-12">
+        <div class="col-xl-2 col-sm-12">
             <Logo />
-        </div>
-        <div class="col col-1 d-none d-sm-block">
         </div>
     </div>
 </template>

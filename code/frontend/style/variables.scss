@@ -24,16 +24,18 @@ $red: rgb(196, 1, 1);
 $green: rgb(50, 164, 50);
 $orange: #fd7e14;
 
+$body-bg: #f4f6f9;
+
+
 // non overwrite 
 
-$unmarkedPage: rgb(156, 156, 156);
-$weightMoreColor: rgb(243, 171, 1);
-$weightLessColor: color.adjust($primary, $lightness: 60%);
-$weightBadgeFontColor: white;
-$missingLanguageColor: $red;
+$more-weight-color: rgb(243, 171, 1);
+$less-weight-color: color.adjust($primary, $lightness: 60%);
+$weight-badge-color: white;
+$missing-language-color: $red;
+$page-bg-dark: #141719;
 
 // Animations
-
 
 @keyframes tilt-shaking {
     0% {

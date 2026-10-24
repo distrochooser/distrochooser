@@ -26,9 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <main role="main"
       :class="{ 'container-fluid': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
       <div class="row">
-        <div class="col-xl-4">
+        <div class="col-xl-3">
         </div>
-        <div class="col-12 col-xl-4">
+        <div class="col-12 col-xl-6">
           <MainNavigation />
           <LogoContainer />
           <Navigation />
@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </div>
         </div>
         <div class="col-12 col-xl-6">
-          <div class="page position-relative top-40">
+          <div class="page position-relative top-40 p-3">
             <RenderField />
           </div>
         </div>
@@ -93,7 +93,24 @@ watch(loading, (value) => {
 })
 </script>
 <style lang="scss" scoped>
+@import "../../style/variables.scss";
+
 .rtl {
   direction: rtl;
+}
+
+body[data-bs-theme='dark'] {
+  .page {
+    background-color: $page-bg-dark;
+  }
+}
+
+body[data-bs-theme='light'] {
+
+  .page {
+    background-color: #ffffff;
+    padding: 1em;
+    color: black;
+  }
 }
 </style>

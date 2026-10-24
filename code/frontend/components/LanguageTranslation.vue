@@ -19,10 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <span v-on:click="toggleEditing($event)"
     :class="{ 'needs-translation': sessionStore.isTranslating && isUntranslated, 'hover-translation': sessionStore.isTranslating }">
     <span>{{ computedValue }}</span>
-    <span class="fs-6 top-0 start-100 translate-middle badge rounded-pill bg-warning translation-tooltip" v-if="sessionStore.isTranslating && proposals.length >0">
-      <Icon name="ion:chatbubbles-sharp"></Icon> {{proposals.length}}
+    <span class="fs-6 top-0 start-100 translate-middle badge rounded-pill bg-warning translation-tooltip"
+      v-if="sessionStore.isTranslating && proposals.length > 0">
+      <Icon name="ion:chatbubbles-sharp"></Icon> {{ proposals.length }}
     </span>
-    <span class="fs-6 top-0 start-100 translate-middle badge rounded-pill bg-success translation-tooltip" v-if="sessionStore.isTranslating && isAdded">
+    <span class="fs-6 top-0 start-100 translate-middle badge rounded-pill bg-success translation-tooltip"
+      v-if="sessionStore.isTranslating && isAdded">
       <Icon name="ion:cloud-done"></Icon>
     </span>
   </span>
@@ -34,14 +36,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="card-text">
 
         <ul class="list-group col">
-          <li class="list-group-item fs-6"><span
-              class="badge text-bg-light me-2">{{ sessionStore.session.defaultLanguage }}</span>{{
+          <li class="list-group-item fs-6"><span class="badge text-bg-light me-2">{{
+            sessionStore.session.defaultLanguage }}</span>{{
                 sessionStore.session.defaultLanguageValues[props.translationKey] ?? props.translationKey }} </li>
           <li class="list-group-item text-center fs-3 pt-2">
             <Icon name="ion:arrow-down-sharp"></Icon>
           </li>
           <li class="list-group-item fs-6"><span class="badge text-bg-dark me-2">{{ sessionStore.session.languageCode
-          }}</span> {{ computedValue }}</li>
+              }}</span> {{ computedValue }}</li>
         </ul>
         <form class="g-3 mt-3">
           <h5 class="card-title mb-3" v-if="proposals.length > 0">
@@ -103,7 +105,7 @@ const vote = (id: number, isPositive) => {
 const isAdded = computed(() => sessionStore.languageFeedback.filter(l => l.session == sessionStore.session.id && l.languageKey == props.translationKey).length != 0)
 
 
-const proposals = computed(() => sessionStore.languageFeedback.filter(f => f.languageKey == props.translationKey && (f.voterId != sessionStore.getVoterId()) ))
+const proposals = computed(() => sessionStore.languageFeedback.filter(f => f.languageKey == props.translationKey && (f.voterId != sessionStore.getVoterId())))
 
 const toggleEditing = (e: MouseEvent) => {
   if (sessionStore.isTranslating && sessionStore.session && !sessionStore.isTranslationOpen) {
@@ -138,7 +140,7 @@ watch(computedValue, value => {
 @import "../style/variables.scss";
 
 .needs-translation {
-  border-bottom: 1px dotted $missingLanguageColor;
+  border-bottom: 1px dotted $missing-language-color;
 }
 
 .translation-window {
@@ -155,6 +157,7 @@ watch(computedValue, value => {
 .vote-button {
   cursor: pointer;
 }
+
 .translation-tooltip {
   font-size: small !important;
   display: inline-table;

@@ -16,17 +16,15 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div v-if="store.currentPage" :class="{'a11y-larger-larger': store.fontSizeModifier == 5}">
-    <h3 v-if="store.currentPage.text">
+  <div v-if="store.currentPage" :class="{ 'a11y-larger-larger': store.fontSizeModifier == 5 }">
+    <div v-if="store.currentPage.text" class="page-text">
       <LanguageTranslation :translation-key="store.currentPage.text" :key="store.currentPage.text" />
-
-      <br />
-      <small v-if="store.currentPage.help && !store.currentPage.hideHelp" :key="store.currentPage.help"
-        class="text-body-secondary mt-3 d-block fs-5 fw-light">
-        <LanguageTranslation :translation-key="store.currentPage.help" />
-      </small>
-    </h3>
-    <div>
+    </div>
+    <small v-if="store.currentPage.help && !store.currentPage.hideHelp" :key="store.currentPage.help"
+      class="text-body-secondary mt-1 d-block fw-light page-help">
+      <LanguageTranslation :translation-key="store.currentPage.help" />
+    </small>
+    <div class="mt-3">
       <WidgetsWrapper v-for="row in rows" :key="row" class="row" :row="row" />
     </div>
   </div>
@@ -42,7 +40,7 @@ const rows = computed(() => {
   const min = Math.min(...store.currentWidgets.map(w => w.row))
   const max = Math.max(...store.currentWidgets.map(w => w.row))
   let range = []
-  for (var i=min;i<=max;i++) {
+  for (var i = min; i <= max; i++) {
     range.push(i)
   }
   return range
@@ -53,4 +51,12 @@ const rows = computed(() => {
 @use 'sass:color';
 @import "../style/variables.scss";
 @import "../style/a11y.scss";
+
+.page-text {
+  font-size: larger;
+}
+
+.page-help {
+  font-size: large;
+}
 </style>

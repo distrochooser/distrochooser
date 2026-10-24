@@ -19,7 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <span
         :class="{ 'badge  rounded-pill me-3 ': true, 'less-weight-badge': assignment.weight < 0, 'more-weight-badge': assignment.weight > 0 }"
-        v-if="props.displayWeigth && props.assignment.weight != null && weightText != null" :title="assignment.weight.toString() + 'x'">
+        v-if="props.displayWeigth && props.assignment.weight != null && weightText != null"
+        :title="assignment.weight.toString() + 'x'">
 
         <Icon name="ion:trending-up-outline" class="me-1" v-if="props.assignment.weight > 0"></Icon>
         <Icon name="ion:trending-down-outline" class="me-1" v-if="props.assignment.weight < 0"></Icon>
@@ -42,26 +43,27 @@ interface AssignmentTypeProps {
 
 
 const assignmentTypeCssMap = {
-  BLOCKING: "text-bg-dark",
-  NEGATIVE: "text-bg-danger ",
-  POSITIVE: "text-bg-success text-light",
-  NEUTRAL: "text-bg-light",
+    BLOCKING: "text-bg-dark",
+    NEGATIVE: "text-bg-danger ",
+    POSITIVE: "text-bg-success text-light",
+    NEUTRAL: "text-bg-light",
 };
 
 const props = defineProps<AssignmentTypeProps>();
-const weightText = props.assignment.weight < 1 ? "weight-less" :  (props.assignment.weight > 1 ? "weight_more" : null);
+const weightText = props.assignment.weight < 1 ? "weight-less" : (props.assignment.weight > 1 ? "weight_more" : null);
 
 </script>
 
 <style lang="scss" scoped>
 @import "../../../style/variables.scss";
+
 .less-weight-badge {
-   background-color: $weightLessColor;
-   color: $weightBadgeFontColor;
-}
-.more-weight-badge {
-  background-color: $weightMoreColor;
-  color: $weightBadgeFontColor;
+    background-color: $less-weight-color;
+    color: $weight-badge-color;
 }
 
+.more-weight-badge {
+    background-color: $more-weight-color;
+    color: $weight-badge-color;
+}
 </style>
