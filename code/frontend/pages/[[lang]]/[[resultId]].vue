@@ -23,8 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </Head>
     <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
-    <main role="main"
-      :class="{ 'container-fluid': true, 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
+    <main role="main" :class="{ 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
       <DarkMode />
       <div class="row">
         <div class="col-xl-3">
@@ -36,19 +35,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-3 d-none d-xl-block ">
+        <div class="col-xl-2" />
+        <div class="col-xl-2 d-none d-xl-block ">
           <div class="ms-5 sticky-top">
             <SideNavigation />
           </div>
         </div>
-        <div class="col-12 col-xl-6">
+        <div class="col-12 col-xl-4">
           <div class="page position-relative top-40 p-3">
             <RenderField />
           </div>
         </div>
-        <div class="col-xl-3 col-3">
-        </div>
       </div>
+
     </main>
   </div>
 </template>
