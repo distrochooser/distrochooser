@@ -50,7 +50,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "Debian güncellemeleri genellikle stabil olması için yavaştır",
     "deepin-description": "Deepin, (DDE) Deepin Masaüstü Ortamı adı verilen kendi masaüstünü sunan, Debian tabanlı, Çince bir dağıtımdır.",
     "description_text": "Distrochooser ihtiyaçlarınıza göre uygun Linux dağıtımını bulmanıza yardımcı olur!",
-    "description_text_long": "Aşağıdaki ankette, kişisel gereksinimlerinizi belirlememize yardımcı olmak için farklı konular hakkında birkaç soru sorulacaktır. İsterseniz soruyu atlayabilir veya cevaplarınızı istediğiniz zaman değiştirebilirsiniz. Anketin sonunda, kişisel tavsiye sonucunuzu alacaksınız.",
     "devuan-description": "Devuan, systemd araç setini kullanmayan bir Debian klonudur",
     "distro-with-immutable-design-description": "Linux dağıtımı, değişmez bir sistem yaklaşımı benimsemelidir",
     "distro_age": "Linux Dağıtımı aşağıdakilerden daha fazla kurulmuş olmalıdır:",

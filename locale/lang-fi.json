@@ -50,7 +50,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "Debianissa päivitykset ovat yleensä hyvin hitaasti tapahtuvia mutta tämä tukee äärimmäistä vakautta",
     "deepin-description": "Deepin on kiinalainen, Debian-pohjainen jakelu, joka tarjoaa oman työpöydän nimeltä Deepin Desktop Environment.",
     "description_text": "Distrochooser auttaa sinua löytämään tarpeisiisi sopivan Linux-jakelun",
-    "description_text_long": "Seuraavassa kyselylomakkeessa sinulle esitetään useita kysymyksiä eri aiheista, jotta voimme tunnistaa henkilökohtaiset tarpeesi. Voit halutessasi ohittaa kysymyksen tai muuttaa vastauksiasi milloin tahansa. Kyselylomakkeen lopussa saat henkilökohtaisen suositustuloksesi. Kyselylomakkeen lopussa saat henkilökohtaisen suositustuloksesi.",
     "devuan-description": "Devuan on Debian klooni, mutta ilman systemd kalupakin käyttöä",
     "distro-with-immutable-design-description": "Linux-jakelun tulisi noudattaa muuttumattoman järjestelmän periaatetta",
     "distro_age": "Linux Distribution olisi perustettava enemmän kuin:",

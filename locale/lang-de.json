@@ -50,7 +50,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "Debian-Updates kommen gewöhnlich später, was der Stabilität zu Gute kommt.",
     "deepin-description": "Deepin ist eine chinesische Distribution, die auf Debian aufbaut und die mit dem Deepin Desktop Environment einen eigenen Desktop bereitstellt",
     "description_text": "Die Linux Auswahlhilfe hilft Anfängern und Umsteigern in der Menge von Linux-Distributionen die passende Linux-Distribution zu finden.",
-    "description_text_long": "In diesem Fragebogen werden wir Dir verschiedene Fragen stellen, um Deine persönlichen Anforderungen zu identifzieren. Du kannst deine Antworten jederzeit ändern, am Ende des Fragebogens generieren wir dir eine Vorschlagsliste basierend auf deinen Antworten.",
     "devuan-description": "Devuan basiert auf Debian, verzichtet jedoch auf die Verwendung von systemd",
     "distro-with-immutable-design-description": "Die Linux-Distribution sollte einen unveränderlichen Systemansatz verfolgen",
     "distro_age": "Distribution verfügbar seit mehr als x Jahren:",

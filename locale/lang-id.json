@@ -50,7 +50,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "Pembaruan Debian cenderung lambat demu kestabilan",
     "deepin-description": "Deepin adalah Distribusi berbasis Debian dari Tiongkok yang menawarkan desktop tersendiri, yaitu Deepin Desktop Environment.",
     "description_text": "Distrochooser membantu Anda menemukan distribusi Linux yang sesuai berdasarkan kebutuhan Anda!",
-    "description_text_long": "Dalam kuesioner berikut, Anda akan ditanya beberapa pertanyaan tentang berbagai topik untuk membantu kami mengidentifikasi kebutuhan pribadi Anda. Anda dapat melewati pertanyaan jika diinginkan atau mengubah jawaban Anda kapan saja. Di akhir kuesioner, Anda akan mendapatkan hasil rekomendasi pribadi Anda.",
     "devuan-description": "Devuan adalah tiruan Debian tanpa penggunaan systemd",
     "distro-with-immutable-design-description": "Distribusi Linux sebaiknya menerapkan pendekatan sistem yang tidak dapat diubah",
     "distro_age": "Distribusi Linux harus didirikan lebih dari:",

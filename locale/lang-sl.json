@@ -50,7 +50,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "Posodobitve Debiana so običajno počasne v korist stabilnosti",
     "deepin-description": "Deepin je kitajska distribucija Linuxa, na osnovi Debiana in ponuja lastno namizje, imenovano Deepin Desktop Environment.",
     "description_text": "Distrochooser vam pomaga najti primerno distribucijo Linuxa glede na vaše potrebe!",
-    "description_text_long": "V naslednjem vprašalniku vam bomo zastavili več vprašanj o različnih temah, ki nam bodo pomagale prepoznati vaše osebne zahteve. Po želji lahko preskočite vprašanje ali kadar koli spremenite svoje odgovore. Na koncu vprašalnika boste prejeli svoj osebni priporočilni rezultat.",
     "devuan-description": "Devun je klon Debiana brez uporabe orodij systemd",
     "distro-with-immutable-design-description": "Linuxova distribucija bi morala uporabljati pristop nespremenljivega sistema",
     "distro_age": "Distribucija bi morala biti vzpostavljena pred:",

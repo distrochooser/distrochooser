@@ -50,7 +50,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "Debianのアップデートは安定性を優先するため、通常は遅くなります",
     "deepin-description": "Deepin は、Deepin デスクトップ環境と呼ばれる独自のデスクトップを提供する、中国の Debian ベースのディストリビューションです。",
     "description_text": "Distrochooser は、ニーズに合った適切なLinuxディストリビューションを見つけるのに役立ちます！",
-    "description_text_long": "次のアンケートでは、お客様の求める要件を特定するために、さまざまなトピックに関するいくつかの質問があります。必要に応じて質問をスキップしたり、いつでも回答を変更したりできます。アンケートの最後に、あなたに合うOSが表示されます。",
     "devuan-description": "Devuan は systemd ツールキットを使用しない Debian クローンです。",
     "distro-with-immutable-design-description": "そのLinuxディストリビューションは、不変システムのアプローチを採用すべきである",
     "distro_age": "ディストリビューションは、次の数以上確立されている必要があります。",

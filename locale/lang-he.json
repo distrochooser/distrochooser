@@ -50,7 +50,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "העדכונים של Debian איטיים לרוב מטעמי יציבות",
     "deepin-description": "Deepin היא הפצה סינית מבוססת דביאן המציעה שולחן עבודה משלו בשם Deepin Desktop Environment.",
     "description_text": "ה-Distrochooser עוזר לך למצוא את הפצת לינוקס המתאימה לצרכים שלך!",
-    "description_text_long": "בשאלון הבא, תישאלו מספר שאלות בנושאים שונים כדי לעזור לנו לזהות את הדרישות האישיות שלכם. תוכלו לדלג על השאלות אם תרצו או לשנות את תשובותיכם בכל עת. בסוף השאלון תקבלו את תוצאת ההמלצה האישית שלכם.",
     "devuan-description": "‏Devuan הוא העתק של Debian שאינו משתמש בארגז הכלים של systemd",
     "distro-with-immutable-design-description": "הפצת לינוקס צריכה לאמץ גישה של מערכת בלתי ניתנת לשינוי",
     "distro_age": "יש להקים הפצת לינוקס יותר מ:",

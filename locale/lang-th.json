@@ -52,7 +52,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "การอัปเดตของ Debian มักจะช้าเพื่อแลกกับความเสถียร",
     "deepin-description": "Deepin เป็น Linux distribution จากจีนที่มีฐานมาจาก Debian และนำเสนอเดสก์ท็อปของตัวเองที่เรียกว่า Deepin Desktop Environment",
     "description_text": "Distrochooser ช่วยคุณค้นหา Linux distribution ที่เหมาะสมกับความต้องการของคุณ!",
-    "description_text_long": "ในแบบสอบถามต่อไปนี้ คุณจะถูกถามคำถามหลายข้อเกี่ยวกับหัวข้อต่างๆ เพื่อช่วยให้เราระบุความต้องการส่วนบุคคลของคุณ คุณสามารถข้ามคำถามได้หากต้องการ หรือเปลี่ยนคำตอบได้ตลอดเวลา เมื่อจบแบบสอบถาม คุณจะได้รับผลคำแนะนำส่วนบุคคล",
     "devuan-description": "Devuan เป็นตัวโคลนของ Debian ที่ไม่ใช้ชุดเครื่องมือ systemd",
     "distro-with-immutable-design-description": "ระบบปฏิบัติการลินุกซ์ควรใช้แนวทางระบบที่ไม่สามารถเปลี่ยนแปลงได้",
     "distro_age": "Distribution ควรก่อตั้งมานานกว่า:",

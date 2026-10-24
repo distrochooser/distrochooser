@@ -50,7 +50,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "Cập nhật Debian thường chậm vì tập trung vào sự ổn định",
     "deepin-description": "Deepin là một bản Phân phối dựa trên Debian của Trung Quốc, cung cấp một màn hình nền riêng có tên là Deepin Desktop Environment.",
     "description_text": "Trình chọn bản phân phối giúp bạn tìm bản phân phối Linux phù hợp dựa trên nhu cầu của bạn!",
-    "description_text_long": "Trong bảng câu hỏi sau, bạn sẽ được hỏi một số câu hỏi về các chủ đề khác nhau để giúp chúng tôi xác định các yêu cầu cá nhân của bạn. Bạn có thể bỏ qua câu hỏi nếu muốn hoặc thay đổi câu trả lời của mình bất kỳ lúc nào. Vào cuối bảng câu hỏi, bạn sẽ nhận được kết quả đề xuất cá nhân của mình.",
     "devuan-description": "Devuan là một bản sao của Debian mà không sử dụng bộ công cụ systemd",
     "distro-with-immutable-design-description": "Bản phân phối Linux nên áp dụng phương pháp hệ thống bất biến",
     "distro_age": "Phân phối phải được thiết lập nhiều hơn:",

@@ -50,7 +50,6 @@
     "debian-updates-slow-facette-prefer-fast-description": "Debian 更新通常較慢，以保持穩定性",
     "deepin-description": "Deepin 是一個基於 Debian 的中文 Linux 發行版，提供名為 Deepin 桌面環境的桌面。",
     "description_text": "Distrochooser 幫助您根據您的需求找到合適的 Linux 發行版！",
-    "description_text_long": "在以下的問卷中，我們會詢問您幾個關於不同主題的問題，以幫助我們了解您的個人需求。如果需要，您可以跳過問題或隨時更改答案。問卷調查結束後，您將獲得您的個人推薦結果。",
     "devuan-description": "Devuan 是 Debian 的克隆版本，沒有使用 systemd 工具包",
     "distro-with-immutable-design-description": "該 Linux 發行版應採用不可變系統的架構",
     "distro_age": "應建立分佈於：",
