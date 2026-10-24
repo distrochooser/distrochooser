@@ -26,14 +26,31 @@ from typing import Dict, List
 from django.core.cache import cache
 
 
-from web.models import Widget, Facette, FacetteAssignment, Choosable, FacetteBehaviour, Page, SessionVersion
-from web.management.commands.modules.parse import create_version, create_pages, create_widgets, create_choosables, create_facettes, create_facette_behaviours, create_assignments
+from web.models import (
+    Widget,
+    Facette,
+    FacetteAssignment,
+    Choosable,
+    FacetteBehaviour,
+    Page,
+    SessionVersion,
+)
+from web.management.commands.modules.parse import (
+    create_version,
+    create_pages,
+    create_widgets,
+    create_choosables,
+    create_facettes,
+    create_facette_behaviours,
+    create_assignments,
+)
 from web.matrix import get_matrix_content
 from logging import getLogger, ERROR
 
 from kuusi.settings import STATIC_ROOT
 
-logger = getLogger('command')
+logger = getLogger("command")
+
 
 class Command(BaseCommand):
     help = "Imports a given *.ku file"
@@ -42,12 +59,11 @@ class Command(BaseCommand):
         parser.add_argument("file_path", type=str)
 
     def handle(self, *args, **options):
-        
+
         file_path = options["file_path"]
-        
+
         got = get_matrix_content(file_path)
         parsed_toml = loads(got)
-
 
         """
         row = 1
@@ -62,7 +78,7 @@ class Command(BaseCommand):
         # 4: Choosables
         # 5: Facettes
         # 6: Assignments
-        
+
         # This components have no binding towards the result -> just delete them and start over
         Page.objects.all().delete()
         Widget.objects.all().delete()
@@ -71,36 +87,50 @@ class Command(BaseCommand):
         new_pages = create_pages(self.get_or_default, parsed_toml["page"])
         new_widgets = create_widgets(self.get_or_default, parsed_toml["widget"])
 
-
         # Choosables will be re-used, if possible
-        new_choosables = create_choosables(self.get_or_default, parsed_toml["choosable"],parsed_toml["meta"])
+        new_choosables = create_choosables(
+            self.get_or_default, parsed_toml["choosable"], parsed_toml["meta"]
+        )
 
         # facettes will be re-used, if possible
         new_facettes = create_facettes(self.get_or_default, parsed_toml["facette"])
 
         # Assignments will attempt re-use
-        new_assignments = create_assignments(self.get_or_default, parsed_toml["assignment"])
+        new_assignments = create_assignments(
+            self.get_or_default, parsed_toml["assignment"]
+        )
 
         # Behaviours will be wiped upon running this method
-        new_behaviours = create_facette_behaviours(self.get_or_default, parsed_toml["behaviour"])
+        new_behaviours = create_facette_behaviours(
+            self.get_or_default, parsed_toml["behaviour"]
+        )
 
         cache.clear()
         logger.info("")
         logger.info(f"Summary for file {file_path}")
         logger.info("")
-        logger.info(f"Created/ updated {len(new_versions)} versions. In DB={SessionVersion.objects.all().count()}")
-        logger.info(f"Created/ updated {len(new_pages)} pages. In DB={Page.objects.all().count()}")
-        logger.info(f"Created/ updated {len(new_widgets)} widgets. In DB={Widget.objects.all().count()}")
-        logger.info(f"Created/ updated {len(new_choosables)} choosables. In DB={Choosable.objects.all().count()}")
-        logger.info(f"Created/ updated {len(new_facettes)} facettes. In DB={Facette.objects.all().count()}")
-        logger.info(f"Created/ updated {len(new_assignments)} assignments. In DB={FacetteAssignment.objects.all().count()}")
-        logger.info(f"Created/ updated {len(new_behaviours)} behaviours. In DB={FacetteBehaviour.objects.all().count()}")
-        
+        logger.info(
+            f"Created/ updated {len(new_versions)} versions. In DB={SessionVersion.objects.all().count()}"
+        )
+        logger.info(
+            f"Created/ updated {len(new_pages)} pages. In DB={Page.objects.all().count()}"
+        )
+        logger.info(
+            f"Created/ updated {len(new_widgets)} widgets. In DB={Widget.objects.all().count()}"
+        )
+        logger.info(
+            f"Created/ updated {len(new_choosables)} choosables. In DB={Choosable.objects.all().count()}"
+        )
+        logger.info(
+            f"Created/ updated {len(new_facettes)} facettes. In DB={Facette.objects.all().count()}"
+        )
+        logger.info(
+            f"Created/ updated {len(new_assignments)} assignments. In DB={FacetteAssignment.objects.all().count()}"
+        )
+        logger.info(
+            f"Created/ updated {len(new_behaviours)} behaviours. In DB={FacetteBehaviour.objects.all().count()}"
+        )
 
-
-        
-        
-        
     def get_or_default(self, prop: str, raw: Dict) -> Any:
         defaults = {
             "col": 1,
@@ -112,16 +142,12 @@ class Command(BaseCommand):
             "hide_help": False,
             "bg_color": "black",
             "fg_color": "white",
-            "icon": "bi bi-clipboard2-data",
-            "sources": []
+            "icon": "ion:chatbox-ellipses",
+            "sources": [],
         }
         if prop in raw:
             return raw[prop]
         if prop in defaults:
             return defaults[prop]
-        
+
         return None
-    
-
-
-   
