@@ -16,7 +16,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 from .http import WebHttpRequest
 from .session import Session, get_session_result_id, SessionMeta
 from .widget import Widget
@@ -26,7 +25,12 @@ from .facette import Facette, FacetteAssignment, FacetteBehaviour, FacetteSelect
 from .page import Page, PageMarking
 from .facetteselectionwidget import FacetteSelectionWidget
 from .facetteradioselectionwidget import FacetteRadioSelectionWidget
-from .feedback import Feedback, LanguageFeedback, LanguageFeedbackVote, AssignmentFeedback
+from .feedback import (
+    Feedback,
+    LanguageFeedback,
+    LanguageFeedbackVote,
+    AssignmentFeedback,
+)
 
 from .htmlwidget import HTMLWidget
 
@@ -34,6 +38,13 @@ from .navigationwidget import NavigationWidget
 from .resultsharewidget import ResultShareWidget
 from .resultlistwidget import ResultListWidget
 
-from .metafilterwidget import MetaFilterWidget,  MetaFilterWidgetStructure, MetaFilterWidgetElement, MetaFilterValue
+from .metafilterwidget import (
+    MetaFilterWidget,
+    MetaFilterWidgetStructure,
+    MetaFilterWidgetElement,
+    MetaFilterValue,
+)
 
 from .feedbackwidget import FeedbackWidget, GivenFeedback
+
+from .statistics import TimeFrame, TimeFrameRow

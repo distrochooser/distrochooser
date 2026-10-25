@@ -17,47 +17,141 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from django.contrib import admin
+from django.contrib.admin import SimpleListFilter
 
-from web.models import GivenFeedback, MetaFilterValue, Choosable,Feedback, AssignmentFeedback, MetaFilterWidget, LanguageFeedback, Page, FacetteRadioSelectionWidget, HTMLWidget, NavigationWidget, FacetteSelectionWidget, Facette, FacetteBehaviour, SessionVersionWidget, Session, SessionMeta, SessionVersion, FacetteSelection, ResultShareWidget, ResultListWidget, FacetteAssignment, PageMarking, ChoosableMeta
+from web.models import (
+    GivenFeedback,
+    MetaFilterValue,
+    Choosable,
+    Feedback,
+    AssignmentFeedback,
+    MetaFilterWidget,
+    LanguageFeedback,
+    Page,
+    FacetteRadioSelectionWidget,
+    HTMLWidget,
+    NavigationWidget,
+    FacetteSelectionWidget,
+    Facette,
+    FacetteBehaviour,
+    SessionVersionWidget,
+    Session,
+    SessionMeta,
+    SessionVersion,
+    FacetteSelection,
+    ResultShareWidget,
+    ResultListWidget,
+    FacetteAssignment,
+    PageMarking,
+    ChoosableMeta,
+    TimeFrame,
+    TimeFrameRow,
+)
+
 
 class SessionAdmin(admin.ModelAdmin):
-    list_display=("started", "duration", "entry_point", "referrer", "language_code", "result_id", "user_agent", "is_ack", "imported_from_session", )
+    list_display = (
+        "started",
+        "duration",
+        "entry_point",
+        "referrer",
+        "language_code",
+        "result_id",
+        "user_agent",
+        "is_ack",
+        "imported_from_session",
+    )
+
     def has_change_permission(self, request, obj=None):
-        return False
+        return True
+
     list_filter = ["is_ack", "language_code", "entry_point"]
 
+
 class FacetteSelectionAdmin(admin.ModelAdmin):
-    list_display=("facette", "weight", "session", "imported_from_answer",)
+    list_display = (
+        "facette",
+        "weight",
+        "session",
+        "imported_from_answer",
+    )
+
     def has_change_permission(self, request, obj=None):
         return False
 
+
 class FacetteAdmin(admin.ModelAdmin):
-    list_display = ("catalogue_id","description", "topic" )
+    list_display = ("catalogue_id", "description", "topic")
     pass
 
-[admin.site.register(*models) for models in [
-    (Choosable,),
-    (GivenFeedback,),
-    (ChoosableMeta,),
-    (Page,),
-    (HTMLWidget,),
-    (NavigationWidget,),
-    (FacetteSelectionWidget,),
-    (FacetteRadioSelectionWidget,),
-    (MetaFilterWidget,),
-    (MetaFilterValue,),
-    (Facette,FacetteAdmin),
-    (FacetteBehaviour,),
-    (Session,SessionAdmin),
-    (SessionMeta,),
-    (SessionVersion,),
-    (FacetteSelection,FacetteSelectionAdmin),
-    (ResultShareWidget,),
-    (ResultListWidget,),
-    (SessionVersionWidget,),
-    (FacetteAssignment,),
-    (PageMarking,),
-    (Feedback,),
-    (AssignmentFeedback,),
-    (LanguageFeedback,),
-]]
+
+class TimeFrameAdmin(admin.ModelAdmin):
+    list_display = (
+        "year",
+        "date",
+        "result_count",
+        "diff",
+        "daily_results",
+        "top_result_day",
+        "active_domains",
+        "top_domain",
+    )
+    ordering = ("date",)
+
+
+class ZeroAckFilter(SimpleListFilter):
+
+    title = "No ACK"
+    parameter_name = "no_ack"
+
+    def lookups(self, request, model_admin):
+        return [("True", "True")]
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(ack_percentage__gt=0)
+
+
+class TimeFrameRowAdmin(admin.ModelAdmin):
+    list_display = (
+        "time_frame",
+        "row_type",
+        "row_key",
+        "ack_percentage",
+        "row_value_with_ack",
+        "row_value_no_ack",
+    )
+    list_filter = ["time_frame", "row_type", ZeroAckFilter]
+
+
+[
+    admin.site.register(*models)
+    for models in [
+        (TimeFrame, TimeFrameAdmin),
+        (TimeFrameRow, TimeFrameRowAdmin),
+        (Choosable,),
+        (GivenFeedback,),
+        (ChoosableMeta,),
+        (Page,),
+        (HTMLWidget,),
+        (NavigationWidget,),
+        (FacetteSelectionWidget,),
+        (FacetteRadioSelectionWidget,),
+        (MetaFilterWidget,),
+        (MetaFilterValue,),
+        (Facette, FacetteAdmin),
+        (FacetteBehaviour,),
+        (Session, SessionAdmin),
+        (SessionMeta,),
+        (SessionVersion,),
+        (FacetteSelection, FacetteSelectionAdmin),
+        (ResultShareWidget,),
+        (ResultListWidget,),
+        (SessionVersionWidget,),
+        (FacetteAssignment,),
+        (PageMarking,),
+        (Feedback,),
+        (AssignmentFeedback,),
+        (LanguageFeedback,),
+    ]
+]
