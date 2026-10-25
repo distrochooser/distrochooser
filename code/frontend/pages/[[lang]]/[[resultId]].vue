@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           </div>
         </div>
         <div class="col-12 col-xl-8 col-xxl-4">
-          <div class="page position-relative top-40 p-3 me-3">
+          <div class="page position-relative top-40 p-3 me-3" v-if="sessionStore.session">
             <RenderField />
           </div>
         </div>
