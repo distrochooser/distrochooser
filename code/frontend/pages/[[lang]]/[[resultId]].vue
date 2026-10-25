@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <NuxtRouteAnnouncer />
     <main role="main" :class="{ 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
       <DarkMode />
-      <OldVersionWarning v-if="sessionStore.session" />
+      <OldVersionWarning v-if="id !== null && sessionStore.session" />
 
       <div class="row">
         <div class="col-xl-3">
