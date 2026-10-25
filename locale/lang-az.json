@@ -254,5 +254,6 @@
     "welcome-delete-order": "Cavabları istənilən vaxt silə bilərsiniz.",
     "welcome-mark-important": "Vacibləri vacib kimi işarələyə bilərsən, bizə üstünlüklərini müəyyən etməyə kömək etmək üçün",
     "welcome-question-order": "Siz istənilən ardıcıllıqda cavab verə bilərsiniz",
-    "welcome-mark-questions": "Mövzunuzdakı üstünlüklər haqqında əmin deyilsinizsə, sualları işarələyə bilərsiniz."
+    "welcome-mark-questions": "Mövzunuzdakı üstünlüklər haqqında əmin deyilsinizsə, sualları işarələyə bilərsiniz.",
+    "old-version-not-found-alert": "Verilən link köhnə bir nəticəyə aiddir və təəssüf ki, artıq mövcud deyil."
 }

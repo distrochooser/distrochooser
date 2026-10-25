@@ -254,5 +254,6 @@
     "welcome-delete-order": "你可以隨時刪除答案。",
     "welcome-mark-important": "你可以標記重要的答案，幫助我們識別你的優先事項。",
     "welcome-question-order": "您可以按任意順序回答",
-    "welcome-mark-questions": "如果您不確定某個主題的偏好，您可以標記該問題。"
+    "welcome-mark-questions": "如果您不確定某個主題的偏好，您可以標記該問題。",
+    "old-version-not-found-alert": "這個連結指向的結果是舊的，很抱歉它已經失效了。"
 }

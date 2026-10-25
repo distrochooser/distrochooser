@@ -31,5 +31,6 @@ const isInDarkMode = computed(() => store.isDarkMode)
 <style lang="scss" scoped>
 .dark-mode-switch {
     cursor: pointer;
+    z-index: 100000;
 }
 </style>

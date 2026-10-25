@@ -254,5 +254,6 @@
     "welcome-delete-order": "Voit poistaa vastauksia milloin tahansa.",
     "welcome-mark-important": "Voit merkitä vastaukset tärkeiksi auttaaksesi meitä tunnistamaan prioriteettisi.",
     "welcome-question-order": "Voit vastata mielivaltaisessa järjestyksessä",
-    "welcome-mark-questions": "Voit merkitä kysymyksiä, jos olet epävarma mielipiteistäsi jossain aiheessa."
+    "welcome-mark-questions": "Voit merkitä kysymyksiä, jos olet epävarma mielipiteistäsi jossain aiheessa.",
+    "old-version-not-found-alert": "Tarjottu linkki viittaa vanhaan tulokseen, joka valitettavasti ei ole enää saatavilla."
 }

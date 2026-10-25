@@ -258,5 +258,6 @@
     "welcome-delete-order": "You can delete answers at any time.",
     "welcome-mark-important": "You can mark answers as important to help us identify your priorities.",
     "welcome-question-order": "You may answer in arbitrary order",
-    "welcome-mark-questions": "You can mark questions if you are unsure about your preferences on a topic."
+    "welcome-mark-questions": "You can mark questions if you are unsure about your preferences on a topic.",
+    "old-version-not-found-alert": "The link provided refers to an old result which is unfortunately not available anymore."
 }

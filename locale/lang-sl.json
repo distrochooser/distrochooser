@@ -254,5 +254,6 @@
     "welcome-delete-order": "Lahaveš lahko odgovore izbrisalši kdaj koli.",
     "welcome-mark-important": "Svoje odgovore lahko označiš kot pomembne, da nam pomagaš identificirati svoje prioritete.",
     "welcome-question-order": "Slobodno odgovorite v proizvolnem vrstnem zaporedju",
-    "welcome-mark-questions": "Lahkoči označite vprašanja, če niste prepričan o svojih preferencah na določenem temi."
+    "welcome-mark-questions": "Lahkoči označite vprašanja, če niste prepričan o svojih preferencah na določenem temi.",
+    "old-version-not-found-alert": "Navedena povezava se nanaša na staro rezultato, ki ni je na žalost več na voljo."
 }

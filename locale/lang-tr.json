@@ -254,5 +254,6 @@
     "welcome-delete-order": "Cevapları istediğin zaman silebilirsin.",
     "welcome-mark-important": "Önceliklerinizi belirlememize yardımcı olmak için cevapları önemli olarak işaretleyebilirsiniz.",
     "welcome-question-order": "Keyfi istediğiniz sırada cevap verebilirsiniz",
-    "welcome-mark-questions": "Konuyla ilgili tercihlerinize emin değilseniz, soruları işaretleyebilirsiniz."
+    "welcome-mark-questions": "Konuyla ilgili tercihlerinize emin değilseniz, soruları işaretleyebilirsiniz.",
+    "old-version-not-found-alert": "Sağlanan bağlantı eski bir sonuca işaret ediyor ve ne yazık ki artık mevcut değil."
 }

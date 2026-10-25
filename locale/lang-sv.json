@@ -254,5 +254,6 @@
     "welcome-delete-order": "Du kan radera svar när som helst.",
     "welcome-mark-important": "Du kan markera svar som viktiga för att hjälpa oss att identifiera dina prioriteringar.",
     "welcome-question-order": "Du kan svara i godtyckligt ordning",
-    "welcome-mark-questions": "Du kan markera frågor om du är osäker på dina preferenser inom ett ämne."
+    "welcome-mark-questions": "Du kan markera frågor om du är osäker på dina preferenser inom ett ämne.",
+    "old-version-not-found-alert": "Länken som tillhandahålls hänvisar till ett gammalt resultat som tyvärr inte längre är tillgängligt."
 }

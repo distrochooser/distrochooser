@@ -254,5 +254,6 @@
     "welcome-delete-order": "Bạn có thể xóa câu trả lời bất cứ lúc nào.",
     "welcome-mark-important": "Bạn có thể đánh dấu câu trả lời là quan trọng để giúp chúng tôi xác định các ưu tiên của bạn.",
     "welcome-question-order": "Bạn có thể trả lời theo bất kỳ thứ tự nào",
-    "welcome-mark-questions": "Bạn có thể đánh dấu các câu hỏi nếu bạn không chắc chắn về sở thích của mình về chủ đề đó."
+    "welcome-mark-questions": "Bạn có thể đánh dấu các câu hỏi nếu bạn không chắc chắn về sở thích của mình về chủ đề đó.",
+    "old-version-not-found-alert": "Liên kết được cung cấp đề cập đến một kết quả cũ mà đáng tiếc là không còn sẵn có."
 }

@@ -254,5 +254,6 @@
     "welcome-delete-order": "Możesz usunąć odpowiedzi w dowolnym momencie.",
     "welcome-mark-important": "Możesz oznaczać odpowiedzi jako ważne, aby pomóc nam zidentyfikować Twoje priorytety.",
     "welcome-question-order": "Możesz odpowiadać w dowolnej kolejności",
-    "welcome-mark-questions": "Możesz zaznaczyć pytania, jeśli nie jesteś pewien swoich preferencji w danym temacie."
+    "welcome-mark-questions": "Możesz zaznaczyć pytania, jeśli nie jesteś pewien swoich preferencji w danym temacie.",
+    "old-version-not-found-alert": "Podany link odnosi się do starego wyniku, który niestety nie jest już dostępny."
 }

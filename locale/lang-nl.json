@@ -254,5 +254,6 @@
     "welcome-delete-order": "Je kunt antwoorden op elk moment verwijderen.",
     "welcome-mark-important": "Je kunt antwoorden als belangrijk markeren om ons te helpen je prioriteiten te herkennen.",
     "welcome-question-order": "Je kunt in willekeurige volgorde antwoorden",
-    "welcome-mark-questions": "Je kunt vragen markeren als je onzeker bent over je voorkeuren op een onderwerp."
+    "welcome-mark-questions": "Je kunt vragen markeren als je onzeker bent over je voorkeuren op een onderwerp.",
+    "old-version-not-found-alert": "Die link verwijst naar een oud resultaat dat helaas niet meer bestaat."
 }

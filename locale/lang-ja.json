@@ -254,5 +254,6 @@
     "welcome-delete-order": "回答はいつでも削除できます。",
     "welcome-mark-important": "重要だと回答に印をつけることで、あなたの優先事項を把握するのに役立ちます。",
     "welcome-question-order": "好きな順番で回答できます",
-    "welcome-mark-questions": "トピックについて迷っている場合は、質問にチェックを入れることができます。"
+    "welcome-mark-questions": "トピックについて迷っている場合は、質問にチェックを入れることができます。",
+    "old-version-not-found-alert": "このリンクは古い結果ですが、残念ながらもう使えません。"
 }

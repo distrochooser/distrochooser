@@ -254,5 +254,6 @@
     "welcome-delete-order": "Puedes borrar las respuestas en cualquier momento.",
     "welcome-mark-important": "Puedes marcar las respuestas como importantes para ayudarnos a identificar tus prioridades.",
     "welcome-question-order": "Puedes responder en cualquier orden",
-    "welcome-mark-questions": "Puedes marcar preguntas si no estás seguro de tus preferencias en un tema."
+    "welcome-mark-questions": "Puedes marcar preguntas si no estás seguro de tus preferencias en un tema.",
+    "old-version-not-found-alert": "Este enlace lleva a un resultado viejo que ya no está disponible."
 }
