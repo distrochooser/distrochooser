@@ -35,14 +35,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-2" />
-        <div class="col-xl-2 d-none d-xl-block ">
-          <div class="ms-5 sticky-top">
+        <div class="d-none d-xl-block col-xxl-2" />
+        <div class="col-xl-4 col-xxl-2 d-none d-xl-block ">
+          <div class="ms-3 mb-3 sticky-top">
             <SideNavigation />
           </div>
         </div>
-        <div class="col-12 col-xl-4">
-          <div class="page position-relative top-40 p-3">
+        <div class="col-12 col-xl-8 col-xxl-4">
+          <div class="page position-relative top-40 p-3 me-3">
             <RenderField />
           </div>
         </div>
