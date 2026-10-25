@@ -17,13 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <div class="row">
-        <div class="col text-center alert alert-danger" v-if="isOldResultId && isImportedResultPresent">
-            <LanguageTranslation translation-key="old-version-alert" />:
-            <a target="_blank" :href="oldVersionLink">{{ isImportedResultPresent }}</a>
-        </div>
-
-        <div class="col text-center alert alert-danger" v-if="isOldResultId && !isImportedResultPresent">
-            <LanguageTranslation translation-key="old-version-not-found-alert" />
+        <div :class="'col text-center alert ' + (ispreviousVersionUrlConfigured ? 'alert-info' : 'alert-danger')"
+            v-if="isOldResultId">
+            <div v-if="ispreviousVersionUrlConfigured">
+                <LanguageTranslation translation-key="old-version-alert" />:
+                <a target="_blank" :href="oldVersionLink">{{ oldVersionLink }}</a>
+            </div>
+            <div v-else>
+                <LanguageTranslation translation-key="old-version-not-found-alert" />
+            </div>
         </div>
     </div>
 </template>
@@ -37,7 +39,7 @@ const sessionStore = useSessionStore()
 
 const router = useRoute();
 const resultId: string | null = (router.params.resultId as string) ?? null;
-const isOldResultId = computed(() => !resultId.startsWith("d6")) /* General: Was a result requested? */
-const isImportedResultPresent = computed(() => sessionStore.previousVersionResultId !== null) /* Is an actual old result in db? */
-const oldVersionLink = computed(() => isImportedResultPresent.value ? sessionStore.session.previousVersionUrl + "/" + sessionStore.session.languageCode + "/" + sessionStore.previousVersionResultId : null)
+const isOldResultId = computed(() => !resultId.startsWith("d6")) /* Everything NOT prefixed with "d6" is considered old */
+const ispreviousVersionUrlConfigured = computed(() => sessionStore.session && sessionStore.session.previousVersionUrl) /* The backend can be configured to point to the "old" instance. If no instance is given, the error message will change */
+const oldVersionLink = computed(() => sessionStore.session.previousVersionUrl ? sessionStore.session.previousVersionUrl + "/" + sessionStore.session.languageCode + "/" + resultId : null)
 </script>
