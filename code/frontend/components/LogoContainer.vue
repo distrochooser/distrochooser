@@ -17,9 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <div class="row text-center">
-        <div class="col-5 d-none d-sm-block">
+        <div class="col-5">
         </div>
-        <div class="col-xl-2 col-sm-12">
+        <div class="col-2 col-xl-2">
             <Logo />
         </div>
     </div>
