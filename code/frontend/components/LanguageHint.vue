@@ -1,3 +1,20 @@
+<!--
+distrochooser
+Copyright (C) 2014-2026 Christoph Müller <distrochooser@chmr.eu>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <template>
     <div class="row mt-2 mb-2 g-0">
         <div class="col g-0 text-center alert alert-success alert-dismissible" v-if="browserLanguageAvailable">
