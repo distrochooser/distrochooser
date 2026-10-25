@@ -128,6 +128,10 @@ class Session(models.Model):
             return cached
         # To allow easier local debugging, we use .filter() instead of .get()
         non_cached = Session.objects.filter(result_id=result_id).first()
+
+        # If for any reasons there is no session with this ID, bail out
+        if not non_cached:
+            return None
         non_cached.cache()
         return non_cached
 

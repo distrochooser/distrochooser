@@ -36,7 +36,7 @@ from kuusi.settings import (
     ENABLE_TRANSLATION_MODE,
     ENABLE_FEEDBACK_MODE,
     PREVIOUS_VERSION_URL,
-    SCORE_MAP
+    SCORE_MAP,
 )
 from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
@@ -51,6 +51,7 @@ from web.models import (
 )
 from web.util import get_translation_haystack, TRANSLATIONS, get_translation
 from django.core.cache import cache
+
 
 def is_language_present(lang):
     found_lang = False
@@ -144,6 +145,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     score_map = serializers.SerializerMethodField()
 
     previous_version_url = serializers.CharField(default=PREVIOUS_VERSION_URL)
+
     class Meta:
         model = Session
         fields = (
@@ -171,8 +173,9 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "previous_version_url",
             "imported_from_session",
             "entry_point",
-            "score_map"
+            "score_map",
         )
+
     def get_is_translation_mode_enabled(self, _: None) -> bool:
         return ENABLE_TRANSLATION_MODE
 
@@ -189,7 +192,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         meta = KUUSI_META_TAGS.copy()
         meta["og:locale"] = obj.language_code
         return meta
-    
+
     def get_score_map(self, obj: Session) -> Dict:
         return SCORE_MAP
 
@@ -201,7 +204,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         if cached:
             return cached
 
-        count =  SESSION_NUMBER_OFFSET + Session.objects.filter(is_ack=True).count()
+        count = SESSION_NUMBER_OFFSET + Session.objects.filter(is_ack=True).count()
         cache.set(cache_key, count)
         return count
 
@@ -219,8 +222,6 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
 
     def get_default_language_values(self, obj: Session) -> Dict[str, str]:
         return get_translation_haystack(TRANSLATIONS, DEFAULT_LANGUAGE_CODE)
-
-    
 
 
 class SessionVersionSerializer(serializers.ModelSerializer):
@@ -372,7 +373,7 @@ class SessionViewSet(ViewSet):
                 description="See EntryPointChoice",
                 required=True,
                 type=OpenApiTypes.STR,
-                enum=Session.EntryPointChoice
+                enum=Session.EntryPointChoice,
             ),
         ],
         responses={
@@ -395,7 +396,7 @@ class SessionViewSet(ViewSet):
         old_session = None
         if old_result_id:
             old_session = Session.get(old_result_id)
-            if not session.session_origin:
+            if old_session and not session.session_origin:
                 # copy old meta values
                 values = MetaFilterValue.objects.filter(session=old_session)
 
