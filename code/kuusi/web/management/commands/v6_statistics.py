@@ -125,7 +125,7 @@ class Command(BaseCommand):
                 if day not in day_results:
                     day_results[day] = 0
                 day_results[day] += 1
-                if s.is_ack:
+                if s.is_ack and s.ack_date_time:
                     duration_sum += (s.ack_date_time - s.started).seconds
                 for prop in properties:
                     row_type = row_types[prop]
