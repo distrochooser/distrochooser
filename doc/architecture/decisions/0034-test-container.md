@@ -18,6 +18,6 @@ With 36e7c51c283dd2b37c2ff9f4f9260dd53b227d2f, the backend received an statistic
 
 There is a second request after initial session load, requiring to update the session a second time.
 
-To access the statistical data, the web interface must be available again from the internet. Therefore, a `ADMIN_PREFIX` will be non-empty (empty if `DEBUG` is set), to mask the URL of the admin interface.
+To access the statistical data, the web interface must be available again from the internet.
 
 To generate/ update this data, `python3 manage.py v6_statistics` must be triggered externally. 

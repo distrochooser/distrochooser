@@ -20,12 +20,6 @@ from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 from kuusi.settings import DEBUG
 
-from web.models.session import get_session_result_id
-
-ADMIN_PREFIX = get_session_result_id() if not DEBUG else ""
-
-print(f"Admin prefix is: {ADMIN_PREFIX}")
-
 from web.models import (
     GivenFeedback,
     MetaFilterValue,

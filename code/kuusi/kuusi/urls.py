@@ -34,7 +34,6 @@ from web.rest.session import MetaTagViewset, SessionViewSet
 from web.rest.widget import WidgetViewSet
 from web.rest.feedback import GivenFeedbackViewset
 from web.routes.web import route_outgoing
-from web.admin import ADMIN_PREFIX
 
 router = routers.SimpleRouter()  # type: ignore
 router.register(r"session", SessionViewSet)
@@ -89,7 +88,7 @@ urlpatterns = (
             name="swagger-ui",
         ),
         path("out/<id>/<property>/", route_outgoing, name="route_outgoing"),
-        path(f"admin{ADMIN_PREFIX}", admin.site.urls),
+        path(f"admin", admin.site.urls),
     ]
     + static(STATIC_URL, document_root=STATIC_ROOT, show_indexes=True)
     + (
