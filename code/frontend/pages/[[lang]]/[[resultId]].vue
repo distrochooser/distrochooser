@@ -93,7 +93,7 @@ onMounted(async () => {
   setTimeout(() => {
     sessionStore.containerVisible = document.querySelector("#ad-slot-1").getBoundingClientRect().height > 0
     sessionStore.updateSession(sessionStore.session.version)
-  }, 10000)
+  }, 1000)
 });
 
 const loading = computed(() => sessionStore.isLoading)
