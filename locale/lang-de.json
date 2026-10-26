@@ -255,5 +255,6 @@
     "welcome-mark-important": "Du kannst Antworten als wichtig markieren, damit wir deine Prioritäten erkennen können.",
     "welcome-question-order": "Du kannst in beliebiger Reihenfolge antworten",
     "welcome-mark-questions": "Du kannst Fragen markieren, wenn du bei einem Thema unsicher bist.",
-    "old-version-not-found-alert": "Dieser Link führt zu einem alten Ergebnis, das leider nicht mehr verfügbar ist."
+    "old-version-not-found-alert": "Dieser Link führt zu einem alten Ergebnis, das leider nicht mehr verfügbar ist.",
+    "old-version-migrated-fallback-alert": "Wir haben die Antworten auf diese Version migriert. Da sich die Struktur leicht unterscheidet, kann das Ergebnis variieren."
 }

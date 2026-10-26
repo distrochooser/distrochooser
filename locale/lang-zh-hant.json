@@ -255,5 +255,6 @@
     "welcome-mark-important": "你可以標記重要的答案，幫助我們識別你的優先事項。",
     "welcome-question-order": "您可以按任意順序回答",
     "welcome-mark-questions": "如果您不確定某個主題的偏好，您可以標記該問題。",
-    "old-version-not-found-alert": "這個連結指向的結果是舊的，很抱歉它已經失效了。"
+    "old-version-not-found-alert": "這個連結指向的結果是舊的，很抱歉它已經失效了。",
+    "old-version-migrated-fallback-alert": "我們已將答案遷移到此版本。由於結構略有不同，結果可能會有所不同。"
 }

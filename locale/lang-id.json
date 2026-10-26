@@ -255,5 +255,6 @@
     "welcome-mark-important": "Anda bisa menandai jawaban sebagai penting untuk membantu kami mengidentifikasi prioritas Anda.",
     "welcome-question-order": "Anda bisa menjawab dalam urutan acak",
     "welcome-mark-questions": "Anda dapat menandai pertanyaan jika Anda tidak yakin tentang preferensi Anda pada suatu topik.",
-    "old-version-not-found-alert": "Tautan yang disediakan mengacu pada hasil lama yang sayangnya sudah tidak tersedia lagi."
+    "old-version-not-found-alert": "Tautan yang disediakan mengacu pada hasil lama yang sayangnya sudah tidak tersedia lagi.",
+    "old-version-migrated-fallback-alert": "Kami telah memigrasikan jawaban ke versi ini. Karena strukturnya sedikit berbeda, hasilnya mungkin berbeda."
 }

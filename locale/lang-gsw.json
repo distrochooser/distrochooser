@@ -255,5 +255,6 @@
     "welcome-mark-important": "Du chasch d Antworte als wichtig markiere, zum eus dini Prioritäte z'finde.",
     "welcome-question-order": "Du chasch in beliegiger Ornig antworte",
     "welcome-mark-questions": "Du chasch d’Frage markiere, wänn du nöd sicher bisch bi eme Thema.",
-    "old-version-not-found-alert": "Ili link ukhona ngenqondo yomphumela omdala, kodwa ingabe singase usebenzi. (Note: Gswaran/Swazi translation focusing on function/context)"
+    "old-version-not-found-alert": "Ili link ukhona ngenqondo yomphumela omdala, kodwa ingabe singase usebenzi. (Note: Gswaran/Swazi translation focusing on function/context)",
+    "old-version-migrated-fallback-alert": "Mir g'migrierte d'Antworte uf di Version. Will d'Struktuure chli underschiedlich si, cha s'Ergäbnis variiere."
 }

@@ -255,5 +255,6 @@
     "welcome-mark-important": "Je kunt antwoorden als belangrijk markeren om ons te helpen je prioriteiten te herkennen.",
     "welcome-question-order": "Je kunt in willekeurige volgorde antwoorden",
     "welcome-mark-questions": "Je kunt vragen markeren als je onzeker bent over je voorkeuren op een onderwerp.",
-    "old-version-not-found-alert": "Die link verwijst naar een oud resultaat dat helaas niet meer bestaat."
+    "old-version-not-found-alert": "Die link verwijst naar een oud resultaat dat helaas niet meer bestaat.",
+    "old-version-migrated-fallback-alert": "We hebben de antwoorden gemigreerd naar deze versie. Omdat de structuur licht verschilt, kan het resultaat variëren."
 }

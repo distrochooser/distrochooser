@@ -255,5 +255,6 @@
     "welcome-mark-important": "Svoje odgovore lahko označiš kot pomembne, da nam pomagaš identificirati svoje prioritete.",
     "welcome-question-order": "Slobodno odgovorite v proizvolnem vrstnem zaporedju",
     "welcome-mark-questions": "Lahkoči označite vprašanja, če niste prepričan o svojih preferencah na določenem temi.",
-    "old-version-not-found-alert": "Navedena povezava se nanaša na staro rezultato, ki ni je na žalost več na voljo."
+    "old-version-not-found-alert": "Navedena povezava se nanaša na staro rezultato, ki ni je na žalost več na voljo.",
+    "old-version-migrated-fallback-alert": "Migrirali smo odgovore v to verzijo. Ker struktura malo razlikuje, rezultati se lahko razlikujejo."
 }

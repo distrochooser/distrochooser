@@ -255,5 +255,6 @@
     "welcome-mark-important": "Voit merkitä vastaukset tärkeiksi auttaaksesi meitä tunnistamaan prioriteettisi.",
     "welcome-question-order": "Voit vastata mielivaltaisessa järjestyksessä",
     "welcome-mark-questions": "Voit merkitä kysymyksiä, jos olet epävarma mielipiteistäsi jossain aiheessa.",
-    "old-version-not-found-alert": "Tarjottu linkki viittaa vanhaan tulokseen, joka valitettavasti ei ole enää saatavilla."
+    "old-version-not-found-alert": "Tarjottu linkki viittaa vanhaan tulokseen, joka valitettavasti ei ole enää saatavilla.",
+    "old-version-migrated-fallback-alert": "Olemme siirtäneet vastaukset tähän versioon. Koska rakenne eroaa hieman, tulos voi vaihdella."
 }
