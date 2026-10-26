@@ -23,6 +23,7 @@ from tqdm import tqdm
 from django.utils.timezone import now
 from django.utils.dateparse import parse_datetime
 from datetime import timedelta
+from calendar import monthrange
 
 
 class Command(BaseCommand):
@@ -43,9 +44,15 @@ class Command(BaseCommand):
             start_date = parse_datetime(f"{year}-01-01 00:00:00").astimezone()
             end_date = parse_datetime(f"{year}-12-31 23:59:59").astimezone()
         else:
+            now_date = now()
 
             end_date = (
-                now()
+                now_date.replace(
+                    day=monthrange(now_date.year, now_date.month)[1],
+                    hour=23,
+                    minute=59,
+                    second=59,
+                )
                 if not options["end_date"]
                 else parse_datetime(options["end_date"])
             ).astimezone()
@@ -56,8 +63,6 @@ class Command(BaseCommand):
                 start_date = end_date.replace(
                     day=1, hour=0, minute=0, second=0, microsecond=0
                 )
-        if (end_date - start_date).days <= 1:
-            raise Exception("Invalid dates")
 
         print(
             f"Timespan is {colored(start_date, 'magenta')} to {colored(end_date, 'red')}"
@@ -70,9 +75,7 @@ class Command(BaseCommand):
         timeframe_groups = {}
 
         for session in tqdm(sessions):
-            month_str = session.started.strftime(
-                "%Y-%m"
-            )  # TODO: Derive from timeframe_type
+            month_str = session.started.strftime("%Y-%m")
             if month_str not in timeframe_groups:
                 timeframe_groups[month_str] = []
 
@@ -85,10 +88,24 @@ class Command(BaseCommand):
         key_str: str
         sessions: list[Session]
         for key_str, sessions in timeframe_groups.items():
+            relative_start_str = f"{key_str}-01"
+            relative_start = parse_datetime(relative_start_str).astimezone()
+
+            end_day = monthrange(relative_start.year, relative_start.month)[1]
+            relative_end_str = f"{key_str}-{end_day}"
+            relative_end = parse_datetime(relative_end_str).astimezone()
+
+            start_to_use = relative_start if relative_start > start_date else start_date
+            end_to_use = relative_end if relative_end < end_date else end_date
+
+            print(
+                f"Package timespan is {colored(start_to_use, 'magenta')} to {colored(end_to_use, 'red')}"
+            )
+
             is_existing = (
                 TimeFrame.objects.filter(
-                    date=start_date,
-                    end_date=end_date,
+                    date=start_to_use,
+                    end_date=end_to_use,
                     time_frame_type=timeframe_type,
                 ).count()
                 > 0
@@ -97,15 +114,15 @@ class Command(BaseCommand):
             if not is_existing:
                 frame = TimeFrame(
                     time_frame_type=timeframe_type,
-                    end_date=end_date,
-                    date=start_date,
+                    end_date=end_to_use,
+                    date=start_to_use,
                 )
                 frame.save()
 
             frame = TimeFrame.objects.get(
                 time_frame_type=timeframe_type,
-                date=start_date,
-                end_date=end_date,
+                date=start_to_use,
+                end_date=end_to_use,
             )
 
             ## Generic informations
