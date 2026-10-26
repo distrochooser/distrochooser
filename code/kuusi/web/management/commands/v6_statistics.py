@@ -29,23 +29,33 @@ class Command(BaseCommand):
     help = "Generate statistics"
 
     def add_arguments(self, parser: CommandParser):
-        parser.add_argument("end_date", type=str, nargs="?")
+        parser.add_argument("--start_date", type=str, nargs="?")
+        parser.add_argument("--end_date", type=str, nargs="?")
         parser.add_argument("--year", type=int, nargs="?")
 
     def handle(self, *args, **options):
         year = options["year"]
+        timeframe_type = TimeFrame.TimeFrameType.MONTH
+        end_date = None
+        start_date = None
+        start_option = options["start_date"]
         if year:
             start_date = parse_datetime(f"{year}-01-01 00:00:00").astimezone()
             end_date = parse_datetime(f"{year}-12-31 23:59:59").astimezone()
         else:
+
             end_date = (
                 now()
                 if not options["end_date"]
                 else parse_datetime(options["end_date"])
             ).astimezone()
-            start_date = end_date.replace(
-                day=1, hour=0, minute=0, second=0, microsecond=0
-            )
+            if start_option:
+                start_date = parse_datetime(start_option).astimezone()
+                timeframe_type = TimeFrame.TimeFrameType.INTERVAL
+            else:
+                start_date = end_date.replace(
+                    day=1, hour=0, minute=0, second=0, microsecond=0
+                )
         if (end_date - start_date).days <= 1:
             raise Exception("Invalid dates")
 
@@ -56,8 +66,6 @@ class Command(BaseCommand):
             started__gte=start_date, started__lte=end_date
         ).order_by("started")
         print(f"Found {colored(sessions.count(), "magenta")} session")
-
-        timeframe_type = TimeFrame.TimeFrameType.MONTH
 
         timeframe_groups = {}
 
@@ -79,7 +87,10 @@ class Command(BaseCommand):
         for key_str, sessions in timeframe_groups.items():
             start_date = parse_datetime(f"{key_str}-01 00:00:00").astimezone()
             is_existing = (
-                TimeFrame.objects.filter(name=key_str, date=start_date).count() > 0
+                TimeFrame.objects.filter(
+                    name=key_str, date=start_date, time_frame_type=timeframe_type
+                ).count()
+                > 0
             )
 
             if not is_existing:

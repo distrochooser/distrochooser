@@ -29,6 +29,7 @@ class TimeFrame(models.Model):
 
     class TimeFrameType(models.TextChoices):
         MONTH = "MONTH", "MONTH"
+        INTERVAL = "INTERVAL", "INTERVAL"
 
     time_frame_type = models.CharField(
         max_length=10,
@@ -50,7 +51,7 @@ class TimeFrame(models.Model):
             TimeFrameRow.objects.filter(
                 time_frame=self,
                 row_type=TimeFrameRow.TimeFrameRowType.ALL_COUNT,
-                time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame__time_frame_type=self.time_frame_type,
             )
             .first()
             .row_value_with_ack
@@ -65,25 +66,25 @@ class TimeFrame(models.Model):
         all_count = TimeFrameRow.objects.filter(
             time_frame=self,
             row_type=TimeFrameRow.TimeFrameRowType.ALL_COUNT,
-            time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+            time_frame__time_frame_type=self.time_frame_type,
         ).first()
         return int(all_count.row_value_no_ack) + int(all_count.row_value_with_ack)
 
     @property
     def hit_diff(self) -> int:
-        previous_month = (
+        previous_entry = (
             TimeFrame.objects.order_by("date")
             .filter(
                 date__lt=self.date,
-                time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame_type=self.time_frame_type,
             )
             .last()
         )
-        if previous_month:
-            result = self.hit_count - previous_month.hit_count
+        if previous_entry:
+            result = self.hit_count - previous_entry.hit_count
             return f"+{result}" if result > 0 else result
         else:
-            return 0
+            return self.hit_count
 
     @property
     def hits(self) -> str:
@@ -101,7 +102,7 @@ class TimeFrame(models.Model):
             TimeFrame.objects.order_by("date")
             .filter(
                 date__lt=self.date,
-                time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame_type=self.time_frame_type,
             )
             .last()
         )
@@ -121,7 +122,7 @@ class TimeFrame(models.Model):
             TimeFrame.objects.order_by("date")
             .filter(
                 date__lt=self.date,
-                time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame_type=self.time_frame_type,
             )
             .last()
         )
@@ -136,7 +137,7 @@ class TimeFrame(models.Model):
         return TimeFrameRow.objects.filter(
             time_frame=self,
             row_type=TimeFrameRow.TimeFrameRowType.REFERRER,
-            time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+            time_frame__time_frame_type=self.time_frame_type,
         ).count()
 
     @property
@@ -145,7 +146,7 @@ class TimeFrame(models.Model):
             TimeFrame.objects.order_by("date")
             .filter(
                 date__lt=self.date,
-                time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame_type=self.time_frame_type,
             )
             .last()
         )
@@ -161,7 +162,7 @@ class TimeFrame(models.Model):
             TimeFrameRow.objects.filter(
                 time_frame=self,
                 row_type=TimeFrameRow.TimeFrameRowType.DOMAIN,
-                time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame__time_frame_type=self.time_frame_type,
             )
             .order_by("-row_value_with_ack")
             .first()
@@ -174,7 +175,7 @@ class TimeFrame(models.Model):
             TimeFrameRow.objects.filter(
                 time_frame=self,
                 row_type=TimeFrameRow.TimeFrameRowType.DOMAIN,
-                time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame__time_frame_type=self.time_frame_type,
             )
             .order_by("-row_value_no_ack")
             .first()
@@ -186,7 +187,7 @@ class TimeFrame(models.Model):
         got = TimeFrameRow.objects.filter(
             time_frame=self,
             row_type=TimeFrameRow.TimeFrameRowType.TOP_DAY,
-            time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+            time_frame__time_frame_type=self.time_frame_type,
         ).first()
         day_of_week = self.date.replace(day=int(got.row_key)).strftime("%a")
         if not got:
@@ -199,7 +200,7 @@ class TimeFrame(models.Model):
         got = TimeFrameRow.objects.filter(
             time_frame=self,
             row_type=TimeFrameRow.TimeFrameRowType.WORST_DAY,
-            time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+            time_frame__time_frame_type=self.time_frame_type,
         ).first()
         day_of_week = self.date.replace(day=int(got.row_key)).strftime("%a")
         if not got:
@@ -213,7 +214,7 @@ class TimeFrame(models.Model):
             TimeFrameRow.objects.filter(
                 time_frame=self,
                 row_type=TimeFrameRow.TimeFrameRowType.OS,
-                time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame__time_frame_type=self.time_frame_type,
             )
             .order_by("-row_value_with_ack")
             .first()
@@ -227,7 +228,7 @@ class TimeFrame(models.Model):
             TimeFrameRow.objects.filter(
                 time_frame=self,
                 row_type=TimeFrameRow.TimeFrameRowType.OS,
-                time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame__time_frame_type=self.time_frame_type,
             )
             .order_by("-row_value_no_ack")
             .first()
@@ -241,7 +242,7 @@ class TimeFrame(models.Model):
             TimeFrameRow.objects.filter(
                 time_frame=self,
                 row_type=TimeFrameRow.TimeFrameRowType.DURATION,
-                time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame__time_frame_type=self.time_frame_type,
             )
             .order_by("-row_value_with_ack")
             .first()
@@ -255,7 +256,7 @@ class TimeFrame(models.Model):
             TimeFrame.objects.order_by("date")
             .filter(
                 date__lt=self.date,
-                time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame_type=self.time_frame_type,
             )
             .last()
         )
@@ -272,7 +273,7 @@ class TimeFrame(models.Model):
             TimeFrameRow.objects.filter(
                 time_frame=self,
                 row_type=TimeFrameRow.TimeFrameRowType.CTR_TEST,
-                time_frame__time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame__time_frame_type=self.time_frame_type,
             )
             .order_by("-row_value_with_ack")
             .first()
@@ -289,7 +290,7 @@ class TimeFrame(models.Model):
             TimeFrame.objects.order_by("date")
             .filter(
                 date__lt=self.date,
-                time_frame_type=TimeFrame.TimeFrameType.MONTH,
+                time_frame_type=self.time_frame_type,
             )
             .last()
         )
@@ -302,7 +303,7 @@ class TimeFrame(models.Model):
                 f"{self.container_visiblility_raw}% ({"+" if diff > 0 else ""}{diff}%)"
             )
 
-        return f"{self.container_visiblility_raw}"
+        return f"{self.container_visiblility_raw}%"
 
 
 class TimeFrameRow(models.Model):
