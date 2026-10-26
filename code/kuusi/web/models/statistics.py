@@ -26,6 +26,7 @@ from datetime import timedelta
 class TimeFrame(models.Model):
     name = models.CharField(blank=False, null=False)
     date = models.DateField(blank=True, null=True, default=None)
+    end_date = models.DateField(blank=True, null=True, default=None)
 
     class TimeFrameType(models.TextChoices):
         MONTH = "MONTH", "MONTH"

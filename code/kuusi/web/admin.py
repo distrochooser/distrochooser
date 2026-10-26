@@ -92,6 +92,7 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "year",
         "time_frame_type",
         "date",
+        "end_date",
         "hits",
         "results",
         "container_visiblility",

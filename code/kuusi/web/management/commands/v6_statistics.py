@@ -85,22 +85,27 @@ class Command(BaseCommand):
         key_str: str
         sessions: list[Session]
         for key_str, sessions in timeframe_groups.items():
-            start_date = parse_datetime(f"{key_str}-01 00:00:00").astimezone()
             is_existing = (
                 TimeFrame.objects.filter(
-                    name=key_str, date=start_date, time_frame_type=timeframe_type
+                    date=start_date,
+                    end_date=end_date,
+                    time_frame_type=timeframe_type,
                 ).count()
                 > 0
             )
 
             if not is_existing:
                 frame = TimeFrame(
-                    name=key_str, time_frame_type=timeframe_type, date=start_date
+                    time_frame_type=timeframe_type,
+                    end_date=end_date,
+                    date=start_date,
                 )
                 frame.save()
 
             frame = TimeFrame.objects.get(
-                name=key_str, time_frame_type=timeframe_type, date=start_date
+                time_frame_type=timeframe_type,
+                date=start_date,
+                end_date=end_date,
             )
 
             ## Generic informations
