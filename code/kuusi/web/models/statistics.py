@@ -40,7 +40,7 @@ class TimeFrame(models.Model):
     )
 
     def __str__(self) -> str:
-        return f"{self.time_frame_type}: {self.name}"
+        return f"{self.time_frame_type}: {self.date}-{self.end_date}"
 
     @property
     def year(self) -> int:
@@ -69,7 +69,7 @@ class TimeFrame(models.Model):
             row_type=TimeFrameRow.TimeFrameRowType.ALL_COUNT,
             time_frame__time_frame_type=self.time_frame_type,
         ).first()
-        return int(all_count.row_value_no_ack) + int(all_count.row_value_with_ack)
+        return int(all_count.row_value_no_ack)
 
     @property
     def hit_diff(self) -> int:
@@ -283,7 +283,7 @@ class TimeFrame(models.Model):
         all_count = self.hit_count + self.result_count
         if all_count == 0:
             return 0
-        return round(visibility_count / all_count, 5)
+        return round((visibility_count / all_count) * 100, 5)
 
     @property
     def container_visiblility(self) -> str:

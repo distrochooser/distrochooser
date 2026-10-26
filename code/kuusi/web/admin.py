@@ -107,6 +107,7 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "top_hit_os",
     )
     ordering = ("-time_frame_type", "date")
+    list_filter = ["time_frame_type"]
 
 
 class ZeroAckFilter(SimpleListFilter):
