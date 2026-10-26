@@ -92,6 +92,8 @@ class Session(models.Model):
     imported_from_session = models.CharField(
         max_length=10, default=None, null=True, blank=True
     )
+    # See ADR-0034
+    is_container_visible = models.BooleanField(default=False)
 
     def get_meta_value(self, key: str) -> str | None:
         matches = SessionMeta.objects.filter(session=self, meta_key=key)

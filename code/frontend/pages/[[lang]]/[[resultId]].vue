@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <Navigation />
         </div>
       </div>
-      <div class="row">
+      <div class=" row">
         <div class="d-none d-xl-block col-xxl-2" />
         <div class="col-xl-4 col-xxl-2 d-none d-xl-block ">
           <div class="ms-3 mb-3 sticky-top">
@@ -47,6 +47,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
           <div class="page position-relative top-40 p-3 me-3" v-if="sessionStore.session">
 
             <RenderField />
+          </div>
+          <div class="text-center">
+            <div id="ad-slot-1" class="ad-container test-container">
+              <!-- See ADR-0034 -->
+            </div>
           </div>
         </div>
       </div>
@@ -85,6 +90,10 @@ onMounted(async () => {
   } else {
     await sessionStore.createSession(lang, EntryPointEnum.Startpage, id);
   }
+  setTimeout(() => {
+    sessionStore.containerVisible = document.querySelector("#ad-slot-1").getBoundingClientRect().height > 0
+    sessionStore.updateSession(sessionStore.session.version)
+  }, 10000)
 });
 
 const loading = computed(() => sessionStore.isLoading)
@@ -118,5 +127,13 @@ body[data-bs-theme='light'] {
     padding: 1em;
     color: black;
   }
+}
+
+.test-container {
+  width: 728px;
+  height: 90px;
+  margin: 0 auto;
+  margin-top: 0px;
+  margin-top: 1em;
 }
 </style>

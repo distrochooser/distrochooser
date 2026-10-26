@@ -45,6 +45,7 @@ interface SessionState {
     mustHaveAssignment: boolean;
     darkModeControlledByUser: boolean;
     previousVersionResultId: string | null;
+    containerVisible: boolean;
 }
 let sessionApi: SessionApi = null;
 
@@ -73,7 +74,8 @@ export const useSessionStore = defineStore('websiteStore', {
         isDarkMode: false,
         mustHaveAssignment: true,
         darkModeControlledByUser: false,
-        previousVersionResultId: null
+        previousVersionResultId: null,
+        containerVisible: false
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -337,7 +339,8 @@ export const useSessionStore = defineStore('websiteStore', {
                 id: this.session.id,
                 lang: this.session.languageCode,
                 resultId: this.session.resultId,
-                versionId: sessionVersion
+                versionId: sessionVersion,
+                isContainerVisible: this.containerVisible
             })
             await this.updatePages()
         },

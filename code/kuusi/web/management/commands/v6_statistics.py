@@ -22,6 +22,7 @@ from termcolor import colored
 from tqdm import tqdm
 from django.utils.timezone import now
 from django.utils.dateparse import parse_datetime
+from datetime import timedelta
 
 
 class Command(BaseCommand):
@@ -45,7 +46,6 @@ class Command(BaseCommand):
             start_date = end_date.replace(
                 day=1, hour=0, minute=0, second=0, microsecond=0
             )
-
         if (end_date - start_date).days <= 1:
             raise Exception("Invalid dates")
 
@@ -95,7 +95,16 @@ class Command(BaseCommand):
             ## Generic informations
 
             all_count = len(sessions)
-            with_ack_count = len(list(filter(lambda s: s.is_ack, sessions)))
+            all_with_ack_count = len(list(filter(lambda s: s.is_ack, sessions)))
+
+            container_visible_with_ack = len(
+                list(filter(lambda s: s.is_ack and s.is_container_visible, sessions))
+            )
+            container_visible_no_ack = len(
+                list(
+                    filter(lambda s: not s.is_ack and s.is_container_visible, sessions)
+                )
+            )
 
             language_codes = {}
             entry_points = {}
@@ -110,12 +119,14 @@ class Command(BaseCommand):
             }
 
             day_results = {}
-
+            duration_sum = 0
             for s in tqdm(sessions):
                 day = s.started.strftime("%d")
                 if day not in day_results:
                     day_results[day] = 0
                 day_results[day] += 1
+                if s.is_ack:
+                    duration_sum += (s.ack_date_time - s.started).seconds
                 for prop in properties:
                     row_type = row_types[prop]
 
@@ -128,6 +139,7 @@ class Command(BaseCommand):
                             prop_map[item_type] = {}
                         if prop_value not in prop_map[item_type]:
                             prop_map[item_type][prop_value] = [0, 0]
+
                         with_ack_count = prop_map[item_type][prop_value][0] + (
                             1 if s.is_ack else 0
                         )
@@ -155,15 +167,20 @@ class Command(BaseCommand):
             TimeFrameRow(
                 time_frame=frame,
                 row_type=TimeFrameRow.TimeFrameRowType.ALL_COUNT,
-                row_value_with_ack=with_ack_count,
-                row_value_no_ack=all_count - with_ack_count,
+                row_value_with_ack=all_with_ack_count,
+                row_value_no_ack=all_count - all_with_ack_count,
             ).save()
             top_day_key = None
             top_day_sessions = 0
+            worst_day_key = None
+            worst_day_sessions = 9999999999999999999999
             for day, session_count in day_results.items():
                 if session_count > top_day_sessions:
                     top_day_key = day
                     top_day_sessions = session_count
+                if session_count < worst_day_sessions:
+                    worst_day_sessions = session_count
+                    worst_day_key = day
 
             TimeFrameRow(
                 time_frame=frame,
@@ -171,4 +188,31 @@ class Command(BaseCommand):
                 row_key=top_day_key,
                 row_value_with_ack=top_day_sessions,
                 row_value_no_ack=0,
+            ).save()
+
+            TimeFrameRow(
+                time_frame=frame,
+                row_type=TimeFrameRow.TimeFrameRowType.WORST_DAY,
+                row_key=worst_day_key,
+                row_value_with_ack=worst_day_sessions,
+                row_value_no_ack=0,
+            ).save()
+
+            average_duration = 0
+            if all_with_ack_count > 0:
+                average_duration = duration_sum / all_with_ack_count
+            TimeFrameRow(
+                time_frame=frame,
+                row_type=TimeFrameRow.TimeFrameRowType.DURATION,
+                row_key=None,
+                row_value_with_ack=average_duration,
+                row_value_no_ack=0,
+            ).save()
+
+            TimeFrameRow(
+                time_frame=frame,
+                row_type=TimeFrameRow.TimeFrameRowType.CTR_TEST,
+                row_key=None,
+                row_value_with_ack=container_visible_with_ack,
+                row_value_no_ack=container_visible_no_ack,
             ).save()

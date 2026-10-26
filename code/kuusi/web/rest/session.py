@@ -289,6 +289,14 @@ class SessionViewSet(ViewSet):
                 description="The language code to translate this values",
                 required=False,
             ),
+            OpenApiParameter(
+                "is_container_visible",
+                OpenApiTypes.BOOL,
+                OpenApiParameter.QUERY,
+                description="The language code to translate this values",
+                required=False,
+                default=False,
+            ),
         ],
         responses={
             status.HTTP_200_OK: SessionSerializer,
@@ -313,6 +321,12 @@ class SessionViewSet(ViewSet):
             else:
                 version = versions[0]
 
+        container_update_needed = (
+            request.query_params.get("is_container_visible", "") != ""
+        )
+        is_container_visible: bool = (
+            request.query_params.get("is_container_visible", "") == "true"
+        )
         sessions = Session.objects.filter(pk=pk)
 
         session = sessions.first()
@@ -326,6 +340,9 @@ class SessionViewSet(ViewSet):
         # TODO: This is a side effect. Find something more elegant
         if session.language_code != lang:
             LanguageFeedback.objects.filter(session=session).delete()
+
+        if container_update_needed:
+            session.is_container_visible = is_container_visible
 
         session.language_code = lang
         # TODO: Fix typing warning

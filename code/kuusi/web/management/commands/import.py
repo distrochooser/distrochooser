@@ -15,15 +15,16 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 from typing import List, Tuple, Dict
 from os.path import exists
 from web.models import Session, FacetteSelection, Facette, GivenFeedback
 from web.management.commands.languagefeedback import Command as LanguageCommand
-from django.core.management.base import BaseCommand 
+from django.core.management.base import BaseCommand
 from logging import getLogger
 from os.path import join, dirname, basename
 from os import listdir
-from kuusi.settings import  AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_CODE
+from kuusi.settings import AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_CODE
 from termcolor import colored
 from json import loads, dumps
 from tqdm import tqdm
@@ -64,20 +65,26 @@ ANSWER_MAP = {
     61: "software-admin-answer-console",
     60: "app-store-gui",
     63: "prefer-stable",
-    62: "prefer-fast"
+    62: "prefer-fast",
 }
 
 CHUNK_SIZE = 100000
+
+
 class Command(BaseCommand):
     help = "Import a given set of Sessions from v5 into the database"
 
     def add_arguments(self, parser):
-        parser.add_argument("user_session_path",  type=str)
+        parser.add_argument("user_session_path", type=str)
         parser.add_argument("given_answer_path", type=str)
-        parser.add_argument("start_date", type=str) # Use UTC here, if an empty string is porvided, it is ignored
+        parser.add_argument(
+            "start_date", type=str, nargs="?"
+        )  # Use UTC here, if an empty string is porvided, it is ignored
 
     def handle(self, *args, **options):
-        print(f'Distrochooser {colored("v5", "light_cyan")} to {colored("v6", "green")} import')
+        print(
+            f'Distrochooser {colored("v5", "light_cyan")} to {colored("v6", "green")} import'
+        )
         user_session_path = options["user_session_path"]
         given_answer_path = options["given_answer_path"]
         start_date_raw = options["start_date"]
@@ -86,50 +93,54 @@ class Command(BaseCommand):
 
     def _is_language_present(self, needle: str) -> bool:
         for key, value in AVAILABLE_LANGUAGES:
-            if key == needle: 
+            if key == needle:
                 return True
         return False
 
-
-    def import_sessions(self, path: str, given_answer_path: str, start_date: datetime | None):
+    def import_sessions(
+        self, path: str, given_answer_path: str, start_date: datetime | None
+    ):
         # clean up imported sessiont o prevent redundancies
         given_answers = []
 
-        # Map the ANSWER_MAP to _actual_ objects in the database 
+        # Map the ANSWER_MAP to _actual_ objects in the database
         # to avoid having to query per given answer over and over
         runtime_answer_map = {}
         for key, value in ANSWER_MAP.items():
             runtime_answer_map[key] = Facette.objects.get(catalogue_id=value)
-            print(f"Mapped facette {colored(key, 'yellow')} to {colored(value, 'green')}")
-
-
+            print(
+                f"Mapped facette {colored(key, 'yellow')} to {colored(value, 'green')}"
+            )
 
         # Parse the raw answer and session files
-        answers =  []
+        answers = []
         with open(given_answer_path, "r") as file:
             answers = loads(file.read())
             answers_count = len(answers)
             print(f"Found {colored(answers_count, 'light_blue')} given answers.")
 
-        sessions =  []
+        sessions = []
         with open(path, "r") as file:
             sessions = loads(file.read())
             session_count = len(sessions)
             print(f"Found {colored(session_count, 'light_blue')} sessions.")
             if start_date is not None:
-                sessions =  [s for s in sessions if parse(s["fields"]["dateTime"]) >= start_date]
+                sessions = [
+                    s for s in sessions if parse(s["fields"]["dateTime"]) >= start_date
+                ]
                 session_count = len(sessions)
-                print(f"Found {colored(session_count, 'light_blue')} sessions after cutoff start date {colored(start_date, 'magenta')}")
+                print(
+                    f"Found {colored(session_count, 'light_blue')} sessions after cutoff start date {colored(start_date, 'magenta')}"
+                )
             else:
                 print(f"{colored('Ignoring cutoff date.', 'red')}")
             sessions.sort(key=lambda s: s["pk"], reverse=False)
 
-
         # Step 1: Create sessions
         # Also collect remarks for later creation
 
-        new_sessions = [] # new session objects meant to bre created
-        remarks = {} # remarks to be created
+        new_sessions = []  # new session objects meant to bre created
+        remarks = {}  # remarks to be created
 
         session_map = {}
         sessionion_obj: Dict
@@ -147,11 +158,10 @@ class Command(BaseCommand):
             remark_text = session_obj["fields"]["remarks"]
 
             # As the sessions are created in bulk
-            # The texts and the old ids will be collected 
+            # The texts and the old ids will be collected
             # And created later on
             if remark_text is not None:
                 remarks[session_id] = remark_text
-
 
             # Create the bulk creation objects for the new sessions
             new_session = Session(
@@ -162,7 +172,11 @@ class Command(BaseCommand):
                 is_ack=is_ack,
                 language_code=language,
                 imported_from_session=session_id,
-                ack_date_time=parse(session_obj["fields"]["calculationEndTime"]) if is_ack else None
+                ack_date_time=(
+                    parse(session_obj["fields"]["calculationEndTime"])
+                    if is_ack
+                    else None
+                ),
             )
 
             new_sessions.append(new_session)
@@ -176,7 +190,7 @@ class Command(BaseCommand):
         # Step 2: Create answers fro the given sessions
 
         print(f"Found {colored(len(answers), 'magenta')} given answers.")
-        # Store the given answers as selections 
+        # Store the given answers as selections
         selections = []
         for answer in tqdm(answers):
             answer_id = answer["pk"]
@@ -189,18 +203,15 @@ class Command(BaseCommand):
                     facette=runtime_answer_map[answer_pk],
                     session_id=session_map[session_id],
                     weight=2 if is_important else 0,
-                    imported_from_answer=answer_id
-                )  
+                    imported_from_answer=answer_id,
+                )
                 selections.append(selection)
 
-            
             if len(selections) == 1000:
                 FacetteSelection.objects.bulk_create(selections)
                 selections = []
 
-
-            
-        # Store the remarks 
+        # Store the remarks
         # after the sessions are actually stored
         remarks_count = remarks.keys().__len__()
         print(f"Found {colored(remarks_count, 'cyan')} remarks")
@@ -208,6 +219,6 @@ class Command(BaseCommand):
             if old_id in session_map:
                 obj = GivenFeedback(
                     session_id=session_map[old_id],
-                    text=f"Migrated from v5: {remark_text}"
+                    text=f"Migrated from v5: {remark_text}",
                 )
                 obj.save()

@@ -18,6 +18,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
+from kuusi.settings import DEBUG
+
+from web.models.session import get_session_result_id
+
+ADMIN_PREFIX = get_session_result_id() if not DEBUG else ""
+
+print(f"Admin prefix is: {ADMIN_PREFIX}")
 
 from web.models import (
     GivenFeedback,
@@ -58,6 +65,7 @@ class SessionAdmin(admin.ModelAdmin):
         "language_code",
         "result_id",
         "user_agent",
+        "is_container_visible",
         "is_ack",
         "imported_from_session",
     )
@@ -88,13 +96,20 @@ class FacetteAdmin(admin.ModelAdmin):
 class TimeFrameAdmin(admin.ModelAdmin):
     list_display = (
         "year",
+        "time_frame_type",
         "date",
-        "result_count",
-        "diff",
-        "daily_results",
+        "hits",
+        "results",
+        "container_visiblility",
+        "daily",
+        "duration",
+        "worst_result_day",
         "top_result_day",
-        "active_domains",
-        "top_domain",
+        "backlinks",
+        "top_result_domain",
+        "top_hit_domain",
+        "top_result_os",
+        "top_hit_os",
     )
     ordering = ("date",)
 
