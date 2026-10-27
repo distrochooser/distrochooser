@@ -257,5 +257,8 @@
     "welcome-mark-questions": "Lahkoči označite vprašanja, če niste prepričan o svojih preferencah na določenem temi.",
     "old-version-not-found-alert": "Navedena povezava se nanaša na staro rezultato, ki ni je na žalost več na voljo.",
     "old-version-migrated-fallback-alert": "Migrirali smo odgovore v to verzijo. Ker struktura malo razlikuje, rezultati se lahko razlikujejo.",
-    "nobara-description": "Nobara Linux je distribucija Linuxa za igranje, striming in ustvarjanje vsebine."
+    "nobara-description": "Nobara Linux je distribucija Linuxa za igranje, striming in ustvarjanje vsebine.",
+    "gaming-usage-not-in-focus-description": "Projekt se osredotočuje na korištenje starije opreme, a ne posebno na igranju.",
+    "a11y-packages-included-description": "Vključuje softver za pristupačnost za uporabnike z zmanjšanim vidom.",
+    "emmabuntus-description": "Emmabuntüs je distribucija Linuxa za nadaljnjo uporabo starega opreme, darovane humanitarnim organizacijam, in za pomoč začetnikom pri odkrivanju GNU/Linuxa."
 }

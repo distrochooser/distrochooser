@@ -257,5 +257,8 @@
     "welcome-mark-questions": "Je kunt vragen markeren als je onzeker bent over je voorkeuren op een onderwerp.",
     "old-version-not-found-alert": "Die link verwijst naar een oud resultaat dat helaas niet meer bestaat.",
     "old-version-migrated-fallback-alert": "We hebben de antwoorden gemigreerd naar deze versie. Omdat de structuur licht verschilt, kan het resultaat variëren.",
-    "nobara-description": "Nobara Linux is een Linux-distributie voor gaming, streaming en contentcreatie."
+    "nobara-description": "Nobara Linux is een Linux-distributie voor gaming, streaming en contentcreatie.",
+    "gaming-usage-not-in-focus-description": "Het project richt zich op het gebruik van oudere hardware, niet specifiek op gamen.",
+    "a11y-packages-included-description": "Bevat software voor toegankelijkheid voor slechtziende gebruikers.",
+    "emmabuntus-description": "Emmabuntüs is een Linux-distributie om het gebruik van oude, door humanitaire organisaties gedoneerde hardware voort te zetten en beginners te helpen GNU/Linux ontdekken."
 }

@@ -257,5 +257,8 @@
     "welcome-mark-questions": "Bạn có thể đánh dấu các câu hỏi nếu bạn không chắc chắn về sở thích của mình về chủ đề đó.",
     "old-version-not-found-alert": "Liên kết được cung cấp đề cập đến một kết quả cũ mà đáng tiếc là không còn sẵn có.",
     "old-version-migrated-fallback-alert": "Chúng tôi đã di chuyển câu trả lời sang phiên bản này. Vì cấu trúc hơi khác, kết quả có thể thay đổi.",
-    "nobara-description": "Nobara Linux là một bản phân phối Linux dành cho chơi game, phát trực tuyến và sáng tạo nội dung."
+    "nobara-description": "Nobara Linux là một bản phân phối Linux dành cho chơi game, phát trực tuyến và sáng tạo nội dung.",
+    "gaming-usage-not-in-focus-description": "Dự án tập trung vào việc sử dụng phần cứng cũ, chứ không phải đặc biệt là chơi game.",
+    "a11y-packages-included-description": "Bao gồm phần mềm hỗ trợ khả năng truy cập cho người khiếm thị.",
+    "emmabuntus-description": "Emmabuntüs là bản phân phối Linux để tiếp tục sử dụng phần cứng cũ được quyên góp cho các tổ chức nhân đạo và giúp người mới bắt đầu khám phá GNU/Linux."
 }

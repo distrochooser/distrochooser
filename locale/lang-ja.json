@@ -257,5 +257,8 @@
     "welcome-mark-questions": "トピックについて迷っている場合は、質問にチェックを入れることができます。",
     "old-version-not-found-alert": "このリンクは古い結果ですが、残念ながらもう使えません。",
     "old-version-migrated-fallback-alert": "回答をこのバージョンに移行しました。構造が若干異なるため、結果が異なる場合があります。",
-    "nobara-description": "Nobara Linuxは、ゲーミング、ストリーミング、コンテンツ制作のためのLinuxディストリビューションです。"
+    "nobara-description": "Nobara Linuxは、ゲーミング、ストリーミング、コンテンツ制作のためのLinuxディストリビューションです。",
+    "gaming-usage-not-in-focus-description": "このプロジェクトは、ゲームだけでなく、古いハードウェアの活用に焦点を当てています。",
+    "a11y-packages-included-description": "視覚障害者のためのアクセシビリティソフトウェアが含まれています。",
+    "emmabuntus-description": "Emmabuntüs は、人道支援団体に寄付された古いハードウェアの継続的な使用と、初心者によるGNU/Linuxの発見を支援するためのLinuxディストリビューションです。"
 }

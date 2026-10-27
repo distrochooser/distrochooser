@@ -257,5 +257,8 @@
     "welcome-mark-questions": "Konuyla ilgili tercihlerinize emin değilseniz, soruları işaretleyebilirsiniz.",
     "old-version-not-found-alert": "Sağlanan bağlantı eski bir sonuca işaret ediyor ve ne yazık ki artık mevcut değil.",
     "old-version-migrated-fallback-alert": "Cevapları bu sürüme taşıdık. Yapı biraz farklı olduğu için sonuç değişebilir.",
-    "nobara-description": "Nobara Linux, oyun, yayın ve içerik oluşturma için bir Linux dağıtımıdır."
+    "nobara-description": "Nobara Linux, oyun, yayın ve içerik oluşturma için bir Linux dağıtımıdır.",
+    "gaming-usage-not-in-focus-description": "Proje, özellikle oyun oynamak yerine eski donanım kullanmaya odaklanıyor.",
+    "a11y-packages-included-description": "Görme engelli kullanıcılar için erişilebilirlik yazılımı içerir.",
+    "emmabuntus-description": "Emmabuntüs, eski donanımın insani yardım kuruluşları için bağışlanmaya devam etmesini ve yeni başlayanların GNU/Linux keşfetmelerine yardımcı olması için bir Linux dağıtımıdır."
 }

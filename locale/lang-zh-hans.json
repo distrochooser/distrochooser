@@ -257,5 +257,8 @@
     "welcome-mark-questions": "如果您不确定某个主题的偏好，您可以标记该问题。",
     "old-version-not-found-alert": "这个链接指向的结果是旧的，很抱歉它已经失效了。",
     "old-version-migrated-fallback-alert": "我们已将答案迁移到此版本。由于结构略有不同，结果可能会有所不同。",
-    "nobara-description": "Nobara Linux 是一个用于游戏、流媒体和内容创作的 Linux 发行版。"
+    "nobara-description": "Nobara Linux 是一个用于游戏、流媒体和内容创作的 Linux 发行版。",
+    "gaming-usage-not-in-focus-description": "这个项目侧重于使用旧硬件，而不是专门玩游戏。",
+    "a11y-packages-included-description": "包含适用于视力障碍用户的无障碍软件。",
+    "emmabuntus-description": "Emmabuntüs 是一个 Linux 发行版，用于继续使用为人道主义组织捐赠的老旧硬件，并帮助初学者发现 GNU/Linux。"
 }

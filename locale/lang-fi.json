@@ -99,7 +99,7 @@
     "knoppix-description": "Knoppix on asentamattomaan LIVE-tilaan painottunut käyttöjärjestelmä joka tarjoaa laajan laitetuen",
     "knowledge-present-description": "Ymmärrän Linux-pohjaisia käyttöjärjestelmiä hyvin",
     "kubuntu-description": "Kubuntu on Ubuntu-pohjainen jakelu jossa on KDE Plasma työpöytä",
-    "language": kieli",
+    "language": "kieli",
     "language-vote-privacy": "Vaikka käännökset voidaan antaa nimettömänä, muiden käyttäjien käännösehdotuksia koskevat äänestykset käyttävät satunnaista tunnusta väärinkäytösten estämiseksi. Lisätietoja tästä on tietosuojasivullamme.",
     "language_change": "Vaihda kieltä",
     "license-open-source-description": "Haluan suosia vapaita ohjelmistoja mahdollisimman paljon",
@@ -257,5 +257,8 @@
     "welcome-mark-questions": "Voit merkitä kysymyksiä, jos olet epävarma mielipiteistäsi jossain aiheessa.",
     "old-version-not-found-alert": "Tarjottu linkki viittaa vanhaan tulokseen, joka valitettavasti ei ole enää saatavilla.",
     "old-version-migrated-fallback-alert": "Olemme siirtäneet vastaukset tähän versioon. Koska rakenne eroaa hieman, tulos voi vaihdella.",
-    "nobara-description": "Nobara Linux on Linux-jakelu pelaamiseen, striimaamiseen ja sisällön luomiseen."
+    "nobara-description": "Nobara Linux on Linux-jakelu pelaamiseen, striimaamiseen ja sisällön luomiseen.",
+    "gaming-usage-not-in-focus-description": "Projekti keskittyy vanhemman laitteiston käyttöön, ei erityisesti pelaamiseen.",
+    "a11y-packages-included-description": "Sisältää ohjelmiston esteettömyyteen näkövammaisille käyttäjille.",
+    "emmabuntus-description": "Emmabuntüs on Linux-jakelu, jolla vanhan laitteiston jatkuvaa käyttöä humanitaarisille järjestöille varten ja aloittelijoiden auttamiseksi tutustumaan GNU/Linuxiin."
 }

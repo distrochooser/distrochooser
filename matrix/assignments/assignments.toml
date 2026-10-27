@@ -49,7 +49,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -165,6 +166,17 @@ choosables = ["tails"]
 how = "blocking"
 
 
+# According to https://emmabuntus.org/, 
+# one of the distros goal is to be able to refurbish and use old hardware
+# therefore, gaming may not be in focus of the distribution
+[assignment.gaming-usage-not-in-focus]
+choosables = ["emmabuntus"]
+facettes = ["gaming-usage"]
+how = "negative"
+sources = [
+    "emmabüntus;https://emmabuntus.org/"
+]
+
 # distrochooser::translation::en::May require additional configuration for gaming
 # distrochooser::translation::key::gaming-may-require-additional-configuration-facette-gaming-usage-description
 [assignment.gaming-may-require-additional-configuration-facette-gaming-usage]
@@ -219,7 +231,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -312,7 +325,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -398,7 +412,8 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
-    "nobara"
+    "nobara",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -424,7 +439,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -460,7 +476,8 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
-    "nobara"
+    "nobara",
+    "emmabuntus"
 ]
 how = "negative"
 
@@ -507,7 +524,8 @@ choosables = [
     "deepin",
     "bazzite",
     "cachyos",
-    "nobara"
+    "nobara",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -534,7 +552,8 @@ choosables = [
     "deepin",
     "bazzite",
     "cachyos",
-    "nobara"
+    "nobara",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -570,7 +589,8 @@ choosables = [
     "artix",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -594,7 +614,8 @@ choosables = [
     "popos",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -611,7 +632,7 @@ how = "positive"
 # distrochooser::translation::key::has-windows-like-variant-facette-ux-concept-answer-windows-like-description
 [assignment.has-windows-like-variant-facette-ux-concept-answer-windows-like]
 facettes = ["ux-concept-answer-windows-like"]
-choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu", "bazzite", "cachyos", "nobara"]
+choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu", "bazzite", "cachyos", "nobara", "emmabuntus"]
 how = "positive"
 
 
@@ -619,7 +640,7 @@ how = "positive"
 # distrochooser::translation::key::mac-like-facette-ux-concept-answer-mac-like-description
 [assignment.mac-like-facette-ux-concept-answer-mac-like]
 facettes = ["ux-concept-answer-mac-like"]
-choosables = ["popos", "deepin", "nobara"]
+choosables = ["popos", "deepin", "nobara", "emmabuntus"]
 how = "positive"
 
 
@@ -658,7 +679,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -698,7 +720,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -805,7 +828,7 @@ how = "positive"
 # distrochooser::translation::key::supports-privacy-facette-privacy-no-connections-unless-wanted-description
 [assignment.supports-privacy-facette-privacy-no-connections-unless-wanted]
 facettes = ["privacy-no-connections-unless-wanted"]
-choosables = ["elementaryOS"]
+choosables = ["elementaryOS", "emmabuntus"]
 how = "positive"
 
 
@@ -837,7 +860,8 @@ choosables = [
     "popos",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -907,7 +931,8 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
-    "nobara"
+    "nobara",
+    "emmabuntus"
 ]
 how = "blocking"
 
@@ -991,6 +1016,7 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -1017,6 +1043,15 @@ how = "positive"
 facettes = ["impaired-view-usage"]
 choosables = ["Knoppix"]
 how = "positive"
+
+
+[assignment.a11y-packages-included]
+facettes = ["impaired-view-usage"]
+choosables = ["emmabuntus"]
+how = "positive"
+sources = [
+    "emmabuntus;https://emmabuntus.org/accessibilite/"
+]
 
 
 # distrochooser::translation::en::Software for visually impaired people are installable (e. g. 'Orca')
@@ -1049,6 +1084,7 @@ choosables = [
     "void",
     "artix",
     "popos",
+    "emmabuntus"
 ]
 how = "positive"
 
@@ -1085,7 +1121,7 @@ how = "positive"
 # distrochooser::translation::key::slow-release-model-facette-prefer-stable-description
 [assignment.slow-release-model-facette-prefer-stable]
 facettes = ["prefer-stable"]
-choosables = ["debian", "rocky"]
+choosables = ["debian", "rocky", "emmabuntus"]
 how = "neutral"
 
 

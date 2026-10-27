@@ -257,5 +257,8 @@
     "welcome-mark-questions": "Anda dapat menandai pertanyaan jika Anda tidak yakin tentang preferensi Anda pada suatu topik.",
     "old-version-not-found-alert": "Tautan yang disediakan mengacu pada hasil lama yang sayangnya sudah tidak tersedia lagi.",
     "old-version-migrated-fallback-alert": "Kami telah memigrasikan jawaban ke versi ini. Karena strukturnya sedikit berbeda, hasilnya mungkin berbeda.",
-    "nobara-description": "Nobara Linux adalah distribusi Linux untuk gaming, streaming, dan pembuatan konten."
+    "nobara-description": "Nobara Linux adalah distribusi Linux untuk gaming, streaming, dan pembuatan konten.",
+    "gaming-usage-not-in-focus-description": "Proyek ini berfokus pada penggunaan perangkat keras lama, bukan secara khusus untuk bermain game.",
+    "a11y-packages-included-description": "Menyertakan perangkat lunak aksesibilitas untuk pengguna tunanetra.",
+    "emmabuntus-description": "Emmabuntüs adalah distribusi Linux untuk melanjutkan penggunaan perangkat keras lama yang didonasikan untuk organisasi kemanusiaan dan membantu pemula menemukan GNU/Linux."
 }

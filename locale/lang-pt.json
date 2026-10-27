@@ -257,5 +257,8 @@
     "welcome-mark-questions": "Você pode marcar as perguntas se não tiver certeza sobre suas preferências em um tópico.",
     "old-version-not-found-alert": "O link fornecido se refere a um resultado antigo que, infelizmente, não está mais disponível.",
     "old-version-migrated-fallback-alert": "Migramos as respostas para esta versão. Como a estrutura é ligeiramente diferente, o resultado pode variar.",
-    "nobara-description": "Nobara Linux é uma distribuição Linux para jogos, streaming e criação de conteúdo."
+    "nobara-description": "Nobara Linux é uma distribuição Linux para jogos, streaming e criação de conteúdo.",
+    "gaming-usage-not-in-focus-description": "O projeto foca no uso de hardware antigo, não em jogos em particular.",
+    "a11y-packages-included-description": "Inclui software de acessibilidade para usuários com deficiência visual.",
+    "emmabuntus-description": "Emmabuntüs é uma distribuição Linux para continuar usando hardware antigo doado para organizações humanitárias e ajudar os iniciantes a descobrir GNU/Linux."
 }

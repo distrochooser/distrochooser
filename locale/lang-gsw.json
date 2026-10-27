@@ -257,5 +257,8 @@
     "welcome-mark-questions": "Du chasch d’Frage markiere, wänn du nöd sicher bisch bi eme Thema.",
     "old-version-not-found-alert": "Ili link ukhona ngenqondo yomphumela omdala, kodwa ingabe singase usebenzi. (Note: Gswaran/Swazi translation focusing on function/context)",
     "old-version-migrated-fallback-alert": "Mir g'migrierte d'Antworte uf di Version. Will d'Struktuure chli underschiedlich si, cha s'Ergäbnis variiere.",
-    "nobara-description": "Nobara Linux isch en Linux-Distribution für Gaming, Streaming und Content Creation."
+    "nobara-description": "Nobara Linux isch en Linux-Distribution für Gaming, Streaming und Content Creation.",
+    "gaming-usage-not-in-focus-description": "De Projekt fokussiert uf d'Nutzig vo ältere Hardware, nöd speziell uf Gaming.",
+    "a11y-packages-included-description": "Inklude Software für die Barrierefreiheit für sehbehinderte Nutzer.",
+    "emmabuntus-description": "Emmabuntüs yingaba yingqiniso le-Linux lokusuke ukusebenzisa i-hardware yedala yangatholwa nezinhlangano zezomuntu sihlakaniphile futhi ukusiza abasebenzisa bayaqalayo ukuthola GNU/Linux."
 }

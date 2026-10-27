@@ -1001,3 +1001,24 @@ meta_value = "https://nobaraproject.org/"
 choosable="nobara"
 meta_name = "archs"
 meta_value = "amd64,aarch64,ppc64le"
+
+[choosable.emmabuntus]
+name = "Emmabuntüs"
+bg_color = "#0c5580"
+fg_color = "#dfe7e9"
+
+[[meta]]
+choosable="emmabuntus"
+meta_name = "age"
+meta_value = "2011-05-01"
+
+[[meta]]
+choosable="emmabuntus"
+meta_name = "website"
+meta_value = "https://emmabuntus.org/"
+
+# https://emmabuntus.org/download/
+[[meta]]
+choosable="emmabuntus"
+meta_name = "archs"
+meta_value = "amd64,x86"
