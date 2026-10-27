@@ -98,6 +98,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://akx.github.io/"><img src="https://avatars.githubusercontent.com/u/58669?v=4?s=100" width="100px;" alt="Aarni Koskela"/><br /><sub><b>Aarni Koskela</b></sub></a><br /><a href="https://github.com/distrochooser/distrochooser/commits?author=akx" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/kongvut"><img src="https://avatars.githubusercontent.com/u/2748894?v=4?s=100" width="100px;" alt="Kongvut Sangkla"/><br /><sub><b>Kongvut Sangkla</b></sub></a><br /><a href="#translation-kongvut" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/KAS-82"><img src="https://avatars.githubusercontent.com/u/230890038?v=4?s=100" width="100px;" alt="KAS-82"/><br /><sub><b>KAS-82</b></sub></a><br /><a href="#translation-KAS-82" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
