@@ -256,5 +256,6 @@
     "welcome-question-order": "您可以按任意順序回答",
     "welcome-mark-questions": "如果您不確定某個主題的偏好，您可以標記該問題。",
     "old-version-not-found-alert": "這個連結指向的結果是舊的，很抱歉它已經失效了。",
-    "old-version-migrated-fallback-alert": "我們已將答案遷移到此版本。由於結構略有不同，結果可能會有所不同。"
+    "old-version-migrated-fallback-alert": "我們已將答案遷移到此版本。由於結構略有不同，結果可能會有所不同。",
+    "nobara-description": "Nobara Linux 是一個用於遊戲、串流和內容創作的 Linux 發行版。"
 }

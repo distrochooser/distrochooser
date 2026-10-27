@@ -256,5 +256,6 @@
     "welcome-question-order": "Siz istənilən ardıcıllıqda cavab verə bilərsiniz",
     "welcome-mark-questions": "Mövzunuzdakı üstünlüklər haqqında əmin deyilsinizsə, sualları işarələyə bilərsiniz.",
     "old-version-not-found-alert": "Verilən link köhnə bir nəticəyə aiddir və təəssüf ki, artıq mövcud deyil.",
-    "old-version-migrated-fallback-alert": "Cavabları bu versiyaya köçürdük. Struktur bir azca fərqləndiyinə görə, nəticə dəyişə bilər."
+    "old-version-migrated-fallback-alert": "Cavabları bu versiyaya köçürdük. Struktur bir azca fərqləndiyinə görə, nəticə dəyişə bilər.",
+    "nobara-description": "Nobara Linux, oyun, yayın və məzmun yaratma üçün nəzərdə tutulmuş bir Linux paylanmasıdır."
 }

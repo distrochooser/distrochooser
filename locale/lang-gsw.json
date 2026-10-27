@@ -256,5 +256,6 @@
     "welcome-question-order": "Du chasch in beliegiger Ornig antworte",
     "welcome-mark-questions": "Du chasch d’Frage markiere, wänn du nöd sicher bisch bi eme Thema.",
     "old-version-not-found-alert": "Ili link ukhona ngenqondo yomphumela omdala, kodwa ingabe singase usebenzi. (Note: Gswaran/Swazi translation focusing on function/context)",
-    "old-version-migrated-fallback-alert": "Mir g'migrierte d'Antworte uf di Version. Will d'Struktuure chli underschiedlich si, cha s'Ergäbnis variiere."
+    "old-version-migrated-fallback-alert": "Mir g'migrierte d'Antworte uf di Version. Will d'Struktuure chli underschiedlich si, cha s'Ergäbnis variiere.",
+    "nobara-description": "Nobara Linux isch en Linux-Distribution für Gaming, Streaming und Content Creation."
 }
