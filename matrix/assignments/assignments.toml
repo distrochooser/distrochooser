@@ -50,7 +50,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -124,7 +125,10 @@ how = "neutral"
 # distrochooser::translation::key::built-for-anonymization-facette-privacy-usage-description
 [assignment.built-for-anonymization-facette-privacy-usage]
 facettes = ["privacy-usage"]
-choosables = ["tails"]
+choosables = [
+    "tails",
+    "parrot",
+]
 how = "positive"
 
 
@@ -191,6 +195,7 @@ choosables = [
     "Gentoo",
     "void",
     "artix",
+    "parrot",
 ]
 how = "neutral"
 
@@ -232,7 +237,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -357,7 +363,7 @@ how = "blocking"
 # distrochooser::translation::key::maybe-not-for-beginner-facette-no-linux-contact-description
 [assignment.maybe-not-for-beginner-facette-no-linux-contact]
 facettes = ["no-linux-contact"]
-choosables = ["MXLinux", "Fedora", "Knoppix", "CruxLinux", "qubesos", "nixOS"]
+choosables = ["MXLinux", "Fedora", "Knoppix", "CruxLinux", "qubesos", "nixOS", "parrot"]
 how = "negative"
 
 
@@ -440,7 +446,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -477,7 +484,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "negative"
 
@@ -525,7 +533,8 @@ choosables = [
     "bazzite",
     "cachyos",
     "nobara",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -553,7 +562,8 @@ choosables = [
     "bazzite",
     "cachyos",
     "nobara",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -590,7 +600,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -615,7 +626,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -632,7 +644,7 @@ how = "positive"
 # distrochooser::translation::key::has-windows-like-variant-facette-ux-concept-answer-windows-like-description
 [assignment.has-windows-like-variant-facette-ux-concept-answer-windows-like]
 facettes = ["ux-concept-answer-windows-like"]
-choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu", "bazzite", "cachyos", "nobara", "emmabuntus"]
+choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu", "bazzite", "cachyos", "nobara", "emmabuntus", "parrot"]
 how = "positive"
 
 
@@ -680,7 +692,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -721,7 +734,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -751,7 +765,7 @@ how = "blocking"
 # distrochooser::translation::key::free-userselection-facette-license-open-source-description
 [assignment.free-userselection-facette-license-open-source]
 facettes = ["license-open-source"]
-choosables = ["debian", "devuan", "arch", "rocky", "Gentoo", "artix"]
+choosables = ["debian", "devuan", "arch", "rocky", "Gentoo", "artix", "parrot"]
 how = "positive"
 
 
@@ -828,7 +842,7 @@ how = "positive"
 # distrochooser::translation::key::supports-privacy-facette-privacy-no-connections-unless-wanted-description
 [assignment.supports-privacy-facette-privacy-no-connections-unless-wanted]
 facettes = ["privacy-no-connections-unless-wanted"]
-choosables = ["elementaryOS", "emmabuntus"]
+choosables = ["elementaryOS", "emmabuntus", "parrot"]
 how = "positive"
 
 
@@ -861,7 +875,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -932,7 +947,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "blocking"
 
@@ -1016,7 +1032,8 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -1084,7 +1101,8 @@ choosables = [
     "void",
     "artix",
     "popos",
-    "emmabuntus"
+    "emmabuntus",
+    "parrot"
 ]
 how = "positive"
 
@@ -1112,7 +1130,8 @@ choosables = [
     "void",
     "popos",
     "deepin",
-    "bazzite"
+    "bazzite",
+    "parrot"
 ]
 how = "positive"
 

@@ -1022,3 +1022,37 @@ meta_value = "https://emmabuntus.org/"
 choosable="emmabuntus"
 meta_name = "archs"
 meta_value = "amd64,x86"
+
+# distrochooser::translation::en::Parrot OS is a Debian-based Linux distribution for daily usage with a strong focus on privacy. It is aimed at beginners, students and software developers.
+# distrochooser::translation::key::parrot-description
+[choosable.parrot]
+name = "Parrot OS"
+bg_color = "#0b1421"
+fg_color = "#4dc6e6"
+
+# https://www.parrotsec.org/about/
+[[meta]]
+choosable="parrot"
+meta_name = "age"
+meta_value = "2013-04-10"
+
+[[meta]]
+choosable="parrot"
+meta_name = "website"
+meta_value = "https://www.parrotsec.org/"
+
+# https://www.parrotsec.org/download/
+[[meta]]
+choosable="parrot"
+meta_name = "archs"
+meta_value = "amd64"
+
+[[meta]]
+choosable="parrot"
+meta_name = "operational_center"
+meta_value = "it"
+
+[[meta]]
+choosable="parrot"
+meta_name = "languages"
+meta_value = "en"

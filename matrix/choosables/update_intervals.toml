@@ -47,3 +47,13 @@ meta_value = "0"
 meta_sources = [
     "https://wiki.archlinux.org/title/Arch_Linux"
 ]
+
+
+[[meta]]
+choosable="parrot"
+meta_name = "major_update_interval"
+meta_value = "0.25"
+meta_sources = [
+    "https://www.parrotsec.org/blog/"
+]
+
