@@ -48,6 +48,7 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -142,6 +143,7 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -216,6 +218,7 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -308,6 +311,7 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -393,7 +397,8 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
-    "bazzite"
+    "bazzite",
+    "nobara"
 ]
 how = "positive"
 
@@ -418,6 +423,7 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -453,7 +459,8 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
-    "bazzite"
+    "bazzite",
+    "nobara"
 ]
 how = "negative"
 
@@ -499,7 +506,8 @@ choosables = [
     "kubuntu",
     "deepin",
     "bazzite",
-    "cachyos"
+    "cachyos",
+    "nobara"
 ]
 how = "positive"
 
@@ -525,7 +533,8 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
-    "cachyos"
+    "cachyos",
+    "nobara"
 ]
 how = "positive"
 
@@ -560,6 +569,7 @@ choosables = [
     "void",
     "artix",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -583,6 +593,7 @@ choosables = [
     "kubuntu",
     "popos",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -600,7 +611,7 @@ how = "positive"
 # distrochooser::translation::key::has-windows-like-variant-facette-ux-concept-answer-windows-like-description
 [assignment.has-windows-like-variant-facette-ux-concept-answer-windows-like]
 facettes = ["ux-concept-answer-windows-like"]
-choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu", "bazzite", "cachyos"]
+choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu", "bazzite", "cachyos", "nobara"]
 how = "positive"
 
 
@@ -608,7 +619,7 @@ how = "positive"
 # distrochooser::translation::key::mac-like-facette-ux-concept-answer-mac-like-description
 [assignment.mac-like-facette-ux-concept-answer-mac-like]
 facettes = ["ux-concept-answer-mac-like"]
-choosables = ["popos", "deepin"]
+choosables = ["popos", "deepin", "nobara"]
 how = "positive"
 
 
@@ -646,6 +657,7 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -685,6 +697,7 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -705,6 +718,7 @@ choosables = [
     "UbuntuMATE",
     "popos",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "blocking"
@@ -744,6 +758,7 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -821,6 +836,7 @@ choosables = [
     "kubuntu",
     "popos",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"
@@ -891,6 +907,7 @@ choosables = [
     "popos",
     "deepin",
     "bazzite",
+    "nobara"
 ]
 how = "blocking"
 
@@ -944,6 +961,7 @@ choosables = [
     "void",
     "artix",
     "bazzite",
+    "nobara",
     "cachyos"
 ]
 how = "positive"

@@ -975,3 +975,29 @@ meta_value = "https://cachyos.org/"
 choosable="cachyos"
 meta_name = "archs"
 meta_value = "x86-64-v3,x86-64-v4"
+
+[choosable.nobara]
+name = "Nobara Linux"
+bg_color = "#4a2995"
+fg_color = "#c4cad4"
+
+
+# https://en.wikipedia.org/wiki/Nobara_%28operating_system%29#cite_note-nobara_initial_release-1
+[[meta]]
+choosable="nobara"
+meta_name = "age"
+meta_value = "2022-07-0"
+
+[[meta]]
+choosable="nobara"
+meta_name = "website"
+meta_value = "https://nobaraproject.org/"
+
+
+# https://en.wikipedia.org/wiki/Nobara_%28operating_system
+# Sticking here to a set of archs matching the ones of fedora
+# As it's an Fedora based system
+[[meta]]
+choosable="nobara"
+meta_name = "archs"
+meta_value = "amd64,aarch64,ppc64le"

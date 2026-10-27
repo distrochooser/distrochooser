@@ -256,5 +256,6 @@
     "welcome-question-order": "Bạn có thể trả lời theo bất kỳ thứ tự nào",
     "welcome-mark-questions": "Bạn có thể đánh dấu các câu hỏi nếu bạn không chắc chắn về sở thích của mình về chủ đề đó.",
     "old-version-not-found-alert": "Liên kết được cung cấp đề cập đến một kết quả cũ mà đáng tiếc là không còn sẵn có.",
-    "old-version-migrated-fallback-alert": "Chúng tôi đã di chuyển câu trả lời sang phiên bản này. Vì cấu trúc hơi khác, kết quả có thể thay đổi."
+    "old-version-migrated-fallback-alert": "Chúng tôi đã di chuyển câu trả lời sang phiên bản này. Vì cấu trúc hơi khác, kết quả có thể thay đổi.",
+    "nobara-description": "Nobara Linux là một bản phân phối Linux dành cho chơi game, phát trực tuyến và sáng tạo nội dung."
 }

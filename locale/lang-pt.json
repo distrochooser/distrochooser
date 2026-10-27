@@ -256,5 +256,6 @@
     "welcome-question-order": "Você pode responder em qualquer ordem",
     "welcome-mark-questions": "Você pode marcar as perguntas se não tiver certeza sobre suas preferências em um tópico.",
     "old-version-not-found-alert": "O link fornecido se refere a um resultado antigo que, infelizmente, não está mais disponível.",
-    "old-version-migrated-fallback-alert": "Migramos as respostas para esta versão. Como a estrutura é ligeiramente diferente, o resultado pode variar."
+    "old-version-migrated-fallback-alert": "Migramos as respostas para esta versão. Como a estrutura é ligeiramente diferente, o resultado pode variar.",
+    "nobara-description": "Nobara Linux é uma distribuição Linux para jogos, streaming e criação de conteúdo."
 }

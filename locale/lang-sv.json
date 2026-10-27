@@ -256,5 +256,6 @@
     "welcome-question-order": "Du kan svara i godtyckligt ordning",
     "welcome-mark-questions": "Du kan markera frågor om du är osäker på dina preferenser inom ett ämne.",
     "old-version-not-found-alert": "Länken som tillhandahålls hänvisar till ett gammalt resultat som tyvärr inte längre är tillgängligt.",
-    "old-version-migrated-fallback-alert": "Vi har migrerat svaren till denna version. Eftersom strukturen skiljer sig något, kan resultatet variera."
+    "old-version-migrated-fallback-alert": "Vi har migrerat svaren till denna version. Eftersom strukturen skiljer sig något, kan resultatet variera.",
+    "nobara-description": "Nobara Linux är en Linux-distribution för spel, streaming och innehållsskapande."
 }

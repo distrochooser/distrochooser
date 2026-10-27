@@ -256,5 +256,6 @@
     "welcome-question-order": "אתה יכול לענות בכל סדר",
     "welcome-mark-questions": "אתה יכול לסמן שאלות אם אינך בטוח לגבי ההעדפות שלך בנושא.",
     "old-version-not-found-alert": "הקישור הזה מצביע על תוצאה ישנה שאינה קיימת יותר, מצטער.",
-    "old-version-migrated-fallback-alert": "העברנו את התשובות לגרסה זו. מכיוון שהמבנה שונה מעט, התוצאה עשויה להשתנות."
+    "old-version-migrated-fallback-alert": "העברנו את התשובות לגרסה זו. מכיוון שהמבנה שונה מעט, התוצאה עשויה להשתנות.",
+    "nobara-description": "Nobara Linux היא הפצת לינוקס למשחקים, סטרימינג ויצירת תוכן."
 }
