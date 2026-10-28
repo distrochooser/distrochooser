@@ -25,3 +25,4 @@ urllib3==2.8.0
 pycountry==26.2.16
 tqdm==4.67.3
 user-agents==2.2.0
+ijson==3.6.0

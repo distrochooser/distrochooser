@@ -61,6 +61,7 @@ class SessionAdmin(admin.ModelAdmin):
         "user_agent",
         "is_container_visible",
         "is_ack",
+        "import_date_time",
         "imported_from_session",
     )
 
@@ -75,6 +76,7 @@ class FacetteSelectionAdmin(admin.ModelAdmin):
         "facette",
         "weight",
         "session",
+        "import_date_time",
         "imported_from_answer",
     )
 
@@ -93,6 +95,7 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "time_frame_type",
         "date",
         "end_date",
+        "all_visitors",
         "hits",
         "results",
         "container_visiblility",
