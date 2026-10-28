@@ -513,7 +513,7 @@ meta_value = "amd64,x86"
 [[meta]]
 choosable="knoppix"
 meta_name = "website"
-meta_value = "http://www.knoppix.org/"
+meta_value = "https://knopper.net/knoppix/"
 
 [[meta]]
 choosable="knoppix"
