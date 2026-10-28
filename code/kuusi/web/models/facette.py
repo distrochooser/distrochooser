@@ -126,8 +126,9 @@ class FacetteSelection(models.Model):
     )
     # to mark selections imported from a old answer (Distrochooser 5)
     imported_from_answer = models.CharField(
-        max_length=10, default=None, null=True, blank=True
+        max_length=10, default=None, null=True, blank=True, unique=True
     )
+    import_date_time = models.DateTimeField(default=None, blank=True, null=True)
 
 
 class FacetteAssignment(models.Model):

@@ -15,11 +15,14 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 from django.db import models
 from web.models import Widget, Session
 
+
 class FeedbackWidget(Widget):
     pass
+
 
 class GivenFeedback(models.Model):
     session = models.ForeignKey(
@@ -30,3 +33,7 @@ class GivenFeedback(models.Model):
         related_name="givenfeedback_session",
     )
     text = models.TextField(blank=False, null=False)
+    import_date_time = models.DateTimeField(default=None, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.text

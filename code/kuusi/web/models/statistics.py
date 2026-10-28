@@ -43,6 +43,10 @@ class TimeFrame(models.Model):
         return f"{self.time_frame_type}: {self.date}-{self.end_date}"
 
     @property
+    def all_visitors(self) -> int:
+        return self.hit_count + self.result_count
+
+    @property
     def year(self) -> int:
         return self.date.year
 
