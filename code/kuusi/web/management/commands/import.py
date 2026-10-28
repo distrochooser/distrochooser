@@ -180,6 +180,8 @@ class Command(BaseCommand):
             total = f.read().count("model")
         selections = []
         now = timezone.now()
+        remaining = total
+        last_chunk = []
         with open(path, "rb") as f:
             for answer in tqdm(
                 ijson.items(f, "item", use_float=True), unit=" answers", total=total
@@ -188,22 +190,28 @@ class Command(BaseCommand):
                     int(answer["fields"]["session"]) in session_map
                     and answer["fields"]["answer"] in runtime_answer_map
                 ):
-                    selections.append(
-                        FacetteSelection(
-                            facette_id=runtime_answer_map[answer["fields"]["answer"]],
-                            session_id=session_map[
-                                int(answer["fields"]["session"])
-                            ],  # will be added on bulk
-                            weight=2 if answer["fields"]["isImportant"] else 0,
-                            imported_from_answer=answer["pk"],
-                            import_date_time=now,
-                        )
+                    selection = FacetteSelection(
+                        facette_id=runtime_answer_map[answer["fields"]["answer"]],
+                        session_id=session_map[
+                            int(answer["fields"]["session"])
+                        ],  # will be added on bulk
+                        weight=2 if answer["fields"]["isImportant"] else 0,
+                        imported_from_answer=answer["pk"],
+                        import_date_time=now,
                     )
-                if len(selections) == CHUNK_SIZE:
+
+                    if remaining < CHUNK_SIZE:
+                        last_chunk.append(selection)
+                    else:
+                        selections.append(selection)
+
+                remaining -= 1
+                if len(selections) == CHUNK_SIZE or remaining < CHUNK_SIZE:
                     FacetteSelection.objects.bulk_create(
                         selections, ignore_conflicts=True
                     )
                     selections = []
+        FacetteSelection.objects.bulk_create(last_chunk, ignore_conflicts=True)
 
     def import_sessions(self, path: str):
 
@@ -216,6 +224,8 @@ class Command(BaseCommand):
             total = f.read().count("model")
 
         now = timezone.now()
+        remaining = total
+        last_chunk = []
         with open(path, "rb") as f:
             for session_obj in tqdm(
                 ijson.items(f, "item", use_float=True), unit=" sessions", total=total
@@ -255,7 +265,12 @@ class Command(BaseCommand):
                 if remark_text is not None:
                     remarks[session_id] = remark_text
 
-                new_sessions.append(new_session)
+                remaining -= 1
+
+                if remaining < CHUNK_SIZE:
+                    last_chunk.append(new_session)
+                else:
+                    new_sessions.append(new_session)
 
                 if new_sessions.__len__() == CHUNK_SIZE:
                     # https://docs.djangoproject.com/en/6.1/ref/models/querysets/#django.db.models.query.QuerySet.bulk_create
@@ -265,3 +280,5 @@ class Command(BaseCommand):
                     for obj in created:
                         session_map[int(obj.imported_from_session)] = obj.pk
                     new_sessions = []
+
+            Session.objects.bulk_create(last_chunk, ignore_conflicts=True)
