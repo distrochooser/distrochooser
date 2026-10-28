@@ -90,13 +90,14 @@ class FacetteAdmin(admin.ModelAdmin):
 
 
 class TimeFrameAdmin(admin.ModelAdmin):
+    list_per_page = 12
     list_display = (
         "year",
         "time_frame_type",
         "date",
         "end_date",
+        "rank",
         "all_visitors",
-        "hits",
         "results",
         "container_visiblility",
         "daily",
@@ -104,13 +105,20 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "worst_result_day",
         "top_result_day",
         "backlinks",
-        "top_result_domain",
+        # "top_language_hits",
+        "top_language_results",
         "top_hit_domain",
+        "top_result_domain",
+        # "top_hit_os",
         "top_result_os",
-        "top_hit_os",
+        # "top_hit_os",
+        # "top_hit_browser",
+        # "top_result_browser",
+        "top_hit_crawlers",
+        "crawler_with_result",
     )
     ordering = ("-time_frame_type", "date")
-    list_filter = ["time_frame_type"]
+    list_filter = ["time_frame_type", "date"]
 
 
 class ZeroAckFilter(SimpleListFilter):

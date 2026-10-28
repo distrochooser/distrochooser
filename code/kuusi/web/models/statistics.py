@@ -21,6 +21,7 @@ from user_agents import parse
 from urllib3.util import parse_url
 from calendar import monthrange
 from datetime import timedelta
+from django.utils.html import mark_safe
 
 
 class TimeFrame(models.Model):
@@ -43,8 +44,53 @@ class TimeFrame(models.Model):
         return f"{self.time_frame_type}: {self.date}-{self.end_date}"
 
     @property
-    def all_visitors(self) -> int:
-        return self.hit_count + self.result_count
+    def rank(self) -> str:
+        all_frames = list(
+            TimeFrame.objects.filter(time_frame_type=self.time_frame_type)
+        )
+
+        all_frames.sort(key=lambda f: f.all_visitors_raw, reverse=True)
+
+        rank = all_frames.index(self) + 1
+        color = "grey"
+        if rank == 1:
+            color = "gold"
+        elif rank == 2:
+            color = "silver"
+        elif rank == 3:
+            color = "#e18787"
+        return mark_safe(
+            f"<span style='font-weight: bold; color:{color}'>{rank}.</span>"
+        )
+
+    @property
+    def all_visitors_raw(self) -> int:
+        previous_entry = (
+            TimeFrame.objects.order_by("date")
+            .filter(
+                date__lt=self.date,
+                time_frame_type=self.time_frame_type,
+            )
+            .last()
+        )
+        all_count = self.hit_count + self.result_count
+        return all_count
+
+    @property
+    def all_visitors(self) -> str:
+        previous_entry = (
+            TimeFrame.objects.order_by("date")
+            .filter(
+                date__lt=self.date,
+                time_frame_type=self.time_frame_type,
+            )
+            .last()
+        )
+        all_count = self.hit_count + self.result_count
+        if previous_entry:
+            diff = self.all_visitors_raw - previous_entry.all_visitors_raw
+            return mark_safe(f"{all_count} ({self._coloring(diff)})")
+        return all_count
 
     @property
     def year(self) -> int:
@@ -64,7 +110,7 @@ class TimeFrame(models.Model):
 
     @property
     def results(self) -> str:
-        return f"{self.result_count} ({self.result_diff})"
+        return mark_safe(f"{self.result_count} ({self._coloring(self.result_diff)})")
 
     @property
     def hit_count(self) -> int:
@@ -87,13 +133,9 @@ class TimeFrame(models.Model):
         )
         if previous_entry:
             result = self.hit_count - previous_entry.hit_count
-            return f"+{result}" if result > 0 else result
+            return self._coloring(result)
         else:
             return self.hit_count
-
-    @property
-    def hits(self) -> str:
-        return f"{self.hit_count} ({self.hit_diff})"
 
     @property
     def daily_results(self) -> int:
@@ -113,13 +155,98 @@ class TimeFrame(models.Model):
         )
         if previous_month:
             result = round(self.daily_results - previous_month.daily_results, 2)
-            return f"+{result}" if result > 0 else result
+            return mark_safe(f"{self._coloring(result)}")
         else:
-            return 0
+            return mark_safe(self._coloring(0))
+
+    def _top_n_raw(self, what: TimeFrameRow.TimeFrameRowType, with_ack: bool = False):
+
+        results = TimeFrameRow.objects.filter(
+            time_frame=self,
+            row_type=what,
+            time_frame__time_frame_type=self.time_frame_type,
+        ).order_by("-row_value_no_ack" if not with_ack else "-row_value_with_ack")
+
+        if results.__len__() == 0:
+            return {}
+
+        got = {}
+        for result in results:
+            got[result.row_key] = (
+                result.row_value_no_ack if not with_ack else result.row_value_with_ack
+            )
+        return got
+
+    def _top_n(
+        self, what: TimeFrameRow.TimeFrameRowType, with_ack: bool = False, n=3
+    ) -> str:
+
+        results = self._top_n_raw(what, with_ack)
+
+        previous_month = (
+            TimeFrame.objects.order_by("date")
+            .filter(
+                date__lt=self.date,
+                time_frame_type=self.time_frame_type,
+            )
+            .last()
+        )
+        prev_month_results = {}
+        if previous_month:
+            prev_month_results = previous_month._top_n_raw(what, with_ack)
+
+        got = ""
+        amount = 0
+        for key, count in results.items():
+            diff_str = ""
+            if key in prev_month_results:
+                diff_raw = count - prev_month_results[key]
+                diff_str = f", {self._coloring(diff_raw)}"
+            got += f"{key} ({count}{diff_str})</br>"
+            if amount >= n:
+                break
+            amount += 1
+        return mark_safe(got)
+
+    def _coloring(self, value: int) -> str:
+        color = "#8585fd"
+        if value != 0:
+            color = "#ff7b7b" if value < 0 else "#28fd28"
+        return f"<span style='color: {color}'>{"+" if value >= 0 else ""}{value}</span>"
+
+    @property
+    def top_language_hits(self) -> str:
+
+        return self._top_n(TimeFrameRow.TimeFrameRowType.LANGUAGE)
+
+    def top_language_results(self) -> str:
+        return self._top_n(TimeFrameRow.TimeFrameRowType.LANGUAGE, with_ack=True)
 
     @property
     def daily(self) -> str:
-        return f"{self.daily_results} ({self.daily_results_diff})"
+        return mark_safe(f"{self.daily_results} ({self.daily_results_diff})")
+
+    @property
+    def top_hit_browser(self) -> str:
+        return self._top_n(TimeFrameRow.TimeFrameRowType.BROWSER)
+
+    @property
+    def top_result_browser(self) -> str:
+        return self._top_n(TimeFrameRow.TimeFrameRowType.BROWSER, with_ack=True)
+
+    @property
+    def top_hit_crawlers(self) -> str:
+        return self._top_n(TimeFrameRow.TimeFrameRowType.CRAWLER, n=3)
+
+    @property
+    def crawler_with_result(self) -> str:
+        got = self._top_n_raw(
+            TimeFrameRow.TimeFrameRowType.CRAWLER, with_ack=True
+        ).values()
+        summarized = 0
+        for got in got:
+            summarized += got
+        return "yes" if summarized > 0 else "no"
 
     @property
     def result_diff(self) -> str:
@@ -133,7 +260,7 @@ class TimeFrame(models.Model):
         )
         if previous_month:
             result = self.result_count - previous_month.result_count
-            return f"+{result}" if result > 0 else result
+            return result
         else:
             return 0
 
@@ -157,35 +284,16 @@ class TimeFrame(models.Model):
         )
         if previous_month:
             result = self.unique_backlinks - previous_month.unique_backlinks
-            diff = f"+{result}" if result > 0 else result
-            return f"{self.unique_backlinks} ({diff})"
+            return mark_safe(f"{self.unique_backlinks} ({self._coloring(result)})")
         return f"{self.unique_backlinks}"
 
     @property
     def top_result_domain(self) -> str:
-        top_backlink = (
-            TimeFrameRow.objects.filter(
-                time_frame=self,
-                row_type=TimeFrameRow.TimeFrameRowType.DOMAIN,
-                time_frame__time_frame_type=self.time_frame_type,
-            )
-            .order_by("-row_value_with_ack")
-            .first()
-        )
-        return f"{top_backlink.row_key} ({top_backlink.row_value_with_ack})"
+        return self._top_n(TimeFrameRow.TimeFrameRowType.DOMAIN, True)
 
     @property
     def top_hit_domain(self) -> str:
-        top_backlink = (
-            TimeFrameRow.objects.filter(
-                time_frame=self,
-                row_type=TimeFrameRow.TimeFrameRowType.DOMAIN,
-                time_frame__time_frame_type=self.time_frame_type,
-            )
-            .order_by("-row_value_no_ack")
-            .first()
-        )
-        return f"{top_backlink.row_key} ({top_backlink.row_value_no_ack})"
+        return self._top_n(TimeFrameRow.TimeFrameRowType.DOMAIN, False)
 
     @property
     def top_result_day(self) -> str:
@@ -198,7 +306,9 @@ class TimeFrame(models.Model):
         if not got:
             return "?"
         diff = int(int(got.row_value_with_ack) - self.daily_results)
-        return f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({"+" if diff > 0 else ""}{diff})"
+        return mark_safe(
+            f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({self._coloring(diff)})"
+        )
 
     @property
     def worst_result_day(self) -> str:
@@ -211,35 +321,17 @@ class TimeFrame(models.Model):
         if not got:
             return "?"
         diff = int(int(got.row_value_with_ack) - self.daily_results)
-        return f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({"+" if diff > 0 else ""}{diff})"
+        return mark_safe(
+            f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({self._coloring(diff)})"
+        )
 
     @property
     def top_result_os(self) -> str:
-        got = (
-            TimeFrameRow.objects.filter(
-                time_frame=self,
-                row_type=TimeFrameRow.TimeFrameRowType.OS,
-                time_frame__time_frame_type=self.time_frame_type,
-            )
-            .order_by("-row_value_with_ack")
-            .first()
-        )
-
-        return f"{got.row_key} ({got.row_value_with_ack})"
+        return self._top_n(TimeFrameRow.TimeFrameRowType.OS, with_ack=True)
 
     @property
     def top_hit_os(self) -> str:
-        got = (
-            TimeFrameRow.objects.filter(
-                time_frame=self,
-                row_type=TimeFrameRow.TimeFrameRowType.OS,
-                time_frame__time_frame_type=self.time_frame_type,
-            )
-            .order_by("-row_value_no_ack")
-            .first()
-        )
-
-        return f"{got.row_key} ({got.row_value_no_ack})"
+        return self._top_n(TimeFrameRow.TimeFrameRowType.OS)
 
     @property
     def raw_duration(self) -> float:
@@ -268,7 +360,7 @@ class TimeFrame(models.Model):
         self_duration = timedelta(seconds=self.raw_duration)
         if previous_month:
             diff = int(self.raw_duration - previous_month.raw_duration)
-            return f"{self_duration} ({"+" if diff > 0 else ""}{diff}s)"
+            return mark_safe(f"{self_duration} ({self._coloring(diff)}s)")
 
         return f"{self_duration}"
 
@@ -287,7 +379,7 @@ class TimeFrame(models.Model):
         all_count = self.hit_count + self.result_count
         if all_count == 0:
             return 0
-        return round((visibility_count / all_count) * 100, 5)
+        return round((visibility_count / all_count) * 100, 3)
 
     @property
     def container_visiblility(self) -> str:
@@ -304,8 +396,8 @@ class TimeFrame(models.Model):
                 self.container_visiblility_raw
                 - previous_month.container_visiblility_raw
             )
-            return (
-                f"{self.container_visiblility_raw}% ({"+" if diff > 0 else ""}{diff}%)"
+            return mark_safe(
+                f"{self.container_visiblility_raw}% ({self._coloring(diff)})"
             )
 
         return f"{self.container_visiblility_raw}%"
@@ -323,6 +415,7 @@ class TimeFrameRow(models.Model):
         OS_VERSION = "OS_VERSION", "OS_VERSION"
         BROWSER = "BROWSER", "BROWSER"
         CRAWLER = "CRAWLER", "CRAWLER"
+        CRAWLER_UA = "CRAWLER_UA", "CRAWLER_UA"
         MOBILE = "MOBILE", "MOBILE"
         REFERRER = "REFERRER", "REFERRER"
         DOMAIN = "DOMAIN", "DOMAIN"
@@ -344,7 +437,8 @@ class TimeFrameRow(models.Model):
                     TimeFrameRow.TimeFrameRowType.BROWSER: ua.browser.family,
                 }
                 if ua.is_bot:
-                    values[TimeFrameRow.TimeFrameRowType.CRAWLER] = value
+                    values[TimeFrameRow.TimeFrameRowType.CRAWLER_UA] = value
+                    values[TimeFrameRow.TimeFrameRowType.CRAWLER] = ua.browser.family
                 if ua.is_mobile:
                     values[TimeFrameRow.TimeFrameRowType.MOBILE] = ua.os.family
                 return values
@@ -370,8 +464,8 @@ class TimeFrameRow(models.Model):
     )
 
     row_key = models.CharField(null=True, blank=True, default=None)
-    row_value_with_ack = models.CharField(null=True, blank=True, default=None)
-    row_value_no_ack = models.CharField(null=True, blank=True, default=None)
+    row_value_with_ack = models.IntegerField(null=False, blank=False, default=0)
+    row_value_no_ack = models.IntegerField(null=False, blank=False, default=0)
     ack_percentage = models.FloatField(default=0, blank=False)
 
     def save(self, **kwargs):
