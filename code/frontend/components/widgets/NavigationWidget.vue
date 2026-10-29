@@ -30,24 +30,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </div>
     </div>
     <div class="col-4 col-md-7 text-end">
-      <div class="btn-group me-2" role="group" :title="store.__i(!isMarked ? 'BTN_MARK' : 'BTN_UNMARK')">
-        <a v-if="store.currentPage.canBeMarked" href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
+      <div class="btn-group me-2" role="group" :title="store.__i(!isMarked ? 'BTN_MARK' : 'BTN_UNMARK')"
+        v-if="store.currentPage.canBeMarked">
+        <a href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
           <Icon class="align-middle me-1" :name="isMarked ? 'ion:bookmark' : 'ion:bookmark-outline'"></Icon>
           <span class="d-none d-sm-inline">
             <LanguageTranslation :translation-key="!isMarked ? 'BTN_MARK' : 'BTN_UNMARK'" />
           </span>
         </a>
       </div>
-      <div class="btn-group me-2" role="group" :title="store.__i('BTN_PREV_PAGE')">
-        <a v-if="canGoBack" class="btn btn-secondary " href="#" v-on:click="goBack">
+      <div class="btn-group me-2" role="group" :title="store.__i('BTN_PREV_PAGE')" v-if="canGoBack">
+        <a class="btn btn-secondary " href="#" v-on:click="goBack">
           <Icon class="align-middle me-1" name="ion:caret-back-circle-sharp"></Icon>
           <span class="d-none d-sm-inline">
             <LanguageTranslation translation-key="BTN_PREV_PAGE" class="" />
           </span>
         </a>
       </div>
-      <div class="btn-group" role="group" :title="store.__i('BTN_NEXT_PAGE')">
-        <a v-if="canGoNext" href="#" class="btn btn-primary" v-on:click="goNext">
+      <div class="btn-group" role="group" :title="store.__i('BTN_NEXT_PAGE')" v-if="canGoNext">
+        <a href="#" class="btn btn-primary" v-on:click="goNext">
           <span class="d-none d-sm-inline">
             <LanguageTranslation translation-key="BTN_NEXT_PAGE" />
           </span>
