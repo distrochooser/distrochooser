@@ -32,6 +32,7 @@ class TimeFrame(models.Model):
     class TimeFrameType(models.TextChoices):
         MONTH = "MONTH", "MONTH"
         INTERVAL = "INTERVAL", "INTERVAL"
+        YEAR = "YEAR", "YEAR"
 
     time_frame_type = models.CharField(
         max_length=10,
@@ -88,8 +89,14 @@ class TimeFrame(models.Model):
         )
         all_count = self.hit_count + self.result_count
         if previous_entry:
+            average_diff = self.result_count - self.average("all_visitors_raw")
+            average_diff_year = self.all_visitors_raw - self.average(
+                "all_visitors_raw", False
+            )
             diff = self.all_visitors_raw - previous_entry.all_visitors_raw
-            return mark_safe(f"{all_count} ({self._coloring(diff)})")
+            return mark_safe(
+                f"{all_count} ({self._coloring(diff)})<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}"
+            )
         return all_count
 
     @property
@@ -110,7 +117,11 @@ class TimeFrame(models.Model):
 
     @property
     def results(self) -> str:
-        return mark_safe(f"{self.result_count} ({self._coloring(self.result_diff)})")
+        average_diff = self.result_count - self.average("result_count")
+        average_diff_year = self.result_count - self.average("result_count", False)
+        return mark_safe(
+            f"{self.result_count} ({self._coloring(self.result_diff)})<br>{self._coloring(average_diff, "⌀")}<br>{self._coloring(average_diff_year, "y⌀")}"
+        )
 
     @property
     def hit_count(self) -> int:
@@ -153,9 +164,16 @@ class TimeFrame(models.Model):
             )
             .last()
         )
+
         if previous_month:
             result = round(self.daily_results - previous_month.daily_results, 2)
-            return mark_safe(f"{self._coloring(result)}")
+            average_diff = self.daily_results - self.average("daily_results")
+            average_diff_year = self.daily_results - self.average(
+                "daily_results", False
+            )
+            return mark_safe(
+                f"{self._coloring(result)}<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}"
+            )
         else:
             return mark_safe(self._coloring(0))
 
@@ -208,11 +226,11 @@ class TimeFrame(models.Model):
             amount += 1
         return mark_safe(got)
 
-    def _coloring(self, value: int) -> str:
+    def _coloring(self, value: float, prefix="pm") -> str:
         color = "#8585fd"
         if value != 0:
             color = "#ff7b7b" if value < 0 else "#28fd28"
-        return f"<span style='color: {color}'>{"+" if value >= 0 else ""}{value}</span>"
+        return f"<span style='color: {color}'>{prefix}{"+" if value >= 0 else ""}{round(value, 2)}</span>"
 
     @property
     def top_language_hits(self) -> str:
@@ -248,6 +266,20 @@ class TimeFrame(models.Model):
             summarized += got
         return "yes" if summarized > 0 else "no"
 
+    def average(self, property_name: str, overall=True) -> float:
+        frames = (
+            TimeFrame.objects.exclude(pk=self.pk, time_frame_type=self.time_frame_type)
+            if overall
+            else TimeFrame.objects.filter(date__year=self.date.year).exclude(
+                pk=self.pk, time_frame_type=self.time_frame_type
+            )
+        )
+        sum_value = 0
+        for frame in frames:
+            sum_value += float(frame.__getattribute__(property_name))
+
+        return sum_value / frames.count() if frames.count() > 0 else 0
+
     @property
     def result_diff(self) -> str:
         previous_month = (
@@ -265,7 +297,7 @@ class TimeFrame(models.Model):
             return 0
 
     @property
-    def unique_backlinks(self) -> str:
+    def unique_backlinks(self) -> int:
         return TimeFrameRow.objects.filter(
             time_frame=self,
             row_type=TimeFrameRow.TimeFrameRowType.REFERRER,
@@ -283,8 +315,14 @@ class TimeFrame(models.Model):
             .last()
         )
         if previous_month:
+            average_diff = self.unique_backlinks - self.average("unique_backlinks")
+            average_diff_year = self.unique_backlinks - self.average(
+                "unique_backlinks", False
+            )
             result = self.unique_backlinks - previous_month.unique_backlinks
-            return mark_safe(f"{self.unique_backlinks} ({self._coloring(result)})")
+            return mark_safe(
+                f"{self.unique_backlinks} ({self._coloring(result)})<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}"
+            )
         return f"{self.unique_backlinks}"
 
     @property
@@ -360,7 +398,12 @@ class TimeFrame(models.Model):
         self_duration = timedelta(seconds=self.raw_duration)
         if previous_month:
             diff = int(self.raw_duration - previous_month.raw_duration)
-            return mark_safe(f"{self_duration} ({self._coloring(diff)}s)")
+
+            average_diff = self.raw_duration - self.average("raw_duration")
+            average_diff_year = self.raw_duration - self.average("raw_duration", False)
+            return mark_safe(
+                f"{self_duration} ({self._coloring(diff)}s)<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}"
+            )
 
         return f"{self_duration}"
 
