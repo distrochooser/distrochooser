@@ -301,19 +301,6 @@ class TimeFrame(models.Model):
         )
 
     @property
-    def top_hit_browser(self) -> str:
-        return self._top_n(TimeFrameRow.TimeFrameRowType.BROWSER)
-
-    @property
-    def top_result_browser(self) -> str:
-        if self.has_output("top_result_browser"):
-            return self.get_output("top_result_browser")
-        return self.cell_output(
-            self._top_n(TimeFrameRow.TimeFrameRowType.BROWSER, with_ack=True),
-            "top_result_browser",
-        )
-
-    @property
     def top_hit_crawlers(self) -> str:
         if self.has_output("top_hit_crawlers"):
             return self.get_output("top_hit_crawlers")
@@ -357,6 +344,9 @@ class TimeFrame(models.Model):
         sum_value = 0
         for frame in frames:
             sum_value += float(frame.__getattribute__(property_name))
+
+        if sum_value == 0:
+            return 0
 
         own_value = float(self.__getattribute__(property_name))
         return round((own_value / sum_value) * 100, 2)
@@ -486,14 +476,6 @@ class TimeFrame(models.Model):
         return self.cell_output(
             self._top_n(TimeFrameRow.TimeFrameRowType.OS, with_ack=True),
             "top_result_os",
-        )
-
-    @property
-    def top_hit_os(self) -> str:
-        if self.has_output("top_hit_os"):
-            return self.get_output("top_hit_os")
-        return self.cell_output(
-            self._top_n(TimeFrameRow.TimeFrameRowType.OS), "top_hit_os"
         )
 
     @property
