@@ -22,14 +22,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </span>
   </div>
   <div class="row">
-    <div class="col-8 col-md-5">
+    <div class="col-4 col-xl-8">
       <div class="btn text-center" @click="a11yShown = !a11yShown"
         :class="a11yShown ? 'btn-secondary' : 'btn-outline-secondary'">
         <Icon class="align-middle me-1" name="ion:accessibility"></Icon>
-        <LanguageTranslation translation-key="A11y" />
+        <span class="d-none d-sm-inline">
+          <LanguageTranslation translation-key="A11y" />
+        </span>
       </div>
     </div>
-    <div class="col-4 col-md-7 text-end">
+    <div class="col-8 col-md-7 text-end">
       <div class="btn-group me-2" role="group" :title="store.__i(!isMarked ? 'BTN_MARK' : 'BTN_UNMARK')"
         v-if="store.currentPage.canBeMarked">
         <a href="#" class="btn btn-outline-marking" v-on:click="toggleMarking">
