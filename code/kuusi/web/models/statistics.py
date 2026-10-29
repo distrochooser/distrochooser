@@ -22,10 +22,12 @@ from urllib3.util import parse_url
 from calendar import monthrange
 from datetime import timedelta
 from django.utils.html import mark_safe
+from django.utils.timezone import datetime
 
 
 class TimeFrame(models.Model):
     name = models.CharField(blank=False, null=False)
+    year = models.IntegerField(blank=False, null=False, default=0)
     date = models.DateField(blank=True, null=True, default=None)
     end_date = models.DateField(blank=True, null=True, default=None)
 
@@ -46,6 +48,8 @@ class TimeFrame(models.Model):
 
     @property
     def rank(self) -> str:
+        if self.has_output("rank"):
+            return self.get_output("rank")
         all_frames = list(
             TimeFrame.objects.filter(time_frame_type=self.time_frame_type)
         )
@@ -60,8 +64,8 @@ class TimeFrame(models.Model):
             color = "silver"
         elif rank == 3:
             color = "#e18787"
-        return mark_safe(
-            f"<span style='font-weight: bold; color:{color}'>{rank}.</span>"
+        return self.cell_output(
+            f"<span style='font-weight: bold; color:{color}'>{rank}.</span>", "rank"
         )
 
     @property
@@ -79,6 +83,9 @@ class TimeFrame(models.Model):
 
     @property
     def all_visitors(self) -> str:
+        if self.has_output("all_visitors"):
+            return self.get_output("all_visitors")
+
         previous_entry = (
             TimeFrame.objects.order_by("date")
             .filter(
@@ -94,14 +101,54 @@ class TimeFrame(models.Model):
                 "all_visitors_raw", False
             )
             diff = self.all_visitors_raw - previous_entry.all_visitors_raw
-            return mark_safe(
-                f"{all_count} ({self._coloring(diff)})<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}"
+            return self.cell_output(
+                mark_safe(
+                    f"{all_count} ({self._coloring(diff)})<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}"
+                ),
+                "all_visitors",
             )
-        return all_count
+        return self.cell_output(all_count, "all_visitors")
 
     @property
-    def year(self) -> int:
-        return self.date.year
+    def percentage_of_year(self) -> str:
+        if self.has_output("percentage_of_year"):
+            return self.get_output("percentage_of_year")
+
+        percentage = self.percentage("all_visitors_raw", False)
+        return self.cell_output(
+            f"{percentage}% of {self.date.year}", "percentage_of_year"
+        )
+
+    @property
+    def all_visitors_of_year_raw(self) -> str:
+        frames = TimeFrame.objects.filter(
+            date__year=self.year,
+            time_frame_type=self.time_frame_type,
+            date__lt=self.date,
+        ).order_by("-id")
+        overall_sum = 0
+        for frame in frames:
+            overall_sum += frame.all_visitors_raw
+        return overall_sum
+
+    @property
+    def all_visitors_of_year(self) -> str:
+        if self.has_output("all_visitors_of_year"):
+            return self.get_output("all_visitors_of_year")
+        last_year_frame = TimeFrame.objects.filter(
+            date__year=self.date.year - 1,
+            date__month=self.date.month,
+            date__day=self.date.day,
+            time_frame_type=self.time_frame_type,
+        )
+        overall_sum = self.all_visitors_of_year_raw
+        if last_year_frame.count() > 0:
+            last_year = last_year_frame.first().all_visitors_of_year_raw
+            diff_str = self._coloring(overall_sum - last_year, "py")
+            return self.cell_output(
+                f"{overall_sum} ({diff_str})", "all_visitors_of_year"
+            )
+        return self.cell_output(f"{overall_sum}", "all_visitors_of_year")
 
     @property
     def result_count(self) -> int:
@@ -117,10 +164,13 @@ class TimeFrame(models.Model):
 
     @property
     def results(self) -> str:
+        if self.has_output("results"):
+            return self.get_output("results")
         average_diff = self.result_count - self.average("result_count")
         average_diff_year = self.result_count - self.average("result_count", False)
-        return mark_safe(
-            f"{self.result_count} ({self._coloring(self.result_diff)})<br>{self._coloring(average_diff, "⌀")}<br>{self._coloring(average_diff_year, "y⌀")}"
+        return self.cell_output(
+            f"{self.result_count} ({self._coloring(self.result_diff)})<br>{self._coloring(average_diff, "⌀")}<br>{self._coloring(average_diff_year, "y⌀")}",
+            "results",
         )
 
     @property
@@ -232,17 +282,23 @@ class TimeFrame(models.Model):
             color = "#ff7b7b" if value < 0 else "#28fd28"
         return f"<span style='color: {color}'>{prefix}{"+" if value >= 0 else ""}{round(value, 2)}</span>"
 
-    @property
-    def top_language_hits(self) -> str:
-
-        return self._top_n(TimeFrameRow.TimeFrameRowType.LANGUAGE)
-
     def top_language_results(self) -> str:
-        return self._top_n(TimeFrameRow.TimeFrameRowType.LANGUAGE, with_ack=True)
+        if self.has_output("top_language_results"):
+            return self.get_output("top_language_results")
+
+        return self.cell_output(
+            self._top_n(TimeFrameRow.TimeFrameRowType.LANGUAGE, with_ack=True),
+            "top_language_results",
+        )
 
     @property
     def daily(self) -> str:
-        return mark_safe(f"{self.daily_results} ({self.daily_results_diff})")
+        if self.has_output("daily"):
+            return self.get_output("daily")
+
+        return self.cell_output(
+            mark_safe(f"{self.daily_results} ({self.daily_results_diff})"), "daily"
+        )
 
     @property
     def top_hit_browser(self) -> str:
@@ -250,35 +306,60 @@ class TimeFrame(models.Model):
 
     @property
     def top_result_browser(self) -> str:
-        return self._top_n(TimeFrameRow.TimeFrameRowType.BROWSER, with_ack=True)
+        if self.has_output("top_result_browser"):
+            return self.get_output("top_result_browser")
+        return self.cell_output(
+            self._top_n(TimeFrameRow.TimeFrameRowType.BROWSER, with_ack=True),
+            "top_result_browser",
+        )
 
     @property
     def top_hit_crawlers(self) -> str:
-        return self._top_n(TimeFrameRow.TimeFrameRowType.CRAWLER, n=3)
+        if self.has_output("top_hit_crawlers"):
+            return self.get_output("top_hit_crawlers")
+        return self.cell_output(
+            self._top_n(TimeFrameRow.TimeFrameRowType.CRAWLER, n=3), "top_hit_crawlers"
+        )
 
     @property
     def crawler_with_result(self) -> str:
+        if self.has_output("crawler_with_result"):
+            return self.get_output("crawler_with_result")
         got = self._top_n_raw(
             TimeFrameRow.TimeFrameRowType.CRAWLER, with_ack=True
         ).values()
         summarized = 0
         for got in got:
             summarized += got
-        return "yes" if summarized > 0 else "no"
+        return self.cell_output(
+            "yes" if summarized > 0 else "no", "crawler_with_result"
+        )
 
-    def average(self, property_name: str, overall=True) -> float:
-        frames = (
+    def _frames(self, overall: bool):
+        return (
             TimeFrame.objects.exclude(pk=self.pk, time_frame_type=self.time_frame_type)
             if overall
             else TimeFrame.objects.filter(date__year=self.date.year).exclude(
                 pk=self.pk, time_frame_type=self.time_frame_type
             )
         )
+
+    def average(self, property_name: str, overall=True) -> float:
+        frames = self._frames(overall)
         sum_value = 0
         for frame in frames:
             sum_value += float(frame.__getattribute__(property_name))
 
         return sum_value / frames.count() if frames.count() > 0 else 0
+
+    def percentage(self, property_name: str, overall=True) -> float:
+        frames = self._frames(overall)
+        sum_value = 0
+        for frame in frames:
+            sum_value += float(frame.__getattribute__(property_name))
+
+        own_value = float(self.__getattribute__(property_name))
+        return round((own_value / sum_value) * 100, 2)
 
     @property
     def result_diff(self) -> str:
@@ -304,8 +385,28 @@ class TimeFrame(models.Model):
             time_frame__time_frame_type=self.time_frame_type,
         ).count()
 
+    def cell_output(self, what: str, key: str):
+        matches = TimeFrameCell.objects.filter(time_frame=self, key=key)
+        if matches.count() == 1:
+            return mark_safe(matches.first().content)
+        else:
+            TimeFrameCell(time_frame=self, key=key, content=what).save()
+        return mark_safe(what)
+
+    def has_output(self, key: str):
+        matches = TimeFrameCell.objects.filter(time_frame=self, key=key)
+        return matches.count() == 1
+
+    def get_output(self, key: str):
+        matches = TimeFrameCell.objects.filter(time_frame=self, key=key)
+        if matches.count() == 1:
+            return mark_safe(matches.first().content)
+        return None
+
     @property
     def backlinks(self) -> str:
+        if self.has_output("backlinks"):
+            return self.get_output("backlinks")
         previous_month = (
             TimeFrame.objects.order_by("date")
             .filter(
@@ -320,21 +421,32 @@ class TimeFrame(models.Model):
                 "unique_backlinks", False
             )
             result = self.unique_backlinks - previous_month.unique_backlinks
-            return mark_safe(
-                f"{self.unique_backlinks} ({self._coloring(result)})<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}"
+            return self.cell_output(
+                f"{self.unique_backlinks} ({self._coloring(result)})<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}",
+                "backlinks",
             )
         return f"{self.unique_backlinks}"
 
     @property
     def top_result_domain(self) -> str:
-        return self._top_n(TimeFrameRow.TimeFrameRowType.DOMAIN, True)
+        if self.has_output("top_result_domain"):
+            return self.get_output("top_result_domain")
+        return self.cell_output(
+            self._top_n(TimeFrameRow.TimeFrameRowType.DOMAIN, True), "top_result_domain"
+        )
 
     @property
     def top_hit_domain(self) -> str:
-        return self._top_n(TimeFrameRow.TimeFrameRowType.DOMAIN, False)
+        if self.has_output("top_result_domain"):
+            return self.get_output("top_result_domain")
+        return self.cell_output(
+            self._top_n(TimeFrameRow.TimeFrameRowType.DOMAIN, False), "top_hit_domain"
+        )
 
     @property
     def top_result_day(self) -> str:
+        if self.has_output("top_result_day"):
+            return self.get_output("top_result_day")
         got = TimeFrameRow.objects.filter(
             time_frame=self,
             row_type=TimeFrameRow.TimeFrameRowType.TOP_DAY,
@@ -344,12 +456,15 @@ class TimeFrame(models.Model):
         if not got:
             return "?"
         diff = int(int(got.row_value_with_ack) - self.daily_results)
-        return mark_safe(
-            f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({self._coloring(diff)})"
+        return self.cell_output(
+            f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({self._coloring(diff)})",
+            "top_result_day",
         )
 
     @property
     def worst_result_day(self) -> str:
+        if self.has_output("worst_result_day"):
+            return self.get_output("worst_result_day")
         got = TimeFrameRow.objects.filter(
             time_frame=self,
             row_type=TimeFrameRow.TimeFrameRowType.WORST_DAY,
@@ -359,17 +474,27 @@ class TimeFrame(models.Model):
         if not got:
             return "?"
         diff = int(int(got.row_value_with_ack) - self.daily_results)
-        return mark_safe(
-            f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({self._coloring(diff)})"
+        return self.cell_output(
+            f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({self._coloring(diff)})",
+            "worst_result_day",
         )
 
     @property
     def top_result_os(self) -> str:
-        return self._top_n(TimeFrameRow.TimeFrameRowType.OS, with_ack=True)
+        if self.has_output("top_result_os"):
+            return self.get_output("top_result_os")
+        return self.cell_output(
+            self._top_n(TimeFrameRow.TimeFrameRowType.OS, with_ack=True),
+            "top_result_os",
+        )
 
     @property
     def top_hit_os(self) -> str:
-        return self._top_n(TimeFrameRow.TimeFrameRowType.OS)
+        if self.has_output("top_hit_os"):
+            return self.get_output("top_hit_os")
+        return self.cell_output(
+            self._top_n(TimeFrameRow.TimeFrameRowType.OS), "top_hit_os"
+        )
 
     @property
     def raw_duration(self) -> float:
@@ -387,6 +512,8 @@ class TimeFrame(models.Model):
 
     @property
     def duration(self) -> str:
+        if self.has_output("duration"):
+            return self.get_output("duration")
         previous_month = (
             TimeFrame.objects.order_by("date")
             .filter(
@@ -401,11 +528,14 @@ class TimeFrame(models.Model):
 
             average_diff = self.raw_duration - self.average("raw_duration")
             average_diff_year = self.raw_duration - self.average("raw_duration", False)
-            return mark_safe(
-                f"{self_duration} ({self._coloring(diff)}s)<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}"
+            return self.cell_output(
+                mark_safe(
+                    f"{self_duration} ({self._coloring(diff)}s)<br/>{self._coloring(average_diff, "⌀")}<br/>{self._coloring(average_diff_year, "y⌀")}"
+                ),
+                "duration",
             )
 
-        return f"{self_duration}"
+        return self.cell_output(f"{self_duration}", "duration")
 
     @property
     def container_visiblility_raw(self) -> int:
@@ -426,6 +556,9 @@ class TimeFrame(models.Model):
 
     @property
     def container_visiblility(self) -> str:
+        if self.has_output("container_visibility"):
+            return self.get_output("container_visibility")
+
         previous_month = (
             TimeFrame.objects.order_by("date")
             .filter(
@@ -439,11 +572,14 @@ class TimeFrame(models.Model):
                 self.container_visiblility_raw
                 - previous_month.container_visiblility_raw
             )
-            return mark_safe(
-                f"{self.container_visiblility_raw}% ({self._coloring(diff)})"
+            return self.cell_output(
+                (f"{self.container_visiblility_raw}% ({self._coloring(diff)})"),
+                "container_visibility",
             )
 
-        return f"{self.container_visiblility_raw}%"
+        return self.cell_output(
+            f"{self.container_visiblility_raw}%", "container_visibility"
+        )
 
 
 class TimeFrameRow(models.Model):
@@ -525,3 +661,9 @@ class TimeFrameRow(models.Model):
     def __str__(self) -> str:
         suffix = " " + self.row_key if self.row_key else ""
         return f"[{self.time_frame}] {self.row_type}{suffix}:  {self.row_value_with_ack} ({self.row_value_no_ack})"
+
+
+class TimeFrameCell(models.Model):
+    time_frame = models.ForeignKey(to=TimeFrame, null=False, on_delete=models.CASCADE)
+    content = models.CharField(null=True, default=None, blank=True)
+    key = models.CharField(null=True, default=None, blank=True)

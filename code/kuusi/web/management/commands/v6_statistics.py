@@ -20,7 +20,7 @@ from django.core.management.base import BaseCommand, CommandParser
 from web.models import Session, TimeFrame, TimeFrameRow
 from termcolor import colored
 from tqdm import tqdm
-from django.utils.timezone import now
+from django.utils.timezone import now, datetime
 from django.utils.dateparse import parse_datetime
 from datetime import timedelta
 from calendar import monthrange
@@ -102,22 +102,20 @@ class Command(BaseCommand):
                 f"Package timespan is {colored(start_to_use, 'magenta')} to {colored(end_to_use, 'red')}"
             )
 
-            is_existing = (
-                TimeFrame.objects.filter(
-                    date=start_to_use,
-                    end_date=end_to_use,
-                    time_frame_type=timeframe_type,
-                ).count()
-                > 0
-            )
+            # Make sure the TimeFrames are always up to date
+            TimeFrame.objects.filter(
+                date=start_to_use,
+                end_date=end_to_use,
+                time_frame_type=timeframe_type,
+            ).delete()
 
-            if not is_existing:
-                frame = TimeFrame(
-                    time_frame_type=timeframe_type,
-                    end_date=end_to_use,
-                    date=start_to_use,
-                )
-                frame.save()
+            frame = TimeFrame(
+                time_frame_type=timeframe_type,
+                end_date=end_to_use,
+                date=start_to_use,
+                year=start_date.year,
+            )
+            frame.save()
 
             frame = TimeFrame.objects.get(
                 time_frame_type=timeframe_type,

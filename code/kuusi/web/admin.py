@@ -46,6 +46,7 @@ from web.models import (
     PageMarking,
     ChoosableMeta,
     TimeFrame,
+    TimeFrameCell,
     TimeFrameRow,
 )
 
@@ -98,6 +99,8 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "end_date",
         "rank",
         "all_visitors",
+        "all_visitors_of_year",
+        "percentage_of_year",
         "results",
         "container_visiblility",
         "daily",
@@ -105,20 +108,15 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "worst_result_day",
         "top_result_day",
         "backlinks",
-        # "top_language_hits",
         "top_language_results",
         "top_hit_domain",
         "top_result_domain",
-        # "top_hit_os",
         "top_result_os",
-        # "top_hit_os",
-        # "top_hit_browser",
-        # "top_result_browser",
         "top_hit_crawlers",
         "crawler_with_result",
     )
     ordering = ("-time_frame_type", "date")
-    list_filter = ["time_frame_type", "date"]
+    list_filter = ["time_frame_type", "date", "year"]
 
 
 class ZeroAckFilter(SimpleListFilter):
@@ -146,9 +144,19 @@ class TimeFrameRowAdmin(admin.ModelAdmin):
     list_filter = ["time_frame", "row_type", ZeroAckFilter]
 
 
+class TimeFrameCellAdmin(admin.ModelAdmin):
+    list_display = (
+        "pk",
+        "time_frame",
+        "key",
+        "content",
+    )
+
+
 [
     admin.site.register(*models)
     for models in [
+        (TimeFrameCell, TimeFrameCellAdmin),
         (TimeFrame, TimeFrameAdmin),
         (TimeFrameRow, TimeFrameRowAdmin),
         (Choosable,),
