@@ -129,6 +129,7 @@ class TimeFrame(models.Model):
         overall_sum = 0
         for frame in frames:
             overall_sum += frame.all_visitors_raw
+        overall_sum += self.all_visitors_raw
         return overall_sum
 
     @property
