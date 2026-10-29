@@ -107,7 +107,8 @@ const invertedStyling = computed(() => 'background-color: ' +
 
 const store = useSessionStore()
 const getPoints = (assignments: FacetteAssignment[]) => Math.round(assignments.map(a => store.session.scoreMap[a.assignmentType]).reduce((sum, num) => sum + num, 0) * 100) / 100
-const maxPoints = computed(() => Math.max(...props.others.map((c) => getPoints(c.assignments))))
+const allChoosables = computed(() => props.others.concat(props.choosable))
+const maxPoints = computed(() => Math.max(...allChoosables.value.map((c) => getPoints(c.assignments))))
 
 
 const onComparisonClose = () => {
