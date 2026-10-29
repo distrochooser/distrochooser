@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linuxは、ゲーミング、ストリーミング、コンテンツ制作のためのLinuxディストリビューションです。",
     "gaming-usage-not-in-focus-description": "このプロジェクトは、ゲームだけでなく、古いハードウェアの活用に焦点を当てています。",
     "a11y-packages-included-description": "視覚障害者のためのアクセシビリティソフトウェアが含まれています。",
-    "emmabuntus-description": "Emmabuntüs は、人道支援団体に寄付された古いハードウェアの継続的な使用と、初心者によるGNU/Linuxの発見を支援するためのLinuxディストリビューションです。"
+    "emmabuntus-description": "Emmabuntüs は、人道支援団体に寄付された古いハードウェアの継続的な使用と、初心者によるGNU/Linuxの発見を支援するためのLinuxディストリビューションです。",
+    "mark_weight": "この回答を重要としてマークしてください。",
+    "negative_handling_active": "ネガティブな一致は除外対象と見なします。",
+    "negative_handling": "ネガティブなマッチを除外対象にする",
+    "welcome-negative-handling": "ネガティブな評価をする代わりに、「NG（不可）」と考える回答に印をつけられます。",
+    "marked_weight": "重要としてマーク済み",
+    "has_negative_handling_active": "除外としてマークしました。",
+    "points_remark": "この点は、あなたの回答との一致を示すものであり、Linuxディストリビューションの品質を指すものではありません。",
+    "points_out_of": "のうち"
 }

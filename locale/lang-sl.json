@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux je distribucija Linuxa za igranje, striming in ustvarjanje vsebine.",
     "gaming-usage-not-in-focus-description": "Projekt se osredotočuje na korištenje starije opreme, a ne posebno na igranju.",
     "a11y-packages-included-description": "Vključuje softver za pristupačnost za uporabnike z zmanjšanim vidom.",
-    "emmabuntus-description": "Emmabuntüs je distribucija Linuxa za nadaljnjo uporabo starega opreme, darovane humanitarnim organizacijam, in za pomoč začetnikom pri odkrivanju GNU/Linuxa."
+    "emmabuntus-description": "Emmabuntüs je distribucija Linuxa za nadaljnjo uporabo starega opreme, darovane humanitarnim organizacijam, in za pomoč začetnikom pri odkrivanju GNU/Linuxa.",
+    "mark_weight": "Označijo odgovor kot pomemben.",
+    "negative_handling_active": "Negativna ujemanja bomo obravnavali kot nepredložljiva.",
+    "negative_handling": "Povečajte negativne najdenice v prepoved",
+    "welcome-negative-handling": "Lahkoči lahko označi odgovore, ki jih šteješ za zavrnitev, namesto da jih ocenjuješ kot negativne.",
+    "marked_weight": "Označen kot pomemben",
+    "has_negative_handling_active": "Označil si ga kot zavrnitev.",
+    "points_remark": "Točke predstavljajo poudekovanje vaših odgovorov in se nanašajo na kakovost Linux distribucije.",
+    "points_out_of": "od"
 }

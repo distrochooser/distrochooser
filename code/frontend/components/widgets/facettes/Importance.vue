@@ -16,14 +16,32 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <span>
-        <Icon :title="showedTooltip" class="fs-5 align-middle ms-1 me-1 weight-ribbon"
-            :class="{ 'marked-important': isImportant }" :name="showedIcon" v-on:click="registerWeightChange"></Icon>
+    <span class="mb-1 fs-6">
+        <span>
+            <Icon :title="showedTooltip" class="align-middle weight-ribbon" :class="{ 'marked-important': isImportant }"
+                :name="showedIcon" v-on:click="() => {
+                    isImportant = !isImportant;
+                    registerWeightChange()
+                }">
+            </Icon>
+        </span>
+        <span>
+            <span class="ms-1" v-on:click="() => {
+                hasNegativeHandlingActive = !hasNegativeHandlingActive;
+                registerWeightChange()
+            }">
+                <Icon :title="showedTooltipNegativeHandling" class="align-middle negative-handling"
+                    :class="{ 'negative-handling-active': hasNegativeHandlingActive }"
+                    :name="showedIconNegativeHandling" />
+                <b class="align-middle ms-1" v-if="hasNegativeHandlingActive">{{ showedTooltipNegativeHandling
+                }}</b>
+            </span>
+        </span>
     </span>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import type { Facette } from '../../../sdk/models/Facette';
 import { useSessionStore } from '../../../states/session';
 
@@ -36,36 +54,53 @@ interface ImportanceProps {
 const props = defineProps<ImportanceProps>();
 const store = useSessionStore();
 
-const isImportant = computed(() => {
-    const matches = store.facetteSelections.filter(s => s.facette == props.facette.id)
+const isImportant = ref(false)
+const hasNegativeHandlingActive = ref(false)
 
-    if (matches.length == 0) {
-        return false;
-    }
-    return matches[0].weight > 0
-});
+onMounted(() => {
+    const matches = store.facetteSelections.find(s => s.facette == props.facette.id)
+
+    hasNegativeHandlingActive.value = matches !== undefined ? matches.negativeHandlingActive : false
+    isImportant.value = matches !== undefined ? matches.weight > 0 : false
+})
+
 const showedIcon = computed(() => isImportant.value ? 'ion:ribbon' : 'ion:ribbon-outline');
-const showedTooltip = computed(() => isImportant.value ? store.__i("weight_more") : store.__i("weight_info"))
+const showedTooltip = computed(() => hasNegativeHandlingActive.value ? store.__i("marked_weight") : store.__i("mark_weight"))
+
+
+// See ADR-0035
+const showedIconNegativeHandling = computed(() => hasNegativeHandlingActive.value ? 'ion:stop-circle' : 'ion:stop-circle-outline');
+const showedTooltipNegativeHandling = computed(() => hasNegativeHandlingActive.value ? store.__i("negative_handling_active") : store.__i("negative_handling"))
+
 
 const registerWeightChange = async () => {
     await store.updateFacetteSelections(
         store.currentPage.id,
         props.facette.id,
-        isImportant.value ? 0 : 2,
+        isImportant.value ? 2 : 0,
+        hasNegativeHandlingActive.value,
         props.selected,
         "this"
     );
 };
+
 </script>
 <style lang="scss" scoped>
 @import "../../../style/variables.scss";
 
-.weight-ribbon {
+.weight-ribbon,
+.negative-handling {
     cursor: pointer;
 
     &.marked-important {
         animation: tilt-shaking 0.2s linear;
         color: $more-weight-color;
+    }
+
+
+    &.negative-handling-active {
+        animation: tilt-shaking 0.2s linear;
+        color: $negative-handling-active-color;
     }
 }
 </style>

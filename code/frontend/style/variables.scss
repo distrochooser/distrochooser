@@ -29,9 +29,10 @@ $body-bg: #f4f6f9;
 
 // non overwrite 
 
-$more-weight-color: rgb(243, 171, 1);
+$more-weight-color: rgb(243, 166, 1);
+$negative-handling-active-color: rgb(237, 85, 30);
 $less-weight-color: color.adjust($primary, $lightness: 60%);
-$weight-badge-color: white;
+$weight-badge-color: rgb(4, 4, 4);
 $missing-language-color: $red;
 $page-bg-dark: #141719;
 

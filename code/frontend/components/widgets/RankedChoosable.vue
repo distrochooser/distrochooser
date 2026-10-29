@@ -20,24 +20,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     :class="'row ' + (choosableToCompare != null ? 'row border border-info rounded-end rounded-start pt-4 ps-1 pb-0 mb-2 pe-1' : '')">
     <div class="col">
       <div class="card mb-4">
-        <div class="card-body choosable-body" :style="'background-color: ' +
-          props.choosable.bgColor +
-          '; ' +
-          'color: ' +
-          props.choosable.fgColor
-          ">
+        <div class="card-body choosable-body" :style="styling">
 
           <div class="card-text">
             <div class="row">
               <div class="col-8">
-                <span class="choosable-position badge  me-1" :style="'background-color: ' +
-                  props.choosable.fgColor +
-                  '; ' +
-                  'color: ' +
-                  props.choosable.bgColor
-                  ">{{ props.choosable.position }}.</span>
-                <b class="me-1">{{ props.choosable.name }}</b>
-                <LanguageTranslation :translation-key="props.choosable.catalogueId + '-description'" />
+                <span class="choosable-position badge align-middle me-1" :style="invertedStyling">{{
+                  props.choosable.position }}.</span>
+                <span class="badge align-middle me-1" :style="invertedStyling">
+                  {{ getPoints(props.choosable.assignments) }}P
+                  <LanguageTranslation translation-key="points_out_of" /> {{ maxPoints }}P
+                </span>
+                <b class="me-1 align-middle">{{ props.choosable.name }}</b>
+                <span class="align-middle">
+                  <LanguageTranslation :translation-key="props.choosable.catalogueId + '-description'" />
+                </span>
               </div>
               <div class="col-4" v-if="others.length > 0">
                 <select class="form-control" v-model="choosableToCompare">
@@ -68,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <div class="card-body">
           <li class="list-group-item" v-for="(key, index) in props.choosable.assignments" :key="index">
             <Assignment :display-weigth="true" :assignment="key" :key="index" :query-choosables="false" :facette="null"
-              :choosable="props.choosable" />
+              :negative-handling-active="props.choosable.negativeHandlingActive" :choosable="props.choosable" />
           </li>
         </div>
       </div>
@@ -81,10 +78,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 </template>
 <script setup lang="ts">
-import type { RankedChoosable } from "../../sdk";
+import type { FacetteAssignment, RankedChoosable } from "../../sdk";
 import ChoosableMeta from "./rankedchoosable/ChoosableMeta.vue";
 import Assignment from "./facettes/Assignment.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useSessionStore } from "../../states/session.ts";
 interface WidgetProps {
   choosable: RankedChoosable;
   others: RankedChoosable[];
@@ -94,6 +92,23 @@ interface WidgetProps {
 const props = defineProps<WidgetProps>();
 
 const choosableToCompare = ref<RankedChoosable | null>(null)
+
+const styling = computed(() => 'background-color: ' +
+  props.choosable.bgColor +
+  '; ' +
+  'color: ' +
+  props.choosable.fgColor)
+
+const invertedStyling = computed(() => 'background-color: ' +
+  props.choosable.fgColor +
+  '; ' +
+  'color: ' +
+  props.choosable.bgColor)
+
+const store = useSessionStore()
+const getPoints = (assignments: FacetteAssignment[]) => Math.round(assignments.map(a => store.session.scoreMap[a.assignmentType]).reduce((sum, num) => sum + num, 0))
+const maxPoints = computed(() => Math.max(...props.others.map((c) => getPoints(c.assignments))))
+
 
 const onComparisonClose = () => {
   choosableToCompare.value = null

@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux adalah distribusi Linux untuk gaming, streaming, dan pembuatan konten.",
     "gaming-usage-not-in-focus-description": "Proyek ini berfokus pada penggunaan perangkat keras lama, bukan secara khusus untuk bermain game.",
     "a11y-packages-included-description": "Menyertakan perangkat lunak aksesibilitas untuk pengguna tunanetra.",
-    "emmabuntus-description": "Emmabuntüs adalah distribusi Linux untuk melanjutkan penggunaan perangkat keras lama yang didonasikan untuk organisasi kemanusiaan dan membantu pemula menemukan GNU/Linux."
+    "emmabuntus-description": "Emmabuntüs adalah distribusi Linux untuk melanjutkan penggunaan perangkat keras lama yang didonasikan untuk organisasi kemanusiaan dan membantu pemula menemukan GNU/Linux.",
+    "mark_weight": "Tandai jawaban ini sebagai penting.",
+    "negative_handling_active": "Kecocokan negatif akan dianggap sebagai tidak dapat diterima.",
+    "negative_handling": "Buat kecocokan negatif menjadi larangan",
+    "welcome-negative-handling": "Kamu bisa menandai jawaban yang kamu anggap tidak bisa diterima daripada memberikan penilaian negatif.",
+    "marked_weight": "Ditandai sebagai penting",
+    "has_negative_handling_active": "Kamu menandainya sebagai tidak bisa.",
+    "points_remark": "Poin-poin ini mewakili kecocokan dengan jawaban Anda dan tidak merujuk pada kualitas distribusi Linux.",
+    "points_out_of": "dari"
 }

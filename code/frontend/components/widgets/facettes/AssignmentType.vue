@@ -18,40 +18,76 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
 
     <span
-        :class="{ 'badge  rounded-pill me-3 ': true, 'less-weight-badge': assignment.weight < 0, 'more-weight-badge': assignment.weight > 0 }"
-        v-if="props.displayWeigth && props.assignment.weight != null && weightText != null"
-        :title="assignment.weight.toString() + 'x'">
+        :class="{ 'badge  me-1 ': true, 'less-weight-badge': assignment.weight < 0, 'more-weight-badge': assignment.weight > 0 }"
+        v-if="props.displayWeigth && props.assignment.weight != null && weightText != null">
 
-        <Icon name="ion:trending-up-outline" class="me-1" v-if="props.assignment.weight > 0"></Icon>
-        <Icon name="ion:trending-down-outline" class="me-1" v-if="props.assignment.weight < 0"></Icon>
+        <Icon :name="props.assignment.weight > 0 ? 'ion:trending-up-outline' : 'ion:trending-down-outline'"
+            class="me-1 align-middle"></Icon>
 
-        <LanguageTranslation :translation-key="weightText" />
+        <span class="align-middle">
+            <LanguageTranslation :translation-key="weightText" />
+        </span>
     </span>
-    <span :class="'badge  rounded-pill ' + assignmentTypeCssMap[assignment.assignmentType]
-        ">
-        <LanguageTranslation :translation-key="assignment.assignmentType" />
+    <span :class="{ 'badge text-bg-primary bg me-1 ': true }" v-if="hasNegativeHandlingActive">
+        <Icon name="ion:stop-circle" class="me-1 align-middle"></Icon>
+        <span class="align-middle">
+            <LanguageTranslation translation-key="has_negative_handling_active" />
+        </span>
+    </span>
+    <span :class="'badge ' + assignmentTypeCssMap[assignment.assignmentType]">
+        <Icon :name="assignmentTypeIconMap[assignment.assignmentType]"
+            :class="'me-1 align-middle ' + assignmentTextColor[assignment.assignmentType]"></Icon>
+        <span :class="'align-middle ' + assignmentTextColor[assignment.assignmentType]">
+            <LanguageTranslation :translation-key="assignment.assignmentType" />
+        </span>
+    </span>
+
+    <span class="ms-1 badge text-bg-light align-middle ">
+        <Icon name=" ion:md-trending-up" class="align-middle" />
+        <span class="align-middle">
+            {{ store.session.scoreMap[assignment.assignmentType] > 0 ? "+" : "" }}{{
+                store.session.scoreMap[assignment.assignmentType] }}P
+        </span>
     </span>
 </template>
 <script setup lang="ts">
-import type { FacetteAssignment } from '../../../sdk';
+import { type AssignmentTypeEnum, type FacetteAssignment } from '../../../sdk';
+import { useSessionStore } from '../../../states/session';
 
 
 interface AssignmentTypeProps {
     assignment: FacetteAssignment;
     displayWeigth: boolean;
+    hasNegativeHandlingActive: boolean;
 }
 
 
 const assignmentTypeCssMap = {
-    BLOCKING: "text-bg-dark",
-    NEGATIVE: "text-bg-danger ",
-    POSITIVE: "text-bg-success text-light",
+    BLOCKING: "text-bg-danger",
+    NEGATIVE: "text-bg-danger",
+    POSITIVE: "text-bg-success",
     NEUTRAL: "text-bg-light",
 };
 
+
+const assignmentTextColor = {
+    BLOCKING: "text-light",
+    NEGATIVE: "text-light",
+    POSITIVE: "text-light",
+    NEUTRAL: "text-dark",
+};
+
+const assignmentTypeIconMap: Record<AssignmentTypeEnum, string> = {
+    BLOCKING: "ion:alert-circled",
+    NEGATIVE: "ion:ios-minus",
+    POSITIVE: "ion:ios-plus",
+    NEUTRAL: "ion:information-circle-sharp"
+}
+
+
 const props = defineProps<AssignmentTypeProps>();
 const weightText = props.assignment.weight < 1 ? "weight-less" : (props.assignment.weight > 1 ? "weight_more" : null);
-
+const store = useSessionStore()
 </script>
 
 <style lang="scss" scoped>

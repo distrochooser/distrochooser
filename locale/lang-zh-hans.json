@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux 是一个用于游戏、流媒体和内容创作的 Linux 发行版。",
     "gaming-usage-not-in-focus-description": "这个项目侧重于使用旧硬件，而不是专门玩游戏。",
     "a11y-packages-included-description": "包含适用于视力障碍用户的无障碍软件。",
-    "emmabuntus-description": "Emmabuntüs 是一个 Linux 发行版，用于继续使用为人道主义组织捐赠的老旧硬件，并帮助初学者发现 GNU/Linux。"
+    "emmabuntus-description": "Emmabuntüs 是一个 Linux 发行版，用于继续使用为人道主义组织捐赠的老旧硬件，并帮助初学者发现 GNU/Linux。",
+    "mark_weight": "将此答案标记为重要。",
+    "negative_handling_active": "负面匹配将被视为不通过。",
+    "negative_handling": "将负面匹配设为排除项",
+    "welcome-negative-handling": "您可以标记您认为完全不适合的答案，而不仅仅是负面评价。",
+    "marked_weight": "标记为重要",
+    "has_negative_handling_active": "你已将其标记为排除项。",
+    "points_remark": "这些分数表示与您回答的匹配程度，不代表Linux发行版的质量。",
+    "points_out_of": "出"
 }

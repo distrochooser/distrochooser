@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux היא הפצת לינוקס למשחקים, סטרימינג ויצירת תוכן.",
     "gaming-usage-not-in-focus-description": "הפרויקט מתמקד בשימוש בחומרה ישנה, לא בהכרח במשחקים.",
     "a11y-packages-included-description": "כולל תוכנה להנגשה למשתמשים עם מוגבלות ראייה.",
-    "emmabuntus-description": "Emmabuntüs הוא הפצת לינוקס להמשך שימוש בחומרה ישנה שנתרמה לארגונים הומניטריים ולסיוע למתחילים לגלות GNU/Linux."
+    "emmabuntus-description": "Emmabuntüs הוא הפצת לינוקס להמשך שימוש בחומרה ישנה שנתרמה לארגונים הומניטריים ולסיוע למתחילים לגלות GNU/Linux.",
+    "mark_weight": "סמן את התשובה הזו כחשובה.",
+    "negative_handling_active": "התאמות שליליות ייחשבו כלא מתאימות.",
+    "negative_handling": "הפוך התאמות שליליות לוויתור",
+    "welcome-negative-handling": "אתה יכול לסמן תשובות שאתה רואה כלא עובר\" במקום לתת להן הערכה שלילית.\"",
+    "marked_weight": "מסומן כחשוב",
+    "has_negative_handling_active": "סימנת כלא רצוי.",
+    "points_remark": "הנקודות מייצגות התאמה לתשובות שלך ואינן מתייחסות לאיכות של הפצת לינוקס.",
+    "points_out_of": "מתוך"
 }

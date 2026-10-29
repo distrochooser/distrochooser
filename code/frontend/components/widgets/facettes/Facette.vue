@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div :class="{ 'form-check mb-2': true }" v-if="props.checkbox">
       <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
         type="checkbox" :id="facette.id.toString()" v-show="!store.isTranslating">
-      <label class="form-check-label" :for="facette.id.toString()">
+      <label class="form-check-label me-2" :for="facette.id.toString()">
         <LanguageTranslation :translation-key="props.facette.description" />
       </label>
       <Importance v-if="isSelected" :selected="selected" :facette="facette" />
@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <input v-on:click="registerClick" v-show="!store.isTranslating" class="form-check-input" type="radio"
         v-bind:name="props.facette.topic" v-model="selected" v-on:change="registerChange" v-bind:value="true"
         :checked="isSelected" :id="facette.id.toString()">
-      <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
+      <label v-on:click="registerClick" class="form-check-label me-2" :for="facette.id.toString()">
         <LanguageTranslation :translation-key="props.facette.description" />
       </label>
       <Importance v-if="isSelected" :selected="selected" :facette="facette" />
@@ -84,6 +84,10 @@ const weight = useState(
   props.facette.id.toString() + "_weight",
   () => selected.value ? store.facetteSelections.filter((l) => l.facette == props.facette.id)[0].weight : 0
 )
+const isNegativeHandlingActive = useState(
+  props.facette.id.toString() + "_is_negative_handling_active",
+  () => selected.value ? store.facetteSelections.filter((l) => l.facette == props.facette.id)[0].negativeHandlingActive : false
+)
 const isExpanded = useState(
   props.facette.id.toString() + "_expanded",
   () => false
@@ -116,6 +120,7 @@ const registerClick = async () => {
       props.facette.id,
       0,
       false,
+      false,
       !props.checkbox ? "all" : ""
     )
   }
@@ -125,6 +130,7 @@ const registerChange = async () => {
     store.currentPage.id,
     props.facette.id,
     weight.value,
+    isNegativeHandlingActive.value,
     selected.value,
     !props.checkbox ? "all" : ""
   );
@@ -136,15 +142,6 @@ const registerChange = async () => {
     weight.value = 0;
   }
   await store.updateBehaviours();
-};
-const registerWeightChange = async () => {
-  await store.updateFacetteSelections(
-    store.currentPage.id,
-    props.facette.id,
-    weight.value,
-    selected.value,
-    "this"
-  );
 };
 </script>
 <style scoped lang="scss">

@@ -124,6 +124,8 @@ class FacetteSelection(models.Model):
     weight = models.IntegerField(
         default=0, validators=[MaxValueValidator(2), MinValueValidator(-2)]
     )
+    # See ADR-0035
+    negative_handling_active = models.BooleanField(default=False)
     # to mark selections imported from a old answer (Distrochooser 5)
     imported_from_answer = models.CharField(
         max_length=10, default=None, null=True, blank=True, unique=True

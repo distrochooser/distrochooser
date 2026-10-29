@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux là một bản phân phối Linux dành cho chơi game, phát trực tuyến và sáng tạo nội dung.",
     "gaming-usage-not-in-focus-description": "Dự án tập trung vào việc sử dụng phần cứng cũ, chứ không phải đặc biệt là chơi game.",
     "a11y-packages-included-description": "Bao gồm phần mềm hỗ trợ khả năng truy cập cho người khiếm thị.",
-    "emmabuntus-description": "Emmabuntüs là bản phân phối Linux để tiếp tục sử dụng phần cứng cũ được quyên góp cho các tổ chức nhân đạo và giúp người mới bắt đầu khám phá GNU/Linux."
+    "emmabuntus-description": "Emmabuntüs là bản phân phối Linux để tiếp tục sử dụng phần cứng cũ được quyên góp cho các tổ chức nhân đạo và giúp người mới bắt đầu khám phá GNU/Linux.",
+    "mark_weight": "Đánh dấu câu trả lời này là quan trọng.",
+    "negative_handling_active": "Các kết quả khớp âm sẽ được coi là không phù hợp.",
+    "negative_handling": "Biến các kết quả không phù hợp thành loại bỏ",
+    "welcome-negative-handling": "Bạn có thể đánh dấu các câu trả lời mà bạn coi là không thể chấp nhận được thay vì đánh giá chúng là tiêu cực.",
+    "marked_weight": "Được đánh dấu là quan trọng",
+    "has_negative_handling_active": "Bạn đã đánh dấu là không phù hợp.",
+    "points_remark": "Các điểm này thể hiện sự phù hợp với câu trả lời của bạn và không đề cập đến chất lượng của bản phân phối Linux.",
+    "points_out_of": "trên"
 }

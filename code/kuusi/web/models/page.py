@@ -21,16 +21,26 @@ from django.db import models
 from django.db.models.manager import BaseManager
 from kuusi.settings import LONG_CACHE_TIMEOUT
 from django.db.models import Max, Min
-from web.models import SessionVersionWidget, Session, WebHttpRequest, Widget, Facette, FacetteSelection, SessionVersion
+from web.models import (
+    SessionVersionWidget,
+    Session,
+    WebHttpRequest,
+    Widget,
+    Facette,
+    FacetteSelection,
+    SessionVersion,
+)
 from typing import List
 from logging import getLogger
 from django.core.cache import cache
 
 from django.apps import apps
+
 logger = getLogger("root")
 
+
 class Page(models.Model):
-    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255) 
+    catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255)
     next_page = models.ForeignKey(
         to="Page",
         on_delete=models.CASCADE,
@@ -41,12 +51,13 @@ class Page(models.Model):
     )
     not_in_versions = models.ManyToManyField(to="SessionVersion", blank=True)
     can_be_marked = models.BooleanField(default=False)
+    # has_question_handling = models.BooleanField(default=False)
     hide_text = models.BooleanField(default=False)
     hide_help = models.BooleanField(default=False)
     no_header = models.BooleanField(default=False)
-    text = models.CharField(null=True, blank=True,  max_length=80)
-    title = models.CharField(null=True, blank=True,  max_length=80)
-    help = models.CharField(null=True, blank=True,  max_length=80)
+    text = models.CharField(null=True, blank=True, max_length=80)
+    title = models.CharField(null=True, blank=True, max_length=80)
+    help = models.CharField(null=True, blank=True, max_length=80)
     hide_if_no_selections = models.BooleanField(default=False)
     icon = models.CharField(
         null=False, blank=False, default="bi bi-clipboard2-data", max_length=100
@@ -64,10 +75,13 @@ class Page(models.Model):
         if session and session.version:
             if self.not_in_versions.filter(pk=session.version.pk).count() > 0:
                 is_page_visible = False
-        if self.hide_if_no_selections and FacetteSelection.objects.filter(session=session).count() == 0:
+        if (
+            self.hide_if_no_selections
+            and FacetteSelection.objects.filter(session=session).count() == 0
+        ):
             is_page_visible = False
         return is_page_visible
-    
+
     @property
     def previous_page(self) -> Page | None:
         return Page.objects.filter(next_page=self).first()
@@ -87,12 +101,12 @@ class Page(models.Model):
                 fallback_page = next_page
                 break
             next_page = next_page.next_page
-            attempts +=1
+            attempts += 1
             if attempts >= max_attempts:
                 raise Exception("Page loop detected")
         if fallback_page:
             page = fallback_page
-        
+
         return page
 
     @property
@@ -105,23 +119,53 @@ class Page(models.Model):
         # NavigationWidgets are the last set of widgets as they might need to know if errors appeared before.
         # filter out the FacetteSelectionWidgets acting as parent for radio selections
         target_pk = self.pk
-        radio_selections = apps.get_model("web", "FacetteRadioSelectionWidget").objects.filter(pages__pk__in=[target_pk])
+        radio_selections = apps.get_model(
+            "web", "FacetteRadioSelectionWidget"
+        ).objects.filter(pages__pk__in=[target_pk])
         ignore_parent_selections = []
         for radio_selection in radio_selections:
             parent = radio_selection.__dict__["facetteselectionwidget_ptr_id"]
             ignore_parent_selections.append(parent)
-        facette_selections = list( apps.get_model("web", "FacetteSelectionWidget").objects.exclude(pk__in=ignore_parent_selections).filter(pages__pk__in=[target_pk]))
-        
+        facette_selections = list(
+            apps.get_model("web", "FacetteSelectionWidget")
+            .objects.exclude(pk__in=ignore_parent_selections)
+            .filter(pages__pk__in=[target_pk])
+        )
+
         result = (
             list(SessionVersionWidget.objects.filter(pages__pk__in=[target_pk]))
-            + list(apps.get_model("web", "HTMLWidget").objects.filter(pages__pk__in=[target_pk]))
+            + list(
+                apps.get_model("web", "HTMLWidget").objects.filter(
+                    pages__pk__in=[target_pk]
+                )
+            )
             + list(radio_selections)
             + facette_selections
-            + list(apps.get_model("web", "ResultListWidget").objects.filter(pages__pk__in=[target_pk]))
-            + list(apps.get_model("web", "ResultShareWidget").objects.filter(pages__pk__in=[target_pk]))
-            + list(apps.get_model("web", "FeedbackWidget").objects.filter(pages__pk__in=[target_pk]))
-            + list(apps.get_model("web", "NavigationWidget").objects.filter(pages__pk__in=[target_pk]))
-            + list(apps.get_model("web", "MetaFilterWidget").objects.filter(pages__pk__in=[target_pk]))
+            + list(
+                apps.get_model("web", "ResultListWidget").objects.filter(
+                    pages__pk__in=[target_pk]
+                )
+            )
+            + list(
+                apps.get_model("web", "ResultShareWidget").objects.filter(
+                    pages__pk__in=[target_pk]
+                )
+            )
+            + list(
+                apps.get_model("web", "FeedbackWidget").objects.filter(
+                    pages__pk__in=[target_pk]
+                )
+            )
+            + list(
+                apps.get_model("web", "NavigationWidget").objects.filter(
+                    pages__pk__in=[target_pk]
+                )
+            )
+            + list(
+                apps.get_model("web", "MetaFilterWidget").objects.filter(
+                    pages__pk__in=[target_pk]
+                )
+            )
         )
         cache.set(cache_key, result, LONG_CACHE_TIMEOUT)
         return result
@@ -136,7 +180,9 @@ class Page(models.Model):
 
     @property
     def facette_selections(self) -> List:
-        widgets_used = apps.get_model("web", "FacetteSelectionWidget").objects.filter(pages__pk__in=[self])
+        widgets_used = apps.get_model("web", "FacetteSelectionWidget").objects.filter(
+            pages__pk__in=[self]
+        )
         return widgets_used
 
     @property
@@ -146,7 +192,6 @@ class Page(models.Model):
         """
         result = list()
         widgets_used = self.facette_selections
-
 
         for widget in widgets_used:
             if widget.description:
@@ -161,7 +206,6 @@ class Page(models.Model):
         """
         result = list()
         widgets_used = self.facette_selections
-
 
         for widget in widgets_used:
             if widget.topic:
@@ -210,24 +254,52 @@ class Page(models.Model):
         cached = cache.get(cache_key)
         if cached:
             return cached
-        queryset= Page.objects.all() if not version else Page.objects.exclude(not_in_versions__in=[
-           version
-        ])
+        queryset = (
+            Page.objects.all()
+            if not version
+            else Page.objects.exclude(not_in_versions__in=[version])
+        )
         cache.set(cache_key, queryset, LONG_CACHE_TIMEOUT)
         return queryset
 
-
     def is_marked(self, session: Session):
-        return PageMarking.objects.filter(page=self, session=session, is_error=False, is_warning=False, is_info=False).count() > 0
+        return (
+            PageMarking.objects.filter(
+                page=self,
+                session=session,
+                is_error=False,
+                is_warning=False,
+                is_info=False,
+            ).count()
+            > 0
+        )
+
     def is_error(self, session: Session):
-        return PageMarking.objects.filter(page=self, session=session, is_error=True).count() > 0
+        return (
+            PageMarking.objects.filter(
+                page=self, session=session, is_error=True
+            ).count()
+            > 0
+        )
+
     def is_warning(self, session: Session):
-        return PageMarking.objects.filter(page=self, session=session, is_warning=True).count() > 0
+        return (
+            PageMarking.objects.filter(
+                page=self, session=session, is_warning=True
+            ).count()
+            > 0
+        )
+
     def is_info(self, session: Session):
-        return PageMarking.objects.filter(page=self, session=session, is_info=True).count() > 0
+        return (
+            PageMarking.objects.filter(page=self, session=session, is_info=True).count()
+            > 0
+        )
 
     def toggle_marking(self, session: Session):
-        marking_matches = PageMarking.objects.filter(page=self, session=session, is_error=False, is_warning=False)
+        marking_matches = PageMarking.objects.filter(
+            page=self, session=session, is_error=False, is_warning=False
+        )
 
         if marking_matches.count() > 0:
             marking_matches.delete()
@@ -242,7 +314,10 @@ class Page(models.Model):
                 topic = widget.topic
                 facettes = Facette.objects.filter(topic=topic)
                 for facette in facettes:
-                    FacetteSelection.objects.filter(session=session,facette=facette).delete()
+                    FacetteSelection.objects.filter(
+                        session=session, facette=facette
+                    ).delete()
+
 
 class PageMarking(models.Model):
     page = models.ForeignKey(

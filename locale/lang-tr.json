@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux, oyun, yayın ve içerik oluşturma için bir Linux dağıtımıdır.",
     "gaming-usage-not-in-focus-description": "Proje, özellikle oyun oynamak yerine eski donanım kullanmaya odaklanıyor.",
     "a11y-packages-included-description": "Görme engelli kullanıcılar için erişilebilirlik yazılımı içerir.",
-    "emmabuntus-description": "Emmabuntüs, eski donanımın insani yardım kuruluşları için bağışlanmaya devam etmesini ve yeni başlayanların GNU/Linux keşfetmelerine yardımcı olması için bir Linux dağıtımıdır."
+    "emmabuntus-description": "Emmabuntüs, eski donanımın insani yardım kuruluşları için bağışlanmaya devam etmesini ve yeni başlayanların GNU/Linux keşfetmelerine yardımcı olması için bir Linux dağıtımıdır.",
+    "mark_weight": "Cevabı önemli olarak işaretleyin.",
+    "negative_handling_active": "Negatif eşleşmeleri geçersiz kabul edeceğiz.",
+    "negative_handling": "Negatif eşleşmeleri geçersiz hale getir",
+    "welcome-negative-handling": "Olumsuz bir değer biçmek yerine, reddettiğiniz cevapları işaretleyebilirsiniz.",
+    "marked_weight": "Önemli olarak işaretlendi",
+    "has_negative_handling_active": "Onu uygun değil olarak işaretledin.",
+    "points_remark": "Puanlar, cevaplarınıza bir eşleşmeyi temsil eder ve Linux dağıtımının kalitesine atıfta bulunmaz.",
+    "points_out_of": "üzerinden"
 }

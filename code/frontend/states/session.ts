@@ -254,13 +254,14 @@ export const useSessionStore = defineStore('websiteStore', {
             }
             return languageValue
         },
-        async updateFacetteSelections(currentPageId: number, id: number, weight: number, add: boolean, reset: string) {
+        async updateFacetteSelections(currentPageId: number, id: number, weight: number, negativeHandlingActive: boolean, add: boolean, reset: string) {
 
             if (add) {
                 await this.sessionApi.sessionFacetteselectionCreate({
                     sessionPk: this.session.resultId,
                     facetteSelection: {
                         weight: weight,
+                        negativeHandlingActive: negativeHandlingActive,
                         facette: id
                     },
                     reset: reset

@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux ist eine Linux-Distribution für Gaming, Streaming und Content Creation.",
     "gaming-usage-not-in-focus-description": "Das Projekt konzentriert sich auf die Nutzung älterer Hardware, nicht speziell auf Gaming.",
     "a11y-packages-included-description": "Beinhaltet Software zur Barrierefreiheit für sehbehinderte Nutzer.",
-    "emmabuntus-description": "Emmabuntüs ist eine Linux-Distribution, die dazu dient, alte, für humanitäre Organisationen gespendete Hardware weiter zu nutzen und Anfängern dabei zu helfen, GNU/Linux zu entdecken."
+    "emmabuntus-description": "Emmabuntüs ist eine Linux-Distribution, die dazu dient, alte, für humanitäre Organisationen gespendete Hardware weiter zu nutzen und Anfängern dabei zu helfen, GNU/Linux zu entdecken.",
+    "mark_weight": "Markier deine Antwort als wichtig.",
+    "negative_handling_active": "Negative Treffer werden als Ausschlusskriterium betrachtet.",
+    "negative_handling": "Negative Treffer sofort ausschließen",
+    "welcome-negative-handling": "Du kannst Antworten als „keine Option“ markieren, anstatt sie nur negativ zu bewerten.",
+    "marked_weight": "Als wichtig markiert",
+    "has_negative_handling_active": "Du hast es als Ausschluss markiert.",
+    "points_remark": "Die Punkte zeigen, wie gut sie zu deinen Antworten passen, und beziehen sich nicht auf die Qualität der Linux-Distribution.",
+    "points_out_of": "von"
 }

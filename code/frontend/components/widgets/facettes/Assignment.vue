@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div class="row">
       <div class="col row">
         <div class="col">
-
-          <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
+          <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth"
+            :has-negative-handling-active="negativeHandlingActive.indexOf(assignment.id) !== -1" />
 
           <div class="description">
             <LanguageTranslation :translation-key="assignment.description" /><span v-if="assignment.contextArgument">:
@@ -104,6 +104,7 @@ interface AsssignmentProps {
   facette: Facette;
   choosable?: Choosable;
   displayWeigth: boolean;
+  negativeHandlingActive: number[];
 }
 
 const store = useSessionStore();

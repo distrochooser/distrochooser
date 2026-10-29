@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux, oyun, yayın və məzmun yaratma üçün nəzərdə tutulmuş bir Linux paylanmasıdır.",
     "gaming-usage-not-in-focus-description": "Layihə köhnə avadanlıqdan istifadə etməyə, xüsusilə oyun oynamaya deyil, fokuslanır.",
     "a11y-packages-included-description": "Görsel qabiliyyət üçün proqram təminatını ehtiva edir.",
-    "emmabuntus-description": "Emmabuntüs insanitar təşkilatlar üçün bağışlanmış köhnə avadanlığın istifadəsini davam etdirmək və başlayanlara GNU/Linux-u kəşf etmək üçün bir Linux paylanmasıdır."
+    "emmabuntus-description": "Emmabuntüs insanitar təşkilatlar üçün bağışlanmış köhnə avadanlığın istifadəsini davam etdirmək və başlayanlara GNU/Linux-u kəşf etmək üçün bir Linux paylanmasıdır.",
+    "mark_weight": "İşarələyin ki, bu cavab vacibdir.",
+    "negative_handling_active": "Negativ uyğunluqları istisna hesab edəcəyik.",
+    "negative_handling": "Negativ qarşılıqlıqları qadağa\" çevirin\"",
+    "welcome-negative-handling": "Siz mənə yoxdur\" kimi qiymətləndirdiyiniz cavablara mənfi qiymətləndirmə əvəzinə işarə edə bilərsiniz\"",
+    "marked_weight": "Vacib kimi işarələnib",
+    "has_negative_handling_active": "Sən onu qəbul etməmək üçün işarələsən.",
+    "points_remark": "Bu ballar cavablarınıza nə qədər uyğun gəldiyini göstərir və Linux paylanmasının keyfiyyəti ilə əlaqəli deyil.",
+    "points_out_of": "dənədən"
 }

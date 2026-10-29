@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux isch en Linux-Distribution für Gaming, Streaming und Content Creation.",
     "gaming-usage-not-in-focus-description": "De Projekt fokussiert uf d'Nutzig vo ältere Hardware, nöd speziell uf Gaming.",
     "a11y-packages-included-description": "Inklude Software für die Barrierefreiheit für sehbehinderte Nutzer.",
-    "emmabuntus-description": "Emmabuntüs yingaba yingqiniso le-Linux lokusuke ukusebenzisa i-hardware yedala yangatholwa nezinhlangano zezomuntu sihlakaniphile futhi ukusiza abasebenzisa bayaqalayo ukuthola GNU/Linux."
+    "emmabuntus-description": "Emmabuntüs yingaba yingqiniso le-Linux lokusuke ukusebenzisa i-hardware yedala yangatholwa nezinhlangano zezomuntu sihlakaniphile futhi ukusiza abasebenzisa bayaqalayo ukuthola GNU/Linux.",
+    "mark_weight": "Markier dini Antwort als wichtig.",
+    "negative_handling_active": "Negativi Passigkeite wärd as Ne-Go gseh.",
+    "negative_handling": "Mach negative Treffer zu einem No-Go",
+    "welcome-negative-handling": "Du chasch d'Antworte markiere, wo en Nö-go\" sind",
+    "marked_weight": "Wichtig markiert",
+    "has_negative_handling_active": "Ulijitokeza kuwa haifai.",
+    "points_remark": "D'Pünktä zeiged, wie guet's zu dine Antworte passt, und hät nüt mit de Qualität vo dr Linux-Distro z'tue ha.",
+    "points_out_of": "vo"
 }

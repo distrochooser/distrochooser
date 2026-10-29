@@ -260,5 +260,13 @@
     "nobara-description": "Nobara Linux on Linux-jakelu pelaamiseen, striimaamiseen ja sisällön luomiseen.",
     "gaming-usage-not-in-focus-description": "Projekti keskittyy vanhemman laitteiston käyttöön, ei erityisesti pelaamiseen.",
     "a11y-packages-included-description": "Sisältää ohjelmiston esteettömyyteen näkövammaisille käyttäjille.",
-    "emmabuntus-description": "Emmabuntüs on Linux-jakelu, jolla vanhan laitteiston jatkuvaa käyttöä humanitaarisille järjestöille varten ja aloittelijoiden auttamiseksi tutustumaan GNU/Linuxiin."
+    "emmabuntus-description": "Emmabuntüs on Linux-jakelu, jolla vanhan laitteiston jatkuvaa käyttöä humanitaarisille järjestöille varten ja aloittelijoiden auttamiseksi tutustumaan GNU/Linuxiin.",
+    "mark_weight": "Merkitse vastaus tärkeäksi.",
+    "negative_handling_active": "Negatiiviset osumat otetaan hylätyiksi.",
+    "negative_handling": "Tee negatiivisista osumista kielto",
+    "welcome-negative-handling": "Voit merkitä vastaus, jotka pidät kieltäväksi sen sijaan, että arvioisit sen negatiivisesti.",
+    "marked_weight": "Merkitty tärkeäksi",
+    "has_negative_handling_active": "Merkitit pois suljetuksi.",
+    "points_remark": "Pisteet vastaavat vastauksiasi ja eivät viittaa Linux-jakelun laatuun.",
+    "points_out_of": "stä"
 }
