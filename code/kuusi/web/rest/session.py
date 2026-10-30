@@ -49,7 +49,12 @@ from web.models import (
     Session,
     SessionVersion,
 )
-from web.util import get_translation_haystack, TRANSLATIONS, get_translation
+from web.util import (
+    get_translation_haystack,
+    TRANSLATIONS,
+    get_translation,
+    get_meta_tags,
+)
 from django.core.cache import cache
 
 
@@ -86,19 +91,7 @@ class MetaTagsSerializer(serializers.Serializer):
         return KUUSI_ICON
 
     def get_meta(self, _: None) -> Dict[str, Any]:
-        tags = KUUSI_META_TAGS.copy()
-        # TODO: Make more dynamic
-        lang = self.context["lang"]
-        if not lang:
-            lang = DEFAULT_LANGUAGE_CODE
-        if lang not in TRANSLATIONS:
-            lang = DEFAULT_LANGUAGE_CODE
-        if "DESCRIPTION_TEXT" in TRANSLATIONS[lang]:
-            tags["og:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
-            tags["twitter:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
-        # Redundant with below serializer
-        tags["og:locale"] = lang
-        return tags
+        return get_meta_tags(self.context["lang"])
 
 
 class MetaTagViewset(ListModelMixin, GenericViewSet):
@@ -189,9 +182,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         return obj.session_origin.result_id if obj.session_origin else None
 
     def get_meta(self, obj: Session) -> Dict[str, Any]:
-        meta = KUUSI_META_TAGS.copy()
-        meta["og:locale"] = obj.language_code
-        return meta
+        return get_meta_tags(obj.language_code)
 
     def get_score_map(self, obj: Session) -> Dict:
         return SCORE_MAP

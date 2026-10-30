@@ -27,27 +27,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import { useRoute } from "vue-router";
 import { useSessionStore } from "../states/session";
 import { computed, watch } from "vue";
-import { useHead } from "nuxt/app";
-
+import { useAsyncData, useHead, useRuntimeConfig, useSeoMeta } from "nuxt/app";
+import { type UseSeoMetaInput } from "@unhead/vue/types";
 const router = useRoute();
 const store = useSessionStore();
-// TODO: Replace with proper TS mapping
-const { data } = await useAsyncData("post", async () => {
-  return await $fetch(useRuntimeConfig().public.basePath + "/rest/metatags?lang=" + router.params.lang);
+
+interface MetaTag {
+    meta: UseSeoMetaInput;
+    name: string
+}
+
+const { data } = await useAsyncData<MetaTag>("post", async () => {
+    return await $fetch(useRuntimeConfig().public.basePath + "/rest/metatags?lang=" + router.params.lang);
 });
-const metatags = data.value.meta
-metatags["title"] = data.value.name
-useSeoMeta(metatags)
+useSeoMeta(data.value.meta)
 
 /* set the dark mode as some kind of default if the browser demands is */
-if (import.meta.client  && !store.isDarkModeControlledByUser && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-   store.isDarkMode = true
+if (import.meta.client && !store.darkModeControlledByUser && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    store.isDarkMode = true
 }
 
 useHead({
-  bodyAttrs: {
-    "data-bs-theme": () => store.isDarkMode  ? "dark": "light"
-  }
+    bodyAttrs: {
+        "data-bs-theme": () => store.isDarkMode ? "dark" : "light"
+    }
 })
 
 const isTranslating = computed(() => store.session && store.isTranslating)

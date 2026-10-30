@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any, Dict, List
 from django.apps import apps
 from django.core.cache import cache
 from os.path import join, exists
@@ -27,9 +27,15 @@ from kuusi.settings import LONG_CACHE_TIMEOUT
 from json import loads, dumps
 
 
-from kuusi.settings import LOCALE_PATHS, ENABLE_TRANSLATION_MODE
+from kuusi.settings import (
+    LOCALE_PATHS,
+    ENABLE_TRANSLATION_MODE,
+    KUUSI_META_TAGS,
+    DEFAULT_LANGUAGE_CODE,
+)
 from os import listdir
 from datetime import timedelta
+from re import match
 
 
 def get_translation_haystack(
@@ -72,15 +78,40 @@ def hot_load_translations(**kwargs):
     path = join(LOCALE_PATHS[0])
     files = listdir(path)
     for file in files:
-        if ".json" in file:
-            parts = file.split("-")
-            language = parts[1].replace(".json", "").lower()
-            if language not in TRANSLATIONS:
-                TRANSLATIONS[language] = {}
+        language_file_match = match("lang-(?P<lang_code>[a-z\-]+).json", file)
+        if language_file_match:
+            language_code = language_file_match.group("lang_code")
+            if language_code not in TRANSLATIONS:
+                TRANSLATIONS[language_code] = {}
             full_path = join(path, file)
             content = loads(open(full_path, "r").read())
             for key, value in content.items():
-                TRANSLATIONS[language][key] = value
+                TRANSLATIONS[language_code][key] = value
+
+
+def get_valid_language_code(language_code: str) -> str:
+    lang = language_code
+    if not language_code:
+        lang = DEFAULT_LANGUAGE_CODE
+    if language_code not in TRANSLATIONS:
+        lang = DEFAULT_LANGUAGE_CODE
+    return lang
+
+
+def get_language_codes() -> List[str]:
+    return TRANSLATIONS.keys()
+
+
+def get_meta_tags(language_code: str) -> Dict[str, any]:
+    tags = KUUSI_META_TAGS.copy()
+    lang = get_valid_language_code(language_code)
+    description_text = get_translation("description_text", lang)
+    if description_text != "description_text":
+        tags["og:description"] = description_text
+        tags["twitter:description"] = description_text
+    tags["og:locale"] = lang
+    tags["og:locale:alternate"] = get_language_codes()
+    return tags
 
 
 def get_translation(key: str | None, language_code: str) -> str:
