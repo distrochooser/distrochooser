@@ -101,6 +101,7 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "end_date",
         "rank",
         "all_visitors",
+        "all_crawlers",
         "all_visitors_of_year",
         "percentage_of_year",
         "results",

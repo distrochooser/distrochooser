@@ -78,7 +78,7 @@ class TimeFrame(models.Model):
             )
             .last()
         )
-        all_count = self.hit_count + self.result_count
+        all_count = self.hit_count + self.result_count - self.all_crawlers_raw
         return all_count
 
     @property
@@ -94,7 +94,7 @@ class TimeFrame(models.Model):
             )
             .last()
         )
-        all_count = self.hit_count + self.result_count
+        all_count = self.all_visitors_raw
         if previous_entry:
             average_diff = self.result_count - self.average("all_visitors_raw")
             average_diff_year = self.all_visitors_raw - self.average(
@@ -308,6 +308,37 @@ class TimeFrame(models.Model):
         return self.cell_output(
             self._top_n(TimeFrameRow.TimeFrameRowType.CRAWLER), "top_hit_crawlers"
         )
+
+    @property
+    def all_crawlers_raw(self) -> int:
+        got = TimeFrameRow.objects.filter(
+            time_frame=self, row_type=TimeFrameRow.TimeFrameRowType.CRAWLER
+        )
+
+        sum_value = 0
+        for row in got:
+            sum_value += row.row_value_no_ack + row.row_value_with_ack
+        return sum_value
+
+    @property
+    def all_crawlers(self) -> str:
+        if self.has_output("all_crawlers"):
+            return self.get_output("all_crawlers")
+        previous_entry = (
+            TimeFrame.objects.order_by("date")
+            .filter(
+                date__lt=self.date,
+                time_frame_type=self.time_frame_type,
+            )
+            .last()
+        )
+        if previous_entry:
+            result = self.all_crawlers_raw - previous_entry.all_crawlers_raw
+            return self.cell_output(
+                f"{self.all_crawlers_raw} ({self._coloring(result)})", "all_crawlers"
+            )
+        else:
+            return self.cell_output(self.all_crawlers_raw, "all_crawlers")
 
     @property
     def crawler_with_result(self) -> str:
