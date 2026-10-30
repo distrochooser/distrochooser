@@ -35,6 +35,7 @@ from kuusi.settings import (
     KUUSI_LOGO,
     KUUSI_NAME,
     FRONTEND_URL,
+    ADDITIONAL_TAGS,
 )
 from os import listdir
 from datetime import timedelta
@@ -113,6 +114,7 @@ def get_meta_tags(language_code: str) -> Dict[str, any]:
     tags["title"] = KUUSI_NAME
     tags["twitter:title"] = KUUSI_NAME
     tags["og:site_name"] = KUUSI_NAME
+    tags["icon"] = KUUSI_ICON  # To pass it into link rel
 
     # Set all descriptive tags
     if description_text != "description_text":
@@ -138,12 +140,16 @@ def get_meta_tags(language_code: str) -> Dict[str, any]:
     for url, dimensions in image_map.items():
         tags["ogImage"].append(
             {
+                "alt": f"Logo: {KUUSI_NAME} {dimensions[0]}x{dimensions[1]}",
                 "url": url,
                 "width": dimensions[0],
                 "height": dimensions[1],
                 "type": "image/svg+xml",
             }
         )
+    for key, value in ADDITIONAL_TAGS.items():
+        tags[key] = value
+    # add additional tags
     return tags
 
 

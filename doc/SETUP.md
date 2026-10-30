@@ -24,6 +24,7 @@
 |DEFAULT_LANGUAGE_CODE|The `iso-639-1` code to use from `LANGUAGES` representing the default language|
 |KUUSI_LOGO|The logo to add to frontend sessions|
 |KUUSI_ICON|The favicon to add to frontend sessions|
+|ADDITIONAL_TAGS|Key,value pair of additional meta tags|
 |CACHE_TIMEOUT|The default cache timeout to use|
 |LONG_CACHE_TIMEOUT|The default cache timeout to use for semi-static content, such as pages or categories|
 |Imprint|A text to be used as contact (legal imprint info)|

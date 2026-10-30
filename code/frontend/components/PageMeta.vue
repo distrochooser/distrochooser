@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <Title>
             {{ store.session.name }}
         </Title>
-        <link rel="icon" type="image/x-icon" :href="store.session.icon" v-if="store.session.icon" />
     </div>
 </template>
 <script setup lang="ts">
@@ -34,7 +33,8 @@ const store = useSessionStore();
 
 interface MetaTag {
     meta: UseSeoMetaInput;
-    title: string
+    title: string;
+    icon: string;
 }
 
 const { data } = await useAsyncData<MetaTag>("post", async () => {
@@ -50,7 +50,18 @@ if (import.meta.client && !store.darkModeControlledByUser && window.matchMedia &
 useHead({
     bodyAttrs: {
         "data-bs-theme": () => store.isDarkMode ? "dark" : "light"
-    }
+    },
+    link: [
+        {
+            rel: "apple-touch-icon",
+            sizes: "192x192",
+            href: data.value.icon
+        }, {
+            rel: "icon",
+            type: "image/x-icon",
+            href: data.value.icon
+        }
+    ]
 })
 
 const isTranslating = computed(() => store.session && store.isTranslating)
