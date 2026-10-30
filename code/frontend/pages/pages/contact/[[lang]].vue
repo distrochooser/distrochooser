@@ -16,11 +16,13 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
+
     <Head>
-        <PageMeta />
+        <PageMeta v-if="!sessionStore.hardSessionFail" />
     </Head>
+    <HardSessionFail v-if="sessionStore.hardSessionFail" />
     <NuxtRouteAnnouncer />
-    <main role="main" class="container" v-if="sessionStore.session !== null">
+    <main role="main" class="container" v-if="sessionStore.session !== null && !sessionStore.hardSessionFail">
         <MainNavigation />
         <div class="page mt-3  position-relative top-40">
             <div class="row text-center mb-3">
@@ -34,16 +36,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </div>
             <div class="row mb-3">
                 <h1>
-                    <LanguageTranslation translation-key="IMPRINT_TITLE"/>
+                    <LanguageTranslation translation-key="IMPRINT_TITLE" />
                 </h1>
                 <pre>
-                    {{  sessionStore.session.imprintData }}
+                    {{ sessionStore.session.imprintData }}
                 </pre>
                 <h1>
-                    <LanguageTranslation translation-key="IMPRINT_DISCLAIMER_TITLE"/>
+                    <LanguageTranslation translation-key="IMPRINT_DISCLAIMER_TITLE" />
                 </h1>
                 <p>
-                    <LanguageTranslation translation-key="IMPRINT_DISCLAIMER_TEXT"/>
+                    <LanguageTranslation translation-key="IMPRINT_DISCLAIMER_TEXT" />
                 </p>
             </div>
         </div>
@@ -60,11 +62,12 @@ const router = useRoute();
 const lang: string = router.params.lang as string;
 onMounted(async () => {
     if (sessionStore.session == null) {
-        await sessionStore.createSession(lang,EntryPointEnum.Contact);
+        await sessionStore.createSession(lang, EntryPointEnum.Contact);
     }
 });
 import { useRobotsRule } from '#imports'
 import { EntryPointEnum } from '../../../sdk';
+import HardSessionFail from '../../../components/HardSessionFail.vue';
 
 const rule = useRobotsRule()
 rule.value = 'noindex, nofollow'

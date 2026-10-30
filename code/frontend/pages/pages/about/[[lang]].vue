@@ -16,11 +16,13 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
+
     <Head>
-        <PageMeta />
+        <PageMeta v-if="!sessionStore.hardSessionFail" />
     </Head>
     <NuxtRouteAnnouncer />
-    <main role="main" class="container" v-if="sessionStore.session !== null">
+    <HardSessionFail v-if="sessionStore.hardSessionFail" />
+    <main role="main" class="container" v-if="sessionStore.session !== null && !sessionStore.hardSessionFail">
         <MainNavigation />
         <div class="page mt-3  position-relative top-40">
             <div class="row text-center mb-3">
@@ -34,19 +36,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </div>
             <div class="row mb-3">
                 <h1>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_TITLE"/>
+                    <LanguageTranslation translation-key="ABOUT_PAGE_TITLE" />
                 </h1>
                 <p>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_TEXT"/>
+                    <LanguageTranslation translation-key="ABOUT_PAGE_TEXT" />
                 </p>
                 <p>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_TEXT_STATS"/> {{  sessionStore.session.testCount }}
+                    <LanguageTranslation translation-key="ABOUT_PAGE_TEXT_STATS" /> {{
+                        sessionStore.session.testCount }}
                 </p>
                 <h1>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TITLE"/>
+                    <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TITLE" />
                 </h1>
                 <p>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TEXT"/> <a target="_blank" href="https://codeberg.org/distrochooser/distrochooser">Codeberg</a>/ <a target="_blank" href="https://github.com/distrochooser/distrochooser">GitHub</a> (<LanguageTranslation translation-key="PRIVACY_PAGE_EXTERNAL_LINK"/>)
+                    <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TEXT" /> <a target="_blank"
+                        href="https://codeberg.org/distrochooser/distrochooser">Codeberg</a>/ <a target="_blank"
+                        href="https://github.com/distrochooser/distrochooser">GitHub</a> (
+                    <LanguageTranslation translation-key="PRIVACY_PAGE_EXTERNAL_LINK" />)
                 </p>
             </div>
         </div>
@@ -65,7 +71,7 @@ const router = useRoute();
 const lang: string = router.params.lang as string;
 onMounted(async () => {
     if (sessionStore.session == null) {
-        await sessionStore.createSession(lang,EntryPointEnum.About);
+        await sessionStore.createSession(lang, EntryPointEnum.About);
     }
 });
 const openDataPath = useRuntimeConfig().public.basePath + "/data/1"

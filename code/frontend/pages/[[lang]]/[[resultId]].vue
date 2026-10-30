@@ -19,11 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div>
 
     <Head>
-      <PageMeta />
+      <PageMeta v-if="!sessionStore.hardSessionFail" />
     </Head>
     <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
-    <main role="main" :class="{ 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }">
+    <HardSessionFail v-if="sessionStore.hardSessionFail" />
+    <main role="main" :class="{ 'rtl': sessionStore.session && sessionStore.session.isLanguageRtl }" v-else>
       <DarkMode />
       <OldVersionWarning v-if="id !== null && sessionStore.session" />
 
@@ -72,6 +73,7 @@ import SideNavigation from "../../components/SideNavigation.vue";
 import LogoContainer from "../../components/LogoContainer.vue";
 import DarkMode from "../../components/DarkMode.vue";
 import OldVersionWarning from "../../components/OldVersionWarning.vue";
+import HardSessionFail from "../../components/HardSessionFail.vue";
 
 const { start, finish } = useLoadingIndicator()
 const router = useRoute();
@@ -89,11 +91,13 @@ onMounted(async () => {
     });
   } else {
     await sessionStore.createSession(lang, EntryPointEnum.Startpage, id);
+    if (sessionStore.session) {
+      setTimeout(() => {
+        sessionStore.containerVisible = document.querySelector("#ad-slot-1").getBoundingClientRect().height > 0
+        sessionStore.updateSession(sessionStore.session.version)
+      }, 1000)
+    }
   }
-  setTimeout(() => {
-    sessionStore.containerVisible = document.querySelector("#ad-slot-1").getBoundingClientRect().height > 0
-    sessionStore.updateSession(sessionStore.session.version)
-  }, 1000)
 });
 
 const loading = computed(() => sessionStore.isLoading)

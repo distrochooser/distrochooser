@@ -47,6 +47,7 @@ from web.models import (
     MetaFilterValue,
     Session,
     SessionVersion,
+    Violation,
 )
 from web.util import (
     get_translation_haystack,
@@ -56,6 +57,8 @@ from web.util import (
     get_valid_language_code,
 )
 from django.core.cache import cache
+from django.http.response import HttpResponse
+from django.utils.timezone import now
 
 
 def is_language_present(lang):
@@ -385,6 +388,9 @@ class SessionViewSet(ViewSet):
             status.HTTP_406_NOT_ACCEPTABLE: OpenApiResponse(
                 description="Invalid version_id provided"
             ),
+            status.HTTP_509_BANDWIDTH_LIMIT_EXCEEDED: OpenApiResponse(
+                description="Timeout"
+            ),
         },
     )
     def create(self, request):
@@ -395,6 +401,21 @@ class SessionViewSet(ViewSet):
         referrer = request.query_params.get("referrer")
         user_agent = request.query_params.get("user_agent")
         entry_point = request.query_params.get("entry_point")
+
+        # As the session endpoint is _the_ central endpoint -> use for blocking
+        # See ADR-0036 for details
+        violations = Violation.objects.filter(user_agent=user_agent, invalidated=False)
+        if violations.count() > 0:
+            violation = violations.first()
+            violation.hits += 1
+            violation.last_hit = now()
+            if violation.valid_until and violation.valid_until < now().date():
+                violation.invalidated = True
+            violation.save()
+            text = violation.reason
+            if violation.valid_until:
+                text += f" Block will be lifted: {violation.valid_until}"
+            return HttpResponse(status=451, content=text)
 
         session = self.get_fresh_session(lang, user_agent, referrer, entry_point)
         old_session = None

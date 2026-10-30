@@ -16,11 +16,13 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
+
     <Head>
-        <PageMeta />
+        <PageMeta v-if="!sessionStore.hardSessionFail" />
     </Head>
+    <HardSessionFail v-if="sessionStore.hardSessionFail" />
     <NuxtRouteAnnouncer />
-    <main role="main" class="container" v-if="sessionStore.session !== null">
+    <main role="main" class="container" v-if="sessionStore.session !== null && !sessionStore.hardSessionFail">
         <MainNavigation />
         <div class="page mt-3  position-relative top-40">
             <div class="row text-center mb-3">
@@ -34,20 +36,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </div>
             <div class="row mb-3">
                 <h1>
-                    <LanguageTranslation translation-key="PRIVACY"/>
+                    <LanguageTranslation translation-key="PRIVACY" />
                 </h1>
                 <p v-html="sessionStore.session.privacyData">
                 </p>
                 <h1>
-                    <LanguageTranslation translation-key="VOTER_ID_TITLE"/>
+                    <LanguageTranslation translation-key="VOTER_ID_TITLE" />
                 </h1>
                 <p>
-                    <LanguageTranslation translation-key="VOTER_ID_TEXT"/>
-                    <a href="#" v-if="sessionStore.session && sessionStore.hasVoterId()" class="ms-1 me-1" v-on:click.prevent="sessionStore.removeVoterId"><LanguageTranslation translation-key="VOTER_ID_CLEAR"/></a>
-                    <pre class="mt-3" v-if="sessionStore.session && sessionStore.hasVoterId()">{{ sessionStore.getVoterIdKey() }}: {{  sessionStore.getVoterId() }}</pre>
-                    <div class="alert alert-info mt-3" v-if="sessionStore.session && !sessionStore.hasVoterId()">
-                        <LanguageTranslation translation-key="NO_VOTER_ID"/>
-                    </div>
+                    <LanguageTranslation translation-key="VOTER_ID_TEXT" />
+                    <a href="#" v-if="sessionStore.session && sessionStore.hasVoterId()" class="ms-1 me-1"
+                        v-on:click.prevent="sessionStore.removeVoterId">
+                        <LanguageTranslation translation-key="VOTER_ID_CLEAR" />
+                    </a>
+                <pre class="mt-3"
+                    v-if="sessionStore.session && sessionStore.hasVoterId()">{{ sessionStore.getVoterIdKey() }}: {{ sessionStore.getVoterId() }}</pre>
+                <div class="alert alert-info mt-3" v-if="sessionStore.session && !sessionStore.hasVoterId()">
+                    <LanguageTranslation translation-key="NO_VOTER_ID" />
+                </div>
                 </p>
             </div>
         </div>

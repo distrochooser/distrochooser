@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { defineStore } from "pinia";
-import { Configuration, EntryPointEnum, SessionApi, type AssignmentFeedback, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaFilterValue, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
+import { Configuration, EntryPointEnum, ResponseError, SessionApi, type AssignmentFeedback, type Choosable, type Facette, type FacetteAssignment, type FacetteBehaviour, type FacetteSelection, type Feedback, type InitialSession, type LanguageFeedback, type LanguageFeedbackVote, type MetaFilterValue, type MetaWidget, type Page, type PageMarking, type Session, type Widget } from "../sdk"
 import { useRuntimeConfig } from "nuxt/app";
 import { ref } from "vue";
 interface SessionState {
@@ -46,6 +46,7 @@ interface SessionState {
     darkModeControlledByUser: boolean;
     previousVersionResultId: string | null;
     containerVisible: boolean;
+    hardSessionFail: ResponseError | null;
 }
 let sessionApi: SessionApi = null;
 
@@ -75,7 +76,8 @@ export const useSessionStore = defineStore('websiteStore', {
         mustHaveAssignment: true,
         darkModeControlledByUser: false,
         previousVersionResultId: null,
-        containerVisible: false
+        containerVisible: false,
+        hardSessionFail: null
     }),
     getters: {
         sessionApi(): SessionApi {
@@ -287,7 +289,7 @@ export const useSessionStore = defineStore('websiteStore', {
             this.isLoading = true;
             const userAgent = window.navigator.userAgent
             const referrer = document.referrer
-            this.session = await this.sessionApi.sessionCreate(
+            await this.sessionApi.sessionCreate(
                 {
                     resultId: resultId,
                     lang: lang,
@@ -295,31 +297,40 @@ export const useSessionStore = defineStore('websiteStore', {
                     referrer: referrer,
                     entryPoint: entryPoint
                 }
-            )
-            if (this.session.resultId) {
-                this.choosables = await this.sessionApi.sessionChoosableList({
-                    sessionPk: this.session.resultId
-                })
-                await this.updatePages();
-                /** Select the first available page, if any */
-                this.selectPage(-1)
-            }
-            // if there was a resultId given -> update selections from it
-            if (resultId) {
-                this.facetteSelections = await this.sessionApi.sessionFacetteselectionList({
-                    sessionPk: this.session.resultId
-                })
-                this.getMetaValues();
-            }
+            ).then(async (value: Session) => {
+                this.session = value
+                if (this.session.resultId) {
+                    this.choosables = await this.sessionApi.sessionChoosableList({
+                        sessionPk: this.session.resultId
+                    })
+                    await this.updatePages();
+                    /** Select the first available page, if any */
+                    this.selectPage(-1)
+                }
+                // if there was a resultId given -> update selections from it
+                if (resultId) {
+                    this.facetteSelections = await this.sessionApi.sessionFacetteselectionList({
+                        sessionPk: this.session.resultId
+                    })
+                    this.getMetaValues();
+                }
 
-            /* Only display the remark about session if actually needed */
-            if (this.session.importedFromSession) {
-                this.previousVersionResultId = resultId
-            }
+                /* Only display the remark about session if actually needed */
+                if (this.session.importedFromSession) {
+                    this.previousVersionResultId = resultId
+                }
 
-            // Load translation feedback
-            await this.getTranslationFeedback();
-            this.isLoading = false;
+                // Load translation feedback
+                await this.getTranslationFeedback();
+                this.isLoading = false;
+
+            }).catch((got: ResponseError) => {
+                if (got.response.status == 451) {
+
+                    this.hardSessionFail = got // SEE ADR-0036
+                }
+            })
+
         },
         async updatePages() {
             this.pages = await this.sessionApi.sessionPageList({

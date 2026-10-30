@@ -48,6 +48,7 @@ from web.models import (
     TimeFrame,
     TimeFrameCell,
     TimeFrameRow,
+    Violation,
 )
 
 
@@ -156,9 +157,14 @@ class TimeFrameCellAdmin(admin.ModelAdmin):
     )
 
 
+class ViolationAdmin(admin.ModelAdmin):
+    list_display = ("reason", "user_agent", "last_hit", "hits", "invalidated")
+
+
 [
     admin.site.register(*models)
     for models in [
+        (Violation, ViolationAdmin),
         (TimeFrameCell, TimeFrameCellAdmin),
         (TimeFrame, TimeFrameAdmin),
         (TimeFrameRow, TimeFrameRowAdmin),
