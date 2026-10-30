@@ -73,8 +73,10 @@ def hot_load_translations(**kwargs):
     files = listdir(path)
     for file in files:
         if ".json" in file:
-            parts = file.split("-")
-            language = parts[1].replace(".json", "").lower()
+            # The language code is everything between the "lang-" prefix and the
+            # ".json" suffix, so codes with a subtag (zh-hans, zh-hant) keep their
+            # full code instead of collapsing onto the primary subtag.
+            language = file.removeprefix("lang-").removesuffix(".json").lower()
             if language not in TRANSLATIONS:
                 TRANSLATIONS[language] = {}
             full_path = join(path, file)
