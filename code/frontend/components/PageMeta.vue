@@ -35,6 +35,7 @@ interface MetaTag {
     meta: UseSeoMetaInput;
     title: string;
     icon: string;
+    lang: string;
 }
 
 const { data } = await useAsyncData<MetaTag>("post", async () => {
@@ -49,7 +50,8 @@ if (import.meta.client && !store.darkModeControlledByUser && window.matchMedia &
 
 useHead({
     bodyAttrs: {
-        "data-bs-theme": () => store.isDarkMode ? "dark" : "light"
+        "data-bs-theme": () => store.isDarkMode ? "dark" : "light",
+        lang: data.value.lang
     },
     link: [
         {

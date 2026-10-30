@@ -53,6 +53,7 @@ from web.util import (
     TRANSLATIONS,
     get_translation,
     get_meta_tags,
+    get_valid_language_code,
 )
 from django.core.cache import cache
 
@@ -74,6 +75,7 @@ class MetaTagsSerializer(serializers.Serializer):
     logo = serializers.CharField(default=KUUSI_LOGO)
     meta = serializers.SerializerMethodField()
     icon = serializers.CharField(default=KUUSI_ICON)
+    lang = serializers.SerializerMethodField()
 
     def get_language_codes(self, _: None) -> Dict[str, str]:
         result = {}
@@ -83,6 +85,9 @@ class MetaTagsSerializer(serializers.Serializer):
 
     def get_meta(self, _: None) -> Dict[str, Any]:
         return get_meta_tags(self.context["lang"])
+
+    def get_lang(self, _: None) -> str:
+        return get_valid_language_code(self.context["lang"])
 
 
 class MetaTagViewset(ListModelMixin, GenericViewSet):
