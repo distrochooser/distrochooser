@@ -563,7 +563,7 @@ class TimeFrame(models.Model):
             .first()
         )
         visibility_count = int(got.row_value_no_ack) + int(got.row_value_with_ack)
-        all_count = self.hit_count + self.result_count
+        all_count = self.all_visitors_raw
         if all_count == 0:
             return 0
         return round((visibility_count / all_count) * 100, 3)
