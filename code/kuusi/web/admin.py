@@ -69,7 +69,7 @@ class SessionAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return True
 
-    list_filter = ["is_ack", "language_code", "entry_point"]
+    list_filter = ["is_ack", "language_code", "entry_point", "import_date_time"]
 
 
 class FacetteSelectionAdmin(admin.ModelAdmin):
