@@ -84,6 +84,8 @@ class FacetteSelectionAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
+    list_filter = ["imported_from_answer"]
+
 
 class FacetteAdmin(admin.ModelAdmin):
     list_display = ("catalogue_id", "description", "topic")

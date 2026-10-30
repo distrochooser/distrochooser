@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from django.db import models
 from typing import List, Tuple, Dict
 from os.path import exists
+from web.util import get_valid_language_code
 from web.models import Session, FacetteSelection, Facette, GivenFeedback
 from web.management.commands.languagefeedback import Command as LanguageCommand
 from django.core.management.base import BaseCommand, CommandParser
@@ -113,12 +114,6 @@ class Command(BaseCommand):
         if options["feedbacks"]:
             self.import_feedback(user_session_path)
 
-    def _is_language_present(self, needle: str) -> bool:
-        for key, value in AVAILABLE_LANGUAGES:
-            if key == needle:
-                return True
-        return False
-
     def get_answer_map(self) -> Dict[int, int]:
         answer_map = {}
         for key, value in ANSWER_MAP.items():
@@ -178,10 +173,11 @@ class Command(BaseCommand):
         total = 0
         with open(path, "r") as f:
             total = f.read().count("model")
+        print(f"Total answer count is {colored(total, 'green')} ")
         selections = []
         now = timezone.now()
         remaining = total
-        last_chunk = []
+        percentage = 0
         with open(path, "rb") as f:
             for answer in tqdm(
                 ijson.items(f, "item", use_float=True), unit=" answers", total=total
@@ -199,25 +195,17 @@ class Command(BaseCommand):
                         imported_from_answer=answer["pk"],
                         import_date_time=now,
                     )
+                    selections.append(selection)
 
-                    if remaining < CHUNK_SIZE:
-                        last_chunk.append(selection)
-                    else:
-                        selections.append(selection)
+                    if selections.__len__() == CHUNK_SIZE:
+                        FacetteSelection.objects.bulk_create(
+                            selections, ignore_conflicts=True
+                        )
+                        selections = []
 
-                remaining -= 1
-                if len(selections) == CHUNK_SIZE or remaining < CHUNK_SIZE:
-                    FacetteSelection.objects.bulk_create(
-                        selections, ignore_conflicts=True
-                    )
-                    selections = []
-        FacetteSelection.objects.bulk_create(last_chunk, ignore_conflicts=True)
+        FacetteSelection.objects.bulk_create(selections, ignore_conflicts=True)
 
     def import_sessions(self, path: str):
-
-        new_sessions = []  # new session objects meant to bre created
-        remarks = {}  # remarks to be created
-        session_map = {}
         total = 0
 
         with open(path, "r") as f:
@@ -225,7 +213,8 @@ class Command(BaseCommand):
 
         now = timezone.now()
         remaining = total
-        last_chunk = []
+        # new session objects meant to bre created
+        new_sessions = []
         with open(path, "rb") as f:
             for session_obj in tqdm(
                 ijson.items(f, "item", use_float=True), unit=" sessions", total=total
@@ -236,12 +225,9 @@ class Command(BaseCommand):
                 user_agent = session_obj["fields"]["userAgent"]
                 result_id = session_obj["fields"]["publicUrl"]
 
-                language = session_obj["fields"]["language"]
-                if not self._is_language_present(language):
-                    language = DEFAULT_LANGUAGE_CODE
+                language = get_valid_language_code(session_obj["fields"]["language"])
                 referrer = session_obj["fields"]["referrer"]
                 is_ack = session_obj["fields"]["calculationEndTime"] is not None
-                remark_text = session_obj["fields"]["remarks"]
 
                 # Create the bulk creation objects for the new sessions
                 new_session = Session(
@@ -259,26 +245,9 @@ class Command(BaseCommand):
                     ),
                     import_date_time=now,
                 )
-                # As the sessions are created in bulk
-                # The texts and the old ids will be collected
-                # And created later on
-                if remark_text is not None:
-                    remarks[session_id] = remark_text
 
-                remaining -= 1
+                new_sessions.append(new_session)
 
-                if remaining < CHUNK_SIZE:
-                    last_chunk.append(new_session)
-                else:
-                    new_sessions.append(new_session)
-
-                if new_sessions.__len__() == CHUNK_SIZE:
-                    # https://docs.djangoproject.com/en/6.1/ref/models/querysets/#django.db.models.query.QuerySet.bulk_create
-                    created = Session.objects.bulk_create(
-                        new_sessions, ignore_conflicts=True
-                    )
-                    for obj in created:
-                        session_map[int(obj.imported_from_session)] = obj.pk
-                    new_sessions = []
-
-            Session.objects.bulk_create(last_chunk, ignore_conflicts=True)
+        Session.objects.bulk_create(
+            new_sessions, ignore_conflicts=True, batch_size=CHUNK_SIZE
+        )
