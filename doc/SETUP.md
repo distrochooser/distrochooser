@@ -19,7 +19,6 @@
 |RTL_LANGUAGES|A list of language codes (iso-639-1) considered right-to-left|
 |FRONTEND_URL|The URL without trailing slash representing the frontend URL|
 |KUUSI_NAME|The name of the application. Will be used e. g. in OGP tags and the frontend|
-|KUUSI_META_TAGS|Meta tags to be rendered client sided
 |SESSION_NUMBER_OFFSET|The amount of tests to be added to the current database count|
 |WEIGHT_MAP|Factor to give to each weight|
 |DEFAULT_LANGUAGE_CODE|The `iso-639-1` code to use from `LANGUAGES` representing the default language|

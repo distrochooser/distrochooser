@@ -34,7 +34,7 @@ const store = useSessionStore();
 
 interface MetaTag {
     meta: UseSeoMetaInput;
-    name: string
+    title: string
 }
 
 const { data } = await useAsyncData<MetaTag>("post", async () => {

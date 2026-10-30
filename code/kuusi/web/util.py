@@ -30,8 +30,11 @@ from json import loads, dumps
 from kuusi.settings import (
     LOCALE_PATHS,
     ENABLE_TRANSLATION_MODE,
-    KUUSI_META_TAGS,
     DEFAULT_LANGUAGE_CODE,
+    KUUSI_ICON,
+    KUUSI_LOGO,
+    KUUSI_NAME,
+    FRONTEND_URL,
 )
 from os import listdir
 from datetime import timedelta
@@ -103,14 +106,44 @@ def get_language_codes() -> List[str]:
 
 
 def get_meta_tags(language_code: str) -> Dict[str, any]:
-    tags = KUUSI_META_TAGS.copy()
+    tags = {}
     lang = get_valid_language_code(language_code)
     description_text = get_translation("description_text", lang)
+
+    tags["title"] = KUUSI_NAME
+    tags["twitter:title"] = KUUSI_NAME
+    tags["og:site_name"] = KUUSI_NAME
+
+    # Set all descriptive tags
     if description_text != "description_text":
         tags["og:description"] = description_text
         tags["twitter:description"] = description_text
+        tags["description"] = description_text
+
+    # Set generic (OGP) Tags
+    tags["og:type"] = "website"
     tags["og:locale"] = lang
     tags["og:locale:alternate"] = get_language_codes()
+    tags["og:title"] = KUUSI_NAME
+    tags["og:url"] = FRONTEND_URL
+    tags["theme-color"] = "#158cba"
+
+    # Set Twitter tags
+    tags["twitter:card"] = ("summary",)
+    tags["twitter:image"] = KUUSI_LOGO
+
+    # Build images -> use Nuxt keys here to allow multiple images
+    image_map = {KUUSI_ICON: [200, 200], KUUSI_LOGO: [1200, 600]}
+    tags["ogImage"] = []
+    for url, dimensions in image_map.items():
+        tags["ogImage"].append(
+            {
+                "url": url,
+                "width": dimensions[0],
+                "height": dimensions[1],
+                "type": "image/svg+xml",
+            }
+        )
     return tags
 
 

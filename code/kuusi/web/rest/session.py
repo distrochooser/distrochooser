@@ -25,7 +25,6 @@ from kuusi.settings import (
     FRONTEND_URL,
     KUUSI_ICON,
     KUUSI_LOGO,
-    KUUSI_META_TAGS,
     KUUSI_NAME,
     AVAILABLE_LANGUAGES,
     RTL_LANGUAGES,
@@ -70,25 +69,17 @@ def is_language_present(lang):
 
 class MetaTagsSerializer(serializers.Serializer):
     base_url = serializers.CharField(default=FRONTEND_URL)
-    name = serializers.SerializerMethodField()
-    logo = serializers.SerializerMethodField()
+    name = serializers.CharField(default=KUUSI_NAME)
+    title = serializers.CharField(default=KUUSI_NAME)
+    logo = serializers.CharField(default=KUUSI_LOGO)
     meta = serializers.SerializerMethodField()
-    icon = serializers.SerializerMethodField()
+    icon = serializers.CharField(default=KUUSI_ICON)
 
     def get_language_codes(self, _: None) -> Dict[str, str]:
         result = {}
         for lang in AVAILABLE_LANGUAGES:
             result[lang[0]] = lang[1]
         return result
-
-    def get_logo(self, _: None) -> str:
-        return KUUSI_LOGO
-
-    def get_name(self, _: None) -> str:
-        return KUUSI_NAME
-
-    def get_icon(self, _: None) -> str:
-        return KUUSI_ICON
 
     def get_meta(self, _: None) -> Dict[str, Any]:
         return get_meta_tags(self.context["lang"])
