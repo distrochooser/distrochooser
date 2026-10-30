@@ -247,7 +247,7 @@ class TimeFrame(models.Model):
         return got
 
     def _top_n(
-        self, what: TimeFrameRow.TimeFrameRowType, with_ack: bool = False, n=3
+        self, what: TimeFrameRow.TimeFrameRowType, with_ack: bool = False, n=10
     ) -> str:
 
         results = self._top_n_raw(what, with_ack)
@@ -306,7 +306,7 @@ class TimeFrame(models.Model):
         if self.has_output("top_hit_crawlers"):
             return self.get_output("top_hit_crawlers")
         return self.cell_output(
-            self._top_n(TimeFrameRow.TimeFrameRowType.CRAWLER, n=3), "top_hit_crawlers"
+            self._top_n(TimeFrameRow.TimeFrameRowType.CRAWLER), "top_hit_crawlers"
         )
 
     @property
