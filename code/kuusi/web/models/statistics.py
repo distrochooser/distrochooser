@@ -595,6 +595,45 @@ class TimeFrame(models.Model):
             f"{self.container_visiblility_raw}%", "container_visibility"
         )
 
+    @property
+    def crawler_over_average_raw(self) -> dict[str, int]:
+        crawler_with_ack = self._top_n_raw(
+            TimeFrameRow.TimeFrameRowType.CRAWLER_UA, True
+        )
+        crawler_no_ack = self._top_n_raw(
+            TimeFrameRow.TimeFrameRowType.CRAWLER_UA, False
+        )
+
+        all_crawlers = {}
+        for key, value in crawler_with_ack.items():
+            all_crawlers[key] = value
+
+        sum_value = 0
+
+        for key, value in crawler_no_ack.items():
+            if key in all_crawlers:
+                all_crawlers[key] += value
+            else:
+                all_crawlers[key] = value
+            sum_value += all_crawlers[key]
+        crawlers = all_crawlers.keys().__len__()
+        average = sum_value / crawlers if crawlers > 0 else 0
+        over_average = {}
+        for key, value in all_crawlers.items():
+            if value > average:
+                diff = value - average
+                over_average[key] = diff
+        return over_average
+
+    @property
+    def crawler_over_average(self) -> str:
+        if self.has_output("crawler_over_average"):
+            return self.get_output("crawler_over_average")
+        over_average_str = ""
+        for key, value in self.crawler_over_average_raw.items():
+            over_average_str += f"{key} ({self._coloring(value, "⌀m")})<br/>"
+        return self.cell_output(over_average_str, "crawler_over_average")
+
 
 class TimeFrameRow(models.Model):
     time_frame = models.ForeignKey(to=TimeFrame, null=False, on_delete=models.CASCADE)
