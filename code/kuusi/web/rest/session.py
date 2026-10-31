@@ -448,10 +448,6 @@ class SessionViewSet(ViewSet):
                 # TODO: Find reason for typing error
                 # Find way to remove # type: ignore
                 session.session_origin = old_session  # type: ignore
-                # The newly created session will inherit the old session flag as
-                # The issue with imported answers might persist here
-                # See ADR 0026 for details
-                session.imported_from_session = old_session.imported_from_session
                 session.save()
         if old_session:
             self.clone_selections(old_session, session)
