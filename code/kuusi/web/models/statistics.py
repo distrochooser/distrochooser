@@ -341,15 +341,20 @@ class TimeFrame(models.Model):
             return self.cell_output(self.all_crawlers_raw, "all_crawlers")
 
     @property
-    def crawler_with_result(self) -> str:
-        if self.has_output("crawler_with_result"):
-            return self.get_output("crawler_with_result")
+    def crawler_with_result_raw(self) -> int:
         got = self._top_n_raw(
             TimeFrameRow.TimeFrameRowType.CRAWLER, with_ack=True
         ).values()
         summarized = 0
         for got in got:
             summarized += got
+        return summarized
+
+    @property
+    def crawler_with_result(self) -> str:
+        if self.has_output("crawler_with_result"):
+            return self.get_output("crawler_with_result")
+        summarized = self.crawler_with_result_raw
         return self.cell_output(
             "yes" if summarized > 0 else "no", "crawler_with_result"
         )

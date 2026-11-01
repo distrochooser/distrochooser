@@ -24,6 +24,7 @@ from django.utils.timezone import now, datetime
 from django.utils.dateparse import parse_datetime
 from datetime import timedelta
 from calendar import monthrange
+from time import mktime
 
 
 class Command(BaseCommand):
@@ -33,8 +34,31 @@ class Command(BaseCommand):
         parser.add_argument("--start_date", type=str, nargs="?")
         parser.add_argument("--end_date", type=str, nargs="?")
         parser.add_argument("--year", type=int, nargs="?")
+        parser.add_argument("--csv", action="store_true", default=False)
+
+    def generate_csv(self):
+        frames = TimeFrame.objects.filter(
+            time_frame_type=TimeFrame.TimeFrameType.MONTH
+        ).order_by("date")
+        content = "day;ack;non_ack;bot_ack;bot_non_ack;ack_stay_duration"
+        for frame in frames:
+            unix_time = int(mktime(frame.date.timetuple()))
+            all_visitors = frame.all_visitors_raw
+            non_ack = frame.hit_count
+            ack = frame.result_count
+            bot_non_ack = frame.all_crawlers_raw
+            bot_ack = frame.crawler_with_result_raw
+            ack_stay_duration = frame.raw_duration
+            ack_referrer = frame.backlinks
+            content += f"{unix_time};{ack};{non_ack};{bot_ack};{bot_non_ack};{ack_stay_duration}\n"
+
+        print(content)
 
     def handle(self, *args, **options):
+        if options["csv"]:
+            self.generate_csv()
+            return
+
         year = options["year"]
         timeframe_type = TimeFrame.TimeFrameType.MONTH
         end_date = None
