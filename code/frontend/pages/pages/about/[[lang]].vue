@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <LanguageTranslation translation-key="about_page_text_stats_results" />
 
                     <span class="badge rounded-pill text-bg-light ms-1">
-                        {{ sessionStore.session.testCount }}
+                        ~{{ sessionStore.session.testCount }}
                     </span>
                 </p>
                 <p>
