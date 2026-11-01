@@ -129,6 +129,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     default_language_values = serializers.SerializerMethodField()
     is_language_rtl = serializers.SerializerMethodField()
     test_count = serializers.SerializerMethodField()
+    visitor_count = serializers.SerializerMethodField()
     imprint_data = serializers.SerializerMethodField()
     privacy_data = serializers.SerializerMethodField()
     default_language = serializers.SerializerMethodField()
@@ -158,6 +159,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "meta",
             "icon",
             "test_count",
+            "visitor_count",
             "imprint_data",
             "privacy_data",
             "is_translation_mode_enabled",
@@ -195,6 +197,19 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             return cached
 
         count = SESSION_NUMBER_OFFSET + Session.objects.filter(is_ack=True).count()
+        cache.set(cache_key, count)
+        return count
+
+    def get_visitor_count(self, _) -> int:
+        # Cache the results for the default amount of time
+        # to prevent unwanted database load
+        cache_key = f"visitor-count"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+        # The overall visitor count is foggy, as the old sessions are not defined anymore
+        # Therefore this is only a rough estimate
+        count = SESSION_NUMBER_OFFSET + Session.objects.all().count()
         cache.set(cache_key, count)
         return count
 
@@ -415,7 +430,9 @@ class SessionViewSet(ViewSet):
             text = violation.reason
             if violation.valid_until:
                 text += f" Block will be lifted: {violation.valid_until}"
-            return HttpResponse(status=451, content=text)
+            return HttpResponse(
+                status=status.HTTP_509_BANDWIDTH_LIMIT_EXCEEDED, content=text
+            )
 
         session = self.get_fresh_session(lang, user_agent, referrer, entry_point)
         old_session = None

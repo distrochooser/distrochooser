@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de là phần mềm nguồn mở. Bạn có thể tìm thêm thông tin về giấy phép trên",
     "about_page_license_title": "Giấy phép",
     "about_page_text": "distrochooser.de cố gắng giúp những người mới bắt đầu sử dụng Linux chọn một bản phân phối phù hợp với nhu cầu của họ.<br>Kết quả đưa ra là gợi ý dựa trên câu trả lời của bạn. Đôi khi kết quả có thể không phù hợp vì sự ảnh hưởng phức tạp giữa các câu trả lời.",
-    "about_page_text_stats": "Số lượng bài kiểm tra được tạo kể từ ngày 14.06.2024:",
+    "about_page_text_stats_results": "Số lượng bài kiểm tra được tạo kể từ ngày 14.06.2024:",
     "about_page_title": "Về dự án này",
     "add-new-choosables": "Đề xuất một bản phân phối mới:",
     "administration-page-text": "Có nhiều cách để quản lý bản phân phối Linux, vd. để cài đặt phần mềm.",
@@ -268,5 +268,6 @@
     "marked_weight": "Được đánh dấu là quan trọng",
     "has_negative_handling_active": "Bạn đã đánh dấu là không phù hợp.",
     "points_remark": "Các điểm này thể hiện sự phù hợp với câu trả lời của bạn và không đề cập đến chất lượng của bản phân phối Linux.",
-    "points_out_of": "trên"
+    "points_out_of": "trên",
+    "about_page_text_stats_visitors": "Tổng số lượt truy cập:"
 }

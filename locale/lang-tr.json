@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de Açık Kaynaklı bir yazılımdır. Lisans hakkında daha fazla bilgiyi şu adreste bulabilirsiniz:",
     "about_page_license_title": "Lisans",
     "about_page_text": "distrochooser.de, Linux'e yeni başlayanların ihtiyaçlarına uygun bir Linux Dağıtımı seçmelerinde onlara yardım etmeye çalışır.<br>Verilen sonuçlar, cevaplarınıza dayalı önerilerdir. Bazen cevaplar arasındaki karmaşık etkileşimler nedeniyle sonuçlar size uygun olmayabilir.",
-    "about_page_text_stats": "14.06.2024 tarihinden itibaren oluşturulan test sayısı:",
+    "about_page_text_stats_results": "14.06.2024 tarihinden itibaren oluşturulan test sayısı:",
     "about_page_title": "Bu proje hakkında",
     "add-new-choosables": "Yeni bir Linux dağıtımı önerin:",
     "administration-page-text": "Bir Linux dağıtımını yönetmenin birçok yolu vardır. Örneğin uygulama kurmak.",
@@ -268,5 +268,6 @@
     "marked_weight": "Önemli olarak işaretlendi",
     "has_negative_handling_active": "Onu uygun değil olarak işaretledin.",
     "points_remark": "Puanlar, cevaplarınıza bir eşleşmeyi temsil eder ve Linux dağıtımının kalitesine atıfta bulunmaz.",
-    "points_out_of": "üzerinden"
+    "points_out_of": "üzerinden",
+    "about_page_text_stats_visitors": "Genel ziyaretçi sayısı:"
 }

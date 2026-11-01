@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de היא תוכנה בקוד פתוח. ניתן למצוא מידע נוסף על הרישיון ב",
     "about_page_license_title": "רישיון",
     "about_page_text": "‏distrochooser.de מנסה לעזור למתחילים בלינוקס לבחור הפצה לינוקס המתאימה לצורכיהם. <br> התוצאות שניתנו הן הצעות המבוססות על התשובות שלך. לפעמים התוצאות עשויות להיות לא מתאימות בגלל אינטראקציות מורכבות בין תשובות.",
-    "about_page_text_stats": "כמות הבדיקות שנוצרו מאז 14.06.2024:",
+    "about_page_text_stats_results": "כמות הבדיקות שנוצרו מאז 14.06.2024:",
     "about_page_title": "על מיזם זה",
     "add-new-choosables": "הציעו הפצת לינוקס חדשה:",
     "administration-page-text": "ישנן מספר דרכים לניהול המערכת בהפצת לינוקס, למשל התקנת תוכנה.",
@@ -268,5 +268,6 @@
     "marked_weight": "מסומן כחשוב",
     "has_negative_handling_active": "סימנת כלא רצוי.",
     "points_remark": "הנקודות מייצגות התאמה לתשובות שלך ואינן מתייחסות לאיכות של הפצת לינוקס.",
-    "points_out_of": "מתוך"
+    "points_out_of": "מתוך",
+    "about_page_text_stats_visitors": "סך המבקרים:"
 }

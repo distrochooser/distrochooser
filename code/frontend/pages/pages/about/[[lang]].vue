@@ -42,8 +42,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     <LanguageTranslation translation-key="ABOUT_PAGE_TEXT" />
                 </p>
                 <p>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_TEXT_STATS" /> {{
-                        sessionStore.session.testCount }}
+                    <LanguageTranslation translation-key="about_page_text_stats_results" />
+
+                    <span class="badge rounded-pill text-bg-light ms-1">
+                        {{ sessionStore.session.testCount }}
+                    </span>
+                </p>
+                <p>
+                    <LanguageTranslation translation-key="about_page_text_stats_visitors" />
+
+                    <span class="badge rounded-pill text-bg-light ms-1">
+                        {{ sessionStore.session.visitorCount }}
+                    </span>
                 </p>
                 <h1>
                     <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TITLE" />

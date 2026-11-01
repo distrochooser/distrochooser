@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de adalah perangkat lunak Open Source. Anda dapat menemukan informasi lebih lanjut tentang lisensi di",
     "about_page_license_title": "Lisensi",
     "about_page_text": "distrochooser.de mencoba untuk membantu pemula Linux untuk memilih distribusi Linux yang sesuai kebutuhan mereka.<br>Hasil yang diberikan adalah saran berdasarkan jawaban anda. Terkadang hasil yang didapat tidak begitu sesuai, karena hubungan jawaban yang kompleks.",
-    "about_page_text_stats": "Jumlah tes yang dibuat sejak 14.06.2024:",
+    "about_page_text_stats_results": "Jumlah tes yang dibuat sejak 14.06.2024:",
     "about_page_title": "Tentang proyek ini",
     "add-new-choosables": "Usulkan distribusi Linux baru:",
     "administration-page-text": "Ada banyak cara untuk mengelola distribusi linux, Contoh: menginstal perangkat lunak.",
@@ -268,5 +268,6 @@
     "marked_weight": "Ditandai sebagai penting",
     "has_negative_handling_active": "Kamu menandainya sebagai tidak bisa.",
     "points_remark": "Poin-poin ini mewakili kecocokan dengan jawaban Anda dan tidak merujuk pada kualitas distribusi Linux.",
-    "points_out_of": "dari"
+    "points_out_of": "dari",
+    "about_page_text_stats_visitors": "Jumlah pengunjung keseluruhan:"
 }

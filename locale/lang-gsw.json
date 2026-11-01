@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de is Open Source software. You can find more information about the license on",
     "about_page_license_title": "License",
     "about_page_text": "Ds Zieu vo Distrochooser isches, Afänger ä Orientierigshiuf bi Linux z gäh. Z Ergäbnis isch nur ä Orientierigshiuf u kes Orakel",
-    "about_page_text_stats": "Teschts wo sit em 14.06.2024 gmacht worde si:",
+    "about_page_text_stats_results": "Teschts wo sit em 14.06.2024 gmacht worde si:",
     "about_page_title": "Über das Projekt",
     "add-new-choosables": "E nöii Distribution vorschlah:",
     "administration-page-text": "Unger Linux wärde d Programm hüfig über e Paketverwaltig installiert u aktualisiert. Es paar Programm wärde us Ihrem Quellcode erstellt u denn installiert. Wele wäg bevorzugeni?",
@@ -268,5 +268,6 @@
     "marked_weight": "Wichtig markiert",
     "has_negative_handling_active": "Ulijitokeza kuwa haifai.",
     "points_remark": "D'Pünktä zeiged, wie guet's zu dine Antworte passt, und hät nüt mit de Qualität vo dr Linux-Distro z'tue ha.",
-    "points_out_of": "vo"
+    "points_out_of": "vo",
+    "about_page_text_stats_visitors": "Total Besucher:"
 }

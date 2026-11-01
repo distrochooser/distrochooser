@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de on avoimen lähdekoodin ohjelmisto. Lisätietoja lisenssistä löydät osoitteesta",
     "about_page_license_title": "Lisenssi",
     "about_page_text": "distrochooser.de pyrkii auttamaan aloittelijoita valitsemaan heidän tarpeitaan vastaavaavan Linuxi jakelun.<br>Annetut tulokset ovat ehdotuksia jotka perustuvat vastauksiisi. Tulokset eivät aina vastaa täysin toiveita, koska vastaukset vaikuttavat toisiinsa monin eri tavoin.",
-    "about_page_text_stats": "14.06.2024 jälkeen luotujen testien määrä:",
+    "about_page_text_stats_results": "14.06.2024 jälkeen luotujen testien määrä:",
     "about_page_title": "Tietoa tästä hankkeesta",
     "add-new-choosables": "Ehdota uutta Linux-jakelua",
     "administration-page-text": "On lukuisia eri tapoja hallinnoida Linux jakelua, esim. kuten ohjelmien asennuksen kohdalla.",
@@ -268,5 +268,6 @@
     "marked_weight": "Merkitty tärkeäksi",
     "has_negative_handling_active": "Merkitit pois suljetuksi.",
     "points_remark": "Pisteet vastaavat vastauksiasi ja eivät viittaa Linux-jakelun laatuun.",
-    "points_out_of": "stä"
+    "points_out_of": "stä",
+    "about_page_text_stats_visitors": "Kokona vierailijamäärä:"
 }

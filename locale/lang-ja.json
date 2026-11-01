@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de はオープンソースソフトウェアです。ライセンスの詳細については、",
     "about_page_license_title": "ライセンス",
     "about_page_text": "Distrochooser.de は、Linux 初心者がニーズに合った Linux ディストリビューションを選択できるように支援します。<br>表示される結果は、回答に基づいた提案です。回答間の複雑な相互作用により、結果が必ずしも適切ではない場合があります。",
-    "about_page_text_stats": "2024年6月14日以降に作成されたテストの数:",
+    "about_page_text_stats_results": "2024年6月14日以降に作成されたテストの数:",
     "about_page_title": "このプロジェクトについて",
     "add-new-choosables": "新しいディストリビューションを提案してください:",
     "administration-page-text": "Linuxディストリビューションを管理する方法は数多くあります。例えば、ソフトウェアのインストールなどです。",
@@ -268,5 +268,6 @@
     "marked_weight": "重要としてマーク済み",
     "has_negative_handling_active": "除外としてマークしました。",
     "points_remark": "この点は、あなたの回答との一致を示すものであり、Linuxディストリビューションの品質を指すものではありません。",
-    "points_out_of": "のうち"
+    "points_out_of": "のうち",
+    "about_page_text_stats_visitors": "全体の訪問者数:"
 }

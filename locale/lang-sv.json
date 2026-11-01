@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de är programvara med öppen källkod. Du hittar mer information om licensen på",
     "about_page_license_title": "Distrochooser.de är programvara med öppen källkod. Du hittar mer information om licensen på",
     "about_page_text": "distrochooser.de försöker hjälpa Linux-nybörjare att välja en Linux-distribution som passar deras behov.<br>De angivna resultaten är förslag baserat på dina svar. Ibland är resultaten kanske inte lika passande på grund av komplexa interaktioner mellan svaren.",
-    "about_page_text_stats": "Antal tester skapade sedan 14.06.2024:",
+    "about_page_text_stats_results": "Antal tester skapade sedan 14.06.2024:",
     "about_page_title": "Om det här projektet",
     "add-new-choosables": "Föreslå en ny Linuxdistribution:",
     "administration-page-text": "Det finns många sätt att administrera en Linux-distribution, t.ex. för att installera mjukvara.",
@@ -268,5 +268,6 @@
     "marked_weight": "Markerad som viktig",
     "has_negative_handling_active": "Du markerade som icke önskat.",
     "points_remark": "Poängen representerar en matchning mot dina svar och hänvisar inte till Linux-distributionens kvalitet.",
-    "points_out_of": "av"
+    "points_out_of": "av",
+    "about_page_text_stats_visitors": "Totalt antal besökare:"
 }

@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de is Open Source software. You can find more information about the license on ",
     "about_page_license_title": "License",
     "about_page_text": "distrochooser.de attempts to help Linux beginners to choose a Linux Linux distribution suited to their needs.<br>The given results are suggestions based on your answers. Sometimes results may be not as fitting, because of complex interactions between answers.",
-    "about_page_text_stats": "Amount of tests created since 14.06.2024:",
+    "about_page_text_stats_results": "Amount of tests created since 14.06.2024:",
     "about_page_title": "About this project",
     "add-new-choosables": "Propose a new Linux distribution:",
     "administration-page-text": "There are many ways to administrate a Linux Linux distribution, e. g. to install software.",
@@ -272,5 +272,6 @@
     "marked_weight": "Marked as important",
     "has_negative_handling_active": "You marked as no-go.",
     "points_remark": "The points represent a match to your answers and do not refer to the quality of the Linux distribution.",
-    "points_out_of": "out of"
+    "points_out_of": "out of",
+    "about_page_text_stats_visitors": "Overall visitor count:"
 }

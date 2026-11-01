@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de ist Open Source Software. Mehr Informationen zur Lizenz findest Du auf",
     "about_page_license_title": "Lizenz",
     "about_page_text": "Das Ziel von Distrochooser.de ist es, Anfängern eine Orientierungshilfe in Linux zu geben. Das Ergebnis ist dabei lediglich eine Orientierungshilfe und ist kein Orakel und basiert auf den beworbenen und eingesetzten Technologien der einzelnen Distributionen",
-    "about_page_text_stats": "Anzahl von Ergebnissen seit dem 14.06.2024:",
+    "about_page_text_stats_results": "Anzahl von Ergebnissen seit dem 14.06.2024:",
     "about_page_title": "Über dieses Projekt",
     "add-new-choosables": "Eine neue Distribution vorschlagen:",
     "administration-page-text": "Unter Linux werden Programme häufig über eine Paketverwaltung installiert und aktualisiert. Manche Programme werden aus ihrem Quellcode erstellt und dann installiert. Welchen Weg bevorzuge ich?",
@@ -268,5 +268,6 @@
     "marked_weight": "Als wichtig markiert",
     "has_negative_handling_active": "Du hast es als Ausschluss markiert.",
     "points_remark": "Die Punkte zeigen, wie gut sie zu deinen Antworten passen, und beziehen sich nicht auf die Qualität der Linux-Distribution.",
-    "points_out_of": "von"
+    "points_out_of": "von",
+    "about_page_text_stats_visitors": "Gesamtzahl der Besucher:"
 }

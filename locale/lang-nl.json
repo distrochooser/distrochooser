@@ -4,7 +4,7 @@
     "about_page_license_text": "Distrochooser.de is opensourcesoftware. Meer informatie over de licentie vindt u op",
     "about_page_license_title": "Licentie",
     "about_page_text": "distrochooser.de probeert Linux-beginners te helpen een Linux-distributie te kiezen die geschikt is voor hun behoeften.<br>De gegeven resultaten zijn suggesties op basis van jouw antwoorden. Soms zijn de resultaten niet zo passend vanwege de complexe samenhang van de antwoorden.",
-    "about_page_text_stats": "Aantal tests gemaakt sinds 14.06.2024:",
+    "about_page_text_stats_results": "Aantal tests gemaakt sinds 14.06.2024:",
     "about_page_title": "Over dit project",
     "add-new-choosables": "Stel een nieuwe Linux-distributie voor:",
     "administration-page-text": "Er zijn veel manieren om een ​​Linux-distributie te beheren, bijvoorbeeld om software te installeren.",
@@ -268,5 +268,6 @@
     "marked_weight": "Gemerkt als belangrijk",
     "has_negative_handling_active": "Je hebt dit als 'niet geschikt' gemarkeerd.",
     "points_remark": "De punten geven een overeenkomst met uw antwoorden aan en verwijzen niet naar de kwaliteit van de Linux-distributie.",
-    "points_out_of": "van"
+    "points_out_of": "van",
+    "about_page_text_stats_visitors": "Totaal aantal bezoekers:"
 }
