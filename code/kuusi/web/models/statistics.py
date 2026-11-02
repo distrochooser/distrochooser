@@ -26,11 +26,11 @@ from django.utils.timezone import datetime, now
 
 
 class TimeFrame(models.Model):
-    name = models.CharField(blank=False, null=False)
     year = models.IntegerField(blank=False, null=False, default=0)
     date = models.DateField(blank=True, null=True, default=None)
     end_date = models.DateField(blank=True, null=True, default=None)
     created = models.DateTimeField(blank=True, null=True, default=None)
+    comment = models.TextField(blank=True, null=True, default=None)
 
     class TimeFrameType(models.TextChoices):
         MONTH = "MONTH", "MONTH"
