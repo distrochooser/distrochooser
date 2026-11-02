@@ -22,7 +22,7 @@ from urllib3.util import parse_url
 from calendar import monthrange
 from datetime import timedelta
 from django.utils.html import mark_safe
-from django.utils.timezone import datetime
+from django.utils.timezone import datetime, now
 
 
 class TimeFrame(models.Model):
@@ -30,6 +30,7 @@ class TimeFrame(models.Model):
     year = models.IntegerField(blank=False, null=False, default=0)
     date = models.DateField(blank=True, null=True, default=None)
     end_date = models.DateField(blank=True, null=True, default=None)
+    created = models.DateTimeField(blank=True, null=True, default=None)
 
     class TimeFrameType(models.TextChoices):
         MONTH = "MONTH", "MONTH"

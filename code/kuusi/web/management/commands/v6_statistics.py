@@ -138,6 +138,7 @@ class Command(BaseCommand):
                 end_date=end_to_use,
                 date=start_to_use,
                 year=start_date.year,
+                created=now(),
             )
             frame.save()
 

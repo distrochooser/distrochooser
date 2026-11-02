@@ -144,6 +144,7 @@ class TimeFrameAdmin(admin.ModelAdmin):
     list_display = (
         "year",
         "time_frame_type",
+        "created",
         "date",
         "end_date",
         "rank",
