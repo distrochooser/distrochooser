@@ -209,6 +209,12 @@ class TimeFrame(models.Model):
             and current_date.year == self.date.year
         ):
             max_day = current_date.day
+
+            # Even as the unfinished month is used here, do not use the current day as it's also not finished
+            # as the daily will fluctuate otherwise
+            if max_day > 1:
+                max_day -= 1
+
         return round(self.result_count / max_day, 2)
 
     @property
