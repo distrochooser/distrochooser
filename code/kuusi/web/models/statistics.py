@@ -202,9 +202,14 @@ class TimeFrame(models.Model):
 
     @property
     def daily_results(self) -> int:
-        return round(
-            self.result_count / monthrange(self.date.year, self.date.month)[1], 2
-        )
+        current_date = now()
+        max_day = monthrange(self.date.year, self.date.month)[1]
+        if (
+            current_date.month == self.date.month
+            and current_date.year == self.date.year
+        ):
+            max_day = current_date.day
+        return round(self.result_count / max_day, 2)
 
     @property
     def daily_results_diff(self) -> str:
