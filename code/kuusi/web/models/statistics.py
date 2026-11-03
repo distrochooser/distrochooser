@@ -520,24 +520,6 @@ class TimeFrame(models.Model):
             )
 
     @property
-    def worst_result_day(self) -> str:
-        if self.has_output("worst_result_day"):
-            return self.get_output("worst_result_day")
-        got = TimeFrameRow.objects.filter(
-            time_frame=self,
-            row_type=TimeFrameRow.TimeFrameRowType.WORST_DAY,
-            time_frame__time_frame_type=self.time_frame_type,
-        ).first()
-        day_of_week = self.date.replace(day=int(got.row_key)).strftime("%a")
-        if not got:
-            return "?"
-        diff = int(int(got.row_value_with_ack) - self.daily_results)
-        return self.cell_output(
-            f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({self._coloring(diff)})",
-            "worst_result_day",
-        )
-
-    @property
     def top_result_os(self) -> str:
         if self.has_output("top_result_os"):
             return self.get_output("top_result_os")
