@@ -570,7 +570,7 @@ class TimeFrame(models.Model):
         return self.cell_output(f"{self_duration}", "duration")
 
     @property
-    def container_visiblility_raw(self) -> int:
+    def container_visibility_count(self) -> int:
         got = (
             TimeFrameRow.objects.filter(
                 time_frame=self,
@@ -581,10 +581,14 @@ class TimeFrame(models.Model):
             .first()
         )
         visibility_count = int(got.row_value_no_ack) + int(got.row_value_with_ack)
+        return visibility_count
+
+    @property
+    def container_visiblility_raw(self) -> int:
         all_count = self.all_visitors_raw
         if all_count == 0:
             return 0
-        return round((visibility_count / all_count) * 100, 3)
+        return round((self.container_visibility_count / all_count) * 100, 3)
 
     @property
     def container_visiblility(self) -> str:
@@ -605,12 +609,15 @@ class TimeFrame(models.Model):
                 - previous_month.container_visiblility_raw
             )
             return self.cell_output(
-                (f"{self.container_visiblility_raw}% ({self._coloring(diff)})"),
+                (
+                    f"{self.container_visibility_count}x<br/>({self.container_visiblility_raw}%, {self._coloring(diff)})"
+                ),
                 "container_visibility",
             )
 
         return self.cell_output(
-            f"{self.container_visiblility_raw}%", "container_visibility"
+            f"{self.container_visibility_count}x<br/>({self.container_visiblility_raw}%)",
+            "container_visibility",
         )
 
     @property
@@ -673,6 +680,7 @@ class TimeFrameRow(models.Model):
         WORST_DAY = "WORST_DAY", "WORST_DAY"
         DURATION = "DURATION", "DURATION"
         CTR_TEST = "CTR_TEST", "CTR_TEST"
+        IMPORTED = "IMPORTED", "IMPORTED"
 
         def transform(
             row_type: TimeFrameRowType.choices, value: str

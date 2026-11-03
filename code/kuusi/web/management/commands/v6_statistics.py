@@ -177,6 +177,15 @@ class Command(BaseCommand):
                 )
             )
 
+            imported_sessions_count_with_ack = len(
+                list(filter(lambda s: s.imported_from_session and s.is_ack, sessions))
+            )
+            imported_sessions_count_no_ack = len(
+                list(
+                    filter(lambda s: s.imported_from_session and not s.is_ack, sessions)
+                )
+            )
+
             language_codes = {}
             entry_points = {}
 
@@ -286,4 +295,12 @@ class Command(BaseCommand):
                 row_key=None,
                 row_value_with_ack=container_visible_with_ack,
                 row_value_no_ack=container_visible_no_ack,
+            ).save()
+
+            TimeFrameRow(
+                time_frame=frame,
+                row_type=TimeFrameRow.TimeFrameRowType.IMPORTED,
+                row_key=None,
+                row_value_with_ack=imported_sessions_count_with_ack,
+                row_value_no_ack=imported_sessions_count_no_ack,
             ).save()
