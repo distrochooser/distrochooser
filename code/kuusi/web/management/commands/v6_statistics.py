@@ -153,12 +153,27 @@ class Command(BaseCommand):
             all_count = len(sessions)
             all_with_ack_count = len(list(filter(lambda s: s.is_ack, sessions)))
 
+            # For container visiblity
+            # do not include imported sessions
+            # as the v5 version did not feature container visibility checks.
             container_visible_with_ack = len(
-                list(filter(lambda s: s.is_ack and s.is_container_visible, sessions))
+                list(
+                    filter(
+                        lambda s: s.is_ack
+                        and s.is_container_visible
+                        and not s.imported_from_session,
+                        sessions,
+                    )
+                )
             )
             container_visible_no_ack = len(
                 list(
-                    filter(lambda s: not s.is_ack and s.is_container_visible, sessions)
+                    filter(
+                        lambda s: not s.is_ack
+                        and s.is_container_visible
+                        and not s.imported_from_session,
+                        sessions,
+                    )
                 )
             )
 
