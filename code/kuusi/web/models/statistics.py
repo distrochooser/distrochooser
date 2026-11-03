@@ -71,14 +71,6 @@ class TimeFrame(models.Model):
 
     @property
     def all_visitors_raw(self) -> int:
-        previous_entry = (
-            TimeFrame.objects.order_by("date")
-            .filter(
-                date__lt=self.date,
-                time_frame_type=self.time_frame_type,
-            )
-            .last()
-        )
         all_count = self.hit_count + self.result_count - self.all_crawlers_raw
         return all_count
 
@@ -140,7 +132,6 @@ class TimeFrame(models.Model):
         last_year_frame = TimeFrame.objects.filter(
             date__year=self.date.year - 1,
             date__month=self.date.month,
-            date__day=self.date.day,
             time_frame_type=self.time_frame_type,
         )
         overall_sum = self.all_visitors_of_year_raw
@@ -483,22 +474,50 @@ class TimeFrame(models.Model):
         )
 
     @property
-    def top_result_day(self) -> str:
-        if self.has_output("top_result_day"):
-            return self.get_output("top_result_day")
+    def top_results_day_raw(self) -> int:
         got = TimeFrameRow.objects.filter(
             time_frame=self,
             row_type=TimeFrameRow.TimeFrameRowType.TOP_DAY,
             time_frame__time_frame_type=self.time_frame_type,
         ).first()
-        day_of_week = self.date.replace(day=int(got.row_key)).strftime("%a")
-        if not got:
-            return "?"
-        diff = int(int(got.row_value_with_ack) - self.daily_results)
-        return self.cell_output(
-            f"{day_of_week} {got.row_key}. {got.row_value_with_ack} ({self._coloring(diff)})",
-            "top_result_day",
+        return got.row_value_with_ack
+
+    @property
+    def top_results_day_day_raw(self) -> int:
+        got = TimeFrameRow.objects.filter(
+            time_frame=self,
+            row_type=TimeFrameRow.TimeFrameRowType.TOP_DAY,
+            time_frame__time_frame_type=self.time_frame_type,
+        ).first()
+        return got.row_key
+
+    @property
+    def top_result_day(self) -> str:
+        if self.has_output("top_result_day"):
+            return self.get_output("top_result_day")
+        day_of_week = self.date.replace(day=int(self.top_results_day_day_raw)).strftime(
+            "%a"
         )
+
+        previous_month = (
+            TimeFrame.objects.order_by("date")
+            .filter(
+                date__lt=self.date,
+                time_frame_type=self.time_frame_type,
+            )
+            .last()
+        )
+        if previous_month:
+            diff = self.top_results_day_raw - previous_month.top_results_day_raw
+            return self.cell_output(
+                f"{self.top_results_day_day_raw} {day_of_week}. {self.top_results_day_raw} ({self._coloring(diff)})",
+                "top_result_day",
+            )
+        else:
+            return self.cell_output(
+                f"{self.top_results_day_day_raw} {day_of_week}. {self.top_results_day_raw}",
+                "top_result_day",
+            )
 
     @property
     def worst_result_day(self) -> str:

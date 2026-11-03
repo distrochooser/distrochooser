@@ -155,7 +155,6 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "results",
         "daily",
         "duration",
-        "worst_result_day",
         "top_result_day",
         "top_language_results",
         "top_hit_domain",
