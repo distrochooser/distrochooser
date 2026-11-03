@@ -22,7 +22,7 @@
     "all-contributors-cli": "^7.0.0",
     "bootstrap": "^5.3.8",
     "flag-icons": "^7.6.0",
-    "nuxt": "4.6.2",
+    "nuxt": "4.6.3",
     "pinia": "^4.1.0",
     "sass": "^1.107.0",
     "sass-loader": "^17.1.0",
