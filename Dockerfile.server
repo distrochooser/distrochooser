@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-FROM python:3.14-slim
+FROM python:3.15-slim
 ADD code/kuusi /kuusi
 RUN cd /kuusi && \
     pip install -r requirements.txt && \
