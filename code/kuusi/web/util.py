@@ -22,7 +22,7 @@ from typing import Any, Dict, List
 from django.apps import apps
 from django.core.cache import cache
 from os.path import join, exists
-
+from collections import OrderedDict
 from kuusi.settings import LONG_CACHE_TIMEOUT
 from json import loads, dumps
 
@@ -76,11 +76,13 @@ def get_translation_haystack(
 
 
 TRANSLATIONS = {}
+AVAILABLE_LANGUAGES = {}
 
 
 def hot_load_translations(**kwargs):
     path = join(LOCALE_PATHS[0])
     files = listdir(path)
+    files.sort()
     for file in files:
         language_file_match = match("lang-(?P<lang_code>[a-z\-]+).json", file)
         if language_file_match:
@@ -89,21 +91,32 @@ def hot_load_translations(**kwargs):
                 TRANSLATIONS[language_code] = {}
             full_path = join(path, file)
             content = loads(open(full_path, "r").read())
+            endonym = None
             for key, value in content.items():
                 TRANSLATIONS[language_code][key] = value
+                if key == "endonym":
+                    endonym = value
+            if not endonym:
+                raise Exception("Translation has no endonym")
+
+            AVAILABLE_LANGUAGES[language_code] = endonym
+
+
+def is_language_present(lang):
+    return lang in TRANSLATIONS
 
 
 def get_valid_language_code(language_code: str) -> str:
     lang = language_code
     if not language_code:
         lang = DEFAULT_LANGUAGE_CODE
-    if language_code not in TRANSLATIONS:
+    if not is_language_present(language_code):
         lang = DEFAULT_LANGUAGE_CODE
     return lang
 
 
 def get_language_codes() -> List[str]:
-    return TRANSLATIONS.keys()
+    return list(TRANSLATIONS.keys()).sort()
 
 
 def get_meta_tags(language_code: str) -> Dict[str, any]:

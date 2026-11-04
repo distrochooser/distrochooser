@@ -15,15 +15,15 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 from typing import List, Tuple, Dict
 from os.path import exists
 from web.models import Session, FacetteSelection, Facette, GivenFeedback
 from web.management.commands.languagefeedback import Command as LanguageCommand
-from django.core.management.base import BaseCommand 
+from django.core.management.base import BaseCommand
 from logging import getLogger
 from os.path import join, dirname, basename
 from os import listdir
-from kuusi.settings import  AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_CODE
 from termcolor import colored
 from json import loads, dumps
 from tqdm import tqdm
@@ -32,11 +32,12 @@ from datetime import datetime
 import user_agents
 import statistics
 
+
 class Command(BaseCommand):
     help = "Generate statistics from a Distrochooser 5 session fixture"
 
     def add_arguments(self, parser):
-        parser.add_argument("user_session_path",  type=str)
+        parser.add_argument("user_session_path", type=str)
 
     def handle(self, *args, **options):
         user_session_path = options["user_session_path"]
@@ -50,11 +51,11 @@ class Command(BaseCommand):
             date_time = parse(session["fields"]["dateTime"])
 
             # count everything as it was on the 1st of the month
-            date = date_time.replace(hour=0,minute=0,second=0,day=1)
+            date = date_time.replace(hour=0, minute=0, second=0, day=1)
             ua = user_agents.parse(session["fields"]["userAgent"])
             is_ack = session["fields"]["calculationEndTime"] is not None
             # use unix timestamp for easier sorting
-            key =  date.strftime("%s")
+            key = date.strftime("%s")
             if key not in stats:
                 stats[key] = {
                     "ack": 0,
@@ -63,14 +64,14 @@ class Command(BaseCommand):
                     "bot_non_ack": 0,
                     "ack_stay_duration": [],
                     "ack_user_agents": [],
-                    "ack_referrer": 0
+                    "ack_referrer": 0,
                 }
             # For acknowledged session: Calculate stay time from start to calculate time
             if is_ack:
                 end_time = parse(session["fields"]["calculationEndTime"])
-                stay_duration =  end_time -  date_time
+                stay_duration = end_time - date_time
                 stats[key]["ack_stay_duration"].append(stay_duration.total_seconds())
-        
+
             prefix = ""
             if ua.is_bot:
                 prefix = "bot_"
@@ -78,17 +79,17 @@ class Command(BaseCommand):
                 stats[key][f"{prefix}ack"] += 1
                 if session["fields"]["userAgent"] not in stats[key]["ack_user_agents"]:
                     stats[key]["ack_user_agents"].append(session["fields"]["userAgent"])
-                referrer =  session["fields"]["referrer"] 
+                referrer = session["fields"]["referrer"]
                 if referrer and "distrochooser.de" not in referrer:
                     stats[key]["ack_referrer"] += 1
             else:
                 stats[key][f"{prefix}non_ack"] += 1
-            
 
-            
         stats = dict(sorted(stats.items()))
         with open("stats.csv", "w") as file:
-            file.write("day;ack;non_ack;bot_ack;bot_non_ack;ack_stay_duration;ack_user_agents;ack_referrer\n")
+            file.write(
+                "day;ack;non_ack;bot_ack;bot_non_ack;ack_stay_duration;ack_user_agents;ack_referrer\n"
+            )
             for key, value in stats.items():
                 ack = value["ack"]
                 non_ack = value["non_ack"]
@@ -98,7 +99,9 @@ class Command(BaseCommand):
                 ack_user_agents = len(value["ack_user_agents"])
                 ack_referrer = value["ack_referrer"]
                 if len(value["ack_stay_duration"]) > 0:
-                    ack_stay_duration = sum(value["ack_stay_duration"])/len(value["ack_stay_duration"])
-                file.write(f"{key};{ack};{non_ack};{bot_ack};{bot_non_ack};{ack_stay_duration};{ack_user_agents};{ack_referrer}\n")
-
-        
+                    ack_stay_duration = sum(value["ack_stay_duration"]) / len(
+                        value["ack_stay_duration"]
+                    )
+                file.write(
+                    f"{key};{ack};{non_ack};{bot_ack};{bot_non_ack};{ack_stay_duration};{ack_user_agents};{ack_referrer}\n"
+                )

@@ -26,7 +26,6 @@ from django.core.management.base import BaseCommand, CommandParser
 from logging import getLogger
 from os.path import join, dirname, basename
 from os import listdir
-from kuusi.settings import AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_CODE
 from termcolor import colored
 from json import loads, dumps
 from tqdm import tqdm
