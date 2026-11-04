@@ -273,5 +273,6 @@
     "has_negative_handling_active": "You marked as no-go.",
     "points_remark": "The points represent a match to your answers and do not refer to the quality of the Linux distribution.",
     "points_out_of": "out of",
-    "about_page_text_stats_visitors": "Overall visitor count:"
+    "about_page_text_stats_visitors": "Overall visitor count:",
+    "cyclopos-description": "Cyclop OS is a beginner focused Ubuntu LTS based Linux distribution with GNOME, made for people and schools coming from Windows, with Windows-like and macOS-like desktop layouts. A free Community edition and paid editions exist."
 }

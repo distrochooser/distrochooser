@@ -50,7 +50,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -116,6 +117,7 @@ choosables = [
     "void",
     "artix",
     "popos",
+    "cyclopos"
 ]
 how = "neutral"
 
@@ -145,7 +147,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -232,7 +235,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -326,7 +330,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -413,7 +418,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -440,7 +446,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -477,7 +484,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "negative"
 
@@ -525,7 +533,8 @@ choosables = [
     "bazzite",
     "cachyos",
     "nobara",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -553,7 +562,8 @@ choosables = [
     "bazzite",
     "cachyos",
     "nobara",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -615,7 +625,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -632,7 +643,7 @@ how = "positive"
 # distrochooser::translation::key::has-windows-like-variant-facette-ux-concept-answer-windows-like-description
 [assignment.has-windows-like-variant-facette-ux-concept-answer-windows-like]
 facettes = ["ux-concept-answer-windows-like"]
-choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu", "bazzite", "cachyos", "nobara", "emmabuntus"]
+choosables = ["pclinuxos", "Knoppix", "ZorinOS", "Lubuntu", "kubuntu", "bazzite", "cachyos", "nobara", "emmabuntus", "cyclopos"]
 how = "positive"
 
 
@@ -640,7 +651,7 @@ how = "positive"
 # distrochooser::translation::key::mac-like-facette-ux-concept-answer-mac-like-description
 [assignment.mac-like-facette-ux-concept-answer-mac-like]
 facettes = ["ux-concept-answer-mac-like"]
-choosables = ["popos", "deepin", "nobara", "emmabuntus"]
+choosables = ["popos", "deepin", "nobara", "emmabuntus", "cyclopos"]
 how = "positive"
 
 
@@ -680,7 +691,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -689,7 +701,7 @@ how = "positive"
 # distrochooser::translation::key::paid-version-existing-facette-paid-support-ok-description
 [assignment.paid-version-existing-facette-paid-support-ok]
 facettes = ["paid-support-ok"]
-choosables = ["ubuntu", "opensuse", "rhel", "ZorinOS", "elementaryOS"]
+choosables = ["ubuntu", "opensuse", "rhel", "ZorinOS", "elementaryOS", "cyclopos"]
 how = "positive"
 
 
@@ -721,7 +733,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -742,7 +755,8 @@ choosables = [
     "popos",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "cyclopos"
 ]
 how = "blocking"
 
@@ -782,7 +796,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "cachyos"
+    "cachyos",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -861,7 +876,8 @@ choosables = [
     "bazzite",
     "nobara",
     "cachyos",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -878,6 +894,7 @@ choosables = [
     "UbuntuMATE",
     "kubuntu",
     "popos",
+    "cyclopos"
 ]
 how = "neutral"
 
@@ -932,7 +949,8 @@ choosables = [
     "deepin",
     "bazzite",
     "nobara",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "blocking"
 
@@ -1016,7 +1034,8 @@ choosables = [
     "kubuntu",
     "popos",
     "deepin",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -1084,7 +1103,8 @@ choosables = [
     "void",
     "artix",
     "popos",
-    "emmabuntus"
+    "emmabuntus",
+    "cyclopos"
 ]
 how = "positive"
 
@@ -1112,7 +1132,8 @@ choosables = [
     "void",
     "popos",
     "deepin",
-    "bazzite"
+    "bazzite",
+    "cyclopos"
 ]
 how = "positive"
 

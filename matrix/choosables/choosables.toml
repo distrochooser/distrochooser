@@ -1022,3 +1022,35 @@ meta_value = "https://emmabuntus.org/"
 choosable="emmabuntus"
 meta_name = "archs"
 meta_value = "amd64,x86"
+
+# distrochooser::translation::en::Cyclop OS is a beginner focused Ubuntu LTS based Linux distribution with GNOME, made for people and schools coming from Windows, with Windows-like and macOS-like desktop layouts. A free Community edition and paid editions exist.
+# distrochooser::translation::key::cyclopos-description
+[choosable.cyclopos]
+name = "Cyclop OS"
+bg_color = "#F16150"
+fg_color = "#030F1F"
+
+[[meta]]
+choosable="cyclopos"
+meta_name = "archs"
+meta_value = "amd64"
+
+[[meta]]
+choosable="cyclopos"
+meta_name = "website"
+meta_value = "https://cyclop-tech.com/cyclop-os"
+
+[[meta]]
+choosable="cyclopos"
+meta_name = "age"
+meta_value = "2021-11-22"
+
+[[meta]]
+choosable="cyclopos"
+meta_name = "operational_center"
+meta_value = "ee"
+
+[[meta]]
+choosable="cyclopos"
+meta_name = "languages"
+meta_value = "en"
