@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </span>
 
     <span class="ms-1 badge text-bg-light align-middle ">
-        <Icon name=" ion:md-trending-up" class="align-middle" />
+        <Icon name="ion:md-trending-up" class="align-middle me-1" />
         <span class="align-middle">
             {{ store.session.scoreMap[assignment.assignmentType] > 0 ? "+" : "" }}{{
                 store.session.scoreMap[assignment.assignmentType] }}P
