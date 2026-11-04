@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <a class="btn btn-secondary " href="#" v-on:click="goBack">
           <Icon class="align-middle me-1" name="ion:caret-back-circle-sharp"></Icon>
           <span class="d-none d-sm-inline">
-            <LanguageTranslation translation-key="BTN_PREV_PAGE" class="" />
+            <LanguageTranslation translation-key="BTN_PREV_PAGE" />
           </span>
         </a>
       </div>
