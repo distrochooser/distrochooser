@@ -269,5 +269,7 @@
     "has_negative_handling_active": "Tu l'as marqué comme non désiré.",
     "points_remark": "Les points représentent une correspondance à vos réponses et ne font pas référence à la qualité de la distribution Linux.",
     "points_out_of": "sur",
-    "about_page_text_stats_visitors": "Nombre total de visiteurs :"
+    "about_page_text_stats_visitors": "Nombre total de visiteurs :",
+    "facette-images-help": "Cette question présente des aperçus pour t'aider à choisir parmi les options disponibles.",
+    "facette-images": "Cette question a des réponses basées sur des images."
 }

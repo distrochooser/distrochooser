@@ -269,5 +269,7 @@
     "has_negative_handling_active": "你已将其标记为排除项。",
     "points_remark": "这些分数表示与您回答的匹配程度，不代表Linux发行版的质量。",
     "points_out_of": "出",
-    "about_page_text_stats_visitors": "总体访客数:"
+    "about_page_text_stats_visitors": "总体访客数:",
+    "facette-images-help": "此问题包含预览图片，帮助你从可用选项中进行选择。",
+    "facette-images": "此问题有基于图片的答案。"
 }

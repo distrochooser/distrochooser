@@ -269,5 +269,7 @@
     "has_negative_handling_active": "Je hebt dit als 'niet geschikt' gemarkeerd.",
     "points_remark": "De punten geven een overeenkomst met uw antwoorden aan en verwijzen niet naar de kwaliteit van de Linux-distributie.",
     "points_out_of": "van",
-    "about_page_text_stats_visitors": "Totaal aantal bezoekers:"
+    "about_page_text_stats_visitors": "Totaal aantal bezoekers:",
+    "facette-images-help": "Deze vraag heeft preview-afbeeldingen om je te helpen kiezen uit de beschikbare opties.",
+    "facette-images": "Deze vraag heeft beeldgebaseerde antwoorden."
 }

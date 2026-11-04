@@ -269,5 +269,7 @@
     "has_negative_handling_active": "Bạn đã đánh dấu là không phù hợp.",
     "points_remark": "Các điểm này thể hiện sự phù hợp với câu trả lời của bạn và không đề cập đến chất lượng của bản phân phối Linux.",
     "points_out_of": "trên",
-    "about_page_text_stats_visitors": "Tổng số lượt truy cập:"
+    "about_page_text_stats_visitors": "Tổng số lượt truy cập:",
+    "facette-images-help": "Câu hỏi này có hình ảnh xem trước để giúp bạn chọn giữa các tùy chọn có sẵn.",
+    "facette-images": "Câu hỏi này có các câu trả lời dựa trên hình ảnh."
 }

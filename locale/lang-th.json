@@ -271,5 +271,7 @@
     "has_negative_handling_active": "คุณทำเครื่องหมายว่าไม่เอา",
     "points_remark": "คะแนนเหล่านี้แสดงถึงการจับคู่กับคำตอบของคุณ และไม่เกี่ยวข้องกับคุณภาพของ Linux distribution",
     "points_out_of": "จาก",
-    "about_page_text_stats_visitors": "จำนวนผู้เข้าชมทั้งหมด:"
+    "about_page_text_stats_visitors": "จำนวนผู้เข้าชมทั้งหมด:",
+    "facette-images-help": "คำถามนี้มีรูปภาพตัวอย่างเพื่อช่วยให้คุณเลือกจากตัวเลือกที่มีอยู่",
+    "facette-images": "คำถามนี้มีคำตอบที่อิงตามรูปภาพ"
 }

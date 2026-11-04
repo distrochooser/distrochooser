@@ -355,6 +355,7 @@ class FacetteSerializer(serializers.ModelSerializer):
             "description",
             "assignments",
             "image_path",
+            "image_credit",
             "not_in_versions",  # Transfer the version Id's also to the client, to allow the UI to filter it. See ADR 0029 for details.
         )
 

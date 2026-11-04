@@ -16,31 +16,20 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div class="mt-2">
-    <div :class="{ 'form-check mb-2': true }" v-if="props.checkbox">
-      <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
-        type="checkbox" :id="facette.id.toString()" v-show="!store.isTranslating">
-      <label class="form-check-label me-2" :for="facette.id.toString()">
-        <LanguageTranslation :translation-key="props.facette.description" />
-      </label>
-      <Importance v-if="isSelected" :selected="selected" :facette="facette" />
-      <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours" />
-
-      <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"
-        v-if="store.session.isFeedbackModeEnabled" />
-    </div>
-    <div :class="{ 'form-check mb-2': true }" v-else>
-      <input v-on:click="registerClick" v-show="!store.isTranslating" class="form-check-input" type="radio"
+  <div v-if="props.facette.imagePath" class="d-inline align-middle me-2 col-4 col-lg-3 text-center"
+    :class="{ 'border border-primary': isSelected, 'border ': !isSelected }">
+    <img :title="'Credit: ' + props.facette.imageCredit" :src="props.facette.imagePath" class="w-100 mt-3"
+      @click="registerImageClick" />
+    <FacetteLabel :facette="facette" :on-click="registerImageClick" />
+  </div>
+  <div class="mt-2" v-else>
+    <div :class="{ 'form-check mb-2': true }">
+      <input v-if="props.checkbox" class="form-check-input" v-model="selected" v-on:change="registerChange"
+        :checked="isSelected" type="checkbox" :id="facette.id.toString()" v-show="!store.isTranslating">
+      <input v-else v-on:click="registerClick" v-show="!store.isTranslating" class="form-check-input" type="radio"
         v-bind:name="props.facette.topic" v-model="selected" v-on:change="registerChange" v-bind:value="true"
         :checked="isSelected" :id="facette.id.toString()">
-      <label v-on:click="registerClick" class="form-check-label me-2" :for="facette.id.toString()">
-        <LanguageTranslation :translation-key="props.facette.description" />
-      </label>
-      <Importance v-if="isSelected" :selected="selected" :facette="facette" />
-
-      <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours" />
-      <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"
-        v-if="store.session.isFeedbackModeEnabled" />
+      <FacetteLabel :facette="facette" />
     </div>
   </div>
 
@@ -57,14 +46,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </template>
 <script setup lang="ts">
 import { useState } from "nuxt/app";
-import { computed, ref, type ComputedRef } from "vue";
+import { computed } from "vue";
 import { type Facette, type FacetteBehaviour } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
-import BehaviourButton from "./AssignmentButton.vue";
 import LanguageTranslation from "../../LanguageTranslation.vue";
-import Importance from "./Importance.vue";
-import BehaviourAlert from "./BehaviourAlert.vue";
+import FacetteLabel from "./FacetteLabel.vue";
 
 interface CheckboxFacetteProps {
   facette: Facette;
@@ -92,12 +79,6 @@ const isExpanded = useState(
   props.facette.id.toString() + "_expanded",
   () => false
 );
-const toggleExpand = async () => {
-  isExpanded.value = !isExpanded.value
-  if (isExpanded.value) {
-    await store.getAssignmentFeedback()
-  }
-};
 
 const isSelected = computed(
   () =>
@@ -105,13 +86,16 @@ const isSelected = computed(
       .length != 0
 );
 
-const behaviours = computed<FacetteBehaviour[]>((b) =>
-  store.facetteBehaviours.filter(
-    (fb) =>
-      fb.affectedObjects.filter((ao) => ao.id == props.facette.id).length > 0 ||
-      fb.affectedSubjects.filter((ao) => ao.id == props.facette.id).length > 0
+const registerImageClick = async () => {
+  await store.updateFacetteSelections(
+    store.currentPage.id,
+    props.facette.id,
+    0,
+    false,
+    store.facetteSelections.filter(s => s.facette === props.facette.id).length === 0,
+    props.checkbox ? "" : "all"
   )
-);
+}
 
 const registerClick = async () => {
   if (isSelected.value) {

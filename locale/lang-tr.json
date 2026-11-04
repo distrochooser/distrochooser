@@ -269,5 +269,7 @@
     "has_negative_handling_active": "Onu uygun değil olarak işaretledin.",
     "points_remark": "Puanlar, cevaplarınıza bir eşleşmeyi temsil eder ve Linux dağıtımının kalitesine atıfta bulunmaz.",
     "points_out_of": "üzerinden",
-    "about_page_text_stats_visitors": "Genel ziyaretçi sayısı:"
+    "about_page_text_stats_visitors": "Genel ziyaretçi sayısı:",
+    "facette-images-help": "Bu soru, mevcut seçenekler arasından seçim yapmana yardımcı olmak için önizleme görüntüleri içeriyor.",
+    "facette-images": "Bu sorunun görsel tabanlı cevapları var."
 }

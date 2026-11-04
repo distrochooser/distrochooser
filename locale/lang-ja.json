@@ -269,5 +269,7 @@
     "has_negative_handling_active": "除外としてマークしました。",
     "points_remark": "この点は、あなたの回答との一致を示すものであり、Linuxディストリビューションの品質を指すものではありません。",
     "points_out_of": "のうち",
-    "about_page_text_stats_visitors": "全体の訪問者数:"
+    "about_page_text_stats_visitors": "全体の訪問者数:",
+    "facette-images-help": "この質問には、利用可能なオプションから選ぶのを助けるプレビュー画像があります。",
+    "facette-images": "この質問には画像ベースの回答があります。"
 }

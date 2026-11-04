@@ -269,5 +269,7 @@
     "has_negative_handling_active": "Sən onu qəbul etməmək üçün işarələsən.",
     "points_remark": "Bu ballar cavablarınıza nə qədər uyğun gəldiyini göstərir və Linux paylanmasının keyfiyyəti ilə əlaqəli deyil.",
     "points_out_of": "dənədən",
-    "about_page_text_stats_visitors": "Ümumi ziyarətçi sayı:"
+    "about_page_text_stats_visitors": "Ümumi ziyarətçi sayı:",
+    "facette-images-help": "Bu sualda, mevcut seçenekler arasından seçmenə kömək edəcək önizləmə şəkilləri mövcuddur.",
+    "facette-images": "Bu sualın şəkil əsaslı cavabları var."
 }

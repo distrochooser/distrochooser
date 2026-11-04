@@ -269,5 +269,7 @@
     "has_negative_handling_active": "Označil si ga kot zavrnitev.",
     "points_remark": "Točke predstavljajo poudekovanje vaših odgovorov in se nanašajo na kakovost Linux distribucije.",
     "points_out_of": "od",
-    "about_page_text_stats_visitors": "Celotna številka obiskovalcev:"
+    "about_page_text_stats_visitors": "Celotna številka obiskovalcev:",
+    "facette-images-help": "To vprašanje ima predogledne slike, ki ti pomagajo izbrati med na voljo opcijami.",
+    "facette-images": "Ta vprašanje ima odgovore na podlagi slik."
 }

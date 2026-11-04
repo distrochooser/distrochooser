@@ -269,5 +269,7 @@
     "has_negative_handling_active": "Du hast es als Ausschluss markiert.",
     "points_remark": "Die Punkte zeigen, wie gut sie zu deinen Antworten passen, und beziehen sich nicht auf die Qualität der Linux-Distribution.",
     "points_out_of": "von",
-    "about_page_text_stats_visitors": "Gesamtzahl der Besucher:"
+    "about_page_text_stats_visitors": "Gesamtzahl der Besucher:",
+    "facette-images-help": "Diese Frage zeigt Vorschau-Bilder, damit du leichter zwischen den verfügbaren Optionen wählen kannst.",
+    "facette-images": "Diese Frage hat bildbasierte Antworten."
 }

@@ -273,5 +273,7 @@
     "has_negative_handling_active": "You marked as no-go.",
     "points_remark": "The points represent a match to your answers and do not refer to the quality of the Linux distribution.",
     "points_out_of": "out of",
-    "about_page_text_stats_visitors": "Overall visitor count:"
+    "about_page_text_stats_visitors": "Overall visitor count:",
+    "facette-images-help": "This question features preview images to help you choose between the available options.",
+    "facette-images": "This question has image based answers."
 }
