@@ -98,8 +98,7 @@ class FacetteSelectionAdmin(admin.ModelAdmin):
 
 
 class FacetteAdmin(admin.ModelAdmin):
-    list_display = ("catalogue_id", "description", "topic")
-    pass
+    list_display = ("catalogue_id", "description", "topic", "image_path")
 
 
 def create_violation(user_agent: str, end_date):
