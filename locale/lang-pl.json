@@ -269,5 +269,7 @@
     "has_negative_handling_active": "Oznaczyłeś to jako niepasujące.",
     "points_remark": "Punkty reprezentują zgodność z Twoimi odpowiedziami i nie odnoszą się do jakości dystrybucji Linuksa.",
     "points_out_of": "z",
-    "about_page_text_stats_visitors": "Całkowita liczba odwiedzających:"
+    "about_page_text_stats_visitors": "Całkowita liczba odwiedzających:",
+    "facette-images-help": "To pytanie ma obrazki podglądu, które pomogą Ci wybrać z dostępnych opcji.",
+    "facette-images": "To pytanie ma odpowiedzi oparte na obrazach."
 }

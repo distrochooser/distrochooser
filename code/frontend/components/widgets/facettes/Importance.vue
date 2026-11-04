@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <span class="mb-1 fs-6">
+    <span class="ms-1 mb-1 fs-6">
         <span>
             <Icon :title="showedTooltip" class="align-middle weight-ribbon" :class="{ 'marked-important': isImportant }"
                 :name="showedIcon" v-on:click="() => {
@@ -48,7 +48,6 @@ import { useSessionStore } from '../../../states/session';
 
 interface ImportanceProps {
     facette: Facette;
-    selected: boolean
 }
 
 const props = defineProps<ImportanceProps>();
@@ -79,7 +78,7 @@ const registerWeightChange = async () => {
         props.facette.id,
         isImportant.value ? 2 : 0,
         hasNegativeHandlingActive.value,
-        props.selected,
+        true,
         "this"
     );
 };

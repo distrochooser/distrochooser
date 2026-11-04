@@ -269,5 +269,7 @@
     "has_negative_handling_active": "Merkitit pois suljetuksi.",
     "points_remark": "Pisteet vastaavat vastauksiasi ja eivät viittaa Linux-jakelun laatuun.",
     "points_out_of": "stä",
-    "about_page_text_stats_visitors": "Kokona vierailijamäärä:"
+    "about_page_text_stats_visitors": "Kokona vierailijamäärä:",
+    "facette-images-help": "Tässä kysymyksessä on esikatselukuvia auttamaan sinua valitsemaan saatavilla olevista vaihtoehdoista.",
+    "facette-images": "Tällä kysymyksellä on kuvapohjaiset vastaukset."
 }

@@ -269,5 +269,7 @@
     "has_negative_handling_active": "סימנת כלא רצוי.",
     "points_remark": "הנקודות מייצגות התאמה לתשובות שלך ואינן מתייחסות לאיכות של הפצת לינוקס.",
     "points_out_of": "מתוך",
-    "about_page_text_stats_visitors": "סך המבקרים:"
+    "about_page_text_stats_visitors": "סך המבקרים:",
+    "facette-images-help": "השאלה הזו כוללת תמונות תצוגה מקדימה כדי לעזור לך לבחור בין האפשרויות הזמינות.",
+    "facette-images": "לשאלה הזו יש תשובות מבוססות תמונות."
 }

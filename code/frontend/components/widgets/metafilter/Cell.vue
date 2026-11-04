@@ -16,10 +16,9 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-
     <div class="mb-3">
         <div v-if="['radio', 'checkbox', 'select', 'singleSelect'].indexOf(type) == -1">
-            <label :for="id" class="form-label">
+            <label :for="id" class="form-label" :class="{ 'fw-bold': storedFormValue }">
                 <LanguageTranslation :translation-key="id" />
             </label>
             <input :value="formValue.length > 0 ? formValue[0] : ''" class="form-control" :type="type" :id="id"
@@ -51,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </div>
 
         <div v-else class=" form-check">
-            <label class="form-check-label" :for="id">
+            <label class="form-check-label" :for="id" :class="{ 'fw-bold': storedFormValue }">
                 <LanguageTranslation :translation-key="id" />
             </label>
             <input v-on:change="updateValue($event, type)" :checked="formValue.length > 0" class="form-check-input"
@@ -85,6 +84,7 @@ const id: ComputedRef<string> = computed(() => props.cellString.split('.')[1])
 const argName: ComputedRef<string> = computed(() => props.cellString.split('.')[3])
 const arg = computed(() => props.widget.options[argName.value])
 const formValue = useState<string[]>(props.cellString, () => [])
+const storedFormValue = computed(() => store.metaValues.find(m => m.key == id.value)?.value)
 
 const getValue = (el: HTMLInputElement, type: MetaFilterType): string => {
     if (el === null) {
@@ -106,7 +106,7 @@ const translateSelectValue = (key: string) => {
 }
 
 
-const updateValue = (e: Event, type: MetaFilterType) => {
+const updateValue = async (e: Event, type: MetaFilterType) => {
     const el = (e.target as HTMLInputElement)
 
     const key = el.getAttribute("id")
@@ -149,15 +149,13 @@ const updateValue = (e: Event, type: MetaFilterType) => {
          */
         if (value.length == 0) {
             console.log(oldId)
-            store.removeMetaFilterArg(oldId)
+            await store.removeMetaFilterArg(oldId)
             formValue.value = []
         } else {
-            store.updateMetaFilterArgs(key, value, store.currentPage.id)
+            await store.updateMetaFilterArgs(key, value, store.currentPage.id)
             formValue.value = [value]
         }
     }
-
-
 }
 
 

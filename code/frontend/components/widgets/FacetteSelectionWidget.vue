@@ -17,16 +17,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
-    <div v-for="(facette, index) in facettes" v-bind:key="index">
-      <Facette :facette="facette" :checkbox="props.checkbox" :topic="props.widget.topic" />
+    <div class="mb-3" v-if="facetteImages.length > 0">
+      <b class="mb-1 d-block">
+        <LanguageTranslation translation-key="facette-images" />
+      </b>
+      <span class="mb-3 d-block">
+        <LanguageTranslation translation-key="facette-images-help" />
+      </span>
+      <div class="row justify-content-xxl-center g-3">
+        <FacetteComponent v-for="(facette, index) in facettes" :key="index" :facette="facette"
+          :checkbox="props.checkbox" :topic="props.widget.topic" />
+      </div>
+    </div>
+    <div v-else>
+      <div v-for="(facette, index) in facettes" v-bind:key="index">
+        <FacetteComponent :facette="facette" :checkbox="props.checkbox" :topic="props.widget.topic" />
+      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
-import { type FacetteSelectionWidget } from "../../sdk";
+import { type Facette, type FacetteSelectionWidget } from "../../sdk";
 import { useSessionStore } from "../../states/session";
-import Facette from "./facettes/Facette.vue";
+import FacetteComponent from "./facettes/Facette.vue";
 
 interface WidgetProps {
   widget: FacetteSelectionWidget;
@@ -35,6 +49,9 @@ interface WidgetProps {
 
 const props = defineProps<WidgetProps>();
 const store = useSessionStore();
+
+const isSelectedFacette = (facette: Facette) => store.facetteSelections.filter(s => s.facette === facette.id).length > 0
+const facetteImages = computed(() => facettes.value.filter(f => f.imagePath))
 
 /** Facettes will be filtered client sided, see ADR 0029 for details */
 

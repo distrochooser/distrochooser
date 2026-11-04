@@ -42,6 +42,8 @@ class Facette(models.Model):
     description = models.CharField(null=False, blank=False, max_length=120)
     topic = models.CharField(null=False, blank=False, max_length=120)
     child_facettes = models.ManyToManyField(to="Facette", blank=True)
+    image_path = models.CharField(null=True, blank=True, max_length=255, default=None)
+    image_credit = models.CharField(null=True, blank=True, max_length=255, default=None)
 
     # Similar as with Page.not_in_versions, allow session versions to control display of facettes
     # See ADR 0029 for details
