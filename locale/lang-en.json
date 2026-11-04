@@ -275,5 +275,6 @@
     "points_out_of": "out of",
     "about_page_text_stats_visitors": "Overall visitor count:",
     "facette-images-help": "This question features preview images to help you choose between the available options.",
-    "facette-images": "This question has image based answers."
+    "facette-images": "This question has image based answers.",
+    "cyclopos-description": "Cyclop OS is a beginner focused Ubuntu LTS based Linux distribution with GNOME, made for people and schools coming from Windows, with Windows-like and macOS-like desktop layouts. A free Community edition and paid editions exist."
 }
