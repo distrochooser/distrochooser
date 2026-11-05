@@ -19,12 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <div>
     <div class="mb-3" v-if="facetteImages.length > 0">
       <b class="mb-1 d-block">
-        <LanguageTranslation translation-key="facette-images" />
+        <LanguageTranslation :translation-key="props.widget.topic" />
       </b>
       <span class="mb-3 d-block">
         <LanguageTranslation translation-key="facette-images-help" />
       </span>
-      <div class="row justify-content-xxl-center g-3">
+      <div class="row">
         <FacetteComponent v-for="(facette, index) in facettes" :key="index" :facette="facette"
           :checkbox="props.checkbox" :topic="props.widget.topic" />
       </div>

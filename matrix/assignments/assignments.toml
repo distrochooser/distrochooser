@@ -174,7 +174,7 @@ choosables = ["emmabuntus"]
 facettes = ["gaming-usage"]
 how = "negative"
 sources = [
-    "emmabüntus;https://emmabuntus.org/"
+    "emmabuntus;https://emmabuntus.org/"
 ]
 
 # distrochooser::translation::en::May require additional configuration for gaming
