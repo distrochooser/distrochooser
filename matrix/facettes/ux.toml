@@ -25,36 +25,57 @@ topic = "ux_deprecated"
 topic = "ux_deprecated"
 
 [facette.desktop-gnome]
-topic = "ux"
+topic = "ux-others"
 image_path = "gnome.png"
 image_credit = "Screenshot Distrochooser.de"
 
-[facette.desktop-kde]
-topic = "ux"
-image_path = "kde.png"
-image_credit = "Screenshot Distrochooser.de"
-
-[facette.desktop-lxde]
-topic = "ux"
-image_path = "lxde.png"
-image_credit = "Screenshot Distrochooser.de"
-
 [facette.desktop-xfce]
-topic = "ux"
+topic = "ux-others"
 image_path = "xfce.png"
 image_credit = "Screenshot Distrochooser.de"
 
 [facette.desktop-gnome-classic]
-topic = "ux"
+topic = "ux-others"
 image_path = "gnome_classic.png"
 image_credit = "Screenshot Distrochooser.de"
 
+[facette.desktop-mate]
+topic = "ux-others"
+image_path = "mate.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-cosmic]
+topic = "ux-others"
+image_path = "cosmic.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-pantheon]
+topic = "ux-others"
+image_path = "pantheon.png"
+image_credit = "Screenshot Distrochooser.de"
+
+
+[facette.desktop-kde]
+topic = "ux-windows-like"
+image_path = "kde.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-lxde]
+topic = "ux-windows-like"
+image_path = "lxde.png"
+image_credit = "Screenshot Distrochooser.de"
+
 [facette.desktop-cinnamon]
-topic = "ux"
+topic = "ux-windows-like"
 image_path = "cinnamon.png"
 image_credit = "Screenshot Distrochooser.de"
 
-[facette.desktop-mate]
-topic = "ux"
-image_path = "mate.png"
+[facette.desktop-budgie]
+topic = "ux-windows-like"
+image_path = "budgie.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-gnome-modified]
+topic = "ux-windows-like"
+image_path = "zorinos.png"
 image_credit = "Screenshot Distrochooser.de"

@@ -140,9 +140,12 @@ next_page = "pricing-page"
 hide_help = true
 icon = "ion:logo-windows"
 
-# TODO:  The UX question should be a media selection
+[widget.selection.ux-windows-like-widget]
+topic = "ux-windows-like"
+pages = ["ux-page"]
+
 [widget.selection.ux-page-widget-name]
-topic = "ux"
+topic = "ux-others"
 pages = ["ux-page"]
 
 [widget.metafilter.ux-meta-filter]

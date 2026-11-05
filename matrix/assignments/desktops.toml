@@ -17,27 +17,34 @@
 # https://distro.watch/infographics/linux-desktop-environments
 
 
-# Ignored here:
-# Arch, NixOS, Gentoo, Debian ?
+# Not included here yet
+# As the question is focused more on the distribution with "included" desktops and/ or installer options
+# Arch, NixOS, Gentoo
 
+[assignment.budgie-default]
+facettes = ["desktop-budgie"]
+choosables = [
+    "solus",
+]
+how = "positive"
+sources = [
+    "solus;https://getsol.us/download/",
+]
 
-# TODO: Make clear what lxqt is <> comparison lxde?
-# TODO: xy-choice: Either a flavour or installer option
-# TODO: xy-default: Brings xy as default or only env
-# TODO: MOre desktops? https://wiki.cachyos.org/installation/desktop_environments/
-# TODO: Budgie Desktop, mapping (including cachy, solus)
-# TODO: Deepin Desktop Environment
-# TODO: Pop!_OS Cosmic
-# TODO: Update how to map that sources are mandatory unless really obvious (like KDE -> Kubuntu)
-# TODO: Crux flaggen?
-# TODO: Pantheon (elementary)
+[assignment.budgie-choice]
+facettes = ["desktop-budgie"]
+choosables = [
+    "cachyos",
+]
+how = "positive"
+sources = [
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
+]
 
 [assignment.gnome-default]
 facettes = ["desktop-gnome"]
 choosables = [
     "ubuntu",
-    "zorinos",
-    "nobara",
     "tails",
     "opensuse",
     "fedora",
@@ -46,8 +53,6 @@ choosables = [
 how = "positive"
 sources = [
     "ubuntu;https://ubuntu.com/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive",
-    "nobara;https://nobaraproject.org/",
-    "zorinos;https://en.wikipedia.org/wiki/Zorin_OS",
     "tails;https://tails.net/doc/first_steps/desktop/index.en.html",
     "opensuse;https://en.wikipedia.org/wiki/OpenSUSE",
     "fedora;https://fedoraproject.org/workstation/",
@@ -75,6 +80,16 @@ sources = [
     "solus;https://getsol.us/download/"
 ]
 
+[assignment.gnome-modified-default]
+facettes = ["desktop-gnome-modified"]
+choosables = [
+    "zorinos",
+]
+how = "positive"
+sources = [
+    "zorinos;https://en.wikipedia.org/wiki/Zorin_OS",
+]
+
 [assignment.xfce-default]
 facettes = ["desktop-xfce"]
 choosables = [
@@ -99,6 +114,7 @@ sources = [
 [assignment.xfce-choice]
 facettes = ["desktop-xfce"]
 choosables = [
+    "debian",
     "cachyos",
     "artix",
     "linuxmint",
@@ -120,11 +136,9 @@ sources = [
 
 [assignment.cinnamon-default]
 facettes = ["desktop-cinnamon"]
-choosables = [
-]
+choosables = []
 how = "positive"
-sources = [
-]
+sources = []
 
 [assignment.cinnamon-choice]
 facettes = ["desktop-cinnamon"]
@@ -140,7 +154,7 @@ sources = [
     "linuxmint;https://linuxmint-installation-guide.readthedocs.io/en/latest/choose.html"
 ]
 
-
+# We will LXDE-Matches as LXQT here.
 [assignment.lxqt-default]
 facettes = ["desktop-lxde"]
 choosables = [
@@ -151,7 +165,7 @@ sources = [
     "emmabuntus;https://emmabuntus.org/la-distribution/"
 ]
 
-[assignment.lqxt-choice]
+[assignment.lxqt-choice]
 facettes = ["desktop-lxde"]
 choosables = [
     "cachyos",
@@ -162,6 +176,7 @@ sources = [
     "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
     "artix;https://artixlinux.org/download.php"
 ]
+
 
 [assignment.lxde-default]
 facettes = ["desktop-lxde"]
@@ -203,6 +218,7 @@ sources = [
 [assignment.kde-choice]
 facettes = ["desktop-kde"]
 choosables = [
+    "debian",
     "nobara",
     "cachyos",
     "bazzite",
@@ -215,7 +231,7 @@ choosables = [
 ]
 how = "positive"
 sources = [
-    "nobara;https://nobaraproject.org/download.html,
+    "nobara;https://nobaraproject.org/download.html",
     "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
     "bazzite;https://bazzite.gg/",
     "artix;https://artixlinux.org/download.php",
@@ -232,8 +248,7 @@ choosables = [
     "ubuntumate",
 ]
 how = "positive"
-sources = [
-]
+sources = []
 
 [assignment.mate-choice]
 facettes = ["desktop-mate"]
@@ -243,8 +258,42 @@ choosables = [
     "pclinuxos"
 ]
 how = "positive"
-sources = [,
+sources = [
     "artix;https://artixlinux.org/download.php",
     "linuxmint;https://linuxmint-installation-guide.readthedocs.io/en/latest/choose.html",
     "pclinuxos;https://mirror.math.princeton.edu/pub/pclinuxos/iso/"
 ]
+
+[assignment.cosmic-default]
+facettes = ["desktop-cosmic"]
+choosables = [
+    "popos",
+]
+how = "positive"
+sources = [
+    "popos;https://system76.com/download-pop/",
+]
+
+[assignment.cosmic-choice]
+facettes = ["desktop-cosmic"]
+choosables = [
+    "cachyos"
+]
+how = "positive"
+sources = [
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/"
+]
+
+[assignment.pantheon-default]
+facettes = ["desktop-pantheon"]
+choosables = [
+    "elementaryos"
+]
+how = "positive"
+sources = []
+
+[assignment.pantheon-choice]
+facettes = ["desktop-pantheon"]
+choosables = []
+how = "positive"
+sources = []
