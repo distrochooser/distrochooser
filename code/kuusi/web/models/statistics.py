@@ -610,7 +610,7 @@ class TimeFrame(models.Model):
             )
             return self.cell_output(
                 (
-                    f"{self.container_visibility_count}x<br/>({self.container_visiblility_raw}%, {self._coloring(diff)})"
+                    f"{self.container_visibility_count} of {self.all_visitors_raw}<br/>({self.container_visiblility_raw}%, {self._coloring(diff)})"
                 ),
                 "container_visibility",
             )
