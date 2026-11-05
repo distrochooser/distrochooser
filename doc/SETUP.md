@@ -24,6 +24,7 @@
 |KUUSI_LOGO|The logo to add to frontend sessions|
 |KUUSI_ICON|The favicon to add to frontend sessions|
 |ADDITIONAL_TAGS|Key,value pair of additional meta tags|
+|IMAGE_PATHS_ROOT|URL, ending with slash, to the folder where facette images are located into.|
 |CACHE_TIMEOUT|The default cache timeout to use|
 |LONG_CACHE_TIMEOUT|The default cache timeout to use for semi-static content, such as pages or categories|
 |Imprint|A text to be used as contact (legal imprint info)|
