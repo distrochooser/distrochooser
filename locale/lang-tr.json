@@ -272,5 +272,14 @@
     "points_out_of": "üzerinden",
     "about_page_text_stats_visitors": "Genel ziyaretçi sayısı:",
     "facette-images-help": "Bu soru, mevcut seçenekler arasından seçim yapmana yardımcı olmak için önizleme görüntüleri içeriyor.",
-    "facette-images": "Bu sorunun görsel tabanlı cevapları var."
+    "facette-images": "Bu sorunun görsel tabanlı cevapları var.",
+    "desktop-gnome-description": "Masaüstü \"GNOME\": Klasik konfigürasyon: Yüzen pencereler, üst durum çubuğu, Dock.",
+    "desktop-xfce-description": "Masaüstü \"XFCE\": Klasik yapılandırma: Üst görev çubuğu, Dock.",
+    "desktop-kde-description": "KDE Masaüstü: Klasik Yapılandırma: Alt Görev Çubuğu.",
+    "desktop-cinnamon-description": "'Cinnamon' Masaüstü: Klasik Yapılandırma: Alt Görev Çubuğu.",
+    "desktop-lxde-description": "LXDE Masaüstü: Klasik Yapılandırma: Alt Görev Çubuğu.",
+    "desktop-mate-description": "MATE Masaüstü: Klasik yapılandırma: Alt görev çubuğu, üst menü çubuğu.",
+    "desktop-gnome-classic-description": "Masaüstü \"GNOME Classic\": Klasik yapılandırma: Alt görev çubuğu, üst menü çubuğu.",
+    "image-make-larger": "Görseli büyüt",
+    "image-make-smaller": "Görüntüyü küçült"
 }

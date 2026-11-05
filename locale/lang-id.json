@@ -272,5 +272,14 @@
     "points_out_of": "dari",
     "about_page_text_stats_visitors": "Jumlah pengunjung keseluruhan:",
     "facette-images-help": "Pertanyaan ini menampilkan gambar pratinjau untuk membantumu memilih di antara opsi yang tersedia.",
-    "facette-images": "Pertanyaan ini memiliki jawaban berbasis gambar."
+    "facette-images": "Pertanyaan ini memiliki jawaban berbasis gambar.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Konfigurasi klasik: Jendela melayang, bilah status atas, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Konfigurasi klasik: Taskbar atas, Dock.",
+    "desktop-kde-description": "Desktop 'KDE': Konfigurasi Klasik: Taskbar Bawah.",
+    "desktop-cinnamon-description": "Desktop 'Cinnamon': Konfigurasi Klasik: Taskbar Bawah.",
+    "desktop-lxde-description": "Desktop \"LXDE\": Konfigurasi klasik: Taskbar bawah.",
+    "desktop-mate-description": "Desktop \"MATE\": Konfigurasi Klasik: Taskbar bawah, bilah menu atas.",
+    "desktop-gnome-classic-description": "Desktop \"GNOME Classic\": Konfigurasi klasik: Taskbar bawah, bilah menu atas.",
+    "image-make-larger": "Perbesar gambar",
+    "image-make-smaller": "Mengecilkan gambar"
 }

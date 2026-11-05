@@ -272,5 +272,14 @@
     "points_out_of": "από",
     "about_page_text_stats_visitors": "Συνολικός αριθμός επισκεπτών:",
     "facette-images-help": "Αυτή η ερώτηση έχει προεπισκόπηση εικόνες για να σε βοηθήσει να επιλέξεις από τις διαθέσιμες επιλογές.",
-    "facette-images": "Αυτή η ερώτηση έχει απαντήσεις με βάση εικόνες."
+    "facette-images": "Αυτή η ερώτηση έχει απαντήσεις με βάση εικόνες.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Κλασική διαμόρφωση: Πлавающие παράθυρα, πάνω γραμμή κατάστασης, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Κλασική διαμόρφωση: Άνω thanh εργασιών, Dock.",
+    "desktop-kde-description": "Desktop 'KDE': Κλασική διαμόρφωση: Κάτω γραμμή εργασιών.",
+    "desktop-cinnamon-description": "Έργο στατικού γραφείου 'Cinnamon': Κλασική διαμόρφωση: Κάτω γραμμή εργασιών.",
+    "desktop-lxde-description": "Desktop \"LXDE\": Κλασική διαμόρφωση: Κάτω γραμμή εργασιών.",
+    "desktop-mate-description": "Desktop \"MATE\": Κλασική διαμόρφωση: Κάτω γραμμή εργασιών, επάνω γραμμή μενού.",
+    "desktop-gnome-classic-description": "Desktop \"GNOME Classic\": Κλασική διαμόρφωση: Κάτω γραμμή εργασιών, πάνω γραμμή μενού.",
+    "image-make-larger": "Μεγεθύνω εικόνα",
+    "image-make-smaller": "Μικροποίηση εικόνας"
 }

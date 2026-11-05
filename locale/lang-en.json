@@ -276,5 +276,14 @@
     "points_out_of": "out of",
     "about_page_text_stats_visitors": "Overall visitor count:",
     "facette-images-help": "This question features preview images to help you choose between the available options.",
-    "facette-images": "This question has image based answers."
+    "facette-images": "This question has image based answers.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Classic configuration: Floating windows, top status bar, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Classic configuration: Top taskbar, Dock.",
+    "desktop-kde-description": "Desktop 'KDE': Classic Configuration: Bottom Taskbar.",
+    "desktop-cinnamon-description": "Cinnamon Desktop: Classic Configuration: Bottom Taskbar.",
+    "desktop-lxde-description": "LXDE Desktop: Classic configuration: Bottom taskbar.",
+    "desktop-mate-description": "MATE Desktop: Classic configuration: Bottom taskbar, top menu bar.",
+    "desktop-gnome-classic-description": "Desktop \"GNOME Classic\": Classic configuration: Bottom taskbar, top menu bar.",
+    "image-make-larger": "Enlarge image",
+    "image-make-smaller": "Resize image"
 }

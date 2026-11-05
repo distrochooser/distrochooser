@@ -272,5 +272,14 @@
     "points_out_of": "出",
     "about_page_text_stats_visitors": "總體訪客數:",
     "facette-images-help": "此問題包含預覽圖片，幫助您從可用選項中進行選擇。",
-    "facette-images": "此問題有基於圖片的答案。"
+    "facette-images": "此問題有基於圖片的答案。",
+    "desktop-gnome-description": "桌面“GNOME”：經典配置：浮動視窗、頂部狀態列、Dock。",
+    "desktop-xfce-description": "\"XFCE\" 桌面：經典配置：頂部任務欄，Dock。",
+    "desktop-kde-description": "桌面'KDE'：經典配置：底部任務欄。",
+    "desktop-cinnamon-description": "'Cinnamon' 桌面：經典配置：底部任務欄。",
+    "desktop-lxde-description": "LXDE 桌面：「經典配置：底部任務欄。」",
+    "desktop-mate-description": "MATE 桌面：經典配置：底部任務欄，頂部選單欄。",
+    "desktop-gnome-classic-description": "桌面“GNOME Classic”：經典配置：底部任務欄，頂部選單欄。",
+    "image-make-larger": "放大圖片",
+    "image-make-smaller": "縮小圖片"
 }

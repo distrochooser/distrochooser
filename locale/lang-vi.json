@@ -272,5 +272,14 @@
     "points_out_of": "trên",
     "about_page_text_stats_visitors": "Tổng số lượt truy cập:",
     "facette-images-help": "Câu hỏi này có hình ảnh xem trước để giúp bạn chọn giữa các tùy chọn có sẵn.",
-    "facette-images": "Câu hỏi này có các câu trả lời dựa trên hình ảnh."
+    "facette-images": "Câu hỏi này có các câu trả lời dựa trên hình ảnh.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Cấu hình cổ điển: Cửa sổ nổi, thanh trạng thái trên cùng, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Cấu hình cổ điển: Thanh tác vụ phía trên, Dock.",
+    "desktop-kde-description": "Desktop 'KDE': Cấu hình cổ điển: Thanh tác vụ dưới cùng.",
+    "desktop-cinnamon-description": "Màn hình 'Cinnamon': Cấu hình cổ điển: Thanh tác vụ dưới.",
+    "desktop-lxde-description": "Desktop \"LXDE\": Cấu hình cổ điển: Thanh tác vụ dưới.",
+    "desktop-mate-description": "MATE Desktop: Cấu hình cổ điển: Thanh tác vụ dưới, thanh menu trên.",
+    "desktop-gnome-classic-description": "Màn hình nền \"GNOME Classic\": Cấu hình cổ điển: Thanh tác vụ dưới, thanh menu trên.",
+    "image-make-larger": "Phóng to ảnh",
+    "image-make-smaller": "Thu nhỏ hình ảnh"
 }

@@ -17,9 +17,44 @@
 # distrochooser::translation::en::I prefer a macOS-like user interface
 # distrochooser::translation::key::ux-concept-answer-mac-like-description
 [facette.ux-concept-answer-mac-like]
-topic = "ux"
+topic = "ux_deprecated"
 
 # distrochooser::translation::en::I prefer a windows-like user interface
 # distrochooser::translation::key::ux-concept-answer-windows-like-description
 [facette.ux-concept-answer-windows-like]
+topic = "ux_deprecated"
+
+[facette.desktop-gnome]
 topic = "ux"
+image_path = "gnome.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-kde]
+topic = "ux"
+image_path = "kde.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-lxde]
+topic = "ux"
+image_path = "lxde.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-xfce]
+topic = "ux"
+image_path = "xfce.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-gnome-classic]
+topic = "ux"
+image_path = "gnome_classic.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-cinnamon]
+topic = "ux"
+image_path = "cinnamon.png"
+image_credit = "Screenshot Distrochooser.de"
+
+[facette.desktop-mate]
+topic = "ux"
+image_path = "mate.png"
+image_credit = "Screenshot Distrochooser.de"

@@ -272,5 +272,14 @@
     "points_out_of": "מתוך",
     "about_page_text_stats_visitors": "סך המבקרים:",
     "facette-images-help": "השאלה הזו כוללת תמונות תצוגה מקדימה כדי לעזור לך לבחור בין האפשרויות הזמינות.",
-    "facette-images": "לשאלה הזו יש תשובות מבוססות תמונות."
+    "facette-images": "לשאלה הזו יש תשובות מבוססות תמונות.",
+    "desktop-gnome-description": "שולחן עבודה \"GNOME\": תצורה קלאסית: חלונות צפים, סרגל סטטוס עליון, Dock.",
+    "desktop-xfce-description": "שולחן עבודה \"XFCE\": תצורה קלאסית: סרגל משימות עליון, Dock.",
+    "desktop-kde-description": "שולחן עבודה 'KDE': תצורה קלאסית: סרגל משימות תחתון.",
+    "desktop-cinnamon-description": "שולחן עבודה 'Cinnamon': תצורה קלאסית: סרגל משימות תחתון.",
+    "desktop-lxde-description": "שולחן עבודה \"LXDE\": תצורה קלאסית: סרגל משימות תחתון.",
+    "desktop-mate-description": "שולחן עבודה \"MATE\": תצורה קלאסית: סרגל משימות תחתון, סרגל תפריטים עליון.",
+    "desktop-gnome-classic-description": "שולחן עבודה \"GNOME Classic\": תצורה קלאסית: סרגל משימות תחתון, סרגל תפריט עליון.",
+    "image-make-larger": "להגדיל תמונה",
+    "image-make-smaller": "הקטנת תמונה"
 }

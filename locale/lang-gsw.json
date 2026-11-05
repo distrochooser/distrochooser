@@ -272,5 +272,14 @@
     "points_out_of": "vo",
     "about_page_text_stats_visitors": "Total Besucher:",
     "facette-images-help": "Dëss frage het vorschau-bilder zum helfe debi wähle.",
-    "facette-images": "[Translation based on direct meaning] Die Frage hat bildbasierte Antworten."
+    "facette-images": "[Translation based on direct meaning] Die Frage hat bildbasierte Antworten.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Cyfiawnder cllasig: Ffenestrau yn floddi, barr status cysex, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Kunqubo kwemfundiso: I-taskbar epha, Dock.",
+    "desktop-kde-description": "KDE Desktop: Klassischi Konfiiguration: Unteri Taskleischt.",
+    "desktop-cinnamon-description": "Desktop 'Cinnamon': Klassik Konfiqurasiya: Aşağı Görev Çubuğu.",
+    "desktop-lxde-description": "Desktop \"LXDE\": Konfigurasi klasik: Taskbar bawah.",
+    "desktop-mate-description": "MATE Desktop: Klassik Konfiguuriere: Unte Taskbar, Obere Menu Bar.",
+    "desktop-gnome-classic-description": "Desktop \"GNOME Classic\": Klassi-Konfigurasioun: Untes Taskbar, Obere Menüleiste.",
+    "image-make-larger": "Bild vergrössere",
+    "image-make-smaller": "Bild chliiner mache"
 }

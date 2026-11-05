@@ -272,5 +272,14 @@
     "points_out_of": "z",
     "about_page_text_stats_visitors": "Całkowita liczba odwiedzających:",
     "facette-images-help": "To pytanie ma obrazki podglądu, które pomogą Ci wybrać z dostępnych opcji.",
-    "facette-images": "To pytanie ma odpowiedzi oparte na obrazach."
+    "facette-images": "To pytanie ma odpowiedzi oparte na obrazach.",
+    "desktop-gnome-description": "Pulpit \"GNOME\": Klasyczna konfiguracja: Pływające okna, górna pasek statusu, Dock.",
+    "desktop-xfce-description": "Pulpit \"XFCE\": Klasyczna konfiguracja: Górny pasek zadań, Dock.",
+    "desktop-kde-description": "Biurko 'KDE': Klasyczna konfiguracja: Dolna pasek zadań.",
+    "desktop-cinnamon-description": "Pulpit 'Cinnamon': Klasyczna konfiguracja: Dolna pasek zadań.",
+    "desktop-lxde-description": "Pulpit \"LXDE\": Klasyczna konfiguracja: Dolna pasek zadań.",
+    "desktop-mate-description": "Desktop \"MATE\": Klasyczna konfiguracja: Dolny pasek zadań, górny pasek menu.",
+    "desktop-gnome-classic-description": "Biurko \"GNOME Classic\": Klasyczna konfiguracja: Dolny pasek zadań, górny pasek menu.",
+    "image-make-larger": "Powiększ obraz",
+    "image-make-smaller": "Zmniejsz zdjęcie"
 }

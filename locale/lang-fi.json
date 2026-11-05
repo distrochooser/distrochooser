@@ -272,5 +272,14 @@
     "points_out_of": "stä",
     "about_page_text_stats_visitors": "Kokona vierailijamäärä:",
     "facette-images-help": "Tässä kysymyksessä on esikatselukuvia auttamaan sinua valitsemaan saatavilla olevista vaihtoehdoista.",
-    "facette-images": "Tällä kysymyksellä on kuvapohjaiset vastaukset."
+    "facette-images": "Tällä kysymyksellä on kuvapohjaiset vastaukset.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Klassinen konfiguraatio: Liituva ikkuna, yläreunan tilapalkki, Dock.",
+    "desktop-xfce-description": "Työpöytä \"XFCE\": Klassinen konfiguraatio: Ylempi tehtäväpalkki, Dock.",
+    "desktop-kde-description": "KDE Työpöytä: Klassinen konfiguraatio: Alareunaan sijoitettu tehtäväpalkki.",
+    "desktop-cinnamon-description": "Työpöytä 'Cinnamon': Klassinen konfiguraatio: Alareunan tehtäväpalkki.",
+    "desktop-lxde-description": "LXDE Desktop: Klassinen konfiguraatio: Alaohja.",
+    "desktop-mate-description": "MATE Desktop: Klassinen konfiguraatio: Alapalkki, ylävalikko.",
+    "desktop-gnome-classic-description": "Työpöytä \"GNOME Classic\": Klassinen konfiguraatio: Alapalkki, ylävalikko.",
+    "image-make-larger": "Suurenna kuva",
+    "image-make-smaller": "Pienennä kuva"
 }

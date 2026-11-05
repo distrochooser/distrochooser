@@ -272,5 +272,14 @@
     "points_out_of": "de",
     "about_page_text_stats_visitors": "Contagem total de visitantes:",
     "facette-images-help": "Esta pergunta tem imagens de pré-visualização para te ajudar a escolher entre as opções disponíveis.",
-    "facette-images": "Esta pergunta tem respostas baseadas em imagens."
+    "facette-images": "Esta pergunta tem respostas baseadas em imagens.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Configuração clássica: Janelas flutuantes, barra de status superior, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Configuração clássica: Barra de tarefas superior, Dock.",
+    "desktop-kde-description": "Desktop 'KDE': Configuração Clássica: Barra de Tarefas Inferior.",
+    "desktop-cinnamon-description": "Desktop 'Cinnamon': Configuração clássica: Barra de tarefas inferior.",
+    "desktop-lxde-description": "Desktop \"LXDE\": Configuração clássica: Barra de tarefas inferior.",
+    "desktop-mate-description": "Desktop \"MATE\": Configuração clássica: Barra de tarefas inferior, barra de menu superior.",
+    "desktop-gnome-classic-description": "Desktop \"GNOME Classic\": Configuração clássica: Barra de tarefas inferior, barra de menu superior.",
+    "image-make-larger": "Ampliar imagem",
+    "image-make-smaller": "Reduzir imagem"
 }

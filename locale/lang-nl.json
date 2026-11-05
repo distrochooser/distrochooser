@@ -272,5 +272,14 @@
     "points_out_of": "van",
     "about_page_text_stats_visitors": "Totaal aantal bezoekers:",
     "facette-images-help": "Deze vraag heeft preview-afbeeldingen om je te helpen kiezen uit de beschikbare opties.",
-    "facette-images": "Deze vraag heeft beeldgebaseerde antwoorden."
+    "facette-images": "Deze vraag heeft beeldgebaseerde antwoorden.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Klassieke configuratie: Zwevende vensters, bovenste statusbalk, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Klassieke configuratie: Bovenste taakbalk, Dock.",
+    "desktop-kde-description": "Desktop 'KDE': Klassieke configuratie: Onderste taakbalk.",
+    "desktop-cinnamon-description": "Desktop 'Cinnamon': Klassieke configuratie: Onderste taakbalk.",
+    "desktop-lxde-description": "LXDE Desktop: Klassieke configuratie: Onderste taakbalk.",
+    "desktop-mate-description": "MATE Desktop: Klassieke configuratie: Onderste taakbalk, bovenste menubalk.",
+    "desktop-gnome-classic-description": "Desktop \"GNOME Classic\": Klassieke configuratie: Onderste taakbalk, bovenste menubalk.",
+    "image-make-larger": "Afbeelding vergroten",
+    "image-make-smaller": "Afbeeldingsgrootte verkleinen"
 }

@@ -16,11 +16,23 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div v-if="props.facette.imagePath" class="d-inline align-middle me-2 col-4 col-lg-3 text-center"
-    :class="{ 'border border-primary': isSelected, 'border ': !isSelected }">
-    <img :title="'Credit: ' + props.facette.imageCredit" :src="props.facette.imagePath" class="w-100 mt-3"
-      @click="registerImageClick" />
-    <FacetteLabel :facette="facette" :on-click="registerImageClick" />
+  <div v-if="props.facette.imagePath" class="d-inline align-middle text-center mb-3" :class="{
+    'col-4': !imageFacetteLarge, 'col-12':
+      imageFacetteLarge
+  }">
+    <div :class="{ 'border border-primary  border-3': isSelected, 'p-3': true }">
+      <img :title="'Credit: ' + props.facette.imageCredit" :src="props.facette.imagePath" class="w-100 mt-3"
+        @click="registerImageClick" />
+      <div class="image-facette-label mt-2">
+        <a href="#" @click.prevent="imageFacetteLarge = !imageFacetteLarge" class="btn btn-primary btn-sm">
+          <Icon :name="imageFacetteLarge ? 'ion:arrow-shrink' : 'ion:arrow-expand'" class="align-middle me-1" />
+          <LanguageTranslation :translation-key="imageFacetteLarge ? 'image-make-smaller' : 'image-make-larger'" />
+        </a>
+        <div class="mt-2 text-start">
+          <FacetteLabel :facette="facette" :on-click="registerImageClick" />
+        </div>
+      </div>
+    </div>
   </div>
   <div class="mt-2" v-else>
     <div :class="{ 'form-check mb-2': true }">
@@ -46,7 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </template>
 <script setup lang="ts">
 import { useState } from "nuxt/app";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { type Facette, type FacetteBehaviour } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
@@ -97,6 +109,8 @@ const registerImageClick = async () => {
   )
 }
 
+const imageFacetteLarge = ref(false)
+
 const registerClick = async () => {
   if (isSelected.value) {
     await store.updateFacetteSelections(
@@ -137,5 +151,9 @@ const registerChange = async () => {
 
 .more-weight-icon {
   color: $more-weight-color
+}
+
+.image-facette-label {
+  font-size: smaller;
 }
 </style>

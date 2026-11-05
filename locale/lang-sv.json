@@ -272,5 +272,14 @@
     "points_out_of": "av",
     "about_page_text_stats_visitors": "Totalt antal besökare:",
     "facette-images-help": "Denna fråga har förhandsgranskningsbilder för att hjälpa dig att välja bland de tillgängliga alternativen.",
-    "facette-images": "Den här frågan har bildbaserade svar."
+    "facette-images": "Den här frågan har bildbaserade svar.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Klassisk konfiguration: Flytande fönster, övre statusfält, Dock.",
+    "desktop-xfce-description": "Skrivbord \"XFCE\": Klassisk konfiguration: Övre uppgiftsfält, Dock.",
+    "desktop-kde-description": "KDE skrivbord: Klassisk konfiguration: Nedre aktivitetsfält.",
+    "desktop-cinnamon-description": "Skrivbord 'Cinnamon': Klassisk konfiguration: Nedre aktivitetsfält.",
+    "desktop-lxde-description": "LXDE Desktop: Klassisk konfiguration: Nedersta aktivitetsfält.",
+    "desktop-mate-description": "MATE Desktop: Klassisk konfiguration: Nedre aktivitetsfält, övre menyfält.",
+    "desktop-gnome-classic-description": "Skrivbord \"GNOME Classic\": Klassisk konfiguration: Nedersta aktivitetsfält, övre menyfält.",
+    "image-make-larger": "Förstora bild",
+    "image-make-smaller": "Minska bild"
 }

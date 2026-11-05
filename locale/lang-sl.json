@@ -272,5 +272,14 @@
     "points_out_of": "od",
     "about_page_text_stats_visitors": "Celotna številka obiskovalcev:",
     "facette-images-help": "To vprašanje ima predogledne slike, ki ti pomagajo izbrati med na voljo opcijami.",
-    "facette-images": "Ta vprašanje ima odgovore na podlagi slik."
+    "facette-images": "Ta vprašanje ima odgovore na podlagi slik.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Klasična konfiguracija: Plavajoča okna, zgorajnja vrstica statusa, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Klasična konfiguracija: Zgornji nadpis, Dock.",
+    "desktop-kde-description": "Desktop 'KDE': Klasična konfiguracija: Spodnja vrstica nalog.",
+    "desktop-cinnamon-description": "Desktop 'Cinnamon': Klasična konfiguracija: Spodnja vrstica nalogov.",
+    "desktop-lxde-description": "Desktop \"LXDE\": Klasična konfiguracija: Spodnja gumbočna vrstica.",
+    "desktop-mate-description": "Desktop \"MATE\": Klasična konfiguracija: Spodnji pas svinil, zgornji menijski pas.",
+    "desktop-gnome-classic-description": "Desktop \"GNOME Classic\": Klasična konfiguracija: Spodnja vrstica za naloge, zgornja vrstica menija.",
+    "image-make-larger": "Poveči sliko",
+    "image-make-smaller": "Pomanjša sliko"
 }

@@ -274,5 +274,14 @@
     "points_out_of": "จาก",
     "about_page_text_stats_visitors": "จำนวนผู้เข้าชมทั้งหมด:",
     "facette-images-help": "คำถามนี้มีรูปภาพตัวอย่างเพื่อช่วยให้คุณเลือกจากตัวเลือกที่มีอยู่",
-    "facette-images": "คำถามนี้มีคำตอบที่อิงตามรูปภาพ"
+    "facette-images": "คำถามนี้มีคำตอบที่อิงตามรูปภาพ",
+    "desktop-gnome-description": "เดสก์ท็อป \"GNOME\": การกำหนดค่าคลาสสิก: หน้าต่างลอย, แถบสถานะด้านบน, Dock.",
+    "desktop-xfce-description": "เดสก์ท็อป \"XFCE\": การกำหนดค่าแบบคลาสสิก: แถบงานด้านบน, Dock.",
+    "desktop-kde-description": "เดสก์ท็อป 'KDE': การกำหนดค่าแบบคลาสสิก: แถบงานด้านล่าง",
+    "desktop-cinnamon-description": "เดสก์ท็อป 'Cinnamon': การตั้งค่าแบบคลาสสิก: แถบงานด้านล่าง.",
+    "desktop-lxde-description": "เดสก์ท็อป \"LXDE\": การตั้งค่าแบบคลาสสิก: แถบงานด้านล่าง",
+    "desktop-mate-description": "เดสก์ท็อป \"MATE\": การกำหนดค่าแบบคลาสสิก: แถบงานด้านล่าง, แถบเมนูด้านบน",
+    "desktop-gnome-classic-description": "เดสก์ท็อป \"GNOME Classic\": การกำหนดค่าแบบคลาสสิก: แถบงานด้านล่าง, แถบเมนูด้านบน",
+    "image-make-larger": "ขยายรูปภาพ",
+    "image-make-smaller": "ย่อภาพ"
 }

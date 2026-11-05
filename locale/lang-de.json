@@ -272,5 +272,14 @@
     "points_out_of": "von",
     "about_page_text_stats_visitors": "Gesamtzahl der Besucher:",
     "facette-images-help": "Diese Frage zeigt Vorschau-Bilder, damit du leichter zwischen den verfügbaren Optionen wählen kannst.",
-    "facette-images": "Diese Frage hat bildbasierte Antworten."
+    "facette-images": "Diese Frage hat bildbasierte Antworten.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Klassische Konfiguration: Schwebende Fenster, obere Statusleiste, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Klassische Konfiguration: Obere Taskleiste, Dock.",
+    "desktop-kde-description": "Desktop 'KDE': Klassische Konfiguration: Untere Taskleiste.",
+    "desktop-cinnamon-description": "Desktop 'Cinnamon': Klassische Konfiguration: Untere Taskleiste.",
+    "desktop-lxde-description": "Desktop \"LXDE\": Klassische Konfiguration: Untere Taskleiste.",
+    "desktop-mate-description": "Desktop \"MATE\": Klassische Konfiguration: Untere Taskleiste, obere Menüleiste.",
+    "desktop-gnome-classic-description": "Desktop \"GNOME Classic\": Klassische Konfiguration: Untere Taskleiste, obere Menüleiste.",
+    "image-make-larger": "Bild vergrößern",
+    "image-make-smaller": "Bild verkleinern"
 }

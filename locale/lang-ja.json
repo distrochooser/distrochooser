@@ -272,5 +272,14 @@
     "points_out_of": "のうち",
     "about_page_text_stats_visitors": "全体の訪問者数:",
     "facette-images-help": "この質問には、利用可能なオプションから選ぶのを助けるプレビュー画像があります。",
-    "facette-images": "この質問には画像ベースの回答があります。"
+    "facette-images": "この質問には画像ベースの回答があります。",
+    "desktop-gnome-description": "デスクトップ「GNOME」：クラシック構成：フローティングウィンドウ、上部ステータスバー、Dock。",
+    "desktop-xfce-description": "デスクトップ「XFCE」：クラシックな設定：上部タスクバー、Dock。",
+    "desktop-kde-description": "デスクトップ「KDE」：クラシック設定：下部タスクバー。",
+    "desktop-cinnamon-description": "「Cinnamon」デスクトップ：クラシック構成：下部タスクバー。",
+    "desktop-lxde-description": "デスクトップ \"LXDE\": クラシックな設定: 下部のタスクバー。",
+    "desktop-mate-description": "MATE デスクトップ：クラシックな設定：下部タスクバー、上部メニューバー。",
+    "desktop-gnome-classic-description": "デスクトップ「GNOME Classic」：クラシックな構成：下部タスクバー、上部メニューバー。",
+    "image-make-larger": "画像を拡大する",
+    "image-make-smaller": "画像を縮小する"
 }

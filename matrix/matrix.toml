@@ -38,3 +38,4 @@
 
 #include ./assignments/assignments.toml
 #include ./assignments/ai.toml
+#include ./assignments/desktops.toml

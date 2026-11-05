@@ -272,5 +272,14 @@
     "points_out_of": "dənədən",
     "about_page_text_stats_visitors": "Ümumi ziyarətçi sayı:",
     "facette-images-help": "Bu sualda, mevcut seçenekler arasından seçmenə kömək edəcək önizləmə şəkilləri mövcuddur.",
-    "facette-images": "Bu sualın şəkil əsaslı cavabları var."
+    "facette-images": "Bu sualın şəkil əsaslı cavabları var.",
+    "desktop-gnome-description": "Desktop \"GNOME\": Klassik Konfiqurasiya: Süzülən pəncərələr, yuxarı status çubuğu, Dock.",
+    "desktop-xfce-description": "Desktop \"XFCE\": Klassik konfiqurasiya: Yuxarı panel, Dock.",
+    "desktop-kde-description": "KDE Masaüstü: Klassik Konfiqurasiya: Aşağı Tapşırıq Çubuğu.",
+    "desktop-cinnamon-description": "Desktop \"Cinnamon\": Klassik Konfiqurasiya: Aşağı Görev Çubuğu.",
+    "desktop-lxde-description": "Desktop \"LXDE\": Klassik konfiqurasiya: Aşağı panel.",
+    "desktop-mate-description": "MATE Desktop: Klassik konfiqurasiya: Aşağı görev çubuğu, yuxarı menyu çubuğu.",
+    "desktop-gnome-classic-description": "GNOME Classic\" Masaüstü: Klassik konfiqurasiya: Aşağı görev çubuğu",
+    "image-make-larger": "Şəkli böyüt",
+    "image-make-smaller": "Şəkli kiçiltmək"
 }
