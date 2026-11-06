@@ -427,9 +427,11 @@ class SessionViewSet(ViewSet):
                     ):
                         selection.pk = None
                         selection.session = session
+                        selection.imported_from_answer = None
                         selection.save()
                 # TODO: Find reason for typing error
                 # Find way to remove # type: ignore
+                session.imported_from_session = None
                 session.session_origin = old_session  # type: ignore
                 session.save()
         if old_session:
