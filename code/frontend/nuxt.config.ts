@@ -15,6 +15,29 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/icon',
   ],
+  icon: {
+    provider: 'none',
+    clientBundle: {
+      scan: true,
+      icons: [
+        "ion:arrow-forward-circle-outline",
+        "ion:git-branch",
+        "ion:stats-chart",
+        "ion:monitor",
+        "ion:ios-list",
+        "ion:extension-puzzle",
+        "ion:md-help-circle",
+        "ion:logo-windows",
+        "ion:ios-cart",
+        "ion:checkbox-sharp",
+        "ion:md-globe",
+        "ion:shield-checkmark-sharp",
+        "ion:settings-outline",
+        "ion:md-cloud-download",
+        "ion:ios-settings-strong",
+        "ion:ios-arrow-dropright-circle"]
+    },
+  },
   sitemap: {
     urls: async () => {
       const response = await fetch(apiBasePath() + "/rest/metatags?lang=en")
