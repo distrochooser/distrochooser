@@ -584,10 +584,30 @@ class TimeFrame(models.Model):
         return visibility_count
 
     @property
+    def imported_sessions(self) -> int:
+        got = TimeFrameRow.objects.filter(
+            time_frame=self,
+            row_type=TimeFrameRow.TimeFrameRowType.IMPORTED,
+            time_frame__time_frame_type=self.time_frame_type,
+        ).first()
+        if got:
+            return int(got.row_value_no_ack) + int(got.row_value_with_ack)
+        return 0
+
+    @property
     def container_visiblility_raw(self) -> int:
         all_count = self.all_visitors_raw
         if all_count == 0:
             return 0
+        got = TimeFrameRow.objects.filter(
+            time_frame=self,
+            row_type=TimeFrameRow.TimeFrameRowType.IMPORTED,
+            time_frame__time_frame_type=self.time_frame_type,
+        ).first()
+        # Imported sessions do not feature the visibility flag
+        # therefore they shall not count
+        if got:
+            all_count -= self.imported_sessions
         return round((self.container_visibility_count / all_count) * 100, 3)
 
     @property
@@ -603,6 +623,9 @@ class TimeFrame(models.Model):
             )
             .last()
         )
+        # Imported sessions do not feature the visibility flag
+        # therefore they shall not count
+        maximum = self.all_visitors_raw - self.imported_sessions
         if previous_month:
             diff = float(
                 self.container_visiblility_raw
@@ -610,13 +633,13 @@ class TimeFrame(models.Model):
             )
             return self.cell_output(
                 (
-                    f"{self.container_visibility_count} of {self.all_visitors_raw}<br/>({self.container_visiblility_raw}%, {self._coloring(diff)})"
+                    f"{self.container_visibility_count} of {maximum}<br/>({self.container_visiblility_raw}%, {self._coloring(diff)})"
                 ),
                 "container_visibility",
             )
 
         return self.cell_output(
-            f"{self.container_visibility_count}x<br/>({self.container_visiblility_raw}%)",
+            f"{self.container_visibility_count} of {maximum}<br/>({self.container_visiblility_raw}%)",
             "container_visibility",
         )
 
