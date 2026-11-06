@@ -76,7 +76,7 @@ const a11yShown = ref(false)
 const props = defineProps<WidgetProps>();
 const store = useSessionStore();
 const canGoNext = computed(() => {
-  return store.currentPage.nextPage != null;
+  return store.pages.findIndex((p) => p.id == store.currentPage.id) < store.pages.length - 1
 });
 const canGoBack = computed(() => {
   const index = store.pages.findIndex((p) => p.id == store.currentPage.id);

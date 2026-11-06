@@ -18,6 +18,7 @@
 # distrochooser::translation::en::Welcome!
 # distrochooser::translation::key::welcome-page-title
 [page.welcome-page]
+index=1
 can_be_marked = false
 next_page = "version-page"
 hide_text = true
@@ -33,6 +34,7 @@ pages = ["welcome-page"]
 # distrochooser::translation::en::Questionaire edition
 # distrochooser::translation::key::version-page-title
 [page.version-page]
+index=2
 icon = "ion:git-branch"
 can_be_marked = false
 next_page = "scenario-page"
@@ -45,6 +47,7 @@ pages = ["version-page"]
 # distrochooser::translation::en::Software: Use case
 # distrochooser::translation::key::scenario-page-title
 [page.scenario-page]
+index=3
 next_page = "pc-knowledge-page"
 hide_help = true
 icon = "ion:stats-chart"
@@ -58,6 +61,7 @@ pages = ["scenario-page"]
 # distrochooser::translation::en::Computer knowledge
 # distrochooser::translation::key::pc-knowledge-page-title
 [page.pc-knowledge-page]
+index=4
 next_page = "linux-knowledge-page"
 hide_help = true
 icon = "ion:monitor"
@@ -71,6 +75,7 @@ pages = ["pc-knowledge-page"]
 # distrochooser::translation::en::Linux and you
 # distrochooser::translation::key::linux-knowledge-page-title
 [page.linux-knowledge-page]
+index=5
 next_page = "installation-page"
 hide_help = true
 icon = "ion:ios-list"
@@ -85,6 +90,7 @@ pages = ["linux-knowledge-page"]
 # distrochooser::translation::en::Installation: Presets
 # distrochooser::translation::key::installation-page-title
 [page.installation-page]
+index=6
 next_page = "personal-requirements-page"
 hide_help = true
 icon = "ion:ios-list"
@@ -101,6 +107,7 @@ pages = ["installation-page"]
 # distrochooser::translation::en::Personal recommendation requirements
 # distrochooser::translation::key::personal-requirements-page-title
 [page.personal-requirements-page]
+index=7
 next_page = "help-page"
 not_in_versions = ["simplified", "full"]
 icon = "ion:extension-puzzle"
@@ -123,6 +130,7 @@ pages = ["personal-requirements-page"]
 # distrochooser::translation::en::Source for help
 # distrochooser::translation::key::help-page-title
 [page.help-page]
+index=8
 next_page = "ux-page"
 hide_help = true
 icon = "ion:md-help-circle"
@@ -136,6 +144,7 @@ pages = ["help-page"]
 # distrochooser::translation::en::User experience
 # distrochooser::translation::key::ux-page-title
 [page.ux-page]
+index=9
 next_page = "pricing-page"
 hide_help = true
 icon = "ion:logo-windows"
@@ -162,6 +171,7 @@ pages = ["ux-page"]
 # distrochooser::translation::en::Distributions: Price
 # distrochooser::translation::key::pricing-page-title
 [page.pricing-page]
+index=10
 next_page = "scope-page"
 not_in_versions = ["simplified"]
 hide_help = true
@@ -176,6 +186,7 @@ pages = ["pricing-page"]
 # distrochooser::translation::en::Distributions: Scope
 # distrochooser::translation::key::scope-page-title
 [page.scope-page]
+index=11
 hide_help = true
 next_page = "ideology-page"
 icon = "ion:checkbox-sharp"
@@ -191,6 +202,7 @@ pages = ["scope-page"]
 # distrochooser::translation::en::Distributions: Ideology
 # distrochooser::translation::key::ideology-page-title
 [page.ideology-page]
+index=12
 next_page = "privacy-page"
 not_in_versions = ["simplified"]
 icon = "ion:md-globe"
@@ -205,6 +217,7 @@ pages = ["ideology-page"]
 # distrochooser::translation::en::Distributions: Privacy
 # distrochooser::translation::key::privacy-page-title
 [page.privacy-page]
+index=13
 hide_help = true
 next_page = "administration-page"
 icon = "ion:shield-checkmark-sharp"
@@ -218,6 +231,7 @@ pages = ["privacy-page"]
 # distrochooser::translation::en::Administration
 # distrochooser::translation::key::administration-page-title
 [page.administration-page]
+index=14
 next_page = "advanced-administration-page"
 hide_help = true
 icon = "ion:settings-outline"
@@ -228,6 +242,7 @@ pages = ["administration-page"]
 not_in_versions = ["simplified"]
 
 [page.advanced-administration-page]
+index=15
 next_page = "updates-page"
 hide_help = true
 
@@ -250,6 +265,7 @@ pages = ["advanced-administration-page"]
 # distrochooser::translation::en::Software: Updates
 # distrochooser::translation::key::updates-page-title
 [page.updates-page]
+index=16
 next_page = "result-page"
 hide_help = true
 not_in_versions = ["simplified"]
@@ -272,6 +288,7 @@ pages = ["updates-page"]
 # distrochooser::translation::en::Show your results
 # distrochooser::translation::key::result-page-title
 [page.result-page]
+index=17
 hide_help = true
 hide_text = true
 can_be_marked = false

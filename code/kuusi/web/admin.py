@@ -227,6 +227,10 @@ class TimeFrameCellAdmin(admin.ModelAdmin):
     )
 
 
+class PageAdmin(admin.ModelAdmin):
+    list_display = ("catalogue_id", "index")
+
+
 class ViolationAdmin(admin.ModelAdmin):
     list_display = (
         "reason",
@@ -248,7 +252,7 @@ class ViolationAdmin(admin.ModelAdmin):
         (Choosable,),
         (GivenFeedback,),
         (ChoosableMeta,),
-        (Page,),
+        (Page, PageAdmin),
         (HTMLWidget,),
         (NavigationWidget,),
         (FacetteSelectionWidget,),

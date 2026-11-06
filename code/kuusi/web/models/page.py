@@ -41,14 +41,6 @@ logger = getLogger("root")
 
 class Page(models.Model):
     catalogue_id = models.CharField(null=True, blank=True, default=None, max_length=255)
-    next_page = models.ForeignKey(
-        to="Page",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        default=None,
-        related_name="page_next",
-    )
     not_in_versions = models.ManyToManyField(to="SessionVersion", blank=True)
     can_be_marked = models.BooleanField(default=False)
     # has_question_handling = models.BooleanField(default=False)
@@ -62,52 +54,14 @@ class Page(models.Model):
     icon = models.CharField(
         null=False, blank=False, default="bi bi-clipboard2-data", max_length=100
     )
+    index = models.IntegerField(default=1, blank=False, null=False)
+
+    def __str__(self) -> str:
+        return f"{self.catalogue_id}"
 
     @property
     def href(self):
         return f"/?page={self.catalogue_id}"
-
-    def is_visible(self, session: Session | None) -> bool:
-        """
-        Returns if the page is visible in view of the session version
-        """
-        is_page_visible = True
-        if session and session.version:
-            if self.not_in_versions.filter(pk=session.version.pk).count() > 0:
-                is_page_visible = False
-        if (
-            self.hide_if_no_selections
-            and FacetteSelection.objects.filter(session=session).count() == 0
-        ):
-            is_page_visible = False
-        return is_page_visible
-
-    @property
-    def previous_page(self) -> Page | None:
-        return Page.objects.filter(next_page=self).first()
-
-    def next_visible_page(page: Page, session: Session) -> Page | None:
-        # If the page is not visible, try to find a next displayable page.
-        fallback_page = None
-        next_page = page.next_page
-
-        # Allow the next page only to try 50 times to search for a following page.
-        # If no page is found, an exception is called.
-        max_attempts = 50
-        attempts = 0
-        next_page: Page
-        while next_page is not None:
-            if next_page.is_visible(session):
-                fallback_page = next_page
-                break
-            next_page = next_page.next_page
-            attempts += 1
-            if attempts >= max_attempts:
-                raise Exception("Page loop detected")
-        if fallback_page:
-            page = fallback_page
-
-        return page
 
     @property
     def widget_list(self) -> List[Widget]:
@@ -254,11 +208,14 @@ class Page(models.Model):
         cached = cache.get(cache_key)
         if cached:
             return cached
+
+        # Get raw unsorted ones
         queryset = (
             Page.objects.all()
             if not version
             else Page.objects.exclude(not_in_versions__in=[version])
         )
+        queryset = queryset.order_by("index")
         cache.set(cache_key, queryset, LONG_CACHE_TIMEOUT)
         return queryset
 
