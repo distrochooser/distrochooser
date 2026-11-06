@@ -423,6 +423,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "PalinuroSec",
+      "name": "Lorenzo \"Palinuro\" Faletra",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4960026?v=4",
+      "profile": "https://palinuro.dev/",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7
