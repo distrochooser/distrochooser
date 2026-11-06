@@ -154,6 +154,7 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "rank",
         "all_visitors",
         "all_visitors_of_year",
+        "visitor_estimate",
         "percentage_of_year",
         "backlinks",
         "container_visiblility",

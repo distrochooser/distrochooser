@@ -75,6 +75,41 @@ class TimeFrame(models.Model):
         return all_count
 
     @property
+    def visitor_estimate(self) -> str:
+        if self.has_output("visitor_estimate"):
+            return self.get_output("visitor_estimate")
+        if self.all_visitors_raw == 0:
+            return 0
+        end_day = self.get_month_end_day()
+        current_date = now()
+        if (
+            current_date.day < end_day
+            and current_date.month == self.date.month
+            and current_date.year == self.date.year
+        ):
+            end_day = current_date.day
+        else:
+            return "Month finished"
+
+        month_maximum_day = self.get_month_end_day()
+        estimate = round((self.all_visitors_raw / end_day) * month_maximum_day, 2)
+
+        previous_entry = (
+            TimeFrame.objects.order_by("date")
+            .filter(
+                date__lt=self.date,
+                time_frame_type=self.time_frame_type,
+            )
+            .last()
+        )
+        if previous_entry:
+            diff = estimate - previous_entry.all_visitors_raw
+            return self.cell_output(
+                f"{estimate}<br/>({self._coloring(diff)})", "visitor_estimate"
+            )
+        return estimate
+
+    @property
     def all_visitors(self) -> str:
         if self.has_output("all_visitors"):
             return self.get_output("all_visitors")
@@ -191,10 +226,14 @@ class TimeFrame(models.Model):
         else:
             return self.hit_count
 
+    def get_month_end_day(self) -> int:
+        max_day = monthrange(self.date.year, self.date.month)[1]
+        return max_day
+
     @property
     def daily_results(self) -> int:
         current_date = now()
-        max_day = monthrange(self.date.year, self.date.month)[1]
+        max_day = self.get_month_end_day()
         if (
             current_date.month == self.date.month
             and current_date.year == self.date.year
