@@ -15,16 +15,16 @@
 |DEBUG|Disable in production|
 |ALLOWED_HOSTS|Required in case your application runs behind a reverse proxy -> needs accessing domain entry then|
 |ENABLE_PROFILING|Enables or disables Silk module. Disable in production|
-|AVAILABLE_LANGUAGES|A list of tuples of available languages `(<iso-639-1-code>, Display text)`|
 |RTL_LANGUAGES|A list of language codes (iso-639-1) considered right-to-left|
 |FRONTEND_URL|The URL without trailing slash representing the frontend URL|
 |KUUSI_NAME|The name of the application. Will be used e. g. in OGP tags and the frontend|
-|KUUSI_META_TAGS|Meta tags to be rendered client sided
 |SESSION_NUMBER_OFFSET|The amount of tests to be added to the current database count|
 |WEIGHT_MAP|Factor to give to each weight|
 |DEFAULT_LANGUAGE_CODE|The `iso-639-1` code to use from `LANGUAGES` representing the default language|
 |KUUSI_LOGO|The logo to add to frontend sessions|
 |KUUSI_ICON|The favicon to add to frontend sessions|
+|ADDITIONAL_TAGS|Key,value pair of additional meta tags|
+|IMAGE_PATHS_ROOT|URL, ending with slash, to the folder where facette images are located into.|
 |CACHE_TIMEOUT|The default cache timeout to use|
 |LONG_CACHE_TIMEOUT|The default cache timeout to use for semi-static content, such as pages or categories|
 |Imprint|A text to be used as contact (legal imprint info)|

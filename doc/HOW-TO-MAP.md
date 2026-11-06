@@ -106,7 +106,11 @@ description = "my-matrix-addition" <-- This is the key for the translation
 facettes = ["gaming-usage"] <-- This is the facette
 choosables = ["debian"] <-- This is the choosable ID
 how = "positive" <-- This is the mapping value (see below)
+sources = [
+    "debian;https://example.com/foo"
+]
 ```
+
 
 The value of `how` can be either:
 
@@ -116,6 +120,12 @@ The value of `how` can be either:
 - `negative` - Results in -1 point at calculation
 - `neutral` - Results in 0 points at calculation (but will be added to the reasons, e. g. for informational purposes)
 - `blocking` - Results in -100 points at calculation
+
+What about `sources`?
+
+Assigments shall have a source.
+
+The `sources` array consists out of strings which always have the format `<identifier>;<link>`, as described in ADR-0020. 
 
 **Added new files?** If you introduce a new TOML file, make sure you add this file into the include list inside the file `matrix.toml`: `#include <relativepath.toml>`. Make sure that following order is preserved: 1. `versions/` 2. `pages/` 3. `facettes/` 4. choosables/ 5. `assignments/`
 

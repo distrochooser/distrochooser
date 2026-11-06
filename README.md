@@ -1,7 +1,7 @@
 ## distrochooser
 
 
-<img src="https://assetsbeta.distrochooser.de/logo.svg" width="50%" >
+<img src="https://assets6.distrochooser.de/logo.svg" width="50%" >
 
 ![GitHub License](https://img.shields.io/github/license/distrochooser/distrochooser) [![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/171-shield.svg)](https://madewithvuejs.com/p/distrochooser/shield-link) [![Discord](https://img.shields.io/discord/1269641977293443073?logo=discord&label=Discord&link=https%3A%2F%2Fdiscord.gg%2FaDkCutfqak)](https://discord.gg/aDkCutfqak)
 

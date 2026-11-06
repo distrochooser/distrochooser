@@ -18,18 +18,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any, Dict, List
 from django.apps import apps
 from django.core.cache import cache
 from os.path import join, exists
-
+from collections import OrderedDict
 from kuusi.settings import LONG_CACHE_TIMEOUT
 from json import loads, dumps
 
 
-from kuusi.settings import LOCALE_PATHS, ENABLE_TRANSLATION_MODE
+from kuusi.settings import (
+    LOCALE_PATHS,
+    ENABLE_TRANSLATION_MODE,
+    DEFAULT_LANGUAGE_CODE,
+    KUUSI_ICON,
+    KUUSI_LOGO,
+    KUUSI_NAME,
+    FRONTEND_URL,
+    ADDITIONAL_TAGS,
+)
 from os import listdir
 from datetime import timedelta
+from re import match
 
 
 def get_translation_haystack(
@@ -66,21 +76,94 @@ def get_translation_haystack(
 
 
 TRANSLATIONS = {}
+AVAILABLE_LANGUAGES = {}
 
 
 def hot_load_translations(**kwargs):
     path = join(LOCALE_PATHS[0])
     files = listdir(path)
+    files.sort()
     for file in files:
-        if ".json" in file:
-            parts = file.split("-")
-            language = parts[1].replace(".json", "").lower()
-            if language not in TRANSLATIONS:
-                TRANSLATIONS[language] = {}
+        language_file_match = match("lang-(?P<lang_code>[a-z\-]+).json", file)
+        if language_file_match:
+            language_code = language_file_match.group("lang_code")
+            if language_code not in TRANSLATIONS:
+                TRANSLATIONS[language_code] = {}
             full_path = join(path, file)
             content = loads(open(full_path, "r").read())
+            endonym = None
             for key, value in content.items():
-                TRANSLATIONS[language][key] = value
+                TRANSLATIONS[language_code][key] = value
+                if key == "endonym":
+                    endonym = value
+            if not endonym:
+                raise Exception("Translation has no endonym")
+
+            AVAILABLE_LANGUAGES[language_code] = endonym
+
+
+def is_language_present(lang):
+    return lang in TRANSLATIONS
+
+
+def get_valid_language_code(language_code: str) -> str:
+    lang = language_code
+    if not language_code:
+        lang = DEFAULT_LANGUAGE_CODE
+    if not is_language_present(language_code):
+        lang = DEFAULT_LANGUAGE_CODE
+    return lang
+
+
+def get_language_codes() -> List[str]:
+    return list(TRANSLATIONS.keys()).sort()
+
+
+def get_meta_tags(language_code: str) -> Dict[str, any]:
+    tags = {}
+    lang = get_valid_language_code(language_code)
+    description_text = get_translation("description_text", lang)
+
+    tags["title"] = KUUSI_NAME
+    tags["twitter:title"] = KUUSI_NAME
+    tags["og:site_name"] = KUUSI_NAME
+    tags["icon"] = KUUSI_ICON  # To pass it into link rel
+
+    # Set all descriptive tags
+    if description_text != "description_text":
+        tags["og:description"] = description_text
+        tags["twitter:description"] = description_text
+        tags["description"] = description_text
+
+    # Set generic (OGP) Tags
+    tags["og:type"] = "website"
+    tags["og:locale"] = lang
+    tags["og:locale:alternate"] = get_language_codes()
+    tags["og:title"] = KUUSI_NAME
+    tags["og:url"] = FRONTEND_URL
+    tags["theme-color"] = "#158cba"
+
+    # Set Twitter tags
+    tags["twitter:card"] = ("summary",)
+    tags["twitter:image"] = KUUSI_LOGO
+
+    # Build images -> use Nuxt keys here to allow multiple images
+    image_map = {KUUSI_ICON: [200, 200], KUUSI_LOGO: [1200, 600]}
+    tags["ogImage"] = []
+    for url, dimensions in image_map.items():
+        tags["ogImage"].append(
+            {
+                "alt": f"Logo: {KUUSI_NAME} {dimensions[0]}x{dimensions[1]}",
+                "url": url,
+                "width": dimensions[0],
+                "height": dimensions[1],
+                "type": "image/svg+xml",
+            }
+        )
+    for key, value in ADDITIONAL_TAGS.items():
+        tags[key] = value
+    # add additional tags
+    return tags
 
 
 def get_translation(key: str | None, language_code: str) -> str:

@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
   <div>
-    <div class="accordion mb-2" >
+    <div class="accordion mb-2">
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
@@ -31,11 +31,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <LanguageTranslation translation-key="SCORE_TEXT" />
             </p>
             <div v-for="(value, key) in store.session.scoreMap" :key="key">
-              <LanguageTranslation :translation-key="key"/> ({{ key }}): <span :class="'badge ' + (value < 0 ? 'text-bg-danger' : 'text-bg-success')">{{  value }}</span>
+              <LanguageTranslation :translation-key="key" /> ({{ key }}): <span
+                :class="'badge ' + (value < 0 ? 'text-bg-danger' : 'text-bg-success')">{{ value }}</span>
             </div>
-            <br/>
+            <br />
             <p>
               <LanguageTranslation translation-key="SCORE_TEXT_Positions" />
+            </p>
+            <p>
+
+              <LanguageTranslation translation-key="points_remark" />
             </p>
           </div>
         </div>

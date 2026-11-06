@@ -44,6 +44,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <LanguageTranslation translation-key="welcome-mark-important" />
     </div>
     <div class="mb-3">
+        <Icon class="align-middle me-1 welcome-negative-handling" name="ion:stop-circle"></Icon>
+        <LanguageTranslation translation-key="welcome-negative-handling" />
+    </div>
+    <div class="mb-3">
         <Icon class="align-middle me-1 welcome-mark-questions" name="i-ion:bookmark-outline"></Icon>
         <LanguageTranslation translation-key="welcome-mark-questions" />
     </div>
@@ -71,5 +75,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 .welcome-mark-questions {
     color: $orange;
+}
+
+.welcome-negative-handling {
+    color: $negative-handling-active-color;
 }
 </style>

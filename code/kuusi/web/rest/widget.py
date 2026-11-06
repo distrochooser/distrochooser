@@ -245,16 +245,29 @@ class RankedChoosableSerializer(ChoosableSerializer):
     rank = serializers.SerializerMethodField()
     position = serializers.SerializerMethodField()
     assignments = serializers.SerializerMethodField()
+    negative_handling_active = serializers.SerializerMethodField()
 
     class Meta:
         model = Choosable
-        fields = CHOOSABLE_SERIALIZER_BASE_FIELDS + ("rank", "assignments", "position")
+        fields = CHOOSABLE_SERIALIZER_BASE_FIELDS + (
+            "rank",
+            "assignments",
+            "position",
+            "negative_handling_active",
+        )
 
     def get_rank(self, obj: Choosable) -> int:
         return (
             self.context["score_map"][obj.pk]["SCORE"]
             if obj.pk in self.context["score_map"]
             else 999999999
+        )
+
+    def get_negative_handling_active(self, obj: Choosable) -> list[int]:
+        return (
+            self.context["negative_handling_active"][obj.pk]
+            if obj.pk in self.context["score_map"]
+            else []
         )
 
     def get_position(self, obj: Choosable) -> int:
@@ -312,6 +325,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         stored_meta_filter_values = MetaFilterValue.objects.filter(session=session)
         score_map = {}
         position_map = {}
+        negative_handling_active = {}
 
         selected_facettes = selections.values_list("facette", flat=True)
         assignments = FacetteAssignment.objects.filter(
@@ -322,6 +336,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         for choosable in choosables:
             if choosable.pk not in assignments_results:
                 assignments_results[choosable.pk] = []
+                negative_handling_active[choosable.pk] = []
             # Step 1: Get Assignments from given Facettes
             choosable_assignments = assignments.filter(choosables__in=[choosable])
             for assignment in choosable_assignments:
@@ -331,8 +346,23 @@ class ResultListWidgetSerializer(WidgetSerializer):
                 )
                 selection_weight_key = selection.weight
                 selection_weight_value = WEIGHT_MAP[selection_weight_key]
+                from copy import deepcopy
 
-                assignments_results[choosable.pk].append(assignment)
+                # See ADR-0035
+                if (
+                    selection.negative_handling_active
+                    and assignment.assignment_type
+                    == FacetteAssignment.AssignmentType.NEGATIVE
+                ):
+                    copied_assignment = deepcopy(assignment)
+                    copied_assignment.assignment_type = (
+                        FacetteAssignment.AssignmentType.BLOCKING
+                    )
+                    assignments_results[choosable.pk].append(copied_assignment)
+                    negative_handling_active[choosable.pk].append(copied_assignment.pk)
+                else:
+                    assignments_results[choosable.pk].append(assignment)
+
                 assignments_weight_map[assignment.pk] = selection_weight_value
 
             # Step 2: Get Assignments from given Meta filters
@@ -368,6 +398,7 @@ class ResultListWidgetSerializer(WidgetSerializer):
         serializer.context["position_map"] = position_map
         serializer.context["assignments"] = assignments_results
         serializer.context["weight_map"] = assignments_weight_map
+        serializer.context["negative_handling_active"] = negative_handling_active
 
         return serializer.data
 

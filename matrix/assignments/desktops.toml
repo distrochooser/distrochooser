@@ -1,0 +1,299 @@
+# distrochooser
+# Copyright (C) 2014-2026 Christoph Müller <distrochooser@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# https://distro.watch/infographics/linux-desktop-environments
+
+
+# Not included here yet
+# As the question is focused more on the distribution with "included" desktops and/ or installer options
+# Arch, NixOS, Gentoo
+
+[assignment.budgie-default]
+facettes = ["desktop-budgie"]
+choosables = [
+    "solus",
+]
+how = "positive"
+sources = [
+    "solus;https://getsol.us/download/",
+]
+
+[assignment.budgie-choice]
+facettes = ["desktop-budgie"]
+choosables = [
+    "cachyos",
+]
+how = "positive"
+sources = [
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
+]
+
+[assignment.gnome-default]
+facettes = ["desktop-gnome"]
+choosables = [
+    "ubuntu",
+    "tails",
+    "opensuse",
+    "fedora",
+    "rhel"
+]
+how = "positive"
+sources = [
+    "ubuntu;https://ubuntu.com/blog/ubuntu-desktop-24-04-noble-numbat-deep-dive",
+    "tails;https://tails.net/doc/first_steps/desktop/index.en.html",
+    "opensuse;https://en.wikipedia.org/wiki/OpenSUSE",
+    "fedora;https://fedoraproject.org/workstation/",
+    "rhel;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/htmlsingle/using_the_desktop_environment_in_rhel_8/customizing-default-favorite-applications_using-the-desktop-environment-in-rhel-8"
+]
+
+[assignment.gnome-choice]
+facettes = ["desktop-gnome"]
+choosables = [
+    "debian",
+    "nobara",
+    "cachyos",
+    "bazzite",
+    "manjaro",
+    "rocky",
+    "solus"
+]
+how = "positive"
+sources = [
+    "nobara;https://nobaraproject.org/",
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
+    "bazzite;https://bazzite.gg/",
+    "manjaro;https://manjaro.org/products/download/x86",
+    "rocky;https://rockylinux.org/download",
+    "solus;https://getsol.us/download/"
+]
+
+[assignment.gnome-modified-default]
+facettes = ["desktop-gnome-modified"]
+choosables = [
+    "zorinos",
+]
+how = "positive"
+sources = [
+    "zorinos;https://en.wikipedia.org/wiki/Zorin_OS",
+]
+
+[assignment.xfce-default]
+facettes = ["desktop-xfce"]
+choosables = [
+    "zorinos",
+    "emmabuntus",
+    "xubuntu",
+    "void",
+    "opensuse",
+    "qubesos",
+    "devuan"
+]
+how = "positive"
+sources = [
+    "zorinos;https://en.wikipedia.org/wiki/Zorin_OS",
+    "emmabuntus;https://emmabuntus.org/la-distribution/",
+    "void;https://voidlinux.org/download/",
+    "opensuse;https://en.wikipedia.org/wiki/OpenSUSE",
+    "qubesos;https://doc.qubes-os.org/en/r4.3/developer/releases/3_2/release-notes.html",
+    "devuan;https://www.devuan.org/get-devuan"
+]
+
+[assignment.xfce-choice]
+facettes = ["desktop-xfce"]
+choosables = [
+    "debian",
+    "cachyos",
+    "artix",
+    "linuxmint",
+    "manjaro",
+    "pclinuxos",
+    "mxlinux",
+    "solus"
+]
+how = "positive"
+sources = [
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
+    "artix;https://artixlinux.org/download.php",
+    "linuxmint;https://linuxmint-installation-guide.readthedocs.io/en/latest/choose.html",
+    "manjaro;https://manjaro.org/products/download/x86",
+    "pclinuxos;https://mirror.math.princeton.edu/pub/pclinuxos/iso/",
+    "mxlinux;https://mxlinux.org/download-links/",
+    "solus;https://getsol.us/download/"
+]
+
+[assignment.cinnamon-default]
+facettes = ["desktop-cinnamon"]
+choosables = []
+how = "positive"
+sources = []
+
+[assignment.cinnamon-choice]
+facettes = ["desktop-cinnamon"]
+choosables = [
+    "cachyos",
+    "artix",
+    "linuxmint"
+]
+how = "positive"
+sources = [
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
+    "artix;https://artixlinux.org/download.php",
+    "linuxmint;https://linuxmint-installation-guide.readthedocs.io/en/latest/choose.html"
+]
+
+# We will LXDE-Matches as LXQT here.
+[assignment.lxqt-default]
+facettes = ["desktop-lxde"]
+choosables = [
+    "emmabuntus"
+]
+how = "positive"
+sources = [
+    "emmabuntus;https://emmabuntus.org/la-distribution/"
+]
+
+[assignment.lxqt-choice]
+facettes = ["desktop-lxde"]
+choosables = [
+    "cachyos",
+    "artix"
+]
+how = "positive"
+sources = [
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
+    "artix;https://artixlinux.org/download.php"
+]
+
+
+[assignment.lxde-default]
+facettes = ["desktop-lxde"]
+choosables = [
+    "lubuntu",
+    "knoppix"
+]
+how = "positive"
+sources = [
+    "knoppix;https://en.wikipedia.org/wiki/Knoppix"
+]
+
+[assignment.lxde-choice]
+facettes = ["desktop-lxde"]
+choosables = [
+    "cachyos",
+    "artix"
+]
+how = "positive"
+sources = [
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
+    "artix;https://artixlinux.org/download.php"
+]
+
+[assignment.kde-default]
+facettes = ["desktop-kde"]
+choosables = [
+    "asahi",
+    "kubuntu",
+    "opensuse",
+    "fedora"
+]
+how = "positive"
+sources = [
+    "asahi;https://asahilinux.org/docs/platform/kb-layout-issues/#how-to-help",
+    "fedora;https://fedoraproject.org/kde/"
+]
+
+[assignment.kde-choice]
+facettes = ["desktop-kde"]
+choosables = [
+    "debian",
+    "nobara",
+    "cachyos",
+    "bazzite",
+    "artix",
+    "manjaro",
+    "pclinuxos",
+    "mxlinux",
+    "rocky",
+    "solus"
+]
+how = "positive"
+sources = [
+    "nobara;https://nobaraproject.org/download.html",
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/",
+    "bazzite;https://bazzite.gg/",
+    "artix;https://artixlinux.org/download.php",
+    "manjaro;https://manjaro.org/products/download/x86",
+    "pclinuxos;https://mirror.math.princeton.edu/pub/pclinuxos/iso/",
+    "mxlinux;https://mxlinux.org/download-links/",
+    "rocky;https://rockylinux.org/download",
+    "solus;https://getsol.us/download/"
+]
+
+[assignment.mate-default]
+facettes = ["desktop-mate"]
+choosables = [
+    "ubuntumate",
+]
+how = "positive"
+sources = []
+
+[assignment.mate-choice]
+facettes = ["desktop-mate"]
+choosables = [
+    "artix",
+    "linuxmint",
+    "pclinuxos"
+]
+how = "positive"
+sources = [
+    "artix;https://artixlinux.org/download.php",
+    "linuxmint;https://linuxmint-installation-guide.readthedocs.io/en/latest/choose.html",
+    "pclinuxos;https://mirror.math.princeton.edu/pub/pclinuxos/iso/"
+]
+
+[assignment.cosmic-default]
+facettes = ["desktop-cosmic"]
+choosables = [
+    "popos",
+]
+how = "positive"
+sources = [
+    "popos;https://system76.com/download-pop/",
+]
+
+[assignment.cosmic-choice]
+facettes = ["desktop-cosmic"]
+choosables = [
+    "cachyos"
+]
+how = "positive"
+sources = [
+    "cachyos;https://wiki.cachyos.org/installation/desktop_environments/"
+]
+
+[assignment.pantheon-default]
+facettes = ["desktop-pantheon"]
+choosables = [
+    "elementaryos"
+]
+how = "positive"
+sources = []
+
+[assignment.pantheon-choice]
+facettes = ["desktop-pantheon"]
+choosables = []
+how = "positive"
+sources = []

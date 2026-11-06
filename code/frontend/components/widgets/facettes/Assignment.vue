@@ -20,18 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div class="row">
       <div class="col row">
         <div class="col">
-
-          <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth" />
+          <AssignmentType :assignment="assignment" :display-weigth="props.displayWeigth"
+            :has-negative-handling-active="negativeHandlingActive.indexOf(assignment.id) !== -1" />
 
           <div class="description">
             <LanguageTranslation :translation-key="assignment.description" /><span v-if="assignment.contextArgument">:
               {{ assignment.contextArgument }}</span>
-            <a class="assignment-source" v-for="(source, source_key) in sources" :key="source_key"
-              :title="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, false).toString()"
-              target="_blank"
-              :href="getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source, true).toString()">[{{
-                getExternalLink(store.session.baseUrl, store.session.languageCode, props.choosable.name, source,
-                  false).hostname }}]</a>
+
+            <AssignmentSources :raw-string="assignment.sources" :choosable-identifier="props.choosable.catalogueId" />
           </div>
         </div>
         <div class="col text-end" v-if="queryChoosables">
@@ -85,7 +81,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </li>
 </template>
 <script setup lang="ts">
-import { useState } from "nuxt/app";
 import {
   type Choosable,
   type Facette,
@@ -96,7 +91,7 @@ import AssignmentType from "./AssignmentType.vue";
 import ChoosableAssignments from "./ChoosableAssignments.vue";
 import NewAssignmentChoosable from "./NewAssignmentChoosable.vue";
 import { computed, ref } from "vue";
-import { getExternalLink } from "../../../util/links";
+import AssignmentSources from "./AssignmentSources.vue";
 
 interface AsssignmentProps {
   assignment: FacetteAssignment;
@@ -104,18 +99,21 @@ interface AsssignmentProps {
   facette: Facette;
   choosable?: Choosable;
   displayWeigth: boolean;
+  negativeHandlingActive: number[];
 }
 
 const store = useSessionStore();
 
 const props = defineProps<AsssignmentProps>();
 
-const sources = computed(() =>
-  props.assignment.sources ?
+const sources = computed(() => {
+  console.log(props.assignment.sources)
+  return props.assignment.sources ?
     props.assignment.sources.split(",").filter(
       (source) => source.indexOf(props.choosable.name) !== -1 || source.indexOf(";") === -1
     )
     : []
+}
 )
 
 const otherUserVotes = computed(() => {

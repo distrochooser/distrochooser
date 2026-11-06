@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /pages/contact/*
+Content-Usage: /pages/privacy/ bots=n, train-ai=n
+Content-Signal: pages/privacy/ ai-train=no, search=no
+
+User-agent: *
+Disallow: /pages/privacy/*
+Content-Usage: /pages/privacy/ bots=n, train-ai=n
+Content-Signal: pages/privacy/ ai-train=no, search=no
+
+Sitemap: /sitemap.xml

@@ -25,9 +25,7 @@ from kuusi.settings import (
     FRONTEND_URL,
     KUUSI_ICON,
     KUUSI_LOGO,
-    KUUSI_META_TAGS,
     KUUSI_NAME,
-    AVAILABLE_LANGUAGES,
     RTL_LANGUAGES,
     SESSION_NUMBER_OFFSET,
     IMPRINT,
@@ -48,57 +46,37 @@ from web.models import (
     MetaFilterValue,
     Session,
     SessionVersion,
+    Violation,
 )
-from web.util import get_translation_haystack, TRANSLATIONS, get_translation
+from web.util import (
+    get_translation_haystack,
+    AVAILABLE_LANGUAGES,
+    TRANSLATIONS,
+    get_translation,
+    get_meta_tags,
+    is_language_present,
+    get_valid_language_code,
+)
 from django.core.cache import cache
-
-
-def is_language_present(lang):
-    found_lang = False
-    for lang_tuple in AVAILABLE_LANGUAGES:
-        lang_key = lang_tuple[0]
-        if lang_key == lang:
-            found_lang = True
-            break
-    return found_lang
+from django.http.response import HttpResponse
+from django.utils.timezone import now
 
 
 class MetaTagsSerializer(serializers.Serializer):
     base_url = serializers.CharField(default=FRONTEND_URL)
-    name = serializers.SerializerMethodField()
-    logo = serializers.SerializerMethodField()
+    name = serializers.CharField(default=KUUSI_NAME)
+    title = serializers.CharField(default=KUUSI_NAME)
+    logo = serializers.CharField(default=KUUSI_LOGO)
     meta = serializers.SerializerMethodField()
-    icon = serializers.SerializerMethodField()
-
-    def get_language_codes(self, _: None) -> Dict[str, str]:
-        result = {}
-        for lang in AVAILABLE_LANGUAGES:
-            result[lang[0]] = lang[1]
-        return result
-
-    def get_logo(self, _: None) -> str:
-        return KUUSI_LOGO
-
-    def get_name(self, _: None) -> str:
-        return KUUSI_NAME
-
-    def get_icon(self, _: None) -> str:
-        return KUUSI_ICON
+    icon = serializers.CharField(default=KUUSI_ICON)
+    lang = serializers.SerializerMethodField()
+    languages = serializers.ListField(default=list(AVAILABLE_LANGUAGES.keys()))
 
     def get_meta(self, _: None) -> Dict[str, Any]:
-        tags = KUUSI_META_TAGS.copy()
-        # TODO: Make more dynamic
-        lang = self.context["lang"]
-        if not lang:
-            lang = DEFAULT_LANGUAGE_CODE
-        if lang not in TRANSLATIONS:
-            lang = DEFAULT_LANGUAGE_CODE
-        if "DESCRIPTION_TEXT" in TRANSLATIONS[lang]:
-            tags["og:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
-            tags["twitter:description"] = TRANSLATIONS[lang]["DESCRIPTION_TEXT"]
-        # Redundant with below serializer
-        tags["og:locale"] = lang
-        return tags
+        return get_meta_tags(self.context["lang"])
+
+    def get_lang(self, _: None) -> str:
+        return get_valid_language_code(self.context["lang"])
 
 
 class MetaTagViewset(ListModelMixin, GenericViewSet):
@@ -131,20 +109,23 @@ class MetaTagViewset(ListModelMixin, GenericViewSet):
 
 
 class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
+    language_codes = serializers.DictField(default=AVAILABLE_LANGUAGES)
+    imprint_data = serializers.CharField(default=IMPRINT)
+    privacy_data = serializers.CharField(default=PRIVACY)
+    default_language = serializers.CharField(default=DEFAULT_LANGUAGE_CODE)
+    is_translation_mode_enabled = serializers.BooleanField(
+        default=ENABLE_TRANSLATION_MODE
+    )
+    is_feedback_mode_enabled = serializers.BooleanField(default=ENABLE_FEEDBACK_MODE)
+    score_map = serializers.DictField(default=SCORE_MAP)
+    previous_version_url = serializers.CharField(default=PREVIOUS_VERSION_URL)
+
     session_origin = serializers.SerializerMethodField()
-    language_codes = serializers.SerializerMethodField()
     language_values = serializers.SerializerMethodField()
     default_language_values = serializers.SerializerMethodField()
     is_language_rtl = serializers.SerializerMethodField()
     test_count = serializers.SerializerMethodField()
-    imprint_data = serializers.SerializerMethodField()
-    privacy_data = serializers.SerializerMethodField()
-    default_language = serializers.SerializerMethodField()
-    is_translation_mode_enabled = serializers.SerializerMethodField()
-    is_feedback_mode_enabled = serializers.SerializerMethodField()
-    score_map = serializers.SerializerMethodField()
-
-    previous_version_url = serializers.CharField(default=PREVIOUS_VERSION_URL)
+    visitor_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Session
@@ -166,6 +147,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "meta",
             "icon",
             "test_count",
+            "visitor_count",
             "imprint_data",
             "privacy_data",
             "is_translation_mode_enabled",
@@ -176,25 +158,11 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "score_map",
         )
 
-    def get_is_translation_mode_enabled(self, _: None) -> bool:
-        return ENABLE_TRANSLATION_MODE
-
-    def get_is_feedback_mode_enabled(self, _: None) -> bool:
-        return ENABLE_FEEDBACK_MODE
-
-    def get_default_language(self, _: None) -> str:
-        return DEFAULT_LANGUAGE_CODE
-
     def get_session_origin(self, obj: Session) -> str | None:
         return obj.session_origin.result_id if obj.session_origin else None
 
     def get_meta(self, obj: Session) -> Dict[str, Any]:
-        meta = KUUSI_META_TAGS.copy()
-        meta["og:locale"] = obj.language_code
-        return meta
-
-    def get_score_map(self, obj: Session) -> Dict:
-        return SCORE_MAP
+        return get_meta_tags(obj.language_code)
 
     def get_test_count(self, _) -> int:
         # Cache the results for the default amount of time
@@ -208,11 +176,18 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         cache.set(cache_key, count)
         return count
 
-    def get_imprint_data(self, _) -> str:
-        return IMPRINT
-
-    def get_privacy_data(self, _) -> str:
-        return PRIVACY
+    def get_visitor_count(self, _) -> int:
+        # Cache the results for the default amount of time
+        # to prevent unwanted database load
+        cache_key = f"visitor-count"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+        # The overall visitor count is foggy, as the old sessions are not defined anymore
+        # Therefore this is only a rough estimate
+        count = SESSION_NUMBER_OFFSET + Session.objects.all().count()
+        cache.set(cache_key, count)
+        return count
 
     def get_is_language_rtl(self, obj: Session) -> bool:
         return obj.is_rtl
@@ -309,9 +284,7 @@ class SessionViewSet(ViewSet):
         },
     )
     def partial_update(self, request, pk=None):
-        lang = request.query_params.get("lang")
-        if not is_language_present(lang):
-            lang = DEFAULT_LANGUAGE_CODE
+        lang = get_valid_language_code(request.query_params.get("lang"))
         version_id = request.query_params.get("version_id")
         version: SessionVersion | None = None
         if version_id:
@@ -398,16 +371,34 @@ class SessionViewSet(ViewSet):
             status.HTTP_406_NOT_ACCEPTABLE: OpenApiResponse(
                 description="Invalid version_id provided"
             ),
+            status.HTTP_509_BANDWIDTH_LIMIT_EXCEEDED: OpenApiResponse(
+                description="Timeout"
+            ),
         },
     )
     def create(self, request):
-        lang = request.query_params.get("lang")
-        if not is_language_present(lang):
-            lang = DEFAULT_LANGUAGE_CODE
+        lang = get_valid_language_code(request.query_params.get("lang"))
         old_result_id = request.query_params.get("result_id")
         referrer = request.query_params.get("referrer")
         user_agent = request.query_params.get("user_agent")
         entry_point = request.query_params.get("entry_point")
+
+        # As the session endpoint is _the_ central endpoint -> use for blocking
+        # See ADR-0036 for details
+        violations = Violation.objects.filter(user_agent=user_agent, invalidated=False)
+        if violations.count() > 0:
+            violation = violations.first()
+            violation.hits += 1
+            violation.last_hit = now()
+            if violation.valid_until and violation.valid_until < now().date():
+                violation.invalidated = True
+            violation.save()
+            text = violation.reason
+            if violation.valid_until:
+                text += f" Block will be lifted: {violation.valid_until}"
+            return HttpResponse(
+                status=status.HTTP_509_BANDWIDTH_LIMIT_EXCEEDED, content=text
+            )
 
         session = self.get_fresh_session(lang, user_agent, referrer, entry_point)
         old_session = None
@@ -436,14 +427,12 @@ class SessionViewSet(ViewSet):
                     ):
                         selection.pk = None
                         selection.session = session
+                        selection.imported_from_answer = None
                         selection.save()
                 # TODO: Find reason for typing error
                 # Find way to remove # type: ignore
+                session.imported_from_session = None
                 session.session_origin = old_session  # type: ignore
-                # The newly created session will inherit the old session flag as
-                # The issue with imported answers might persist here
-                # See ADR 0026 for details
-                session.imported_from_session = old_session.imported_from_session
                 session.save()
         if old_session:
             self.clone_selections(old_session, session)

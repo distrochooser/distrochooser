@@ -42,7 +42,7 @@ def get_session_result_id() -> str:
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
-    user_agent = models.CharField(default=None, null=True, blank=True, max_length=150)
+    user_agent = models.CharField(default=None, null=True, blank=True, max_length=255)
     result_id = models.CharField(
         default=get_session_result_id, max_length=36, null=False, blank=False
     )
@@ -90,10 +90,16 @@ class Session(models.Model):
 
     # to mark session imported from previous versions
     imported_from_session = models.CharField(
-        max_length=10, default=None, null=True, blank=True
+        max_length=10, default=None, null=True, blank=True, unique=True
     )
+    import_date_time = models.DateTimeField(default=None, blank=True, null=True)
     # See ADR-0034
     is_container_visible = models.BooleanField(default=False)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["imported_from_session"]),
+        ]
 
     def get_meta_value(self, key: str) -> str | None:
         matches = SessionMeta.objects.filter(session=self, meta_key=key)

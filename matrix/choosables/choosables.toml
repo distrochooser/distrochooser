@@ -513,7 +513,7 @@ meta_value = "amd64,x86"
 [[meta]]
 choosable="knoppix"
 meta_name = "website"
-meta_value = "http://www.knoppix.org/"
+meta_value = "https://knopper.net/knoppix/"
 
 [[meta]]
 choosable="knoppix"
@@ -595,7 +595,7 @@ fg_color = "white"
 
 # https://elementary.io/docs/installation#installation
 [[meta]]
-choosable="zorinos"
+choosable="elementaryos"
 meta_name = "archs"
 meta_value = "amd64"
 
@@ -651,8 +651,8 @@ meta_value = "en"
 # distrochooser::translation::key::nixos-description
 [choosable.nixos]
 name = "NixOS"
-bg_color = "None"
-fg_color = "None"
+bg_color = "#3b5487"
+fg_color = "#e8effc"
 
 # https://en.wikipedia.org/wiki/NixOS
 [[meta]]
@@ -663,7 +663,7 @@ meta_value = "amd64,aarch64,i686"
 [[meta]]
 choosable="nixos"
 meta_name = "website"
-meta_value = "None"
+meta_value = "https://nixos.org/"
 
 [[meta]]
 choosable="nixos"
@@ -986,7 +986,7 @@ fg_color = "#c4cad4"
 [[meta]]
 choosable="nobara"
 meta_name = "age"
-meta_value = "2022-07-0"
+meta_value = "2022-07-10"
 
 [[meta]]
 choosable="nobara"

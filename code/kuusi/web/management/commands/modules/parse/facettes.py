@@ -35,6 +35,8 @@ def create_facettes(
             catalogue_id=element,
             description=f"{element}-description",
             topic=data["topic"],
+            image_path=data["image_path"] if "image_path" in data else None,
+            image_credit=data["image_credit"] if "image_credit" in data else None
         )
 
         if existing_facette.count() != 0:
