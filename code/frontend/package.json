@@ -15,7 +15,7 @@
   "dependencies": {
     "@iconify-json/ion": "^1.2.7",
     "@nuxt/icon": "^2.6.2",
-    "@nuxtjs/robots": "^7.0.2",
+    "@nuxtjs/sitemap": "^9.1.0",
     "@openapitools/openapi-generator-cli": "^2.42.0",
     "@pinia/nuxt": "^1.0.3",
     "@popperjs/core": "^2.11.8",

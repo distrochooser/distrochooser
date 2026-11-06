@@ -72,9 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useSessionStore } from '../../../states/session';
-import { useRuntimeConfig } from 'nuxt/app';
 import { EntryPointEnum } from '../../../sdk';
-
 
 const sessionStore = useSessionStore();
 const router = useRoute();
@@ -84,5 +82,4 @@ onMounted(async () => {
         await sessionStore.createSession(lang, EntryPointEnum.About);
     }
 });
-const openDataPath = useRuntimeConfig().public.basePath + "/data/1"
 </script>

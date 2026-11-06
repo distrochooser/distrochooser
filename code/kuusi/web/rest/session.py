@@ -70,6 +70,7 @@ class MetaTagsSerializer(serializers.Serializer):
     meta = serializers.SerializerMethodField()
     icon = serializers.CharField(default=KUUSI_ICON)
     lang = serializers.SerializerMethodField()
+    languages = serializers.ListField(default=list(AVAILABLE_LANGUAGES.keys()))
 
     def get_meta(self, _: None) -> Dict[str, Any]:
         return get_meta_tags(self.context["lang"])

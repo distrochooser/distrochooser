@@ -56,7 +56,6 @@ import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useSessionStore } from '../../../states/session';
 
-
 const sessionStore = useSessionStore();
 const router = useRoute();
 const lang: string = router.params.lang as string;
@@ -65,10 +64,6 @@ onMounted(async () => {
         await sessionStore.createSession(lang, EntryPointEnum.Contact);
     }
 });
-import { useRobotsRule } from '#imports'
 import { EntryPointEnum } from '../../../sdk';
 import HardSessionFail from '../../../components/HardSessionFail.vue';
-
-const rule = useRobotsRule()
-rule.value = 'noindex, nofollow'
 </script>

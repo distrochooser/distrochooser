@@ -1,22 +1,57 @@
 import { defineNuxtConfig } from "nuxt/config";
-import { deprecations } from "sass";
+import type { MetaTags } from "./sdk";
+
+const apiBasePath = () => process.env.NUXT_PUBLIC_BASE_PATH || "http://localhost:8000"
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  site: {
+    name: "Distrochooser",
+  },
+  modules: [
+    '@nuxtjs/sitemap',
+    '@pinia/nuxt',
+    '@nuxt/icon',
+  ],
+  sitemap: {
+    urls: async () => {
+      const response = await fetch(apiBasePath() + "/rest/metatags?lang=en")
+      const metaTags = await response.json()
+      const languages: string[] = metaTags.languages.sort()
+
+      let urls = []
+      urls.push({
+        "loc": metaTags.base_url + "/",
+        "lastmod": new Date().toISOString(),
+        "alternatives": languages.map(l => {
+          return {
+            "hreflang": l,
+            "href": metaTags.base_url + "/" + l
+          }
+        })
+      })
+      urls.push({
+        "loc": metaTags.base_url + "/pages/about/en",
+        "lastmod": new Date().toISOString(),
+        "alternatives": languages.filter(l => l != "en").map(l => {
+          return {
+            "hreflang": l,
+            "href": metaTags.base_url + "/pages/about/" + l
+          }
+        })
+      })
+      return urls
+    }
+  },
   app: {
     loadingIndicator: true
   },
-  modules: [
-    '@pinia/nuxt',
-    '@nuxt/icon',
-    '@nuxtjs/robots'
-  ],
   css: ["~/style/main.scss", "flag-icons/css/flag-icons.min.css"],
   runtimeConfig: {
     public: {
-      basePath: process.env.NUXT_PUBLIC_BASE_PATH || "http://localhost:8000"
+      basePath: apiBasePath()
     }
   },
   vite: {
