@@ -308,5 +308,6 @@
     "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt",
     "ux-others": "Skrivbord med andra koncept",
     "gnome-modified-default-description": "Modifierad GNOME-miljö: Uppgiftsfält längst ner",
-    "desktop-gnome-modified-description": "Modifierad GNOME-miljö: Arbetsfält i botten"
+    "desktop-gnome-modified-description": "Modifierad GNOME-miljö: Arbetsfält i botten",
+    "parrot-description": "Parrot OS är en europeisk Debian-baserad Linux-distribution. Dess Home Edition är anpassad för daglig användning med starkt fokus på integritet. Den är avsedd för studenter och mjukvaruutvecklare."
 }

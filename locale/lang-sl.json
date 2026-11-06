@@ -308,5 +308,6 @@
     "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows",
     "ux-others": "Desktopi z drugimi koncepti",
     "gnome-modified-default-description": "Modificirano okolje GNOME: Nadpisnik spodaj",
-    "desktop-gnome-modified-description": "Modificirano GNOME okolje: Prozorčiak spodaj"
+    "desktop-gnome-modified-description": "Modificirano GNOME okolje: Prozorčiak spodaj",
+    "parrot-description": "Parrot OS je evropska Debian-bazirana distribucija Linuksa. Njena Home Edition je prilagojena za dnevno uporabo z močnim poudarkom na zasebnost. Ciljijo so študenti in programerji. "
 }

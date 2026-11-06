@@ -310,5 +310,6 @@
     "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows",
     "ux-others": "เดสก์ท็อปที่มีแนวคิดอื่น",
     "gnome-modified-default-description": "สภาพแวดล้อม GNOME ที่ปรับแต่ง: แถบงานด้านล่าง",
-    "desktop-gnome-modified-description": "สภาพแวดล้อม GNOME ที่แก้ไข: แถบงานด้านล่าง"
+    "desktop-gnome-modified-description": "สภาพแวดล้อม GNOME ที่แก้ไข: แถบงานด้านล่าง",
+    "parrot-description": "Parrot OS เป็นการแจกจ่าย Linux ของยุโรปที่อิงตาม Debian Home Edition ถูกปรับให้เข้ากับการใช้งานในชีวิตประจำวันโดยเน้นที่ความเป็นส่วนตัวอย่างมาก มีเป้าหมายสำหรับนักเรียนและนักพัฒนาซอฟต์แวร์"
 }

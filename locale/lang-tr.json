@@ -308,5 +308,6 @@
     "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır",
     "ux-others": "Diğer konseptlere sahip masaüstleri",
     "gnome-modified-default-description": "Modifiye edilmiş GNOME ortamı: Görev çubuğu altta",
-    "desktop-gnome-modified-description": "Modifiye edilmiş GNOME ortamı: Görev çubuğu altta"
+    "desktop-gnome-modified-description": "Modifiye edilmiş GNOME ortamı: Görev çubuğu altta",
+    "parrot-description": "Parrot OS, Debian tabanlı bir Avrupa Linux dağıtımıdır. Home Edition'ı gizliliğe güçlü bir odaklanmayla günlük kullanım için hazırlanmıştır. Öğrencilere ve yazılım geliştiricilere yöneliktir."
 }

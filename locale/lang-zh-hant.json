@@ -308,5 +308,6 @@
     "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面",
     "ux-others": "具有其他概念的桌面",
     "gnome-modified-default-description": "修改後的GNOME環境：任務欄在底部",
-    "desktop-gnome-modified-description": "修改後的GNOME環境：底部任務欄"
+    "desktop-gnome-modified-description": "修改後的GNOME環境：底部任務欄",
+    "parrot-description": "Parrot OS 是一個基於 Debian 的歐洲 Linux 發行版。其 Home Edition 專為日常使用而設計，並高度關注隱私。它面向學生和軟體開發人員。"
 }

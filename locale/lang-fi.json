@@ -308,5 +308,6 @@
     "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windows tyyppinen käyttöliittymä",
     "ux-others": "Työpöydät muilla käsitteillä",
     "gnome-modified-default-description": "Muokattu GNOME-ympäristö: Tehtäväpalkki alhaalla",
-    "desktop-gnome-modified-description": "Muokattu GNOME-ympäristö: Tehtäväpalkki alhaalla"
+    "desktop-gnome-modified-description": "Muokattu GNOME-ympäristö: Tehtäväpalkki alhaalla",
+    "parrot-description": "Parrot OS on eurooppalainen Debian-pohjainen Linux-jakelu. Sen Home Edition on räätälöity päivittäiseen käyttöön vahvalla painotuksella yksityisyyteen. Se on suunnattu opiskelijoille ja ohjelmistokehittäjille."
 }
