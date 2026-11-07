@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
           <div class="card-text">
             <div class="row">
-              <div class="col-9">
+              <div class="col-8">
                 <span class="choosable-position badge align-middle badge-right-flat" :style="invertedStyling">{{
                   props.choosable.position }}.</span>
                 <span class="badge align-middle me-1 badge-left-flat" :style="invertedStyling">
@@ -42,17 +42,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     v-for="(key, value, index) in props.choosable.meta" :key="index" />
                 </div>
               </div>
-              <div class="col-3 align-end" v-if="others.length > 0">
-                <select class="form-control" v-model="choosableToCompare">
+              <div class="col-4 align-end" v-if="others.length > 0">
+                <select class="form-control form-select-sm" v-model="choosableToCompare">
                   <option selected :value="null">
                     <LanguageTranslation translation-key="compare-with" />
                   </option>
                   <option v-for="(choosable, key) in props.others" :key="key" :value="choosable">{{ choosable.name }}
                   </option>
                 </select>
-                <div class="col-4 mt-3" v-if="choosableToCompare !== null">
-                  <button type="button" class="btn btn-danger btn-sm" v-on:click.prevent="props.onComparisonClose">
-                    <LanguageTranslation translation-key="hide" />
+                <div class="mt-3" v-if="choosableToCompare !== null">
+                  <button type="button" class="btn btn-danger btn-sm align-middle"
+                    v-on:click.prevent="onComparisonClose()">
+                    <Icon name="ion:close" class="align-middle" />
+                    <span class="align-middle ms-1">
+                      <LanguageTranslation translation-key="hide" />
+                    </span>
                   </button>
                 </div>
               </div>
@@ -84,7 +88,6 @@ import { useSessionStore } from "../../states/session.ts";
 interface WidgetProps {
   choosable: RankedChoosable;
   others: RankedChoosable[];
-  onComparisonClose?: () => void;
 }
 
 const props = defineProps<WidgetProps>();
