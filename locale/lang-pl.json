@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "Przeniesioneśmy odpowiedzi do tej wersji. Ponieważ struktura nieco się różni, wynik może się różnić.",
     "old-version-not-found-alert": "Podany link odnosi się do starego wyniku, który niestety nie jest już dostępny.",
     "opensuse-description": "openSUSE ma na celu dostarczenie stabilnej i przyjaznej użytkownikowi dystrybucji, głównie dla użytkowników indywidualnych",
-    "operational_center": "Zorganizowane w",
+    "organized_in": "Zorganizowane w",
     "packages-available-facette-privacy-usage-description": "Posiada programy do anonimizacji",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "Programy mogą nie być wystarczająco aktualne dla gier",
     "paid-support-ok-description": "Nie mam nic przeciwko opłatom",
@@ -310,5 +310,6 @@
     "xfce-default-description": "Standardowe środowisko pulpitu to 'XFCE'.",
     "xubuntu-description": "Xubuntu to dystrybucja oparta na Ubuntu, zasilana lekkim środowiskiem graficznym XFCE",
     "zorinos-description": "Zorin OS to dystrybucja dla początkujących z interfejsem użytkownika przypominającym Windows",
-    "years_old": "lat"
+    "years_old": "lat",
+    "operational_center": "Główny ośrodek operacyjny i administracyjny"
 }

@@ -185,7 +185,7 @@
     "old-version-migrated-fallback-alert": "เราได้ย้ายคำตอบมายังเวอร์ชันนี้ เนื่องจากโครงสร้างแตกต่างกันเล็กน้อย ผลลัพธ์อาจแตกต่างกันไป",
     "old-version-not-found-alert": "ลิงก์นี้เป็นผลเก่า ที่เสียดายที่ใช้ไม่ได้แล้วนะ",
     "opensuse-description": "openSUSE มุ่งหวังที่จะส่งมอบ Linux distribution ที่เสถียรและเป็นมิตรกับผู้ใช้ โดยเน้นที่ผู้ใช้ทั่วไป",
-    "operational_center": "จัดเรียงใน",
+    "organized_in": "จัดเรียงใน",
     "packages-available-facette-privacy-usage-description": "มีโปรแกรมสำหรับวัตถุประสงค์ในการปกปิดตัวตนให้ใช้งาน",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "เวอร์ชันของโปรแกรมอาจไม่ทันสมัยพอสำหรับการเล่นเกม",
     "paid-support-ok-description": "ฉันยินดีที่จะจ่ายค่าธรรมเนียม",
@@ -312,5 +312,6 @@
     "xfce-default-description": "สภาพแวดล้อมเดสก์ท็อปมาตรฐานคือ 'XFCE'",
     "xubuntu-description": "Xubuntu เป็น Linux distribution ที่มีฐานมาจาก Ubuntu ขับเคลื่อนโดย XFCE desktop environment ที่มีน้ำหนักเบา",
     "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows",
-    "years_old": "ปี"
+    "years_old": "ปี",
+    "operational_center": "ศูนย์ปฏิบัติการและบริหารหลัก"
 }

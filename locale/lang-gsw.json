@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "Mir g'migrierte d'Antworte uf di Version. Will d'Struktuure chli underschiedlich si, cha s'Ergäbnis variiere.",
     "old-version-not-found-alert": "Ili link ukhona ngenqondo yomphumela omdala, kodwa ingabe singase usebenzi. (Note: Gswaran/Swazi translation focusing on function/context)",
     "opensuse-description": "openSUSE isch e stabili u benutzerfründlechi Distribution, am beste geignet für Desktop-User",
-    "operational_center": "Gswaren",
+    "organized_in": "Gswaren",
     "packages-available-facette-privacy-usage-description": "Programm für Anonymisierig chöi nacheinstalliert wärde",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "D Programm si eventuell nid aktuell gnue für Spili.",
     "paid-support-ok-description": "I ha nüt dergäge, öppis z Zahle.",
@@ -310,5 +310,6 @@
     "xfce-default-description": "Die Standard-Desktop-Umgebung isch 'XFCE'.",
     "xubuntu-description": "Xubuntu isch e Distribution wo uf Ubuntu basiert und e XFCE-Desktop vorinstalliert het.",
     "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret",
-    "years_old": "Johr alt"
+    "years_old": "Johr alt",
+    "operational_center": "Hauptbetriebs- und Verwaltigszäntrum"
 }

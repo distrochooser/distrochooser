@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "回答をこのバージョンに移行しました。構造が若干異なるため、結果が異なる場合があります。",
     "old-version-not-found-alert": "このリンクは古い結果ですが、残念ながらもう使えません。",
     "opensuse-description": "openSUSE は、主にエンドユーザー向けに、安定したユーザーフレンドリーなディストリビューションを提供することを目指しています。",
-    "operational_center": "で整理されています",
+    "organized_in": "で整理されています",
     "packages-available-facette-privacy-usage-description": "匿名化を目的としたプログラムが利用可能",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "プログラムのバージョンがゲームに十分最新ではない可能性があります",
     "paid-support-ok-description": "料金を支払っても構いません。",
@@ -310,5 +310,6 @@
     "xfce-default-description": "標準デスクトップ環境は「XFCE」です。",
     "xubuntu-description": "Xubuntu は、軽量の XFCE デスクトップ環境を搭載した Ubuntu ベースのディストリビューションです。",
     "zorinos-description": "Zorin OS は、Windows ライクなユーザーインターフェースを備えた、初心者向けのディストリビューションです。",
-    "years_old": "歳"
+    "years_old": "歳",
+    "operational_center": "主要な運営および管理センター"
 }

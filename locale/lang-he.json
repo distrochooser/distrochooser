@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "העברנו את התשובות לגרסה זו. מכיוון שהמבנה שונה מעט, התוצאה עשויה להשתנות.",
     "old-version-not-found-alert": "הקישור הזה מצביע על תוצאה ישנה שאינה קיימת יותר, מצטער.",
     "opensuse-description": "‏openSUSE שואפת לספק הפצה יציבה וידידותית למשתמשים, לרוב למשתמשי קצה",
-    "operational_center": "מאורגן ב-",
+    "organized_in": "מאורגן ב-",
     "packages-available-facette-privacy-usage-description": "זמינות תוכניות למטרות גלישה אנונימית",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "ייתכן שגרסאות התוכנה אינן עדכניות מספיק למשחקים",
     "paid-support-ok-description": "אין לי בעיה עם תשלום סמלי",
@@ -310,5 +310,6 @@
     "xfce-default-description": "סביבת שולחן העבודה הסטנדרטית היא 'XFCE'.",
     "xubuntu-description": "‏Xubuntu היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה הקלילה XFCE",
     "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows",
-    "years_old": "שנים"
+    "years_old": "שנים",
+    "operational_center": "המרכז התפעולי והמנהלי העיקרי"
 }

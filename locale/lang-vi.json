@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "Chúng tôi đã di chuyển câu trả lời sang phiên bản này. Vì cấu trúc hơi khác, kết quả có thể thay đổi.",
     "old-version-not-found-alert": "Liên kết được cung cấp đề cập đến một kết quả cũ mà đáng tiếc là không còn sẵn có.",
     "opensuse-description": "openSUSE nhằm mục đích cung cấp một bản phân phối ổn định và thân thiện với người dùng, chủ yếu dành cho người dùng cuối",
-    "operational_center": "Được tổ chức trong",
+    "organized_in": "Được tổ chức trong",
     "packages-available-facette-privacy-usage-description": "Có sẵn các chương trình cho mục đích ẩn danh",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "Các phiên bản chương trình có thể không đủ cập nhật để chơi game",
     "paid-support-ok-description": "Tôi ổn nếu cần trả một khoản phí",
@@ -310,5 +310,6 @@
     "xfce-default-description": "Môi trường desktop tiêu chuẩn là 'XFCE'.",
     "xubuntu-description": "Xubuntu là bản phân phối dựa trên Ubuntu được hỗ trợ bởi một môi trường desktop nhẹ là XFCE",
     "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows",
-    "years_old": "tuổi"
+    "years_old": "tuổi",
+    "operational_center": "Trung tâm vận hành và hành chính chính"
 }

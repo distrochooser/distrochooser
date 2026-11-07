@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "我們已將答案遷移到此版本。由於結構略有不同，結果可能會有所不同。",
     "old-version-not-found-alert": "這個連結指向的結果是舊的，很抱歉它已經失效了。",
     "opensuse-description": "openSUSE 旨在為最終用戶提供穩定且用戶友好的 Linux 發行版",
-    "operational_center": "組織在",
+    "organized_in": "組織在",
     "packages-available-facette-privacy-usage-description": "提供匿名程序",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "程式版本可能不夠新，無法進行遊戲",
     "paid-support-ok-description": "我願意支付費用",
@@ -310,5 +310,6 @@
     "xfce-default-description": "標準桌面環境是「XFCE」",
     "xubuntu-description": "Xubuntu 是一個基於 Ubuntu 的 Linux 發行版，由輕量級 XFCE 桌面環境提供支援",
     "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面",
-    "years_old": "歲"
+    "years_old": "歲",
+    "operational_center": "主要營運和行政中心"
 }

@@ -22,7 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <Icon name="ion:ios-link" class="align-middle" v-if="metaValue == 'WEBSITE'" />
     <Icon name="ion:calendar" class="align-middle" v-if="metaValue == 'AGE'" />
 
-    <span class="ms-1 align-middle" v-if="metaValue !== 'WEBSITE' && metaValue !== 'AGE'">
+    <span class="ms-1 align-middle" v-if="metaValue === 'OPERATIONAL_CENTER'">
+      <LanguageTranslation translation-key="organized_in" />
+    </span>
+    <span class="ms-1 align-middle" v-else-if="metaValue !== 'WEBSITE' && metaValue !== 'AGE'">
       <LanguageTranslation :translation-key="metaValue" />
     </span>
 

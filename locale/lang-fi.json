@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "Olemme siirtäneet vastaukset tähän versioon. Koska rakenne eroaa hieman, tulos voi vaihdella.",
     "old-version-not-found-alert": "Tarjottu linkki viittaa vanhaan tulokseen, joka valitettavasti ei ole enää saatavilla.",
     "opensuse-description": "openSUSE tähtää vakaaseen ja käyttäjäystävälliseen Linux-jakeluun erityisesti peruskäyttäjille",
-    "operational_center": "Järjestetty",
+    "organized_in": "Järjestetty",
     "packages-available-facette-privacy-usage-description": "Anonyymiin käyttöön tarkoitettuja ohjelmia on tarjolla",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "Ohjelmistoversiot eivät välttämättä ole ajantasalla pelaamiseen",
     "paid-support-ok-description": "Voin tarvittaessa maksaa tuesta",
@@ -310,5 +310,6 @@
     "xfce-default-description": "Oletusnäyttöympäristö on 'XFCE'.",
     "xubuntu-description": "Xubuntu on Ubuntu-pohjainen jakelu jossa on oletuksena kevyt ja perinteisen yksinkertainen Xfce-työpöytäympäristö",
     "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windows tyyppinen käyttöliittymä",
-    "years_old": "vuotta"
+    "years_old": "vuotta",
+    "operational_center": "Päätoiminnan ja hallinnollinen keskus"
 }

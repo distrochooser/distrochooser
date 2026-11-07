@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "Мы мигрировали ответы в эту версию. Поскольку структура немного отличается, результат может отличаться.",
     "old-version-not-found-alert": "Предоставленная ссылка ведет к старому результату, который, к сожалению, больше недоступен.",
     "opensuse-description": "openSUSE направлен на предоставление стабильного и дружественного к пользователю дистрибутива, в основном для конечных пользователей",
-    "operational_center": "Организовано в",
+    "organized_in": "Организовано в",
     "packages-available-facette-privacy-usage-description": "Программы для анонимизации доступны",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "Версии программ могут быть недостаточно новыми для игр",
     "paid-support-ok-description": "Я не против заплатить",
@@ -310,5 +310,6 @@
     "xfce-default-description": "Стандартная среда рабочего стола — это 'XFCE'.",
     "xubuntu-description": "Xubuntu — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола XFCE",
     "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих",
-    "years_old": "лет"
+    "years_old": "лет",
+    "operational_center": "Основной операционный и административный центр"
 }

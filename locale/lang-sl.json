@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "Migrirali smo odgovore v to verzijo. Ker struktura malo razlikuje, rezultati se lahko razlikujejo.",
     "old-version-not-found-alert": "Navedena povezava se nanaša na staro rezultato, ki ni je na žalost več na voljo.",
     "opensuse-description": "openSUSE si prizadeva zagotoviti stabilno in uporabniku prijazno distribucijo Linuxa, predvsem za končne uporabnike",
-    "operational_center": "Organizirano v",
+    "organized_in": "Organizirano v",
     "packages-available-facette-privacy-usage-description": "Na voljo so programi za anonimizacijo",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "Različice programov morda niso dovolj posodobljene za igranje iger",
     "paid-support-ok-description": "Plačal bi pristojbino",
@@ -310,5 +310,6 @@
     "xfce-default-description": "Standardno okolje stila je 'XFCE'.",
     "xubuntu-description": "Xubuntu je distribucija Linuxa, ki temelji na Ubuntuju in jo poganja lahko namizno okolje XFCE.",
     "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows",
-    "years_old": "let"
+    "years_old": "let",
+    "operational_center": "Glavno operativno in upravno središče"
 }

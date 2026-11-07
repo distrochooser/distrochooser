@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "Μετακινήσαμε τις απαντήσεις σε αυτή την έκδοση. Επειδή η δομή διαφέρει ελαφρώς, το αποτέλεσμα μπορεί να διαφέρει.",
     "old-version-not-found-alert": "Αυτό το link είναι παλιό και δυστυχώς δεν υπάρχει πια.",
     "opensuse-description": "Το openSUSE στοχεύει στην παροχή μιας σταθερής και φιλικής προς το χρήστη διανομής, κυρίως για τους τελικούς χρήστες.",
-    "operational_center": "Οργανωμένο σε",
+    "organized_in": "Οργανωμένο σε",
     "packages-available-facette-privacy-usage-description": "Διατίθενται προγράμματα για σκοπούς ανωνυμοποίησης",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "Οι εκδόσεις των προγραμμάτων μπορεί να μην είναι αρκετά ενημερωμένες για παιχνίδια",
     "paid-support-ok-description": "Θα ήμουν εντάξει να πληρώσω μια αμοιβή",
@@ -310,5 +310,6 @@
     "xfce-default-description": "Η προεπιλεγμένη περιβάλλον εργασίας είναι το 'XFCE'.",
     "xubuntu-description": "Το Xubuntu είναι μια διανομή βασισμένη στο Ubuntu που τροφοδοτείται από το ελαφρύ περιβάλλον επιφάνειας εργασίας XFCE",
     "zorinos-description": "Το Zorin OS είναι μια διανομή που εστιάζει σε αρχάριους που μοιάζει με τα Windows",
-    "years_old": "χρονών"
+    "years_old": "χρονών",
+    "operational_center": "Κύριο επιχειρησιακό και διοικητικό κέντρο"
 }

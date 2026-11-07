@@ -183,7 +183,7 @@
     "old-version-migrated-fallback-alert": "Cavabları bu versiyaya köçürdük. Struktur bir azca fərqləndiyinə görə, nəticə dəyişə bilər.",
     "old-version-not-found-alert": "Verilən link köhnə bir nəticəyə aiddir və təəssüf ki, artıq mövcud deyil.",
     "opensuse-description": "openSUSE əsasən son istifadəçilər üçün sabit və istifadəçi dostu paylanma təqdim etməyi hədəfləyir",
-    "operational_center": "Təşkil edilmişdir",
+    "organized_in": "Təşkil edilmişdir",
     "packages-available-facette-privacy-usage-description": "Anonimləşdirmə məqsədləri üçün proqramlar mövcuddur",
     "packages-may-too-old-gaming-facette-gaming-usage-description": "Proqramların versiyaları oyun üçün kifayət qədər yeni olmaya bilər",
     "paid-support-ok-description": "Ödəniş edə bilərəm",
@@ -310,5 +310,6 @@
     "xfce-default-description": "Standart masaüstü mühitəsi 'XFCE'dir.",
     "xubuntu-description": "Xubuntu, yüngül XFCE iş masası mühiti ilə təchiz edilmiş Ubuntu əsaslı paylanmadır",
     "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır",
-    "years_old": "yaşındadır"
+    "years_old": "yaşındadır",
+    "operational_center": "Əsas əməliyyat və inzibati mərkəz"
 }
