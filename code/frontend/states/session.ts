@@ -237,6 +237,9 @@ export const useSessionStore = defineStore('websiteStore', {
             if (!this.session) {
                 return key
             }
+            if (!key) {
+                return "missing-key"
+            }
             key = key.toLowerCase()
             const providedFeedback = this.languageFeedback.filter(l => l.languageKey == key && (
                 l.session == this.session.id ||

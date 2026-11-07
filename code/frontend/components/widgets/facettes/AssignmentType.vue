@@ -28,13 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <LanguageTranslation :translation-key="weightText" />
         </span>
     </span>
-    <span :class="{ 'badge text-bg-primary bg me-1 ': true }" v-if="hasNegativeHandlingActive">
-        <Icon name="ion:stop-circle" class="me-1 align-middle"></Icon>
-        <span class="align-middle">
-            <LanguageTranslation translation-key="has_negative_handling_active" />
-        </span>
-    </span>
-    <span :class="'badge ' + assignmentTypeCssMap[assignment.assignmentType]">
+    <span :class="'badge badge-right-flat align-middle ' + assignmentTypeCssMap[assignment.assignmentType]">
         <Icon :name="assignmentTypeIconMap[assignment.assignmentType]"
             :class="'me-1 align-middle ' + assignmentTextColor[assignment.assignmentType]"></Icon>
         <span :class="'align-middle ' + assignmentTextColor[assignment.assignmentType]">
@@ -42,11 +36,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </span>
     </span>
 
-    <span class="ms-1 badge text-bg-light align-middle ">
-        <Icon name="ion:md-trending-up" class="align-middle me-1" />
+    <span class="badge text-bg-light badge-left-flat align-middle ">
         <span class="align-middle">
-            {{ store.session.scoreMap[assignment.assignmentType] > 0 ? "+" : "" }}{{
-                store.session.scoreMap[assignment.assignmentType] }}P
+            {{ store.session.scoreMap[assignment.assignmentType] > 0 ? "+" : "" }}
+            {{ store.session.scoreMap[assignment.assignmentType] }}P
+        </span>
+    </span>
+
+    <span :class="{ 'badge text-bg-primary bg ms-1 ': true }" v-if="hasNegativeHandlingActive">
+        <Icon name="ion:stop-circle" class="me-1 align-middle"></Icon>
+        <span class="align-middle">
+            <LanguageTranslation translation-key="has_negative_handling_active" />
         </span>
     </span>
 </template>

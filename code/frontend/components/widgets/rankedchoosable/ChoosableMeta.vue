@@ -16,17 +16,22 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">
-        <LanguageTranslation :translation-key="metaValue"/></h5>
-      <p class="card-text">
-        <MetaFlag v-if="metaValue == 'OPERATIONAL_CENTER'" :code="metaKey"/>
-        <MetaAge v-if="metaValue == 'AGE'" :start="metaKey"/>
-        <MetaWebsite v-if="metaValue == 'WEBSITE'" :website="metaKey" :id="props.choosable.id"/>
-      </p>
-    </div>
-  </div>
+  <span class="badge text-bg-light align-middle me-1">
+    <Icon name="ion:language" class="align-middle" v-if="metaValue == 'LANGUAGES'" />
+    <Icon name="ion:home" class="align-middle" v-if="metaValue == 'OPERATIONAL_CENTER'" />
+    <Icon name="ion:ios-link" class="align-middle" v-if="metaValue == 'WEBSITE'" />
+    <Icon name="ion:calendar" class="align-middle" v-if="metaValue == 'AGE'" />
+
+    <span class="ms-1 align-middle" v-if="metaValue !== 'WEBSITE' && metaValue !== 'AGE'">
+      <LanguageTranslation :translation-key="metaValue" />
+    </span>
+
+    <span class="ms-1 align-middle">
+      <MetaFlag v-if="metaValue == 'OPERATIONAL_CENTER'" :name="metaValue" :code="metaKey" />
+      <MetaAge v-if="metaValue == 'AGE'" :start="metaKey" />
+      <MetaWebsite v-if="metaValue == 'WEBSITE'" :website="metaKey" :id="props.choosable.id" />
+    </span>
+  </span>
 </template>
 <script setup lang="ts">
 
