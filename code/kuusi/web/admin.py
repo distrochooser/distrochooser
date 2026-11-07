@@ -231,6 +231,10 @@ class PageAdmin(admin.ModelAdmin):
     list_display = ("catalogue_id", "index")
 
 
+class ChoosableAdmin(admin.ModelAdmin):
+    list_display = ("catalogue_id", "name", "clicked", "bg_color", "fg_color")
+
+
 class ViolationAdmin(admin.ModelAdmin):
     list_display = (
         "reason",
@@ -249,7 +253,7 @@ class ViolationAdmin(admin.ModelAdmin):
         (TimeFrameCell, TimeFrameCellAdmin),
         (TimeFrame, TimeFrameAdmin),
         (TimeFrameRow, TimeFrameRowAdmin),
-        (Choosable,),
+        (Choosable, ChoosableAdmin),
         (GivenFeedback,),
         (ChoosableMeta,),
         (Page, PageAdmin),
