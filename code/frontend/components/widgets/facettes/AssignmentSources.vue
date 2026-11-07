@@ -38,6 +38,9 @@ const store = useSessionStore()
 const props = defineProps<AssignmentSourceProps>();
 
 const sources = computed(() => {
+    if (!props.rawString) {
+        return []
+    }
     const parts = props.rawString.split(",")
     let sources = []
     parts.forEach(part => {
