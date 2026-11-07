@@ -207,12 +207,14 @@ choosables = [
     "asahi",
     "kubuntu",
     "opensuse",
-    "fedora"
+    "fedora",
+    "parrot"
 ]
 how = "positive"
 sources = [
     "asahi;https://asahilinux.org/docs/platform/kb-layout-issues/#how-to-help",
-    "fedora;https://fedoraproject.org/kde/"
+    "fedora;https://fedoraproject.org/kde/",
+    "parrot;https://www.parrotsec.org/download/"
 ]
 
 [assignment.kde-choice]
