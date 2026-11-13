@@ -16,109 +16,143 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 from typing import List
 
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
-                                   extend_schema)
+from drf_spectacular.utils import OpenApiParameter, OpenApiResponse, extend_schema
 from rest_framework import serializers, status
 from rest_framework.mixins import DestroyModelMixin, ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from web.models import (Facette, FacetteSelection, FacetteSelectionWidget,
-                        Page, Session)
+from web.models import Facette, FacetteSelection, FacetteSelectionWidget, Page, Session
+
 
 class CreateFacetteSelectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = FacetteSelection
-        fields = ('id', 'facette', 'weight', )
+        fields = ("id", "facette", "weight", "negative_handling_active")
+
 
 class FacetteSelectionSerializer(serializers.ModelSerializer):
     pages_of_facettes = serializers.SerializerMethodField()
+
     class Meta:
         model = FacetteSelection
-        fields = ('id', 'facette', 'weight', 'pages_of_facettes', )
+        fields = (
+            "id",
+            "facette",
+            "weight",
+            "negative_handling_active",
+            "pages_of_facettes",
+        )
 
-
-    def get_pages_of_facettes(self, obj: FacetteSelection) ->List[int]:
+    def get_pages_of_facettes(self, obj: FacetteSelection) -> List[int]:
         facette = obj.facette
 
-        facette_selection_widgets = FacetteSelectionWidget.objects.filter(topic=facette.topic)
+        facette_selection_widgets = FacetteSelectionWidget.objects.filter(
+            topic=facette.topic
+        )
         pages = []
-        
-        widget: FacetteSelectionWidget 
+
+        widget: FacetteSelectionWidget
         for widget in facette_selection_widgets:
             page: Page
             for page in widget.pages.all():
                 if page.pk not in pages:
                     pages.append(page.pk)
-        
+
         return pages
-    
+
+
 class FacetteSelectionViewSet(ListModelMixin, GenericViewSet, DestroyModelMixin):
     queryset = FacetteSelection.objects.all()
     serializer_class = FacetteSelectionSerializer
+
     @extend_schema(
         responses={
-            status.HTTP_200_OK: OpenApiResponse(response=FacetteSelectionSerializer, description="The list of facette selections available to use"),
+            status.HTTP_200_OK: OpenApiResponse(
+                response=FacetteSelectionSerializer,
+                description="The list of facette selections available to use",
+            ),
         },
-        parameters=[ 
-          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
+        parameters=[
+            OpenApiParameter(
+                "session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True
+            ),
         ],
     )
-    def list(self, request,  *args, **kwargs):    
+    def list(self, request, *args, **kwargs):
         session: Session = Session.get(kwargs["session_pk"])
         results = FacetteSelection.objects.filter(session=session)
-        serializer = FacetteSelectionSerializer(
-            results,
-            many=True
-        )
+        serializer = FacetteSelectionSerializer(results, many=True)
         serializer.context["session_pk"] = kwargs["session_pk"]
         return Response(serializer.data)
-    
 
     @extend_schema(
         request=None,
         parameters=[
-          OpenApiParameter("id", OpenApiTypes.INT, OpenApiParameter.PATH,description="The selection ID to delete", required=True),
-          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
-        ]
-    ) 
+            OpenApiParameter(
+                "id",
+                OpenApiTypes.INT,
+                OpenApiParameter.PATH,
+                description="The selection ID to delete",
+                required=True,
+            ),
+            OpenApiParameter(
+                "session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True
+            ),
+        ],
+    )
     def destroy(self, request, session_pk, pk):
         session: Session = Session.get(session_pk)
         FacetteSelection.objects.filter(pk=pk).filter(session=session).delete()
         return Response()
+
     @extend_schema(
         responses={
-            status.HTTP_200_OK: OpenApiResponse(response=CreateFacetteSelectionSerializer, description="The created facette selection"),
-            status.HTTP_404_NOT_FOUND: OpenApiResponse(response=None, description="Either session or facette are not found"),
+            status.HTTP_200_OK: OpenApiResponse(
+                response=CreateFacetteSelectionSerializer,
+                description="The created facette selection",
+            ),
+            status.HTTP_404_NOT_FOUND: OpenApiResponse(
+                response=None, description="Either session or facette are not found"
+            ),
         },
-        parameters=[ 
-          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True),
-          OpenApiParameter("reset", OpenApiTypes.STR, OpenApiParameter.QUERY, required=False, description="Force existing selections on the same topic to be deleted. Used for facette selections bound to radio selections. Values: 'all', 'this'"),
+        parameters=[
+            OpenApiParameter(
+                "session_pk", OpenApiTypes.STR, OpenApiParameter.PATH, required=True
+            ),
+            OpenApiParameter(
+                "reset",
+                OpenApiTypes.STR,
+                OpenApiParameter.QUERY,
+                required=False,
+                description="Force existing selections on the same topic to be deleted. Used for facette selections bound to radio selections. Values: 'all', 'this'",
+            ),
         ],
     )
     def create(self, request, session_pk) -> FacetteSelection:
         session: Session = Session.get(session_pk)
         facette: Facette = Facette.objects.filter(pk=request.data["facette"]).first()
         weight: int = request.data["weight"]
+        negative_handling_active: boolean = request.data["negative_handling_active"]
 
         if session is None or facette is None:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        
-        is_reset = str(request.query_params.get('reset')).lower()
+
+        is_reset = str(request.query_params.get("reset")).lower()
         if is_reset != "":
             selections = FacetteSelection.objects.filter(session=session)
             if is_reset == "all":
                 selections.filter(facette__topic=facette.topic).delete()
             if is_reset == "this":
                 selections.get(facette=facette).delete()
-        
+
         selection = FacetteSelection(
             facette=facette,
             session=session,
-            weight=weight
+            weight=weight,
+            negative_handling_active=negative_handling_active,
         )
         selection.save()
         serializer = FacetteSelectionSerializer(

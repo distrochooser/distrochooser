@@ -42,7 +42,7 @@ def get_session_result_id() -> str:
 
 class Session(models.Model):
     started = models.DateTimeField(default=timezone.now, null=False, blank=False)
-    user_agent = models.CharField(default=None, null=True, blank=True, max_length=150)
+    user_agent = models.CharField(default=None, null=True, blank=True, max_length=255)
     result_id = models.CharField(
         default=get_session_result_id, max_length=36, null=False, blank=False
     )

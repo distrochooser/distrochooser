@@ -47,4 +47,5 @@ from .metafilterwidget import (
 
 from .feedbackwidget import FeedbackWidget, GivenFeedback
 
-from .statistics import TimeFrame, TimeFrameRow
+from .statistics import TimeFrame, TimeFrameRow, TimeFrameCell
+from .violations import Violation

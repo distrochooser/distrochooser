@@ -6,7 +6,14 @@ The application stores all translation inside of *.json files inside of the firs
 All files follow the format `<scope>-<iso-639-1>.json`. Translations can be updated using the JSON files or can be
 updated during runtime.
 
-🚨 If the language is new, add it into the `AVAILABLE_LANGUAGES` list before continuing. Please use the ISO-639-1 codes as first tuple element, followed by an name for the language.
+🚨 If the language is new, make sure that the JSON file has a key `endonym`. The value is the localized description for the language. 
+
+Examples:
+en -> Endonym "English"
+de -> Endonym "Deutsch"
+tr -> Endonym "Türkçe"
+
+You can e. g. https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes#Table if you are unsure.
 
 ## How to provide translations
 

@@ -43,6 +43,7 @@ from web.models import (
 )
 from web.rest.hooks import fire_hook
 from web.util import get_translation
+from kuusi.settings import IMAGE_PATHS_ROOT
 
 
 class CreateFeedbackSerializer(serializers.ModelSerializer):
@@ -346,6 +347,7 @@ class FacetteAssignmentSerializer(serializers.ModelSerializer):
 class FacetteSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
     assignments = serializers.SerializerMethodField()
+    image_path = serializers.SerializerMethodField()
 
     class Meta:
         model = Facette
@@ -354,6 +356,8 @@ class FacetteSerializer(serializers.ModelSerializer):
             "topic",
             "description",
             "assignments",
+            "image_path",
+            "image_credit",
             "not_in_versions",  # Transfer the version Id's also to the client, to allow the UI to filter it. See ADR 0029 for details.
         )
 
@@ -367,6 +371,14 @@ class FacetteSerializer(serializers.ModelSerializer):
         )
         serializer.context["session"] = self.context["session"]
         return serializer.data
+
+    def get_image_path(self, obj: Facette) -> str | None:
+        if not obj.image_path:
+            return None
+        if not obj.image_path.startswith("http"):
+            full_url = IMAGE_PATHS_ROOT + obj.image_path
+            return full_url
+        return obj.image_path
 
 
 class FacetteViewSet(ListModelMixin, GenericViewSet):

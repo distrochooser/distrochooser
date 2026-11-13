@@ -144,6 +144,7 @@ class Command(BaseCommand):
             "fg_color": "white",
             "icon": "ion:chatbox-ellipses",
             "sources": [],
+            "index": 0,
         }
         if prop in raw:
             return raw[prop]

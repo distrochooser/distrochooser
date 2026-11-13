@@ -16,31 +16,32 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <div class="mt-2">
-    <div :class="{ 'form-check mb-2': true }" v-if="props.checkbox">
-      <input class="form-check-input" v-model="selected" v-on:change="registerChange" :checked="isSelected"
-        type="checkbox" :id="facette.id.toString()" v-show="!store.isTranslating">
-      <label class="form-check-label" :for="facette.id.toString()">
-        <LanguageTranslation :translation-key="props.facette.description" />
-      </label>
-      <Importance v-if="isSelected" :selected="selected" :facette="facette" />
-      <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours" />
-
-      <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"
-        v-if="store.session.isFeedbackModeEnabled" />
+  <div v-if="props.facette.imagePath" class="d-inline align-middle text-center mb-3" :class="{
+    'col-4': !imageFacetteLarge, 'col-12':
+      imageFacetteLarge
+  }">
+    <div :class="{ 'border border-primary  border-3': isSelected, 'p-3': true }">
+      <img :title="'Credit: ' + props.facette.imageCredit" :src="props.facette.imagePath" class="w-100 mt-3"
+        @click="registerImageClick" />
+      <div class="image-facette-label mt-2">
+        <a href="#" @click.prevent="imageFacetteLarge = !imageFacetteLarge" class="btn btn-primary btn-sm">
+          <Icon :name="imageFacetteLarge ? 'ion:arrow-shrink' : 'ion:arrow-expand'" class="align-middle me-1" />
+          <LanguageTranslation :translation-key="imageFacetteLarge ? 'image-make-smaller' : 'image-make-larger'" />
+        </a>
+        <div class="mt-2 text-start">
+          <FacetteLabel :facette="facette" :on-click="registerImageClick" />
+        </div>
+      </div>
     </div>
-    <div :class="{ 'form-check mb-2': true }" v-else>
-      <input v-on:click="registerClick" v-show="!store.isTranslating" class="form-check-input" type="radio"
+  </div>
+  <div class="mt-2" v-else>
+    <div :class="{ 'form-check mb-2': true }">
+      <input v-if="props.checkbox" class="form-check-input" v-model="selected" v-on:change="registerChange"
+        :checked="isSelected" type="checkbox" :id="facette.id.toString()" v-show="!store.isTranslating">
+      <input v-else v-on:click="registerClick" v-show="!store.isTranslating" class="form-check-input" type="radio"
         v-bind:name="props.facette.topic" v-model="selected" v-on:change="registerChange" v-bind:value="true"
         :checked="isSelected" :id="facette.id.toString()">
-      <label v-on:click="registerClick" class="form-check-label" :for="facette.id.toString()">
-        <LanguageTranslation :translation-key="props.facette.description" />
-      </label>
-      <Importance v-if="isSelected" :selected="selected" :facette="facette" />
-
-      <BehaviourAlert v-if="behaviours.length > 0" :behaviours="behaviours" />
-      <BehaviourButton :click-handler="toggleExpand" v-show="!store.isTranslating"
-        v-if="store.session.isFeedbackModeEnabled" />
+      <FacetteLabel :facette="facette" />
     </div>
   </div>
 
@@ -57,14 +58,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </template>
 <script setup lang="ts">
 import { useState } from "nuxt/app";
-import { computed, ref, type ComputedRef } from "vue";
+import { computed, ref } from "vue";
 import { type Facette, type FacetteBehaviour } from "../../../sdk";
 import { useSessionStore } from "../../../states/session";
 import Assignment from "./Assignment.vue";
-import BehaviourButton from "./AssignmentButton.vue";
 import LanguageTranslation from "../../LanguageTranslation.vue";
-import Importance from "./Importance.vue";
-import BehaviourAlert from "./BehaviourAlert.vue";
+import FacetteLabel from "./FacetteLabel.vue";
 
 interface CheckboxFacetteProps {
   facette: Facette;
@@ -84,16 +83,14 @@ const weight = useState(
   props.facette.id.toString() + "_weight",
   () => selected.value ? store.facetteSelections.filter((l) => l.facette == props.facette.id)[0].weight : 0
 )
+const isNegativeHandlingActive = useState(
+  props.facette.id.toString() + "_is_negative_handling_active",
+  () => selected.value ? store.facetteSelections.filter((l) => l.facette == props.facette.id)[0].negativeHandlingActive : false
+)
 const isExpanded = useState(
   props.facette.id.toString() + "_expanded",
   () => false
 );
-const toggleExpand = async () => {
-  isExpanded.value = !isExpanded.value
-  if (isExpanded.value) {
-    await store.getAssignmentFeedback()
-  }
-};
 
 const isSelected = computed(
   () =>
@@ -101,13 +98,18 @@ const isSelected = computed(
       .length != 0
 );
 
-const behaviours = computed<FacetteBehaviour[]>((b) =>
-  store.facetteBehaviours.filter(
-    (fb) =>
-      fb.affectedObjects.filter((ao) => ao.id == props.facette.id).length > 0 ||
-      fb.affectedSubjects.filter((ao) => ao.id == props.facette.id).length > 0
+const registerImageClick = async () => {
+  await store.updateFacetteSelections(
+    store.currentPage.id,
+    props.facette.id,
+    0,
+    false,
+    store.facetteSelections.filter(s => s.facette === props.facette.id).length === 0,
+    props.checkbox ? "" : "all"
   )
-);
+}
+
+const imageFacetteLarge = ref(false)
 
 const registerClick = async () => {
   if (isSelected.value) {
@@ -115,6 +117,7 @@ const registerClick = async () => {
       store.currentPage.id,
       props.facette.id,
       0,
+      false,
       false,
       !props.checkbox ? "all" : ""
     )
@@ -125,6 +128,7 @@ const registerChange = async () => {
     store.currentPage.id,
     props.facette.id,
     weight.value,
+    isNegativeHandlingActive.value,
     selected.value,
     !props.checkbox ? "all" : ""
   );
@@ -137,15 +141,6 @@ const registerChange = async () => {
   }
   await store.updateBehaviours();
 };
-const registerWeightChange = async () => {
-  await store.updateFacetteSelections(
-    store.currentPage.id,
-    props.facette.id,
-    weight.value,
-    selected.value,
-    "this"
-  );
-};
 </script>
 <style scoped lang="scss">
 @import "../../../style/variables.scss";
@@ -156,5 +151,9 @@ const registerWeightChange = async () => {
 
 .more-weight-icon {
   color: $more-weight-color
+}
+
+.image-facette-label {
+  font-size: smaller;
 }
 </style>

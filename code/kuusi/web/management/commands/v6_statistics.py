@@ -20,10 +20,11 @@ from django.core.management.base import BaseCommand, CommandParser
 from web.models import Session, TimeFrame, TimeFrameRow
 from termcolor import colored
 from tqdm import tqdm
-from django.utils.timezone import now
+from django.utils.timezone import now, datetime
 from django.utils.dateparse import parse_datetime
 from datetime import timedelta
 from calendar import monthrange
+from time import mktime
 
 
 class Command(BaseCommand):
@@ -33,8 +34,31 @@ class Command(BaseCommand):
         parser.add_argument("--start_date", type=str, nargs="?")
         parser.add_argument("--end_date", type=str, nargs="?")
         parser.add_argument("--year", type=int, nargs="?")
+        parser.add_argument("--csv", action="store_true", default=False)
+
+    def generate_csv(self):
+        frames = TimeFrame.objects.filter(
+            time_frame_type=TimeFrame.TimeFrameType.MONTH
+        ).order_by("date")
+        content = "day;ack;non_ack;bot_ack;bot_non_ack;ack_stay_duration"
+        for frame in frames:
+            unix_time = int(mktime(frame.date.timetuple()))
+            all_visitors = frame.all_visitors_raw
+            non_ack = frame.hit_count
+            ack = frame.result_count
+            bot_non_ack = frame.all_crawlers_raw
+            bot_ack = frame.crawler_with_result_raw
+            ack_stay_duration = frame.raw_duration
+            ack_referrer = frame.backlinks
+            content += f"{unix_time};{ack};{non_ack};{bot_ack};{bot_non_ack};{ack_stay_duration}\n"
+
+        print(content)
 
     def handle(self, *args, **options):
+        if options["csv"]:
+            self.generate_csv()
+            return
+
         year = options["year"]
         timeframe_type = TimeFrame.TimeFrameType.MONTH
         end_date = None
@@ -102,22 +126,21 @@ class Command(BaseCommand):
                 f"Package timespan is {colored(start_to_use, 'magenta')} to {colored(end_to_use, 'red')}"
             )
 
-            is_existing = (
-                TimeFrame.objects.filter(
-                    date=start_to_use,
-                    end_date=end_to_use,
-                    time_frame_type=timeframe_type,
-                ).count()
-                > 0
-            )
+            # Make sure the TimeFrames are always up to date
+            TimeFrame.objects.filter(
+                date=start_to_use,
+                end_date=end_to_use,
+                time_frame_type=timeframe_type,
+            ).delete()
 
-            if not is_existing:
-                frame = TimeFrame(
-                    time_frame_type=timeframe_type,
-                    end_date=end_to_use,
-                    date=start_to_use,
-                )
-                frame.save()
+            frame = TimeFrame(
+                time_frame_type=timeframe_type,
+                end_date=end_to_use,
+                date=start_to_use,
+                year=start_date.year,
+                created=now(),
+            )
+            frame.save()
 
             frame = TimeFrame.objects.get(
                 time_frame_type=timeframe_type,
@@ -130,12 +153,36 @@ class Command(BaseCommand):
             all_count = len(sessions)
             all_with_ack_count = len(list(filter(lambda s: s.is_ack, sessions)))
 
+            # For container visiblity
+            # do not include imported sessions
+            # as the v5 version did not feature container visibility checks.
             container_visible_with_ack = len(
-                list(filter(lambda s: s.is_ack and s.is_container_visible, sessions))
+                list(
+                    filter(
+                        lambda s: s.is_ack
+                        and s.is_container_visible
+                        and not s.imported_from_session,
+                        sessions,
+                    )
+                )
             )
             container_visible_no_ack = len(
                 list(
-                    filter(lambda s: not s.is_ack and s.is_container_visible, sessions)
+                    filter(
+                        lambda s: not s.is_ack
+                        and s.is_container_visible
+                        and not s.imported_from_session,
+                        sessions,
+                    )
+                )
+            )
+
+            imported_sessions_count_with_ack = len(
+                list(filter(lambda s: s.imported_from_session and s.is_ack, sessions))
+            )
+            imported_sessions_count_no_ack = len(
+                list(
+                    filter(lambda s: s.imported_from_session and not s.is_ack, sessions)
                 )
             )
 
@@ -248,4 +295,12 @@ class Command(BaseCommand):
                 row_key=None,
                 row_value_with_ack=container_visible_with_ack,
                 row_value_no_ack=container_visible_no_ack,
+            ).save()
+
+            TimeFrameRow(
+                time_frame=frame,
+                row_type=TimeFrameRow.TimeFrameRowType.IMPORTED,
+                row_key=None,
+                row_value_with_ack=imported_sessions_count_with_ack,
+                row_value_no_ack=imported_sessions_count_no_ack,
             ).save()
