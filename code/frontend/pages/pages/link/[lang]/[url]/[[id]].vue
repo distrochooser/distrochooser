@@ -71,12 +71,11 @@ const basePath = useRuntimeConfig().public.basePath
 const decodedUrl = computed(() => decodeURI(atob(url)))
 const handleClick = async (e: MouseEvent) => {
     e.preventDefault();
-    if (!id) {
-        window.open(decodedUrl.value, "_blank")
-    } else {
+    if (id) {
         const target = basePath + "/out/" + id.toString() + "/WEBSITE/"
-        console.log(target)
         await fetch(target)
     }
+
+    window.open(decodedUrl.value, "_blank")
 }
 </script>
