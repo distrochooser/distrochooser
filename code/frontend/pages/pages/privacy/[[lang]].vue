@@ -40,21 +40,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </h1>
                 <p v-html="sessionStore.session.privacyData">
                 </p>
-                <h1>
-                    <LanguageTranslation translation-key="VOTER_ID_TITLE" />
-                </h1>
-                <p>
-                    <LanguageTranslation translation-key="VOTER_ID_TEXT" />
-                    <a href="#" v-if="sessionStore.session && sessionStore.hasVoterId()" class="ms-1 me-1"
-                        v-on:click.prevent="sessionStore.removeVoterId">
-                        <LanguageTranslation translation-key="VOTER_ID_CLEAR" />
-                    </a>
-                <pre class="mt-3"
-                    v-if="sessionStore.session && sessionStore.hasVoterId()">{{ sessionStore.getVoterIdKey() }}: {{ sessionStore.getVoterId() }}</pre>
-                <div class="alert alert-info mt-3" v-if="sessionStore.session && !sessionStore.hasVoterId()">
-                    <LanguageTranslation translation-key="NO_VOTER_ID" />
+                <div v-if="sessionStore.session.isFeedbackModeEnabled || sessionStore.session.isTranslationModeEnabled">
+                    <h1>
+                        <LanguageTranslation translation-key="VOTER_ID_TITLE" />
+                    </h1>
+                    <p>
+                        <LanguageTranslation translation-key="VOTER_ID_TEXT" />
+                        <a href="#" v-if="sessionStore.session && sessionStore.hasVoterId()" class="ms-1 me-1"
+                            v-on:click.prevent="sessionStore.removeVoterId">
+                            <LanguageTranslation translation-key="VOTER_ID_CLEAR" />
+                        </a>
+                    <pre class="mt-3"
+                        v-if="sessionStore.session && sessionStore.hasVoterId()">{{ sessionStore.getVoterIdKey() }}: {{ sessionStore.getVoterId() }}</pre>
+                    <div class="alert alert-info mt-3" v-if="sessionStore.session && !sessionStore.hasVoterId()">
+                        <LanguageTranslation translation-key="NO_VOTER_ID" />
+                    </div>
+                    </p>
                 </div>
-                </p>
             </div>
         </div>
     </main>
@@ -73,5 +75,4 @@ onMounted(async () => {
     }
 });
 import { EntryPointEnum } from '../../../sdk';
-useRobotsRule({ noindex: true, nofollow: true })
 </script>
