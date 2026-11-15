@@ -34,11 +34,13 @@ sources = [
 [assignment.has-no-ai-policy]
 facettes = ["no-ai"]
 choosables = [
-    "Gentoo"
+    "Gentoo",
+    "elementaryos"
 ]
 how = "positive"
 sources = [
-    "Gentoo;https://wiki.gentoo.org/wiki/Project:Council/AI_policy"
+    "Gentoo;https://wiki.gentoo.org/wiki/Project:Council/AI_policy",
+    "elementaryos;https://docs.elementary.io/contributor-guide/development/generative-ai-policy"
 ]
 
 # The debian project decided on a resolution for responsible AI usage.
