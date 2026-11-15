@@ -311,5 +311,9 @@
     "xfce-default-description": "Η προεπιλεγμένη περιβάλλον εργασίας είναι το 'XFCE'.",
     "xubuntu-description": "Το Xubuntu είναι μια διανομή βασισμένη στο Ubuntu που τροφοδοτείται από το ελαφρύ περιβάλλον επιφάνειας εργασίας XFCE",
     "years_old": "χρονών",
-    "zorinos-description": "Το Zorin OS είναι μια διανομή που εστιάζει σε αρχάριους που μοιάζει με τα Windows"
+    "zorinos-description": "Το Zorin OS είναι μια διανομή που εστιάζει σε αρχάριους που μοιάζει με τα Windows",
+    "zorin-pro-description": "Υπάρχει μια διαμόρφωση 'Zorin Pro' με επιπλέον bố cục διεπαφής χρήστη και τεχνική υποστήριξη.",
+    "elementary-os-pay-what-you-can-description": "Αν επιθυμείτε, το έργο μπορεί να υποστηριχθεί με εφάπαξ πληρωμή («αποδίδετε όσο μπορείτε»).",
+    "ubuntu-pro-description": "Η διαμόρφωση 'Ubuntu Pro' είναι διαθέσιμη με κόστος, προσφέροντας επιπλέον υποστήριξη.",
+    "suse-enterprise-description": "Η διαμόρφωση 'SUSE Linux Enterprise Desktop' είναι διαθέσιμη με κόστος, προσφέροντας επιπλέον υποστήριξη."
 }

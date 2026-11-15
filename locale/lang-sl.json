@@ -311,5 +311,9 @@
     "xfce-default-description": "Standardno okolje stila je 'XFCE'.",
     "xubuntu-description": "Xubuntu je distribucija Linuxa, ki temelji na Ubuntuju in jo poganja lahko namizno okolje XFCE.",
     "years_old": "let",
-    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows"
+    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows",
+    "zorin-pro-description": "Obstaja variant 'Zorin Pro' z dodatnimi zasloni interfejsa in tehnično podporo.",
+    "elementary-os-pay-what-you-can-description": "Če želiš, projekt lahko podporeš z enkratno plačilom (\\plačaj",
+    "ubuntu-pro-description": "Varianta 'Ubuntu Pro' je na voljo za naključek in ponuja dodatno podporo.",
+    "suse-enterprise-description": "Varianta 'SUSE Linux Enterprise Desktop' je na voljo za plačilo, kar ponuja dodatno podporo."
 }

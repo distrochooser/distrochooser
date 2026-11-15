@@ -1,0 +1,94 @@
+# distrochooser
+# Copyright (C) 2014-2026 Christoph Müller <distrochooser@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# distrochooser::translation::en::Usable without fee
+# distrochooser::translation::key::without-fee-facette-pricing-free-description
+[assignment.without-fee-facette-pricing-free]
+facettes = ["pricing-free"]
+choosables = [
+    "ubuntu",
+    "debian",
+    "tails",
+    "devuan",
+    "arch",
+    "mint",
+    "opensuse",
+    "solus",
+    "manjaro",
+    "pclinuxos",
+    "rocky",
+    "MXLinux",
+    "Fedora",
+    "Gentoo",
+    "Knoppix",
+    "CruxLinux",
+    "ZorinOS",
+    "elementaryOS",
+    "qubesos",
+    "nixOS",
+    "Xubuntu",
+    "Lubuntu",
+    "UbuntuMATE",
+    "void",
+    "artix",
+    "kubuntu",
+    "popos",
+    "deepin",
+    "bazzite",
+    "nobara",
+    "cachyos",
+    "emmabuntus",
+    "parrot"
+]
+how = "positive"
+
+[assignment.requires-payment-facette-pricing-free]
+facettes = ["pricing-free"]
+choosables = ["rhel"]
+how = "blocking"
+
+[assignment.zorin-pro]
+facettes = ["paid-support-ok"]
+choosables = ["zorinos"]
+how = "positive"
+sources = [
+    "zorinos;https://zorin.com/os/pro/"
+]
+
+[assignment.elementary-os-pay-what-you-can]
+facettes = ["paid-support-ok"]
+choosables = ["elementaryos"]
+how = "positive"
+sources = [
+    "elementaryos;https://elementary.io/"
+]
+
+[assignment.ubuntu-pro]
+facettes = ["paid-support-ok"]
+choosables = ["ubuntu"]
+how = "positive"
+sources = [
+    "ubuntu;https://ubuntu.com/pricing/pro"
+]
+
+[assignment.suse-enterprise]
+facettes = ["paid-support-ok"]
+choosables = ["opensuse"]
+how = "positive"
+sources = [
+    "opensuse;https://www.suse.com/shop/desktop/" 
+]

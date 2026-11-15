@@ -311,5 +311,9 @@
     "xfce-default-description": "L'ambiente desktop standard è 'XFCE'.",
     "xubuntu-description": "Xubuntu è una distribuzione basata su Ubuntu alimentata dal leggero ambiente desktop XFCE",
     "years_old": "anni",
-    "zorinos-description": "Zorin OS è una distribuzione focalizzata per principianti con un'interfaccia utente simile a Windows"
+    "zorinos-description": "Zorin OS è una distribuzione focalizzata per principianti con un'interfaccia utente simile a Windows",
+    "zorin-pro-description": "C'è una variante 'Zorin Pro' con layout di interfaccia utente aggiuntivi e supporto tecnico.",
+    "elementary-os-pay-what-you-can-description": "Se lo desideri, il progetto può essere supportato con una tariffa unica ('paga quello che puoi').",
+    "ubuntu-pro-description": "La variante 'Ubuntu Pro' è disponibile a pagamento, offrendo supporto aggiuntivo.",
+    "suse-enterprise-description": "La variante 'SUSE Linux Enterprise Desktop' è disponibile a pagamento, offrendo supporto aggiuntivo."
 }

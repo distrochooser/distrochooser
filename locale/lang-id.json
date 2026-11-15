@@ -311,5 +311,9 @@
     "xfce-default-description": "Lingkungan desktop standar adalah 'XFCE'.",
     "xubuntu-description": "Xubuntu adalah distribusi berbasis Ubuntu dengan XFCE terinstall sejak awal",
     "years_old": "tahun",
-    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows"
+    "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows",
+    "zorin-pro-description": "Ada varian 'Zorin Pro' dengan tata letak antarmuka pengguna tambahan dan dukungan teknis.",
+    "elementary-os-pay-what-you-can-description": "Jika diinginkan, proyek ini dapat didukung dengan biaya satu kali ('bayar sesuai kemampuanmu').",
+    "ubuntu-pro-description": "Varian 'Ubuntu Pro' tersedia dengan biaya, menawarkan dukungan tambahan.",
+    "suse-enterprise-description": "Varian 'SUSE Linux Enterprise Desktop' tersedia dengan biaya, menawarkan dukungan tambahan."
 }

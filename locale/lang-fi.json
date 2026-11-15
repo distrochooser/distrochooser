@@ -311,5 +311,9 @@
     "xfce-default-description": "Oletusnäyttöympäristö on 'XFCE'.",
     "xubuntu-description": "Xubuntu on Ubuntu-pohjainen jakelu jossa on oletuksena kevyt ja perinteisen yksinkertainen Xfce-työpöytäympäristö",
     "years_old": "vuotta",
-    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windows tyyppinen käyttöliittymä"
+    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windows tyyppinen käyttöliittymä",
+    "zorin-pro-description": "On olemassa variantti nimeltä 'Zorin Pro'",
+    "elementary-os-pay-what-you-can-description": "Jos haluat, projektia voi tukea kertamaksulla ('maksa mitä voit').",
+    "ubuntu-pro-description": "Muunnelma 'Ubuntu Pro' on saatavilla maksullisesti ja tarjoaa lisäohjeistusta.",
+    "suse-enterprise-description": "Variantti 'SUSE Linux Enterprise Desktop' on saatavilla maksua, tarjoten lisäohjeistusta."
 }

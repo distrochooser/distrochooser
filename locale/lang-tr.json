@@ -311,5 +311,9 @@
     "xfce-default-description": "Standart masaüstü ortamı 'XFCE'.",
     "xubuntu-description": "Xubuntu, hafif XFCE masaüstü ortamı tarafından desteklenen Ubuntu tabanlı bir dağıtımdır",
     "years_old": "yaş",
-    "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır"
+    "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır",
+    "zorin-pro-description": "Ek kullanıcı arayüzü düzenleri ve teknik destek ile 'Zorin Pro' adında bir varyant var.",
+    "elementary-os-pay-what-you-can-description": "İstenirse, proje tek seferlik bir ücretle ('ne kadar istersen o kadar öde') desteklenebilir.",
+    "ubuntu-pro-description": "'Ubuntu Pro' varyantı ücret karşılığında mevcuttur ve ek destek sunar.",
+    "suse-enterprise-description": "'SUSE Linux Enterprise Desktop' varyantı ek destek sunarak ücret karşılığında mevcuttur."
 }

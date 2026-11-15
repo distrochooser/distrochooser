@@ -311,5 +311,9 @@
     "xfce-default-description": "Standart masaüstü mühitəsi 'XFCE'dir.",
     "xubuntu-description": "Xubuntu, yüngül XFCE iş masası mühiti ilə təchiz edilmiş Ubuntu əsaslı paylanmadır",
     "years_old": "yaşındadır",
-    "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır"
+    "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır",
+    "zorin-pro-description": "“Zorin Pro” adlı bir variant var",
+    "elementary-os-pay-what-you-can-description": "Əgər istəsəniz, layihəni birdəfəlik ödənişlə ('istədiyiniz qədər ödəyin') dəstəkləyə bilərsiniz.",
+    "ubuntu-pro-description": "'Ubuntu Pro' versiyası ödənişlə əlçatandır və əlavə dəstək təklif edir.",
+    "suse-enterprise-description": "'SUSE Linux Enterprise Desktop' varyantı ödənişə təcrübə sahibdir, əlavə dəstək təklif edir."
 }

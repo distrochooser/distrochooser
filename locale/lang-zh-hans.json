@@ -311,5 +311,9 @@
     "xfce-default-description": "标准桌面环境是“XFCE”。",
     "xubuntu-description": "Xubuntu 是一款基于 Ubuntu 的 Linux 发行版，搭载轻量级 XFCE 桌面环境$",
     "years_old": "岁",
-    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$"
+    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$",
+    "zorin-pro-description": "有一个名为“Zorin Pro”的变体，它提供额外的用户界面布局和技术支持。",
+    "elementary-os-pay-what-you-can-description": "如果您希望，该项目可以通过一次性费用（“随心付费”）得到支持。",
+    "ubuntu-pro-description": "“Ubuntu Pro”变体是收费的，提供额外的支持。",
+    "suse-enterprise-description": "“SUSE Linux Enterprise Desktop” 这一变体是收费的，并提供额外的支持。"
 }

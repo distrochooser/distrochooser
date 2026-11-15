@@ -311,5 +311,9 @@
     "xfce-default-description": "De standaard desktopomgeving is 'XFCE'.",
     "xubuntu-description": "Xubuntu is een op Ubuntu gebaseerde distributie die wordt aangedreven door de lichtgewicht XFCE-desktopomgeving",
     "years_old": "jaar oud",
-    "zorinos-description": "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface"
+    "zorinos-description": "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface",
+    "zorin-pro-description": "Er is een variant genaamd 'Zorin Pro' met extra gebruikersinterface-lay-outs en technische ondersteuning.",
+    "elementary-os-pay-what-you-can-description": "Als je dat wilt, kan het project worden gesteund met een eenmalige vergoeding ('betaal wat je kunt').",
+    "ubuntu-pro-description": "De variant 'Ubuntu Pro' is tegen betaling beschikbaar en biedt extra ondersteuning.",
+    "suse-enterprise-description": "De variant 'SUSE Linux Enterprise Desktop' is tegen betaling beschikbaar en biedt extra ondersteuning."
 }

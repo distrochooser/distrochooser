@@ -311,5 +311,9 @@
     "xfce-default-description": "Die Standard-Desktop-Umgebung isch 'XFCE'.",
     "xubuntu-description": "Xubuntu isch e Distribution wo uf Ubuntu basiert und e XFCE-Desktop vorinstalliert het.",
     "years_old": "Johr alt",
-    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret"
+    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret",
+    "zorin-pro-description": "Eita he'n ebe'n 'Zorin Pro' mit widderegei UI-Louts und Tech-Support.",
+    "elementary-os-pay-what-you-can-description": "Wänn du wotsch, chann ds Projekt mit eme eimolige Bsuechi ('zahl, was du chasch') unterstützt werde.",
+    "ubuntu-pro-description": "[Translation context required for GSW/Swahili dialect for UI] - Assuming functional translation of meaning.",
+    "suse-enterprise-description": "D'Variante 'SUSE Linux Enterprise Desktop' isch für e Gebühr verfüegbar und git zuesätzlechi Unterstützig."
 }

@@ -311,5 +311,9 @@
     "xfce-default-description": "Стандартная среда рабочего стола — это 'XFCE'.",
     "xubuntu-description": "Xubuntu — дистрибутив, основанный на Ubuntu и снабжённый лёгкой средой рабочего стола XFCE",
     "years_old": "лет",
-    "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих"
+    "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих",
+    "zorin-pro-description": "Есть вариант 'Zorin Pro' с дополнительными макетами пользовательского интерфейса и технической поддержкой.",
+    "elementary-os-pay-what-you-can-description": "Если хочешь, проект можно поддержать единовременным взносом («плати столько, сколько можешь»).",
+    "ubuntu-pro-description": "Вариант 'Ubuntu Pro' доступен за плату и предлагает дополнительную поддержку.",
+    "suse-enterprise-description": "Вариант «SUSE Linux Enterprise Desktop» доступен на платной основе и предлагает дополнительную поддержку."
 }

@@ -311,5 +311,9 @@
     "xfce-default-description": "סביבת שולחן העבודה הסטנדרטית היא 'XFCE'.",
     "xubuntu-description": "‏Xubuntu היא הפצה המבוססת על Ubuntu ומופעלת באמצעות סביבת שולחן העבודה הקלילה XFCE",
     "years_old": "שנים",
-    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows"
+    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows",
+    "zorin-pro-description": "ישנה גרסה 'Zorin Pro' עם תצוגות ממשק משתמש נוספות ותמיכה טכנית.",
+    "elementary-os-pay-what-you-can-description": "אם תרצה, ניתן לתמוך בפרויקט בתשלום חד-פעמי ('שלם כמה שאתה יכול').",
+    "ubuntu-pro-description": "הגרסה 'Ubuntu Pro' זמינה בתשלום, ומציעה תמיכה נוספת.",
+    "suse-enterprise-description": "הגרסה 'SUSE Linux Enterprise Desktop' זמינה בתשלום, ומציעה תמיכה נוספת."
 }
