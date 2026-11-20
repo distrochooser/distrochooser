@@ -16,70 +16,50 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
+    <div>
+        <h1>
+            <LanguageTranslation translation-key="ABOUT_PAGE_TITLE" />
+        </h1>
+        <p>
+            <LanguageTranslation translation-key="ABOUT_PAGE_TEXT" />
+        </p>
+        <p>
+            <LanguageTranslation translation-key="about_page_text_stats_results" />
 
-    <Head>
-        <PageMeta v-if="!sessionStore.hardSessionFail" />
-    </Head>
-    <NuxtRouteAnnouncer />
-    <HardSessionFail v-if="sessionStore.hardSessionFail" />
-    <main role="main" class="container" v-if="sessionStore.session !== null && !sessionStore.hardSessionFail">
-        <MainNavigation />
-        <div class="page mt-3  position-relative top-40">
-            <div class="row text-center mb-3">
-                <div class="col-4">
-                </div>
-                <div class="col col-3">
-                    <Logo />
-                </div>
-                <div class="col col-1">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <h1>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_TITLE" />
-                </h1>
-                <p>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_TEXT" />
-                </p>
-                <p>
-                    <LanguageTranslation translation-key="about_page_text_stats_results" />
+            <span class="badge rounded-pill text-bg-light ms-1">
+                ~{{ sessionStore.session.testCount }}
+            </span>
+        </p>
+        <p>
+            <LanguageTranslation translation-key="about_page_text_stats_visitors" />
 
-                    <span class="badge rounded-pill text-bg-light ms-1">
-                        ~{{ sessionStore.session.testCount }}
-                    </span>
-                </p>
-                <p>
-                    <LanguageTranslation translation-key="about_page_text_stats_visitors" />
-
-                    <span class="badge rounded-pill text-bg-light ms-1">
-                        {{ sessionStore.session.visitorCount }}
-                    </span>
-                </p>
-                <h1>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TITLE" />
-                </h1>
-                <p>
-                    <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TEXT" /> <a target="_blank"
-                        href="https://codeberg.org/distrochooser/distrochooser">Codeberg</a>/ <a target="_blank"
-                        href="https://github.com/distrochooser/distrochooser">GitHub</a> (
-                    <LanguageTranslation translation-key="PRIVACY_PAGE_EXTERNAL_LINK" />)
-                </p>
-            </div>
-        </div>
-    </main>
+            <span class="badge rounded-pill text-bg-light ms-1">
+                {{ sessionStore.session.visitorCount }}
+            </span>
+        </p>
+        <h1>
+            <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TITLE" />
+        </h1>
+        <p>
+            <LanguageTranslation translation-key="ABOUT_PAGE_LICENSE_TEXT" /> <a target="_blank"
+                href="https://codeberg.org/distrochooser/distrochooser">Codeberg</a>/ <a target="_blank"
+                href="https://github.com/distrochooser/distrochooser">GitHub</a> (
+            <LanguageTranslation translation-key="PRIVACY_PAGE_EXTERNAL_LINK" />)
+        </p>
+    </div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { useRoute } from 'vue-router';
 import { useSessionStore } from '../../../states/session';
-import { EntryPointEnum } from '../../../sdk';
 
-const sessionStore = useSessionStore();
-const router = useRoute();
-const lang: string = router.params.lang as string;
-onMounted(async () => {
-    if (sessionStore.session == null) {
-        await sessionStore.createSession(lang, EntryPointEnum.About);
+declare module 'nuxt/app' {
+    interface NuxtLayouts {
+        'custom': unknown
     }
-});
+}
+// ---cut---
+definePageMeta({
+    layout: 'page',
+})
+
+const sessionStore = useSessionStore()
 </script>

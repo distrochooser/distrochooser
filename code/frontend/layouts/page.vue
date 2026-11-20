@@ -1,0 +1,64 @@
+<!--
+distrochooser
+Copyright (C) 2014-2026 Christoph Müller <distrochooser@chmr.eu>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<template>
+
+    <Head>
+        <PageMeta v-if="!sessionStore.hardSessionFail" />
+    </Head>
+    <HardSessionFail v-if="sessionStore.hardSessionFail" />
+    <NuxtRouteAnnouncer />
+    <main role="main" class="container" v-if="sessionStore.session !== null && !sessionStore.hardSessionFail">
+        <MainNavigation />
+        <div class=" position-relative top-40">
+            <div class="row text-center mt-3">
+                <div class="col-4">
+                </div>
+                <div class="col col-3 mt-3">
+                    <Logo />
+                </div>
+                <div class="col col-1">
+                </div>
+            </div>
+            <div class="row mb-3 m-3">
+                <slot />
+            </div>
+        </div>
+    </main>
+</template>
+
+<script setup lang="ts">
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { useSessionStore } from '../states/session';
+import { EntryPointEnum } from '../sdk';
+import HardSessionFail from '../components/HardSessionFail.vue';
+
+const sessionStore = useSessionStore();
+const router = useRoute();
+const lang: string = router.params.lang as string;
+onMounted(async () => {
+    if (sessionStore.session == null) {
+        await sessionStore.createSession(lang, EntryPointEnum.Contact);
+    }
+});
+</script>
+
+<style lang="scss">
+@use "../style/main.scss";
+</style>

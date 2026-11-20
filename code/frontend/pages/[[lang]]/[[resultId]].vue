@@ -96,7 +96,7 @@ onMounted(async () => {
     if (sessionStore.session) {
       setTimeout(() => {
         sessionStore.containerVisible = document.querySelector("#ad-slot-1").getBoundingClientRect().height > 0
-        sessionStore.updateSession(sessionStore.session.version)
+        sessionStore.updateSession(sessionStore.session.version, false)
       }, 1000)
     }
   }
@@ -112,7 +112,7 @@ watch(loading, (value) => {
   }
 })
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../../style/variables.scss";
 
 .rtl {

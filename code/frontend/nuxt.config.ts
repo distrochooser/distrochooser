@@ -1,5 +1,4 @@
 import { defineNuxtConfig } from "nuxt/config";
-import type { MetaTags } from "./sdk";
 
 const apiBasePath = () => process.env.NUXT_PUBLIC_BASE_PATH || "http://localhost:8000"
 
@@ -71,7 +70,6 @@ export default defineNuxtConfig({
   app: {
     loadingIndicator: true
   },
-  css: ["~/style/main.scss"],
   runtimeConfig: {
     public: {
       basePath: apiBasePath()
