@@ -16,7 +16,9 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-  <span v-for="(flag, key) in flags" :key="key" :class="'fi fi-' + flag" />
+  <span v-for="(flag, key) in flags" :key="key" class="mr-1">
+    {{ countryCodeToFlag(flag) }}
+  </span>
 </template>
 
 
@@ -32,10 +34,13 @@ interface FlagProps {
 const flags = computed(() => props.code.split(","))
 
 const props = defineProps<FlagProps>();
+
+// https://gist.github.com/miguelmota/7703bf5bac099db42636aa5390de3966
+const countryCodeToFlag = (isoCode) => {
+  return isoCode
+    .toUpperCase()
+    .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
+}
 </script>
 
-<style lang="scss" scoped>
-.fi {
-  margin-right: 0.5em;
-}
-</style>
+<style lang="scss" scoped></style>

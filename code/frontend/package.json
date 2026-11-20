@@ -4,6 +4,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "analyze": "PORT=3001 nuxt analyze",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -21,7 +22,6 @@
     "@popperjs/core": "^2.11.8",
     "all-contributors-cli": "^7.0.0",
     "bootstrap": "^5.3.8",
-    "flag-icons": "^7.6.0",
     "nuxt": "4.6.4",
     "pinia": "^4.1.0",
     "sass": "^1.107.0",

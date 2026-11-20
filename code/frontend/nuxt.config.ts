@@ -71,7 +71,7 @@ export default defineNuxtConfig({
   app: {
     loadingIndicator: true
   },
-  css: ["~/style/main.scss", "flag-icons/css/flag-icons.min.css"],
+  css: ["~/style/main.scss"],
   runtimeConfig: {
     public: {
       basePath: apiBasePath()
