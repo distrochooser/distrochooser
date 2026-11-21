@@ -303,7 +303,9 @@ export const useSessionStore = defineStore('websiteStore', {
             ).then(async (value: Session) => {
                 this.session = value
                 if (this.session.resultId) { /* using the resultId here as a check that the session is properly created */
-                    this.updatePages();
+                    /* The session provides initial pages, based on the version of the session */
+                    this.pages = value.initialPages
+                    this.selectPage(-1) /* select the first page */
                     /* The result list widget brings its own set of choosables. if not enabled, this request is not needed */
                     if (this.session.isFeedbackModeEnabled) {
                         this.sessionApi.sessionChoosableList({
@@ -341,17 +343,17 @@ export const useSessionStore = defineStore('websiteStore', {
 
         },
         async updatePages() {
-            this.sessionApi.sessionPageList({
-                sessionPk: this.session.resultId
-            }).then((pages: Page[]) => {
-                this.pages = pages
-                if (this.currentPage) {
-                    const oldPageNumber = this.currentPage.id;
-                    this.selectPage(oldPageNumber);
-                } else {
-                    this.selectPage(-1)
-                }
-            })
+            /* 
+            Kept for historical reasons
+            Originally, the pages come from an endpoind, which is now disabled
+            */
+            this.pages = this.session.initialPages
+            if (this.currentPage) {
+                const oldPageNumber = this.currentPage.id;
+                this.selectPage(oldPageNumber);
+            } else {
+                this.selectPage(-1)
+            }
         },
         async updateBehaviours() {
             this.facetteBehaviours = await this.sessionApi.sessionFacettebehaviourList({

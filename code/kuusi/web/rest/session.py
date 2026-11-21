@@ -48,7 +48,9 @@ from web.models import (
     Session,
     SessionVersion,
     Violation,
+    Page,
 )
+from web.rest.page import PageSerializer
 from web.util import (
     get_translation_haystack,
     AVAILABLE_LANGUAGES,
@@ -134,6 +136,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     is_language_rtl = serializers.SerializerMethodField()
     test_count = serializers.SerializerMethodField()
     visitor_count = serializers.SerializerMethodField()
+    initial_pages = serializers.SerializerMethodField()
 
     class Meta:
         model = Session
@@ -146,6 +149,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "session_origin",
             "is_origin_imported",
             "version",
+            "initial_pages",
             "entry_point",
             "base_url",
             "language_values",
@@ -193,6 +197,8 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             return get_translation_haystack(TRANSLATIONS, DEFAULT_LANGUAGE_CODE)
         return {}
     
+    def get_initial_pages(self, obj: Session) -> list:
+        return PageSerializer(instance=Page.get_session_version_pages(obj.version), many=True).data
 
 
 class SessionVersionSerializer(serializers.ModelSerializer):

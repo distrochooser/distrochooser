@@ -208,5 +208,5 @@ class PageViewSet(GenericViewSet, ListModelMixin):
 
         serializer = PageSerializer(pages, many=True)
 
-        serializer.context["session_pk"] = kwargs["session_pk"]
+        #serializer.context["session_pk"] = kwargs["session_pk"]
         return Response(serializer.data)
