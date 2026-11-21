@@ -349,7 +349,7 @@ export const useSessionStore = defineStore('websiteStore', {
                 sessionPk: this.session.resultId
             });
         },
-        async updateSession(sessionVersion: number) {
+        async updateSession(sessionVersion: number, updatePages: boolean) {
             this.session = await this.sessionApi.sessionPartialUpdate({
                 id: this.session.id,
                 lang: this.session.languageCode,
@@ -357,7 +357,9 @@ export const useSessionStore = defineStore('websiteStore', {
                 versionId: sessionVersion,
                 isContainerVisible: this.containerVisible
             })
-            await this.updatePages()
+            if (updatePages) {
+                await this.updatePages()
+            }
         },
         async changeLanguage(language: string) {
             this.session = await this.sessionApi.sessionPartialUpdate({

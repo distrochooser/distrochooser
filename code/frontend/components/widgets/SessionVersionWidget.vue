@@ -53,7 +53,7 @@ const selection = ref(store.session ? store.session.version : null)
 
 watch(selection, value => {
   if (store.session) {
-    store.updateSession(selection.value)
+    store.updateSession(selection.value, true)
   }
 }, { deep: true, immediate: true })
 
