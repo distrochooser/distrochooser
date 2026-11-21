@@ -50,6 +50,7 @@ from web.models import (
     TimeFrameCell,
     TimeFrameRow,
     Violation,
+    Stats
 )
 
 from django.utils.timezone import now
@@ -247,9 +248,18 @@ class ViolationAdmin(admin.ModelAdmin):
     )
 
 
+class StatsAdmin(admin.ModelAdmin):
+    list_display = (
+        "pk",
+        "clicks",
+        "tests",
+    )
+
+
 [
     admin.site.register(*models)
     for models in [
+        (Stats, StatsAdmin),
         (OldVersionWidget,),
         (Violation, ViolationAdmin),
         (TimeFrameCell, TimeFrameCellAdmin),

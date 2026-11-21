@@ -99,14 +99,19 @@ class Session(models.Model):
     class Meta:
         indexes = [
             models.Index(fields=["imported_from_session"]),
+            models.Index(fields=["id"]),
+            models.Index(fields=["result_id"]),
         ]
 
+    """
+    DEPRECATIONS
     def get_meta_value(self, key: str) -> str | None:
         matches = SessionMeta.objects.filter(session=self, meta_key=key)
         if matches.count() < 1:
             return None
         match: SessionMeta = matches[0]
         return match.meta_value
+    """
 
     def __str__(self) -> str:
         return f"{self.result_id}"

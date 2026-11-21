@@ -17,9 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from django.core.management.base import BaseCommand, CommandParser
-from web.models import Session, TimeFrame, TimeFrameRow
+from web.models import Session, TimeFrame, TimeFrameRow, Stats
 from termcolor import colored
 from tqdm import tqdm
+from kuusi.settings import SESSION_NUMBER_OFFSET
 from django.utils.timezone import now, datetime
 from django.utils.dateparse import parse_datetime
 from datetime import timedelta
@@ -54,10 +55,23 @@ class Command(BaseCommand):
 
         print(content)
 
+    def update_public_stats(self):
+        tests = SESSION_NUMBER_OFFSET + Session.objects.filter(is_ack=True).count()
+        clicks = SESSION_NUMBER_OFFSET + Session.objects.all().count()
+        Stats.objects.all().delete()
+        Stats(
+            tests=tests,
+            clicks=clicks
+        ).save()
+
     def handle(self, *args, **options):
         if options["csv"]:
             self.generate_csv()
             return
+        print(
+            f"Setting public stats..."
+        )
+        self.update_public_stats()
 
         year = options["year"]
         timeframe_type = TimeFrame.TimeFrameType.MONTH
@@ -87,7 +101,7 @@ class Command(BaseCommand):
                 start_date = end_date.replace(
                     day=1, hour=0, minute=0, second=0, microsecond=0
                 )
-
+    
         print(
             f"Timespan is {colored(start_date, 'magenta')} to {colored(end_date, 'red')}"
         )

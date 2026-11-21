@@ -41,6 +41,7 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
 from web.models import (
+    Stats,
     FacetteSelection,
     LanguageFeedback,
     MetaFilterValue,
@@ -171,29 +172,10 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         return get_meta_tags(obj.language_code)
 
     def get_test_count(self, _) -> int:
-        # Cache the results for the default amount of time
-        # to prevent unwanted database load
-        cache_key = f"test-count"
-        cached = cache.get(cache_key)
-        if cached:
-            return cached
-
-        count = SESSION_NUMBER_OFFSET + Session.objects.filter(is_ack=True).count()
-        cache.set(cache_key, count)
-        return count
+        return Stats.get().tests
 
     def get_visitor_count(self, _) -> int:
-        # Cache the results for the default amount of time
-        # to prevent unwanted database load
-        cache_key = f"visitor-count"
-        cached = cache.get(cache_key)
-        if cached:
-            return cached
-        # The overall visitor count is foggy, as the old sessions are not defined anymore
-        # Therefore this is only a rough estimate
-        count = SESSION_NUMBER_OFFSET + Session.objects.all().count()
-        cache.set(cache_key, count)
-        return count
+        return Stats.get().clicks
 
     def get_is_language_rtl(self, obj: Session) -> bool:
         return obj.is_rtl
@@ -295,7 +277,7 @@ class SessionViewSet(ViewSet):
         version: SessionVersion | None = None
         if version_id:
             versions = SessionVersion.objects.filter(pk=version_id)
-            if versions.first() is None:
+            if not versions.exists():
                 return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
             else:
                 version = versions[0]
@@ -392,7 +374,7 @@ class SessionViewSet(ViewSet):
         # As the session endpoint is _the_ central endpoint -> use for blocking
         # See ADR-0036 for details
         violations = Violation.objects.filter(user_agent=user_agent, invalidated=False)
-        if violations.count() > 0:
+        if violations.exists():
             violation = violations.first()
             violation.hits += 1
             violation.last_hit = now()
@@ -442,6 +424,7 @@ class SessionViewSet(ViewSet):
                 session.save()
         if old_session:
             self.clone_selections(old_session, session)
+        
         serializer = SessionSerializer(session)
         return Response(serializer.data)
 

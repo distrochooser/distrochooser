@@ -9,3 +9,8 @@ class Violation(models.Model):
     last_hit = models.DateTimeField(default=None, blank=True, null=True)
     valid_until = models.DateField(default=None, blank=True, null=True)
     invalidated = models.BooleanField(default=False)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["user_agent", "invalidated"]),
+        ]

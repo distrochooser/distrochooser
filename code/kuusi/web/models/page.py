@@ -225,45 +225,34 @@ class Page(models.Model):
         return queryset
 
     def is_marked(self, session: Session):
-        return (
-            PageMarking.objects.filter(
-                page=self,
-                session=session,
-                is_error=False,
-                is_warning=False,
-                is_info=False,
-            ).count()
-            > 0
-        )
+        return PageMarking.objects.filter(
+            page=self,
+            session=session,
+            is_error=False,
+            is_warning=False,
+            is_info=False,
+        ).exists()
 
     def is_error(self, session: Session):
-        return (
-            PageMarking.objects.filter(
+        return PageMarking.objects.filter(
                 page=self, session=session, is_error=True
-            ).count()
-            > 0
-        )
+        ).exists()
+            
 
     def is_warning(self, session: Session):
-        return (
-            PageMarking.objects.filter(
-                page=self, session=session, is_warning=True
-            ).count()
-            > 0
-        )
+        return PageMarking.objects.filter(
+            page=self, session=session, is_warning=True
+        ).exists()
 
     def is_info(self, session: Session):
-        return (
-            PageMarking.objects.filter(page=self, session=session, is_info=True).count()
-            > 0
-        )
+        return PageMarking.objects.filter(page=self, session=session, is_info=True).exists()
 
     def toggle_marking(self, session: Session):
         marking_matches = PageMarking.objects.filter(
             page=self, session=session, is_error=False, is_warning=False
         )
 
-        if marking_matches.count() > 0:
+        if marking_matches.exists():
             marking_matches.delete()
         else:
             marking = PageMarking(page=self, session=session)
