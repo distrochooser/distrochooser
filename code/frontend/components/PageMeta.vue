@@ -57,11 +57,11 @@ useHead({
         {
             rel: "apple-touch-icon",
             sizes: "192x192",
-            href: data.value.icon
+            href: data.value.meta["icon"]
         }, {
             rel: "icon",
             type: "image/x-icon",
-            href: data.value.icon
+            href: data.value.meta["icon"]
         }
     ]
 })

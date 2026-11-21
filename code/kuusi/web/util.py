@@ -116,10 +116,15 @@ def get_valid_language_code(language_code: str) -> str:
 
 
 def get_language_codes() -> List[str]:
-    return list(TRANSLATIONS.keys()).sort()
-
+    got = list(TRANSLATIONS.keys())
+    got.sort()
+    return got
 
 def get_meta_tags(language_code: str) -> Dict[str, any]:
+    cache_key = f"meta-tags-{language_code}"
+    cached = cache.get(cache_key)
+    if cached:
+        return cached
     tags = {}
     lang = get_valid_language_code(language_code)
     description_text = get_translation("description_text", lang)
@@ -128,7 +133,7 @@ def get_meta_tags(language_code: str) -> Dict[str, any]:
     tags["twitter:title"] = KUUSI_NAME
     tags["og:site_name"] = KUUSI_NAME
     tags["icon"] = KUUSI_ICON  # To pass it into link rel
-
+    tags["logo"] = KUUSI_LOGO
     # Set all descriptive tags
     if description_text != "description_text":
         tags["og:description"] = description_text
@@ -163,6 +168,8 @@ def get_meta_tags(language_code: str) -> Dict[str, any]:
     for key, value in ADDITIONAL_TAGS.items():
         tags[key] = value
     # add additional tags
+
+    cache.set(cache_key, tags)
     return tags
 
 

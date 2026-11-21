@@ -103,9 +103,15 @@ class MetaTagViewset(ListModelMixin, GenericViewSet):
     )
     def list(self, request, *args, **kwargs):
         lang = request.query_params.get("lang")
+        cache_key = f"meta-tag-response-{lang}"
+        cached = cache.get(cache_key)
+        if cached:
+            return Response(cached)
+        
         serializer = MetaTagsSerializer({}, many=False)
         serializer.context["lang"] = lang
 
+        cache.set(cache_key, serializer.data)
         return Response(serializer.data)
 
 
@@ -139,16 +145,13 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "language_codes",
             "session_origin",
             "is_origin_imported",
-            "started",
             "version",
             "base_url",
             "language_values",
             "default_language_values",
             "is_language_rtl",
             "name",
-            "logo",
             "meta",
-            "icon",
             "test_count",
             "visitor_count",
             "imprint_data",
@@ -156,7 +159,6 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "is_translation_mode_enabled",
             "is_feedback_mode_enabled",
             "previous_version_url",
-            "entry_point",
             "score_map",
         )
 
@@ -184,7 +186,12 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         return get_translation_haystack(TRANSLATIONS, obj.language_code)
 
     def get_default_language_values(self, obj: Session) -> Dict[str, str]:
-        return get_translation_haystack(TRANSLATIONS, DEFAULT_LANGUAGE_CODE)
+        # only  needed if there is a Translation mode enabled
+        # if not enabled, this is omitted to save transfer costs
+        if ENABLE_TRANSLATION_MODE:
+            return get_translation_haystack(TRANSLATIONS, DEFAULT_LANGUAGE_CODE)
+        return {}
+    
 
 
 class SessionVersionSerializer(serializers.ModelSerializer):
