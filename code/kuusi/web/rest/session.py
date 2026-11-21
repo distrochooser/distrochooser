@@ -274,41 +274,42 @@ class SessionViewSet(ViewSet):
     def partial_update(self, request, pk=None):
         lang = get_valid_language_code(request.query_params.get("lang"))
         version_id = request.query_params.get("version_id")
+        result_id = request.query_params.get("result_id")
         version: SessionVersion | None = None
+        
+        # Get the cached version of the session by it's result id
+        session = Session.get(result_id)
+        if not session:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        # Use pk as a bit of "second factor" here
+        if session.pk != int(pk): # FIXME: param is a string, not a int
+            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+
+
         if version_id:
             versions = SessionVersion.objects.filter(pk=version_id)
             if not versions.exists():
                 return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
             else:
                 version = versions[0]
+                session.version = version  # type: ignore
+
+        # TODO: This is a side effect. Find something more elegant
+        if ENABLE_TRANSLATION_MODE and session.language_code != lang:
+            LanguageFeedback.objects.filter(session=session).delete()
 
         container_update_needed = (
             request.query_params.get("is_container_visible", "") != ""
         )
-        is_container_visible: bool = (
-            request.query_params.get("is_container_visible", "") == "true"
-        )
-        sessions = Session.objects.filter(pk=pk)
-
-        session = sessions.first()
-        if not session:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        result_id = request.query_params.get("result_id")
-        if session.result_id != result_id:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        # TODO: This is a side effect. Find something more elegant
-        if session.language_code != lang:
-            LanguageFeedback.objects.filter(session=session).delete()
-
         if container_update_needed:
+            is_container_visible: bool = (
+                request.query_params.get("is_container_visible", "") == "true"
+            )
             session.is_container_visible = is_container_visible
 
         session.language_code = lang
         # TODO: Fix typing warning
         # Error complains about version not being able to be set, which should not be the case
-        session.version = version  # type: ignore
         session.save()
 
         serializer = SessionSerializer(session)

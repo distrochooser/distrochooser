@@ -127,7 +127,7 @@ class Session(models.Model):
         duration = self.ack_date_time - self.started
         return str(duration)
 
-    def get(result_id: str) -> Session:
+    def get(result_id: str) -> Session | None:
         """
         Abstraction layer to allow access to Session objects
 
