@@ -178,7 +178,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         return Stats.get().clicks
 
     def get_is_language_rtl(self, obj: Session) -> bool:
-        return obj.is_rtl
+        return obj.is_rtl()
 
     def get_language_values(self, obj: Session) -> Dict[str, str]:
         return get_translation_haystack(TRANSLATIONS, obj.language_code)
@@ -425,8 +425,10 @@ class SessionViewSet(ViewSet):
                 session.save()
         if old_session:
             self.clone_selections(old_session, session)
-        
+        from time import time
+        print(time())
         serializer = SessionSerializer(session)
+        print(time())
         return Response(serializer.data)
 
     def clone_selections(self, old_session: Session, session: Session) -> bool:
