@@ -146,6 +146,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "session_origin",
             "is_origin_imported",
             "version",
+            "entry_point",
             "base_url",
             "language_values",
             "default_language_values",
