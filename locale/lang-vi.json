@@ -315,5 +315,7 @@
     "zorin-pro-description": "Có một phiên bản 'Zorin Pro' với các bố cục giao diện người dùng bổ sung và hỗ trợ kỹ thuật.",
     "elementary-os-pay-what-you-can-description": "Nếu muốn, dự án có thể được hỗ trợ bằng một khoản phí một lần ('trả bao nhiêu tùy ý').",
     "ubuntu-pro-description": "Phiên bản 'Ubuntu Pro' có sẵn với phí, cung cấp hỗ trợ bổ sung.",
-    "suse-enterprise-description": "Phiên bản 'SUSE Linux Enterprise Desktop' có sẵn với phí, cung cấp hỗ trợ bổ sung."
+    "suse-enterprise-description": "Phiên bản 'SUSE Linux Enterprise Desktop' có sẵn với phí, cung cấp hỗ trợ bổ sung.",
+    "feedback_is_bug": "Phản hồi của tôi đề cập đến một lỗi/bug.",
+    "feedback_description": "Giúp dự án bằng cách đưa ra phản hồi."
 }

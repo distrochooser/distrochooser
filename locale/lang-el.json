@@ -315,5 +315,7 @@
     "zorin-pro-description": "Υπάρχει μια διαμόρφωση 'Zorin Pro' με επιπλέον bố cục διεπαφής χρήστη και τεχνική υποστήριξη.",
     "elementary-os-pay-what-you-can-description": "Αν επιθυμείτε, το έργο μπορεί να υποστηριχθεί με εφάπαξ πληρωμή («αποδίδετε όσο μπορείτε»).",
     "ubuntu-pro-description": "Η διαμόρφωση 'Ubuntu Pro' είναι διαθέσιμη με κόστος, προσφέροντας επιπλέον υποστήριξη.",
-    "suse-enterprise-description": "Η διαμόρφωση 'SUSE Linux Enterprise Desktop' είναι διαθέσιμη με κόστος, προσφέροντας επιπλέον υποστήριξη."
+    "suse-enterprise-description": "Η διαμόρφωση 'SUSE Linux Enterprise Desktop' είναι διαθέσιμη με κόστος, προσφέροντας επιπλέον υποστήριξη.",
+    "feedback_is_bug": "Η ανατροφοδότησή μου αφορά ένα bug.",
+    "feedback_description": "Βοήθησε το project δίνοντας feedback!"
 }

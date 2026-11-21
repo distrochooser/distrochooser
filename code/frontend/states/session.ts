@@ -41,6 +41,7 @@ interface SessionState {
     isBWMode: boolean;
     fontSize: number;
     givenFeedback: String;
+    isGivenFeedbackBug: boolean;
     isDarkMode: boolean;
     mustHaveAssignment: boolean;
     darkModeControlledByUser: boolean;
@@ -72,6 +73,7 @@ export const useSessionStore = defineStore('websiteStore', {
         isBWMode: false,
         fontSize: 1.5,
         givenFeedback: null,
+        isGivenFeedbackBug: false,
         isDarkMode: false,
         mustHaveAssignment: true,
         darkModeControlledByUser: false,
@@ -98,10 +100,14 @@ export const useSessionStore = defineStore('websiteStore', {
             this.givenFeedback = ""
         },
         async updateGivenFeedback() {
+            if (!this.givenFeedback) {
+                return;
+            }
             await this.sessionApi.sessionGivenfeedbackCreate({
                 sessionPk: this.session.resultId,
                 createGivenFeedback: {
-                    text: this.givenFeedback.toString()
+                    text: this.givenFeedback.toString(),
+                    isBug: this.isGivenFeedbackBug
                 }
             })
         },

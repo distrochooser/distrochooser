@@ -16,10 +16,8 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import (OpenApiParameter, OpenApiResponse,
-                                   extend_schema)
+from drf_spectacular.utils import OpenApiParameter, OpenApiResponse, extend_schema
 from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
@@ -31,12 +29,13 @@ from web.rest.hooks import fire_hook
 class CreateGivenFeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = GivenFeedback
-        fields = ('session', 'text')
+        fields = ("session", "text", "is_bug")
+
 
 class GivenFeedbackSerializer(CreateGivenFeedbackSerializer):
     class Meta:
         model = GivenFeedback
-        fields = ('text',)
+        fields = ("text",)
 
 
 class GivenFeedbackViewset(GenericViewSet):
@@ -45,34 +44,38 @@ class GivenFeedbackViewset(GenericViewSet):
 
     @extend_schema(
         request=CreateGivenFeedbackSerializer,
-        parameters=[ 
-          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True),
+        parameters=[
+            OpenApiParameter(
+                "session_pk",
+                OpenApiTypes.STR,
+                OpenApiParameter.PATH,
+                description="The session resultid",
+                required=True,
+            )
         ],
         responses={
             status.HTTP_200_OK: GivenFeedbackSerializer,
-        }
-    ) 
+        },
+    )
     def create(self, request, session_pk) -> CreateGivenFeedbackSerializer:
         data = request.data
         text = data["text"]
+        is_bug = data["is_bug"]
         session: Session = Session.get(session_pk)
 
-       
-        GivenFeedback.objects.filter(
-            session=session
-        ).delete()
-        
-        result = GivenFeedback(
-            session=session,
-            text=text
-        )
+        GivenFeedback.objects.filter(session=session).delete()
+
+        result = GivenFeedback(session=session, text=text, is_bug=is_bug)
         result.save()
 
-        fire_hook(text, session, "💬 Text Feedback", 15545396)
-
-        serializer = GivenFeedbackSerializer(
-            result
+        fire_hook(
+            text,
+            session,
+            "Text Feedback" if not is_bug else "Bug Report",
+            5814783 if not is_bug else 12261914,
         )
+
+        serializer = GivenFeedbackSerializer(result)
 
         serializer.context["session_pk"] = session_pk
         return Response(serializer.data)

@@ -34,6 +34,8 @@ class GivenFeedback(models.Model):
     )
     text = models.TextField(blank=False, null=False)
     import_date_time = models.DateTimeField(default=None, blank=True, null=True)
+    is_bug = models.BooleanField(default=False)
+    is_imported = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.text

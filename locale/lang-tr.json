@@ -315,5 +315,7 @@
     "zorin-pro-description": "Ek kullanıcı arayüzü düzenleri ve teknik destek ile 'Zorin Pro' adında bir varyant var.",
     "elementary-os-pay-what-you-can-description": "İstenirse, proje tek seferlik bir ücretle ('ne kadar istersen o kadar öde') desteklenebilir.",
     "ubuntu-pro-description": "'Ubuntu Pro' varyantı ücret karşılığında mevcuttur ve ek destek sunar.",
-    "suse-enterprise-description": "'SUSE Linux Enterprise Desktop' varyantı ek destek sunarak ücret karşılığında mevcuttur."
+    "suse-enterprise-description": "'SUSE Linux Enterprise Desktop' varyantı ek destek sunarak ücret karşılığında mevcuttur.",
+    "feedback_is_bug": "Geri bildirimim bir hataya/bug'a işaret ediyor.",
+    "feedback_description": "Geri bildirim vererek projeye yardım et."
 }

@@ -315,5 +315,7 @@
     "zorin-pro-description": "ישנה גרסה 'Zorin Pro' עם תצוגות ממשק משתמש נוספות ותמיכה טכנית.",
     "elementary-os-pay-what-you-can-description": "אם תרצה, ניתן לתמוך בפרויקט בתשלום חד-פעמי ('שלם כמה שאתה יכול').",
     "ubuntu-pro-description": "הגרסה 'Ubuntu Pro' זמינה בתשלום, ומציעה תמיכה נוספת.",
-    "suse-enterprise-description": "הגרסה 'SUSE Linux Enterprise Desktop' זמינה בתשלום, ומציעה תמיכה נוספת."
+    "suse-enterprise-description": "הגרסה 'SUSE Linux Enterprise Desktop' זמינה בתשלום, ומציעה תמיכה נוספת.",
+    "feedback_is_bug": "המשוב שלי מתייחס לבאג.",
+    "feedback_description": "עזור לפרויקט על ידי מתן משוב."
 }

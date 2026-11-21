@@ -315,5 +315,7 @@
     "zorin-pro-description": "「Zorin Pro」というバリアントがあり、追加のユーザーインターフェースレイアウトと技術サポートが付属しています。",
     "elementary-os-pay-what-you-can-description": "ご希望であれば、プロジェクトは一度限りの料金（「できるだけ支払う」）でサポートすることができます。",
     "ubuntu-pro-description": "バリアント「Ubuntu Pro」は有料で利用可能で、追加サポートを提供します。",
-    "suse-enterprise-description": "「SUSE Linux Enterprise Desktop」というバリアントは、追加サポート付きで有料で提供されています。"
+    "suse-enterprise-description": "「SUSE Linux Enterprise Desktop」というバリアントは、追加サポート付きで有料で提供されています。",
+    "feedback_is_bug": "私のフィードバックはバグに関するものです。",
+    "feedback_description": "フィードバックをくれることでプロジェクトを応援してね！"
 }

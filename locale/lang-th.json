@@ -317,5 +317,7 @@
     "zorin-pro-description": "มีตัวเลือก 'Zorin Pro' ซึ่งมาพร้อมกับเลย์เอาต์ส่วนต่อประสานผู้ใช้เพิ่มเติมและการสนับสนุนทางเทคนิค",
     "elementary-os-pay-what-you-can-description": "หากต้องการ โครงการนี้สามารถสนับสนุนด้วยค่าธรรมเนียมครั้งเดียว ('จ่ายเท่าที่คุณจ่ายได้')",
     "ubuntu-pro-description": "ตัวแปร 'Ubuntu Pro' มีให้ใช้งานโดยมีค่าใช้จ่าย พร้อมให้การสนับสนุนเพิ่มเติม",
-    "suse-enterprise-description": "ตัวแปร 'SUSE Linux Enterprise Desktop' มีให้ใช้งานโดยมีค่าธรรมเนียม ซึ่งให้การสนับสนุนเพิ่มเติม"
+    "suse-enterprise-description": "ตัวแปร 'SUSE Linux Enterprise Desktop' มีให้ใช้งานโดยมีค่าธรรมเนียม ซึ่งให้การสนับสนุนเพิ่มเติม",
+    "feedback_is_bug": "ข้อเสนอแนะของฉันเกี่ยวข้องกับบั๊ก",
+    "feedback_description": "ช่วยโครงการด้วยการให้ข้อเสนอแนะนะ"
 }

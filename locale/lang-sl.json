@@ -315,5 +315,7 @@
     "zorin-pro-description": "Obstaja variant 'Zorin Pro' z dodatnimi zasloni interfejsa in tehnično podporo.",
     "elementary-os-pay-what-you-can-description": "Če želiš, projekt lahko podporeš z enkratno plačilom (\\plačaj",
     "ubuntu-pro-description": "Varianta 'Ubuntu Pro' je na voljo za naključek in ponuja dodatno podporo.",
-    "suse-enterprise-description": "Varianta 'SUSE Linux Enterprise Desktop' je na voljo za plačilo, kar ponuja dodatno podporo."
+    "suse-enterprise-description": "Varianta 'SUSE Linux Enterprise Desktop' je na voljo za plačilo, kar ponuja dodatno podporo.",
+    "feedback_is_bug": "Moje povratne informacije se nanašajo na napako/bug.",
+    "feedback_description": "Pomoči projektu, dajendo povratne informacije."
 }

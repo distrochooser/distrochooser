@@ -315,5 +315,7 @@
     "zorin-pro-description": "On olemassa variantti nimeltä 'Zorin Pro'",
     "elementary-os-pay-what-you-can-description": "Jos haluat, projektia voi tukea kertamaksulla ('maksa mitä voit').",
     "ubuntu-pro-description": "Muunnelma 'Ubuntu Pro' on saatavilla maksullisesti ja tarjoaa lisäohjeistusta.",
-    "suse-enterprise-description": "Variantti 'SUSE Linux Enterprise Desktop' on saatavilla maksua, tarjoten lisäohjeistusta."
+    "suse-enterprise-description": "Variantti 'SUSE Linux Enterprise Desktop' on saatavilla maksua, tarjoten lisäohjeistusta.",
+    "feedback_is_bug": "Palautteeni viittaa virheeseen/bugiin.",
+    "feedback_description": "Auta projektia antamalla palautetta!"
 }

@@ -315,5 +315,7 @@
     "zorin-pro-description": "Ada varian 'Zorin Pro' dengan tata letak antarmuka pengguna tambahan dan dukungan teknis.",
     "elementary-os-pay-what-you-can-description": "Jika diinginkan, proyek ini dapat didukung dengan biaya satu kali ('bayar sesuai kemampuanmu').",
     "ubuntu-pro-description": "Varian 'Ubuntu Pro' tersedia dengan biaya, menawarkan dukungan tambahan.",
-    "suse-enterprise-description": "Varian 'SUSE Linux Enterprise Desktop' tersedia dengan biaya, menawarkan dukungan tambahan."
+    "suse-enterprise-description": "Varian 'SUSE Linux Enterprise Desktop' tersedia dengan biaya, menawarkan dukungan tambahan.",
+    "feedback_is_bug": "Umpan balik saya mengacu pada bug.",
+    "feedback_description": "Bantu proyek ini dengan memberikan masukan."
 }

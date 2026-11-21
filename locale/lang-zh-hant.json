@@ -315,5 +315,7 @@
     "zorin-pro-description": "有一個名為「Zorin Pro」的變體，它提供額外的使用者介面佈局和技術支援。",
     "elementary-os-pay-what-you-can-description": "如果您希望，該專案可以透過一次性費用（「隨心付費」）獲得支持。",
     "ubuntu-pro-description": "「Ubuntu Pro」變體是付費的，提供額外支援。",
-    "suse-enterprise-description": "「SUSE Linux Enterprise Desktop」這個變體是收費的，並提供額外的支援。"
+    "suse-enterprise-description": "「SUSE Linux Enterprise Desktop」這個變體是收費的，並提供額外的支援。",
+    "feedback_is_bug": "我的反饋涉及一個bug。",
+    "feedback_description": "給予回饋，幫助這個專案吧！"
 }

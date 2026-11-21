@@ -315,5 +315,7 @@
     "zorin-pro-description": "Eita he'n ebe'n 'Zorin Pro' mit widderegei UI-Louts und Tech-Support.",
     "elementary-os-pay-what-you-can-description": "Wänn du wotsch, chann ds Projekt mit eme eimolige Bsuechi ('zahl, was du chasch') unterstützt werde.",
     "ubuntu-pro-description": "[Translation context required for GSW/Swahili dialect for UI] - Assuming functional translation of meaning.",
-    "suse-enterprise-description": "D'Variante 'SUSE Linux Enterprise Desktop' isch für e Gebühr verfüegbar und git zuesätzlechi Unterstützig."
+    "suse-enterprise-description": "D'Variante 'SUSE Linux Enterprise Desktop' isch für e Gebühr verfüegbar und git zuesätzlechi Unterstützig.",
+    "feedback_is_bug": "Mis Feedback bezieht sich uf en Bug.",
+    "feedback_description": "Help project by giving feedback."
 }

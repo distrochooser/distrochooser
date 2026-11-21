@@ -317,5 +317,7 @@
     "zorin-pro-description": "There is a variant 'Zorin Pro' with additional user interface layouts and tech support.",
     "elementary-os-pay-what-you-can-description": "If desired, the project can be supported with a one-time-fee ('pay what you can').",
     "ubuntu-pro-description": "The variant 'Ubuntu Pro' is available for a fee, offering additional support.",
-    "suse-enterprise-description": "The variant 'SUSE Linux Enterprise Desktop' is available for a fee, offering additional support."
+    "suse-enterprise-description": "The variant 'SUSE Linux Enterprise Desktop' is available for a fee, offering additional support.",
+    "feedback_is_bug": "My feedback refers to a bug.",
+    "feedback_description": "Help the project by giving feedback!"
 }

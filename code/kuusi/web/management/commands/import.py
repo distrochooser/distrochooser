@@ -159,6 +159,7 @@ class Command(BaseCommand):
                         session_id=session_id,
                         text=f"{remark_text}",
                         import_date_time=now,
+                        is_imported=True,
                     )
                     obj.save()
 
