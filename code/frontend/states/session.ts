@@ -302,18 +302,23 @@ export const useSessionStore = defineStore('websiteStore', {
                 }
             ).then(async (value: Session) => {
                 this.session = value
-                if (this.session.resultId) {
-                    this.choosables = await this.sessionApi.sessionChoosableList({
-                        sessionPk: this.session.resultId
-                    })
-                    await this.updatePages();
-                    /** Select the first available page, if any */
-                    this.selectPage(-1)
+                if (this.session.resultId) { /* using the resultId here as a check that the session is properly created */
+                    this.updatePages();
+                    /* The result list widget brings its own set of choosables. if not enabled, this request is not needed */
+                    if (this.session.isFeedbackModeEnabled) {
+                        this.sessionApi.sessionChoosableList({
+                            sessionPk: this.session.resultId
+                        }).then((choosables: Choosable[]) => {
+                            this.choosables = choosables
+                        })
+                    }
                 }
                 // if there was a resultId given -> update selections from it
                 if (resultId) {
-                    this.facetteSelections = await this.sessionApi.sessionFacetteselectionList({
+                    this.sessionApi.sessionFacetteselectionList({
                         sessionPk: this.session.resultId
+                    }).then((value: FacetteSelection[]) => {
+                        this.facetteSelections = value
                     })
                     this.getMetaValues();
                 }
@@ -336,13 +341,17 @@ export const useSessionStore = defineStore('websiteStore', {
 
         },
         async updatePages() {
-            this.pages = await this.sessionApi.sessionPageList({
+            this.sessionApi.sessionPageList({
                 sessionPk: this.session.resultId
+            }).then((pages: Page[]) => {
+                this.pages = pages
+                if (this.currentPage) {
+                    const oldPageNumber = this.currentPage.id;
+                    this.selectPage(oldPageNumber);
+                } else {
+                    this.selectPage(-1)
+                }
             })
-            if (this.currentPage) {
-                const oldPageNumber = this.currentPage.id;
-                this.selectPage(oldPageNumber);
-            }
         },
         async updateBehaviours() {
             this.facetteBehaviours = await this.sessionApi.sessionFacettebehaviourList({

@@ -145,6 +145,7 @@ class PageSerializer(serializers.ModelSerializer):
 
 class PageViewSet(GenericViewSet, ListModelMixin):
     serializer_class = PageSerializer
+    queryset = Page.objects.all()
 
     @extend_schema(
         request=None,
