@@ -18,11 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <template>
     <NuxtLink class="d-none d-xl-block" v-if="store.session && router.path.startsWith('/pages')"
         :to="'/' + store.session.languageCode">
-        <img v-if="store.session" :src="store.session.logo" />
+        <NuxtImg :src="store.session.logo" loading="lazy" />
     </NuxtLink>
     <a class="mt-3 d-none d-xl-block" v-else-if="store.session && !router.path.startsWith('/pages')" href="#"
         v-on:click="store.selectPage(-1)">
-        <img v-if="store.session" :src="store.session.logo" />
+        <NuxtImg :src="store.session.logo" loading="lazy" />
     </a>
 </template>
 <script setup>

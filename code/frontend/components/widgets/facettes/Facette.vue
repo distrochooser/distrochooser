@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       imageFacetteLarge
   }">
     <div :class="{ 'border border-primary  border-3': isSelected, 'p-3': true }">
-      <img :title="'Credit: ' + props.facette.imageCredit" :src="props.facette.imagePath" class="w-100 mt-3"
+      <NuxtImg :title="'Credit: ' + props.facette.imageCredit" :src="props.facette.imagePath" class="w-100 mt-3"
         @click="registerImageClick" />
       <div class="image-facette-label mt-2">
         <a href="#" @click.prevent="imageFacetteLarge = !imageFacetteLarge" class="btn btn-primary btn-sm">

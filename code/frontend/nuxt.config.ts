@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@pinia/nuxt',
     '@nuxt/icon',
+    '@nuxt/image',
   ],
   icon: {
     provider: 'none',
