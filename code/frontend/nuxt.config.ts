@@ -35,6 +35,7 @@ export default defineNuxtConfig({
         "ion:settings-outline",
         "ion:md-cloud-download",
         "ion:ios-settings-strong",
+        "ion:rocket-outline",
         "ion:ios-arrow-dropright-circle"]
     },
   },

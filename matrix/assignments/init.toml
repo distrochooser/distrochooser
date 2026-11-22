@@ -1,0 +1,256 @@
+# distrochooser
+# Copyright (C) 2014-2026 Christoph Müller <distrochooser@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#entfernen: deprecation?
+#"no-systemd"
+
+# For all distributions using systemd as a kind of default/ official init system
+# there is a positive hit for systemd facette AND a blocking hit for the no-systemd facette
+
+# Arch has other init systems in AUR, but officially supports only systemd. Therefore, we only map systemd here.
+# the Ubuntu derivates are considered inheriting the ubuntu decision -> upstart -> systemd
+# the debian derivates are considered inheriting the debian decision -> systemd
+# Linux Mint seems to inherit Ubuntu and Debian choices here, according to https://en.wikipedia.org/wiki/Linux_Mint
+
+
+[assignment.systemd-used-positive]
+facettes = ["systemd"]
+choosables = [
+    "arch",
+    "solus",
+    "ubuntu",
+    "kubuntu",
+    "ubuntumate",
+    "lubuntu",
+    "xubuntu",
+    "mint",
+    "debian",
+    "tails",
+    "asahi",
+    "emmabuntus",
+    "parrot",
+    "nobara",
+    "cachyos",
+    "bazzite",
+    "nixos",
+    "deepin",
+    "popos",
+    "qubesos",
+    "elementaryos",
+    "zorinos",
+    "manjaro",
+    "rhel",
+    "rocky",
+    "opensuse"
+]
+how = "positive"
+sources = [
+    "arch;https://wiki.archlinux.org/title/Init",
+    "solus;https://help.getsol.us/docs/user/quick-start/boot-management/",
+    "ubuntu;https://lists.ubuntu.com/archives/ubuntu-devel-announce/2015-March/001130.html",
+    "debian;https://www.debian.org/doc/manuals/debian-reference/ch03.en.html",
+    "tails;https://tails.net/contribute/design/",
+    "asahi;https://asahilinux.org/docs/alt/policy/",
+    "parrot;https://de.wikipedia.org/wiki/Parrot_OS",
+    "nobara;https://github.com/Nobara-Project/nobara-core-packages/blob/main/nobara-updater/UPDATES.md",
+    "cachyos;https://wiki.cachyos.org/configuration/boot_manager_configuration/",
+    "bazzite;https://docs.bazzite.gg/Installing_and_Managing_Software/software-intro/",
+    "nixos;https://wiki.nixos.org/wiki/Systemd",
+    "popos;https://github.com/pop-os/systemd",
+    "qubesos;https://doc.qubes-os.org/en/latest/user/advanced-topics/qubes-service.html",
+    "zorinos;https://forum.zorin.com/t/init-systems-systemd-evil-will-zorinos-consider-an-alternative/64928",
+    "manjaro;https://wiki.manjaro.org/index.php?title=System_Maintenance",
+    "rhel;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-managing_services_with_systemd",
+    "opensuse;https://en.wikipedia.org/wiki/Systemd"
+]
+
+
+[assignment.systemd-used-negative]
+facettes = ["no-systemd"]
+choosables = [
+    "arch",
+    "solus",
+    "ubuntu",
+    "kubuntu",
+    "ubuntumate",
+    "lubuntu",
+    "xubuntu",
+    "mint",
+    "debian",
+    "tails",
+    "asahi",
+    "emmabuntus",
+    "fedora",
+    "parrot",
+    "nobara",
+    "cachyos",
+    "bazzite",
+    "nixos",
+    "deepin",
+    "popos",
+    "qubesos",
+    "elementaryos",
+    "zorinos",
+    "manjaro",
+    "rhel",
+    "rocky",
+    "opensuse"
+]
+how = "blocking"
+sources = [
+    "arch;https://wiki.archlinux.org/title/Init",
+    "solus;https://help.getsol.us/docs/user/quick-start/boot-management/",
+    "ubuntu;https://lists.ubuntu.com/archives/ubuntu-devel-announce/2015-March/001130.html",
+    "debian;https://www.debian.org/doc/manuals/debian-reference/ch03.en.html",
+    "tails;https://tails.net/contribute/design/",
+    "asahi;https://asahilinux.org/docs/alt/policy/",
+    "fedora;https://docs.fedoraproject.org/en-US/quick-docs/systemd-understanding-and-administering/",
+    "parrot;https://de.wikipedia.org/wiki/Parrot_OS",
+    "nobara;https://github.com/Nobara-Project/nobara-core-packages/blob/main/nobara-updater/UPDATES.md",
+    "cachyos;https://wiki.cachyos.org/configuration/boot_manager_configuration/",
+    "bazzite;https://docs.bazzite.gg/Installing_and_Managing_Software/software-intro/",
+    "nixos;https://wiki.nixos.org/wiki/Systemd",
+    "popos;https://github.com/pop-os/systemd",
+    "qubesos;https://doc.qubes-os.org/en/latest/user/advanced-topics/qubes-service.html",
+    "zorinos;https://forum.zorin.com/t/init-systems-systemd-evil-will-zorinos-consider-an-alternative/64928",
+    "manjaro;https://wiki.manjaro.org/index.php?title=System_Maintenance",
+    "rhel;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-managing_services_with_systemd",
+    "opensuse;https://en.wikipedia.org/wiki/Systemd"
+]
+
+# TODO: negative mapping for distros without systemd when systemd is wanted?
+
+# Distributions without default systemd
+
+# Generic no-systemd positive mapping
+
+[assignment.no-systemd]
+facettes = ["no-systemd"]
+choosables = [
+    "void",
+    "artix",
+    "devuan",
+    "pclinuxos",
+    "gentoo",
+    "mxlinux",
+    "knoppix",
+    "cruxlinux"
+]
+how = "positive"
+sources = [
+    "void;https://docs.voidlinux.org/config/services/index.html",
+    "artix;https://wiki.artixlinux.org/Main/Installation",
+    "devuan;https://www.devuan.org/os/documentation/install-guides/excalibur/install-devuan",
+    "pclinuxos;https://www.pclosusers.com/wiki/index.php?title=Frequently_Asked_Questions#Does_PCLinuxOS_use_systemd?",
+    "gentoo;https://wiki.gentoo.org/wiki/Comparison_of_init_systems",
+    "knoppix;https://www.devuan.org/os/init-freedom",
+    "cruxlinux;https://en.wikipedia.org/wiki/CRUX"
+]
+
+# Individual init system mapping where $system is default
+
+[assignment.runit-used-positive]
+facettes = ["runit"]
+choosables = [
+    "void"
+]
+how = "positive"
+sources = [
+    "void;https://docs.voidlinux.org/config/services/index.html",
+]
+
+[assignment.sysvinit-used-positive]
+facettes = ["sysvinit"]
+choosables = [
+    "devuan",
+    "pclinuxos",
+    "mxlinux"
+]
+how = "positive"
+sources = [
+    "devuan;https://www.devuan.org/os/documentation/install-guides/excalibur/install-devuan",
+    "pclinuxos;https://www.pclosusers.com/wiki/index.php?title=Frequently_Asked_Questions#Does_PCLinuxOS_use_systemd?",
+    "mxlinux;https://mxlinux.org/wiki/system/systemd/"
+]
+
+# Gentoo supports a bunch of init systems
+# While only openrc (default) and systemd are "officially" supported. We will ignore other options here.
+
+[assignment.openrc-used-positive]
+facettes = ["openrc"]
+choosables = [
+    "gentoo"
+]
+how = "positive"
+sources = [
+    "gentoo;https://wiki.gentoo.org/wiki/Comparison_of_init_systems",
+]
+
+# Mappings where $system is a option, but not default
+
+[assignment.runit-option]
+facettes = ["runit"]
+choosables = [
+    "artix",
+    "devuan"
+]
+how = "positive"
+sources = [
+    "artix;https://wiki.artixlinux.org/Main/Installation",
+    "devuan;https://www.devuan.org/os/documentation/install-guides/excalibur/install-devuan"
+]
+
+[assignment.openrc-option]
+facettes = ["openrc"]
+choosables = [
+    "artix",
+    "devuan"
+]
+how = "positive"
+sources = [
+    "artix;https://wiki.artixlinux.org/Main/Installation",
+    "devuan;https://www.devuan.org/os/documentation/install-guides/excalibur/install-devuan"
+]
+
+[assignment.s6-option]
+facettes = ["s6"]
+choosables = [
+    "artix"
+]
+how = "positive"
+sources = [
+    "artix;https://wiki.artixlinux.org/Main/Installation"
+]
+
+
+[assignment.systemd-option]
+facettes = ["systemd"]
+choosables = [
+    "gentoo",
+    "mxlinux"
+]
+how = "positive"
+sources = [
+    "gentoo;https://wiki.gentoo.org/wiki/Comparison_of_init_systems",
+    "mxlinux;https://mxlinux.org/wiki/system/systemd/"
+]
+
+
+
+
+[behaviour.not-possible]
+subjects = ["systemd"]
+objects = ["no-systemd"]

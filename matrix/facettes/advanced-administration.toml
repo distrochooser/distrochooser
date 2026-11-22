@@ -14,8 +14,5 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-[facette.no-systemd]
-topic = "advanced-administration"
-
 [facette.distro-with-immutable-design]
 topic = "advanced-administration"

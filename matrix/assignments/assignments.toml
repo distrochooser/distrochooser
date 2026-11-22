@@ -874,60 +874,6 @@ choosables = [
 how = "positive"
 
 
-# distrochooser::translation::en::uses systemd
-# distrochooser::translation::key::uses-systemd-facette-no-systemd-description
-[assignment.uses-systemd-facette-no-systemd]
-facettes = ["no-systemd"]
-choosables = [
-    "ubuntu",
-    "debian",
-    "tails",
-    "arch",
-    "mint",
-    "opensuse",
-    "solus",
-    "manjaro",
-    "rocky",
-    "rhel",
-    "Fedora",
-    "ZorinOS",
-    "elementaryos",
-    "Xubuntu",
-    "Lubuntu",
-    "UbuntuMATE",
-    "kubuntu",
-    "popos",
-    "deepin",
-    "bazzite",
-    "nobara",
-    "emmabuntus",
-    "parrot"
-]
-how = "blocking"
-
-
-# distrochooser::translation::en::Avoids systemd
-# distrochooser::translation::key::avoids-systemd-facette-no-systemd-description
-[assignment.avoids-systemd-facette-no-systemd]
-facettes = ["no-systemd"]
-choosables = ["devuan", "pclinuxos", "Knoppix", "CruxLinux", "artix"]
-how = "positive"
-
-
-# distrochooser::translation::en::Systemd can be avoided per user selection
-# distrochooser::translation::key::systemd-is-avoidable-per-selection-facette-no-systemd-description
-[assignment.systemd-is-avoidable-per-selection-facette-no-systemd]
-facettes = ["no-systemd"]
-choosables = ["Gentoo", "void"]
-how = "positive"
-
-
-# distrochooser::translation::en::Systemd is shipped, but disabled by default
-# distrochooser::translation::key::ships-systemd-but-disabled-facette-no-systemd-description
-[assignment.ships-systemd-but-disabled-facette-no-systemd]
-facettes = ["no-systemd"]
-choosables = ["MXLinux"]
-how = "positive"
 
 [assignment.uses-immutable-design]
 facettes = ["distro-with-immutable-design"]

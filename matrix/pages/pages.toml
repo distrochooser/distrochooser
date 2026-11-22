@@ -250,7 +250,7 @@ not_in_versions = ["simplified"]
 [page.advanced-administration-page]
 index=15
 icon="ion:ios-settings-strong"
-next_page = "updates-page"
+next_page = "init-page"
 hide_help = true
 
 [widget.selection.advanced-administration-page-widget-name]
@@ -266,13 +266,23 @@ structure = [
 ]
 pages = ["advanced-administration-page"]
 
+[page.init-page]
+index=16
+icon="ion:rocket-outline"
+next_page = "updates-page"
+hide_help = true
+
+[widget.selection.init-widget]
+topic = "init"
+pages = ["init-page"]
+not_in_versions = ["simplified"]
 
 # Updates 
 
 # distrochooser::translation::en::Software: Updates
 # distrochooser::translation::key::updates-page-title
 [page.updates-page]
-index=16
+index=17
 next_page = "result-page"
 hide_help = true
 not_in_versions = ["simplified"]
@@ -295,7 +305,7 @@ pages = ["updates-page"]
 # distrochooser::translation::en::Show your results
 # distrochooser::translation::key::result-page-title
 [page.result-page]
-index=17
+index=18
 hide_help = true
 hide_text = true
 can_be_marked = false

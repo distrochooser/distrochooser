@@ -21,6 +21,7 @@
 #include ./pages/pages.toml
 #include ./facettes/administration.toml
 #include ./facettes/advanced-administration.toml
+#include ./facettes/init.toml
 #include ./facettes/help.toml
 #include ./facettes/ideology.toml
 #include ./facettes/installation.toml
@@ -40,3 +41,4 @@
 #include ./assignments/ai.toml
 #include ./assignments/desktops.toml
 #include ./assignments/pricing.toml
+#include ./assignments/init.toml
