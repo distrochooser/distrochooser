@@ -270,6 +270,7 @@ pages = ["advanced-administration-page"]
 index=16
 icon="ion:rocket-outline"
 next_page = "updates-page"
+not_in_versions = ["simplified"]
 hide_help = true
 
 [widget.selection.init-widget]
