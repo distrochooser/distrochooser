@@ -331,7 +331,7 @@
     "openrc-option-description": "OpenRC är ett konfigurationsalternativ.",
     "s6-option-description": "s6 är ett konfigurationsalternativ.",
     "runit-option-description": "runit är ett konfigurationsalternativ.",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Använder sysvinit som standard",
     "systemd-option-description": "systemd är ett konfigurationsalternativ",
     "rhel-pricing-description": "Denna Linux-distribution är betald."

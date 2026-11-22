@@ -331,7 +331,7 @@
     "openrc-option-description": "Το OpenRC είναι μια επιλογή διαμόρφωσης.",
     "s6-option-description": "το s6 είναι μια επιλογή διαμόρφωσης.",
     "runit-option-description": "το runit είναι επιλογή διαμόρφωσης.",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Χρησιμοποιεί το sysvinit ως προεπιλογή",
     "systemd-option-description": "το systemd είναι επιλογή διαμόρφωσης",
     "rhel-pricing-description": "Αυτή η διανομή Linux είναι διαθέσιμη με κόστος."

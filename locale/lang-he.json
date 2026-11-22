@@ -331,7 +331,7 @@
     "openrc-option-description": "OpenRC הוא אפשרות תצורה.",
     "s6-option-description": "s6 הוא אפשרות קונפיגורציה.",
     "runit-option-description": "runit היא אפשרות תצורה.",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "משתמש ב-sysvinit כברירת מחדל",
     "systemd-option-description": "systemd הוא אפשרות תצורה",
     "rhel-pricing-description": "יש לציין שחלוקת לינוקס זו דורשת תשלום."

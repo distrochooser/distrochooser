@@ -331,7 +331,7 @@
     "openrc-option-description": "OpenRC adalah opsi konfigurasi.",
     "s6-option-description": "s6 adalah opsi konfigurasi.",
     "runit-option-description": "runit adalah opsi konfigurasi.",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Menggunakan sysvinit secara default",
     "systemd-option-description": "systemd adalah pilihan konfigurasi",
     "rhel-pricing-description": "Distribusi Linux ini tersedia dengan biaya."

@@ -331,7 +331,7 @@
     "openrc-option-description": "OpenRC は設定オプションです。",
     "s6-option-description": "s6は設定オプションです。",
     "runit-option-description": "runitは設定オプションです。",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "sysvinitをデフォルトで使用します",
     "systemd-option-description": "systemd は設定オプションです",
     "rhel-pricing-description": "このLinuxディストリビューションは有料です。"

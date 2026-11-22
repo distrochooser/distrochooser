@@ -331,7 +331,7 @@
     "openrc-option-description": "OpenRC ni chaguo la usanidi.",
     "s6-option-description": "s6 isch en Konfigurationsoption.",
     "runit-option-description": "runit es eine Konfigurationsoption.",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "",
     "systemd-option-description": "systemd isch e Konfigurationsoption",
     "rhel-pricing-description": "Die Linux-Distro isch z'kaufe."

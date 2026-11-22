@@ -331,7 +331,7 @@
     "openrc-option-description": "OpenRC 是一個配置選項。",
     "s6-option-description": "s6 是一個配置選項。",
     "runit-option-description": "runit 是一個配置選項。",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "預設使用sysvinit",
     "systemd-option-description": "systemd 是一個配置選項",
     "rhel-pricing-description": "此 Linux 發行版需要付費。"

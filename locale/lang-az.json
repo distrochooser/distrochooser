@@ -331,7 +331,7 @@
     "openrc-option-description": "OpenRC bir konfiqurasiya variantıdır.",
     "s6-option-description": "s6 bir konfiqurasiya seçimidir.",
     "runit-option-description": "runit bir konfiqurasiya seçimidir.",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Varsayılan olaraq sysvinit-dən istifadə edir.",
     "systemd-option-description": "systemd bir konfiqurasiya seçimidir",
     "rhel-pricing-description": "Bu Linux paylanması ödənişlə mövcuddur."

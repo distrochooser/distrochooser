@@ -331,7 +331,7 @@
     "openrc-option-description": "OpenRC je konfiguracijska možnost.",
     "s6-option-description": "s6 je konfiguracijska možnost.",
     "runit-option-description": "runit je konfiguracijska možnost.",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Uporablja sysvinit kot podaljšanje",
     "systemd-option-description": "systemd je konfiguracijska možnost",
     "rhel-pricing-description": "Ta Linux distribucija je na voljo z plačilom."

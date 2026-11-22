@@ -331,7 +331,7 @@
     "openrc-option-description": "OpenRC è un'opzione di configurazione.",
     "s6-option-description": "s6 è un'opzione di configurazione.",
     "runit-option-description": "runit è un'opzione di configurazione.",
-    "sysvinit-description": "sysvinit",
+    "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Usa sysvinit di default",
     "systemd-option-description": "systemd è un'opzione di configurazione",
     "rhel-pricing-description": "Questa distribuzione Linux è a pagamento."
