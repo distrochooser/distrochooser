@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "Utilise sysvinit par défaut",
     "systemd-option-description": "systemd est une option de configuration",
     "rhel-pricing-description": "Cette distribution Linux est payante.",
-    "exit-link-description": "Ce lien renvoie vers une page externe et ne fait pas partie de notre site web."
+    "exit-link-description": "Ce lien renvoie vers une page externe et ne fait pas partie de notre site web.",
+    "privacy-page-help": "Il peut s'agir de fonctionnalités activées par défaut, comme l'envoi de données de télémétrie, la synchronisation de l'heure, les rapports de bugs intégrés et autres.",
+    "fedora-telemetry-proposal-description": "Une approche opt-in pour la soumission de télémesure a été discutée, mais n'a pas été implémentée.",
+    "general-privacy-focused-description": "Le concept est axé sur la confidentialité",
+    "tails-tor-description": "Toute la communication réseau passe par le réseau Tor.",
+    "debian-popcon-description": "L'installation demande d'installer l'outil de télémétrie 'popularity-contest'. Si il n'est pas installé, aucune télémétrie n'est soumise.",
+    "zorinos-census-description": "Si 'zorin-os-census' n'est pas désinstallé ou exclu pendant l'installation, l'outil 'zorin-os-census' fera des pings aux serveurs du fabricant à des fins statistiques.",
+    "opensuse-uuid-description": "Lors de l'installation, un UUID est généré et stocké dans '/var/lib/zypp/AnonymousUniqueId' pour permettre au développeur de déterminer le nombre d'installations actives.",
+    "void-popcorn-description": "Les utilisateurs peuvent participer optionnellement à la télémétrie des statistiques de paquets en installant le programme 'PopCorn'.",
+    "no-known-telemetry-description": "Aucun composant de télémétrie.",
+    "distrochooser-6-release-text": "On a mis à jour cette version 🎉 Tu trouves l'annonce sur https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }

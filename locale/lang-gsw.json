@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "",
     "systemd-option-description": "systemd isch e Konfigurationsoption",
     "rhel-pricing-description": "Die Linux-Distro isch z'kaufe.",
-    "exit-link-description": "Dä Link füehrt uf e externi Siit und isch nöd Teil vo eusere Website."
+    "exit-link-description": "Dä Link füehrt uf e externi Siit und isch nöd Teil vo eusere Website.",
+    "privacy-page-help": "These can be default enabled features, such as submitting of telemetry data, time synchronisations, integrated bug reports and others.",
+    "fedora-telemetry-proposal-description": "E Opt-in-Ansatz für d’Telemetrie-Iireichig diskutiert, aber nöd umgsetzt.",
+    "general-privacy-focused-description": "Das Konzept isch uf Datenschutz fokussiert",
+    "tails-tor-description": "Alli Netzwärkskommunikation lauft dürs Tor-Netzwärk.",
+    "debian-popcon-description": "Setup verlangt d'd'Telemetry-Tool 'popularity-contest' z'installiere. Wenns nöd installiert wird, wird keini Telemetrie gschickt.",
+    "zorinos-census-description": "Wänn 'zorin-os-census' nöd deinstalliert oder bim Installiere usgschlosse wird, sendet ds Tool 'zorin-os-census' für Statistikzueg zu de Hersteller-Server. ",
+    "opensuse-uuid-description": "Währed de Installation wird e UUID erstellt und in '/var/lib/zypp/AnonymousUniqueId' gspeichered, dass de Entwickler d'Zahl vo de aktive Installatione chann findä.",
+    "void-popcorn-description": "Nutzer chönd optional a de Paket-Stats-Telemetrie mitmäache, indem si s'Programm 'PopCorn' installiered.",
+    "no-known-telemetry-description": "No telemetry components.",
+    "distrochooser-6-release-text": "Mir hend disi Version aktualisiert 🎉 Du findsch d'Aamäldig uf https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }

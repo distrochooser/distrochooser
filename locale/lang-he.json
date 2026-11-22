@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "משתמש ב-sysvinit כברירת מחדל",
     "systemd-option-description": "systemd הוא אפשרות תצורה",
     "rhel-pricing-description": "יש לציין שחלוקת לינוקס זו דורשת תשלום.",
-    "exit-link-description": "קישור זה מפנה לדף חיצוני ואינו חלק מהאתר שלנו."
+    "exit-link-description": "קישור זה מפנה לדף חיצוני ואינו חלק מהאתר שלנו.",
+    "privacy-page-help": "אלה יכולים להיות תכונות המופעלות כברירת מחדל, כמו שליחת נתוני תלמטריה, סינכרון זמן, דוחות באגים משולבים ועוד.",
+    "fedora-telemetry-proposal-description": "נדון גישה המבוססת על Opt-in להגשת נתונים (Telemetry), אך לא מומשה.",
+    "general-privacy-focused-description": "המושג מתמקד באבטחת פרטיות",
+    "tails-tor-description": "כל התקשורת ברשת עוברת דרך רשת טור.",
+    "debian-popcon-description": "ההתקנה מבקשת להתקין את כלי ה-Telemetry 'popularity-contest'. אם לא מותקן, לא יישלח מידע Telemetry.",
+    "zorinos-census-description": "אם לא יוסר או יימחק במהלך ההתקנה, הכלי 'zorin-os-census' ישלח פינג לשרתי היצרן למטרות סטטיסטיות.",
+    "opensuse-uuid-description": "במהלך ההתקנה, נוצר UUID ונשמר בקובץ '/var/lib/zypp/AnonymousUniqueId' כדי לאפשר למפתח לקבוע את מספר ההתקנות הפעילות.",
+    "void-popcorn-description": "משתמשים יכולים להשתתף בהטלת נתונים סטטיסטיים של חבילות באופן אופציונלי על ידי התקנת התוכנה 'PopCorn'.",
+    "no-known-telemetry-description": "ללא רכיבי טלמטריה.",
+    "distrochooser-6-release-text": "עדכנו את הגרסה הזו 🎉 אפשר למצוא את ההכרזה ב-https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }

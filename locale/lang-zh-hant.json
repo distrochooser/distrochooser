@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "預設使用sysvinit",
     "systemd-option-description": "systemd 是一個配置選項",
     "rhel-pricing-description": "此 Linux 發行版需要付費。",
-    "exit-link-description": "此連結指向外部頁面，不屬於我們的網站。"
+    "exit-link-description": "此連結指向外部頁面，不屬於我們的網站。",
+    "privacy-page-help": "這些可能是預設啟用的功能，例如提交遙測數據、時間同步、集成錯誤報告等等。",
+    "fedora-telemetry-proposal-description": "討論了基於選擇加入的遙測提交方法，但沒有實施。",
+    "general-privacy-focused-description": "概念著重於隱私",
+    "tails-tor-description": "所有網絡通訊都通過 Tor 網絡。",
+    "debian-popcon-description": "設定要求安裝遙測工具 'popularity-contest'。如果沒有安裝，則不提交遙測數據。",
+    "zorinos-census-description": "如果未在安裝過程中卸載或排除，工具 'zorin-os-census' 將會向製造商伺服器發送 ping 以進行統計目的。",
+    "opensuse-uuid-description": "在安裝過程中，會生成一個UUID並儲存在'/var/lib/zypp/AnonymousUniqueId'中，以便開發者確定活動安裝的數量。",
+    "void-popcorn-description": "用戶可以透過安裝程式「PopCorn」，選擇性地參與套件統計遙測。",
+    "no-known-telemetry-description": "沒有遙測組件。",
+    "distrochooser-6-release-text": "我們更新了這個版本 🎉 你可以在 https://github.com/distrochooser/distrochooser/releases/tag/6.9.0 查看公告"
 }

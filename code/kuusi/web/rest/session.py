@@ -35,6 +35,7 @@ from kuusi.settings import (
     ENABLE_FEEDBACK_MODE,
     PREVIOUS_VERSION_URL,
     SCORE_MAP,
+    KUUSI_BANNER,
 )
 from rest_framework import serializers, status
 from rest_framework.mixins import ListModelMixin
@@ -109,7 +110,7 @@ class MetaTagViewset(ListModelMixin, GenericViewSet):
         cached = cache.get(cache_key)
         if cached:
             return Response(cached)
-        
+
         serializer = MetaTagsSerializer({}, many=False)
         serializer.context["lang"] = lang
 
@@ -137,6 +138,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
     test_count = serializers.SerializerMethodField()
     visitor_count = serializers.SerializerMethodField()
     initial_pages = serializers.SerializerMethodField()
+    banner = serializers.CharField(default=KUUSI_BANNER)
 
     class Meta:
         model = Session
@@ -149,6 +151,7 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
             "session_origin",
             "is_origin_imported",
             "version",
+            "banner",
             "initial_pages",
             "entry_point",
             "base_url",
@@ -196,9 +199,11 @@ class SessionSerializer(serializers.ModelSerializer, MetaTagsSerializer):
         if ENABLE_TRANSLATION_MODE:
             return get_translation_haystack(TRANSLATIONS, DEFAULT_LANGUAGE_CODE)
         return {}
-    
+
     def get_initial_pages(self, obj: Session) -> list:
-        return PageSerializer(instance=Page.get_session_version_pages(obj.version), many=True).data
+        return PageSerializer(
+            instance=Page.get_session_version_pages(obj.version), many=True
+        ).data
 
 
 class SessionVersionSerializer(serializers.ModelSerializer):
@@ -290,15 +295,14 @@ class SessionViewSet(ViewSet):
         version_id = request.query_params.get("version_id")
         result_id = request.query_params.get("result_id")
         version: SessionVersion | None = None
-        
+
         # Get the cached version of the session by it's result id
         session = Session.get(result_id)
         if not session:
             return Response(status=status.HTTP_404_NOT_FOUND)
         # Use pk as a bit of "second factor" here
-        if session.pk != int(pk): # FIXME: param is a string, not a int
+        if session.pk != int(pk):  # FIXME: param is a string, not a int
             return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
-
 
         if version_id:
             versions = SessionVersion.objects.filter(pk=version_id)

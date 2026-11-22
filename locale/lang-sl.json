@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "Uporablja sysvinit kot podaljšanje",
     "systemd-option-description": "systemd je konfiguracijska možnost",
     "rhel-pricing-description": "Ta Linux distribucija je na voljo z plačilom.",
-    "exit-link-description": "Ta povezava vodi na zunanje stran in ni del mojega spletnega mesta."
+    "exit-link-description": "Ta povezava vodi na zunanje stran in ni del mojega spletnega mesta.",
+    "privacy-page-help": "To lahko so funkcije, ki so vnaprej vključene, kot je pošiljanje telemetričnih podatkov, sinhronizacija časa, integrirani poročila o napakam in drugi.",
+    "fedora-telemetry-proposal-description": "Zgodil se razgovor o pristopu na podlagi opt-in za pošiljanje telemetriji, vendar ni bil implementiran.",
+    "general-privacy-focused-description": "Koncept je usmerjen na zasebnost",
+    "tails-tor-description": "Vsa spletna komunikacija gre skozi Tor mrezo.",
+    "debian-popcon-description": "Namestitev zahteva namestitev orodja za telemetrijo 'popularity-contest'. Če ni nameščeno, se telemetrija ne pošilja.",
+    "zorinos-census-description": "Če storitev 'zorin-os-census' ne odstranite ali izključite med namestitvijo, bo orodje 'zorin-os-census' pošiljal ping na serverje proizvajalca za statistične namene.",
+    "opensuse-uuid-description": "Med nastavitvijo se ustvari UUID in ga skozi v '/var/lib/zypp/AnonymousUniqueId', kar omzmoži razvojnemcu določiti število aktivnih namestitev.",
+    "void-popcorn-description": "Uporabniki lahko v lokalnih podatkih o paketih sodelujejo s namestitvijo programa 'PopCorn'.",
+    "no-known-telemetry-description": "Brez telemetričnih komponent.",
+    "distrochooser-6-release-text": "Posodobili smo to verzijo 🎉 Oglas najdeš na https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }

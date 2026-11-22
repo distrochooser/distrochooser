@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "Nutzt sysvinit als Standard",
     "systemd-option-description": "systemd ist eine Konfigurationsoption",
     "rhel-pricing-description": "Diese Linux-Distribution kostet Geld.",
-    "exit-link-description": "Dieser Link führt zu einer externen Seite und gehört nicht zu unserer Website."
+    "exit-link-description": "Dieser Link führt zu einer externen Seite und gehört nicht zu unserer Website.",
+    "privacy-page-help": "Das können standardmäßig aktivierte Funktionen sein, wie das Senden von Telemetriedaten, Zeitsynchronisierungen, integrierte Fehlerberichte und andere.",
+    "fedora-telemetry-proposal-description": "Ein opt-in-basiertes Vorgehen für die Telemetrieübermittlung wurde besprochen, aber nicht umgesetzt.",
+    "general-privacy-focused-description": "Das Konzept ist datenschutzorientiert",
+    "tails-tor-description": "Die gesamte Netzwerkkommunikation läuft über das Tor-Netzwerk.",
+    "debian-popcon-description": "Setup fragt nach dem Telemetrie-Tool 'popularity-contest'. Wenn es nicht installiert wird, wird keine Telemetrie gesendet.",
+    "zorinos-census-description": "Wenn 'zorin-os-census' nicht deinstalliert oder bei der Installation ausgeschlossen wird, sendet das Tool 'zorin-os-census' zu statistischen Zwecken Anfragen an die Hersteller-Server.",
+    "opensuse-uuid-description": "Während der Einrichtung wird eine UUID erstellt und in '/var/lib/zypp/AnonymousUniqueId' gespeichert, damit der Entwickler die Anzahl der aktiven Installationen ermitteln kann.",
+    "void-popcorn-description": "Nutzer können optional an der Paket-Statistik-Telemetrie teilnehmen, indem sie das Programm 'PopCorn' installieren.",
+    "no-known-telemetry-description": "Keine Telemetrie-Komponenten.",
+    "distrochooser-6-release-text": "Wir haben diese Version aktualisiert 🎉 Du findest die Ankündigung auf https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }

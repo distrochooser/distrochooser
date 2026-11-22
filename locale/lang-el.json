@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "Χρησιμοποιεί το sysvinit ως προεπιλογή",
     "systemd-option-description": "το systemd είναι επιλογή διαμόρφωσης",
     "rhel-pricing-description": "Αυτή η διανομή Linux είναι διαθέσιμη με κόστος.",
-    "exit-link-description": "Αυτός ο σύνδεσμος οδηγεί σε εξωτερική σελίδα και δεν είναι μέρος της ιστοσελίδας μας."
+    "exit-link-description": "Αυτός ο σύνδεσμος οδηγεί σε εξωτερική σελίδα και δεν είναι μέρος της ιστοσελίδας μας.",
+    "privacy-page-help": "Αυτά μπορούν να είναι χαρακτηριστικά που είναι ενεργοποιημένα από προεπιλογή, όπως η αποστολή δεδομένων telemetρίας, η συγχρονισμός του χρόνου, οι ενσωματωμένες αναφορές σφαλμάτων και άλλα.",
+    "fedora-telemetry-proposal-description": "Βουτήχθηκε μια προσέγγιση με επιλογή (opt-in) για την υποβολή telemetrii, αλλά δεν υλοποιήθηκε.",
+    "general-privacy-focused-description": "Η έννοια εστιάζει στην ιδιωτικότητα",
+    "tails-tor-description": "Όλη η επικοινωνία του δικτύου περνάει από το δίκτυο Tor.",
+    "debian-popcon-description": "Η ρύθμιση ζητά την εγκατάσταση του εργαλείου telemetρίας 'popularity-contest'. Αν δεν εγκατασταθεί, δεν υποβάλλεται καμία telemetρία.",
+    "zorinos-census-description": "Εάν δεν αποσυλλαστεί ή αποκλειστεί κατά την εγκατάσταση, το εργαλείο 'zorin-os-census' θα στέλνει ping στους διακομιστές του κατασκευαστή για στατιστικούς σκοπούς.",
+    "opensuse-uuid-description": "Κατά την εγκατάσταση, δημιουργείται ένας UUID και αποθηκεύεται στο '/var/lib/zypp/AnonymousUniqueId' για να επιτρέψει στον προγραμματιστή να προσδιορίσει τον αριθμό των ενεργών εγκαταστάσεων.",
+    "void-popcorn-description": "Οι χρήστες μπορούν να συμμετάσχουν προαιρετικά στη τηλεμετρία στατιστικών πακέτων εγκαθιστώντας το πρόγραμμα 'PopCorn'.",
+    "no-known-telemetry-description": "Χωρίς συνιστώματα τηλεμετρίας.",
+    "distrochooser-6-release-text": "Ενημερώσαμε αυτή την έκδοση 🎉 Μπορείς να βρεις την ανακοίνωση στο https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }

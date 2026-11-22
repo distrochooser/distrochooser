@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "Varsayılan olaraq sysvinit-dən istifadə edir.",
     "systemd-option-description": "systemd bir konfiqurasiya seçimidir",
     "rhel-pricing-description": "Bu Linux paylanması ödənişlə mövcuddur.",
-    "exit-link-description": "Bu keçid xarici səhifəyə yönəlir və veb saytımızın bir hissəsi deyil."
+    "exit-link-description": "Bu keçid xarici səhifəyə yönəlir və veb saytımızın bir hissəsi deyil.",
+    "privacy-page-help": "Bunlar telemetriya məlumatlarının göndərilməsi, vaxt sinxronizasiyaları, inteqrasiya olunmuş bug reportları və digərləri kimi standart olaraq aktiv olan xüsusiyyətlər ola bilər.",
+    "fedora-telemetry-proposal-description": "Telemetriya göndərmək üçün opt-in əsaslı bir yanaşma müzakirə edilib, lakin tətbiq edilməyib.",
+    "general-privacy-focused-description": "Konsepsiya məxfiliyətə yönəlib",
+    "tails-tor-description": "Bütün şəbəkə əlaqələri tor şəbəkəsi vasitəsilə gedir.",
+    "debian-popcon-description": "Quraşdırma telemetry aləti 'popularity-contest'-i quraşdırmaq tələb edir. Əgər quraşdırılmasa, heç bir telemetry göndərilmir.",
+    "zorinos-census-description": "Əgər uninstall olunmasa və ya quraşdırma zamanı istisna edilməsə, 'zorin-os-census' aləti statistik məqsədlər üçün istehsalçı serverlərinə ping göndərəcək.",
+    "opensuse-uuid-description": "Təsis zamanı bir UUID yaradılır və '/var/lib/zypp/AnonymousUniqueId' faylına saxlanılır ki, təminatçı aktiv quraşdırma sayını müəyyən edə bilsin.",
+    "void-popcorn-description": "Kullanıcılar, 'PopCorn' programını kurarak paket istatistikleri telemetrisine isteğe bağlı olarak katılabilirler.",
+    "no-known-telemetry-description": "Telemetriya komponentləri yoxdur.",
+    "distrochooser-6-release-text": "Bu versiyan yenilədik 🎉 Sən elanla https://github.com/distrochooser/distrochooser/releases/tag/6.9.0 əlaqəsində tapa bilərsən"
 }

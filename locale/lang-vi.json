@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "Sử dụng sysvinit làm mặc định",
     "systemd-option-description": "systemd là một tùy chọn cấu hình",
     "rhel-pricing-description": "Bản phân phối Linux này yêu cầu một khoản phí.",
-    "exit-link-description": "Liên kết này tham chiếu đến một trang bên ngoài và không phải là một phần của trang web của chúng tôi."
+    "exit-link-description": "Liên kết này tham chiếu đến một trang bên ngoài và không phải là một phần của trang web của chúng tôi.",
+    "privacy-page-help": "Đây có thể là các tính năng được bật mặc định, chẳng hạn như gửi dữ liệu telemetry, đồng bộ hóa thời gian, báo cáo lỗi tích hợp và các tính năng khác.",
+    "fedora-telemetry-proposal-description": "Đã thảo luận về phương pháp dựa trên opt-in để gửi dữ liệu telemetry, nhưng không được triển khai.",
+    "general-privacy-focused-description": "Khái niệm tập trung vào quyền riêng tư",
+    "tails-tor-description": "Tất cả giao tiếp mạng đều đi qua mạng Tor.",
+    "debian-popcon-description": "Cài đặt yêu cầu cài đặt công cụ telemetry 'popularity-contest'. Nếu không được cài đặt, sẽ không gửi telemetry.",
+    "zorinos-census-description": "Nếu không gỡ cài đặt hoặc loại trừ trong quá trình cài đặt, công cụ 'zorin-os-census' sẽ ping các máy chủ của nhà sản xuất cho các mục đích thống kê.",
+    "opensuse-uuid-description": "Trong quá trình cài đặt, một UUID được tạo và lưu vào '/var/lib/zypp/AnonymousUniqueId' để cho phép nhà phát triển xác định số lượng cài đặt đang hoạt động.",
+    "void-popcorn-description": "Người dùng có thể tham gia tùy chọn vào việc thu thập dữ liệu thống kê gói bằng cách cài đặt chương trình 'PopCorn'.",
+    "no-known-telemetry-description": "Không có thành phần telemetry.",
+    "distrochooser-6-release-text": "Chúng tôi đã cập nhật phiên bản này 🎉 Bạn có thể tìm thấy thông báo tại https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }

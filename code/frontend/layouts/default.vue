@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import Banner from '../components/Banner.vue';
+
+</script>
+
 <!--
 distrochooser
 Copyright (C) 2014-2026 Christoph Müller <distrochooser@chmr.eu>
@@ -17,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <template>
+    <banner />
     <slot />
 </template>
 

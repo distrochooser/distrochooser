@@ -337,5 +337,15 @@
     "sysvinit-used-positive-description": "ใช้ sysvinit เป็นค่าเริ่มต้น",
     "systemd-option-description": "systemd เป็นตัวเลือกการกำหนดค่า",
     "rhel-pricing-description": "การแจกจ่าย Linux นี้ต้องเสียค่าใช้จ่าย",
-    "exit-link-description": "ลิงก์นี้อ้างอิงถึงหน้าภายนอกและไม่ได้เป็นส่วนหนึ่งของเว็บไซต์ของเรา"
+    "exit-link-description": "ลิงก์นี้อ้างอิงถึงหน้าภายนอกและไม่ได้เป็นส่วนหนึ่งของเว็บไซต์ของเรา",
+    "privacy-page-help": "สิ่งเหล่านี้อาจเป็นคุณสมบัติที่เปิดใช้งานโดยค่าเริ่มต้น เช่น การส่งข้อมูลโทรมาตริก, การซิงค์เวลา, รายงานบั๊กในตัว และอื่น ๆ",
+    "fedora-telemetry-proposal-description": "ได้มีการพูดคุยเกี่ยวกับแนวทางแบบ opt-in สำหรับการส่งข้อมูล Telemetry แต่ไม่ได้นำไปใช้",
+    "general-privacy-focused-description": "แนวคิดเน้นความเป็นส่วนตัว",
+    "tails-tor-description": "การสื่อสารเครือข่ายทั้งหมดผ่านเครือข่าย Tor.",
+    "debian-popcon-description": "การตั้งค่าขอให้ติดตั้งเครื่องมือวัดข้อมูล 'popularity-contest' หากไม่ได้ติดตั้ง จะไม่มีการส่งข้อมูล",
+    "zorinos-census-description": "หากไม่ได้ถอนการติดตั้งหรือยกเว้นระหว่างการติดตั้ง เครื่องมือ 'zorin-os-census' จะทำการ ping ไปยังเซิร์ฟเวอร์ของผู้ผลิตเพื่อวัตถุประสงค์ทางสถิติ",
+    "opensuse-uuid-description": "ระหว่างการติดตั้ง จะมีการสร้าง UUID และบันทึกลงใน '/var/lib/zypp/AnonymousUniqueId' เพื่อให้ผู้พัฒนาสามารถตรวจสอบจำนวนการติดตั้งที่ใช้งานอยู่ได้",
+    "void-popcorn-description": "ผู้ใช้สามารถเข้าร่วมการรายงานข้อมูลสถิติของแพ็กเกจแบบทางเลือกโดยการติดตั้งโปรแกรม 'PopCorn' ",
+    "no-known-telemetry-description": "ไม่มีองค์ประกอบโทรมาตร",
+    "distrochooser-6-release-text": "เราอัปเดตเวอร์ชันนี้ 🎉 คุณสามารถดูประกาศได้ที่ https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }

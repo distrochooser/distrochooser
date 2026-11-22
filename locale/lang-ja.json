@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "sysvinitをデフォルトで使用します",
     "systemd-option-description": "systemd は設定オプションです",
     "rhel-pricing-description": "このLinuxディストリビューションは有料です。",
-    "exit-link-description": "このリンクは外部ページを参照しており、当社のウェブサイトの一部ではありません。"
+    "exit-link-description": "このリンクは外部ページを参照しており、当社のウェブサイトの一部ではありません。",
+    "privacy-page-help": "これらは、テレメトリデータの送信、時刻同期、統合されたバグ報告など、デフォルトで有効になっている機能である可能性があります。",
+    "fedora-telemetry-proposal-description": "テレメトリ送信のためのオプトイン方式が議論されましたが、実装されませんでした。",
+    "general-privacy-focused-description": "コンセプトはプライバシー重視です",
+    "tails-tor-description": "すべてのネットワーク通信はTorネットワークを介して行われます。",
+    "debian-popcon-description": "セットアップではテレメトリーツール「popularity-contest」のインストールを求めます。インストールされていない場合、テレメトリーは送信されません。",
+    "zorinos-census-description": "インストール時にアンインストールまたは除外されない限り、ツール「zorin-os-census」は統計目的でメーカーのサーバーにpingを送信します。",
+    "opensuse-uuid-description": "セットアップ中にUUIDが生成され、「/var/lib/zypp/AnonymousUniqueId」に保存されます。これにより、開発者はアクティブなインストール数を判断できます。",
+    "void-popcorn-description": "ユーザーは「PopCorn」プログラムをインストールすることで、パッケージ統計のテレメトリーにオプションで参加できます。",
+    "no-known-telemetry-description": "テレメトリコンポーネントなし。",
+    "distrochooser-6-release-text": "このバージョンを更新しました 🎉 発表は https://github.com/distrochooser/distrochooser/releases/tag/6.9.0 で確認できます"
 }

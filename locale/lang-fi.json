@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "Käyttää sysvinitä oletuksena",
     "systemd-option-description": "systemd on konfiguraatioasetus",
     "rhel-pricing-description": "Tämä Linux-jakelu on saatavilla maksua vastaan.",
-    "exit-link-description": "Tämä linkki johtaa ulkoiselle sivulle eikä kuulu verkkosivustomme."
+    "exit-link-description": "Tämä linkki johtaa ulkoiselle sivulle eikä kuulu verkkosivustomme.",
+    "privacy-page-help": "Näitä voi olla oletusarvoisesti käytössä olevia ominaisuuksia, kuten telemetrian tietojen lähettäminen, ajan synkronointi, integroidut virheilmoitukset ja muita.",
+    "fedora-telemetry-proposal-description": "Opt-in-perustettu telemetrian lähetysmenetelmää keskusteltiin, mutta sitä ei toteutettu.",
+    "general-privacy-focused-description": "Konsepti on yksityisyyteen keskittyvä",
+    "tails-tor-description": "Kaikki verkkoliikenne kulkee Tor-verkon läpi.",
+    "debian-popcon-description": "Asennus pyytää asentaa telemetriatyökalun 'popularity-contest'. Jos sitä ei asenneta, telemetriaa ei lähetetä.",
+    "zorinos-census-description": "Jos 'zorin-os-census' ei poisteta asennuksesta eikä sitä ole suljettu pois asennuksen aikana, työkalu 'zorin-os-census' lähettää pingi valmistajan palvelimille tilastollisten tarkoituksiin.",
+    "opensuse-uuid-description": "Asennuksen aikana luodaan UUID ja tallennetaan '/var/lib/zypp/AnonymousUniqueId' -tiedostoon, jotta kehittäjä voi määrittää aktiivisten asennusten määrän.",
+    "void-popcorn-description": "Käyttäjät voivat valinnaisesti osallistua pakettien tilastotietojen telemetriaan asentamalla ohjelman 'PopCorn'.",
+    "no-known-telemetry-description": "Ei telemetrikomponentteja.",
+    "distrochooser-6-release-text": "Päivityimme tämän version 🎉 Voit löytää tiedot täältä https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }

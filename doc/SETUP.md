@@ -19,6 +19,7 @@
 |FRONTEND_URL|The URL without trailing slash representing the frontend URL|
 |KUUSI_NAME|The name of the application. Will be used e. g. in OGP tags and the frontend|
 |SESSION_NUMBER_OFFSET|The amount of tests to be added to the current database count|
+|KUUSI_BANNER|A language key to display as a top banner. If empty, nothing is displayed|
 |WEIGHT_MAP|Factor to give to each weight|
 |DEFAULT_LANGUAGE_CODE|The `iso-639-1` code to use from `LANGUAGES` representing the default language|
 |KUUSI_LOGO|The logo to add to frontend sessions|

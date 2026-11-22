@@ -335,5 +335,15 @@
     "sysvinit-used-positive-description": "Menggunakan sysvinit secara default",
     "systemd-option-description": "systemd adalah pilihan konfigurasi",
     "rhel-pricing-description": "Distribusi Linux ini tersedia dengan biaya.",
-    "exit-link-description": "Tautan ini mengarah ke halaman eksternal dan bukan bagian dari situs web kami."
+    "exit-link-description": "Tautan ini mengarah ke halaman eksternal dan bukan bagian dari situs web kami.",
+    "privacy-page-help": "Ini bisa jadi fitur yang aktif secara default, seperti pengiriman data telemetri, sinkronisasi waktu, laporan bug terintegrasi, dan lainnya.",
+    "fedora-telemetry-proposal-description": "Pendekatan berbasis opt-in untuk pengiriman telemetri telah dibahas, tetapi tidak diterapkan.",
+    "general-privacy-focused-description": "Konsep ini berfokus pada privasi",
+    "tails-tor-description": "Semua komunikasi jaringan melalui jaringan Tor.",
+    "debian-popcon-description": "Setup meminta untuk menginstal alat telemetri 'popularity-contest'. Jika tidak dipasang, tidak ada telemetri yang dikirim.",
+    "zorinos-census-description": "Jika tidak dihapus atau dikecualikan selama pemasangan, alat 'zorin-os-census' akan mem-ping server produsen untuk tujuan statistik.",
+    "opensuse-uuid-description": "Selama penyiapan, sebuah UUID dihasilkan dan disimpan di '/var/lib/zypp/AnonymousUniqueId' untuk memungkinkan pengembang menentukan jumlah instalasi aktif.",
+    "void-popcorn-description": "Pengguna dapat berpartisipasi secara opsional dalam telemetri statistik paket dengan menginstal program 'PopCorn'.",
+    "no-known-telemetry-description": "Tanpa komponen telemetri.",
+    "distrochooser-6-release-text": "Kami telah memperbarui versi ini 🎉 Kamu bisa menemukan pengumumannya di https://github.com/distrochooser/distrochooser/releases/tag/6.9.0"
 }
