@@ -333,5 +333,6 @@
     "runit-option-description": "runit là một tùy chọn cấu hình.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Sử dụng sysvinit làm mặc định",
-    "systemd-option-description": "systemd là một tùy chọn cấu hình"
+    "systemd-option-description": "systemd là một tùy chọn cấu hình",
+    "rhel-pricing-description": "Bản phân phối Linux này yêu cầu một khoản phí."
 }

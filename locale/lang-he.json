@@ -333,5 +333,6 @@
     "runit-option-description": "runit היא אפשרות תצורה.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "משתמש ב-sysvinit כברירת מחדל",
-    "systemd-option-description": "systemd הוא אפשרות תצורה"
+    "systemd-option-description": "systemd הוא אפשרות תצורה",
+    "rhel-pricing-description": "יש לציין שחלוקת לינוקס זו דורשת תשלום."
 }

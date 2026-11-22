@@ -333,5 +333,6 @@
     "runit-option-description": "runit é uma opção de configuração.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Usa sysvinit como padrão",
-    "systemd-option-description": "systemd é uma opção de configuração"
+    "systemd-option-description": "systemd é uma opção de configuração",
+    "rhel-pricing-description": "Esta distribuição Linux tem um custo."
 }

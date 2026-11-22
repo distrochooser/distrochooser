@@ -333,5 +333,6 @@
     "runit-option-description": "runit bir yapılandırma seçeneğidir.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Varsayılan olarak sysvinit kullanır",
-    "systemd-option-description": "systemd bir yapılandırma seçeneğidir"
+    "systemd-option-description": "systemd bir yapılandırma seçeneğidir",
+    "rhel-pricing-description": "Bu Linux dağıtımı ücretli olarak mevcuttur."
 }

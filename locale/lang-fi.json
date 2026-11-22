@@ -333,5 +333,6 @@
     "runit-option-description": "runit on konfiguraatioasetus.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Käyttää sysvinitä oletuksena",
-    "systemd-option-description": "systemd on konfiguraatioasetus"
+    "systemd-option-description": "systemd on konfiguraatioasetus",
+    "rhel-pricing-description": "Tämä Linux-jakelu on saatavilla maksua vastaan."
 }

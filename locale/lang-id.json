@@ -333,5 +333,6 @@
     "runit-option-description": "runit adalah opsi konfigurasi.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Menggunakan sysvinit secara default",
-    "systemd-option-description": "systemd adalah pilihan konfigurasi"
+    "systemd-option-description": "systemd adalah pilihan konfigurasi",
+    "rhel-pricing-description": "Distribusi Linux ini tersedia dengan biaya."
 }

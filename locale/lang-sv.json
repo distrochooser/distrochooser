@@ -333,5 +333,6 @@
     "runit-option-description": "runit är ett konfigurationsalternativ.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Använder sysvinit som standard",
-    "systemd-option-description": "systemd är ett konfigurationsalternativ"
+    "systemd-option-description": "systemd är ett konfigurationsalternativ",
+    "rhel-pricing-description": "Denna Linux-distribution är betald."
 }

@@ -333,5 +333,6 @@
     "runit-option-description": "το runit είναι επιλογή διαμόρφωσης.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Χρησιμοποιεί το sysvinit ως προεπιλογή",
-    "systemd-option-description": "το systemd είναι επιλογή διαμόρφωσης"
+    "systemd-option-description": "το systemd είναι επιλογή διαμόρφωσης",
+    "rhel-pricing-description": "Αυτή η διανομή Linux είναι διαθέσιμη με κόστος."
 }

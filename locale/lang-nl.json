@@ -333,5 +333,6 @@
     "runit-option-description": "runit is een configuratieoptie.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Gebruikt sysvinit als standaard",
-    "systemd-option-description": "systemd is een configuratieoptie"
+    "systemd-option-description": "systemd is een configuratieoptie",
+    "rhel-pricing-description": "Deze Linux-distributie is tegen betaling verkrijgbaar."
 }

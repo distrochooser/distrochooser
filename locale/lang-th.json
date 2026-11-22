@@ -335,5 +335,6 @@
     "runit-option-description": "runit เป็นตัวเลือกในการกำหนดค่า.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "ใช้ sysvinit เป็นค่าเริ่มต้น",
-    "systemd-option-description": "systemd เป็นตัวเลือกการกำหนดค่า"
+    "systemd-option-description": "systemd เป็นตัวเลือกการกำหนดค่า",
+    "rhel-pricing-description": "การแจกจ่าย Linux นี้ต้องเสียค่าใช้จ่าย"
 }

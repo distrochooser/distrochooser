@@ -333,5 +333,6 @@
     "runit-option-description": "runit es eine Konfigurationsoption.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "",
-    "systemd-option-description": "systemd isch e Konfigurationsoption"
+    "systemd-option-description": "systemd isch e Konfigurationsoption",
+    "rhel-pricing-description": "Die Linux-Distro isch z'kaufe."
 }

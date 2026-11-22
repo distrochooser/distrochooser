@@ -92,3 +92,11 @@ how = "positive"
 sources = [
     "opensuse;https://www.suse.com/shop/desktop/" 
 ]
+
+[assignment.rhel-pricing-description]
+facettes = ["paid-support-ok"]
+choosables = ["rhel"]
+how = "positive"
+sources = [
+    "rhel;https://www.redhat.com/en/store/linux-platforms" 
+]

@@ -333,5 +333,6 @@
     "runit-option-description": "runit bir konfiqurasiya seçimidir.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Varsayılan olaraq sysvinit-dən istifadə edir.",
-    "systemd-option-description": "systemd bir konfiqurasiya seçimidir"
+    "systemd-option-description": "systemd bir konfiqurasiya seçimidir",
+    "rhel-pricing-description": "Bu Linux paylanması ödənişlə mövcuddur."
 }

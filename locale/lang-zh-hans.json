@@ -333,5 +333,6 @@
     "runit-option-description": "runit 是一个配置选项。",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "默认使用sysvinit",
-    "systemd-option-description": "systemd 是一个配置选项"
+    "systemd-option-description": "systemd 是一个配置选项",
+    "rhel-pricing-description": "此 Linux 发行版需要付费。"
 }

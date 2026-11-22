@@ -333,5 +333,6 @@
     "runit-option-description": "runit — это опция конфигурации.",
     "sysvinit-description": "sysvinit",
     "sysvinit-used-positive-description": "Использует sysvinit по умолчанию",
-    "systemd-option-description": "systemd — это опция конфигурации"
+    "systemd-option-description": "systemd — это опция конфигурации",
+    "rhel-pricing-description": "Этот дистрибутив Linux доступен на платной основе."
 }
