@@ -93,7 +93,7 @@ sources = [
     "opensuse;https://www.suse.com/shop/desktop/" 
 ]
 
-[assignment.rhel-pricing-description]
+[assignment.rhel-pricing]
 facettes = ["paid-support-ok"]
 choosables = ["rhel"]
 how = "positive"
