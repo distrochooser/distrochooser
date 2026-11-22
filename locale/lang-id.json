@@ -176,7 +176,7 @@
     "nixos-description": "NixOS menggunakan Nix Package Manager. NixOS menggunakan pengaturan deklaratif dan memungkinkan pembaruan sistem yang handal.",
     "no-ai-description": "Distribusi Linux harus mendukung dan menetapkan pedoman untuk menolak kontribusi yang didasarkan pada kecerdasan buatan.",
     "no-linux-contact-description": "Saya hampir atau tidak tahu apapun mengenai Linux",
-    "no-systemd-description": "Tidak menggunakan systemd",
+    "no-systemd-description": "Tanpa systemd pada umumnya",
     "no64bit-description": "Saya tidak yakin mengenai hal ini dan/atau komputer saya memiliki masalah kinerja dan/atau hanya mendukung 32 bit",
     "no_results_text": "Berdasarkan jawaban yang diberikan, tidak ada Distribusi Linux dalam basis data kami yang sesuai dengan preferensi Anda. Harap tinjau jawaban Anda!",
     "no_results_title": "Ups! Tidak ada hasil!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Menggunakan sysvinit secara default",
     "systemd-option-description": "systemd adalah pilihan konfigurasi",
-    "rhel-pricing-description": "Distribusi Linux ini tersedia dengan biaya."
+    "rhel-pricing-description": "Distribusi Linux ini tersedia dengan biaya.",
+    "exit-link-description": "Tautan ini mengarah ke halaman eksternal dan bukan bagian dari situs web kami."
 }

@@ -178,7 +178,7 @@
     "nixos-description": "NixOS uses the Nix package manager. It uses declarative configuration and allows reliable system upgrades.",
     "no-ai-description": "The Linux distribution should endorse and establish a guideline to reject contributions based on artificial intelligence.",
     "no-linux-contact-description": "I have little or no knowledge about Linux-based operating systems",
-    "no-systemd-description": "Does not use systemd",
+    "no-systemd-description": "No systemd in general",
     "no64bit-description": "I'm not sure about this and/or my computer already has performance issues and/or only supports 32 bit",
     "no_results_text": "Based on the given answers, none of the Linux distributions in our database matches your preferences. Please review your answers!",
     "no_results_title": "Oops! No result!",
@@ -336,5 +336,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Uses sysvinit as default",
     "systemd-option-description": "systemd is a configuration option",
-    "rhel-pricing-description": "This Linux distribution requires a fee."
+    "rhel-pricing-description": "This Linux distribution requires a fee.",
+    "exit-link-description": "This link refers to an external page and is not part of our website."
 }

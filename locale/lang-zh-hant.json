@@ -176,7 +176,7 @@
     "nixos-description": "NixOS 使用 Nix 套件管理器。它使用聲明性配置並允許可靠的系統升級。",
     "no-ai-description": "Linux 發行版應支持並制定一項準則，以拒絕基於人工智慧的貢獻。",
     "no-linux-contact-description": "我對基於 Linux 的作業系統了解甚少或一無所知",
-    "no-systemd-description": "不使用 systemd",
+    "no-systemd-description": "一般不使用 systemd",
     "no64bit-description": "我對此不確定，或者我的電腦已經存在效能問題，或者僅支援 32 位",
     "no_results_text": "根據給出的答案，我們的資料庫中沒有一個 Linux 發行版符合您的偏好。請檢查您的答案！",
     "no_results_title": "哎呀！沒有結果！",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "預設使用sysvinit",
     "systemd-option-description": "systemd 是一個配置選項",
-    "rhel-pricing-description": "此 Linux 發行版需要付費。"
+    "rhel-pricing-description": "此 Linux 發行版需要付費。",
+    "exit-link-description": "此連結指向外部頁面，不屬於我們的網站。"
 }

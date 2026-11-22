@@ -178,7 +178,7 @@
     "nixos-description": "NixOS ใช้ตัวจัดการแพ็กเกจ Nix ใช้การกำหนดค่าแบบ Declarative และช่วยให้การอัปเกรดระบบมีความน่าเชื่อถือ",
     "no-ai-description": "Linux distribution ควรรับรองและสร้างแนวทางปฏิบัติเพื่อปฏิเสธการสนับสนุน (Contribution) ที่มาจากปัญญาประดิษฐ์",
     "no-linux-contact-description": "ฉันมีความรู้น้อยหรือไม่มีความรู้เลยเกี่ยวกับระบบปฏิบัติการตระกูล Linux",
-    "no-systemd-description": "ไม่ใช้ systemd",
+    "no-systemd-description": "ไม่มี systemd โดยทั่วไป",
     "no64bit-description": "ฉันไม่แน่ใจเกี่ยวกับเรื่องนี้ และ/หรือคอมพิวเตอร์ของฉันมีปัญหาเรื่องประสิทธิภาพ และ/หรือรองรับแค่ 32 bit",
     "no_results_text": "จากคำตอบที่ให้มา ไม่มี Linux distribution ใดในฐานข้อมูลของเราที่ตรงกับความต้องการของคุณ โปรดทบทวนคำตอบของคุณ!",
     "no_results_title": "โอ๊ะ! ไม่พบผลลัพธ์!",
@@ -336,5 +336,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "ใช้ sysvinit เป็นค่าเริ่มต้น",
     "systemd-option-description": "systemd เป็นตัวเลือกการกำหนดค่า",
-    "rhel-pricing-description": "การแจกจ่าย Linux นี้ต้องเสียค่าใช้จ่าย"
+    "rhel-pricing-description": "การแจกจ่าย Linux นี้ต้องเสียค่าใช้จ่าย",
+    "exit-link-description": "ลิงก์นี้อ้างอิงถึงหน้าภายนอกและไม่ได้เป็นส่วนหนึ่งของเว็บไซต์ของเรา"
 }

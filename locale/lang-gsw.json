@@ -176,7 +176,7 @@
     "nixos-description": "NixOS bout ufem gliichnamite Paketmanager uf, wo am Prinzip vor deklarative Systemkonfiguration folgt, demit Aktualisierige chöi reproduzierbar gmacht wärde.",
     "no-ai-description": "Die Distribution sollte eine Richtlinie ohne KI befürworten und etablieren.",
     "no-linux-contact-description": "I ha no nie mit Linux gschaffet.",
-    "no-systemd-description": "kei systemd bruucht",
+    "no-systemd-description": "Kei Systemd allgemein",
     "no64bit-description": "I bi mer nid sicher / mi Rächner het jitze scho Problem, Programm gnue schnäu ufztue.",
     "no_results_text": "Ufgrund vo dine Antworte het keni vo de Distributione ir Datebank für di passt. Gang doch bitte nomau dini Antworte ga prüefe.",
     "no_results_title": "UUps! Kes Resultat!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "",
     "systemd-option-description": "systemd isch e Konfigurationsoption",
-    "rhel-pricing-description": "Die Linux-Distro isch z'kaufe."
+    "rhel-pricing-description": "Die Linux-Distro isch z'kaufe.",
+    "exit-link-description": "Dä Link füehrt uf e externi Siit und isch nöd Teil vo eusere Website."
 }

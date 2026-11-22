@@ -176,7 +176,7 @@
     "nixos-description": "NixOS baut auf dem gleichnamigen Paketmanager auf, der dem Prinzip deklarativer Systemkonfiguration folgt, um Aktualisierungen reproduzierbar zu machen.",
     "no-ai-description": "Die Distribution sollte eine Richtlinie ohne KI befürworten und etablieren.",
     "no-linux-contact-description": "Ich habe noch nie mit Linux gearbeitet.",
-    "no-systemd-description": "nutzt kein systemd",
+    "no-systemd-description": "Kein systemd generell",
     "no64bit-description": "Ich bin mir nicht sicher / mein Rechner hat bereits Probleme, Programme ausreichend schnell zu öffnen. ",
     "no_results_text": "Auf der Basis deiner aktuellen Antworten konnten wir keine Distribution identifzieren. Bitte überprüfe nochmals deine Angaben!",
     "no_results_title": "Hoppla! Keine Ergebnisse!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Nutzt sysvinit als Standard",
     "systemd-option-description": "systemd ist eine Konfigurationsoption",
-    "rhel-pricing-description": "Diese Linux-Distribution kostet Geld."
+    "rhel-pricing-description": "Diese Linux-Distribution kostet Geld.",
+    "exit-link-description": "Dieser Link führt zu einer externen Seite und gehört nicht zu unserer Website."
 }

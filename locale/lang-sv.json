@@ -176,7 +176,7 @@
     "nixos-description": "NixOS använder pakethanteraren Nix. Den använder deklarativ konfiguration och tillåter tillförlitliga systemuppgraderingar.",
     "no-ai-description": "Linux-distributionen bör stödja och fastställa riktlinjer för att avvisa bidrag baserade på artificiell intelligens.",
     "no-linux-contact-description": "Jag har lite eller inga kunskaper om Linux",
-    "no-systemd-description": "Använder inte systemd",
+    "no-systemd-description": "Ingen systemd i allmänhet",
     "no64bit-description": "Jag är inte säker på detta och/eller min dator har redan prestandaproblem och/eller stöder bara 32 bitar",
     "no_results_text": "Based on the given answers, none of the Distributions in our database matches your preferences. Please review your answers!",
     "no_results_title": "Hoppsan! Inget resultat!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Använder sysvinit som standard",
     "systemd-option-description": "systemd är ett konfigurationsalternativ",
-    "rhel-pricing-description": "Denna Linux-distribution är betald."
+    "rhel-pricing-description": "Denna Linux-distribution är betald.",
+    "exit-link-description": "Den här länken leder till en extern sida och ingår inte i vår webbplats."
 }

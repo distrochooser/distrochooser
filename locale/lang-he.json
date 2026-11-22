@@ -176,7 +176,7 @@
     "nixos-description": "‏NixOS משתמשת במנהל החבילות Nix. היא משתמשת בהגדרה הצהרתית ומאפשרת עדכוני מערכת אמינים.",
     "no-ai-description": "הפצת לינוקס צריכה לאמץ ולקבוע קווים מנחים לדחיית תרומות המבוססות על בינה מלאכותית.",
     "no-linux-contact-description": "יש לי ידע קטן או אפסי בלינוקס",
-    "no-systemd-description": "לא משתמש ב-systemd",
+    "no-systemd-description": "בלי systemd בכלל",
     "no64bit-description": "אינני בטוח/ה לגבי זה ו/או למחשבי יש בעיות ביצועים ו/או תומך רק ב־32 סיביות",
     "no_results_text": "בהתבסס על התשובות שניתנו, אף אחת מהפצות הלינוקס במסד הנתונים שלנו אינה תואמת את העדפותיך. אנא סקור את תשובותיך!",
     "no_results_title": "אופס! אין תוצאה!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "משתמש ב-sysvinit כברירת מחדל",
     "systemd-option-description": "systemd הוא אפשרות תצורה",
-    "rhel-pricing-description": "יש לציין שחלוקת לינוקס זו דורשת תשלום."
+    "rhel-pricing-description": "יש לציין שחלוקת לינוקס זו דורשת תשלום.",
+    "exit-link-description": "קישור זה מפנה לדף חיצוני ואינו חלק מהאתר שלנו."
 }

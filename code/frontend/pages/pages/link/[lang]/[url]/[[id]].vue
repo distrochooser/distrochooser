@@ -16,50 +16,45 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-
-    <Head>
-        <PageMeta />
-    </Head>
-    <NuxtRouteAnnouncer />
-    <main role="main" class="container">
-        <MainNavigation />
-        <div class="page mt-3  position-relative top-40">
-            <div class="row text-center mb-3">
-                <div class="col-4">
-                </div>
-                <div class="col col-3">
-                    <Logo />
-                </div>
-                <div class="col col-1">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <h1>
-                    <LanguageTranslation translation-key="exit-link" />
-                </h1>
-                <p>
-                    <a :href="decodedUrl" class="btn btn-danger" @click="handleClick">
-                        <LanguageTranslation translation-key="exit-link-text" />: {{ decodedUrl }}
+    <div class="card w-100 border border-warning">
+        <div class="card-body">
+            <h5 class="card-title">
+                <LanguageTranslation translation-key="exit-link" />
+            </h5>
+            <span class="card-text">
+                <LanguageTranslation translation-key="exit-link-description" />
+                <span class="mt-2 d-block">
+                    <LanguageTranslation translation-key="exit-link-text" />
+                    <a :href="decodedUrl" class="ms-1" @click="handleClick">
+                        {{ decodedUrl }}
                     </a>
-                </p>
-            </div>
+                </span>
+            </span>
         </div>
-    </main>
+    </div>
 </template>
 <script setup lang="ts">
 import { computed, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
 import { useSessionStore } from '../../../../../states/session';
 import { EntryPointEnum } from '../../../../../sdk';
+import { useRoute } from 'vue-router';
 
+declare module 'nuxt/app' {
+    interface NuxtLayouts {
+        'custom': unknown
+    }
+}
+// ---cut---
+definePageMeta({
+    layout: 'page',
+})
 
-const sessionStore = useSessionStore();
+const sessionStore = useSessionStore()
 
 const router = useRoute();
 const lang: string = router.params.lang as string;
 const url: string = router.params.url as string;
 const id: string = router.params.id as string;
-console.log(id)
 onMounted(async () => {
     if (sessionStore.session == null) {
         await sessionStore.createSession(lang, EntryPointEnum.Outgoing);

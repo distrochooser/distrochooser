@@ -176,7 +176,7 @@
     "nixos-description": "NixOS usa o gerenciador de pacotes Nix. Utiliza uma configuração declarativa e permite atualizações confiáveis para o sistema.",
     "no-ai-description": "A distribuição Linux deve apoiar e estabelecer uma diretriz para rejeitar contribuições baseadas em inteligência artificial.",
     "no-linux-contact-description": "Tenho pouco ou nenhum conhecimento sobre Linux",
-    "no-systemd-description": "Não usa systemd",
+    "no-systemd-description": "Sem systemd em geral",
     "no64bit-description": "Não estou certo disso e/ou se o meu computador tem problemas de desempenho e/ou se somente suporta 32 bits",
     "no_results_text": "Com base nas respostas dadas, nenhuma das distribuições Linux na nossa base de dados corresponde às suas preferências. Por favor, reveja as suas respostas!",
     "no_results_title": "Ops! Nenhum resultado!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Usa sysvinit como padrão",
     "systemd-option-description": "systemd é uma opção de configuração",
-    "rhel-pricing-description": "Esta distribuição Linux tem um custo."
+    "rhel-pricing-description": "Esta distribuição Linux tem um custo.",
+    "exit-link-description": "Este link refere-se a uma página externa e não faz parte do nosso website."
 }

@@ -176,7 +176,7 @@
     "nixos-description": "NixOS, Nix paket menecerindən istifadə edir. Deklarativ konfiqurasiyadan istifadə edir və etibarlı sistem təkmilləşdirmələrinə imkan verir.",
     "no-ai-description": "Linux distribyutivi süni intellektə qadağa qoyan siyasəti dəstəkləməlidir və tətbiq etməlidir.",
     "no-linux-contact-description": "Linux haqqında məlumatım azdır və ya heç yoxdur",
-    "no-systemd-description": "systemd istifadə etmir",
+    "no-systemd-description": "Ümumiyyətlə systemd yoxdur",
     "no64bit-description": "Mən bunun haqqında əmin deyiləm və/yaxud mənim kompüterimdə çoxdandır performans problemlərinə sahiblik edir və/yaxud yalnız 32 biti dəstəkləyir",
     "no_results_text": "Verilən cavablara əsasən, verilənlər bazamızdakı Dağıtımların heç biri sizin seçimlərinizə uyğun gəlmir. Zəhmət olmasa cavablarınızı nəzərdən keçirin!",
     "no_results_title": "Vay! Nəticə yoxdur!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Varsayılan olaraq sysvinit-dən istifadə edir.",
     "systemd-option-description": "systemd bir konfiqurasiya seçimidir",
-    "rhel-pricing-description": "Bu Linux paylanması ödənişlə mövcuddur."
+    "rhel-pricing-description": "Bu Linux paylanması ödənişlə mövcuddur.",
+    "exit-link-description": "Bu keçid xarici səhifəyə yönəlir və veb saytımızın bir hissəsi deyil."
 }

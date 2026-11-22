@@ -176,7 +176,7 @@
     "nixos-description": "NixOS sử dụng trình quản lý gói Nix. Nó sử dụng cấu hình được khai báo và cho phép nâng cấp hệ thống xác thực.",
     "no-ai-description": "Phân phối Linux nên ủng hộ và thiết lập một hướng dẫn để từ chối các đóng góp dựa trên trí tuệ nhân tạo.",
     "no-linux-contact-description": "Tôi có ít hoặc không có kiến thức về Linux",
-    "no-systemd-description": "Không sử dụng systemd",
+    "no-systemd-description": "Nói chung không có systemd",
     "no64bit-description": "Tôi không chắc về điều này và/hoặc máy tính của tôi đã có vấn đề về hiệu năng và/hoặc chỉ hỗ trợ 32 bit",
     "no_results_text": "Dựa trên các câu trả lời đã cho, không có Bản phân phối nào trong cơ sở dữ liệu của chúng tôi khớp với sở thích của bạn. Vui lòng xem lại các câu trả lời của bạn!",
     "no_results_title": "Ồ! Không có kết quả!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Sử dụng sysvinit làm mặc định",
     "systemd-option-description": "systemd là một tùy chọn cấu hình",
-    "rhel-pricing-description": "Bản phân phối Linux này yêu cầu một khoản phí."
+    "rhel-pricing-description": "Bản phân phối Linux này yêu cầu một khoản phí.",
+    "exit-link-description": "Liên kết này tham chiếu đến một trang bên ngoài và không phải là một phần của trang web của chúng tôi."
 }

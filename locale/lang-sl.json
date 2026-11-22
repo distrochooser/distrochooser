@@ -176,7 +176,7 @@
     "nixos-description": "NixOS uporablja upravitelja paketov Nix. Uporablja deklarativno konfiguracijo in omogoča zanesljive nadgradnje sistema.",
     "no-ai-description": "Distribucija Linuxa bi morala podpreti in vzpostaviti smernice za zavračanje prispevkov, ki temeljijo na umetni inteligenci.",
     "no-linux-contact-description": "Imam malo ali nič znanja o operacijskih sistemih, ki temeljijo na Linuxu",
-    "no-systemd-description": "Ne uporablja systemd",
+    "no-systemd-description": "Ni sistemd v splošnem smislu",
     "no64bit-description": "Nisem prepričan glede tega in/ali ima moj računalnik že težave z delovanjem in/ali podpira samo 32-bitne različice",
     "no_results_text": "Glede na dane odgovore nobena od distribucij Linuxa v naši bazi podatkov ne ustreza vašim nastavitvam. Prosimo, preglejte svoje odgovore!",
     "no_results_title": "Opsa! Ni rezultatov!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Uporablja sysvinit kot podaljšanje",
     "systemd-option-description": "systemd je konfiguracijska možnost",
-    "rhel-pricing-description": "Ta Linux distribucija je na voljo z plačilom."
+    "rhel-pricing-description": "Ta Linux distribucija je na voljo z plačilom.",
+    "exit-link-description": "Ta povezava vodi na zunanje stran in ni del mojega spletnega mesta."
 }

@@ -176,7 +176,7 @@
     "nixos-description": "NixOS korzysta z menedżera pakietów Nix. Wykorzystuje on deklaratywną konfigurację i pozwala na niezawodne aktualizacje systemu.",
     "no-ai-description": "Dystrybucja systemu Linux powinna poprzeć i ustanowić wytyczne dotyczące odrzucania wkładu opartego na sztucznej inteligencji.",
     "no-linux-contact-description": "Mam małą lub zerową wiedzę o Linuksie",
-    "no-systemd-description": "Nie używa systemd",
+    "no-systemd-description": "Brak systemda ogólnie",
     "no64bit-description": "Nie jestem tego pewien i/lub mój komputer ma już problemy z wydajnością i/lub obsługuje tylko 32 bity",
     "no_results_text": "W oparciu o podane odpowiedzi, żadna z dystrybucji Linuksa w naszej bazie danych nie odpowiada Twoim preferencjom. Zweryfikuj swoje odpowiedzi!",
     "no_results_title": "Ups! Brak wyniku!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Używa sysvinit jako domyślnego",
     "systemd-option-description": "systemd jest opcją konfiguracyjną",
-    "rhel-pricing-description": "Ta dystrybucja Linuksa jest dostępna za opłatą."
+    "rhel-pricing-description": "Ta dystrybucja Linuksa jest dostępna za opłatą.",
+    "exit-link-description": "Ten link prowadzi do zewnętrznej strony i nie jest częścią naszej witryny."
 }

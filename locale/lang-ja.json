@@ -176,7 +176,7 @@
     "nixos-description": "NixOS は、Nix パッケージマネージャーを使用します。宣言型の構成を採用し、信頼性の高いシステムアップグレードを可能にします。",
     "no-ai-description": "Linuxディストリビューションは、人工知能に基づく貢献を拒否するガイドラインを支持し確立すべきである。",
     "no-linux-contact-description": "Linux ベースのオペレーティングシステムについての知識がほとんどないか全くない",
-    "no-systemd-description": "systemd を使用しません",
+    "no-systemd-description": "systemdなしで全般的に",
     "no64bit-description": "これについてはよくわかりません。また、私のコンピュータは既にパフォーマンスの問題を抱えており、32 ビットしかサポートしていません。",
     "no_results_text": "入力された回答に基づき、データベース内のディストリビューションのいずれもお客様のご希望に合いません。回答をご確認ください。",
     "no_results_title": "おっと！結果がありません！",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "sysvinitをデフォルトで使用します",
     "systemd-option-description": "systemd は設定オプションです",
-    "rhel-pricing-description": "このLinuxディストリビューションは有料です。"
+    "rhel-pricing-description": "このLinuxディストリビューションは有料です。",
+    "exit-link-description": "このリンクは外部ページを参照しており、当社のウェブサイトの一部ではありません。"
 }

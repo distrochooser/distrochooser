@@ -176,7 +176,7 @@
     "nixos-description": "NixOS, Nix paket yöneticisini kullanır. Bildirimsel yapılandırma kullanır ve güvenilir sistem yükseltmelerine izin verir.",
     "no-ai-description": "Linux dağıtımı, yapay zeka temelli katkıları reddetmek için bir kılavuz oluşturmalı ve bunu desteklemelidir.",
     "no-linux-contact-description": "Çok az ya da hiç Linux kullanmadım",
-    "no-systemd-description": "systemd kullanmaz",
+    "no-systemd-description": "Genel olarak systemd yok",
     "no64bit-description": "Bundan emin değilim ve/veya bilgisayarımda zaten performans sorunları var ve/veya yalnızca 32 biti destekliyor",
     "no_results_text": "Verilen cevaplara göre, veritabanımızdaki Linux Dağıtımlarından hiçbiri tercihlerinizle uyuşmuyor. Lütfen cevaplarınızı inceleyin!",
     "no_results_title": "Oops! Sonuç yok!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Varsayılan olarak sysvinit kullanır",
     "systemd-option-description": "systemd bir yapılandırma seçeneğidir",
-    "rhel-pricing-description": "Bu Linux dağıtımı ücretli olarak mevcuttur."
+    "rhel-pricing-description": "Bu Linux dağıtımı ücretli olarak mevcuttur.",
+    "exit-link-description": "Bu bağlantı harici bir sayfaya yönlendirir ve web sitemizin bir parçası değildir."
 }

@@ -176,7 +176,7 @@
     "nixos-description": "NixOS gebruikt de Nix-pakketbeheerder. Het gebruikt declaratieve configuratie en maakt betrouwbare systeemupgrades mogelijk.",
     "no-ai-description": "De Linux-distributie moet een richtlijn goedkeuren en vaststellen om bijdragen op basis van kunstmatige intelligentie te weigeren.",
     "no-linux-contact-description": "Ik heb weinig of geen kennis van Linux",
-    "no-systemd-description": "Gebruikt geen systemd",
+    "no-systemd-description": "Geen systemd in het algemeen",
     "no64bit-description": "Ik weet het niet zeker en/of mijn computer heeft al prestatieproblemen en/of ondersteunt alleen 32 bits",
     "no_results_text": "Op basis van de gegeven antwoorden komt geen van de distributies in onze database overeen met uw voorkeuren. Controleer uw antwoorden!",
     "no_results_title": "Oeps! Geen resultaat!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Gebruikt sysvinit als standaard",
     "systemd-option-description": "systemd is een configuratieoptie",
-    "rhel-pricing-description": "Deze Linux-distributie is tegen betaling verkrijgbaar."
+    "rhel-pricing-description": "Deze Linux-distributie is tegen betaling verkrijgbaar.",
+    "exit-link-description": "Deze link verwijst naar een externe pagina en is niet onderdeel van onze website."
 }

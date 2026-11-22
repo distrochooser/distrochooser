@@ -176,7 +176,7 @@
     "nixos-description": "NixOS käyttää Nix-paketinhallintaa. Järjestelmä määritellään deklaratiivisesti yhdestä konfiguraatiotiedostosta, mikä takaa luotettavat järjestelmäpäivitykset.",
     "no-ai-description": "Linux-jakelun tulisi hyväksyä ja vahvistaa toimintaohje, joka torjuu tekoälyyn perustuvat lisäykset ja parannusehdotukset.",
     "no-linux-contact-description": "Minulla on vähän tai ei ollenkaan tietoa Linuxista",
-    "no-systemd-description": "Ei käytä systemdiä",
+    "no-systemd-description": "Ei systemdiä yleisesti",
     "no64bit-description": "En ole varma tästä ja/tai minun tietokoneessani on jo valmiiksi ongelmia suorituskyvyn kanssa ja/tai tukee ainoastaan 32 bittisyyttä",
     "no_results_text": "Annettujen vastausten perusteella yksikään tietokannassamme olevista Linux-jakeluista ei vastaa mieltymyksiänne. Tarkista vastauksesi uudelleen!",
     "no_results_title": "Hups! Ei tulosta!",
@@ -334,5 +334,6 @@
     "sysvinit-description": "SysVinit",
     "sysvinit-used-positive-description": "Käyttää sysvinitä oletuksena",
     "systemd-option-description": "systemd on konfiguraatioasetus",
-    "rhel-pricing-description": "Tämä Linux-jakelu on saatavilla maksua vastaan."
+    "rhel-pricing-description": "Tämä Linux-jakelu on saatavilla maksua vastaan.",
+    "exit-link-description": "Tämä linkki johtaa ulkoiselle sivulle eikä kuulu verkkosivustomme."
 }
