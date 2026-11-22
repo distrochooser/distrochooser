@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from django.core.management.base import BaseCommand, CommandParser
-from web.models import Session, TimeFrame, TimeFrameRow, Stats
+from web.models import Session, TimeFrame, TimeFrameRow, Stats, Choosable, Click
 from termcolor import colored
 from tqdm import tqdm
 from kuusi.settings import SESSION_NUMBER_OFFSET
@@ -59,18 +59,13 @@ class Command(BaseCommand):
         tests = SESSION_NUMBER_OFFSET + Session.objects.filter(is_ack=True).count()
         clicks = SESSION_NUMBER_OFFSET + Session.objects.all().count()
         Stats.objects.all().delete()
-        Stats(
-            tests=tests,
-            clicks=clicks
-        ).save()
+        Stats(tests=tests, clicks=clicks).save()
 
     def handle(self, *args, **options):
         if options["csv"]:
             self.generate_csv()
             return
-        print(
-            f"Setting public stats..."
-        )
+        print(f"Setting public stats...")
         self.update_public_stats()
 
         year = options["year"]
@@ -101,7 +96,7 @@ class Command(BaseCommand):
                 start_date = end_date.replace(
                     day=1, hour=0, minute=0, second=0, microsecond=0
                 )
-    
+
         print(
             f"Timespan is {colored(start_date, 'magenta')} to {colored(end_date, 'red')}"
         )
@@ -291,6 +286,16 @@ class Command(BaseCommand):
                 row_value_with_ack=worst_day_sessions,
                 row_value_no_ack=0,
             ).save()
+
+            clicks = Click.objects.filter(session__pk__in=[a.pk for a in sessions])
+            for choosable in Choosable.objects.all():
+                TimeFrameRow(
+                    time_frame=frame,
+                    row_type=TimeFrameRow.TimeFrameRowType.CLICKS,
+                    row_key=choosable.catalogue_id,
+                    row_value_with_ack=0,
+                    row_value_no_ack=clicks.filter(choosable=choosable).count(),
+                ).save()
 
             average_duration = 0
             if all_with_ack_count > 0:

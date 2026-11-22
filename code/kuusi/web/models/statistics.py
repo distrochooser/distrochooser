@@ -505,6 +505,23 @@ class TimeFrame(models.Model):
         )
 
     @property
+    def clicks(self) -> str:
+        if self.has_output("clicks"):
+            return self.get_output("clicks")
+        return self.cell_output(
+            self._top_n(TimeFrameRow.TimeFrameRowType.CLICKS, False), "clicks"
+        )
+
+    @property
+    def entry_points(self) -> str:
+        if self.has_output("entry_points"):
+            return self.get_output("entry_points")
+        return self.cell_output(
+            self._top_n(TimeFrameRow.TimeFrameRowType.ENTRY_POINT, False),
+            "entry_points",
+        )
+
+    @property
     def top_hit_domain(self) -> str:
         if self.has_output("top_result_domain"):
             return self.get_output("top_result_domain")
@@ -743,6 +760,7 @@ class TimeFrameRow(models.Model):
         DURATION = "DURATION", "DURATION"
         CTR_TEST = "CTR_TEST", "CTR_TEST"
         IMPORTED = "IMPORTED", "IMPORTED"
+        CLICKS = "CLICKS", "CLICKS"
 
         def transform(
             row_type: TimeFrameRowType.choices, value: str

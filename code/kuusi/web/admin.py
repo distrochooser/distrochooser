@@ -170,6 +170,8 @@ class TimeFrameAdmin(admin.ModelAdmin):
         "top_result_domain",
         "top_result_os",
         "all_crawlers",
+        "clicks",
+        "entry_points",
         "top_hit_crawlers",
         "crawler_with_result",
         "crawler_over_average",
