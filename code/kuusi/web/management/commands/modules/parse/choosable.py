@@ -20,7 +20,6 @@ from typing import Dict, List, Callable, Any
 from web.models import Choosable, ChoosableMeta
 from logging import getLogger
 
-
 logger = getLogger("command")
 
 
@@ -42,7 +41,6 @@ def create_choosables(
         existing_choosables = Choosable.objects.filter(catalogue_id=catalogue_id)
         if existing_choosables.count() != 0:
             new_choosable.pk = existing_choosables.first().pk
-            new_choosable.clicked = existing_choosables.first().clicked
             logger.info(
                 f"There is already a choosable with catalogue_id={catalogue_id}. Re-Using PK."
             )
