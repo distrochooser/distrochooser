@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <LanguageTranslation translation-key="exit-link-description" />
                 <span class="mt-2 d-block">
                     <LanguageTranslation translation-key="exit-link-text" />
-                    <a :href="decodedUrl" class="ms-1" @click="handleClick">
+                    <a :href="decodedUrl" class="ms-1" @click.prevent="handleClick">
                         {{ decodedUrl }}
                     </a>
                 </span>
@@ -57,6 +57,7 @@ const url: string = router.params.url as string;
 const id: string = router.params.id as string;
 onMounted(async () => {
     if (sessionStore.session == null) {
+        // FIXME: This session is _not_ the session the user comes from.
         await sessionStore.createSession(lang, EntryPointEnum.Outgoing);
     }
 });
@@ -66,11 +67,12 @@ const basePath = useRuntimeConfig().public.basePath
 const decodedUrl = computed(() => decodeURI(atob(url)))
 const handleClick = async (e: MouseEvent) => {
     e.preventDefault();
+    const sessionId = sessionStore.session.id
     if (id) {
-        const target = basePath + "/out/" + id.toString() + "/WEBSITE/"
+        const target = basePath + "/out/" + sessionId.toString() + "/" + id.toString() + "/WEBSITE/"
         await fetch(target)
     }
 
-    window.open(decodedUrl.value, "_blank")
+    window.location.href = decodedUrl.value
 }
 </script>

@@ -235,9 +235,8 @@ class Page(models.Model):
 
     def is_error(self, session: Session):
         return PageMarking.objects.filter(
-                page=self, session=session, is_error=True
+            page=self, session=session, is_error=True
         ).exists()
-            
 
     def is_warning(self, session: Session):
         return PageMarking.objects.filter(
@@ -245,7 +244,9 @@ class Page(models.Model):
         ).exists()
 
     def is_info(self, session: Session):
-        return PageMarking.objects.filter(page=self, session=session, is_info=True).exists()
+        return PageMarking.objects.filter(
+            page=self, session=session, is_info=True
+        ).exists()
 
     def toggle_marking(self, session: Session):
         marking_matches = PageMarking.objects.filter(

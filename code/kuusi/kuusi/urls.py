@@ -87,7 +87,9 @@ urlpatterns = (
             SpectacularSwaggerView.as_view(url_name="schema"),
             name="swagger-ui",
         ),
-        path("out/<id>/<property>/", route_outgoing, name="route_outgoing"),
+        path(
+            "out/<session_id>/<id>/<property>/", route_outgoing, name="route_outgoing"
+        ),
         path(f"admin", admin.site.urls),
     ]
     + static(STATIC_URL, document_root=STATIC_ROOT, show_indexes=True)

@@ -24,6 +24,8 @@ from dateutil.relativedelta import relativedelta
 from django.core.cache import cache
 from kuusi.settings import LONG_CACHE_TIMEOUT
 
+from django.apps import apps
+
 
 class Choosable(models.Model):
     """
@@ -37,12 +39,15 @@ class Choosable(models.Model):
         null=False, blank=False, max_length=120
     )  # the name will be used for results lists mostly
     description = models.CharField(null=True, blank=True, default=None, max_length=120)
-    clicked = models.IntegerField(default=0)
     bg_color = models.CharField(max_length=10, default=None, null=True)
     fg_color = models.CharField(max_length=10, default=None, null=True)
 
     def __str__(self) -> str:
         return f"{self.name}"
+
+    @property
+    def clicked(self) -> int:
+        return apps.get_model("web", "Click").objects.filter(choosable=self).count()
 
     @property
     def meta(self) -> Dict[str, any]:

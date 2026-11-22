@@ -51,6 +51,7 @@ from web.models import (
     TimeFrameRow,
     Violation,
     Stats,
+    Click,
 )
 
 from django.utils.timezone import now
@@ -256,6 +257,14 @@ class StatsAdmin(admin.ModelAdmin):
     )
 
 
+class ClickAdmin(admin.ModelAdmin):
+    list_display = (
+        "clicked",
+        "session",
+        "choosable",
+    )
+
+
 class GivenFeedbackAdmin(admin.ModelAdmin):
     list_display = ("session", "text", "is_bug", "is_imported")
     list_filter = ["is_bug", "is_imported"]
@@ -265,6 +274,7 @@ class GivenFeedbackAdmin(admin.ModelAdmin):
     admin.site.register(*models)
     for models in [
         (Stats, StatsAdmin),
+        (Click, ClickAdmin),
         (OldVersionWidget,),
         (Violation, ViolationAdmin),
         (TimeFrameCell, TimeFrameCellAdmin),

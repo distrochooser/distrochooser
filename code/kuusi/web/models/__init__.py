@@ -50,4 +50,5 @@ from .feedbackwidget import FeedbackWidget, GivenFeedback
 from .statistics import TimeFrame, TimeFrameRow, TimeFrameCell
 from .violations import Violation
 from .oldversionwidget import OldVersionWidget
-from .publicstatistics import Stats 
+from .publicstatistics import Stats
+from .click import Click

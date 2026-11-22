@@ -15,26 +15,27 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
 from logging import getLogger
-from django.http import (Http404, HttpResponse)
+from django.http import Http404, HttpResponse
 from django.utils.translation import gettext_lazy as _
-from web.models import (Choosable,
-                        WebHttpRequest)
+from web.models import Choosable, WebHttpRequest, Session, Click
 
 logger = getLogger("root")
 
-def route_outgoing(request: WebHttpRequest, id: int, property: str) -> HttpResponse:
-    got = Choosable.objects.filter(pk=id) 
+
+def route_outgoing(
+    request: WebHttpRequest, session_id: int, id: int, property: str
+) -> HttpResponse:
+    got = Choosable.objects.filter(pk=id)
+    sessions = Session.objects.filter(pk=session_id)
     property = property.upper()
-    if got.count() == 1:
+    if got.exists() and sessions.exists():
         choosable: Choosable = got.first()
-        if choosable:
-            if property not in choosable.meta:
-                raise Http404()
-            else:
-                choosable.clicked += 1
-                choosable.save()
-                return HttpResponse()
+        session: Session = sessions.first()
+        if property not in choosable.meta:
+            raise Http404()
+        else:
+            Click(session=session, choosable=choosable).save()
+            return HttpResponse()
     raise Http404()
-
-
