@@ -14,12 +14,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# distrochooser::translation::en::I do not want this
-# distrochooser::translation::key::privacy-no-connections-unless-wanted-description
+# Old facettes, kept to keep old results valid
 [facette.privacy-no-connections-unless-wanted]
+topic = "_privacy"
+[facette.okay-when-working]
+topic = "_privacy"
+
+# to cover telemetry features in distributions
+[facette.no-telemetry]
 topic = "privacy"
 
-# distrochooser::translation::en::If it improves my user experience, I agree with using such online services
-# distrochooser::translation::key::okay-when-working-description
-[facette.okay-when-working]
+[facette.privacy-focused]
 topic = "privacy"
+
+# TODO EULA
+# TODO: Neutral hit for package servers 

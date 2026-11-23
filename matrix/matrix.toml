@@ -42,3 +42,4 @@
 #include ./assignments/desktops.toml
 #include ./assignments/pricing.toml
 #include ./assignments/init.toml
+#include ./assignments/privacy.toml

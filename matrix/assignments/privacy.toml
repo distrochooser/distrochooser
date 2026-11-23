@@ -1,0 +1,204 @@
+# distrochooser
+# Copyright (C) 2014-2026 Christoph Müller <distrochooser@chmr.eu>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# We consider opt-out as a negative
+# We consider an repeating mechansism as blocking (e. g. daily or hourly ping)
+
+# For Pop!OS, no known telemetry could be found, but a confusing thread on reddit https://www.reddit.com/r/pop_os/comments/1pblbk8/telemetry/
+# For MX Linux, there are claims around telemetry, but I cannot find any proof for that beside the popcon being available to install
+
+# We will consider distros doing no telemetry
+# until proven otherwise
+[assignment.no-known-telemetry]
+facettes = ["no-telemetry"]
+choosables = [
+    "artix",
+    "emmabuntus",
+    "nobara",
+    "cachyos",
+    "asahi", 
+    "popos",
+    "nixos",
+    "manjaro",
+    "pclinuxos",
+    "mint",
+    "cruxlinux",
+    "mxlinux",
+    "gentoo",
+    "knoppix"
+]
+how = "positive"
+sources = [
+    "cachyos;https://discuss.cachyos.org/t/cachy-os-telemetry/29429",
+    "manjaro;https://forum.manjaro.org/t/whatever-happened-to-mdd/186715/6"
+]
+
+# General mapping for privacy focused distros
+[assignment.general-privacy-focused]
+facettes = ["privacy-focused"]
+choosables = [
+    "tails",
+    "qubesos",
+    "parrot"
+]
+how = "positive"
+sources = [
+    "tails;https://tails.net/about/index.en.html"
+]
+
+# Distro specific mappings
+
+[assignment.elementary-no-data-statement]
+facettes = ["no-telemetry"]
+choosables = [
+    "elementaryos",
+]
+how = "positive"
+sources = [
+    "elementaryos;https://elementary.io/privacy"
+]
+[assignment.solus-no-data-statement]
+facettes = ["no-telemetry"]
+choosables = [
+    "solus",
+]
+how = "positive"
+sources = [
+    "solus;https://getsol.us/privacy/"
+]
+
+[assignment.tails-tor]
+facettes = ["no-telemetry"]
+choosables = [
+    "tails",
+]
+how = "positive"
+sources = [
+    "tails;https://tails.net/about/index.en.html"
+]
+
+[assignment.debian-popcon]
+facettes = ["no-telemetry"]
+choosables = [
+    "debian",
+    "devuan"
+]
+how = "positive"
+sources = [
+    "debian;https://popcon.debian.org/",
+    "devuan;https://www.devuan.org/os/documentation/install-guides/excalibur/install-devuan",
+]
+
+
+[assignment.arch-de-pkgstats]
+facettes = ["no-telemetry"]
+choosables = [
+    "arch",
+]
+how = "positive"
+sources = [
+    "arch;https://wiki.archlinux.org/title/Pkgstats"
+]
+
+# https://fedoramagazine.org/getting-better-at-counting-rpm-ostree-based-systems/
+# https://discuss.privacyguides.net/t/bazzite-ships-with-telemetry-enabled/27283/2
+# https://fedoraproject.org/wiki/Changes/Telemetry
+# https://forums.rockylinux.org/t/the-usage-situation-of-rocky-linux/17439/25
+# https://coreos.github.io/rpm-ostree/countme/
+[assignment.fedora-dnf-countme]
+facettes = ["no-telemetry"]
+choosables = [
+    "fedora",
+    "bazzite"
+]
+how = "negative"
+sources = [
+    "fedora;https://fedoraproject.org/wiki/Changes/DNF_Better_Counting",
+    "bazzite;https://discuss.privacyguides.net/t/bazzite-ships-with-telemetry-enabled/27283/2",
+    "rocky;https://forums.rockylinux.org/t/the-usage-situation-of-rocky-linux/17439/26"
+]
+
+# Basically a similar situation as with Debian popcon, but as 
+# the popcon will ask for install, here it's enabled and the user 
+# can opt out (which is imo completely fine) - but it's no opt-in
+# therefore we will map it here as blocking as this is also a persistent ping
+
+[assignment.zorinos-census]
+facettes = ["no-telemetry"]
+choosables = [
+    "zorinos",
+]
+how = "blocking"
+sources = [
+    "zorinos;https://zorin.com/legal/privacy/",
+]
+
+
+[assignment.motd-parameters]
+facettes = ["no-telemetry"]
+choosables = [
+    "kubuntu",
+    "ubuntu",
+    "lubuntu",
+    "xubuntu",
+    "ubuntumate",
+]
+how = "blocking"
+sources = [
+    "ubuntu;https://canonical.com/legal/motd",
+]
+
+[assignment.opensuse-uuid]
+facettes = ["no-telemetry"]
+choosables = [
+    "opensuse",
+]
+how = "negative"
+sources = [
+    "opensuse;https://en.opensuse.org/openSUSE:Statistics",
+]
+
+[assignment.void-popcorn]
+facettes = ["no-telemetry"]
+choosables = [
+    "void",
+]
+how = "positive"
+sources = [
+    "void;https://docs.voidlinux.org/contributing/index.html",
+]
+
+
+[assignment.read-eula]
+facettes = ["no-telemetry"]
+choosables = [
+    "deepin"
+]
+how = "neutral"
+sources = [
+]
+
+[assignment.rhel-clients]
+facettes = ["no-telemetry"]
+choosables = [
+    "rhel",
+]
+how = "negative"
+sources = [
+    "rhel;https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/get_started-con_client_tools_and_components"
+]
+
+
