@@ -353,4 +353,5 @@ pages = [
    "administration-page",
    "advanced-administration-page",
    "privacy-page",
+   "init-page"
 ]
