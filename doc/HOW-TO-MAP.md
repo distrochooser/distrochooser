@@ -111,6 +111,7 @@ sources = [
 ]
 ```
 
+Note: If an assignment is valid for _all_ choosables, you can use `chooseables=["__all__"]`.
 
 The value of `how` can be either:
 

@@ -51,16 +51,22 @@ def create_assignments(
 
         new_assignment.save()
 
-        new_assignment.choosables.set(
-            Choosable.objects.filter(
+        # Allow shortcut with using "__all__" as a magic number to use all choosables
+        choosables = None
+        if len(data["choosables"]) == 1 and data["choosables"][0] == "__all__":
+            choosables = Choosable.objects.all()
+        else:
+            choosables = Choosable.objects.filter(
                 Q(name__in=data["choosables"]) | Q(catalogue_id__in=data["choosables"])
             )
-        )
-
+        if choosables:
+            new_assignment.choosables.set(choosables)
         facettes = Facette.objects.filter(catalogue_id__in=data["facettes"])
 
         if facettes.count() == 0:
-            raise Exception(f"The assignment {element} has no matching facettes")
+            raise Exception(
+                f"The assignment {data["facettes"]} has no matching facettes"
+            )
 
         new_assignment.facettes.set(
             Facette.objects.filter(catalogue_id__in=data["facettes"])
