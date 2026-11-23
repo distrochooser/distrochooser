@@ -16,6 +16,39 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from django.test import TestCase
+from django.test import SimpleTestCase, TestCase
+
+from web.util import (
+    TRANSLATIONS,
+    get_translation,
+    get_translation_haystack,
+    hot_load_translations,
+)
+
+
+class TranslationLoadingTest(SimpleTestCase):
+    """locale/lang-*.json must load under their full language codes.
+
+    A code with a subtag (zh-hans, zh-hant) is itself a language key in
+    AVAILABLE_LANGUAGES, so it may not collapse onto its primary subtag.
+    """
+
+    def test_subtag_languages_load_distinct(self):
+        TRANSLATIONS.clear()
+        hot_load_translations()
+        try:
+            self.assertIn("zh-hans", TRANSLATIONS)
+            self.assertIn("zh-hant", TRANSLATIONS)
+            self.assertNotIn("zh", TRANSLATIONS)
+            self.assertEqual(
+                get_translation("a11y", "zh-hans"),
+                TRANSLATIONS["zh-hans"]["a11y"],
+            )
+            haystack = get_translation_haystack(TRANSLATIONS, "zh-hans")
+            self.assertIn("a11y", haystack)
+        finally:
+            TRANSLATIONS.clear()
+            hot_load_translations()
+
 
 # Create your tests here.

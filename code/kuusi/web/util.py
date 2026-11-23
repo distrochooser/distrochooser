@@ -86,6 +86,9 @@ def hot_load_translations(**kwargs):
     for file in files:
         language_file_match = match("lang-(?P<lang_code>[a-z\-]+).json", file)
         if language_file_match:
+            # The full code between the "lang-" prefix and the ".json" suffix is
+            # kept, so codes with a subtag (zh-hans, zh-hant) stay distinct
+            # instead of collapsing onto the primary subtag.
             language_code = language_file_match.group("lang_code")
             if language_code not in TRANSLATIONS:
                 TRANSLATIONS[language_code] = {}
