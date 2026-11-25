@@ -41,7 +41,17 @@ interface MetaTag {
 const { data } = await useAsyncData<MetaTag>("post", async () => {
     return await $fetch(useRuntimeConfig().public.basePath + "/rest/metatags?lang=" + router.params.lang);
 });
-useSeoMeta(data.value.meta)
+
+const allMetaTags = computed(() => {
+    let raw = data.value.meta
+    raw.viewport = {
+        width: "device-width",
+        initialScale: "1.0"
+    }
+    return allMetaTags
+})
+
+useSeoMeta(allMetaTags)
 
 /* set the dark mode as some kind of default if the browser demands is */
 if (import.meta.client && !store.darkModeControlledByUser && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
