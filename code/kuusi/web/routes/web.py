@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from logging import getLogger
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.utils.translation import gettext_lazy as _
 from web.models import Choosable, WebHttpRequest, Session, Click
 
@@ -39,3 +39,8 @@ def route_outgoing(
             Click(session=session, choosable=choosable).save()
             return HttpResponse()
     raise Http404()
+
+
+def route_pong(request: WebHttpRequest) -> HttpResponse:
+    something = Choosable.objects.all()
+    return JsonResponse({"pong": something.count()})
