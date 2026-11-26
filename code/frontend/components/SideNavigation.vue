@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
     <div class="side-navigation">
-        <div v-for="(page, index) in pages" v-bind:key="index" class="mt-2  d-block  side-navigation-item"
+        <div v-for="(page, index) in pages" v-bind:key="index" class="mt-3 d-block  side-navigation-item"
             :class="{ 'fw-bold': currentPage != null && page.id == currentPage.id, 'is-last-item': isLastPage(page), 'with-facette-selections': hasFacetteSelections }">
             <NavigationItem :index="index" :page="page" v-on:click="sessionStore.selectPage(page.id)" />
         </div>
