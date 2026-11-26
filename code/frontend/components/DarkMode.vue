@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <template>
-    <Icon class="d-none d-xl-block mt-3 me-3 fs-3 position-absolute top-0 end-0 dark-mode-switch" title="Dark mode"
+    <Icon class="d-none d-xl-block mt-3 me-3 fs-3 position-fixed top-0 end-0 dark-mode-switch" title="Dark mode"
         :name="isInDarkMode ? 'ion:md-sunny' : 'ion:moon-sharp'" @click="store.isDarkMode = !store.isDarkMode"></Icon>
 </template>
 
