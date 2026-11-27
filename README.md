@@ -16,8 +16,7 @@ The Distrochooser is a service to help Linux beginners to orientate. The service
 
 |Version|Branch|Remarks
 |--|--|--|
-|distrochooser.de|`viisi`|The production version|
-|beta.distrochooser.de|`main`|The next version, currently in active development|
+|beta.distrochooser.de|`main`|The current version|
 
 # Contribution and code platforms
 
