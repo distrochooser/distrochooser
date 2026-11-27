@@ -20,9 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <h1>
             <LanguageTranslation translation-key="IMPRINT_TITLE" />
         </h1>
-        <pre>
-                    {{ sessionStore.session.imprintData }}
-                </pre>
+        <div v-html="sessionStore.session.imprintData">
+        </div>
         <h1>
             <LanguageTranslation translation-key="IMPRINT_DISCLAIMER_TITLE" />
         </h1>
