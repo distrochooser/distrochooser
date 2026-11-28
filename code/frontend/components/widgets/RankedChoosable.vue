@@ -27,19 +27,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
               <div class="col-8">
                 <span class="choosable-position badge align-middle badge-right-flat" :style="invertedStyling">{{
                   props.choosable.position }}.</span>
-                <span class="badge align-middle me-1 badge-left-flat" :style="invertedStyling">
-                  {{ getPoints(props.choosable.assignments) }}P
-                  <LanguageTranslation translation-key="points_out_of" /> {{ maxPoints }}P
-                </span>
+                <ChoosableRank :choosable="choosable" :all="all" :styling="invertedStyling" />
                 <span class="me-1 align-middle">
                   <b>{{ props.choosable.name }}</b>
-                  <ClickBadge :all="all" :choosable="choosable" />
                 </span>
                 <div class="mb-1 mt-1">
                   <LanguageTranslation :translation-key="props.choosable.catalogueId + '-description'" />
                 </div>
                 <div>
-                  <ChoosableMeta :metaKey="key" :metaValue="value" :choosable="props.choosable"
+                  <ChoosableMeta :metaKey="key" :metaValue="value" :choosable="props.choosable" :all="all"
                     v-for="(key, value, index) in props.choosable.meta" :key="index" />
                 </div>
               </div>
@@ -73,7 +69,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </div>
     </div>
     <div class="col" v-if="choosableToCompare">
-      <RankedChoosable v-if="choosableToCompare" :choosable="choosableToCompare" :others="[]"
+      <RankedChoosable v-if="choosableToCompare" :choosable="choosableToCompare" :others="[]" :all="[]"
         :on-comparison-close="onComparisonClose" />
     </div>
   </div>
@@ -86,6 +82,7 @@ import Assignment from "./facettes/Assignment.vue";
 import { computed, ref } from "vue";
 import { useSessionStore } from "../../states/session.ts";
 import ClickBadge from "../ClickBadge.vue";
+import ChoosableRank from "../ChoosableRank.vue";
 
 interface WidgetProps {
   choosable: RankedChoosable;
@@ -118,20 +115,6 @@ const maxPoints = computed(() => Math.max(...allChoosables.value.map((c) => getP
 const onComparisonClose = () => {
   choosableToCompare.value = null
 }
-
-interface ClickRank {
-  rank: number;
-  clicks: number;
-}
-
-const clickRank = computed((): ClickRank => {
-  const sortedClicks = props.all.sort((a, b) => b.clicksThisMonth - a.clicksThisMonth)
-
-  return {
-    rank: sortedClicks.indexOf(props.choosable) + 1,
-    clicks: props.choosable.clicksThisMonth
-  }
-})
 </script>
 
 <style lang="scss" scoped>

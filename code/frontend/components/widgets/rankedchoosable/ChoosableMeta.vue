@@ -35,6 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <MetaWebsite v-if="metaValue == 'WEBSITE'" :website="metaKey" :id="props.choosable.id" />
     </span>
   </span>
+
+  <ClickBadge v-if="metaValue == 'WEBSITE'" :all="all" :choosable="choosable" />
 </template>
 <script setup lang="ts">
 
@@ -47,6 +49,7 @@ interface WidgetProps {
   metaKey: string;
   metaValue: any;
   choosable: Choosable;
+  all: Choosable[];
 }
 
 const props = defineProps<WidgetProps>();
