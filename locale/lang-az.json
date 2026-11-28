@@ -354,5 +354,7 @@
     "years_old": "yaşındadır",
     "zorin-pro-description": "“Zorin Pro” adlı bir variant var",
     "zorinos-census-description": "Əgər uninstall olunmasa və ya quraşdırma zamanı istisna edilməsə, 'zorin-os-census' aləti statistik məqsədlər üçün istehsalçı serverlərinə ping göndərəcək.",
-    "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır"
+    "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır",
+    "filter_hides_choosables": "Siz Linux paylanışları təsdiqlənməyən zaman gizlətməyə qərar verdiniz",
+    "include_hidden_choosables": "Bu Linux paylanmalarını siyahıya əlavə edin"
 }

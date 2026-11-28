@@ -354,5 +354,7 @@
     "years_old": "שנים",
     "zorin-pro-description": "ישנה גרסה 'Zorin Pro' עם תצוגות ממשק משתמש נוספות ותמיכה טכנית.",
     "zorinos-census-description": "אם לא יוסר או יימחק במהלך ההתקנה, הכלי 'zorin-os-census' ישלח פינג לשרתי היצרן למטרות סטטיסטיות.",
-    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows"
+    "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows",
+    "filter_hides_choosables": "החלטת להסתיר התקנות לינוקס שאין להן התאמה חיובית",
+    "include_hidden_choosables": "הוסף את התوزيعים האלה של לינוקס לרשימה"
 }

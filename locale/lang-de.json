@@ -354,5 +354,7 @@
     "years_old": "Jahre alt",
     "zorin-pro-description": "Es gibt eine Variante namens 'Zorin Pro' mit zusätzlichen Benutzeroberflächen-Layouts und technischem Support.",
     "zorinos-census-description": "Wenn 'zorin-os-census' nicht deinstalliert oder bei der Installation ausgeschlossen wird, sendet das Tool 'zorin-os-census' zu statistischen Zwecken Anfragen an die Hersteller-Server.",
-    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche"
+    "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche",
+    "filter_hides_choosables": "Du hast entschieden, Linux-Distributionen ohne passende Übereinstimmung auszublenden",
+    "include_hidden_choosables": "Diese Linux-Distributionen zur Liste hinzufügen"
 }

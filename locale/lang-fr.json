@@ -354,5 +354,7 @@
     "years_old": "ans",
     "zorin-pro-description": "Il existe une variante 'Zorin Pro' avec des mises en page d'interface utilisateur supplémentaires et un support technique.",
     "zorinos-census-description": "Si 'zorin-os-census' n'est pas désinstallé ou exclu pendant l'installation, l'outil 'zorin-os-census' fera des pings aux serveurs du fabricant à des fins statistiques.",
-    "zorinos-description": "Zorin OS est une distribution destinée aux débutants avec une interface utilisateur de type Windows"
+    "zorinos-description": "Zorin OS est une distribution destinée aux débutants avec une interface utilisateur de type Windows",
+    "filter_hides_choosables": "Tu as décidé de masquer les distributions Linux qui n'ont pas de correspondance positive",
+    "include_hidden_choosables": "Ajouter ces distributions Linux à la liste"
 }

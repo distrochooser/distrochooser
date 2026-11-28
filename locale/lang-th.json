@@ -356,5 +356,7 @@
     "years_old": "ปี",
     "zorin-pro-description": "มีตัวเลือก 'Zorin Pro' ซึ่งมาพร้อมกับเลย์เอาต์ส่วนต่อประสานผู้ใช้เพิ่มเติมและการสนับสนุนทางเทคนิค",
     "zorinos-census-description": "หากไม่ได้ถอนการติดตั้งหรือยกเว้นระหว่างการติดตั้ง เครื่องมือ 'zorin-os-census' จะทำการ ping ไปยังเซิร์ฟเวอร์ของผู้ผลิตเพื่อวัตถุประสงค์ทางสถิติ",
-    "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows"
+    "zorinos-description": "Zorin OS เป็น Linux distribution ที่เน้นผู้เริ่มต้น มีส่วนติดต่อผู้ใช้คล้าย Windows",
+    "filter_hides_choosables": "คุณตัดสินใจซ่อนการแจกจ่าย Linux ที่ไม่มีการจับคู่ที่เป็นบวก",
+    "include_hidden_choosables": "เพิ่มการแจกจ่าย Linux เหล่านี้ลงในรายการ"
 }

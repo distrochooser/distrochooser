@@ -354,5 +354,7 @@
     "years_old": "Johr alt",
     "zorin-pro-description": "Eita he'n ebe'n 'Zorin Pro' mit widderegei UI-Louts und Tech-Support.",
     "zorinos-census-description": "Wänn 'zorin-os-census' nöd deinstalliert oder bim Installiere usgschlosse wird, sendet ds Tool 'zorin-os-census' für Statistikzueg zu de Hersteller-Server. ",
-    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret"
+    "zorinos-description": "ZorinOS isch e benutzerfründlechi Distribution mitere Oberflechi wo a Windows erinneret",
+    "filter_hides_choosables": "You have decided to hide Linux Distributions without a positive match",
+    "include_hidden_choosables": "Ongeza usambazaji huu wa Linux kwenye orodha"
 }

@@ -354,5 +354,7 @@
     "years_old": "лет",
     "zorin-pro-description": "Есть вариант 'Zorin Pro' с дополнительными макетами пользовательского интерфейса и технической поддержкой.",
     "zorinos-census-description": "Если 'zorin-os-census' не удален и не исключен во время установки, инструмент 'zorin-os-census' будет пинговать серверы производителя в статистических целях.",
-    "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих"
+    "zorinos-description": "Zorin OS — дистрибутив с пользовательским интерфейсом как в Windows для начинающих",
+    "filter_hides_choosables": "Ты решил скрыть дистрибутивы Linux без положительного совпадения",
+    "include_hidden_choosables": "Добавьте эти дистрибутивы Linux в список"
 }

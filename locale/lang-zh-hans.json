@@ -354,5 +354,7 @@
     "years_old": "岁",
     "zorin-pro-description": "有一个名为“Zorin Pro”的变体，它提供额外的用户界面布局和技术支持。",
     "zorinos-census-description": "如果未在安装过程中卸载或排除，工具 'zorin-os-census' 将会向制造商服务器发送 ping 以进行统计目的。",
-    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$"
+    "zorinos-description": "Zorin OS 是一款面向初学者的 Linux 发行版，拥有类似 Windows 的用户界面$",
+    "filter_hides_choosables": "你决定隐藏没有正向匹配的 Linux 发行版",
+    "include_hidden_choosables": "将这些 Linux 发行版添加到列表中"
 }

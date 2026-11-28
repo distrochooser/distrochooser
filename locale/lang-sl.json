@@ -354,5 +354,7 @@
     "years_old": "let",
     "zorin-pro-description": "Obstaja variant 'Zorin Pro' z dodatnimi zasloni interfejsa in tehnično podporo.",
     "zorinos-census-description": "Če storitev 'zorin-os-census' ne odstranite ali izključite med namestitvijo, bo orodje 'zorin-os-census' pošiljal ping na serverje proizvajalca za statistične namene.",
-    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows"
+    "zorinos-description": "Zorin OS je distribucija Linuxa, osredotočena na začetnike, z uporabniškim vmesnikom, podobnim sistemu Windows",
+    "filter_hides_choosables": "Odločil si, da skrivaš Linux distribucije brez pozitivnega ujemanja",
+    "include_hidden_choosables": "Dodajte te Linux distribucije v seznam"
 }

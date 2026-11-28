@@ -354,5 +354,7 @@
     "years_old": "vuotta",
     "zorin-pro-description": "On olemassa variantti nimeltä 'Zorin Pro'",
     "zorinos-census-description": "Jos 'zorin-os-census' ei poisteta asennuksesta eikä sitä ole suljettu pois asennuksen aikana, työkalu 'zorin-os-census' lähettää pingi valmistajan palvelimille tilastollisten tarkoituksiin.",
-    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windows tyyppinen käyttöliittymä"
+    "zorinos-description": "Zorin OS on aloittelijoille suunnattu jakelu jossa on Windows tyyppinen käyttöliittymä",
+    "filter_hides_choosables": "Olet päättänyt piilottaa Linux-jakelut, joilla ei ole positiivista osumaa",
+    "include_hidden_choosables": "Lisää nämä Linux-jakelut listalle"
 }

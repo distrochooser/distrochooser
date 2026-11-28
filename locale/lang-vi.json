@@ -354,5 +354,7 @@
     "years_old": "tuổi",
     "zorin-pro-description": "Có một phiên bản 'Zorin Pro' với các bố cục giao diện người dùng bổ sung và hỗ trợ kỹ thuật.",
     "zorinos-census-description": "Nếu không gỡ cài đặt hoặc loại trừ trong quá trình cài đặt, công cụ 'zorin-os-census' sẽ ping các máy chủ của nhà sản xuất cho các mục đích thống kê.",
-    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows"
+    "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows",
+    "filter_hides_choosables": "Bạn đã quyết định ẩn các bản phân phối Linux không có kết quả khớp tích cực",
+    "include_hidden_choosables": "Thêm các bản phân phối Linux này vào danh sách"
 }

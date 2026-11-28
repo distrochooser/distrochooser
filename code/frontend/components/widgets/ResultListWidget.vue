@@ -50,11 +50,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <RankedChoosable :choosable="choosable"
         :others="orderedChoosables.filter(c => c.catalogueId !== choosable.catalogueId)" />
     </div>
+    <div class="alert alert-warning" v-if="filterHidesChoosables">
+      <Icon name="ion:funnel-sharp" class="me-1 align-middle" />
+      <LanguageTranslation translation-key="filter_hides_choosables" />.
+      <a href="#" @click.prevent="store.mustHavePositiveMatch = false" class="ms-1 d-block mt-1">
+        <LanguageTranslation translation-key="include_hidden_choosables" />
+      </a>
+    </div>
     <div class="alert alert-info" v-if="orderedChoosables.length == 0">
+      <Icon name="ion:close-round" class="me-1 align-middle" />
       <b>
         <LanguageTranslation translation-key="NO_RESULTS_TITLE" />
       </b>
-      <p>
+      <p class="mt-1 mb-0">
         <LanguageTranslation translation-key="NO_RESULTS_TEXT" />
       </p>
     </div>
@@ -76,5 +84,7 @@ const store = useSessionStore();
 const orderedChoosables = computed(() => props.widget.choosables.sort(
   (a, b) => b.rank - a.rank
 ).filter(c => store.mustHavePositiveMatch ? c.assignments.filter(a => a.assignmentType === AssignmentTypeEnum.Positive).length > 0 : true))
+
+const filterHidesChoosables = computed(() => store.mustHavePositiveMatch && props.widget.choosables.length !== orderedChoosables.value.length)
 
 </script>

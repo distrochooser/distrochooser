@@ -354,5 +354,7 @@
     "years_old": "år",
     "zorin-pro-description": "Det finns en variant som heter 'Zorin Pro' med ytterligare användargränssnittslayouts och tekniskt stöd.",
     "zorinos-census-description": "Om 'zorin-os-census' inte avinstalleras eller exkluderas under installationen, kommer verktyget 'zorin-os-census' att pinga till tillverkarens servrar för statistikändamål.",
-    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt"
+    "zorinos-description": "Zorin OS är en nybörjarfokuserad distribution med ett Windows-liknande användargränssnitt",
+    "filter_hides_choosables": "Du har bestämt dig för att dölja Linux-distributioner utan positiv match",
+    "include_hidden_choosables": "Lägg till dessa Linux-distributioner i listan"
 }
