@@ -46,10 +46,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </div>
       </div>
     </div>
-    <div v-for="(choosable, index) in orderedChoosables" :key="index">
-      <RankedChoosable :choosable="choosable"
-        :others="orderedChoosables.filter(c => c.catalogueId !== choosable.catalogueId)" />
-    </div>
     <div class="alert alert-warning" v-if="filterHidesChoosables">
       <Icon name="ion:funnel-sharp" class="me-1 align-middle" />
       <LanguageTranslation translation-key="filter_hides_choosables" />.
@@ -66,6 +62,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <LanguageTranslation translation-key="NO_RESULTS_TEXT" />
       </p>
     </div>
+    <div v-for="(choosable, index) in orderedChoosables" :key="index">
+      <RankedChoosable :choosable="choosable"
+        :others="orderedChoosables.filter(c => c.catalogueId !== choosable.catalogueId)" />
+    </div>
+
   </div>
 </template>
 <script setup lang="ts">
