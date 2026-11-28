@@ -66,13 +66,17 @@ class Command(BaseCommand):
             self.generate_csv()
             return
         print(f"Setting public stats...")
-        self.update_public_stats()
 
         year = options["year"]
         timeframe_type = TimeFrame.TimeFrameType.MONTH
         end_date = None
         start_date = None
         start_option = options["start_date"]
+
+        if not start_option:
+            self.update_public_stats()
+        else:
+            print(f"{colored('Omitting', 'magenta')} updating puiblic statistics.")
         if year:
             start_date = parse_datetime(f"{year}-01-01 00:00:00").astimezone()
             end_date = parse_datetime(f"{year}-12-31 23:59:59").astimezone()
