@@ -356,5 +356,6 @@
     "zorinos-census-description": "如果未在安裝過程中卸載或排除，工具 'zorin-os-census' 將會向製造商伺服器發送 ping 以進行統計目的。",
     "zorinos-description": "Zorin OS 是一款專注於初學者的 Linux 發行版，具有類似 Windows 的使用者介面",
     "filter_hides_choosables": "你決定隱藏沒有正向匹配的 Linux 發行版",
-    "include_hidden_choosables": "將這些 Linux 發行版添加到列表中"
+    "include_hidden_choosables": "將這些 Linux 發行版添加到列表中",
+    "most_clicks_this_month": "本月點擊最多"
 }

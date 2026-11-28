@@ -356,5 +356,6 @@
     "zorinos-census-description": "אם לא יוסר או יימחק במהלך ההתקנה, הכלי 'zorin-os-census' ישלח פינג לשרתי היצרן למטרות סטטיסטיות.",
     "zorinos-description": "‏Zorin OS היא הפצה שמתמקדת במתחילים ומספקת ממשק דמוי Windows",
     "filter_hides_choosables": "החלטת להסתיר התקנות לינוקס שאין להן התאמה חיובית",
-    "include_hidden_choosables": "הוסף את התوزيعים האלה של לינוקס לרשימה"
+    "include_hidden_choosables": "הוסף את התوزيعים האלה של לינוקס לרשימה",
+    "most_clicks_this_month": "הנבחר ביותר החודש"
 }

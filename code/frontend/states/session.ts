@@ -294,6 +294,13 @@ export const useSessionStore = defineStore('websiteStore', {
                 });
             }
         },
+        async getChoosables() {
+            this.sessionApi.sessionChoosableList({
+                sessionPk: this.session.resultId
+            }).then((choosables: Choosable[]) => {
+                this.choosables = choosables
+            })
+        },
         async createSession(lang: string, entryPoint: EntryPointEnum, resultId?: string) {
             this.isLoading = true;
             const userAgent = window.navigator.userAgent
@@ -314,11 +321,7 @@ export const useSessionStore = defineStore('websiteStore', {
                     this.selectPage(-1) /* select the first page */
                     /* The result list widget brings its own set of choosables. if not enabled, this request is not needed */
                     if (this.session.isFeedbackModeEnabled) {
-                        this.sessionApi.sessionChoosableList({
-                            sessionPk: this.session.resultId
-                        }).then((choosables: Choosable[]) => {
-                            this.choosables = choosables
-                        })
+                        this.getChoosables()
                     }
                 }
                 // if there was a resultId given -> update selections from it

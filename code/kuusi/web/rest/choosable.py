@@ -16,7 +16,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 from web.models import Choosable, ChoosableMeta
 from rest_framework import serializers
 from drf_spectacular.types import OpenApiTypes
@@ -27,41 +26,56 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
 from typing import Dict, Any
 
-CHOOSABLE_SERIALIZER_BASE_FIELDS = ('id', 'name',  'bg_color', 'fg_color', 'meta', 'catalogue_id')
+CHOOSABLE_SERIALIZER_BASE_FIELDS = (
+    "id",
+    "name",
+    "bg_color",
+    "fg_color",
+    "meta",
+    "catalogue_id",
+    "clicks_this_month",
+)
+
 
 class ChoosableSerializer(serializers.ModelSerializer):
     meta = serializers.SerializerMethodField()
+
     class Meta:
         model = Choosable
         fields = CHOOSABLE_SERIALIZER_BASE_FIELDS
-    
+
     def get_meta(self, obj: Choosable) -> Dict[str, Any]:
         meta_values = obj.meta
         new_meta = {}
         for key, value in meta_values.items():
             meta_value: str = str(value.meta_value)
             if not value.is_hidden:
-                new_meta[key] =  meta_value
+                new_meta[key] = meta_value
         return new_meta
 
-    
+
 class ChoosableViewSet(ListModelMixin, GenericViewSet):
     queryset = Choosable.objects.all()
     serializer_class = ChoosableSerializer
 
     @extend_schema(
         parameters=[
-          OpenApiParameter("session_pk", OpenApiTypes.STR, OpenApiParameter.PATH,description="The session resultid", required=True)
+            OpenApiParameter(
+                "session_pk",
+                OpenApiTypes.STR,
+                OpenApiParameter.PATH,
+                description="The session resultid",
+                required=True,
+            )
         ],
         responses={
-            status.HTTP_200_OK: OpenApiResponse(response=ChoosableSerializer, description="The list of Choosables available to use"),
-        }
+            status.HTTP_200_OK: OpenApiResponse(
+                response=ChoosableSerializer,
+                description="The list of Choosables available to use",
+            ),
+        },
     )
-    def list(self, request,  *args, **kwargs):
-        serializer = ChoosableSerializer(
-            Choosable.objects.all(),
-            many=True
-        )
+    def list(self, request, *args, **kwargs):
+        serializer = ChoosableSerializer(Choosable.objects.all(), many=True)
         serializer.context["session_pk"] = kwargs["session_pk"]
         return Response(serializer.data)
-

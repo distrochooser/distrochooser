@@ -356,5 +356,6 @@
     "zorinos-census-description": "Jika tidak dihapus atau dikecualikan selama pemasangan, alat 'zorin-os-census' akan mem-ping server produsen untuk tujuan statistik.",
     "zorinos-description": "Zorin OS adalah distribusi yang berfokus pada pemula dengan tampilan antarmuka pengguna mirip Windows",
     "filter_hides_choosables": "Kamu memutuskan untuk menyembunyikan Distribusi Linux tanpa kecocokan positif",
-    "include_hidden_choosables": "Tambahkan distribusi Linux ini ke daftar"
+    "include_hidden_choosables": "Tambahkan distribusi Linux ini ke daftar",
+    "most_clicks_this_month": "Paling banyak diklik bulan ini"
 }

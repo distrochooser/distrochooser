@@ -356,5 +356,6 @@
     "zorinos-census-description": "Nếu không gỡ cài đặt hoặc loại trừ trong quá trình cài đặt, công cụ 'zorin-os-census' sẽ ping các máy chủ của nhà sản xuất cho các mục đích thống kê.",
     "zorinos-description": "Zorin OS là bản phân phối tập trung cho người mới bắt đầu với giao diện người dùng giống Windows",
     "filter_hides_choosables": "Bạn đã quyết định ẩn các bản phân phối Linux không có kết quả khớp tích cực",
-    "include_hidden_choosables": "Thêm các bản phân phối Linux này vào danh sách"
+    "include_hidden_choosables": "Thêm các bản phân phối Linux này vào danh sách",
+    "most_clicks_this_month": "Được nhấp nhiều nhất trong tháng này"
 }

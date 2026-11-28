@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from typing import Dict
 from django.db import models
+from django.utils.timezone import datetime
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -48,6 +49,18 @@ class Choosable(models.Model):
     @property
     def clicked(self) -> int:
         return apps.get_model("web", "Click").objects.filter(choosable=self).count()
+
+    @property
+    def clicks_this_month(self) -> int:
+        now = datetime.now()
+        start_date = now.replace(day=1, hour=0, minute=0, second=0, year=now.year)
+
+        clicks = (
+            apps.get_model("web", "Click")
+            .objects.filter(choosable=self)
+            .filter(clicked__gte=start_date)
+        )
+        return clicks.count()
 
     @property
     def meta(self) -> Dict[str, any]:

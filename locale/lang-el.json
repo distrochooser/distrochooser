@@ -356,5 +356,6 @@
     "zorinos-census-description": "Εάν δεν αποσυλλαστεί ή αποκλειστεί κατά την εγκατάσταση, το εργαλείο 'zorin-os-census' θα στέλνει ping στους διακομιστές του κατασκευαστή για στατιστικούς σκοπούς.",
     "zorinos-description": "Το Zorin OS είναι μια διανομή που εστιάζει σε αρχάριους που μοιάζει με τα Windows",
     "filter_hides_choosables": "Αποφάσισες να κρύψεις τις Linux διανομές χωρίς θετική αντιστοίχιση",
-    "include_hidden_choosables": "Προσθέστε αυτές τις Linux διανομές στη λίστα"
+    "include_hidden_choosables": "Προσθέστε αυτές τις Linux διανομές στη λίστα",
+    "most_clicks_this_month": "Οι πιο συχνά κλικαρισμένοι αυτό τον μήνα"
 }

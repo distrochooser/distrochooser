@@ -356,5 +356,6 @@
     "zorinos-census-description": "'zorin-os-census' kaldırılmaz veya kurulum sırasında hariç tutulmazsa, araç 'zorin-os-census' istatistiksel amaçlar için üretici sunucularına ping gönderecektir.",
     "zorinos-description": "Zorin OS, Windows benzeri bir kullanıcı arayüzü ile başlangıç odaklı bir dağıtımdır",
     "filter_hides_choosables": "Pozitif eşleşmesi olmayan Linux dağıtımlarını gizlemeye karar verdin",
-    "include_hidden_choosables": "Bu Linux dağıtımlarını listeye ekle"
+    "include_hidden_choosables": "Bu Linux dağıtımlarını listeye ekle",
+    "most_clicks_this_month": "Bu ay en çok tıklanan"
 }

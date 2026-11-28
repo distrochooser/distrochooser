@@ -356,5 +356,6 @@
     "zorinos-census-description": "Als 'zorin-os-census' niet wordt gedeïnstalleerd of uitgesloten tijdens de installatie, zal de tool 'zorin-os-census' pingen naar de fabrikantenservers voor statistische doeleinden.",
     "zorinos-description": "Zorin OS is een op beginners gerichte distributie met een Windows-achtige gebruikersinterface",
     "filter_hides_choosables": "Je hebt besloten om Linux-distributies zonder een positieve match te verbergen",
-    "include_hidden_choosables": "Voeg deze Linux-distributies toe aan de lijst"
+    "include_hidden_choosables": "Voeg deze Linux-distributies toe aan de lijst",
+    "most_clicks_this_month": "Meest geklikt deze maand"
 }

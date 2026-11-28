@@ -356,5 +356,6 @@
     "zorinos-census-description": "インストール時にアンインストールまたは除外されない限り、ツール「zorin-os-census」は統計目的でメーカーのサーバーにpingを送信します。",
     "zorinos-description": "Zorin OS は、Windows ライクなユーザーインターフェースを備えた、初心者向けのディストリビューションです。",
     "filter_hides_choosables": "ポジティブな一致がないLinuxディストリビューションは非表示にすることにしました",
-    "include_hidden_choosables": "これらのLinuxディストリビューションをリストに追加する"
+    "include_hidden_choosables": "これらのLinuxディストリビューションをリストに追加する",
+    "most_clicks_this_month": "今月最もクリックされた"
 }

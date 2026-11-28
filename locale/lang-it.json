@@ -356,5 +356,6 @@
     "zorinos-census-description": "Se 'zorin-os-census' non viene disinstallato o escluso durante l'installazione, lo strumento 'zorin-os-census' invierà ping ai server del produttore per scopi statistici.",
     "zorinos-description": "Zorin OS è una distribuzione focalizzata per principianti con un'interfaccia utente simile a Windows",
     "filter_hides_choosables": "Hai deciso di nascondere le distribuzioni Linux senza una corrispondenza positiva",
-    "include_hidden_choosables": "Aggiungi queste distribuzioni Linux all'elenco"
+    "include_hidden_choosables": "Aggiungi queste distribuzioni Linux all'elenco",
+    "most_clicks_this_month": "Più cliccato questo mese"
 }

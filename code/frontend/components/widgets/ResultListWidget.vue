@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     </div>
     <div v-for="(choosable, index) in orderedChoosables" :key="index">
       <RankedChoosable :choosable="choosable"
-        :others="orderedChoosables.filter(c => c.catalogueId !== choosable.catalogueId)" />
+        :others="orderedChoosables.filter(c => c.catalogueId !== choosable.catalogueId)" :all="orderedChoosables" />
     </div>
 
   </div>

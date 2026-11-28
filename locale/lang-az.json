@@ -356,5 +356,6 @@
     "zorinos-census-description": "Əgər uninstall olunmasa və ya quraşdırma zamanı istisna edilməsə, 'zorin-os-census' aləti statistik məqsədlər üçün istehsalçı serverlərinə ping göndərəcək.",
     "zorinos-description": "Zorin OS, Windows-a bənzər istifadəçi interfeysi ilə yeni başlayanlar mərkəzli paylanmadır",
     "filter_hides_choosables": "Siz Linux paylanışları təsdiqlənməyən zaman gizlətməyə qərar verdiniz",
-    "include_hidden_choosables": "Bu Linux paylanmalarını siyahıya əlavə edin"
+    "include_hidden_choosables": "Bu Linux paylanmalarını siyahıya əlavə edin",
+    "most_clicks_this_month": "Bu ay ən çox kliklənən"
 }

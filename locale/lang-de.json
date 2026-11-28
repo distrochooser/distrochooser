@@ -356,5 +356,6 @@
     "zorinos-census-description": "Wenn 'zorin-os-census' nicht deinstalliert oder bei der Installation ausgeschlossen wird, sendet das Tool 'zorin-os-census' zu statistischen Zwecken Anfragen an die Hersteller-Server.",
     "zorinos-description": "ZorinOS ist eine benutzerfreundliche Distribution mit an Windows erinnernder Oberfläche",
     "filter_hides_choosables": "Du hast entschieden, Linux-Distributionen ohne passende Übereinstimmung auszublenden",
-    "include_hidden_choosables": "Diese Linux-Distributionen zur Liste hinzufügen"
+    "include_hidden_choosables": "Diese Linux-Distributionen zur Liste hinzufügen",
+    "most_clicks_this_month": "Am meisten geklickt diesen Monat"
 }
