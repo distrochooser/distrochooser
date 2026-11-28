@@ -96,7 +96,7 @@ topic = "scenario" <-- This is the mapping to a question widget with the topic "
 
 Step 3: **Create the assignment**
 
-- Locate the `assigments.toml` file (recommendation for new distributions: `Introduce new files, e. g. /assignments/my-distro.toml`)
+- Locate the `assignments.toml` file (recommendation for new distributions: `Introduce new files, e. g. /assignments/my-distro.toml`)
 - Find if the key of the facette is already present. Facettes are referred in this way: `from = ["<facette key>"]`. Keep in mind that facettes can have different directions, based on the attribute `how`.
 - If no facette is existing, add your new facette to the file:
 
@@ -124,7 +124,7 @@ The value of `how` can be either:
 
 What about `sources`?
 
-Assigments shall have a source.
+Assignments shall have a source.
 
 The `sources` array consists out of strings which always have the format `<identifier>;<link>`, as described in ADR-0020. 
 
