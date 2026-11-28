@@ -151,6 +151,20 @@ class FacetteAssignment(models.Model):
     # to keep this simple & stupid, no new entity will be introduced.
     sources = models.CharField(null=True, blank=True, default=None, max_length=5000)
 
+    @property
+    def facettes_str(self) -> str:
+        got = ""
+        for facette in self.facettes.all():
+            got += f"{facette.catalogue_id},"
+        return got
+
+    @property
+    def choosables_str(self) -> str:
+        got = ""
+        for facette in self.choosables.all():
+            got += f"{facette.catalogue_id},"
+        return got
+
     def __str__(self) -> str:
         if self.pk is None:
             return f"Virtual: ({self.assignment_type})"

@@ -48,6 +48,9 @@ next_page = "scenario-page"
 [widget.version.version-page-widget-name]
 pages = ["version-page"]
 
+[widget.resultlistfilterconfig.filter-config-widget]
+pages = ["version-page"]
+
 # Scenario page
 
 # distrochooser::translation::en::Software: Use case

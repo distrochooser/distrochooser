@@ -31,6 +31,7 @@ from web.models import (
     ResultListWidget,
     FacetteRadioSelectionWidget,
     OldVersionWidget,
+    ResultListFilterConfigWidget,
 )
 from logging import getLogger
 
@@ -53,6 +54,7 @@ def create_widgets(
         "metafilter": MetaFilterWidget,
         "feedback": FeedbackWidget,
         "oldversion": OldVersionWidget,
+        "resultlistfilterconfig": ResultListFilterConfigWidget,
     }
     prop_map: Dict[str, Dict[str, Type]] = {
         "html": {"template": str},

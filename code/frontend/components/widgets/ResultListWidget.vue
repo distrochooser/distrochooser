@@ -61,7 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   </div>
 </template>
 <script setup lang="ts">
-import type { Choosable, ResultListWidget } from "../../sdk";
+import { AssignmentTypeEnum, type Choosable, type ResultListWidget } from "../../sdk";
 import RankedChoosable from "./RankedChoosable.vue";
 import { useSessionStore } from "../../states/session";
 import { computed } from "vue";
@@ -75,6 +75,6 @@ const store = useSessionStore();
 
 const orderedChoosables = computed(() => props.widget.choosables.sort(
   (a, b) => b.rank - a.rank
-).filter(c => store.mustHaveAssignment ? c.assignments.length > 0 : true))
+).filter(c => store.mustHavePositiveMatch ? c.assignments.filter(a => a.assignmentType === AssignmentTypeEnum.Positive).length > 0 : true))
 
 </script>

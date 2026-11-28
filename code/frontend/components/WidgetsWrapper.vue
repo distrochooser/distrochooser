@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <MetaFilterWidget v-if="widget.widgetType == 'MetaFilterWidget'" :widget="widget" />
       <FeedbackWidget v-if="widget.widgetType == 'FeedbackWidget'" :widget="widget" />
       <OldVersionWidget v-if="widget.widgetType == 'OldVersionWidget'" />
+      <ResultListFilterConfigWidget v-if="widget.widgetType == 'ResultListFilterConfigWidget'" />
     </div>
   </div>
 </template>
@@ -45,6 +46,7 @@ import SessionVersionWidget from "./widgets/SessionVersionWidget.vue";
 import MetaFilterWidget from "./widgets/MetaFilterWidget.vue";
 import FeedbackWidget from "./widgets/FeedbackWidget.vue";
 import OldVersionWidget from "./widgets/OldVersionWidget.vue";
+import ResultListFilterConfigWidget from "./widgets/ResultListFilterConfigWidget.vue";
 
 interface WidgetWrapperProps {
   row: Number;

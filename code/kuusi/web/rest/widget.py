@@ -60,6 +60,7 @@ from web.models import (
     SessionVersionWidget,
     Widget,
     ChoosableMeta,
+    ResultListFilterConfigWidget,
 )
 from web.rest.choosable import CHOOSABLE_SERIALIZER_BASE_FIELDS, ChoosableSerializer
 from web.rest.facette import FacetteAssignmentSerializer, FacetteSerializer
@@ -106,6 +107,14 @@ class OldVersionWidgetSerializer(WidgetSerializer):
 
     class Meta:
         model = OldVersionWidget
+        fields = WIDGET_SERIALIZER_BASE_FIELDS
+
+
+class ResultListFilterConfigWidgetSerializer(WidgetSerializer):
+    widget_type = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ResultListFilterConfigWidget
         fields = WIDGET_SERIALIZER_BASE_FIELDS
 
 
@@ -430,6 +439,7 @@ class WidgetViewSet(ListModelMixin, GenericViewSet):
                         FeedbackWidgetSerializer,
                         MetaFilterWidgetSerializer,
                         OldVersionWidgetSerializer,
+                        ResultListFilterConfigWidget,
                     ],
                     component_name="MetaWidget",
                     resource_type_field_name="widget_type",

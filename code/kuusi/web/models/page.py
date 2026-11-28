@@ -125,6 +125,11 @@ class Page(models.Model):
                     pages__pk__in=[target_pk]
                 )
             )
+            + list(
+                apps.get_model("web", "ResultListFilterConfigWidget").objects.filter(
+                    pages__pk__in=[target_pk]
+                )
+            )
         )
         cache.set(cache_key, result, LONG_CACHE_TIMEOUT)
         return result

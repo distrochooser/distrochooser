@@ -52,3 +52,4 @@ from .violations import Violation
 from .oldversionwidget import OldVersionWidget
 from .publicstatistics import Stats
 from .click import Click
+from .resultlistfilterconfigwidget import ResultListFilterConfigWidget

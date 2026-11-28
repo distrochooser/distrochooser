@@ -43,7 +43,7 @@ interface SessionState {
     givenFeedback: String;
     isGivenFeedbackBug: boolean;
     isDarkMode: boolean;
-    mustHaveAssignment: boolean;
+    mustHavePositiveMatch: boolean;
     darkModeControlledByUser: boolean;
     previousVersionResultId: string | null;
     containerVisible: boolean;
@@ -75,7 +75,7 @@ export const useSessionStore = defineStore('websiteStore', {
         givenFeedback: null,
         isGivenFeedbackBug: false,
         isDarkMode: false,
-        mustHaveAssignment: true,
+        mustHavePositiveMatch: true,
         darkModeControlledByUser: false,
         previousVersionResultId: null,
         containerVisible: false,

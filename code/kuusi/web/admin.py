@@ -272,6 +272,12 @@ class GivenFeedbackAdmin(admin.ModelAdmin):
     list_filter = ["is_bug", "is_imported"]
 
 
+class FacetteAssignmentAdmin(admin.ModelAdmin):
+    list_display = ("catalogue_id", "assignment_type", "facettes_str", "choosables_str")
+
+    list_filter = ["assignment_type"]
+
+
 [
     admin.site.register(*models)
     for models in [
@@ -301,7 +307,7 @@ class GivenFeedbackAdmin(admin.ModelAdmin):
         (ResultShareWidget,),
         (ResultListWidget,),
         (SessionVersionWidget,),
-        (FacetteAssignment,),
+        (FacetteAssignment, FacetteAssignmentAdmin),
         (PageMarking,),
         (Feedback,),
         (AssignmentFeedback,),
