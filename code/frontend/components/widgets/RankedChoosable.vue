@@ -63,7 +63,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" v-if="props.choosable.assignments.length > 0">
           <li class="list-group-item" v-for="(key, index) in props.choosable.assignments" :key="index">
             <Assignment :display-weigth="true" :assignment="key" :key="index" :query-choosables="false" :facette="null"
               :negative-handling-active="props.choosable.negativeHandlingActive" :choosable="props.choosable" />
